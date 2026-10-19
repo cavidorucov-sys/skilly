@@ -1,7 +1,7 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
-  ["index.html", "Bu həftə"], ["teqvim.html", "Təqvim"], ["riyaziyyat.html", "Riyaziyyat"], ["olimpiada.html", "Olimpiada"],
-  ["fizika.html", "Fizika"], ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Səhvlər"], ["dusturlar.html", "Düsturlar"],
+  ["index.html", "Bu həftə"], ["teqvim.html", "Təqvim"], ["riyaziyyat.html", "Buraxılış"], ["olimpiada.html", "Olimpiada"],
+  ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Səhvlər"], ["dusturlar.html", "Düsturlar"],
 ];
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
@@ -129,9 +129,38 @@ async function pageIndex() {
 }
 
 async function pageTopics(key, title, lead) {
-  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, title), el("p", { class: "lead" }, lead));
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, title));
   const { m } = await shell(content);
   if (!m) { content.append(el("p", { class: "empty" }, "Siyahı yüklənmədi.")); return; }
+  renderTopics(content, m, key, lead);
+}
+
+// Olympiad page: one entry in the nav, math and physics as tabs (#riyaziyyat / #fizika).
+async function pageOlympiad() {
+  const SUBJ = {
+    riyaziyyat: ["Riyaziyyat", "Hər mövzuya ~2 həftə: dərs və 12–15 məşq sualı, sonra 5–6 olimpiada məsələsi (həll kağızda yazılır, şəkli göndərilir) və yekun test."],
+    fizika: ["Fizika", "FRİTL-də keçilən hər mövzu növbəti həftə burada təkrarlanır: sadə izah, məşq, test. FRİTL-in keçmədiyi mövzular ayrıca əlavə olunur."],
+  };
+  const body = el("div");
+  const tabs = Object.entries(SUBJ).map(([k, [label]]) => {
+    const b = el("button", { class: "tab", role: "tab", type: "button", "aria-selected": "false" }, label);
+    b.addEventListener("click", () => { history.replaceState(null, "", "#" + k); draw(k); });
+    b.dataset.k = k; return b;
+  });
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Olimpiada"), el("div", { class: "head", role: "tablist", style: "margin-top:18px" }, ...tabs), body);
+  const { m } = await shell(content);
+  if (!m) { body.append(el("p", { class: "empty" }, "Siyahı yüklənmədi.")); return; }
+  function draw(k) {
+    tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.k === k)));
+    body.replaceChildren(); renderTopics(body, m, SUBJ_KAT_KEY[k], SUBJ[k][1]);
+  }
+  const h = location.hash.slice(1);
+  draw(SUBJ[h] ? h : "riyaziyyat");
+}
+const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
+
+function renderTopics(content, m, key, lead) {
+  content.append(el("p", { class: "lead" }, lead));
   const rows = m[key], kat = SUBJ_KAT[key];
   const c = s => rows.filter(r => r.status === s).length;
   content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")} · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
@@ -361,9 +390,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const p = document.body.dataset.page;
   if (p === "index") pageIndex();
   else if (p === "teqvim") pageCalendar();
-  else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Riyaziyyat — buraxılış", "Hər mövzu giriş testi ilə başlayır: 80% və çox — mövzu bağlanır. Az olarsa: dərs → 20–25 məşq sualı → yekun test (80%). Bir həftə və bir ay sonra təkrar.");
-  else if (p === "olimpiada") pageTopics("olimpiada", "Riyaziyyat olimpiadası", "Hər mövzuya ~2 həftə: dərs və 12–15 məşq sualı, sonra 5–6 olimpiada məsələsi (həll kağızda yazılır, şəkli göndərilir) və yekun test.");
-  else if (p === "fizika") pageTopics("fizika", "Fizika", "FRİTL-də keçilən hər mövzu növbəti həftə burada təkrarlanır: sadə izah, məşq, test. FRİTL-in keçmədiyi mövzular ayrıca əlavə olunur.");
+  else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Buraxılış — riyaziyyat", "Hər mövzu giriş testi ilə başlayır: 80% və çox — mövzu bağlanır. Az olarsa: dərs → 20–25 məşq sualı → yekun test (80%). Bir həftə və bir ay sonra təkrar.");
+  else if (p === "olimpiada") pageOlympiad();
+  else if (p === "fizika") location.replace("olimpiada.html#fizika");
   else if (p === "dusturlar") pageFormulas();
   else if (p === "sinaqlar") pageStatic("Sınaqlar", "Şənbə 11:00–12:30 vaxt limitli sınaq: bir həftə riyaziyyat, bir həftə fizika.",
     '<p><b>Fizika</b> — <a href="dersler/fizika-mexanika-1.html">Mexanika sınağı 1</a> · 24 tapşırıq, 60 dəq <span class="st st-bag">işlənib: 23/24</span></p><p><b>Riyaziyyat</b> — <span class="empty">növbəti sınaq tezliklə.</span></p>');

@@ -11,7 +11,7 @@ PAGE = """<!doctype html>
 <script src="assets/app.js" defer></script>
 </head><body data-page="{page}"><noscript>Bu səhifə JavaScript tələb edir.</noscript></body></html>
 """
-pages = {"index": "Bu həftə", "teqvim": "Təqvim", "riyaziyyat": "Riyaziyyat", "olimpiada": "Riyaziyyat olimpiadası", "fizika": "Fizika",
+pages = {"index": "Bu həftə", "teqvim": "Təqvim", "riyaziyyat": "Buraxılış", "olimpiada": "Olimpiada", "fizika": "Fizika",
          "sinaqlar": "Sınaqlar", "temrar": "Səhv jurnalı", "dusturlar": "Düsturlar"}
 for page, title in pages.items():
     open(page + ".html", "w", encoding="utf-8").write(PAGE.replace("{title}", title).replace("{page}", page))
