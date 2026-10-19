@@ -81,6 +81,11 @@ const fmtH = h => String(h).replace(".", ",");
 
 // topics whose final test was passed on this device count as closed (until the data file catches up)
 const passedHere = () => { try { return JSON.parse(localStorage.getItem("skilly-bag") || "[]"); } catch (e) { return []; } };
+const LIST_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
+function topicIndex(m) { const ix = {}; for (const k in m) m[k].forEach(t => { ix[k + ":" + t.ad] = { ...t, list: k }; }); return ix; }
+const isClosed = t => t && (t.status === "bag" || (t.ders && passedHere().includes(t.ders)));
+const missingPrereqs = (t, ix) => (t.on || []).map(id => ix[id]).filter(x => x && !isClosed(x));
+const weekLabel = iso => { const d = new Date(iso + "T12:00"); return d.getDate() + " " + AY[d.getMonth()].slice(0, 3); };
 function allTopics(m) {
   const bag = passedHere();
   return Object.entries(m).flatMap(([subj, rows]) => rows.map(r => ({ ...r, subj, kat: SUBJ_KAT[subj], status: r.ders && bag.includes(r.ders) ? "bag" : r.status })));
@@ -207,6 +212,14 @@ async function pageIndex() {
       el("span", { class: "ag-go" }, "Aç →")));
   }
 
+  // 2b. topics planned to start this week
+  const monday = (() => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); })();
+  const mm = await load("data/movzular.json").catch(() => null);
+  const thisWeek = mm ? Object.entries(mm).flatMap(([k, v]) => v.filter(t => t.hefte === monday && t.status !== "bag").map(t => ({ ...t, kat: LIST_KAT[k] }))) : [];
+  if (thisWeek.length) content.append(el("section", { class: "home-sec" }, el("div", { class: "head" }, el("h2", {}, "Bu həftənin mövzuları"), el("span", { class: "more" }, thisWeek.length + " mövzu")),
+    el("div", { class: "list dl" }, ...thisWeek.map(t => { const k = KAT[t.kat]; return el(t.ders ? "a" : "div", { class: "row", ...(t.ders ? { href: t.ders, style: "text-decoration:none;color:inherit" } : {}) },
+      el("span", { class: "ic " + k.cls }, icon(topicIcon(t), k.ink)), el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, k.ad + " · " + t.bolme)), stPill(t.status)); }))));
+
   // 3. the week
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
     el("div", { class: "dname" + (g.tarix === today ? " today" : "") }, g.qisa + " " + g.tarix.slice(8)),
@@ -259,18 +272,19 @@ function renderTopics(content, m, key, lead) {
   const upNext = (planned.length ? planned : rows.filter(r => r.status === "yox")).slice(0, 3).map(r => ({ ...r, kat }));
   const shown = inProgress.length ? inProgress : upNext;
   if (shown.length) content.append(el("h2", { class: "cards-h" }, inProgress.length ? "İşlənir" : "Başlanacaq"), el("div", { class: "cards" }, ...shown.map(topicCard)));
-  const tb = el("tbody"); let sec = null, i = 0;
-  rows.forEach(r => {
-    if (r.bolme !== sec) { sec = r.bolme; tb.append(el("tr", { class: "sec" }, el("td", { colspan: "4" }, sec))); }
-    i++;
-    const k = KAT[kat] || KAT.misc;
-    tb.append(el("tr", {}, el("td", { class: "n" }, String(i).padStart(2, "0")),
+  // learning order: prerequisites always come first; each row shows its planned week and what must be closed before it
+  const ix = topicIndex(m), tb = el("tbody");
+  rows.forEach((r, i) => {
+    const k = KAT[kat] || KAT.misc, miss = missingPrereqs(r, ix);
+    tb.append(el("tr", {}, el("td", { class: "n" }, String(i + 1).padStart(2, "0")),
       el("td", {}, el("div", { class: "tname" }, el("span", { class: "tic " + k.cls }, icon(topicIcon({ ...r, kat }), k.ink)),
-        el("span", {}, r.ad, r.fritl ? el("span", { class: "tag" }, "FRİTL") : null, r.yeni ? el("span", { class: "tag" }, "əlavə") : null))),
+        el("span", { class: "tcol" }, el("span", {}, r.ad, r.fritl ? el("span", { class: "tag" }, "FRİTL") : null),
+          el("small", {}, r.bolme + (miss.length && r.status !== "bag" ? " · əvvəl: " + miss.map(x => x.ad.split(/[:,(]/)[0].trim()).join(", ") : ""))))),
+      el("td", { class: "wk" }, r.hefte ? weekLabel(r.hefte) : ""),
       el("td", {}, stPill(r.status)),
-      el("td", { class: "act" }, r.ders ? el("a", { class: "go", href: r.ders }, "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
+      el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status === "yox" ? " wait" : ""), href: r.ders }, miss.length && r.status === "yox" ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
   });
-  content.append(el("div", { class: "tbl" }, el("table", { class: "mt" }, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Vəziyyət"), el("th", {}, ""))), tb)));
+  content.append(el("div", { class: "tbl" }, el("table", { class: "mt" }, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Həftə"), el("th", {}, "Vəziyyət"), el("th", {}, ""))), tb)));
 }
 
 async function pageFormulas() {
@@ -335,6 +349,8 @@ async function pageCalendar() {
   const ev = {};
   const add = (d, e) => (ev[d] = ev[d] || []).push(e);
   term.forEach(t => add(t.tarix, { kat: t.kat, is: t.ad, qeyd: t.qeyd, son: true }));
+  const mm = await load("data/movzular.json").catch(() => null);
+  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "" }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
   const today = isoToday();
   let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
@@ -537,9 +553,20 @@ const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "oli
 async function pageLesson() {
   const name = new URLSearchParams(location.search).get("p") || "";
   if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }
-  const frame = el("iframe", { class: "lesson-frame", title: "Dərs" });
-  await shell(el("div", { class: "lesson-wrap" }, frame));
+  const frame = el("iframe", { class: "lesson-frame", title: "Dərs" }), wrap = el("div", { class: "lesson-wrap" }, frame);
+  const { m } = await shell(wrap);
   if (window.Skilly) await Skilly.ready;
+  const ix = m ? topicIndex(m) : {}, me = Object.values(ix).find(t => t.ders === "dersler/" + name + ".html");
+  const miss = me ? missingPrereqs(me, ix) : [];
+  if (me && miss.length && me.status === "yox") {
+    wrap.replaceChildren(el("div", { class: "gate" }, el("h2", {}, me.ad),
+      el("p", {}, "Bu mövzu bunlara əsaslanır. Əvvəl onları bağla — sonra bu dərs açılacaq:"),
+      el("div", { class: "list" }, ...miss.map(x => { const k = KAT[LIST_KAT[x.list]]; return el(x.ders ? "a" : "div", { class: "row", ...(x.ders ? { href: x.ders } : {}) },
+        el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx" }, el("b", {}, x.ad), el("span", {}, x.bolme)),
+        el("span", { class: "st " + (x.status === "isl" ? "st-isl" : "st-yox") }, x.status === "isl" ? "İşlənir" : "Başlanmayıb")); }))));
+    return;
+  }
+  if (me && miss.length) wrap.prepend(el("p", { class: "gate-note" }, "Diqqət: bu mövzu " + miss.map(x => "“" + x.ad + "”").join(", ") + " üzərində qurulub — onları da bağlamağı unutma."));
   frame.src = "dersler/" + name + ".html" + location.hash;
   frame.addEventListener("load", () => {
     const d = frame.contentDocument; if (!d) return;

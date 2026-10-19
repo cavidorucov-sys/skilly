@@ -5,140 +5,319 @@
    "ad": "Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB",
    "status": "yox",
    "menbe": "DİM: Həqiqi ədədlər",
-   "ders": "dersler/natural-ededler.html"
+   "ders": "dersler/natural-ededler.html",
+   "on": [],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Həqiqi ədədlər",
    "ad": "Adi və onluq kəsrlər, dövri kəsrlər",
    "status": "yox",
    "menbe": "DİM: Həqiqi ədədlər",
-   "ders": "dersler/kesrler.html"
+   "ders": "dersler/kesrler.html",
+   "on": [
+    "riyaziyyat:Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Həqiqi ədədlər",
    "ad": "Tam və rasional ədədlər, ədəd oxu, modul",
    "status": "yox",
    "menbe": "DİM: Həqiqi ədədlər",
-   "ders": "dersler/tam-rasional-modul.html"
-  },
-  {
-   "bolme": "Həqiqi ədədlər",
-   "ad": "İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
-   "status": "yox",
-   "menbe": "DİM: Həqiqi ədədlər",
-   "ders": "dersler/heqiqi-ededler.html"
+   "ders": "dersler/tam-rasional-modul.html",
+   "on": [
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Nisbət, tənasüb, faiz",
    "ad": "Nisbət, tənasüb, düz və tərs mütənasiblik",
    "status": "yox",
    "menbe": "DİM: Nisbət. Tənasüb. Faiz",
-   "ders": "dersler/nisbet-tenasub.html"
-  },
-  {
-   "bolme": "Nisbət, tənasüb, faiz",
-   "ad": "Faiz",
-   "status": "yox",
-   "menbe": "DİM: Nisbət. Tənasüb. Faiz",
-   "ders": "dersler/faiz.html"
+   "ders": "dersler/nisbet-tenasub.html",
+   "on": [
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Rasional ifadələr",
    "ad": "Cəbri ifadələr, sadələşdirmə",
    "status": "yox",
    "menbe": "DİM: Rasional ifadələr",
-   "ders": "dersler/cebri-ifadeler.html"
-  },
-  {
-   "bolme": "Rasional ifadələr",
-   "ad": "Çoxhədlilər",
-   "status": "yox",
-   "menbe": "DİM: Rasional ifadələr",
-   "ders": "dersler/coxhedliler.html"
-  },
-  {
-   "bolme": "Rasional ifadələr",
-   "ad": "Müxtəsər vurma düsturları",
-   "status": "yox",
-   "menbe": "DİM: Rasional ifadələr",
-   "ders": "dersler/muxteser-vurma.html"
-  },
-  {
-   "bolme": "Rasional ifadələr",
-   "ad": "Vuruqlara ayırma",
-   "status": "yox",
-   "menbe": "DİM: Rasional ifadələr",
-   "ders": "dersler/vuruqlara-ayirma.html"
-  },
-  {
-   "bolme": "Rasional ifadələr",
-   "ad": "Rasional ifadələrin çevrilməsi, DMQ",
-   "status": "yox",
-   "menbe": "DİM: Rasional ifadələr",
-   "ders": "dersler/rasional-ifadeler.html"
-  },
-  {
-   "bolme": "Köklər və qüvvətlər",
-   "ad": "Kvadrat kök, hesabi kökün xassələri",
-   "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…",
-   "ders": "dersler/kvadrat-kok.html"
-  },
-  {
-   "bolme": "Köklər və qüvvətlər",
-   "ad": "Tam üstlü qüvvət, ədədin standart şəkli",
-   "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…",
-   "ders": "dersler/tam-uslu-quvvet.html"
-  },
-  {
-   "bolme": "Köklər və qüvvətlər",
-   "ad": "n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr",
-   "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…",
-   "ders": "dersler/n-ci-kok.html"
-  },
-  {
-   "bolme": "Statistika, çoxluqlar, ehtimal",
-   "ad": "Ölçü vahidləri və statistika: median, moda, diaqramlar",
-   "status": "yox",
-   "menbe": "DİM: Ölçmə. Statistika… (+ Faiz: Diaqramlar)",
-   "ders": "dersler/statistika.html"
-  },
-  {
-   "bolme": "Statistika, çoxluqlar, ehtimal",
-   "ad": "Çoxluqlar, Eyler-Venn diaqramı",
-   "status": "yox",
-   "menbe": "DİM: Ölçmə. Statistika. Çoxluqlar…",
-   "ders": "dersler/coxluqlar.html"
-  },
-  {
-   "bolme": "Statistika, çoxluqlar, ehtimal",
-   "ad": "Ehtimal: toplama və vurma prinsipləri, hadisənin ehtimalı",
-   "status": "yox",
-   "menbe": "DİM: …Ehtimal nəzəriyyəsinin elementləri",
-   "ders": "dersler/ehtimal.html"
+   "ders": "dersler/cebri-ifadeler.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Xətti tənliklər",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
-   "ders": "dersler/xetti-tenlikler.html"
+   "ders": "dersler/xetti-tenlikler.html",
+   "on": [
+    "riyaziyyat:Cəbri ifadələr, sadələşdirmə",
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Funksiyalar",
+   "ad": "Koordinat sistemi, funksiya anlayışı",
+   "status": "yox",
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/koordinat-funksiya.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Funksiyalar",
+   "ad": "Xətti funksiya",
+   "status": "isl",
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/xetti-funksiya.html",
+   "on": [
+    "riyaziyyat:Koordinat sistemi, funksiya anlayışı",
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Köklər və qüvvətlər",
+   "ad": "Kvadrat kök, hesabi kökün xassələri",
+   "status": "yox",
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/kvadrat-kok.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Sadə həndəsi fiqurlar",
+   "ad": "Bucaqlar, paralel və perpendikulyar düz xətlər",
+   "status": "yox",
+   "menbe": "DİM: Sadə həndəsi fiqurlar",
+   "ders": "dersler/bucaqlar-paralel.html",
+   "on": [
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Üçbucaqlar",
+   "ad": "Üçbucaqlar, bərabərlik əlamətləri",
+   "status": "yox",
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/ucbucaq-beraberlik.html",
+   "on": [
+    "riyaziyyat:Bucaqlar, paralel və perpendikulyar düz xətlər"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Üçbucaqlar",
+   "ad": "Üçbucağın elementləri, tərəf-bucaq münasibətləri",
+   "status": "yox",
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/ucbucaq-elementleri.html",
+   "on": [
+    "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Üçbucaqlar",
+   "ad": "Pifaqor teoremi",
+   "status": "yox",
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/pifaqor.html",
+   "on": [
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri",
+    "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Üçbucaqlar",
+   "ad": "Düzbucaqlı üçbucaqda sin, cos, tg",
+   "status": "isl",
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/triqonometriya-1.html",
+   "on": [
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Nisbət, tənasüb, faiz",
+   "ad": "Faiz",
+   "status": "yox",
+   "menbe": "DİM: Nisbət. Tənasüb. Faiz",
+   "ders": "dersler/faiz.html",
+   "on": [
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik",
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2026-11-16"
+  },
+  {
+   "bolme": "Statistika, çoxluqlar, ehtimal",
+   "ad": "Ölçü vahidləri və statistika: median, moda, diaqramlar",
+   "status": "yox",
+   "menbe": "DİM: Ölçmə. Statistika… (+ Faiz: Diaqramlar)",
+   "ders": "dersler/statistika.html",
+   "on": [
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər",
+    "riyaziyyat:Faiz"
+   ],
+   "hefte": "2026-11-16"
+  },
+  {
+   "bolme": "Statistika, çoxluqlar, ehtimal",
+   "ad": "Çoxluqlar, Eyler-Venn diaqramı",
+   "status": "yox",
+   "menbe": "DİM: Ölçmə. Statistika. Çoxluqlar…",
+   "ders": "dersler/coxluqlar.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-11-16"
+  },
+  {
+   "bolme": "Statistika, çoxluqlar, ehtimal",
+   "ad": "Ehtimal: toplama və vurma prinsipləri, hadisənin ehtimalı",
+   "status": "yox",
+   "menbe": "DİM: …Ehtimal nəzəriyyəsinin elementləri",
+   "ders": "dersler/ehtimal.html",
+   "on": [
+    "riyaziyyat:Çoxluqlar, Eyler-Venn diaqramı",
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2026-11-16"
+  },
+  {
+   "bolme": "Rasional ifadələr",
+   "ad": "Çoxhədlilər",
+   "status": "yox",
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/coxhedliler.html",
+   "on": [
+    "riyaziyyat:Cəbri ifadələr, sadələşdirmə"
+   ],
+   "hefte": "2026-11-23"
+  },
+  {
+   "bolme": "Rasional ifadələr",
+   "ad": "Müxtəsər vurma düsturları",
+   "status": "yox",
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/muxteser-vurma.html",
+   "on": [
+    "riyaziyyat:Çoxhədlilər"
+   ],
+   "hefte": "2026-11-23"
+  },
+  {
+   "bolme": "Rasional ifadələr",
+   "ad": "Vuruqlara ayırma",
+   "status": "yox",
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/vuruqlara-ayirma.html",
+   "on": [
+    "riyaziyyat:Müxtəsər vurma düsturları"
+   ],
+   "hefte": "2026-11-23"
+  },
+  {
+   "bolme": "Rasional ifadələr",
+   "ad": "Rasional ifadələrin çevrilməsi, DMQ",
+   "status": "yox",
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/rasional-ifadeler.html",
+   "on": [
+    "riyaziyyat:Vuruqlara ayırma",
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2026-11-30"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Kvadrat tənlik, diskriminant",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
-   "ders": "dersler/kvadrat-tenlik.html"
+   "ders": "dersler/kvadrat-tenlik.html",
+   "on": [
+    "riyaziyyat:Vuruqlara ayırma",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri",
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2026-11-30"
+  },
+  {
+   "bolme": "Funksiyalar",
+   "ad": "Kvadrat funksiya, parabola",
+   "status": "isl",
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/kvadrat-funksiya.html",
+   "on": [
+    "riyaziyyat:Xətti funksiya",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2026-12-07"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Viyet teoremi",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
-   "ders": "dersler/viyet.html"
+   "ders": "dersler/viyet.html",
+   "on": [
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2026-12-07"
+  },
+  {
+   "bolme": "Köklər və qüvvətlər",
+   "ad": "Tam üstlü qüvvət, ədədin standart şəkli",
+   "status": "yox",
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/tam-uslu-quvvet.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2026-12-07"
+  },
+  {
+   "bolme": "Köklər və qüvvətlər",
+   "ad": "n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr",
+   "status": "yox",
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/n-ci-kok.html",
+   "on": [
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri",
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
+   ],
+   "hefte": "2026-12-14"
+  },
+  {
+   "bolme": "Həqiqi ədədlər",
+   "ad": "İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
+   "status": "yox",
+   "menbe": "DİM: Həqiqi ədədlər",
+   "ders": "dersler/heqiqi-ededler.html",
+   "on": [
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri"
+   ],
+   "hefte": "2026-12-14"
   },
   {
    "bolme": "Tənliklər",
@@ -147,133 +326,133 @@
    "menbe": "DİM: Birdəyişənli tənliklər",
    "novbeti": 3,
    "sebeb": "Sınaq 1: vaxt çatmadı (sual 23)",
-   "ders": "dersler/kesr-rasional-tenlikler.html"
+   "ders": "dersler/kesr-rasional-tenlikler.html",
+   "on": [
+    "riyaziyyat:Rasional ifadələrin çevrilməsi, DMQ",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2026-12-14"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Kvadrat tənliyə gətirilən və sadə irrasional tənliklər",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
-   "ders": "dersler/kvadrat-tenliye-getirilen.html"
+   "ders": "dersler/kvadrat-tenliye-getirilen.html",
+   "on": [
+    "riyaziyyat:Kvadrat tənlik, diskriminant",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri"
+   ],
+   "hefte": "2026-12-21"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Tənlik qurmaqla məsələ həlli",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
-   "ders": "dersler/tenlik-qurmaqla-mesele.html"
+   "ders": "dersler/tenlik-qurmaqla-mesele.html",
+   "on": [
+    "riyaziyyat:Kəsr-rasional tənliklər",
+    "riyaziyyat:Faiz",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2026-12-21"
   },
   {
    "bolme": "Tənliklər sistemi",
    "ad": "İkidəyişənli xətti tənliklər sistemi",
    "status": "yox",
    "menbe": "DİM: Tənliklər sistemi",
-   "ders": "dersler/xetti-sistem.html"
+   "ders": "dersler/xetti-sistem.html",
+   "on": [
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2026-12-28"
   },
   {
    "bolme": "Tənliklər sistemi",
    "ad": "İkidərəcəli tənliklər sistemi, sistemlə məsələ həlli",
    "status": "yox",
    "menbe": "DİM: Tənliklər sistemi",
-   "ders": "dersler/ikidereceli-sistem.html"
-  },
-  {
-   "bolme": "Funksiyalar",
-   "ad": "Koordinat sistemi, funksiya anlayışı",
-   "status": "yox",
-   "menbe": "DİM: Funksiyalar və qrafiklər",
-   "ders": "dersler/koordinat-funksiya.html"
-  },
-  {
-   "bolme": "Funksiyalar",
-   "ad": "Xətti funksiya",
-   "status": "isl",
-   "menbe": "DİM: Funksiyalar və qrafiklər",
-   "ders": "dersler/xetti-funksiya.html"
-  },
-  {
-   "bolme": "Funksiyalar",
-   "ad": "Kvadrat funksiya, parabola",
-   "status": "isl",
-   "menbe": "DİM: Funksiyalar və qrafiklər",
-   "ders": "dersler/kvadrat-funksiya.html"
+   "ders": "dersler/ikidereceli-sistem.html",
+   "on": [
+    "riyaziyyat:İkidəyişənli xətti tənliklər sistemi",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2026-12-28"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "y = k/x, y = √x, y = |x|, y = x³ funksiyaları",
    "status": "yox",
    "menbe": "DİM: Funksiyalar və qrafiklər",
-   "ders": "dersler/esas-funksiyalar.html"
+   "ders": "dersler/esas-funksiyalar.html",
+   "on": [
+    "riyaziyyat:Xətti funksiya",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "Qrafiklərin çevrilməsi",
    "status": "yox",
    "menbe": "DİM: Funksiyalar və qrafiklər",
-   "ders": "dersler/qrafik-cevrilme.html"
+   "ders": "dersler/qrafik-cevrilme.html",
+   "on": [
+    "riyaziyyat:Kvadrat funksiya, parabola",
+    "riyaziyyat:y = k/x, y = √x, y = |x|, y = x³ funksiyaları"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Xətti bərabərsizliklər",
    "status": "yox",
    "menbe": "DİM: Bərabərsizliklər",
-   "ders": "dersler/xetti-berabersizlik.html"
+   "ders": "dersler/xetti-berabersizlik.html",
+   "on": [
+    "riyaziyyat:Xətti tənliklər",
+    "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
+   ],
+   "hefte": "2027-01-11"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Kvadrat və rasional bərabərsizliklər (intervallar üsulu)",
    "status": "yox",
    "menbe": "DİM: Bərabərsizliklər",
-   "ders": "dersler/intervallar-usulu.html"
+   "ders": "dersler/intervallar-usulu.html",
+   "on": [
+    "riyaziyyat:Kvadrat tənlik, diskriminant",
+    "riyaziyyat:Xətti bərabərsizliklər",
+    "riyaziyyat:Rasional ifadələrin çevrilməsi, DMQ"
+   ],
+   "hefte": "2027-01-11"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Modullu tənliklər və bərabərsizliklər",
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər + Bərabərsizliklər",
-   "ders": "dersler/modullu.html"
-  },
-  {
-   "bolme": "Sadə həndəsi fiqurlar",
-   "ad": "Bucaqlar, paralel və perpendikulyar düz xətlər",
-   "status": "yox",
-   "menbe": "DİM: Sadə həndəsi fiqurlar",
-   "ders": "dersler/bucaqlar-paralel.html"
-  },
-  {
-   "bolme": "Üçbucaqlar",
-   "ad": "Üçbucaqlar, bərabərlik əlamətləri",
-   "status": "yox",
-   "menbe": "DİM: Üçbucaqlar",
-   "ders": "dersler/ucbucaq-beraberlik.html"
-  },
-  {
-   "bolme": "Üçbucaqlar",
-   "ad": "Üçbucağın elementləri, tərəf-bucaq münasibətləri",
-   "status": "yox",
-   "menbe": "DİM: Üçbucaqlar",
-   "ders": "dersler/ucbucaq-elementleri.html"
-  },
-  {
-   "bolme": "Üçbucaqlar",
-   "ad": "Pifaqor teoremi",
-   "status": "yox",
-   "menbe": "DİM: Üçbucaqlar",
-   "ders": "dersler/pifaqor.html"
-  },
-  {
-   "bolme": "Üçbucaqlar",
-   "ad": "Düzbucaqlı üçbucaqda sin, cos, tg",
-   "status": "isl",
-   "menbe": "DİM: Üçbucaqlar",
-   "ders": "dersler/triqonometriya-1.html"
+   "ders": "dersler/modullu.html",
+   "on": [
+    "riyaziyyat:Xətti bərabərsizliklər",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2027-01-11"
   },
   {
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",
    "ad": "Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar",
    "status": "yox",
    "menbe": "DİM: Dördbucaqlılar və çoxbucaqlılar",
-   "ders": "dersler/coxbucaqlilar.html"
+   "ders": "dersler/coxbucaqlilar.html",
+   "on": [
+    "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri"
+   ],
+   "hefte": "2027-01-18"
   },
   {
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",
@@ -282,7 +461,12 @@
    "menbe": "DİM: Dördbucaqlılar və çoxbucaqlılar",
    "novbeti": 4,
    "sebeb": "Sınaq 1-də boş qalıb (sual 21)",
-   "ders": "dersler/dordbucaqlilar.html"
+   "ders": "dersler/dordbucaqlilar.html",
+   "on": [
+    "riyaziyyat:Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar",
+    "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
+   ],
+   "hefte": "2027-01-18"
   },
   {
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",
@@ -291,66 +475,130 @@
    "menbe": "DİM: Dördbucaqlılar və çoxbucaqlılar",
    "novbeti": 5,
    "sebeb": "Sınaq 1-də boş qalıb (sual 24)",
-   "ders": "dersler/trapesiya.html"
+   "ders": "dersler/trapesiya.html",
+   "on": [
+    "riyaziyyat:Dördbucaqlılar: paraleloqram, romb, düzbucaqlı"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Çevrə və dairə",
    "ad": "Çevrə və dairə: vətər, qövs, çevrənin uzunluğu",
    "status": "yox",
    "menbe": "DİM: Çevrə və dairə",
-   "ders": "dersler/cevre-daire.html"
+   "ders": "dersler/cevre-daire.html",
+   "on": [
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
+    "riyaziyyat:Bucaqlar, paralel və perpendikulyar düz xətlər"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Çevrə və dairə",
    "ad": "Çevrədə bucaqlar, toxunan və kəsən",
    "status": "yox",
    "menbe": "DİM: Çevrə və dairə",
-   "ders": "dersler/cevrede-bucaqlar.html"
+   "ders": "dersler/cevrede-bucaqlar.html",
+   "on": [
+    "riyaziyyat:Çevrə və dairə: vətər, qövs, çevrənin uzunluğu",
+    "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri",
+    "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Çevrə və dairə",
    "ad": "Daxilə və xaricə çəkilmiş çevrələr",
    "status": "yox",
    "menbe": "DİM: Üçbucaqlar + Dördbucaqlılar",
-   "ders": "dersler/daxili-xarici-cevre.html"
+   "ders": "dersler/daxili-xarici-cevre.html",
+   "on": [
+    "riyaziyyat:Çevrədə bucaqlar, toxunan və kəsən",
+    "riyaziyyat:Dördbucaqlılar: paraleloqram, romb, düzbucaqlı",
+    "riyaziyyat:Pifaqor teoremi"
+   ],
+   "hefte": "2027-02-01"
   },
   {
    "bolme": "Fiqurların sahəsi",
    "ad": "Sahələr",
    "status": "yox",
    "menbe": "DİM: Fiqurların sahəsi",
-   "ders": "dersler/saheler.html"
+   "ders": "dersler/saheler.html",
+   "on": [
+    "riyaziyyat:Trapesiya, orta xətt",
+    "riyaziyyat:Çevrə və dairə: vətər, qövs, çevrənin uzunluğu",
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg"
+   ],
+   "hefte": "2027-02-01"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Oxşar üçbucaqlar",
    "status": "yox",
    "menbe": "DİM: Oxşarlıq + Üçbucaqlar",
-   "ders": "dersler/oxsar-ucbucaqlar.html"
+   "ders": "dersler/oxsar-ucbucaqlar.html",
+   "on": [
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik",
+    "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri",
+    "riyaziyyat:Bucaqlar, paralel və perpendikulyar düz xətlər"
+   ],
+   "hefte": "2027-02-08"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Koordinatlar üsulu: məsafə, orta nöqtə, düz xətt və çevrə tənliyi",
    "status": "yox",
    "menbe": "DİM: Koordinatlar üsulu",
-   "ders": "dersler/koordinatlar-usulu.html"
+   "ders": "dersler/koordinatlar-usulu.html",
+   "on": [
+    "riyaziyyat:Koordinat sistemi, funksiya anlayışı",
+    "riyaziyyat:Xətti funksiya",
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:Çevrə və dairə: vətər, qövs, çevrənin uzunluğu"
+   ],
+   "hefte": "2027-02-08"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Simmetriya, dönmə, fiqurların çevrilməsi",
    "status": "yox",
    "menbe": "DİM: Hərəkət",
-   "ders": "dersler/simmetriya.html"
+   "ders": "dersler/simmetriya.html",
+   "on": [
+    "riyaziyyat:Koordinatlar üsulu: məsafə, orta nöqtə, düz xətt və çevrə tənliyi",
+    "riyaziyyat:Dördbucaqlılar: paraleloqram, romb, düzbucaqlı"
+   ],
+   "hefte": "2027-02-15"
   },
   {
    "bolme": "Çoxüzlülər",
    "ad": "Düzbucaqlı paralelepiped və kub: səth və həcm",
    "status": "yox",
    "menbe": "DİM: Çoxüzlülər",
-   "ders": "dersler/paralelepiped.html"
+   "ders": "dersler/paralelepiped.html",
+   "on": [
+    "riyaziyyat:Sahələr",
+    "riyaziyyat:Pifaqor teoremi"
+   ],
+   "hefte": "2027-02-15"
   }
  ],
  "olimpiada": [
+  {
+   "bolme": "Triqonometriya",
+   "ad": "Vahid çevrə, radian; əsas triqonometrik eyniliklər",
+   "status": "isl",
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/triqonometriya-1.html",
+   "on": [
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg",
+    "riyaziyyat:Koordinat sistemi, funksiya anlayışı"
+   ],
+   "hefte": "2026-10-19"
+  },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Bölünmə əlamətləri",
@@ -358,246 +606,420 @@
    "menbe": "RFO riy: 9-cu sinif",
    "novbeti": 1,
    "sebeb": "Olimpiadanın ilk mövzusu: giriş testi bu həftə",
-   "ders": "dersler/ol-bolunme.html"
+   "ders": "dersler/ol-bolunme.html",
+   "on": [
+    "riyaziyyat:Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Paritet (cüt/tək)",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-paritet.html"
+   "ders": "dersler/ol-paritet.html",
+   "on": [
+    "riyaziyyat:Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB"
+   ],
+   "hefte": "2026-10-26"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Sadə ədədlər, sadə vuruqlar, bölənlərin sayı və cəmi",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-sade-ededler.html"
+   "ders": "dersler/ol-sade-ededler.html",
+   "on": [
+    "riyaziyyat:Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB",
+    "olimpiada:Bölünmə əlamətləri"
+   ],
+   "hefte": "2026-11-02"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "ƏBOB/ƏKOB, Evklid alqoritmi",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-ebob-evklid.html"
+   "ders": "dersler/ol-ebob-evklid.html",
+   "on": [
+    "olimpiada:Sadə ədədlər, sadə vuruqlar, bölənlərin sayı və cəmi",
+    "riyaziyyat:Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB"
+   ],
+   "hefte": "2026-11-02"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Qalıqlar, modul arifmetikası",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-qaliqlar.html"
-  },
-  {
-   "bolme": "Say nəzəriyyəsi",
-   "ad": "Diofant tənlikləri, tənliklərin tam həlləri",
-   "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-diofant.html"
+   "ders": "dersler/ol-qaliqlar.html",
+   "on": [
+    "olimpiada:Paritet (cüt/tək)",
+    "olimpiada:ƏBOB/ƏKOB, Evklid alqoritmi"
+   ],
+   "hefte": "2026-11-09"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Ferma, Eyler, Vilson teoremləri",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
-   "ders": "dersler/ol-ferma-eyler.html"
-  },
-  {
-   "bolme": "Say nəzəriyyəsi",
-   "ad": "Dövri və zəncirvari kəsrlər",
-   "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-dovri-zencirvari.html"
+   "ders": "dersler/ol-ferma-eyler.html",
+   "on": [
+    "olimpiada:Qalıqlar, modul arifmetikası",
+    "olimpiada:Sadə ədədlər, sadə vuruqlar, bölənlərin sayı və cəmi",
+    "olimpiada:ƏBOB/ƏKOB, Evklid alqoritmi"
+   ],
+   "hefte": "2026-11-16"
   },
   {
    "bolme": "Kombinatorika",
    "ad": "Sayma prinsipləri",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-sayma.html"
+   "ders": "dersler/ol-sayma.html",
+   "on": [
+    "riyaziyyat:Çoxluqlar, Eyler-Venn diaqramı",
+    "riyaziyyat:Ehtimal: toplama və vurma prinsipləri, hadisənin ehtimalı"
+   ],
+   "hefte": "2026-11-23"
   },
   {
    "bolme": "Kombinatorika",
    "ad": "Permutasiya, aranjeman, kombinasiya; kombinatorik ehtimal",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-kombinasiya.html"
+   "ders": "dersler/ol-kombinasiya.html",
+   "on": [
+    "olimpiada:Sayma prinsipləri"
+   ],
+   "hefte": "2026-11-30"
   },
   {
    "bolme": "Kombinatorika",
    "ad": "Dirixle prinsipi",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-dirixle.html"
+   "ders": "dersler/ol-dirixle.html",
+   "on": [
+    "olimpiada:Sayma prinsipləri"
+   ],
+   "hefte": "2026-11-30"
+  },
+  {
+   "bolme": "Say nəzəriyyəsi",
+   "ad": "Diofant tənlikləri, tənliklərin tam həlləri",
+   "status": "yox",
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-diofant.html",
+   "on": [
+    "olimpiada:ƏBOB/ƏKOB, Evklid alqoritmi",
+    "olimpiada:Qalıqlar, modul arifmetikası",
+    "riyaziyyat:Xətti tənliklər",
+    "riyaziyyat:Vuruqlara ayırma"
+   ],
+   "hefte": "2026-12-07"
   },
   {
    "bolme": "Cəbr",
    "ad": "Eynilik çevirmələri, simmetrik çoxhədlilər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-eynilikler.html"
+   "ders": "dersler/ol-eynilikler.html",
+   "on": [
+    "riyaziyyat:Müxtəsər vurma düsturları",
+    "riyaziyyat:Vuruqlara ayırma",
+    "riyaziyyat:Çoxhədlilər"
+   ],
+   "hefte": "2026-12-14"
   },
   {
    "bolme": "Cəbr",
    "ad": "Çoxhədlilərin bölünməsi, Bezu teoremi, qeyri-müəyyən əmsallar",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif — final (Bezu, təxmini)",
-   "ders": "dersler/ol-bezu.html"
-  },
-  {
-   "bolme": "Cəbr",
-   "ad": "Binom açılışı, aⁿ ± bⁿ və bölünmə",
-   "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-binom.html"
-  },
-  {
-   "bolme": "Tənliklər",
-   "ad": "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz",
-   "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-metnli.html"
+   "ders": "dersler/ol-bezu.html",
+   "on": [
+    "olimpiada:Eynilik çevirmələri, simmetrik çoxhədlilər",
+    "riyaziyyat:Çoxhədlilər",
+    "riyaziyyat:Vuruqlara ayırma"
+   ],
+   "hefte": "2026-12-21"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Viyet teoremi (olimpiada məsələləri)",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-viyet.html"
+   "ders": "dersler/ol-viyet.html",
+   "on": [
+    "riyaziyyat:Viyet teoremi",
+    "olimpiada:Eynilik çevirmələri, simmetrik çoxhədlilər"
+   ],
+   "hefte": "2026-12-21"
+  },
+  {
+   "bolme": "Tənliklər",
+   "ad": "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz",
+   "status": "yox",
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-metnli.html",
+   "on": [
+    "riyaziyyat:Tənlik qurmaqla məsələ həlli",
+    "riyaziyyat:Faiz"
+   ],
+   "hefte": "2026-12-28"
+  },
+  {
+   "bolme": "Cəbr",
+   "ad": "Binom açılışı, aⁿ ± bⁿ və bölünmə",
+   "status": "yox",
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-binom.html",
+   "on": [
+    "olimpiada:Permutasiya, aranjeman, kombinasiya; kombinatorik ehtimal",
+    "olimpiada:Eynilik çevirmələri, simmetrik çoxhədlilər",
+    "olimpiada:Çoxhədlilərin bölünməsi, Bezu teoremi, qeyri-müəyyən əmsallar"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Yüksəkdərəcəli tənliklər, rasional köklər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
-   "ders": "dersler/ol-yuksek-dereceli.html"
+   "ders": "dersler/ol-yuksek-dereceli.html",
+   "on": [
+    "olimpiada:Çoxhədlilərin bölünməsi, Bezu teoremi, qeyri-müəyyən əmsallar",
+    "olimpiada:Viyet teoremi (olimpiada məsələləri)"
+   ],
+   "hefte": "2027-01-11"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Üstlü ifadələr, sadə üstlü tənliklər və sistemlər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-ustlu.html"
+   "ders": "dersler/ol-ustlu.html",
+   "on": [
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli",
+    "riyaziyyat:n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2027-01-18"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Bərabərsizliklərin isbatı, orta qiymətlər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-berabersizlik.html"
+   "ders": "dersler/ol-berabersizlik.html",
+   "on": [
+    "riyaziyyat:İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
+    "riyaziyyat:Müxtəsər vurma düsturları",
+    "riyaziyyat:Xətti bərabərsizliklər"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Ədədi silsilə",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-ededi-silsile.html"
+   "ders": "dersler/ol-ededi-silsile.html",
+   "on": [
+    "riyaziyyat:Xətti tənliklər",
+    "riyaziyyat:Cəbri ifadələr, sadələşdirmə"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Həndəsi silsilə",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-hendesi-silsile.html"
+   "ders": "dersler/ol-hendesi-silsile.html",
+   "on": [
+    "olimpiada:Ədədi silsilə",
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
+   ],
+   "hefte": "2027-02-01"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Ardıcıllıqlar və sonlu cəmlər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-ardicilliqlar.html"
+   "ders": "dersler/ol-ardicilliqlar.html",
+   "on": [
+    "olimpiada:Ədədi silsilə",
+    "olimpiada:Həndəsi silsilə",
+    "olimpiada:Eynilik çevirmələri, simmetrik çoxhədlilər"
+   ],
+   "hefte": "2027-02-08"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Riyazi induksiya",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-induksiya.html"
+   "ders": "dersler/ol-induksiya.html",
+   "on": [
+    "olimpiada:Ardıcıllıqlar və sonlu cəmlər",
+    "olimpiada:Bölünmə əlamətləri"
+   ],
+   "hefte": "2027-02-15"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "Funksiyanın xassələri; tərs və mürəkkəb funksiya",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-funksiya-xasse.html"
+   "ders": "dersler/ol-funksiya-xasse.html",
+   "on": [
+    "riyaziyyat:Qrafiklərin çevrilməsi"
+   ],
+   "hefte": "2027-02-15"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "[x] və {x} funksiyaları",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-tam-hisse.html"
+   "ders": "dersler/ol-tam-hisse.html",
+   "on": [
+    "riyaziyyat:İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
+    "olimpiada:Funksiyanın xassələri; tərs və mürəkkəb funksiya"
+   ],
+   "hefte": "2027-02-22"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "Funksional tənliklər",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
-   "ders": "dersler/ol-funksional.html"
+   "ders": "dersler/ol-funksional.html",
+   "on": [
+    "olimpiada:Funksiyanın xassələri; tərs və mürəkkəb funksiya"
+   ],
+   "hefte": "2027-03-01"
   },
   {
-   "bolme": "Triqonometriya",
-   "ad": "Vahid çevrə, radian; əsas triqonometrik eyniliklər",
-   "status": "isl",
+   "bolme": "Say nəzəriyyəsi",
+   "ad": "Dövri və zəncirvari kəsrlər",
+   "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/triqonometriya-1.html"
+   "ders": "dersler/ol-dovri-zencirvari.html",
+   "on": [
+    "olimpiada:ƏBOB/ƏKOB, Evklid alqoritmi",
+    "olimpiada:Qalıqlar, modul arifmetikası",
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
+   ],
+   "hefte": "2027-03-08"
   },
   {
    "bolme": "Triqonometriya",
    "ad": "Toplama, ikiqat və yarım bucaq düsturları",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-trig-dusturlar.html"
+   "ders": "dersler/ol-trig-dusturlar.html",
+   "on": [
+    "olimpiada:Vahid çevrə, radian; əsas triqonometrik eyniliklər",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri"
+   ],
+   "hefte": "2027-03-15"
   },
   {
    "bolme": "Triqonometriya",
    "ad": "Cəmin hasilə çevrilməsi; a·sin x ± b·cos x",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-trig-cevirme.html"
+   "ders": "dersler/ol-trig-cevirme.html",
+   "on": [
+    "olimpiada:Toplama, ikiqat və yarım bucaq düsturları"
+   ],
+   "hefte": "2027-03-22"
   },
   {
    "bolme": "Triqonometriya",
    "ad": "Sinuslar və kosinuslar teoremi",
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
-   "ders": "dersler/ol-sinus-kosinus.html"
+   "ders": "dersler/ol-sinus-kosinus.html",
+   "on": [
+    "olimpiada:Vahid çevrə, radian; əsas triqonometrik eyniliklər",
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:Çevrədə bucaqlar, toxunan və kəsən"
+   ],
+   "hefte": "2027-03-29"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Üçbucaqda tənbölən və median xassələri, Stüart düsturu",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — Stüart: final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — Stüart: final (təxmini)",
+   "on": [
+    "riyaziyyat:Oxşar üçbucaqlar",
+    "riyaziyyat:Pifaqor teoremi",
+    "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri"
+   ],
+   "hefte": "2027-04-05"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Oxşarlıq və homotetiya",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "on": [
+    "riyaziyyat:Oxşar üçbucaqlar",
+    "riyaziyyat:Simmetriya, dönmə, fiqurların çevrilməsi"
+   ],
+   "hefte": "2027-04-05"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Çevrədə bucaqlar (mərkəzi, daxili)",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "on": [
+    "riyaziyyat:Çevrədə bucaqlar, toxunan və kəsən",
+    "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
+   ],
+   "hefte": "2027-04-12"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Toxunan və kəsənin xassələri",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "on": [
+    "olimpiada:Çevrədə bucaqlar (mərkəzi, daxili)",
+    "riyaziyyat:Oxşar üçbucaqlar"
+   ],
+   "hefte": "2027-04-19"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Çevrəyə daxil çəkilmiş dördbucaqlı, Ptolomey teoremi",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
+   "on": [
+    "olimpiada:Çevrədə bucaqlar (mərkəzi, daxili)",
+    "riyaziyyat:Daxilə və xaricə çəkilmiş çevrələr",
+    "riyaziyyat:Oxşar üçbucaqlar"
+   ],
+   "hefte": "2027-04-19"
   },
   {
    "bolme": "Həndəsə",
    "ad": "Çeva və Menelay teoremləri",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
+   "on": [
+    "olimpiada:Üçbucaqda tənbölən və median xassələri, Stüart düsturu",
+    "riyaziyyat:Sahələr"
+   ],
+   "hefte": "2027-04-26"
   }
  ],
  "fizika": [
@@ -606,7 +1028,12 @@
    "ad": "Vektorlar: proyeksiya və toplanma",
    "status": "yox",
    "menbe": "RFO fiz: Riyazi bacarıqlar (aşağı)",
-   "ders": "dersler/fiz-vektorlar.html"
+   "ders": "dersler/fiz-vektorlar.html",
+   "on": [
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg",
+    "riyaziyyat:Koordinat sistemi, funksiya anlayışı"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Kinematika",
@@ -614,21 +1041,24 @@
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
    "ders": "dersler/fizika-mexanika-1.html",
-   "fritl": true
+   "fritl": true,
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "riyaziyyat:Xətti funksiya"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Kinematika",
    "ad": "Sərbəst düşmə",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fizika-mexanika-1.html"
-  },
-  {
-   "bolme": "Kinematika",
-   "ad": "Üfüqi və bucaq altında atılan cismin hərəkəti",
-   "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fiz-atilan-cisim.html"
+   "ders": "dersler/fizika-mexanika-1.html",
+   "on": [
+    "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər",
+    "riyaziyyat:Kvadrat kök, hesabi kökün xassələri"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Kinematika",
@@ -636,14 +1066,13 @@
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
    "ders": "dersler/fizika-mexanika-1.html",
-   "fritl": true
-  },
-  {
-   "bolme": "Kinematika",
-   "ad": "Nisbi hərəkət: sürətlərin və təcillərin toplanması",
-   "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fiz-nisbi-herekat.html"
+   "fritl": true,
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər",
+    "olimpiada:Vahid çevrə, radian; əsas triqonometrik eyniliklər"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Dinamika",
@@ -651,14 +1080,13 @@
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.3 Dinamika",
    "ders": "dersler/fizika-mexanika-1.html",
-   "fritl": true
-  },
-  {
-   "bolme": "Dinamika",
-   "ad": "Elastiklik, Huk qanunu",
-   "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.2 Statika",
-   "ders": "dersler/fiz-huk.html"
+   "fritl": true,
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər",
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2026-10-19"
   },
   {
    "bolme": "Dinamika",
@@ -666,176 +1094,368 @@
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.2 Statika + 1.3",
    "ders": "dersler/maili-mustevi-1.html",
-   "fritl": true
+   "fritl": true,
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg"
+   ],
+   "hefte": "2026-10-19"
+  },
+  {
+   "bolme": "Kinematika",
+   "ad": "Nisbi hərəkət: sürətlərin və təcillərin toplanması",
+   "status": "yox",
+   "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
+   "ders": "dersler/fiz-nisbi-herekat.html",
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər"
+   ],
+   "hefte": "2026-11-09"
   },
   {
    "bolme": "Dinamika",
    "ad": "Qeyri-inersial sistemlər: ətalət qüvvəsi, çəkisizlik, əlavə yüklənmə",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3 Dinamika",
-   "ders": "dersler/fiz-qeyri-inersial.html"
+   "ders": "dersler/fiz-qeyri-inersial.html",
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "fizika:Nisbi hərəkət: sürətlərin və təcillərin toplanması"
+   ],
+   "hefte": "2026-11-09"
+  },
+  {
+   "bolme": "Dinamika",
+   "ad": "Elastiklik, Huk qanunu",
+   "status": "yox",
+   "menbe": "RFO fiz (aşağı): 1.2 Statika",
+   "ders": "dersler/fiz-huk.html",
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "riyaziyyat:Xətti funksiya"
+   ],
+   "hefte": "2026-11-16"
   },
   {
    "bolme": "Statika",
    "ad": "Qüvvə momenti, tarazlıq",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.2 Statika",
-   "ders": "dersler/fiz-moment.html"
+   "ders": "dersler/fiz-moment.html",
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg"
+   ],
+   "hefte": "2026-11-16"
   },
   {
    "bolme": "Statika",
    "ad": "Sadə mexanizmlər: ling, bloklar, FİƏ",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.2 Statika",
-   "ders": "dersler/fiz-mexanizmler.html"
+   "ders": "dersler/fiz-mexanizmler.html",
+   "on": [
+    "fizika:Qüvvə momenti, tarazlıq",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2026-11-23"
   },
   {
    "bolme": "İş, güc, enerji",
    "ad": "Mexaniki iş və güc",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3",
-   "ders": "dersler/fiz-is-guc.html"
+   "ders": "dersler/fiz-is-guc.html",
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "fizika:Vektorlar: proyeksiya və toplanma"
+   ],
+   "hefte": "2026-11-23"
   },
   {
    "bolme": "İş, güc, enerji",
    "ad": "Kinetik və potensial enerji",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3",
-   "ders": "dersler/fiz-enerji.html"
+   "ders": "dersler/fiz-enerji.html",
+   "on": [
+    "fizika:Mexaniki iş və güc",
+    "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər"
+   ],
+   "hefte": "2026-11-30"
   },
   {
    "bolme": "İş, güc, enerji",
    "ad": "Enerjinin saxlanması",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3",
-   "ders": "dersler/fiz-enerji-saxlanma.html"
+   "ders": "dersler/fiz-enerji-saxlanma.html",
+   "on": [
+    "fizika:Kinetik və potensial enerji",
+    "fizika:Sürtünmə, maili müstəvi"
+   ],
+   "hefte": "2026-11-30"
+  },
+  {
+   "bolme": "Kinematika",
+   "ad": "Üfüqi və bucaq altında atılan cismin hərəkəti",
+   "status": "yox",
+   "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
+   "ders": "dersler/fiz-atilan-cisim.html",
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Sərbəst düşmə",
+    "riyaziyyat:Kvadrat tənlik, diskriminant"
+   ],
+   "hefte": "2026-12-07"
   },
   {
    "bolme": "İmpuls",
    "ad": "İmpuls və onun saxlanması, toqquşmalar",
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3",
-   "ders": "dersler/fiz-impuls.html"
+   "ders": "dersler/fiz-impuls.html",
+   "on": [
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "fizika:Enerjinin saxlanması"
+   ],
+   "hefte": "2026-12-14"
   },
   {
    "bolme": "Hidrostatika",
    "ad": "Təzyiq, hidrostatik təzyiq, Paskal qanunu",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3 (təzyiq)"
+   "menbe": "RFO fiz (aşağı): 1.3 (təzyiq)",
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
+   ],
+   "hefte": "2026-12-14"
   },
   {
    "bolme": "Hidrostatika",
    "ad": "Arximed qüvvəsi; kəsilməzlik teoremi",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3 (təzyiq)"
+   "menbe": "RFO fiz (aşağı): 1.3 (təzyiq)",
+   "on": [
+    "fizika:Təzyiq, hidrostatik təzyiq, Paskal qanunu",
+    "fizika:Nyuton qanunları, bağlı cisimlər"
+   ],
+   "hefte": "2026-12-21"
   },
   {
    "bolme": "Göy mexanikası",
    "ad": "Ümumdünya cazibə qanunu, Kepler qanunları, peyklər",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.4 Göy mexanikası"
+   "menbe": "RFO fiz (aşağı): 1.4 Göy mexanikası",
+   "on": [
+    "fizika:Çevrə üzrə hərəkət",
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2026-12-21"
   },
   {
    "bolme": "Rəqslər və dalğalar",
    "ad": "Harmonik rəqslər; riyazi və yaylı rəqqas",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 3.1 Rəqslər"
+   "menbe": "RFO fiz (aşağı): 3.1 Rəqslər",
+   "on": [
+    "fizika:Elastiklik, Huk qanunu",
+    "olimpiada:Vahid çevrə, radian; əsas triqonometrik eyniliklər",
+    "fizika:Enerjinin saxlanması"
+   ],
+   "hefte": "2026-12-28"
   },
   {
    "bolme": "Rəqslər və dalğalar",
    "ad": "Dalğalar və səs",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 3.2 Dalğalar"
+   "menbe": "RFO fiz (aşağı): 3.2 Dalğalar",
+   "on": [
+    "fizika:Harmonik rəqslər; riyazi və yaylı rəqqas"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Molekulyar və istilik fizikası",
    "ad": "Temperatur, istidən genişlənmə, istilik miqdarı",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 5"
+   "menbe": "RFO fiz (aşağı): 5",
+   "on": [
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Molekulyar və istilik fizikası",
    "ad": "İstilik balansı, faza keçidləri, istilik mühərrikləri",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 5"
+   "menbe": "RFO fiz (aşağı): 5",
+   "on": [
+    "fizika:Temperatur, istidən genişlənmə, istilik miqdarı",
+    "riyaziyyat:Xətti tənliklər",
+    "fizika:Enerjinin saxlanması",
+    "riyaziyyat:Faiz"
+   ],
+   "hefte": "2027-01-04"
   },
   {
    "bolme": "Elektrostatika",
    "ad": "Elektrik yükü, Kulon qanunu, elektrik sahəsi",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.1"
+   "menbe": "RFO fiz (aşağı): 2.1",
+   "on": [
+    "fizika:Nyuton qanunları, bağlı cisimlər",
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
+   ],
+   "hefte": "2027-01-11"
   },
   {
    "bolme": "Elektrostatika",
    "ad": "Potensial, elektrik tutumu, kondensatorlar",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.1 + 2.2"
+   "menbe": "RFO fiz (aşağı): 2.1 + 2.2",
+   "on": [
+    "fizika:Elektrik yükü, Kulon qanunu, elektrik sahəsi",
+    "fizika:Kinetik və potensial enerji"
+   ],
+   "hefte": "2027-01-18"
   },
   {
    "bolme": "Elektrik dövrələri",
    "ad": "Cərəyan, gərginlik, müqavimət",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.2"
+   "menbe": "RFO fiz (aşağı): 2.2",
+   "on": [
+    "fizika:Elektrik yükü, Kulon qanunu, elektrik sahəsi",
+    "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
+   ],
+   "hefte": "2027-01-18"
   },
   {
    "bolme": "Elektrik dövrələri",
    "ad": "Om qanunu, ardıcıl və paralel birləşmə",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.2"
+   "menbe": "RFO fiz (aşağı): 2.2",
+   "on": [
+    "fizika:Cərəyan, gərginlik, müqavimət",
+    "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər",
+    "riyaziyyat:Xətti tənliklər"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Elektrik dövrələri",
    "ad": "Elektrik işi və gücü, Coul-Lens qanunu",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.2"
+   "menbe": "RFO fiz (aşağı): 2.2",
+   "on": [
+    "fizika:Om qanunu, ardıcıl və paralel birləşmə",
+    "fizika:Mexaniki iş və güc"
+   ],
+   "hefte": "2027-01-25"
   },
   {
    "bolme": "Elektrik dövrələri",
    "ad": "EHQ, tam dövr üçün Om qanunu, Kirxhof qaydaları, ölçü cihazları",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.2"
+   "menbe": "RFO fiz (aşağı): 2.2",
+   "on": [
+    "fizika:Elektrik işi və gücü, Coul-Lens qanunu",
+    "riyaziyyat:İkidəyişənli xətti tənliklər sistemi"
+   ],
+   "hefte": "2027-02-01"
   },
   {
    "bolme": "Maqnetizm, mühitlərdə cərəyan",
    "ad": "Maqnit sahəsi, Amper qüvvəsi, yüklü zərrəciyin hərəkəti",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.1"
+   "menbe": "RFO fiz (aşağı): 2.1",
+   "on": [
+    "fizika:Cərəyan, gərginlik, müqavimət",
+    "fizika:Vektorlar: proyeksiya və toplanma",
+    "fizika:Çevrə üzrə hərəkət",
+    "fizika:Nyuton qanunları, bağlı cisimlər"
+   ],
+   "hefte": "2027-02-01"
   },
   {
    "bolme": "Maqnetizm, mühitlərdə cərəyan",
    "ad": "Müxtəlif mühitlərdə cərəyan: elektroliz, qaz, vakuum, yarımkeçiricilər",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 2.1"
+   "menbe": "RFO fiz (aşağı): 2.1",
+   "on": [
+    "fizika:Om qanunu, ardıcıl və paralel birləşmə",
+    "fizika:Elektrik yükü, Kulon qanunu, elektrik sahəsi"
+   ],
+   "hefte": "2027-02-08"
   },
   {
    "bolme": "Həndəsi optika",
    "ad": "İşığın qayıtması və sınması",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 3.3"
+   "menbe": "RFO fiz (aşağı): 3.3",
+   "on": [
+    "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg",
+    "riyaziyyat:Bucaqlar, paralel və perpendikulyar düz xətlər"
+   ],
+   "hefte": "2027-02-15"
   },
   {
    "bolme": "Həndəsi optika",
    "ad": "Linzalar və güzgülər, xəyalın qurulması, dispersiya",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 3.3"
+   "menbe": "RFO fiz (aşağı): 3.3",
+   "on": [
+    "fizika:İşığın qayıtması və sınması",
+    "riyaziyyat:Oxşar üçbucaqlar",
+    "riyaziyyat:Kəsr-rasional tənliklər"
+   ],
+   "hefte": "2027-02-15"
   },
   {
    "bolme": "Atom və nüvə fizikası",
    "ad": "Atomun və nüvənin quruluşu",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 4"
+   "menbe": "RFO fiz (aşağı): 4",
+   "on": [
+    "fizika:Elektrik yükü, Kulon qanunu, elektrik sahəsi",
+    "fizika:Enerjinin saxlanması",
+    "fizika:İmpuls və onun saxlanması, toqquşmalar",
+    "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
+   ],
+   "hefte": "2027-02-22"
   },
   {
    "bolme": "Təcrübi tur",
    "ad": "Ölçmə cihazları və ölçmə metodları",
    "status": "yox",
-   "menbe": "RFO fiz: Təcrübi imtahan b.3–4 — yalnız final"
+   "menbe": "RFO fiz: Təcrübi imtahan b.3–4 — yalnız final",
+   "on": [
+    "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar",
+    "riyaziyyat:Faiz"
+   ],
+   "hefte": "2027-02-22"
   },
   {
    "bolme": "Təcrübi tur",
    "ad": "Ölçmələr və xətalar: xəta hesabı, xətti reqressiya, qrafik",
    "status": "yox",
-   "menbe": "RFO fiz: Təcrübi imtahan b.5 — yalnız final"
+   "menbe": "RFO fiz: Təcrübi imtahan b.5 — yalnız final",
+   "on": [
+    "fizika:Ölçmə cihazları və ölçmə metodları",
+    "riyaziyyat:Xətti funksiya",
+    "riyaziyyat:Faiz",
+    "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
+   ],
+   "hefte": "2027-03-01"
   }
  ]
 }

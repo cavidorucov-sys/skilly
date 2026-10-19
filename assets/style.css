@@ -337,3 +337,12 @@ a.row:hover,.list a .row:hover{background:var(--bg)}
 tbody tr:not(.sec){cursor:default}
 .dd a{transition:background .15s var(--ease)}
 .rail-toggle:hover{background:#3a3a40}
+
+/* learning order */
+.tcol{display:grid;gap:2px}
+.tcol small{color:var(--muted);font-size:12px;font-weight:400}
+td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
+.go.wait{background:var(--bg);color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line-strong)}
+.gate{background:var(--bg);border-radius:var(--r-lg);padding:24px;display:grid;gap:12px;max-width:760px}
+.gate h2{margin:0}
+.gate-note{background:var(--olym-soft);color:var(--olym-ink);border-radius:var(--r);padding:10px 14px;font-size:14px;margin:0 0 10px}
