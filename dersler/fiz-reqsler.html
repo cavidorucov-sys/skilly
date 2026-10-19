@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Harmonik rəqslər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-reqsler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Rəqslər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Rəqslər və dalğalar</div>
+    <h1>Harmonik rəqslər; riyazi və yaylı rəqqas</h1>
+    <p>Yellənçək, divar saatının sarkacı, yaydan asılmış yük, avtomobilin amortizatoru — hamısı rəqs edir. Bu hərəkətlərin hamısını bir neçə düstur təsvir edir: <span class="m">T = 2π√(l/g)</span> və <span class="m">T = 2π√(m/k)</span>. Yaylar üçün Huk qanununu (<span class="m">F = kx</span>) və enerji haqqında bildiklərini burada tətbiq edəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>; lazım olanda <span class="m">π² ≈ 10</span> qəbul edirik (açıq yazılacaq).</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Rəqs kəmiyyətləri</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Riyazi rəqqas</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yaylı rəqqas</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Rəqs hərəkəti: period, tezlik, amplituda</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yellənçək irəli-geri gedir, divar saatının sarkacı hər saniyə bir tərəfə gedib qayıdır, gitara simi titrəyir, ürək döyünür. Bunların hamısında hərəkət <b>təkrarlanır</b>. Təkrarlanan hərəkəti bir neçə ədədlə təsvir etmək olar. Bunları bilmədən nə saat qurmaq, nə səsi, nə də dalğaları başa düşmək olar.</p>
+
+      <h3><span class="st">2</span> Əsas anlayışlar</h3>
+      <p><b>Rəqs</b> — cismin tarazlıq vəziyyəti ətrafında təkrarlanan hərəkətidir. Cismi tarazlıqdan çıxaranda onu geri qaytaran qüvvə yaranır (yaylı rəqqasda elastiklik qüvvəsi, sarkacda ağırlıq qüvvəsinin toplananı).</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 190" role="img" aria-label="Rəqsin x-t qrafiki: sinus dalğası, amplituda A və period T göstərilib">
+          <defs><marker id="rq0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="30" y1="95" x2="268" y2="95" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rq0)"/>
+          <line x1="30" y1="175" x2="30" y2="10" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rq0)"/>
+          <path d="M30 95C45 50 75 50 90 95S135 140 150 95S195 50 210 95S255 140 270 95" fill="none" stroke="var(--accent)" stroke-width="2.5" transform="translate(0 0)"/>
+          <line x1="30" y1="61" x2="263" y2="61" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="26" y1="62" x2="26" y2="94" stroke="var(--vec)" stroke-width="1.5" marker-start="url(#rq0)" marker-end="url(#rq0)"/>
+          <text x="22" y="82" class="lbl" text-anchor="end">A</text>
+          <line x1="90" y1="155" x2="210" y2="155" stroke="var(--vec)" stroke-width="1.5" marker-start="url(#rq0)" marker-end="url(#rq0)"/>
+          <text x="150" y="171" class="lbl" text-anchor="middle">T (bir tam rəqs)</text>
+          <text x="262" y="112" class="lbl" text-anchor="end">t</text><text x="38" y="16" class="lbl">x</text>
+        </svg>
+        <div class="cap"><p>Cismin tarazlıqdan yerdəyişməsi <span class="m">x</span> zamandan asılı olaraq sinus (kosinus) qanunu ilə dəyişir. Belə rəqs <b>harmonik</b> adlanır. <span class="m">A</span> — amplituda, <span class="m">T</span> — period.</p></div>
+      </div>
+      <div class="fm">A — amplituda: tarazlıqdan ən böyük uzaqlaşma (m)
+T — period: bir tam rəqsin vaxtı (s)
+ν — tezlik: 1 saniyədəki tam rəqs sayı (Hz)
+ω — dairəvi tezlik: 2π saniyədəki rəqs sayı (rad/s)</div>
+
+      <h3><span class="st">3</span> Aralarındakı əlaqə</h3>
+      <div class="fm">T = t/N          ν = N/t = 1/T
+ω = 2π/T = 2πν
+Bir T-də yol = 4A,  yerdəyişmə = 0</div>
+      <p>1 Hz = saniyədə 1 rəqs. Tezlik böyükdürsə, period kiçikdir: şəbəkə cərəyanının tezliyi 50 Hz-dir, deməli period <span class="m">T = 0,02 s</span>. <b>Bir tam rəqs</b> cismin eyni vəziyyətə eyni sürətlə qayıtmasına qədərki yoldur: tarazlıqdan A qədər sağa, A geri, A sola, A geri — cəmi <span class="m">4A</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Sarkac 30 s-də 45 tam rəqs edir. T və ν = ?
+  T = t/N = 30/45 = 2/3 s ≈ 0,67 s
+  ν = N/t = 45/30 = 1,5 Hz</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Amplitudu 5 sm olan cisim 2 saniyədə 4 tam rəqs edir.
+Bu müddətdə getdiyi yolu və yerdəyişməsini tap.
+  Bir tam rəqsdə yol: 4A = 20 sm
+  4 rəqsdə yol: 4·20 = 80 sm = 0,8 m
+  Cisim hər tam rəqsdən sonra başlanğıc nöqtəyə qayıdır
+  → yerdəyişmə 0.</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Rəqsin periodu T = π/4 s.
+Dairəvi tezliyi tap.
+  ω = 2π/T = 2π : (π/4) = 8 rad/s
+  (Tezlik ν = ω/2π = 4/π Hz ≈ 1,27 Hz.)</div>
+      <div class="life"><b>Həyatdan.</b> Ürək dəqiqədə təxminən 72 dəfə vurur: <span class="m">ν = 72/60 = 1,2 Hz</span>, <span class="m">T ≈ 0,83 s</span>. Elektrik şəbəkəsində cərəyan saniyədə 50 dəfə istiqamətini dəyişir — lampa bu tezlikdə nəzərə çarpmayacaq qədər sürətlə yanıb-sönür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Amplituda ilə “ümumi yelləmə aralığı”nı qarışdırmaq. Amplituda tarazlıqdan <b>bir tərəfə</b> ən böyük uzaqlaşmadır; iki ucun arası <span class="m">2A</span>-dır.</li>
+        <li>Bir rəqsdə yolu <span class="m">2A</span> yazmaq. Tam rəqs gedib-qayıtmaq <b>və</b> əks tərəfə gedib-qayıtmaqdır: <span class="m">4A</span>.</li>
+        <li><span class="m">ω</span> ilə <span class="m">ν</span>-ni qarışdırmaq: <span class="m">ω = 2πν</span>, vahidləri fərqlidir (rad/s və Hz).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t/N,  ν = 1/T,  ω = 2π/T = 2πν
+Tam rəqsdə yol 4A, yerdəyişmə 0.
+Harmonik rəqs: x sinus (kosinus) qanunu ilə dəyişir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tezlik 25 Hz-dir. Period? <span class="ans">T = 1/25 = 0,04 s.</span></li>
+        <li>Cisim 2 dəqiqədə 240 tam rəqs edir. ν və T? <span class="ans">ν = 240/120 = 2 Hz, T = 0,5 s.</span></li>
+        <li>Amplituda 3 sm, cisim 5 tam rəqs etdi. Yol? <span class="ans">5·4·3 = 60 sm = 0,6 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Riyazi rəqqas</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qədim divar saatlarının və babaların “dedə saatı”nın ürəyi sarkacdır. Qalileo kilsədə yellənən çilçıraqdan başlayaraq ilk dəfə anladı ki, sarkacın yelləmə vaxtı onun yelləmə genişliyindən demək olar asılı deyil. Bu mühüm kəşf dəqiq vaxt ölçmənin əsasını qoydu.</p>
+
+      <h3><span class="st">2</span> Riyazi rəqqas və onun periodu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 240 210" role="img" aria-label="Riyazi rəqqas: uzunluğu l olan sap, kiçik θ bucağı, ağırlıq qüvvəsi mg">
+          <defs><marker id="rq1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="70" y1="12" x2="170" y2="12" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="120" y1="12" x2="120" y2="160" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="120" y1="12" x2="170" y2="150" stroke="var(--ink)" stroke-width="1.8"/>
+          <circle cx="170" cy="150" r="9" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M120 52A40 40 0 0 1 135 49" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="127" y="68" class="lbl">θ</text>
+          <text x="154" y="84" class="lbl">l</text>
+          <line x1="170" y1="159" x2="170" y2="198" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#rq1)"/>
+          <text x="178" y="196" class="lbl">mg</text>
+          <path d="M170 150C150 165 130 165 120 154" fill="none" stroke="var(--muted)" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="cap"><p>Uzunluğu <span class="m">l</span> olan uzanmayan yüngül sap, ucunda nöqtəvi cisim. Sapı bucaq <span class="m">θ</span> qədər çəkib buraxırıq. Bucaq kiçik olanda (təxminən 10°-dən az) rəqs harmonik olur.</p></div>
+      </div>
+      <p><b>Riyazi rəqqas</b> — çəkisiz, uzanmayan sapdan asılmış nöqtəvi cisimdir. Real sarkac (kiçik ağır kürə uzun nazik sapda) ona çox yaxındır.</p>
+      <div class="fm">T = 2π·√(l/g)
+l — sapın uzunluğu (m), g — sərbəstdüşmə təcili</div>
+      <p>Bu düsturdan üç vacib nəticə çıxır:</p>
+      <ul>
+        <li>Period <b>kütlədən asılı deyil</b> (ağır və yüngül kürə eyni rəqs edir).</li>
+        <li>Period <b>amplitudadan asılı deyil</b> (kiçik bucaqlarda).</li>
+        <li><span class="m">T ~ √l</span>: uzunluq 4 dəfə artsa, period 2 dəfə artır. <span class="m">T ~ 1/√g</span>: aydadır (<span class="m">g ≈ 1,6</span>) rəqqas daha ləng yellənir.</li>
+      </ul>
+      <p><b>Hesabı asanlaşdıraq:</b> <span class="m">g = 10 m/s²</span> və <span class="m">π² ≈ 10</span> qəbul etsək, <span class="m">T = 2π√(l/g) = 2√10·√(l/10) = 2√l</span> (<span class="m">l</span> metrlə). Deməli uzunluğu 1 m olan rəqqasın periodu təxminən 2 s-dir — buna “saniyə rəqqası” da deyilir (yarım rəqsi 1 saniyə).</p>
+      <p><b>Sənin təcrübən.</b> Sən özün rəqqas təcrübəsi aparmışdın: ipin uzunluğunu dəyişib periodu ölçdün. İndi nəticələrini düsturla müqayisə et. Uzunluğu 4 dəfə artırdıqda period yalnız 2 dəfə artmalıdır, kütləni dəyişəndə isə heç dəyişməməlidir. Əgər bir ölçmə bu qanuna uyğun gəlmirdisə, səbəb adətən ya bucağın böyük olması, ya da periodu tək bir rəqsdən ölçməkdir: dəqiqlik üçün həmişə <span class="m">N</span> rəqsin vaxtını ölç və <span class="m">N</span>-ə böl (məsələn, 20 rəqs). Təcrübədən <span class="m">g</span>-ni də tapmaq olar: <span class="m">g = 4π²l/T²</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. l = 2,25 m, π² ≈ 10, T = ?
+  T = 2√l = 2·√2,25 = 2·1,5 = 3 s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Rəqqas 1 dəqiqədə 30 tam rəqs edir. Uzunluğu nə qədərdir?
+(π² ≈ 10, g = 10 m/s².)
+  T = 60/30 = 2 s
+  T = 2√l → √l = 1 → l = 1 m</div>
+      <div class="ex">Nümunə 3 (RFO tipli, təcilli lift).
+Sapının uzunluğu 1,25 m olan rəqqas yuxarı 2,5 m/s² təcillə
+qalxan liftdə rəqs edir. Periodu tap. (π² ≈ 10.)
+  Liftdə sapın dartılması mg yox, m(g + a) olur.
+  Təsirli sərbəstdüşmə təcili: g' = 10 + 2,5 = 12,5 m/s²
+  T = 2π√(l/g') = 2√10·√(1,25/12,5) = 2√10·√0,1 = 2·1 = 2 s
+  (Lift dayansaydı T = 2√1,25 ≈ 2,24 s olardı.)</div>
+      <div class="life"><b>Həyatdan.</b> Şüşə çilçıraq uzun zəncirdən asılıbsa, yavaş yellənir, qısadırsa, tez. Divar saatı geri qalırsa, sarkacın çəkisini bir az yuxarı qaldırırlar — sarkac “qısalır”, <span class="m">T</span> azalır, saat sürətlənir. Dağın başında <span class="m">g</span> azca kiçikdir, ona görə sarkaclı saat orada bir az geri qalır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düsturda kvadrat kök yerinə sadəcə nisbəti yazmaq: uzunluq 4 dəfə artanda period 4 yox, <b>2</b> dəfə artır.</li>
+        <li>Uzunluğu santimetrlə yazıb metrə çevirməmək: <span class="m">l = 25 sm = 0,25 m</span>.</li>
+        <li>Rəqqasın periodunun kütlədən asılı olduğunu fikirləşmək. Asılı deyil.</li>
+        <li>Böyük bucaqlarda (məsələn, 60°) düsturu tətbiq etmək. Düstur yalnız kiçik bucaqlar üçündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = 2π√(l/g);  g = 10, π² ≈ 10  →  T = 2√l
+Period m-dən və amplitudadan asılı deyil.
+T ~ √l,  T ~ 1/√g
+Təcilli sistemdə g → g' = g ± a</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Rəqqasın uzunluğunu 9 dəfə artırdılar. T neçə dəfə dəyişdi? <span class="ans">3 dəfə artdı.</span></li>
+        <li>T = 1 s olan rəqqasın uzunluğu? (π² ≈ 10) <span class="ans">1 = 2√l → l = 0,25 m.</span></li>
+        <li>l = 0,9 m rəqqasın periodunu 10 rəqsin vaxtından necə tapardın? <span class="ans">T = t/10; düsturla T = 2√0,9 ≈ 1,9 s, deməli 10 rəqs ≈ 19 s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yaylı rəqqas</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobil çuxurdan keçəndən sonra bir neçə dəfə yuxarı-aşağı yırğalanır: bu, yayların üstündə rəqsdir. Saatın balans çarxı, mikroavtobusun oturacağı, texniki cihazlarda yaylı rezonatorlar — hamısı yaylı rəqqasdır. Bu rəqqasın periodu <b>yükün kütləsindən və yayın sərtliyindən</b> asılıdır.</p>
+
+      <h3><span class="st">2</span> Period düsturu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 270 200" role="img" aria-label="Üfüqi yaylı rəqqas hamar masada və şaquli yaylı rəqqas">
+          <defs><marker id="rq2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="100" x2="140" y2="100" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="12" y1="62" x2="12" y2="100" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M12 82L26 82L31 72L39 92L47 72L55 92L63 72L71 92L76 82L86 82" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="86" y="62" width="34" height="38" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="103" y="86" class="lbl" text-anchor="middle">m</text>
+          <line x1="103" y1="52" x2="135" y2="52" stroke="var(--accent)" stroke-width="2" marker-start="url(#rq2)" marker-end="url(#rq2)"/>
+          <text x="119" y="46" class="lbl" text-anchor="middle">±A</text>
+          <text x="75" y="125" text-anchor="middle">üfüqi</text>
+          <line x1="165" y1="12" x2="262" y2="12" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M210 12L210 24L200 30L220 40L200 50L220 60L200 70L220 80L210 86L210 102" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="192" y="102" width="36" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="210" y="122" class="lbl" text-anchor="middle">m</text>
+          <line x1="245" y1="102" x2="245" y2="150" stroke="var(--accent)" stroke-width="2" marker-start="url(#rq2)" marker-end="url(#rq2)"/>
+          <text x="252" y="130" class="lbl">A</text>
+          <text x="210" y="175" text-anchor="middle">şaquli</text>
+        </svg>
+        <div class="cap"><p>Hər iki halda yüklə yay arasında eyni qanun işləyir: yük tarazlıqdan <span class="m">x</span> qədər çıxanda geri qaytaran qüvvə <span class="m">kx</span> olur. Ona görə periodun düsturu da eynidir.</p></div>
+      </div>
+      <div class="fm">T = 2π·√(m/k)
+m — yükün kütləsi (kq), k — yayın sərtliyi (N/m)</div>
+      <ul>
+        <li>Ağır yük → period uzun (<span class="m">T ~ √m</span>); sərt yay → period qısa (<span class="m">T ~ 1/√k</span>).</li>
+        <li>Şaquli rəqsdə <span class="m">mg</span> yalnız tarazlıq nöqtəsini sürüşdürür, <b>periodu dəyişmir</b>. Aydadakı yaylı rəqqas Yerdəki ilə eyni <span class="m">T</span>-yə malikdir (rəqqasdan fərqli olaraq!).</li>
+        <li>Dairəvi tezlik: <span class="m">ω = √(k/m)</span>, çünki <span class="m">T = 2π/ω</span>.</li>
+      </ul>
+      <p><b>Maraqlı əlaqə.</b> Şaquli yayda tarazlıqda <span class="m">kx₀ = mg</span>, yəni <span class="m">m/k = x₀/g</span>. Onda <span class="m">T = 2π√(x₀/g)</span> — yaydakı statik uzanma yükün mass və sərtliyini ayrıca bilmədən periodu verir. <span class="m">π² ≈ 10</span> və <span class="m">g = 10</span> olduqda <span class="m">T = 2√x₀</span> (<span class="m">x₀</span> metrlə) — riyazi rəqqasla eyni quruluş.</p>
+      <p><b>Yay sistemləri.</b> Yaylar paralel birləşərsə <span class="m">k = k₁ + k₂</span>, ardıcıl birləşərsə <span class="m">1/k = 1/k₁ + 1/k₂</span> (bunları “Elastiklik, Huk qanunu” mövzusunda keçmişdin). Sonra periodu həmin <span class="m">k</span> ilə tapırıq.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. m = 0,4 kq, k = 400 N/m, π² ≈ 10. T = ?
+  T = 2π√(m/k) = 2√(10·0,4/400) = 2√0,01 = 2·0,1 = 0,2 s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Yaydan yük asanda yay tarazlıqda 4 sm uzanır. Yükü
+bir az aşağı çəkib buraxdılar. Şaquli rəqsin periodu?
+(g = 10 m/s², π² ≈ 10.)
+  kx₀ = mg → m/k = x₀/g = 0,04/10 = 0,004 s²
+  T = 2π√(m/k) = 2√(10·0,004) = 2√0,04 = 2·0,2 = 0,4 s</div>
+      <div class="ex">Nümunə 3 (RFO tipli). m kütləli yük k sərtlikli yaydan
+asılıb və T₁ periodla rəqs edir. Eyni yükü iki belə yayın
+paralel birləşməsindən asdılar. Period necə dəyişdi?
+  Paralel: k' = 2k.
+  T₂ = 2π√(m/2k) = T₁/√2 ≈ 0,71·T₁
+  Period √2 dəfə azaldı.
+  (Ardıcıl birləşmədə k' = k/2 olar, period √2 dəfə artar.)</div>
+      <div class="life"><b>Həyatdan.</b> Avtomobil çox yüklənəndə yayların sərtliyi dəyişmir, amma kütlə artdığı üçün yırğalanma yavaşlayır. Kütləsi 1000 kq olan avtomobil dörd yay üstündə (hər biri 10 000 N/m) durursa, <span class="m">k = 40 000 N/m</span>, <span class="m">T = 2√(10·1000/40000) = 1 s</span>. Yük 4 dəfə artsa (4000 kq), period 2 dəfə uzanıb 2 s olar.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düsturda <span class="m">k/m</span> yazmaq. Kütlə <b>surətdə</b> durur: <span class="m">T = 2π√(m/k)</span>.</li>
+        <li>Kütləni qramla qoymaq. <span class="m">m</span> kq-la, <span class="m">k</span> N/m-lə olmalıdır.</li>
+        <li>Şaquli yaydan asılmış yükün periodunu <span class="m">g</span>-dən asılı saymaq. Asılı deyil — tarazlıq nöqtəsi sürüşür, period yox.</li>
+        <li>Statik uzanma <span class="m">x₀</span> ilə amplitudu <span class="m">A</span> qarışdırmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = 2π√(m/k),  ω = √(k/m)
+T ~ √m,  T ~ 1/√k.  Şaquli: T = 2π√(x₀/g)
+Paralel yaylar: k = k₁ + k₂.  Ardıcıl: 1/k = 1/k₁ + 1/k₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Yükü 4 dəfə ağır etdilər. T? <span class="ans">2 dəfə artır.</span></li>
+        <li>k = 100 N/m, T = 0,2 s, π² ≈ 10. m = ? <span class="ans">T² = 40m/k → m = 100·0,04/40 = 0,1 kq.</span></li>
+        <li>Yay tarazlıqda 0,25 m uzanır. Şaquli rəqsin periodu? (π² ≈ 10) <span class="ans">T = 2√0,25 = 1 s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Rəqslərdə enerji</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yellənçəyi itələyəndə ona enerji verirsən, o isə bu enerjini yüksəkliyə (potensial) və sürətə (kinetik) növbə ilə çevirir. Sürtünmə olmasa, rəqs heç vaxt dayanmazdı. Enerjinin saxlanması qanunu sürəti, amplitudanı və təcili çox asan tapmağa imkan verir.</p>
+
+      <h3><span class="st">2</span> Enerji bir formadan digərinə keçir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 270 190" role="img" aria-label="Yaylı rəqqasın kinetik və potensial enerjisinin yerdəyişmədən asılılığı: parabola və tərs parabola, cəmi sabit">
+          <defs><marker id="rq3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="25" y1="165" x2="258" y2="165" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rq3)"/>
+          <line x1="140" y1="175" x2="140" y2="10" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rq3)"/>
+          <line x1="35" y1="40" x2="245" y2="40" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 3"/>
+          <path d="M40 40Q140 290 240 40" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M40 165Q140 -85 240 165" fill="none" stroke="var(--ink)" stroke-width="2" opacity=".6"/>
+          <text x="250" y="182" class="lbl">x</text><text x="146" y="16" class="lbl">E</text>
+          <text x="40" y="182" class="lbl" text-anchor="middle">−A</text><text x="240" y="182" class="lbl" text-anchor="middle">+A</text>
+          <text x="250" y="36" class="lbl" fill="var(--vec)">E = kA²/2</text>
+          <text x="160" y="120" class="lbl">E_k</text><text x="68" y="104" class="lbl">E_p = kx²/2</text>
+        </svg>
+        <div class="cap"><p>Yay uc nöqtələrdə (<span class="m">x = ±A</span>) tam dartılıb: bütün enerji potensialdır. Tarazlıq nöqtəsindən keçəndə yay deformasiyasızdır, cisim ən sürətlidir: bütün enerji kinetikdir. Cəmi hər anda sabitdir.</p></div>
+      </div>
+      <div class="fm">E = kx²/2 + mv²/2 = kA²/2 = mv_max²/2
+v_max = A·ω = A·√(k/m)
+a_max = A·ω² = A·k/m
+Verilmiş x-də:  v = ω·√(A² − x²)</div>
+      <p>Riyazi rəqqasda da eynidir: ən aşağı nöqtədə sürət maksimaldır, uc nöqtələrdə sıfır. Ən aşağı nöqtədən <span class="m">h</span> hündürlüyə qalxanda <span class="m">mv²/2 = mgh</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. k = 200 N/m, m = 0,5 kq, A = 10 sm.
+  E = kA²/2 = 200·0,01/2 = 1 J
+  ω = √(k/m) = √400 = 20 rad/s
+  v_max = Aω = 0,1·20 = 2 m/s
+  Yoxla: mv²/2 = 0,5·4/2 = 1 J ✓</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Yaylı rəqqasın amplitudu 10 sm, ω = 20 rad/s-dir. Tarazlıq
+vəziyyətindən 6 sm aralı nöqtədə sürəti nə qədərdir?
+  v = ω√(A² − x²) = 20·√(100 − 36) sm = 20·8 sm/s
+    = 160 sm/s = 1,6 m/s
+  (3-4-5 tipli üçbucaq: 6, 8, 10)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Tam enerjisi 0,8 J olan rəqqas
+x = A/2 nöqtəsindən keçir. Kinetik enerji?
+  Potensial: kx²/2 = k(A/2)²/2 = (kA²/2)/4 = E/4 = 0,2 J
+  Kinetik: 0,8 − 0,2 = 0,6 J  (E-nin 3/4 hissəsi)</div>
+      <div class="life"><b>Həyatdan.</b> Yellənçəkdə uşağı ən yüksək nöqtədə “asılmış” hiss edirsən: sürət sıfırdır, bütün enerji potensialdır. Aşağıdan keçəndə isə sürət ən böyükdür və qulaqlarında külək hiss edirsən. Sürtünmə olduğu üçün hər rəqsdə amplituda azalır — ona görə yellənçəyi vaxtaşırı itələyirlər (rezonansla!).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yayın enerjisini <span class="m">kA²</span> yazmaq — 2-yə bölməyi unutmaq.</li>
+        <li>Verilmiş <span class="m">x</span> nöqtəsində <span class="m">mv²/2 = kA²/2</span> yazmaq. Bu yalnız tarazlıq nöqtəsində doğrudur; başqa yerdə enerjinin bir hissəsi yayda qalır (<span class="m">kx²/2</span>).</li>
+        <li>Maksimal təcili tarazlıq nöqtəsində axtarmaq. Təcil uc nöqtələrdə maksimaldır (<span class="m">a = kx/m</span>), tarazlıqda sıfırdır.</li>
+        <li>Santimetri metrə çevirməmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">E = kA²/2 = mv_max²/2 = kx²/2 + mv²/2
+v_max = Aω,  a_max = Aω²,  ω = √(k/m)
+v(x) = ω√(A² − x²).  x = A/2-də E_k = 3E/4</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Amplituda 2 dəfə artdı. Enerji? <span class="ans">4 dəfə artır (E ~ A²).</span></li>
+        <li>k = 50 N/m, A = 20 sm. E = ? <span class="ans">50·0,04/2 = 1 J.</span></li>
+        <li>A = 5 sm, ω = 10 rad/s. Maksimal sürət və maksimal təcil? <span class="ans">v = 0,05·10 = 0,5 m/s; a = 0,05·100 = 5 m/s².</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

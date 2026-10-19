@@ -1272,7 +1272,8 @@
     "olimpiada:Vahid çevrə, radian; əsas triqonometrik eyniliklər",
     "fizika:Enerjinin saxlanması"
    ],
-   "hefte": "2026-12-28"
+   "hefte": "2026-12-28",
+   "ders": "dersler/fiz-reqsler.html"
   },
   {
    "bolme": "Rəqslər və dalğalar",
@@ -1282,7 +1283,8 @@
    "on": [
     "fizika:Harmonik rəqslər; riyazi və yaylı rəqqas"
    ],
-   "hefte": "2027-01-04"
+   "hefte": "2027-01-04",
+   "ders": "dersler/fiz-dalgalar.html"
   },
   {
    "bolme": "Molekulyar və istilik fizikası",
@@ -1293,7 +1295,8 @@
     "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli",
     "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
    ],
-   "hefte": "2027-01-04"
+   "hefte": "2027-01-04",
+   "ders": "dersler/fiz-istilik.html"
   },
   {
    "bolme": "Molekulyar və istilik fizikası",
@@ -1306,7 +1309,8 @@
     "fizika:Enerjinin saxlanması",
     "riyaziyyat:Faiz"
    ],
-   "hefte": "2027-01-04"
+   "hefte": "2027-01-04",
+   "ders": "dersler/fiz-istilik-balansi.html"
   },
   {
    "bolme": "Elektrostatika",

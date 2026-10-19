@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İstilik balansı və mühərriklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-istilik-balansi.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · İstilik balansı</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Molekulyar və istilik fizikası</div>
+    <h1>İstilik balansı, faza keçidləri, istilik mühərrikləri</h1>
+    <p>Çaya buz salanda çay soyuyur, buz əriyir. Metal cismi suya salanda su qızır. Qaynayan çaydanın qapağından buxar çıxır. Bu hadisələrin hamısını bir qanun idarə edir: <b>enerji itmir</b> — bir cismin verdiyi istilik başqasının aldığına bərabərdir. Bu mövzuda həmin qanunu ərimə, buxarlanma və mühərriklərə tətbiq edəcəyik. “Temperatur, istidən genişlənmə, istilik miqdarı” mövzusundan <span class="m">Q = cmΔt</span> lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Sabitlər: <span class="m">c_su = 4200</span>, <span class="m">c_buz = 2100 J/(kq·°C)</span>, <span class="m">λ_buz = 3,36·10⁵ J/kq</span>, <span class="m">L_su = 2,3·10⁶ J/kq</span>. (Dərsliklərdə λ üçün 3,3·10⁵ və ya 3,4·10⁵ yazılır; hesabı sadələşdirmək üçün 3,36·10⁵ götürürük — bu halda <span class="m">λ/c_su = 80 °C</span>. Olimpiadada sabitlər həmişə məsələdə verilir.)</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İstilik balansı</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Faza keçidləri</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yanacaq, mühərrik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İstilik balansı tənliyi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Vannaya qaynar su və soyuq su qarışdırırsan: hansı nisbətdə qarışdırsan, istədiyin temperatur olar? Kimyaçı laboratoriyada metal parçasını suya salıb onun nədən olduğunu tapır. Hər ikisinin əsasında eyni qayda durur.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fig">
+        <svg viewBox="0 0 280 150" role="img" aria-label="İsti cisim Q istiliyi soyuq cismə verir, ikisinin temperaturu θ olur">
+          <defs><marker id="ib1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="15" y="40" width="85" height="60" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="57" y="62" class="lbl" text-anchor="middle">isti</text><text x="57" y="80" text-anchor="middle">c₁, m₁, t₁</text>
+          <rect x="180" y="40" width="85" height="60" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="222" y="62" class="lbl" text-anchor="middle">soyuq</text><text x="222" y="80" text-anchor="middle">c₂, m₂, t₂</text>
+          <line x1="103" y1="70" x2="177" y2="70" stroke="var(--vec)" stroke-width="3" marker-end="url(#ib1)"/>
+          <text x="140" y="60" class="lbl" text-anchor="middle">Q</text>
+          <text x="140" y="125" text-anchor="middle">son temperatur θ: t₂ &lt; θ &lt; t₁</text>
+        </svg>
+        <div class="cap"><p>İstilik itkisi olmayanda (cisimlər ətrafla istilik mübadiləsi etmir) isti cismin verdiyi istilik soyuq cismin aldığı istiliyə bərabərdir. Axırda hər ikisi eyni temperatura <span class="m">θ</span> çatır.</p></div>
+      </div>
+      <div class="fm">Q_verən = Q_alan
+c₁m₁(t₁ − θ) = c₂m₂(θ − t₂)</div>
+      <p>Mötərizədə <b>həmişə müsbət fərq</b> yazılır: verən cisim üçün (<i>böyük temperatur − θ</i>), alan üçün (<i>θ − kiçik temperatur</i>). Bu zaman nə işarə səhvi, nə də mənfi istilik olur.</p>
+      <p><b>Eyni maddə</b> (iki porsiya su) olarsa <span class="m">c</span> ixtisar olunur:</p>
+      <div class="fm">θ = (m₁t₁ + m₂t₂)/(m₁ + m₂)         (çəkili orta)</div>
+      <p>Bu yalnız <b>eyni maddə</b> üçün düzgündür; fərqli maddələrdə hər cismin <span class="m">c</span>-si gərəkdir: <span class="m">θ = (c₁m₁t₁ + c₂m₂t₂)/(c₁m₁ + c₂m₂)</span>. Son temperatur həmişə iki başlanğıc temperaturun arasında olur və kütləsi (və ya <span class="m">cm</span>-i) böyük cismin temperaturuna daha yaxın qalır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq 80 °C-li su ilə 3 kq 20 °C-li su qarışdırılıb.
+  θ = (2·80 + 3·20)/(2 + 3) = (160 + 60)/5 = 44 °C
+  Yoxla: 20 &lt; 44 &lt; 80 ✓, soyuq su çox olduğu üçün 20-yə daha yaxın.</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+0,3 kq mis cismi (c = 400 J/(kq·°C)) 100 °C-yə qədər qızdırıb 20 °C-li
+0,2 kq suya saldılar. İtki yoxdur. θ = ?
+  Mis verir:  400·0,3·(100 − θ) = 120·(100 − θ)
+  Su alır:    4200·0,2·(θ − 20) = 840·(θ − 20)
+  120·(100 − θ) = 840·(θ − 20)
+  12000 − 120θ = 840θ − 16800  →  28800 = 960θ  →  θ = 30 °C</div>
+      <div class="ex">Nümunə 3 (RFO tipli, c-ni tapmaq).
+0,2 kq alüminium cismi 100 °C-yə qədər qızdırıb 20 °C-li 0,3 kq suya
+saldılar. Son temperatur 30 °C oldu. Alüminiumun c-si?
+  Su aldı: 4200·0,3·(30 − 20) = 12 600 J
+  Cisim verdi: c·0,2·(100 − 30) = 14·c
+  14·c = 12 600 → c = 900 J/(kq·°C)</div>
+      <div class="life"><b>Həyatdan.</b> Vannaya 40 °C-li su almaq üçün 90 °C-li 10 kq suya neçə kq 10 °C-li su əlavə etmək lazımdır? <span class="m">10·(90 − 40) = m·(40 − 10)</span> → <span class="m">m = 500/30 ≈ 16,7 kq</span>. Termos qabı (kalorimetr) isə eyni qaydanı istilik itkisiz yoxlamaq üçün hazırlanıb.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Temperaturların sadə ortasını götürmək: <span class="m">(80 + 20)/2 = 50</span> — yalnız kütlələr eyni olanda (və eyni maddə üçün) doğrudur.</li>
+        <li>İşarələri qarışdırıb <span class="m">(t₂ − θ)</span> yazmaq və mənfi istilik almaq. Hər iki tərəfdə fərq müsbət olmalıdır.</li>
+        <li>Fərqli maddələr üçün (məsələn, metal və su) eyni <span class="m">c</span> götürmək.</li>
+        <li>Kütləni qramla saxlayıb <span class="m">c</span>-ni J/(kq·°C)-lə götürmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">c₁m₁(t₁ − θ) = c₂m₂(θ − t₂)
+Eyni maddə:  θ = (m₁t₁ + m₂t₂)/(m₁ + m₂)
+t₂ &lt; θ &lt; t₁ — yoxlama!</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1 kq 100 °C-li su + 1 kq 0 °C-li su. θ? <span class="ans">50 °C.</span></li>
+        <li>3 kq 20 °C-li suya 1 kq 100 °C-li su qatdılar. θ? <span class="ans">(60 + 100)/4 = 40 °C.</span></li>
+        <li>90 °C-li 1 kq suya neçə kq 10 °C-li su qatsaq 30 °C olar? <span class="ans">1·60 = m·20 → m = 3 kq.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ərimə, donma, buxarlanma, kondensasiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qaynayan çaydana istilik verməkdə davam edirsən, amma suyun temperaturu 100 °C-də qalır. Buz parçası əriyərkən su qarışığının temperaturu 0 °C-də dayanır. İstilik hara gedir? O, hissəcikləri bir-birindən ayırmağa sərf olunur: bu, <b>gizli istilikdir</b>.</p>
+
+      <h3><span class="st">2</span> Faza keçidləri</h3>
+      <div class="fig">
+        <svg viewBox="0 0 290 190" role="img" aria-label="Buzun qızması qrafiki: temperatur istilik miqdarından asılı olaraq, 0 və 100 dərəcədə üfüqi hissələr">
+          <defs><marker id="ib2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="40" y1="165" x2="280" y2="165" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ib2)"/>
+          <line x1="40" y1="175" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ib2)"/>
+          <line x1="40" y1="120" x2="240" y2="120" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="40" y1="40" x2="240" y2="40" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <path d="M40 142L68 120L128 120L215 40L255 40" fill="none" stroke="var(--accent)" stroke-width="2.8"/>
+          <text x="34" y="124" class="lbl" text-anchor="end">0</text><text x="34" y="44" class="lbl" text-anchor="end">100</text>
+          <text x="46" y="22" class="lbl">t, °C</text><text x="270" y="182" class="lbl" text-anchor="end">Q</text>
+          <text x="54" y="150" text-anchor="middle">buz</text>
+          <text x="98" y="112" class="lbl" text-anchor="middle">ərimə</text>
+          <text x="172" y="86" text-anchor="middle">su</text>
+          <text x="235" y="32" class="lbl" text-anchor="middle">qaynama</text>
+        </svg>
+        <div class="cap"><p>Buz qızanda temperatur artır. 0 °C-də <b>ərimə</b> başlayır: istilik verilir, amma temperatur dəyişmir (üfüqi hissə). Hamısı əriyəndən sonra su qızır, 100 °C-də yenidən üfüqi hissə — qaynama. Üfüqi hissənin uzunluğu <span class="m">λm</span> və <span class="m">Lm</span> ilə mütənasibdir.</p></div>
+      </div>
+      <div class="fm">Ərimə (0 °C):          Q = λ·m          λ — ərimə istiliyi, J/kq
+Donma:                  Q = −λ·m         (ayrılır)
+Buxarlanma (100 °C):    Q = L·m          L — buxarlanma istiliyi
+Kondensasiya:           Q = −L·m</div>
+      <p>Buzun <span class="m">λ ≈ 3,3·10⁵ J/kq</span> (biz <span class="m">3,36·10⁵</span> götürürük), suyun <span class="m">L = 2,3·10⁶ J/kq</span>. Buxarlanma istiliyi ərimə istiliyindən təxminən <b>7 dəfə</b> böyükdür: suyu buxara çevirmək üçün buz əritməkdən çox daha çox enerji lazımdır. Ona görə buxardan yanıq qaynar sudan ağırdır: buxar kondensasiya olanda dərinin üstündə əlavə <span class="m">Lm</span> istilik verir.</p>
+      <p><b>Metod:</b> qızma yolunu mərhələlərə böl. Hər mərhələni ayrıca yaz: buz qızır (<span class="m">c_buz</span>), əriyir (<span class="m">λ</span>), su qızır (<span class="m">c_su</span>), qaynayır (<span class="m">L</span>). Toplayırsan.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. −10 °C-li 0,5 kq buzu 20 °C-li suya çevirmək üçün
+nə qədər istilik lazımdır?
+  Q₁ = 2100·0,5·10 = 10 500 J           (buz −10 → 0 °C)
+  Q₂ = 336 000·0,5 = 168 000 J          (əriməsi)
+  Q₃ = 4200·0,5·20 = 42 000 J           (su 0 → 20 °C)
+  Q = 10 500 + 168 000 + 42 000 = 220 500 J = 220,5 kJ</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Qaynayan çaydanda 0,2 kq su var. Çaydanın gücü 2300 W,
+itki yoxdur. Bütün suyun buxara çevrilməsi nə qədər çəkər?
+(L = 2,3·10⁶ J/kq)
+  Q = L·m = 2,3·10⁶·0,2 = 460 000 J
+  t = Q/P = 460 000/2300 = 200 s  (≈ 3,3 dəq)</div>
+      <div class="ex">Nümunə 3 (RFO tipli, qrafik). Sabit güclü qızdırıcı −20 °C-li buzu
+qızdırır. Buzun 0 °C-ə qədər qızması 1 dəq çəkdi. Buzun tam əriməsi
+və sonra suyun 100 °C-ə qədər qızması nə qədər çəkər?
+(c_buz = 2100, c_su = 4200 J/(kq·°C), λ = 3,36·10⁵ J/kq)
+  Qızma: Q = 2100·m·20 = 42 000·m  →  60 s    (P = 700·m  W)
+  Ərimə: 336 000·m / (700·m) = 480 s = 8 dəq
+  Su 0 → 100 °C: 4200·m·100 / (700·m) = 600 s = 10 dəq
+  (m ixtisar olunur — kütləni bilmək lazım deyil!)</div>
+      <div class="life"><b>Həyatdan.</b> Dondurucunun içində 1 kq su (20 °C) buza çevrilərkən <span class="m">4200·20 + 336 000 = 420 kJ</span> istilik ayrılır. Ərimə zamanı buz ətrafdan istilik “udur”: ona görə içkiyə buz atanda içki çox soyuyur, üstəlik əriyən buz suyun özü kimi əlavə soyuducu rolu oynayır. Tər buxarlananda bədən soyuyur: <span class="m">L</span> böyük olduğu üçün az tər çox istilik aparır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əriyərkən temperaturun artdığını hesab etmək. Əriməyə və qaynamaya temperatur sabit qalır.</li>
+        <li>Əriyən buzun mərhələlərindən birini unutmaq (məsələn, əriməni və ya buzu 0 °C-ə qədər qızdırmağı).</li>
+        <li>Buz üçün <span class="m">c = 4200</span> götürmək. Buzun <span class="m">c</span>-si 2100-dür.</li>
+        <li>Əriyəndən sonra yaranan suyu da θ-yə qədər qızdırmağı unutmaq (balans məsələlərində).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ərimə:  Q = λm  (0 °C, t sabit)
+Buxarlanma:  Q = Lm  (100 °C, t sabit)
+Hər mərhələni ayrı yaz, topla.
+λ_buz ≈ 3,36·10⁵,  L_su = 2,3·10⁶ J/kq</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,5 kq 0 °C-li buz əriyir. Q? <span class="ans">336 000·0,5 = 168 000 J.</span></li>
+        <li>2 kq 100 °C-li su tam buxara çevrilir. Q? <span class="ans">2,3·10⁶·2 = 4,6·10⁶ J.</span></li>
+        <li>Niyə qaynayan suyun temperaturu qalxmır? <span class="ans">Verilən istilik molekulların bir-birindən ayrılmasına sərf olunur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yanacaq və istilik mühərrikləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobilin benzin mühərriki, elektrik stansiyasının turbini, təyyarənin reaktiv mühərriki — hamısı yanacağın enerjisini işə çevirir. Amma yanacağın enerjisinin yalnız bir hissəsi işə çevrilir. Qalanı ətrafa gedir. Bu mövzuda həmin hissəni (FİƏ) hesablamağı öyrənirik.</p>
+
+      <h3><span class="st">2</span> Yanacağın yanma istiliyi</h3>
+      <p>1 kq yanacaq tam yananda ayrılan istilik <b>yanma istiliyi</b> <span class="m">q</span> adlanır (J/kq):</p>
+      <div class="fm">Q = q·m</div>
+      <div class="ex">q (MJ/kq):  benzin 46,  dizel 42,  təbii qaz 44,
+            daş kömür 27,  spirt 27,  quru odun 10</div>
+
+      <h3><span class="st">3</span> İstilik mühərriki</h3>
+      <div class="fig">
+        <svg viewBox="0 0 280 190" role="img" aria-label="İstilik mühərriki sxemi: qızdırıcıdan Q₁ alır, işçi cisim A işi görür, soyuducuya Q₂ verir">
+          <defs><marker id="ib3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="70" y="10" width="140" height="34" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text x="140" y="32" class="lbl" text-anchor="middle">Qızdırıcı  T₁</text>
+          <rect x="95" y="78" width="90" height="42" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/><text x="140" y="104" class="lbl" text-anchor="middle">Mühərrik</text>
+          <rect x="70" y="150" width="140" height="34" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="140" y="172" class="lbl" text-anchor="middle">Soyuducu  T₂</text>
+          <line x1="140" y1="46" x2="140" y2="76" stroke="var(--vec)" stroke-width="3" marker-end="url(#ib3)"/><text x="148" y="66" class="lbl">Q₁</text>
+          <line x1="140" y1="122" x2="140" y2="148" stroke="var(--vec)" stroke-width="3" marker-end="url(#ib3)"/><text x="148" y="140" class="lbl">Q₂</text>
+          <line x1="187" y1="99" x2="250" y2="99" stroke="var(--accent)" stroke-width="3" marker-end="url(#ib3)"/><text x="228" y="92" class="lbl">A</text>
+        </svg>
+        <div class="cap"><p>Mühərrik qızdırıcıdan <span class="m">Q₁</span> istilik alır, bir hissəsini işə (<span class="m">A</span>) çevirir, qalanı <span class="m">Q₂</span> soyuducuya (ətraf mühitə) verir. Enerjinin saxlanması: <span class="m">A = Q₁ − Q₂</span>.</p></div>
+      </div>
+      <div class="fm">η = A/Q₁ = (Q₁ − Q₂)/Q₁ = 1 − Q₂/Q₁
+η həmişə &lt; 1 (100%-dən az)
+İdeal (Karno):  η_max = 1 − T₂/T₁   (T kelvinlə)</div>
+      <p>η-nı <b>faydalı iş əmsalı (FİƏ)</b> adlandırırlar. Mühərrik həmişə soyuducuya istilik verməlidir, ona görə <span class="m">Q₂ &gt; 0</span> və <span class="m">η &lt; 1</span>. Karno düsturu verilmiş <span class="m">T₁</span> və <span class="m">T₂</span> üçün <b>ən böyük mümkün</b> FİƏ-ni verir: heç bir real mühərrik ondan yüksək ola bilməz. Qızdırıcının temperaturunu artırmaq və ya soyuducunu soyutmaq FİƏ-ni artırır.</p>
+      <p><b>Güc və iş:</b> mühərrikin faydalı gücü <span class="m">P</span> olarsa, <span class="m">t</span> müddətində faydalı iş <span class="m">A = Pt</span>, sərf olunan yanacaqdan alınan istilik isə <span class="m">Q₁ = A/η = qm</span>. Avtomobildə faydalı iş <span class="m">A = F·s</span> (dartı qüvvəsi × yol).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Mühərrik qızdırıcıdan 1000 kJ alır, 350 kJ faydalı iş görür.
+  η = 350/1000 = 0,35 = 35%
+  Soyuducuya: Q₂ = 1000 − 350 = 650 kJ</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Avtomobilin dartı qüvvəsi 920 N, mühərrikin FİƏ-si 25%-dir.
+50 km yolda neçə kq benzin sərf olunar? (q = 46·10⁶ J/kq)
+  A = F·s = 920·50 000 = 46·10⁶ J
+  Q₁ = A/η = 46·10⁶/0,25 = 184·10⁶ J
+  m = Q₁/q = 184·10⁶/(46·10⁶) = 4 kq</div>
+      <div class="ex">Nümunə 3 (RFO tipli). İstilik mühərrikinin qızdırıcısı 727 °C,
+soyuducusu 27 °C-dir. Mümkün olan ən böyük FİƏ?
+  T₁ = 727 + 273 = 1000 K,  T₂ = 27 + 273 = 300 K
+  η = 1 − 300/1000 = 0,7 = 70%
+  (Selsini kelvinə çevirməyi unutsaq: 1 − 27/727 ≈ 96% — çox səhv.)</div>
+      <div class="life"><b>Həyatdan.</b> Benzin mühərrikinin FİƏ-si təxminən 25-35%, dizelin — 35-45%, elektrik mühərrikinin isə 90% və yuxarıdır. Ona görə elektromobil eyni yolda daha az enerji sərf edir. Elektrik stansiyalarının turbinlərində soyuducu rolunu çay və ya dəniz suyu oynayır, ona görə stansiyalar su qıraqlarında qurulur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>FİƏ-ni <span class="m">Q₁/A</span> yazmaq (1-dən böyük çıxır). Düzü: <span class="m">A/Q₁</span>.</li>
+        <li>Karno düsturunda temperaturu Selsi ilə qoymaq. Yalnız kelvin!</li>
+        <li>Yanacağın bütün istiliyinin işə çevrildiyini düşünmək.</li>
+        <li><span class="m">η</span>-nı faiz və ondalıq arasında qarışdırmaq: 25% = 0,25.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Q = qm;   A = Q₁ − Q₂;   η = A/Q₁ &lt; 1
+Avtomobil:  A = F·s,  Q₁ = A/η,  m = Q₁/q
+Karno:  η_max = 1 − T₂/T₁ (kelvinlə)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 kq daş kömür (q = 27 MJ/kq) yandı. Q? <span class="ans">54 MJ.</span></li>
+        <li>Mühərrik 400 kJ alır, 300 kJ verir. η? <span class="ans">A = 100 kJ, η = 25%.</span></li>
+        <li>T₁ = 600 K, T₂ = 300 K. η_max? <span class="ans">1 − 300/600 = 50%.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Mürəkkəb balans məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada ən çox ağıllı məsələ — “buzu isti suya atırlar, nə baş verir?”-dir. Cavab iki variantdan biri ola bilər: ya buz tamamilə əriyir və son temperatur 0 °C-dən yüksək olur, ya da buzun bir hissəsi əriyir və temperatur 0 °C-də qalır. Əvvəlcədən hansı halın olduğunu <b>yoxlamaq lazımdır</b>, çünki düstur halına görə dəyişir.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fig">
+        <svg viewBox="0 0 290 190" role="img" aria-label="Alqoritm: əvvəl sudan çıxa biləcək istiliyi buzun əriməsi üçün lazım olan istiliklə müqayisə et">
+          <defs><marker id="ib4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="35" y="8" width="220" height="42" rx="6" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="145" y="26" class="lbl" text-anchor="middle">Q_su = c·m_su·t_su</text><text x="145" y="42" text-anchor="middle">(su 0 °C-ə qədər soyuyanda verə bilər)</text>
+          <line x1="145" y1="52" x2="145" y2="68" stroke="var(--ink)" stroke-width="2" marker-end="url(#ib4)"/>
+          <rect x="60" y="70" width="170" height="30" rx="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="145" y="90" class="lbl" text-anchor="middle">Q_su  ? ≥  λ·m_buz (+ buzun qızması)</text>
+          <line x1="100" y1="102" x2="55" y2="132" stroke="var(--ink)" stroke-width="2" marker-end="url(#ib4)"/>
+          <line x1="190" y1="102" x2="235" y2="132" stroke="var(--ink)" stroke-width="2" marker-end="url(#ib4)"/>
+          <rect x="8" y="134" width="130" height="48" rx="6" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2"/>
+          <text x="73" y="153" class="lbl" text-anchor="middle">Bəli: hamısı əriyir</text><text x="73" y="170" text-anchor="middle">balans → θ &gt; 0 °C</text>
+          <rect x="152" y="134" width="130" height="48" rx="6" fill="var(--sheet)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="217" y="153" class="lbl" text-anchor="middle">Xeyr: θ = 0 °C</text><text x="217" y="170" text-anchor="middle">m_əriyən = Q_su / λ</text>
+        </svg>
+        <div class="cap"><p>Əvvəlcə müqayisə et: sudan çıxan istilik buzun bütün kütləsini əritməyə çatırmı? Çatırsa, balans tənliyi ilə <span class="m">θ</span> tapılır, çatmırsa son temperatur 0 °C-dir və əriyən buzun kütləsi hesablanır.</p></div>
+      </div>
+      <div class="fm">λ/c_su = 336 000/4200 = 80 °C
+Buz 0 °C-də: tam əriyirsə
+  m_su·(t − θ) = 80·m_buz + m_buz·θ   (hamısını c_su-ya böl)
+Buz −t_b °C-də: + 0,5·m_buz·t_b        (c_buz = 0,5·c_su)</div>
+      <p>Tənliyi <span class="m">c_su</span>-ya böləndə rəqəmlər sadələşir: ərimə üçün <b>80 °C-lik</b> “ekvivalent temperatur” alınır — yəni 1 kq buzu əritmək 1 kq suyu 80 °C soyutmaq qədərdir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 40 °C-li 1 kq suya 0 °C-li 1 kq buz atdılar. Nə baş verir?
+  Su 0 °C-ə qədər soyuyanda verir: 4200·1·40 = 168 000 J
+  Bütün buzu əritmək üçün: 336 000·1 = 336 000 J > 168 000 J
+  Çatmır → θ = 0 °C. Əriyən buz: 168 000/336 000 = 0,5 kq
+  (Qarışıqda 1,5 kq su + 0,5 kq buz qalır, temperatur 0 °C.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+80 °C-li 2 kq suya −10 °C-li 0,5 kq buz atdılar. İtki yoxdur.
+Son temperaturu tap. (c_su = 4200, c_buz = 2100, λ = 3,36·10⁵)
+  Yoxlama: su 0 °C-ə qədər 2·80 = 160 vahid verir (c_su-nun vahidi ilə),
+           buz üçün lazım: 0,5·0,5·10 + 80·0,5 = 2,5 + 40 = 42,5 &lt; 160 ✓
+           → buz tam əriyir, θ &gt; 0.
+  Balans (c_su-ya böl):  2·(80 − θ) = 0,5·0,5·10 + 80·0,5 + 0,5·θ
+                          160 − 2θ = 42,5 + 0,5θ  →  117,5 = 2,5θ
+  θ = 47 °C</div>
+      <div class="ex">Nümunə 3 (RFO tipli, buxar). 20 °C-li 2,3 kq suyu 100 °C-yə qədər
+qızdırmaq üçün onun içinə 100 °C-li su buxarı buraxırlar. Buxar
+kondensasiya olub 100 °C-li suya çevrilir. Neçə kq buxar lazımdır?
+(L = 2,3·10⁶ J/kq, c_su = 4200 J/(kq·°C))
+  Su alır: 4200·2,3·80 = 772 800 J
+  Buxar verir: L·m_b = 2,3·10⁶·m_b   (kondensasiya, temperatur dəyişmir)
+  m_b = 772 800/(2,3·10⁶) = 0,336 kq = 336 q</div>
+      <div class="life"><b>Həyatdan.</b> Meyvə şirəsinə buz atanda: 0,3 kq şirə (22 °C) üçün 0,05 kq buz kifayət edir ki, içki təxminən 10 °C olsun: <span class="m">0,3·(22 − θ) = 80·0,05 + 0,05·θ</span> → <span class="m">6,6 − 0,3θ = 4 + 0,05θ</span> → <span class="m">θ ≈ 7,4 °C</span>. Buz çox təsirlidir, çünki əriməsi çox istilik alır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yoxlama aparmadan <span class="m">θ</span> hesablamaq. Buz çoxdursa, nəticə mənfi çıxar — bu, “buz tam əriməyib” deməkdir.</li>
+        <li>Buz əridiyi zaman temperaturun 0 °C-dən fərqli ola biləcəyini düşünmək. Ərimə mərhələsində temperatur həmişə 0 °C-dir.</li>
+        <li>Buxar məsələsində kondensasiyadan sonra alınan suyun soyumasını unutmaq (əgər <span class="m">θ &lt; 100</span> olarsa).</li>
+        <li>Əriyən buzun sonra θ-yə qədər qızmasını unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl yoxla: Q_su(→0 °C) ≥ λ·m_buz ?
+Hə → balansla θ-nı tap.   Yox → θ = 0 °C, m = Q/λ.
+c_su-ya bölsən: λ → 80 °C.
+Buxar: Lm_b + c·m_b(100 − θ) = c·m_su(θ − t)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>10 °C-li 1 kq suya 0 °C-li 1 kq buz atdılar. Son temperatur? <span class="ans">Su verir: 10 vahid; buz üçün 80 lazım. Çatmır → 0 °C, əriyən 10/80 = 0,125 kq.</span></li>
+        <li>90 °C-li 1 kq suya 0 °C-li 0,25 kq buz atdılar. θ? <span class="ans">1·(90 − θ) = 80·0,25 + 0,25θ → 70 = 1,25θ → θ = 56 °C.</span></li>
+        <li>1 kq buzu əritmək hansı kütləli suyu 80 °C soyutmağa bərabərdir? <span class="ans">1 kq (λ/c = 80 °C).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

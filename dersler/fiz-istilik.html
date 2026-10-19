@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Temperatur və istilik miqdarı dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-istilik.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Temperatur və istilik</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Molekulyar və istilik fizikası</div>
+    <h1>Temperatur, istidən genişlənmə, istilik miqdarı</h1>
+    <p>Çaydan səhər buxar çıxır, relslər arasında boşluq qoyulur, dənizkənarı qum isti olanda su hələ sərindir. Bunların hamısı istilik hadisələridir. Burada temperaturu (Selsi, Kelvin, Fahrenheit), cismin qızması üçün lazım olan istiliyi (<span class="m">Q = cmΔt</span>) və istidən genişlənməni (<span class="m">Δl = αl₀Δt</span>) öyrənirik. Növbəti mövzuda isə istilik balansı, əriməni və mühərrikləri keçəcəyik.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Məsələlərdə <span class="m">c</span> və <span class="m">α</span> həmişə verilir.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Temperatur</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İstilik miqdarı</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İstidən genişlənmə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Temperatur və temperatur şkalaları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hava proqnozunda “+25 °C” deyirlər, Amerikada eyni gün “77 °F” göstərilir, fizika məsələlərində isə “300 K”. Üçü eyni temperaturdur. Fərqli şkalalar arasında asan keçməyi bacarmaq olimpiada məsələlərində lazımdır, çünki qaz qanunlarında yalnız kelvin istifadə olunur.</p>
+
+      <h3><span class="st">2</span> Temperatur nədir</h3>
+      <p>Hər cism hissəciklərdən (atom və molekullardan) ibarətdir və onlar <b>fasiləsiz xaotik hərəkət</b> edir. <b>Temperatur</b> bu hərəkətin intensivliyinin ölçüsüdür: temperatur nə qədər yüksəkdirsə, hissəciklər orta hesabla bir o qədər sürətlidir (orta kinetik enerjiləri böyükdür). Temperatur isti cismin “ağırlığı” yox, qızmasının dərəcəsidir; iki cisim bir-birinə toxunanda temperaturlar bərabərləşənə qədər istilik <b>isti cisimdən soyuğa</b> keçir.</p>
+
+      <h3><span class="st">3</span> Üç şkala</h3>
+      <div class="fig">
+        <svg viewBox="0 0 290 190" role="img" aria-label="Üç şkalanın müqayisəsi: buzun əriməsi 0 °C, 273 K, 32 °F; suyun qaynaması 100 °C, 373 K, 212 °F">
+          <line x1="70" y1="20" x2="70" y2="165" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="230" y1="20" x2="230" y2="165" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="70" y="14" class="lbl" text-anchor="middle">buzun əriməsi</text><text x="230" y="14" class="lbl" text-anchor="middle">suyun qaynaması</text>
+          <line x1="20" y1="60" x2="275" y2="60" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="110" x2="275" y2="110" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="160" x2="275" y2="160" stroke="var(--ink)" stroke-width="2"/>
+          <g fill="var(--accent)"><circle cx="70" cy="60" r="4"/><circle cx="230" cy="60" r="4"/><circle cx="70" cy="110" r="4"/><circle cx="230" cy="110" r="4"/><circle cx="70" cy="160" r="4"/><circle cx="230" cy="160" r="4"/></g>
+          <text x="70" y="50" class="lbl" text-anchor="middle">0 °C</text><text x="230" y="50" class="lbl" text-anchor="middle">100 °C</text>
+          <text x="70" y="100" class="lbl" text-anchor="middle">273 K</text><text x="230" y="100" class="lbl" text-anchor="middle">373 K</text>
+          <text x="70" y="150" class="lbl" text-anchor="middle">32 °F</text><text x="230" y="150" class="lbl" text-anchor="middle">212 °F</text>
+          <text x="12" y="75" text-anchor="start">Selsi</text><text x="12" y="125" text-anchor="start">Kelvin</text><text x="12" y="175" text-anchor="start">Fahrenheit</text>
+        </svg>
+        <div class="cap"><p>Selsi şkalasında 0 buzun əriməsi, 100 suyun qaynaması (normal təzyiqdə) götürülüb, aralıq 100 bərabər hissəyə bölünüb. Kelvin şkalasının bölgüsü Selsi ilə eynidir, yalnız başlanğıc fərqlidir.</p></div>
+      </div>
+      <div class="fm">T (K) = t (°C) + 273            t = T − 273
+t_F = 1,8·t_C + 32            t_C = (t_F − 32)/1,8
+Δt (°C) = ΔT (K)               (dəyişmə eynidir)</div>
+      <p>Kelvin şkalasında <b>0 K</b> — mütləq sıfırdır (təxminən −273 °C). Ondan aşağı temperatur ola bilməz, çünki hissəciklərin hərəkəti dayanır. Buna görə kelvin <b>mütləq</b> temperatur şkalasıdır və mənfi qiymət almır. Fahrenheit şkalasında buz 32°-də əriyir, su 212°-də qaynayır: 100 °C = 180 °F.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 27 °C neçə kelvindir?   T = 27 + 273 = 300 K
+Nümunə 1 (davamı). 86 °F neçə °C-dir?
+  t_C = (86 − 32)/1,8 = 54/1,8 = 30 °C</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Temperatur 20 °C-dən 65 °C-yə qalxdı. Kelvin şkalasında
+bu dəyişmə neçə kelvindir?
+  Δt = 65 − 20 = 45 °C
+  ΔT = Δt = 45 K     (T = t + 273: hər iki qiymətə eyni 273 əlavə
+  olunur, fərq dəyişmir)
+  Səhv cavab: 45 + 273 = 318 K.</div>
+      <div class="ex">Nümunə 3 (RFO tipli, sınıq termometr).
+Termometr əriyən buzda 2°, qaynayan suda 92° göstərir.
+Şkala bərabər bölünüb. Bu termometr 38° göstərəndə
+həqiqi temperatur?
+  Şkalanın 0 və 100 °C arası: 92 − 2 = 90 bölgü.
+  1 bölgü = 100/90 °C.
+  Əriyən buzdan 38 − 2 = 36 bölgü yuxarıdır:
+  t = 36·100/90 = 40 °C</div>
+      <div class="life"><b>Həyatdan.</b> Bədən temperaturu 36,6 °C = 309,6 K = 97,9 °F. Dondurucu −18 °C = 255 K = −0,4 °F. Soyuq-isti hissi aldadıcıdır: qapı dəstəyi taxtadan soyuq görünür, çünki metal istiliyi daha yaxşı keçirir, amma temperaturları eynidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Temperaturun <b>dəyişməsini</b> çevirərkən 273 əlavə etmək. Dəyişmə Selsidə və Kelvində eynidir.</li>
+        <li><span class="m">T = t − 273</span> yazmaq. Düzü: <span class="m">T = t + 273</span>.</li>
+        <li>Fahrenheitdən Selsiyə çevirəndə 32-ni çıxmağı unutmaq.</li>
+        <li>Sınıq termometr məsələsində sıfır nöqtəsini (buz) götürməyi unutmaq: <span class="m">t = 100·(x − a)/(b − a)</span>, <span class="m">x</span>-i birbaşa 100-ə nisbətdə götürmək yanlışdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t + 273,  t_F = 1,8·t_C + 32
+Δt (°C) = ΔT (K)
+0 K — mütləq sıfır;  T ≥ 0
+İstilik isti cisimdən soyuğa keçir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>−23 °C neçə K-dir? <span class="ans">250 K.</span></li>
+        <li>350 K neçə °C-dir? <span class="ans">77 °C.</span></li>
+        <li>Temperatur 15 K artıb. Selsidə nə qədər? <span class="ans">15 °C.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İstilik miqdarı və xüsusi istilik tutumu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çaydanı qaynatmaq üçün nə qədər enerji lazımdır? Dəniz kənarında gün ərzində qum yandırıcı olur, su isə sərin qalır — niyə? Bunlara cavab vermək üçün <b>istilik miqdarı</b> və <b>xüsusi istilik tutumu</b> anlayışlarını bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> İstilik miqdarı</h3>
+      <p>Cismin daxili enerjisi dəyişəndə <b>istilik miqdarı</b> <span class="m">Q</span> alınır (və ya verilir). Vahidi joul (J) və ya kilojoul (1 kJ = 1000 J). Cismi qızdırmaq üçün lazım olan istilik üç şeydən asılıdır: maddənin növündən, kütləsindən, temperaturun dəyişməsindən.</p>
+      <div class="fm">Q = c·m·Δt          Δt = t₂ − t₁
+c — xüsusi istilik tutumu, J/(kq·°C)</div>
+      <div class="fig">
+        <svg viewBox="0 0 280 175" role="img" aria-label="Xüsusi istilik tutumunun sütun diaqramı: su 4200, buz 2100, alüminium 900, polad 500, mis 400, qurğuşun 130 J/(kq·°C)">
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="62" y1="8" x2="62" y2="164"/></g>
+          <rect x="63" y="12" width="195" height="16" fill="var(--accent)"/><text x="58" y="24" class="lbl" text-anchor="end">su</text><text x="262" y="24" class="lbl" text-anchor="end" fill="var(--sheet)">4200</text>
+          <rect x="63" y="38" width="97.5" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="50" class="lbl" text-anchor="end">buz</text><text x="166" y="50" class="lbl">2100</text>
+          <rect x="63" y="64" width="41.8" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="76" class="lbl" text-anchor="end">alüminium</text><text x="110" y="76" class="lbl">900</text>
+          <rect x="63" y="90" width="23.2" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="102" class="lbl" text-anchor="end">polad</text><text x="92" y="102" class="lbl">500</text>
+          <rect x="63" y="116" width="18.6" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="128" class="lbl" text-anchor="end">mis</text><text x="87" y="128" class="lbl">400</text>
+          <rect x="63" y="142" width="6" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="154" class="lbl" text-anchor="end">qurğuşun</text><text x="75" y="154" class="lbl">130</text>
+        </svg>
+        <div class="cap"><p>Suyun xüsusi istilik tutumu hər şeydən böyükdür: 1 kq suyu 1 °C qızdırmaq üçün 4200 J lazımdır, 1 kq misi isə cəmi 400 J.</p></div>
+      </div>
+      <p><b>Xüsusi istilik tutumu</b> — 1 kq maddəni 1 °C qızdırmaq üçün lazım olan istilik miqdarıdır. Soyuyanda cisim eyni <span class="m">Q = cm|Δt|</span> qədər istilik verir. <span class="m">cm</span> hasilinə cismin <b>istilik tutumu</b> deyilir (<span class="m">C = cm</span>, J/°C): bütün cismi 1 °C qızdırmaq üçün lazım olan istilik.</p>
+      <p>Elektrik qızdırıcı <span class="m">P</span> gücü ilə <span class="m">t</span> müddətində <span class="m">Pt</span> enerji verir. Bunun hamısı sudan keçmirsə (itki olur), <b>faydalı iş əmsalı</b> η ilə:</p>
+      <div class="fm">c·m·Δt = η·P·t         (η ondalıq, məsələn, 0,8 = 80%)</div>
+      <p>Vaxtı saniyə ilə, gücü vattla yaz: 1 W = 1 J/s.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq suyu 20 °C-dən 70 °C-yə qədər qızdırmaq üçün
+nə qədər istilik lazımdır? (c = 4200 J/(kq·°C))
+  Q = cmΔt = 4200·2·(70 − 20) = 4200·2·50 = 420 000 J = 420 kJ</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Gücü 2 kW olan elektrik çaydan 1 kq suyu 20 °C-dən 100 °C-yə
+qədər qızdırır. İstilik itkisi 20%-dir, yəni η = 0,8.
+Neçə saniyə lazımdır? (c = 4200 J/(kq·°C))
+  Suyun aldığı istilik: Q = 4200·1·80 = 336 000 J
+  Çaydan verir: ηPt = 0,8·2000·t = 1600·t
+  1600·t = 336 000 → t = 210 s = 3,5 dəq</div>
+      <div class="ex">Nümunə 3 (RFO tipli). 500 q mis cisim 100 °C-dən 20 °C-yə
+qədər soyuyur. c = 400 J/(kq·°C). Ətrafa nə qədər istilik verir?
+  m = 0,5 kq,  Δt = 100 − 20 = 80 °C
+  Q = 400·0,5·80 = 16 000 J = 16 kJ
+  (Qram → kq çevirməsini unutma.)</div>
+      <div class="life"><b>Həyatdan.</b> Suyun <span class="m">c</span>-si qumun <span class="m">c</span>-sindən (≈800 J/(kq·°C)) 5 dəfədən çox böyükdür. Eyni günəş istiliyi qumu sudan xeyli çox qızdırır. Ona görə günorta çimərlikdə qum yanır, su isə sərindir. Şəhərlərdə isti hava dəniz kənarında az dəyişir: dəniz böyük istilik “anbarıdır”. İstilik batareyaları (radiatorlar) da suyla doldurulur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qramı kiloqrama çevirməmək: 500 q = 0,5 kq.</li>
+        <li><span class="m">Δt</span> yerinə son temperaturu götürmək. <span class="m">Δt = t₂ − t₁</span>.</li>
+        <li>Qızdırıcı məsələsində η-nı unutmaq: verilən enerji <span class="m">Pt</span>, suya keçən <span class="m">ηPt</span>-dir.</li>
+        <li>Vaxtı dəqiqə ilə yazıb vatta vurmaq (saniyəyə çevir).</li>
+        <li>Kütləsi və maddəsi fərqli cisimlər üçün eyni <span class="m">c</span> götürmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Q = c·m·Δt   (J = J/(kq·°C)·kq·°C)
+Su: c = 4200;  buz: 2100;  mis: 400 (J/(kq·°C))
+C = c·m — cismin istilik tutumu
+Qızdırıcı:  c·m·Δt = η·P·t</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,5 kq alüminium (c = 900) 20 °C qızdırılır. Q? <span class="ans">900·0,5·20 = 9000 J.</span></li>
+        <li>Cismin kütləsi 2 dəfə artarsa, eyni Δt üçün Q? <span class="ans">2 dəfə artır.</span></li>
+        <li>1 kq suya 8400 J verildi. Δt? <span class="ans">8400/(4200·1) = 2 °C.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Bərk cisimlərin istidən genişlənməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Relslər arasında dar boşluqlar qoyulur, körpülərdə “dişli” birləşmələr var, yayda elektrik naqilləri qışdakından çox sallanır. Qızdırılan cisim genişlənir, çünki hissəciklərin rəqsi artır və onlar bir-birindən bir az uzaqlaşır. Genişlənməni qısa düsturla hesablamaq olar.</p>
+
+      <h3><span class="st">2</span> Xətti genişlənmə</h3>
+      <p>Çubuğun temperaturu <span class="m">Δt</span> qədər artanda uzunluğu çubuğun başlanğıc uzunluğuna və <span class="m">Δt</span>-yə düz mütənasib artır:</p>
+      <div class="fm">Δl = α·l₀·Δt           l = l₀·(1 + α·Δt)
+α — xətti genişlənmə əmsalı, °C⁻¹ (və ya K⁻¹)</div>
+      <p>Əmsal çox kiçikdir, adətən <span class="m">10⁻⁶</span> tərtibindədir: polad ≈ <span class="m">12·10⁻⁶ °C⁻¹</span>, alüminium ≈ <span class="m">24·10⁻⁶</span>, mis ≈ <span class="m">17·10⁻⁶</span>, şüşə ≈ <span class="m">9·10⁻⁶</span>, beton ≈ <span class="m">12·10⁻⁶</span>. Ədədi mənası: 1 m polad çubuq 1 °C qızanda <span class="m">0,012 mm</span> uzanır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 150" role="img" aria-label="Bimetal lövhə: solda soyuq düz, sağda qızdırılanda α böyük olan metal tərəfə əyilir">
+          <rect x="20" y="55" width="100" height="8" fill="var(--accent)"/><rect x="20" y="63" width="100" height="8" fill="var(--ink)"/>
+          <rect x="12" y="45" width="8" height="35" fill="var(--muted)"/>
+          <text x="70" y="100" class="lbl" text-anchor="middle">soyuq</text>
+          <rect x="152" y="45" width="8" height="35" fill="var(--muted)"/>
+          <path d="M160 59Q215 59 245 112" fill="none" stroke="var(--accent)" stroke-width="8"/>
+          <path d="M160 67Q205 67 236 116" fill="none" stroke="var(--ink)" stroke-width="8"/>
+          <text x="205" y="140" class="lbl" text-anchor="middle">qızdırılmış</text>
+          <text x="130" y="30" text-anchor="middle">üst: α böyük, alt: α kiçik</text>
+        </svg>
+        <div class="cap"><p><b>Bimetal lövhə:</b> iki müxtəlif metal bir-birinə yapışdırılıb. Qızdıranda α böyük olan metal daha çox uzanır və lövhə əyilir (böyük α xaricdə qalır). Termostatlarda, ütülərdə və yanğın siqnalizasiyasında bimetal lövhə dövrəni açıb bağlayır.</p></div>
+      </div>
+      <p><b>Digər məlumatlar:</b></p>
+      <ul>
+        <li>Cismin <b>həcmi</b> da genişlənir: <span class="m">ΔV = βV₀Δt</span>, bərk cisimlər üçün <span class="m">β ≈ 3α</span>. Sahə üçün <span class="m">≈ 2α</span>.</li>
+        <li>Cisimdə <b>deşik</b> varsa, qızdıranda deşik də genişlənir, sanki deşiyin yerində həmin metaldan olan disk varmış kimi (deşik <i>kiçilmir</i>!).</li>
+        <li>Qızdırılan bərk cisim hər istiqamətdə eyni nisbətdə genişlənir. Bütün ölçülər <span class="m">(1 + αΔt)</span> dəfə böyüyür.</li>
+        <li>Su qeyri-adi davranır: 0 °C-dən 4 °C-yə qədər qızdıranda <b>sıxılır</b>, 4 °C-dən sonra genişlənir. Buna görə suyun sıxlığı 4 °C-də ən böyükdür və göllər dibdən donmur: soyuq su yuxarıda qalıb donur, dibdə 4 °C-li su qalır.</li>
+      </ul>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Polad rels 25 m uzunluqdadır. Qışda −20 °C, yayda +30 °C.
+α = 12·10⁻⁶ °C⁻¹. Fəsillər arasında uzunluq nə qədər dəyişir?
+  Δt = 30 − (−20) = 50 °C
+  Δl = 12·10⁻⁶·25·50 = 15 000·10⁻⁶ = 0,015 m = 15 mm</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Quraşdırma zamanı 20 m-lik polad relsin ucları arasında
+4,8 mm boşluq buraxılıb (α = 12·10⁻⁶ °C⁻¹). Rels neçə °C
+isinəndə genişlənməsi boşluğa bərabər olar?
+  Δl = 4,8 mm = 0,0048 m
+  Δt = Δl/(α·l₀) = 0,0048/(12·10⁻⁶·20) = 0,0048/0,00024 = 20 °C</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Polad (α = 12·10⁻⁶ °C⁻¹) və alüminium
+(α = 24·10⁻⁶ °C⁻¹) çubuqlar var. Poladdan olan alüminiumdan 30 sm uzundur.
+Hər temperaturda uzunluqlar fərqi sabit qalır. Çubuqların uzunluqları?
+  Fərq sabit → hər iki çubuğun uzanması eynidir:
+  α_p·l_p·Δt = α_a·l_a·Δt  →  12·l_p = 24·l_a → l_p = 2·l_a
+  l_p − l_a = 30 → l_a = 30 sm,  l_p = 60 sm</div>
+      <div class="life"><b>Həyatdan.</b> Qalın stəkana qaynar su tökəndə çat verir: daxili qat tez genişlənir, xarici qat hələ soyuqdur. Pireks şüşəsinin α-sı adi şüşədən 3 dəfə kiçikdir (təxminən 3·10⁻⁶), buna görə dayanıqlıdır. Dəmir-beton binalarda beton və polad armatur eyni α-ya (≈12·10⁻⁶) malikdir — məhz buna görə birlikdə çatlamadan işləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Δl-i metrlə hesablayıb millimetr kimi yazmaq (1 m = 1000 mm).</li>
+        <li>Qızdıranda deşiyin kiçildiyini düşünmək. Deşik cismin özü ilə eyni nisbətdə böyüyür.</li>
+        <li><span class="m">Δl = α·l₀/Δt</span> yazmaq. Δt vurulur.</li>
+        <li>10⁻⁶ qüvvətini hesablamada düşürmək: <span class="m">12·10⁻⁶·25·50 = 0,015</span>, 15 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Δl = α·l₀·Δt,   l = l₀(1 + αΔt)
+Polad 12, alüminium 24, mis 17, şüşə 9  (·10⁻⁶ °C⁻¹)
+Həcm: β ≈ 3α.  Deşik də genişlənir.
+Suyun sıxlığı 4 °C-də maksimumdur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>10 m mis naqil (α = 17·10⁻⁶) 40 °C qızdı. Δl? <span class="ans">17·10⁻⁶·10·40 = 0,0068 m = 6,8 mm.</span></li>
+        <li>Çubuğun uzunluğu 2 dəfə uzun olsa (eyni Δt), Δl? <span class="ans">2 dəfə böyük olar.</span></li>
+        <li>Alüminium halqanın daxili diametri qızdıranda necə dəyişir? <span class="ans">Böyüyür (halqa genişlənir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
