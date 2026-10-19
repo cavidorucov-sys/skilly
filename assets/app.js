@@ -216,7 +216,7 @@ async function pageIndex() {
   // 4. next dates (three; the rest are in the calendar)
   const upcoming = term.filter(t => t.tarix >= today).slice(0, 3);
   if (upcoming.length) content.append(el("section", { class: "home-sec" },
-    el("div", { class: "head" }, el("h2", {}, "Yaxın tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim →")),
+    el("div", { class: "head" }, el("h2", {}, "Qarşıdakı tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim →")),
     el("div", { class: "list dl" }, ...upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
       el("span", { class: "ic " + k.cls }, icon(iconFor(t.kat, t.ad), k.ink)),
       el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, t.qeyd || k.ad)),
