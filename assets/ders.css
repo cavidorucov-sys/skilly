@@ -222,3 +222,5 @@ sub{font-size:.72em;line-height:0;vertical-align:-.3em}
 /* self-check: answer revealed per question */
 .ans-btn{display:block;margin-top:6px;font:inherit;font-size:13px;font-weight:600;color:var(--subj);background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--line-0);border-radius:var(--r-sm,6px);padding:4px 10px;cursor:pointer;transition:background .15s}
 .ans-btn:hover{background:var(--line-0)}
+/* no text-width limit anywhere inside the portal (old pages carry their own 65ch rules) */
+.in-frame :is(p,ol,ul,.life,.warnbox,.mist,.sum,.check ol,.e-q){max-width:none}
