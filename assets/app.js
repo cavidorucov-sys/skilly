@@ -505,7 +505,9 @@ async function pageSehv() {
   }
   if (Skilly.ready) await Skilly.ready;
   draw();
-  sync.textContent = (await Skilly.configured()) ? "Google Sheets-ə qoşulub." : "Hələlik yalnız bu cihazda saxlanır. Google Sheets qoşulandan sonra ata da görəcək.";
+  const on = await Skilly.configured();
+  sync.className = "sync " + (on ? "on" : "off");
+  sync.textContent = on ? "✓ Google Sheets-ə qoşulub — səhvlər və nəticələr atana gedir" : "Yalnız bu cihazda saxlanır — Google Sheets qoşulmayıb";
   if ((await Skilly.pull()).synced) draw();
 }
 

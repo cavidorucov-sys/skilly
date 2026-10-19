@@ -95,10 +95,10 @@
   // lessons' own storage if this device has none, past mistakes into the journal with their original dates.
   window.Skilly.ready = (async () => {
     let past; try { past = await fetch(BASE + "data/kecmis.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+    (past.neticeler || []).forEach(r => window.Skilly.netice(r)); // by id, so repeating is harmless
     if (get("skilly-kecmis", 0) >= past.versiya) return;
     for (const k in past.lessons) { try { if (!localStorage.getItem(k)) localStorage.setItem(k, JSON.stringify(past.lessons[k])); } catch (e) {} }
     past.sehvler.forEach(e => window.Skilly.sehv(e));
-    (past.neticeler || []).forEach(r => window.Skilly.netice(r));
     put("skilly-kecmis", past.versiya);
   })();
   window.addEventListener("online", flush);
