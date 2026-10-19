@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Elektrik yükü, Kulon qanunu, elektrik sahəsi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-kulon.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Kulon qanunu, elektrik sahəsi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Elektromaqnetizm</div>
+    <h1>Elektrik yükü, Kulon qanunu, elektrik sahəsi</h1>
+    <p>Elektrostatika üç sualı cavablandırır: yük nədir və niyə saxlanır, iki yük bir-birinə hansı qüvvə ilə təsir edir (<span class="m">F = kq₁q₂/r²</span>), və yükün ətrafında "nə var" (elektrik sahəsi, <span class="m">E = kq/r²</span>). Olimpiada məsələlərinin çoxu bir düz xətt üzərindəki yüklərin sahəsini toplamağa və tarazlıq nöqtəsini tapmağa gətirilir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">k = 9·10⁹ N·m²/Kl²</span>, <span class="m">e = 1,6·10⁻¹⁹ Kl</span>, <span class="m">g = 10 m/s²</span>. Qısa yazılış: <span class="m">1 mkKl = 10⁻⁶ Kl</span>, <span class="m">1 nKl = 10⁻⁹ Kl</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Yük</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kulon qanunu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Elektrik sahəsi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Superpozisiya</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Elektrik yükü və yükün saxlanması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qışda sviteri başından çıxaranda çıtırtı eşidirsən, qaranlıqda kiçik qığılcımlar görünür. Plastik daraq saça sürtüləndən sonra kağız parçalarını özünə çəkir. Maşından düşüb qapının metal dəstəyinə toxunanda "vurur". Hamısı eyni hadisədir: cisimlər <b>elektrik yükü</b> alıb.</p>
+
+      <h3><span class="st">2</span> İki növ yük</h3>
+      <p>Yük iki növdür: <b>müsbət</b> və <b>mənfi</b>. Eyni işarəli yüklər bir-birini itələyir, əks işarəlilər çəkir. Atomda müsbət yükü <b>proton</b>, mənfi yükü <b>elektron</b> daşıyır. Cisim neytraldırsa, protonların və elektronların sayı bərabərdir.</p>
+      <p>Cisimləri bir-birinə sürtəndə protonlar yerindən tərpənmir — yalnız <b>elektronlar</b> bir cisimdən o birinə keçir. Elektron alan cisim mənfi, elektron itirən cisim müsbət yüklənir.</p>
+      <div class="fm">q = N·e
+e = 1,6·10⁻¹⁹ Kl — elementar yük (ən kiçik yük)
+1 mkKl = 10⁻⁶ Kl,   1 nKl = 10⁻⁹ Kl</div>
+      <p>Yük <b>diskretdir</b>: yalnız <span class="m">e</span>-nin tam sayına bərabər ola bilər. Amma <span class="m">e</span> o qədər kiçikdir ki, 1 nKl-luq yükdə təxminən 6 milyard elektron var.</p>
+
+      <h3><span class="st">3</span> Yükün saxlanma qanunu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Yükü +6 nKl və −2 nKl olan iki eyni kürə toxunur, sonra hər birinin yükü +2 nKl olur">
+          <defs><marker id="kl1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="75" cy="32" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><text x="75" y="37" class="lbl" text-anchor="middle">+6</text>
+          <circle cx="185" cy="32" r="22" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="185" y="37" class="lbl" text-anchor="middle">−2</text>
+          <line x1="130" y1="58" x2="130" y2="88" stroke="var(--muted)" stroke-width="2" marker-end="url(#kl1)"/>
+          <text x="140" y="78" class="lbl">toxunma, ayırma</text>
+          <circle cx="75" cy="118" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><text x="75" y="123" class="lbl" text-anchor="middle">+2</text>
+          <circle cx="185" cy="118" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><text x="185" y="123" class="lbl" text-anchor="middle">+2</text>
+        </svg>
+        <div class="cap">
+          <p>Eyni iki metal kürə (yükləri nKl-la). Toxunanda elektronlar keçir, yük kürələr arasında bərabər bölünür: <span class="m">(+6 + (−2))/2 = +2</span>. Yüklərin cəmi əvvəl də <span class="m">+4</span> idi, sonra da <span class="m">2 + 2 = +4</span>.</p>
+        </div>
+      </div>
+      <p><b>Saxlanma qanunu:</b> qapalı sistemdə yüklərin cəbri cəmi dəyişmir. Yük yoxdan yaranmır və yoxa çıxmır, yalnız bir cisimdən digərinə keçir. Müsbət və mənfi yüklər toplananda bir-birini "yeyir": <span class="m">+6</span> ilə <span class="m">−2</span> cəmi <span class="m">+4</span> verir.</p>
+      <div class="fm">Eyni iki metal cisim toxunub ayrılsa:
+  q₁' = q₂' = (q₁ + q₂)/2</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Daraq yun şala sürtülərkən ona 3·10¹⁰ elektron keçdi. Daraqın yükü?
+  q = N·e = 3·10¹⁰·1,6·10⁻¹⁹ = 4,8·10⁻⁹ Kl = 4,8 nKl
+  Daraq mənfi yüklənib: −4,8 nKl. Şal isə +4,8 nKl alıb.</div>
+      <div class="ex">Nümunə 2. Eyni iki metal kürənin yükləri +8 nKl və −2 nKl-dur. Toxundurub ayırdılar.
+  Yüklərin cəmi: 8 + (−2) = 6 nKl
+  Hər kürədə: 6/2 = +3 nKl</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Üç eyni metal kürədən birincinin yükü +12 nKl, qalan ikisi neytraldır.
+Ardıcıl toxundururlar: 1 ilə 2, sonra 2 ilə 3, sonra 3 ilə 1.
+Hər kürənin son yükü?
+  1 ilə 2:  12 və 0 → 6 və 6          (3-cü hələ 0)
+  2 ilə 3:  6 və 0 → 3 və 3           (1-ci 6, 2-ci 3, 3-cü 3)
+  3 ilə 1:  3 və 6 → 4,5 və 4,5
+  Nəticə: 1-ci 4,5; 2-ci 3; 3-cü 4,5 nKl.
+  Yoxla: 4,5 + 3 + 4,5 = 12 ✓ (yük saxlanır)</div>
+      <div class="life"><b>Həyatdan.</b> Yıldırımda buludun aşağı hissəsində böyük mənfi yük yığılır. Binanın damındakı <b>yıldırımkeçirən</b> bu yükü tikilidən yan keçirib yerə ötürür — yük yenə yoxa çıxmır, yerə gedir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Eyni olmayan cisimlərdə yükü yarı bölmək. <span class="m">(q₁ + q₂)/2</span> yalnız <b>eyni</b> ölçülü metal cisimlərə aiddir.</li>
+        <li>İşarələri nəzərə almamaq: <span class="m">+8</span> ilə <span class="m">−2</span>-ni <span class="m">8 + 2 = 10</span> kimi toplamaq. Düzü <span class="m">8 − 2 = 6</span>, sonra yarısı: 3.</li>
+        <li>Protonların keçdiyini düşünmək. Sürtünmədə, toxunmada <b>elektronlar</b> hərəkət edir.</li>
+        <li>10⁻⁹ ilə 10⁻⁶-nı qarışdırmaq: 1 nKl = 0,001 mkKl.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">q = N·e,  e = 1,6·10⁻¹⁹ Kl
+Qapalı sistemdə Σq = const
+Eyni iki metal kürə toxunsa:  q' = (q₁ + q₂)/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Cisim 10¹¹ elektron itirib. Yükü? <span class="ans">q = +10¹¹·1,6·10⁻¹⁹ = +1,6·10⁻⁸ Kl = +16 nKl.</span></li>
+        <li>Kürələrin yükləri −6 nKl və −2 nKl. Eyni kürələr toxunub ayrıldı. Hər birinin yükü? <span class="ans">(−6 − 2)/2 = −4 nKl.</span></li>
+        <li>+9 nKl yüklü kürə eyni neytral kürəyə toxundu, sonra o, başqa neytral kürəyə toxundu. Üçüncü kürənin yükü? <span class="ans">9 → 4,5 və 4,5; sonra 4,5 → 2,25 və 2,25. Cavab: 2,25 nKl.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kulon qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qışda sürtülmüş balon divara yapışır, saç daraq tərəfə qalxır. Bu çəkmə və itələmə qüvvəsini hesablaya bilmək lazımdır. 1785-ci ildə fransız alimi Şarl Kulon burulma tərəzisi ilə qüvvəni ölçdü və qanunu tapdı. Qanun Nyutonun ümumdünya cazibə qanununa çox oxşayır — yalnız kütlə yerinə yük durur.</p>
+
+      <h3><span class="st">2</span> Qanunun özü</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Eyniadlı yüklərin itələnməsi və əksadlı yüklərin çəkilməsi">
+          <defs><marker id="kl2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="75" cy="38" r="14" fill="var(--accent)"/><text x="75" y="44" text-anchor="middle" fill="#fff" font-weight="700">+</text>
+          <circle cx="185" cy="38" r="14" fill="var(--accent)"/><text x="185" y="44" text-anchor="middle" fill="#fff" font-weight="700">+</text>
+          <line x1="58" y1="38" x2="20" y2="38" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kl2)"/><text x="40" y="26" class="lbl" text-anchor="middle">F</text>
+          <line x1="202" y1="38" x2="240" y2="38" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kl2)"/><text x="220" y="26" class="lbl" text-anchor="middle">F</text>
+          <line x1="92" y1="68" x2="168" y2="68" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#kl2)" marker-end="url(#kl2)"/><text x="130" y="84" class="lbl" text-anchor="middle">r</text>
+          <text x="130" y="30" class="lbl" text-anchor="middle">itələnmə</text>
+          <circle cx="75" cy="120" r="14" fill="var(--accent)"/><text x="75" y="126" text-anchor="middle" fill="#fff" font-weight="700">+</text>
+          <circle cx="185" cy="120" r="14" fill="#1f4e9c"/><text x="185" y="126" text-anchor="middle" fill="#fff" font-weight="700">−</text>
+          <line x1="94" y1="120" x2="128" y2="120" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kl2)"/>
+          <line x1="166" y1="120" x2="132" y2="120" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kl2)"/>
+          <text x="130" y="150" class="lbl" text-anchor="middle">çəkilmə</text>
+        </svg>
+        <div class="cap">
+          <p>Qüvvə yükləri birləşdirən düz xətt boyunca yönəlir. İki yük bir-birinə <b>eyni modullu</b>, əks yönlü qüvvə ilə təsir edir (Nyutonun III qanunu) — yükü böyük olan da, kiçik olan da eyni qüvvəni "hiss edir".</p>
+        </div>
+      </div>
+      <p>Qanun <b>nöqtəvi</b> yüklər üçündür: ölçüləri aralarındakı məsafədən çox kiçik olan yüklü cisimlər (və ya yüklü kürələr, məsafə mərkəzlərdən ölçülür).</p>
+      <div class="fm">F = k·|q₁·q₂|/r²
+k = 9·10⁹ N·m²/Kl²
+Vakuumda (havada təxminən eyni)</div>
+      <p>Qüvvə yüklərin hasilinə düz, məsafənin kvadratına tərs mütənasibdir. Deməli: yüklərdən birini 2 dəfə artırsan, <span class="m">F</span> 2 dəfə artır; məsafəni 2 dəfə artırsan, <span class="m">F</span> 4 dəfə azalır.</p>
+      <p><b>Hesablama qaydası:</b> yükləri mkKl-la, məsafəni sm-lə yazsan, <span class="m">F = 90·q₁q₂/r²</span> Nyutondur. (Çünki <span class="m">9·10⁹·10⁻¹²/10⁻⁴ = 90</span>.) Yükləri nKl-la götürsən nəticə mikroNyutonla çıxır. Bu qısa yolu yadda saxla, amma əvvəl mütləq SI ilə yaz.</p>
+      <p>Sənə 1 Kl da böyük görünür: iki 1 Kl yük 1 m aralıda <span class="m">9·10⁹ N</span> qüvvə ilə itələşər — bu, 900 min tonluq çəkidir. Ona görə həyatda mkKl və nKl işlənir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. q₁ = 2 mkKl, q₂ = 5 mkKl, r = 10 sm. F = ?
+  F = 9·10⁹·(2·10⁻⁶)(5·10⁻⁶)/(0,1)² = 9·10⁹·10⁻¹¹/10⁻² = 0,09/0,01 = 9 N
+  Qısa yol: 90·2·5/10² = 9 N ✓</div>
+      <div class="ex">Nümunə 2. İki yük arasındakı qüvvə 36 N-dur. Yüklərdən birini 2 dəfə artırdılar,
+məsafəni 3 dəfə artırdılar. Yeni qüvvə?
+  F ~ q₁q₂/r²  →  F' = 36·2/3² = 36·2/9 = 8 N</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Eyni iki metal kürənin yükləri +9 mkKl və −3 mkKl, mərkəzləri arasında 30 sm var.
+Kürələri toxundurub yenə 30 sm aralıya qoydular. Qüvvə necə dəyişdi?
+  Əvvəl:  F₁ = 90·9·3/30² = 2430/900 = 2,7 N  (çəkmə)
+  Toxunandan sonra hər kürədə (9 − 3)/2 = +3 mkKl
+  İndi:   F₂ = 90·3·3/30² = 810/900 = 0,9 N  (itələmə)
+  Qüvvə 3 dəfə azaldı və çəkmə itələməyə çevrildi.</div>
+      <div class="life"><b>Həyatdan.</b> Fotoqrafiya və lazer printeri toneri yüklü zərrəciklərə əsaslanır: kağızın yükü tozu çəkir, istilik onu yapışdırır. Eyni qüvvə bütün molekulları da bir yerdə saxlayır — atomlar elektrik qüvvələri ilə birləşir. Elektronla proton arasında elektrik qüvvəsi cazibə qüvvəsindən təxminən 10³⁹ dəfə böyükdür; sadəcə cisimlər adətən neytraldır və qüvvələr bir-birini kompensasiya edir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Məsafəni kvadrata yüksəltməyi unutmaq: <span class="m">F = kq₁q₂/r</span> — səhv.</li>
+        <li>Santimetri metrə çevirməmək: 10 sm = 0,1 m, <span class="m">10⁻¹</span> və <span class="m">10⁻²</span>-ni qarışdırmaq.</li>
+        <li>Yüklərdən birinin böyük olması səbəbilə onun kiçiyə daha böyük qüvvə ilə təsir etdiyini düşünmək. Qüvvələr <b>eyni modulludur</b>.</li>
+        <li>Mənfi yük yazıb <span class="m">F</span>-i mənfi tapmaq. Düsturda moduldur; çəkmə/itələmə işarəyə baxıb müəyyən edilir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = k|q₁q₂|/r²,  k = 9·10⁹ N·m²/Kl²
+mkKl və sm ilə:  F = 90·q₁q₂/r²  (N)
+Eyniadlı itələyir, əksadlı çəkir
+Qüvvələr eyni modullu, əks yönlüdür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>q₁ = 4 mkKl, q₂ = 3 mkKl, r = 6 sm. F = ? <span class="ans">90·12/36 = 30 N.</span></li>
+        <li>Yüklərin ikisini də 2 dəfə artırıb məsafəni 2 dəfə artırsaq F necə dəyişər? <span class="ans">Yük 4 dəfə, r² 4 dəfə → dəyişmir.</span></li>
+        <li>5 N qüvvə ilə itələşən iki yükün məsafəsi 3 dəfə azaldıldı. F? <span class="ans">5·9 = 45 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Elektrik sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yük uzaqdan başqa yükə necə təsir edir? Aralarında heç nə yoxdur, amma qüvvə var. Fizika bunu belə izah edir: hər yük ətrafında <b>elektrik sahəsi</b> yaradır, başqa yük isə bu sahənin təsirinə düşür. Sahə maddənin xüsusi növüdür. Radio dalğaları, işıq, Wi-Fi — hamısı elektrik (və maqnit) sahəsidir.</p>
+
+      <h3><span class="st">2</span> Sahənin intensivliyi</h3>
+      <p>Sahənin gücünü ölçmək üçün ona kiçik "sınaq" yükü qoyuruq və ona təsir edən qüvvəyə baxırıq. Qüvvənin yükə nisbəti sahəni xarakterizə edir:</p>
+      <div class="fm">E = F/q          vahidi: N/Kl = V/m
+F = q·E          yükə sahədə təsir edən qüvvə</div>
+      <p><span class="m">E</span> vektordur: istiqaməti <b>müsbət</b> sınaq yükünə təsir edən qüvvənin istiqamətidir. Mənfi yükə qüvvə sahəyə <b>əks</b> yönəlir. Bircins sahədə <span class="m">E</span> hər nöqtədə eynidir (məsələn, iki geniş yüklü lövhə arasında).</p>
+
+      <h3><span class="st">3</span> Nöqtəvi yükün sahəsi və sahə xətləri</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Müsbət yükdən sahə xətləri çıxır, mənfi yükə daxil olur">
+          <defs><marker id="kl3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <g stroke="var(--accent)" stroke-width="2" fill="none">
+            <line x1="68" y1="75" x2="68" y2="12" marker-end="url(#kl3)"/><line x1="68" y1="75" x2="68" y2="138" marker-end="url(#kl3)"/>
+            <line x1="68" y1="75" x2="6" y2="75" marker-end="url(#kl3)"/><line x1="68" y1="75" x2="130" y2="75" marker-end="url(#kl3)"/>
+            <line x1="68" y1="75" x2="24" y2="31" marker-end="url(#kl3)"/><line x1="68" y1="75" x2="112" y2="31" marker-end="url(#kl3)"/>
+            <line x1="68" y1="75" x2="24" y2="119" marker-end="url(#kl3)"/><line x1="68" y1="75" x2="112" y2="119" marker-end="url(#kl3)"/>
+          </g>
+          <circle cx="68" cy="75" r="11" fill="var(--accent)"/><text x="68" y="80" text-anchor="middle" fill="#fff" font-weight="700">+</text>
+          <g stroke="#1f4e9c" stroke-width="2" fill="none">
+            <line x1="192" y1="12" x2="192" y2="64" marker-end="url(#kl3)"/><line x1="192" y1="138" x2="192" y2="86" marker-end="url(#kl3)"/>
+            <line x1="130" y1="75" x2="181" y2="75" marker-end="url(#kl3)"/><line x1="254" y1="75" x2="203" y2="75" marker-end="url(#kl3)"/>
+            <line x1="148" y1="31" x2="184" y2="67" marker-end="url(#kl3)"/><line x1="236" y1="31" x2="200" y2="67" marker-end="url(#kl3)"/>
+            <line x1="148" y1="119" x2="184" y2="83" marker-end="url(#kl3)"/><line x1="236" y1="119" x2="200" y2="83" marker-end="url(#kl3)"/>
+          </g>
+          <circle cx="192" cy="75" r="11" fill="#1f4e9c"/><text x="192" y="80" text-anchor="middle" fill="#fff" font-weight="700">−</text>
+        </svg>
+        <div class="cap">
+          <p><b>Sahə xətləri</b> sahənin istiqamətini göstərir: müsbət yükdən çıxır, mənfi yükə daxil olur. Yükə yaxın xətlər sıxdır — sahə güclüdür; uzaqda seyrəkdir.</p>
+        </div>
+      </div>
+      <p>Nöqtəvi <span class="m">Q</span> yükündən <span class="m">r</span> məsafədə sınaq yükünə Kulon qüvvəsi təsir edir: <span class="m">F = kQq/r²</span>. Onu <span class="m">q</span>-yə bölsək:</p>
+      <div class="fm">E = k·|Q|/r²        k = 9·10⁹ N·m²/Kl²
+nKl və sm ilə:  E = 90·Q/r²  (kV/m)</div>
+      <p>Sahə yükdən uzaqlaşdıqca <span class="m">1/r²</span> kimi zəifləyir. Diqqət: <span class="m">E</span> sınaq yükündən <b>asılı deyil</b> — sahəni yaradan <span class="m">Q</span> təyin edir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Q = 4 nKl, r = 6 sm. E = ?
+  E = 9·10⁹·4·10⁻⁹/(0,06)² = 36/0,0036 = 10 000 V/m = 10 kV/m
+  Qısa yol: 90·4/6² = 360/36 = 10 kV/m ✓</div>
+      <div class="ex">Nümunə 2. 3 mkKl yük 5 kV/m olan sahəyə qoyulub. Qüvvə?
+  F = qE = 3·10⁻⁶·5·10³ = 0,015 N = 15 mN</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Kütləsi 0,4 q olan kürə +2 mkKl yüklüdür və şaquli yuxarı yönəlmiş
+bircins sahədə havada dayanıb. Sahənin intensivliyi?
+  Ağırlıq: mg = 0,4·10⁻³·10 = 4·10⁻³ N
+  Tarazlıq: qE = mg
+  E = 4·10⁻³/(2·10⁻⁶) = 2000 V/m = 2 kV/m</div>
+      <div class="ex">Nümunə 4 (RFO tipli). Kürə (m = 0,2 q, q = +1 mkKl) sapdan asılıb. Üfüqi bircins sahədə sap
+şaquldan 45° meyl edir. E = ?
+  Kürəyə: ağırlıq mg (aşağı), qE (üfüqi), dartma T (sap boyu).
+  Tarazlıqda tg45° = qE/(mg) = 1  →  qE = mg
+  mg = 0,2·10⁻³·10 = 2·10⁻³ N
+  E = 2·10⁻³/10⁻⁶ = 2000 V/m = 2 kV/m</div>
+      <div class="life"><b>Həyatdan.</b> Havada sahənin intensivliyi təxminən 3·10⁶ V/m-i keçəndə hava keçirici olur və qığılcım (boşalma) yaranır. Qapı dəstəyinə yaxınlaşanda "vuran" qığılcım məhz budur. Zərif ucluqlarda sahə xüsusilə böyük olur, ona görə yıldırımkeçirənin ucu iti düzəldilir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">E = kQq/r²</span> yazmaq. Sahə sınaq yükündən asılı deyil: <span class="m">E = kQ/r²</span>.</li>
+        <li>Mənfi yükün sahəsini yükdən uzağa çəkmək. Mənfi yükün sahəsi <b>yükə doğru</b> yönəlir.</li>
+        <li>Mənfi yükə təsir edən qüvvəni sahə istiqamətində çəkmək. Mənfi yükə qüvvə sahəyə əks yönlüdür.</li>
+        <li>Sapdan asılmış kürədə <span class="m">qE = T</span> yazmaq. Sapın dartması maili yönəlib: <span class="m">tgα = qE/mg</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">E = F/q,  F = qE  (V/m = N/Kl)
+Nöqtəvi yük:  E = kQ/r²,  nKl və sm ilə E = 90Q/r² kV/m
++ yükdən sahə çıxır, − yükə daxil olur
+Havada boşalma:  E ≈ 3·10⁶ V/m</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Q = 9 nKl yükdən 3 sm-də E = ? <span class="ans">90·9/9 = 90 kV/m.</span></li>
+        <li>Sahə yükdən iki dəfə uzaqda neçə dəfə azalır? <span class="ans">4 dəfə.</span></li>
+        <li>Elektron (mənfi yük) şaquli aşağı yönəlmiş sahədə hansı istiqamətdə qüvvə hiss edir? <span class="ans">Yuxarı (sahəyə əks).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Sahələrin superpozisiyası, tarazlıq nöqtələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bir yükün sahəsini bilirsən. Bəs iki, üç yükün birlikdə yaratdığı sahə? Olimpiadada bu suala demək olar hər il rast gələcəksən: "sahə harada sıfırdır?", "üçüncü yükü hara qoysaq tarazlıqda qalar?" Cavab bir prinsipdədir.</p>
+
+      <h3><span class="st">2</span> Superpozisiya prinsipi</h3>
+      <p>Bir neçə yükün sahəsi hər yükün ayrıca yaratdığı sahələrin <b>vektor cəmidir</b>: yüklər bir-birinin sahəsinə mane olmur.</p>
+      <div class="fm">E⃗ = E⃗₁ + E⃗₂ + …</div>
+      <p>Bütün yüklər bir düz xətt üzərindədirsə və nöqtə də həmin xəttdədirsə, vektorlar xətt boyunca olur. Hər sahənin modulunu <span class="m">kq/r²</span>-dən tap, istiqamətə bax: eyni tərəfə yönəlibsə <b>topla</b>, əks tərəflərə — <b>çıx</b>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 120" role="img" aria-label="Müsbət və mənfi yük arasındakı M nöqtəsində iki sahə eyni istiqamətdədir">
+          <defs><marker id="kl4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="55" x2="250" y2="55" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="40" cy="55" r="13" fill="var(--accent)"/><text x="40" y="61" text-anchor="middle" fill="#fff" font-weight="700">+</text>
+          <circle cx="220" cy="55" r="13" fill="#1f4e9c"/><text x="220" y="61" text-anchor="middle" fill="#fff" font-weight="700">−</text>
+          <circle cx="130" cy="55" r="4" fill="var(--ink)"/><text x="130" y="82" class="lbl" text-anchor="middle">M</text>
+          <line x1="130" y1="40" x2="172" y2="40" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#kl4)"/><text x="152" y="32" class="lbl" text-anchor="middle">E₁</text>
+          <line x1="130" y1="22" x2="190" y2="22" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kl4)"/><text x="160" y="14" class="lbl" text-anchor="middle">E</text>
+          <line x1="130" y1="100" x2="172" y2="100" stroke="#1f4e9c" stroke-width="2.5" marker-end="url(#kl4)"/><text x="152" y="115" class="lbl" text-anchor="middle">E₂</text>
+        </svg>
+        <div class="cap">
+          <p>Müsbət yükün sahəsi M-dən <b>uzağa</b> (sağa), mənfi yükün sahəsi mənfiyə <b>doğru</b> (yenə sağa) yönəlir. İkisi eyni tərəfə baxır → modullar toplanır. (Vektorları oxu görmək üçün bir-birindən aralı çəkmişik, əslində hamısı bir xətdədir.)</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Sahənin sıfır nöqtəsi</h3>
+      <p>İki yükün sahəsi harada ləğv olur? Orada iki sahə əks yönlü və modulca bərabər olmalıdır.</p>
+      <ul>
+        <li><b>Eyni işarəli yüklər:</b> sıfır nöqtə yüklərin <b>arasında</b>, <i>kiçik yükə daha yaxın</i> olur.</li>
+        <li><b>Əks işarəli yüklər:</b> sıfır nöqtə yüklərdən <b>kənardadır</b>, <i>modulca kiçik yükün</i> tərəfində. (Arada sahələr eyni yönlüdür, toplanır, sıfır ola bilməz.)</li>
+      </ul>
+      <div class="fm">kq₁/x₁² = kq₂/x₂²   →   x₂/x₁ = √(q₂/q₁)</div>
+      <p>Yükün sahəsi sıfır olan nöqtədə hər hansı üçüncü yük <b>tarazlıqdadır</b> (ona təsir edən qüvvə <span class="m">F = qE = 0</span>).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. +4 nKl və −4 nKl yükləri 20 sm aralıdadır. Orta nöqtədə E = ?
+  Hər yükdən 10 sm: E₁ = E₂ = 90·4/10² = 3,6 kV/m
+  Sahələr eyni yönlüdür: E = 3,6 + 3,6 = 7,2 kV/m</div>
+      <div class="ex">Nümunə 2. +4 nKl və +16 nKl yükləri 30 sm aralıdadır. Sahənin sıfır nöqtəsi?
+  Eyni işarəli → arada. x₂/x₁ = √(16/4) = 2, x₁ + x₂ = 30 sm
+  3x₁ = 30 → x₁ = 10 sm (4 nKl yükündən), x₂ = 20 sm
+  Yoxla: 4/10² = 0,04 və 16/20² = 0,04 ✓</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
++1 nKl və −9 nKl yükləri 20 sm aralıdadır. Sahənin sıfır olduğu nöqtə hardadır?
+  Əks işarəli → kənarda, kiçik yükün (+1 nKl) tərəfində.
+  Ondan x məsafədə:  1/x² = 9/(x + 20)²   →  (x + 20)/x = 3
+  x + 20 = 3x  →  x = 10 sm
+  Yoxla: 1/10² = 0,01 və 9/30² = 0,01 ✓</div>
+      <div class="ex">Nümunə 4 (RFO tipli, tarazlıq).
+Bərkidilmiş Q və 4Q yükləri (ikisi də müsbət) 30 sm aralıdadır. Aralarına
+üçüncü q yükü elə qoyun ki, hər üç yük tarazlıqda qalsın. q = ?
+  Üçüncü yük sahənin sıfır nöqtəsində: x₁ = 10 sm (Q-dan), x₂ = 20 sm
+  Q yükünün tarazlığı: Q-ya q (çəkir) və 4Q (itələyir) təsir edir
+  kQq/(0,1)² = kQ·4Q/(0,3)²   →   q = 4Q·(0,1/0,3)² = 4Q/9
+  Cavab: q = −4Q/9 (mənfi olmalıdır ki, Q-nu çəksin)</div>
+      <div class="life"><b>Həyatdan.</b> Elektrofiltr (zavod borularında tozu tutan qurğu) iki sahənin birləşməsinə əsaslanır: borunun oxundakı məftil və ətrafındakı yüklü divar bircins olmayan sahə yaradır. Toz zərrəcikləri yüklənir və sahə onları divara sürükləyir. Superpozisiya olmasa, belə sahəni hesablamaq mümkün olmazdı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Modulları həmişə toplamaq. Əvvəl <b>istiqamətə</b> bax: eyni tərəfə → topla, əks tərəfə → çıx.</li>
+        <li>Eyni işarəli yüklər üçün sıfır nöqtəni kənarda axtarmaq (və ya əks işarəlilər üçün arada).</li>
+        <li>Sıfır nöqtə tapanda <span class="m">x₁ = x₂</span> yazmaq (böyük yük daha uzaqda olmalıdır: <span class="m">x₂/x₁ = √(q₂/q₁)</span>).</li>
+        <li><span class="m">x₂/x₁ = q₂/q₁</span> yazmaq — kvadrat kökü unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">E⃗ = E⃗₁ + E⃗₂ + …  (vektor cəmi)
+Düz xətt: eyni tərəf → topla, əks tərəf → çıx
+Sıfır nöqtə: x₂/x₁ = √(q₂/q₁)
+Eyni işarəli → arada;  əks işarəli → kənarda, kiçik yükün tərəfində</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>+9 nKl və +9 nKl yükləri 20 sm aralıdadır. Orta nöqtədə E? <span class="ans">Sahələr bərabər və əks yönlüdür: E = 0.</span></li>
+        <li>+1 nKl və +4 nKl, aralarında 9 sm. Sıfır nöqtə +1 nKl-dan neçə sm? <span class="ans">x₂/x₁ = 2, 3x₁ = 9, x₁ = 3 sm.</span></li>
+        <li>+2 nKl və −2 nKl yükləri 10 sm aralıdadır. Onların arasındakı orta nöqtədə sahə sıfır ola bilərmi? <span class="ans">Yox: orada iki sahə eyni yönlüdür və toplanır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

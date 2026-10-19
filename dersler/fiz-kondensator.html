@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Potensial, elektrik tutumu, kondensatorlar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-kondensator.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Potensial, kondensatorlar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Elektromaqnetizm</div>
+    <h1>Potensial, elektrik tutumu, kondensatorlar</h1>
+    <p>Elektrik sahəsi yükü köçürəndə iş görür. Bu işi yüklə bölsək <b>gərginlik</b> alınır. Yükü saxlamaq üçün düzəldilmiş qurğu isə <b>kondensator</b>dur: telefonda, blitzdə, defibrillyatorda, kompüterdə. Kondensatorların birləşməsi və enerjisi RFO-da çox rast gəlinən mövzudur. Əvvəlki dərsin (<span class="m">E = kq/r²</span>, Kulon qanunu) biliyi burada lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Sabitlər: <span class="m">k = 9·10⁹ N·m²/Kl²</span>, <span class="m">ε₀ = 8,85·10⁻¹² F/m</span>. <span class="m">1 mkF = 10⁻⁶ F</span>, <span class="m">1 pF = 10⁻¹² F</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Potensial</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tutum</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Birləşmələr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sahənin işi, potensial, gərginlik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Rozetkada 220 V yazılıb, batareyada 1,5 V. Bu rəqəm nə deməkdir? Yüklərin sahədə hərəkətinə baxaq: sahə yükü itələyir, yük yer dəyişəndə sahə <b>iş görür</b> — tam eyni şəkildə ki, ağırlıq qüvvəsi daşı yuxarıdan aşağı salanda iş görür. Gərginlik bu işin "yük başına" düşən hissəsidir.</p>
+
+      <h3><span class="st">2</span> Bircins sahədə iş</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="İki paralel lövhə arasında bircins sahə, müsbət yük müsbət lövhədən mənfi lövhəyə hərəkət edir">
+          <defs><marker id="kd1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="40" y1="25" x2="40" y2="145" stroke="var(--accent)" stroke-width="5"/><text x="40" y="16" text-anchor="middle" class="lbl">+</text>
+          <line x1="220" y1="25" x2="220" y2="145" stroke="#1f4e9c" stroke-width="5"/><text x="220" y="16" text-anchor="middle" class="lbl">−</text>
+          <g stroke="var(--muted)" stroke-width="1.5" fill="none">
+            <line x1="48" y1="45" x2="210" y2="45" marker-end="url(#kd1)"/><line x1="48" y1="75" x2="210" y2="75" marker-end="url(#kd1)"/>
+            <line x1="48" y1="105" x2="210" y2="105" marker-end="url(#kd1)"/><line x1="48" y1="135" x2="210" y2="135" marker-end="url(#kd1)"/>
+          </g>
+          <circle cx="70" cy="90" r="8" fill="var(--accent)"/><text x="70" y="94" text-anchor="middle" fill="#fff" font-weight="700" font-size="11">+q</text>
+          <line x1="84" y1="90" x2="130" y2="90" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#kd1)"/><text x="107" y="82" class="lbl" text-anchor="middle">F = qE</text>
+          <line x1="40" y1="156" x2="220" y2="156" stroke="var(--ink)" stroke-width="1.2" marker-start="url(#kd1)" marker-end="url(#kd1)"/><text x="130" y="168" class="lbl" text-anchor="middle">d</text>
+          <text x="130" y="38" class="lbl" text-anchor="middle">E</text>
+        </svg>
+        <div class="cap">
+          <p>Yük sahə xətti boyunca <span class="m">d</span> məsafə keçir. Qüvvə sabitdir (<span class="m">F = qE</span>) və yerdəyişmə ilə eyni istiqamətdədir.</p>
+        </div>
+      </div>
+      <div class="fm">A = F·d = q·E·d</div>
+      <p>İş yalnız başlanğıc və son nöqtədən asılıdır, yolun şəklindən yox. Ona görə hər nöqtəyə <b>potensial</b> <span class="m">φ</span> təyin etmək olar: yük <span class="m">q</span> birinci nöqtədən ikinciyə keçəndə sahənin işi <span class="m">A = q(φ₁ − φ₂)</span>-dir. Fərq <span class="m">U = φ₁ − φ₂</span> <b>gərginlik</b> adlanır:</p>
+      <div class="fm">A = q·U          U = A/q          vahidi: Volt (V = J/Kl)
+Bircins sahədə:  U = E·d     →     E = U/d    (V/m)</div>
+      <p>Sahə xətti boyunca potensial azalır: müsbət lövhənin potensialı yüksəkdir. Müsbət yük "yuxarı potensialdan aşağıya" öz-özünə gedir.</p>
+
+      <h3><span class="st">3</span> Nöqtəvi yükün potensialı və enerji</h3>
+      <p>Nöqtəvi <span class="m">Q</span> yükündən <span class="m">r</span> məsafədə (sonsuzluqda potensial 0 qəbul edilir):</p>
+      <div class="fm">φ = k·Q/r          (skalyardır, işarəsi Q-nun işarəsidir)
+nKl və sm ilə:  φ = 900·Q/r  (V)</div>
+      <p>Potensial <b>skalyar</b>dır: bir neçə yükün potensialı sadəcə cəbri cəmdir (vektor yox!). Bu, sahənin vektor cəmindən çox asandır.</p>
+      <p>Enerjinin saxlanması: sahənin gördüyü iş yükün hərəkət enerjisinə çevrilir. Sükunətdən başlayan yük üçün:</p>
+      <div class="fm">q·U = m·v²/2          →   v = √(2qU/m)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 mkKl yükü 500 V gərginlik altında köçürülür. İş?
+  A = qU = 2·10⁻⁶·500 = 10⁻³ J = 1 mJ</div>
+      <div class="ex">Nümunə 2. Bircins sahənin intensivliyi 4 kV/m. Sahə xətti boyunca 5 sm məsafədəki nöqtələr arasında gərginlik?
+  U = Ed = 4000 V/m · 0,05 m = 200 V</div>
+      <div class="ex">Nümunə 3 (nöqtəvi yük). Q = 4 nKl yükündən 10 sm və 30 sm məsafədəki nöqtələrin potensialları və gərginliyi?
+  φ₁ = 900·4/10 = 360 V,   φ₂ = 900·4/30 = 120 V
+  U = φ₁ − φ₂ = 240 V</div>
+      <div class="ex">Nümunə 4 (RFO, rayon mərhələsi tipli).
+Kütləsi 2 mq = 2·10⁻⁶ kq, yükü 1 mkKl olan tozcuq sükunətdən başlayıb
+400 V gərginlikdə sürətlənir. Son sürəti?
+  qU = 10⁻⁶·400 = 4·10⁻⁴ J
+  mv²/2 = qU → v² = 2·4·10⁻⁴/(2·10⁻⁶) = 400
+  v = 20 m/s</div>
+      <div class="life"><b>Həyatdan.</b> Köhnə televizorun (elektron-şüa borusunun) içində elektronlar bir neçə min voltluq gərginlikdə sürətlənib ekrana çırpılırdı. 1 voltluq gərginlikdə elektronun qazandığı enerji <b>1 elektron-volt (eV)</b> adlanır: <span class="m">1 eV = 1,6·10⁻¹⁹ J</span>. Atom fizikasında enerjini bu vahidlə ölçürlər. İnsan bədəninin hüceyrələri də 70 mV-luq gərginliklə işləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">U = Ed</span>-də <span class="m">d</span>-ni sahə xətti boyunca ölçmək lazımdır, yerdəyişmənin düz xətt məsafəsi yox. Bucaq varsa, yalnız xəttə paralel hissə sayılır.</li>
+        <li>Potensialı vektor kimi toplamaq. Potensial skalyardır: <span class="m">φ = φ₁ + φ₂</span>, istiqamət yoxdur, işarəni nəzərə al.</li>
+        <li>Santimetri metrə çevirməmək: 5 sm = 0,05 m.</li>
+        <li><span class="m">A = qU</span>-də <span class="m">U</span> iki nöqtənin potensial <b>fərqidir</b>, bir nöqtənin potensialı yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A = qU,  U = φ₁ − φ₂  (V = J/Kl)
+Bircins sahə:  U = Ed
+Nöqtəvi yük:  φ = kQ/r  (skalyar), nKl və sm: 900Q/r V
+Sürətlənmə:  qU = mv²/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 mkKl yükü 20 V gərginlikdə köçürəndə iş? <span class="ans">A = 5·10⁻⁶·20 = 10⁻⁴ J = 0,1 mJ.</span></li>
+        <li>Lövhələr arasında 12 sm məsafə, gərginlik 600 V. E = ? <span class="ans">E = 600/0,12 = 5000 V/m = 5 kV/m.</span></li>
+        <li>Elektron 100 V gərginlikdə sürətlənir. Enerjisi neçə eV? <span class="ans">100 eV = 1,6·10⁻¹⁷ J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Elektrik tutumu, yastı kondensator</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Fotoaparatın blitzi batareya ilə qısa müddətdə ağır işləyə bilməz, ona görə yük əvvəlcədən toplanır və bir anda buraxılır. Yük toplayan qurğu <b>kondensator</b>dur. Radio qəbuledicisində, kompüterin elektrik təchizatında, telefonun ekranında da var. Kondensator nə qədər yük toplaya bilər? Bunu <b>tutum</b> göstərir.</p>
+
+      <h3><span class="st">2</span> Tutum</h3>
+      <p>Kondensator iki keçirici lövhədən ibarətdir, aralarında nazik dielektrik (hava, kağız, şüşə) var. Lövhələrə gərginlik verəndə biri <span class="m">+q</span>, o biri <span class="m">−q</span> yük toplayır. Yük gərginliyə düz mütənasibdir:</p>
+      <div class="fm">C = q/U          q = C·U
+Vahidi: Farad (F) = Kl/V
+1 mkF = 10⁻⁶ F,  1 nF = 10⁻⁹ F,  1 pF = 10⁻¹² F</div>
+      <p><span class="m">C</span> kondensatorun özündən asılıdır (forma, ölçü, dielektrik), nə <span class="m">q</span>-dan, nə <span class="m">U</span>-dan asılı deyil. (Sərtlik <span class="m">k</span> yay üçün olan kimi.) Burada <span class="m">q</span> — lövhələrdən <b>birinin</b> yükünün modulu, kondensatorun ümumi yükü isə sıfırdır.</p>
+
+      <h3><span class="st">3</span> Yastı kondensator</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Yastı kondensator: sahəsi S olan iki lövhə, aralarında d məsafə və dielektrik">
+          <defs><marker id="kd2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M40 40L200 40L225 58L65 58z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          <rect x="52" y="64" width="160" height="26" fill="var(--sheet)" stroke="var(--muted)" stroke-dasharray="4 3"/><text x="132" y="82" class="lbl" text-anchor="middle">dielektrik (ε)</text>
+          <path d="M40 96L200 96L225 114L65 114z" fill="#d9e3f5" stroke="#1f4e9c" stroke-width="2"/>
+          <text x="150" y="31" class="lbl" text-anchor="middle">+q</text><text x="150" y="132" class="lbl" text-anchor="middle">−q</text>
+          <line x1="236" y1="58" x2="236" y2="96" stroke="var(--ink)" stroke-width="1.2" marker-start="url(#kd2)" marker-end="url(#kd2)"/><text x="244" y="82" class="lbl">d</text>
+          <text x="42" y="146" class="lbl">S — lövhənin sahəsi</text>
+        </svg>
+        <div class="cap">
+          <p>Lövhələr bir-birinə nə qədər yaxın və nə qədər böyükdürsə, tutum o qədər böyükdür. Dielektrik tutumu <span class="m">ε</span> dəfə artırır.</p>
+        </div>
+      </div>
+      <div class="fm">C = ε₀·ε·S/d
+ε₀ = 8,85·10⁻¹² F/m,   ε — dielektrik nüfuzluğu</div>
+      <p>Dielektrik nüfuzluğu: hava ≈ 1, kağız ≈ 2, şüşə ≈ 7, su ≈ 81. Dielektrik sahəni <span class="m">ε</span> dəfə zəiflədir, ona görə eyni gərginlikdə lövhələrə <span class="m">ε</span> dəfə çox yük sığır.</p>
+
+      <h3><span class="st">4</span> Lövhələri dəyişəndə nə sabit qalır?</h3>
+      <p>Bu, olimpiadada ən çox verilən sualdır. İki hal var, onları qarışdırma:</p>
+      <ul>
+        <li><b>Mənbəyə qoşulu qalıb:</b> gərginlik <span class="m">U</span> sabitdir. Tutum dəyişəndə yük <span class="m">q = CU</span> dəyişir (mənbədən yük gəlir və ya geri gedir).</li>
+        <li><b>Mənbədən ayrılıb:</b> yük <span class="m">q</span> sabitdir (yük getməyə yer yoxdur). Tutum dəyişəndə gərginlik <span class="m">U = q/C</span> dəyişir.</li>
+      </ul>
+      <div class="fm">C ~ εS/d
+Mənbədə (U sabit):   q ~ C
+Ayrılıb (q sabit):   U ~ 1/C</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Tutumu 5 mkF olan kondensator 120 V-a qoşulub. Yük?
+  q = CU = 5·10⁻⁶·120 = 6·10⁻⁴ Kl = 600 mkKl</div>
+      <div class="ex">Nümunə 2. Havalı kondensatorun lövhəsinin sahəsi 200 sm², məsafə 2 mm. C = ?
+  S = 200 sm² = 0,02 m²,  d = 0,002 m
+  C = 8,85·10⁻¹²·0,02/0,002 = 8,85·10⁻¹¹ F = 88,5 pF</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Havalı kondensator (C = 10 mkF) 100 V-a qədər doldurulub və mənbədən ayrılıb.
+Lövhələr arasındakı məsafəni 2 dəfə artırdılar. Yeni gərginlik?
+  Ayrılıb → q = CU = 10·10⁻⁶·100 = 10⁻³ Kl sabitdir.
+  d 2 dəfə artdı → C₂ = 5 mkF
+  U₂ = q/C₂ = 10⁻³/(5·10⁻⁶) = 200 V</div>
+      <div class="ex">Nümunə 4. Eyni kondensator mənbəyə (100 V) qoşulu qalıb, d 2 dəfə artırılıb. Yük?
+  U = 100 V sabit,  C₂ = 5 mkF
+  q₂ = C₂U = 5·10⁻⁶·100 = 5·10⁻⁴ Kl  (yarıya azaldı, yarısı mənbəyə qayıtdı)</div>
+      <div class="life"><b>Həyatdan.</b> Telefonun toxunma ekranı kondensatordur: barmağın ekranla əlaqəsi lövhələrin tutumunu dəyişir və cihaz bu dəyişikliyi hiss edir. Klaviaturanın düyməsi də belədir: düyməni basanda lövhələr arasındakı <span class="m">d</span> azalır, <span class="m">C</span> artır — elektronika bunu "basıldı" kimi oxuyur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Tutum yüklə artır" demək. Tutum <span class="m">C = q/U</span> nisbətidir və yükdən asılı deyil, geometriyadan asılıdır.</li>
+        <li>Mənbədən ayrılmış və qoşulu kondensator hallarını qarışdırmaq. Əvvəlcə cümləyə bax: "mənbədən ayrılıb" → <span class="m">q</span> sabit.</li>
+        <li><span class="m">d</span> artanda <span class="m">C</span>-nin də artdığını düşünmək. <span class="m">C ~ 1/d</span>, lövhələr aralanırsa tutum azalır.</li>
+        <li>Santimetr kvadratı kvadrat metrə çevirəndə 10⁻⁴ əvəzinə 10⁻² yazmaq: 1 sm² = 10⁻⁴ m².</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">C = q/U,  q = CU  (F)
+C = ε₀εS/d,  ε₀ = 8,85·10⁻¹² F/m
+Mənbədə: U sabit.  Ayrılıb: q sabit.
+d ↑ → C ↓,  S ↑ → C ↑,  dielektrik → C ↑ (ε dəfə)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kondensatora 50 V verəndə 200 mkKl yük toplandı. C = ? <span class="ans">C = 200/50 = 4 mkF.</span></li>
+        <li>Mənbədən ayrılmış kondensatorun lövhələrinin sahəsini 2 dəfə azaldırıq. Gərginlik? <span class="ans">C 2 dəfə azalır, q sabit → U 2 dəfə artır.</span></li>
+        <li>Mənbəyə qoşulu kondensatorun lövhələri arasına ε = 4 olan dielektrik qoyuldu. Yük? <span class="ans">C 4 dəfə artır, U sabit → q 4 dəfə artır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Kondensatorların ardıcıl və paralel birləşməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Lazım olan tutum və ya dözümlü gərginlik tək kondensatorda yoxdursa, bir neçəsini birləşdirirlər. Qaydalar rezistorlara bənzəyir, amma <b>tərsinədir</b>: kondensatorlarda paralel toplanır, ardıcıl isə tərs qiymətlər toplanır. Bunu "yük və gərginlik" ilə başa düşmək daha etibarlıdır.</p>
+
+      <h3><span class="st">2</span> Paralel birləşmə</h3>
+      <div class="fig">
+        <svg viewBox="0 -14 280 164" role="img" aria-label="Solda iki kondensator paralel, sağda iki kondensator ardıcıl birləşib">
+          <g stroke="var(--ink)" stroke-width="1.8" fill="none">
+            <line x1="10" y1="40" x2="30" y2="40"/><line x1="30" y1="20" x2="30" y2="60"/><line x1="90" y1="20" x2="90" y2="60"/><line x1="90" y1="40" x2="110" y2="40"/>
+            <line x1="30" y1="20" x2="55" y2="20"/><line x1="65" y1="20" x2="90" y2="20"/><line x1="30" y1="60" x2="55" y2="60"/><line x1="65" y1="60" x2="90" y2="60"/>
+            <line x1="156" y1="40" x2="170" y2="40"/><line x1="192" y1="40" x2="208" y2="40"/><line x1="230" y1="40" x2="270" y2="40"/>
+          </g>
+          <g stroke="var(--ink)" stroke-width="3"><line x1="55" y1="8" x2="55" y2="32"/><line x1="65" y1="8" x2="65" y2="32"/><line x1="55" y1="48" x2="55" y2="72"/><line x1="65" y1="48" x2="65" y2="72"/>
+            <line x1="170" y1="28" x2="170" y2="52"/><line x1="178" y1="28" x2="178" y2="52"/><line x1="208" y1="28" x2="208" y2="52"/><line x1="216" y1="28" x2="216" y2="52"/></g>
+          <line x1="178" y1="40" x2="208" y2="40" stroke="var(--ink)" stroke-width="1.8"/><line x1="216" y1="40" x2="230" y2="40" stroke="var(--ink)" stroke-width="1.8"/>
+          <text x="60" y="6" class="lbl" text-anchor="middle">C₁</text><text x="60" y="88" class="lbl" text-anchor="middle">C₂</text>
+          <text x="174" y="22" class="lbl" text-anchor="middle">C₁</text><text x="212" y="22" class="lbl" text-anchor="middle">C₂</text>
+          <text x="60" y="118" class="lbl" text-anchor="middle">paralel</text><text x="60" y="136" text-anchor="middle">U eyni, q toplanır</text>
+          <text x="213" y="118" class="lbl" text-anchor="middle">ardıcıl</text><text x="213" y="136" text-anchor="middle">q eyni, U toplanır</text>
+        </svg>
+        <div class="cap">
+          <p>Solda iki kondensator hər ikisi eyni mənbəyə qoşulub (paralel): gərginlik eynidir. Sağda onlar zəncir kimi düzülüb (ardıcıl): aralarındakı lövhələr yalnız yüklə bölünür, ona görə hər kondensatorda yük eynidir.</p>
+        </div>
+      </div>
+      <p><b>Paralel:</b> hər kondensatorda <span class="m">U</span> eynidir; ümumi yük <span class="m">q = q₁ + q₂ = (C₁ + C₂)U</span>.</p>
+      <div class="fm">Paralel:  C = C₁ + C₂ + …    (ən böyükdən də böyük)</div>
+
+      <h3><span class="st">3</span> Ardıcıl birləşmə</h3>
+      <p>Orta lövhələr yalnız bir-birinə qoşulub, ona görə onlarda ümumi yük sıfır qalır: hər kondensatorda yük <span class="m">q</span> eynidir. Gərginliklər toplanır: <span class="m">U = U₁ + U₂ = q/C₁ + q/C₂</span>.</p>
+      <div class="fm">Ardıcıl:  1/C = 1/C₁ + 1/C₂ + …
+İki kondensator:  C = C₁C₂/(C₁ + C₂)    (ən kiçikdən də kiçik)</div>
+      <p><b>Gərginliyin bölünməsi:</b> ardıcıl kondensatorlarda yük eynidir, <span class="m">U = q/C</span>, deməli <b>kiçik tutumda gərginlik böyük olur</b>. İki kondensator üçün: <span class="m">U₁ = U·C₂/(C₁ + C₂)</span>.</p>
+
+      <h3><span class="st">4</span> Qarışıq sxemlər</h3>
+      <p>Mürəkkəb sxemi hissə-hissə sadələşdir: əvvəlcə iki ucu eyni iki qovşaqdan keçən (paralel) və ya bir xətdə ardıcıl olan kondensatorları tap, birini "tək" kondensatorla əvəz et, sonra davam et. Hər addımda cavabın yoxlamasını yadda saxla: ardıcıl nəticə hər birindən kiçik, paralel nəticə hər birindən böyük olmalıdır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. C₁ = 6 mkF və C₂ = 12 mkF. Ardıcıl və paralel?
+  Ardıcıl:  6·12/(6 + 12) = 72/18 = 4 mkF   (4 &lt; 6 ✓)
+  Paralel:  6 + 12 = 18 mkF                  (18 &gt; 12 ✓)</div>
+      <div class="ex">Nümunə 2. C₁ = 3 mkF, C₂ = 6 mkF ardıcıl, 90 V-a qoşulub. Hər kondensatorun gərginliyi?
+  C = 3·6/9 = 2 mkF,   q = CU = 2·90 = 180 mkKl (hər ikisində)
+  U₁ = q/C₁ = 180/3 = 60 V,   U₂ = 180/6 = 30 V
+  Yoxla: 60 + 30 = 90 ✓  (kiçik tutumda gərginlik böyükdür)</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+C₁ = 6 mkF və C₂ = 12 mkF ardıcıl birləşib, onlara C₃ = 6 mkF paralel qoşulub.
+Ümumi tutum?
+  C₁ ilə C₂ ardıcıl: 6·12/18 = 4 mkF
+  Bu, C₃ ilə paraleldir: 4 + 6 = 10 mkF</div>
+      <div class="ex">Nümunə 4. Üç kondensator (hamısı 12 mkF) ardıcıl, sonra paralel birləşir. Tutumlar?
+  Ardıcıl: 12/3 = 4 mkF
+  Paralel: 3·12 = 36 mkF   (9 dəfə fərq!)</div>
+      <div class="life"><b>Həyatdan.</b> Yüksək gərginlikdə işləməli olan qurğuda (məsələn, qaynaq aparatı) bir kondensatorun dözümlü gərginliyi azdır. Bir neçə eyni kondensatoru ardıcıl düzürlər: gərginlik bərabər bölünür, hər biri onun bir hissəsini daşıyır. Əvəzində ümumi tutum azalır — bu, bu üsulun qiymətidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kondensatorlar üçün rezistor qaydasını götürmək. Kondensatorlarda <b>paralel toplanır</b>, ardıcıl tərs toplanır.</li>
+        <li>Ardıcıl üçün <span class="m">1/C</span>-ni tapıb tərsinə çevirməyi unutmaq.</li>
+        <li>Ardıcıl kondensatorlarda hər birində eyni gərginlik olduğunu düşünmək. Gərginlik tutuma tərs bölünür; <b>yük</b> eynidir.</li>
+        <li>Paralel hissəni ardıcıl sayıb başlamaq: sxemə iki qovşaq nöqtəsi kimi bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Paralel (U eyni):  C = C₁ + C₂
+Ardıcıl (q eyni):  1/C = 1/C₁ + 1/C₂,  C = C₁C₂/(C₁ + C₂)
+Ardıcılda  U₁ : U₂ = C₂ : C₁
+n eyni C:  paralel nC,  ardıcıl C/n</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>4 mkF və 4 mkF ardıcıl? <span class="ans">2 mkF.</span></li>
+        <li>2 mkF və 3 mkF paralel, bu cütə 5 mkF ardıcıl qoşulub. Ümumi tutum? <span class="ans">5 mkF paralel cütün tutumudur (2 + 3 = 5), 5 ilə 5 ardıcıl: 2,5 mkF.</span></li>
+        <li>3 mkF və 6 mkF ardıcıl, 60 V-a qoşulub. 3 mkF-lıq kondensatorun gərginliyi? <span class="ans">q = 2·60 = 120 mkKl, U₁ = 120/3 = 40 V.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kondensatorun enerjisi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Blitz lampası bir anda parlaq işıq verir: kondensatorda toplanmış enerji qısa zamanda ayrılır. Defibrillyator ürəyə bir neçə yüz culdan çox enerji verir. Bu enerjini necə hesablamaq lazımdır? Yaydakı <span class="m">kx²/2</span> düsturuna çox oxşar yolla.</p>
+
+      <h3><span class="st">2</span> W = CU²/2 haradan gəlir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 180" role="img" aria-label="q-nun U-dan asılılıq qrafiki: düz xətt, altındakı üçbucağın sahəsi enerjidir">
+          <defs><marker id="kd4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M40 150L200 150L200 40z" fill="var(--accent-soft)"/>
+          <line x1="40" y1="150" x2="245" y2="150" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#kd4)"/>
+          <line x1="40" y1="150" x2="40" y2="15" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#kd4)"/>
+          <line x1="40" y1="150" x2="220" y2="25" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="200" y1="40" x2="200" y2="150" stroke="var(--muted)" stroke-dasharray="4 3"/><line x1="40" y1="40" x2="200" y2="40" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="236" y="168" class="lbl">U</text><text x="30" y="22" class="lbl" text-anchor="end">q</text>
+          <text x="200" y="168" class="lbl" text-anchor="middle">U</text><text x="34" y="44" class="lbl" text-anchor="end">q</text>
+          <text x="140" y="130" class="lbl" text-anchor="middle">W = qU/2</text>
+        </svg>
+        <div class="cap">
+          <p>Kondensatoru doldurmaq üçün yükü kiçik hissələrlə köçürürük. Əvvəlcə gərginlik 0-dır, sonda <span class="m">U</span>. Orta gərginlik <span class="m">U/2</span>-dir, iş = <span class="m">q·U/2</span>. Qrafikdə bu, düz xəttin altındakı üçbucağın sahəsidir.</p>
+        </div>
+      </div>
+      <div class="fm">W = qU/2 = CU²/2 = q²/(2C)</div>
+      <p>Hansı düsturu götürməyin əsas qaydası: <b>sabit olan kəmiyyətə görə</b>. Gərginlik sabitdirsə <span class="m">CU²/2</span>, yük sabitdirsə <span class="m">q²/2C</span>.</p>
+
+      <h3><span class="st">3</span> Yüklü kondensatorların birləşməsi</h3>
+      <p>Yük saxlanır. İki kondensatoru paralel birləşdirəndə (müsbət lövhəni müsbətlə) ortaq gərginlik:</p>
+      <div class="fm">U = (q₁ + q₂)/(C₁ + C₂) = (C₁U₁ + C₂U₂)/(C₁ + C₂)
+Əks işarəli birləşdirsən:  yüklər çıxılır, |q₁ − q₂|</div>
+      <p>Enerji <b>saxlanmır</b>: qoşulma zamanı naqildə cərəyan axır və enerjinin bir hissəsi istiliyə və şüalanmaya çevrilir. <span class="m">Q_istilik = W_əvvəl − W_sonra</span>. Əgər kondensator yüklənmişdirsə, lövhələri aralamaq üçün də iş lazımdır: mənbədən ayrılmış kondensatorda <span class="m">d</span> artanda <span class="m">C</span> azalır, <span class="m">q</span> sabit olduğundan <span class="m">W = q²/2C</span> artır. Artım xarici qüvvənin işidir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. C = 20 mkF, U = 200 V. W = ?
+  W = CU²/2 = 20·10⁻⁶·200²/2 = 20·10⁻⁶·40000/2 = 0,4 J</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+C₁ = 3 mkF kondensator 100 V-a qədər doldurulub, mənbədən ayrılıb və
+yüksüz C₂ = 2 mkF kondensatora paralel qoşulub. Ortaq gərginlik? İstilik?
+  q = 3·100 = 300 mkKl saxlanır
+  U = 300/(3 + 2) = 60 V
+  W₁ = 3·10⁻⁶·100²/2 = 15 mJ,   W₂ = 5·10⁻⁶·60²/2 = 9 mJ
+  Q = 15 − 9 = 6 mJ  (enerjinin 40%-i istilik oldu)</div>
+      <div class="ex">Nümunə 3 (RFO tipli, əks qoşulma).
+C₁ = 4 mkF (120 V) və C₂ = 2 mkF (150 V) kondensatorlarını əks işarəli
+lövhələrlə qoşdular. Ortaq gərginlik?
+  q₁ = 480 mkKl,  q₂ = 300 mkKl
+  Əks işarəli: q = 480 − 300 = 180 mkKl
+  U = 180/(4 + 2) = 30 V
+  (İstilik: 28,8 + 22,5 − 6·30²/2000 = 51,3 − 2,7 = 48,6 mJ)</div>
+      <div class="ex">Nümunə 4 (RFO tipli). Havalı C = 10 mkF kondensator 200 V-a qədər doldurulub,
+mənbədən ayrılıb. d-ni 3 dəfə artırmaq üçün xarici qüvvə nə qədər iş görməlidir?
+  W₁ = CU²/2 = 10·10⁻⁶·200²/2 = 0,2 J
+  q sabit, C₂ = C/3 → W₂ = q²/(2C₂) = 3W₁ = 0,6 J
+  A = W₂ − W₁ = 0,4 J</div>
+      <div class="life"><b>Həyatdan.</b> Defibrillyator tutumu 70 mkF olan kondensatoru 5 kV-a qədər doldurur: <span class="m">W = 70·10⁻⁶·(5000)²/2 = 875 J</span>. Bu enerjinin bir hissəsi ürəyə düşür və onun ritmini bərpa edir. Fotoaparat blitzində isə 100–200 mkF kondensator 300 V-a qədər yüklənir, enerji bir neçə cul olur, amma milli-saniyədə ayrıldığı üçün gücü böyükdür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">W = CU²</span> yazmaq — 2-yə bölməyi unutmaq.</li>
+        <li><span class="m">W = qU</span> yazmaq. <span class="m">qU</span> sabit gərginlikdə köçürülən yükün işidir; kondensatorun enerjisi <span class="m">qU/2</span>-dir.</li>
+        <li>Yüklü kondensatorları birləşdirəndə enerjinin saxlandığını düşünmək. Yük saxlanır, enerji yox.</li>
+        <li>Əks işarəli qoşulmada yükləri toplamaq. Onlar bir-birini kompensasiya edir: <span class="m">|q₁ − q₂|</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">W = CU²/2 = qU/2 = q²/2C
+U sabit → CU²/2;  q sabit → q²/2C
+Birləşmə: yük saxlanır, U = Σq/ΣC; enerji azalır (istilik)
+Lövhələr aralanır (ayrılmış): iş = ΔW</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>C = 10 mkF, U = 100 V. W = ? <span class="ans">10·10⁻⁶·10⁴/2 = 0,05 J = 50 mJ.</span></li>
+        <li>Gərginlik 2 dəfə artdı. Enerji? <span class="ans">4 dəfə artır (U²).</span></li>
+        <li>Eyni iki kondensatordan biri U-ya qədər doldurulub, digəri boşdur. Paralel qoşduq. Enerjinin neçə hissəsi qalır? <span class="ans">q saxlanır, C iki dəfə artır, W = q²/2C yarıya düşür: 1/2 qalır, 1/2 istilik.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

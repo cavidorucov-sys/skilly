@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cərəyan, gərginlik, müqavimət dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-cereyan.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Cərəyan, gərginlik, müqavimət</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Elektrik dövrələri</div>
+    <h1>Cərəyan, gərginlik, müqavimət</h1>
+    <p>Naqildə yüklər nizamlı hərəkət edəndə elektrik cərəyanı yaranır. Onu üç kəmiyyətlə təsvir edirik: <b>cərəyan şiddəti</b> <span class="m">I = q/t</span>, <b>gərginlik</b> <span class="m">U</span> və <b>müqavimət</b> <span class="m">R</span>. Onları Om qanunu <span class="m">I = U/R</span> bağlayır. Naqilin müqaviməti <span class="m">R = ρl/S</span> onun uzunluğundan və qalınlığından asılıdır. Olimpiadada bunlar ampermetr, voltmetr qoşulması və naqilin ölçüsünü dəyişən məsələlərdə görünür.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Bu mövzuda <span class="m">e = 1,6·10⁻¹⁹ Kl</span>. Xüsusi müqaviməti <span class="m">Ω·mm²/m</span> vahidi ilə yazırıq: <span class="m">1 Ω·mm²/m = 10⁻⁶ Ω·m</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Cərəyan şiddəti</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Gərginlik, Om qanunu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Müqavimət</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Naqili dəyişəndə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Elektrik cərəyanı və cərəyan şiddəti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Telefonu şarj edəndə ekranda "1,5 A" yazılır. Çaydanın yazısında "10 A" var. Bu rəqəmlər nə deməkdir və niyə çox cərəyan təhlükəlidir? Cərəyanı ölçməyi bilmək elektrikin ilk addımıdır.</p>
+
+      <h3><span class="st">2</span> Cərəyan nədir</h3>
+      <p><b>Elektrik cərəyanı</b> — yüklü hissəciklərin nizamlı (istiqamətlənmiş) hərəkətidir. Cərəyan yaranması üçün iki şərt lazımdır:</p>
+      <ul>
+        <li>maddədə <b>sərbəst yüklər</b> olmalıdır (metalda — sərbəst elektronlar, məhlulda — ionlar);</li>
+        <li>yükləri hərəkətə gətirən <b>elektrik sahəsi</b> olmalıdır (mənbə: batareya, akkumulyator, rozetka).</li>
+      </ul>
+      <p><b>Cərəyanın istiqaməti</b> — müsbət yüklərin hərəkət istiqaməti: mənbənin "+" qütbündən "−" qütbünə (xaricdə). Metalda isə əslində elektronlar hərəkət edir, onlar əks tərəfə, "−"-dən "+"-a gedir. Bu, tarixi razılaşmadır; hesablamalarda cərəyanın istiqamətinə yalnız razılaşdığımız kimi baxırıq.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 120" role="img" aria-label="Naqildə elektronlar sola, cərəyan sağa hərəkət edir; en kəsikdən yük keçir">
+          <defs><marker id="cr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="20" y="35" width="240" height="44" rx="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="25" x2="150" y2="90" stroke="var(--muted)" stroke-dasharray="4 3" stroke-width="1.5"/><text x="154" y="22" class="lbl">en kəsik</text>
+          <g fill="#1f4e9c"><circle cx="50" cy="50" r="5"/><circle cx="90" cy="68" r="5"/><circle cx="125" cy="48" r="5"/><circle cx="180" cy="65" r="5"/><circle cx="215" cy="50" r="5"/></g>
+          <line x1="235" y1="107" x2="170" y2="107" stroke="#1f4e9c" stroke-width="2.5" marker-end="url(#cr1)"/><text x="160" y="111" class="lbl" text-anchor="end">elektronlar</text>
+          <line x1="40" y1="107" x2="105" y2="107" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cr1)"/><text x="30" y="111" class="lbl" text-anchor="end">I</text>
+        </svg>
+        <div class="cap">
+          <p>Hər saniyə naqilin en kəsiyindən nə qədər yük keçirsə, cərəyan o qədər böyükdür. Elektronlar "−"-dən "+"-a gedir, cərəyanın qəbul olunmuş istiqaməti isə əksinədir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Cərəyan şiddəti</h3>
+      <div class="fm">I = q/t         q = I·t         t = q/I
+Vahidi: Amper (A) = Kl/san
+1 mA = 10⁻³ A,  1 mkA = 10⁻⁶ A,  1 kA = 10³ A</div>
+      <p><span class="m">q</span> — <span class="m">t</span> zamanında naqilin en kəsiyindən keçən yük. Cərəyan zamanla dəyişirsə, <span class="m">q</span> hər hissədə <span class="m">I·Δt</span>-ləri toplamaqla tapılır — yəni <span class="m">I(t)</span> qrafikinin altındakı <b>sahə</b> yükə bərabərdir.</p>
+      <p>Hər elektron <span class="m">e = 1,6·10⁻¹⁹ Kl</span> yük daşıyır. Deməli saniyədə keçən elektronların sayı <span class="m">N = I/e</span>-dir. 1 A cərəyanda saniyədə təxminən <span class="m">6,25·10¹⁸</span> elektron keçir.</p>
+      <p>Cərəyanın şiddəti <b>ampermetr</b> ilə ölçülür.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Naqilin en kəsiyindən 4 san ərzində 12 Kl yük keçir. I = ?
+  I = q/t = 12/4 = 3 A</div>
+      <div class="ex">Nümunə 2. Lampadan 0,5 A cərəyan 2 dəqiqə axır. Keçən yük?
+  t = 2 dəq = 120 san
+  q = I·t = 0,5·120 = 60 Kl</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Naqildə cərəyan 0,8 A-dir. En kəsikdən hər saniyə neçə elektron keçir?
+  q = I·1 san = 0,8 Kl
+  N = q/e = 0,8/(1,6·10⁻¹⁹) = 0,5·10¹⁹ = 5·10¹⁸ elektron</div>
+      <div class="ex">Nümunə 4 (RFO tipli, qrafik).
+Cərəyan ilk 5 saniyə 2 A, sonrakı 5 saniyə 4 A-dir. Bu 10 saniyədə keçən yük və orta cərəyan?
+  q = 2·5 + 4·5 = 10 + 20 = 30 Kl      (I–t qrafikinin altındakı sahə)
+  I_orta = q/t = 30/10 = 3 A</div>
+      <div class="life"><b>Həyatdan.</b> Yıldırım boşalmasında 1–2 millisaniyədə buluddan yerə təxminən 20 Kl yük keçir: <span class="m">I = 20/0,002 = 10 000 A = 10 kA</span>. Evdəki qoruyucu (avtomat) adətən 16 A-dir; insan üçün təhlükəli hədd isə cəmi bir neçə on mA-dir. Telefon batareyasının "3000 mA·saat" yazısı da yükdür: <span class="m">q = 3 A · 3600 san = 10 800 Kl</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dəqiqəni saniyəyə çevirməmək: <span class="m">q = I·t</span>-də <span class="m">t</span> saniyə ilə.</li>
+        <li>mA-ni A-yə çevirməmək: 50 mA = 0,05 A.</li>
+        <li>Elektronların hərəkət istiqamətini cərəyanın istiqaməti sanmaq. Metalda onlar <b>əks</b> yönlüdür.</li>
+        <li>Ampermetri dövrəyə paralel qoşmaq (aşağıda dərs 2-də).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">I = q/t,  q = It   (A = Kl/san)
+Cərəyan = müsbət yüklərin hərəkət istiqaməti (+ → −)
+Elektronlar əks tərəfə gedir
+Saniyədə elektronlar:  N = I/e,  e = 1,6·10⁻¹⁹ Kl
+Qrafik I(t): sahə = yük</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 mA cərəyan 10 san axır. Yük? <span class="ans">2·10⁻³·10 = 0,02 Kl.</span></li>
+        <li>30 Kl yük 5 dəqiqəyə keçir. I = ? <span class="ans">t = 300 san, I = 30/300 = 0,1 A.</span></li>
+        <li>0,32 A cərəyanda saniyədə neçə elektron keçir? <span class="ans">0,32/(1,6·10⁻¹⁹) = 2·10¹⁸.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Gərginlik, Om qanunu, cihazların qoşulması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Eyni lampa 4,5 V batareyada zəif, 220 V şəbəkədə güclü yanar (və yanıb sönər). Cərəyanı nə təyin edir? Gərginlik və müqavimət. Dövrəni oxumaq üçün isə əvvəl <b>şərti işarələri</b> və ölçü cihazlarının düzgün qoşulmasını bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Gərginlik</h3>
+      <p>Mənbə yükləri dövrədə hərəkət etdirir, sahə yükü köçürəndə iş görür. <b>Gərginlik</b> — sahənin yükü köçürərkən gördüyü işin yükə nisbətidir:</p>
+      <div class="fm">U = A/q          vahidi: Volt (V) = J/Kl
+1 kV = 10³ V,   1 mV = 10⁻³ V</div>
+      <p>1 V o deməkdir ki, 1 Kl yük köçürəndə sahə 1 J iş görür. Gərginlik <b>voltmetr</b> ilə ölçülür.</p>
+
+      <h3><span class="st">3</span> Şərti işarələr və cihazların qoşulması</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Şərti işarələr: mənbə, açar, lampa, rezistor, ampermetr, voltmetr">
+          <g stroke="var(--ink)" stroke-width="1.8" fill="none">
+            <line x1="26" y1="30" x2="46" y2="30"/><line x1="54" y1="30" x2="74" y2="30"/>
+            <line x1="126" y1="30" x2="140" y2="30"/><line x1="140" y1="30" x2="158" y2="18"/><line x1="160" y1="30" x2="174" y2="30"/>
+            <line x1="226" y1="30" x2="238" y2="30"/><circle cx="250" cy="30" r="12" fill="var(--sheet)"/><line x1="242" y1="22" x2="258" y2="38"/><line x1="258" y1="22" x2="242" y2="38"/><line x1="262" y1="30" x2="274" y2="30"/>
+            <line x1="26" y1="95" x2="36" y2="95"/><rect x="36" y="89" width="28" height="12" fill="var(--sheet)"/><line x1="64" y1="95" x2="74" y2="95"/>
+            <line x1="126" y1="95" x2="138" y2="95"/><circle cx="150" cy="95" r="12" fill="var(--sheet)"/><line x1="162" y1="95" x2="174" y2="95"/>
+            <line x1="226" y1="95" x2="238" y2="95"/><circle cx="250" cy="95" r="12" fill="var(--sheet)"/><line x1="262" y1="95" x2="274" y2="95"/>
+          </g>
+          <line x1="46" y1="16" x2="46" y2="44" stroke="var(--ink)" stroke-width="2"/><line x1="54" y1="22" x2="54" y2="38" stroke="var(--ink)" stroke-width="4"/>
+          <circle cx="140" cy="30" r="2.5" fill="var(--ink)"/><circle cx="160" cy="30" r="2.5" fill="var(--ink)"/>
+          <text x="150" y="100" text-anchor="middle" font-weight="700">A</text><text x="250" y="100" text-anchor="middle" font-weight="700">V</text>
+          <text x="40" y="12" class="lbl">+</text>
+          <text x="50" y="62" class="lbl" text-anchor="middle">mənbə</text><text x="150" y="62" class="lbl" text-anchor="middle">açar</text><text x="250" y="62" class="lbl" text-anchor="middle">lampa</text>
+          <text x="50" y="128" class="lbl" text-anchor="middle">rezistor</text><text x="150" y="128" class="lbl" text-anchor="middle">ampermetr</text><text x="250" y="128" class="lbl" text-anchor="middle">voltmetr</text>
+        </svg>
+        <div class="cap">
+          <p>Mənbə simvolunda uzun xətt "+" qütbdür. Dövrə sxemində naqillər düz xətlərlə, qovşaqlar nöqtələrlə göstərilir.</p>
+        </div>
+      </div>
+      <ul>
+        <li><b>Ampermetr</b> cərəyanı ölçdüyü hissəyə <b>ardıcıl</b> qoşulur (cərəyan onun içindən keçməlidir). Onun müqaviməti çox kiçik olmalıdır ki, dövrəni dəyişməsin; ideal ampermetrin müqaviməti 0-dır.</li>
+        <li><b>Voltmetr</b> gərginliyi ölçdüyü elementə <b>paralel</b> qoşulur (iki ucuna). Onun müqaviməti çox böyük olmalıdır ki, özündən cərəyan keçirməsin; ideal voltmetrin müqaviməti sonsuzdur.</li>
+      </ul>
+      <p>Səhv qoşulma nəticəsi: ampermetri elementə paralel qoşsan, o, elementi qısa qapayır (cərəyan müqaviməti 0 olan yolla gedir). Voltmetri ardıcıl qoşsan, böyük müqavimət cərəyanı demək olar kəsir.</p>
+
+      <h3><span class="st">4</span> Om qanunu və rezistorlar</h3>
+      <div class="fm">I = U/R         U = I·R         R = U/I
+Vahidi: Om (Ω) = V/A       1 kΩ = 10³ Ω</div>
+      <p>Cərəyan gərginliyə düz, müqavimətə tərs mütənasibdir. Rezistorları birləşdirəndə:</p>
+      <div class="fm">Ardıcıl:  I eyni,  U = U₁ + U₂,  R = R₁ + R₂
+Paralel:  U eyni,  I = I₁ + I₂,  1/R = 1/R₁ + 1/R₂
+           iki rezistor:  R = R₁R₂/(R₁ + R₂)</div>
+      <p>Paralel birləşmədə cərəyan müqavimətə <b>tərs</b> bölünür: kiçik müqavimətdən çox cərəyan axır. Ardıcıl birləşmədə isə gərginlik müqavimətə <b>düz</b> bölünür: böyük müqavimətdə çox gərginlik düşür.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. R = 8 Ω, U = 12 V. I = ?
+  I = U/R = 12/8 = 1,5 A</div>
+      <div class="ex">Nümunə 2 (sxemli). 12 V mənbə, R₁ = 5 Ω və R₂ = 7 Ω ardıcıl;
+ampermetr dövrədə ardıcıl, voltmetr R₂-yə paralel.
+  R = 5 + 7 = 12 Ω
+  I = 12/12 = 1 A         (ampermetr 1 A göstərir)
+  U₂ = I·R₂ = 1·7 = 7 V   (voltmetr 7 V göstərir)
+  Yoxla: U₁ = 1·5 = 5 V,  5 + 7 = 12 ✓</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+12 Ω və 4 Ω rezistorları paralel birləşib, ümumi cərəyan 8 A-dir.
+Hər rezistordan axan cərəyan?
+  Paralel: U eynidir, I ~ 1/R. I₁ : I₂ = 4 : 12 = 1 : 3
+  I₁ = 8·1/4 = 2 A (12 Ω-dan),   I₂ = 6 A (4 Ω-dan)
+  Yoxla: U = 2·12 = 6·4 = 24 V ✓</div>
+      <div class="ex">Nümunə 4. Rezistorun müqaviməti 3 kΩ, gərginlik 9 V. I = ?
+  I = 9/3000 = 0,003 A = 3 mA     (V/kΩ = mA)</div>
+      <div class="life"><b>Həyatdan.</b> Multimetr "A" (ampermetr) rejimindəykən onun uclarını rozetkaya soxsan, qısa qapanma olur: ampermetrin müqaviməti çox kiçikdir, ona görə cərəyan çox böyük olur — cihaz yanır, qoruyucu atılır. Gərginliyi ölçmək üçün cihazı "V" rejiminə keçirmək lazımdır. Elektrik ustaları bunu ilk dərsdə öyrənir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ampermetri paralel, voltmetri ardıcıl qoşmaq.</li>
+        <li><span class="m">I = R/U</span> yazmaq.</li>
+        <li>Ardıcıl rezistorlarda <span class="m">R = R₁R₂/(R₁+R₂)</span>, paralelda <span class="m">R = R₁ + R₂</span> götürmək. Yoxlama: paralel nəticə hər birindən kiçik, ardıcıl hər birindən böyük olmalıdır.</li>
+        <li>Paralel qolda cərəyanı gərginlik kimi bərabər bölmək. Gərginlik bərabərdir, cərəyan tərs bölünür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">U = A/q (V = J/Kl),  I = U/R
+Ampermetr — ardıcıl (R ≈ 0);  voltmetr — paralel (R ≈ ∞)
+Ardıcıl:  R = R₁ + R₂,  I eyni
+Paralel:  1/R = 1/R₁ + 1/R₂,  U eyni
+V/kΩ = mA</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 20 Ω, I = 0,3 A. U = ? <span class="ans">U = 0,3·20 = 6 V.</span></li>
+        <li>10 Ω və 15 Ω paralel. R = ? <span class="ans">10·15/25 = 6 Ω.</span></li>
+        <li>Voltmetri sadə dövrədə rezistora ardıcıl qoşsaq cərəyan necə dəyişər? <span class="ans">Voltmetrin müqaviməti çox böyükdür, cərəyan demək olar sıfıra enir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Naqilin müqaviməti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Uzadıcı kabelin yüksək gücdə qızması, nazik məftilin tez yanması, elektrik xəttinin enerji itirməsi — hamısı naqilin müqaviməti ilə bağlıdır. Qızdırıcıların spiralı isə qəsdən müqaviməti böyük materialdan (nixromdan) düzəldilir. Müqavimətin nədən asılı olduğunu bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Nədən asılıdır</h3>
+      <p>Yüklərin naqildə hərəkəti ion qəfəsi ilə toqquşmalarla "ləngiyir". Uzun naqildə daha çox maneə, qalın naqildə isə yük axını üçün daha çox yol var. Təcrübə göstərir:</p>
+      <div class="fm">R = ρ·l/S
+l — naqilin uzunluğu (m),  S — en kəsik sahəsi (m² və ya mm²)
+ρ — xüsusi müqavimət, naqilin materialından asılıdır</div>
+      <p>Müqavimət uzunluğa <b>düz</b>, en kəsik sahəsinə <b>tərs</b> mütənasibdir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 120" role="img" aria-label="Naqil: uzunluq l və en kəsik sahəsi S">
+          <defs><marker id="cr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="40" y="30" width="190" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <ellipse cx="230" cy="50" rx="10" ry="20" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="230" y="54" class="lbl" text-anchor="middle">S</text>
+          <line x1="40" y1="90" x2="230" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cr3)" marker-end="url(#cr3)"/><text x="135" y="108" class="lbl" text-anchor="middle">l</text>
+        </svg>
+        <div class="cap"><p>Naqil uzandıqca müqavimət artır, qalınlaşdıqca azalır: <span class="m">R ~ l</span>, <span class="m">R ~ 1/S</span>.</p></div>
+      </div>
+      <p>Vahidlər: SI-də <span class="m">ρ</span> vahidi <span class="m">Ω·m</span>-dir. Praktikada sahə mm²-lə ölçüldüyü üçün <span class="m">Ω·mm²/m</span> vahidindən istifadə edilir: <span class="m">l</span> metrlə, <span class="m">S</span> mm²-lə yazsan, <span class="m">R</span> birbaşa omla çıxır. (1 Ω·mm²/m = 10⁻⁶ Ω·m.)</p>
+      <div class="fm">ρ, Ω·mm²/m (20°C):
+mis 0,017    alüminium 0,028    dəmir 0,1
+konstantan 0,5    nixrom 1,1</div>
+      <p>Metallarda temperatur artanda müqavimət də artır (ion qəfəsi daha güclü rəqs edir).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Nixrom naqil: l = 20 m, S = 0,5 mm². R = ?
+  R = ρl/S = 1,1·20/0,5 = 44 Ω</div>
+      <div class="ex">Nümunə 2. Mis kabel: l = 100 m, S = 2,5 mm². R = ?
+  R = 0,017·100/2,5 = 0,68 Ω</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Elektrik qızdırıcısı 220 V şəbəkədən 5 A cərəyan alır. Spiral nixrom məftildir
+(ρ = 1,1 Ω·mm²/m), en kəsiyi 0,5 mm². Məftilin uzunluğu?
+  R = U/I = 220/5 = 44 Ω
+  l = RS/ρ = 44·0,5/1,1 = 20 m</div>
+      <div class="ex">Nümunə 4. 50 m uzunluğunda, en kəsiyi 1 mm² olan naqilə 50 V verəndə 2 A cərəyan axır.
+Materialı tap.
+  R = U/I = 50/2 = 25 Ω
+  ρ = RS/l = 25·1/50 = 0,5 Ω·mm²/m → konstantan</div>
+      <div class="life"><b>Həyatdan.</b> Elektrik xətləri mis və ya alüminiumdan olur: müqaviməti kiçikdir. Nazik kabeldə böyük cərəyan (məsələn, 2 kVt-lıq çaydan üçün təxminən 9 A) enerjini istiliyə çevirib kabeli qızdırır və yanğına səbəb ola bilər. Ona görə güclü cihazlar qalın kabelə qoşulur. Qızdırıcıda isə əksinə: nixrom qəsdən yüksək müqavimət üçün seçilir, istilik məhz orada ayrılsın.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">R = ρS/l</span> yazmaq. Uzunluq surətdə, sahə məxrəcdədir.</li>
+        <li>Sahəni mm²-lə, uzunluğu sm-lə götürmək. Cədvəl <span class="m">Ω·mm²/m</span> üçündür: <span class="m">l</span> metrlə olmalıdır.</li>
+        <li>mm²-i m²-yə çevirəndə 10⁻³ götürmək: 1 mm² = 10⁻⁶ m².</li>
+        <li>Müqavimətin gərginlikdən və cərəyandan asılı olduğunu düşünmək. <span class="m">R = U/I</span> nisbətdir; naqilin müqaviməti <span class="m">ρ, l, S</span>-dən asılıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">R = ρl/S   (l — m, S — mm², ρ — Ω·mm²/m → R — Ω)
+R ~ l,  R ~ 1/S
+ρ: mis 0,017;  alüminium 0,028;  dəmir 0,1;  konstantan 0,5;  nixrom 1,1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Dəmir məftil, l = 50 m, S = 2 mm². R = ? <span class="ans">0,1·50/2 = 2,5 Ω.</span></li>
+        <li>Alüminium naqil 5,6 Ω, S = 1 mm². l = ? <span class="ans">l = RS/ρ = 5,6·1/0,028 = 200 m.</span></li>
+        <li>Eyni uzunluq və sahədə nixromun müqaviməti mis naqilinkindən neçə dəfə böyükdür? <span class="ans">1,1/0,017 ≈ 65 dəfə.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Naqilin ölçüsü dəyişəndə müqavimət necə dəyişir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada çox vaxt konkret ρ verilmir. Verilir: "naqili 3 dəfə uzatdılar", "yarıya kəsib paralel qoşdular", "halqa qayırdılar". Bu suallar <span class="m">R ~ l/S</span> mütənasibliyini düzgün işlətməyi yoxlayır. Burada hesab az, düşüncə çoxdur.</p>
+
+      <h3><span class="st">2</span> Mütənasiblik qaydası</h3>
+      <p>Eyni materialda <span class="m">ρ</span> dəyişmir. Onda <span class="m">R ~ l/S</span> və cavab dəfələrlə hesablanır:</p>
+      <div class="fm">l n dəfə artsa:        R n dəfə artır
+S n dəfə artsa:        R n dəfə azalır
+diametr n dəfə artsa:  S n² dəfə artır → R n² dəfə azalır</div>
+      <p>İkisi eyni vaxtda dəyişəndə: çarpanları ayrıca hesabla və vur. Məsələn, <span class="m">l</span> iki dəfə artır, <span class="m">S</span> üç dəfə artır: <span class="m">R</span> <span class="m">2/3</span> dəfə dəyişir.</p>
+
+      <h3><span class="st">3</span> Məftili uzatmaq və kəsmək</h3>
+      <p>Məftili çəkib uzadanda <b>həcm sabit qalır</b>: <span class="m">V = l·S</span>. Deməli <span class="m">l</span> artırsa, <span class="m">S</span> o qədər azalır:</p>
+      <div class="fm">l → n·l,  S → S/n,  R → n²·R</div>
+      <p>Məftili <span class="m">n</span> bərabər hissəyə kəsib hissələri yan-yana qoşsaq (paralel): hər hissə <span class="m">R/n</span>, <span class="m">n</span> hissə paralel: <span class="m">R/n²</span>. (Uzunluq <span class="m">n</span> dəfə azaldı və sahə <span class="m">n</span> dəfə artdı.) Hissələri ardıcıl qoşsaq, əvvəlki məftil alınır: <span class="m">R</span> dəyişmir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Müqaviməti R olan məftildən halqa; diametrin iki ucuna qoşulma, iki yarım halqa paralel">
+          <circle cx="90" cy="75" r="52" fill="none" stroke="var(--ink)" stroke-width="3"/>
+          <circle cx="38" cy="75" r="5" fill="var(--accent)"/><circle cx="142" cy="75" r="5" fill="var(--accent)"/>
+          <line x1="8" y1="75" x2="33" y2="75" stroke="var(--ink)" stroke-width="2"/><line x1="147" y1="75" x2="172" y2="75" stroke="var(--ink)" stroke-width="2"/>
+          <text x="8" y="66" class="lbl">A</text><text x="164" y="66" class="lbl">B</text>
+          <text x="90" y="30" class="lbl" text-anchor="middle">R/2</text><text x="90" y="128" class="lbl" text-anchor="middle">R/2</text>
+          <text x="190" y="72" class="lbl">R_AB = R/4</text>
+        </svg>
+        <div class="cap"><p>Müqaviməti <span class="m">R</span> olan məftildən halqa düzəldilib. Diametrin <span class="m">A</span> və <span class="m">B</span> uclarına qoşulsaq, iki yarım halqa (hər biri <span class="m">R/2</span>) paraleldir: <span class="m">R_AB = (R/2)/2 = R/4</span>.</p></div>
+      </div>
+      <p>Materialları müqayisə edəndə ölçülər eynidirsə, <span class="m">R ~ ρ</span>: nixrom (1,1) dəmirdən (0,1) 11 dəfə çox müqavimət verir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Naqilin müqaviməti 6 Ω. Uzunluğunu 3 dəfə artırsaq (sahə eyni)?
+  R ~ l  →  6·3 = 18 Ω</div>
+      <div class="ex">Nümunə 2. R = 8 Ω. Eyni materialdan eyni uzunluqda, diametri 2 dəfə böyük naqil.
+  S ~ d² → S 4 dəfə artdı  →  R = 8/4 = 2 Ω</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Məftilin müqaviməti 2 Ω. Onu həcmi dəyişmədən 3 dəfə uzadırlar. Yeni müqavimət?
+  V = lS sabit: l 3 dəfə artdı → S 3 dəfə azaldı
+  R ~ l/S → R 3·3 = 9 dəfə artır:  R = 2·9 = 18 Ω</div>
+      <div class="ex">Nümunə 4 (RFO tipli).
+36 Ω-luq məftili 3 bərabər hissəyə kəsib hissələri paralel qoşdular. R = ?
+  Hər hissə 36/3 = 12 Ω
+  Üç eyni paralel: 12/3 = 4 Ω   (= 36/3²)</div>
+      <div class="ex">Nümunə 5 (RFO tipli, halqa).
+Müqaviməti 24 Ω olan məftildən halqa düzəldilib. Diametrin iki uc nöqtəsi arasındakı müqavimət?
+  İki yarım halqa: hər biri 12 Ω, paralel
+  R_AB = 12·12/(12 + 12) = 6 Ω   (= R/4)</div>
+      <div class="life"><b>Həyatdan.</b> Elektrik xətlərində naqilin qalınlığı ona görə böyük seçilir ki, müqavimət kiçik olsun. 1 km uzunluğunda 10 mm² mis naqil: <span class="m">0,017·1000/10 = 1,7 Ω</span>. Eyni naqilin ikiqat qalın variantı (20 mm²) 0,85 Ω verir: itkilər yarıya düşür, amma mis də 2 dəfə çox lazımdır — mühəndislər bu iki məsələni tarazlaşdırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Məftili uzadanda sahənin dəyişmədiyini sanmaq (cavab <span class="m">n</span> dəfə yox, <span class="m">n²</span> dəfə artır).</li>
+        <li>Diametr <span class="m">n</span> dəfə artanda <span class="m">R</span>-ı <span class="m">n</span> dəfə azaltmaq. Sahə diametrin kvadratına mütənasibdir, <span class="m">n²</span>.</li>
+        <li>Kəsib paralel birləşdirəndə <span class="m">R/n</span> yazmaq. Düzü <span class="m">R/n²</span> (hər hissə də <span class="m">n</span> dəfə kiçikdir).</li>
+        <li>Halqada diametr ucları üçün <span class="m">R/2</span> yazmaq. Yarım halqalar paraleldir: <span class="m">R/4</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">R ~ l/S (material eyni)
+l ×n → R ×n,   S ×n → R ÷n,   d ×n → R ÷n²
+Uzatma (V = lS sabit):  R ×n²
+n hissəyə kəsib paralel:  R ÷n²
+Halqa, diametr ucları:  R/4</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 5 Ω. Uzunluğu 2 dəfə azaltdıq, sahəni 2 dəfə artırdıq. R? <span class="ans">5/(2·2) = 1,25 Ω.</span></li>
+        <li>R = 4 Ω olan məftil 2 dəfə uzadıldı (həcm sabit). R? <span class="ans">4·4 = 16 Ω.</span></li>
+        <li>Eyni uzunluqda, eyni sahədə nixrom (1,1) naqilin müqaviməti 22 Ω-dur. Konstantan (0,5) üçün? <span class="ans">22·0,5/1,1 = 10 Ω.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
