@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cəbri ifadələr dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-cebri-ifadeler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Cəbri ifadələr</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Rasional ifadələr</div>
+    <h1>Cəbri ifadələr, sadələşdirmə</h1>
+    <p>Hərfli ifadələr — <span class="m">3x² − 5x + 2</span>, <span class="m">4(3x − 2) − 6(2x − 1)</span> — cəbrin əlifbasıdır. Burada ifadənin qiymətini tapmağı, oxşar hədləri birləşdirməyi və mötərizələri açmağı öyrənəcəksən. Sonra tənliklər, çoxhədlilər, düsturlar — hamısı bu bacarıqlar üzərində qurulur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Qiymət</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Oxşar hədlər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Mötərizələr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Dəyişəni olan ifadənin qiyməti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Taksi minmə üçün 2 manat, hər kilometr üçün 0,7 manat alır. <span class="m">x</span> km yolun qiyməti: <span class="m">2 + 0,7x</span>. Bu bir <b>ifadədir</b>. 10 km getsən, <span class="m">x</span>-in yerinə 10 qoyursan: <span class="m">2 + 0,7·10 = 9</span> manat. Bir ifadə — istənilən məsafə üçün hazır cavab.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Dəyişəni olan ifadə</b> — ədədlərdən, hərflərdən (dəyişənlərdən) və əməl işarələrindən düzəlir. Dəyişənin yerinə ədəd qoyub hesabladıqda alınan ədəd — ifadənin <b>qiymətidir</b>.</p>
+      <div class="fm">1. Dəyişənin yerinə ədədi qoy.
+   Mənfi ədədi MÖTƏRİZƏYƏ al: x = −3 → (−3)
+2. Əməllər sırası:
+   mötərizə → qüvvət → vurma/bölmə → toplama/çıxma</div>
+      <p>Yadda saxla: <span class="m">(−3)² = 9</span>, amma <span class="m">−3² = −9</span> (əvvəl qüvvət, sonra minus).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3x² − 5x + 2,  x = −2
+   3·(−2)² − 5·(−2) + 2
+   = 3·4 + 10 + 2
+   = 24
+
+2) 2a² − 3ab + b,  a = −1, b = 4
+   2·(−1)² − 3·(−1)·4 + 4
+   = 2 + 12 + 4
+   = 18
+
+3) −x² + 4x,  x = −3
+   −(−3)² + 4·(−3)
+   = −9 − 12
+   = −21</div>
+      <div class="life"><b>Həyatdan.</b> Hərarətin Selsidən Farengeytə çevrilməsi: <span class="m">F = 1,8C + 32</span>. Bakıda <span class="m">C = 25</span>: <span class="m">F = 1,8·25 + 32 = 77</span>. Qışda <span class="m">C = −5</span>: <span class="m">F = 1,8·(−5) + 32 = 23</span>. Bir ifadə, iki qiymət.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi ədədi mötərizəsiz qoymaq: <span class="m">x = −3</span> olanda <span class="m">x²</span> yerinə <span class="m">−3²</span> yazmaq. Düzü: <span class="m">(−3)² = 9</span>.</li>
+        <li><span class="m">−x²</span>-də minusu "udmaq": <span class="m">x = −3</span> olanda <span class="m">−x² = −9</span>, 9 yox.</li>
+        <li>Əməllər sırasını pozmaq: <span class="m">2 + 3·4 = 14</span>, 20 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Dəyişən → ədəd (mənfisi mötərizədə).
+Sıra: mötərizə, qüvvət, vurma/bölmə, toplama/çıxma.
+(−a)² = a²,  −a² = −(a²).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 4x</span>, <span class="m">x = −3</span>. <span class="ans">(−3)² − 4·(−3) = 9 + 12 = 21.</span></li>
+        <li><span class="m">−a²</span>, <span class="m">a = −5</span>. <span class="ans">−(−5)² = −25.</span></li>
+        <li><span class="m">2(a − b)²</span>, <span class="m">a = 7</span>, <span class="m">b = 4</span>. <span class="ans">2·(7 − 4)² = 2·9 = 18.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Birhədli və oxşar hədlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Səbətdə 3 alma və 2 armud var, sonra 4 alma da qoydun. Neçə alma? 7. Bəs "9 meyvə-alma-armud"? Belə demirik: almalar almalarla, armudlar armudlarla toplanır. Cəbrdə də belədir: <span class="m">3a + 2p + 4a = 7a + 2p</span>.</p>
+
+      <h3><span class="st">2</span> Birhədli</h3>
+      <p><b>Birhədli</b> — ədədlərin, dəyişənlərin və onların qüvvətlərinin <b>hasilidir</b>: <span class="m">5x²</span>, <span class="m">−3ab</span>, <span class="m">7</span>, <span class="m">x</span>. <b>Standart şəkil</b>: əvvəldə bir ədəd (əmsal), sonra hər dəyişən bir dəfə, öz üstü ilə.</p>
+      <div class="fm">3x²y · (−2xy³)
+= 3·(−2) · x²·x · y·y³
+= −6x³y⁴
+Əmsal: −6.  Dərəcə: 3 + 4 = 7</div>
+      <p><b>Dərəcə</b> — bütün dəyişənlərin üstlərinin cəmi. Vuranda <b>əmsallar vurulur, üstlər toplanır</b>. Qüvvətə yüksəldəndə əmsal qüvvətə yüksəlir, üstlər vurulur: <span class="m">(−2x³y)² = 4x⁶y²</span>.</p>
+
+      <h3><span class="st">3</span> Oxşar hədlər</h3>
+      <p><b>Oxşar hədlər</b> — hərf hissəsi tam eyni olan hədlər: <span class="m">5x²</span> və <span class="m">−x²</span> oxşardır; <span class="m">x²</span> və <span class="m">x</span> oxşar deyil. Oxşar hədləri birləşdirmək (<b>islah etmək</b>) — əmsallarını toplamaq, hərf hissəsini saxlamaqdır.</p>
+      <div class="fm">5x − 3x + x = (5 − 3 + 1)x = 3x</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 7a − 3b + 2a + 5b − a
+   a-lar:  7a + 2a − a = 8a
+   b-lər: −3b + 5b = 2b
+   Cavab: 8a + 2b
+
+2) 4x² − 3x + 5 − x² + 7x − 8
+   x²:  4x² − x² = 3x²
+   x:  −3x + 7x = 4x
+   ədəd: 5 − 8 = −3
+   Cavab: 3x² + 4x − 3
+
+3) (−3a²b)³ = (−3)³·a⁶b³ = −27a⁶b³
+   Dərəcə: 6 + 3 = 9</div>
+      <div class="life"><b>Həyatdan.</b> Kassa hesabı: səhər <span class="m">5</span> qələm və <span class="m">3</span> dəftər satıldı, axşam <span class="m">2</span> qələm və <span class="m">4</span> dəftər. Qələm <span class="m">q</span>, dəftər <span class="m">d</span> manatdırsa, gəlir: <span class="m">5q + 3d + 2q + 4d = 7q + 7d</span>. Qələmlərin pulu dəftərlərin pulu ilə qarışmır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Fərqli hədləri birləşdirmək: <span class="m">3x + 2y ≠ 5xy</span>, <span class="m">x² + x ≠ x³</span>.</li>
+        <li><span class="m">−x</span>-in əmsalını 0 və ya 1 saymaq. Əmsal <span class="m">−1</span>-dir.</li>
+        <li>Vurmada üstləri vurmaq: <span class="m">x²·x³ = x⁵</span>, <span class="m">x⁶</span> yox.</li>
+        <li>Toplamada üstləri toplamaq: <span class="m">x² + x² = 2x²</span>, <span class="m">x⁴</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Vurma: əmsallar vurulur, üstlər toplanır.
+Dərəcə = üstlərin cəmi.
+Oxşar hədlər: hərf hissəsi eyni → əmsallar toplanır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">5ab − 2a + 3ab + a</span> sadələşdir. <span class="ans">8ab − a.</span></li>
+        <li><span class="m">−4x³y²</span> birhədlisinin dərəcəsi? <span class="ans">3 + 2 = 5.</span></li>
+        <li><span class="m">2x · 3x</span> = ? <span class="ans">6x² (6x yox).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Mötərizələrin açılması və sadələşdirmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">4(3x − 2) − 6(2x − 1)</span> ifadəsinin <span class="m">x = 1,37</span> olanda qiyməti nədir? Birbaşa hesablasan — uzun və səhvə açıq. Mötərizələri açsan — <span class="m">x</span> tamamilə silinir və cavab bir sətirdə çıxır. Sadələşdirmə vaxt qazandırır.</p>
+
+      <h3><span class="st">2</span> Qaydalar</h3>
+      <div class="fm">a(b + c) = ab + ac      (paylama qanunu)
++(a − b + c) = a − b + c   (işarələr qalır)
+−(a − b + c) = −a + b − c  (HƏR işarə dəyişir)
+−k(a − b) = −ka + kb</div>
+      <p>Mötərizənin qarşısındakı ədəd (işarəsi ilə birlikdə) <b>hər</b> həddə vurulur. Sonra oxşar hədləri birləşdir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3(2x − 5) − 4(x − 2)
+   = 6x − 15 − 4x + 8
+   = 2x − 7
+
+2) x(x + 3) − (x² − 2x + 5),  x = 2026
+   = x² + 3x − x² + 2x − 5
+   = 5x − 5
+   x = 2026:  5·2026 − 5 = 10125
+
+3) 4(3x − 2) − 6(2x − 1),  x = 1,37
+   = 12x − 8 − 12x + 6
+   = −2     (x silindi — qiymət x-dən asılı deyil)</div>
+      <div class="life"><b>Həyatdan.</b> Böyük bileti <span class="m">x</span> manat, uşaq bileti ondan 2 manat ucuzdur. 2 böyük və 3 uşaq bileti: <span class="m">2x + 3(x − 2) = 5x − 6</span>. <span class="m">x = 8</span> olanda: <span class="m">40 − 6 = 34</span> manat. Yoxla: <span class="m">2·8 + 3·6 = 16 + 18 = 34</span> ✓.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">−(x − 5) = −x − 5</span>. Səhvdir! İkinci hədd də işarəsini dəyişir: <span class="m">−x + 5</span>.</li>
+        <li>Ədədi yalnız birinci həddə vurmaq: <span class="m">3(x + 4) = 3x + 4</span>. Düzü: <span class="m">3x + 12</span>.</li>
+        <li><span class="m">−2(3 − x)</span>-də mənfi vurub mənfi almaq: düzü <span class="m">−6 + 2x</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qarşıdakı ədəd hər həddə vurulur.
+"−" qarşısında: içindəki bütün işarələr dəyişir.
+Narahat qiymət? Əvvəl sadələşdir, sonra qoy.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">−(2a − 7 + b)</span> aç. <span class="ans">−2a + 7 − b.</span></li>
+        <li><span class="m">5(x − 1) − 2(2x − 3)</span> sadələşdir. <span class="ans">5x − 5 − 4x + 6 = x + 1.</span></li>
+        <li><span class="m">2(3a + b) − 3(2a − b)</span>, <span class="m">a = 99</span>, <span class="m">b = 2</span>. <span class="ans">6a + 2b − 6a + 3b = 5b = 10.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Məsələdən ifadəyə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda məsələ çox vaxt sözlə verilir: "uzunluğu enindən 5 sm çox", "atası ondan 3 dəfə böyük". Bunu hərfli ifadəyə çevirə bilsən, qalanı — Dərs 1–3-dəki texnikadır.</p>
+
+      <h3><span class="st">2</span> Sözdən işarəyə</h3>
+      <div class="fm">"x-dən 5 çox"        →  x + 5
+"x-dən 3 az"         →  x − 3
+"x-dən 4 dəfə çox"   →  4x
+"x-in yarısı"        →  x/2
+"ardıcıl üç ədəd"    →  n, n + 1, n + 2</div>
+      <p>Plan: 1) naməlumu hərflə işarə et; 2) qalan kəmiyyətləri onunla ifadə et; 3) ifadəni qur və sadələşdir; 4) lazım olsa, ədədi qoy.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Düzbucaqlının tərəfləri (x + 5) sm və (2x − 3) sm.
+   Perimetr, x = 7?
+   P = 2((x + 5) + (2x − 3)) = 2(3x + 2) = 6x + 4
+   x = 7:  6·7 + 4 = 46 sm
+   Yoxla: 12 + 11 = 23, 2·23 = 46 ✓
+
+2) Fikrət x yaşındadır, atası 3 dəfə böyükdür.
+   5 il sonra yaşlarının cəmi, x = 14?
+   (x + 5) + (3x + 5) = 4x + 10
+   x = 14:  56 + 10 = 66
+
+3) Ardıcıl üç natural ədədin cəmi:
+   n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)
+   Deməli cəm həmişə 3-ə bölünür.</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Düzbucaqlı: uzunluğu x + 5, eni 2x − 3">
+          <rect x="60" y="25" width="180" height="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="150" y="16" text-anchor="middle" class="lbl">x + 5</text>
+          <text x="150" y="138" text-anchor="middle" class="lbl">x + 5</text>
+          <text x="52" y="75" text-anchor="end" class="lbl">2x − 3</text>
+          <text x="248" y="75" class="lbl">2x − 3</text>
+        </svg>
+        <div class="cap"><p>Perimetr — dörd tərəfin cəmi: iki dəfə <span class="m">x + 5</span>, iki dəfə <span class="m">2x − 3</span>. Sadələşdir: <span class="m">6x + 4</span>.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Telefon tarifi: ayda 5 manat abunə + hər GB internet 1,5 manat. <span class="m">x</span> GB üçün: <span class="m">5 + 1,5x</span>. İki ay, birində <span class="m">x</span>, digərində <span class="m">x + 2</span> GB: <span class="m">(5 + 1,5x) + (5 + 1,5(x + 2)) = 3x + 13</span>. <span class="m">x = 4</span> olanda — 25 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Ondan 3 dəfə böyük" yerinə <span class="m">x + 3</span> yazmaq. "Dəfə" — vurmadır: <span class="m">3x</span>.</li>
+        <li>Perimetrdə yalnız iki tərəfi toplamaq. Düzbucaqlının dörd tərəfi var: <span class="m">2(a + b)</span>.</li>
+        <li>"5 il sonra" yalnız birinin yaşına əlavə etmək. Hər kəs 5 il böyüyür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Naməlum → hərf. Qalanlar → onunla ifadə.
+İfadəni qur → sadələşdir → ədədi qoy.
+Cavabı mətnlə yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kvadratın tərəfi <span class="m">(x + 2)</span> sm. Perimetri? <span class="ans">4(x + 2) = 4x + 8.</span></li>
+        <li>Qələm <span class="m">x</span> manat, dəftər ondan 1 manat bahadır. 3 qələm və 2 dəftər? <span class="ans">3x + 2(x + 1) = 5x + 2.</span></li>
+        <li>Ardıcıl iki cüt ədədin cəmi, kiçiyi <span class="m">2n</span>? <span class="ans">2n + (2n + 2) = 4n + 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

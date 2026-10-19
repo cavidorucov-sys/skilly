@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Müxtəsər vurma düsturları dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-muxteser-vurma.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Müxtəsər vurma düsturları</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Rasional ifadələr</div>
+    <h1>Müxtəsər vurma düsturları</h1>
+    <p>Bəzi hasillər o qədər tez-tez çıxır ki, onları hər dəfə açmaq əvəzinə hazır düsturla yazırıq: <span class="m">(a + b)²</span>, <span class="m">a² − b²</span>, kublar. Bu düsturlar həm ifadələri sadələşdirir, həm də <span class="m">101²</span>, <span class="m">49·51</span> kimi hesabları başda, kalkulyatorsuz etməyə imkan verir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>(a ± b)²</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>a² − b²</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kublar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tez hesab</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Cəmin və fərqin kvadratı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tərəfi 10 m olan kvadrat bağçanın tərəfini 2 m uzatdılar. Sahə nə qədər artdı? Çoxları "4 m²" deyir. Əslində <span class="m">12² − 10² = 44</span> m². Niyə belə çox? Cavab — <span class="m">(a + b)²</span> düsturundakı ortadakı həddədir.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fm">(a + b)² = a² + 2ab + b²
+(a − b)² = a² − 2ab + b²</div>
+      <p>Sözlə: birincinin kvadratı, üstəgəl (çıx) ikiqat hasil, üstəgəl ikincinin kvadratı. Şəkildə tərəfi <span class="m">a + b</span> olan kvadrat dörd hissəyə bölünür: <span class="m">a²</span>, <span class="m">b²</span> və iki eyni düzbucaqlı <span class="m">ab</span>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Tərəfi a + b olan kvadrat: a², iki ab və b² hissələri">
+          <rect x="70" y="20" width="120" height="120" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="190" y="20" width="50" height="120" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="70" y="140" width="120" height="50" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="190" y="140" width="50" height="50" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="130" y="85" text-anchor="middle" class="lbl">a²</text>
+          <text x="215" y="85" text-anchor="middle" class="lbl">ab</text>
+          <text x="130" y="170" text-anchor="middle" class="lbl">ab</text>
+          <text x="215" y="170" text-anchor="middle" class="lbl">b²</text>
+          <text x="130" y="13" text-anchor="middle" class="lbl">a</text>
+          <text x="215" y="13" text-anchor="middle" class="lbl">b</text>
+          <text x="62" y="85" text-anchor="end" class="lbl">a</text>
+          <text x="62" y="170" text-anchor="end" class="lbl">b</text>
+        </svg>
+        <div class="cap"><p>Bütün kvadrat: <span class="m">(a + b)² = a² + ab + ab + b² = a² + 2ab + b²</span>. İki ədəd <span class="m">ab</span> düzbucaqlısı — "ikiqat hasil".</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x + 5)² = x² + 2·x·5 + 5² = x² + 10x + 25
+
+2) (3x − 2y)² = (3x)² − 2·3x·2y + (2y)²
+             = 9x² − 12xy + 4y²
+
+3) Tərsinə: x² − 14x + 49
+   49 = 7², 14x = 2·x·7
+   = (x − 7)²
+
+4) x² + 6x + c tam kvadrat olsun:
+   6x = 2·x·3 → c = 3² = 9</div>
+      <div class="life"><b>Həyatdan.</b> Bağçanın nümunəsi: <span class="m">(10 + 2)² = 100 + 2·10·2 + 4 = 144</span>. Artım: <span class="m">2·10·2 + 2² = 40 + 4 = 44</span> m². İki uzun zolaq (hər biri <span class="m">10 × 2</span>) və küncdə kiçik kvadrat (<span class="m">2 × 2</span>).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(a + b)² = a² + b²</span> — ən məşhur səhv. Ortadakı <span class="m">2ab</span> itib.</li>
+        <li><span class="m">(3x)²</span>-ni <span class="m">3x²</span> yazmaq. Düzü: <span class="m">9x²</span> — əmsal da kvadrata yüksəlir.</li>
+        <li><span class="m">(a − b)²</span>-də <span class="m">b²</span>-ni mənfi yazmaq. Kvadrat həmişə müsbətdir: <span class="m">+b²</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(a ± b)² = a² ± 2ab + b²
+Üç hədd: kvadrat, ikiqat hasil, kvadrat.
+Tam kvadrat: c = (x-in əmsalının yarısı)².</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x − 6)²</span> aç. <span class="ans">x² − 12x + 36.</span></li>
+        <li><span class="m">(2a + 3)²</span> aç. <span class="ans">4a² + 12a + 9.</span></li>
+        <li><span class="m">x² + 8x + c</span> tam kvadratdır. <span class="m">c</span> = ? <span class="ans">8x = 2·x·4 → c = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kvadratlar fərqi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">49·51</span> neçədir? Başda vurmaq çətindir. Amma <span class="m">49 = 50 − 1</span>, <span class="m">51 = 50 + 1</span>, və <span class="m">(50 − 1)(50 + 1) = 2500 − 1 = 2499</span>. Bir saniyə! Bu — kvadratlar fərqi düsturudur.</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fm">(a − b)(a + b) = a² − b²
+a² − b² = (a − b)(a + b)</div>
+      <p>Mötərizələr yalnız ortadakı işarə ilə fərqlənirsə, hasil — kvadratlar fərqidir, orta hədd yoxdur: <span class="m">−ab + ab = 0</span>. Tərsinə oxusan, <span class="m">a² − b²</span>-ni vuruqlara ayırırsan.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x − 7)(x + 7) = x² − 49
+
+2) (2x + 3y)(2x − 3y) = 4x² − 9y²
+
+3) 25x² − 16 = (5x)² − 4² = (5x − 4)(5x + 4)
+
+4) x − y = 3, x² − y² = 39.  x + y = ?
+   (x − y)(x + y) = 39 → 3(x + y) = 39 → x + y = 13
+
+5) (x − 2)(x + 2)(x² + 4) = (x² − 4)(x² + 4) = x⁴ − 16</div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat kafelin tərəfi 30 sm-dir, ortasından tərəfi 10 sm olan kvadrat deşik kəsilir. Qalan sahə: <span class="m">30² − 10² = (30 − 10)(30 + 10) = 20·40 = 800</span> sm².</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a² − b²</span>-ni <span class="m">(a − b)²</span> ilə qarışdırmaq. <span class="m">(a − b)² = a² − 2ab + b²</span> — başqa şeydir.</li>
+        <li><span class="m">a² + b²</span>-ni də belə ayırmağa çalışmaq. Kvadratların <b>cəmi</b> bu düsturla vuruqlara ayrılmır.</li>
+        <li><span class="m">(3x)² = 3x²</span> yazmaq: <span class="m">(3x − 1)(3x + 1) = 9x² − 1</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(a − b)(a + b) = a² − b²  (orta hədd yoxdur)
+x² − y² = (x − y)(x + y): iki ədəd bilinirsə, üçüncüsü tapılır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(a − 9)(a + 9)</span>. <span class="ans">a² − 81.</span></li>
+        <li><span class="m">49 − x²</span> vuruqlara ayır. <span class="ans">(7 − x)(7 + x).</span></li>
+        <li><span class="m">x + y = 10</span>, <span class="m">x − y = 4</span>. <span class="m">x² − y²</span> = ? <span class="ans">4·10 = 40.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Cəmin və fərqin kubu, kubların cəmi və fərqi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tərəfi <span class="m">x</span> sm olan kub şəklində qutunun hər tərəfini 1 sm böyütsək, həcm <span class="m">(x + 1)³</span> olur. Onu açmaq üçün iki dəfə vurmaq lazımdır — düstur bunu bir addımda edir.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fm">(a + b)³ = a³ + 3a²b + 3ab² + b³
+(a − b)³ = a³ − 3a²b + 3ab² − b³
+
+a³ + b³ = (a + b)(a² − ab + b²)
+a³ − b³ = (a − b)(a² + ab + b²)</div>
+      <p>Kubda əmsallar <b>1, 3, 3, 1</b>-dir. Fərqin kubunda işarələr növbələşir: <span class="m">+ − + −</span>. Kubların cəmi/fərqində ikinci mötərizə <b>natamam kvadratdır</b>: ortada <span class="m">ab</span>, <span class="m">2ab</span> yox.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x + 2)³ = x³ + 3·x²·2 + 3·x·4 + 8
+            = x³ + 6x² + 12x + 8
+
+2) (x − 3)³ = x³ − 9x² + 27x − 27
+
+3) x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)
+
+4) x³ + 27 = (x + 3)(x² − 3x + 9)
+
+5) a + b = 5, ab = 6.  a³ + b³ = ?
+   a³ + b³ = (a + b)³ − 3ab(a + b)
+           = 125 − 3·6·5 = 125 − 90 = 35
+   Yoxla: a = 2, b = 3 → 8 + 27 = 35 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Tərəfi 10 sm olan kub qutunu hər istiqamətdə 1 sm böyütdülər. Həcm: <span class="m">11³ = (10 + 1)³ = 1000 + 300 + 30 + 1 = 1331</span> sm³. Artım 331 sm³ — "1 sm" az görünür, amma həcm üçüncü dərəcə ilə böyüyür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(a + b)³ = a³ + b³</span>. Ortadakı <span class="m">3a²b + 3ab²</span> itib.</li>
+        <li><span class="m">a³ + b³ = (a + b)(a² − 2ab + b²)</span> yazmaq. Ortada <span class="m">−ab</span>-dir.</li>
+        <li>Fərqin kubunda sonuncu hədd: <span class="m">(x − 3)³</span>-də <span class="m">−27</span>, +27 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kub: əmsallar 1, 3, 3, 1.
+a³ ± b³ = (a ± b)(a² ∓ ab + b²).
+a³ + b³ = (a + b)³ − 3ab(a + b).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x + 1)³</span> aç. <span class="ans">x³ + 3x² + 3x + 1.</span></li>
+        <li><span class="m">x³ − 1</span> vuruqlara ayır. <span class="ans">(x − 1)(x² + x + 1).</span></li>
+        <li><span class="m">(x − 2)³</span>-da <span class="m">x</span>-in əmsalı? <span class="ans">3·x·2² = 12x, əmsal 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Düsturlarla tez hesablama və hiylələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>DİM-də kalkulyator yoxdur, vaxt isə azdır. <span class="m">998·1002</span>, <span class="m">67² − 33²</span>, "<span class="m">a + b = 7</span>, <span class="m">ab = 10</span>, <span class="m">a² + b²</span> = ?" — belə suallar düsturu bilənə bir dəqiqə, bilməyənə beş dəqiqə aparır.</p>
+
+      <h3><span class="st">2</span> Fənd: dəyirmi ədəd ± kiçik ədəd</h3>
+      <div class="fm">101² = (100 + 1)² = 10000 + 200 + 1 = 10201
+ 99² = (100 − 1)² = 10000 − 200 + 1 =  9801
+49·51 = (50 − 1)(50 + 1) = 2500 − 1 = 2499
+53² − 47² = (53 − 47)(53 + 47) = 6·100 = 600</div>
+
+      <h3><span class="st">3</span> Fənd: a + b və ab-dən istifadə</h3>
+      <div class="fm">a² + b² = (a + b)² − 2ab
+a² + b² = (a − b)² + 2ab
+(a − b)² = (a + b)² − 4ab</div>
+      <div class="ex">a + b = 7, ab = 10:
+  a² + b² = 49 − 20 = 29
+  (a − b)² = 49 − 40 = 9
+Yoxla: a = 5, b = 2 → 25 + 4 = 29 ✓, (5 − 2)² = 9 ✓</div>
+
+      <h3><span class="st">4</span> Fənd: tam kvadratı tanı və ayır</h3>
+      <div class="ex">1) x² − 2xy + y²,  x = 57, y = 47
+   = (x − y)² = 10² = 100
+
+2) x² + 10x + 25,  x = 995
+   = (x + 5)² = 1000² = 1000000
+
+3) x² − 6x + 14 — ən kiçik qiyməti?
+   = x² − 6x + 9 + 5 = (x − 3)² + 5
+   (x − 3)² ≥ 0, ən kiçiyi 0 (x = 3)
+   Ən kiçik qiymət: 5</div>
+      <div class="life"><b>Həyatdan.</b> Bir dəftər 95 qəpikdir, məktəb 105 dəftər alır. Kassir kalkulyator axtarır, sən isə deyirsən: <span class="m">95·105 = 100² − 5² = 10000 − 25 = 9975</span> qəpik, yəni 99 manat 75 qəpik.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">99² = 10000 − 1</span> yazmaq. Bu <span class="m">a² − b²</span> deyil, <span class="m">(a − b)²</span>-dir: <span class="m">10000 − 200 + 1 = 9801</span>.</li>
+        <li><span class="m">a² + b² = (a + b)² + 2ab</span> — işarə səhvi. <span class="m">2ab</span> çıxılır.</li>
+        <li>Ən kiçik qiymətdə <span class="m">x</span>-i cavab yazmaq. Soruşulan ifadənin qiymətidir (5), <span class="m">x = 3</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ədədi "dəyirmi ± kiçik" yaz.
+İki ədədin hasili, ortası dəyirmidirsə: a² − b².
+a² + b² = (a + b)² − 2ab.
+(x − m)² + q-nun ən kiçik qiyməti q-dur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">102²</span>. <span class="ans">10000 + 400 + 4 = 10404.</span></li>
+        <li><span class="m">38·42</span>. <span class="ans">40² − 2² = 1600 − 4 = 1596.</span></li>
+        <li><span class="m">67² − 33²</span>. <span class="ans">(67 − 33)(67 + 33) = 34·100 = 3400.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

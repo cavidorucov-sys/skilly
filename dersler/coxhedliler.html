@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çoxhədlilər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-coxhedliler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Çoxhədlilər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Rasional ifadələr</div>
+    <h1>Çoxhədlilər</h1>
+    <p>Çoxhədli — bir neçə birhədlinin cəmidir: <span class="m">2x³ − 5x + 7</span>. Onları standart şəklə salmağı, dərəcəsini tapmağı, toplamağı, çıxmağı, vurmağı və birhədliyə bölməyi öyrənəcəksən. Kvadrat tənliklər, vuruqlara ayırma, müxtəsər vurma düsturları — hamısı buradan başlayır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Standart şəkil</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama, çıxma</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Vurma</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Bölmə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Çoxhədli, standart şəkil, dərəcə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qutunun həcmi, otağın sahəsi, dükanın gəliri tez-tez <span class="m">x² + 5x + 6</span> kimi yazılır. Belə ifadəni səliqəli (standart) yazmasan, iki fərqli görünüşlü ifadənin eyni olduğunu görməzsən, dərəcəsini də səhv deyərsən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Çoxhədli</b> — birhədlilərin cəmidir. Hər birhədli onun <b>həddidir</b>. <b>Standart şəkil</b>: hər hədd standart birhədlidir və oxşar hədlər yoxdur (birləşdirilib). Adətən hədləri üstün azalması ilə düzürük.</p>
+      <div class="fm">2x³ − 5x² + x − 7
+x³-ün əmsalı 2, x²-nin −5, x-in 1
+sərbəst hədd −7
+dərəcə 3 (ən böyük üst)</div>
+      <p><b>Çoxhədlinin dərəcəsi</b> — standart şəkildə hədlərin dərəcələrindən ən böyüyüdür. İki dəyişən olanda həddin dərəcəsi üstlərin cəmidir: <span class="m">x²y³</span> — 5-ci dərəcə.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3x² − 5x + 2x³ − x² + 7 − 2x³ + x
+   x³:  2x³ − 2x³ = 0   (yox olur!)
+   x²:  3x² − x² = 2x²
+   x:  −5x + x = −4x
+   Standart şəkil: 2x² − 4x + 7
+   Dərəcə: 2  (3 yox!)
+
+2) 4x²y³ − 7xy + 2x⁴
+   dərəcələr: 2 + 3 = 5;  1 + 1 = 2;  4
+   Çoxhədlinin dərəcəsi: 5</div>
+      <div class="life"><b>Həyatdan.</b> Fotoqraf <span class="m">x</span> sm-lik kvadrat şəklin ətrafına hər tərəfdən 2 sm haşiyə qoyur. Çərçivəli şəklin sahəsi <span class="m">(x + 4)² = x² + 8x + 16</span> — 2-ci dərəcəli çoxhədli. Sərbəst hədd 16 — dörd künc kvadratının (<span class="m">2 × 2</span>) cəmi.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dərəcəni standart şəklə salmadan demək. <span class="m">x³</span> hədləri silinə bilər.</li>
+        <li><span class="m">xy</span>-nin dərəcəsini 1 saymaq. Üstlər toplanır: <span class="m">1 + 1 = 2</span>.</li>
+        <li>Sərbəst həddi işarəsiz yazmaq: <span class="m">x² − 7</span>-də sərbəst hədd <span class="m">−7</span>-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl oxşar hədləri birləşdir — sonra dərəcə.
+Dərəcə = ən böyük həddin dərəcəsi.
+Əmsal və sərbəst hədd işarəsi ilə götürülür.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">5 − 3x + x³ − x³ + 2x²</span>-nin dərəcəsi? <span class="ans">x³ silinir: 2x² − 3x + 5, dərəcə 2.</span></li>
+        <li><span class="m">2x³ − 5 + x − 3</span>-ün sərbəst həddi? <span class="ans">−5 − 3 = −8.</span></li>
+        <li><span class="m">3x²y⁴ − x⁵</span>-in dərəcəsi? <span class="ans">2 + 4 = 6 və 5 → 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Çoxhədlilərin toplanması və çıxılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mağazanın gəliri bir çoxhədli, xərci başqa bir çoxhədlidir. Mənfəət = gəlir − xərc. Bu, çoxhədlilərin çıxılmasıdır. Sadə görünür, amma imtahanda ən çox işarə səhvi məhz burada olur.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">P + Q:  mötərizələri aç (işarələr qalır),
+        oxşar hədləri birləşdir.
+P − Q:  Q-nun HƏR həddinin işarəsini dəyiş,
+        sonra oxşar hədləri birləşdir.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">P = 3x² − 2x + 5,  Q = x² + 4x − 1
+
+1) P + Q = 3x² − 2x + 5 + x² + 4x − 1
+         = 4x² + 2x + 4
+
+2) P − Q = 3x² − 2x + 5 − x² − 4x + 1
+         = 2x² − 6x + 6
+
+3) (2a² − ab + b²) − (a² − 3ab − b²)
+   = 2a² − ab + b² − a² + 3ab + b²
+   = a² + 2ab + 2b²</div>
+      <div class="life"><b>Həyatdan.</b> Ailənin aylıq gəliri <span class="m">3x + 500</span>, xərci <span class="m">x + 320</span> manatdır (<span class="m">x</span> — əlavə iş saatlarından gələn pul). Qalan: <span class="m">(3x + 500) − (x + 320) = 2x + 180</span>. <span class="m">x = 60</span> olanda — 300 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Çıxanda yalnız birinci həddin işarəsini dəyişmək: <span class="m">−(x² + 4x − 1)</span> = <span class="m">−x² − 4x + 1</span>, bütün hədlər!</li>
+        <li>Toplamada üstləri toplamaq: <span class="m">3x² + x² = 4x²</span>, <span class="m">4x⁴</span> yox.</li>
+        <li>Olmayan həddi unutmaq: P-də <span class="m">x³</span> yoxdursa, onun əmsalı 0-dır, Q-dakı <span class="m">x³</span> nəticəyə olduğu kimi keçir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Toplama: işarələr qalır.
+Çıxma: çıxılanın bütün işarələri dəyişir.
+Sonra — oxşar hədlər.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² + 3x) + (2x² − 5x + 1)</span>. <span class="ans">3x² − 2x + 1.</span></li>
+        <li><span class="m">(4x − 7) − (x² + 4x − 2)</span>. <span class="ans">4x − 7 − x² − 4x + 2 = −x² − 5.</span></li>
+        <li><span class="m">P = x³ − 1</span>, <span class="m">Q = x³ + x</span>. <span class="m">P − Q</span>-nin <span class="m">x = 3</span> olanda qiyməti? <span class="ans">P − Q = −x − 1; x = 3: −4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Çoxhədlilərin vurulması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Düzbucaqlının sahəsi = uzunluq × en. Tərəflər <span class="m">x + 3</span> və <span class="m">x + 2</span> olanda sahə — iki çoxhədlinin hasilidir. Şəkildə görəcəksən: böyük düzbucaqlı dörd kiçik hissəyə bölünür.</p>
+
+      <h3><span class="st">2</span> Qaydalar</h3>
+      <div class="fm">Birhədli × çoxhədli:
+  a(b + c − d) = ab + ac − ad
+Çoxhədli × çoxhədli:
+  (a + b)(c + d) = ac + ad + bc + bd
+Hər hədd hər həddə vurulur.</div>
+      <p>2 hədli × 3 hədli = 6 hasil. Hasilləri sayaraq yoxla ki, heç biri unudulmasın. Sonra oxşar hədləri birləşdir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 190" role="img" aria-label="Düzbucaqlı x + 3 ilə x + 2 tərəfli, dörd hissəyə bölünüb: x², 3x, 2x, 6">
+          <rect x="40" y="20" width="130" height="110" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="170" y="20" width="80" height="110" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="130" width="130" height="45" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="170" y="130" width="80" height="45" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="105" y="80" text-anchor="middle" class="lbl">x²</text>
+          <text x="210" y="80" text-anchor="middle" class="lbl">3x</text>
+          <text x="105" y="158" text-anchor="middle" class="lbl">2x</text>
+          <text x="210" y="158" text-anchor="middle" class="lbl">6</text>
+          <text x="105" y="13" text-anchor="middle" class="lbl">x</text>
+          <text x="210" y="13" text-anchor="middle" class="lbl">3</text>
+          <text x="32" y="80" text-anchor="end" class="lbl">x</text>
+          <text x="32" y="158" text-anchor="end" class="lbl">2</text>
+        </svg>
+        <div class="cap"><p><span class="m">(x + 3)(x + 2) = x² + 3x + 2x + 6 = x² + 5x + 6</span>. Dörd hissə — dörd hasil.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) −3x²(2x² − 5x + 4)
+   = −6x⁴ + 15x³ − 12x²
+
+2) (2x − 3)(x + 4)
+   = 2x² + 8x − 3x − 12
+   = 2x² + 5x − 12
+
+3) (x + 2)(x² − x + 3)
+   = x³ − x² + 3x + 2x² − 2x + 6
+   = x³ + x² + x + 6</div>
+      <div class="life"><b>Həyatdan.</b> Köynək 20 manata satılır, gündə 50 ədəd alınır. Hər 1 manat bahalaşma satışı 2 köynək azaldır. Qiyməti <span class="m">x</span> manat artırsaq, gəlir: <span class="m">(20 + x)(50 − 2x) = 1000 + 10x − 2x²</span>. <span class="m">x = 5</span>: <span class="m">25·40 = 1000</span>. <span class="m">x = 2</span>: <span class="m">22·46 = 1012</span> — bir az bahalaşma gəliri artırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hasili unutmaq: <span class="m">(x + 2)(x + 3) = x² + 6</span>. Ortadakı <span class="m">3x + 2x</span> itib.</li>
+        <li>İşarə: <span class="m">(−3)·(−5x) = +15x</span>.</li>
+        <li><span class="m">x·x = 2x</span> yazmaq. Düzü: <span class="m">x²</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hər hədd × hər hədd (2 × 3 = 6 hasil).
+Əmsallar vurulur, üstlər toplanır.
+Sonra oxşar hədlər.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2x(x² − 3x + 1)</span>. <span class="ans">2x³ − 6x² + 2x.</span></li>
+        <li><span class="m">(x − 5)(x + 2)</span>. <span class="ans">x² + 2x − 5x − 10 = x² − 3x − 10.</span></li>
+        <li><span class="m">(3x + 1)(2x − 1)</span>-də <span class="m">x</span>-in əmsalı? <span class="ans">−3x + 2x = −x, əmsal −1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Çoxhədlinin birhədliyə bölünməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Düzbucaqlı sahənin sahəsi <span class="m">6x² + 9x</span> m², eni <span class="m">3x</span> m-dir. Uzunluğu? Sahəni enə bölürük. Bölmə vurmanın tərsidir — və onu yoxlamaq da vurma ilə olur.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">(a + b − c) : m = a : m + b : m − c : m
+Hər hədd ayrıca bölünür:
+  əmsallar bölünür,
+  üstlər çıxılır:  xᵐ : xⁿ = xᵐ⁻ⁿ</div>
+      <p>Yadda saxla: <span class="m">x² : x² = 1</span> (sıfır yox!), <span class="m">x : x = 1</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (12x⁴ − 8x³ + 4x²) : 4x²
+   12x⁴ : 4x² = 3x²
+   −8x³ : 4x² = −2x
+   4x² : 4x² = 1
+   Cavab: 3x² − 2x + 1
+   Yoxla: 4x²·(3x² − 2x + 1) = 12x⁴ − 8x³ + 4x² ✓
+
+2) (15a³b² − 10a²b³) : (−5a²b)
+   15a³b² : (−5a²b) = −3ab
+   −10a²b³ : (−5a²b) = 2b²
+   Cavab: −3ab + 2b²
+
+3) Sahə 6x² + 9x, en 3x:
+   uzunluq = (6x² + 9x) : 3x = 2x + 3</div>
+      <div class="life"><b>Həyatdan.</b> Sinif <span class="m">4x² + 8x</span> manat yığdı, pul <span class="m">4x</span> şagird arasında bərabər bölünür. Hər birinə: <span class="m">(4x² + 8x) : 4x = x + 2</span> manat. <span class="m">x = 6</span> (24 şagird) — 192 manat, hərəyə 8 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">4x² : 4x² = 0</span> yazmaq. Ədəd özünə bölünəndə 1 alınır.</li>
+        <li>Yalnız birinci həddi bölmək: <span class="m">(6x² + 9x) : 3x = 2x + 9x</span> — səhv, <span class="m">2x + 3</span>.</li>
+        <li>Mənfi birhədliyə bölərkən işarəni unutmaq: <span class="m">−10 : (−5) = +2</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hər hədd ayrıca bölünür.
+Əmsallar bölünür, üstlər çıxılır.
+Yoxlama: qisməti bölənə vur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(10x³ − 5x²) : 5x²</span>. <span class="ans">2x − 1.</span></li>
+        <li><span class="m">(−6x⁴ + 9x²) : (−3x²)</span>. <span class="ans">2x² − 3.</span></li>
+        <li><span class="m">(8x⁵ + 4x³) : 4x³</span>, sonra <span class="m">x = 2</span>. <span class="ans">2x² + 1; x = 2: 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
