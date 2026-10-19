@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çoxbucaqlılar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-coxbucaqlilar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Çoxbucaqlılar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Dördbucaqlılar və çoxbucaqlılar</div>
+    <h1>Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar</h1>
+    <p>Üçbucaq və dördbucaqlıdan sonra növbə istənilən sayda tərəfi olan fiqurlarındır. Bu mövzuda cəmi bir neçə düstur var: diaqonalların sayı, daxili və xarici bucaqların cəmi, düzgün çoxbucaqlının bucağı. Onları bilsən, "tərəflərin sayını tap" tipli məsələlər bir sətirdə həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Diaqonallar</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bucaqların cəmi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Xarici bucaqlar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Düzgün çoxbucaqlı</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>R və r</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Çoxbucaqlı və onun diaqonalları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dəyirmi masa ətrafında 10 nəfər oturub, hər biri yanındakılardan başqa hamı ilə əl sıxır. Neçə əl sıxma olacaq? Bu, onbucaqlının diaqonallarını saymaqla eyni məsələdir. Bu dərsdə saymağın qısa yolunu öyrənirsən.</p>
+
+      <h3><span class="st">2</span> Sınıq xətt və çoxbucaqlı</h3>
+      <p><b>Sınıq xətt</b> — ardıcıl birləşdirilmiş parçalar. Sonuncu parçanın ucu birincinin başlanğıcı ilə üst-üstə düşürsə, sınıq xətt <b>qapalıdır</b>. Öz-özünü kəsməyən qapalı sınıq xətt <b>çoxbucaqlı</b> əmələ gətirir.</p>
+      <p><span class="m">n</span> təpəsi olan çoxbucaqlının <span class="m">n</span> tərəfi və <span class="m">n</span> bucağı var — ona <span class="m">n</span>-bucaqlı deyilir. Çoxbucaqlı hər tərəfinin uzantısının bir tərəfində yerləşirsə, o, <b>qabarıqdır</b>. Bu mövzuda bütün çoxbucaqlılar qabarıqdır.</p>
+
+      <h3><span class="st">3</span> Diaqonallar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Altıbucaqlı, A təpəsindən üç diaqonal çəkilib, dörd üçbucaq alınıb">
+          <polygon points="150,20 80.7,60 80.7,140 150,180 219.3,140 219.3,60" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="20" x2="80.7" y2="140" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="150" y1="20" x2="150" y2="180" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="150" y1="20" x2="219.3" y2="140" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="144" y="14" class="lbl">A</text><text x="62" y="58" class="lbl">B</text><text x="62" y="152" class="lbl">C</text><text x="144" y="196" class="lbl">D</text><text x="226" y="152" class="lbl">E</text><text x="226" y="58" class="lbl">F</text>
+        </svg>
+        <div class="cap">
+          <p><b>Diaqonal</b> — qonşu olmayan iki təpəni birləşdirən parça.</p>
+          <p>A təpəsi özü ilə və iki qonşusu (B, F) ilə diaqonalla birləşmir. Qalır <span class="m">6 − 3 = 3</span> diaqonal: AC, AD, AE. Onlar altıbucaqlını <span class="m">6 − 2 = 4</span> üçbucağa bölür.</p>
+        </div>
+      </div>
+      <p>Hər təpədən <span class="m">n − 3</span> diaqonal çıxır, təpə <span class="m">n</span> dənədir. Amma hər diaqonalı iki dəfə saymış oluruq (AC və CA eynidir), ona görə 2-yə bölürük:</p>
+      <div class="fm">bir təpədən:    n − 3 diaqonal  (n − 2 üçbucaq)
+bütün diaqonallar:  D = n(n − 3)/2</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Altıbucaqlının neçə diaqonalı var?
+  D = 6 · 3 / 2 = 9</div>
+      <div class="ex">Nümunə 2. Çoxbucaqlının 35 diaqonalı var. n?
+  n(n − 3)/2 = 35  →  n² − 3n − 70 = 0
+  n = 10 və ya n = −7  →  n = 10</div>
+      <div class="ex">Nümunə 3. Diaqonalların sayı tərəflərin sayına bərabərdir. n?
+  n(n − 3)/2 = n  →  (n − 3)/2 = 1  →  n = 5  (beşbucaqlı)</div>
+      <div class="life"><b>Həyatdan.</b> Masa ətrafındakı 10 nəfər — onbucaqlının təpələri. Yanındakılarla əl sıxmamaq — tərəfləri saymamaq deməkdir. Əl sıxmalar — diaqonallar: <span class="m">10 · 7 / 2 = 35</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>2-yə bölməyi unutmaq: <span class="m">n(n − 3)</span> hər diaqonalı iki dəfə sayır.</li>
+        <li>Bir təpədən <span class="m">n − 1</span> və ya <span class="m">n − 2</span> diaqonal saymaq. Düzü: <span class="m">n − 3</span> (özü və iki qonşusu çıxılır).</li>
+        <li>Kvadrat tənliyin mənfi kökünü cavab yazmaq. Tərəflərin sayı natural ədəddir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bir təpədən: n − 3 diaqonal, n − 2 üçbucaq.
+Hamısı: D = n(n − 3)/2.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>On ikibucaqlının neçə diaqonalı var? <span class="ans">12 · 9 / 2 = 54.</span></li>
+        <li>Çoxbucaqlının 20 diaqonalı var. n? <span class="ans">n² − 3n − 40 = 0 → n = 8.</span></li>
+        <li>Bir təpədən 9 diaqonal çıxır. Neçəbucaqlıdır? <span class="ans">n − 3 = 9 → n = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Daxili bucaqların cəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üçbucağın bucaqlarının cəmi 180°, dördbucaqlınınkı 360°. Bəs beşbucaqlının, on ikibucaqlının? Hər dəfə ölçmək lazım deyil — cəmi tərəflərin sayı müəyyən edir.</p>
+
+      <h3><span class="st">2</span> Üçbucaqlara böl</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Beşbucaqlı bir təpədən çəkilmiş iki diaqonalla üç üçbucağa bölünüb">
+          <polygon points="150,25 73.9,80.3 103,169.7 197,169.7 226.1,80.3" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="25" x2="103" y2="169.7" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="150" y1="25" x2="197" y2="169.7" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="105" y="97" class="lbl">1</text><text x="146" y="126" class="lbl">2</text><text x="187" y="97" class="lbl">3</text>
+        </svg>
+        <div class="cap">
+          <p>Bir təpədən bütün diaqonalları çək: beşbucaqlı <span class="m">5 − 2 = 3</span> üçbucağa bölünür.</p>
+          <p>Üçbucaqların bucaqları birlikdə beşbucaqlının bucaqlarını tam doldurur: <span class="m">3 · 180° = 540°</span>.</p>
+        </div>
+      </div>
+      <div class="fm">Qabarıq n-bucaqlı:
+daxili bucaqların cəmi = (n − 2) · 180°</div>
+      <div class="fm">n = 3: 180°    n = 4: 360°    n = 5: 540°
+n = 6: 720°    n = 8: 1080°   n = 10: 1440°</div>
+
+      <h3><span class="st">3</span> Tərsinə: cəmdən n</h3>
+      <p>Cəm verilibsə, 180°-yə böl və 2 əlavə et: <span class="m">n = S : 180° + 2</span>. Cəm 180-ə bölünmürsə, belə çoxbucaqlı yoxdur.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Yeddibucaqlının bucaqlarının cəmi?
+  (7 − 2) · 180° = 900°</div>
+      <div class="ex">Nümunə 2. Cəm 1440°. n?
+  n − 2 = 1440 : 180 = 8  →  n = 10</div>
+      <div class="ex">Nümunə 3. Beşbucaqlının dörd bucağı: 100°, 110°, 120°, 90°. Beşinci?
+  Cəm 540°. 540° − 420° = 120°</div>
+      <div class="ex">Nümunə 4. Beşbucaqlının bucaqları 3 : 3 : 4 : 4 : 4 nisbətindədir. Ən böyük bucaq?
+  3 + 3 + 4 + 4 + 4 = 18 hissə,  1 hissə = 540° : 18 = 30°
+  Ən böyük: 4 · 30° = 120°</div>
+      <div class="life"><b>Həyatdan.</b> Beşbucaqlı bağ sahəsinə hasar çəkilir. Usta dörd küncdə bucaqları ölçüb: 95°, 110°, 125°, 100°. Beşinci küncü ölçməyə ehtiyac yoxdur: <span class="m">540° − 430° = 110°</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">n · 180°</span> yazmaq. Üçbucaqların sayı <span class="m">n − 2</span>-dir.</li>
+        <li>Cəmdən <span class="m">n</span> taparkən 2-ni əlavə etməyi unutmaq: <span class="m">1440 : 180 = 8</span> — bu hələ <span class="m">n − 2</span>-dir.</li>
+        <li>Qabarıq çoxbucaqlıda 180°-dən böyük və ya ona bərabər bucaq almaq — belə cavab səhvdir, yoxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S = (n − 2) · 180°
+n = S : 180° + 2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Doqquzbucaqlının bucaqlarının cəmi? <span class="ans">7 · 180° = 1260°.</span></li>
+        <li>Cəm 2340°. n? <span class="ans">2340 : 180 = 13 → n = 15.</span></li>
+        <li>Altıbucaqlının beş bucağı: 100°, 120°, 130°, 140°, 150°. Altıncı? <span class="ans">720° − 640° = 80°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Xarici bucaqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Stadionun ətrafında qaçırsan və bir dövrə vurub başladığın yerə qayıdırsan. Yol boyu harada və nə qədər dönsən də, cəmi düz bir tam dövrə — 360° dönmüş olursan. Bu, xarici bucaqların əsas qaydasıdır.</p>
+
+      <h3><span class="st">2</span> Xarici bucaq nədir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 190" role="img" aria-label="Dördbucaqlının B təpəsində daxili bucaq α və tərəfin uzantısı ilə əmələ gələn xarici bucaq">
+          <polygon points="50,170 110,70 240,90 220,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="70" x2="140" y2="20" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path d="M125.8 72.4A16 16 0 0 1 101.8 83.7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M121.3 51.1A22 22 0 0 1 131.7 73.3" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="38" y="186" class="lbl">A</text><text x="92" y="66" class="lbl">B</text><text x="244" y="88" class="lbl">C</text><text x="224" y="186" class="lbl">D</text>
+          <text x="112" y="104" class="lbl">α</text><text x="140" y="52" class="lbl">180° − α</text>
+        </svg>
+        <div class="cap">
+          <p>AB tərəfini B-dən o yana uzat. Uzantı ilə BC arasındakı bucaq — B təpəsindəki <b>xarici bucaq</b>.</p>
+          <p>Daxili və xarici bucaq qonşu bucaqlardır: <span class="m">daxili + xarici = 180°</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Cəmi həmişə 360°</h3>
+      <p>Hər təpədə bir xarici bucaq götür. <span class="m">n</span> təpədə "daxili + xarici" cütlərinin cəmi <span class="m">n · 180°</span>-dir. Ondan daxili bucaqların cəmini çıx:</p>
+      <div class="fm">xarici bucaqların cəmi
+= n · 180° − (n − 2) · 180° = 360°</div>
+      <p>Bu, <span class="m">n</span>-dən asılı deyil: üçbucaqda da, yüzbucaqlıda da 360°. Fiqurun ətrafında dolanan adam hər küncdə xarici bucaq qədər dönür və sonda bir tam dövrə vurmuş olur.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Beşbucaqlının dörd xarici bucağı: 70°, 80°, 60°, 90°. Beşinci xarici və ona uyğun daxili bucaq?
+  Xarici: 360° − 300° = 60°
+  Daxili: 180° − 60° = 120°</div>
+      <div class="ex">Nümunə 2. Daxili bucaqların cəmi xarici bucaqların cəmindən 4 dəfə böyükdür. n?
+  (n − 2) · 180° = 4 · 360° = 1440°  →  n − 2 = 8  →  n = 10</div>
+      <div class="ex">Nümunə 3. Daxili bucaqların və xarici bucaqların cəmi birlikdə 2160°. n?
+  Hər təpədə daxili + xarici = 180°:  n · 180° = 2160°  →  n = 12</div>
+      <div class="life"><b>Həyatdan.</b> Oyuncaq robot düz gedir və hər küncdə sola 45° dönür. Başlanğıca qayıdanda cəmi 360° dönmüş olacaq: <span class="m">360° : 45° = 8</span> dönmə — robot səkkizbucaqlı çəkir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Xarici bucaqların cəmini <span class="m">(n − 2) · 180°</span> saymaq. Bu, daxili bucaqların cəmidir; xarici — həmişə 360°.</li>
+        <li>Xarici bucağı <span class="m">360° − daxili</span> yazmaq. Düzü: <span class="m">180° − daxili</span>.</li>
+        <li>Bir təpədə iki xarici bucaq götürmək (hər iki tərəfi uzatmaq). Qayda hər təpədə <b>bir</b> xarici bucaq üçündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xarici = 180° − daxili.
+Xarici bucaqların cəmi = 360° (istənilən qabarıq n-bucaqlı).
+Daxili + xarici bütün təpələrdə = n · 180°.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Dördbucaqlının üç xarici bucağı: 100°, 80°, 90°. Dördüncü? <span class="ans">360° − 270° = 90°.</span></li>
+        <li>Daxili bucaqların cəmi xarici bucaqların cəmindən 2 dəfə böyükdür. n? <span class="ans">(n − 2) · 180° = 720° → n = 6.</span></li>
+        <li>Daxili bucaqların cəmi xarici bucaqların cəmindən 540° çoxdur. n? <span class="ans">(n − 2) · 180° = 900° → n = 7.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Düzgün çoxbucaqlılar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Arı pətəyinin gözləri, "STOP" nişanı, qayka, futbol topunun yamaqları — hamısı düzgün çoxbucaqlıdır. Onların bucağını bilmək lazımdır ki, kafel boşluqsuz düzülsün, qayka açara otursun.</p>
+
+      <h3><span class="st">2</span> Tərif və bucaqlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzgün altıbucaqlı, O mərkəzi, mərkəzi bucaq 60°, daxili bucaq 120°">
+          <polygon points="150,20 80.7,60 80.7,140 150,180 219.3,140 219.3,60" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="219.3" y2="60" stroke="var(--vec)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="219.3" y2="140" stroke="var(--vec)" stroke-width="2"/>
+          <circle cx="150" cy="100" r="3" fill="var(--ink)"/>
+          <path d="M167.3 90A20 20 0 0 1 167.3 110" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M167.3 30A20 20 0 0 1 132.7 30" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="134" y="104" class="lbl">O</text><text x="174" y="104" class="lbl" style="font-size:12px">60°</text><text x="137" y="62" class="lbl" style="font-size:12px">120°</text>
+        </svg>
+        <div class="cap">
+          <p><b>Düzgün çoxbucaqlı</b> — bütün tərəfləri bərabər və bütün bucaqları bərabər olan qabarıq çoxbucaqlı.</p>
+          <p>Onun <b>mərkəzi</b> (O) var. Bir tərəfin mərkəzdən göründüyü bucaq — <b>mərkəzi bucaq</b> — 360°/n-dir.</p>
+        </div>
+      </div>
+      <div class="fm">daxili bucaq = (n − 2) · 180° / n
+xarici bucaq = 360° / n      (= mərkəzi bucaq)
+daxili = 180° − 360°/n</div>
+      <div class="fm">n:       3    4    5     6     8     10    12
+daxili:  60°  90°  108°  120°  135°  144°  150°
+xarici:  120° 90°  72°   60°   45°   36°   30°</div>
+
+      <h3><span class="st">3</span> Bucaqdan n-i tapmaq</h3>
+      <p>Ən rahat yol — xarici bucaqdan keç:</p>
+      <div class="fm">xarici = 180° − daxili
+n = 360° : xarici</div>
+      <p>360 xarici bucağa bölünmürsə, belə düzgün çoxbucaqlı <b>yoxdur</b>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Düzgün on ikibucaqlının daxili bucağı?
+  (12 − 2) · 180° / 12 = 1800° : 12 = 150°
+  və ya: xarici 360° : 12 = 30°, daxili 180° − 30° = 150°</div>
+      <div class="ex">Nümunə 2. Daxili bucaq 156°. n?
+  xarici = 24°,  n = 360 : 24 = 15</div>
+      <div class="ex">Nümunə 3. Daxili bucağı 130° olan düzgün çoxbucaqlı varmı?
+  xarici = 50°,  360 : 50 = 7,2 — tam deyil  →  yoxdur</div>
+      <div class="life"><b>Həyatdan.</b> Döşəməni eyni düzgün kafellərlə boşluqsuz örtmək üçün bir təpədə görüşən bucaqların cəmi 360° olmalıdır. 60° (üçbucaq, 6 dənə), 90° (kvadrat, 4 dənə), 120° (altıbucaqlı, 3 dənə) uyğundur. Beşbucaqlının 108°-si uyğun deyil: 360 : 108 tam deyil. Arılar ona görə altıbucaqlı seçib.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">n = 360° : daxili</span> yazmaq. 360°-ni <b>xarici</b> bucağa bölürük.</li>
+        <li>"Bütün tərəfləri bərabərdir" deyə fiquru düzgün saymaq. Romb da bərabərtərəflidir, amma bucaqları fərqlidir — düzgün deyil.</li>
+        <li>Cəmi <span class="m">n</span>-ə yox, <span class="m">n − 2</span>-yə bölmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xarici = 360°/n, daxili = 180° − 360°/n.
+n = 360° : (180° − daxili).
+Cədvəl: 60, 90, 108, 120, 135, 144, 150.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düzgün onbucaqlının daxili bucağı? <span class="ans">Xarici 36°, daxili 144°.</span></li>
+        <li>Xarici bucaq 20°. n? <span class="ans">360 : 20 = 18.</span></li>
+        <li>Daxili bucağı 100° olan düzgün çoxbucaqlı varmı? <span class="ans">Xarici 80°, 360 : 80 = 4,5 — yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Düzgün çoxbucaqlıya daxilən və xaricdən çəkilmiş çevrələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qaykanı açmaq üçün açarın ağzı onun qarşı tərəfləri arasındakı məsafəyə bərabər olmalıdır. Dairəvi tirdən kvadrat brus kəsmək üçün brusun diaqonalı tirin diametrindən böyük olmamalıdır. İkisi də düzgün çoxbucaqlı ilə çevrənin əlaqəsidir.</p>
+
+      <h3><span class="st">2</span> İki çevrə, bir mərkəz</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Kvadrat, ona xaricdən çəkilmiş çevrə radiusu R və daxilən çəkilmiş çevrə radiusu r">
+          <circle cx="150" cy="100" r="70.7" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="100" y="50" width="100" height="100" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="150" cy="100" r="50" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="200" y2="50" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="150" y1="100" x2="150" y2="150" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="150" cy="100" r="3" fill="var(--ink)"/>
+          <text x="134" y="98" class="lbl">O</text><text x="178" y="88" class="lbl">R</text><text x="156" y="132" class="lbl">r</text>
+        </svg>
+        <div class="cap">
+          <p><b>Xaricdən çəkilmiş çevrə</b> bütün təpələrdən keçir; radiusu <span class="m">R</span> — mərkəzdən təpəyə qədər.</p>
+          <p><b>Daxilən çəkilmiş çevrə</b> bütün tərəflərə toxunur; radiusu <span class="m">r</span> — mərkəzdən tərəfin ortasına qədər.</p>
+          <p>İstənilən düzgün çoxbucaqlıda hər iki çevrə var və onların mərkəzi eynidir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Üç fiqur üçün düsturlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 240" role="img" aria-label="Bərabərtərəfli üçbucaq, mərkəz hündürlüyü 2:1 nisbətində bölür, R və r">
+          <circle cx="150" cy="126" r="103.9" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <polygon points="60,178 240,178 150,22.1" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="150" cy="126" r="52" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="150" y1="22.1" x2="150" y2="178" stroke="var(--vec)" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <circle cx="150" cy="126" r="3" fill="var(--ink)"/>
+          <text x="134" y="130" class="lbl">O</text><text x="156" y="80" class="lbl">R</text><text x="156" y="160" class="lbl">r</text>
+        </svg>
+        <div class="cap">
+          <p><b>Düzgün üçbucaq.</b> Mərkəz hündürlüyü təpədən başlayaraq <span class="m">2 : 1</span> nisbətində bölür: <span class="m">R = 2h/3</span>, <span class="m">r = h/3</span>, burada <span class="m">h = a√3/2</span>.</p>
+          <p><b>Kvadrat.</b> <span class="m">2R</span> — diaqonal, <span class="m">2r</span> — tərəf.</p>
+          <p><b>Düzgün altıbucaqlı.</b> Mərkəzdən 6 bərabərtərəfli üçbucağa bölünür: <span class="m">R = a</span>, <span class="m">r</span> — o üçbucağın hündürlüyü.</p>
+        </div>
+      </div>
+      <div class="fm">               R            r
+üçbucaq:       a√3/3        a√3/6      (R = 2r)
+kvadrat:       a√2/2        a/2
+altıbucaqlı:   a            a√3/2</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Düzgün üçbucağın tərəfi 6. R və r?
+  h = 6√3/2 = 3√3
+  R = 2h/3 = 2√3,   r = h/3 = √3</div>
+      <div class="ex">Nümunə 2. Kvadratın tərəfi 8. R və r?
+  R = 8√2/2 = 4√2,   r = 8/2 = 4</div>
+      <div class="ex">Nümunə 3. Radiusu 5 olan çevrəyə düzgün altıbucaqlı daxilən çəkilib. Perimetri və r?
+  a = R = 5,   P = 6 · 5 = 30
+  r = 5√3/2</div>
+      <div class="ex">Nümunə 4. Düzgün üçbucağa daxilən çəkilmiş çevrənin radiusu 2. Tərəf?
+  a = 6r/√3 = 2√3 · r = 4√3     (R = 2r = 4)</div>
+      <div class="life"><b>Həyatdan.</b> Altıbucaqlı qaykanın tərəfi 10 mm-dir. Açarın ağzı qarşı tərəflər arasındakı məsafədir, yəni <span class="m">2r = 2 · 10√3/2 = 10√3 ≈ 17,3</span> mm. Ona görə belə qayka üçün 17 mm-lik açar götürülür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">R</span> ilə <span class="m">r</span>-i qarışdırmaq: R — təpəyə, r — tərəfin ortasına.</li>
+        <li>Üçbucaqda mərkəzi hündürlüyün ortası saymaq. Mərkəz onu <span class="m">2 : 1</span> bölür, ona görə <span class="m">R = 2r</span>.</li>
+        <li>Kvadratda <span class="m">R = a/2</span> yazmaq. Bu <span class="m">r</span>-dir; R — diaqonalın yarısıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Üçbucaq: R = a√3/3, r = a√3/6, R = 2r.
+Kvadrat: R = a√2/2, r = a/2.
+Altıbucaqlı: R = a, r = a√3/2.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kvadratın tərəfi 10. Ona xaricdən çəkilmiş çevrənin radiusu? <span class="ans">10√2/2 = 5√2.</span></li>
+        <li>Düzgün üçbucağa daxilən çəkilmiş çevrənin radiusu 2. R və a? <span class="ans">R = 4, a = 4√3.</span></li>
+        <li>Radiusu 7 olan çevrəyə daxilən çəkilmiş düzgün altıbucaqlının perimetri? <span class="ans">6 · 7 = 42.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

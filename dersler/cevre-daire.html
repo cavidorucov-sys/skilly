@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çevrə və dairə dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-cevre-daire.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Çevrə və dairə</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Çevrə və dairə</div>
+    <h1>Çevrə və dairə: vətər, qövs, çevrənin uzunluğu</h1>
+    <p>Təkər, saat, boru, körpünün tağı — hamısı çevrədir. Bu mövzuda çevrənin əsas elementlərini (radius, diametr, vətər, qövs) və iki uzunluq düsturunu öyrənirsən: çevrənin və qövsün uzunluğu. Vətər məsələlərinin çoxu Pifaqor teoreminə gətirilir.</p>
+    <p><b>Cavab yazmaq haqqında:</b> uzunluq <span class="m">kπ</span> şəklindədirsə (məsələn, <span class="m">12π</span>), oyunda yalnız <span class="m">k</span>-nı yazırsan: 12. Şərtdə <span class="m">π = 3,14</span> verilibsə — onluq kəsr yazırsan.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Vətər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kəsişən vətərlər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qövs, mərkəzi bucaq</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrənin uzunluğu</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Qövsün uzunluğu</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Çevrə, dairə, vətər və mərkəzdən vətərə qədər məsafə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Boruda su axır. Suyun səthinin eni 24 sm-dir, borunun radiusu 13 sm. Su nə qədər dərindir? Bu, vətər məsələsidir və Pifaqorla bir sətirdə həll olunur.</p>
+
+      <h3><span class="st">2</span> Adlar</h3>
+      <p><b>Çevrə</b> — müstəvinin bir nöqtədən (mərkəzdən) eyni məsafədə olan bütün nöqtələri. <b>Dairə</b> — çevrə ilə onun içindəki hissə birlikdə. Çevrə — "kənar xətt", dairə — "dolu fiqur".</p>
+      <ul>
+        <li><b>Radius</b> (<span class="m">R</span>) — mərkəzi çevrənin nöqtəsi ilə birləşdirən parça.</li>
+        <li><b>Vətər</b> — çevrənin iki nöqtəsini birləşdirən parça.</li>
+        <li><b>Diametr</b> — mərkəzdən keçən vətər: <span class="m">d = 2R</span>. Diametr — ən uzun vətərdir.</li>
+      </ul>
+
+      <h3><span class="st">3</span> Mərkəzdən vətərə perpendikulyar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 210" role="img" aria-label="Çevrə, AB vətəri, mərkəzdən vətərə OH perpendikulyarı, OA radiusu">
+          <circle cx="150" cy="100" r="85" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="81.3" y1="150" x2="218.7" y2="150" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="150" y1="100" x2="150" y2="150" stroke="var(--vec)" stroke-width="2" stroke-dasharray="6 4"/>
+          <line x1="150" y1="100" x2="81.3" y2="150" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M150 138H162V150" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="150" cy="100" r="3" fill="var(--ink)"/>
+          <text x="146" y="92" class="lbl">O</text><text x="64" y="160" class="lbl">A</text><text x="224" y="160" class="lbl">B</text><text x="144" y="170" class="lbl">H</text>
+          <text x="104" y="118" class="lbl">R</text><text x="156" y="130" class="lbl">d</text><text x="108" y="168" class="lbl">a/2</text>
+        </svg>
+        <div class="cap">
+          <p>Mərkəzdən vətərə endirilmiş perpendikulyar <b>vətəri yarıya bölür</b>: <span class="m">AH = HB</span> (OAB bərabəryanlıdır, OH onun hündürlüyüdür).</p>
+          <p><span class="m">OH = d</span> — mərkəzdən vətərə qədər məsafə. OAH düzbucaqlı üçbucağında Pifaqor:</p>
+        </div>
+      </div>
+      <div class="fm">R² = d² + (a/2)²       a — vətərin uzunluğu
+a = 2√(R² − d²)</div>
+      <p>Buradan: bərabər vətərlər mərkəzdən eyni məsafədədir; mərkəzə yaxın vətər daha uzundur.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. R = 13, d = 5. Vətər?
+  a/2 = √(169 − 25) = 12,   a = 24</div>
+      <div class="ex">Nümunə 2. R = 10, vətər 12. Mərkəzdən məsafə?
+  a/2 = 6,   d = √(100 − 36) = 8</div>
+      <div class="ex">Nümunə 3. R = 5, iki paralel vətər: 6 və 8. Aralarındakı məsafə?
+  d₁ = √(25 − 9) = 4,   d₂ = √(25 − 16) = 3
+  mərkəzin eyni tərəfində:      4 − 3 = 1
+  mərkəzin müxtəlif tərəfində:  4 + 3 = 7</div>
+      <div class="life"><b>Həyatdan.</b> Borunun radiusu 13 sm, suyun səthi 24 sm-lik vətərdir. Mərkəzdən səthə qədər <span class="m">√(169 − 144) = 5</span> sm. Su mərkəzdən aşağıdadırsa, dərinlik <span class="m">13 − 5 = 8</span> sm; yuxarıdadırsa — <span class="m">13 + 5 = 18</span> sm.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Pifaqora vətərin <b>bütövünü</b> qoymaq. Düzbucaqlı üçbucaqda vətərin <b>yarısı</b> var.</li>
+        <li>Tapdığın yarımı vətər kimi yazmaq — sonda 2-yə vurmağı unutma.</li>
+        <li>İki paralel vətər məsələsində yalnız bir halı yoxlamaq. Şərtdə "eyni tərəf" ya "müxtəlif tərəf" yazılıbmı — bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Çevrə — xətt, dairə — fiqur. d = 2R.
+OH ⊥ vətər → vətər yarıya bölünür.
+R² = d² + (a/2)².</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 17, mərkəzdən vətərə 8. Vətər? <span class="ans">2 · √(289 − 64) = 2 · 15 = 30.</span></li>
+        <li>R = 13, vətər 10. Mərkəzdən məsafə? <span class="ans">√(169 − 25) = 12.</span></li>
+        <li>Radiusu 10 olan çevrənin ən uzun vətəri? <span class="ans">Diametr: 20.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kəsişən vətərlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Körpünün tağı çevrənin bir hissəsidir. Tağın eni 8 m, hündürlüyü 2 m-dirsə, onu çəkmək üçün çevrənin radiusu nə qədər olmalıdır? Bunu kəsişən vətərlərin xassəsi deyir.</p>
+
+      <h3><span class="st">2</span> Xassə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 210" role="img" aria-label="Çevrədə AB və CD vətərləri E nöqtəsində kəsişir">
+          <circle cx="150" cy="105" r="85" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="67.9" y1="82.9" x2="227.1" y2="140.8" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="200.4" y1="36.5" x2="144.6" y2="189.8" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="170" cy="120" r="3" fill="var(--ink)"/>
+          <text x="50" y="80" class="lbl">A</text><text x="232" y="152" class="lbl">B</text><text x="204" y="30" class="lbl">C</text><text x="134" y="206" class="lbl">D</text><text x="178" y="116" class="lbl">E</text>
+        </svg>
+        <div class="cap">
+          <p>AB və CD vətərləri çevrənin içində E nöqtəsində kəsişir. Hər vətər iki parçaya bölünür.</p>
+          <p>Bir vətərin parçalarının hasili o biri vətərin parçalarının hasilinə bərabərdir. (Bu, AEC və DEB üçbucaqlarının oxşarlığından çıxır.)</p>
+        </div>
+      </div>
+      <div class="fm">AE · EB = CE · ED</div>
+
+      <h3><span class="st">3</span> Xüsusi hal: diametr və ona perpendikulyar vətər</h3>
+      <p>AB — diametr, CD vətəri ona E nöqtəsində perpendikulyardır. Onda CD yarıya bölünür: <span class="m">CE = ED</span>. Xassə belə olur:</p>
+      <div class="fm">CE² = AE · EB          CD = 2√(AE · EB)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. AE = 4, EB = 6, CE = 3. ED?
+  4 · 6 = 3 · ED  →  ED = 24 : 3 = 8</div>
+      <div class="ex">Nümunə 2. AE = 3, EB = 8, CD = 11. CE &lt; ED. CE?
+  CE = x:  x(11 − x) = 24  →  x² − 11x + 24 = 0
+  x = 3 və ya x = 8;  CE &lt; ED  →  CE = 3</div>
+      <div class="ex">Nümunə 3. AB diametr, AE = 2, EB = 8, CD ⊥ AB. CD və radius?
+  CE² = 2 · 8 = 16  →  CE = 4,  CD = 8
+  R = (2 + 8) : 2 = 5</div>
+      <div class="life"><b>Həyatdan.</b> Tağın eni 8 m (vətər), hündürlüyü 2 m. Tağın ortasından şaquli diametr çəksək, o, vətəri 4 + 4 parçalarına, özü isə 2 və <span class="m">2R − 2</span> parçalarına bölünür: <span class="m">4 · 4 = 2 · (2R − 2)</span> → <span class="m">2R − 2 = 8</span> → <span class="m">R = 5</span> m.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Parçaları toplamaq: <span class="m">AE + EB = CE + ED</span> — yanlışdır, <b>vurulur</b>.</li>
+        <li>Bir vətərin parçasını o biri vətərin parçası ilə vurmaq: <span class="m">AE · CE</span>. Hər hasil <b>bir vətərin</b> iki parçasıdır.</li>
+        <li>Kvadrat tənlikdə hansı kökün lazım olduğunu yoxlamamaq (CE &lt; ED şərti).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AE · EB = CE · ED.
+Diametr ⊥ vətər: CE² = AE · EB.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AE = 5, EB = 4, CE = 2. ED? <span class="ans">20 : 2 = 10.</span></li>
+        <li>AB diametr, AE = 1, EB = 9, CD ⊥ AB. CE? <span class="ans">√9 = 3.</span></li>
+        <li>Tağın eni 6 m, hündürlüyü 1 m. Radius? <span class="ans">3 · 3 = 1 · (2R − 1) → R = 5 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qövs, mərkəzi bucaq, sektor və seqment</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Pizzanı 8 bərabər dilimə kəsirsən. Hər dilimin ucundakı bucaq neçə dərəcədir? Qövs və mərkəzi bucaq bu sualın dilidir.</p>
+
+      <h3><span class="st">2</span> Qövs və mərkəzi bucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Çevrə, AOB mərkəzi bucağı və ona uyğun AB qövsü">
+          <circle cx="150" cy="105" r="80" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M88.7 53.6A80 80 0 0 1 211.3 53.6" fill="none" stroke="var(--vec)" stroke-width="5" stroke-linecap="round"/>
+          <line x1="150" y1="105" x2="211.3" y2="53.6" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="150" y1="105" x2="88.7" y2="53.6" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="88.7" y1="53.6" x2="211.3" y2="53.6" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path d="M136.2 93.4A18 18 0 0 1 163.8 93.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="150" cy="105" r="3" fill="var(--ink)"/>
+          <text x="146" y="124" class="lbl">O</text><text x="70" y="50" class="lbl">A</text><text x="218" y="50" class="lbl">B</text><text x="145" y="86" class="lbl">α</text>
+        </svg>
+        <div class="cap">
+          <p>Çevrənin iki nöqtəsi onu iki <b>qövsə</b> bölür: kiçik və böyük. Qalın xətt — kiçik AB qövsü.</p>
+          <p>Təpəsi mərkəzdə olan <span class="m">∠AOB</span> — <b>mərkəzi bucaq</b>. Qövsün dərəcə ölçüsü ona uyğun mərkəzi bucağa bərabərdir: <span class="m">∪AB = α</span>.</p>
+        </div>
+      </div>
+      <div class="fm">bütün çevrə = 360°     yarımçevrə = 180°
+kiçik qövs + böyük qövs = 360°</div>
+
+      <h3><span class="st">3</span> Vətər, radius və OAB üçbucağı</h3>
+      <p><span class="m">OA = OB = R</span>, ona görə OAB üçbucağı <b>bərabəryanlıdır</b>: <span class="m">∠OAB = ∠OBA = (180° − α) : 2</span>.</p>
+      <ul>
+        <li>Vətər radiusa bərabərdirsə, OAB bərabərtərəflidir: <span class="m">α = 60°</span>.</li>
+        <li>Vətər <span class="m">R√2</span>-dirsə, <span class="m">R² + R² = 2R²</span> — tərs Pifaqor teoreminə görə <span class="m">α = 90°</span>.</li>
+      </ul>
+
+      <h3><span class="st">4</span> Sektor və seqment</h3>
+      <p><b>Dairə sektoru</b> — iki radius və qövslə hüdudlanmış hissə (pizza dilimi). <b>Dairə seqmenti</b> — vətər və qövslə hüdudlanmış hissə (şəkildə qırıq xətt ilə qövs arasındakı hissə).</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Üç nöqtə çevrəni 2 : 3 : 4 nisbətində qövslərə bölür.
+  9 hissə = 360°,  1 hissə = 40°
+  qövslər: 80°, 120°, 160°</div>
+      <div class="ex">Nümunə 2. ∠AOB = 100°. ∠OAB?
+  (180° − 100°) : 2 = 40°</div>
+      <div class="ex">Nümunə 3. R = 6, AB = 6. Böyük AB qövsü?
+  OAB bərabərtərəfli → α = 60°
+  böyük qövs = 360° − 60° = 300°</div>
+      <div class="life"><b>Həyatdan.</b> Pizza 8 bərabər dilimə bölünüb. Hər dilim — sektordur, onun mərkəzi bucağı <span class="m">360° : 8 = 45°</span>. Saatda iki qonşu rəqəm arasındakı qövs <span class="m">360° : 12 = 30°</span>-dir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Böyük qövsü soruşanda kiçiyi yazmaq. Böyük qövs = <span class="m">360° − kiçik</span>.</li>
+        <li>Qövsün dərəcəsini (bucaq) onun uzunluğu ilə (sm, m) qarışdırmaq — uzunluq Dərs 5-dədir.</li>
+        <li>Sektorla seqmenti qarışdırmaq: sektorda radiuslar var, seqmentdə vətər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qövs (°) = mərkəzi bucaq. Çevrə 360°.
+OAB bərabəryanlı: ∠OAB = (180° − α)/2.
+Vətər = R → 60°;  vətər = R√2 → 90°.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qövslər 1 : 2 : 3 nisbətindədir. Ən böyüyü? <span class="ans">360° : 6 = 60°, ən böyük 180°.</span></li>
+        <li>∠OAB = 35°. Kiçik AB qövsü? <span class="ans">180° − 70° = 110°.</span></li>
+        <li>R = 4, AB = 4√2. ∠AOB? <span class="ans">16 + 16 = 32 = AB² → 90°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Çevrənin uzunluğu və π ədədi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Velosiped təkəri bir dəfə fırlananda velosiped nə qədər yol gedir? Düz təkərin çevrəsinin uzunluğu qədər. Onu hesablamaq üçün π ədədi lazımdır.</p>
+
+      <h3><span class="st">2</span> π ədədi</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 180" role="img" aria-label="Radiusu R olan çevrə düz xətt üzərində bir dəfə fırlanır və uzunluğu 2πR olan parça çəkir">
+          <circle cx="40" cy="104" r="36" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="104" x2="76" y2="104" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="40" cy="104" r="3" fill="var(--ink)"/>
+          <line x1="40" y1="140" x2="266.2" y2="140" stroke="var(--vec)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="40" cy="140" r="4" fill="var(--ink)"/><circle cx="266.2" cy="140" r="4" fill="var(--ink)"/>
+          <text x="54" y="98" class="lbl">R</text><text x="128" y="164" class="lbl">C = 2πR</text>
+        </svg>
+        <div class="cap">
+          <p>İstənilən çevrənin uzunluğunu öz diametrinə bölsən, həmişə eyni ədəd alınır. Bu ədəd <b>π</b> ("pi") adlanır:</p>
+          <p><span class="m">π = C : d ≈ 3,14</span>. π — irrasional ədəddir (3,14159…), hesabda adətən 3,14 götürülür.</p>
+        </div>
+      </div>
+      <div class="fm">C = πd = 2πR</div>
+
+      <h3><span class="st">3</span> Cavabı π ilə yazmaq</h3>
+      <p>Çox məsələdə cavab π ilə qalır: <span class="m">R = 7</span> → <span class="m">C = 14π</span>. Bu, dəqiq cavabdır. Oyunda belə hallarda sual "<span class="m">C = kπ</span>, <span class="m">k</span>-nı tap" şəklində verilir — 14 yazırsan. Şərtdə "<span class="m">π = 3,14</span>" yazılıbsa, hesabla: <span class="m">14 · 3,14 = 43,96</span>.</p>
+      <p><b>Diqqət:</b> <span class="m">πR²</span> — dairənin <b>sahəsidir</b>, uzunluq deyil. Uzunluqda R kvadrata yüksəlmir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. R = 7.
+  C = 2π · 7 = 14π ≈ 14 · 3,14 = 43,96</div>
+      <div class="ex">Nümunə 2. C = 18π. R?
+  2πR = 18π  →  R = 9</div>
+      <div class="ex">Nümunə 3. Radius 3 artırıldı. Uzunluq nə qədər artdı?
+  2π(R + 3) − 2πR = 6π   — R-dən asılı deyil!</div>
+      <div class="ex">Nümunə 4. Kvadratın tərəfi 6.
+  daxilən çəkilmiş çevrə:   d = 6,       C = 6π
+  xaricdən çəkilmiş çevrə:  d = 6√2,     C = 6√2π</div>
+      <div class="life"><b>Həyatdan.</b> Velosiped təkərinin radiusu 35 sm. Bir dövrədə: <span class="m">2 · 3,14 · 35 = 219,8</span> sm ≈ 2,2 m. Evdən məktəbə qədər 1000 dövrə — təxminən 2,2 km.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">C = πR</span> yazmaq (2-ni unutmaq). <span class="m">πR</span> — yarımçevrənin uzunluğudur.</li>
+        <li><span class="m">C = πR²</span> yazmaq — bu, sahədir.</li>
+        <li>Diametr verilib, düsturda radius kimi işlətmək: <span class="m">d = 10</span> → <span class="m">C = 10π</span>, 20π deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">C = 2πR = πd,   π ≈ 3,14.
+Radius x artırsa, uzunluq 2πx artır.
+πR² — sahə, uzunluq deyil.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Diametr 15. Uzunluq? <span class="ans">15π.</span></li>
+        <li>C = 31,4 (π = 3,14). R? <span class="ans">31,4 : 6,28 = 5.</span></li>
+        <li>Çevrənin uzunluğu 6,28 m artdı (π = 3,14). Radius nə qədər artdı? <span class="ans">6,28 : 6,28 = 1 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Qövsün uzunluğu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Saatın dəqiqə əqrəbinin ucu 20 dəqiqədə nə qədər yol gedir? Bütün çevrəni yox, onun bir hissəsini — qövsü. Qövsün uzunluğu çevrənin uzunluğunun "payıdır".</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Radiusu R olan çevrədə α mərkəzi bucağına uyğun l uzunluqlu qövs">
+          <circle cx="150" cy="115" r="80" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M103 50.3A80 80 0 0 1 197 50.3" fill="none" stroke="var(--vec)" stroke-width="5" stroke-linecap="round"/>
+          <line x1="150" y1="115" x2="197" y2="50.3" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="150" y1="115" x2="103" y2="50.3" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M139.4 100.4A18 18 0 0 1 160.6 100.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="150" cy="115" r="3" fill="var(--ink)"/>
+          <text x="146" y="134" class="lbl">O</text><text x="145" y="92" class="lbl">α</text><text x="146" y="26" class="lbl">l</text><text x="182" y="90" class="lbl">R</text>
+        </svg>
+        <div class="cap">
+          <p>Tam çevrə — 360°, uzunluğu <span class="m">2πR</span>. α°-li qövs çevrənin <span class="m">α/360</span> hissəsidir, uzunluğu da həmin hissədir.</p>
+        </div>
+      </div>
+      <div class="fm">l = 2πR · α/360 = πRα/180</div>
+      <p>Tərsinə: <span class="m">α = 180 · l / (πR)</span>, <span class="m">R = 180 · l / (πα)</span>. Bütöv ədədlərlə işləmək rahatdır: <span class="m">l = kπ</span>-dirsə, <span class="m">Rα/180 = k</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. R = 6, α = 60°.
+  l = π · 6 · 60/180 = 2π</div>
+      <div class="ex">Nümunə 2. R = 9, α = 40°.
+  l = π · 9 · 40/180 = 2π</div>
+      <div class="ex">Nümunə 3. l = 5π, R = 15. α?
+  15α/180 = 5  →  α = 60°</div>
+      <div class="ex">Nümunə 4. l = 3π, α = 135°. R?
+  R · 135/180 = 3  →  R · 3/4 = 3  →  R = 4</div>
+      <div class="ex">Nümunə 5. R = 10 sm, α = 72°, π = 3,14.
+  l = 3,14 · 10 · 72/180 = 3,14 · 4 = 12,56 sm</div>
+      <div class="life"><b>Həyatdan.</b> Dəqiqə əqrəbinin uzunluğu 12 sm. 20 dəqiqə — tam dövrənin <span class="m">20/60 = 1/3</span> hissəsi (120°). Əqrəbin ucu <span class="m">2π · 12 · 1/3 = 8π ≈ 25,12</span> sm yol gedir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">2πR · α/180</span> yazmaq. Ya <span class="m">2πR · α/360</span>, ya da <span class="m">πR · α/180</span> — ikisi eynidir.</li>
+        <li>Qövsün dərəcəsini uzunluq kimi yazmaq: "qövs 60°" — bucaq ölçüsüdür, "qövs 2π" — uzunluqdur.</li>
+        <li>Böyük qövs soruşulanda kiçik qövsün bucağını götürmək: böyük qövs <span class="m">360° − α</span>-dır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">l = πRα/180   (α — dərəcə ilə)
+Qövs çevrənin α/360 hissəsidir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 4, α = 90°. Qövsün uzunluğu? <span class="ans">π · 4 · 90/180 = 2π.</span></li>
+        <li>R = 18, l = 4π. α? <span class="ans">18α/180 = 4 → α = 40°.</span></li>
+        <li>Qövs çevrənin 1/12 hissəsidir. Neçə dərəcə? <span class="ans">360° : 12 = 30°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

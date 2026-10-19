@@ -257,7 +257,8 @@
    "bolme": "Üçbucaqlar",
    "ad": "Pifaqor teoremi",
    "status": "yox",
-   "menbe": "DİM: Üçbucaqlar"
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/pifaqor.html"
   },
   {
    "bolme": "Üçbucaqlar",
@@ -270,7 +271,8 @@
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",
    "ad": "Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar",
    "status": "yox",
-   "menbe": "DİM: Dördbucaqlılar və çoxbucaqlılar"
+   "menbe": "DİM: Dördbucaqlılar və çoxbucaqlılar",
+   "ders": "dersler/coxbucaqlilar.html"
   },
   {
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",
@@ -294,7 +296,8 @@
    "bolme": "Çevrə və dairə",
    "ad": "Çevrə və dairə: vətər, qövs, çevrənin uzunluğu",
    "status": "yox",
-   "menbe": "DİM: Çevrə və dairə"
+   "menbe": "DİM: Çevrə və dairə",
+   "ders": "dersler/cevre-daire.html"
   },
   {
    "bolme": "Çevrə və dairə",

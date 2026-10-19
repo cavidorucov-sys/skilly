@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pifaqor teoremi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-pifaqor.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Pifaqor teoremi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Üçbucaqlar</div>
+    <h1>Pifaqor teoremi</h1>
+    <p>Düzbucaqlı üçbucağın iki tərəfini bilirsənsə, üçüncüsünü tapa bilərsən. Bu bir qayda həndəsənin yarısında işləyir: diaqonal, hündürlük, məsafə, nərdivan, ekran. İmtahanda demək olar ki, hər həndəsə məsələsində harasa Pifaqor gizlənir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Teorem</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tərs teorem</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Diaqonal, hündürlük</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Proyeksiyalar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Pifaqor teoremi: hipotenuz və katet</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Otağın küncündən qarşı küncə nə qədər məsafə var? Divarlar 6 m və 8 m-dir, amma çəpinə ölçmək çətindir. Pifaqor teoremi bunu ruletsiz deyir: 10 m. Bu dərsdə bu hesabı necə etməyi öyrənirsən.</p>
+
+      <h3><span class="st">2</span> Düzbucaqlı üçbucağın tərəfləri</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC düzbucaqlı üçbucağı, C bucağı düz bucaqdır">
+          <polygon points="50,170 250,170 50,40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M50 158H62V170" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="250" y1="170" x2="50" y2="40" stroke="var(--vec)" stroke-width="3"/>
+          <text x="36" y="188" class="lbl">C</text><text x="254" y="188" class="lbl">A</text><text x="36" y="36" class="lbl">B</text>
+          <text x="144" y="190" class="lbl">b</text><text x="30" y="110" class="lbl">a</text><text x="156" y="96" class="lbl">c</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">∠C = 90°</span>. Düz bucağın qarşısındakı tərəf — <b>hipotenuz</b> (<span class="m">c</span>). O, həmişə ən uzun tərəfdir.</p>
+          <p>Düz bucağı əmələ gətirən iki tərəf — <b>katetlər</b> (<span class="m">a</span> və <span class="m">b</span>).</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Teorem</h3>
+      <p>Düzbucaqlı üçbucaqda hipotenuzun kvadratı katetlərin kvadratları cəminə bərabərdir.</p>
+      <div class="fm">c² = a² + b²
+
+hipotenuz:  c = √(a² + b²)
+katet:      a = √(c² − b²)</div>
+      <p><b>Niyə doğrudur?</b> Tərəfi <span class="m">a + b</span> olan kvadratın içinə dörd eyni düzbucaqlı üçbucaq qoy. Ortada tərəfi <span class="m">c</span> olan kvadrat qalır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Tərəfi a+b olan kvadratın içində dörd düzbucaqlı üçbucaq və tərəfi c olan kvadrat">
+          <rect x="20" y="20" width="160" height="160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="80,20 180,80 120,180 20,120" fill="var(--paper)" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="44" y="16" class="lbl">a</text><text x="126" y="16" class="lbl">b</text>
+          <text x="184" y="54" class="lbl">a</text><text x="184" y="136" class="lbl">b</text>
+          <text x="92" y="108" class="lbl">c²</text>
+        </svg>
+        <div class="cap">
+          <p>Böyük kvadratın sahəsi iki cür yazılır:</p>
+          <p><span class="m">(a + b)² = 4 · ab/2 + c²</span></p>
+          <p><span class="m">a² + 2ab + b² = 2ab + c²</span> → <span class="m">a² + b² = c²</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Katetlər 6 və 8. Hipotenuz?
+  c² = 6² + 8² = 36 + 64 = 100
+  c = √100 = 10</div>
+      <div class="ex">Nümunə 2. Hipotenuz 13, bir katet 5. O biri katet?
+  b² = 13² − 5² = 169 − 25 = 144
+  b = 12</div>
+      <div class="ex">Nümunə 3. Katetlər 4 və 6. Hipotenuz?
+  c² = 16 + 36 = 52
+  c = √52 = √(4 · 13) = 2√13
+Cavab kök ola bilər — onu sadələşdir: kökün altından tam kvadrat çıxar.</div>
+      <div class="life"><b>Həyatdan.</b> Usta 6 m × 8 m otağa döşəmə çəkir və küncdən küncə düz xətt lazımdır. Diaqonal otağı iki düzbucaqlı üçbucağa bölür: <span class="m">√(36 + 64) = 10</span> m.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Katet axtararkən kvadratları <b>toplamaq</b>. Katet hipotenuzdan qısadır, ona görə <b>çıxırsan</b>: <span class="m">a² = c² − b²</span>.</li>
+        <li>Kökü unutmaq: <span class="m">c² = 100</span> tapıb "c = 100" yazmaq.</li>
+        <li><span class="m">√(a² + b²) = a + b</span> yazmaq. Məsələn, <span class="m">√(9 + 16) = 5</span>, 7 deyil.</li>
+        <li>Hipotenuzu səhv seçmək. Hipotenuz düz bucağın <b>qarşısındadır</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">c² = a² + b²   (c — düz bucağın qarşısı, ən uzun tərəf)
+Hipotenuz: kvadratları topla, kök al.
+Katet: kvadratları çıx, kök al.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Katetlər 9 və 12. Hipotenuz? <span class="ans">√(81 + 144) = √225 = 15.</span></li>
+        <li>Hipotenuz 17, katet 8. O biri katet? <span class="ans">√(289 − 64) = √225 = 15.</span></li>
+        <li>Katetlər 1 və 3. Hipotenuz? <span class="ans">√(1 + 9) = √10.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tərs teorem və Pifaqor üçlükləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bənna divarın küncünün düz olub-olmadığını necə yoxlayır? Bir divarda 60 sm, digərində 80 sm ölçür və uclar arasındakı məsafəyə baxır. 100 sm-dirsə — künc düzdür. Bu, Pifaqor teoreminin tərsidir.</p>
+
+      <h3><span class="st">2</span> Tərs teorem</h3>
+      <p>Üçbucağın ən böyük tərəfinin kvadratı qalan iki tərəfin kvadratları cəminə bərabərdirsə, üçbucaq <b>düzbucaqlıdır</b>. Düz bucaq ən böyük tərəfin qarşısındadır.</p>
+      <div class="fm">c — ən böyük tərəf:
+c² = a² + b²  →  düzbucaqlı
+c² &lt; a² + b²  →  itibucaqlı
+c² &gt; a² + b²  →  korbucaqlı</div>
+      <p>Məntiq: düz bucağı "sıxsan" (iti etsən), qarşısındakı tərəf qısalır; "açsan" (kor etsən), uzanır.</p>
+
+      <h3><span class="st">3</span> Pifaqor üçlükləri</h3>
+      <p><span class="m">a² + b² = c²</span> bərabərliyini ödəyən üç natural ədəd — <b>Pifaqor üçlüyü</b>. Bunları əzbər bilsən, çox hesab etməyəcəksən:</p>
+      <div class="fm">3, 4, 5        5, 12, 13      8, 15, 17
+7, 24, 25      20, 21, 29     9, 40, 41</div>
+      <p>Üçlüyün hər ədədini eyni ədədə vursan, yenə üçlük alınır: <span class="m">6, 8, 10</span>; <span class="m">9, 12, 15</span>; <span class="m">15, 20, 25</span>; <span class="m">10, 24, 26</span>. Məsələn, katetlər 30 və 40-dırsa, bu <span class="m">3, 4, 5</span>-in 10 qatıdır — hipotenuz 50.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Tərəflər 7, 24, 25. Üçbucağın növü?
+  Ən böyük: 25² = 625
+  7² + 24² = 49 + 576 = 625
+  Bərabərdir → düzbucaqlı (düz bucaq 25-in qarşısında)</div>
+      <div class="ex">Nümunə 2. Tərəflər 6, 7, 9 və 5, 7, 9.
+  9² = 81,  6² + 7² = 85,  81 &lt; 85 → itibucaqlı
+  9² = 81,  5² + 7² = 74,  81 &gt; 74 → korbucaqlı</div>
+      <div class="ex">Nümunə 3. Katetlər x və x + 7, hipotenuz x + 8. x?
+  x² + (x + 7)² = (x + 8)²
+  2x² + 14x + 49 = x² + 16x + 64
+  x² − 2x − 15 = 0  →  x = 5 və ya x = −3
+  Uzunluq mənfi olmur: x = 5. Tərəflər 5, 12, 13 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Qədim Misirdə kəndirə bərabər aralıqlarla 12 düyün vururdular və onu tərəfləri 3, 4, 5 olan üçbucaq kimi dartırdılar. Tərs teoremə görə bu üçbucağın bucağı düz olur — beləcə tarlaların küncləri ölçülürdü.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ən böyük tərəfi yox, sırada sonuncu yazılanı "hipotenuz" saymaq. Əvvəl tərəfləri sırala.</li>
+        <li>Üçlüyü "oxşar" ədədlərlə qarışdırmaq: <span class="m">4, 5, 6</span> üçlük deyil (<span class="m">16 + 25 ≠ 36</span>).</li>
+        <li>Kvadrat tənlikdə mənfi kökü cavab yazmaq. Tərəf mənfi ola bilməz.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ən böyük tərəf c: c² = a² + b² → düz bucaq;
+c² &lt; a² + b² → iti;  c² &gt; a² + b² → kor.
+Üçlüklər: 3-4-5, 5-12-13, 8-15-17, 7-24-25 və onların qatları.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tərəflər 9, 12, 15. Növü? <span class="ans">81 + 144 = 225 = 15² → düzbucaqlı.</span></li>
+        <li>Tərəflər 2, 3, 4. Növü? <span class="ans">16 &gt; 4 + 9 = 13 → korbucaqlı.</span></li>
+        <li>Katetlər 16 və 30. Hipotenuz? <span class="ans">8, 15, 17-nin 2 qatı: 34.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Diaqonal, hündürlük, perpendikulyar və mail</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bir çox fiqurda düzbucaqlı üçbucaq "gizlənib": düzbucaqlını diaqonal kəsəndə, bərabəryanlı üçbucağa hündürlük çəkəndə. Onu görməyi öyrənsən, bu fiqurlarda tərəf, diaqonal, hündürlük və sahə Pifaqorla tapılır.</p>
+
+      <h3><span class="st">2</span> Düzbucaqlının və kvadratın diaqonalı</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 180" role="img" aria-label="ABCD düzbucaqlısı və AC diaqonalı">
+          <rect x="40" y="30" width="220" height="120" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="150" x2="260" y2="30" stroke="var(--vec)" stroke-width="3"/>
+          <path d="M248 150V138H260" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="26" y="168" class="lbl">A</text><text x="26" y="26" class="lbl">B</text><text x="264" y="26" class="lbl">C</text><text x="264" y="168" class="lbl">D</text>
+          <text x="146" y="170" class="lbl">a</text><text x="268" y="96" class="lbl">b</text><text x="140" y="82" class="lbl">d</text>
+        </svg>
+        <div class="cap">
+          <p>Diaqonal düzbucaqlını iki düzbucaqlı üçbucağa bölür. Diaqonal — hipotenuz.</p>
+          <p>Kvadratda <span class="m">a = b</span>: <span class="m">d² = 2a²</span>, yəni <span class="m">d = a√2</span>.</p>
+        </div>
+      </div>
+      <div class="fm">Düzbucaqlı:  d² = a² + b²
+Kvadrat:     d = a√2,   a = d/√2,   S = d²/2</div>
+
+      <h3><span class="st">3</span> Bərabəryanlı və bərabərtərəfli üçbucağın hündürlüyü</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 190" role="img" aria-label="Bərabəryanlı ABC üçbucağı, BH hündürlüyü AC-ni yarıya bölür">
+          <polygon points="40,160 150,30 260,160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="30" x2="150" y2="160" stroke="var(--vec)" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <path d="M150 148H162V160" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="26" y="178" class="lbl">A</text><text x="144" y="22" class="lbl">B</text><text x="264" y="178" class="lbl">C</text><text x="144" y="180" class="lbl">H</text>
+          <text x="76" y="92" class="lbl">b</text><text x="214" y="92" class="lbl">b</text><text x="156" y="104" class="lbl">h</text>
+          <text x="88" y="178" class="lbl">a/2</text><text x="196" y="178" class="lbl">a/2</text>
+        </svg>
+        <div class="cap">
+          <p>Bərabəryanlı üçbucaqda oturacağa çəkilmiş hündürlük həm də <b>mediandır</b>: oturacağı yarıya bölür.</p>
+          <p>ABH üçbucağında: <span class="m">h² = b² − (a/2)²</span>.</p>
+        </div>
+      </div>
+      <div class="fm">Bərabəryanlı:    h² = b² − (a/2)²
+Bərabərtərəfli:  h = a√3/2,   S = a²√3/4</div>
+      <p>Bərabərtərəfli üçün: <span class="m">h² = a² − (a/2)² = 3a²/4</span>, buradan <span class="m">h = a√3/2</span>. Tərsinə: <span class="m">a = 2h/√3</span>.</p>
+
+      <h3><span class="st">4</span> Perpendikulyar və mail</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 170" role="img" aria-label="M nöqtəsindən düz xəttə MH perpendikulyarı və MA, MB mailləri">
+          <line x1="10" y1="140" x2="290" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="120" y1="25" x2="120" y2="140" stroke="var(--vec)" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <line x1="120" y1="25" x2="250" y2="140" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="120" y1="25" x2="50" y2="140" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M120 128H132V140" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="114" y="18" class="lbl">M</text><text x="114" y="160" class="lbl">H</text><text x="246" y="160" class="lbl">A</text><text x="44" y="160" class="lbl">B</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">MH</span> — <b>perpendikulyar</b>, <span class="m">MA</span> və <span class="m">MB</span> — <b>maillər</b>. <span class="m">HA</span> — MA mailinin düz xətt üzərindəki <b>proyeksiyası</b>.</p>
+          <p><span class="m">MA² = MH² + HA²</span>. Perpendikulyar istənilən maildən qısadır. Proyeksiyası böyük olan mail daha uzundur.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Kvadratın diaqonalı 10. Tərəfi və sahəsi?
+  a = 10/√2 = 10√2/2 = 5√2
+  S = d²/2 = 100/2 = 50   (yoxla: (5√2)² = 50 ✓)</div>
+      <div class="ex">Nümunə 2. Bərabəryanlı üçbucaq: yan tərəflər 10, oturacaq 12. Hündürlük, sahə?
+  h² = 10² − 6² = 64  →  h = 8
+  S = 12 · 8 / 2 = 48</div>
+      <div class="ex">Nümunə 3. Bərabərtərəfli üçbucağın tərəfi 6.
+  h = 6√3/2 = 3√3,   S = 36√3/4 = 9√3</div>
+      <div class="ex">Nümunə 4. MA = 15, HA = 9, HB = 16. MB?
+  MH² = 15² − 9² = 144  →  MH = 12
+  MB² = 12² + 16² = 400  →  MB = 20</div>
+      <div class="life"><b>Həyatdan.</b> 5 m uzunluğunda nərdivan divara söykənib, aşağı ucu divardan 3 m aralıdır. Divar, yer və nərdivan düzbucaqlı üçbucaqdır: nərdivan yerdən <span class="m">√(25 − 9) = 4</span> m hündürlüyə çatır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabəryanlı üçbucaqda oturacağın <b>yarısını</b> deyil, bütövünü Pifaqora qoymaq.</li>
+        <li>Kvadratın diaqonalını <span class="m">2a</span> saymaq. Düzü: <span class="m">a√2 ≈ 1,41a</span>.</li>
+        <li>Mail ilə proyeksiyanı qarışdırmaq: mail — hipotenuz, proyeksiya və perpendikulyar — katetlər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Düzbucaqlı: d² = a² + b².   Kvadrat: d = a√2, S = d²/2.
+Bərabəryanlı: h² = b² − (a/2)².   Bərabərtərəfli: h = a√3/2.
+Mail² = perpendikulyar² + proyeksiya².</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düzbucaqlının tərəfləri 9 və 40. Diaqonal? <span class="ans">√(81 + 1600) = √1681 = 41.</span></li>
+        <li>Bərabərtərəfli üçbucağın tərəfi 8. Hündürlük? <span class="ans">8√3/2 = 4√3.</span></li>
+        <li>MH = 8, MA = 10. Proyeksiya HA? <span class="ans">√(100 − 64) = 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Hipotenuza çəkilmiş hündürlük və proyeksiyalar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Düzbucaqlı üçbucağın düz bucaq təpəsindən hipotenuza hündürlük çəkəndə, böyük üçbucaq iki kiçik düzbucaqlı üçbucağa bölünür. Bu üç üçbucaq arasında gözəl əlaqələr var — DİM onları çox sevir.</p>
+
+      <h3><span class="st">2</span> Adlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 190" role="img" aria-label="ABC düzbucaqlı üçbucağı, C düz bucaq, CH hipotenuza çəkilmiş hündürlük">
+          <polygon points="20,160 280,160 72,56" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="72" y1="56" x2="72" y2="160" stroke="var(--vec)" stroke-width="2.5"/>
+          <path d="M72 148H84V160" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M66.6 66.7L77.4 72.1L82.7 61.4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="8" y="178" class="lbl">A</text><text x="282" y="178" class="lbl">B</text><text x="66" y="46" class="lbl">C</text><text x="66" y="178" class="lbl">H</text>
+          <text x="36" y="178" class="lbl" style="font-size:12px">AH</text><text x="164" y="178" class="lbl" style="font-size:12px">HB</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">∠C = 90°</span>, <span class="m">CH ⊥ AB</span>.</p>
+          <p><span class="m">AH</span> — <span class="m">AC</span> katetinin hipotenuz üzərindəki <b>proyeksiyası</b>, <span class="m">HB</span> — <span class="m">BC</span> katetinin proyeksiyası. <span class="m">AH + HB = AB</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Dörd düstur</h3>
+      <div class="fm">CH² = AH · HB
+AC² = AB · AH
+BC² = AB · HB
+CH  = AC · BC / AB</div>
+      <p>Söz ilə: hündürlüyün kvadratı — hipotenuzun iki parçasının hasili. Katetin kvadratı — hipotenuz vurulsun həmin katetin proyeksiyası.</p>
+      <p><b>Haradan gəlir?</b> Yalnız Pifaqorla: <span class="m">AC² = AH² + CH²</span>, <span class="m">BC² = HB² + CH²</span>. Topla və <span class="m">AC² + BC² = AB² = (AH + HB)²</span> yaz:</p>
+      <div class="fm">AH² + HB² + 2CH² = AH² + 2·AH·HB + HB²
+→ CH² = AH · HB</div>
+      <p>Sonra <span class="m">AC² = AH² + CH² = AH² + AH · HB = AH · (AH + HB) = AH · AB</span>. Son düstur isə sahədən gəlir: <span class="m">S = AC · BC / 2 = AB · CH / 2</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. AH = 4, HB = 9. CH, AC, BC?
+  CH² = 4 · 9 = 36       →  CH = 6
+  AB = 13
+  AC² = 13 · 4 = 52      →  AC = 2√13
+  BC² = 13 · 9 = 117     →  BC = 3√13
+Yoxla: 52 + 117 = 169 = 13² ✓</div>
+      <div class="ex">Nümunə 2. Katetlər AC = 6, BC = 8. AH və CH?
+  AB = 10 (6, 8, 10 üçlüyü)
+  AH = AC² : AB = 36 : 10 = 3,6
+  CH = 6 · 8 / 10 = 4,8</div>
+      <div class="ex">Nümunə 3. CH = 12, AH = 9. Hipotenuz?
+  HB = CH² : AH = 144 : 9 = 16
+  AB = 9 + 16 = 25</div>
+      <div class="life"><b>Həyatdan.</b> Damın iki maili tiri təpədə düz bucaq altında birləşir. Təpədən tavana şaquli dirək vurulub; tirlərin aşağı ucları dirəyin dibindən 1,6 m və 3,6 m aralıdır. Dirəyin uzunluğu: <span class="m">√(1,6 · 3,6) = √5,76 = 2,4</span> m.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">CH² = AH + HB</span> yazmaq. Parçalar <b>vurulur</b>, toplanmır.</li>
+        <li>Katetin düsturunda yanlış proyeksiya götürmək: <span class="m">AC²</span> üçün <b>AC-yə bitişik</b> parça (<span class="m">AH</span>) lazımdır.</li>
+        <li><span class="m">AC² = AB · AH</span>-da <span class="m">AB</span> əvəzinə <span class="m">HB</span> vurmaq. Hipotenuz bütövdür: <span class="m">AH + HB</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">CH² = AH · HB     AC² = AB · AH     BC² = AB · HB
+CH = AC · BC / AB   (sahədən)
+Hamısı Pifaqordan çıxır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AH = 2, HB = 8. CH? <span class="ans">√16 = 4.</span></li>
+        <li>AB = 20, AH = 5. AC? <span class="ans">√(20 · 5) = √100 = 10.</span></li>
+        <li>Katetlər 15 və 20. Hipotenuza çəkilmiş hündürlük? <span class="ans">AB = 25, CH = 15 · 20 / 25 = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
