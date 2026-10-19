@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Müxtəlif mühitlərdə cərəyan dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-muhitlerde-cereyan.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Müxtəlif mühitlərdə cərəyan</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Elektrik cərəyanı müxtəlif mühitlərdə</div>
+    <h1>Müxtəlif mühitlərdə cərəyan: elektroliz, qaz, vakuum, yarımkeçiricilər</h1>
+    <p>Metal naqildə cərəyanı elektronlar daşıyır. Amma cərəyan başqa mühitlərdə də axır: duz məhlulunda, qazda (şimşək!), vakuumda, kristalda. Hər mühitdə yük daşıyıcıları fərqlidir, ona görə qanunlar da fərqlidir. Ən çox hesab olunan iki şey: <span class="m">m = k·I·t</span> (Faradey qanunu) və <span class="m">R = R₀(1 + α·Δt)</span> (müqavimət temperaturdan). Üstəlik ideal diodlu sadə dövrələr.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Ohm qanunu (<span class="m">I = U/R</span>) və paralel/ardıcıl birləşmə burada da lazımdır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Elektroliz</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Qaz və vakuum</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yarımkeçirici, diod</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>R və temperatur</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Elektrolitlər, elektroliz, Faradey qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Gümüş qaşıq əslində nikelli ərintidən hazırlanır, üstünə nazik gümüş qat çəkilib. Avtomobilin parlaq bamperi xromlanıb. Alüminium zavodlarında metal elektrik cərəyanı ilə alınır, mis isə cərəyanla təmizlənir. Hamısı <b>elektrolizdir</b> — cərəyanın məhluldan keçərkən maddə ayırması. Fizikada maraqlı cəhəti: ayrılan maddənin kütləsini bir düsturla dəqiq hesablamaq olur.</p>
+
+      <h3><span class="st">2</span> Elektrolit, ion, elektroliz</h3>
+      <p>Mis kuporosunu (<span class="m">CuSO₄</span>) suya atsan, kristal dağılır və molekul iki yüklü hissəyə ayrılır: müsbət <span class="m">Cu²⁺</span> və mənfi <span class="m">SO₄²⁻</span> ionlarına. Bu prosesə <b>elektrolitik dissosiasiya</b> deyilir. İonlar məhlulda sərbəst gəzir. Belə məhlula <b>elektrolit</b> deyilir (duz, turşu, qələvi məhlulları). Distillə edilmiş su və şəkər məhlulu ion vermir, ona görə cərəyanı demək olar ki, keçirmir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 240" role="img" aria-label="Elektroliz hamamı: katod, anod, mənbə, ionların hərəkəti">
+          <defs><marker id="el1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M55 95L55 200Q55 212 67 212L233 212Q245 212 245 200L245 95" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="56" y="125" width="188" height="86" fill="var(--accent-soft)" opacity=".7"/>
+          <rect x="90" y="70" width="12" height="110" fill="var(--ink)"/>
+          <rect x="198" y="70" width="12" height="110" fill="var(--ink)"/>
+          <polyline points="96,70 96,38 140,38" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polyline points="152,38 204,38 204,70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="140" y1="30" x2="140" y2="46" stroke="var(--ink)" stroke-width="5"/>
+          <line x1="152" y1="24" x2="152" y2="52" stroke="var(--ink)" stroke-width="2"/>
+          <text x="128" y="26" class="lbl" text-anchor="middle">−</text><text x="166" y="26" class="lbl" text-anchor="middle">+</text>
+          <circle cx="138" cy="140" r="14" fill="var(--sheet)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="138" y="144" text-anchor="middle" font-size="11">Cu²⁺</text>
+          <line x1="123" y1="140" x2="108" y2="140" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#el1)"/>
+          <circle cx="164" cy="174" r="15" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2"/>
+          <text x="164" y="178" text-anchor="middle" font-size="10">SO₄²⁻</text>
+          <line x1="180" y1="174" x2="195" y2="174" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#el1)"/>
+          <text x="96" y="230" class="lbl" text-anchor="middle">katod (−)</text>
+          <text x="204" y="230" class="lbl" text-anchor="middle">anod (+)</text>
+        </svg>
+        <div class="cap">
+          <p>Elektrolit içində iki elektrod var, onlar mənbəyə qoşulub. <b>Müsbət ionlar</b> (<span class="m">Cu²⁺</span>) mənfi elektroda — <b>katoda</b> gedir, orada elektron alıb neytral mis atomuna çevrilir və katodda çökür. <b>Mənfi ionlar</b> anoda gedir. Kənar dövrədə cərəyanı elektronlar, məhlulda ionlar daşıyır.</p>
+        </div>
+      </div>
+      <p>Cərəyanın keçməsi ilə elektrodlarda maddənin ayrılması <b>elektroliz</b>dir. Metal naqildə cərəyan maddə daşımır, naqil dəyişmir. Elektrolitdə isə cərəyan ionlarla birlikdə <b>maddəni də daşıyır</b>.</p>
+
+      <h3><span class="st">3</span> Faradey qanunu</h3>
+      <p>İngilis alimi Maykl Faradey təcrübədə tapdı: katodda ayrılan maddənin kütləsi məhluldan keçən <b>yükə düz mütənasibdir</b>. Hər ion eyni yük daşıyır, deməli keçən yük nə qədər çoxdursa, o qədər ion katoda çatıb.</p>
+      <div class="fm">m = k·q = k·I·t
+k — elektrokimyəvi ekvivalent
+SI-də vahidi kq/C;  praktikada mq/C</div>
+      <p><span class="m">k</span> maddənin xarakteristikasıdır və məsələdə <b>verilir</b>. Bir neçə qiymət (dəqiqliyi yuvarlaq):</p>
+      <div class="ex">mis (Cu²⁺)      k = 0,33 mq/C
+gümüş (Ag⁺)     k = 1,12 mq/C
+nikel (Ni²⁺)    k = 0,30 mq/C
+sink (Zn²⁺)     k = 0,34 mq/C
+xrom (Cr³⁺)     k = 0,18 mq/C
+alüminium       k = 0,093 mq/C
+1 mq/C = 10⁻⁶ kq/C</div>
+      <p>Bu o deməkdir ki, misin katodunda 1 C yük keçəndə 0,33 mq mis ayrılır. Bəzən <span class="m">k</span> düsturla da verilir: <span class="m">k = M/(F·n)</span>. Burada <span class="m">M</span> — molyar kütlə, <span class="m">n</span> — ionun valentliyi, <span class="m">F ≈ 96 500 C/mol</span> — Faradey sabiti. Məsələlərin çoxunda <span class="m">k</span> hazır verilir.</p>
+      <p>Ardıcıl qoşulmuş hamamlardan <b>eyni cərəyan</b> eyni müddətdə keçir, yəni <span class="m">q</span> eynidir. Onda <span class="m">m₁/m₂ = k₁/k₂</span>.</p>
+
+      <h3><span class="st">4</span> Qalvanoplastika: qatın qalınlığı</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 170" role="img" aria-label="Metal lövhə və üzərində nazik qat: S sahə, h qalınlıq">
+          <defs><marker id="el2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="40" y="95" width="200" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="75" width="200" height="20" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="256" y1="76" x2="256" y2="94" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#el2)" marker-end="url(#el2)"/>
+          <text x="264" y="89" class="lbl">h</text>
+          <line x1="40" y1="145" x2="240" y2="145" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#el2)" marker-end="url(#el2)"/>
+          <text x="140" y="162" class="lbl" text-anchor="middle">S (qatın sahəsi)</text>
+          <text x="140" y="40" class="lbl" text-anchor="middle">m = ρ·S·h</text>
+          <text x="140" y="112" text-anchor="middle" font-size="12">detalın metalı</text>
+        </svg>
+        <div class="cap">
+          <p>Çökmüş qat nazik "lövhədir": həcmi <span class="m">V = S·h</span>, kütləsi <span class="m">m = ρ·S·h</span>.</p>
+        </div>
+      </div>
+      <p>Üzərinə metal çəkmək (gümüşləmə, xromlama, nikelləmə) <b>qalvanoplastikadır</b>. Detalı katod kimi qoşurlar. Qatın qalınlığını tapmaq üçün iki kütləni bərabərləşdiririk:</p>
+      <div class="fm">k·I·t = ρ·S·h        →        h = k·I·t/(ρ·S)</div>
+      <p>Vahidlərdə rahat yol: kütləni <b>qramla</b>, sıxlığı <b>q/sm³</b>-lə, sahəni <b>sm²</b>-la götür. <span class="m">10 500 kq/m³ = 10,5 q/sm³</span>. Onda <span class="m">h</span> santimetrlə çıxır. <span class="m">1 mkm = 10⁻⁶ m = 10⁻⁴ sm</span>, yəni sm-i 10 000-ə vur — mkm alınır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 A cərəyan 10 dəq mis kuporosu məhlulundan
+keçirilir (k = 0,33 mq/C). Katodda nə qədər mis ayrılır?
+  t = 10 dəq = 600 s
+  q = I·t = 2·600 = 1200 C
+  m = k·q = 0,33·1200 = 396 mq = 0,396 q</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+İki hamam ardıcıl qoşulub: gümüş duzu və mis duzu məhlulu.
+Gümüş hamamının katodunda 2,24 q gümüş çökdü.
+Mis hamamının katodunda nə qədər mis çökər?
+(k_Ag = 1,12 mq/C, k_Cu = 0,33 mq/C)
+  Ardıcıl → eyni cərəyan, eyni vaxt → q eynidir.
+  q = m/k = 2240 mq / 1,12 = 2000 C
+  m_Cu = 0,33·2000 = 660 mq = 0,66 q
+  Yoxla: 2,24·0,33/1,12 = 0,66 ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli, qalınlıq).
+Səthi 100 sm² olan qaşığı gümüşləyirlər: 5 A cərəyanla,
+qat 16 mkm olmalıdır. Gümüş: k = 1,12 mq/C, ρ = 10 500 kq/m³.
+Proses nə qədər çəkər?
+  ρ = 10,5 q/sm³;  h = 16 mkm = 0,0016 sm
+  m = ρ·S·h = 10,5·100·0,0016 = 1,68 q = 1680 mq
+  t = m/(k·I) = 1680/(1,12·5) = 1680/5,6 = 300 s = 5 dəq</div>
+      <div class="life"><b>Həyatdan.</b> Alüminium zavodunun vannasından <span class="m">50 000 A</span> cərəyan keçir. 1 saatda <span class="m">q = 50 000·3600 = 1,8·10⁸ C</span>, kütlə <span class="m">0,093·10⁻⁶·1,8·10⁸ ≈ 16,7 kq</span>. Bir vannadan saatda 17 kq. Ona görə alüminium zavodları böyük elektrik stansiyalarının yanında qurulur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dəqiqəni saniyəyə çevirməmək: 10 dəq üçün <span class="m">t = 10</span> yazıb <span class="m">q = 20 C</span> almaq. Düzü <span class="m">t = 600 s</span>.</li>
+        <li><span class="m">mq</span> ilə <span class="m">q</span> (qram) və <span class="m">kq</span>-ı qarışdırmaq. <span class="m">k</span> mq/C ilə verilibsə, cavab da mq çıxır.</li>
+        <li>Qalınlıqda <span class="m">V = S·h</span>-ı unudub kütləni sıxlığa bölmək. Düzü: <span class="m">h = m/(ρ·S)</span>.</li>
+        <li>Ardıcıl hamamlarda cərəyanları bölmək. Ardıcıl birləşmədə cərəyan eynidir; paralel hamamlarda isə cərəyan bölünür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Elektrolitdə cərəyanı ionlar daşıyır; müsbət ionlar katoda gedir.
+Faradey:  m = k·I·t    (k verilir; mq/C)
+Qalınlıq: m = ρ·S·h  →  h = k·I·t/(ρ·S)
+Ardıcıl hamamlarda q eynidir: m₁/m₂ = k₁/k₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Nikel hamamından 4 A cərəyan 5 dəq keçir (k = 0,30 mq/C). Katodda neçə mq nikel ayrılır? <span class="ans">q = 4·300 = 1200 C, m = 0,3·1200 = 360 mq.</span></li>
+        <li>1 A cərəyanla 1000 s-də 330 mq mis alınır. 2 A cərəyanla 500 s-də nə qədər alınar? <span class="ans">q eynidir (1000 C): yenə 330 mq.</span></li>
+        <li>Katodda 1,98 q mis ayrılması üçün 3 A cərəyan nə qədər keçməlidir (k = 0,33 mq/C)? <span class="ans">q = 1980/0,33 = 6000 C, t = 6000/3 = 2000 s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Qazlarda və vakuumda elektrik cərəyanı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şimşək — qazdan (havadan) keçən cərəyandır. Neon reklamlar və yaşayış otaqlarındakı flüoresan lampalar da qazda cərəyanla işləyir. Elektrik qaynağı qövsdür. Köhnə televizorların və osiloskopların içində vakuumda uçan elektronlar şəkil çəkirdi. Hamısını iki sual birləşdirir: bu mühitdə yük daşıyıcıları haradan gəlir?</p>
+
+      <h3><span class="st">2</span> Qazda cərəyan</h3>
+      <p>Normal halda qaz <b>dielektrikdir</b>: molekullar neytraldır, sərbəst yüklü hissəcik yoxdur. Qaz cərəyan keçirməsi üçün onu <b>ionlaşdırmaq</b> lazımdır, yəni molekuldan elektron qoparmaq. Bunu edən xarici amillər: alov, ultrabənövşəyi və rentgen şüaları, radioaktiv şüalanma. Bu halda boşalma yalnız ionlaşdırıcı işləyəndə davam edir (<b>qeyri-müstəqil boşalma</b>).</p>
+      <p>Gərginlik kifayət qədər böyüyəndə sahə elektronları o qədər sürətləndirir ki, onlar molekullarla toqquşanda yeni ionlar yaradır — <b>zərbə ionlaşması</b>, yük daşıyıcıları uçqun kimi artır. Boşalma xarici ionlaşdırıcısız da davam edir: <b>müstəqil boşalma</b>.</p>
+      <p>Müstəqil boşalmanın əsas növləri:</p>
+      <div class="ex">qığılcım   çox yüksək gərginlik, qısa və parlaq: şimşək
+tac        sivri uclarda, sönük parıltı, xışıltı (yüksək gərginlik xətləri)
+parıltılı  seyrəldilmiş qaz, aşağı cərəyan: neon və flüoresan lampa
+qövs       böyük cərəyan, çox yüksək temperatur: qaynaq, projektor</div>
+      <p>Şimşəkdə buludla Yer arasında on kulonlarla yük bir neçə milisaniyəyə axır, cərəyan on minlərlə amper olur. Bunu <span class="m">I = q/t</span> ilə tapırıq.</p>
+
+      <h3><span class="st">3</span> Vakuumda cərəyan</h3>
+      <p>Vakuumda heç bir hissəcik yoxdur, cərəyan üçün daşıyıcıları <b>mənbədən</b> gətirmək lazımdır. Metal qızdırılanda içindəki bəzi elektronlar kifayət qədər enerji alıb metaldan çıxır. Buna <b>termoelektron emissiyası</b> deyilir. Qızdırılmış metal elektrod <b>katod</b> olur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Vakuum diodu: qızdırılmış katod, anod, elektronlar katoddan anoda uçur">
+          <defs><marker id="vk1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <ellipse cx="145" cy="82" rx="115" ry="62" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M70 118L70 98L62 90L78 82L62 74L78 66L70 58" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <rect x="205" y="42" width="8" height="80" fill="var(--ink)"/>
+          <line x1="86" y1="82" x2="196" y2="82" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#vk1)"/>
+          <circle cx="104" cy="66" r="3.5" fill="var(--accent)"/><circle cx="128" cy="96" r="3.5" fill="var(--accent)"/><circle cx="154" cy="70" r="3.5" fill="var(--accent)"/><circle cx="178" cy="95" r="3.5" fill="var(--accent)"/>
+          <text x="140" y="60" class="lbl" text-anchor="middle">e⁻</text>
+          <text x="70" y="50" class="lbl" text-anchor="middle">katod</text><text x="209" y="36" class="lbl" text-anchor="middle">anod</text>
+          <polyline points="70,118 70,172 128,172" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polyline points="140,172 209,172 209,122" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="128" y1="164" x2="128" y2="180" stroke="var(--ink)" stroke-width="5"/>
+          <line x1="140" y1="158" x2="140" y2="186" stroke="var(--ink)" stroke-width="2"/>
+          <text x="116" y="160" class="lbl" text-anchor="middle">−</text><text x="153" y="156" class="lbl" text-anchor="middle">+</text>
+        </svg>
+        <div class="cap">
+          <p>Katodu közərmə spiralı qızdırır, o, elektronlar "buxarlandırır". Anod mənbənin + qütbünə qoşulubsa, elektronlar ona çəkilir: cərəyan var. Qoşulma tərsinə olsa, soyuq anoddan elektron çıxmır — <b>cərəyan yoxdur</b>.</p>
+        </div>
+      </div>
+      <p>Beləcə <b>vakuum diodu</b> cərəyanı <b>yalnız bir istiqamətdə</b> keçirir (katoddan anoda elektronlar). Dəyişən cərəyanı sabitə çevirmək üçün bu xassə çox lazım idi (düzləndirici). Volt-amper xarakteristikası: gərginlik artdıqca cərəyan artır, sonra <b>doyma</b> baş verir — katodun buraxdığı bütün elektronlar artıq anoda çatır, gərginliyi artırmaq cərəyanı artırmır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Vakuum diodunun I–U qrafiki: artır, sonra doyma">
+          <defs><marker id="vk2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="40" y1="160" x2="245" y2="160" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#vk2)"/>
+          <line x1="40" y1="160" x2="40" y2="15" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#vk2)"/>
+          <path d="M40 160Q100 155 140 90Q165 55 190 48L235 48" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="40" y1="48" x2="190" y2="48" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="190" y1="48" x2="190" y2="160" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="34" y="52" class="lbl" text-anchor="end">I_doy</text>
+          <text x="190" y="176" class="lbl" text-anchor="middle">U₀</text>
+          <text x="238" y="176" class="lbl">U</text><text x="30" y="22" class="lbl" text-anchor="end">I</text>
+        </svg>
+        <div class="cap">
+          <p>Ohm qanunu burada işləmir: qrafik düz xətt deyil. <span class="m">U₀</span>-dan sonra cərəyan <b>doyma qiymətində</b> qalır. Doyma cərəyanı katodun temperaturundan asılıdır: katod qızdıqca elektron çox çıxır.</p>
+        </div>
+      </div>
+      <p>Elektronlar yüklüdür, ona görə sahə onları yönəldir. <b>Elektron-şüa borusunda</b> (köhnə televizor, osiloskop) qızdırılmış katoddan çıxan elektron dəstəsi elektrik və ya maqnit sahəsi ilə əyilib ekrana düşür və lyuminofor örtüyü parlayır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1 (şimşək). Buludla Yer arasından 30 C yük 2 ms-də keçib.
+Orta cərəyan?
+  t = 2 ms = 0,002 s
+  I = q/t = 30/0,002 = 15 000 A</div>
+      <div class="ex">Nümunə 2 (qövs). Qaynaq qövsündə gərginlik 40 V, cərəyan 150 A.
+1 dəq ərzində ayrılan enerji?
+  P = U·I = 40·150 = 6000 W
+  E = P·t = 6000·60 = 360 000 J = 360 kJ</div>
+      <div class="ex">Nümunə 3 (vakuum diodu, RFO tipli). Katodun temperaturu sabitdir.
+20 V-da cərəyan 2 mA, 40 V-da 4 mA, 60 V-da 6 mA, sonra
+80 V-da 8 mA-ə çatıb artmır. 200 V-da cərəyan?
+  80 V-dan sonra doyma: katodun buraxdığı bütün elektronlar anoda çatır.
+  I = 8 mA.
+  (Ohm qanunu ilə 200 V-da 20 mA gözləmək səhvdir.)</div>
+      <div class="life"><b>Həyatdan.</b> Flüoresan lampa içi civə buxarı olan şüşə borudur. Orada <b>parıltılı boşalma</b> baş verir, buxarın şüası divardakı lyuminoforu parlatır. Közərmə lampası isə enerjinin böyük hissəsini istilik kimi itirir, ona görə flüoresan lampa daha qənaətlidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qazı "həmişə keçirici" saymaq. Normal şəraitdə qaz dielektrikdir; keçirici olması üçün əvvəl ionlaşmalıdır.</li>
+        <li>Vakuum diodunda gərginliyi artırdıqca cərəyanın sonsuz artdığını düşünmək. Doyma var.</li>
+        <li>Vakuumda ionlar axdığını demək. Vakuum diodunda yük daşıyıcıları katoddan çıxan <b>elektronlardır</b>.</li>
+        <li>Millisaniyəni saniyəyə çevirməmək: <span class="m">2 ms = 0,002 s</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qaz: əvvəl ionlaşma; qığılcım, tac, parıltılı, qövs
+Vakuum: yük daşıyıcıları = termoelektron emissiyası (qızmış katod)
+Vakuum diodu: yalnız katoddan anoda; I–U-da doyma
+Şimşək: I = q/t;   qövs: E = U·I·t</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neon reklamda hansı boşalma baş verir? <span class="ans">Parıltılı boşalma (seyrəldilmiş qazda).</span></li>
+        <li>Vakuum diodunda soyuq katod olsa nə baş verər? <span class="ans">Elektron çıxmır, vakuumda başqa daşıyıcı yoxdur, cərəyan olmur.</span></li>
+        <li>10 C yük 0,005 s-də axırsa, orta cərəyan? <span class="ans">10/0,005 = 2000 A.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yarımkeçiricilər və diod</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Telefondakı, kompüterdəki hər çip milyardlarla yarımkeçirici elementdən ibarətdir. LED lampalar, günəş batareyaları, adapterdəki düzləndirici diod — hamısı yarımkeçiricidir. Yarımkeçirici (silisium, germanium) nə keçirici, nə də izolyatordur; onun xassələrini isə kənardan dəyişmək olur: qatışıq əlavə edərək, qızdıraraq, işıqlandıraraq.</p>
+
+      <h3><span class="st">2</span> Yarımkeçiricidə yük daşıyıcıları</h3>
+      <p>Təmiz silisiumda hər atom qonşularla rabitə yaradır, sərbəst elektron az olur. Qızdıranda və ya işıqlandıranda bəzi elektronlar rabitədən qopur. Elektron gedən yerdə <b>deşik</b> qalır — müsbət yük kimi davranan boş yer. Qonşu elektron bu deşiyə keçir, deşik başqa yerə "köçür". Yəni yarımkeçiricidə <b>iki növ daşıyıcı</b> var: elektronlar və deşiklər.</p>
+      <p>Silisiuma az miqdarda başqa element qatsan, keçiricilik kəskin artır:</p>
+      <div class="ex">n-tip: əsas daşıyıcılar elektronlar (donor qatışığı, məs. fosfor)
+p-tip: əsas daşıyıcılar deşiklər (akseptor qatışığı, məs. bor)</div>
+      <p>Bu xassələrdən cihazlar düzəlir: <b>termistor</b> (qızdıqca müqaviməti azalır, temperatur sensorudur), <b>fotorezistor</b> (işıqlandıqca müqaviməti azalır, işıq sensoru, küçə lampasının avtomatı).</p>
+
+      <h3><span class="st">3</span> p–n keçid və diod</h3>
+      <p>p-tip və n-tip kristalın birləşdiyi yerə <b>p–n keçid</b> deyilir. Sərhəddə elektronlarla deşiklər qovuşub yox olur, nazik <b>bağlayıcı təbəqə</b> yaranır, orada daşıyıcı demək olar ki yoxdur. Xarici gərginlik bu təbəqəni ya daraldır, ya genişləndirir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 250" role="img" aria-label="p–n keçid: düz qoşulmada cərəyan keçir, əks qoşulmada keçmir">
+          <rect x="60" y="20" width="80" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="140" y="20" width="80" height="40" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="122" y="20" width="36" height="40" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <circle cx="75" cy="30" r="4" fill="none" stroke="var(--ink)"/><circle cx="92" cy="48" r="4" fill="none" stroke="var(--ink)"/><circle cx="108" cy="30" r="4" fill="none" stroke="var(--ink)"/>
+          <circle cx="172" cy="30" r="4" fill="var(--ink)"/><circle cx="190" cy="48" r="4" fill="var(--ink)"/><circle cx="208" cy="30" r="4" fill="var(--ink)"/>
+          <text x="75" y="14" class="lbl" text-anchor="middle">p</text><text x="205" y="14" class="lbl" text-anchor="middle">n</text>
+          <polyline points="60,40 30,40 30,85 125,85" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polyline points="137,85 250,85 250,40 220,40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="125" y1="75" x2="125" y2="95" stroke="var(--ink)" stroke-width="2"/><line x1="137" y1="80" x2="137" y2="90" stroke="var(--ink)" stroke-width="5"/>
+          <text x="116" y="72" class="lbl" text-anchor="end">+</text><text x="146" y="76" class="lbl">−</text>
+          <text x="150" y="112" class="lbl" text-anchor="middle">düz qoşulma: cərəyan keçir</text>
+          <g transform="translate(0,125)">
+            <rect x="60" y="20" width="80" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <rect x="140" y="20" width="80" height="40" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+            <rect x="105" y="20" width="70" height="40" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>
+            <circle cx="75" cy="30" r="4" fill="none" stroke="var(--ink)"/><circle cx="90" cy="48" r="4" fill="none" stroke="var(--ink)"/>
+            <circle cx="192" cy="30" r="4" fill="var(--ink)"/><circle cx="207" cy="48" r="4" fill="var(--ink)"/>
+            <text x="75" y="14" class="lbl" text-anchor="middle">p</text><text x="205" y="14" class="lbl" text-anchor="middle">n</text>
+            <polyline points="60,40 30,40 30,85 125,85" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <polyline points="137,85 250,85 250,40 220,40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="125" y1="80" x2="125" y2="90" stroke="var(--ink)" stroke-width="5"/><line x1="137" y1="75" x2="137" y2="95" stroke="var(--ink)" stroke-width="2"/>
+            <text x="116" y="76" class="lbl" text-anchor="end">−</text><text x="146" y="72" class="lbl">+</text>
+            <text x="150" y="112" class="lbl" text-anchor="middle">əks qoşulma: cərəyan yoxdur</text>
+          </g>
+        </svg>
+        <div class="cap">
+          <p>Dairələr: boş — deşik, dolu — elektron. Qırıq xətt — bağlayıcı təbəqə. <b>Düz qoşulma:</b> + p-yə, − n-ə. Daşıyıcılar sərhədə itələnir, təbəqə daralır, cərəyan keçir. <b>Əks qoşulma:</b> + n-ə, − p-yə. Daşıyıcılar sərhəddən uzaqlaşır, təbəqə genişlənir, cərəyan (demək olar) yoxdur.</p>
+        </div>
+      </div>
+      <p>İki çıxışlı p–n keçid cihazına <b>yarımkeçirici diod</b> deyilir. Elektrik sxemində belə işarə olunur:</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 170" role="img" aria-label="Diodun işarəsi və I–U xarakteristikası">
+          <defs><marker id="dd1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="8" y1="55" x2="40" y2="55" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="40,38 40,72 72,55" fill="var(--ink)"/>
+          <line x1="72" y1="36" x2="72" y2="74" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="72" y1="55" x2="104" y2="55" stroke="var(--ink)" stroke-width="2"/>
+          <text x="24" y="92" class="lbl" text-anchor="middle">anod</text><text x="88" y="92" class="lbl" text-anchor="middle">katod</text>
+          <line x1="30" y1="26" x2="86" y2="26" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#dd1)"/>
+          <text x="58" y="18" class="lbl" text-anchor="middle">I (keçir)</text>
+          <line x1="125" y1="125" x2="292" y2="125" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#dd1)"/>
+          <line x1="210" y1="152" x2="210" y2="12" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#dd1)"/>
+          <path d="M128 127L210 125Q232 124 242 98L252 22" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="288" y="142" class="lbl">U</text><text x="200" y="20" class="lbl" text-anchor="end">I</text>
+          <text x="165" y="146" class="lbl" text-anchor="middle">bağlıdır</text><text x="262" y="70" class="lbl">açıqdır</text>
+        </svg>
+        <div class="cap">
+          <p>Sxemdə üçbucaq cərəyanın keçdiyi istiqaməti göstərir (anoddan katoda). Xarakteristikada: <span class="m">U &gt; 0</span> olanda cərəyan sürətlə artır, <span class="m">U &lt; 0</span> olanda cərəyan demək olar ki sıfırdır. Diod <b>birtərəfli keçirir</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> İdeal diodlu dövrələr</h3>
+      <p>Məsələlərdə <b>ideal diod</b> götürülür:</p>
+      <div class="fm">düz qoşulma (cərəyan üçbucağın istiqamətində):  R = 0, tel kimi
+əks qoşulma:                                    R = ∞, açıq açar</div>
+      <p>Hansı halın olduğunu necə bilək? Batareyanın <b>+ qütbündən</b> çıxıb − qütbünə gedən yolu izlə. Diodun üçbucağı bu istiqamətə baxırsa — düz, əksinədirsə — əks qoşulub. Sonra diod ya tel, ya da boşluq kimi yazılır, qalanı Ohm qanunudur.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 12 V mənbəyə ideal diod və 8 Ω rezistor ardıcıl qoşulub.
+Diod düz qoşulub. Cərəyan? Əks qoşulsa?
+  Düz: diod tel kimidir, I = U/R = 12/8 = 1,5 A
+  Əks: dövrə açıqdır, I = 0</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+12 V mənbəyə iki qol paralel qoşulub: birində ideal diod və
+R₁ = 6 Ω ardıcıl, digərində R₂ = 4 Ω. Mənbədən çıxan cərəyan?
+Diod düz qoşulub; əks olsa necə dəyişər?
+  R₂ qolu: 12/4 = 3 A (diodsuz, həmişə)
+  Düz diod: R₁ qolu 12/6 = 2 A → cəmi 3 + 2 = 5 A
+  Əks diod: R₁ qolu açıqdır → cəmi 3 A</div>
+      <div class="ex">Nümunə 3 (RFO tipli). 12 V mənbəyə R₁ = 6 Ω və R₂ = 12 Ω ardıcıl
+qoşulub. R₂-nin paralelinə ideal diod qoşulub.
+Cərəyan: a) diod düz; b) diod əks?
+  a) Düz diod R₂-ni qısa qapayır (müqavimət 0): R₂-dən cərəyan keçmir.
+     I = 12/6 = 2 A
+  b) Əks diod açıq açardır, R₂ işləyir: R = 6 + 12 = 18 Ω
+     I = 12/18 = 2/3 A</div>
+      <div class="life"><b>Həyatdan.</b> Telefonu şarj edən adapterdə dəyişən cərəyan diodlarla sabit cərəyana çevrilir. Dəyişən gərginliyin müsbət yarımdalğası diodu keçir, mənfi yarımdalğası keçmir. Avtomobildə akkumulyatoru tərs qoşsan sxemi qoruyan diod cərəyanı kəsir: ideal diod əks qoşulmada açıq açardır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Diodun üçbucağını "mənfidən müsbətə" oxumaq. Üçbucaq <b>şərti (müsbət) cərəyan</b> istiqamətini göstərir, yəni + qütbdən − qütbə.</li>
+        <li>Düz qoşulmada diodun müqavimətini rezistor kimi hesablamaq. İdeal diod düz qoşulmada <span class="m">R = 0</span>-dır.</li>
+        <li>Əks qoşulmada diodu "qısa qapanma" saymaq. Əksdə diod <b>açıq açardır</b> (<span class="m">R = ∞</span>), bu qolda cərəyan yoxdur.</li>
+        <li>Paralel qolda diod yalnız öz qolunu bağlayır: mənbəyə birbaşa qoşulmuş digər qol işləyir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n-tip: elektronlar;  p-tip: deşiklər
+p–n keçid: düz qoşulmada keçirir, əksdə keçirmir
+İdeal diod: düz — tel (R = 0), əks — açıq açar (R = ∞)
+Termistor, fotorezistor: qızdıqca / işıqlandıqca R azalır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>10 V mənbə, 5 Ω rezistor və ideal diod ardıcıldır, diod əks qoşulub. Cərəyan? <span class="ans">0, əks qoşulmada diod açıqdır.</span></li>
+        <li>20 V mənbəyə iki qol paralel: biri R₂ = 5 Ω, digəri düz diod + R₁ = 10 Ω. Mənbədən cərəyan? <span class="ans">20/5 + 20/10 = 4 + 2 = 6 A.</span></li>
+        <li>Termistoru qızdırdıq, mənbə gərginliyi sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, I = U/R artır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Müqavimətin temperaturdan asılılığı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Közərmə lampaları çox vaxt məhz işə salınan anda yanır. Səbəb: soyuq volfram tel işçi vəziyyətdən on dəfə az müqavimətə malikdir və ilk anda çox böyük cərəyan axır. Termometrlər, yanğın siqnalları, avtomobildə mühərrik temperaturunun ölçülməsi müqavimətin temperaturdan asılılığına əsaslanır.</p>
+
+      <h3><span class="st">2</span> Metallar: temperatur artır, R artır</h3>
+      <p>Metalda ion qəfəsi qızdıqca daha güclü rəqs edir və sərbəst elektronların hərəkətinə daha çox mane olur. Müqavimət artır. Bu artım xətti qanunla yazılır:</p>
+      <div class="fm">R = R₀(1 + α·Δt)
+Δt = t − t₀  (temperatur dəyişməsi, °C və ya K)
+α — müqavimətin temperatur əmsalı, 1/°C</div>
+      <p>Burada <span class="m">R₀</span> — başlanğıc temperaturdakı müqavimətdir (məsələn <span class="m">0 °C</span>-də). Bir neçə qiymət (yuvarlaq):</p>
+      <div class="ex">mis, alüminium   α ≈ 0,004 1/°C
+volfram          α ≈ 0,005 1/°C
+dəmir            α ≈ 0,006 1/°C
+nikrom, manqanin α ≈ 0 (praktiki dəyişmir; etalon rezistorlar bundan)</div>
+      <p><span class="m">α = 0,004 1/°C</span> o deməkdir ki, 100 °C qızdıranda müqavimət <span class="m">0,4</span> hissə, yəni 40 % artır. Çox aşağı temperaturda bəzi metallar (qurğuşun, alüminium, civə) müqavimətini <b>tamamilə itirir</b> — bu <b>ifratkeçiriciliyin</b> başlanğıcıdır (qeyd üçün; məsələlərdə yoxdur).</p>
+
+      <h3><span class="st">3</span> Elektrolit və yarımkeçiricilər: temperatur artır, R azalır</h3>
+      <div class="fig">
+        <svg viewBox="0 0 280 200" role="img" aria-label="R(t) qrafikləri: metalda artır, yarımkeçiricidə və elektrolitdə azalır">
+          <defs><marker id="rt1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="45" y1="170" x2="265" y2="170" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rt1)"/>
+          <line x1="45" y1="170" x2="45" y2="15" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#rt1)"/>
+          <line x1="45" y1="115" x2="250" y2="55" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M60 28Q95 125 250 156" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="38" y="119" class="lbl" text-anchor="end">R₀</text>
+          <text x="252" y="48" class="lbl" text-anchor="end">metal</text>
+          <text x="120" y="52" class="lbl">yarımkeçirici,</text><text x="120" y="68" class="lbl">elektrolit</text>
+          <text x="262" y="188" class="lbl">t</text><text x="36" y="22" class="lbl" text-anchor="end">R</text>
+        </svg>
+        <div class="cap">
+          <p>Metal: düz xətt yuxarı (<span class="m">R₀(1 + αΔt)</span>). Yarımkeçirici və elektrolit: əyri aşağı enir.</p>
+        </div>
+      </div>
+      <p><b>Yarımkeçiricidə</b> qızdıqca rabitələrdən qopan elektron və deşiklərin sayı çox artır. Daşıyıcı çox olduqca müqavimət azalır, ion qəfəsinin rəqsi isə arxa planda qalır. <b>Elektrolitdə</b> qızdıqca məhlulun özlülüyü azalır, ionların hərəkəti asanlaşır, müqavimət azalır. Odur ki, termistorlar temperaturu çox həssas ölçür.</p>
+      <p>Qısa qaydalar: <b>metal</b> — qızdıqca <b>çətinləşir</b>; <b>yarımkeçirici</b> və <b>elektrolit</b> — qızdıqca <b>asanlaşır</b>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Mis məftilin 0 °C-də müqaviməti 50 Ω-dur (α = 0,004 1/°C).
+100 °C-də müqavimət?
+  R = R₀(1 + αΔt) = 50·(1 + 0,004·100) = 50·1,4 = 70 Ω
+  (20 Ω artıb)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Müqavimət termometrinin platin məftili 0 °C-də 100 Ω-dur
+(α = 0,004 1/°C). Sobada ölçülən müqavimət 120 Ω-dur.
+Sobanın temperaturu?
+  R/R₀ = 120/100 = 1,2 = 1 + αΔt
+  αΔt = 0,2  →  Δt = 0,2/0,004 = 50 °C
+  Soba 50 °C-dir (başlanğıc 0 °C idi).</div>
+      <div class="ex">Nümunə 3 (RFO tipli, volfram lampa).
+Lampanın volfram telinin soyuq (20 °C) müqaviməti 10 Ω-dur.
+İşçi temperatur 2020 °C, α = 0,005 1/°C. Lampa 110 V şəbəkədə
+işləyir. İşçi cərəyanı və qoşulan andakı cərəyanı tap.
+  Δt = 2020 − 20 = 2000 °C
+  R = 10·(1 + 0,005·2000) = 10·11 = 110 Ω
+  İşçi cərəyan:  I = 110/110 = 1 A
+  İlk anda tel soyuq:  I = 110/10 = 11 A  (11 dəfə artıq)</div>
+      <div class="life"><b>Həyatdan.</b> Ona görə lampalar adətən işə salınanda yanır: ilk saniyənin onda birində cərəyan işçi cərəyandan on dəfə çox olur, tel tez qızır, sonra cərəyan düşür. Yanğın siqnalındakı termistor isə otaq qızanda müqavimətini kəskin azaldır, cərəyan artır və cihaz xəbərdarlıq edir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">Δt</span> əvəzinə son temperaturu yazmaq. Məsələn, 20 °C-dən 120 °C-yə qızdırılıbsa, <span class="m">Δt = 100</span>, <span class="m">120</span> yox.</li>
+        <li>Metalın müqavimətini qızdıqca azaltmaq. Metalda artır; azalma yarımkeçiricinin və elektrolitin xassəsidir.</li>
+        <li><span class="m">R = R₀·α·Δt</span> yazmaq (<span class="m">1 +</span> yoxdur). Bu, yalnız <b>artımdır</b>: <span class="m">ΔR = R₀αΔt</span>.</li>
+        <li>Soyuq vəziyyətdəki cərəyanı işçi cərəyanla qarışdırmaq. Lampada ilk an cərəyan <b>çox</b>, sonra az olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Metal:  R = R₀(1 + αΔt),  artır; ΔR = R₀·α·Δt
+Yarımkeçirici, elektrolit: qızdıqca R azalır
+Qızdırılmış volfram lampa: işçi R ≈ 10 R₀, ilk cərəyan çoxdur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mis məftilin 20 °C-də müqaviməti 200 Ω (α = 0,004 1/°C). 70 °C-də? <span class="ans">Δt = 50, R = 200·(1 + 0,2) = 240 Ω.</span></li>
+        <li>Volfram teli R₀ = 40 Ω (α = 0,005 1/°C), 100 °C artıbsa, müqavimət? <span class="ans">R = 40·(1 + 0,5) = 60 Ω.</span></li>
+        <li>Termistor qızdırılır, gərginlik sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, cərəyan artır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
