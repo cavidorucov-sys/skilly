@@ -89,7 +89,7 @@ function topicCard(t) {
 }
 
 async function pageIndex() {
-  const content = el("div", { class: "cols" });
+  const content = el("div", { style: "margin-top:30px" });
   const { m, w, topics, term } = await shell(content);
   if (!m || !w) { content.append(el("p", { class: "empty" }, "Məlumat yüklənmədi.")); return; }
   // progress cards with tabs
@@ -119,17 +119,13 @@ async function pageIndex() {
   left.append(el("section", {}, el("div", { class: "head" }, el("h2", {}, "Həftənin cədvəli"), el("span", { class: "more" }, w.hefte)), days));
   // right column
   const upcoming = term.filter(t => t.tarix >= today).slice(0, 5);
-  const side = el("aside", { class: "side" },
-    el("section", {}, el("div", { class: "head" }, el("h2", {}, "Son tarixlər")),
-      el("div", { class: "list" }, ...(upcoming.length ? upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
+  const dl = el("section", {}, el("div", { class: "head" }, el("h2", {}, "Son tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim")),
+      el("div", { class: "list dl" }, ...(upcoming.length ? upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
         el("span", { class: "ic " + k.cls }, icon(t.kat, k.ink)),
         el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, t.qeyd || k.ad)),
-        el("span", { class: "badge " + k.cls }, t.tarix.slice(8) + "." + t.tarix.slice(5, 7))); }) : [el("p", { class: "empty" }, "Yaxın son tarix yoxdur.")]))));
-  const next = groups.isl.find(t => t.ders);
-  if (next) side.append(el("section", {}, el("div", { class: "head" }, el("h2", {}, "Növbəti addım")),
-    el("a", { class: "reco " + (KAT[next.kat] || KAT.misc).cls, href: next.ders, style: "margin-top:18px" },
-      el("small", {}, (KAT[next.kat] || KAT.misc).ad), el("b", {}, next.ad), el("span", {}, "Dərsi aç, nümunələri kağızda özün hesabla, sonra məşqə keç."))));
-  content.append(left, side);
+        el("span", { class: "badge " + k.cls }, t.tarix.slice(8) + "." + t.tarix.slice(5, 7))); }) : [el("p", { class: "empty" }, "Yaxın son tarix yoxdur.")])));
+  left.children[0].after(dl);
+  content.append(left);
 }
 
 async function pageTopics(key, title, lead) {
