@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Viyet teoremi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-viyet.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Viyet teoremi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli tənliklər</div>
+    <h1>Viyet teoremi</h1>
+    <p>Kvadrat tənliyin köklərinin cəmi və hasili əmsallarla birbaşa bağlıdır. Bu bağlılıq — Viyet teoremi — kökləri ağılda tapmağa, köklərdən tənlik qurmağa və tənliyi həll etmədən <span class="m">x₁² + x₂²</span> kimi ifadələri hesablamağa imkan verir. DİM-in parametrli sualları da əsasən buna söykənir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Viyet teoremi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tərs teorem</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Köklərin ifadələri</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Parametr</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Viyet teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">x² − 5x + 6 = 0</span>. Diskriminantla həll etmək bir dəqiqə çəkir. Amma diqqətlə bax: kökləri 2 və 3-dür, <span class="m">2 + 3 = 5</span>, <span class="m">2·3 = 6</span> — tənlikdəki ədədlər! Bu təsadüf deyil. Bunu bilən adam çox tənliyi 5 saniyəyə həll edir və hər cavabı bir baxışla yoxlayır.</p>
+
+      <h3><span class="st">2</span> Teorem</h3>
+      <div class="fm">Gətirilmiş tənlik:  x² + px + q = 0
+   x₁ + x₂ = −p
+   x₁ · x₂ = q
+
+Ümumi tənlik:  ax² + bx + c = 0
+   x₁ + x₂ = −b/a
+   x₁ · x₂ = c/a</div>
+      <p><b>Niyə doğrudur?</b> Köklər düsturundan:</p>
+      <div class="fm">x₁ + x₂ = (−b + √D)/(2a) + (−b − √D)/(2a) = −2b/(2a) = −b/a
+x₁ · x₂ = (b² − D)/(4a²) = (b² − b² + 4ac)/(4a²) = c/a</div>
+      <p><b>Şərt:</b> teorem yalnız köklər <b>varsa</b> işləyir, yəni <span class="m">D ≥ 0</span>. <span class="m">x² + 2x + 5 = 0</span> üçün <span class="m">D = 4 − 20 &lt; 0</span> — kök yoxdur, "köklərin cəmi −2" yazmaq səhvdir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x² − 7x + 10 = 0
+  D = 49 − 40 = 9 > 0
+  x₁ + x₂ = 7,  x₁·x₂ = 10      (köklər 2 və 5)</div>
+      <div class="ex">Nümunə 2.  3x² + 5x − 2 = 0
+  D = 25 + 24 = 49 > 0
+  x₁ + x₂ = −5/3,  x₁·x₂ = −2/3
+  (Köklər 1/3 və −2:  1/3 − 2 = −5/3 ✓,  1/3·(−2) = −2/3 ✓)</div>
+      <div class="ex">Nümunə 3. Köklərin işarələri (həll etmədən):
+  x² − 3x − 10 = 0:  hasil −10 &lt; 0  →  köklər müxtəlif işarəlidir
+  x² + 8x + 15 = 0:  hasil 15 > 0, cəm −8 &lt; 0  →  ikisi də mənfidir
+                     (D = 64 − 60 = 4 > 0, köklər var)</div>
+      <div class="life"><b>Həyatdan: cavabı yoxla.</b> İmtahanda <span class="m">2x² − 3x − 5 = 0</span>-ı həll edib <span class="m">5/2</span> və <span class="m">−1</span> aldın. Yoxla: cəm <span class="m">3/2 = −b/a</span> ✓, hasil <span class="m">−5/2 = c/a</span> ✓. On saniyə — və cavabına əminsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cəmin işarəsini dəyişməmək: <span class="m">x² − 7x + 10</span>-da cəm <span class="m">+7</span>-dir, −7 yox. Cəm — <span class="m">−p</span>, hasil — <span class="m">q</span>.</li>
+        <li><span class="m">a ≠ 1</span> olanda <span class="m">a</span>-ya bölməyi unutmaq: <span class="m">3x² + 5x − 2</span> üçün cəm −5 yox, <span class="m">−5/3</span> olur.</li>
+        <li>D &lt; 0 olan tənliyə Viyeti tətbiq etmək. Əvvəl köklərin olduğunu yoxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x₁ + x₂ = −b/a,   x₁·x₂ = c/a   (D ≥ 0 olanda)
+Cəmdə işarə dəyişir, hasildə dəyişmir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + 4x − 21 = 0</span>: cəm və hasil? <span class="ans">D = 16 + 84 = 100 > 0. Cəm −4, hasil −21 (köklər 3 və −7).</span></li>
+        <li><span class="m">2x² − 9x + 4 = 0</span>: cəm və hasil? <span class="ans">D = 81 − 32 = 49 > 0. Cəm 9/2, hasil 4/2 = 2 (köklər 4 və 1/2).</span></li>
+        <li><span class="m">x² + x + 3 = 0</span> köklərinin cəmi −1-dir? <span class="ans">Yox. D = 1 − 12 &lt; 0 — kök yoxdur, Viyet tətbiq olunmur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tərs teorem: kökləri seçmək, tənlik qurmaq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Teoremi tərsinə də işlətmək olar: cəmi və hasili bilinən iki ədəd həmişə müəyyən kvadrat tənliyin kökləridir. Bu, "iki ədədin cəmi 20, hasili 96" kimi məsələləri və kökləri ağılda tapmağı mümkün edir.</p>
+
+      <h3><span class="st">2</span> Tərs teorem</h3>
+      <div class="fm">Əgər  m + n = −p  və  m·n = q,
+onda m və n ədədləri  x² + px + q = 0  tənliyinin kökləridir.
+
+Köklərdən tənlik:  x² − (x₁ + x₂)x + x₁x₂ = 0</div>
+      <p><b>Kökləri seçmək</b> (gətirilmiş tənlikdə): hasili <span class="m">q</span> olan cütləri sına, cəmi <span class="m">−p</span> olanı götür.</p>
+      <div class="fm">q > 0  →  köklər eyni işarəli (işarəsi −p-nin işarəsidir)
+q &lt; 0  →  köklər müxtəlif işarəli</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Kökləri seç:
+  x² − 9x + 20 = 0   hasil 20, cəm 9   →  4 və 5
+  x² + 2x − 15 = 0   hasil −15, cəm −2  →  −5 və 3
+  x² + 11x + 24 = 0  hasil 24, cəm −11  →  −3 və −8</div>
+      <div class="ex">Tənlik qur:
+  Köklər 3 və −7:  cəm −4, hasil −21
+     x² − (−4)x + (−21) = 0   →   x² + 4x − 21 = 0
+  Köklər 1/2 və 3:  cəm 7/2, hasil 3/2
+     x² − (7/2)x + 3/2 = 0   →  (×2)  2x² − 7x + 3 = 0</div>
+
+      <h3><span class="st">4</span> Vuruqlara ayırma və iki fənd</h3>
+      <p>Köklər məlumdursa, kvadrat üçhədli vuruqlara ayrılır:</p>
+      <div class="fm">ax² + bx + c = a(x − x₁)(x − x₂)
+x² − 5x + 6 = (x − 2)(x − 3)
+2x² − 7x + 3 = 2(x − 1/2)(x − 3) = (2x − 1)(x − 3)</div>
+      <p>İki tez fənd (Viyetdən çıxır):</p>
+      <div class="fm">a + b + c = 0  →  x₁ = 1,   x₂ = c/a
+a − b + c = 0  →  x₁ = −1,  x₂ = −c/a</div>
+      <div class="ex">5x² − 8x + 3 = 0:   5 − 8 + 3 = 0  →  x₁ = 1,  x₂ = 3/5
+  Yoxla: cəm 1 + 3/5 = 8/5 = −b/a ✓
+2x² + 5x + 3 = 0:   2 − 5 + 3 = 0  →  x₁ = −1,  x₂ = −3/2</div>
+      <div class="life"><b>Həyatdan.</b> İki ədədin cəmi 20, hasili 96. Hansılardır? Onlar <span class="m">x² − 20x + 96 = 0</span> tənliyinin kökləridir. Hasili 96, cəmi 20: <span class="m">8</span> və <span class="m">12</span>. Yoxla: <span class="m">8 + 12 = 20</span>, <span class="m">8·12 = 96</span> ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tənlik qurarkən işarəni çaşmaq: kökləri 3 və −7 olan tənlik <span class="m">x² + 4x − 21 = 0</span>-dır, "x² − 4x − 21" yox. Ortadakı hədd — <b>mənfi</b> cəmdir.</li>
+        <li>Vuruqlara ayıranda <span class="m">a</span>-nı unutmaq: <span class="m">2x² − 7x + 3 ≠ (x − 1/2)(x − 3)</span>.</li>
+        <li>Ağılda seçəndə yalnız hasilə baxmaq: <span class="m">x² − 7x + 12</span> üçün 2 və 6-nın hasili də 12-dir, amma cəmi 8-dir. Düzü 3 və 4.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Köklər x₁, x₂  →  x² − (x₁ + x₂)x + x₁x₂ = 0
+ax² + bx + c = a(x − x₁)(x − x₂)
+a + b + c = 0 → kök 1;  a − b + c = 0 → kök −1.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 10x + 21 = 0</span>: kökləri seç. <span class="ans">Hasil 21, cəm 10 → 3 və 7.</span></li>
+        <li>Kökləri −2 və 5 olan gətirilmiş kvadrat tənliyi yaz. <span class="ans">Cəm 3, hasil −10 → x² − 3x − 10 = 0.</span></li>
+        <li><span class="m">7x² + 2x − 9 = 0</span>: kökləri tap. <span class="ans">7 + 2 − 9 = 0 → x₁ = 1, x₂ = c/a = −9/7.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Köklərin simmetrik ifadələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>DİM sualı: "<span class="m">x² − 5x + 3 = 0</span> tənliyinin kökləri <span class="m">x₁</span> və <span class="m">x₂</span>-dir. <span class="m">x₁² + x₂²</span> ifadəsini tap." Köklər burada <span class="m">(5 ± √13)/2</span> — onları kvadrata yüksəltmək uzun və səhvlidir. Əvəzində ifadəni <b>cəm və hasil ilə</b> yazırıq.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p>Qısa yazaq: <span class="m">s = x₁ + x₂</span>, <span class="m">p = x₁·x₂</span>.</p>
+      <div class="fm">x₁² + x₂²        = s² − 2p
+1/x₁ + 1/x₂      = s/p
+(x₁ − x₂)²       = s² − 4p
+x₁/x₂ + x₂/x₁    = (s² − 2p)/p
+x₁²x₂ + x₁x₂²    = p·s
+x₁³ + x₂³        = s³ − 3ps</div>
+      <p>Hamısı bir fikirdən çıxır: <span class="m">(x₁ + x₂)² = x₁² + 2x₁x₂ + x₂²</span>, yəni <span class="m">x₁² + x₂² = s² − 2p</span>. Qalanlarını da ortaq məxrəc və mötərizə xaricinə çıxarma ilə alırsan.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x² − 5x + 3 = 0
+  D = 25 − 12 = 13 > 0, köklər var.   s = 5,  p = 3
+  x₁² + x₂²     = 25 − 6 = 19
+  1/x₁ + 1/x₂   = 5/3
+  (x₁ − x₂)²    = 25 − 12 = 13
+  x₁/x₂ + x₂/x₁ = 19/3
+  x₁³ + x₂³     = 125 − 3·3·5 = 125 − 45 = 80</div>
+      <div class="ex">Nümunə 2.  2x² − 6x − 1 = 0
+  D = 36 + 8 = 44 > 0.   s = 6/2 = 3,  p = −1/2
+  x₁² + x₂²   = 9 − 2·(−1/2) = 9 + 1 = 10
+  1/x₁ + 1/x₂ = 3 : (−1/2) = −6</div>
+      <div class="life"><b>Həyatdan: düsturu özün yoxla.</b> Düsturu unutdunsa, sadə tənlikdə sına. <span class="m">x² − 5x + 6 = 0</span>: köklər 2 və 3, <span class="m">4 + 9 = 13</span>. Düstur: <span class="m">s² − 2p = 25 − 12 = 13</span> ✓. Belə yoxlama imtahanda 20 saniyə çəkir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x₁² + x₂² = (x₁ + x₂)²</span> yazmaq. <span class="m">2x₁x₂</span> çıxılmalıdır.</li>
+        <li>Mənfi hasildə işarə: <span class="m">p = −2</span> olanda <span class="m">−2p = +4</span>.</li>
+        <li><span class="m">1/x₁ + 1/x₂</span>-ni <span class="m">p/s</span> yazmaq. Cəm surətdədir: <span class="m">(x₂ + x₁)/(x₁x₂)</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kökləri tapma — s və p ilə yaz.
+x₁² + x₂² = s² − 2p,   1/x₁ + 1/x₂ = s/p,   (x₁ − x₂)² = s² − 4p.
+Əvvəl D > 0 olduğunu yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + 3x − 4 = 0</span>: <span class="m">x₁² + x₂²</span> = ? <span class="ans">s = −3, p = −4: 9 + 8 = 17. (Köklər 1 və −4: 1 + 16 = 17 ✓)</span></li>
+        <li><span class="m">x² − 6x + 4 = 0</span>: <span class="m">1/x₁ + 1/x₂</span> = ? <span class="ans">D = 36 − 16 = 20 > 0. s/p = 6/4 = 3/2.</span></li>
+        <li><span class="m">x² − 7x + 2 = 0</span>: <span class="m">(x₁ − x₂)²</span> = ? <span class="ans">49 − 8 = 41.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Parametrli məsələlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tənlikdə naməlum əmsal (parametr) var, köklər haqqında isə bir şərt verilib: "bir kökü 3-dür", "köklərin fərqi 2-dir", "kvadratları cəmi 20-dir". Bu şərti Viyetlə tənliyə çeviririk.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fm">1. Viyet: x₁ + x₂ = …,  x₁·x₂ = …  (parametrlə)
+2. Şərti də tənlik kimi yaz.
+3. Sistemi həll et → parametr.
+4. YOXLA: tapılan parametrdə D ≥ 0 olmalıdır.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. x² + bx − 12 = 0 tənliyinin bir kökü 3-dür. b = ?  İkinci kök?
+  Hasil: 3·x₂ = −12  →  x₂ = −4
+  Cəm: 3 + (−4) = −1 = −b  →  b = 1
+  Yoxla: 9 + 3 − 12 = 0 ✓</div>
+      <div class="ex">Nümunə 2. x² − 8x + q = 0,  x₁ − x₂ = 2.  q = ?
+  x₁ + x₂ = 8,  x₁ − x₂ = 2  →  x₁ = 5,  x₂ = 3
+  q = x₁·x₂ = 15</div>
+      <div class="ex">Nümunə 3. x² − 9x + q = 0,  x₁ = 2x₂.  q = ?
+  2x₂ + x₂ = 9  →  x₂ = 3,  x₁ = 6
+  q = 18</div>
+
+      <h3><span class="st">4</span> D yoxlaması niyə vacibdir</h3>
+      <div class="ex">Nümunə 4. x² + px + 8 = 0,  x₁² + x₂² = 20.  p = ?
+  x₁ + x₂ = −p,  x₁x₂ = 8:   (−p)² − 2·8 = 20  →  p² = 36  →  p = ±6
+  D = 36 − 32 = 4 ≥ 0 ✓   Cavab: p = 6 və ya p = −6</div>
+      <div class="ex">Nümunə 5 (tələ). x² + px + 10 = 0,  x₁² + x₂² = 16.  p = ?
+  p² − 20 = 16  →  p² = 36  →  p = ±6
+  D = 36 − 40 = −4 &lt; 0 — bu p-lərdə kök YOXDUR!
+  Cavab: belə p yoxdur</div>
+      <div class="ex">Nümunə 6. a-nın hansı qiymətində x² + (a − 3)x − 5 = 0
+tənliyinin kökləri qarşılıqlı əks ədədlərdir (x₁ = −x₂)?
+  x₁ + x₂ = 0  →  −(a − 3) = 0  →  a = 3
+  Onda x² − 5 = 0, x = ±√5 ✓ (D = 20 > 0)</div>
+      <div class="life"><b>Həyatdan.</b> Düzbucaqlı hasarın perimetri 26 m, sahəsi isə 40 m². Tərəflərin cəmi 13, hasili 40 — onlar <span class="m">x² − 13x + 40 = 0</span>-ın kökləridir: 5 m və 8 m. Viyet olmasaydı, iki naməlumlu sistem həll etməli idin.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Parametri tapıb D-ni yoxlamamaq (Nümunə 5). Kök olmayan tənliyin "köklərinin kvadratları cəmi" olmur.</li>
+        <li><span class="m">p² = 36</span>-dan yalnız <span class="m">p = 6</span> yazmaq. Sual "müsbət qiymət" demirsə, ikisi də cavabdır.</li>
+        <li>Bir kök məlum olanda onu tənliyə qoymağı unutmaq: əvəz etmək də işləyir: <span class="m">9 + 3b − 12 = 0 → b = 1</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şərt + Viyet → parametr üçün tənlik.
+Sonda: D ≥ 0? Deyilsə, o qiymət atılır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + bx + 15 = 0</span>, bir kök −3. b = ? <span class="ans">x₂ = 15 : (−3) = −5. Cəm −8 = −b → b = 8.</span></li>
+        <li><span class="m">x² − 10x + q = 0</span>, <span class="m">x₁ = 4x₂</span>. q = ? <span class="ans">5x₂ = 10 → x₂ = 2, x₁ = 8 → q = 16.</span></li>
+        <li><span class="m">x² − 2x + q = 0</span>, <span class="m">x₁² + x₂² = 10</span>. q = ? <span class="ans">4 − 2q = 10 → q = −3. D = 4 + 12 = 16 ≥ 0 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

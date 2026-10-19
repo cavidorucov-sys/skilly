@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kvadrat tənlik dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-kvadrat-tenlik.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kvadrat tənlik</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli tənliklər</div>
+    <h1>Kvadrat tənlik, diskriminant</h1>
+    <p><span class="m">ax² + bx + c = 0</span> — DİM-də ən çox rast gəlinən tənlik. Natamam kvadrat tənlikləri, diskriminantı, köklərin sayını, köklər düsturunu və cüt əmsal üçün qısa düsturu öyrənəcəksən. Sonda — kvadrat tənliyə gələn məsələlər.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Natamam</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Diskriminant</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Köklər düsturu</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kvadrat tənlik. Natamam kvadrat tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kvadrat formalı otağın sahəsi 36 m² olarsa, tərəfi nə qədərdir? <span class="m">x² = 36</span>. Bu artıq xətti tənlik deyil — <span class="m">x</span> kvadratdadır. Sahə, sürət, düşən cisim, faiz artımı — hamısı kvadrat tənliyə gətirir.</p>
+
+      <h3><span class="st">2</span> Kvadrat tənlik nədir</h3>
+      <div class="fm">ax² + bx + c = 0,   a ≠ 0
+a — birinci əmsal,  b — ikinci əmsal,  c — sərbəst hədd</div>
+      <p>Məsələn, <span class="m">2x² − 3x − 5 = 0</span>: <span class="m">a = 2</span>, <span class="m">b = −3</span>, <span class="m">c = −5</span>. Əmsalları <b>işarəsi ilə</b> götür. <span class="m">a = 1</span> olanda tənliyə <b>gətirilmiş</b> kvadrat tənlik deyilir: <span class="m">x² + px + q = 0</span>.</p>
+      <p>Əgər <span class="m">b</span> və ya <span class="m">c</span> sıfırdırsa, tənlik <b>natamamdır</b>. Onu düstursuz, tez həll edirik.</p>
+
+      <h3><span class="st">3</span> Natamam tənliklərin üç növü</h3>
+      <div class="fm">ax² = 0        →  x = 0  (bir kök)
+ax² + c = 0    →  x² = −c/a
+                  −c/a > 0:  x = ±√(−c/a)
+                  −c/a < 0:  kök yoxdur
+ax² + bx = 0   →  x(ax + b) = 0
+                  x = 0  və  x = −b/a</div>
+      <p>Son halda <b>hasil sıfırdır</b> qaydasını işlədirik: <span class="m">A·B = 0</span> ⇔ <span class="m">A = 0</span> və ya <span class="m">B = 0</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3x² − 27 = 0  →  3x² = 27  →  x² = 9  →  x = 3, x = −3
+2) 2x² + 8 = 0   →  x² = −4   →  kvadrat mənfi olmur — kök yoxdur
+3) 5x² − 15x = 0 →  5x(x − 3) = 0  →  x = 0, x = 3
+4) x² − 12 = 0   →  x² = 12   →  x = ±√12 = ±2√3
+5) 4x² = 0       →  x = 0</div>
+      <div class="life"><b>Həyatdan.</b> Otaq məsələsi: <span class="m">x² = 36</span> → <span class="m">x = 6</span> və <span class="m">x = −6</span>. Uzunluq mənfi olmur — tərəf 6 m. Riyazi kökü həmişə şərtlə yoxla.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x² = 9</span>-dan yalnız <span class="m">x = 3</span> yazmaq. İki kök var: <span class="m">±3</span>.</li>
+        <li><span class="m">5x² = 15x</span>-i x-ə bölüb <span class="m">x = 3</span> yazmaq — <span class="m">x = 0</span> kökü itir. Bölmə yox, mötərizə xaricinə çıxar.</li>
+        <li><span class="m">x² = −4</span> → "x = ±2". Yoxla: <span class="m">2² = 4</span>, −4 deyil. Kök yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">c yoxdursa: x-i mötərizə xaricinə çıxar → bir kök 0.
+b yoxdursa: x² = ədəd → ±√ və ya kök yoxdur.
+Heç vaxt x-ə bölmə.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2x² − 50 = 0</span>. Köklər? <span class="ans">x² = 25 → x = 5, x = −5.</span></li>
+        <li><span class="m">x² + 7x = 0</span>. Köklər? <span class="ans">x(x + 7) = 0 → x = 0, x = −7.</span></li>
+        <li><span class="m">3x² + 12 = 0</span>. Neçə kök? <span class="ans">x² = −4 — kök yoxdur (0).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Diskriminant və köklərin sayı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tam kvadrat tənliyi həll etməzdən əvvəl bir ədəd hesablayıb bilmək olar: kök neçədir — iki, bir, yoxsa heç biri. Bu ədəd <b>diskriminantdır</b> (latınca "ayıran"). DİM-də "neçə kökü var?", "hansı qiymətdə bir kökü var?" sualları məhz onunla həll olunur.</p>
+
+      <h3><span class="st">2</span> Düstur və üç hal</h3>
+      <div class="fm">D = b² − 4ac
+D > 0  →  iki müxtəlif kök
+D = 0  →  bir kök (iki bərabər kök)
+D < 0  →  kök yoxdur</div>
+      <p>Haradan gəlir? Tam kvadrat ayıranda tənlik bu şəklə düşür:</p>
+      <div class="fm">(x + b/(2a))² = D/(4a²)</div>
+      <p>Sol tərəf kvadratdır, mənfi ola bilməz. <span class="m">D &lt; 0</span> olanda sağ tərəf mənfidir — kök yoxdur. <span class="m">D = 0</span> olanda <span class="m">x = −b/(2a)</span> — tək kök. <span class="m">D &gt; 0</span> olanda kvadratın kökü iki işarəlidir — iki kök.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 110" role="img" aria-label="Üç parabola: biri ox-u iki nöqtədə kəsir (D>0), biri toxunur (D=0), biri kəsmir (D<0)">
+          <line x1="5" y1="70" x2="295" y2="70" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M15 20 Q50 140 85 20" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="36" cy="70" r="4" fill="var(--vec)"/><circle cx="64" cy="70" r="4" fill="var(--vec)"/>
+          <path d="M115 10 Q150 130 185 10" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="150" cy="70" r="4" fill="var(--vec)"/>
+          <path d="M215 5 Q250 100 285 5" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="50" y="100" text-anchor="middle" class="lbl">D &gt; 0: 2 kök</text>
+          <text x="150" y="100" text-anchor="middle" class="lbl">D = 0: 1 kök</text>
+          <text x="250" y="100" text-anchor="middle" class="lbl">D &lt; 0: kök yox</text>
+        </svg>
+        <div class="cap"><p><span class="m">y = ax² + bx + c</span> parabolasının <span class="m">x</span> oxu ilə kəsişmə nöqtələri — tənliyin kökləridir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 2x² − 3x − 5 = 0
+   D = (−3)² − 4·2·(−5) = 9 + 40 = 49 > 0  →  iki kök
+2) x² − 6x + 9 = 0
+   D = (−6)² − 4·1·9 = 36 − 36 = 0  →  bir kök (x = 3)
+3) 3x² + 2x + 1 = 0
+   D = 2² − 4·3·1 = 4 − 12 = −8 < 0  →  kök yoxdur</div>
+      <p><b>Faydalı fənd:</b> <span class="m">a</span> və <span class="m">c</span> müxtəlif işarəlidirsə, <span class="m">−4ac &gt; 0</span>, deməli <span class="m">D &gt; 0</span> — həmişə iki kök var. Məsələn, <span class="m">x² + 100x − 1 = 0</span>.</p>
+
+      <h3><span class="st">4</span> Parametrli suallar</h3>
+      <div class="ex">c-nin hansı qiymətində x² − 6x + c = 0 tənliyinin bir kökü var?
+  D = 0:  36 − 4c = 0  →  c = 9.   (Onda (x − 3)² = 0.)
+İki müxtəlif kök üçün:  36 − 4c > 0  →  c < 9.
+  Belə c-lərin ən böyük tamı: 8.
+Kök olmaması üçün:  c > 9.</div>
+      <div class="life"><b>Həyatdan.</b> Top <span class="m">20</span> m/s sürətlə yuxarı atılıb, hündürlüyü <span class="m">h = 20t − 5t²</span>. 25 metrə çatacaqmı? <span class="m">20t − 5t² = 25</span> → <span class="m">t² − 4t + 5 = 0</span> → <span class="m">D = 16 − 20 = −4 &lt; 0</span>. Kök yoxdur — top 25 metrə çatmır. (Ən yüksək nöqtəsi 20 m-dir: orada D = 0.)</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(−3)²</span> yerinə <span class="m">−9</span> yazmaq. Mənfi ədədin kvadratı müsbətdir: 9.</li>
+        <li>Mənfi <span class="m">c</span>-də işarə səhvi: <span class="m">−4·2·(−5) = +40</span>. Mənfiləri mötərizədə yaz.</li>
+        <li><span class="m">D = 0</span> görüb "kök yoxdur" demək. D = 0 — bir kök deməkdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">D = b² − 4ac
+D > 0 — 2 kök;  D = 0 — 1 kök;  D < 0 — kök yoxdur.
+"Bir kökü var" sualı → D = 0 tənliyini həll et.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + 4x + 5 = 0</span>. Neçə kök? <span class="ans">D = 16 − 20 = −4 &lt; 0. Kök yoxdur (0).</span></li>
+        <li><span class="m">4x² − 4x + 1 = 0</span>. Neçə kök? <span class="ans">D = 16 − 16 = 0. Bir kök: x = 1/2.</span></li>
+        <li>b-nin hansı müsbət qiymətində <span class="m">x² + bx + 16 = 0</span> tənliyinin bir kökü var? <span class="ans">b² − 64 = 0 → b = 8 (b = −8 mənfidir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Kvadrat tənliyin kökləri düsturu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Diskriminant köklərin sayını deyir. İndi kökləri özlərini tapırıq — istənilən kvadrat tənlik üçün işləyən bir düsturla.</p>
+
+      <h3><span class="st">2</span> Köklər düsturu</h3>
+      <div class="fm">x₁,₂ = (−b ± √D) / (2a),    D = b² − 4ac ≥ 0</div>
+      <p>Ardıcıllıq: <b>a, b, c</b>-ni işarəsi ilə yaz → <b>D</b> → <b>√D</b> → iki kök ayrı-ayrı: biri "+" ilə, biri "−" ilə. <span class="m">2a</span> bütün surətin məxrəcidir.</p>
+      <div class="ex">Nümunə 1.  2x² − 3x − 5 = 0
+  a = 2, b = −3, c = −5
+  D = 9 + 40 = 49,  √D = 7
+  x = (3 ± 7)/4  →  x₁ = 10/4 = 5/2,  x₂ = −4/4 = −1
+  Yoxla x = −1:  2 + 3 − 5 = 0 ✓</div>
+      <div class="ex">Nümunə 2.  x² − 4x − 1 = 0
+  D = 16 + 4 = 20,  √20 = 2√5
+  x = (4 ± 2√5)/2 = 2 ± √5
+  Böyük kök: 2 + √5,  kiçik kök: 2 − √5</div>
+      <div class="ex">Nümunə 3.  −x² + 2x + 8 = 0
+  a mənfidir — əvvəl hər iki tərəfi −1-ə vur:  x² − 2x − 8 = 0
+  D = 4 + 32 = 36,  √D = 6
+  x = (2 ± 6)/2  →  x₁ = 4,  x₂ = −2</div>
+
+      <h3><span class="st">3</span> Cüt ikinci əmsal: b = 2k</h3>
+      <p><span class="m">b</span> cüt olanda <span class="m">k = b/2</span> götür. Düstur sadələşir, ədədlər kiçik qalır:</p>
+      <div class="fm">D₁ = k² − ac     (D₁ = D/4)
+x₁,₂ = (−k ± √D₁) / a</div>
+      <p>Köklərin sayı üçün <span class="m">D₁</span>-in işarəsi də kifayətdir: <span class="m">D₁</span> və <span class="m">D</span> eyni işarəlidir.</p>
+      <div class="ex">Nümunə 4.  3x² − 8x + 4 = 0
+  b = −8 = 2·(−4)  →  k = −4
+  D₁ = (−4)² − 3·4 = 16 − 12 = 4,  √D₁ = 2
+  x = (4 ± 2)/3  →  x₁ = 2,  x₂ = 2/3
+  Yoxla x = 2:  12 − 16 + 4 = 0 ✓</div>
+      <div class="ex">Nümunə 5.  x² + 6x − 2 = 0
+  k = 3,  D₁ = 9 + 2 = 11
+  x = −3 ± √11</div>
+      <div class="ex">Nümunə 2 yenidən (k = −2):  D₁ = 4 + 1 = 5,  x = 2 ± √5 — iki addımda.</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan.</b> D tam kvadratdırsa (1, 4, 9, 25, 49 …), köklər rasional ədədlərdir; deyilsə, cavabda √ qalır. İmtahanda D "pis" çıxırsa, əvvəl hesabı yoxla — çox vaxt səhv işarədədir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yalnız <span class="m">√D</span>-ni <span class="m">2a</span>-ya bölmək: <span class="m">−b ± √D/(2a)</span> səhvdir. Bütün surət bölünür.</li>
+        <li><span class="m">b</span> mənfi olanda <span class="m">−b</span>-ni mənfi yazmaq: <span class="m">b = −3</span> → <span class="m">−b = 3</span>.</li>
+        <li>Cüt əmsal düsturunda məxrəci <span class="m">2a</span> yazmaq. Orada məxrəc <span class="m">a</span>-dır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x = (−b ± √D)/(2a)
+b = 2k:  D₁ = k² − ac,  x = (−k ± √D₁)/a
+a &lt; 0 olanda əvvəl −1-ə vur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 7x + 10 = 0</span>. Köklər? <span class="ans">D = 49 − 40 = 9 → x = (7 ± 3)/2 → 5 və 2.</span></li>
+        <li><span class="m">5x² + 2x − 3 = 0</span>. Köklər? <span class="ans">k = 1, D₁ = 1 + 15 = 16 → x = (−1 ± 4)/5 → 3/5 və −1.</span></li>
+        <li><span class="m">x² + 2x − 4 = 0</span>. Böyük kök? <span class="ans">k = 1, D₁ = 1 + 4 = 5 → x = −1 ± √5. Böyüyü −1 + √5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kvadrat tənliklərin tətbiqi ilə məsələ həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sahə, ardıcıl ədədlərin hasili, atılan cisim, "hər kəs hər kəslə" — bu məsələlərdə naməlum özü-özünə vurulur və kvadrat tənlik alınır. Tənliyin iki kökü olur, amma məsələnin cavabı çox vaxt <b>bir</b>dir: mənasız kökü atırıq.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fm">1. x — naməlum; qalanları x ilə yaz.
+2. Tənlik qur, ax² + bx + c = 0 şəklinə gətir.
+3. D və köklər.
+4. Hər kökü şərtlə yoxla:
+   mənfi uzunluq / vaxt / say — atılır.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Düzbucaqlının uzunluğu enindən 3 m çoxdur, sahəsi 40 m².
+  En x, uzunluq x + 3:  x(x + 3) = 40  →  x² + 3x − 40 = 0
+  D = 9 + 160 = 169,  √D = 13
+  x = (−3 ± 13)/2  →  x = 5,  x = −8 (atılır)
+  Cavab: en 5 m, uzunluq 8 m  (yoxla: 5·8 = 40 ✓)</div>
+      <div class="ex">Nümunə 2. Ardıcıl iki natural ədədin hasili 156-dır.
+  x(x + 1) = 156  →  x² + x − 156 = 0
+  D = 1 + 624 = 625,  √D = 25
+  x = (−1 ± 25)/2  →  x = 12,  x = −13 (natural deyil)
+  Cavab: 12 və 13</div>
+      <div class="ex">Nümunə 3. Görüşdə hər kəs hər kəslə bir dəfə əl sıxdı — 45 əl sıxma.
+Neçə nəfər var idi?
+  x nəfərin hər biri x − 1 nəfərlə; hər əl sıxma iki dəfə sayılıb:
+  x(x − 1)/2 = 45  →  x² − x − 90 = 0
+  D = 1 + 360 = 361,  √D = 19
+  x = (1 + 19)/2 = 10   (x = −9 atılır)
+  Cavab: 10 nəfər</div>
+
+      <h3><span class="st">4</span> Həyatdan: iki kök də doğrudur</h3>
+      <div class="life"><b>Həyatdan.</b> Top 20 m/s sürətlə yuxarı atılıb: <span class="m">h = 20t − 5t²</span>. Top nə vaxt 15 m hündürlükdə olur? <span class="m">5t² − 20t + 15 = 0</span> → <span class="m">t² − 4t + 3 = 0</span> → <span class="m">t = 1</span> və <span class="m">t = 3</span>. İkisi də doğrudur: 1-ci saniyədə qalxarkən, 3-cü saniyədə enərkən. Kökü atmaq yalnız şərt qadağan edəndə lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi kökü cavab kimi saxlamaq (mənfi en, mənfi say).</li>
+        <li>Hər iki müsbət kökü "biri artıqdır" deyə atmaq. Topun nümunəsində ikisi də mənalıdır — suala bax: "ilk dəfə" yoxsa "ikinci dəfə".</li>
+        <li>Əl sıxma məsələsində 2-yə bölməyi unutmaq: A ilə B-nin əl sıxması B ilə A-nınki ilə eynidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tənlik qur → ax² + bx + c = 0 → D → köklər → şərtlə süz.
+Cavab sualın soruşduğu kəmiyyətdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kvadratın tərəfini 3 sm artırsaq, sahəsi 64 sm² olar. Tərəf nə qədərdir? <span class="ans">(x + 3)² = 64 → x + 3 = 8 (−8 mənasızdır) → x = 5 sm.</span></li>
+        <li>Natural ədədin kvadratı özündən 30 çoxdur. Ədəd? <span class="ans">x² − x − 30 = 0 → D = 1 + 120 = 121 → x = (1 + 11)/2 = 6 (x = −5 natural deyil).</span></li>
+        <li>Düzbucaqlının perimetri 20 m, sahəsi 24 m². Böyük tərəf? <span class="ans">Tərəflərin cəmi 10: x(10 − x) = 24 → x² − 10x + 24 = 0 → x = 4, x = 6. Böyük tərəf 6 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

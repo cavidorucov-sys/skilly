@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Xətti tənliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-xetti-tenlikler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Xətti tənliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli tənliklər</div>
+    <h1>Xətti tənliklər</h1>
+    <p><span class="m">ax = b</span> şəklinə gətirilən tənliklər — bütün cəbrin təməlidir. Burada mötərizəli və kəsr əmsallı tənlikləri həll etməyi, tənliyin neçə kökü olduğunu (bir, heç biri, sonsuz sayda) və parametrli tənlikləri öyrənəcəksən. Sonda — mətnli məsələlər.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>ax = b</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kəsr əmsallar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Neçə kök? Parametr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Birdəyişənli xətti tənlik və onun həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Taksidə minmək 1 manat, hər kilometr isə 0,5 manatdır. Sən 6 manat ödədin. Neçə kilometr getdin? Yolu <span class="m">x</span> ilə işarə edək:</p>
+      <div class="fm">1 + 0,5x = 6</div>
+      <p>Bu, <b>xətti tənlikdir</b>: <span class="m">x</span> yalnız birinci dərəcədə var (<span class="m">x²</span> yoxdur, məxrəcdə <span class="m">x</span> yoxdur). Həlli: <span class="m">0,5x = 5</span> → <span class="m">x = 10</span> km.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Tənliyin kökü</b> — tənliyi doğru bərabərliyə çevirən ədəddir. <b>Tənliyi həll etmək</b> — bütün köklərini tapmaq (və ya kökü olmadığını göstərmək).</p>
+      <p>Tənliyi addım-addım sadələşdiririk, kökləri isə dəyişmir. Belə tənliklərə <b>eynigüclü</b> tənliklər deyilir. İki qayda kifayətdir:</p>
+      <div class="fm">1) Həddi bir tərəfdən o biri tərəfə
+   əks işarə ilə keçirmək olar:
+   5x − 7 = 2x + 8  →  5x − 2x = 8 + 7
+2) Hər iki tərəfi sıfırdan fərqli eyni
+   ədədə vurmaq və ya bölmək olar:
+   3x = 15  →  x = 5</div>
+      <p><b>Birdəyişənli xətti tənlik</b> — <span class="m">ax = b</span> şəklində tənlikdir. <span class="m">a ≠ 0</span> olanda yeganə kökü var:</p>
+      <div class="fm">ax = b,  a ≠ 0   →   x = b/a</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 120" role="img" aria-label="Tərəzi: sol gözdə 5x − 7, sağ gözdə 2x + 8, tərəzi tarazdır">
+          <line x1="150" y1="30" x2="150" y2="105" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="110" y1="105" x2="190" y2="105" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="40" y1="30" x2="260" y2="30" stroke="var(--accent)" stroke-width="4"/>
+          <path d="M40 30 L20 70 L60 70 Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M260 30 L240 70 L280 70 Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="40" y="90" text-anchor="middle" class="lbl">5x − 7</text>
+          <text x="260" y="90" text-anchor="middle" class="lbl">2x + 8</text>
+          <circle cx="150" cy="30" r="5" fill="var(--vec)"/>
+        </svg>
+        <div class="cap"><p>Tənlik — taraz tərəzidir. Hər iki gözə eyni şeyi əlavə etsən, eyni şeyi götürsən və ya hər ikisini eyni dəfə artırsan — tarazlıq pozulmur.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  5x − 7 = 2x + 8
+  x-li hədlər sola, ədədlər sağa:  5x − 2x = 8 + 7
+  3x = 15  →  x = 5
+  Yoxla: 5·5 − 7 = 18,  2·5 + 8 = 18 ✓
+  Cavab: x = 5</div>
+      <div class="ex">Nümunə 2.  3(x − 4) − 2(x + 1) = 5 − x
+  Mötərizələri aç:  3x − 12 − 2x − 2 = 5 − x
+  Oxşar hədlər:     x − 14 = 5 − x
+  x + x = 5 + 14   →  2x = 19  →  x = 9,5
+  Yoxla: 3·5,5 − 2·10,5 = 16,5 − 21 = −4,5;  5 − 9,5 = −4,5 ✓
+  Cavab: x = 9,5</div>
+      <div class="ex">Nümunə 3.  4 − 2(x − 3) = 3x
+  Mənfi mötərizəni açır: −2(x − 3) = −2x + 6
+  4 − 2x + 6 = 3x  →  10 = 5x  →  x = 2
+  Yoxla: 4 − 2·(−1) = 6,  3·2 = 6 ✓
+  Cavab: x = 2</div>
+      <div class="life"><b>Həyatdan.</b> Telefon tarifi: ayda 5 manat abunə haqqı və hər dəqiqə 0,1 manat. Ay sonunda hesab 12 manat gəldi. Neçə dəqiqə danışmısan? <span class="m">5 + 0,1x = 12</span> → <span class="m">0,1x = 7</span> → <span class="m">x = 70</span> dəqiqə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Həddi o biri tərəfə keçirəndə işarəni dəyişməmək: <span class="m">5x − 7 = 8</span> → <span class="m">5x = 8 − 7</span> səhvdir, düzü <span class="m">5x = 8 + 7</span>.</li>
+        <li>Mənfi mötərizədə yalnız birinci həddin işarəsini dəyişmək: <span class="m">−2(x − 3) = −2x + 6</span>, "−2x − 6" yox.</li>
+        <li>Tərsinə bölmək: <span class="m">3x = 15</span> → <span class="m">x = 15/3 = 5</span>, "3/15" yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mötərizələri aç → x-li hədlər bir tərəfə, ədədlər o biri tərəfə
+(keçəndə işarə dəyişir) → ax = b → x = b/a.
+Kökü tənliyə qoyub yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">7x + 3 = 4x − 9</span>. x = ? <span class="ans">3x = −12 → x = −4. Yoxla: −28 + 3 = −25, −16 − 9 = −25 ✓</span></li>
+        <li><span class="m">2(x + 5) = 3x − 1</span>. x = ? <span class="ans">2x + 10 = 3x − 1 → x = 11. Yoxla: 2·16 = 32, 33 − 1 = 32 ✓</span></li>
+        <li><span class="m">5 − (x − 2) = 2x + 1</span>. x = ? <span class="ans">5 − x + 2 = 2x + 1 → 6 = 3x → x = 2. Yoxla: 5 − 0 = 5, 4 + 1 = 5 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kəsr əmsallı xətti tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kitabın birinci gün 1/3 hissəsini, ikinci gün 1/4 hissəsini oxudun — cəmi 70 səhifə. Kitab neçə səhifədir? Tənlik: <span class="m">x/3 + x/4 = 70</span>. Kəsrlərlə hesablamaq yorucudur. Bir hərəkətlə onlardan qurtulmaq olar.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: ortaq məxrəcə vur</h3>
+      <p>Bütün məxrəclərin <b>ən kiçik ortaq bölünəni</b>ni tap və tənliyin <b>hər həddini</b> ona vur. Kəsrlər yox olur, adi xətti tənlik qalır.</p>
+      <div class="fm">x/3 + x/4 = 70        | ortaq məxrəc 12
+12·x/3 + 12·x/4 = 12·70
+4x + 3x = 840  →  7x = 840  →  x = 120</div>
+      <p>İki vacib qayda:</p>
+      <div class="fm">1) Kəsr olmayan hədd də vurulur:
+   x/2 − 3  →  ×6  →  3x − 18
+2) Surəti mötərizəyə al:
+   −(x − 3)/2  →  ×10  →  −5(x − 3) = −5x + 15</div>
+      <p>Onluq kəsrlər üçün də eyni fikir: hər iki tərəfi 10-a (və ya 100-ə) vur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  (x − 1)/3 + (x + 2)/4 = 6
+  Ortaq məxrəc 12. Hər həddi 12-yə vur:
+  4(x − 1) + 3(x + 2) = 72
+  4x − 4 + 3x + 6 = 72  →  7x + 2 = 72  →  7x = 70  →  x = 10
+  Yoxla: 9/3 + 12/4 = 3 + 3 = 6 ✓
+  Cavab: x = 10</div>
+      <div class="ex">Nümunə 2.  (2x + 1)/5 − (x − 3)/2 = 1
+  Ortaq məxrəc 10:
+  2(2x + 1) − 5(x − 3) = 10
+  4x + 2 − 5x + 15 = 10  →  −x + 17 = 10  →  x = 7
+  Yoxla: 15/5 − 4/2 = 3 − 2 = 1 ✓
+  Cavab: x = 7</div>
+      <div class="ex">Nümunə 3.  x/2 − 3 = (x + 4)/6
+  Ortaq məxrəc 6 (3 də vurulur!):
+  3x − 18 = x + 4  →  2x = 22  →  x = 11
+  Yoxla: 5,5 − 3 = 2,5;  15/6 = 2,5 ✓
+  Cavab: x = 11</div>
+      <div class="ex">Nümunə 4.  0,3x + 1,2 = 0,5x − 0,4
+  Hər iki tərəfi 10 dəfə artır:  3x + 12 = 5x − 4
+  16 = 2x  →  x = 8
+  Yoxla: 2,4 + 1,2 = 3,6;  4 − 0,4 = 3,6 ✓
+  Cavab: x = 8</div>
+      <div class="life"><b>Həyatdan.</b> Kitab məsələsi: <span class="m">x/3 + x/4 = 70</span> → <span class="m">x = 120</span> səhifə. Yoxla: 120-nin 1/3-i 40 səhifə, 1/4-i 30 səhifə, cəmi 70 ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kəsrsiz həddi vurmağı unutmaq: <span class="m">x/2 − 3 = …</span> → "3x − 3" yox, <span class="m">3x − 18</span>.</li>
+        <li>Surəti mötərizəsiz vurmaq: <span class="m">2·(2x + 1) = 4x + 2</span>, "4x + 1" yox.</li>
+        <li>Kəsr qarşısındakı mənfini yalnız birinci həddə aid etmək: <span class="m">−5(x − 3) = −5x + 15</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ortaq məxrəcə vur — HƏR həddi, kəsrsizləri də.
+Surəti mötərizəyə al, sonra aç.
+Sonra Dərs 1-dəki kimi: ax = b.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x/3 + x/6 = 5</span>. x = ? <span class="ans">6-ya vur: 2x + x = 30 → x = 10. Yoxla: 10/3 + 10/6 = 20/6 + 10/6 = 5 ✓</span></li>
+        <li><span class="m">(x + 3)/2 = (x − 1)/3</span>. x = ? <span class="ans">Çarpaz vur: 3(x + 3) = 2(x − 1) → 3x + 9 = 2x − 2 → x = −11. Yoxla: −8/2 = −4, −12/3 = −4 ✓</span></li>
+        <li><span class="m">(x − 2)/4 − 1 = x/6</span>. x = ? <span class="ans">12-yə vur: 3(x − 2) − 12 = 2x → 3x − 18 = 2x → x = 18. Yoxla: 16/4 − 1 = 3, 18/6 = 3 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Tənliyin neçə kökü var? Parametrli tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki taksi şirkəti: birində minmək 2 manat, o birində 1 manat; hər ikisində kilometr 0,5 manatdır. Hansı məsafədə qiymətlər bərabər olar? <span class="m">2 + 0,5x = 1 + 0,5x</span> → <span class="m">0·x = −1</span>. <b>Heç vaxt!</b> Tənliyin kökü yoxdur.</p>
+      <p>Hər xətti tənliyin bir kökü olmur. DİM-də bunu soruşurlar — xüsusən <b>parametrli</b> tənliklərdə.</p>
+
+      <h3><span class="st">2</span> Üç hal</h3>
+      <p>Tənliyi sadələşdirib <span class="m">ax = b</span> şəklinə gətir və <span class="m">x</span>-in əmsalına bax:</p>
+      <div class="fm">ax = b
+a ≠ 0           →  bir kök:  x = b/a
+a = 0,  b ≠ 0   →  kök yoxdur  (0·x = b)
+a = 0,  b = 0   →  sonsuz sayda kök  (0·x = 0)</div>
+      <div class="ex">Nümunə 1.  3(x − 2) + 1 = 3x − 4
+  3x − 6 + 1 = 3x − 4  →  3x − 5 = 3x − 4
+  3x − 3x = −4 + 5  →  0·x = 1
+  0·x həmişə 0-a bərabərdir, 1 ola bilməz.
+  Cavab: kök yoxdur</div>
+      <div class="ex">Nümunə 2.  4(x + 1) − x = 3x + 4
+  4x + 4 − x = 3x + 4  →  3x + 4 = 3x + 4
+  0·x = 0 — istənilən x yarayır.
+  Cavab: sonsuz sayda kök (hər ədəd kökdür)</div>
+
+      <h3><span class="st">3</span> Parametr nədir</h3>
+      <p><b>Parametr</b> — tənlikdə <span class="m">x</span>-dən başqa hərflə yazılmış ədəddir (adətən <span class="m">a</span>). Onun qiyməti dəyişdikcə tənlik də dəyişir. Sual: "<span class="m">a</span>-nın hansı qiymətində tənliyin kökü yoxdur / sonsuz sayda kökü var / kökü filan ədəddir?"</p>
+      <div class="fm">1. Tənliyi (…)·x = (…) şəklinə gətir.
+2. x-in əmsalını sıfıra bərabər et → a-nı tap.
+3. Həmin a-nı sağ tərəfə qoy:
+   sağ tərəf ≠ 0  →  kök yoxdur
+   sağ tərəf = 0  →  sonsuz sayda kök</div>
+
+      <h3><span class="st">4</span> Parametrli nümunələr</h3>
+      <div class="ex">Nümunə 3.  (a² − 4)x = a − 2
+  Əmsal: a² − 4 = 0  →  a = 2  və ya  a = −2
+  a = 2:   0·x = 0    →  sonsuz sayda kök
+  a = −2:  0·x = −4   →  kök yoxdur
+  Başqa a-larda bir kök:  x = (a − 2)/(a² − 4) = 1/(a + 2)
+  Cavab: kök yoxdur — a = −2;  sonsuz sayda kök — a = 2</div>
+      <div class="ex">Nümunə 4.  a(x − 1) = 2x + 3a.  Kök yoxdur — a = ?
+  Aç: ax − a = 2x + 3a  →  ax − 2x = 3a + a  →  (a − 2)x = 4a
+  Əmsal sıfır: a = 2.  Onda sağ tərəf 4·2 = 8 ≠ 0  →  0·x = 8
+  Cavab: a = 2</div>
+      <div class="ex">Nümunə 5.  a-nın hansı qiymətində x = 3 ədədi
+           ax + 4 = 2x + a  tənliyinin köküdür?
+  x = 3 yaz:  3a + 4 = 6 + a  →  2a = 2  →  a = 1
+  Yoxla: a = 1 →  x + 4 = 2x + 1  →  x = 3 ✓
+  Cavab: a = 1</div>
+      <div class="life"><b>Həyatdan.</b> Taksi şirkətlərinin hər ikisində minmək 1 manat, kilometr 0,5 manat olsaydı: <span class="m">1 + 0,5x = 1 + 0,5x</span> → <span class="m">0·x = 0</span>. Hər məsafədə qiymət eynidir — sonsuz sayda "kök". Xətti tənliyin üç halı həyatda belə görünür: bir an bərabərləşmək, heç vaxt bərabərləşməmək, həmişə bərabər olmaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a² − 4 = 0</span>-dan yalnız <span class="m">a = 2</span> yazmaq. Mənfi kök də var: <span class="m">a = −2</span>.</li>
+        <li>Əmsal sıfır olan kimi "kök yoxdur" demək. Əvvəl sağ tərəfə bax: <span class="m">0·x = 0</span> — sonsuz sayda kök.</li>
+        <li><span class="m">0·x = 5</span> görüb "x = 0" yazmaq. <span class="m">0·0 = 0</span>, 5 deyil — kök yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ax = b:   a ≠ 0 → bir kök;
+          a = 0, b ≠ 0 → kök yoxdur;
+          a = 0, b = 0 → sonsuz sayda kök.
+Parametrdə: əmsalı sıfırla, sonra sağ tərəfi yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">5(x − 1) = 5x − 5</span>. Neçə kök? <span class="ans">5x − 5 = 5x − 5 → 0·x = 0. Sonsuz sayda kök.</span></li>
+        <li><span class="m">2x − 7 = 2(x − 3)</span>. Neçə kök? <span class="ans">2x − 7 = 2x − 6 → 0·x = 1. Kök yoxdur.</span></li>
+        <li>a-nın hansı qiymətində <span class="m">(a + 5)x = 3</span> tənliyinin kökü yoxdur? <span class="ans">a + 5 = 0 → a = −5. Onda 0·x = 3 — kök yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Xətti tənliklərin tətbiqi ilə məsələ həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>DİM-in mətnli məsələlərinin çoxu xətti tənliyə gəlir: yaş, ardıcıl ədədlər, alış-veriş, hərəkət. Çətin olan həll deyil — <b>tənliyi qurmaqdır</b>. Bunu alqoritmlə edirik.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fm">1. Naməlumu x ilə işarə et (adətən soruşulanı).
+2. Qalan kəmiyyətləri x ilə ifadə et.
+3. Şərtdəki bərabərliyi tənlik kimi yaz.
+4. Həll et.
+5. Yoxla və SUALIN cavabını yaz.</div>
+      <p>Faydalı "tərcümələr": "<span class="m">a</span> çox" → <span class="m">+ a</span>; "<span class="m">k</span> dəfə çox" → <span class="m">·k</span>; ardıcıl ədədlər → <span class="m">x, x + 1, x + 2</span>; ardıcıl cüt (tək) ədədlər → <span class="m">x, x + 2, x + 4</span>; yol = sürət · vaxt.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Ardıcıl üç natural ədədin cəmi 87-dir. Bu ədədlər hansılardır?
+  Kiçiyi x:  x + (x + 1) + (x + 2) = 87
+  3x + 3 = 87  →  3x = 84  →  x = 28
+  Cavab: 28, 29, 30   (yoxla: 28 + 29 + 30 = 87 ✓)</div>
+      <div class="ex">Nümunə 2. Ata oğlundan 4 dəfə böyükdür. 5 il sonra ata
+oğlundan 3 dəfə böyük olacaq. Oğul neçə yaşındadır?
+  Oğul x, ata 4x.  5 il sonra: x + 5 və 4x + 5
+  4x + 5 = 3(x + 5)  →  4x + 5 = 3x + 15  →  x = 10
+  Yoxla: ata 40; 5 il sonra 45 və 15, 45 = 3·15 ✓
+  Cavab: oğul 10 yaşındadır</div>
+      <div class="ex">Nümunə 3. Aralarında 360 km olan iki şəhərdən eyni vaxtda
+bir-birinə doğru iki maşın çıxdı və 3 saat sonra görüşdü.
+Biri o birindən 20 km/saat sürətlidir. Sürətləri nədir?
+  Yavaşın sürəti x, sürətlinin x + 20.
+  3 saatda birlikdə 360 km:  3(x + x + 20) = 360
+  2x + 20 = 120  →  2x = 100  →  x = 50
+  Cavab: 50 km/saat və 70 km/saat  (yoxla: 3·50 + 3·70 = 150 + 210 = 360 ✓)</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan: endirim.</b> Qulaqlığın qiyməti 20% endirimdən sonra 48 manat oldu. Əvvəl neçə idi? Endirimdən sonra qiymətin 80%-i qalır: <span class="m">0,8x = 48</span> → <span class="m">x = 60</span> manat. Yoxla: 60-ın 20%-i 12 manat, 60 − 12 = 48 ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Soruşulmayanı cavab yazmaq: oğulun yaşını tapıb atanın yaşını soruşublarsa, <span class="m">4x</span>-i hesablamağı unutmaq.</li>
+        <li>"3 dəfə çox" ilə "3 çox"u qarışdırmaq: <span class="m">3x</span> ≠ <span class="m">x + 3</span>.</li>
+        <li>Yaş məsələsində "illər sonra" yalnız bir nəfərə əlavə etmək. Hər kəs eyni sayda il böyüyür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x — naməlum → qalanları x ilə yaz → tənlik → həll → yoxla.
+Cavab sualın dediyi kəmiyyətdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>İki ədədin cəmi 50-dir, biri o birindən 8 çoxdur. Kiçik ədəd? <span class="ans">x + (x + 8) = 50 → 2x = 42 → x = 21. Ədədlər 21 və 29.</span></li>
+        <li>Qələm 2 manat, dəftər 3 manatdır. Cəmi 10 əşya alındı, 24 manat ödənildi. Neçə qələm alınıb? <span class="ans">Qələm x, dəftər 10 − x: 2x + 3(10 − x) = 24 → 30 − x = 24 → x = 6. Yoxla: 12 + 12 = 24 ✓</span></li>
+        <li>Ardıcıl dörd cüt ədədin cəmi 76-dır. Ən kiçiyi? <span class="ans">x + (x + 2) + (x + 4) + (x + 6) = 76 → 4x + 12 = 76 → x = 16. Ədədlər 16, 18, 20, 22.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

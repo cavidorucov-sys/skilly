@@ -19,3 +19,7 @@ Fayllar: `dersler/<slug>.html`, `dersler/oyun-<slug>.js`. `D:\Private\dev\fikret
 Riyazi/fiziki düzgünlük həcmdən vacibdir: hər həll olunmuş nümunəni və hər generatorun cavab məntiqini yoxla; bir neçə generasiya olunmuş sualı əl ilə həll et (harness yalnız göstərilən cavabın hesablananla üst-üstə düşdüyünü yoxlayır). Fizikada vahidlər SI, `g = 10 m/s²` (başqa hal dərsdə açıq yazılmırsa). Ədəddən sonra şəkilçi riskli olanda cümləni şəkilçisiz qur.
 
 Qısa cavab ver: yaradılan fayllar, dərs adları, səviyyə id-ləri, test nəticəsi, şübhəli yerlər.
+
+Köməkçi skriptlərin (yoxlama və s.) adına mövzunun slug-ını əlavə et — başqa köməkçilər paralel işləyir və eyni scratchpad-i işlədir.
+Cavab "hazır ədəd" şəklində olmalıdır (oyun ifadəni qəbul etmir): 12, −0,5, 3/5, 5√3, √3/2, √23 − 4. `show` da bu şəkildə olmalıdır — harness bunu yoxlayır.
+Heç vaxt `taskkill /IM node.exe` və ya bütün prosesləri öldürən əmr işlətmə — paralel köməkçilərin testləri dayanır. Sonsuz dövrə şübhəsi varsa, testi `timeout` ilə işlət.

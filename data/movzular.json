@@ -122,19 +122,22 @@
    "bolme": "Tənliklər",
    "ad": "Xətti tənliklər",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər",
+   "ders": "dersler/xetti-tenlikler.html"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Kvadrat tənlik, diskriminant",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər",
+   "ders": "dersler/kvadrat-tenlik.html"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Viyet teoremi",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər",
+   "ders": "dersler/viyet.html"
   },
   {
    "bolme": "Tənliklər",
