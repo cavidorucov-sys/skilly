@@ -11,18 +11,40 @@ const KAT = {
   misc: { cls: "k-misc", ink: "var(--misc-ink)", ad: "Digər" },
 };
 const SUBJ_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
-const ICON = {
-  math: '<path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 14l4 4m0-4l-4 4"/>',
-  olym: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/>',
-  phys: '<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(-60 12 12)"/>',
-  proj: '<path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4A1.5 1.5 0 0 0 19 19l-5-10V3"/><path d="M7.5 15h9"/>',
-  misc: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
-};
-function icon(k, color) {
-  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("fill", "none"); s.setAttribute("stroke", color || "currentColor");
-  s.setAttribute("stroke-width", "1.7"); s.setAttribute("stroke-linecap", "round"); s.setAttribute("stroke-linejoin", "round");
-  s.innerHTML = ICON[k] || ICON.misc; return s;
+// Lucide icons, self-hosted in assets/icons.js. Subject → icon; individual items get a more specific one.
+const ICON = { math: "Pi", olym: "Trophy", phys: "Atom", proj: "FlaskConical", misc: "CalendarCheck" };
+const ITEM_ICON = [
+  [/sınağ|sınaq/i, "ClipboardCheck"], [/experiment|ölçmə|analiz|readme/i, "FlaskConical"], [/olimpiada/i, "Trophy"],
+  [/fritl|fizika|maili/i, "Atom"], [/cüdo/i, "Dumbbell"], [/səhv/i, "NotebookPen"], [/esse/i, "PenLine"],
+  [/məktub|baxış/i, "Mail"], [/triqonometriya|funksiya|riyaziyyat/i, "Pi"],
+];
+const iconFor = (kat, text) => (ITEM_ICON.find(([re]) => re.test(text || "")) || [0, ICON[kat] || ICON.misc])[1];
+// Topic → icon, matched on the topic name (first match wins).
+const TOPIC_ICON = [
+  [/irrasional|kök/i, "Radical"], [/natural|sadə ədəd/i, "Hash"], [/modul arifmetika|qalıq/i, "RotateCw"], [/^modul/i, "Brackets"], [/faiz/i, "Percent"],
+  [/cəbri ifadə/i, "Variable"], [/çoxhədli/i, "Sigma"], [/qısa vurma/i, "SquareFunction"], [/vuruqlara/i, "Split"],
+  [/tənliklər sistemi/i, "Layers"], [/bərabərsizli/i, "Scale"], [/viyet/i, "Key"], [/kəsr/i, "Divide"], [/kvadrat tənlik/i, "Spline"], [/xətti tənlik/i, "Equal"],
+  [/koordinat/i, "Grid3x3"], [/xətti funksiya/i, "ChartLine"], [/funksiya|parabola/i, "ChartSpline"],
+  [/ədədi silsilə/i, "ListOrdered"], [/həndəsi silsilə/i, "TrendingUp"], [/sin, cos|triqonometriya|pifaqor/i, "TriangleRight"],
+  [/ehtimal/i, "Dices"], [/üçbucaq/i, "Triangle"], [/dördbucaq/i, "Square"], [/trapesiya/i, "Shapes"], [/sahə/i, "SquareDashed"],
+  [/toxunan/i, "CircleDot"], [/çevrə üzrə/i, "RotateCw"], [/çevrə/i, "Circle"],
+  [/bölünmə/i, "Divide"], [/əbob|evklid/i, "Repeat"], [/paritet/i, "ToggleLeft"], [/invariant/i, "Anchor"], [/sayma/i, "Tally5"],
+  [/dirixle/i, "Boxes"], [/induksiya/i, "Workflow"],
+  [/kəmiyyət|si vahid/i, "Ruler"], [/ölçmə/i, "Gauge"], [/hərəkət/i, "ChartLine"], [/sərbəst düşmə/i, "ArrowDownToLine"],
+  [/nyuton/i, "Move"], [/sürtünmə|maili/i, "Mountain"], [/huk|elastik/i, "Spline"], [/mexaniki iş/i, "Weight"],
+  [/kinetik|potensial/i, "Rocket"], [/enerjinin saxlanması/i, "Battery"], [/impuls|toqquşma/i, "CircleDot"], [/moment|tarazlıq/i, "Scale"],
+  [/rəqqas/i, "Activity"], [/təzyiq|paskal/i, "Droplets"], [/arximed/i, "Ship"], [/temperatur/i, "Thermometer"], [/istilik|faza/i, "Flame"],
+  [/om qanunu/i, "PlugZap"], [/yük|cərəyan|gərginlik/i, "Zap"], [/coul|elektrik işi/i, "Lightbulb"], [/işığ/i, "Sun"],
+];
+const topicIcon = t => (TOPIC_ICON.find(([re]) => re.test(t.ad)) || [0, ICON[t.kat] || ICON.misc])[1];
+function icon(name, color) {
+  const node = window.ICONS && ICONS[ICON[name] || name];
+  if (!node) return el("span", { "aria-hidden": "true" });
+  const NS = "http://www.w3.org/2000/svg", s = document.createElementNS(NS, "svg");
+  const attrs = { viewBox: "0 0 24 24", fill: "none", stroke: color || "currentColor", "stroke-width": "1.75", "stroke-linecap": "round", "stroke-linejoin": "round", "aria-hidden": "true" };
+  for (const k in attrs) s.setAttribute(k, attrs[k]);
+  node.forEach(([tag, a]) => { const c = document.createElementNS(NS, tag); for (const k in a) c.setAttribute(k, a[k]); s.append(c); });
+  return s;
 }
 function el(tag, attrs, ...kids) {
   const e = document.createElement(tag);
@@ -38,6 +60,8 @@ async function load(path) {
 const ST = { yox: ["Başlanmayıb", "st-yox"], isl: ["İşlənir", "st-isl"], bag: ["Bağlanıb", "st-bag"] };
 const stPill = s => el("span", { class: "st " + (ST[s] || ST.yox)[1] }, (ST[s] || ST.yox)[0]);
 const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const daysLeft = (from, to) => { const n = Math.round((new Date(to) - new Date(from)) / 864e5); return t2(to) + " · " + (n === 0 ? "bu gün" : n === 1 ? "sabah" : n + " gün"); };
+const t2 = iso => iso.slice(8) + "." + iso.slice(5, 7);
 const fmtH = h => String(h).replace(".", ",");
 
 function allTopics(m) {
@@ -68,8 +92,7 @@ async function shell(content) {
       el("div", { class: "mini" }, el("i", {}, String(toExam)), "gün sınağa"),
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.status === "isl").length)), "işlənir"),
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.ders).length)), "dərs"),
-      el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")),
-    el("div", { class: "hey" }, el("b", {}, "Salam, Fikrət!"), el("span", {}, "Bu həftə nə etməli olduğun burada.")));
+      el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")));
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
     NAV.map(([href, label]) => el("a", href === here ? { href, "aria-current": "page" } : { href }, label)));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
@@ -80,7 +103,7 @@ async function shell(content) {
 function topicCard(t) {
   const k = KAT[t.kat] || KAT.misc;
   const a = el(t.ders ? "a" : "div", t.ders ? { class: "ccard fade " + k.cls, href: t.ders } : { class: "ccard fade " + k.cls },
-    el("div", { class: "ic" }, icon(t.kat, k.ink)),
+    el("div", { class: "ic" }, icon(topicIcon(t), k.ink)),
     el("div", { class: "t" }, t.ad));
   const done = t.addim ? t.addim[0] : 0, all = t.addim ? t.addim[1] : 0;
   const bar = el("div", { class: "bar" }, el("i", { style: `width:${all ? Math.round(done / all * 100) : 0}%` }));
@@ -115,15 +138,16 @@ async function pageIndex() {
   const today = isoToday();
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
     el("div", { class: "dname" + (g.tarix === today ? " today" : "") }, g.qisa + " " + g.tarix.slice(8)),
-    ...g.isler.map(t => { const k = KAT[t.kat] || KAT.misc; return el(t.link ? "a" : "div", t.link ? { class: "slot " + k.cls, href: t.link } : { class: "slot " + k.cls }, el("small", {}, t.saat), t.is); }))));
+    ...g.isler.map(t => { const k = KAT[t.kat] || KAT.misc; return el(t.link ? "a" : "div", t.link ? { class: "slot " + k.cls, href: t.link } : { class: "slot " + k.cls }, el("small", {}, icon(iconFor(t.kat, t.is), k.ink), t.saat), t.is); }))));
   left.append(el("section", {}, el("div", { class: "head" }, el("h2", {}, "Həftənin cədvəli"), el("span", { class: "more" }, w.hefte)), days));
   // right column
   const upcoming = term.filter(t => t.tarix >= today).slice(0, 5);
-  const dl = el("section", {}, el("div", { class: "head" }, el("h2", {}, "Son tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim")),
+  const dl = el("section", {}, el("div", { class: "head" }, el("h2", {}, "Yaxın tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim")),
+      el("p", { class: "lead" }, "Sınaq günləri və layihədə nəyin hansı günə hazır olmalı olduğu."),
       el("div", { class: "list dl" }, ...(upcoming.length ? upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
-        el("span", { class: "ic " + k.cls }, icon(t.kat, k.ink)),
+        el("span", { class: "ic " + k.cls }, icon(iconFor(t.kat, t.ad), k.ink)),
         el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, t.qeyd || k.ad)),
-        el("span", { class: "badge " + k.cls }, t.tarix.slice(8) + "." + t.tarix.slice(5, 7))); }) : [el("p", { class: "empty" }, "Yaxın son tarix yoxdur.")])));
+        el("span", { class: "badge " + k.cls }, daysLeft(today, t.tarix))); }) : [el("p", { class: "empty" }, "Yaxında tarix yoxdur.")])));
   left.children[0].after(dl);
   content.append(left);
 }
@@ -236,7 +260,7 @@ async function pageCalendar() {
     const [yy, mm, dd] = sel.split("-");
     day.replaceChildren(el("div", { class: "head" }, el("h2", {}, (+dd) + " " + AYLAR[+mm - 1]), sel === today ? el("span", { class: "more" }, "bu gün") : null),
       el("div", { class: "list" }, ...(list.length ? list.map(e => { const k = KAT[e.kat] || KAT.misc; return el(e.link ? "a" : "div", { class: "row", ...(e.link ? { href: e.link, style: "text-decoration:none" } : {}) },
-        el("span", { class: "ic " + k.cls }, icon(e.kat, k.ink)),
+        el("span", { class: "ic " + k.cls }, icon(iconFor(e.kat, e.is), k.ink)),
         el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, e.saat || e.qeyd || k.ad)),
         e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : null); })
         : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur. Nəticələr Google Sheets qoşulandan sonra burada görünəcək." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));

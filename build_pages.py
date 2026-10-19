@@ -7,6 +7,7 @@ PAGE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/icons.js" defer></script>
 <script src="assets/jurnal.js" defer></script>
 <script src="assets/app.js" defer></script>
 </head><body data-page="{page}"><noscript>Bu səhifə JavaScript tələb edir.</noscript></body></html>
