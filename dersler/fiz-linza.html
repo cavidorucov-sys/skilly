@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Linzalar və güzgülər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-linza.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Linzalar və güzgülər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Həndəsi optika</div>
+    <h1>Linzalar və güzgülər, xəyalın qurulması, dispersiya</h1>
+    <p>Eynək, lupa, fotoaparat, proyektor, avtomobilin yan güzgüsü, göy qurşağı — hamısı bir neçə qaydaya əsaslanır. Üç əsas şüa ilə xəyalı çəkməyi, <span class="m">1/F = 1/d + 1/f</span> düsturu ilə hesablamağı və ağ işığın rənglərə niyə ayrıldığını öyrənəcəksən. Rayon və yarımfinal məsələlərində əsas çətinlik işarələrdir; bu mövzuda onları açıq-aydın razılaşdıracağıq.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Məsafələri santimetrlə yazmaq olar, amma optik qüvvə üçün metr lazımdır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Linza və xəyal</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Linza düsturu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Optik qüvvə, cihazlar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Güzgülər</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Dispersiya</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Linzalar və xəyalın qurulması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Eynək, lupa, fotoaparat, mikroskop, teleskop, hətta gözün özü — hamısında linza var. Lupa ilə kağıza baxanda yazı böyüyür, Günəşi lupa ilə kağıza fokuslayanda kağız yanır. Eyni şüşə parçası bir halda böyüdür, başqa halda tərs şəkil verir. Bunun səbəbini şüaların gedişini çəkməklə görmək olar.</p>
+
+      <h3><span class="st">2</span> Linza nədir</h3>
+      <p><b>Linza</b> — iki əyri səthlə (adətən sferik) məhdudlanmış şəffaf cisimdir. Biz <b>nazik linzaya</b> baxırıq: onun qalınlığı əyrilik radiuslarından və cismə qədər məsafədən çox kiçikdir.</p>
+      <p><b>Yığıcı linza</b> ortada qalın, kənarda nazikdir (qabarıq linza). Hava ilə əhatə olunmuş şüşə yığıcı linza oxa paralel şüaları bir nöqtəyə yığır. <b>Səpici linza</b> ortada nazik, kənarda qalındır (çökək linza), şüaları aralayır.</p>
+      <div class="fm">O — optik mərkəz (linzanın ortası)
+baş optik ox — linzaya perpendikulyar, O-dan keçən düz xətt
+F — fokus: oxa paralel şüaların sındıqdan sonra keçdiyi nöqtə
+F (məsafə) — fokus məsafəsi, O-dan fokusa qədər</div>
+      <p>Linzanın <b>iki fokusu</b> var, linzanın hər tərəfində bir dənə (eyni məsafədə, çünki hər iki tərəfdə hava var). Yığıcı linzada fokus <b>həqiqidir</b>: şüalar orada həqiqətən kəsişir. Səpici linzada fokus <b>xəyalidir</b>: orada yalnız sınmış şüaların <i>geri davamı</i> kəsişir.</p>
+
+      <h3><span class="st">3</span> Üç əsas şüa</h3>
+      <p>Cismin bir nöqtəsinin xəyalını tapmaq üçün həmin nöqtədən çıxan istənilən iki şüanın gedişini bilmək kifayətdir. Üçüncü şüa yoxlama üçündür. Üç “asan” şüa:</p>
+      <div class="fm">1) Oxa paralel şüa  →  sındıqdan sonra (yığıcıda) arxa fokusdan keçir
+2) Optik mərkəzdən keçən şüa  →  istiqamətini dəyişmir
+3) Ön fokusdan keçən şüa  →  sındıqdan sonra oxa paralel gedir</div>
+      <div class="fig">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Yığıcı linza: cisim 2F və F arasında, xəyal həqiqi, tərs və böyüdülmüş">
+          <line x1="8" y1="100" x2="412" y2="100" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="140" y1="30" x2="140" y2="170" stroke="var(--ink)" stroke-width="2.6"/>
+          <polygon points="140,26 134,38 146,38" fill="var(--ink)"/><polygon points="140,174 134,162 146,162" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="12" y1="96" x2="12" y2="104"/><line x1="76" y1="96" x2="76" y2="104"/><line x1="204" y1="96" x2="204" y2="104"/><line x1="268" y1="96" x2="268" y2="104"/></g>
+          <text x="12" y="118" class="lbl" text-anchor="middle">2F</text><text x="76" y="118" class="lbl" text-anchor="middle">F</text><text x="204" y="118" class="lbl" text-anchor="middle">F</text><text x="268" y="118" class="lbl" text-anchor="middle">2F</text>
+          <text x="148" y="46" class="lbl">O</text>
+          <polyline points="44,76 140,76 332,148 404,175" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+          <polyline points="44,76 140,100 332,148 404,166" fill="none" stroke="var(--vec)" stroke-width="1.8"/>
+          <polyline points="44,76 140,148 332,148 404,148" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="44" y1="100" x2="44" y2="76" stroke="var(--ink)" stroke-width="3.5"/><polygon points="39,85 49,85 44,76" fill="var(--ink)"/>
+          <line x1="332" y1="100" x2="332" y2="148" stroke="var(--accent)" stroke-width="3.5"/><polygon points="327,139 337,139 332,148" fill="var(--accent)"/>
+          <text x="44" y="68" class="lbl" text-anchor="middle">cisim</text><text x="332" y="166" class="lbl" text-anchor="middle">xəyal</text>
+        </svg>
+        <div class="cap">
+          <p>Cisim <span class="m">d = 30 sm</span>-dədir, <span class="m">F = 20 sm</span> (cisim <span class="m">F</span> və <span class="m">2F</span> arasındadır). Cismin ucundan üç şüa çıxır: <b>1</b> oxa paralel gedib arxa fokusdan keçir; <b>2</b> mərkəzdən düz keçir; <b>3</b> ön fokusdan keçib sındıqdan sonra oxa paralel gedir. Üçü də bir nöqtədə kəsişir: xəyalın ucu.</p>
+          <p>Xəyal <b>həqiqi</b> (şüalar orada həqiqətən kəsişir, ekranda tutmaq olar), <b>tərs</b> və <b>böyüdülmüşdür</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Xəyalın növü cismin yerindən asılıdır</h3>
+      <p>Yığıcı linzada xəyalın xarakteri cismin <span class="m">d</span> məsafəsini <span class="m">F</span> və <span class="m">2F</span> ilə müqayisə etməklə tapılır:</p>
+      <div class="fm">d > 2F       həqiqi, tərs, kiçildilmiş    (fotoaparat, göz)
+d = 2F       həqiqi, tərs, cismə bərabər
+F < d < 2F   həqiqi, tərs, böyüdülmüş     (proyektor)
+d = F        xəyal yoxdur (şüalar paralel çıxır)
+d < F        xəyali, düz, böyüdülmüş      (lupa)</div>
+      <div class="fig">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Yığıcı linza, cisim fokusdan içəridə: xəyali, düz, böyüdülmüş xəyal">
+          <line x1="8" y1="100" x2="412" y2="100" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="250" y1="15" x2="250" y2="185" stroke="var(--ink)" stroke-width="2.6"/>
+          <polygon points="250,11 244,23 256,23" fill="var(--ink)"/><polygon points="250,189 244,177 256,177" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="170" y1="96" x2="170" y2="104"/><line x1="330" y1="96" x2="330" y2="104"/></g>
+          <text x="170" y="118" class="lbl" text-anchor="middle">F</text><text x="330" y="118" class="lbl" text-anchor="middle">F</text>
+          <polyline points="202,80 250,80 400,117.5" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+          <polyline points="250,80 130,50" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <polyline points="202,80 250,100 400,162.5" fill="none" stroke="var(--vec)" stroke-width="1.8"/>
+          <polyline points="202,80 130,50" fill="none" stroke="var(--vec)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <polyline points="202,80 250,50 400,50" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <polyline points="250,50 130,50" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="202" y1="100" x2="202" y2="80" stroke="var(--ink)" stroke-width="3.5"/><polygon points="197,89 207,89 202,80" fill="var(--ink)"/>
+          <line x1="130" y1="100" x2="130" y2="50" stroke="var(--accent)" stroke-width="3.5" stroke-dasharray="6 3"/><polygon points="125,59 135,59 130,50" fill="var(--accent)"/>
+          <text x="202" y="132" class="lbl" text-anchor="middle">cisim</text><text x="130" y="42" class="lbl" text-anchor="middle">xəyal (xəyali)</text>
+        </svg>
+        <div class="cap">
+          <p>Cisim fokusdan içəridədir (<span class="m">d = 12 sm &lt; F = 20 sm</span>). Sınmış şüalar aralanır və heç yerdə kəsişmir. Nöqtəli xətlər şüaların geri davamıdır — onlar cisimlə eyni tərəfdə kəsişir. Göz bu şüaları “sanki xəyaldan gəlir” kimi qəbul edir: <b>xəyali, düz, böyüdülmüş</b> xəyal. Bu, lupadır. Ekranda tutmaq olmaz.</p>
+        </div>
+      </div>
+      <div class="fig">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Səpici linza: xəyali, düz, kiçildilmiş xəyal">
+          <line x1="8" y1="100" x2="412" y2="100" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="250" y1="15" x2="250" y2="185" stroke="var(--ink)" stroke-width="2.6"/>
+          <polygon points="244,11 256,11 250,23" fill="var(--ink)"/><polygon points="244,189 256,189 250,177" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="170" y1="96" x2="170" y2="104"/><line x1="330" y1="96" x2="330" y2="104"/></g>
+          <text x="170" y="118" class="lbl" text-anchor="middle">F</text><text x="330" y="118" class="lbl" text-anchor="middle">F</text>
+          <polyline points="130,60 250,60 340,15" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+          <polyline points="250,60 170,100" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <polyline points="130,60 250,100 400,150" fill="none" stroke="var(--vec)" stroke-width="1.8"/>
+          <polyline points="130,60 250,84 400,84" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <polyline points="250,84 202,84" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="130" y1="100" x2="130" y2="60" stroke="var(--ink)" stroke-width="3.5"/><polygon points="125,69 135,69 130,60" fill="var(--ink)"/>
+          <line x1="202" y1="100" x2="202" y2="84" stroke="var(--accent)" stroke-width="3.5" stroke-dasharray="6 3"/><polygon points="197,92 207,92 202,84" fill="var(--accent)"/>
+          <text x="130" y="52" class="lbl" text-anchor="middle">cisim</text><text x="202" y="130" class="lbl" text-anchor="middle">xəyal</text>
+        </svg>
+        <div class="cap">
+          <p>Səpici linzada <span class="m">F = 20 sm</span>, <span class="m">d = 30 sm</span>. Oxa paralel şüa (1-ci şüa) sınıb yuxarı yayılır, geri davamı cisim tərəfindəki xəyali fokusdan keçir. Şüa 3 sağdakı fokusa yönəlib. Cisim harada olursa olsun, səpici linza <b>həmişə xəyali, düz, kiçildilmiş</b> xəyal verir (bu şəkildə xəyal cisimdən 2,5 dəfə kiçikdir).</p>
+        </div>
+      </div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. F = 20 sm yığıcı linza, cisim 50 sm-dədir.
+Xəyalın xarakteri və təxmini yeri?
+  2F = 40 sm, d = 50 sm &gt; 2F
+  → həqiqi, tərs, kiçildilmiş xəyal;
+    xəyal F və 2F arasında (linzadan 20…40 sm) olur.
+  (Dəqiq: 1/f = 1/20 − 1/50 → f = 100/3 sm; bunu 2-ci dərsdə görəcəksən.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli, tələli).
+Yığıcı linza ekranda cismin aydın xəyalını verir. Linzanın
+yuxarı yarısını qara kağızla örtdülər. Xəyaldan nə itər?
+  Cismin hər nöqtəsindən linzanın bütün səthinə şüa gəlir.
+  Yarı örtülsə də, qalan yarıdan keçən şüalar eyni nöqtədə
+  kəsişir (üç şüadan istənilən ikisi kifayətdir).
+Cavab: xəyal tam qalır (yarım olmur). Yalnız işıq iki dəfə az
+düşdüyü üçün xəyal iki dəfə tutqun olur.</div>
+      <div class="life"><b>Həyatdan.</b> Fotoaparatın obyektivi yığıcı linzadır: uzaq mənzərənin <b>kiçildilmiş, tərs, həqiqi</b> xəyalını plyonka və ya matrisa üzərində verir. Eynək şüşəsi kimi lupa da yığıcıdır, amma onunla yalnız cismi linzaya <span class="m">F</span>-dən yaxın tutanda böyüdülmüş düz xəyal görürsən. Lupanı gözdən uzaqlaşdırıb uzaq cisimə baxsan, o tərs görünəcək: cisim artıq <span class="m">F</span>-dən uzaqdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Xəyalı bir şüa ilə “tapmaq”. Xəyalın nöqtəsi ən azı <b>iki</b> şüanın kəsişməsidir.</li>
+        <li>Oxa paralel şüanı <i>ön</i> fokusa göndərmək. Yığıcı linzada paralel şüa sındıqdan sonra <b>arxa</b> (linzanın o biri tərəfindəki) fokusdan keçir.</li>
+        <li>Səpici linzada şüanı həqiqətən fokusdan keçirmək. Orada yalnız <i>geri davam</i> fokusdan keçir (nöqtəli xətt).</li>
+        <li>Xəyali xəyalı ekranda tutmaq istəmək. Ekranda yalnız həqiqi xəyal alınır.</li>
+        <li>“Linzanın bir hissəsini örtəndə xəyalın həmin hissəsi itir” düşünmək. Xəyal tam qalır, yalnız tutqunlaşır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yığıcı linza: oxa paralel → arxa fokus; mərkəzdən → düz;
+ön fokusdan → oxa paralel.
+d &gt; F: həqiqi, tərs xəyal.  d &lt; F: xəyali, düz, böyüdülmüş.
+Səpici linza: həmişə xəyali, düz, kiçildilmiş.
+Həqiqi xəyal ekranda tutulur, xəyali xəyal tutulmur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>F = 15 sm yığıcı linzadan cisim 20 sm-dədir. Xəyal necə olacaq? <span class="ans">F &lt; d &lt; 2F (15 &lt; 20 &lt; 30) → həqiqi, tərs, böyüdülmüş.</span></li>
+        <li>Cisim yığıcı linzaya fokusdan 5 sm yaxın qoyulub (d &lt; F). Xəyalı ekranda tutmaq olarmı? <span class="ans">Xeyr. Xəyal xəyalidir, düzdür və böyüdülmüşdür; ona yalnız linzadan baxmaqla görmək olar.</span></li>
+        <li>Səpici linza ilə ekranda xəyal almaq olarmı? <span class="ans">Yox. Səpici linza həmişə xəyali xəyal verir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Nazik linza düsturu və böyütmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şəkil çəkmək xəyalın xarakterini göstərir, amma məsələdə “xəyal linzadan neçə santimetrdədir, ekranı hara qoymaq lazımdır, şəkil neçə dəfə böyüyəcək” soruşulur. Bunun üçün düstur lazımdır.</p>
+
+      <h3><span class="st">2</span> Düstur və işarələr</h3>
+      <div class="fm">1/F = 1/d + 1/f</div>
+      <p>Hər kəmiyyətin işarəsini əvvəlcədən razılaşdırırıq (<b>“həqiqi müsbətdir”</b> qaydası). Bu qaydanı bir dəfə yadda saxla, bütün məsələlərdə eyni işləyir:</p>
+      <div class="fm">d — cisimdən linzaya qədər məsafə, həqiqi cisim üçün d > 0
+f > 0  →  həqiqi xəyal (linzanın o biri tərəfində, ekranda tutulur)
+f < 0  →  xəyali xəyal (cisimlə eyni tərəfdə, ekranda tutulmur)
+F > 0  →  yığıcı linza,   F < 0  →  səpici linza</div>
+      <p><b>Böyütmə</b> xəyal ölçüsünün cisim ölçüsünə nisbətidir:</p>
+      <div class="fm">Γ = H/h = |f|/d</div>
+      <p><span class="m">Γ &gt; 1</span> — xəyal böyükdür, <span class="m">Γ &lt; 1</span> — kiçikdir. İşarə haqqında: <span class="m">f &gt; 0</span> olanda xəyal tərsdir, <span class="m">f &lt; 0</span> olanda düzdür.</p>
+      <p>Düsturdan bilinən hallar: <span class="m">d = 2F</span> olanda <span class="m">f = 2F</span> (Γ = 1); <span class="m">d = F</span> olanda <span class="m">1/f = 0</span>, yəni <span class="m">f = ∞</span>; <span class="m">d → ∞</span> olanda <span class="m">f = F</span> (uzaq cismin xəyalı fokusda olur — fotoaparat belə fokuslanır).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. F = 20 sm yığıcı linzadan 30 sm-də cisim var.
+Xəyal harada, neçə dəfə böyükdür?
+  1/f = 1/F − 1/d = 1/20 − 1/30 = (3 − 2)/60 = 1/60
+  f = 60 sm  (f &gt; 0 → həqiqi, tərs)
+  Γ = f/d = 60/30 = 2
+Cavab: linzadan 60 sm-də, 2 dəfə böyük (1-ci dərsin şəklidir).</div>
+      <div class="ex">Nümunə 2 (lupa). F = 20 sm, cisim linzadan 12 sm-dədir.
+  1/f = 1/20 − 1/12 = (3 − 5)/60 = −2/60 = −1/30
+  f = −30 sm  (f &lt; 0 → xəyali, cisimlə eyni tərəfdə)
+  Γ = |f|/d = 30/12 = 2,5  (düz, böyüdülmüş)</div>
+      <div class="ex">Nümunə 3 (səpici). F = −20 sm, d = 30 sm.
+  1/f = 1/F − 1/d = −1/20 − 1/30 = −(3 + 2)/60 = −1/12
+  f = −12 sm  → xəyali; Γ = 12/30 = 0,4  (düz, kiçildilmiş)</div>
+      <div class="ex">Nümunə 4 (RFO, yarımfinal tipli).
+Cisimlə ekran arasındakı məsafə L = 90 sm-dir. F = 20 sm
+yığıcı linzanı onların arasında sürüşdürəndə iki mövqedə
+ekranda aydın xəyal alınır. Mövqelər arasındakı məsafə?
+  d + f = 90,   1/d + 1/f = 1/20 → (d + f)/(d·f) = 1/20
+  → d·f = 20·90 = 1800
+  d və f t² − 90t + 1800 = 0 tənliyinin kökləridir:
+  D = 8100 − 7200 = 900, t = (90 ± 30)/2 → 60 və 30
+  1-ci mövqe: d = 30 sm, f = 60 sm;
+  2-ci mövqe: d = 60 sm, f = 30 sm (d və f “yer dəyişir”).
+  Linza 60 − 30 = 30 sm sürüşür.
+Cavab: 30 sm.
+Qeyd: kvadrat tənliyin diskriminantı L² − 4LF ≥ 0 olmalıdır,
+yəni L ≥ 4F. L = 4F olanda yalnız bir mövqe var: d = f = 2F.</div>
+      <div class="life"><b>Həyatdan.</b> Fotoaparat uzaq cismə fokuslananda <span class="m">f ≈ F</span>. Yaxın cismi çəkəndə (məsələn, <span class="m">F = 50 mm</span>, cisim 1,05 m-də) <span class="m">f = 1050·50/1000 = 52,5 mm</span> olur — obyektiv matrisadan 2,5 mm uzaqlaşır. Fokuslanmaq da elə budur: obyektivi irəli-geri sürüşdürüb <span class="m">f</span>-i dəyişirlər.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">1/f = 1/F − 1/d</span> yazanda kəsrləri “çıxıb” <span class="m">1/(F − d)</span> almaq. Düzü ortaq məxrəc: <span class="m">(d − F)/(F·d)</span>.</li>
+        <li>Axırda <span class="m">1/f</span>-in tərsini götürməyi unutmaq: <span class="m">1/f = 1/60</span> olanda <span class="m">f = 60</span>.</li>
+        <li><span class="m">Γ = d/f</span> yazmaq. Düz: <span class="m">Γ = f/d</span> (xəyalın məsafəsi cismin məsafəsinə).</li>
+        <li><span class="m">f</span>-in işarəsini itirmək: mənfi <span class="m">f</span> xəyali xəyal deməkdir. Məsələn, xəyal linzadan 30 sm məsafədədir, amma <span class="m">f = −30 sm</span>.</li>
+        <li>Səpici linzada <span class="m">F</span>-i müsbət götürmək. Səpici: <span class="m">F &lt; 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1/F = 1/d + 1/f      Γ = |f|/d
+f &gt; 0 həqiqi (tərs), f &lt; 0 xəyali (düz)
+F &gt; 0 yığıcı, F &lt; 0 səpici
+d = 2F → f = 2F;  d → ∞ → f = F
+Cisim–həqiqi xəyal məsafəsi ən azı 4F.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>F = 12 sm yığıcı linzadan cisim 36 sm-dədir. f = ? Γ = ? <span class="ans">1/f = 1/12 − 1/36 = 2/36 → f = 18 sm; Γ = 18/36 = 0,5.</span></li>
+        <li>F = 20 sm yığıcı linza ekranda xəyalı linzadan 30 sm-də verir. Cisim harada? <span class="ans">1/d = 1/20 − 1/30 = 1/60 → d = 60 sm.</span></li>
+        <li>F = 10 sm yığıcı linzadan cisim 6 sm-dədir. f = ? <span class="ans">1/f = 1/10 − 1/6 = −2/30 → f = −15 sm (xəyali xəyal). Γ = 15/6 = 2,5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Optik qüvvə, göz, eynək və optik cihazlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Optikdə eynəyin gücünü “+2” və ya “−3,5” kimi yazırlar. Bunlar linzanın <b>optik qüvvəsi</b>dir, dioptriya ilə ölçülür. Həkim bu ədədi sənin gözünün düzəliş ehtiyacına görə seçir. Eyni anlayış proyektorun, fotoaparatın, lupanın hesabında da lazımdır.</p>
+
+      <h3><span class="st">2</span> Optik qüvvə</h3>
+      <div class="fm">D = 1/F       vahidi: dioptriya (dptr) = 1 m⁻¹</div>
+      <p><span class="m">F</span> metrlə götürülür. <span class="m">F = 25 sm = 0,25 m</span> olan linza <span class="m">D = 4 dptr</span> verir. Fokus nə qədər qısadırsa, linza şüaları o qədər güclü sındırır. Yığıcı linzada <span class="m">D &gt; 0</span>, səpici linzada <span class="m">D &lt; 0</span>.</p>
+      <p>Düstur <span class="m">1/F = 1/d + 1/f</span> optik qüvvə dilində belədir: <span class="m">D = 1/d + 1/f</span> (məsafələr metrlə).</p>
+      <p>Bir-birinə sıx yapışdırılmış nazik linzaların optik qüvvələri toplanır (fokus məsafələri yox!):</p>
+      <div class="fm">D = D₁ + D₂        1/F = 1/F₁ + 1/F₂</div>
+
+      <h3><span class="st">3</span> Göz, eynək, lupa, proyektor, fotoaparat</h3>
+      <p><b>Göz</b> yığıcı linza kimi işləyir: tor qişada (retinada) uzaq cismin həqiqi, tərs, kiçildilmiş xəyalını yaradır (beyin onu çevirir). Fokus məsafəsini dəyişə bilir — bu, <b>akkomodasiyadır</b>. Normal gözün <b>ən yaxşı görmə məsafəsi 25 sm</b>-dir: bu məsafədə kitab gərginliksiz oxunur.</p>
+      <p><b>Yaxıngörənlik</b>: göz uzaq cismin xəyalını tor qişadan əvvəl yaradır. Uzaq nöqtə sonsuzluqda yox, məsələn 50 sm-dədir. Düzəliş: <b>səpici</b> eynək, sonsuzluqdakı cismin xəyalını gözün uzaq nöqtəsində (xəyali) verməlidir.</p>
+      <p><b>Uzaqgörənlik</b>: göz yaxın cismi sığdıra bilmir, yaxın nöqtə 25 sm-dən uzaqdır. Düzəliş: <b>yığıcı</b> eynək, kitabı 25 sm-də tutanda xəyalı gözün yaxın nöqtəsində (xəyali) verməlidir.</p>
+      <p><b>Lupa</b> — qısa fokuslu yığıcı linza. Cisim fokusa və ya ondan azca içəriyə qoyulur. Göz gərginliksiz baxanda (xəyal sonsuzluqda, <span class="m">d = F</span>) böyütmə <span class="m">Γ = 25/F</span> (<span class="m">F</span> santimetrlə). Xəyal 25 sm-də alınanda <span class="m">Γ = 25/F + 1</span>.</p>
+      <p><b>Proyektor</b>: slayd fokusdan azca kənarda qoyulur (<span class="m">F &lt; d &lt; 2F</span>), ekranda böyüdülmüş, tərs həqiqi xəyal alınır, buna görə slaydı tərsinə qoyurlar. <b>Fotoaparat</b>: cisim <span class="m">d &gt; 2F</span>, xəyal matrisada kiçildilmiş, tərs.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. İki nazik linza sıx yapışdırılıb: D₁ = +8 dptr, D₂ = −3 dptr.
+  D = 8 + (−3) = 5 dptr
+  F = 1/D = 1/5 = 0,2 m = 20 sm  (yığıcı sistem)</div>
+      <div class="ex">Nümunə 2 (RFO tipli). Yaxıngörən şəxs yalnız 50 sm-dən
+yaxın cisimləri aydın görür. Sonsuzluğa baxmaq üçün eynəyin D-si?
+  Eynək sonsuzluqdakı cismin (d → ∞, 1/d = 0) xəyalını
+  50 sm-də, xəyali yaratmalıdır: f = −0,5 m.
+  D = 1/d + 1/f = 0 + 1/(−0,5) = −2 dptr   (səpici eynək)
+
+Uzaqgörən şəxs yalnız 50 sm-dən uzaq cisimləri aydın görür. 25 sm-də
+oxumaq üçün eynək: d = 0,25 m, xəyali xəyal f = −0,5 m.
+  D = 1/0,25 + 1/(−0,5) = 4 − 2 = +2 dptr   (yığıcı eynək)</div>
+      <div class="ex">Nümunə 3. Proyektorun obyektivi F = 10 sm, slayd d = 12 sm-dədir.
+Slaydın eni 2,4 sm. Ekran haradadır, şəkil neçə sm enlidir?
+  1/f = 1/10 − 1/12 = (6 − 5)/60 = 1/60 → f = 60 sm
+  Γ = f/d = 60/12 = 5, şəklin eni 5·2,4 = 12 sm</div>
+      <div class="ex">Nümunə 4 (lupa). F = 5 sm.
+  Gərginliksiz baxış:  Γ = 25/5 = 5
+  Xəyal 25 sm-də:  f = −25, 1/d = 1/5 + 1/25 = 6/25 → d = 25/6 sm,
+  Γ = 25/d = 25·6/25 = 6   (yəni 25/F + 1 = 6)</div>
+      <div class="life"><b>Həyatdan.</b> Eynəyin reseptində “−2,5” yazılıbsa, deməli səpici linzadır və <span class="m">F = 1/2,5 = 0,4 m = 40 sm</span>. Şəxs eynəksiz yalnız 40 sm-dən yaxını aydın görür. Oxumaq üçün “+1,5” eynəyi olan şəxs yığıcı linza taxır. Kamera obyektivləri çox vaxt bir neçə linzanın birləşməsidir: onların <span class="m">D</span> dəyərləri toplanır.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">D = 1/F</span>-də <span class="m">F</span>-i santimetrlə qoymaq: <span class="m">1/25 = 0,04</span> yox, <span class="m">1/0,25 = 4</span>.</li>
+        <li>Sıx yapışdırılmış linzalarda <span class="m">F = F₁ + F₂</span> yazmaq. Toplanan <span class="m">D</span>-dir.</li>
+        <li>Yaxıngörənliyə yığıcı, uzaqgörənliyə səpici eynək yazmaq (tərsinə).</li>
+        <li>Eynəyin <span class="m">f</span>-ini müsbət götürmək: eynək <i>xəyali</i> xəyal yaradır, <span class="m">f &lt; 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">D = 1/F (F metrlə), dptr = m⁻¹; yığıcı +, səpici −
+Sıx linzalar: D = D₁ + D₂
+Yaxıngörən: D = −1/a (a — uzaq nöqtə)  → səpici
+Uzaqgörən: D = 4 − 1/a (a — yaxın nöqtə, m) → yığıcı
+Lupa: Γ = 25/F (sonsuzluqda), 25/F + 1 (25 sm-də)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>F = 50 sm olan yığıcı linzanın optik qüvvəsi? <span class="ans">D = 1/0,5 = 2 dptr.</span></li>
+        <li>Optik qüvvələri +6 və −2 dptr olan sıx linzaların fokusu? <span class="ans">D = 4 dptr, F = 1/4 = 0,25 m = 25 sm.</span></li>
+        <li>Yaxıngörən şəxsin uzaq nöqtəsi 25 sm-dir. Eynəyin optik qüvvəsi? <span class="ans">D = −1/0,25 = −4 dptr.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Düz və sferik güzgülər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobilin yan güzgüsündə “cisimlər göründüyündən yaxındır” yazılır. Diş həkimi kiçik güzgü ilə dişi böyüdülmüş görür. Günəş sobası və teleskopun əsas güzgüsü yığır. Hamısı sferik güzgüdür.</p>
+
+      <h3><span class="st">2</span> Düz güzgü</h3>
+      <p>Düz güzgüdə xəyal <b>xəyali</b>, <b>düz</b> və cismə <b>bərabərdir</b>. Güzgünün arxasında cismə simmetrik yerdədir: xəyalın güzgüyə qədər məsafəsi cismin məsafəsinə bərabərdir. Fikrət güzgüdən <span class="m">a</span> məsafədədirsə, onunla xəyalı arasında <span class="m">2a</span> var.</p>
+
+      <h3><span class="st">3</span> Çökək və qabarıq güzgü</h3>
+      <p>Güzgünün əyrilik radiusu <span class="m">R</span>-dir (əyrilik mərkəzi <span class="m">C</span>). Kiçik bucaqlarda fokus <b>əyrilik mərkəzi ilə güzgünün təpəsi arasının ortasındadır</b>:</p>
+      <div class="fm">F = R/2        1/F = 1/d + 1/f        Γ = |f|/d</div>
+      <p>Düstur linzadakı kimidir, amma işarə qaydası güzgü üçündür: <span class="m">f &gt; 0</span> — həqiqi xəyal (güzgünün <i>qarşısında</i>, cisimlə eyni tərəfdə), <span class="m">f &lt; 0</span> — xəyali xəyal (güzgünün <i>arxasında</i>). <b>Çökək</b> güzgü yığıcıdır (<span class="m">F &gt; 0</span>), <b>qabarıq</b> güzgü səpicidir (<span class="m">F = −R/2 &lt; 0</span>).</p>
+      <p>Üç əsas şüa: oxa paralel şüa əks olunub <b>fokusdan</b> keçir; fokusdan keçən şüa əks olunub <b>oxa paralel</b> gedir; təpə nöqtəsinə düşən şüa oxa nəzərən simmetrik əks olunur. Əyrilik mərkəzindən keçən şüa özünə qayıdır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Çökək güzgü: cisim F və R arasında, xəyal həqiqi, tərs, böyüdülmüş">
+          <line x1="8" y1="100" x2="412" y2="100" stroke="var(--muted)" stroke-width="1"/>
+          <path d="M376 50 Q388 100 376 150" fill="none" stroke="var(--ink)" stroke-width="3"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="380" y1="62" x2="392" y2="54"/><line x1="383" y1="76" x2="395" y2="68"/><line x1="385" y1="90" x2="397" y2="82"/><line x1="385" y1="104" x2="397" y2="96"/><line x1="385" y1="118" x2="397" y2="110"/><line x1="383" y1="132" x2="395" y2="124"/><line x1="380" y1="146" x2="392" y2="138"/></g>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="320" y1="96" x2="320" y2="104"/><line x1="260" y1="96" x2="260" y2="104"/></g>
+          <text x="320" y="120" class="lbl" text-anchor="middle">F</text><text x="260" y="120" class="lbl" text-anchor="middle">C</text><text x="383" y="120" class="lbl" text-anchor="middle">P</text>
+          <polyline points="290,76 381,76 200,148" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+          <polyline points="290,76 381,100 200,148" fill="none" stroke="var(--vec)" stroke-width="1.8"/>
+          <polyline points="290,76 380,148 200,148" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="290" y1="100" x2="290" y2="76" stroke="var(--ink)" stroke-width="3.5"/><polygon points="285,85 295,85 290,76" fill="var(--ink)"/>
+          <line x1="200" y1="100" x2="200" y2="148" stroke="var(--accent)" stroke-width="3.5"/><polygon points="195,139 205,139 200,148" fill="var(--accent)"/>
+          <text x="290" y="68" class="lbl" text-anchor="middle">cisim</text><text x="200" y="166" class="lbl" text-anchor="middle">xəyal</text>
+        </svg>
+        <div class="cap">
+          <p>Çökək güzgü, <span class="m">R = 40 sm</span>, <span class="m">F = 20 sm</span>. Cisim güzgüdən <span class="m">d = 30 sm</span>-dədir (<span class="m">F</span> və <span class="m">R</span> arasında). Xəyal güzgünün <b>qarşısında</b>, <span class="m">f = 60 sm</span>-də alınır: həqiqi, tərs, 2 dəfə böyük. <span class="m">P</span> — güzgünün təpə nöqtəsi.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çökək güzgü, R = 40 sm, cisim 30 sm-də (şəkil).
+  F = R/2 = 20 sm
+  1/f = 1/20 − 1/30 = 1/60 → f = 60 sm   (həqiqi, güzgünün qarşısında)
+  Γ = 60/30 = 2</div>
+      <div class="ex">Nümunə 2 (diş həkimi güzgüsü). R = 40 sm, d = 10 sm.
+  F = 20 sm,  1/f = 1/20 − 1/10 = −1/20 → f = −20 sm
+  f &lt; 0: xəyali, güzgünün arxasında, düz.  Γ = 20/10 = 2</div>
+      <div class="ex">Nümunə 3 (qabarıq güzgü). R = 60 sm, d = 60 sm.
+  F = −R/2 = −30 sm
+  1/f = 1/F − 1/d = −1/30 − 1/60 = −3/60 → f = −20 sm
+  Xəyali, düz; Γ = 20/60 = 1/3 (kiçildilmiş)</div>
+      <div class="ex">Nümunə 4 (RFO tipli, düz güzgü).
+Fikrət güzgüdən 3 m məsafədə durur və 1 m güzgüyə yaxınlaşır.
+Onunla xəyalı arasındakı məsafə neçə metr olur?
+  İndi güzgüyə qədər 3 − 1 = 2 m; xəyal güzgünün arxasında 2 m.
+  Aralarında 2·2 = 4 m.
+Əlavə: Fikrət v sürətlə güzgüyə yaxınlaşırsa, xəyala nəzərən
+sürəti 2v-dir (məsafə 2x, x isə v sürətlə azalır).</div>
+      <div class="life"><b>Həyatdan.</b> Avtomobilin yan güzgüsü <b>qabarıqdır</b>: o, həmişə xəyali, düz, <i>kiçildilmiş</i> xəyal verir, buna görə baxış sahəsi geniş olur, amma cisimlər uzaq görünür. Məs. <span class="m">R = 2 m</span>, arxadakı maşın 9 m-də: <span class="m">F = −1 m</span>, <span class="m">1/f = −1 − 1/9 = −10/9</span>, <span class="m">|f| = 0,9 m</span>. Maşının xəyalı güzgünün arxasında 0,9 m-də kiçik görünür. Çökək güzgü isə yığandır: Günəş şüalarını fokusda toplayır (günəş sobası).</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">F = R</span> yazmaq. Düz: <span class="m">F = R/2</span>.</li>
+        <li>Qabarıq güzgüdə <span class="m">F</span>-i müsbət götürmək. Qabarıq güzgü səpicidir, <span class="m">F = −R/2</span>.</li>
+        <li>Güzgüdə həqiqi xəyalı güzgünün <i>arxasında</i> axtarmaq: həqiqi xəyal güzgünün qarşısındadır.</li>
+        <li>Düz güzgüdə xəyala olan məsafəni <span class="m">a</span> götürmək. Cisimlə xəyal arasında <span class="m">2a</span> var.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = R/2;  1/F = 1/d + 1/f
+çökək: F &gt; 0 (yığır);  qabarıq: F &lt; 0 (səpir)
+f &gt; 0: güzgünün qarşısında (həqiqi);  f &lt; 0: arxada (xəyali)
+Düz güzgü: xəyal simmetrik, bərabər, düz, xəyali
+Cisimlə xəyal arasında 2a</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Çökək güzgünün əyrilik radiusu 30 sm. Fokus məsafəsi? <span class="ans">F = 15 sm.</span></li>
+        <li>Çökək güzgünün əyrilik mərkəzində cisim var. Xəyal haradadır? <span class="ans">d = R = 2F → f = 2F = R: cismin yerində, tərs, bərabər.</span></li>
+        <li>Düz güzgü cisimdən 2 m/s sürətlə uzaqlaşır (cisim durur). Xəyal cismdən hansı sürətlə uzaqlaşır? <span class="ans">Məsafə 2x-dir, x 2 m/s artır → 4 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. İşığın dispersiyası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yağışdan sonra Günəş çıxanda göy qurşağı görünür. CD diskin səthi rəngbərəng parıldayır, şüşə qədəhin kənarında rəng zolağı olur. Ağ işıq rənglərə ayrılır — bu hadisəyə <b>dispersiya</b> deyilir.</p>
+
+      <h3><span class="st">2</span> Nyutonun təcrübəsi</h3>
+      <p>İngilis alimi Nyuton Günəş işığını şüşə <b>prizmadan</b> keçirdi və divarda rəngli zolaq (spektr) aldı. Sonra bir rəngi kənara ayırıb ikinci prizmadan keçirdi: o artıq rənglərə ayrılmadı. Nəticə: <b>ağ işıq mürəkkəbdir</b>, müxtəlif rənglərin qarışığıdır; prizma onları ayırır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 420 215" role="img" aria-label="Prizma ağ işığı rənglərə ayırır">
+          <polygon points="210,40 140,160 280,160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2.2"/>
+          <line x1="30" y1="112" x2="175" y2="100" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="175" y1="100" x2="252" y2="112" stroke="var(--ink)" stroke-width="2"/>
+          <g stroke-width="2.4">
+            <line x1="252" y1="112" x2="400" y2="150" stroke="#d32f2f"/>
+            <line x1="252" y1="112" x2="400" y2="158" stroke="#f57c00"/>
+            <line x1="252" y1="112" x2="400" y2="166" stroke="#f9a825"/>
+            <line x1="252" y1="112" x2="400" y2="174" stroke="#388e3c"/>
+            <line x1="252" y1="112" x2="400" y2="182" stroke="#29b6f6"/>
+            <line x1="252" y1="112" x2="400" y2="190" stroke="#1e40af"/>
+            <line x1="252" y1="112" x2="400" y2="198" stroke="#7b1fa2"/>
+          </g>
+          <text x="30" y="100" class="lbl">ağ işıq</text>
+          <text x="404" y="148" class="lbl" text-anchor="end" style="fill:#d32f2f">qırmızı</text>
+          <text x="404" y="212" class="lbl" text-anchor="end" style="fill:#7b1fa2">bənövşəyi</text>
+        </svg>
+        <div class="cap">
+          <p>Ağ işıq prizmaya düşür, hər iki səthdə sınır və çıxışda yelpik kimi açılır. Prizma şüaları <b>əsasına doğru</b> əyir. <b>Qırmızı ən az</b>, <b>bənövşəyi ən çox</b> əyilir. Sıra: <b>qırmızı, narıncı, sarı, yaşıl, mavi, göy, bənövşəyi</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Niyə rənglər ayrılır</h3>
+      <p>Sınma qanununu xatırla: havadan şəffaf mühitə keçəndə</p>
+      <div class="fm">sin α = n · sin β          n = c/v</div>
+      <p>Burada <span class="m">n</span> mühitin sındırma əmsalı, <span class="m">v</span> işığın mühitdəki sürətidir. Əsas fakt: maddi mühitdə <b>sındırma əmsalı işığın rəngindən asılıdır</b> (dispersiya budur). Şüşə üçün <span class="m">n</span> qırmızıda ən kiçik, bənövşəyidə ən böyükdür (məsələn, təxminən 1,51 və 1,53). Deməli şüşədə qırmızı işıq bənövşəyidən <b>sürətlidir</b>. Vakuumda isə bütün rənglərin sürəti eynidir (<span class="m">c = 3·10⁸ m/s</span>), orada dispersiya yoxdur.</p>
+      <p><span class="m">n</span> böyük olduqca <span class="m">sin β</span> kiçilir, yəni şüa normala daha çox yaxınlaşır, daha çox sınır. Buna görə bənövşəyi ən çox əyilir.</p>
+      <p><b>Göy qurşağı</b>: yağış damcılarında Günəş şüası sınır, damcının arxa divarından əks olunur və yenidən sınaraq çıxır. Rənglərin əyilmə bucaqları fərqli olduğundan müşahidəçi hər rəngi göyün başqa nöqtəsində görür. Günəş <b>müşahidəçinin arxasında</b>, yağış qarşıda olmalıdır. Qırmızı qövs xaricdədir, bənövşəyi daxildə.</p>
+      <p><b>Xromatik aberrasiya</b>: yığıcı linza da prizma kimi bənövşəyini qırmızıdan çox sındırır. Ona görə bənövşəyi şüalar linzaya <b>daha yaxın</b> fokuslanır (<span class="m">F<sub>bənövşəyi</sub> &lt; F<sub>qırmızı</sub></span>), şəkil kənarlarında rəngli haşiyə yaranır. Kamera obyektivlərində müxtəlif şüşələrdən linzalar birləşdirərək bunu azaldırlar.</p>
+      <p><b>Cisimlərin rəngi</b>: yarpaq yaşıl görünür, çünki yaşıl işığı əks etdirir, qalanlarını udur. Qırmızı filtr yalnız qırmızı işığı buraxır; yaşıl yarpaq onda qara görünür.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Şüşənin sındırma əmsalı n = 1,5. İşığın şüşədəki sürəti?
+  v = c/n = 3·10⁸ / 1,5 = 2·10⁸ m/s</div>
+      <div class="ex">Nümunə 2. İşıq havadan n = 1,5 olan şüşəyə düşür, sin α = 0,75.
+Sınma bucağının sinusu və bucağı?
+  sin β = sin α / n = 0,75 / 1,5 = 0,5  →  β = 30°
+  Bənövşəyi üçün n bir az böyükdür → sin β bir az kiçik, β bir az kiçik.</div>
+      <div class="ex">Nümunə 3 (RFO tipli, keyfiyyət).
+Ağ işıq şüşə prizmadan keçir. Ekranda hansı rəng prizmanın əsasına
+ən yaxın, hansı ən uzaq yerdə görünür?
+  Əyilmə n ilə artır: n_bənövşəyi &gt; n_qırmızı.
+  Prizma şüanı əsasına doğru əyir → bənövşəyi əsasa ən yaxın,
+  qırmızı ən uzaq (təpəyə ən yaxın) düşür.
+Qırmızı lazer şüası eyni prizmadan keçsə: rəng zolağı yox,
+yalnız bir qırmızı nöqtə (lazer demək olar ki, bir rənglidir).</div>
+      <div class="life"><b>Həyatdan.</b> Sabun köpüyü və CD disk işığı başqa mexanizmlə (interferensiya, difraksiya) rənglərə ayırır, amma damcıdakı göy qurşağı sırf dispersiyadır. Hovuzun dibinin dayaz görünməsi də sınma ilə bağlıdır. Almazın parıltısı da böyük sındırma əmsalı (<span class="m">n ≈ 2,4</span>) və güclü dispersiyadandır: onda işıq rəngli şüalara ayrılaraq oynayır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>“Qırmızı ən çox əyilir” düşünmək. Əksinə: <b>bənövşəyi</b> ən çox əyilir (n ən böyükdür).</li>
+        <li>“Vakuumda da qırmızı bənövşəyidən sürətlidir” demək. Vakuumda hamısı <span class="m">c</span>-dir; fərq yalnız mühitdə.</li>
+        <li>Göy qurşağı üçün Günəşi qarşıda axtarmaq. Günəş arxandadır.</li>
+        <li>Monoxromatik (bir rəngli) işığın prizmadan keçəndə spektrə ayrılacağını düşünmək.</li>
+        <li><span class="m">n = v/c</span> yazmaq. Düz: <span class="m">n = c/v</span> (həmişə <span class="m">n ≥ 1</span>).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ağ işıq mürəkkəbdir; prizma onu rənglərə ayırır.
+n_bənövşəyi &gt; n_qırmızı:  bənövşəyi ən çox əyilir, şüşədə ən yavaşdır
+n = c/v;   sin α = n·sin β
+Vakuumda hamısı c = 3·10⁸ m/s
+Linzada F_bənövşəyi &lt; F_qırmızı (xromatik aberrasiya)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Suyun n = 4/3. İşıq suda hansı sürətlə yayılır? <span class="ans">v = 3·10⁸ : 4/3 = 2,25·10⁸ m/s.</span></li>
+        <li>Prizmadan çıxan şüalar içində hansı rəng ən çox əyilir? <span class="ans">Bənövşəyi.</span></li>
+        <li>Göy qurşağında Günəş harada olmalıdır? <span class="ans">Müşahidəçinin arxasında; yağış qarşıdadır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

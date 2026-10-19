@@ -27,7 +27,28 @@
       t.replaceWith(frag);
     });
   }
+  // Formula summaries were typed as space-aligned monospace text; show them as tidy rows of formula chips instead.
+  // A line "Label: a = b    c = d" becomes a bold label and two chips; 2+ spaces separate formulas on a line.
+  function prettyFormulas(root) {
+    root.querySelectorAll(".sum .ex, .fm").forEach(box => {
+      if (box.dataset.pretty || box.querySelector("svg, table")) return;
+      box.querySelectorAll("br").forEach(b => b.replaceWith("\n"));
+      const lines = box.textContent.split("\n").map(l => l.trim()).filter(Boolean);
+      if (!lines.length) return;
+      const out = document.createElement("div"); out.className = "frows";
+      lines.forEach(line => {
+        const row = document.createElement("div"); row.className = "frow";
+        let rest = line;
+        const m = line.match(/^([^=:]{2,40}):\s+(.+)$/);
+        if (m && !/[=<>≤≥]/.test(m[1])) { const lab = document.createElement("span"); lab.className = "flab"; lab.textContent = m[1]; row.append(lab); rest = m[2]; }
+        rest.split(/\s{2,}/).forEach(f => { const c = document.createElement("span"); c.className = "fchip"; c.textContent = f; row.append(c); });
+        out.append(row);
+      });
+      box.replaceChildren(out); box.dataset.pretty = "1"; box.classList.add("pretty");
+    });
+  }
   document.addEventListener("DOMContentLoaded", () => {
+    prettyFormulas(document.body);
     fixVec(document.body);
     new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 || n.nodeType === 3) fixVec(n.nodeType === 1 ? n : n.parentNode || document.body); }))).observe(document.body, { childList: true, subtree: true });
   });

@@ -9,7 +9,7 @@
   --ok:#3b6d11; --ok-soft:#eaf3de; --warn:#a32d2d; --warn-soft:#fcebeb; --grid:var(--line-0);
   --f-body:"Onest",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --f-task:Georgia,"Times New Roman",serif;
-  --f-num:ui-monospace,"SF Mono",Consolas,monospace;
+  --f-num:var(--f-body);
   --ease:cubic-bezier(.23,1,.32,1);
   --r-xs:4px; --r-sm:6px; --r:8px; --r-lg:12px;
   color-scheme:light;
@@ -197,3 +197,19 @@ details.check summary:hover{text-decoration:underline}
 .stepchip[aria-current=step] .no{background:var(--ink-0);color:var(--white)}
 /* inline math in textbook style: italic letters (KaTeX_Math), upright digits and signs (KaTeX_Main); Azerbaijani letters fall back to Onest */
 .m,.eqn{font-family:"KaTeX_Math","KaTeX_Main",var(--f-body);font-style:normal;font-size:1.08em;font-variant-numeric:normal}
+/* no monospace anywhere: numbers and worked examples use the page font with tabular digits */
+:root{--f-num:var(--f-body)}
+.ex,.fm,.tbl table,.time,.prog b,.task .n,.ans input,.ans input[type=text],svg text,.oy-in,.oy-key,.lbl,.oy-lbl{font-family:var(--f-body);font-variant-numeric:tabular-nums}
+.ex{font-size:14px;line-height:1.7}
+/* no monospace anywhere: numbers and worked examples use the page font with tabular digits */
+:root{--f-num:var(--f-body)}
+.ex,.fm,.tbl table,.time,.prog b,.task .n,.ans input,.ans input[type=text],svg text,.oy-in,.oy-key,.lbl,.oy-lbl{font-family:var(--f-body);font-variant-numeric:tabular-nums}
+.ex{font-size:14px;line-height:1.7}
+/* tidy formula summaries (built by ders.js from the old monospace blocks) */
+.fm.pretty,.sum .ex.pretty{white-space:normal;font-family:var(--f-body);font-weight:500;font-size:15px;background:var(--white);padding:12px;overflow:visible}
+.fm.pretty{background:var(--subj-soft)}
+.frows{display:grid;gap:8px}
+.frow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.flab{font-weight:700;color:var(--ink-2);font-size:13px;margin-right:2px}
+.fchip{background:var(--paper);border-radius:var(--r-sm);padding:6px 10px;white-space:nowrap;font-variant-numeric:lining-nums;color:var(--ink-0)}
+.fm.pretty .fchip{background:var(--white)}

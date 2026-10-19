@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Oxşarlıq və homotetiya dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-homotetiya.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Oxşarlıq və homotetiya</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Həndəsə</div>
+    <h1>Oxşarlıq və homotetiya</h1>
+    <p>Fotoşəkli böyüdəndə və ya proyektor slaydı ekrana saldıqda hər şey eyni formada qalır, yalnız ölçü dəyişir. Riyaziyyatda bu <b>homotetiyadır</b>. Bu mövzuda homotetiyanı, onun xassələrini, oxşar üçbucaqların olimpiada konfiqurasiyalarını (paralel xətt, "kəpənək", trapesiya) və sahələrin <span class="m">k²</span> qanununu öyrənəcəksən. Sonda homotetiya ilə Eyler düz xəttini sübut edəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Homotetiya</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Oxşar üçbucaqlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Trapesiya</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Eyler düz xətti</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Homotetiya: tərif, xassələr, mərkəz</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Foto böyüdəndə hər xətt öz yerində qalır, bucaqlar dəyişmir, yalnız ölçü artır. Proyektor da belədir: lampa "mərkəzdir", slayd və ekrandakı təsvir eyni formadadır. Olimpiada həndəsəsində homotetiya "gizli" nöqtələri tapmağa, düz xətlərin bir nöqtədə kəsişdiyini göstərməyə və çevrələrin toxunmasını izah etməyə kömək edir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Homotetiya</b> iki ədədlə verilir: <b>mərkəz</b> <span class="m">O</span> və <b>əmsal</b> <span class="m">k ≠ 0</span>. Hər <span class="m">M</span> nöqtəsini elə <span class="m">M'</span> nöqtəsinə aparır ki,</p>
+      <div class="fm">O, M, M' bir düz xətt üzərindədir
+OM' = k · OM   (vektor kimi)</div>
+      <p><span class="m">k &gt; 0</span> olanda <span class="m">M'</span> nöqtəsi <span class="m">O</span>-dan baxanda <span class="m">M</span> ilə eyni şüadadır. <span class="m">k &lt; 0</span> olanda isə <span class="m">O</span> nöqtəsi <span class="m">M</span> ilə <span class="m">M'</span> arasında qalır. <span class="m">|k| &gt; 1</span> böyüdür, <span class="m">|k| &lt; 1</span> kiçildir.</p>
+      <p>Koordinatlarla: <span class="m">M' = O + k · (M − O)</span>. Mərkəz koordinat başlanğıcı olanda sadəcə <span class="m">M' = k · M</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="O mərkəzli, k = 2 homotetiya: A → D, B → E"><line x1="89.9" y1="85" x2="140" y2="145" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="149.9" y1="45" x2="250" y2="165" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="125" x2="149.9" y2="45" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="30" y1="125" x2="250" y2="165" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="30" cy="125" r="2.6" fill="var(--ink)"/><circle cx="89.9" cy="85" r="2.6" fill="var(--ink)"/><circle cx="140" cy="145" r="2.6" fill="var(--ink)"/><circle cx="149.9" cy="45" r="2.6" fill="var(--ink)"/><circle cx="250" cy="165" r="2.6" fill="var(--ink)"/><text x="16.0" y="131.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text><text x="78.3" y="82.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="143.3" y="163.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="153.5" y="36.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="262.8" y="175.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text></svg><div class="cap"><p>k = 2: <b>D</b> — A-nın, <b>E</b> — B-nin obrazı.</p><p>DE ∥ AB, DE = 2 · AB.</p></div></div>
+      <p><b>Əsas xassə.</b> <span class="m">A</span> və <span class="m">B</span> nöqtələri <span class="m">D</span> və <span class="m">E</span> nöqtələrinə keçərsə, <b><span class="m">DE ∥ AB</span> və <span class="m">DE = |k| · AB</span></b>.</p>
+      <div class="ex">Sübut.  OD = k · OA,  OE = k · OB  (vektorlar).
+  DE = OE − OD = k · OB − k · OA = k · (OB − OA) = k · AB.
+Vektor k · AB vektoru AB-yə kollineardır (paraleldir) və uzunluğu
+|k| dəfə böyükdür.   ∎</div>
+      <p><b>Nəticələr.</b> Düz xətt özünə paralel düz xəttə keçir. Bucaqlar dəyişmir (oxşar fiqurlar), perimetr <span class="m">|k|</span> dəfə, sahə <span class="m">k²</span> dəfə dəyişir. Çevrə çevrəyə keçir: mərkəzin obrazı yeni mərkəz olur, radius <span class="m">|k|</span> dəfə dəyişir.</p>
+      <p><b>Mərkəzi necə tapmaq olar?</b> Homotetiya <span class="m">A</span>-nı <span class="m">D</span>-yə, <span class="m">B</span>-ni <span class="m">E</span>-yə aparırsa (<span class="m">k ≠ 1</span>), onda <span class="m">O</span> həm <span class="m">AD</span>, həm <span class="m">BE</span> düz xəttindədir: mərkəz bu iki düz xəttin kəsişməsidir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Mərkəz O(1; 2), k = 3. M(2; 4) nöqtəsinin obrazı?
+  M − O = (1; 2),  k · (M − O) = (3; 6)
+  M' = O + (3; 6) = (4; 8)
+  Cavab: M'(4; 8)
+
+Nümunə 2.  k = 2 olan homotetiya A(3; 1) nöqtəsini D(5; 1) nöqtəsinə aparır. Mərkəz?
+  O + 2 · (A − O) = D  →  O · (1 − 2) = D − 2A  →  O = (2A − D)
+  O = (2 · 3 − 5; 2 · 1 − 1) = (1; 1)
+  Yoxla: (1; 1) + 2 · (2; 0) = (5; 1) ✓
+  Cavab: O(1; 1)
+
+Nümunə 3.  OA = 4, OD = 10; D nöqtəsi A-nın obrazıdır.
+  D, A ilə eyni şüadadırsa: k = 10/4 = 5/2.
+  O nöqtəsi A ilə D arasındadırsa: k = −5/2.</div>
+      <div class="life"><b>Həyatdan: proyektor.</b> Lampa slayddan 8 sm, ekran lampadan 40 sm aralıdadır. Slaydın eni 6 sm olarsa, ekrandakı təsvirin eni <span class="m">6 · 40/8 = 30 sm</span> olur: əmsal <span class="m">k = 40/8 = 5</span>.</div>
+
+      <h3><span class="st">4</span> İki çevrənin homotetiya mərkəzləri</h3>
+      <p>Radiusları <span class="m">r₁</span> və <span class="m">r₂</span>, mərkəzləri <span class="m">O</span> və <span class="m">Q</span> olan iki çevrə (<span class="m">OQ = d</span>, çevrələr bir-birindən kənardır) bir-birinə iki cür homotetiya ilə keçir: <span class="m">k = r₂/r₁</span> (<b>xarici</b> mərkəz) və <span class="m">k = −r₂/r₁</span> (<b>daxili</b> mərkəz). Çevrələrin ümumi xarici toxunanları xarici mərkəzdə, daxili toxunanları daxili mərkəzdə kəsişir.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="İki çevrənin xarici (X) və daxili (Y) homotetiya mərkəzləri"><circle cx="75" cy="105" r="45" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><circle cx="180" cy="105" r="18" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><line x1="250" y1="105" x2="86.5" y2="148.4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="250" y1="105" x2="86.5" y2="61.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="102" y1="69" x2="169.2" y2="119.4" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="101.9" y1="141" x2="169.2" y2="90.6" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><circle cx="75" cy="105" r="2.6" fill="var(--ink)"/><circle cx="180" cy="105" r="2.6" fill="var(--ink)"/><circle cx="250" cy="105" r="2.6" fill="var(--ink)"/><circle cx="150" cy="105" r="2.6" fill="var(--ink)"/><text x="84.8" y="100.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text><text x="194" y="110" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">Q</text><text x="264" y="110" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">X</text><text x="164" y="110" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">Y</text></svg><div class="cap"><p><b>X</b> — xarici toxunanların, <b>Y</b> — daxili toxunanların kəsişməsi.</p></div></div>
+      <div class="fm">xarici mərkəz X:  XO = d · r₁ / |r₁ − r₂|
+daxili mərkəz Y:  YO = d · r₁ / (r₁ + r₂)</div>
+      <div class="ex">Sübut.  Xarici mərkəz X mərkəzlərin düz xətti üzərindədir və
+  XO : XQ = r₁ : r₂,  X nöqtəsi O və Q-nun eyni tərəfindədir.
+  Deməli |XO − XQ| = OQ = d.  XQ = XO · r₂/r₁ əvəz edək:
+  XO · (1 − r₂/r₁) = d  →  XO = d · r₁/(r₁ − r₂)   (r₁ &gt; r₂).
+Daxili mərkəz Y mərkəzlər arasındadır: YO + YQ = d və YO : YQ = r₁ : r₂,
+  YO = d · r₁/(r₁ + r₂).   ∎
+
+Nümunə.  r₁ = 6, r₂ = 2, OQ = 16.
+  XO = 16 · 6/(6 − 2) = 24   (yoxla: XQ = 24 − 16 = 8, 24 : 8 = 6 : 2 ✓)
+  YO = 16 · 6/(6 + 2) = 12   (YQ = 4, 12 : 4 = 6 : 2 ✓)</div>
+
+      <h3><span class="st">5</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Orta xətt.</b> Sübut et: üçbucağın iki tərəfinin orta nöqtələrini birləşdirən parça üçüncü tərəfə paraleldir və onun yarısına bərabərdir.</p>
+      <div class="ex">Həll. <span class="m">M</span> — <span class="m">AB</span>-nin, <span class="m">N</span> — <span class="m">AC</span>-nin orta nöqtəsidir.
+A mərkəzli, əmsalı 1/2 olan homotetiya B-ni M-ə, C-ni N-ə aparır.
+Əsas xassəyə görə  MN ∥ BC  və  MN = (1/2) · BC.   ∎</div>
+
+      <p><b>Məsələ 2. Paralel tərəfli üçbucaqlar.</b> <span class="m">ABC</span> və <span class="m">A'B'C'</span> üçbucaqlarının tərəfləri cüt-cüt paraleldir (<span class="m">AB ∥ A'B'</span>, <span class="m">BC ∥ B'C'</span>, <span class="m">CA ∥ C'A'</span>) və üçbucaqlar bərabər deyil (köçürmə deyil). Sübut et: <span class="m">AA'</span>, <span class="m">BB'</span>, <span class="m">CC'</span> düz xətləri bir nöqtədə kəsişir.</p>
+      <div class="ex">Həll. AA' və BB' düz xətləri paralel ola bilməz: paralel olsaydı,
+ABB'A' paraleloqram olardı və A'B' vektoru AB vektoruna bərabər çıxardı,
+yəni üçbucaqlar köçürmə ilə bir-birinə keçərdi (bu hal şərtlə istisna olunub).
+Deməli AA' və BB' bir O nöqtəsində kəsişir. AB ∥ A'B' olduğundan
+OAB ~ OA'B', və O mərkəzli, əmsalı k = OA'/OA (işarəli) olan homotetiya
+A → A', B → B' aparır.
+Bu homotetiya C nöqtəsini elə C'' nöqtəsinə aparır ki,
+  A'C'' ∥ AC   və   B'C'' ∥ BC.
+Bu iki düz xətt tək bir nöqtədə kəsişir. C' nöqtəsi də həmin düz
+xətlər üzərindədir (şərtə görə C'A' ∥ CA, C'B' ∥ CB). Deməli C'' = C',
+CC' düz xətti də O-dan keçir.   ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mərkəz başlanğıc deyilsə, <span class="m">M' = k · M</span> yazmaq. Düzü: <span class="m">M' = O + k · (M − O)</span>.</li>
+        <li>Mənfi əmsalda obrazı mərkəzin <b>eyni</b> tərəfində çəkmək: <span class="m">k &lt; 0</span> olanda <span class="m">O</span> nöqtəsi <span class="m">M</span> və <span class="m">M'</span> arasındadır.</li>
+        <li>Sahəni <span class="m">k</span> dəfə, uzunluğu <span class="m">k²</span> dəfə dəyişdirmək. Uzunluq <span class="m">|k|</span>, sahə <span class="m">k²</span>.</li>
+        <li>Xarici və daxili mərkəzi qarışdırmaq: xariciydə fərq <span class="m">r₁ − r₂</span>, daxilidə cəm <span class="m">r₁ + r₂</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">M' = O + k · (M − O);  A'B' ∥ AB,  A'B' = |k| · AB
+perimetr |k| dəfə, sahə k² dəfə
+iki çevrə: XO = d·r₁/|r₁ − r₂| (xarici),  YO = d·r₁/(r₁ + r₂) (daxili)
+mərkəz = uyğun nöqtələri birləşdirən düz xətlərin kəsişməsi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mərkəz koordinat başlanğıcı, <span class="m">k = −2</span>. <span class="m">M(3; −1)</span> nöqtəsinin obrazının absisi? <span class="ans">M' = −2 · (3; −1) = (−6; 2). Absis −6.</span></li>
+        <li><span class="m">OA = 6</span>, <span class="m">OD = 9</span>, <span class="m">D</span> nöqtəsi <span class="m">A</span> ilə eyni şüadadır. Homotetiyanın əmsalı? <span class="ans">k = 9/6 = 3/2.</span></li>
+        <li>Radiusları 4 və 1, mərkəzləri arasındakı məsafə 9 olan çevrələrin xarici toxunanları <span class="m">X</span>-də kəsişir. <span class="m">XO</span> (böyük çevrənin mərkəzi <span class="m">O</span>)? <span class="ans">XO = 9 · 4/(4 − 1) = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Oxşar üçbucaqlar və sahələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hündürlüyünü ölçə bilmədiyin ağacın kölgəsini ölçüb hündürlüyünü tapmaq mümkündür: dirək və ağac oxşar üçbucaqlar yaradır. Olimpiada məsələlərində paralel xətlər və bərabər bucaqlar həmişə oxşar üçbucaqlar gizlədir. Bu dərsdə onları görməyi və sahələri <span class="m">k²</span> qanunu ilə hesablamağı öyrənəcəksən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>İki bucağı bərabər olan üçbucaqlar oxşardır. Oxşarlıq əmsalı <span class="m">k</span> olarsa, uyğun parçalar (tərəflər, hündürlüklər, medianlar) <span class="m">k</span> dəfə, perimetrlər <span class="m">k</span> dəfə, <b>sahələr <span class="m">k²</span> dəfə</b> fərqlənir. Sahə üçün səbəb: əsas da, hündürlük də <span class="m">k</span> dəfə dəyişir, sahə isə onların hasilinin yarısıdır.</p>
+      <p>Üç tipik konfiqurasiya:</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="DE ∥ BC: ADE ~ ABC"><polygon points="88.6,31.6 30,178.3 250,178.3" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="65.1" y1="90.3" x2="153.2" y2="90.3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="88.6" cy="31.6" r="2.6" fill="var(--ink)"/><circle cx="30" cy="178.3" r="2.6" fill="var(--ink)"/><circle cx="250" cy="178.3" r="2.6" fill="var(--ink)"/><circle cx="65.1" cy="90.3" r="2.6" fill="var(--ink)"/><circle cx="153.2" cy="90.3" r="2.6" fill="var(--ink)"/><text x="84.0" y="23.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="17.6" y="189.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="263.0" y="188.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="53.6" y="87.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="161.7" y="84.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text></svg><div class="cap"><p><b>Üçbucaq:</b> DE ∥ BC, ADE ~ ABC.</p></div></div>
+      <div class="fm">1) "Üçbucaq":  DE ∥ BC  →  ADE ~ ABC
+      AD/AB = AE/AC = DE/BC
+2) "Kəpənək":  AB ∥ CD, AC ∩ BD = O  →  OAB ~ OCD
+      OA/OC = OB/OD = AB/CD
+3) "Antiparalel":  ∠AEF = ∠B  →  AEF ~ ABC   (məs. hündürlüklərin ayaqları)</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="AB ∥ CD, AC və BD O-da kəsişir: OAB ~ OCD"><line x1="65" y1="30" x2="172.1" y2="30" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="225.7" y1="180" x2="54.2" y2="180" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="65" y1="30" x2="225.7" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="172.1" y1="30" x2="54.2" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="65" cy="30" r="2.6" fill="var(--ink)"/><circle cx="172.1" cy="30" r="2.6" fill="var(--ink)"/><circle cx="225.7" cy="180" r="2.6" fill="var(--ink)"/><circle cx="54.2" cy="180" r="2.6" fill="var(--ink)"/><circle cx="126.8" cy="87.6" r="2.6" fill="var(--ink)"/><text x="55.6" y="24.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="179.3" y="23.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="236.5" y="193.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="44.6" y="195.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="124.8" y="78.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text></svg><div class="cap"><p><b>Kəpənək:</b> AB ∥ CD, OAB ~ OCD.</p></div></div>
+      <p>Kəpənəkdə "çarpaz" bucaqlar bərabərdir: <span class="m">∠OAB = ∠OCD</span>, <span class="m">∠OBA = ∠ODC</span>. Əmsal <span class="m">AB/CD</span> həm də <span class="m">OA/OC</span>-dir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  DE ∥ BC, AD : AB = 2 : 5, S(ADE) = 12.  S(ABC), S(DBCE)?
+  k = 2/5,  k² = 4/25
+  S(ABC) = 12 · 25/4 = 75
+  S(DBCE) = 75 − 12 = 63
+
+Nümunə 2.  DE ∥ BC, AD = 6, DB = 9, AE = 8, BC = 25.  EC, DE?
+  AD/DB = AE/EC  →  EC = 8 · 9/6 = 12
+  AB = 15, k = AD/AB = 6/15 = 2/5,  DE = 25 · 2/5 = 10
+
+Nümunə 3.  AB ∥ CD, OA = 4, OC = 6, AB = 10, OB = 5.  CD, OD?
+  OA/OC = AB/CD = OB/OD = 4/6 = 2/3
+  CD = 10 · 3/2 = 15,   OD = 5 · 3/2 = 7,5</div>
+      <div class="life"><b>Həyatdan: kölgə.</b> 2 m hündürlüyündə dirəyin kölgəsi 3 m, eyni anda ağacın kölgəsi 12 m-dir. Günəş şüaları paraleldir, üçbucaqlar oxşardır: <span class="m">H/12 = 2/3</span>, <span class="m">H = 8 m</span>.</div>
+
+      <h3><span class="st">4</span> Üçbucağa daxil edilmiş kvadrat və düzbucaqlı</h3>
+      <p>Oturacaq <span class="m">BC = a</span>, ona çəkilmiş hündürlük <span class="m">h</span>. Kvadratın bir tərəfi <span class="m">BC</span> üzərindədir, qarşı təpələri <span class="m">AB</span> və <span class="m">AC</span>-dədir. Tərəfi <span class="m">x</span> tapaq.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Üçbucağa daxil edilmiş kvadrat"><polygon points="113,30 35,180 245,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="80.5" y1="180" x2="80.5" y2="92.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="80.5" y1="92.5" x2="168" y2="92.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="168" y1="92.5" x2="168" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="113" cy="30" r="2.6" fill="var(--ink)"/><circle cx="35" cy="180" r="2.6" fill="var(--ink)"/><circle cx="245" cy="180" r="2.6" fill="var(--ink)"/><circle cx="80.5" cy="180" r="2.6" fill="var(--ink)"/><circle cx="168" cy="180" r="2.6" fill="var(--ink)"/><circle cx="168" cy="92.5" r="2.6" fill="var(--ink)"/><circle cx="80.5" cy="92.5" r="2.6" fill="var(--ink)"/><text x="110.5" y="21.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="22.5" y="191.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="257.8" y="190.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="70.5" y="194.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="176.3" y="196.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text><text x="177.8" y="87.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">F</text><text x="69.2" y="89.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">G</text></svg><div class="cap"><p>BC = a, hündürlük h, kvadratın tərəfi x.</p></div></div>
+      <div class="ex">Kvadratın yuxarı tərəfi GF ∥ BC, deməli AGF ~ ABC.
+Onların hündürlükləri  h − x  və  h:
+   GF/BC = (h − x)/h   →   x/a = (h − x)/h
+   x · h = a · (h − x)   →   x · (a + h) = a · h
+        x = a · h / (a + h)
+
+Nümunə.  a = 30, h = 20:  x = 600/50 = 12.
+Düzbucaqlı üçün (hündürlüyü t): eni a · (h − t)/h.
+  a = 12, h = 8, t = 2:  en = 12 · 6/8 = 9.
+Kvadrat düzbucaqlı üçbucağın düz bucağında oturursa (katetlər p, q),
+F təpəsi hipotenuz üzərindədir və x/p = (q − x)/q:
+        x = p · q / (p + q)       (p = 6, q = 3: x = 18/9 = 2)</div>
+      <p><b>Ən böyük düzbucaqlı.</b> Düzbucaqlının hündürlüyü <span class="m">t</span> olsun, eni <span class="m">a(h − t)/h</span>. Sahəsi <span class="m">a · t(h − t)/h</span>. <span class="m">t</span> və <span class="m">h − t</span> ədədlərinin cəmi sabitdir (<span class="m">h</span>), hasil isə cəm bərabər olanda ən böyükdür: <span class="m">t = h/2</span>. Onda sahə <span class="m">a · (h/2)²/h = ah/4</span> — <b>üçbucaq sahəsinin yarısı</b>. Məsələn <span class="m">a = 12</span>, <span class="m">h = 8</span>: ən böyük sahə 24 (üçbucağın sahəsi 48).</p>
+
+      <h3><span class="st">5</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Hündürlüklərin ayaqları.</b> Kəskinbucaqlı <span class="m">ABC</span> üçbucağında <span class="m">BE</span> və <span class="m">CF</span> hündürlükləri çəkilib. Sübut et: <span class="m">AEF ~ ABC</span> və <span class="m">EF = BC · cos A</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Hündürlüklərin ayaqları E, F"><polygon points="77,30 35,180 245,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="35" y1="180" x2="128.1" y2="75.6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="245" y1="180" x2="50.2" y2="125.4" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="128.1" y1="75.6" x2="50.2" y2="125.4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="77" cy="30" r="2.6" fill="var(--ink)"/><circle cx="35" cy="180" r="2.6" fill="var(--ink)"/><circle cx="245" cy="180" r="2.6" fill="var(--ink)"/><circle cx="128.1" cy="75.6" r="2.6" fill="var(--ink)"/><circle cx="50.2" cy="125.4" r="2.6" fill="var(--ink)"/><text x="71.5" y="22.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="22.9" y="192.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="258.0" y="190.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="130.4" y="66.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text><text x="36.2" y="129.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">F</text></svg><div class="cap"><p>BE ⟂ AC, CF ⟂ AB. BCEF — çevrəyə daxil olan dördbucaqlıdır.</p></div></div>
+      <div class="ex">Həll. ∠BEC = ∠BFC = 90°, ona görə E və F nöqtələri BC
+diametrli çevrə üzərindədir, BCEF — çevrəyə daxil olan dördbucaqlıdır.
+Daxil olan dördbucaqlıda qarşı bucaqların cəmi 180°-dir:
+  ∠AEF = 180° − ∠FEC = ∠FBC = ∠B.
+A bucağı ümumidir  →  AEF ~ ABC  (E ↔ B, F ↔ C):
+  AE/AB = AF/AC = EF/BC.
+ABE düzbucaqlı üçbucağında  AE = AB · cos A, yəni  k = cos A:
+  EF = BC · cos A.   ∎
+Məsələn BC = 15, cos A = 3/5:  EF = 9, S(AEF) : S(ABC) = 9/25.</div>
+
+      <p><b>Məsələ 2. Sahəni yarıya bölən paralel.</b> <span class="m">DE ∥ BC</span> xətti <span class="m">ABC</span> üçbucağını sahələri bərabər iki hissəyə bölür. <span class="m">AD : AB</span> nisbətini tap.</p>
+      <div class="ex">Həll. S(ADE) = S(DBCE), deməli S(ADE) = (1/2) · S(ABC).
+ADE ~ ABC, k² = 1/2,  k = 1/√2 = √2/2.
+AD : AB = √2 : 2.   Məsələn AB = 10 olarsa  AD = 5√2 ≈ 7,07.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Oxşarlıq əmsalını bölünməyən hissələrlə götürmək: <span class="m">k = AD/AB</span>, <span class="m">AD/DB</span> deyil.</li>
+        <li>Sahələrin nisbətini <span class="m">k</span> götürmək. Düzü: <span class="m">k²</span>.</li>
+        <li>Kəpənəkdə uyğun tərəfləri səhv qoşmaq: <span class="m">OA</span> ilə <span class="m">OC</span>, <span class="m">OB</span> ilə <span class="m">OD</span> (hər düz xətt üzərində eyni tərəflər) uyğundur.</li>
+        <li>Kvadratda <span class="m">x = a · h/(a − h)</span> və ya <span class="m">a + h</span> əvəzinə <span class="m">a · h</span> bölmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">DE ∥ BC → ADE ~ ABC;   AB ∥ CD → OAB ~ OCD
+uzunluq ~ k,   perimetr ~ k,   sahə ~ k²
+üçbucağa daxil kvadrat:  x = a·h/(a + h)
+düzbucaqlı (hündürlük t):  en = a·(h − t)/h;  ən böyük sahə = ah/4
+EF = BC · cos A  (hündürlüklərin ayaqları)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">DE ∥ BC</span>, <span class="m">AD : AB = 3 : 4</span>, <span class="m">S(ABC) = 64</span>. <span class="m">S(ADE)</span>? <span class="ans">k² = 9/16, S(ADE) = 64 · 9/16 = 36.</span></li>
+        <li><span class="m">AB ∥ CD</span>, <span class="m">OA = 3</span>, <span class="m">OC = 9</span>, <span class="m">CD = 21</span>. <span class="m">AB</span>? <span class="ans">AB/CD = OA/OC = 1/3, AB = 7.</span></li>
+        <li>Oturacağı 12, hündürlüyü 6 olan üçbucağa daxil kvadratın tərəfi? <span class="ans">x = 12 · 6/(12 + 6) = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Trapesiya və homotetiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Trapesiya olimpiadalarda çox gəlir, çünki onda iki cür homotetiya "gizlənib": diaqonalların kəsişməsində ("kəpənək") və yan tərəflərin davamlarının kəsişməsində ("üçbucaq"). Bu iki nöqtəni görən adam trapesiya məsələlərinin çoxunu bir neçə sətirdə həll edir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">ABCD</span> trapesiyasında <span class="m">BC ∥ AD</span>, <span class="m">BC = a</span>, <span class="m">AD = b</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Trapesiya: diaqonallar O-da, yan tərəflərin davamı P-də kəsişir"><polygon points="30,163.6 80.6,93.2 168.6,93.2 250,163.6" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="30" y1="163.6" x2="168.6" y2="93.2" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="80.6" y1="93.2" x2="250" y2="163.6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="80.6" y1="93.2" x2="114.3" y2="46.3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="168.6" y1="93.2" x2="114.3" y2="46.3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="163.6" r="2.6" fill="var(--ink)"/><circle cx="80.6" cy="93.2" r="2.6" fill="var(--ink)"/><circle cx="168.6" cy="93.2" r="2.6" fill="var(--ink)"/><circle cx="250" cy="163.6" r="2.6" fill="var(--ink)"/><circle cx="129" cy="113.3" r="2.6" fill="var(--ink)"/><circle cx="114.3" cy="46.3" r="2.6" fill="var(--ink)"/><text x="16.7" y="173.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="69.0" y="90.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="178.6" y="88.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="263.4" y="172.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="126.0" y="104.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text><text x="111.3" y="37.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">P</text></svg><div class="cap"><p>BC ∥ AD, BC = a, AD = b.</p><p>BO/OD = a/b, PB/PA = a/b.</p></div></div>
+      <div class="fm">Diaqonallar O-da kəsişir:  BOC ~ DOA,  k = BC/AD = a/b
+   BO/OD = CO/OA = a/b
+Yan tərəflərin davamları P-də kəsişir:  PBC ~ PAD,  k = a/b
+   PB/PA = PC/PD = a/b</div>
+      <p>Hər iki halda <span class="m">BC</span> parçası <span class="m">AD</span> parçasına homotetiya ilə keçir: <span class="m">P</span> mərkəzli <span class="m">k = b/a &gt; 0</span> və <span class="m">O</span> mərkəzli <span class="m">k = −b/a &lt; 0</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  BC = 4, AD = 10, AB = 9. Yan tərəflərin davamları P-də kəsişir.  PB = ?
+  PA/PB = AD/BC = 10/4,  PA = PB + AB = PB + 9
+  (PB + 9)/PB = 10/4  →  4PB + 36 = 10PB  →  PB = 6.
+  Yoxla: PA = 15, 15 : 6 = 10 : 4 ✓
+
+Nümunə 2.  BC = 6, AD = 12. Diaqonalların kəsişməsindən oturacaqlara
+paralel çəkilmiş parça EF (E ∈ AB, F ∈ CD).  EF = ?
+  EF = 2ab/(a + b) = 2 · 6 · 12/18 = 8     (sübutu aşağıda)</div>
+      <div class="life"><b>Həyatdan: bağ sahəsi.</b> Trapesiya formalı sahənin oturacaqları 6 m və 12 m-dir. Diaqonalların kəsişdiyi nöqtədən oturacaqlara paralel hasar çəkilsə, onun uzunluğu 8 m olar. Bu, 6 və 12 ədədlərinin <b>harmonik ortası</b>dır; ədədi ortadan (9) kiçikdir.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Diaqonalların kəsdiyi üçbucaqların sahələri.</b> <span class="m">ABCD</span> trapesiyasında <span class="m">BC ∥ AD</span>, diaqonallar <span class="m">O</span>-da kəsişir, <span class="m">S(BOC) = S₁</span>, <span class="m">S(AOD) = S₂</span>. Sübut et: <span class="m">S(ABCD) = (√S₁ + √S₂)²</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Diaqonalların kəsişməsində dörd üçbucaq"><polygon points="30,140.2 80.6,69.7 168.6,69.7 250,140.2" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="30" y1="140.2" x2="168.6" y2="69.7" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="80.6" y1="69.7" x2="250" y2="140.2" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="140.2" r="2.6" fill="var(--ink)"/><circle cx="80.6" cy="69.7" r="2.6" fill="var(--ink)"/><circle cx="168.6" cy="69.7" r="2.6" fill="var(--ink)"/><circle cx="250" cy="140.2" r="2.6" fill="var(--ink)"/><circle cx="129" cy="89.9" r="2.6" fill="var(--ink)"/><text x="16.7" y="149.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="69.0" y="66.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="178.6" y="65.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="263.4" y="149.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="126.0" y="81.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text></svg><div class="cap"><p>S(BOC) = S₁, S(AOD) = S₂.</p><p>S(AOB) = S(COD) = √(S₁S₂).</p></div></div>
+      <div class="ex">Həll.
+1) BOC ~ DOA, S₁/S₂ = k², k = BO/OD = √S₁/√S₂.
+2) AOB və AOD üçbucaqlarının A təpəsindən BD-yə çəkilmiş hündürlüyü
+   eynidir, bazaları BO və OD-dir:
+        S(AOB)/S(AOD) = BO/OD = k
+        S(AOB) = k · S₂ = (√S₁/√S₂) · S₂ = √(S₁S₂)
+3) S(COD) = √(S₁S₂) (ABD və ACD sahələri bərabərdir, AOD ortaqdır).
+4) S(ABCD) = S₁ + S₂ + 2√(S₁S₂) = (√S₁ + √S₂)².   ∎
+Məsələn S₁ = 9, S₂ = 16:  yan üçbucaqlar 12 + 12,  cəmi 9 + 16 + 24 = 49 = (3 + 4)².</div>
+
+      <p><b>Məsələ 2. Harmonik orta.</b> Eyni trapesiyada <span class="m">O</span> nöqtəsindən oturacaqlara paralel xətt yan tərəfləri <span class="m">E</span> və <span class="m">F</span> nöqtələrində kəsir. Sübut et: <span class="m">EF = 2ab/(a + b)</span>.</p>
+      <div class="ex">Həll. BC ∥ AD olduğundan  AO/OC = AD/BC = b/a,
+  AO/AC = b/(a + b).
+EO ∥ BC  →  AEO ~ ABC:   EO/BC = AO/AC = b/(a + b),
+  EO = a · b/(a + b).
+Eyni ilə  OF = a · b/(a + b)  (DOF ~ DBC, DO/DB = b/(a + b)).
+EF = EO + OF = 2ab/(a + b).   ∎</div>
+
+      <p><b>Məsələ 3. Dörd nöqtə bir düz xəttdə.</b> <span class="m">BC ∥ AD</span> trapesiyasında <span class="m">M</span> — <span class="m">BC</span>-nin, <span class="m">N</span> — <span class="m">AD</span>-nin orta nöqtəsi, <span class="m">O</span> — diaqonalların kəsişməsi, <span class="m">P</span> — yan tərəflərin davamlarının kəsişməsidir. Sübut et: <span class="m">P</span>, <span class="m">O</span>, <span class="m">M</span>, <span class="m">N</span> bir düz xətt üzərindədir.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="P, O, M, N bir düz xətt üzərindədir"><polygon points="30,163.6 80.6,93.2 168.6,93.2 250,163.6" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="114.3" y1="46.3" x2="140" y2="163.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="163.6" x2="168.6" y2="93.2" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="80.6" y1="93.2" x2="250" y2="163.6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="30" cy="163.6" r="2.6" fill="var(--ink)"/><circle cx="80.6" cy="93.2" r="2.6" fill="var(--ink)"/><circle cx="168.6" cy="93.2" r="2.6" fill="var(--ink)"/><circle cx="250" cy="163.6" r="2.6" fill="var(--ink)"/><circle cx="129" cy="113.3" r="2.6" fill="var(--ink)"/><circle cx="114.3" cy="46.3" r="2.6" fill="var(--ink)"/><circle cx="124.6" cy="93.2" r="2.6" fill="var(--ink)"/><circle cx="140" cy="163.6" r="2.6" fill="var(--ink)"/><text x="16.7" y="173.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="69.0" y="90.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="178.6" y="88.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="263.4" y="172.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="126.0" y="104.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text><text x="111.3" y="37.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">P</text><text x="121.6" y="84.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="142.9" y="182.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">N</text></svg><div class="cap"><p>M, N — oturacaqların orta nöqtələri.</p></div></div>
+      <div class="ex">Həll.
+1) P mərkəzli, əmsalı b/a olan homotetiya BC-ni AD-yə aparır
+   (B → A, C → D). Orta nöqtə orta nöqtəyə keçir: M → N.
+   Homotetiya nöqtəni, obrazını və mərkəzi bir düz xəttə düzür:
+   P, M, N bir düz xətt üzərindədir.
+2) O mərkəzli, əmsalı −b/a olan homotetiya B → D, C → A aparır,
+   yenə BC → AD, M → N. Deməli O, M, N bir düz xəttdədir.
+3) Hər iki düz xətt MN düz xəttidir. Deməli P, O, M, N kollineardır.   ∎
+Nəticə: O mərkəzli əmsal −b/a, ona görə  OM : ON = a : b.
+Məsələn a = 4, b = 12, MN = 16:  OM = 4, ON = 12.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Diaqonalların bölünmə nisbətini <span class="m">AB/CD</span> kimi götürmək. Düzü: oturacaqların nisbəti <span class="m">BC/AD</span>.</li>
+        <li>Orta xətti (<span class="m">(a + b)/2</span>) harmonik ortayla (<span class="m">2ab/(a + b)</span>) qarışdırmaq. Diaqonalların kəsişməsindən keçən parça <b>harmonik</b> ortadır.</li>
+        <li>Sahələrin cəmini <span class="m">S₁ + S₂ + S₁S₂</span> yazmaq. Yan üçbucaqların hər biri <span class="m">√(S₁S₂)</span>-dir, iki dənədir.</li>
+        <li>Yan tərəfin davamı üçün <span class="m">PA = PB + AB</span> yazmağı unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">BC = a, AD = b (BC ∥ AD)
+diaqonallar O: BO/OD = a/b (kəpənək, k < 0)
+davamlar P: PB/PA = a/b (üçbucaq, k > 0)
+S(ABCD) = (√S₁ + √S₂)²,  yan üçbucaqlar √(S₁S₂)
+O-dan paralel: EF = 2ab/(a + b)
+P, O, M, N bir düz xətt üzərindədir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Diaqonalların kəsdiyi oturacaq üçbucaqlarının sahələri 4 və 25-dir. Trapesiyanın sahəsi? <span class="ans">(2 + 5)² = 49.</span></li>
+        <li>Oturacaqlar 3 və 6. Diaqonalların kəsişməsindən oturacaqlara paralel parça? <span class="ans">2 · 3 · 6/9 = 4.</span></li>
+        <li><span class="m">BC = 3</span>, <span class="m">AD = 9</span>, <span class="m">MN = 24</span>, <span class="m">O ∈ MN</span> (diaqonalların kəsişməsi). <span class="m">OM</span>? <span class="ans">OM : ON = 3 : 9, OM = 24 · 3/12 = 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Eyler düz xətti və toxunan çevrələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üçbucağın dörd "mərkəzi" var: xaricə çəkilmiş çevrənin mərkəzi <span class="m">O</span>, ağırlıq mərkəzi <span class="m">G</span>, hündürlüklərin kəsişməsi <span class="m">H</span> və daxilə çəkilmiş çevrənin mərkəzi. Birinci üçü təsadüfi yerlərdə deyil, <b>bir düz xətt</b> üzərindədir və dəqiq nisbətlə bölünür. Bu, Eyler düz xəttidir və bütün sübut tək bir homotetiyadır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: orta üçbucaq</h3>
+      <p>Tərəflərin orta nöqtələrini <span class="m">M</span> (<span class="m">BC</span>), <span class="m">K</span> (<span class="m">CA</span>), <span class="m">L</span> (<span class="m">AB</span>) ilə işarə edək. <span class="m">MKL</span> — <b>orta üçbucaqdır</b>. Medianlar <span class="m">G</span>-də kəsişir və <span class="m">GM = −(1/2) · GA</span> (vektor kimi). Deməli <span class="m">G</span> mərkəzli, <b>əmsalı −1/2</b> olan homotetiya <span class="m">A → M</span>, <span class="m">B → K</span>, <span class="m">C → L</span> aparır: <span class="m">ABC → MKL</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Eyler düz xətti və orta üçbucaq MKL"><circle cx="140" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="75.0" y1="142.5" x2="210.6" y2="130.2" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="210.6" y1="130.2" x2="124.3" y2="31.6" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="124.3" y1="31.6" x2="75.0" y2="142.5" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="167.4" y1="80.9" x2="99.7" y2="87.0" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="99.7" y1="87.0" x2="142.8" y2="136.3" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="142.8" y1="136.3" x2="167.4" y2="80.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="140" y1="105" x2="130.0" y2="94.4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="75.0" cy="142.5" r="2.6" fill="var(--ink)"/><circle cx="210.6" cy="130.2" r="2.6" fill="var(--ink)"/><circle cx="124.3" cy="31.6" r="2.6" fill="var(--ink)"/><circle cx="167.4" cy="80.9" r="2.6" fill="var(--ink)"/><circle cx="99.7" cy="87.0" r="2.6" fill="var(--ink)"/><circle cx="142.8" cy="136.3" r="2.6" fill="var(--ink)"/><circle cx="140" cy="105" r="2.6" fill="var(--ink)"/><circle cx="136.6" cy="101.4" r="2.6" fill="var(--ink)"/><circle cx="130.0" cy="94.4" r="2.6" fill="var(--ink)"/><text x="62.9" y="154.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="223.8" y="139.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="121.4" y="22.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="178.0" y="76.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="86.9" y="86.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">K</text><text x="144.1" y="155.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">L</text><text x="149.8" y="100.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text><text x="127.1" y="96.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">G</text><text x="120.4" y="89.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text></svg><div class="cap"><p>O, G, H bir düz xətt üzərindədir.</p><p>G mərkəzli, k = −1/2: ABC → MKL, H → O.</p></div></div>
+      <div class="fm">Eyler:  O, G, H bir düz xətt üzərindədir,
+        G nöqtəsi O ilə H arasındadır
+          GH = 2 · GO,   OH = 3 · OG
+AH = 2 · OM        (M — BC-nin orta nöqtəsi)</div>
+      <div class="ex">Sübut.
+1) h = (G mərkəzli, k = −1/2) homotetiya, ABC → MKL.
+2) MKL-in tərəfləri ABC-nin tərəflərinə paraleldir (xassə): KL ∥ BC.
+   M-dən BC-yə çəkilmiş perpendikulyar BC-nin orta perpendikulyarıdır
+   (M orta nöqtədir), o, KL-ə də perpendikulyardır. Yəni bu, MKL
+   üçbucağının M təpəsindən çəkilmiş hündürlüyüdür. Eyni ilə K və
+   L-dən çəkilmiş hündürlüklər ABC-nin digər iki orta perpendikulyarıdır.
+   Orta perpendikulyarlar O-da kəsişir  →  O = MKL üçbucağının
+   hündürlüklərinin kəsişməsi.
+3) h ABC-nin hündürlüklərini MKL-in hündürlüklərinə aparır
+   (paralel xətt paralel xəttə keçir, perpendikulyarlıq saxlanır):
+   h(H) = O.
+4) h mərkəzi G olan homotetiyadır, k = −1/2:
+        GO = −(1/2) · GH.
+   Deməli G, H və O bir düz xətt üzərindədir, G aralarındadır,
+   GH = 2 · GO.   ∎
+5) A → M, H → O:  OM = (1/2) · AH,  yəni AH = 2 · OM.   ∎</div>
+      <p><b>Doqquz nöqtə çevrəsi.</b> Eyni <span class="m">h</span> homotetiyası ABC-nin xaricinə çəkilmiş çevrəni (mərkəz <span class="m">O</span>, radius <span class="m">R</span>) MKL-in xaricinə çəkilmiş çevrəyə aparır: radius <span class="m">R/2</span>, mərkəz <span class="m">OH</span> parçasının orta nöqtəsi. Bu çevrə hündürlüklərin ayaqlarından da keçir (nöqtələrin sayı doqquzdur: 3 orta nöqtə, 3 ayaq, <span class="m">AH</span>, <span class="m">BH</span>, <span class="m">CH</span>-ın orta nöqtələri). Bu son faktı sübutsuz qəbul et.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  OG = 3.  GH = ?  OH = ?
+  GH = 2 · OG = 6,  OH = OG + GH = 9
+
+Nümunə 2.  OM = 5.  AH = ?
+  AH = 2 · OM = 10
+
+Nümunə 3.  Xaricə çəkilmiş çevrənin radiusu R = 13.
+  Doqquz nöqtə çevrəsinin radiusu = R/2 = 6,5.
+
+Nümunə 4.  S(ABC) = 84.  Orta üçbucağın sahəsi?
+  k = 1/2, sahə k² = 1/4 dəfə: 84 : 4 = 21.</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq formalı lövhənin tərəflərinin orta nöqtələrini birləşdirib kəssən, ortadakı kiçik üçbucağın sahəsi lövhənin dörddə biri olur, perimetri isə yarısı. Lövhə 84 sm² isə, kiçik üçbucaq 21 sm²-dir.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələsi: daxildən toxunan çevrələr</h3>
+      <p><b>Məsələ.</b> <span class="m">ω₁</span> çevrəsi <span class="m">ω</span> çevrəsinə daxildən <span class="m">T</span> nöqtəsində toxunur. <span class="m">AB</span> — <span class="m">ω</span>-nın vətəridir və <span class="m">ω₁</span>-ə <span class="m">K</span> nöqtəsində toxunur. Sübut et: <span class="m">TK</span> düz xətti <span class="m">∠ATB</span> bucağının tənböləndir.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Daxildən toxunan çevrələr: TK, ∠ATB-nin tənböləni"><circle cx="140" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="140" cy="150" r="30" fill="none" stroke="var(--accent)" stroke-width="2"/><line x1="100.4" y1="41.2" x2="186.3" y2="163.9" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="140" y1="180" x2="201.4" y2="61.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="100.4" y1="41.2" x2="140" y2="180" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="186.3" y1="163.9" x2="140" y2="180" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="100.4" y1="41.2" x2="201.4" y2="61.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="186.3" y1="163.9" x2="201.4" y2="61.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="140" cy="180" r="2.6" fill="var(--ink)"/><circle cx="164.5" cy="132.7" r="2.6" fill="var(--ink)"/><circle cx="100.4" cy="41.2" r="2.6" fill="var(--ink)"/><circle cx="186.3" cy="163.9" r="2.6" fill="var(--ink)"/><circle cx="201.4" cy="61.9" r="2.6" fill="var(--ink)"/><text x="140" y="199" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">T</text><text x="173.8" y="148.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">K</text><text x="93.1" y="34.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="195.0" y="179.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="212.9" y="58.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text></svg><div class="cap"><p>ω₁ (rəngli) ω-ya T-də toxunur, AB ω₁-ə K-da toxunur.</p><p>M — AB qövsünün orta nöqtəsi.</p></div></div>
+      <div class="ex">Həll.
+1) T mərkəzli homotetiya ω₁-i ω-ya aparır (toxunma nöqtəsi
+   homotetiya mərkəzidir, əmsal R/r &gt; 0).
+2) K nöqtəsi ω-nın hansı M nöqtəsinə keçir? T, K, M bir düz
+   xətt üzərindədir.
+3) AB düz xətti ω₁-ə K-da toxunur. Homotetiya onu ω-ya
+   M-də toxunan və AB-yə paralel düz xəttə aparır.
+4) ω-nın AB-yə paralel toxunanının toxunma nöqtəsi M-dir. Radius
+   toxunana perpendikulyardır, deməli OM ⟂ AB. Mərkəzdən vətərə
+   çəkilmiş perpendikulyar vətərin qövsünü yarıya bölür. Deməli M —
+   T-ni saxlamayan AB qövsünün orta nöqtəsidir: AM = MB.
+5) Bərabər qövslərə eyni daxili bucaqlar söykənir:
+   ∠ATM = ∠MTB.
+6) M ∈ TK, yəni TK = TM düz xəttidir. Deməli TK, ∠ATB-nin
+   tənböləndir.   ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">GH = OG</span> yazmaq. Düzü: <span class="m">GH = 2 · OG</span> (G, O-ya yaxındır).</li>
+        <li><span class="m">AH = OM</span> yazmaq. Düzü: <span class="m">AH = 2 · OM</span>.</li>
+        <li>Orta üçbucağın sahəsini yarı götürmək. Uzunluqlar yarı, <b>sahə dörddə biri</b>.</li>
+        <li>Mənfi əmsalı unutmaq: orta üçbucaq ABC-nin "tərsinə çevrilmiş" obrazıdır (<span class="m">A → M</span>, <span class="m">G</span> aralarındadır).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">G mərkəzli, k = −1/2:  ABC → orta üçbucaq MKL,  H → O
+O, G, H bir düz xətt:  GH = 2·GO,  OH = 3·OG
+AH = 2·OM
+doqquz nöqtə çevrəsi: radius R/2
+orta üçbucaq: perimetr 1/2, sahə 1/4</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">OH = 15</span>. <span class="m">OG</span> və <span class="m">GH</span>? <span class="ans">OG = 5, GH = 10.</span></li>
+        <li>Xaricə çəkilmiş çevrənin radiusu 20. Doqquz nöqtə çevrəsinin radiusu? <span class="ans">10.</span></li>
+        <li><span class="m">AH = 16</span>. <span class="m">OM</span>? <span class="ans">OM = 16 : 2 = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

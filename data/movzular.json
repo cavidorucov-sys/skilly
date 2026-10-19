@@ -962,7 +962,8 @@
     "riyaziyyat:Çevrədə bucaqlar, toxunan və kəsən",
     "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
    ],
-   "hefte": "2027-05-10"
+   "hefte": "2027-05-10",
+   "ders": "dersler/ol-cevrede-bucaqlar.html"
   },
   {
    "bolme": "Həndəsə",
@@ -974,7 +975,8 @@
     "riyaziyyat:Pifaqor teoremi",
     "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri"
    ],
-   "hefte": "2027-05-17"
+   "hefte": "2027-05-17",
+   "ders": "dersler/ol-tenbolen-median.html"
   },
   {
    "bolme": "Həndəsə",
@@ -997,7 +999,8 @@
     "riyaziyyat:Oxşar üçbucaqlar",
     "riyaziyyat:Simmetriya, dönmə, fiqurların çevrilməsi"
    ],
-   "hefte": "2027-05-31"
+   "hefte": "2027-05-31",
+   "ders": "dersler/ol-homotetiya.html"
   },
   {
    "bolme": "Həndəsə",
@@ -1467,7 +1470,8 @@
     "riyaziyyat:Oxşar üçbucaqlar",
     "riyaziyyat:Kəsr-rasional tənliklər"
    ],
-   "hefte": "2027-03-22"
+   "hefte": "2027-03-22",
+   "ders": "dersler/fiz-linza.html"
   }
  ]
 }

@@ -28,7 +28,7 @@
   --misc:var(--gray-50);   --misc-soft:var(--gray-25);   --misc-ink:var(--gray-800);
 
   --font:"Onest",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --mono:ui-monospace,"SF Mono",Consolas,monospace;
+  --mono:var(--font);
   --r-xs:4px; --r-sm:6px; --r:8px; --r-lg:12px;
   --ease:cubic-bezier(.23,1,.32,1);
   color-scheme:light;
@@ -346,3 +346,4 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .gate{background:var(--bg);border-radius:var(--r-lg);padding:24px;display:grid;gap:12px;max-width:760px}
 .gate h2{margin:0}
 .gate-note{background:var(--olym-soft);color:var(--olym-ink);border-radius:var(--r);padding:10px 14px;font-size:14px;margin:0 0 10px}
+.slot small,.fcard .fx{font-variant-numeric:tabular-nums}

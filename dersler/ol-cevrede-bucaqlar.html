@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çevrədə bucaqlar (olimpiada) dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-cevrede-bucaqlar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Çevrədə bucaqlar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Həndəsə</div>
+    <h1>Çevrədə bucaqlar (mərkəzi, daxili): olimpiada səviyyəsi</h1>
+    <p>Olimpiada həndəsəsinin ən çox işlənən üsulu <b>bucaq ovlamaqdır</b>: bir bucağı digərləri ilə əlaqələndirib çevrənin gizli xassələrini tapırsan. Bu mövzuda məktəbdəki mərkəzi və daxili bucaqları iki vətər və iki kəsən arasındakı bucaqlara qədər genişləndirəcəksən, çevrəyə daxil olan dördbucaqlıların əlamətlərini öyrənəcəksən, üçbucağın mühüm nöqtələrində bucaqları (<span class="m">I</span>, <span class="m">O</span>, <span class="m">H</span>) və məşhur "daxili–xarici mərkəz lemması"nı sübut edəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Qövs və bucaq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Daxil olan dördbucaqlı</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>I, O, H nöqtələri</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Lemma</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Hər bucaq bir qövsdür</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çevrə həndəsəsində bucaqları ayrı-ayrı düsturlarla yadda saxlamaq çətindir. Daha yaxşı yol: <b>hər bucağı qövslərlə ifadə et</b>. Qövslər dərəcə ilə ölçülür (tam çevrə 360°). Sonra "bucaq ovlamaq" — qövsləri toplayıb çıxmaq — bütün bucaq məsələlərini bir üsula gətirir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: bucağın təpəsi harada olur?</h3>
+      <div class="fm">təpə mərkəzdə:            bucaq = qövs
+təpə çevrə üzərində:      bucaq = qövs/2
+                         (daxilə çəkilmiş; toxunan–vətər)
+təpə çevrənin daxilində: bucaq = (qövs₁ + qövs₂)/2
+                         (iki vətər arasında)
+təpə çevrənin kənarında: bucaq = (uzaq qövs − yaxın qövs)/2
+                         (iki kəsən, toxunan–kəsən, iki toxunan)</div>
+      <p>Daxilə çəkilmiş bucağın qövsün yarısı olduğunu bilirsən. Qalan halları ondan çıxaraq.</p>
+      <p><b>İki vətər arasındakı bucaq.</b> <span class="m">AC</span> və <span class="m">BD</span> vətərləri <span class="m">E</span>-də kəsişir.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="AC və BD vətərləri E-də kəsişir"><polygon points="210.4,79.3 140,30 69.5,130.6 114.3,175.4" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="140" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="210.4" y1="79.3" x2="69.5" y2="130.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="140" y1="30" x2="114.3" y2="175.4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M139.0 105.3L138.4 104.0L137.7 102.7L136.9 101.5L135.9 100.4L134.8 99.4L133.6 98.5L132.4 97.7L131.1 97.1L129.7 96.6L128.2 96.3" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="144.5" y="91.9" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><circle cx="210.4" cy="79.3" r="2.6" fill="var(--ink)"/><circle cx="140" cy="30" r="2.6" fill="var(--ink)"/><circle cx="69.5" cy="130.6" r="2.6" fill="var(--ink)"/><circle cx="114.3" cy="175.4" r="2.6" fill="var(--ink)"/><circle cx="125.8" cy="110.1" r="2.6" fill="var(--ink)"/><text x="223.6" y="79.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="140" y="21" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="56.3" y="140.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="109.5" y="193.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="112.7" y="119.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text></svg><div class="cap"><p><b>φ = ∠AEB</b></p><p>φ = (AB qövsü + CD qövsü)/2</p></div></div>
+      <div class="ex">∠AEB, EBC üçbucağının xarici bucağıdır:
+   ∠AEB = ∠ECB + ∠EBC = ∠ACB + ∠DBC
+        = (AB qövsü)/2 + (CD qövsü)/2
+   ∠AEB = (AB qövsü + CD qövsü)/2.   ∎</div>
+      <p><b>Çevrədən kənar nöqtə.</b> <span class="m">P</span>-dən iki kəsən: biri <span class="m">A</span>, <span class="m">B</span>-də, digəri <span class="m">C</span>, <span class="m">D</span>-də kəsir (<span class="m">A</span> və <span class="m">C</span> yaxındır).</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="P-dən iki kəsən"><circle cx="153.8" cy="100.5" r="70.5" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="55.5" y1="180" x2="141.5" y2="31.0" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="55.5" y1="180" x2="199.2" y2="154.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M66.5 160.9L68.1 161.9L69.7 163.1L71.1 164.4L72.4 165.8L73.6 167.3L74.6 169L75.5 170.7L76.2 172.4L76.8 174.3L77.2 176.1" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="85.8" y="162.7" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><circle cx="87.4" cy="124.7" r="2.6" fill="var(--ink)"/><circle cx="141.5" cy="31.0" r="2.6" fill="var(--ink)"/><circle cx="129.6" cy="166.9" r="2.6" fill="var(--ink)"/><circle cx="199.2" cy="154.6" r="2.6" fill="var(--ink)"/><circle cx="55.5" cy="180" r="2.6" fill="var(--ink)"/><text x="74.3" y="134.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="139.1" y="22.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="124.8" y="185.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="208.2" y="170.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="44.6" y="193.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">P</text></svg><div class="cap"><p><b>φ = ∠APC</b></p><p>φ = (BD qövsü − AC qövsü)/2</p></div></div>
+      <div class="ex">∠BAD, APD üçbucağının xarici bucağıdır:
+   ∠BAD = ∠APD + ∠ADP   →   ∠P = ∠BAD − ∠ADC
+        = (BD qövsü)/2 − (AC qövsü)/2
+   ∠P = (uzaq BD − yaxın AC)/2.   ∎</div>
+      <p><b>Xüsusi hallar.</b> Kəsənlərdən biri toxunana çevriləndə <span class="m">C</span> və <span class="m">D</span> bir nöqtəyə (<span class="m">T</span>) birləşir: <span class="m">∠P = (TB − TA)/2</span>. İki toxunanda <span class="m">∠P = (böyük qövs − kiçik qövs)/2 = 180° − kiçik qövs</span> (çünki iki qövsün cəmi 360°). Toxunan–vətər bucağı: <span class="m">∠PAB = AB qövsü/2</span>. Sübut: <span class="m">AD</span> diametri çəkək; <span class="m">∠PAB = 90° − ∠BAD</span>, <span class="m">∠BAD = 90° − ∠ADB</span> (<span class="m">ABD</span> düzbucaqlıdır), deməli <span class="m">∠PAB = ∠ADB = AB/2</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Toxunan–vətər bucağı"><circle cx="140" cy="90.6" r="60.6" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="90.3" y1="125.3" x2="128.5" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="90.3" y1="125.3" x2="155.6" y2="149.1" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="90.3" y1="125.3" x2="189.6" y2="55.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="155.6" y1="149.1" x2="189.6" y2="55.8" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><path d="M97.7 120.2L102.8 127.5L95.5 132.7" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M147.2 146.0L150.3 137.6L158.7 140.7" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M102.9 143.4L104.0 142.5L105.0 141.7L106.0 140.8L106.9 139.8L107.8 138.7L108.5 137.6L109.3 136.5L109.9 135.3L110.5 134.1L111.0 132.9" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="119.7" y="151.9" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><path d="M171.6 68.4L172.4 69.5L173.3 70.5L174.2 71.5L175.2 72.4L176.2 73.3L177.3 74.0L178.4 74.8L179.6 75.4L180.8 76.0L182.1 76.5" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="167.1" y="89.2" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><circle cx="90.3" cy="125.3" r="2.6" fill="var(--ink)"/><circle cx="155.6" cy="149.1" r="2.6" fill="var(--ink)"/><circle cx="189.6" cy="55.8" r="2.6" fill="var(--ink)"/><circle cx="128.5" cy="180" r="2.6" fill="var(--ink)"/><text x="78.8" y="138.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="159.3" y="167.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="201.1" y="52.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="126.8" y="198.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">P</text></svg><div class="cap"><p>AD — diametr. ∠PAB = ∠ADB = α = AB qövsü/2.</p></div></div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="İki toxunan"><circle cx="161.7" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="43.2" y1="49.7" x2="148.7" y2="31.1" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="43.2" y1="49.7" x2="96.8" y2="142.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="161.7" y1="105" x2="148.7" y2="31.1" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="161.7" y1="105" x2="96.8" y2="142.5" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M150.2 40.0L141.4 41.5L139.8 32.7" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M104.5 138L100.0 130.2L92.3 134.7" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M64.9 45.9L65.2 48.5L65.1 51.2L64.8 53.9L64.1 56.5L63.1 59.0L61.9 61.3L60.3 63.5L58.5 65.5L56.4 67.3L54.2 68.7" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="76.7" y="69.3" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><path d="M159.3 91.2L156.7 91.9L154.3 93.1L152.2 94.7L150.4 96.7L149.0 99.0L148.1 101.6L147.7 104.2L147.8 106.9L148.5 109.5L149.6 112" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="135.4" y="96.7" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">m</text><circle cx="148.7" cy="31.1" r="2.6" fill="var(--ink)"/><circle cx="96.8" cy="142.5" r="2.6" fill="var(--ink)"/><circle cx="43.2" cy="49.7" r="2.6" fill="var(--ink)"/><circle cx="161.7" cy="105" r="2.6" fill="var(--ink)"/><text x="146.2" y="22.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="84.6" y="154.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="30.5" y="48.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">P</text><text x="171.6" y="100.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">O</text></svg><div class="cap"><p>∠AOB = m (kiçik qövs), φ = ∠APB.</p><p><b>φ = 180° − m</b></p></div></div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Vətərlər E-də kəsişir. AB qövsü 70°, CD qövsü 50°.  ∠AEB = ?
+  ∠AEB = (70° + 50°)/2 = 60°
+
+Nümunə 2.  P-dən iki kəsən. Yaxın qövs AC = 50°, uzaq qövs BD = 150°.  ∠P = ?
+  ∠P = (150° − 50°)/2 = 50°
+
+Nümunə 3.  PT toxunan, PAB kəsən. TA = 40°, TB = 120°.  ∠TPA = ?
+  ∠P = (120° − 40°)/2 = 40°
+
+Nümunə 4.  PA, PB toxunanlardır, ∠APB = 40°.  Kiçik AB qövsü?
+  ∠P = 180° − kiçik qövs  →  kiçik qövs = 180° − 40° = 140°
+
+Nümunə 5.  Toxunan–vətər bucağı ∠PAB = 35°.  AB qövsü? ∠AOB?
+  AB qövsü = 2 · 35° = 70°,  ∠AOB = 70°</div>
+      <div class="life"><b>Həyatdan: arena.</b> Dairəvi arenanın kənarındakı <span class="m">A</span> və <span class="m">B</span> nöqtələrində kameralar var, <span class="m">∠AOB = 80°</span> (<span class="m">O</span> — mərkəz). Böyük qövsdəki izləyici kameralara <span class="m">80°/2 = 40°</span> bucaq altında baxır. Kiçik qövsdəki izləyici üçün qövs 360° − 80° = 280°-dir, bucaq <span class="m">280°/2 = 140°</span>.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Perpendikulyar vətərlər.</b> Çevrənin <span class="m">AC</span> və <span class="m">BD</span> vətərləri perpendikulyardır. Sübut et: <span class="m">AB</span> və <span class="m">CD</span> qövslərinin cəmi 180°-dir.</p>
+      <div class="ex">Həll. ∠AEB = 90° = (AB qövsü + CD qövsü)/2.
+Deməli  AB qövsü + CD qövsü = 180°.   ∎
+Eyni ilə BC qövsü + DA qövsü = 180°.
+Məsələn AB = 100° olarsa, CD = 80°.</div>
+
+      <p><b>Məsələ 2. Daxilə çəkilmiş çevrənin toxunma üçbucağı.</b> <span class="m">ABC</span> üçbucağının daxilinə çəkilmiş çevrə (mərkəz <span class="m">I</span>) <span class="m">BC</span>, <span class="m">CA</span>, <span class="m">AB</span> tərəflərinə <span class="m">D</span>, <span class="m">E</span>, <span class="m">F</span> nöqtələrində toxunur. Sübut et: <span class="m">∠EDF = 90° − ∠A/2</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Daxilə çəkilmiş çevrənin toxunma nöqtələri"><polygon points="156.0,30 69.4,180 210.5,180" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="146.7" cy="135.3" r="44.6" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="146.7" y1="180" x2="188.7" y2="120.0" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="146.7" y1="180" x2="108.0" y2="112.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="188.7" y1="120.0" x2="108.0" y2="112.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="146.7" y1="135.3" x2="188.7" y2="120.0" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="146.7" y1="135.3" x2="108.0" y2="112.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M180.3 123.1L177.2 114.6L185.6 111.5" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M115.8 117.4L120.3 109.6L112.5 105.1" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M155.9 166.8L154.4 165.9L152.7 165.1L151.0 164.5L149.2 164.1L147.4 164.0L145.6 164.0L143.8 164.2L142.1 164.6L140.4 165.3L138.7 166.1" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="148.1" y="153.0" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><circle cx="156.0" cy="30" r="2.6" fill="var(--ink)"/><circle cx="69.4" cy="180" r="2.6" fill="var(--ink)"/><circle cx="210.5" cy="180" r="2.6" fill="var(--ink)"/><circle cx="146.7" cy="180" r="2.6" fill="var(--ink)"/><circle cx="188.7" cy="120.0" r="2.6" fill="var(--ink)"/><circle cx="108.0" cy="112.9" r="2.6" fill="var(--ink)"/><circle cx="146.7" cy="135.3" r="2.6" fill="var(--ink)"/><text x="157.2" y="21.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="57.2" y="192" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="222.0" y="193.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="146.7" y="199" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="201.9" y="120.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text><text x="95.9" y="110.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">F</text><text x="156.6" y="130.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">I</text></svg><div class="cap"><p>φ = ∠EDF = 90° − A/2</p></div></div>
+      <div class="ex">Həll.
+1) Toxunan radiusa perpendikulyardır: IE ⟂ AC, IF ⟂ AB.
+2) AEIF dördbucaqlısında iki düz bucaq var:
+        ∠EIF = 360° − 90° − 90° − ∠A = 180° − ∠A.
+3) ∠EDF — daxilə çəkilmiş, ∠EIF — mərkəzi bucaqdır, ikisi də EF
+   qövsünə söykənir:
+        ∠EDF = ∠EIF/2 = (180° − ∠A)/2 = 90° − ∠A/2.   ∎
+Məsələn ∠A = 50° olanda ∠EDF = 65°.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Çevrədən kənar bucaqda qövsləri <b>toplamaq</b> (düzü: uzaq − yaxın). Çevrənin daxilində isə <b>toplanır</b>.</li>
+        <li>Uzaq və yaxın qövsü qarışdırmaq: yaxın qövs bucağın <b>daxilində</b>, uzaq qövs onun davamı tərəfdədir.</li>
+        <li>Daxilə çəkilmiş bucağı hansı qövsə söykəndiyini yoxlamamaq: bucaq təpəni <b>saxlamayan</b> qövsə söykənir. Təpə kiçik qövsdədirsə, bucaq 90°-dən böyükdür.</li>
+        <li>Toxunan–vətər bucağını tam qövs götürmək. Düzü: yarısı.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">mərkəzi = qövs;   daxili = qövs/2;   toxunan–vətər = qövs/2
+iki vətər (daxildə): (qövs₁ + qövs₂)/2
+çevrədən kənar: (uzaq − yaxın)/2;   iki toxunan: 180° − kiçik qövs
+toxunma üçbucağı: ∠EDF = 90° − ∠A/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Vətərlər kəsişir, bucaq üzərinə söykəndiyi iki qövs 80° və 40°-dir. Bucaq? <span class="ans">(80° + 40°)/2 = 60°.</span></li>
+        <li>Kənar nöqtədən iki kəsən, qövslər: uzaq 160°, yaxın 40°. Bucaq? <span class="ans">(160° − 40°)/2 = 60°.</span></li>
+        <li>İki toxunan arasındakı bucaq 50°. Kiçik qövs? <span class="ans">180° − 50° = 130°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Çevrəyə daxil olan dördbucaqlı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiada məsələlərində çevrə çox vaxt şəkildə çəkilmir — onu sən "görməlisən". Dörd nöqtənin bir çevrədə olduğunu bilən adam bucaqları tez tapır və düz xətləri oxşar üçbucaqlara bağlayır. Bu dərsdə həm teorem, həm də tərsi öyrənilir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Təpələri bir çevrə üzərində olan dördbucaqlıya <b>çevrəyə daxil olan</b> dördbucaqlı deyilir. <span class="m">ABCD</span> belə olanda:</p>
+      <div class="fm">1) ∠A + ∠C = 180°,  ∠B + ∠D = 180°      (qarşı bucaqlar)
+2) xarici bucaq = daxili qarşı bucaq:  ∠DAM = ∠BCD   (M ∈ BA davamı)
+3) eyni tərəfə baxan bucaqlar bərabərdir:  ∠ABD = ∠ACD,  ∠BAC = ∠BDC</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Çevrəyə daxil olan dördbucaqlı"><polygon points="186.9,67.5 84.4,40.0 51.4,130.6 170.1,162.4" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="121.9" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="186.9" y1="67.5" x2="233.0" y2="79.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M183.4 87.1L186.4 87.4L189.3 87.3L192.2 86.7L195.0 85.7L197.6 84.3L200.0 82.5L202.1 80.4L203.8 78.0L205.2 75.4L206.2 72.6" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="205.7" y="101.0" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">γ</text><path d="M59.0 109.9L61.9 111.3L64.7 113.0L67.1 115.2L69.2 117.7L71.0 120.4L72.2 123.4L73.1 126.6L73.4 129.8L73.3 133.1L72.7 136.3" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="84.3" y="117.5" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">γ</text><circle cx="186.9" cy="67.5" r="2.6" fill="var(--ink)"/><circle cx="84.4" cy="40.0" r="2.6" fill="var(--ink)"/><circle cx="51.4" cy="130.6" r="2.6" fill="var(--ink)"/><circle cx="170.1" cy="162.4" r="2.6" fill="var(--ink)"/><circle cx="233.0" cy="79.8" r="2.6" fill="var(--ink)"/><text x="199.0" y="65.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="77.4" y="32.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="38.3" y="140.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="179.1" y="178.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="246.6" y="81.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text></svg><div class="cap"><p>∠A + ∠C = 180°.</p><p>Xarici bucaq ∠DAM = ∠BCD = γ.</p></div></div>
+      <div class="ex">Sübut (1).  ∠A daxilə çəkilmiş bucaqdır, o, BCD qövsünə söykənir:
+   ∠A = (BCD qövsü)/2.
+∠C isə BAD qövsünə söykənir:   ∠C = (BAD qövsü)/2.
+İki qövsün cəmi tam çevrədir (360°):
+   ∠A + ∠C = (360°)/2 = 180°.   ∎
+(2)  ∠DAM = 180° − ∠BAD = ∠BCD.   (3)  eyni qövsə söykənən daxili bucaqlar.</div>
+      <p><b>Tərsi (dörd nöqtənin bir çevrədə olması əlaməti).</b> Aşağıdakılardan biri doğrudursa, <span class="m">A, B, C, D</span> bir çevrədədir:</p>
+      <div class="fm">a) qarşı bucaqların cəmi 180°-dir (∠A + ∠C = 180°);
+b) xarici bucaq daxili qarşı bucağa bərabərdir;
+c) B və C nöqtələri AD parçasına eyni tərəfdədir və ∠ABD = ∠ACD.</div>
+      <p>Niyə? A, B, C nöqtələrindən çevrə çəkək. D bu çevrənin daxilində olsa, ∠ADC böyük, kənarında olsa kiçik çıxar. Yalnız çevrə üzərində olanda cəm 180° (və ya bucaqlar bərabər) olur. Bu tərs teoremi sübutsuz qəbul edə bilərsən; olimpiadada o, "çevrə tapmağın" əsas yoludur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ABCD daxil olan, ∠A = 75°.  ∠C = 180° − 75° = 105°.
+
+Nümunə 2.  ∠BCD = 110°, BA davamı M.  ∠DAM = ∠BCD = 110°.
+
+Nümunə 3.  Dördbucaqlıda ∠B = 95°, ∠D = 85°. B + D = 180° → daxil ola bilər.
+  ∠A = 100° olarsa, ∠C = 80° olmalıdır.
+
+Nümunə 4.  BC ∥ AD trapesiyası daxil olan, ∠B = 70°.
+  ∠B + ∠A = 180° (birtərəfli) → ∠A = 110°;
+  ∠A + ∠C = 180° (daxil olan) → ∠C = 70° = ∠B → bərabəryanlıdır, ∠D = 110°.
+
+Nümunə 5.  Diaqonallar E-də kəsişir. ∠ABD = 30°, ∠BDC = 55°.  ∠AEB = ?
+  ∠BAC = ∠BDC = 55° (eyni BC qövsünə söykənir)
+  ABE üçbucağında:  ∠AEB = 180° − 30° − 55° = 95°</div>
+      <div class="life"><b>Həyatdan: park.</b> Dairəvi parkın kənarında <span class="m">A</span> və <span class="m">B</span> səhnənin uclarıdır. <span class="m">C</span> nöqtəsindən səhnə 40° bucaq altında görünür. Qarşı tərəfdəki <span class="m">D</span> nöqtəsində <span class="m">ACBD</span> daxil olan dördbucaqlıdır: <span class="m">∠ADB = 180° − 40° = 140°</span>. Eyni tərəfdəki nöqtədən isə yenə 40°.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Paraleloqram və trapesiya.</b> (a) Çevrəyə daxil olan paraleloqram düzbucaqlıdır. (b) Çevrəyə daxil olan trapesiya bərabəryanlıdır. Sübut et.</p>
+      <div class="ex">(a) Paraleloqramda  ∠A = ∠C. Daxil olanda  ∠A + ∠C = 180°.
+    Deməli ∠A = ∠C = 90°. Paraleloqramın bir bucağı düzdürsə —
+    düzbucaqlıdır.   ∎
+(b) BC ∥ AD. Birtərəfli bucaqlar:  ∠A + ∠B = 180°.
+    Daxil olan:  ∠A + ∠C = 180°.
+    Çıxsaq:  ∠B = ∠C. Oturacaqdakı bucaqlar bərabərdir —
+    trapesiya bərabəryanlıdır (AB = CD).   ∎</div>
+
+      <p><b>Məsələ 2. Brahmaqupta.</b> <span class="m">ABCD</span> çevrəyə daxil olan dördbucaqlıdır və diaqonalları perpendikulyardır (<span class="m">E</span> — kəsişmə). <span class="m">E</span>-dən <span class="m">BC</span>-yə çəkilmiş perpendikulyar <span class="m">AD</span>-ni <span class="m">M</span> nöqtəsində kəsir. Sübut et: <span class="m">M</span> — <span class="m">AD</span>-nin orta nöqtəsidir.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Brahmaqupta teoremi"><polygon points="212.4,85.5 108.3,37.0 65.2,111.5 133.4,179.7" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="140" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="212.4" y1="85.5" x2="65.2" y2="111.5" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="108.3" y1="37.0" x2="133.4" y2="179.7" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="83.0" y1="80.7" x2="172.9" y2="132.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M128.6 100.3L127.0 91.5L118.1 93.0" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M90.8 85.2L95.3 77.4L87.5 72.9" fill="none" stroke="var(--ink)" stroke-width="1.3"/><circle cx="212.4" cy="85.5" r="2.6" fill="var(--ink)"/><circle cx="108.3" cy="37.0" r="2.6" fill="var(--ink)"/><circle cx="65.2" cy="111.5" r="2.6" fill="var(--ink)"/><circle cx="133.4" cy="179.7" r="2.6" fill="var(--ink)"/><circle cx="119.7" cy="101.9" r="2.6" fill="var(--ink)"/><circle cx="83.0" cy="80.7" r="2.6" fill="var(--ink)"/><circle cx="172.9" cy="132.6" r="2.6" fill="var(--ink)"/><text x="225.9" y="86.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="102.3" y="29.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="51.3" y="117.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="132.2" y="198.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="105.9" y="104.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text><text x="70.1" y="80.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text><text x="183.6" y="146.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text></svg><div class="cap"><p>AC ⟂ BD, EH ⟂ BC.</p><p><b>MA = MD</b></p></div></div>
+      <div class="ex">Həll. H — E-dən BC-yə perpendikulyarın ayağıdır.
+1) EHC düzbucaqlıdır:  ∠CEH = 90° − ∠ECB = 90° − ∠ACB.
+2) ∠MEA = ∠CEH (şaquli bucaqlar), deməli
+        ∠MEA = 90° − ∠ACB.
+3) Daxil olan dördbucaqlıda ∠ACB = ∠ADB (eyni AB qövsü):
+        ∠MEA = 90° − ∠ADB.
+4) AED düzbucaqlıdır (AC ⟂ BD):  ∠EAD = 90° − ∠ADE = 90° − ∠ADB.
+5) ∠MEA = ∠MAE  →  MAE bərabəryanlıdır:  MA = ME.
+Eyni mühakimə ilə ∠MED = ∠MDE  →  ME = MD.
+Deməli MA = MD, M — AD-nin orta nöqtəsidir.   ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qarşı olmayan bucaqların cəmini 180° götürmək: <span class="m">∠A + ∠B = 180°</span> daxil olan dördbucaqlıda <b>doğru deyil</b> (qonşu bucaqlar üçün yalnız paralel olanda).</li>
+        <li>Eyni qövsə söykənən bucaqların təpələrinin qövsün <b>eyni tərəfində</b> olmalı olduğunu unutmaq. Əks tərəfdə bucaqlar 180°-ə tamamlanır.</li>
+        <li>Xarici bucağı yanındakı daxili bucaqla bərabər sanmaq. Düzü: <b>qarşı</b> daxili bucaqla.</li>
+        <li>Tərs teoremi yoxlamadan "daxil olandır" demək: ən azı bir əlamət ödənməlidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">daxil olan dördbucaqlı:  ∠A + ∠C = 180°,  ∠B + ∠D = 180°
+xarici bucaq = daxili qarşı bucaq
+eyni qövsə söykənən (eyni tərəfdən) bucaqlar bərabərdir
+tərs: bu şərtlərdən biri → 4 nöqtə bir çevrədə
+daxil olan trapesiya bərabəryanlı, paraleloqram düzbucaqlıdır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Daxil olan <span class="m">ABCD</span>-də <span class="m">∠BAD = 100°</span>. <span class="m">∠BCD</span>? <span class="ans">80°.</span></li>
+        <li><span class="m">BC ∥ AD</span> daxil olan trapesiyada <span class="m">∠ABC = 65°</span>. <span class="m">∠BAD</span>? <span class="ans">∠BAD = 180° − 65° = 115°.</span></li>
+        <li>Diaqonallar <span class="m">E</span>-də kəsişir. <span class="m">∠ABD = 40°</span>, <span class="m">∠BDC = 25°</span>. <span class="m">∠AEB</span>? <span class="ans">∠BAC = ∠BDC = 25°; ∠AEB = 180° − 40° − 25° = 115°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Üçbucağın mühüm nöqtələrində bucaqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiada məsələlərində üçbucağın xaricinə və daxilinə çəkilmiş çevrələrin mərkəzləri, hündürlüklərin kəsişməsi tez-tez görünür. Onların təpələrdən "görünmə bucağını" əzbər bilsən, çox məsələ bir addımda həll olunur. Hər düstur öz sübutu ilə birlikdə verilir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">ABC</span> üçbucağının bucaqları <span class="m">A</span>, <span class="m">B</span>, <span class="m">C</span> olsun. <span class="m">I</span> — tənbölənlərin kəsişməsi, <span class="m">O</span> — xaricə çəkilmiş çevrənin mərkəzi, <span class="m">H</span> — hündürlüklərin kəsişməsi, <span class="m">J</span> — <span class="m">A</span> qarşısındakı xaric mərkəz (kəskinbucaqlı halda).</p>
+      <div class="fm">∠BIC = 90° + A/2        (I — daxili mərkəz)
+∠BJC = 90° − A/2        (J — xaric mərkəz)
+∠BOC = 2A               (O — xarici çevrənin mərkəzi)
+∠BHC = 180° − A         (H — hündürlüklərin kəsişməsi)</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Daxili mərkəz I"><polygon points="156.0,30 69.4,180 210.5,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="69.4" y1="180" x2="146.7" y2="135.3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="210.5" y1="180" x2="146.7" y2="135.3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M132.9 143.3L134.8 145.9L137.1 148.0L139.9 149.7L142.9 150.8L146.0 151.3L149.2 151.1L152.3 150.3L155.2 148.8L157.8 146.9L159.8 144.4" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="145.4" y="170.2" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><path d="M144.0 50.7L145.8 51.7L147.7 52.5L149.7 53.1L151.8 53.6L153.9 53.9L156.0 54L158.0 53.9L160.1 53.6L162.2 53.1L164.2 52.5" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="152.6" y="72.8" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">A</text><circle cx="156.0" cy="30" r="2.6" fill="var(--ink)"/><circle cx="69.4" cy="180" r="2.6" fill="var(--ink)"/><circle cx="210.5" cy="180" r="2.6" fill="var(--ink)"/><circle cx="146.7" cy="135.3" r="2.6" fill="var(--ink)"/><text x="157.4" y="21.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="57.7" y="192.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="221.7" y="193.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="150.4" y="153.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">I</text></svg><div class="cap"><p>φ = ∠BIC = 90° + A/2</p></div></div>
+      <div class="ex">I:  BI və CI tənbölənlərdir:
+     ∠IBC + ∠ICB = (B + C)/2 = (180° − A)/2 = 90° − A/2
+     ∠BIC = 180° − (90° − A/2) = 90° + A/2.   ∎
+J:  BJ və CJ xarici bucaqların tənbölənləridir:
+     ∠JBC + ∠JCB = (180° − B)/2 + (180° − C)/2 = 180° − (B + C)/2
+                 = 90° + A/2
+     ∠BJC = 180° − (90° + A/2) = 90° − A/2.   ∎
+O:  ∠A daxilə çəkilmiş, ∠BOC eyni BC qövsünə söykənən mərkəzi bucaqdır:
+     ∠BOC = 2A.   ∎
+H:  BE ⟂ AC, CF ⟂ AB (E, F — ayaqlar). AEHF dördbucaqlısında
+     ∠EHF = 360° − 90° − 90° − A = 180° − A,  ∠BHC = ∠EHF (şaquli).   ∎</div>
+      <p><b>Qeyd.</b> Bu düsturlarda <span class="m">A</span> yerinə <span class="m">B</span> və ya <span class="m">C</span> qoysan, digər təpələr üçün düsturlar alınır. Məsələn <span class="m">∠AIC = 90° + B/2</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ∠A = 50°.
+  ∠BIC = 90° + 25° = 115°
+  ∠BJC = 90° − 25° = 65°
+  ∠BOC = 2 · 50° = 100°
+  ∠BHC = 180° − 50° = 130°
+
+Nümunə 2.  ∠BIC = 128°.  ∠A = ?
+  90° + A/2 = 128°  →  A = 76°
+
+Nümunə 3.  ∠A = 60° olanda ∠BIC = ∠BOC = ∠BHC = 120°:
+  bu üç nöqtə (I, O, H) B və C ilə eyni çevrə üzərindədir.</div>
+      <div class="life"><b>Həyatdan: üçbucaq bağ.</b> Üçbucaq formalı bağın künclərindəki bucaqlar 50°, 60°, 70°-dir. A (50°) küncünün qarşısındakı BC divarından daxili tənbölənlərin kəsişdiyi nöqtədə ağac əkilib. Divarın uclarından ağaca baxış bucağı <span class="m">90° + 50°/2 = 115°</span>-dir.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. H-ın simmetriki çevrənin üzərindədir.</b> Kəskinbucaqlı <span class="m">ABC</span>-də <span class="m">H</span> — hündürlüklərin kəsişməsidir. <span class="m">H</span> nöqtəsinin <span class="m">BC</span> düz xəttinə nəzərən simmetriki <span class="m">H'</span> nöqtəsi <span class="m">ABC</span>-nin xaricinə çəkilmiş çevrə üzərindədir. Sübut et.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="H nöqtəsinin BC-yə nəzərən simmetriki xarici çevrədədir"><polygon points="153.0,31.1 82.5,153.2 197.4,153.2" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="140" cy="104.9" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="82.5" y1="153.2" x2="153.0" y2="127.5" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="197.4" y1="153.2" x2="153.0" y2="127.5" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="82.5" y1="153.2" x2="153.0" y2="178.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="197.4" y1="153.2" x2="153.0" y2="178.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="153.0" y1="127.5" x2="153.0" y2="178.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="153.0" cy="31.1" r="2.6" fill="var(--ink)"/><circle cx="82.5" cy="153.2" r="2.6" fill="var(--ink)"/><circle cx="197.4" cy="153.2" r="2.6" fill="var(--ink)"/><circle cx="153.0" cy="127.5" r="2.6" fill="var(--ink)"/><circle cx="153.0" cy="178.8" r="2.6" fill="var(--ink)"/><text x="155.4" y="22.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="71.8" y="167.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="208.1" y="167.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="160.0" y="144.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text><text x="155.4" y="197.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H'</text></svg><div class="cap"><p>H' — H-ın BC-yə nəzərən simmetrikidir.</p><p>∠BH'C = ∠BHC = 180° − A</p></div></div>
+      <div class="ex">Həll. Simmetriyada bucaqlar qorunur:  ∠BH'C = ∠BHC = 180° − A.
+H' nöqtəsi A-nın əks tərəfindədir (H üçbucağın daxilindədir).
+Deməli  ∠BAC + ∠BH'C = A + (180° − A) = 180°:
+ABH'C dördbucaqlısında qarşı bucaqların cəmi 180°-dir —
+tərs teoremə görə ABH'C daxil olan dördbucaqlıdır, H' çevrədədir.   ∎</div>
+
+      <p><b>Məsələ 2. Hündürlük və radius arasındakı bucaq.</b> <span class="m">AK</span> — <span class="m">BC</span>-yə hündürlük, <span class="m">O</span> — xarici çevrənin mərkəzidir. Sübut et: <span class="m">∠KAO = |B − C|</span>.</p>
+      <div class="ex">Həll. ABK düzbucaqlıdır:  ∠BAK = 90° − B.
+AOB bərabəryanlıdır (OA = OB), ∠AOB = 2C (mərkəzi bucaq):
+   ∠OAB = (180° − 2C)/2 = 90° − C.
+AK və AO şüaları A bucağının daxilindədir, AB-dən ölçülərək:
+   ∠KAO = |∠BAK − ∠OAB| = |(90° − B) − (90° − C)| = |B − C|.   ∎
+Məsələn B = 70°, C = 60° olanda ∠KAO = 10°.</div>
+
+      <p><b>Məsələ 3. Hündürlüklərin ayaqlarından üçbucaq.</b> Kəskinbucaqlı <span class="m">ABC</span>-də <span class="m">AD, BE, CF</span> hündürlükləri <span class="m">H</span>-da kəsişir. Sübut et: <span class="m">H</span> nöqtəsi <span class="m">DEF</span> üçbucağının daxilə çəkilmiş çevrəsinin mərkəzidir və <span class="m">∠EDF = 180° − 2A</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Hündürlüklərin ayaqlarından üçbucaq"><polygon points="156.0,30 69.4,180 210.5,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="156.0" y1="30" x2="156.0" y2="180" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="69.4" y1="180" x2="194.0" y2="134.6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="210.5" y1="180" x2="104.7" y2="118.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="156.0" y1="180" x2="194.0" y2="134.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="156.0" y1="180" x2="104.7" y2="118.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="194.0" y1="134.6" x2="104.7" y2="118.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M166.2 167.7L164.4 166.4L162.5 165.3L160.4 164.6L158.2 164.1L156.0 164L153.7 164.1L151.5 164.6L149.4 165.3L147.5 166.4L145.7 167.7" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="156.0" y="153" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><circle cx="156.0" cy="30" r="2.6" fill="var(--ink)"/><circle cx="69.4" cy="180" r="2.6" fill="var(--ink)"/><circle cx="210.5" cy="180" r="2.6" fill="var(--ink)"/><circle cx="156.0" cy="148.4" r="2.6" fill="var(--ink)"/><circle cx="156.0" cy="180" r="2.6" fill="var(--ink)"/><circle cx="194.0" cy="134.6" r="2.6" fill="var(--ink)"/><circle cx="104.7" cy="118.8" r="2.6" fill="var(--ink)"/><text x="157.4" y="21.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="57.7" y="192.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="221.7" y="193.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="163.0" y="165.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text><text x="158.9" y="198.6" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="208.0" y="140.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text><text x="91.1" y="120.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">F</text></svg><div class="cap"><p>H — DEF-in daxili mərkəzidir.</p><p>φ = ∠EDF = 180° − 2A</p></div></div>
+      <div class="ex">Həll.
+1) BDHF dördbucaqlısında ∠BDH = ∠BFH = 90°, cəmi 180°:
+   daxil olan dördbucaqlıdır. Eyni BH qövsünə söykənən bucaqlar:
+        ∠FDH = ∠FBH = 90° − A      (ABE düzbucaqlıdır, ∠ABE = 90° − A).
+2) CDHE də daxil olandır (∠CDH = ∠CEH = 90°):
+        ∠EDH = ∠ECH = 90° − A      (ACF düzbucaqlı).
+3) ∠FDH = ∠HDE → DH bucağın tənböləndir.
+   Eyni ilə EH və FH də DEF-in tənbölənləridir. Deməli H — DEF-in
+   daxili mərkəzidir.
+4) ∠EDF = ∠FDH + ∠HDE = 2 · (90° − A) = 180° − 2A.   ∎
+Məsələn A = 68° olanda ∠EDF = 44°.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">∠BIC = 90° − A/2</span> yazmaq (bu, xaric mərkəzin bucağıdır). Daxili mərkəz üçün <b>plus</b>.</li>
+        <li><span class="m">∠BOC = A</span> götürmək. Mərkəzi bucaq daxilə çəkilmişin <b>iki mislidir</b>.</li>
+        <li>Düstur küt bucaqlı üçbucaqda dəyişir: <span class="m">∠BOC = 2A</span> yalnız <span class="m">A &lt; 90°</span> olanda; <span class="m">H</span> üçbucağın xaricində olur. Burada kəskinbucaqlı üçbucaqla işləyirik.</li>
+        <li>Orta üçbucağın və toxunma üçbucağının bucaqlarını qarışdırmaq: toxunma (daxili çevrə) üçün <span class="m">90° − A/2</span>, ayaqlar (hündürlüklər) üçün <span class="m">180° − 2A</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">∠BIC = 90° + A/2;   ∠BJC = 90° − A/2
+∠BOC = 2A;   ∠BHC = 180° − A
+∠KAO = |B − C|   (hündürlük və xarici radius)
+toxunma üçbucağı: 90° − A/2;   ayaqlar üçbucağı: 180° − 2A (H — daxili mərkəz)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">∠A = 80°</span>. <span class="m">∠BIC</span>? <span class="ans">90° + 40° = 130°.</span></li>
+        <li><span class="m">∠B = 75°</span>, <span class="m">∠C = 55°</span>. Hündürlük və xarici radius arasındakı bucaq? <span class="ans">|75° − 55°| = 20°.</span></li>
+        <li><span class="m">∠A = 65°</span>. <span class="m">∠BHC</span>? <span class="ans">180° − 65° = 115°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Daxili–xarici mərkəz lemması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bu, olimpiada həndəsəsinin ən məşhur faktlarından biridir və bir çox çətin məsələ onun bir sətirlik tətbiqidir. Xarici çevrə üzərində elə bir nöqtə var ki, o, həm <span class="m">B</span>, <span class="m">C</span>-dən, həm də daxili mərkəz <span class="m">I</span>-dən eyni məsafədədir. Yəni <span class="m">B</span>, <span class="m">C</span>, <span class="m">I</span> nöqtələri həmin nöqtə mərkəz olan bir çevrə üzərindədir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">ABC</span> üçbucağında <span class="m">I</span> — daxili mərkəz, <span class="m">AI</span> şüası xarici çevrəni <span class="m">W</span> nöqtəsində kəsir. Onda <span class="m">W</span> — <span class="m">BC</span> qövsünün orta nöqtəsidir (<span class="m">A</span>-nı saxlamayan).</p>
+      <div class="fm">WB = WC = WI</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="AI şüası xarici çevrəni W-də kəsir"><polygon points="153.0,31.1 82.5,153.2 197.4,153.2" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="140" cy="104.9" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="153.0" y1="31.1" x2="140" y2="179.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="82.5" y1="153.2" x2="140" y2="179.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="197.4" y1="153.2" x2="140" y2="179.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="82.5" y1="153.2" x2="145.5" y2="116.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="197.4" y1="153.2" x2="145.5" y2="116.8" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="153.0" cy="31.1" r="2.6" fill="var(--ink)"/><circle cx="82.5" cy="153.2" r="2.6" fill="var(--ink)"/><circle cx="197.4" cy="153.2" r="2.6" fill="var(--ink)"/><circle cx="145.5" cy="116.8" r="2.6" fill="var(--ink)"/><circle cx="140" cy="179.9" r="2.6" fill="var(--ink)"/><text x="155.4" y="22.3" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="71.8" y="167.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="208.1" y="167.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="151.4" y="134.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">I</text><text x="140" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">W</text></svg><div class="cap"><p>W — BC qövsünün ortasıdır.</p><p><b>WB = WC = WI</b></p></div></div>
+      <div class="ex">Sübut.
+1) ∠BAW = ∠WAC (AW tənböləndir) → bərabər bucaqlar bərabər
+   vətərləri kəsir:  WB = WC.
+2) ∠WBI = ∠WBC + ∠CBI.
+   ∠WBC = ∠WAC = A/2      (eyni WC qövsünə söykənir)
+   ∠CBI = B/2             (BI tənböləndir)
+   ∠WBI = A/2 + B/2.
+3) ∠WIB, ABI üçbucağının xarici bucağıdır:
+   ∠WIB = ∠IAB + ∠IBA = A/2 + B/2.
+4) WBI üçbucağında ∠WBI = ∠WIB → WB = WI.   ∎</div>
+      <p><b>Nəticələr.</b> (1) <span class="m">∠BWI = 180° − (A + B) = C</span>. (2) <span class="m">AW</span> ilə <span class="m">BC</span> kəsişmə nöqtəsi <span class="m">D</span> olarsa, <span class="m">WB² = WD · WA</span>: <span class="m">WBD</span> və <span class="m">WAB</span> oxşardır (<span class="m">∠BWD</span> ümumi, <span class="m">∠WBD = ∠WBC = ∠WAC = ∠WAB</span>), deməli <span class="m">WB/WA = WD/WB</span>. (3) <span class="m">A</span> qarşısındakı xaric mərkəz <span class="m">J</span> da <span class="m">AI</span> şüası üzərindədir və <span class="m">W</span> — <span class="m">IJ</span>-nin orta nöqtəsidir (Məsələ 1).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ∠A = 40°, ∠B = 70°.  ∠WBI = ?
+  ∠WBI = (A + B)/2 = 55°,   ∠C = 70°,  ∠BWI = C = 70°
+  (WBI üçbucağı: 55° + 55° + 70° = 180° ✓)
+
+Nümunə 2.  WB = 7.  WC = ?  WI = ?  WB + WC + WI = ?
+  WB = WC = WI = 7;  cəmi 21
+
+Nümunə 3.  WI = 6, AW = 9.  AW ilə BC-nin kəsişməsi D.  WD = ?
+  WB = WI = 6,  WB² = WD · WA  →  36 = WD · 9  →  WD = 4
+
+Nümunə 4.  WB = 7. A qarşısındakı xaric mərkəz J.  IJ = ?
+  W — IJ-nin orta nöqtəsi,  IJ = 2 · WI = 2 · 7 = 14</div>
+      <div class="life"><b>Həyatdan: dairəvi meydan.</b> Dairəvi meydanın kənarında <span class="m">B</span> və <span class="m">C</span> girişləri var, <span class="m">W</span> isə aralarındakı qövsün ortasıdır. <span class="m">W</span>-dən hər iki girişə məsafə 12 m-dirsə, girişləri və tənbölənlərin kəsişdiyi <span class="m">I</span> nöqtəsini əhatə edən çevrənin mərkəzi <span class="m">W</span>-dir: <span class="m">I</span> də <span class="m">W</span>-dən 12 m aralıdadır.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Mərkəzlərin orta nöqtəsi.</b> Sübut et: <span class="m">W</span> nöqtəsi <span class="m">I</span> və <span class="m">J</span> (<span class="m">A</span> qarşısındakı xaric mərkəz) nöqtələrinin orta nöqtəsidir.</p>
+      <div class="ex">Həll. BI və BJ — B təpəsindəki daxili və xarici bucaqların
+tənbölənləridir, qonşu bucaqların tənbölənləri perpendikulyardır:
+   ∠IBJ = 90°.   Eyni ilə  ∠ICJ = 90°.
+B və C nöqtələri IJ diametrli çevrə üzərindədir; bu çevrənin mərkəzi
+IJ-nin orta nöqtəsi M-dir. Lemmadan WB = WC = WI. W nöqtəsi
+I, B, C üçün bərabər məsafəli nöqtədir (IBC üçbucağının xaricinə çəkilmiş
+çevrənin mərkəzi), M də eyni üç nöqtədən bərabər məsafədədir.
+Üç nöqtənin (I, B, C) xaricinə çəkilmiş çevrənin mərkəzi yeganədir:
+   W = M,  yəni W — IJ-nin orta nöqtəsidir.   ∎
+Nəticə: IJ = 2 · WI = 2 · WB.</div>
+
+      <p><b>Məsələ 2. WB² = WD · WA.</b> Yuxarıdakı nəticəni nümunə ilə yoxla: <span class="m">WB = 6</span>, <span class="m">WA = 9</span> olarsa, <span class="m">WD = 36/9 = 4</span>, deməli <span class="m">AD = AW − WD = 5</span>. Burada <span class="m">D</span> — tənbölənin <span class="m">BC</span> ilə kəsişməsidir; <span class="m">AD · DW = BD · DC</span> (vətərlər) olduğundan <span class="m">BD · DC = 5 · 4 = 20</span>.</p>
+
+      <p><b>Məsələ 3. İki çevrə və sabit bucaq.</b> İki çevrə <span class="m">A</span> və <span class="m">B</span> nöqtələrində kəsişir. <span class="m">A</span>-dan keçən düz xətt birinci çevrəni <span class="m">C</span>, ikincini <span class="m">D</span> nöqtəsində kəsir (<span class="m">A</span> nöqtəsi <span class="m">C</span> və <span class="m">D</span> arasındadır). Sübut et: <span class="m">∠CBD</span> düz xəttin seçimindən asılı deyil.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Kəsişən iki çevrə"><circle cx="104.9" cy="105" r="74.9" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="189.9" cy="105" r="59.9" fill="none" stroke="var(--accent)" stroke-width="2"/><line x1="96.4" y1="30.4" x2="246.6" y2="85.1" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="159.4" y1="156.6" x2="96.4" y2="30.4" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="159.4" y1="156.6" x2="246.6" y2="85.1" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><path d="M115.2 37.3L114.7 38.7L114.0 40.0L113.2 41.3L112.3 42.6L111.4 43.7L110.3 44.8L109.2 45.9L108.0 46.8L106.7 47.6L105.4 48.3" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="122.6" y="57.7" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><path d="M227.8 78.2L227.2 80.2L226.8 82.2L226.6 84.3L226.6 86.4L226.8 88.4L227.3 90.5L228.0 92.4L228.8 94.3L229.9 96.1L231.1 97.8" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="212.1" y="95.0" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">β</text><path d="M151.3 140.5L153.6 139.5L155.9 138.9L158.3 138.6L160.7 138.6L163.1 139.0L165.5 139.6L167.7 140.6L169.7 141.9L171.6 143.4L173.3 145.2" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="166.3" y="128.3" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">φ</text><circle cx="159.4" cy="53.3" r="2.6" fill="var(--ink)"/><circle cx="159.4" cy="156.6" r="2.6" fill="var(--ink)"/><circle cx="96.4" cy="30.4" r="2.6" fill="var(--ink)"/><circle cx="246.6" cy="85.1" r="2.6" fill="var(--ink)"/><text x="169.5" y="48.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="169.5" y="171.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="94.9" y="21.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="260.4" y="88.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text></svg><div class="cap"><p>α = ∠ACB, β = ∠ADB — sabitdir.</p><p>φ = ∠CBD = 180° − α − β</p></div></div>
+      <div class="ex">Həll. ∠ACB — birinci çevrədə AB qövsünə söykənən daxilə çəkilmiş
+bucaqdır, ∠ADB — ikinci çevrədə AB qövsünə. AB sabit parçadır,
+buna görə ∠ACB = α və ∠ADB = β düz xətt dəyişəndə dəyişmir
+(A nöqtəsi C və D arasında qaldıqca C həmişə birinci çevrənin eyni
+qövsündə, D isə ikinci çevrənin eyni qövsündə yerləşir).
+BCD üçbucağında  ∠CBD = 180° − α − β  — sabitdir.   ∎
+Məsələn α = 50°, β = 60° olanda ∠CBD = 70°.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">WB = WC</span> deyib <span class="m">WI</span>-ni unutmaq: lemmanın əsas gücü <span class="m">WB = WC = WI</span> bərabərliyindədir.</li>
+        <li><span class="m">W</span> nöqtəsini <span class="m">A</span>-nın tərəfindəki qövsdə axtarmaq: <span class="m">W</span> <span class="m">BC</span> qövsünün <b>A-nı saxlamayan</b> orta nöqtəsidir.</li>
+        <li><span class="m">WB² = WD · WA</span> yerinə <span class="m">WB² = WD · WI</span> yazmaq.</li>
+        <li>Xaric mərkəzlə daxili mərkəzi qarışdırmaq: <span class="m">IJ = 2 · WI</span>, yəni <span class="m">W</span> mərkəzdir, <span class="m">I</span> isə uc.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AI ∩ (xarici çevrə) = W:   WB = WC = WI
+∠WBI = (A + B)/2,   ∠BWI = C
+WB² = WD · WA   (D = AW ∩ BC)
+W — IJ-nin orta nöqtəsi,  IJ = 2 · WI</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">∠A = 50°</span>, <span class="m">∠B = 60°</span>. <span class="m">∠WBI</span>? <span class="ans">(50° + 60°)/2 = 55°.</span></li>
+        <li><span class="m">WC = 11</span>. <span class="m">WB + WI</span>? <span class="ans">WB = WI = 11, cəmi 22.</span></li>
+        <li><span class="m">WI = 8</span>, <span class="m">WA = 16</span>. <span class="m">WD</span>? <span class="ans">WD = 64/16 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

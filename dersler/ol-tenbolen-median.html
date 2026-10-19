@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tənbölən, median, Stüart dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-tenbolen-median.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Tənbölən və median</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Həndəsə</div>
+    <h1>Üçbucaqda tənbölən və median xassələri, Stüart düsturu</h1>
+    <p>Tənbölən və median üçbucağın ən çox işlənən köməkçi parçalarıdır. Bu mövzuda <b>tənbölən teoremini</b>, tənbölənin və medianın <b>uzunluq düsturlarını</b>, medianların kəsişmə nöqtəsini və hamısını birləşdirən <b>Stüart düsturunu</b> öyrənəcəksən. Hər düsturun sübutu sadə dildə verilir, sonra klassik olimpiada məsələləri tam həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Tənbölən teoremi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tənbölənin uzunluğu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Median</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Stüart düsturu</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Tənbölən teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üçbucaq formalı bağın <span class="m">A</span> küncündən qarşı sərhədə elə cığır çəkmək istəyirsən ki, cığır küncün bucağını yarıya bölsün. Cığır sərhədi hansı nöqtədə kəsəcək? Heç nə ölçmədən, yalnız üç tərəfi bilərək bunu hesablamaq olar. Bu, <b>tənbölən teoremidir</b>. Olimpiadada tərəflərin nisbəti ilə bucaqların bərabərliyini əlaqələndirən məsələlərin çoxu ona söykənir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">AD</span> — <span class="m">ABC</span> üçbucağının <span class="m">A</span> bucağının tənböləni, <span class="m">D</span> nöqtəsi <span class="m">BC</span> tərəfindədir. Tənbölən qarşı tərəfi yanındakı tərəflərə mütənasib hissələrə bölür.</p>
+      <div class="fm">BD / DC = AB / AC</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="AD tənböləni BC-ni D nöqtəsində bölür"><polygon points="88.3,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="88.3" y1="30" x2="127.0" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M82.8 51.3L83.9 51.5L85.0 51.7L86.1 51.8L87.2 51.9L88.3 52L89.4 51.9L90.5 51.8L91.6 51.7L92.7 51.5L93.8 51.3" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="88.3" y="71" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><path d="M93.8 51.3L94.9 50.9L95.9 50.6L97.0 50.2L98.0 49.7L99.0 49.2L99.9 48.6L100.8 48.0L101.7 47.4L102.6 46.7L103.4 45.9" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="106.2" y="66.3" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><text x="56.4" y="106.7" text-anchor="middle" class="lbl">c</text><text x="168.8" y="101.0" text-anchor="middle" class="lbl">b</text><text x="88.3" y="198" text-anchor="middle" class="lbl">x</text><text x="178.7" y="198" text-anchor="middle" class="lbl">y</text><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="88.3" cy="30" r="2.6" fill="var(--ink)"/><circle cx="127.0" cy="180" r="2.6" fill="var(--ink)"/><text x="38.0" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="243.0" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="83.8" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="128.2" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text></svg><div class="cap"><p><b>AD</b> tənbölən: ∠BAD = ∠DAC = α.</p><p>BD = x, DC = y: <b>x / y = c / b</b>.</p></div></div>
+      <p><b>Niyə belədir? (sahələrlə sübut)</b></p>
+      <div class="ex">1) ABD və ADC üçbucaqlarının A təpəsindən BC-yə çəkilmiş
+   hündürlüyü eynidir. Hündürlük eyni olanda sahələrin
+   nisbəti bazaların nisbətidir:
+        S(ABD) / S(ADC) = BD / DC
+
+2) Tənbölənin hər nöqtəsi bucağın tərəflərindən eyni məsafədədir.
+   Deməli D-dən AB-yə və AC-yə perpendikulyarlar bərabərdir.
+   Bu perpendikulyarlar ABD və ADC üçbucaqlarının AB və AC
+   tərəflərinə çəkilmiş hündürlükləridir. Hündürlüklər eyni olanda:
+        S(ABD) / S(ADC) = AB / AC
+
+3) Sol tərəflər eynidir, deməli sağ tərəflər də bərabərdir:
+        BD / DC = AB / AC.   ∎</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  AB = 6, AC = 9, BC = 10.  BD və DC-ni tap.
+  BD : DC = AB : AC = 6 : 9 = 2 : 3
+  BC = 10 bu nisbətdə, yəni 2 + 3 = 5 bərabər hissəyə bölünür; hər hissə 10 : 5 = 2.
+  BD = 2 · 2 = 4,  DC = 3 · 2 = 6
+  Cavab: BD = 4, DC = 6
+
+Nümunə 2.  AB = 15, BD = 6, DC = 8.  AC-ni tap.
+  BD : DC = AB : AC  →  6 : 8 = 15 : AC
+  AC = 15 · 8 / 6 = 20
+  Cavab: AC = 20</div>
+      <div class="life"><b>Həyatdan: bağ.</b> Üçbucaq formalı bağda <span class="m">AB = 12 m</span>, <span class="m">AC = 18 m</span>, <span class="m">BC = 20 m</span>. <span class="m">A</span> küncündən <span class="m">BC</span> sərhədinə bucağı yarıya bölən cığır çəkilir. Cığır sərhədə <span class="m">B</span>-dən nə qədər aralıda çatır?
+        <br><span class="m">BD : DC = 12 : 18 = 2 : 3</span>, 20 m beş hissəyə bölünür, hər hissə 4 m: <span class="m">BD = 8 m</span>, <span class="m">DC = 12 m</span>.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Mərkəz tənbölənin hansı nisbətində bölür?</b> <span class="m">ABC</span> üçbucağında <span class="m">BC = a</span>, <span class="m">AC = b</span>, <span class="m">AB = c</span>. <span class="m">AD</span> tənbölən, <span class="m">I</span> — daxilə çəkilmiş çevrənin mərkəzidir (tənbölənlərin kəsişməsi). <span class="m">AI : ID</span> nisbətini tap.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="I nöqtəsi AD və BI tənbölənlərinin kəsişməsidir"><polygon points="88.3,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="88.3" y1="30" x2="127.0" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="49.6" y1="180" x2="114.1" y2="130" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><text x="56.4" y="106.7" text-anchor="middle" class="lbl">c</text><text x="168.8" y="101.0" text-anchor="middle" class="lbl">b</text><text x="140" y="198" text-anchor="middle" class="lbl">a</text><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="88.3" cy="30" r="2.6" fill="var(--ink)"/><circle cx="127.0" cy="180" r="2.6" fill="var(--ink)"/><circle cx="114.1" cy="130" r="2.6" fill="var(--ink)"/><text x="38.0" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="243.0" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="83.8" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="128.2" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="100.1" y="135" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">I</text></svg><div class="cap"><p>I — tənbölənlərin kəsişməsi.</p><p>ABD üçbucağında BI tənböləndir.</p></div></div>
+      <div class="ex">Həll.
+1) Tənbölən teoremindən (AD üçün): BD = a · c/(b + c).
+2) BI — B bucağının tənböləni. ABD üçbucağında ona
+   tənbölən teoremini tətbiq edək: BI tənböləni AD tərəfini
+   AI : ID = AB : BD nisbətində bölür.
+3) AI / ID = c / BD = c · (b + c)/(a · c) = (b + c)/a.
+
+Cavab: AI : ID = (b + c) : a.
+Məsələn a = 14, b = 15, c = 13:  AI : ID = 28 : 14 = 2 : 1.</div>
+
+      <p><b>Məsələ 2. Mərkəzdən keçən paralel.</b> <span class="m">I</span> nöqtəsindən <span class="m">BC</span>-yə paralel düz xətt <span class="m">AB</span> və <span class="m">AC</span> tərəflərini <span class="m">M</span> və <span class="m">N</span> nöqtələrində kəsir. Sübut et: <span class="m">MN = BM + CN</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="I-dən BC-yə paralel MN düz xətti"><polygon points="88.3,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="62.5" y1="130" x2="183.0" y2="130" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="49.6" y1="180" x2="114.1" y2="130" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="230.3" y1="180" x2="114.1" y2="130" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="88.3" cy="30" r="2.6" fill="var(--ink)"/><circle cx="127.0" cy="180" r="2.6" fill="var(--ink)"/><circle cx="114.1" cy="130" r="2.6" fill="var(--ink)"/><circle cx="62.5" cy="130" r="2.6" fill="var(--ink)"/><circle cx="183.0" cy="130" r="2.6" fill="var(--ink)"/><text x="38.0" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="243.0" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="83.8" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="128.2" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="100.1" y="135" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">I</text><text x="48.5" y="135" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="197.0" y="135" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">N</text></svg><div class="cap"><p>MN ∥ BC, I ∈ MN.</p><p>MB = MI və NC = NI.</p></div></div>
+      <div class="ex">Həll.
+BI tənböləndir:   ∠MBI = ∠IBC.
+MN ∥ BC olduğundan çarpaz bucaqlar bərabərdir:  ∠MIB = ∠IBC.
+Deməli ∠MBI = ∠MIB, MBI bərabəryanlıdır:  MB = MI.
+Eyni mühakimə ilə (CI tənböləni):  NC = NI.
+MN = MI + IN = BM + CN.   ∎
+
+Nəticə: AMN üçbucağının perimetri
+  AM + MN + NA = AM + BM + CN + NA = AB + AC.
+AMN ~ ABC (MN ∥ BC), perimetrlər nisbəti = oxşarlıq əmsalı:
+  MN / BC = (AB + AC) / (AB + BC + AC).
+Məsələn AB = 13, AC = 15, BC = 14:  MN = 14 · 28/42 = 28/3.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Nisbəti çarpaz yazmaq: <span class="m">BD : DC = AC : AB</span>. Düzü: <span class="m">BD</span> <span class="m">AB</span> ilə (B təpəsindən çıxan tərəflə), <span class="m">DC</span> isə <span class="m">AC</span> ilə.</li>
+        <li><span class="m">BC</span>-ni <span class="m">AB : AC</span> nisbətində bölmək əvəzinə <span class="m">BC · AB/AC</span> hesablamaq. Düzü: <span class="m">BD = BC · AB/(AB + AC)</span> — məxrəcdə cəm.</li>
+        <li>Teoremi yalnız tənbölənə aid olduğunu unutmaq: median və ya hündürlük üçün bu nisbət doğru deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AD — A bucağının tənböləni  →  BD / DC = AB / AC
+BD = BC · AB/(AB + AC),   DC = BC · AC/(AB + AC)
+I — daxili çevrənin mərkəzi  →  AI / ID = (AB + AC)/BC
+I-dən BC-yə paralel MN  →  MN = BM + CN</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">AD</span> tənbölən, <span class="m">AB = 8</span>, <span class="m">AC = 12</span>, <span class="m">BC = 15</span>. <span class="m">BD</span>-ni tap. <span class="ans">BD : DC = 8 : 12 = 2 : 3, hər hissə 15 : 5 = 3: BD = 6, DC = 9.</span></li>
+        <li><span class="m">BD = 5</span>, <span class="m">DC = 7</span>, <span class="m">AB = 10</span>. <span class="m">AC</span>-ni tap. <span class="ans">AC = AB · DC/BD = 10 · 7/5 = 14.</span></li>
+        <li><span class="m">a = 9</span>, <span class="m">b = 10</span>, <span class="m">c = 8</span>. <span class="m">AI : ID</span> nisbəti nəyə bərabərdir? <span class="ans">(b + c)/a = 18/9 = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tənbölənin uzunluğu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dərs 1-də cığırın sərhədi harada kəsdiyini tapdın. İndi cığırın <b>uzunluğunu</b> bilmək istəyirsən: nə qədər plitə, kabel və ya hasar lazımdır? Tənbölənin uzunluğu üçün tərəflərdən asan düstur var, üstəlik onun sübutu çevrə və oxşar üçbucaqların gözəl tətbiqidir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">AD</span> — <span class="m">A</span> bucağının tənböləni olsun.</p>
+      <div class="fm">AD² = AB · AC − BD · DC</div>
+      <p>Yəni tənbölənin kvadratı "yan tərəflərin hasili minus bölünən parçaların hasili"dir. Dərs 1-dən <span class="m">BD</span> və <span class="m">DC</span> asanlıqla tapılır.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Çevrə, tənbölənin davamı E nöqtəsində"><circle cx="140" cy="105" r="75" fill="none" stroke="var(--ink)" stroke-width="2"/><line x1="103.6" y1="39.3" x2="76.4" y2="144.8" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="76.4" y1="144.8" x2="203.5" y2="144.8" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="203.5" y1="144.8" x2="103.6" y2="39.3" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><line x1="103.6" y1="39.3" x2="130.9" y2="144.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="130.9" y1="144.8" x2="140" y2="179.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="76.4" y1="144.8" x2="140" y2="179.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="203.5" y1="144.8" x2="140" y2="179.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M98.1 60.6L99.2 60.9L100.3 61.1L101.4 61.2L102.5 61.3L103.6 61.3L104.8 61.3L105.9 61.2L107.0 61.1L108.1 60.9L109.1 60.6" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="103.6" y="80.3" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><path d="M109.1 60.6L110.2 60.3L111.3 60.0L112.3 59.6L113.3 59.1L114.3 58.6L115.3 58.0L116.2 57.4L117.1 56.7L117.9 56.0L118.8 55.3" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="121.6" y="75.7" text-anchor="middle" class="lbl" style="fill:var(--accent);font-size:12px">α</text><circle cx="103.6" cy="39.3" r="2.6" fill="var(--ink)"/><circle cx="76.4" cy="144.8" r="2.6" fill="var(--ink)"/><circle cx="203.5" cy="144.8" r="2.6" fill="var(--ink)"/><circle cx="130.9" cy="144.8" r="2.6" fill="var(--ink)"/><circle cx="140" cy="179.9" r="2.6" fill="var(--ink)"/><text x="96.9" y="32.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="64.5" y="157.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="215.4" y="157.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="127.8" y="163.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="140" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">E</text></svg><div class="cap"><p>AD şüası çevrəni E-də kəsir. ABD ~ AEC və ABD ~ CED.</p></div></div>
+      <p><b>Sübut.</b> <span class="m">ABC</span>-nin xaricinə çəkilmiş çevrə götürək. <span class="m">AD</span> şüasını çevrənin ikinci kəsişmə nöqtəsi <span class="m">E</span>-yə qədər uzadaq.</p>
+      <div class="ex">1) ∠BAD = ∠EAC (AD tənböləndir).
+   ∠ABD = ∠ABC = ∠AEC (ikisi də eyni AC qövsünə söykənir).
+   İki bucaq bərabərdir → ABD ~ AEC:
+        AB / AE = AD / AC   →   AD · AE = AB · AC          (1)
+
+2) AE və BC vətərləri D-də kəsişir. ABD və CED üçbucaqları
+   oxşardır (∠ABD = ∠CED, ∠ADB = ∠CDE şaquli bucaqlardır):
+        AD / CD = BD / ED   →   AD · DE = BD · DC           (2)
+
+3) AE = AD + DE olduğundan
+        AD · AE = AD² + AD · DE = AD² + BD · DC.
+   (1)-ə görə bu, AB · AC-yə bərabərdir:
+        AD² + BD · DC = AB · AC.   ∎</div>
+      <p>Dərs 1-in <span class="m">BD = ac/(b+c)</span>, <span class="m">DC = ab/(b+c)</span> düsturlarını qoysaq, tərəflərlə yazılış alınır:</p>
+      <div class="fm">AD² = b·c · (1 − a²/(b + c)²)
+AD  = √( b·c·(b + c + a)(b + c − a) ) / (b + c)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  AB = 6, AC = 8, BC = 7.  Tənbölən AD = ?
+  BD : DC = 6 : 8 = 3 : 4,  BC = 7 → BD = 3, DC = 4
+  AD² = 6 · 8 − 3 · 4 = 48 − 12 = 36
+  Cavab: AD = 6
+
+Nümunə 2.  Bərabəryanlı: AB = AC = 10, BC = 12.
+  Simmetriyaya görə BD = DC = 6
+  AD² = 10 · 10 − 6 · 6 = 64,  AD = 8
+  (Bu, həm də hündürlükdür: Pifaqor 10² = 6² + 8² ilə üst-üstə düşür.)
+
+Nümunə 3.  AB = 5, AC = 20, BC = 20.
+  BD : DC = 5 : 20 = 1 : 4,  BD = 4, DC = 16
+  AD² = 5 · 20 − 4 · 16 = 100 − 64 = 36
+  Cavab: AD = 6</div>
+      <div class="life"><b>Həyatdan: bağda cığır.</b> Dərs 1-dəki bağda <span class="m">AB = 12</span>, <span class="m">AC = 18</span>, <span class="m">BC = 20</span> idi: <span class="m">BD = 8</span>, <span class="m">DC = 12</span>. Cığırın uzunluğu: <span class="m">AD² = 12 · 18 − 8 · 12 = 216 − 96 = 120</span>, <span class="m">AD = √120 = 2√30</span> ≈ 10,95 m.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Bucaq 90° və ya 120° olanda.</b> <span class="m">AB = c</span>, <span class="m">AC = b</span> və <span class="m">∠A</span> məlumdur. Tənbölən uzunluğu üçün sahə üsulu daha qısadır: <span class="m">S(ABC) = S(ABD) + S(ADC)</span>.</p>
+      <div class="ex">Həll. ∠BAD = ∠DAC = A/2,  AD = l.
+  1/2 · b·c · sin A = 1/2 · c·l · sin(A/2) + 1/2 · b·l · sin(A/2)
+sin A = 2 sin(A/2) cos(A/2) yazıb sin(A/2)-yə ixtisar edək:
+  b·c · 2cos(A/2) = l · (b + c)
+  l = 2bc · cos(A/2) / (b + c)
+
+A = 90° (cos 45° = √2/2):   l = bc√2/(b + c)
+A = 120° (cos 60° = 1/2):   l = bc/(b + c)
+A = 60° (cos 30° = √3/2):   l = bc√3/(b + c)
+
+Məsələn A = 90°, AB = 3, AC = 6:  l = 18√2/9 = 2√2.
+Yoxla: BC = 3√5, BD = √5, DC = 2√5,
+  AD² = 3 · 6 − √5 · 2√5 = 18 − 10 = 8 → AD = 2√2 ✓</div>
+
+      <p><b>Məsələ 2. Tənbölən həndəsi ortadan kiçikdir.</b> Sübut et: <span class="m">AD &lt; √(AB · AC)</span>.</p>
+      <div class="ex">Həll. AD² = AB · AC − BD · DC.  BD · DC &gt; 0 olduğundan
+  AD² &lt; AB · AC,   yəni AD &lt; √(AB · AC).   ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">AD² = AB · AC + BD · DC</span> yazmaq (işarə səhvi). Düzü <b>minus</b>: tənbölən yan tərəflərin həndəsi ortasından kiçikdir.</li>
+        <li><span class="m">BD · DC</span> əvəzinə <span class="m">BC²</span> və ya <span class="m">BD²</span> qoymaq. Burada bölünən <b>iki parçanın</b> hasili lazımdır.</li>
+        <li>Kökü almağı unutmaq: düstur <span class="m">AD²</span>-ni verir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AD² = AB · AC − BD · DC
+(əvvəl tənbölən teoremi ilə BD və DC)
+∠A = 90°:  l = bc√2/(b + c);   ∠A = 120°:  l = bc/(b + c)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">AB = AC = 13</span>, <span class="m">BC = 10</span>. Tənbölən <span class="m">AD</span>-ni tap. <span class="ans">BD = DC = 5; AD² = 169 − 25 = 144; AD = 12.</span></li>
+        <li><span class="m">∠A = 120°</span>, <span class="m">AB = 12</span>, <span class="m">AC = 6</span>. Tənbölən? <span class="ans">l = bc/(b + c) = 72/18 = 4.</span></li>
+        <li><span class="m">AD = 4</span>, <span class="m">BD = 3</span>, <span class="m">DC = 5</span>. <span class="m">AB · AC</span> nəyə bərabərdir? <span class="ans">AB · AC = AD² + BD · DC = 16 + 15 = 31.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Median: uzunluğu və ağırlıq mərkəzi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Karton üçbucağı bir barmaqla tarazlaşdırmaq istəsən, barmağı üç medianın kəsişdiyi nöqtəyə qoymalısan. Bu nöqtə <b>ağırlıq mərkəzidir</b>. Median həm də olimpiada həndəsəsində ən çox rast gələn parçalardandır: uzunluğunu üç tərəfdən tapmağı və kəsişmə nöqtəsini necə böldüyünü bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Medianlar və ağırlıq mərkəzi</h3>
+      <p><b>Median</b> təpəni qarşı tərəfin orta nöqtəsi ilə birləşdirən parçadır. Medianın sadə xassəsi: <b>o, üçbucağı sahəcə iki bərabər hissəyə bölür</b>, çünki iki yarım üçbucağın hündürlüyü eynidir, bazaları isə bərabərdir.</p>
+      <div class="fm">Üç median bir nöqtədə (G) kəsişir.
+G hər medianı təpədən saymaqla 2 : 1 bölür:  AG : GM = 2 : 1</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Üç median G nöqtəsində kəsişir"><polygon points="191.6,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="191.6" y1="30" x2="140" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="49.6" y1="180" x2="211.0" y2="105" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="230.3" y1="180" x2="120.6" y2="105" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="191.6" cy="30" r="2.6" fill="var(--ink)"/><circle cx="140" cy="180" r="2.6" fill="var(--ink)"/><circle cx="211.0" cy="105" r="2.6" fill="var(--ink)"/><circle cx="120.6" cy="105" r="2.6" fill="var(--ink)"/><circle cx="157.2" cy="130" r="2.6" fill="var(--ink)"/><text x="36.9" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="241.9" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="196.1" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="135.4" y="198.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="223.7" y="104.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">K</text><text x="109.0" y="102.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">L</text><text x="167.1" y="125.1" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">G</text></svg><div class="cap"><p>AG : GM = BG : GK = CG : GL = 2 : 1.</p></div></div>
+      <p><b>Sübut.</b> <span class="m">M</span> — <span class="m">BC</span>-nin, <span class="m">K</span> — <span class="m">AC</span>-nin orta nöqtəsi; <span class="m">AM</span> və <span class="m">BK</span> medianları <span class="m">G</span>-də kəsişir. <span class="m">P</span> — <span class="m">AG</span>-nin, <span class="m">Q</span> — <span class="m">BG</span>-nin orta nöqtəsidir.</p>
+      <div class="ex">1) ABG üçbucağında PQ orta xəttdir: PQ ∥ AB, PQ = AB/2.
+2) ABC üçbucağında KM orta xəttdir: KM ∥ AB, KM = AB/2.
+3) PQ və KM paraleldir və bərabərdir → PQMK paraleloqramdır.
+4) Paraleloqramın diaqonalları (PM və QK) kəsişmə nöqtəsində
+   yarıya bölünür. Bu nöqtə G-dir (PM, QK uyğun olaraq AM, BK
+   üzərindədir). Deməli PG = GM.
+5) P, AG-nin orta nöqtəsidir: AP = PG.
+   Beləliklə AP = PG = GM, yəni AG = 2 · GM.   ∎
+Üçüncü median CL üçün də eyni mühakimə AM-i elə həmin
+2 : 1 nöqtəsində kəsir, deməli CL də G-dən keçir.</div>
+
+      <h3><span class="st">3</span> Medianın uzunluğu</h3>
+      <div class="fm">AM² = (2·AB² + 2·AC² − BC²) / 4</div>
+      <p>Yəni <span class="m">m<sub>a</sub>² = (2b² + 2c² − a²)/4</span>. Eyni düstur başqa şəkildə: <span class="m">4·AM² + BC² = 2·AB² + 2·AC²</span> (paraleloqramın diaqonallarının kvadratları cəmi tərəflərin kvadratları cəminin iki mislinə bərabərdir).</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Median və hündürlük"><polygon points="191.6,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="191.6" y1="30" x2="140" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="191.6" y1="30" x2="191.6" y2="180" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M191.6 171L200.6 171L200.6 180" fill="none" stroke="var(--ink)" stroke-width="1.3"/><text x="111.1" y="101.0" text-anchor="middle" class="lbl">c</text><text x="223.5" y="106.7" text-anchor="middle" class="lbl">b</text><text x="204.6" y="110" text-anchor="middle" class="lbl">h</text><text x="165.8" y="198" text-anchor="middle" class="lbl">d</text><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="191.6" cy="30" r="2.6" fill="var(--ink)"/><circle cx="140" cy="180" r="2.6" fill="var(--ink)"/><circle cx="191.6" cy="180" r="2.6" fill="var(--ink)"/><text x="36.9" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="241.9" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="196.1" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="135.4" y="198.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="199.5" y="196.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text></svg><div class="cap"><p>BM = MC = a/2, AH = h, HM = d.</p></div></div>
+      <p><b>Sübut.</b> <span class="m">AH</span> — <span class="m">A</span>-dan <span class="m">BC</span>-yə hündürlük, <span class="m">AH = h</span>, <span class="m">HM = d</span>, <span class="m">M</span> orta nöqtədir, <span class="m">BM = MC = a/2</span>.</p>
+      <div class="ex">H nöqtəsi M-dən C tərəfdədirsə:  BH = a/2 + d,  HC = a/2 − d.
+Pifaqor (AHB və AHC düzbucaqlı üçbucaqları):
+   c² = h² + (a/2 + d)²
+   b² = h² + (a/2 − d)²
+Toplayaq (2·(a/2)·d hədləri bir-birini aradan qaldırır):
+   b² + c² = 2h² + 2 · a²/4 + 2d² = 2(h² + d²) + a²/2.
+AHM düzbucaqlıdır: h² + d² = AM². Onda
+   b² + c² = 2·AM² + a²/2   →   AM² = (2b² + 2c² − a²)/4.   ∎
+(H başqa tərəfdədirsə, d-nin işarəsi dəyişir, nəticə eynidir.)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Tərəflər 6, 5, 5. 6-lıq tərəfə çəkilmiş median?
+  m² = (2 · 25 + 2 · 25 − 36)/4 = 64/4 = 16,  m = 4
+
+Nümunə 2.  Düzbucaqlı üçbucaq: katetlər 6 və 8, hipotenuz 10.
+  Hipotenuza çəkilmiş median:
+  m² = (2 · 36 + 2 · 64 − 100)/4 = 100/4 = 25,  m = 5 = 10/2
+  Ümumi hal: AC² + BC² = AB² olanda CM = AB/2.
+
+Nümunə 3.  Tərəflər 13, 14, 15. 14-lük tərəfə çəkilmiş median?
+  m² = (2 · 169 + 2 · 225 − 196)/4 = (338 + 450 − 196)/4 = 148
+  m = √148 = 2√37</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq formalı meydançanın tərəfləri 6 m, 5 m və 5 m-dir. 6 m-lik tərəfin qarşısındakı təpədən həmin tərəfin ortasına kabel çəkilir. Kabelin uzunluğu median kimi hesablanır: 4 m (Nümunə 1).</div>
+
+      <h3><span class="st">5</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Perpendikulyar medianlar.</b> <span class="m">ABC</span> üçbucağında <span class="m">AM</span> və <span class="m">BK</span> medianları perpendikulyardır. Sübut et: <span class="m">BC² + AC² = 5·AB²</span>.</p>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Perpendikulyar AM və BK medianları"><polygon points="44.0,30.0 30,179.9 250,179.9" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="44.0" y1="30.0" x2="140" y2="179.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="179.9" x2="147.0" y2="105" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M103.1 122.3L95.5 127.2L100.4 134.8" fill="none" stroke="var(--ink)" stroke-width="1.3"/><circle cx="30" cy="179.9" r="2.6" fill="var(--ink)"/><circle cx="250" cy="179.9" r="2.6" fill="var(--ink)"/><circle cx="44.0" cy="30.0" r="2.6" fill="var(--ink)"/><circle cx="140" cy="179.9" r="2.6" fill="var(--ink)"/><circle cx="147.0" cy="105" r="2.6" fill="var(--ink)"/><circle cx="108.0" cy="129.9" r="2.6" fill="var(--ink)"/><text x="18.2" y="192.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="263.2" y="189.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="36.4" y="23.2" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="147.5" y="196.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">M</text><text x="158.7" y="102.4" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">K</text><text x="117.9" y="125.0" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">G</text></svg><div class="cap"><p>AM ⟂ BK, G — kəsişmə nöqtəsi.</p></div></div>
+      <div class="ex">Həll. G — medianların kəsişməsi. AG = 2/3 · AM, BG = 2/3 · BK.
+∠AGB = 90°, Pifaqor:  AB² = AG² + BG² = 4/9 · (AM² + BK²).
+Median düsturları:
+  AM² = (2b² + 2c² − a²)/4,   BK² = (2a² + 2c² − b²)/4
+  AM² + BK² = (a² + b² + 4c²)/4
+Onda   c² = 4/9 · (a² + b² + 4c²)/4 = (a² + b² + 4c²)/9
+  9c² = a² + b² + 4c²   →   a² + b² = 5c².   ∎
+Məsələn BC = 19, AC = 22 olanda AB² = (361 + 484)/5 = 169, AB = 13.</div>
+
+      <p><b>Məsələ 2. Medianların kvadratlarının cəmi.</b> Sübut et: <span class="m">m<sub>a</sub>² + m<sub>b</sub>² + m<sub>c</sub>² = 3/4 · (a² + b² + c²)</span>.</p>
+      <div class="ex">Həll. Üç median düsturunu toplayaq:
+  4m<sub>a</sub>² = 2b² + 2c² − a²
+  4m<sub>b</sub>² = 2a² + 2c² − b²
+  4m<sub>c</sub>² = 2a² + 2b² − c²
+Cəm:  4(m<sub>a</sub>² + m<sub>b</sub>² + m<sub>c</sub>²) = 3a² + 3b² + 3c².   ∎
+Yoxla (3-4-5): medianların kvadratları 73/4, 13, 25/4, cəmi 150/4 = 37,5;
+  3/4 · (9 + 16 + 25) = 37,5 ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Median düsturunda <span class="m">2b² + 2c²</span> əvəzinə <span class="m">b² + c²</span> yazmaq və ya <span class="m">−a²</span>-ni unutmaq.</li>
+        <li>2 : 1 nisbətini tərsinə götürmək: <span class="m">AG</span> uzun hissədir (<span class="m">AG = 2GM</span>), <span class="m">GM</span> medianın üçdə biridir.</li>
+        <li>Medianı tənbölənlə qarışdırmaq: median qarşı tərəfi <b>yarıya</b> bölür, tənbölən isə tərəflərin nisbətində.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">m² = (2b² + 2c² − a²)/4
+G: AG : GM = 2 : 1,   AG = 2/3 · m,   GM = 1/3 · m
+Perpendikulyar medianlar (A və B-dən):  a² + b² = 5c²
+Hipotenuza çəkilmiş median = hipotenuzun yarısı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tərəflər 10, 13, 13. 10-luq tərəfə çəkilmiş median? <span class="ans">m² = (2·169 + 2·169 − 100)/4 = 576/4 = 144; m = 12.</span></li>
+        <li><span class="m">AM</span> və <span class="m">BK</span> medianları perpendikulyardır, <span class="m">BC = 19</span>, <span class="m">AC = 22</span>. <span class="m">AB</span> = ? <span class="ans">AB² = (361 + 484)/5 = 169; AB = 13.</span></li>
+        <li><span class="m">AM = 18</span>, <span class="m">G</span> — ağırlıq mərkəzi. <span class="m">AG</span> = ? <span class="ans">AG = 2/3 · 18 = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Stüart düsturu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tənbölənin və medianın uzunluq düsturları ayrı-ayrı yadda saxlanır. Stüart düsturu isə <b>istənilən</b> parçaya — təpədən qarşı tərəfin istənilən nöqtəsinə çəkilmiş parçaya — aiddir. Median, tənbölən, hündürlük onun xüsusi hallarıdır. Düsturu bilsən, hər birini ayrıca yadda saxlamaq lazım deyil.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">D</span> nöqtəsi <span class="m">ABC</span> üçbucağının <span class="m">BC</span> tərəfi üzərindədir. <span class="m">BD = m</span>, <span class="m">DC = n</span>, <span class="m">BC = a = m + n</span>.</p>
+      <div class="fm">AB² · DC + AC² · BD = BC · (AD² + BD · DC)
+yəni   c² · n + b² · m = a · (AD² + m · n)</div>
+      <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Stüart düsturu üçün şəkil"><polygon points="191.6,30 49.6,180 230.3,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/><line x1="191.6" y1="30" x2="152.9" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="191.6" y1="30" x2="191.6" y2="180" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/><path d="M191.6 171L200.6 171L200.6 180" fill="none" stroke="var(--ink)" stroke-width="1.3"/><text x="111.1" y="101.0" text-anchor="middle" class="lbl">c</text><text x="223.5" y="106.7" text-anchor="middle" class="lbl">b</text><text x="101.2" y="198" text-anchor="middle" class="lbl">m</text><text x="191.6" y="198" text-anchor="middle" class="lbl">n</text><text x="204.6" y="110" text-anchor="middle" class="lbl">h</text><text x="172.2" y="198" text-anchor="middle" class="lbl">e</text><circle cx="49.6" cy="180" r="2.6" fill="var(--ink)"/><circle cx="230.3" cy="180" r="2.6" fill="var(--ink)"/><circle cx="191.6" cy="30" r="2.6" fill="var(--ink)"/><circle cx="152.9" cy="180" r="2.6" fill="var(--ink)"/><circle cx="191.6" cy="180" r="2.6" fill="var(--ink)"/><text x="36.9" y="190.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">B</text><text x="241.9" y="192.8" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">C</text><text x="196.1" y="21.7" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">A</text><text x="151.7" y="198.9" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">D</text><text x="199.5" y="196.5" text-anchor="middle" class="lbl" style="fill:var(--ink);font-style:italic">H</text></svg><div class="cap"><p>BD = m, DC = n, AH = h, DH = e.</p></div></div>
+      <p>Yadda saxlamaq üçün: sol tərəfdə hər tərəfin kvadratı <b>qarşı</b> parçaya vurulur (<span class="m">AB</span> kvadratı <span class="m">DC</span>-yə, <span class="m">AC</span> kvadratı <span class="m">BD</span>-yə).</p>
+      <p><b>Sübut.</b> <span class="m">AH</span> hündürlük, <span class="m">AH = h</span>, <span class="m">DH = e</span> (<span class="m">H</span> nöqtəsi <span class="m">D</span>-dən <span class="m">C</span> tərəfdədir; başqa halda <span class="m">e</span>-nin işarəsi dəyişir).</p>
+      <div class="ex">BH = m + e,   HC = n − e,   AD² = h² + e².
+Pifaqor:
+   c² = h² + (m + e)²,    b² = h² + (n − e)²
+c²-ni n-ə, b²-ni m-ə vuraq və toplayaq:
+   n·c² + m·b² = (n + m)h² + n(m + e)² + m(n − e)²
+              = a·h² + nm² + 2nme + ne² + mn² − 2mne + me²
+              = a·h² + mn(m + n) + a·e²
+              = a·(h² + e²) + a·mn
+              = a·(AD² + mn).   ∎</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  AB = 8, AC = 6, BC = 7, BD = 4 (DC = 3).  AD = ?
+  AB² · DC + AC² · BD = 64 · 3 + 36 · 4 = 192 + 144 = 336
+  336 = 7 · (AD² + 4 · 3)  →  AD² + 12 = 48  →  AD² = 36
+  Cavab: AD = 6
+
+Nümunə 2.  Stüartdan median: BD = DC = a/2.
+  (c² + b²) · a/2 = a · (AD² + a²/4)
+  AD² = (b² + c²)/2 − a²/4 = (2b² + 2c² − a²)/4   — median düsturu ✓
+
+Nümunə 3.  Stüartdan tənbölən: BD = ac/(b + c), DC = ab/(b + c).
+  c² · ab/(b + c) + b² · ac/(b + c) = abc(c + b)/(b + c) = abc
+  abc = a · (AD² + BD · DC)  →  AD² = bc − BD · DC   — Dərs 2-nin düsturu ✓</div>
+      <div class="life"><b>Həyatdan: dəniz yolu.</b> Düz sahil xətti üzərində B və C limanları var, <span class="m">BC = 7 km</span>. Dənizdəki A adasından B-yə 8 km, C-yə 6 km-dir. Sahildə B-dən 4 km məsafədə D məntəqəsi var. Adadan D-yə məsafə: Nümunə 1-ə görə 6 km.</div>
+
+      <h3><span class="st">4</span> Klassik olimpiada məsələləri</h3>
+      <p><b>Məsələ 1. Bərabəryanlı üçbucaqda.</b> <span class="m">AB = AC</span>, <span class="m">D</span> nöqtəsi <span class="m">BC</span> üzərindədir. Sübut et: <span class="m">AD² = AB² − BD · DC</span>.</p>
+      <div class="ex">Həll. Stüartda b = c: c²·n + c²·m = a·(AD² + mn).
+  c²·(m + n) = a·(AD² + mn),  m + n = a → c² = AD² + mn.
+  AD² = AB² − BD · DC.   ∎
+Məsələn AB = AC = 13, BC = 10, BD = 4, DC = 6:  AD² = 169 − 24 = 145,
+  AD = √145.</div>
+
+      <p><b>Məsələ 2. 13-14-15 üçbucağı.</b> Tərəfləri 13, 14, 15 olan üçbucaqda 14-lük tərəfə çəkilmiş tənbölənin uzunluğunu tap (tənbölən 13 və 15-lik tərəflər arasındakı bucağı bölür).</p>
+      <div class="ex">Həll. AB = 13, AC = 15, BC = 14.
+  BD : DC = 13 : 15 → BD = 14 · 13/28 = 6,5;  DC = 7,5
+  AD² = AB · AC − BD · DC = 195 − 6,5 · 7,5 = 195 − 48,75 = 146,25
+  AD = √146,25 = √585/2 = 3√65/2 ≈ 12,09.
+Stüart ilə yoxlama:  13² · 7,5 + 15² · 6,5 = 1267,5 + 1462,5 = 2730
+  14 · (AD² + 48,75) = 14 · 195 = 2730 ✓</div>
+
+      <p><b>Məsələ 3. Tərs məsələ.</b> <span class="m">AC = 6</span>, <span class="m">BC = 7</span>, <span class="m">BD = 4</span>, <span class="m">AD = 6</span> məlumdur. <span class="m">AB</span>-ni tap.</p>
+      <div class="ex">Həll. DC = 7 − 4 = 3.
+  AB² · 3 + 36 · 4 = 7 · (36 + 12) = 336
+  3 · AB² = 336 − 144 = 192,  AB² = 64,  AB = 8.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kvadratları "öz" parçalarına vurmaq: <span class="m">AB²·BD</span>. Düzü: <span class="m">AB²</span> <b>qarşı</b> parça <span class="m">DC</span>-yə vurulur.</li>
+        <li><span class="m">BC</span> vuruğunu unutmaq: sağ tərəf <span class="m">BC · (AD² + BD·DC)</span>-dir, yalnız mötərizə yox.</li>
+        <li><span class="m">AD² + BD·DC</span>-dən sonra <span class="m">AD²</span>-ni tapmaq üçün <span class="m">BD·DC</span>-ni çıxmağı unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AB² · DC + AC² · BD = BC · (AD² + BD · DC)
+Median:  BD = DC → m² = (2b² + 2c² − a²)/4
+Tənbölən:  AD² = AB · AC − BD · DC
+AB = AC:  AD² = AB² − BD · DC</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">AB = 6</span>, <span class="m">AC = 4</span>, <span class="m">BC = 5</span>, <span class="m">BD = 4</span>. <span class="m">AD</span>-ni tap. <span class="ans">DC = 1. 36·1 + 16·4 = 100 = 5·(AD² + 4) → AD² = 16, AD = 4.</span></li>
+        <li><span class="m">AB = AC = 10</span>, <span class="m">BD = 2</span>, <span class="m">DC = 8</span>. <span class="m">AD</span>-ni tap. <span class="ans">AD² = 100 − 2·8 = 84, AD = √84 = 2√21.</span></li>
+        <li>Stüartdan median düsturunu çıxar (<span class="m">BD = DC</span>). <span class="ans">c²·a/2 + b²·a/2 = a·(AD² + a²/4) → AD² = (b² + c²)/2 − a²/4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
