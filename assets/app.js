@@ -533,7 +533,7 @@ async function pageSehv() {
 }
 
 /* ---------- lesson inside the portal ---------- */
-const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html" };
+const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "olimpiada.html" };
 async function pageLesson() {
   const name = new URLSearchParams(location.search).get("p") || "";
   if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }

@@ -15,6 +15,7 @@
   color-scheme:light;
 }
 :root[data-kat="phys"]{ --subj:#0c447c; --subj-soft:#e6f1fb; --subj-mid:#d6e8f8; }
+:root[data-kat="olym"]{ --subj:#633806; --subj-soft:#faeeda; --subj-mid:#f8e3be; }
 
 body{margin:0;-webkit-font-smoothing:antialiased}
 .wrap{max-width:820px;gap:24px;padding-block:24px 80px}
