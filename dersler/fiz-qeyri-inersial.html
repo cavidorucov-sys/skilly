@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Qeyri-inersial sistemlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-qeyri-inersial.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Qeyri-inersial sistemlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika</div>
+    <h1>Qeyri-inersial sistemlər: ətalət qüvvəsi, çəkisizlik, əlavə yüklənmə</h1>
+    <p>Avtobus kəskin tərpənəndə geri "atılırsan", lift qalxanda ayaqların ağırlaşır, attraksionda bir anlıq çəkisiz olursan. Bunların hamısını Nyuton qanunları izah edir. Bu mövzuda təcilli sistemin içindən necə hesablamağı öyrənəcəksən: liftdə çəki, tərəzinin göstərişi, təcilli maşında sapın meyli, çəkisizlik və əlavə yüklənmə.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ətalət qüvvəsi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Liftdə çəki</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Maşında sap</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çəkisizlik</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İnersial və qeyri-inersial sistemlər, ətalət qüvvəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtobusda ayaq üstə durursan. Sürücü qəfil qaz verir — sən geri yıxılırsan. Qəfil tormoz verir — irəli. Səni kim itələdi? Heç kim! Arxanda heç nə yoxdur. Bəs nə oldu?</p>
+      <p>Yerdə dayanan adam belə görür: avtobus irəli sürətləndi, sən isə <b>ətalətlə</b> əvvəlki sürətində qalmağa çalışdın. Ayaqların avtobusla getdi, gövdən geri qaldı. Heç bir "geri itələyən" qüvvə yoxdur.</p>
+
+      <h3><span class="st">2</span> İnersial və qeyri-inersial sistem</h3>
+      <p><b>İnersial sistem</b> — Nyutonun I qanunu ödənən sistem: qüvvə yoxdursa, cisim sükunətdə qalır və ya bərabər sürətlə gedir. Yer (təxminən), sabit sürətlə gedən qatar — inersialdır.</p>
+      <p><b>Qeyri-inersial sistem</b> — təcillə hərəkət edən sistem: sürətlənən avtobus, tormozlayan maşın, təcilli lift, fırlanan karusel. Bu sistemin içindən baxanda cisimlər "səbəbsiz" sürətlənir — Nyuton qanunları olduğu kimi işləmir.</p>
+      <p>İki yol var. <b>Birinci</b>: hər şeyi Yerdən (inersial sistemdən) yaz: <span class="m">F_əv = ma</span>. <b>İkinci</b>: təcilli sistemin içində qal, amma hər cismə əlavə bir qüvvə əlavə et.</p>
+
+      <h3><span class="st">3</span> Ətalət qüvvəsi</h3>
+      <div class="fm">F_in = −m·a
+a — sistemin (avtobusun, liftin) təcili
+İşarə "−": sistemin təcilinin əksinə</div>
+      <p>Bu qüvvəni əlavə edəndən sonra təcilli sistemdə sükunətdə olan cisim üçün sadəcə <b>tarazlıq</b> yazırsan: bütün qüvvələrin cəmi (ətalət qüvvəsi daxil) sıfırdır. Ətalət qüvvəsini heç bir cisim yaratmır, onun "cütü" (Nyutonun III qanunu) yoxdur — bu, hesablama alətidir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Yük maşınının kuzovunda qutu: maşının təcili irəli, ətalət qüvvəsi geri, sürtünmə irəli">
+          <defs><marker id="qi1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="20" y="70" width="170" height="50" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M190 120L190 80L222 80L238 100L238 120z" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="60" cy="128" r="12" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="205" cy="128" r="12" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="90" y="40" width="40" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="110" y="60" class="lbl" text-anchor="middle">m</text>
+          <line x1="90" y1="55" x2="45" y2="55" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#qi1)"/>
+          <text x="42" y="47" class="lbl">F_in = ma</text>
+          <line x1="110" y1="74" x2="155" y2="74" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#qi1)"/>
+          <text x="160" y="66" class="lbl">F_sür</text>
+          <line x1="150" y1="158" x2="215" y2="158" stroke="var(--ink)" stroke-width="2" marker-end="url(#qi1)"/>
+          <text x="140" y="162" class="lbl" text-anchor="end">a</text>
+        </svg>
+        <div class="cap">
+          <p>Maşın irəli <span class="m">a</span> təcili ilə sürətlənir. Maşına görə qutu tərpənmir. Maşının sistemində qutuya geri <span class="m">F_in = ma</span> təsir edir, onu irəli yönəlmiş sükunət sürtünməsi tarazlayır: <span class="m">F_sür = ma</span>.</p>
+          <p>Yerdən baxsaq eyni nəticə: qutu maşınla birlikdə <span class="m">a</span> ilə sürətlənir, bunu ona yalnız sürtünmə verə bilər.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Kuzovda 20 kq qutu, maşın 2 m/s² ilə sürətlənir,
+qutu sürüşmür. Sürtünmə qüvvəsi?
+  F_sür = F_in = ma = 20·2 = 40 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Qutu ilə kuzov arasında μ = 0,3. Maşın ən çoxu hansı
+təcillə sürətlənə bilər ki, qutu sürüşməsin?
+  Sükunət sürtünməsi ən çoxu μmg ola bilər:
+  ma ≤ μmg  →  a ≤ μg = 0,3·10 = 3 m/s²
+  Kütlə ixtisar olundu: ağır və yüngül qutu eyni anda sürüşür.</div>
+      <div class="ex">Nümunə 3. Avtomobil 8 s-də 0-dan 72 km/saata çatır.
+60 kq-lıq sərnişini söykənəcək hansı qüvvə ilə itələyir?
+  72 km/saat = 72/3,6 = 20 m/s,  a = 20/8 = 2,5 m/s²
+  F = ma = 60·2,5 = 150 N</div>
+      <div class="life"><b>Həyatdan.</b> Tormozda arxa oturacaqdakı çanta irəli uçur — maşının sistemində ona irəli <span class="m">ma</span> ətalət qüvvəsi təsir edir. Təhlükəsizlik kəməri bu qüvvəni səndən götürür. Cüdoda da belədir: rəqibi qəfil özünə dartanda onun gövdəsi ətalətlə yerində qalır, tarazlığını itirir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ətalət qüvvəsini sistemin təcili <b>istiqamətində</b> çəkmək. O, həmişə təcilin <b>əksinədir</b>.</li>
+        <li>Eyni məsələdə həm Yerdən <span class="m">F = ma</span> yazmaq, həm də ətalət qüvvəsi əlavə etmək — qüvvə iki dəfə sayılır. Bir sistem seç.</li>
+        <li>Sükunət sürtünməsini həmişə <span class="m">μmg</span> götürmək. <span class="m">μmg</span> — onun <b>ən böyük</b> qiymətidir; əslində o, lazım olan qədərdir (<span class="m">ma</span>).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təcilli sistemdə hər cismə: F_in = m·a, sistemin təcilinin əksinə.
+Sonra adi tarazlıq yaz.
+Qutu sürüşmür:  a ≤ μg</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Maşın tormozlayır. Maşının sistemində sərnişinə ətalət qüvvəsi hara yönəlib? <span class="ans">İrəli (təcil geriyə yönəlib, ətalət qüvvəsi onun əksinə).</span></li>
+        <li>μ = 0,25. Qutu sürüşməsin deyə maşının ən böyük təcili? <span class="ans">a = μg = 2,5 m/s².</span></li>
+        <li>Qatar sabit 30 m/s sürətlə gedir. Vaqonda masa üstündəki fincana ətalət qüvvəsi təsir edirmi? <span class="ans">Yox. Təcil 0-dır, vaqon inersial sistemdir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Liftdə çəki və tərəzinin göstərişi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Ağırlıq qüvvəsi və çəki — fərqli şeylərdir</h3>
+      <p><b>Ağırlıq qüvvəsi</b> <span class="m">mg</span> — Yerin cismi cəlb etməsidir. Lift nə edirsə etsin, o dəyişmir.</p>
+      <p><b>Çəki</b> <span class="m">P</span> — cismin dayağa (döşəməyə, tərəziyə) təzyiq etdiyi və ya asqını (ipi) dartdığı qüvvədir. Nyutonun III qanununa görə çəki dayağın reaksiya qüvvəsinə bərabərdir: <span class="m">P = N</span>. Dayanan liftdə <span class="m">P = mg</span>, amma təcilli liftdə yox.</p>
+
+      <h3><span class="st">2</span> Təcil yuxarı və aşağı</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 210" role="img" aria-label="Liftdə tərəzi üstündə adam: N yuxarı, mg aşağı, təcil yuxarı">
+          <defs><marker id="qi2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="110" y1="5" x2="110" y2="25" stroke="var(--muted)" stroke-width="2"/>
+          <rect x="40" y="25" width="140" height="170" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="85" y="172" width="50" height="10" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="110" cy="75" r="11" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M110 86L110 135M110 100L92 118M110 100L128 118M110 135L98 172M110 135L122 172" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="172" x2="150" y2="118" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#qi2)"/>
+          <text x="156" y="122" class="lbl">N</text>
+          <line x1="70" y1="120" x2="70" y2="165" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#qi2)"/>
+          <text x="50" y="150" class="lbl">mg</text>
+          <line x1="215" y1="150" x2="215" y2="80" stroke="var(--ink)" stroke-width="2" marker-end="url(#qi2)"/>
+          <text x="222" y="118" class="lbl">a</text>
+        </svg>
+        <div class="cap">
+          <p>Adama iki qüvvə təsir edir: döşəmənin (tərəzinin) reaksiyası <span class="m">N</span> yuxarı, ağırlıq <span class="m">mg</span> aşağı. Təcil yuxarıdırsa, yuxarı qüvvə böyük olmalıdır:</p>
+          <div class="ex">N − mg = ma → P = m(g + a)</div>
+          <p>Təcil aşağıdırsa: <span class="m">mg − N = ma</span> → <span class="m">P = m(g − a)</span>.</p>
+        </div>
+      </div>
+      <p>Ən vacib addım — <b>təcilin istiqamətini</b> tapmaq. Sürətin istiqaməti rol oynamır!</p>
+      <div class="fm">Lift nə edir                      Təcil     Çəki
+yuxarı gedir, sürətlənir         yuxarı    m(g + a)
+aşağı gedir, yavaşıyır           yuxarı    m(g + a)
+aşağı gedir, sürətlənir          aşağı     m(g − a)
+yuxarı gedir, yavaşıyır          aşağı     m(g − a)
+sabit sürətlə (hər tərəfə)       0         mg</div>
+      <p>Liftin sistemindən baxsaq: ətalət qüvvəsi <span class="m">ma</span> təcilin əksinədir. Təcil yuxarıdırsa, o, aşağı yönəlib <span class="m">mg</span>-yə əlavə olunur — sanki <span class="m">g</span> artıb: <span class="m">g_ef = g + a</span>.</p>
+
+      <h3><span class="st">3</span> Tərəzi nə göstərir</h3>
+      <p>Döşəmə tərəzisi əslində qüvvəni ölçür, amma şkalası kiloqramladır: ölçdüyü qüvvəni <span class="m">g</span>-yə bölür.</p>
+      <div class="fm">göstəriş = P/g = m(g ± a)/g</div>
+      <p>Liftdəki ip də eyni qaydaya tabedir: tavandan asılmış yükü saxlayan ipin gərilməsi <span class="m">T = m(g ± a)</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 50 kq şagird, lift yuxarı 2 m/s² ilə sürətlənir.
+  Təcil yuxarı: P = 50·(10 + 2) = 600 N
+  Tərəzi: 600/10 = 60 kq göstərir</div>
+      <div class="ex">Nümunə 2. Həmin lift yuxarı qalxır və 2 m/s² ilə yavaşıyır.
+  Sürət yuxarı, amma azalır → təcil aşağı
+  P = 50·(10 − 2) = 400 N, tərəzi 40 kq</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Liftdə 50 kq-lıq adamın tərəzisi 55 kq göstərir.
+Liftin təcili nədir və lift hara gedir?
+  P = 550 N > mg = 500 N → təcil yuxarı
+  a = (550 − 500)/50 = 1 m/s²
+  Lift ya yuxarı sürətlənir, ya da aşağı gedib yavaşıyır —
+  tərəziyə baxıb bunu ayırmaq olmaz! Tərəzi yalnız təcili "hiss edir".</div>
+      <div class="ex">Nümunə 4 (RFO tipli). İp ən çoxu 300 N gərilməyə dözür.
+Liftdə ondan 20 kq yük asılıb. Lift yuxarı ən çoxu hansı
+təcillə sürətlənə bilər?
+  T = m(g + a) ≤ 300 → 10 + a ≤ 15 → a ≤ 5 m/s²</div>
+      <div class="life"><b>Həyatdan.</b> Göydələnin sürətli liftində (məsələn, Bakıdakı hündür binalarda) tərpənən kimi ayaqların "ağırlaşır", mərtəbəyə çatanda "yüngülləşir". Bu, sənin çəkindir — ağırlıq qüvvən isə dəyişmir. Tərəzini liftə aparıb yoxlaya bilərsən: 46 kq-lıq Fikrət yuxarı 1 m/s² təcildə 50,6 kq görəcək.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Lift aşağı gedir → təcil aşağıdır" demək. Aşağı gedib <b>yavaşıyırsa</b>, təcil yuxarıdır.</li>
+        <li>Çəkini ağırlıq qüvvəsi ilə eyniləşdirmək. Ağırlıq qüvvəsi həmişə <span class="m">mg</span>-dir, çəki — dayağın reaksiyasıdır.</li>
+        <li>Tərəzinin göstərişini nyutonla yazmaq: tərəzi <span class="m">P/g</span> kiloqram göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Çəki P = N (dayağın reaksiyası)
+Təcil yuxarı:  P = m(g + a)
+Təcil aşağı:   P = m(g − a)
+Tərəzi:        P/g kq
+Təcili sürətin DƏYİŞMƏSİNƏ görə tap.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>60 kq adam, lift aşağı gedir və 3 m/s² ilə yavaşıyır. Çəki? <span class="ans">Təcil yuxarı: P = 60·13 = 780 N.</span></li>
+        <li>Həmin adam, lift aşağı 3 m/s² ilə sürətlənir. Tərəzi? <span class="ans">P = 60·7 = 420 N → 42 kq.</span></li>
+        <li>Lift sabit 5 m/s sürətlə qalxır. 60 kq adamın tərəzisi? <span class="ans">60 kq — təcil yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Təcilli maşında sap və su səthi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sap niyə meyl edir</h3>
+      <p>Maşının güzgüsündən asılmış oyuncaq maşın sürətlənəndə <b>geri</b>, tormozlayanda <b>irəli</b> meyl edir. Bunu dinamika dərsində Yerdən baxaraq gördün. İndi maşının içindən baxaq.</p>
+      <p>Maşının sistemində oyuncaq tərpənmir. Ona üç qüvvə təsir edir: <span class="m">mg</span> aşağı, ətalət qüvvəsi <span class="m">ma</span> geri, sapın gərilməsi <span class="m">T</span>. Üçünün cəmi sıfırdır.</p>
+
+      <h3><span class="st">2</span> Bucaq və gərilmə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Sürətlənən maşında sap geri meyl edib: T sap boyunca, mg aşağı, ma geri">
+          <defs><marker id="qi3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="30" y1="20" x2="230" y2="20" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="150" y1="20" x2="150" y2="130" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="150" y1="20" x2="90" y2="110" stroke="var(--ink)" stroke-width="1.8"/>
+          <circle cx="90" cy="110" r="9" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M150 50A30 30 0 0 1 133 45" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="140" y="66" class="lbl">α</text>
+          <line x1="90" y1="110" x2="120" y2="65" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#qi3)"/>
+          <text x="124" y="80" class="lbl">T</text>
+          <line x1="90" y1="119" x2="90" y2="175" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#qi3)"/>
+          <text x="96" y="172" class="lbl">mg</text>
+          <line x1="81" y1="110" x2="35" y2="110" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#qi3)"/>
+          <text x="35" y="102" class="lbl">ma</text>
+          <line x1="170" y1="185" x2="235" y2="185" stroke="var(--ink)" stroke-width="2" marker-end="url(#qi3)"/>
+          <text x="162" y="189" class="lbl" text-anchor="end">a</text>
+        </svg>
+        <div class="cap">
+          <p>Sapın gərilməsinin şaquli hissəsi <span class="m">mg</span>-ni, üfüqi hissəsi <span class="m">ma</span>-nı tarazlayır:</p>
+          <div class="ex">T·cos α = mg
+T·sin α = ma</div>
+          <p>Bölsək — bucaq, kvadratları toplasaq — gərilmə.</p>
+        </div>
+      </div>
+      <div class="fm">tg α = a/g
+T = m·√(g² + a²)</div>
+      <p>Kütlə ixtisar olunur: ağır və yüngül yük eyni bucaqla meyl edir. Maşının içində sanki yeni "ağırlıq" var: <span class="m">g_ef = √(g² + a²)</span>, aşağı və geri yönəlib. Sap həmişə <span class="m">g_ef</span> boyunca durur.</p>
+
+      <h3><span class="st">3</span> Su səthi</h3>
+      <p>Durğun suyun səthi həmişə "ağırlığa" perpendikulyardır. Təcilli maşında ağırlıq <span class="m">g_ef</span>-dir, ona görə su səthi üfüqə <span class="m">α</span> bucağı ilə əyilir: <span class="m">tg α = a/g</span>. Su <b>arxa</b> divarda qalxır, ön divarda enir.</p>
+      <div class="fm">Δh = L·tg α = L·a/g      (L — qabın uzunluğu)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Vaqon 7,5 m/s² ilə sürətlənir, sapda 0,2 kq yük.
+  tg α = 7,5/10 = 0,75  (α ≈ 37°)
+  T = 0,2·√(100 + 56,25) = 0,2·12,5 = 2,5 N
+  (Vaqon dayananda T = mg = 2 N olardı.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Avtomobil 5 m/s² ilə tormozlayır. Tavandan asılmış sap hara və
+hansı bucaqla meyl edir?
+  Təcil geri → ətalət qüvvəsi irəli → sap İRƏLİ meyl edir
+  tg α = 5/10 = 0,5</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Uzunluğu 0,5 m olan akvarium
+2 m/s² ilə sürətlənən maşındadır. Suyun səviyyələri fərqi?
+  tg α = 2/10 = 0,2
+  Δh = 0,5·0,2 = 0,1 m = 10 sm  (arxada yuxarı)</div>
+      <div class="life"><b>Həyatdan.</b> Maşında ipə bağlı helium şarı var. Maşın sürətlənəndə şar... <b>irəli</b> meyl edir! Şarı itələyən hava kütləsi ətalətlə geri yığılır, "effektiv ağırlıq" geri yönəlir, şar isə həmişə ağırlığın əksinə — yuxarı və irəli — üzür. Olimpiadada belə keyfiyyət sualları da olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">tg α = g/a</span> yazmaq. Bucaq şaquldan ölçülür, üfüqi tərəf <span class="m">ma</span>-dır: <span class="m">tg α = a/g</span>.</li>
+        <li><span class="m">T = m(g + a)</span> yazmaq. <span class="m">mg</span> və <span class="m">ma</span> perpendikulyardır — Pifaqorla toplanır.</li>
+        <li>Tormozda sapı geri çəkmək. Tormozda təcil geri, ətalət qüvvəsi və sap — irəli.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sap:      tg α = a/g,   T = m√(g² + a²)
+g_ef = √(g² + a²)
+Su səthi: tg α = a/g,   Δh = L·a/g
+Sürətlənmə → sap geri;  tormoz → sap irəli</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sap 45° meyl edib. Maşının təcili? <span class="ans">tg 45° = 1 → a = g = 10 m/s².</span></li>
+        <li>a = 10 m/s², yük 0,5 kq. T = ? <span class="ans">T = 0,5·√200 = 0,5·10√2 = 5√2 ≈ 7,07 N.</span></li>
+        <li>Maşın sabit sürətlə döngəsiz yolla gedir. Sap necə durur? <span class="ans">Şaquli: təcil yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Çəkisizlik və əlavə yüklənmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Çəkisizlik</h3>
+      <p>Liftin trosu qırılsa (təhlükəsizlik sistemləri buna imkan vermir!), lift və içindəkilər sərbəst düşər: <span class="m">a = g</span>, aşağı. Onda:</p>
+      <div class="fm">P = m(g − g) = 0</div>
+      <p>Tərəzi 0 göstərir, ayaqlar döşəməyə basmır, cibindən çıxan telefon havada "üzür". Bu, <b>çəkisizlikdir</b>. Diqqət: ağırlıq qüvvəsi <span class="m">mg</span> yox olmayıb! Hamı eyni təcillə düşür, ona görə heç kim heç kimə basmır.</p>
+      <p>Beynəlxalq Kosmik Stansiyada astronavtlar da çəkisizdir, halbuki orada <span class="m">g</span> Yerdəkinin təxminən 90%-idir. Stansiya Yerin ətrafında daim "düşür" — onun bütün təcili ağırlıq qüvvəsindən gəlir.</p>
+      <p>Sən də hər tullananda çəkisiz olursan — ayaqların yerdən ayrılandan yerə toxunana qədər, həm qalxanda, həm enəndə.</p>
+
+      <h3><span class="st">2</span> Əlavə yüklənmə</h3>
+      <p>Çəkinin adi çəkiyə nisbəti <b>əlavə yüklənmə</b> (ifrat yüklənmə) adlanır:</p>
+      <div class="fm">n = P/(mg)
+Təcil yuxarı:  n = (g + a)/g
+Sərbəst düşmə: n = 0</div>
+      <p>Raket startında astronavtlar <span class="m">n ≈ 3–4</span> yaşayır, qırıcı təyyarənin pilotu döngədə <span class="m">n = 8–9</span>-a qədər (xüsusi kostyumla). <span class="m">n = 4</span> o deməkdir ki, 70 kq-lıq astronavt kresloya 2800 N ilə basır — sanki 280 kq-dır.</p>
+
+      <h3><span class="st">3</span> Körpü və yelləncək</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Qabarıq körpünün təpəsində avtomobil: N yuxarı, mg aşağı, mərkəzəqaçma təcili aşağı">
+          <defs><marker id="qi4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M10 150Q130 10 250 150" fill="none" stroke="var(--ink)" stroke-width="3"/>
+          <rect x="112" y="62" width="36" height="16" rx="4" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="160" y1="78" x2="160" y2="38" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#qi4)"/>
+          <text x="166" y="44" class="lbl">N</text>
+          <line x1="130" y1="78" x2="130" y2="125" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#qi4)"/>
+          <text x="136" y="122" class="lbl">mg</text>
+          <line x1="95" y1="70" x2="95" y2="110" stroke="var(--ink)" stroke-width="2" marker-end="url(#qi4)"/>
+          <text x="60" y="100" class="lbl">a = v²/R</text>
+        </svg>
+        <div class="cap">
+          <p>Qabarıq körpünün təpəsində maşın çevrə üzrə hərəkət edir — mərkəzəqaçma təcili <span class="m">v²/R</span> <b>aşağı</b>, çevrənin mərkəzinə yönəlib. Deməli çəki azalır:</p>
+          <div class="ex">mg − N = mv²/R
+P = m(g − v²/R)</div>
+          <p><span class="m">v = √(gR)</span> olanda <span class="m">P = 0</span>: maşın çəkisizdir, təkərlər yolu "hiss etmir".</p>
+        </div>
+      </div>
+      <p>Çökək yerdə (çuxurun dibində, yelləncəyin ən aşağı nöqtəsində) mərkəz <b>yuxarıdadır</b>, təcil yuxarı: <span class="m">P = m(g + v²/R)</span>, <span class="m">n = 1 + v²/(gR)</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Raket 30 m/s² ilə qalxır, astronavt 70 kq.
+  n = (10 + 30)/10 = 4
+  P = 4·700 = 2800 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+1000 kq maşın radiusu 40 m olan qabarıq körpünün
+təpəsindən 10 m/s ilə keçir. Körpüyə təzyiq qüvvəsi?
+Hansı sürətdə maşın çəkisiz olar?
+  a = v²/R = 100/40 = 2,5 m/s²
+  P = 1000·(10 − 2,5) = 7500 N
+  Çəkisizlik: v = √(gR) = √400 = 20 m/s (72 km/saat)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Uzunluğu 2,5 m olan yelləncək
+ən aşağı nöqtədən 5 m/s ilə keçir. Əlavə yüklənmə?
+  a = 25/2,5 = 10 m/s² (yuxarı)
+  n = (10 + 10)/10 = 2 — uşaq oturacağa iki qat çəki ilə basır</div>
+      <div class="life"><b>Həyatdan.</b> Attraksionda vaqoncuq təpədən aşanda "qarnın boşalır" — bu, çəkisizlik və ya çəkinin kəskin azalmasıdır. Aşağı çuxurda isə səni oturacağa basır — əlavə yüklənmə. Astronavtlar çəkisizliyə öyrəşmək üçün təyyarədə parabola üzrə uçurlar: hər uçuşda 20–25 saniyə tam çəkisizlik olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Çəkisizlikdə ağırlıq qüvvəsi yoxdur" demək. Ağırlıq qüvvəsi var — çəki (dayağa təzyiq) yoxdur.</li>
+        <li>Qabarıq körpüdə <span class="m">P = m(g + v²/R)</span> yazmaq. Təpədə mərkəz aşağıdadır: çəki <b>azalır</b>.</li>
+        <li>Əlavə yüklənməni <span class="m">n = a/g</span> hesablamaq. Düzü: <span class="m">(g + a)/g</span> — Yerdə dayananda <span class="m">n = 1</span>-dir, 0 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sərbəst düşmə (a = g aşağı):  P = 0 — çəkisizlik
+n = P/(mg) = (g + a)/g    (təcil yuxarı)
+Qabarıq təpə:  P = m(g − v²/R),  çəkisizlik v = √(gR)
+Çökək yer:     P = m(g + v²/R)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Pilot <span class="m">n = 5</span> yaşayır. Təyyarənin şaquli təcili? <span class="ans">a = (n − 1)g = 40 m/s².</span></li>
+        <li>Tullanan basketbolçu yuxarı qalxarkən çəkisizdirmi? <span class="ans">Bəli. Ayaqları yerdən ayrılandan sonra onun təcili g-dir (aşağı), qalxanda da.</span></li>
+        <li>Radiusu 90 m olan təpədə çəkisizlik hansı sürətdə olur? <span class="ans">v = √(10·90) = 30 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

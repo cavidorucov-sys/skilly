@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Elastiklik, Huk qanunu dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-huk.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Huk qanunu</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Statika</div>
+    <h1>Elastiklik, Huk qanunu</h1>
+    <p>Yay dartılanda geri çəkir, sıxılanda itələyir. Bu qüvvə deformasiyaya düz mütənasibdir: <span class="m">F = kx</span>. Bir sətirlik qanundur, amma olimpiadada yaylar ardıcıl və paralel birləşir, liftdə və təcilli masada işləyir. Burada bunların hamısını keçəcəyik. Dinamikadan (<span class="m">F_əv = ma</span>) bildiklərin burada da lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>F = kx</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Yay sistemləri</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yay və yük</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Elastiklik qüvvəsi və Huk qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bazarda bezmenlə kartof çəkirlər: torba ağır olduqca yay çox uzanır. Avtomobil çuxura düşəndə yaylar sıxılıb zərbəni udur. Batutda tullananda tor əyilib səni geri atır. Hamısında eyni qanun işləyir: yay nə qədər çox deformasiya olunursa, o qədər güclü geri qayıtmağa çalışır.</p>
+
+      <h3><span class="st">2</span> Deformasiya: elastik və plastik</h3>
+      <p><b>Deformasiya</b> — cismin formasının və ya ölçüsünün dəyişməsidir. Qüvvəni götürəndə cisim əvvəlki formasına qayıdırsa, deformasiya <b>elastikdir</b> (yay, rezin, batut toru). Qayıtmırsa — <b>plastikdir</b> (plastilin, əzilmiş alüminium banka).</p>
+      <p>Elastik deformasiyada cisimdə <b>elastiklik qüvvəsi</b> yaranır. O, deformasiyanın <b>əksinə</b> yönəlir: dartılmış yay geri çəkir, sıxılmış yay itələyir.</p>
+      <p>Deformasiyanı <span class="m">x</span> ilə işarə edirik: yayın indiki uzunluğu ilə deformasiyasız uzunluğu <span class="m">l₀</span> arasındakı fərq.</p>
+      <div class="fm">dartılma:  x = l − l₀
+sıxılma:   x = l₀ − l</div>
+
+      <h3><span class="st">3</span> Huk qanunu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="Boş yay və yük asılmış yay: deformasiya x, elastiklik qüvvəsi yuxarı, ağırlıq aşağı">
+          <defs><marker id="hk1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="40" y1="15" x2="230" y2="15" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M80 15L80 25L70 30L90 37L70 44L90 51L70 58L90 65L70 72L90 79L80 84L80 90" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <circle cx="80" cy="90" r="3" fill="var(--ink)"/>
+          <text x="58" y="56" class="lbl" text-anchor="end">l₀</text>
+          <path d="M180 15L180 25L170 31L190 41L170 51L190 61L170 71L190 81L170 91L190 101L180 110L180 125" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="162" y="125" width="36" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="180" y="144" class="lbl" text-anchor="middle">m</text>
+          <line x1="70" y1="90" x2="230" y2="90" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="222" y1="92" x2="222" y2="123" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#hk1)" marker-end="url(#hk1)"/>
+          <text x="228" y="112" class="lbl">x</text>
+          <line x1="145" y1="135" x2="145" y2="98" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#hk1)"/>
+          <text x="140" y="94" class="lbl" text-anchor="end">F_el = kx</text>
+          <line x1="180" y1="155" x2="180" y2="200" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#hk1)"/>
+          <text x="188" y="200" class="lbl">mg</text>
+        </svg>
+        <div class="cap">
+          <p>Solda boş yay — uzunluğu <span class="m">l₀</span>. Sağda ondan yük asılıb: yay <span class="m">x</span> qədər uzanıb. Yaya yuxarı <b>elastiklik qüvvəsi</b>, aşağı <b>ağırlıq</b> təsir edir. Tarazlıqda onlar bərabərdir: <span class="m">kx = mg</span>.</p>
+        </div>
+      </div>
+      <p>XVII əsrdə ingilis alimi Robert Huk təcrübə ilə tapdı: kiçik deformasiyalarda elastiklik qüvvəsi deformasiyaya düz mütənasibdir.</p>
+      <div class="fm">F_el = k·x
+k — sərtlik, vahidi N/m</div>
+      <p><span class="m">k</span> yayın özündən asılıdır: materialdan, məftilin qalınlığından, sarğıların sayından. <span class="m">k = 200 N/m</span> o deməkdir ki, yayı 1 m dartmaq üçün 200 N lazımdır (və ya 1 sm üçün 2 N). Qanun yalnız <b>elastiklik həddinə</b> qədər doğrudur: yayı çox dartsan, açılıb düz məftilə çevrilər, artıq geri qayıtmaz.</p>
+      <p>Qrafikdə <span class="m">F</span>-in <span class="m">x</span>-dən asılılığı koordinat başlanğıcından keçən düz xəttdir. Bucaq əmsalı <span class="m">k</span>-dır: sərt yayın xətti dikdir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Yaydan 200 q yük asanda o, 4 sm uzanır. k = ?
+  m = 200 q = 0,2 kq → mg = 0,2·10 = 2 N
+  x = 4 sm = 0,04 m
+  k = F/x = 2/0,04 = 50 N/m</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Yayı 2 N qüvvə ilə dartanda uzunluğu 12 sm, 4 N qüvvə ilə
+dartanda 14 sm olur. Yayın deformasiyasız uzunluğunu və
+sərtliyini tap.
+  12 − l₀ = 2/k
+  14 − l₀ = 4/k
+  Çıx (ikincidən birincini):  2 sm = 2/k
+  k = 2 N / 0,02 m = 100 N/m
+  l₀ = 12 sm − 2/100 m = 12 sm − 2 sm = 10 sm
+Cavab: l₀ = 0,1 m, k = 100 N/m</div>
+      <div class="ex">Nümunə 3 (RFO tipli, tələli).
+Yayı 10 N ilə dartanda uzunluğu 30 sm, eyni 10 N ilə
+sıxanda 20 sm olur. l₀ və k = ?
+  Dartanda:  30 − l₀ = 10/k
+  Sıxanda:   l₀ − 20 = 10/k      (sıxılmada x = l₀ − l)
+  Sağ tərəflər eynidir → 30 − l₀ = l₀ − 20 → l₀ = 25 sm
+  x = 5 sm = 0,05 m → k = 10/0,05 = 200 N/m</div>
+      <div class="life"><b>Həyatdan.</b> Laboratoriyadakı <b>dinamometr</b> — şkalalı yaydır. Uzanma qüvvəyə düz mütənasib olduğu üçün şkalanın bölgüləri bərabər aralıqlıdır. Bezmen də eyni prinsiplə işləyir: 5 kq-lıq çəki daşı yayı 2 sm uzadırsa, 4 sm uzadan torba 10 kq-dır — <span class="m">k</span>-nı bilmək belə lazım deyil.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x</span> yerinə yayın uzunluğunu <span class="m">l</span> yazmaq. Huk qanununda <b>deformasiya</b> (uzunluğun dəyişməsi) durur.</li>
+        <li>Santimetri metrə çevirməmək: <span class="m">k = 2/4 = 0,5 N/m</span> — səhv, düzü <span class="m">2/0,04 = 50 N/m</span>.</li>
+        <li>Qramı kiloqrama çevirməmək: 200 q yükün ağırlığı 2000 N yox, 2 N-dur.</li>
+        <li>Sıxılmada da <span class="m">x = l − l₀</span> yazıb mənfi deformasiya almaq. <span class="m">x</span> — modul kimi götürülür, istiqaməti qüvvənin istiqaməti göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F_el = k·x,  x = |l − l₀|,  k — N/m
+Qüvvə deformasiyanın əksinə yönəlir.
+Tarazlıqda asılı yük:  kx = mg
+Uzanma qüvvəyə düz mütənasibdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sərtliyi 400 N/m olan yayı 5 sm dartıblar. Elastiklik qüvvəsi? <span class="ans">F = 400·0,05 = 20 N.</span></li>
+        <li>Yaydan 1 kq yük asanda o, 2 sm uzanır. 3 kq yük assaq? <span class="ans">Uzanma kütləyə mütənasibdir: 6 sm.</span></li>
+        <li>Yay 6 N ilə dartılanda 16 sm, 9 N ilə dartılanda 17 sm olur. l₀ = ? <span class="ans">1 sm fərq 3 N verir → k = 3/0,01 = 300 N/m. x₁ = 6/300 = 0,02 m = 2 sm → l₀ = 14 sm.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Yayların ardıcıl və paralel birləşməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobil dörd yayın üstündə durur, espanderdə bir neçə yay yan-yana bərkidilib, döşəkdə yüzlərlə yay var. Bir neçə yayı <b>bir yay kimi</b> görmək olar — onun sərtliyini tapmaq lazımdır. Olimpiadada bu, çox sevilən mövzudur.</p>
+
+      <h3><span class="st">2</span> Paralel birləşmə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Solda iki yay paralel, sağda iki yay ardıcıl birləşib">
+          <line x1="20" y1="15" x2="120" y2="15" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M45 15L45 25L37 30L53 38L37 46L53 54L37 62L53 70L45 75L45 100" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <path d="M95 15L95 25L87 30L103 38L87 46L103 54L87 62L103 70L95 75L95 100" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <text x="30" y="50" class="lbl" text-anchor="end">k₁</text><text x="110" y="50" class="lbl">k₂</text>
+          <rect x="35" y="100" width="70" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="70" y="150" class="lbl" text-anchor="middle">paralel</text>
+          <text x="70" y="168" text-anchor="middle">x eyni, F toplanır</text>
+          <line x1="150" y1="15" x2="240" y2="15" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M195 15L195 22L187 26L203 32L187 38L203 44L195 48L195 54" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <circle cx="195" cy="56" r="3" fill="var(--ink)"/>
+          <path d="M195 58L195 64L187 68L203 74L187 80L203 86L195 90L195 100" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+          <text x="210" y="38" class="lbl">k₁</text><text x="210" y="80" class="lbl">k₂</text>
+          <rect x="178" y="100" width="34" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="195" y="150" class="lbl" text-anchor="middle">ardıcıl</text>
+          <text x="195" y="168" text-anchor="middle">F eyni, x toplanır</text>
+        </svg>
+        <div class="cap">
+          <p><b>Paralel:</b> yük iki yayın ikisindən birlikdə asılıb. Hər iki yay eyni <span class="m">x</span> qədər uzanır, yükü birlikdə saxlayırlar: <span class="m">F = k₁x + k₂x</span>.</p>
+          <p><b>Ardıcıl:</b> yaylar zəncir kimi. Hər yay eyni <span class="m">F</span> qüvvəsini ötürür, uzanmalar toplanır.</p>
+        </div>
+      </div>
+      <div class="fm">Paralel:  F = k₁x + k₂x = (k₁ + k₂)x
+          k = k₁ + k₂</div>
+      <p>Paralel sistem hər yaydan <b>sərtdir</b>. <span class="m">n</span> eyni yay paralel: <span class="m">k = n·k₁</span>.</p>
+
+      <h3><span class="st">3</span> Ardıcıl birləşmə</h3>
+      <p>Aşağıdakı yay yükü saxlayır — onda qüvvə <span class="m">F</span>-dir. Yuxarıdakı yay aşağıdakını (və yükü) saxlayır — onda da <span class="m">F</span> (yayları yüngül sayırıq). Uzanmalar: <span class="m">x₁ = F/k₁</span>, <span class="m">x₂ = F/k₂</span>, ümumi <span class="m">x = x₁ + x₂</span>.</p>
+      <div class="fm">Ardıcıl:  F/k = F/k₁ + F/k₂
+          1/k = 1/k₁ + 1/k₂
+İki yay:  k = k₁k₂/(k₁ + k₂)</div>
+      <p>Ardıcıl sistem hər yaydan <b>yumşaqdır</b> (cavab ən kiçik <span class="m">k</span>-dan da kiçik olmalıdır — yoxlama üçün əladır). <span class="m">n</span> eyni yay ardıcıl: <span class="m">k = k₁/n</span>.</p>
+
+      <h3><span class="st">4</span> Yayı kəsmək</h3>
+      <p>Yayı iki bərabər hissəyə kəsək. Bütöv yay = iki yarım yay ardıcıl. Eyni qüvvədə hər yarım yay bütövün yarısı qədər uzanır, deməli yarım yay <b>iki dəfə sərtdir</b>.</p>
+      <div class="fm">n bərabər hissəyə kəsilmiş yayın bir hissəsi:  n·k</div>
+      <p>Uzunluqla sərtlik tərs mütənasibdir: qısa yay sərtdir. Uzun rezin asan dartılır, qısa parça çətin.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. k₁ = 100 N/m, k₂ = 300 N/m.
+  Paralel: k = 100 + 300 = 400 N/m
+  Ardıcıl: k = 100·300/(100 + 300) = 30000/400 = 75 N/m
+  Yoxla: 75 &lt; 100 ✓</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Sərtliyi 60 N/m olan yayı üç bərabər hissəyə kəsib
+hissələri paralel birləşdirdilər. Sərtlik neçə dəfə dəyişdi?
+  Bir hissə: 3·60 = 180 N/m
+  Üçü paralel: 3·180 = 540 N/m
+  540/60 = 9 dəfə artdı (3·3)</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Üç eyni yay (hər biri 300 N/m): ikisi paralel bərkidilib,
+onların altından üçüncü yay asılıb, ucunda 1 kq yük.
+Sistem nə qədər uzanar?
+  Paralel cüt: 300 + 300 = 600 N/m
+  Cütlə üçüncü ardıcıl: 600·300/(600 + 300) = 200 N/m
+  x = mg/k = 10/200 = 0,05 m = 5 sm</div>
+      <div class="life"><b>Həyatdan.</b> Espanderdə 5 yay paraleldir. Gücün artdıqca yay əlavə edirsən: 3 yayla başlayıb 5-ə keçəndə sərtlik 5/3 dəfə artır. Avtomobilin dörd amortizatoru da paraleldir: 1200 kq-lıq maşın hər biri 30 000 N/m olan 4 yayı <span class="m">12000/120000 = 0,1 m</span> sıxır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düsturları qarışdırmaq. Yoxlama: paralel sistem hər yaydan <b>sərt</b>, ardıcıl hər yaydan <b>yumşaq</b> olmalıdır.</li>
+        <li>Ardıcıl üçün <span class="m">1/k</span>-nı tapıb tərsinə çevirməyi unutmaq: <span class="m">1/k = 1/75</span> → <span class="m">k = 75</span>, <span class="m">1/75</span> yox.</li>
+        <li>Kəsilmiş yayın hissəsini yumşaq saymaq. Qısa yay <b>sərtdir</b>: <span class="m">n·k</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Paralel (x eyni):   k = k₁ + k₂
+Ardıcıl (F eyni):   1/k = 1/k₁ + 1/k₂,  iki yay: k₁k₂/(k₁+k₂)
+n eyni yay:  paralel n·k,  ardıcıl k/n
+n hissəyə kəsilmiş yayın hissəsi:  n·k</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>200 N/m və 200 N/m ardıcıl? <span class="ans">200/2 = 100 N/m.</span></li>
+        <li>60 N/m və 120 N/m ardıcıl? <span class="ans">60·120/180 = 40 N/m.</span></li>
+        <li>Yayı yarıya kəsib iki yarımı ardıcıl birləşdirsək, sərtlik nə olar? <span class="ans">Hər yarım 2k, ardıcıl iki 2k → k. Bütöv yay alındı — dəyişmir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yay və yük: tarazlıq və təcil</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Tarazlıq</h3>
+      <p>Yükü yaydan asırıq, yay bir az yırğalanıb dayanır. Dayananda yükə təsir edən qüvvələr tarazdır: yuxarı <span class="m">kx</span>, aşağı <span class="m">mg</span>.</p>
+      <div class="fm">kx = mg   →   x = mg/k</div>
+      <p>Bu, dinamometrin və bezmenin işləmə prinsipidir: uzanmaya baxıb ağırlığı (və kütləni) tapırıq.</p>
+
+      <h3><span class="st">2</span> Liftdə yay</h3>
+      <p>Lift təcillə hərəkət edəndə yük də onunla birlikdə sürətlənir — tarazlıq yazmaq olmaz, Nyutonun II qanununu yazırıq. Əsas sual: <b>təcil hara yönəlib?</b></p>
+      <div class="fm">Təcil yuxarı:  kx − mg = ma  →  x = m(g + a)/k
+Təcil aşağı:   mg − kx = ma  →  x = m(g − a)/k</div>
+      <p>Təcil yuxarıdır: lift yuxarı sürətlənəndə <b>və</b> aşağı gedib yavaşıyanda. Təcil aşağıdır: aşağı sürətlənəndə və yuxarı gedib yavaşıyanda. Lift sərbəst düşsə (<span class="m">a = g</span>), <span class="m">x = 0</span> — yay heç uzanmır. Bunu "Qeyri-inersial sistemlər" mövzusunda ətraflı keçəcəyik.</p>
+
+      <h3><span class="st">3</span> Üfüqi masada yay</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="İki tin yayla birləşib, öndəki tini F qüvvəsi dartır">
+          <defs><marker id="hk3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="100" x2="250" y2="100" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="25" y="70" width="40" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="45" y="90" class="lbl" text-anchor="middle">m₁</text>
+          <path d="M65 85L75 85L80 77L88 93L96 77L104 93L112 77L120 93L125 85L135 85" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <text x="100" y="68" class="lbl" text-anchor="middle">k</text>
+          <rect x="135" y="62" width="50" height="38" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="160" y="86" class="lbl" text-anchor="middle">m₂</text>
+          <line x1="185" y1="81" x2="240" y2="81" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#hk3)"/>
+          <text x="232" y="72" class="lbl" text-anchor="end">F</text>
+          <line x1="45" y1="118" x2="85" y2="118" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#hk3)"/>
+          <text x="45" y="138">kx = m₁a</text>
+          <line x1="150" y1="125" x2="190" y2="125" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#hk3)"/><text x="195" y="129" class="lbl">a</text>
+        </svg>
+        <div class="cap">
+          <p>Hamar masada iki tin yayla birləşib, öndəkini <span class="m">F</span> dartır. Hər iki tin eyni təcillə gedir (yay artıq dartılıb, uzunluğu sabitdir). Arxadakı tini <b>yalnız yay</b> dartır — dinamikadakı ip kimi.</p>
+        </div>
+      </div>
+      <div class="fm">a = F/(m₁ + m₂)        kx = m₁·a
+Sürtünmə ilə bərabər sürətlə dartmaq:  kx = μmg</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1 (RFO, rayon mərhələsi tipli).
+Liftin tavanından k = 400 N/m yayla 2 kq yük asılıb.
+Lift yuxarı 2 m/s² təcillə sürətlənir. Yay neçə sm uzanıb?
+  Təcil yuxarı: kx − mg = ma
+  x = m(g + a)/k = 2·12/400 = 0,06 m = 6 sm
+  (Lift dayanan halda 2·10/400 = 5 sm olardı.)</div>
+      <div class="ex">Nümunə 2 (RFO tipli).
+Hamar masada m₁ = 1 kq və m₂ = 3 kq tinlər k = 100 N/m
+yayla birləşib. m₂-ni F = 8 N ilə dartırlar. x = ?
+  a = 8/(1 + 3) = 2 m/s²
+  Arxadakı m₁: kx = m₁a = 1·2 = 2 N
+  x = 2/100 = 0,02 m = 2 sm
+  Diqqət: kx = F yazsaq 8 sm alınardı — səhv.</div>
+      <div class="ex">Nümunə 3. 2 kq tini masada k = 200 N/m yayla bərabər
+sürətlə dartırlar, μ = 0,3. Yay nə qədər uzanıb?
+  Bərabər sürət → kx = μmg = 0,3·2·10 = 6 N
+  x = 6/200 = 0,03 m</div>
+      <div class="life"><b>Həyatdan.</b> Liftdə bezmenlə çanta çəksən, lift tərpənəndə göstəriş "atılır": yuxarı sürətlənəndə çanta ağır, dayanmağa yaxınlaşanda yüngül görünür. Yay yalan demir — o, həqiqətən daha çox və ya daha az dartılır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Təcilli liftdə <span class="m">kx = mg</span> yazmaq. Yük liftə görə tərpənmir, amma <b>Yerə görə</b> sürətlənir.</li>
+        <li>Təcilin istiqamətini sürətin istiqaməti ilə qarışdırmaq. Yuxarı gedib yavaşıyan liftdə təcil <b>aşağıdır</b>.</li>
+        <li>İki tin arasındakı yayda <span class="m">kx = F</span> yazmaq. Yay yalnız arxadakı tini sürətləndirir: <span class="m">kx = m_arxa·a</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tarazlıq:        kx = mg
+Lift, a yuxarı:  x = m(g + a)/k
+Lift, a aşağı:   x = m(g − a)/k
+Tinlər arasında: kx = m_arxa·a
+Bərabər sürət:   kx = μmg</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>k = 500 N/m, yük 1 kq, lift aşağı enib 5 m/s² ilə yavaşıyır. x = ? <span class="ans">Təcil yuxarıdır: x = 1·15/500 = 0,03 m.</span></li>
+        <li>Eyni sistem, lift yuxarı qalxıb 5 m/s² ilə yavaşıyır. x = ? <span class="ans">Təcil aşağıdır: x = 1·5/500 = 0,01 m.</span></li>
+        <li>Hamar masada 2 kq tini k = 50 N/m yayla dartırlar, yay 4 sm uzanıb. Təcil? <span class="ans">kx = 50·0,04 = 2 N, a = 2/2 = 1 m/s².</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Dartılmış yayın enerjisi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kamanı dartıb buraxanda ox uçur. Oyuncaq tapançanın yayı kürəciyi atır. Dartılmış yay iş görə bilir — deməli onda <b>enerji</b> toplanıb. Bu enerjini hesablamağı öyrənək. (Enerji və iş mövzusunu dinamikada ətraflı keçəcəksən; burada yalnız yay üçün lazım olanı veririk.)</p>
+
+      <h3><span class="st">2</span> E = kx²/2 haradan gəlir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="F-in x-dən asılılıq qrafiki: düz xətt, altındakı üçbucağın sahəsi enerjidir">
+          <defs><marker id="hk4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M40 160L200 160L200 40z" fill="var(--accent-soft)"/>
+          <line x1="40" y1="160" x2="245" y2="160" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#hk4)"/>
+          <line x1="40" y1="160" x2="40" y2="15" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#hk4)"/>
+          <line x1="40" y1="160" x2="220" y2="25" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="200" y1="40" x2="200" y2="160" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="40" y1="40" x2="200" y2="40" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="236" y="178" class="lbl">x</text><text x="30" y="22" class="lbl" text-anchor="end">F</text>
+          <text x="200" y="178" class="lbl" text-anchor="middle">x</text><text x="34" y="44" class="lbl" text-anchor="end">kx</text>
+          <text x="140" y="140" class="lbl" text-anchor="middle">E = kx²/2</text>
+        </svg>
+        <div class="cap">
+          <p>Yayı dartanda qüvvə sabit deyil: 0-dan başlayır, sonda <span class="m">kx</span> olur. Orta qüvvə <span class="m">kx/2</span>-dir. İş = orta qüvvə × yol = <span class="m">(kx/2)·x</span>.</p>
+          <p>Qrafikdə bu, düz xəttin altındakı <b>üçbucağın sahəsidir</b>: oturacaq <span class="m">x</span>, hündürlük <span class="m">kx</span>.</p>
+        </div>
+      </div>
+      <div class="fm">E = k·x²/2        (J = N·m)</div>
+      <p>Deformasiya 2 dəfə artsa, enerji 4 dəfə artır. Sıxılmış yayda da enerji eynidir: <span class="m">x</span> kvadrata yüksəlir.</p>
+
+      <h3><span class="st">3</span> Yayı x₁-dən x₂-yə qədər dartmaq</h3>
+      <p>Yay artıq <span class="m">x₁</span> dartılıbsa, onu <span class="m">x₂</span>-yə qədər dartmaq üçün görülən iş enerjilərin fərqidir — qrafikdə trapesiyanın sahəsi:</p>
+      <div class="fm">A = k·x₂²/2 − k·x₁²/2 = k(x₂² − x₁²)/2</div>
+      <p><span class="m">k(x₂ − x₁)²/2</span> yazmaq səhvdir: bu, yay başlanğıcda boş olsaydı doğru olardı.</p>
+
+      <h3><span class="st">4</span> Yaydan atılan cisim</h3>
+      <p>Hərəkət edən cismin enerjisi (kinetik enerji) <span class="m">mv²/2</span>-dir. Sürtünmə yoxdursa, yayın bütün enerjisi cismə keçir:</p>
+      <div class="fm">kx²/2 = mv²/2   →   v = x·√(k/m)</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. k = 200 N/m, x = 10 sm.
+  E = 200·0,1²/2 = 200·0,01/2 = 1 J</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+k = 500 N/m yay 2 sm dartılıb. Onu 4 sm-ə qədər dartmaq
+üçün nə qədər iş lazımdır?
+  A = 500·(0,04² − 0,02²)/2 = 500·(0,0016 − 0,0004)/2
+    = 500·0,0012/2 = 0,3 J
+  Səhv yol: 500·0,02²/2 = 0,1 J — üç dəfə az!</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Oyuncaq tapança: k = 900 N/m,
+yay 2 sm sıxılır, kürəcik 10 q. Çıxış sürəti?
+  E = 900·0,02²/2 = 0,18 J
+  mv²/2 = 0,18 → v² = 2·0,18/0,01 = 36 → v = 6 m/s
+  Və ya birbaşa: v = 0,02·√(900/0,01) = 0,02·300 = 6 m/s</div>
+      <div class="life"><b>Həyatdan.</b> Kamançı kamanı iki dəfə çox dartsa, oxa dörd dəfə çox enerji verir, sürət isə iki dəfə artır (<span class="m">v</span> deformasiyaya mütənasibdir). Ona görə idmançılar kamanı sona qədər dartırlar.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">E = kx</span> və ya <span class="m">E = kx²</span> yazmaq — 2-yə bölməyi unutmaq.</li>
+        <li>Əlavə dartma işində <span class="m">k(x₂ − x₁)²/2</span> yazmaq. Düzü: <span class="m">k(x₂² − x₁²)/2</span>.</li>
+        <li>Santimetri metrə çevirmədən kvadrata yüksəltmək: <span class="m">10² = 100</span>, amma <span class="m">0,1² = 0,01</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">E = kx²/2 — F–x qrafikinin altındakı sahə
+x₁ → x₂:  A = k(x₂² − x₁²)/2
+Yaydan atma:  kx²/2 = mv²/2,  v = x√(k/m)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>k = 1000 N/m, x = 5 sm. E = ? <span class="ans">1000·0,0025/2 = 1,25 J.</span></li>
+        <li>Deformasiya 3 dəfə artdı. Enerji? <span class="ans">9 dəfə artır.</span></li>
+        <li>k = 400 N/m yayda 2 J enerji var. x = ? <span class="ans">x² = 2·2/400 = 0,01 → x = 0,1 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

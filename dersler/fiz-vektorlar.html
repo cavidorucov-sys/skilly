@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vektorlar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-vektorlar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Vektorlar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Riyazi əsaslar — vektorlar</div>
+    <h1>Vektorlar: proyeksiya və toplanma</h1>
+    <p>Sürət, təcil, qüvvə — hamısı vektordur: onların həm qiyməti, həm istiqaməti var. Kinematika və dinamikada hər məsələ eyni yolla həll olunur: vektoru oxlara <b>proyeksiya</b> edirik, proyeksiyaları adi ədəd kimi toplayırıq. Bu mövzu atılan cisim və nisbi hərəkət mövzularının əsasıdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə vahidlər SI-dədir.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Vektor nədir</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Proyeksiya</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Toplama</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Vektor və skalyar kəmiyyətlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dostun deyir: "Məktəbdən 500 m uzaqlaşdım." Onu tapa bilərsən? Yox — hansı tərəfə getdiyini bilmirsən. "500 m şimala" desə, dərhal tapırsan. Deməli, bəzi kəmiyyətlər üçün tək ədəd azdır, <b>istiqamət</b> də lazımdır.</p>
+      <ul>
+        <li><b>Skalyar</b> kəmiyyət — yalnız ədəddir: kütlə, vaxt, temperatur, yol, həcm, enerji.</li>
+        <li><b>Vektor</b> kəmiyyət — ədəd + istiqamət: yerdəyişmə, sürət, təcil, qüvvə.</li>
+      </ul>
+      <div class="life"><b>Həyatdan.</b> Taksi tətbiqi sürücünün sürətini "40 km/saat" yazır — bu, sürətin <b>modulu</b>dur. Xəritədəki ox isə hara getdiyini göstərir. Ox + ədəd birlikdə sürət vektorudur.</div>
+
+      <h3><span class="st">2</span> Vektor necə yazılır</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="a vektoru, ona bərabər vektor, əks vektor və 2a vektoru">
+          <defs><marker id="v1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
+          <marker id="v1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>
+          <line x1="20" y1="70" x2="90" y2="30" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v1a)"/>
+          <text class="lbl" x="44" y="38">a⃗</text>
+          <line x1="120" y1="80" x2="190" y2="40" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v1a)"/>
+          <text class="lbl" x="144" y="48">a⃗</text>
+          <line x1="90" y1="150" x2="20" y2="190" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#v1b)"/>
+          <text class="lbl" x="34" y="160">−a⃗</text>
+          <line x1="110" y1="190" x2="250" y2="110" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#v1b)"/>
+          <text class="lbl" x="166" y="140">2a⃗</text>
+        </svg>
+        <div class="cap">
+          <p>Vektoru <b>ox</b> kimi çəkirik. Oxun uzunluğu — vektorun <b>modulu</b> (<span class="m">|a⃗|</span> və ya sadəcə <span class="m">a</span>), oxun ucu — istiqaməti.</p>
+          <p>Yuxarıdakı iki ox <b>bərabər vektorlardır</b>: modul eyni, istiqamət eyni. Harada çəkildiyi önəmli deyil — vektoru paralel köçürmək olar.</p>
+        </div>
+      </div>
+      <ul>
+        <li><b>Əks vektor</b> <span class="m">−a⃗</span>: modul eyni, istiqamət əks.</li>
+        <li><b>Ədədə vurma</b>: <span class="m">2a⃗</span> — eyni istiqamət, iki dəfə uzun; <span class="m">−3a⃗</span> — əks istiqamət, üç dəfə uzun.</li>
+        <li>Modul həmişə <b>mənfi deyil</b>: <span class="m">|a⃗| ≥ 0</span>. "Mənfi uzunluq" olmur.</li>
+      </ul>
+
+      <h3><span class="st">3</span> Yol və yerdəyişmə</h3>
+      <p><b>Yol</b> (<span class="m">l</span>) — trayektoriyanın uzunluğu, skalyardır. <b>Yerdəyişmə</b> (<span class="m">s⃗</span>) — başlanğıcdan sona çəkilən vektor. Yol yerdəyişmənin modulundan heç vaxt kiçik deyil.</p>
+      <div class="fm">l ≥ |s⃗|    (bərabərlik yalnız düz xətt üzrə, geri dönmədən)</div>
+      <div class="ex">Nümunə. Turist 3 km şimala, sonra 4 km şərqə getdi.
+  Yol:          l = 3 + 4 = 7 km
+  Yerdəyişmə:   katetləri 3 və 4 olan üçbucağın hipotenuzu
+                |s⃗| = √(3² + 4²) = 5 km
+Turist düz getsəydi, 5 km yol gedərdi.</div>
+      <div class="life"><b>Həyatdan.</b> Stadionda 400 m-lik dairəni tam qaçdın: yol 400 m, yerdəyişmə <b>0</b>. Saatın əqrəbinin ucu 12 saatda böyük yol gedir, yerdəyişməsi isə yenə sıfırdır.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yerdəyişməni yolla eyni saymaq. Döngəli yolda yerdəyişmə kiçikdir.</li>
+        <li>"Sürət 20 m/s" deyib istiqaməti unutmaq. Sürətin modulu skalyardır, sürətin özü vektordur.</li>
+        <li>Vektorların modullarını adi ədəd kimi toplamaq: 3 km + 4 km yerdəyişmə 7 km deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Vektor = modul + istiqamət.  Skalyar = yalnız ədəd.
+Bərabər vektorlar: eyni modul, eyni istiqamət.
+−a⃗ — əks istiqamət;  k·a⃗ — k dəfə uzun.
+Yol ≥ |yerdəyişmə|.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bunlardan hansıları vektordur: kütlə, qüvvə, vaxt, təcil, temperatur? <span class="ans">Qüvvə və təcil. Qalanları skalyardır.</span></li>
+        <li>Velosipedçi 6 km şərqə, sonra 8 km cənuba getdi. Yol və yerdəyişmə? <span class="ans">Yol 6 + 8 = 14 km; yerdəyişmə √(36 + 64) = 10 km.</span></li>
+        <li>Cisim radiusu 10 m olan çevrənin yarısını getdi. Yerdəyişmə? <span class="ans">Diametr: 2·10 = 20 m. Yol isə π·10 ≈ 31,4 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Vektorun oxlara proyeksiyası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kirşəni ip ilə dartırsan, ip yuxarı əyilib. Qüvvənin bir hissəsi kirşəni <b>irəli</b> aparır, bir hissəsi onu <b>yuxarı</b> qaldırmağa çalışır. Bu iki hissəni ayırmaq üçün vektoru oxlara proyeksiya edirik. Bundan sonra vektorlarla deyil, adi ədədlərlə işləyirik.</p>
+      <div class="life"><b>Həyatdan.</b> Günorta Günəş təpədədir. Maili dayanmış çubuğun yerdəki kölgəsi onun üfüqi "hissəsidir". Proyeksiya elə bu kölgədir: vektorun ucundan oxa perpendikulyar endirib, oxda qalan parçaya baxırıq.</div>
+
+      <h3><span class="st">2</span> Proyeksiya nədir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="a vektoru və onun x və y oxlarına proyeksiyaları">
+          <defs><marker id="v2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
+          <marker id="v2b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+          <marker id="v2c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+          <line x1="30" y1="190" x2="245" y2="190" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#v2c)"/>
+          <line x1="30" y1="190" x2="30" y2="15" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#v2c)"/>
+          <text x="238" y="208">x</text><text x="14" y="24">y</text>
+          <line x1="180" y1="60" x2="180" y2="190" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="180" y1="60" x2="30" y2="60" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="30" y1="190" x2="180" y2="60" stroke="var(--vec)" stroke-width="3" marker-end="url(#v2a)"/>
+          <line x1="30" y1="190" x2="180" y2="190" stroke="var(--accent)" stroke-width="5" opacity=".55"/>
+          <line x1="30" y1="190" x2="30" y2="60" stroke="var(--accent)" stroke-width="5" opacity=".55"/>
+          <path d="M70 190A40 40 0 0 0 60.2 164" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text class="lbl" x="76" y="178">α</text>
+          <text class="lbl" x="98" y="116">a⃗</text>
+          <text class="lbl" x="96" y="212">aₓ = a·cos α</text>
+          <text class="lbl" x="36" y="52">a<tspan dy="4" font-size="11">y</tspan><tspan dy="-4"> = a·sin α</tspan></text>
+        </svg>
+        <div class="cap">
+          <p>Vektorun ucundan və başından oxa perpendikulyar endiririk. Oxda qalan parça — <b>proyeksiya</b>dır.</p>
+          <p>Proyeksiya <b>ədəddir</b>, işarəsi var: parça oxun istiqamətindədirsə, müsbət; əksinədirsə, mənfi.</p>
+        </div>
+      </div>
+      <p>Vektorun başı <span class="m">(x₁; y₁)</span>, ucu <span class="m">(x₂; y₂)</span> nöqtəsindədirsə, proyeksiyalar sadəcə koordinatların fərqidir:</p>
+      <div class="fm">aₓ = x₂ − x₁        a<sub>y</sub> = y₂ − y₁</div>
+
+      <h3><span class="st">3</span> sin və cos ilə proyeksiya</h3>
+      <p>Vektor, proyeksiyası və perpendikulyar düzbucaqlı üçbucaq əmələ gətirir: vektor — hipotenuz, proyeksiyalar — katetlər. Əgər <span class="m">α</span> vektorla <b>Ox</b> oxu arasındakı bucaqdırsa:</p>
+      <div class="fm">|aₓ| = a·cos α        |a<sub>y</sub>| = a·sin α</div>
+      <p>Qayda bucaq hansı oxla verilirsə-verilsin işləyir: <b>bucağa bitişik oxa proyeksiya — cos ilə, qarşı oxa — sin ilə</b>. İşarəni isə şəkildən qoy: sola və ya aşağı yönələn proyeksiya mənfidir.</p>
+      <div class="tbl"><table>
+        <tr><th>α</th><td>0°</td><td>30°</td><td>45°</td><td>60°</td><td>90°</td></tr>
+        <tr><th>cos α</th><td>1</td><td>√3/2</td><td>√2/2</td><td>1/2</td><td>0</td></tr>
+        <tr><th>sin α</th><td>0</td><td>1/2</td><td>√2/2</td><td>√3/2</td><td>1</td></tr>
+      </table></div>
+      <p>Olimpiadada çox vaxt "Misir üçbucağı" çıxır: tərəfləri 3, 4, 5. Orada <span class="m">sin α = 0,6</span>, <span class="m">cos α = 0,8</span> (və ya əksinə) — <span class="m">α ≈ 37°</span>.</p>
+
+      <h3><span class="st">4</span> Proyeksiyalardan geri — modul və bucaq</h3>
+      <p>Proyeksiyalar məlumdursa, vektoru tam bərpa edirik (Pifaqor teoremi):</p>
+      <div class="fm">a = √(aₓ² + a<sub>y</sub>²)        tg α = |a<sub>y</sub>| / |aₓ|</div>
+      <div class="ex">Nümunə 1. F = 20 N qüvvəsi sola-yuxarı yönəlib və Oy oxu ilə 30° bucaq əmələ gətirir.
+  Bucaq Oy ilədir → Fy bitişikdir (cos), Fx qarşıdır (sin).
+  Fx = −20·sin 30° = −20·1/2 = −10 N    (sola → mənfi)
+  Fy = +20·cos 30° = 20·√3/2 = 10√3 N    (yuxarı → müsbət)
+Yoxlama: √(10² + (10√3)²) = √(100 + 300) = 20 N ✓</div>
+      <div class="ex">Nümunə 2. Proyeksiyalar vx = −12 m/s, vy = 5 m/s. Sürət?
+  v = √(144 + 25) = √169 = 13 m/s.  Mənfi işarə kvadratda itir.</div>
+      <div class="life"><b>Həyatdan.</b> Kirşəni 50 N qüvvə ilə, üfüqlə 60° bucaq altında dartırsan. İrəli aparan hissə <span class="m">50·cos 60° = 25 N</span> — yarısı! İpi üfüqə yaxın tutsan (məsələn, 30°), irəli hissə <span class="m">50·√3/2 ≈ 43 N</span> olar. Ona görə ağır kirşəni ipi alçaq tutub dartırlar.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucaq <b>Oy</b> ilə verilib, amma <span class="m">Fₓ = F·cos α</span> yazmaq. Əvvəl bax: bucaq hansı oxladır?</li>
+        <li>İşarəni unutmaq. Sola yönələn qüvvənin <span class="m">Fₓ</span>-i mənfidir.</li>
+        <li><span class="m">cos 60°</span> ilə <span class="m">cos 30°</span>-ni qarışdırmaq. Yoxla: kiçik bucaqda cos böyükdür (vektor oxa yaxındır).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">aₓ = x₂ − x₁,  ay = y₂ − y₁   (işarəli ədədlər)
+Bitişik oxa — cos, qarşı oxa — sin.
+a = √(aₓ² + ay²)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>v = 10 m/s, Ox ilə 60°, sağa-aşağı. vx və vy? <span class="ans">vx = 10·cos 60° = 5 m/s; vy = −10·sin 60° = −5√3 m/s (aşağı).</span></li>
+        <li>Vektor A(1; 2) nöqtəsindən B(−5; 10) nöqtəsinə. Proyeksiyalar və modul? <span class="ans">aₓ = −6, ay = 8, modul √(36 + 64) = 10.</span></li>
+        <li>F = 30 N, Oy ilə 60°. |Fₓ|? <span class="ans">Ox qarşı oxdur → sin: 30·sin 60° = 15√3 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Vektorların toplanması və çıxılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki nəfər qayığı iki iplə sahilə dartır. Qayıq hara gedəcək? Nə birinci ipin, nə ikincinin istiqamətində — onların <b>cəminin</b> istiqamətində. Əvəzləyici qüvvə, iki hərəkətin nəticəsi, sürətin dəyişməsi — hamısı vektorların toplanmasıdır.</p>
+
+      <h3><span class="st">2</span> Üçbucaq və paraleloqram qaydası</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Üçbucaq qaydası: b vektorunun başı a vektorunun ucuna qoyulur; cəm başlanğıcdan sona gedir">
+          <defs><marker id="v3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
+          <marker id="v3b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>
+          <line x1="30" y1="170" x2="150" y2="170" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v3a)"/>
+          <line x1="150" y1="170" x2="225" y2="50" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v3a)"/>
+          <line x1="30" y1="170" x2="225" y2="50" stroke="var(--accent)" stroke-width="3" marker-end="url(#v3b)"/>
+          <line x1="30" y1="170" x2="105" y2="50" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="105" y1="50" x2="225" y2="50" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text class="lbl" x="86" y="190">a⃗</text><text class="lbl" x="198" y="120">b⃗</text><text class="lbl" x="100" y="102">a⃗ + b⃗</text>
+        </svg>
+        <div class="cap">
+          <p><b>Üçbucaq (zəncir) qaydası:</b> <span class="m">b⃗</span>-nin başını <span class="m">a⃗</span>-nın ucuna qoy. Cəm — birincinin başından sonuncunun ucuna gedən vektordur. Çox vektor üçün də belə: zəncir düz.</p>
+          <p><b>Paraleloqram qaydası:</b> iki vektoru bir nöqtədən çək, paraleloqram qur. Cəm — həmin nöqtədən çıxan diaqonaldır (qırıq xətlər).</p>
+        </div>
+      </div>
+      <p><b>Çıxma:</b> <span class="m">a⃗ − b⃗ = a⃗ + (−b⃗)</span>. Vektorlar bir nöqtədən çəkilibsə, <span class="m">a⃗ − b⃗</span> — <span class="m">b⃗</span>-nin ucundan <span class="m">a⃗</span>-nın ucuna gedən vektordur (paraleloqramın ikinci diaqonalı).</p>
+      <div class="fm">AB⃗ + BC⃗ = AC⃗        AB⃗ + BC⃗ + CA⃗ = 0⃗</div>
+
+      <h3><span class="st">3</span> Komponentlərlə toplama — əsas üsul</h3>
+      <p>Şəkil çəkmək həmişə rahat deyil. Fizikada əsas üsul: <b>x-ləri ayrıca, y-ləri ayrıca topla</b>.</p>
+      <div class="fm">c⃗ = a⃗ + b⃗   ⇔   cₓ = aₓ + bₓ,   c<sub>y</sub> = a<sub>y</sub> + b<sub>y</sub></div>
+      <div class="ex">Nümunə. F⃗₁ = (6; 2) N, F⃗₂ = (−2; 1) N, F⃗₃ = (0; −6) N. Əvəzləyici?
+  Rx = 6 + (−2) + 0 = 4 N
+  Ry = 2 + 1 + (−6) = −3 N
+  R = √(4² + (−3)²) = 5 N</div>
+
+      <h3><span class="st">4</span> Bucaq məlum olanda: kosinuslar teoremi</h3>
+      <p>Modulları <span class="m">a</span>, <span class="m">b</span> olan və aralarında <span class="m">θ</span> bucağı olan iki vektor üçün:</p>
+      <div class="fm">|a⃗ + b⃗|² = a² + b² + 2ab·cos θ
+|a⃗ − b⃗|² = a² + b² − 2ab·cos θ</div>
+      <div class="tbl"><table>
+        <tr><th>θ</th><td>0°</td><td>60°</td><td>90°</td><td>120°</td><td>180°</td></tr>
+        <tr><th>|a⃗ + b⃗|</th><td>a + b</td><td>√(a² + b² + ab)</td><td>√(a² + b²)</td><td>√(a² + b² − ab)</td><td>|a − b|</td></tr>
+        <tr><th>a = b olanda</th><td>2a</td><td>a√3</td><td>a√2</td><td>a</td><td>0</td></tr>
+      </table></div>
+      <p>Buradan vacib nəticə: <span class="m">|a − b| ≤ |a⃗ + b⃗| ≤ a + b</span>. 3 N və 4 N qüvvələrin əvəzləyicisi 1 N-dan 7 N-a qədər istənilən qiymət ola bilər, amma 8 N ola bilməz.</p>
+      <div class="ex">Nümunə (rayon turu). Bir nöqtəyə hər biri 10 N olan iki qüvvə 120° bucaq altında təsir edir. Əvəzləyici?
+  R² = 100 + 100 + 2·10·10·(−1/2) = 100   →   R = 10 N.
+Gözlənilməz nəticə: iki qüvvənin cəmi hər birinə bərabərdir.</div>
+      <div class="life"><b>Həyatdan.</b> Paltar ipini çox bərk dartmaq olmur: ortadan asılan yük ipin iki hissəsini bir-birinə 180°-yə yaxın bucaqla dartır. Bucaq 180°-yə yaxın olanda yüngül yükü saxlamaq üçün də ipdə çox böyük qüvvə yaranır — iplər ona görə qırılır.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Modulları toplamaq: <span class="m">|a⃗ + b⃗| = a + b</span> yalnız eyni istiqamətdə doğrudur.</li>
+        <li>Kosinuslar teoremində bucağı səhv götürmək: <span class="m">θ</span> — vektorlar <b>bir nöqtədən</b> çəkiləndə aralarındakı bucaqdır.</li>
+        <li><span class="m">a⃗ − b⃗</span>-nin istiqamətini çevirmək: o, <span class="m">b⃗</span>-nin ucundan <span class="m">a⃗</span>-nın ucuna gedir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Zəncir: AB⃗ + BC⃗ = AC⃗.  Qapalı zəncir — 0⃗.
+Komponentlər: x + x, y + y, sonra √(x² + y²).
+|a⃗ ± b⃗|² = a² + b² ± 2ab·cos θ
+|a − b| ≤ |a⃗ + b⃗| ≤ a + b</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a⃗ = (3; −1), b⃗ = (1; 4). |a⃗ + b⃗|? <span class="ans">(4; 3) → 5.</span></li>
+        <li>6 N və 8 N qüvvələr 90° bucaq altında. Əvəzləyici? <span class="ans">√(36 + 64) = 10 N.</span></li>
+        <li>5 N və 12 N qüvvələrin əvəzləyicisi 18 N ola bilərmi? <span class="ans">Yox: ən böyük qiymət 5 + 12 = 17 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Olimpiada məsələləri: zəncir, Δv⃗, tarazlıq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Fiqurlarda vektorlar: hesabsız həll</h3>
+      <p>Olimpiadada tez-tez çoxbucaqlıda vektorların cəmini soruşurlar. Uzun hesab lazım deyil — zəncir qaydası və simmetriya kifayətdir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="Düzgün altıbucaqlı ABCDEF və A təpəsindən çıxan vektorlar">
+          <defs><marker id="v4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <polygon points="85,180 175,180 220,102 175,24 85,24 40,102" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="85" y1="180" x2="175" y2="180" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4a)"/>
+          <line x1="85" y1="180" x2="220" y2="102" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4a)"/>
+          <line x1="85" y1="180" x2="175" y2="24" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4a)"/>
+          <line x1="85" y1="180" x2="85" y2="24" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4a)"/>
+          <line x1="85" y1="180" x2="40" y2="102" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4a)"/>
+          <text class="lbl" x="72" y="198">A</text><text class="lbl" x="178" y="198">B</text><text class="lbl" x="226" y="106">C</text>
+          <text class="lbl" x="178" y="18">D</text><text class="lbl" x="72" y="18">E</text><text class="lbl" x="24" y="106">F</text>
+        </svg>
+        <div class="cap">
+          <p><b>Məsələ (rayon turu).</b> Düzgün altıbucaqlının tərəfi <span class="m">a</span>. <span class="m">|AB⃗ + AC⃗ + AD⃗ + AE⃗ + AF⃗|</span>-ni tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll. Şəkil AD diaqonalına görə simmetrikdir.
+  AB⃗ + AF⃗: ikisi də AD ilə 60°, cəmi AD boyunca: 2·a·cos 60° = a
+  AC⃗ + AE⃗: hər biri a√3, AD ilə 30°: 2·a√3·cos 30° = 3a
+  AD⃗ = 2a
+  Cəm: a + 3a + 2a = 6a  (= 3·AD).
+Cavab: 6a.</div>
+      <p>Faydalı faktlar: kvadratda <span class="m">AB⃗ + AD⃗ = AC⃗</span> (diaqonal <span class="m">a√2</span>); bərabərtərəfli üçbucaqda <span class="m">|AB⃗ + AC⃗| = a√3</span>; qapalı çoxbucaqlının tərəflərinin zənciri — <span class="m">0⃗</span>.</p>
+
+      <h3><span class="st">2</span> Sürətin dəyişməsi Δv⃗</h3>
+      <p>Təcil <span class="m">a⃗ = Δv⃗/t</span> — burada <span class="m">Δv⃗ = v⃗₂ − v⃗₁</span> <b>vektor fərqidir</b>. Sürətin modulu dəyişməsə belə, istiqamət dəyişirsə, <span class="m">Δv⃗ ≠ 0</span>.</p>
+      <div class="ex">Nümunə 1. Avtomobil 20 m/s sürətlə şimala gedirdi, döngədən sonra 20 m/s ilə şərqə gedir.
+  v⃗₁ ⊥ v⃗₂ → |Δv⃗| = √(20² + 20²) = 20√2 ≈ 28 m/s.
+  Modul dəyişmədi, amma Δv⃗ 28 m/s-dir!
+
+Nümunə 2 (yarımfinal tipi). Top divara 10 m/s sürətlə, divar səthi ilə 30° bucaq altında dəyir
+və eyni sürətlə, güzgüdəki kimi əks olunur. |Δv⃗|?
+  Divar boyunca proyeksiya dəyişmir: 10·cos 30°.
+  Divara perpendikulyar proyeksiya: −10·sin 30° = −5  →  +5 m/s.
+  |Δv⃗| = 5 − (−5) = 10 m/s,  yönü divardan çölə.</div>
+      <div class="life"><b>Həyatdan.</b> Tennis topunu düz raketə vurursan və geri qaytarırsan: 30 m/s-dən −30 m/s-ə. Sürətin dəyişməsi 60 m/s-dir — topu dayandırmaqdan iki dəfə çox. Ona görə qayıdan zərbə əli daha bərk "silkələyir".</div>
+
+      <h3><span class="st">3</span> Tarazlıq: qüvvələrin cəmi sıfırdır</h3>
+      <p>Cisim sükunətdədirsə (və ya bərabərsürətli düz gedirsə), ona təsir edən qüvvələrin vektor cəmi sıfırdır. Proyeksiyalarla bu iki tənlikdir:</p>
+      <div class="fm">ΣFₓ = 0        ΣF<sub>y</sub> = 0</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Çıraq iki iplə asılıb; iplər şaquli ilə 60° bucaq əmələ gətirir">
+          <defs><marker id="v4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
+          <marker id="v4c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>
+          <line x1="20" y1="30" x2="240" y2="30" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="44" y1="30" x2="130" y2="80" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="216" y1="30" x2="130" y2="80" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="130" y1="80" x2="130" y2="20" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="130" y1="80" x2="78" y2="50" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4b)"/>
+          <line x1="130" y1="80" x2="182" y2="50" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#v4b)"/>
+          <line x1="130" y1="80" x2="130" y2="160" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#v4c)"/>
+          <circle cx="130" cy="88" r="8" fill="var(--ink)"/>
+          <text class="lbl" x="70" y="72">T</text><text class="lbl" x="184" y="72">T</text><text class="lbl" x="138" y="150">mg</text>
+          <path d="M130 62A18 18 0 0 0 114.4 71" fill="none" stroke="var(--ink)"/><text x="104" y="60">60°</text>
+        </svg>
+        <div class="cap">
+          <p><b>Məsələ.</b> Çəkisi 20 N olan çıraq iki eyni iplə asılıb, hər ip şaquli ilə 60° bucaq əmələ gətirir. İpdə gərilmə qüvvəsi?</p>
+          <p>Üfüqi proyeksiyalar bir-birini yox edir. Şaquli: <span class="m">2T·cos 60° = mg</span> → <span class="m">T = 20 N</span>.</p>
+        </div>
+      </div>
+      <div class="ex">Daha ümumi: bucaq şaquli ilə β olarsa,  T = mg / (2·cos β).
+  β = 0°   → T = mg/2  (iplər şaquli, hər biri yarısını saxlayır)
+  β = 60°  → T = mg
+  β → 90°  → cos β → 0, T çox böyük olur: ipi tam üfüqi dartmaq olmaz.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Sürətin modulu dəyişmədi, deməli Δv = 0". Δv⃗ vektor fərqidir — istiqamət dəyişsə, sıfır deyil.</li>
+        <li>Zəncirdə vektorun istiqamətini çevirmək: <span class="m">CB⃗ = −BC⃗</span>.</li>
+        <li>Tarazlıqda yalnız bir oxa baxmaq. Hər iki ox üzrə cəm sıfır olmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Fiqurda: zəncir + paraleloqram + simmetriya.
+Δv⃗ = v⃗₂ − v⃗₁;  bucaq φ dəyişəndə |Δv⃗| = 2v·sin(φ/2).
+Tarazlıq: ΣFₓ = 0, ΣFy = 0.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ABCD kvadratının tərəfi 4. |AB⃗ + AC⃗ + AD⃗|? <span class="ans">AB⃗ + AD⃗ = AC⃗, cəm 2·AC⃗ = 2·4√2 = 8√2.</span></li>
+        <li>Top 15 m/s ilə divara perpendikulyar dəyib, 15 m/s ilə geri qayıtdı. |Δv⃗|? <span class="ans">15 − (−15) = 30 m/s.</span></li>
+        <li>Halqaya şərqə 9 N, şimala 12 N qüvvə təsir edir. Halqa tarazlıqda qalması üçün üçüncü qüvvə? <span class="ans">√(81 + 144) = 15 N, cənub-qərbə (ilk ikisinin cəminə əks).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

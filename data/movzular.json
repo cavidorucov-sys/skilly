@@ -356,19 +356,22 @@
    "status": "yox",
    "menbe": "RFO riy: 9-cu sinif",
    "novbeti": 1,
-   "sebeb": "Olimpiadanın ilk mövzusu: giriş testi bu həftə"
+   "sebeb": "Olimpiadanın ilk mövzusu: giriş testi bu həftə",
+   "ders": "dersler/ol-bolunme.html"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Paritet (cüt/tək)",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-paritet.html"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Sadə ədədlər, sadə vuruqlar, bölənlərin sayı və cəmi",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-sade-ededler.html"
   },
   {
    "bolme": "Say nəzəriyyəsi",
@@ -437,13 +440,15 @@
    "bolme": "Cəbr",
    "ad": "Çoxhədlilərin bölünməsi, Bezu teoremi, qeyri-müəyyən əmsallar",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (Bezu, təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (Bezu, təxmini)",
+   "ders": "dersler/ol-bezu.html"
   },
   {
    "bolme": "Cəbr",
    "ad": "Binom açılışı, aⁿ ± bⁿ və bölünmə",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-binom.html"
   },
   {
    "bolme": "Tənliklər",
@@ -584,7 +589,8 @@
    "bolme": "Riyazi bacarıqlar",
    "ad": "Vektorlar: proyeksiya və toplanma",
    "status": "yox",
-   "menbe": "RFO fiz: Riyazi bacarıqlar (aşağı)"
+   "menbe": "RFO fiz: Riyazi bacarıqlar (aşağı)",
+   "ders": "dersler/fiz-vektorlar.html"
   },
   {
    "bolme": "Kinematika",
@@ -605,7 +611,8 @@
    "bolme": "Kinematika",
    "ad": "Üfüqi və bucaq altında atılan cismin hərəkəti",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.1 Kinematika"
+   "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
+   "ders": "dersler/fiz-atilan-cisim.html"
   },
   {
    "bolme": "Kinematika",
@@ -633,7 +640,8 @@
    "bolme": "Dinamika",
    "ad": "Elastiklik, Huk qanunu",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.2 Statika"
+   "menbe": "RFO fiz (aşağı): 1.2 Statika",
+   "ders": "dersler/fiz-huk.html"
   },
   {
    "bolme": "Dinamika",
@@ -647,7 +655,8 @@
    "bolme": "Dinamika",
    "ad": "Qeyri-inersial sistemlər: ətalət qüvvəsi, çəkisizlik, əlavə yüklənmə",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3 Dinamika"
+   "menbe": "RFO fiz (aşağı): 1.3 Dinamika",
+   "ders": "dersler/fiz-qeyri-inersial.html"
   },
   {
    "bolme": "Statika",
@@ -659,7 +668,8 @@
    "bolme": "Statika",
    "ad": "Sadə mexanizmlər: ling, bloklar, FİƏ",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.2 Statika"
+   "menbe": "RFO fiz (aşağı): 1.2 Statika",
+   "ders": "dersler/fiz-mexanizmler.html"
   },
   {
    "bolme": "İş, güc, enerji",

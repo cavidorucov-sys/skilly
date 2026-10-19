@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bezu teoremi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-bezu.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Bezu teoremi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Çoxhədlilər — qalıqlı bölmə, Bezu teoremi</div>
+    <h1>Çoxhədlilərin bölünməsi, Bezu teoremi, qeyri-müəyyən əmsallar</h1>
+    <p><span class="m">x¹⁰⁰ − 3x⁵¹ + 2x + 7</span> çoxhədlisini <span class="m">x + 1</span>-ə bölmək üçün 100 addımlı bölmə lazım deyil — qalıq bir sətirdə tapılır. Bu mövzuda çoxhədliləri ədədlər kimi qalıqla bölməyi, <b>Bezu teoremini</b> və <b>qeyri-müəyyən əmsallar üsulunu</b> öyrənəcəksən. Olimpiadada "qalığı tap", "bölünürsə parametri tap", "vuruqlara ayır" məsələləri bunlarla həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bölmə, Horner</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bezu teoremi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>(x − a)(x − b)</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Qeyri-müəyyən əmsallar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Qalıqlı bölmə: bucaqlı bölmə və Horner sxemi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ədədləri qalıqla bölməyi bilirsən: <span class="m">17 = 5 · 3 + 2</span>. Çoxhədlilərdə də eynidir: bir çoxhədlini digərinə bölürük, qismət və qalıq alırıq. Olimpiadanın "qalığı tap", "bölünürsə <span class="m">a</span>-nı tap" məsələlərinin hamısı bu bərabərliyə söykənir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">P(x) = S(x) · Q(x) + R(x)
+P — bölünən,  S — bölən,  Q — qismət,  R — qalıq
+Şərt: R-in dərəcəsi S-in dərəcəsindən kiçikdir.</div>
+      <p>Bölən birinci dərəcəlidirsə (<span class="m">x − a</span>), qalıq sadəcə <b>ədəddir</b>. Bölən ikinci dərəcəlidirsə, qalıq <span class="m">px + q</span> şəklindədir.</p>
+
+      <h3><span class="st">3</span> Bucaqlı bölmə</h3>
+      <p>Ədədlərdəki "künclə bölmə" kimi: hər dəfə bölünənin baş həddini bölənin baş həddinə bölür, vurur, çıxırıq.</p>
+      <div class="ex">(2x³ − 3x² + 4x − 5) : (x − 2)
+
+2x³ : x = 2x²   →  2x²(x − 2) = 2x³ − 4x²
+   çıxırıq: (2x³ − 3x²) − (2x³ − 4x²) = x²  →  x² + 4x − 5
+x² : x = x      →  x(x − 2) = x² − 2x
+   çıxırıq: x² + 4x − 5 − (x² − 2x) = 6x − 5
+6x : x = 6      →  6(x − 2) = 6x − 12
+   çıxırıq: 6x − 5 − (6x − 12) = 7
+
+Qismət: 2x² + x + 6,  qalıq: 7
+Yoxla: (x − 2)(2x² + x + 6) + 7 = 2x³ − 3x² + 4x − 5 ✓</div>
+      <div class="ex">(x⁴ + 2x³ − x + 3) : (x² + x − 1)
+
+x⁴ : x² = x²  →  x⁴ + x³ − x²;   qalır: x³ + x² − x + 3
+x³ : x² = x   →  x³ + x² − x;    qalır: 3
+
+Qismət: x² + x,  qalıq: 3</div>
+
+      <h3><span class="st">4</span> Horner sxemi — x − a-ya bölmənin qısa yolu</h3>
+      <p>Yuxarıdakı birinci bölmədə yalnız əmsallar işləyir. Onları cədvəldə yazırıq: birinci əmsalı aşağı endiririk, sonra hər dəfə <b>"aşağıdakı ədəd · a + növbəti əmsal"</b>. Son ədəd — qalıq, qalanları — qismətin əmsalları.</p>
+      <div class="fm">a = 2 │  2   −3    4   −5
+      │  2    1    6  │ 7
+2 · 2 + (−3) = 1,  1 · 2 + 4 = 6,  6 · 2 + (−5) = 7
+Qismət 2x² + x + 6, qalıq 7</div>
+      <p>Diqqət: buraxılmış dərəcələrin yerinə 0 yaz. <span class="m">x³ − 5x + 3</span> üçün əmsallar: 1, 0, −5, 3. <span class="m">x + 2</span>-yə bölmədə <span class="m">a = −2</span>.</p>
+      <div class="life"><b>Həyatdan.</b> 2357 ədədi əslində çoxhədlidir: <span class="m">2·10³ + 3·10² + 5·10 + 7</span>, yəni <span class="m">P(10)</span>. Kompüterlər çoxhədlinin qiymətini məhz Horner üsulu ilə hesablayır: <span class="m">((2·10 + 3)·10 + 5)·10 + 7</span>. Bu yol ən az vurma əməli tələb edir.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. p və q-nun hansı qiymətlərində x³ + px + q çoxhədlisi
+x² + x + 1-ə qalıqsız bölünür?
+
+Həll. Bucaqlı bölmə aparaq:
+x³ : x² = x   →  x(x² + x + 1) = x³ + x² + x
+   qalır: −x² + (p − 1)x + q
+−x² : x² = −1 →  −(x² + x + 1) = −x² − x − 1
+   qalır: (p − 1 + 1)x + (q + 1) = px + (q + 1)
+Qalıq px + (q + 1) sıfır çoxhədli olmalıdır:
+p = 0,  q + 1 = 0  →  q = −1.
+Cavab: p = 0, q = −1. Doğrudan da, x³ − 1 = (x − 1)(x² + x + 1). ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Buraxılmış dərəcəni 0 ilə yazmamaq: <span class="m">x³ − 5x + 3</span> üçün "1, −5, 3" yazmaq. Düzü: 1, 0, −5, 3.</li>
+        <li><span class="m">x + 2</span>-yə bölmədə Hornerdə <span class="m">a = 2</span> götürmək. <span class="m">x + 2 = x − (−2)</span>, yəni <span class="m">a = −2</span>.</li>
+        <li>Bucaqlı bölmədə çıxanda işarəni unutmaq: <span class="m">(4x − 5) − (−2x) = 6x − 5</span>, <span class="m">2x − 5</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P = S · Q + R,  dərəcə R &lt; dərəcə S
+x − a-ya bölmə: qalıq ədəddir; Horner: endir, a-ya vur, topla
+İkinci dərəcəli bölən: qalıq px + q</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x³ − 5x + 3) : (x − 1)</span> — qismət və qalıq? <span class="ans">Horner (a = 1): 1, 1, −4, −1. Qismət x² + x − 4, qalıq −1.</span></li>
+        <li><span class="m">(x³ + 2x² − 3) : (x + 2)</span> — qalıq? <span class="ans">a = −2: 1; 1·(−2) + 2 = 0; 0·(−2) + 0 = 0; 0·(−2) − 3 = −3. Qismət x², qalıq −3.</span></li>
+        <li>Çoxhədlini <span class="m">x² + 1</span>-ə böldükdə qalığın dərəcəsi ən çox neçə ola bilər? <span class="ans">1 (qalıq px + q şəklindədir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Bezu teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">x¹⁰⁰ − 3x⁵¹ + 2x + 7</span> çoxhədlisini <span class="m">x + 1</span>-ə böləndə Horner cədvəli 101 xanalı olardı. Bezu teoremi deyir: qalığı tapmaq üçün <b>bircə ədəd yerinə qoymaq</b> kifayətdir.</p>
+
+      <h3><span class="st">2</span> Teorem və isbatı</h3>
+      <div class="fm">Bezu teoremi
+P(x)-i x − a-ya böldükdə qalıq P(a)-ya bərabərdir.</div>
+      <p><b>İsbat.</b> Bölən birinci dərəcəlidir, ona görə qalıq ədəddir: <span class="m">P(x) = (x − a) · Q(x) + r</span>. Bu bərabərlik bütün <span class="m">x</span>-lər üçün doğrudur. <span class="m">x = a</span> qoyaq: <span class="m">P(a) = 0 · Q(a) + r = r</span>. ∎</p>
+      <div class="fm">Nəticələr
+1) a ədədi P-nin köküdür  ⇔  P(x) bölünür x − a-ya
+2) kx + m-ə bölmədə qalıq = P(−m/k)
+3) P tam əmsallıdırsa, P(m) − P(n) bölünür m − n-ə</div>
+      <p>3-cü nəticənin səbəbi: <span class="m">mᵏ − nᵏ</span> həmişə <span class="m">m − n</span>-ə bölünür (növbəti mövzuda isbat edəcəyik), <span class="m">P(m) − P(n)</span> isə belə fərqlərin tam əmsallarla cəmidir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x¹⁰⁰ − 3x⁵¹ + 2x + 7) : (x + 1),  qalıq?
+   a = −1:  (−1)¹⁰⁰ = 1,  (−1)⁵¹ = −1
+   P(−1) = 1 + 3 − 2 + 7 = 9.   Cavab: 9
+
+2) a-nın hansı qiymətində x³ − ax² + 5x − 6 bölünür x − 2-yə?
+   P(2) = 8 − 4a + 10 − 6 = 12 − 4a = 0  →  a = 3
+
+3) (2x³ − x + 4) : (2x − 1),  qalıq?
+   2x − 1 = 0  →  x = 1/2
+   P(1/2) = 2 · 1/8 − 1/2 + 4 = 1/4 − 1/2 + 4 = 15/4</div>
+
+      <h3><span class="st">4</span> İki parametr — iki tənlik</h3>
+      <div class="ex">x³ + ax² + bx − 6 çoxhədlisi həm x − 1-ə, həm x + 2-yə bölünür. a, b?
+
+P(1) = 1 + a + b − 6 = 0          →  a + b = 5
+P(−2) = −8 + 4a − 2b − 6 = 0      →  2a − b = 7
+Toplasaq: 3a = 12  →  a = 4,  b = 1
+Yoxla: x³ + 4x² + x − 6 = (x − 1)(x + 2)(x + 3) ✓</div>
+      <div class="life"><b>Həyatdan.</b> 9-a bölünmə əlaməti Bezudan çıxır! Ədəd <span class="m">N = P(10)</span>, rəqəmləri isə <span class="m">P</span>-nin əmsallarıdır. <span class="m">P(10) − P(1)</span> fərqi <span class="m">10 − 1 = 9</span>-a bölünür, <span class="m">P(1)</span> isə rəqəmlər cəmidir. 11 üçün: <span class="m">P(10) − P(−1)</span> bölünür 11-ə, <span class="m">P(−1)</span> — rəqəmlərin növbəli cəmi. Məsələn, 2357: <span class="m">7 − 5 + 3 − 2 = 3</span>, və doğrudan da <span class="m">2357 = 11 · 214 + 3</span>.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. Tam əmsallı P(x) çoxhədlisi üçün P(2) = 5 və P(7) = 13
+ola bilərmi?
+
+Həll. 3-cü nəticəyə görə P(7) − P(2) ədədi 7 − 2 = 5-ə bölünməlidir.
+Amma P(7) − P(2) = 13 − 5 = 8, 5-ə bölünmür.
+Cavab: ola bilməz. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x + a</span>-ya bölmədə <span class="m">P(a)</span> hesablamaq. Düzü: <span class="m">P(−a)</span>.</li>
+        <li><span class="m">2x − 1</span>-ə bölmədə <span class="m">P(1)</span> yazmaq. Bölənin kökü <span class="m">x = 1/2</span>-dir.</li>
+        <li><span class="m">(−1)</span>-in tək qüvvətini 1 götürmək: <span class="m">(−1)⁵¹ = −1</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P(x) : (x − a)  →  qalıq P(a)
+P(a) = 0  ⇔  x − a bölür P(x)
+Bölünmə şərti → P(a) = 0 → parametr üçün tənlik</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x⁵⁰ + x²⁵ + 1) : (x − 1)</span> — qalıq? <span class="ans">P(1) = 3.</span></li>
+        <li><span class="m">k</span>-nın hansı qiymətində <span class="m">x³ + kx + 4</span> bölünür <span class="m">x + 2</span>-yə? <span class="ans">P(−2) = −8 − 2k + 4 = 0 → k = −2.</span></li>
+        <li><span class="m">(x³ + 1) : (3x − 1)</span> — qalıq? <span class="ans">P(1/3) = 1/27 + 1 = 28/27.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. (x − a)(x − b)-yə bölmədə qalıq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadanın sevimli sualı: "<span class="m">P(x)</span>-i <span class="m">x − 1</span>-ə böldükdə qalıq 3, <span class="m">x − 2</span>-yə böldükdə 5-dir. <span class="m">(x − 1)(x − 2)</span>-yə böldükdə qalıq nədir?" <span class="m">P(x)</span>-in özü məlum deyil — amma cavab tapılır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Bölən ikinci dərəcəlidir, deməli qalıq birinci dərəcəlidir: <span class="m">R(x) = px + q</span>.</p>
+      <div class="fm">P(x) = (x − a)(x − b) · Q(x) + px + q
+x = a:   P(a) = pa + q
+x = b:   P(b) = pb + q
+İki tənlikdən p və q tapılır.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) P(1) = 3,  P(2) = 5.  (x − 1)(x − 2)-yə bölmədə qalıq?
+   p + q = 3,  2p + q = 5  →  p = 2, q = 1
+   Cavab: R(x) = 2x + 1
+
+2) x¹⁰⁰ : (x² − 1) = x¹⁰⁰ : ((x − 1)(x + 1))
+   P(1) = 1:   p + q = 1
+   P(−1) = 1:  −p + q = 1   →  p = 0, q = 1
+   Cavab: R(x) = 1
+
+3) x¹⁰⁰ : (x² − 3x + 2) = x¹⁰⁰ : ((x − 1)(x − 2))
+   P(1) = 1:    p + q = 1
+   P(2) = 2¹⁰⁰: 2p + q = 2¹⁰⁰   →  p = 2¹⁰⁰ − 1,  q = 2 − 2¹⁰⁰
+   Cavab: R(x) = (2¹⁰⁰ − 1)x + 2 − 2¹⁰⁰</div>
+      <div class="life"><b>Həyatdan.</b> <span class="m">R(x) = px + q</span> qalığının qrafiki <span class="m">(a; P(a))</span> və <span class="m">(b; P(b))</span> nöqtələrindən keçən düz xəttdir. Kompüter oyunlarında personajın iki mövqe arasındakı hərəkəti də belə hesablanır: iki məlum nöqtədən düz xətt keçirilir (buna <b>interpolyasiya</b> deyilir).</div>
+
+      <h3><span class="st">4</span> Bir neçə kök — bir neçə vuruq</h3>
+      <div class="fm">a ≠ b və P(a) = P(b) = 0  →  P(x) bölünür (x − a)(x − b)-yə</div>
+      <p><b>Niyə?</b> <span class="m">P(a) = 0</span>, deməli <span class="m">P(x) = (x − a)·Q(x)</span>. <span class="m">x = b</span> qoyaq: <span class="m">0 = (b − a)·Q(b)</span>, <span class="m">b − a ≠ 0</span>, onda <span class="m">Q(b) = 0</span> və <span class="m">Q(x)</span> də <span class="m">x − b</span>-yə bölünür. Üç və daha çox fərqli kök üçün eyni mühakimə.</p>
+      <div class="ex">Olimpiada məsələsi. Sübut et ki, istənilən natural n üçün
+(x + 1)²ⁿ − x²ⁿ − 2x − 1 çoxhədlisi x(x + 1)(2x + 1)-ə bölünür.
+
+Həll. P(x) = (x + 1)²ⁿ − x²ⁿ − 2x − 1. Bölənin kökləri: 0, −1, −1/2.
+P(0) = 1 − 0 − 0 − 1 = 0
+P(−1) = 0 − 1 + 2 − 1 = 0          ((−1)²ⁿ = 1)
+P(−1/2) = (1/2)²ⁿ − (1/2)²ⁿ + 1 − 1 = 0   ((−1/2)²ⁿ = (1/2)²ⁿ)
+Üç fərqli kök → P bölünür x(x + 1)(x + 1/2)-yə,
+deməli 2x + 1 = 2(x + 1/2) olduğundan x(x + 1)(2x + 1)-ə də. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İkinci dərəcəli bölənə bölmədə qalığı ədəd hesab etmək. Qalıq <span class="m">px + q</span>-dur; <span class="m">p = 0</span> ola bilər, amma bunu hesablamaqla tapırsan.</li>
+        <li><span class="m">(x + 1)</span> vuruğu üçün <span class="m">x = 1</span> qoymaq. Düzü: <span class="m">x = −1</span>.</li>
+        <li>Bölənin vuruqlara ayrılmasında səhv: <span class="m">x² − 3x + 2 = (x − 1)(x − 2)</span>, <span class="m">(x + 1)(x + 2)</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(x − a)(x − b)-yə bölmə: R(x) = px + q
+pa + q = P(a),  pb + q = P(b)
+Fərqli köklər → bölən onların hasilidir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">P(x)</span>-i <span class="m">x + 1</span>-ə böldükdə qalıq 4, <span class="m">x − 3</span>-ə böldükdə 8-dir. <span class="m">(x + 1)(x − 3)</span>-ə böldükdə? <span class="ans">−p + q = 4, 3p + q = 8 → p = 1, q = 5: R(x) = x + 5.</span></li>
+        <li><span class="m">x⁵¹ : (x² − 1)</span> — qalıq? <span class="ans">p + q = 1, −p + q = −1 → p = 1, q = 0: R(x) = x.</span></li>
+        <li><span class="m">x⁷ : (x² − x)</span> — qalıq? <span class="ans">x² − x = x(x − 1): P(0) = 0 → q = 0; P(1) = 1 → p = 1. R(x) = x.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Qeyri-müəyyən əmsallar üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzən cavabın <b>şəklini</b> bilirik, amma əmsallarını yox: "<span class="m">x⁴ + 4</span>-ü iki kvadrat üçhədlinin hasili kimi yaz", "<span class="m">(x − 1)²</span>-ə bölünən <span class="m">x³ + ax + b</span>-ni tap". Onda əmsalları hərflərlə yazır və tapırıq.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">İki çoxhədli eynidir  ⇔  eyni dərəcəli hədlərin əmsalları bərabərdir
+1) Naməlum əmsallı şəkil yaz
+2) Mötərizələri aç
+3) x³, x², x, sərbəst hədd üzrə bərabərlik yaz və həll et</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x³ − 6x² + 11x − 6 = (x − 1)(x² + mx + n).  m, n?
+   Sağ tərəf: x³ + (m − 1)x² + (n − m)x − n
+   x²:  m − 1 = −6  →  m = −5
+   sərbəst:  −n = −6  →  n = 6
+   yoxla x:  n − m = 6 + 5 = 11 ✓
+   Deməli x³ − 6x² + 11x − 6 = (x − 1)(x² − 5x + 6) = (x − 1)(x − 2)(x − 3)
+
+2) x⁴ + 4 = (x² + ax + 2)(x² − ax + 2).  a?
+   Sağ tərəf: (x² + 2)² − a²x² = x⁴ + (4 − a²)x² + 4
+   x²:  4 − a² = 0  →  a = 2
+   x⁴ + 4 = (x² + 2x + 2)(x² − 2x + 2)   (Sofi Jermen eyniliyi)
+
+3) P(x) — kvadrat üçhədli, P(x + 1) − P(x) = 2x + 3, P(0) = 1.  P(5)?
+   P(x) = ax² + bx + c:  P(x + 1) − P(x) = 2ax + (a + b)
+   2a = 2 → a = 1;  a + b = 3 → b = 2;  c = P(0) = 1
+   P(x) = x² + 2x + 1,  P(5) = 36</div>
+      <div class="life"><b>Həyatdan.</b> Kimyada reaksiya tənliyini tarazlaşdırmaq — eyni üsuldur. <span class="m">a H₂ + b O₂ → c H₂O</span>: hidrogen üçün <span class="m">2a = 2c</span>, oksigen üçün <span class="m">2b = c</span>. Ən kiçik tam həll <span class="m">a = 2, b = 1, c = 2</span>: <span class="m">2H₂ + O₂ → 2H₂O</span>. Hər element bir "dərəcə" kimidir — sol və sağ tərəfdə sayı eyni olmalıdır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. a və b-nin hansı qiymətlərində x³ + ax + b çoxhədlisi
+(x − 1)²-ə bölünür?
+
+Həll. Qismət birinci dərəcəlidir: x³ + ax + b = (x − 1)²(x + c).
+Sağ tərəf: (x² − 2x + 1)(x + c) = x³ + (c − 2)x² + (1 − 2c)x + c
+x²: c − 2 = 0 → c = 2;  x: a = 1 − 4 = −3;  sərbəst: b = 2.
+Cavab: a = −3, b = 2  (x³ − 3x + 2 = (x − 1)²(x + 2)). ∎</div>
+      <div class="ex">Məsələ 2. n-in hansı natural qiymətlərində n⁴ + 4 sadə ədəddir?
+
+Həll. Nümunə 2-yə görə n⁴ + 4 = (n² + 2n + 2)(n² − 2n + 2).
+İkinci vuruq: n² − 2n + 2 = (n − 1)² + 1.
+n ≥ 2 olduqda o ≥ 2-dir, birinci vuruq isə ondan böyükdür —
+ədəd iki vuruğa ayrılır, mürəkkəbdir.
+n = 1: 1 + 4 = 5 — sadədir.
+Cavab: yalnız n = 1. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Şəkli səhv seçmək: üçüncü dərəcəli çoxhədlini <span class="m">(x − 1)²</span>-ə bölsək, qismət <b>birinci</b> dərəcəlidir (<span class="m">x + c</span>), ikinci yox.</li>
+        <li>Mötərizə açanda hədd itirmək. Açdıqdan sonra bütün dərəcələri yoxla — bir tənlik "yoxlama" kimi artıq qalır.</li>
+        <li>Olmayan həddin əmsalını unutmaq: <span class="m">x³ + ax + b</span>-də <span class="m">x²</span>-nın əmsalı 0-dır və bu da tənlikdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şəkli yaz → aç → əmsalları bərabərləşdir
+(x² + mx + n)² = x⁴ + 2mx³ + (m² + 2n)x² + 2mnx + n²
+x⁴ + 4 = (x² + 2x + 2)(x² − 2x + 2)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + 5x + 6 = (x + 2)(x + m)</span>. <span class="m">m</span> = ? <span class="ans">Sərbəst hədd: 2m = 6 → m = 3.</span></li>
+        <li><span class="m">x⁴ + 2x³ + 3x² + ax + b = (x² + x + n)²</span>. <span class="m">a, b</span> = ? <span class="ans">x²: 1 + 2n = 3 → n = 1; a = 2n = 2, b = n² = 1.</span></li>
+        <li><span class="m">x³ + ax + b</span> çoxhədlisi <span class="m">(x + 1)²</span>-ə bölünür. <span class="m">a, b</span> = ? <span class="ans">(x + 1)²(x − 2) = x³ − 3x − 2: a = −3, b = −2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

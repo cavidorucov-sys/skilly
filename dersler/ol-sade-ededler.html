@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sadə ədədlər və bölənlər (olimpiada) dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-sade-ededler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Sadə ədədlər və bölənlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Natural ədədlər — sadə ədədlər, bölənlərin sayı və cəmi, Lejandr düsturu</div>
+    <h1>Sadə ədədlər, sadə vuruqlar, bölənlərin sayı və cəmi</h1>
+    <p>Sadə vuruqlara ayırmanı və <span class="m">τ(n) = (a + 1)(b + 1)…</span> düsturunu "Natural ədədlər" mövzusundan bilirsən. İndi olimpiada alətləri: sadə ədədlərin sonsuzluğu, Eratosfen ələyi və Eyler funksiyası, "p və p² + 2 sadədir" tipli məsələlər, bölənlərin cəmi və hasili, <span class="m">n!</span>-in sonundakı sıfırlar (Lejandr düsturu) və verilmiş sayda böləni olan ən kiçik ədəd.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, olimpiada məsələlərini əvvəl özün həll etməyə çalış, sonra həllə bax. Sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sadə ədədlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>τ(n) və σ(n)</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Lejandr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>k bölənli ədəd</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sadə ədədlər: sonsuzluq, ələk, forma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sadə ədədlər sonsuzdur (Evklid)</h3>
+      <p>2300 il əvvəlki isbat — olimpiada düşüncəsinin ən gözəl nümunələrindən biri.</p>
+      <div class="ex">Tutaq ki, sadə ədədlər sonludur: p₁, p₂, …, pₖ. N = p₁ · p₂ · … · pₖ + 1 götür.
+N-i hər pᵢ-yə böləndə qalıq 1-dir — heç birinə bölünmür.
+Amma N-in ən azı bir sadə böləni var — o, siyahıda yoxdur. Ziddiyyət. ∎</div>
+
+      <h3><span class="st">2</span> Ələk və Eyler funksiyası</h3>
+      <p><b>Eratosfen ələyi:</b> 2-dən N-ə qədər ədədləri yaz; 2-nin, 3-ün, 5-in, … misllərini sil (özlərindən başqa). √N-ə qədər sadələrlə ələmək kifayətdir: mürəkkəb n ≤ N-in √N-dən böyük olmayan sadə böləni var. 100-ə qədər 2, 3, 5, 7 ilə ələyirik — <b>25</b> sadə ədəd qalır.</p>
+      <p><b>Daxilolma–xaricolma:</b> 1…100 içində 2-yə, 3-ə, 5-ə bölünməyənlər:</p>
+      <div class="fm">100 − (50 + 33 + 20) + (16 + 10 + 6) − 3 = 26
+  ⌊100/2⌋ = 50,  ⌊100/6⌋ = 16,  ⌊100/30⌋ = 3 …
+  iki dəfə çıxılanları bir dəfə qaytarırıq</div>
+      <p><b>Eyler funksiyası</b> φ(n) — 1…n içində n ilə qarşılıqlı sadə olanların sayı. Hər sadə vuruq p "hər p ədəddən birini" aparır:</p>
+      <div class="fm">n = pᵃ · qᵇ · …  →  φ(n) = n · (1 − 1/p) · (1 − 1/q) · …
+φ(360) = 360 · 1/2 · 2/3 · 4/5 = 96</div>
+
+      <h3><span class="st">3</span> Sadə ədədin forması</h3>
+      <div class="fm">2 — yeganə cüt sadə ədəd.
+3-dən böyük sadə ədəd 6k + 1 və ya 6k − 1 şəklindədir.
+p ≠ 3 sadədirsə, p² ədədini 3-ə böləndə qalıq 1 olur.
+İki sadə ədədin cəmi təkdirsə, biri 2-dir.</div>
+      <div class="ex">Məsələ 1. p, p + 10, p + 14 — üçü də sadədir. p = ?
+
+Həll. 3-ə bölmədə qalıqlara bax: p, p + 10 ≡ p + 1, p + 14 ≡ p + 2.
+Üç ardıcıl qalıq → biri 3-ə bölünür, sadədirsə, 3-ə bərabərdir.
+p + 10 = 3 və p + 14 = 3 mümkün deyil → p = 3. Yoxla: 3, 13, 17 ✓</div>
+      <div class="ex">Məsələ 2. p və 8p² + 1 ikisi də sadədir. p = ?
+
+Həll. p ≠ 3 olsa, p² ≡ 1 (mod 3) → 8p² + 1 ≡ 9 ≡ 0 (mod 3), həm də > 3 — mürəkkəbdir.
+p = 3: 8 · 9 + 1 = 73 — sadədir. Cavab: p = 3.</div>
+      <div class="ex">Məsələ 3. n⁴ + 4 hansı natural n üçün sadədir?
+
+Həll (Sofi Jermen hiyləsi). n⁴ + 4 = n⁴ + 4n² + 4 − 4n² = (n² + 2)² − (2n)²
+                    = (n² − 2n + 2)(n² + 2n + 2).
+Sadə olması üçün kiçik vuruq 1 olmalıdır: n² − 2n + 2 = (n − 1)² + 1 = 1 → n = 1.
+n = 1: 1 + 4 = 5 — sadə. Cavab: yalnız n = 1.</div>
+      <div class="life"><b>Həyatdan.</b> Şimali Amerikada bəzi tsikada növləri yerin altından hər 13 və ya 17 ildən bir çıxır. Bioloqların izahı: sadə dövrlü həyat yırtıcıların 2, 3, 4, 6 illik dövrləri ilə nadir hallarda üst-üstə düşür — ƏKOB böyükdür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"3-dən böyük hər 6k ± 1 sadədir" demək. Tərsi doğru deyil: 25 = 6 · 4 + 1 sadə deyil.</li>
+        <li>p = 2 və p = 3 hallarını ayrıca yoxlamamaq — olimpiada cavabı çox vaxt məhz odur.</li>
+        <li>Daxilolma–xaricolmada üçlü kəsişməni (⌊N/30⌋) unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sadə ədədlər sonsuzdur: p₁…pₖ + 1.
+Ələk: √N-ə qədər sadələr kifayətdir.  φ(n) = n·Π(1 − 1/p).
+p &gt; 3 → p = 6k ± 1, p² ≡ 1 (mod 3) və p² − 1 ⋮ 24.
+"p və … sadədir" → 3-ə bölmədə qalıqlara bax; p = 2, p = 3 ayrıca.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>φ(100) = ? <span class="ans">40. 100 · 1/2 · 4/5 = 40.</span></li>
+        <li>p, p + 2, p + 4 üçü də sadədir. p = ? <span class="ans">3. p, p + 2 ≡ p − 1, p + 4 ≡ p + 1 (mod 3) — biri 3-ə bölünür → 3, 5, 7.</span></li>
+        <li>İki sadə ədədin cəmi 2027 ola bilərmi? <span class="ans">Yox. Cəm təkdir → biri 2-dir, o biri 2025 = 45² — mürəkkəbdir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Bölənlərin sayı τ(n), cəmi σ(n) və hasili</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> τ(n)-in variantları</h3>
+      <p><span class="m">n = pᵃ · qᵇ · …</span>. Hər bölən hər sadə vuruğun üstünü ayrıca seçir. Şərt əlavə olunanda yalnız seçimlər dəyişir:</p>
+      <div class="fm">bütün bölənlər:   (a + 1)(b + 1)…
+cüt bölənlər:      a · (b + 1)…         (2-nin üstü 1…a)
+tək bölənlər:      (b + 1)…             (2-nin üstü 0)
+kvadrat bölənlər:  (⌊a/2⌋ + 1)(⌊b/2⌋ + 1)…
+τ(n²):             (2a + 1)(2b + 1)…
+d-yə bölünənlər:   τ(n/d)</div>
+      <div class="ex">360 = 2³ · 3² · 5:  τ = 4 · 3 · 2 = 24;  cüt bölənlər 3 · 3 · 2 = 18;
+tək bölənlər 3 · 2 = 6;  kvadrat bölənlər 2 · 2 · 1 = 4 (1, 4, 9, 36).</div>
+
+      <h3><span class="st">2</span> Bölənlərin cəmi σ(n)</h3>
+      <div class="fm">σ(pᵃ · qᵇ) = (1 + p + … + pᵃ)(1 + q + … + qᵇ)
+1 + p + … + pᵃ = (pᵃ⁺¹ − 1)/(p − 1)</div>
+      <p>Niyə: mötərizələri açanda hər hasil <span class="m">pⁱqʲ</span> bir bölən verir və hər bölən düz bir dəfə çıxır.</p>
+      <div class="ex">σ(360) = (1 + 2 + 4 + 8)(1 + 3 + 9)(1 + 5) = 15 · 13 · 6 = 1170.</div>
+
+      <h3><span class="st">3</span> Hasil və tək sayda bölən</h3>
+      <p>Bölənlər cüt-cüt düzülür: <span class="m">d</span> və <span class="m">n/d</span>, hər cütün hasili n. Cüt yalnız <span class="m">d = n/d</span>, yəni <span class="m">d = √n</span> olanda "tək qalır".</p>
+      <div class="fm">Bölənlərin hasili = n^(τ(n)/2)
+τ(n) tək  ⇔  n tam kvadratdır
+Bölənlərin tərslərinin cəmi = σ(n)/n</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1 (lampalar). 100 sönük lampa 1-dən 100-ə qədər nömrələnib. 100 nəfər
+keçir: k-cı adam nömrəsi k-ya bölünən hər lampanın düyməsini basır. Sonda
+neçə lampa yanır?
+
+Həll. n nömrəli lampa τ(n) dəfə basılır. Yanır ⇔ τ(n) tək ⇔ n kvadratdır:
+1, 4, 9, …, 100 — 10 lampa.</div>
+      <div class="ex">Məsələ 2. n-in bütün bölənlərinin hasili n³-ə bərabərdir. n-in neçə böləni var?
+Belə ən kiçik n?
+
+Həll. Hasil = n^(τ/2) = n³ → τ = 6. τ = 6 → n = p⁵ və ya p² · q.
+Ən kiçik: 2² · 3 = 12 (2⁵ = 32-dən kiçik). Yoxla: 1·2·3·4·6·12 = 1728 = 12³ ✓</div>
+      <div class="ex">Məsələ 3. 28-in özündən kiçik bölənlərinin cəmi 28-dir (mükəmməl ədəd). Yoxla.
+
+Həll. 28 = 2² · 7: σ = (1 + 2 + 4)(1 + 7) = 56 = 2 · 28.
+Özündən başqa bölənlər: 56 − 28 = 28 ✓  (1 + 2 + 4 + 7 + 14 = 28)</div>
+      <div class="life"><b>Həyatdan.</b> 12 saatlıq siferblat, 60 dəqiqə, 360 dərəcə — qədim ölçülər bölənləri çox olan ədədlərlə seçilib: τ(12) = 6, τ(60) = 12, τ(360) = 24. Saatı yarıya, üçə, dördə, altıya bölmək asan olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>σ-nı üstlərlə hesablamaq: σ(2³) = 1 + 2 + 4 + 8 = 15, "3 + 1" yox.</li>
+        <li>τ(n²)-də üstləri 2-yə vurmağı unutmaq: 12² = 2⁴ · 3², τ = 15 (9 yox).</li>
+        <li>Kvadrat ədədin bölənlər hasilində τ/2-ni tam saymaq: τ(36) = 9 → hasil 36^(9/2) = 6⁹.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">τ: hər üstə seçimlərin sayı; şərtə görə seçimləri dəyiş.
+σ = Π(1 + p + … + pᵃ).   Hasil = n^(τ/2).   Σ 1/d = σ/n.
+τ tək ⇔ n kvadrat (lampalar məsələsi).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>σ(100) = ? <span class="ans">217. 100 = 2² · 5²: (1 + 2 + 4)(1 + 5 + 25) = 7 · 31 = 217.</span></li>
+        <li>12-nin bölənlərinin tərslərinin cəmi? <span class="ans">7/3. σ(12) = 28, 28/12 = 7/3.</span></li>
+        <li>1000-in neçə cüt böləni var? <span class="ans">12. 1000 = 2³ · 5³: 3 · 4 = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Lejandr düsturu: n!-in sadə vuruqları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">100! = 1 · 2 · 3 · … · 100</span> — 158 rəqəmli ədəddir. Onu hesablamadan sonundakı sıfırları saymaq olarmı? Olar: sıfırlar <span class="m">10 = 2 · 5</span> vuruqlarından gəlir, vuruqları isə saymaq asandır.</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fm">n!-də p-nin üstü = ⌊n/p⌋ + ⌊n/p²⌋ + ⌊n/p³⌋ + …
+(⌊x⌋ — x-in tam hissəsi; p^k &gt; n olanda dayan)</div>
+      <p>Niyə: 1…n içində p-yə bölünənlər <span class="m">⌊n/p⌋</span> dənədir — hər biri bir p verir. p²-yə bölünənlər (<span class="m">⌊n/p²⌋</span> dənə) ikinci p-ni verir, p³-ə bölünənlər üçüncünü və s. Hər ədəd öz p-lərinin sayı qədər dəfə sayılır.</p>
+      <div class="fm">Sonundakı sıfırlar = 5-in üstü (2-lər həmişə çoxdur)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">100! neçə sıfırla bitir?
+  ⌊100/5⌋ = 20,  ⌊100/25⌋ = 4,  ⌊100/125⌋ = 0  →  24 sıfır.
+100!-də 2-nin üstü:
+  50 + 25 + 12 + 6 + 3 + 1 = 97.
+1000! neçə sıfırla bitir?
+  200 + 40 + 8 + 1 = 249.</div>
+      <div class="ex">50! ədədi 6ᵐ-ə bölünür. m-in ən böyük qiyməti?
+  6 = 2 · 3. 50!-də 2-nin üstü: 25 + 12 + 6 + 3 + 1 = 47.
+             3-ün üstü: 16 + 5 + 1 = 22.
+  Hər 6 üçün bir 2 və bir 3 lazımdır → m = min(47; 22) = 22.
+Mürəkkəb əsasda, məs. 12 = 2² · 3: m = min(⌊47/2⌋; 22) = 22.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Elə n varmı ki, n! düz 5 sıfırla bitsin?
+
+Həll. Sıfırlar yalnız n 5-in mislindən keçəndə artır:
+  20! → 4,  24! → 4,  25! → 4 + 2 = 6  (25 = 5 · 5 iki 5 verir).
+5 sıfır atlanır. Belə n yoxdur.</div>
+      <div class="ex">Məsələ 2. n! düz 24 sıfırla bitir. n hansı qiymətləri ala bilər?
+
+Həll. 100!-də 24 sıfır var, 99!-də 19 + 3 = 22.
+Sıfırlar 100, 101, 102, 103, 104 üçün eynidir, 105!-də 25.
+Cavab: n = 100, 101, 102, 103, 104.</div>
+      <div class="ex">Məsələ 3. 30! ədədini sadə vuruqlara ayıranda 2, 3, 5-in üstləri?
+
+Həll. 2: 15 + 7 + 3 + 1 = 26;  3: 10 + 3 + 1 = 14;  5: 6 + 1 = 7.
+30! = 2²⁶ · 3¹⁴ · 5⁷ · 7⁴ · 11² · 13² · 17 · 19 · 23 · 29.
+(7: ⌊30/7⌋ = 4; 11 və 13: 2; qalanlar bir dəfə.)</div>
+      <div class="life"><b>Həyatdan.</b> 52 kartlıq dəstənin neçə müxtəlif qarışığı var? 52! — 68 rəqəmli ədəd, sonunda 10 + 2 = 12 sıfır. Ədəd o qədər böyükdür ki, yaxşı qarışdırılmış dəstənin düzülüşü, çox güman, tarixdə heç vaxt təkrar olunmayıb.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yalnız ⌊n/5⌋ götürmək. 25, 50, 75 … ikinci 5-i, 125 üçüncünü verir.</li>
+        <li>Sıfırları ⌊n/10⌋ ilə saymaq: 5 · 12 = 60 da sıfır verir.</li>
+        <li>Mürəkkəb əsasda (12 = 2² · 3) 2-nin üstünü 2-yə bölməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">vₚ(n!) = ⌊n/p⌋ + ⌊n/p²⌋ + …
+sıfırlar = v₅(n!)
+kᵐ | n!:  k = Π pᵉ → m = min ⌊vₚ(n!)/e⌋
+Sıfırların sayı 5-lik bloklarda sabitdir, bəzi saylar atlanır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>25! neçə sıfırla bitir? <span class="ans">6. 5 + 1.</span></li>
+        <li>200!-də 3-ün üstü? <span class="ans">97. 66 + 22 + 7 + 2 = 97.</span></li>
+        <li>n! düz 6 sıfırla bitir. n-in ən kiçik qiyməti? <span class="ans">25. 24!-də 4 sıfır, 25!-də 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Verilmiş sayda böləni olan ən kiçik ədəd</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Düz 12 böləni olan ən kiçik ədəd" — bu suala τ düsturunu tərsinə işlədərək cavab veririk. Sual RFO-da həm birbaşa, həm başqa məsələnin içində çıxır.</p>
+
+      <h3><span class="st">2</span> Üsul</h3>
+      <div class="fm">1. k-nı vuruqların hasili kimi bütün üsullarla yaz:
+   12 = 12 = 6·2 = 4·3 = 3·2·2
+2. Hər vuruqdan 1 çıx — üstlər: 11; 5,1; 3,2; 2,1,1
+3. Böyük üstü kiçik sadəyə ver: 2¹¹, 2⁵·3, 2³·3², 2²·3·5
+4. Müqayisə et: 2048, 96, 72, 60  →  60</div>
+      <p>Niyə böyük üst kiçik sadəyə? <span class="m">2³ · 3 = 24 &lt; 2 · 3³ = 54</span> — üstləri dəyişmək bölən sayını saxlayır, ədədi isə kiçildir.</p>
+      <p><b>Xüsusi hallar:</b> <span class="m">τ(n) = 2</span> ⇔ n sadədir; <span class="m">τ(n) = 3</span> ⇔ <span class="m">n = p²</span>; τ(n) tək ⇔ n kvadratdır; k sadədirsə, yeganə forma <span class="m">pᵏ⁻¹</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">τ(n) = 10:  10 = 10 = 5 · 2  →  2⁹ = 512,  2⁴ · 3 = 48.  Cavab: 48.
+τ(n) = 16:  2¹⁵; 2⁷·3 = 384; 2³·3³ = 216; 2³·3·5 = 120; 2·3·5·7 = 210.
+            Cavab: 120.  (Ən çox vuruq həmişə ən yaxşısı deyil!)
+τ(n) = 8:   2⁷ = 128; 2³·3 = 24; 2·3·5 = 30.  Cavab: 24.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. 100-dən kiçik və düz 3 natural böləni olan neçə ədəd var?
+
+Həll. τ(n) = 3 = 2 + 1 → n = p². p² &lt; 100 → p = 2, 3, 5, 7: 4, 9, 25, 49.
+Cavab: 4</div>
+      <div class="ex">Məsələ 2. Düz 6 böləni olan ən kiçik TƏK ədəd?
+
+Həll. 6 = 6 = 3 · 2 → p⁵ və ya p² · q. Tək sadələr: 3, 5, 7…
+  3⁵ = 243,  3² · 5 = 45.  Cavab: 45.</div>
+      <div class="ex">Məsələ 3. n = 2ᵃ · 3ᵇ ədədinin 12 böləni, n² ədədinin isə 35 böləni var.
+n-in ən kiçik qiyməti neçədir?
+
+Həll. τ(n) = (a + 1)(b + 1) = 12,  τ(n²) = (2a + 1)(2b + 1) = 35 = 5 · 7.
+İkinci tənlik: {2a + 1; 2b + 1} = {5; 7} və ya {1; 35}.
+  {1; 35} → a = 0, b = 17 → (a + 1)(b + 1) = 18 ✗
+  {5; 7}  → {a; b} = {2; 3} → 3 · 4 = 12 ✓
+n = 2² · 3³ = 108 və ya n = 2³ · 3² = 72. Ən kiçiyi: 72.</div>
+      <div class="life"><b>Həyatdan.</b> 60 və 360 ədədləri (dəqiqə, dərəcə) təsadüfi seçilməyib: 60 — düz 12 böləni olan ən kiçik ədəddir, 360 isə 24 böləni olan ən kiçik ədəd. Qədim babillilər bölməsi rahat ədədlər axtarırdı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Həmişə ən çox sadə vuruq götürmək: τ = 16 üçün 2 · 3 · 5 · 7 = 210, amma 2³ · 3 · 5 = 120 kiçikdir.</li>
+        <li>Böyük üstü böyük sadəyə vermək: 2 · 3³ = 54, 2³ · 3 = 24-dən böyükdür.</li>
+        <li>k-nın bir ayrılışını unutmaq — hamısını sırala.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k = (a+1)(b+1)… — bütün ayrılışlar.
+Üstlər azalan, sadələr artan: 2ᵃ · 3ᵇ · 5ᶜ …, a ≥ b ≥ c.
+τ=4 → 6, τ=6 → 12, τ=8 → 24, τ=10 → 48, τ=12 → 60, τ=16 → 120, τ=24 → 360.
+τ = 3 ⇔ p²;  τ tək ⇔ kvadrat.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düz 9 böləni olan ən kiçik ədəd? <span class="ans">36. 9 = 9 → 2⁸ = 256; 9 = 3 · 3 → 2² · 3² = 36.</span></li>
+        <li>Düz 5 böləni olan ən kiçik ədəd? <span class="ans">16 = 2⁴. 5 sadədir — yeganə forma p⁴.</span></li>
+        <li>Düz 4 böləni olan ən kiçik tək ədəd? <span class="ans">15. p³ → 27, p · q → 3 · 5 = 15.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

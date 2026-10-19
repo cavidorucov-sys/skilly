@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Binom açılışı dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-binom.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Binom, aⁿ ± bⁿ</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Çoxhədlilər — (a ± b)ⁿ, aⁿ ± bⁿ, binom açılışı</div>
+    <h1>Binom açılışı, aⁿ ± bⁿ və bölünmə</h1>
+    <p><span class="m">(a + b)²</span> düsturunu bilirsən. Bəs <span class="m">(a + b)¹⁰</span>? Paskal üçbucağı istənilən qüvvəti açmağa imkan verir. Həmin açılış və <span class="m">aⁿ − bⁿ</span> düsturu olimpiadanın iki güclü alətidir: "<span class="m">7¹⁰⁰</span> ədədini 48-ə böldükdə qalıq", "sübut et ki, bölünür" kimi məsələlər bir-iki sətirdə həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Paskal üçbucağı</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Əmsallar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>aⁿ ± bⁿ</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Binomla qalıq</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Paskal üçbucağı və (a + b)ⁿ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">(a + b)² = a² + 2ab + b²</span>, <span class="m">(a + b)³ = a³ + 3a²b + 3ab² + b³</span>. Bu əmsallar — 1, 2, 1 və 1, 3, 3, 1 — təsadüfi deyil. Onları bir cədvəldən oxumaq olur və bu cədvəl ehtimal, kombinatorika, qalıq məsələlərində də çıxır.</p>
+
+      <h3><span class="st">2</span> Paskal üçbucağı</h3>
+      <div class="fm">n = 0:              1
+n = 1:            1   1
+n = 2:          1   2   1
+n = 3:        1   3   3   1
+n = 4:      1   4   6   4   1
+n = 5:    1   5  10  10   5   1
+n = 6:  1   6  15  20  15   6   1</div>
+      <p>Qayda: kənarlarda 1, qalan hər ədəd <b>üstündəki iki ədədin cəmidir</b> (məsələn, <span class="m">10 = 4 + 6</span>). <span class="m">n</span>-ci sətir <span class="m">(a + b)ⁿ</span> açılışının əmsallarıdır:</p>
+      <div class="fm">(a + b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴
+(a − b)⁴ = a⁴ − 4a³b + 6a²b² − 4ab³ + b⁴</div>
+
+      <h3><span class="st">3</span> Niyə belədir: C(n, k)</h3>
+      <p><span class="m">(a + b)ⁿ = (a + b)(a + b)…(a + b)</span> — <span class="m">n</span> mötərizə. Mötərizələri açanda hər mötərizədən ya <span class="m">a</span>, ya <span class="m">b</span> götürürük. <span class="m">aⁿ⁻ᵏbᵏ</span> həddi o vaxt alınır ki, <span class="m">n</span> mötərizədən düz <span class="m">k</span> dənəsində <span class="m">b</span> seçək. Belə seçimlərin sayı <b>C(n, k)</b>-dır (dərsliklərdə <span class="m">Cₙᵏ</span> də yazılır):</p>
+      <div class="fm">C(n, k) = n! / (k!·(n − k)!) = n·(n − 1)·…·(n − k + 1) / (1·2·…·k)
+(a + b)ⁿ = C(n,0)aⁿ + C(n,1)aⁿ⁻¹b + … + C(n,k)aⁿ⁻ᵏbᵏ + … + C(n,n)bⁿ
+Simmetriya: C(n, k) = C(n, n − k)
+Paskal qaydası: C(n + 1, k + 1) = C(n, k) + C(n, k + 1)</div>
+      <p>Paskal qaydasının izahı: <span class="m">n + 1</span> nəfərdən <span class="m">k + 1</span> nəfər seçirik. Fikrət ya seçilir (qalan <span class="m">n</span> nəfərdən daha <span class="m">k</span> nəfər), ya seçilmir (<span class="m">n</span> nəfərdən <span class="m">k + 1</span> nəfər).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x + 2)⁴ = ?
+   Sətir 1, 4, 6, 4, 1:
+   x⁴ + 4·x³·2 + 6·x²·4 + 4·x·8 + 16 = x⁴ + 8x³ + 24x² + 32x + 16
+
+2) C(10, 3) = 10·9·8 / (1·2·3) = 720 / 6 = 120
+
+3) 11⁴ = (10 + 1)⁴ = 10⁴ + 4·10³ + 6·10² + 4·10 + 1 = 14641
+   (11-in qüvvətləri Paskal sətirlərini "rəqəmlərlə" yazır)</div>
+      <div class="life"><b>Həyatdan.</b> Şəhər küçələri dama-dama torudur. Evdən məktəbə 3 məhəllə şərqə, 2 məhəllə şimala getmək lazımdır. Ən qısa yolların sayı — 5 addımdan hansı 2-sinin şimala olduğunu seçmək: <span class="m">C(5, 2) = 10</span>. Hər kəsişməyə çatan yolların sayı da Paskal qaydası ilə hesablanır: soldan gələnlər + aşağıdan gələnlər.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. Sübut et ki, C(n, 0) + C(n, 1) + … + C(n, n) = 2ⁿ və
+C(n, 0) − C(n, 1) + C(n, 2) − … ± C(n, n) = 0  (n ≥ 1).
+
+Həll. (a + b)ⁿ açılışında a = b = 1 qoyaq:
+(1 + 1)ⁿ = C(n, 0) + C(n, 1) + … + C(n, n), yəni cəm 2ⁿ.
+a = 1, b = −1 qoyaq: (1 − 1)ⁿ = 0 = C(n, 0) − C(n, 1) + C(n, 2) − …  ∎
+Mənası: n elementli çoxluğun bütün alt çoxluqlarının sayı 2ⁿ-dir,
+cüt elementli alt çoxluqlar isə tək elementlilər qədərdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sətir nömrəsini səhv saymaq: <span class="m">(a + b)⁵</span> üçün 1, 5, 10, 10, 5, 1 sətri lazımdır (ikinci ədəd = <span class="m">n</span>).</li>
+        <li><span class="m">(x + 2)⁴</span>-də ikinci həddin qüvvətini unutmaq: <span class="m">6·x²·2² = 24x²</span>, <span class="m">12x²</span> yox.</li>
+        <li><span class="m">(a − b)ⁿ</span>-də işarələri unutmaq: işarələr növbələşir, <span class="m">b</span>-nin tək qüvvətləri olan hədlər mənfidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">C(n, k) = n·(n − 1)·…·(n − k + 1) / k!
+(a + b)ⁿ: əmsallar — Paskal üçbucağının n-ci sətri
+Sətrin cəmi 2ⁿ;  C(n, k) = C(n, n − k)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(a − b)⁵</span> açılışının əmsalları? <span class="ans">1, −5, 10, −10, 5, −1.</span></li>
+        <li><span class="m">C(8, 3)</span> = ? <span class="ans">8·7·6/(1·2·3) = 56.</span></li>
+        <li><span class="m">101³</span> = ? <span class="ans">(100 + 1)³ = 1 000 000 + 3·10 000 + 3·100 + 1 = 1 030 301.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Konkret həddin əmsalı və əmsalların cəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">(2x − 3)¹⁰</span> açılışında 11 hədd var — hamısını yazmaq uzundur. Olimpiadada adətən bir həddi ("<span class="m">x³</span>-ün əmsalı", "sərbəst hədd") və ya bütün əmsalların cəmini soruşurlar. İkisinin də qısa yolu var.</p>
+
+      <h3><span class="st">2</span> Ümumi hədd</h3>
+      <div class="fm">(A + B)ⁿ açılışının ümumi həddi:  C(n, k) · Aⁿ⁻ᵏ · Bᵏ,   k = 0, 1, …, n
+x-in lazım olan qüvvətini verən k-nı tap → hesabla</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (2x − 3)⁵ açılışında x³-ün əmsalı
+   A = 2x, B = −3:  C(5, k)·(2x)⁵⁻ᵏ·(−3)ᵏ
+   x³: 5 − k = 3 → k = 2
+   C(5, 2)·2³·(−3)² = 10·8·9 = 720
+
+2) (x² + 1/x)⁹ açılışında sərbəst hədd
+   C(9, k)·(x²)⁹⁻ᵏ·(1/x)ᵏ = C(9, k)·x¹⁸⁻²ᵏ⁻ᵏ = C(9, k)·x¹⁸⁻³ᵏ
+   18 − 3k = 0 → k = 6
+   C(9, 6) = C(9, 3) = 9·8·7/6 = 84
+
+3) (x − 2/x²)⁶ açılışında sərbəst hədd
+   C(6, k)·x⁶⁻ᵏ·(−2)ᵏ·x⁻²ᵏ → üst 6 − 3k = 0 → k = 2
+   C(6, 2)·(−2)² = 15·4 = 60</div>
+
+      <h3><span class="st">4</span> Əmsalların cəmi: x = 1, x = 0, x = −1</h3>
+      <div class="fm">P(x) = aₙxⁿ + … + a₁x + a₀
+Bütün əmsalların cəmi:   P(1)
+Sərbəst hədd:            P(0)
+Cüt qüvvətlərdəki cəm:   (P(1) + P(−1)) / 2
+Tək qüvvətlərdəki cəm:   (P(1) − P(−1)) / 2</div>
+      <p>Niyə? <span class="m">x = 1</span> olanda hər hədd öz əmsalına çevrilir. <span class="m">x = −1</span> olanda cüt qüvvətlər "+", tək qüvvətlər "−" işarə ilə gəlir; toplayanda tək hədlər silinir.</p>
+      <div class="ex">(3x − 2)¹⁰:            P(1) = 1¹⁰ = 1
+(x² − 3x + 1)²⁰²⁶:     P(1) = (−1)²⁰²⁶ = 1
+(2x − 1)⁶, cüt qüvvətlər:  P(1) = 1,  P(−1) = (−3)⁶ = 729
+                           (1 + 729)/2 = 365</div>
+      <div class="life"><b>Həyatdan.</b> Sikkəni 5 dəfə atırsan. Düz 2 dəfə "gerb" düşməsinin neçə yolu var? 5 atışdan hansı 2-sinin gerb olduğunu seçirik: <span class="m">C(5, 2) = 10</span>. Bütün nəticələrin sayı <span class="m">2⁵ = 32</span>, deməli ehtimal <span class="m">10/32</span>. Bu, <span class="m">(a + b)⁵</span> açılışındakı <span class="m">10a³b²</span> həddidir.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. (1 + x)ⁿ açılışında üç ardıcıl əmsal 1 : 2 : 3 nisbətindədir. n-i tap.
+
+Həll. Əmsallar C(n, k − 1), C(n, k), C(n, k + 1) olsun.
+Qonşu əmsalların nisbəti: C(n, k) / C(n, k − 1) = (n − k + 1)/k.
+(n − k + 1)/k = 2      →  n = 3k − 1
+(n − k)/(k + 1) = 3/2  →  2n − 2k = 3k + 3  →  2n = 5k + 3
+2(3k − 1) = 5k + 3  →  k = 5,  n = 14
+Yoxla: C(14, 4) = 1001,  C(14, 5) = 2002,  C(14, 6) = 3003 ✓   Cavab: 14.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əmsala ədədi vuruğun qüvvətini qatmamaq: <span class="m">(2x)³ = 8x³</span>, əmsal <span class="m">C(5, 2)·8·9</span>-dur, <span class="m">C(5, 2)·9</span> yox.</li>
+        <li>Mənfi işarəni itirmək: <span class="m">(−3)ᵏ</span> tək <span class="m">k</span>-da mənfidir.</li>
+        <li><span class="m">k</span>-nı <span class="m">x</span>-in üstü ilə qarışdırmaq: <span class="m">(2x − 3)⁵</span>-də <span class="m">x³</span> üçün <span class="m">k = 2</span>-dir (B-nin qüvvəti), 3 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hədd: C(n, k)·Aⁿ⁻ᵏ·Bᵏ → x-in üstünə görə k tapılır
+Əmsallar cəmi = P(1),  sərbəst hədd = P(0)
+Cüt qüvvətlər: (P(1) + P(−1))/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x + 3)⁴</span> açılışında <span class="m">x²</span>-nın əmsalı? <span class="ans">C(4, 2)·3² = 6·9 = 54.</span></li>
+        <li><span class="m">(x + 1/x)⁸</span> açılışında sərbəst hədd? <span class="ans">8 − 2k = 0 → k = 4: C(8, 4) = 70.</span></li>
+        <li><span class="m">(5x − 4)²⁰²⁶</span> açılışında əmsalların cəmi? <span class="ans">P(1) = 1²⁰²⁶ = 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. aⁿ − bⁿ və aⁿ + bⁿ: nəyə bölünür</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Sübut et ki, <span class="m">2¹⁰⁰ − 1</span> ədədi 15-ə bölünür." Bu ədədi hesablamaq olmur, amma onun bölənlərini bir düsturla görmək olur.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fm">aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + aⁿ⁻²b + … + abⁿ⁻² + bⁿ⁻¹)
+n tək:  aⁿ + bⁿ = (a + b)(aⁿ⁻¹ − aⁿ⁻²b + … − abⁿ⁻² + bⁿ⁻¹)
+
+Nəticə (a, b — tam ədədlər):
+• aⁿ − bⁿ həmişə a − b-yə bölünür
+• n tək olanda aⁿ + bⁿ bölünür a + b-yə
+• n cüt olanda aⁿ − bⁿ bölünür a + b-yə</div>
+      <p><b>İsbatın ideyası</b> (Bezu teoremi ilə). <span class="m">P(x) = xⁿ − bⁿ</span> çoxhədlisində <span class="m">P(b) = 0</span>, deməli <span class="m">P(x)</span> bölünür <span class="m">x − b</span>-yə. <span class="m">n</span> tək olanda <span class="m">Q(x) = xⁿ + bⁿ</span> üçün <span class="m">Q(−b) = −bⁿ + bⁿ = 0</span>, deməli bölünür <span class="m">x + b</span>-yə. <span class="m">n</span> cüt olanda <span class="m">xⁿ − bⁿ</span> üçün <span class="m">x = −b</span> də kökdür.</p>
+      <p>Qısa yazılış: <span class="m">a mod m</span> — <span class="m">a</span>-nı <span class="m">m</span>-ə böldükdə qalıq; <span class="m">a ≡ b (mod m)</span> — <span class="m">a</span> və <span class="m">b</span> eyni qalıq verir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 2¹⁰⁰ − 1 bölünür 3-ə və 15-ə
+   2¹⁰⁰ − 1 = 4⁵⁰ − 1⁵⁰  →  bölünür 4 − 1 = 3-ə
+   2¹⁰⁰ − 1 = 16²⁵ − 1²⁵ →  bölünür 16 − 1 = 15-ə
+
+2) 17ⁿ − 11ⁿ istənilən n üçün 6-ya bölünür (17 − 11 = 6)
+
+3) 5²⁰²⁷ + 7²⁰²⁷ bölünür 12-yə (2027 tək, 5 + 7 = 12)
+
+4) 3¹⁰⁰ mod 4 = ?
+   100 cüt → 3¹⁰⁰ − 1¹⁰⁰ bölünür 3 + 1 = 4-ə → qalıq 1</div>
+      <div class="life"><b>Həyatdan.</b> Məlum ən böyük sadə ədədlər <span class="m">2ᵖ − 1</span> şəklindədir (Mersenn ədədləri); onların axtarışında bütün dünyadan minlərlə kompüter iştirak edir. Niyə üst <span class="m">p</span> sadə olmalıdır? Aşağıdakı olimpiada məsələsi bunu göstərir.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et ki, 2ⁿ − 1 sadədirsə, n də sadədir.
+
+Həll. Tutaq ki, n = a·b, 1 &lt; a &lt; n. Onda 2ⁿ − 1 = (2ᵃ)ᵇ − 1ᵇ,
+bu isə 2ᵃ − 1-ə bölünür. 1 &lt; 2ᵃ − 1 &lt; 2ⁿ − 1 — deməli 2ⁿ − 1 mürəkkəbdir.
+Məsələn, 2⁶ − 1 = 63 bölünür 2² − 1 = 3-ə və 2³ − 1 = 7-yə. ∎</div>
+      <div class="ex">Məsələ 2. Sübut et ki, istənilən natural n üçün 11ⁿ⁺² + 12²ⁿ⁺¹ bölünür 133-ə.
+
+Həll. 11ⁿ⁺² = 121·11ⁿ,   12²ⁿ⁺¹ = 12·144ⁿ.
+121·11ⁿ + 12·144ⁿ = 133·11ⁿ − 12·11ⁿ + 12·144ⁿ
+                  = 133·11ⁿ + 12·(144ⁿ − 11ⁿ)
+144ⁿ − 11ⁿ bölünür 144 − 11 = 133-ə. Hər iki toplanan 133-ə bölünür. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">aⁿ + bⁿ</span> cüt <span class="m">n</span>-də <span class="m">a + b</span>-yə bölünür demək. <span class="m">3² + 1² = 10</span>, 4-ə bölünmür.</li>
+        <li><span class="m">aⁿ − bⁿ</span> bölünür <span class="m">a + b</span>-yə — yalnız cüt <span class="m">n</span> üçün: <span class="m">3³ − 1 = 26</span>, 4-ə bölünmür.</li>
+        <li>Əsasları uyğunlaşdırmağı unutmaq: <span class="m">2¹⁰⁰ − 1</span>-də 15-i görmək üçün <span class="m">2¹⁰⁰ = 16²⁵</span> yazmaq lazımdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a − b  bölür  aⁿ − bⁿ  (həmişə)
+a + b  bölür  aⁿ + bⁿ  (n tək)
+a + b  bölür  aⁿ − bⁿ  (n cüt)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">7¹⁰⁰ − 3¹⁰⁰</span> ədədi 40-a bölünürmü? <span class="ans">Bəli: 7¹⁰⁰ − 3¹⁰⁰ = 49⁵⁰ − 9⁵⁰, bölünür 49 − 9 = 40-a.</span></li>
+        <li><span class="m">2²⁰²⁶ + 1</span> ədədini 5-ə böldükdə qalıq? <span class="ans">2²⁰²⁶ + 1 = 4¹⁰¹³ + 1¹⁰¹³, 1013 tək → bölünür 4 + 1 = 5-ə. Qalıq 0.</span></li>
+        <li><span class="m">9¹⁰¹ mod 10</span> = ? <span class="ans">101 tək → 9¹⁰¹ + 1 bölünür 10-a, yəni 9¹⁰¹ ≡ −1 ≡ 9. Son rəqəm 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Binomla qalıq: 7¹⁰⁰ mod 48</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">7¹⁰⁰</span> ədədində 85 rəqəm var. Onu 48-ə böldükdə qalığı tapmaq üçün bircə müşahidə kifayətdir: <span class="m">7² = 49 = 48 + 1</span>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">(m + 1)ⁿ = mⁿ + C(n,1)mⁿ⁻¹ + … + C(n,n−1)·m + 1  ≡  1   (mod m)
+(m − 1)ⁿ ≡ (−1)ⁿ   (mod m)</div>
+      <p>Açılışda sonuncudan başqa bütün hədlərdə <span class="m">m</span> vuruğu var. Deməli qüvvətin əsasını (və ya onun kiçik qüvvətini) <b>m ± 1</b> şəklinə salmaq lazımdır.</p>
+      <div class="fm">Plan: bᵉ = m ± 1 tap;  N = e·q + r;  bᴺ = (bᵉ)^q · bʳ ≡ (±1)^q · bʳ</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 7¹⁰⁰ mod 48
+   7² = 49 = 48 + 1  →  7¹⁰⁰ = (48 + 1)⁵⁰ ≡ 1.   Cavab: 1
+
+2) 2¹⁰⁰ mod 7
+   2³ = 8 = 7 + 1;  100 = 3·33 + 1
+   2¹⁰⁰ = 8³³ · 2 ≡ 1 · 2 = 2.   Cavab: 2
+
+3) 3¹⁰⁰ mod 28
+   3³ = 27 = 28 − 1;  100 = 3·33 + 1
+   3¹⁰⁰ = 27³³ · 3 ≡ (−1)³³ · 3 = −3 ≡ 25.   Cavab: 25
+
+4) 21⁵⁰ ədədinin son iki rəqəmi (mod 100)
+   (20 + 1)⁵⁰ = 1 + 50·20 + C(50, 2)·20² + …
+   üçüncü həddən başlayaraq hamısı 100-ə bölünür
+   ≡ 1 + 1000 = 1001 → son iki rəqəm 01</div>
+      <div class="life"><b>Həyatdan.</b> Bu gün bazar ertəsidir. <span class="m">8¹⁰⁰</span> gündən sonra hansı gün olacaq? <span class="m">8 = 7 + 1</span>, deməli <span class="m">8¹⁰⁰ ≡ 1 (mod 7)</span> — həftə cəmi 1 gün sürüşür: çərşənbə axşamı. Təqvim, saat, növbə cədvəli — hamısı qalıq hesabıdır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et ki, 11¹⁰ − 1 ədədi 100-ə bölünür.
+
+Həll. 11¹⁰ = (10 + 1)¹⁰ = 1 + 10·10 + C(10, 2)·10² + C(10, 3)·10³ + …
+11¹⁰ − 1 = 100 + 45·100 + 120·1000 + …  — hər toplanan 100-ə bölünür. ∎</div>
+      <div class="ex">Məsələ 2. Sübut et ki, istənilən natural n üçün 6²ⁿ + 19ⁿ − 2ⁿ⁺¹ bölünür 17-yə.
+
+Həll. 6²ⁿ = 36ⁿ, 2ⁿ⁺¹ = 2ⁿ + 2ⁿ. Qruplaşdıraq:
+(36ⁿ − 2ⁿ) + (19ⁿ − 2ⁿ)
+36ⁿ − 2ⁿ bölünür 36 − 2 = 34 = 2·17-yə,
+19ⁿ − 2ⁿ bölünür 19 − 2 = 17-yə. Cəm 17-yə bölünür. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(m − 1)ⁿ ≡ −1</span> yazmaq. Düzü: <span class="m">(−1)ⁿ</span> — cüt <span class="m">n</span>-də 1, tək <span class="m">n</span>-də −1.</li>
+        <li>Mənfi qalığı cavab kimi yazmaq: <span class="m">−3 ≡ 25 (mod 28)</span>. Qalıq 0 ilə <span class="m">m − 1</span> arasındadır.</li>
+        <li>Üstün qalığını unutmaq: <span class="m">2¹⁰⁰ = (2³)³³·2</span> — sonda qalan <span class="m">2¹</span> vuruğu itməməlidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(m + 1)ⁿ ≡ 1,  (m − 1)ⁿ ≡ (−1)ⁿ  (mod m)
+bᵉ = m ± 1 tap, N = e·q + r
+(10k + 1)ⁿ ≡ 1 + 10k·n  (mod 100)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">5¹⁰⁰ mod 24</span> = ? <span class="ans">5² = 25 = 24 + 1 → 1.</span></li>
+        <li><span class="m">2²⁰²⁶ mod 9</span> = ? <span class="ans">2³ = 8 = 9 − 1; 2026 = 3·675 + 1 → (−1)⁶⁷⁵·2 = −2 ≡ 7.</span></li>
+        <li><span class="m">31²⁰</span> ədədinin son iki rəqəmi? <span class="ans">1 + 20·30 = 601 → 01.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

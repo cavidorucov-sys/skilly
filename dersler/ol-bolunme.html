@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bölünmə əlamətləri (olimpiada) dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-bolunme.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Bölünmə əlamətləri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Natural ədədlər — bölünmə əlamətləri</div>
+    <h1>Bölünmə əlamətləri</h1>
+    <p>Məktəb əlamətlərini (2, 3, 4, 5, 9) artıq bilirsən — "Natural ədədlər" mövzusunda keçmişik. Burada bir addım irəli gedirik: əlamətlər <b>niyə</b> işləyir, 7-yə, 11-ə, 13-ə, 16-ya necə yoxlanır, gizli rəqəmlər necə tapılır və <span class="m">n³ − n</span> kimi ifadələrin bölünməsi necə isbat olunur. RFO-nun rayon və yarımfinal turlarında bu suallar hər il çıxır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, olimpiada məsələlərini əvvəl özün həll etməyə çalış, sonra həllə bax. Sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>3, 9 və 11</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>1001 və 2ⁿ</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Gizli rəqəmlər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İfadələr</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Əlamətlər niyə işləyir: 3, 9 və 11</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Məktəbdə əlaməti əzbərləyirik: "rəqəmlərin cəmi 9-a bölünürsə, ədəd 9-a bölünür". Olimpiadada isə sual başqa cürdür: <b>qalıq</b> neçədir, 2026 rəqəmli ədəd nəyə bölünür, rəqəmlərin yeri dəyişəndə nə olur. Bunun üçün əlamətin <b>səbəbini</b> bilmək lazımdır — onda yeni əlaməti özün qura bilərsən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: onluq yazılış</h3>
+      <p>Hər ədəd rəqəmləri ilə yazılır: <span class="m">4725 = 4 · 1000 + 7 · 100 + 2 · 10 + 5</span>. İndi 10-un qüvvətlərinə bax:</p>
+      <div class="fm">10 = 9 + 1,  100 = 99 + 1,  1000 = 999 + 1
+9, 99, 999 … hamısı 9-a bölünür.
+4725 = 4·999 + 7·99 + 2·9  +  (4 + 7 + 2 + 5)
+       \_____ 9-a bölünür ____/   rəqəmlər cəmi</div>
+      <p>Deməli, ədəd ilə rəqəmləri cəmi arasındakı fərq <b>həmişə 9-a bölünür</b>. Buna görə ədəd 9-a (və 3-ə) bölünəndə rəqəmlər cəmi ilə <b>eyni qalığı</b> verir. Qısa yazılış: <span class="m">a ≡ b (mod m)</span> — "a və b ədədlərini m-ə böləndə qalıqlar eynidir".</p>
+      <div class="fm">n ≡ (rəqəmlər cəmi)  (mod 9)  və  (mod 3)</div>
+      <p><b>11 üçün</b> eyni fikir: <span class="m">10 = 11 − 1</span>, <span class="m">100 = 99 + 1</span>, <span class="m">1000 = 1001 − 1</span>, … Yəni 10-un qüvvətləri 11-ə bölmədə növbə ilə <span class="m">+1, −1, +1, −1</span> qalıq verir.</p>
+      <div class="fm">10ᵏ ≡ (−1)ᵏ  (mod 11)
+n ≡ (sağdan tək yerlərdəki rəqəmlər) − (cüt yerlərdəkilər)  (mod 11)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">123456789 ədədini 9-a və 11-ə böləndə qalıqlar?
+
+9-a:  1 + 2 + … + 9 = 45 = 9 · 5  →  qalıq 0.
+
+11-ə: yerləri SAĞDAN sayırıq (vahidlər — 1-ci yer).
+  tək yerlər: 9 + 7 + 5 + 3 + 1 = 25
+  cüt yerlər: 8 + 6 + 4 + 2     = 20
+  25 − 20 = 5  →  qalıq 5.
+  Yoxlama: 11 · 11223344 = 123456784,  123456789 − 123456784 = 5 ✓
+
+Fərq mənfi olsa, 11 əlavə et: −3 → −3 + 11 = 8, qalıq 8.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Ədədin rəqəmlərinin yerini istədiyimiz kimi dəyişdik.
+İsbat et ki, yeni ədəd ilə köhnə ədədin fərqi 9-a bölünür.
+
+Həll. Rəqəmlər eynidir → rəqəmlər cəmi eynidir → hər iki ədəd 9-a
+bölmədə eyni qalıq verir. Eyni qalıqlı ədədlərin fərqi 9-a bölünür. ∎
+(Məsələn: 5203 − 2350 = 2853 = 9 · 317.)</div>
+      <div class="ex">Məsələ 2. 1-dən 100-ə qədər bütün ədədləri yan-yana yazdıq:
+1234567891011…99100. Bu ədədi 9-a böləndə qalıq neçədir?
+
+Həll. Böyük ədədin qalığı = bütün rəqəmlərin cəminin qalığı.
+Hər kiçik ədəd (məs. 57) öz rəqəmləri cəmi ilə eyni qalıq verir, ona görə
+rəqəmləri toplamaq əvəzinə ədədlərin özünü toplaya bilərik:
+  1 + 2 + … + 100 = 100 · 101 / 2 = 5050
+  5050 → 5 + 0 + 5 + 0 = 10 → qalıq 1.
+Cavab: 1</div>
+      <div class="ex">Məsələ 3. Cüt sayda rəqəmi olan hər palindrom (soldan və sağdan eyni
+oxunan ədəd, məs. 123321) 11-ə bölünür. İsbat et.
+
+Həll. 2k rəqəmli palindromda sağdan i-ci və (2k + 1 − i)-ci yerlərdə eyni
+rəqəm durur. Bu iki yerin nömrələrinin cəmi 2k + 1 təkdir, deməli biri tək,
+biri cüt yerdir: rəqəm bir dəfə "+" ilə, bir dəfə "−" ilə sayılır.
+Hər cüt sıfır verir → fərq 0 → ədəd 11-ə bölünür. ∎
+(123321 = 11 · 11211.)</div>
+      <div class="ex">Məsələ 4. 2¹⁰⁰ ədədinin rəqəmlərini toplayırıq, alınan ədədin rəqəmlərini
+yenə toplayırıq … birrəqəmli ədəd qalana qədər. Hansı rəqəm qalır?
+
+Həll. Hər addımda 9-a bölmədə qalıq dəyişmir. 2-nin qüvvətləri 9-a bölmədə:
+  2, 4, 8, 16→7, 14→5, 10→1 — 6 addımdan sonra 1, sonra təkrar.
+  100 = 6 · 16 + 4  →  2¹⁰⁰ ≡ 2⁴ = 16 ≡ 7 (mod 9).
+Birrəqəmli ədəd 0 ola bilməz, qalıq 7 → cavab 7.
+(Diqqət: qalıq 0 olsaydı, cavab 9 olardı.)</div>
+      <div class="life"><b>Həyatdan.</b> Köhnə kitab kodlarında (ISBN-10) sonuncu işarə 11-ə bölünmə ilə hesablanırdı. Kassir bir rəqəmi səhv yığanda və ya iki qonşu rəqəmin yerini dəyişəndə qalıq dəyişir — sistem səhvi dərhal tutur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>11 üçün yerləri soldan saymaq. Cüt sayda rəqəmdə bu fərqin işarəsini dəyişir və qalıq səhv çıxır. Həmişə <b>sağdan</b> say.</li>
+        <li>Mənfi fərqi qalıq yazmaq: −3 qalıq deyil, qalıq <span class="m">−3 + 11 = 8</span>-dir.</li>
+        <li>Rəqəmlərin "təkrar cəmi" ilə qalığı qarışdırmaq: qalıq 0 olanda təkrar cəm 9 olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">10 ≡ 1 (mod 9)   →  n ≡ rəqəmlər cəmi (mod 9, mod 3)
+10 ≡ −1 (mod 11)  →  n ≡ (tək yerlər − cüt yerlər) (mod 11), sağdan say
+Rəqəmlərin yeri dəyişəndə 9-a bölmədə qalıq dəyişmir.
+Ədədləri yan-yana yazanda: qalıq = ədədlərin cəminin qalığı (mod 9).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>9876543210 ədədini 11-ə böləndə qalıq? <span class="ans">6. Sağdan tək yerlər: 0 + 2 + 4 + 6 + 8 = 20, cüt yerlər: 1 + 3 + 5 + 7 + 9 = 25. Fərq −5, −5 + 11 = 6.</span></li>
+        <li>Üçrəqəmli abc ədədindən cba ədədini çıxdıq. Fərq həmişə hansı ən böyük ədədə bölünür? <span class="ans">99. abc − cba = 100a + c − 100c − a = 99(a − c).</span></li>
+        <li>1 rəqəmini 2026 dəfə yan-yana yazdıq. Bu ədədi 9-a böləndə qalıq? <span class="ans">1. Rəqəmlər cəmi 2026 = 9 · 225 + 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. 7, 11, 13 — 1001 üsulu; 2ⁿ və 5ⁿ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>7-yə bölünmənin məktəb əlaməti yoxdur, amma olimpiadada "12 rəqəmli ədədi 7-yə böləndə qalıq" sualı çıxır. Açar bir bərabərlikdədir: <b>1001 = 7 · 11 · 13</b>.</p>
+
+      <h3><span class="st">2</span> 1001 üsulu</h3>
+      <p><span class="m">1000 = 1001 − 1</span>, deməli 7-yə, 11-ə və 13-ə bölmədə <span class="m">1000 ≡ −1</span>. Ədədi <b>sağdan</b> üçrəqəmli dəstələrə bölürük — hər dəstə 1000-in bir qüvvətinə vurulub. Dəstələri növbə ilə <span class="m">+, −, +, …</span> ilə toplayırıq.</p>
+      <div class="fm">n = … | C | B | A   (dəstələr sağdan)
+n ≡ A − B + C − …   (mod 7, mod 11, mod 13)</div>
+      <div class="ex">123456789 ədədini 7-yə və 13-ə böləndə qalıqlar?
+  Dəstələr: 123 | 456 | 789
+  789 − 456 + 123 = 456
+  7-yə:  456 = 7 · 65 + 1   →  qalıq 1
+  13-ə:  456 = 13 · 35 + 1  →  qalıq 1
+  (11-ə: 456 = 11 · 41 + 5 → qalıq 5 — Dərs 1-dəki cavabla eyni ✓)</div>
+      <p><b>Kiçik ədədlər üçün 7-yə əlavə qayda:</b> son rəqəmi iki dəfə götür və qalan hissədən çıx. <span class="m">10a + b</span> 7-yə bölünür ⇔ <span class="m">a − 2b</span> 7-yə bölünür (çünki <span class="m">−2 · (10a + b) = −20a − 2b</span>, <span class="m">−20 ≡ 1</span>). Məsələn, 343: <span class="m">34 − 6 = 28</span> — bölünür.</p>
+
+      <h3><span class="st">3</span> 2ⁿ və 5ⁿ: son n rəqəm</h3>
+      <p><span class="m">10ⁿ = 2ⁿ · 5ⁿ</span>. Son n rəqəmdən əvvəlki hissə <span class="m">10ⁿ</span>-ə vurulub, deməli <span class="m">2ⁿ</span>-ə və <span class="m">5ⁿ</span>-ə bölünür. Qalığı yalnız son n rəqəm müəyyən edir.</p>
+      <div class="fm">4, 25   → son 2 rəqəm
+8, 125  → son 3 rəqəm
+16, 625 → son 4 rəqəm
+32      → son 5 rəqəm</div>
+      <div class="ex">7531216 ədədi 16-ya bölünürmü?
+  16 = 2⁴ → son 4 rəqəm: 1216 = 16 · 76. Bölünür.
+3218765 ədədini 125-ə böləndə qalıq?
+  125 = 5³ → son 3 rəqəm: 765 = 125 · 6 + 15. Qalıq 15.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Üçrəqəmli ədədi iki dəfə yan-yana yazdıq (məs. 385385).
+İsbat et ki, alınan ədəd 7-yə, 11-ə və 13-ə bölünür.
+
+Həll. abcabc = abc · 1000 + abc = abc · 1001 = abc · 7 · 11 · 13. ∎
+Fokus: 385385-i ardıcıl 7-yə, 11-ə, 13-ə bölsən, 385 qalır.</div>
+      <div class="ex">Məsələ 2. İsbat et ki, hər n üçün rəqəmləri yalnız 1 və 2 olan,
+2ⁿ-ə bölünən n-rəqəmli ədəd var.
+
+Həll (addım-addım qururuq). n = 1: 2. Tutaq ki, k-rəqəmli N ədədi 2ᵏ-ya
+bölünür: N = 2ᵏ · m. Qabağına 1 və ya 2 yazırıq:
+  2 yazsaq: 2 · 10ᵏ + N = 2ᵏ⁺¹ · 5ᵏ + 2ᵏ · m   — m cütsə, 2ᵏ⁺¹-ə bölünür;
+  1 yazsaq: 10ᵏ + N = 2ᵏ · (5ᵏ + m)          — m təksə, 5ᵏ + m cütdür.
+Hər addımda biri uyğun gəlir. ∎
+Ardıcıllıq: 2, 12, 112, 2112, 22112  (22112 = 32 · 691).</div>
+      <div class="ex">Məsələ 3. 10²⁰²⁶ ədədini 7-yə böləndə qalıq neçədir?
+
+Həll. 999999 = 999 · 1001 — 7-yə bölünür, deməli 10⁶ ≡ 1 (mod 7).
+  2026 = 6 · 337 + 4  →  10²⁰²⁶ ≡ 10⁴ (mod 7)
+  10⁴ = 10000 = 7 · 1428 + 4
+Cavab: 4</div>
+      <div class="life"><b>Həyatdan.</b> Bu gün bazar ertəsidir. 1000 gündən sonra həftənin hansı günü olacaq? <span class="m">1001 = 7 · 143</span> — düz 143 həftə. Deməli, 1000 gün "143 həftədən bir gün az"dır: bir gün geri — <b>bazar</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dəstələri soldan kəsmək: 12345678 → "123 | 456 | 78" səhvdir, düzü "12 | 345 | 678".</li>
+        <li>Dəstələri hamısını "+" ilə toplamaq. 1000 ≡ −1, işarələr növbələşir.</li>
+        <li>16 üçün son 3 rəqəmə baxmaq. 16 = 2⁴ — son <b>4</b> rəqəm lazımdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1001 = 7 · 11 · 13,  1000 ≡ −1:  sağdan dəstələr, növbə ilə + −
+abcabc = abc · 1001
+999999 = 999 · 1001 → 10⁶ ≡ 1 (mod 7, mod 13)
+2ⁿ, 5ⁿ → son n rəqəm</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1234567 ədədini 7-yə böləndə qalıq? <span class="ans">5. Dəstələr 1 | 234 | 567: 567 − 234 + 1 = 334 = 7 · 47 + 5.</span></li>
+        <li>512512 ədədini 143-ə böl. <span class="ans">3584. 512512 = 512 · 7 · 11 · 13, 143 = 11 · 13 → 512 · 7 = 3584.</span></li>
+        <li>54321 ədədini 16-ya böləndə qalıq? <span class="ans">1. Son 4 rəqəm: 4321 = 16 · 270 + 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Gizli rəqəmlər: 36, 45, 72, 99, 792</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>RFO-nun klassik sualı: "x67y ədədi 72-yə bölünür, x və y-ni tap". Məktəbdə bir gizli rəqəm olur, burada iki-üç. Həll üsulu eynidir, sadəcə əlamətləri ağıllı sıra ilə işlətmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Üsul</h3>
+      <div class="fm">1. Böləni QARŞILIQLI SADƏ vuruqlara ayır:
+   36 = 4·9   45 = 5·9   72 = 8·9   88 = 8·11
+   99 = 9·11  225 = 9·25  792 = 8·9·11
+2. Əvvəl "son rəqəmlər" əlaməti (2ⁿ, 5ⁿ) — son rəqəmi bağlayır.
+3. Sonra 9 (rəqəmlər cəmi) və 11 (tək − cüt yerlər).
+4. Bütün halları yaz, hər şərti yoxla, 0 ilə başlayanı at.</div>
+      <p>Niyə qarşılıqlı sadə? 72 = 6 · 12 yazsaq, 6-ya və 12-yə bölünən 12 ədədi 72-yə bölünmür. Vuruqların ortaq böləni olmamalıdır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 13xy45z yeddirəqəmli ədədi 792-yə bölünür. Ədədi tap.
+  792 = 8 · 9 · 11.
+  8-ə: 45z 8-ə bölünür → 456 → z = 6.
+  9-a: 1 + 3 + x + y + 4 + 5 + 6 = 19 + x + y → x + y = 8 və ya 17.
+  11-ə (sağdan): tək yerlər 6 + 4 + x + 1 = 11 + x,
+                cüt yerlər 5 + y + 3 = 8 + y.
+         fərq 3 + x − y → x − y = −3 və ya 8.
+  x + y = 8 və x − y = 8 → x = 8, y = 0. (Qalan birləşmələrdə x, y rəqəm olmur.)
+  Cavab: 1380456 = 792 · 1743.</div>
+      <div class="ex">Nümunə 2. Rəqəmləri yalnız 0 və 1 olan, 225-ə bölünən ən kiçik ədəd?
+  225 = 9 · 25.
+  25-ə: son iki rəqəm 00, 25, 50, 75 — 0/1 ilə yalnız 00.
+  9-a: rəqəmlər cəmi = birlərin sayı → ən azı 9 dənə 1.
+  Ən kiçik: 11111111100.</div>
+      <div class="life"><b>Həyatdan: qəbz.</b> 72 eyni dəftər alınıb, qəbzdə məbləğin birinci və sonuncu rəqəmi silinib: <span class="m">*67,9*</span> manat. Qəpiklə: x679y — 72-yə bölünür. 8-ə: 79y → 792, y = 2. 9-a: <span class="m">x + 6 + 7 + 9 + 2 = x + 24</span> → x = 3. Məbləğ 367,92 manat, bir dəftər <span class="m">36792 : 72 = 511</span> qəpik = <b>5,11 manat</b>.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">1, 2, …, 9 rəqəmlərinin hər birini bir dəfə işlədərək 11-ə bölünən
+ən böyük doqquzrəqəmli ədədi tap.
+
+Həll. A — tək yerlərdəki 5 rəqəmin cəmi, B — cüt yerlərdəki 4 rəqəmin.
+  A + B = 45 (tək) → A − B də təkdir; 11-ə bölünməlidir → ±11 və ya ±33.
+  ±33 olmur (B ≥ 1+2+3+4 = 10, A ≥ 15). Deməli {A; B} = {28; 17}.
+Ən böyüyü istəyirik → əvvəl 9, 8, 7, 6, 5 yazmağa çalışırıq:
+  tək yerlər (1, 3, 5): 9 + 7 + 5 = 21 → qalan iki tək yer cəmi 7 → {3; 4}
+  cüt yerlər (2, 4):    8 + 6 = 14     → qalan iki cüt yer cəmi 3 → {1; 2}
+  A = 28, B = 17 ✓. Qalan yerlər: 6-cı (cüt) 2, 7-ci (tək) 4, 8-ci 1, 9-cu 3.
+Cavab: 987652413.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bölənə qarşılıqlı sadə olmayan vuruqlarla baxmaq (72 = 6 · 12).</li>
+        <li>Bir həll tapıb dayanmaq — sual "neçə ədəd" ola bilər, bütün halları yoxla.</li>
+        <li>Birinci rəqəmi 0 götürmək. Ədəd 0 ilə başlamır.</li>
+        <li>x + y = 17 halını unutmaq: iki rəqəmin cəmi 18-ə qədər ola bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Böləni qarşılıqlı sadə vuruqlara ayır.
+Sıra: son rəqəmlər (2ⁿ, 5ⁿ) → rəqəmlər cəmi (3, 9) → 11.
+İki rəqəmin cəmi 0…18: "9-a bölünür" iki hal verə bilər (9 və 18).
+Bütün halları yaz, hər birini yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>7a5b ədədi 36-ya bölünür. Neçə belə ədəd var? <span class="ans">3. 4-ə: 5b → b = 2 və ya 6. 9-a: b = 2 → a = 4 (7452); b = 6 → a = 0 və ya 9 (7056, 7956).</span></li>
+        <li>Üçrəqəmli a7b ədədi 45-ə bölünür. Ən böyük belə ədəd? <span class="ans">675. b = 0 → a = 2 (270); b = 5 → a = 6 (675).</span></li>
+        <li>Rəqəmləri yalnız 0 və 1 olan, 72-yə bölünən ən kiçik ədəd? <span class="ans">111111111000. 8-ə: son üç rəqəm 000; 9-a: doqquz dənə 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. İfadələrin bölünməsi: n³ − n, aⁿ − bⁿ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İsbat et ki, istənilən natural n üçün <span class="m">n³ + 5n</span> 6-ya bölünür" — RFO-da çox sevilən sual növüdür. Bir neçə n yoxlamaq isbat deyil: <b>bütün</b> n üçün işləyən səbəb tapmaq lazımdır.</p>
+
+      <h3><span class="st">2</span> Dörd alət</h3>
+      <div class="fm">1) Vuruqlara ayır:  n³ − n = (n − 1)n(n + 1)
+2) Ardıcıl ədədlər: k ardıcıl ədədin hasili k!-a bölünür
+   (2 ardıcıl → 2,  3 ardıcıl → 6,  4 ardıcıl → 24)
+3) Qalıqlara görə hallar: n = 3k, 3k + 1, 3k + 2 …
+4) aⁿ − bⁿ  bölünür  a − b-yə  (hər n)
+   aⁿ + bⁿ  bölünür  a + b-yə  (yalnız tək n)</div>
+      <p>Alət 4-ün səbəbi: <span class="m">aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + aⁿ⁻²b + … + bⁿ⁻¹)</span>. Məsələn, <span class="m">a³ − b³ = (a − b)(a² + ab + b²)</span>.</p>
+      <p><b>"Ən böyük bölən" sualı</b> iki addımdır: (a) bölünməni isbat et, (b) kiçik n götür — ifadə məhz o ədədə bərabər olur, deməli daha böyük ortaq bölən yoxdur.</p>
+
+      <h3><span class="st">3</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. İsbat et ki, hər natural n üçün n³ + 5n 6-ya bölünür.
+
+Həll. n³ + 5n = (n³ − n) + 6n = (n − 1)n(n + 1) + 6n.
+Üç ardıcıl ədədin hasili 6-ya bölünür (biri cüt, biri 3-ə bölünür),
+6n də 6-ya bölünür. ∎</div>
+      <div class="ex">Məsələ 2. İsbat et ki, n⁵ − n həmişə 30-a bölünür.
+
+Həll. n⁵ − n = n(n⁴ − 1) = (n − 1)n(n + 1)(n² + 1).
+  2 və 3: ilk üç vuruq ardıcıl ədədlərdir → 6-ya bölünür.
+  5: n-in 5-ə bölmədə qalığına bax:
+     qalıq 0 → n;   qalıq 1 → n − 1;   qalıq 4 → n + 1;
+     qalıq 2 və ya 3 → n² qalığı 4 → n² + 1 qalığı 0.
+  Hər halda bir vuruq 5-ə bölünür. 2 · 3 · 5 = 30. ∎
+n = 2-də 2⁵ − 2 = 30 — deməli 30 həm də ən böyük ortaq böləndir.</div>
+      <div class="ex">Məsələ 3. p > 3 sadə ədəddir. İsbat et ki, p² − 1 24-ə bölünür.
+
+Həll. p² − 1 = (p − 1)(p + 1).
+  p tək → p − 1 və p + 1 ardıcıl cüt ədədlərdir, biri 4-ə bölünür → 8-ə.
+  p − 1, p, p + 1 içində biri 3-ə bölünür; p sadədir və p > 3 → p deyil.
+  8 · 3 = 24. ∎  (p = 5: 24, p = 7: 48, p = 11: 120.)</div>
+      <div class="ex">Məsələ 4. İsbat et ki, 11ⁿ⁺² + 12²ⁿ⁺¹ hər n üçün 133-ə bölünür.
+
+Həll. 11ⁿ⁺² + 12²ⁿ⁺¹ = 121 · 11ⁿ + 12 · 144ⁿ
+                    = 121 · 11ⁿ + 12 · 11ⁿ + 12 · (144ⁿ − 11ⁿ)
+                    = 133 · 11ⁿ + 12 · (144ⁿ − 11ⁿ).
+144ⁿ − 11ⁿ bölünür 144 − 11 = 133-ə (alət 4). İki toplanan da 133-ə bölünür. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Ardıcıl üç günün tarixləri (məsələn, 14, 15, 16) vurulsa, hasil həmişə 6-ya bölünür — biri cüt, biri 3-ə bölünür. Ardıcıl dörd tarixin hasili isə həmişə 24-ə bölünür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>n = 1, 2, 3 üçün yoxlayıb "isbat etdim" demək. Yoxlama yalnız cavabı təxmin etməyə kömək edir.</li>
+        <li><span class="m">aⁿ + bⁿ</span>-ni hər n üçün <span class="m">a + b</span>-yə bölünən saymaq: <span class="m">2² + 1² = 5</span>, 3-ə bölünmür. Yalnız tək n!</li>
+        <li>"6-ya bölünür" bilib "12-yə də bölünür" demək. n³ − n üçün n = 2-də 6 alınır — 12-yə bölünmür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n³ − n = (n−1)n(n+1) ⋮ 6;   n⁵ − n ⋮ 30;   p² − 1 ⋮ 24 (p > 3 sadə)
+k ardıcıl ədədin hasili ⋮ k!
+aⁿ − bⁿ ⋮ a − b;   tək n: aⁿ + bⁿ ⋮ a + b
+Ən böyük bölən: isbat et + kiçik n-də bərabərlik göstər.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Hər natural n üçün n(n + 1)(n + 2)(n + 3) hansı ən böyük ədədə bölünür? <span class="ans">24 = 4!. n = 1-də hasil 24-dür.</span></li>
+        <li>Hər natural n üçün 5ⁿ − 2ⁿ hansı ən böyük ədədə bölünür? <span class="ans">3. 5 − 2 = 3-ə bölünür; n = 1-də ifadə 3-dür.</span></li>
+        <li>Hər natural n üçün n⁵ − n³ hansı ən böyük ədədə bölünür? <span class="ans">24. n⁵ − n³ = n² · (n − 1)n(n + 1): 3-ə bölünür; n cütsə n² · n 8-ə, təksə (n − 1)(n + 1) 8-ə. n = 2-də 24 alınır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

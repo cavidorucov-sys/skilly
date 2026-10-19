@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sadə mexanizmlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-mexanizmler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Sadə mexanizmlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Statika</div>
+    <h1>Sadə mexanizmlər: ling, bloklar, FİƏ</h1>
+    <p>Ling, blok və maili müstəvi — insanın ən qədim "gücləndiriciləri". Onlarla 60 kq-lıq adam yarım tonluq daşı tərpədir. Burada öyrənəcəksən: mexanizm qüvvədə nə qədər qazandırır, bunun əvəzində nəyi itiririk və real mexanizmin faydalı iş əmsalı (FİƏ) necə hesablanır. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ling</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bloklar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qızıl qayda</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>FİƏ</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Ling və qüvvə momenti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qapını dəstəyindən itələyəndə asan açılır, menteşənin yanından itələyəndə — çətin. Qayçı ilə qalın kartonu ucla yox, dərinə — vintə yaxın yerlə kəsirsən. Lomla ağır daşı tərpədirsən. Hamısında eyni qanun işləyir: <b>ling qaydası</b>.</p>
+      <p><b>Ling</b> — bir nöqtə (dayaq) ətrafında dönə bilən bərk cisimdir: taxta, dəmir çubuq, qayçının yarısı, uşaq yelləncəyi.</p>
+
+      <h3><span class="st">2</span> Qüvvənin qolu və moment</h3>
+      <p><b>Qüvvənin qolu</b> <span class="m">l</span> — dayaqdan qüvvənin təsir xəttinə qədər ən qısa (perpendikulyar) məsafədir. Qüvvə lingə perpendikulyardırsa, qol sadəcə dayaqdan qüvvənin tətbiq nöqtəsinə qədər olan məsafədir.</p>
+      <p><b>Qüvvə momenti</b> — qüvvənin "döndərmə gücü":</p>
+      <div class="fm">M = F · l        vahidi: N·m</div>
+      <p>Ling tarazlıqdadırsa, onu bir tərəfə döndərən momentlər o biri tərəfə döndərənlərə bərabərdir:</p>
+      <div class="fm">F₁ · l₁ = F₂ · l₂
+F₁ / F₂ = l₂ / l₁</div>
+      <p>Yəni qüvvələr qollarla <b>tərs</b> mütənasibdir: qol 4 dəfə uzundursa, qüvvə 4 dəfə kiçik olur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Ling: dayaq, solda F₁ qüvvəsi və l₁ qolu, sağda F₂ qüvvəsi və l₂ qolu">
+          <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <rect x="20" y="62" width="220" height="7" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M95 69L83 94L107 94Z" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="70" y1="98" x2="120" y2="98" stroke="var(--muted)" stroke-width="2"/>
+          <line x1="28" y1="20" x2="28" y2="59" stroke="var(--vec)" stroke-width="3" marker-end="url(#a1)"/>
+          <line x1="232" y1="40" x2="232" y2="59" stroke="var(--vec)" stroke-width="3" marker-end="url(#a1)"/>
+          <text class="lbl" x="34" y="24">F₁ (böyük)</text><text class="lbl" x="170" y="36">F₂ (kiçik)</text>
+          <line x1="28" y1="118" x2="95" y2="118" stroke="var(--muted)"/><text x="50" y="132">l₁</text>
+          <line x1="95" y1="118" x2="232" y2="118" stroke="var(--muted)"/><text x="160" y="132">l₂</text>
+          <text x="80" y="110">dayaq</text>
+        </svg>
+        <div class="cap"><p>Böyük qüvvə qısa qolda, kiçik qüvvə uzun qolda. <span class="m">F₁·l₁ = F₂·l₂</span>.</p><p>Bir tərəfdə bir neçə qüvvə varsa, onların momentlərini <b>toplayırıq</b>.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Lingin qısa qolu 20 sm, uzun qolu 80 sm.
+Qısa qolda 30 kq yük. Uzun qolun ucuna hansı qüvvə lazımdır?
+  F₁ = mg = 30·10 = 300 N
+  F₂ = F₁·l₁/l₂ = 300·20/80 = 75 N
+  Cavab: 75 N (4 dəfə az, çünki qol 4 dəfə uzundur)</div>
+      <div class="ex">Nümunə 2.  Yelləncək taxtasında 30 kq Fikrət dayaqdan 2 m-də
+oturub. Dostu 40 kq-dır. O, dayaqdan hansı məsafədə otursun?
+  30·10·2 = 40·10·x   (g ixtisar olunur)
+  60 = 40x  →  x = 1,5 m
+  Cavab: 1,5 m — ağır olan dayağa yaxın oturur.</div>
+      <div class="ex">Nümunə 3 (RFO rayon mərhələsi tipli).
+Uzunluğu 1 m, kütləsi 2 kq olan bircinsli çubuq A ucundan
+0,25 m aralıdakı dayaq üzərindədir. A ucundan hansı yük
+asılmalıdır ki, çubuq üfüqi qalsın?
+  Fikir: bircinsli çubuğun çəkisi onun ORTASINA tətbiq olunur.
+  Orta A-dan 0,5 m-də, yəni dayaqdan 0,5 − 0,25 = 0,25 m-də.
+  Momentlər dayağa nəzərən:
+     m·g·0,25 = 2·g·0,25  →  m = 2 kq
+  Cavab: 2 kq. Gözlənilməz: yük çubuğun özü qədərdir!</div>
+      <div class="ex">Nümunə 4 (RFO tipli: iki dayaq).
+4 m uzunluqlu, 40 kq kütləli taxta körpü uclarındakı A və B
+dayaqlarına söykənir. A-dan 1 m-də 60 kq-lıq adam durur.
+Dayaqlar körpüyə hansı qüvvələrlə təsir edir?
+  Fırlanma oxunu A-da seçirik (N_A-nın momenti sıfır olur):
+     N_B·4 = 400·2 + 600·1  →  N_B = 350 N
+  Bütün qüvvələrin cəmi sıfır:
+     N_A = 400 + 600 − 350 = 650 N
+  Cavab: N_A = 650 N, N_B = 350 N. Adama yaxın dayaq çox yüklənir.</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan.</b> Dəmir kəsən qayçının dəstəkləri uzun (≈ 60 sm), ağzı qısa (≈ 6 sm) olur: əlin 200 N qüvvəsi ağızda 2000 N-a çevrilir. Arximed deyirdi: "Mənə dayaq nöqtəsi verin, Yeri yerindən oynadım". Fikir düzdür — sadəcə lingin qolu kosmik uzunluqda olmalı idi.</div>
+      <div class="life"><b>Bədənin özü də lingdir.</b> Dirsək — dayaq, biseps əzələsi dirsəkdən ≈ 4 sm-də, ovuc ≈ 32 sm-də bağlanır. Ovucda 5 kq (50 N) saxlamaq üçün əzələ 50·32/4 = 400 N çəkməlidir. Burada ling qüvvədə yox, <b>sürətdə</b> qazandırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qolu lingin ucundan ölçmək. Qol həmişə <b>dayaqdan</b> ölçülür.</li>
+        <li>Ağır çubuğun öz çəkisini unutmaq. Bircinsli çubuqda o, ortaya tətbiq olunur.</li>
+        <li>Kütləni (kq) qüvvə (N) kimi yazmaq: 30 kq yükün çəkisi 300 N-dur.</li>
+        <li>İki dayaqlı məsələdə oxu təsadüfi nöqtədə seçmək. Oxu naməlum qüvvələrdən birinin tətbiq nöqtəsində seç — o qüvvə tənlikdən çıxır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">M = F·l,  l — dayaqdan perpendikulyar məsafə
+Tarazlıq: saat əqrəbi ilə momentlər = əksinə momentlər
+Bircinsli çubuğun çəkisi — ortasında</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qolları 10 sm və 50 sm olan lingin qısa qolunda 200 N yük var. Uzun qola hansı qüvvə lazımdır? <span class="ans">200·10/50 = 40 N.</span></li>
+        <li>Lingin solunda dayaqdan 30 sm-də 4 kq yük var. Sağda 6 kq yükü harada asmalı? <span class="ans">4·30 = 6·x → x = 20 sm.</span></li>
+        <li>2 m-lik, 10 kq-lıq bircinsli tir yerdə uzanıb. Bir ucunu qaldırmaq üçün ən azı hansı qüvvə lazımdır? <span class="ans">Ox — yerdəki uc. F·2 = 100·1 → F = 50 N (çəkinin yarısı).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tərpənməz və tərpənən bloklar, polispast</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bayraq dirəyinin başında kiçik çarx var: ipi aşağı çəkirsən — bayraq yuxarı qalxır. Tikinti kranı isə bir neçə tonluq beton bloku nazik trosla qaldırır. İkisi də <b>blokdur</b> — oxu olan, çevrəsində ip üçün novu olan çarx.</p>
+
+      <h3><span class="st">2</span> Tərpənməz və tərpənən blok</h3>
+      <p><b>Tərpənməz blok</b>un oxu yerində qalır (tavana bərkidilib). O, qüvvədə qazandırmır — yalnız <b>istiqaməti</b> dəyişir: yükü yuxarı qaldırmaq üçün ipi aşağı çəkirsən. Bu, qolları bərabər (r və r) olan lingdir.</p>
+      <p><b>Tərpənən blok</b> yüklə birlikdə qalxır. Yükü <b>iki</b> ip parçası saxlayır, hər biri yükün yarısını götürür. Bu, qolları r və 2r olan lingdir (dayaq — ipin sol tərəfdən bloka toxunduğu nöqtə).</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Solda tərpənməz blok: F bərabərdir P. Sağda tərpənən blok: F bərabərdir P bölü 2">
+          <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <line x1="10" y1="8" x2="250" y2="8" stroke="var(--muted)" stroke-width="4"/>
+          <line x1="60" y1="8" x2="60" y2="40" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="60" cy="48" r="18" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="60" cy="48" r="2.5" fill="var(--ink)"/>
+          <line x1="42" y1="48" x2="42" y2="120" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="78" y1="48" x2="78" y2="105" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="78" y1="105" x2="78" y2="140" stroke="var(--vec)" stroke-width="3" marker-end="url(#a2)"/>
+          <rect x="27" y="120" width="30" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="37" y="138">P</text>
+          <text class="lbl" x="84" y="135">F = P</text>
+          <text x="28" y="175">tərpənməz</text>
+          <line x1="165" y1="8" x2="165" y2="110" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="183" cy="110" r="18" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="183" cy="110" r="2.5" fill="var(--ink)"/>
+          <line x1="201" y1="110" x2="201" y2="60" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="201" y1="60" x2="201" y2="24" stroke="var(--vec)" stroke-width="3" marker-end="url(#a2)"/>
+          <text class="lbl" x="207" y="36">F = P/2</text>
+          <line x1="183" y1="110" x2="183" y2="140" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="168" y="140" width="30" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="178" y="158">P</text>
+          <text x="160" y="182">tərpənən</text>
+        </svg>
+        <div class="cap"><p>Tərpənən blokda yük <span class="m">h</span> qalxanda hər iki ip parçası <span class="m">h</span> qədər qısalır — ipin ucunu <span class="m">2h</span> çəkmək lazımdır.</p><p>Qüvvədə 2 dəfə qazanırıq, yolda 2 dəfə uduzuruq.</p></div>
+      </div>
+      <div class="fm">Tərpənməz blok:  F = P,        s = h
+Tərpənən blok:   F = (P + P_blok)/2,  s = 2h</div>
+
+      <h3><span class="st">3</span> Polispast və blok sistemləri</h3>
+      <p><b>Polispast</b> — bir neçə tərpənməz və tərpənən blokun birləşməsi. Qayda sadədir: tərpənən hissəni (yük + aşağı bloklar) xəyalən üfüqi xətlə kəs və onu saxlayan <b>ip parçalarını say</b>. Bu say <span class="m">n</span>-dirsə:</p>
+      <div class="fm">n·F = P + P_bloklar
+s = n·h</div>
+      <p><b>Arximed sistemi</b>: hər tərpənən blokun öz ipi var, birinin ipi o birinin oxuna bağlıdır. Hər blok qüvvəni 2 dəfə azaldır: <span class="m">k</span> blok → <span class="m">2ᵏ</span> dəfə (bloklar yüngüldürsə).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Kütləsi 2 kq olan tərpənən blokla 18 kq yük
+qaldırılır. İpə hansı qüvvə lazımdır?
+  2F = (18 + 2)·10 = 200 N  →  F = 100 N
+  Cavab: 100 N (yüngül blokda 90 N olardı)</div>
+      <div class="ex">Nümunə 2.  Polispastda tərpənən hissəni 4 ip parçası saxlayır.
+200 kq yük 3 m qaldırılır. Qüvvə və ipin yolu?
+  F = 2000/4 = 500 N
+  s = 4·3 = 12 m
+  Yoxla: iş eynidir — 500·12 = 2000·3 = 6000 J</div>
+      <div class="ex">Nümunə 3 (RFO yarımfinal tipli: "özünü qaldıran adam").
+60 kq adam 20 kq taxtada durur. İp tavandakı tərpənməz blokdan
+aşırılıb: bir ucu taxtaya bağlıdır, o biri ucunu adam çəkir.
+Sistem bərabər sürətlə qalxır. a) Adam ipi hansı qüvvə ilə
+çəkir? b) Adam taxtaya hansı qüvvə ilə basır?
+  a) "Adam + taxta" sistemini yuxarı İKİ ip parçası çəkir
+     (biri adamın əlində, biri taxtada), hər biri T:
+     2T = (60 + 20)·10 = 800 N  →  T = 400 N
+  b) Adama: yuxarı T = 400 N (ip əlini çəkir), yuxarı N
+     (taxta), aşağı 600 N. N = 600 − 400 = 200 N
+  Cavab: 400 N; 200 N.</div>
+
+      <div class="life"><b>Həyatdan.</b> Yük kranının qarmağı adətən 4–8 ip parçasından asılır. 10 tonluq (100 000 N) beton blok 8 parçalı polispastla qaldırılanda trosda cəmi 12 500 N gərilmə olur — amma bucurqad 8 dəfə çox tros sarıyır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tərpənməz bloka "qüvvədə 2 dəfə qazanc" yazmaq. Tərpənməz blok yalnız istiqaməti dəyişir.</li>
+        <li>İp parçalarını sayanda insanın əlinə gedən, amma tərpənən hissəyə bağlı olmayan parçanı da saymaq. Yalnız <b>tərpənən hissəni</b> saxlayan parçalar sayılır.</li>
+        <li>Tərpənən blokun öz çəkisini unutmaq (şərtdə verilibsə).</li>
+        <li>Yolu unutmaq: qüvvədə qazanılan qədər yolda uduzulur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tərpənməz: F = P (istiqamət dəyişir)
+Tərpənən:  F = (P + P_b)/2,  s = 2h
+n ip parçası: F = P/n,  s = n·h
+Arximed sistemi (k blok): F = P/2ᵏ</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Yüngül tərpənən blokla 50 kq yük qaldırılır. Qüvvə? <span class="ans">500/2 = 250 N.</span></li>
+        <li>Polispastda 6 ip parçası. Yük 0,5 m qalxdı. İp nə qədər çəkildi? <span class="ans">6·0,5 = 3 m.</span></li>
+        <li>Üç tərpənən blokdan ibarət Arximed sistemi ilə 80 kq yük qaldırılır. Qüvvə? <span class="ans">800/2³ = 800/8 = 100 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Maili müstəvi və mexanikanın qızıl qaydası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Əlil arabası üçün pilləkənin yanında maili yol (pandus) düzəldirlər. Dağ yolları zirvəyə düz qalxmır — ilan kimi qıvrılır. Yük maşınına ağır çəlləyi taxta boyunca diyirlədirlər. Hamısı <b>maili müstəvidir</b>: yol uzanır, qüvvə azalır.</p>
+
+      <h3><span class="st">2</span> Maili müstəvi</h3>
+      <p>Hamar maili müstəvinin uzunluğu <span class="m">l</span>, hündürlüyü <span class="m">h</span> olsun. Yükü müstəvi boyunca bərabər sürətlə çəkmək üçün lazım olan qüvvə:</p>
+      <div class="fm">F = P · h / l = mg · h / l</div>
+      <p>Müstəvi hündürlüyündən neçə dəfə uzundursa, qüvvədə o qədər qazanırıq. Maili müstəvi dərsindən bilirsən: <span class="m">h/l = sin α</span>, yəni <span class="m">F = mg·sin α</span> — eyni nəticə.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Maili müstəvi: uzunluq l, hündürlük h, yük müstəvi boyunca F qüvvəsi ilə çəkilir">
+          <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <path d="M20 150L240 150L240 60Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <g transform="rotate(-22.25 120 109)"><rect x="105" y="85" width="30" height="24" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="135" y1="97" x2="185" y2="97" stroke="var(--vec)" stroke-width="3" marker-end="url(#a3)"/></g>
+          <text class="lbl" x="172" y="66">F</text>
+          <text class="lbl" x="110" y="96">m</text>
+          <text class="lbl" x="246" y="110">h</text>
+          <text class="lbl" x="118" y="140">l</text>
+        </svg>
+        <div class="cap"><p>Yükü birbaşa <span class="m">h</span> hündürlüyə qaldırmaq üçün <span class="m">mg</span> qüvvə lazımdır. Müstəvi ilə — yalnız <span class="m">mg·h/l</span>, amma <span class="m">l</span> qədər yol getmək lazımdır.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Qızıl qayda: işdə qazanc yoxdur</h3>
+      <p>Bütün sadə mexanizmləri birləşdirən qanun: <b>heç bir mexanizm işdə qazanc vermir</b>. Qüvvədə neçə dəfə qazanırsansa, yolda o qədər uduzursan.</p>
+      <div class="fm">F₁ · s₁ = F₂ · s₂</div>
+      <div class="tbl"><table>
+        <tr><th>mexanizm</th><th>qüvvədə qazanc</th><th>yolda itki</th></tr>
+        <tr><td>ling</td><td>l₂/l₁ dəfə</td><td>l₂/l₁ dəfə</td></tr>
+        <tr><td>tərpənən blok</td><td>2 dəfə</td><td>2 dəfə</td></tr>
+        <tr><td>polispast (n parça)</td><td>n dəfə</td><td>n dəfə</td></tr>
+        <tr><td>maili müstəvi</td><td>l/h dəfə</td><td>l/h dəfə</td></tr>
+      </table></div>
+      <p>Qızıl qayda ilə maili müstəvinin düsturu bir sətirdə çıxır: insanın işi <span class="m">F·l</span> yükün qaldırılma işinə <span class="m">mg·h</span> bərabərdir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  120 kq yükü 1,5 m hündürlüyə 6 m uzunluqlu hamar
+taxta ilə qaldırırlar. Qüvvə?
+  F·l = mg·h  →  F = 1200·1,5/6 = 300 N
+  Cavab: 300 N (birbaşa qaldırmaqdan 4 dəfə az)</div>
+      <div class="ex">Nümunə 2.  Lingin qolları 20 sm və 1 m. Qısa qoldakı yük
+5 sm qalxdı. Uzun qolun ucu nə qədər endi?
+  s₂ = s₁·l₂/l₁ = 5·100/20 = 25 sm</div>
+      <div class="ex">Nümunə 3 (RFO rayon mərhələsi tipli: domkrat).
+Vintli domkratın dəstəyi 0,3 m radiuslu çevrə cızır, vintin
+addımı 5 mm-dir (bir tam dövrdə yük 5 mm qalxır). 1 tonluq
+maşını qaldırmaq üçün dəstəyə hansı qüvvə lazımdır?
+Sürtünmə yoxdur, π ≈ 3,14.
+  Bir dövrdə əl gedir: 2πR = 2·3,14·0,3 = 1,884 m
+  Yük qalxır: 0,005 m
+  Qızıl qayda: F·1,884 = 10 000·0,005 = 50 J
+  F = 50/1,884 ≈ 26,5 N
+  Cavab: ≈ 26,5 N — 3 kq-lıq çəkidən də az!</div>
+
+      <div class="life"><b>Həyatdan.</b> Velosipeddə dağa qalxanda kiçik ötürməyə keçirsən: pedalı asan fırladırsan, amma çox fırladırsan. Qızıl qayda: qüvvədə qazandın — yolda (pedalın dövrlərində) uduzdun.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">F = mg·l/h</span> yazmaq (tərsinə). Yoxla: maili müstəvi qüvvəni <b>azaltmalıdır</b>, <span class="m">l > h</span>.</li>
+        <li>Müstəvinin uzunluğunu onun üfüqi proyeksiyası ilə qarışdırmaq. <span class="m">l</span> — maili tərəfdir.</li>
+        <li>"Mexanizm enerji verir" düşünmək. Mexanizm işi yalnız <b>başqa formada</b> ötürür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Maili müstəvi: F = mg·h/l
+Qızıl qayda: F₁·s₁ = F₂·s₂
+Qüvvədə qazanc = yolda itki</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>50 kq yük 2 m uzunluqlu, 0,4 m hündürlüklü hamar müstəvi ilə qaldırılır. Qüvvə? <span class="ans">500·0,4/2 = 100 N.</span></li>
+        <li>İdeal polispastla insan 200 N qüvvə ilə ipi 4 m çəkdi, yük 1 m qalxdı. Yükün çəkisi? <span class="ans">200·4 = P·1 → P = 800 N.</span></li>
+        <li>Maili müstəvinin hündürlüyü 1 m. Yükün çəkisi 600 N. Qüvvə 150 N olmalıdırsa, müstəvi ən azı nə qədər uzun olmalıdır? <span class="ans">l = 600·1/150 = 4 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Faydalı iş əmsalı (FİƏ)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Real mexanizmdə həmişə itki var: blokun oxunda sürtünmə, blokun özünü qaldırmaq, ipin çəkisi, taxta ilə qutu arasında sürtünmə. Ona görə real həyatda qüvvə qızıl qaydanın verdiyindən <b>çox</b> olur. Mexanizmin nə qədər "yaxşı" işlədiyini FİƏ göstərir.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <p><b>Faydalı iş</b> — bizə lazım olan iş (adətən yükü qaldırmaq: <span class="m">mgh</span>). <b>Tam iş</b> — insanın (mühərrikin) gördüyü bütün iş (<span class="m">F·s</span>).</p>
+      <div class="fm">η = A_faydalı / A_tam · 100%
+A_tam = A_faydalı + A_itki</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 90" role="img" aria-label="Tam iş zolağı: 75 faizi faydalı iş, 25 faizi itki">
+          <rect x="10" y="20" width="180" height="30" fill="var(--accent)" stroke="var(--ink)"/>
+          <rect x="190" y="20" width="60" height="30" fill="var(--accent-soft)" stroke="var(--ink)"/>
+          <text x="20" y="40" style="fill:var(--sheet);font-weight:700">faydalı iş 75%</text>
+          <text class="lbl" x="196" y="40">itki</text>
+          <text x="10" y="70">tam iş = insanın gördüyü iş (100%)</text>
+        </svg>
+        <div class="cap"><p>İtki sıfır ola bilməz, ona görə <b>η &lt; 100%</b>. Cavabın 100%-dən çox çıxdısa — faydalı və tam işi səhv yerə qoymusan.</p></div>
+      </div>
+      <div class="fm">maili müstəvi:   η = mgh / (F·l)
+tərpənən blok:   η = mg / (2F)
+polispast:       η = mg / (n·F)
+yalnız blokun çəkisi itirsə:  η = m / (m + m_blok)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  50 kq yük 4 m uzunluqlu, 1,2 m hündürlüklü taxta
+boyunca 200 N qüvvə ilə çəkilir. FİƏ?
+  A_f = mgh = 500·1,2 = 600 J
+  A_t = F·l = 200·4 = 800 J
+  η = 600/800·100% = 75%</div>
+      <div class="ex">Nümunə 2 (RFO tipli: sürtünmə qüvvəsini tap).
+Eyni məsələdə taxta ilə yük arasındakı sürtünmə qüvvəsi?
+  İtki: 800 − 600 = 200 J — bu, sürtünmənin işidir.
+  Sürtünmə bütün 4 m boyu təsir edir: F_s = 200/4 = 50 N
+  Diqqət: F_s ≠ F − mg (200 − 500 mənfi çıxardı!)</div>
+      <div class="ex">Nümunə 3 (RFO tipli: ardıcıl mexanizmlər).
+Yük maili müstəvi (η₁ = 80%) boyunca tərpənməz blokdan (η₂ = 90%)
+aşırılan iplə çəkilir. Qurğunun ümumi FİƏ?
+  Blok insanın işinin 90%-ni ipə ötürür, müstəvi ondan 80%-ni
+  faydalı işə çevirir:
+  η = η₁·η₂ = 0,8·0,9 = 0,72 = 72%</div>
+      <div class="ex">Nümunə 4.  Tərpənən blokla 40 kq yük qaldırılır, ipə 250 N
+qüvvə tətbiq olunur. FİƏ?
+  η = mg/(2F) = 400/500 = 0,8 = 80%</div>
+
+      <div class="life"><b>Həyatdan.</b> Velosiped zəncirinin FİƏ-si ≈ 98% — demək olar ki, ideal mexanizm. Köhnə, paslı blokların FİƏ-si 50%-ə düşə bilər: yağlamaq sözün əsl mənasında qüvvəyə qənaətdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Faydalı və tam işin yerini dəyişmək — η 100%-dən çox çıxır.</li>
+        <li>Tərpənən blokda tam işi <span class="m">F·h</span> yazmaq. İp <span class="m">2h</span> çəkilir: <span class="m">A_t = F·2h</span>.</li>
+        <li>Maili müstəvidə faydalı işi <span class="m">mg·l</span> yazmaq. Yük <span class="m">h</span> hündürlüyə qalxır: <span class="m">mgh</span>.</li>
+        <li>Nisbəti 100-ə vurmağı unutmaq: 0,75 deyil, 75%.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">η = A_f / A_t · 100%  (həmişə &lt; 100%)
+A_f = mgh,  A_t = F·s
+Ardıcıl mexanizmlər: η = η₁·η₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Polispastda 4 ip parçası, yük 100 kq, qüvvə 312,5 N. FİƏ? <span class="ans">η = 1000/(4·312,5) = 1000/1250 = 80%.</span></li>
+        <li>Maili müstəvinin FİƏ-si 60%, faydalı iş 300 J. İnsan nə qədər iş gördü? <span class="ans">A_t = 300/0,6 = 500 J.</span></li>
+        <li>Sürtünməsiz tərpənən blokla 18 kq yük qaldırılır, FİƏ 90%. Blokun kütləsi? <span class="ans">0,9 = 18/(18 + m_b) → 18 + m_b = 20 → m_b = 2 kq.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
