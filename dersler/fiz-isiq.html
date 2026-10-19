@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İşığın qayıtması və sınması dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-isiq.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · İşığın qayıtması və sınması</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Həndəsi optika</div>
+    <h1>İşığın qayıtması və sınması</h1>
+    <p>Güzgüdə özünü görürsən, hovuzun dibi dayaz görünür, almaz parıldayır, optik kabel internet verir. Hamısının arxasında iki qanun durur: şüa güzgüdən qayıdanda <b>düşmə bucağı = əks olunma bucağı</b>, iki şəffaf mühitin sərhəddində isə <span class="m">n₁ sin α = n₂ sin β</span>. Olimpiadada bu iki qanunla bucaq, güzgü və tam daxili qayıtma məsələləri həll edilir. Burada hamısını addım-addım keçəcəyik.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Sürət üçün <span class="m">c = 3·10⁸ m/s</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Qayıtma, müstəvi güzgü</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Dönən və iki güzgü</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sınma qanunu</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tam daxili qayıtma</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Qayıtma qanunu və müstəvi güzgü</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Maşının yan güzgüsündə arxadakı avtomobili görürsən, geyim mağazasında güzgüdə özünü başdan ayağa yoxlayırsan. Güzgü işığı elə qaytarır ki, gözümüz “güzgünün arxasında” ikinci cisim görür. Bunun necə işlədiyini bilsən, güzgünün ölçüsünü, yerini və görünən xəyalın məsafəsini hesablaya bilərsən.</p>
+
+      <h3><span class="st">2</span> Qayıtma qanunu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Müstəvi güzgüdən şüanın qayıtması: düşən şüa, əks olunmuş şüa, normal, bərabər bucaqlar">
+          <defs><marker id="isq1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="25" y1="125" x2="235" y2="125" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M40 125l-8 10M60 125l-8 10M80 125l-8 10M100 125l-8 10M120 125l-8 10M140 125l-8 10M160 125l-8 10M180 125l-8 10M200 125l-8 10M220 125l-8 10" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="130" y1="125" x2="130" y2="18" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="62" y1="38" x2="130" y2="125" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="96" y1="81" x2="103" y2="90" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#isq1)"/>
+          <line x1="130" y1="125" x2="198" y2="38" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="164" y1="82" x2="171" y2="73" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq1)"/>
+          <path d="M130 95A30 30 0 0 0 111.5 101.4" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+          <path d="M130 95A30 30 0 0 1 148.5 101.4" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+          <text x="113" y="87" class="lbl" text-anchor="middle">α</text><text x="148" y="87" class="lbl" text-anchor="middle">α′</text>
+          <text x="124" y="16" class="lbl" text-anchor="end">normal</text>
+          <text x="55" y="32" class="lbl" text-anchor="middle">düşən</text><text x="205" y="32" class="lbl" text-anchor="middle">əks olunmuş</text>
+        </svg>
+        <div class="cap">
+          <p>Şüa güzgüyə düşdüyü nöqtədə <b>normal</b> çəkirik — səthə perpendikulyar xətt. <b>Düşmə bucağı α</b> düşən şüa ilə normal arasındadır, <b>əks olunma bucağı α′</b> əks olunmuş şüa ilə normal arasında.</p>
+        </div>
+      </div>
+      <div class="fm">1) düşən şüa, əks olunmuş şüa və normal bir müstəvidə yatır;
+2) α′ = α</div>
+      <p>Bucaqlar həmişə <b>normaldan</b> ölçülür, güzgünün səthindən yox. Əgər məsələ şüanın güzgünün <i>səthi</i> ilə əmələ gətirdiyi bucağı verirsə (<span class="m">γ</span>), düşmə bucağı <span class="m">α = 90° − γ</span> olur. Düşən və əks olunmuş şüalar arasındakı bucaq <span class="m">2α</span>-dır.</p>
+
+      <h3><span class="st">3</span> Müstəvi güzgüdə xəyal</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Cisim güzgüdən d məsafədə, xəyal güzgünün arxasında eyni d məsafədə">
+          <defs><marker id="isq2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="130" y1="12" x2="130" y2="132" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M130 22l8 -8M130 42l8 -8M130 62l8 -8M130 82l8 -8M130 102l8 -8M130 122l8 -8" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="60" y1="120" x2="60" y2="70" stroke="var(--accent)" stroke-width="3" marker-end="url(#isq2)"/>
+          <line x1="200" y1="120" x2="200" y2="70" stroke="var(--accent)" stroke-width="3" stroke-dasharray="5 4" marker-end="url(#isq2)"/>
+          <line x1="60" y1="130" x2="200" y2="130" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <line x1="60" y1="140" x2="130" y2="140" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#isq2)" marker-end="url(#isq2)"/>
+          <line x1="130" y1="140" x2="200" y2="140" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#isq2)" marker-end="url(#isq2)"/>
+          <text x="95" y="136" class="lbl" text-anchor="middle">d</text><text x="165" y="136" class="lbl" text-anchor="middle">d</text>
+          <text x="60" y="62" class="lbl" text-anchor="middle">cisim</text><text x="200" y="62" class="lbl" text-anchor="middle">xəyal</text>
+        </svg>
+        <div class="cap">
+          <p>Müstəvi güzgüdə xəyal güzgünün arxasında, cisimlə <b>eyni məsafədə</b> yerləşir, cisimlə eyni ölçüdədir və <b>xəyaldır</b> — şüalar orada həqiqətən kəsişmir, yalnız onların uzantısı kəsişir.</p>
+        </div>
+      </div>
+      <div class="fm">cisimdən xəyala qədər:  2d
+güzgü v sürətlə uzaqlaşsa:  xəyalın sürəti 2v
+cisim güzgüyə v ilə yaxınlaşsa: cisim–xəyal arası 2v ilə azalır</div>
+      <p>Niyə? Güzgüyə qədər məsafə <span class="m">d</span>, xəyala qədər də <span class="m">d</span>. Məsafə <span class="m">d</span> dəyişəndə xəyal da eyni qədər hərəkət edir, cəmi iki dəfə.</p>
+      <p><b>Güzgünün ölçüsü.</b> Özünü tam görmək üçün güzgü boyun yarısı qədər hündür olmalıdır və adamın güzgüdən məsafəsi burada rol oynamır. Gözlər yerdən <span class="m">e</span>, boy <span class="m">H</span> olarsa, güzgünün aşağı kənarı yerdən ən çoxu <span class="m">e/2</span>, yuxarı kənarı ən azı <span class="m">(H + e)/2</span> hündürlükdə olmalıdır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Şüa müstəvi güzgünün səthi ilə 25° bucaq əmələ gətirərək düşür.
+Düşən və əks olunmuş şüalar arasındakı bucaq?
+  α = 90° − 25° = 65°  (normaldan)
+  α′ = α = 65°
+  Şüalar arasında 2·65° = 130°</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Boyu 1,6 m olan Fikrətin gözləri yerdən 1,5 m hündürlükdədir.
+O, şaquli divardakı güzgüdə özünü başdan ayağa görmək istəyir.
+Güzgünün kənarları yerdən hansı hündürlükdə olmalıdır?
+  Aşağı kənar:  e/2 = 1,5/2 = 0,75 m-dən aşağı
+  Yuxarı kənar: (H + e)/2 = (1,6 + 1,5)/2 = 1,55 m-dən yuxarı
+  Minimal hündürlük 1,55 − 0,75 = 0,8 m = H/2 ✓
+  (Güzgü yerdən 0,75 m ilə 1,55 m arasında olmalıdır.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Adam böyük güzgüdən 6 m aralıdadır və ona 2 m/s sürətlə yaxınlaşır.
+2 s sonra adamla xəyal arasındakı məsafə?
+  2 s-də adam 2·2 = 4 m gedir → güzgüdən 6 − 4 = 2 m
+  Xəyal da güzgüdən 2 m-dədir → aralarında 2 + 2 = 4 m
+  (Başlanğıcda 12 m idi, 4 m/s sürətlə azalır: 12 − 4·2 = 4 m ✓)</div>
+      <div class="life"><b>Həyatdan.</b> Maşın sürücüsü arxa güzgüdə yaxınlaşan avtomobili görür. Avtomobil güzgüyə nisbətən 20 m/s ilə yaxınlaşırsa, xəyalı da sürücüyə həmin sürətlə gəlir. Yan güzgünü bir az döndərəndə arxa mənzərə xeyli sürüşür — növbəti dərsdə görəcəksən ki, bunun səbəbi 2 dəfə çox bucağa dönmədir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucağı güzgünün <b>səthindən</b> ölçüb düşmə bucağı hesab etmək. Düşmə bucağı həmişə normaldandır: <span class="m">α = 90° − γ</span>.</li>
+        <li>Düşən və əks olunmuş şüalar arasındakı bucağı <span class="m">α</span> saymaq. O, <span class="m">2α</span>-dır.</li>
+        <li>Xəyalın güzgüdən məsafəsini cisim–xəyal məsafəsi ilə qarışdırmaq. Cisim–xəyal arası <span class="m">2d</span>-dir.</li>
+        <li>Güzgünün ölçüsünü adamın uzaqlığından asılı saymaq. Tam boy üçün güzgü <span class="m">H/2</span> hündür olmalıdır, harada dayanmağından asılı olmayaraq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">α′ = α, bucaqlar normaldan: α = 90° − γ
+Şüalar arasında 2α
+Müstəvi güzgü: xəyal güzgünün arxasında, eyni məsafədə
+Cisim–xəyal: 2d;  güzgü v ilə getsə, xəyal 2v ilə gedir
+Tam boy üçün güzgü H/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düşmə bucağı 35°-dir. Düşən və əks olunmuş şüalar arasındakı bucaq? <span class="ans">2·35° = 70°.</span></li>
+        <li>Cisim güzgüdən 1,5 m aralıdadır. Cisim–xəyal məsafəsi? <span class="ans">2·1,5 = 3 m.</span></li>
+        <li>Boyu 1,8 m olan adama özünü tam görmək üçün minimum neçə metrlik güzgü lazımdır? <span class="ans">1,8/2 = 0,9 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Dönən güzgü və iki güzgü</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Fırlanan güzgülü işıq qurğusunun şüası dənizi süpürür. Periskopda iki güzgü şüanı iki dəfə qaytarır. Güzgülü kaleydoskopda bir neçə güzgü çoxlu xəyal yaradır. Bunların hamısı iki sadə qaydadan çıxır: dönən güzgüdə <b>2 dəfə</b> qaydası və iki güzgüdə <b>bucaq cəmi</b> qaydası.</p>
+
+      <h3><span class="st">2</span> Güzgü dönəndə şüa 2 dəfə çox dönür</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Güzgü φ bucağı qədər dönəndə əks olunmuş şüa 2φ qədər dönür">
+          <defs><marker id="isq3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="15" y1="120" x2="95" y2="120" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#isq3)"/>
+          <line x1="70" y1="150" x2="130" y2="90" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="80" y1="153" x2="125" y2="76" stroke="var(--ink)" stroke-width="3" stroke-dasharray="6 4"/>
+          <line x1="100" y1="120" x2="100" y2="20" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq3)"/>
+          <line x1="100" y1="120" x2="50" y2="33" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#isq3)"/>
+          <path d="M100 70A50 50 0 0 0 75 76.7" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+          <text x="82" y="62" class="lbl" text-anchor="middle">2φ</text>
+          <text x="143" y="88" class="lbl">φ</text>
+          <text x="18" y="112" class="lbl">düşən</text>
+          <text x="150" y="130">güzgü φ dönüb</text>
+          <text x="150" y="146">(nöqtəli xətt — yeni vəziyyət)</text>
+        </svg>
+        <div class="cap">
+          <p>Düşən şüa sabitdir. Güzgü <span class="m">φ</span> dönəndə normal da <span class="m">φ</span> dönür. Beləcə düşmə bucağı <span class="m">φ</span>, əks olunma bucağı da <span class="m">φ</span> dəyişir — əks olunmuş şüa <span class="m">2φ</span> dönür.</p>
+        </div>
+      </div>
+      <div class="fm">güzgü φ dönür  →  əks olunmuş şüa 2φ dönür
+güzgünün bucaq sürəti ω  →  şüanın bucaq sürəti 2ω</div>
+      <p>Bunu yoxlamaq asandır. Düşən şüa güzgüyə normal düşsə (α = 0), şüa geri qayıdır. Güzgünü 10° döndərsək, α = 10°, şüa normaldan 10° kənara gedir, düşən istiqamətlə isə 20° bucaq əmələ gətirir.</p>
+      <p>Qaydanı yalnız <b>düşən şüa sabit</b> olanda işlət. Düşən şüa özü dönürsə (işıq mənbəyi hərəkət edir), bucaqları yenidən hesablamaq lazımdır.</p>
+
+      <h3><span class="st">3</span> İki perpendikulyar güzgü</h3>
+      <div class="fig">
+        <svg viewBox="0 0 310 160" role="img" aria-label="Bir-birinə perpendikulyar iki güzgüdə şüa iki dəfə qayıdır və düşən şüaya paralel geri gedir">
+          <defs><marker id="isq4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="30" y1="140" x2="190" y2="140" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="180" y1="5" x2="180" y2="140" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="50" y1="30" x2="85" y2="85" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#isq4)"/>
+          <line x1="85" y1="85" x2="120" y2="140" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="120" y1="140" x2="150" y2="93" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq4)"/>
+          <line x1="150" y1="93" x2="180" y2="46" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="180" y1="46" x2="157" y2="10" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq4)"/>
+          <text x="38" y="26" class="lbl">1</text>
+          <text x="85" y="156" class="lbl">M₁</text><text x="196" y="80" class="lbl">M₂</text>
+          <text x="196" y="100">çıxan şüa</text><text x="196" y="116">düşənə paralel</text>
+        </svg>
+        <div class="cap">
+          <p>Şüa rəsm müstəvisində yayılır. Birinci güzgüdən əks olunur, ikinci güzgüdən də — və <b>düşən şüaya paralel, əks istiqamətdə</b> geri gedir.</p>
+        </div>
+      </div>
+      <p>Birinci güzgünün normalı ikinci güzgüyə paraleldir. Birinci güzgüdə düşmə bucağı <span class="m">α</span> olarsa, ikincidə düşmə bucağı <span class="m">90° − α</span>-dır. İki əksolunmadan sonra şüa 180° dönür. Belə sistem <b>künc güzgüsü</b> (retroreflektor) adlanır: velosiped əksetdiricilərində və yol nişanlarında istifadə edilir, işığı istənilən bucaqdan mənbəyə qaytarır.</p>
+
+      <h3><span class="st">4</span> Aralarında β bucağı olan iki güzgü</h3>
+      <p>İki güzgü bir-biri ilə <span class="m">β</span> bucağı əmələ gətirirsə və şüa rəsm müstəvisində əvvəlcə birindən, sonra o birindən əks olunursa, çıxan şüa ilkin istiqamətdən <b>2β</b> qədər dönmüş olur. (β = 90° olanda 180° — yuxarıdakı hal.)</p>
+      <p>Güzgülər arasına cisim qoysan, <b>çoxlu xəyal</b> görünür. Əgər <span class="m">360°/β</span> tam ədəddirsə, xəyalların sayı bu olur:</p>
+      <div class="fm">xəyalların sayı = 360°/β − 1</div>
+      <p>β = 90° → 3 xəyal; β = 60° → 5; β = 120° → 2; β = 45° → 7. Güzgülər paralel olsa (β → 0), xəyallar sonsuz sayda olur — bərbərxanada iki güzgü arasında “sonsuz dəhliz” belə yaranır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Güzgü şüanın düşdüyü nöqtə ətrafında 15° döndü. Düşən şüa sabitdir.
+Əks olunmuş şüa neçə dərəcə döndü?
+  2·15° = 30°</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Bir-birinə perpendikulyar iki güzgüyə şüa birinci güzgüdən 20° düşmə
+bucağı ilə əks olunur, sonra ikinci güzgüyə düşür.
+İkinci güzgüdə düşmə bucağını və ümumi dönmə bucağını tap.
+  İkinci güzgüdə düşmə: 90° − 20° = 70°
+  Ümumi dönmə: 2·90° = 180° (şüa düşənə paralel, əks istiqamətdə qayıdır)
+  Yoxlama: birinci əksolunmada şüa 180° − 2·20° = 140° dönür;
+  ikincidə 180° − 2·70° = 40° dönür; cəmi 180° ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Aralarında 60° olan iki müstəvi güzgünün arasında bir alma var.
+Neçə alma görünür? Alma bir də 40°-lik güzgülərdə olsaydı?
+  60°: 360/60 − 1 = 5 xəyal  →  almanı özü ilə birgə 6 alma görürsən
+  40°: 360/40 − 1 = 8 xəyal
+  Şüa 40° güzgülərdə iki əksolunmadan sonra 2·40° = 80° dönər</div>
+      <div class="life"><b>Həyatdan.</b> Güzgü fırlanan işıq qurğusunda əks olunmuş şüa güzgüdən 2 dəfə tez dönür, ona görə şüa dənizi böyük sürətlə süpürür. Periskopda isə iki paralel güzgü 45°-lik bucaqla qoyulub: şüa hər birində 90° dönür və baxış səviyyəsi qayığın üstünə qaldırılır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Güzgü φ dönəndə şüanın da φ dönməsini düşünmək. Şüa <b>2φ</b> dönür.</li>
+        <li>Qaydanı düşən şüanın özü dönəndə də 2φ saymaq. Düşən şüa sabit olmalıdır.</li>
+        <li>İki perpendikulyar güzgüdə ikinci düşmə bucağını α saymaq. O, <span class="m">90° − α</span>-dır.</li>
+        <li>Xəyalların sayında 1 çıxmağı unutmaq: <span class="m">360°/β − 1</span>, <span class="m">360°/β</span> yox (birincisi cismin özüdür).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">güzgü φ  →  şüa 2φ (düşən şüa sabit)
+ω güzgü  →  2ω şüa
+iki güzgü, aralarında β:  çıxan şüa 2β dönür
+perpendikulyar güzgülər:  α₂ = 90° − α₁, şüa 180° dönür
+xəyalların sayı = 360°/β − 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Güzgü saniyədə 8° dönür. Əks olunmuş şüa saniyədə neçə dərəcə dönür? <span class="ans">16°/s.</span></li>
+        <li>İki güzgü arasında 30° var. Neçə xəyal? <span class="ans">360/30 − 1 = 11.</span></li>
+        <li>Şüa 70° düşmə bucağı ilə perpendikulyar güzgülərin birincisinə düşür. İkincidə düşmə bucağı? <span class="ans">90° − 70° = 20°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İşığın sınması və sındırma əmsalı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Stəkan suya qoyulmuş qələm sınmış kimi görünür. Hovuzun dibi real dərinlikdən dayaz görünür. Eynək və fotoaparat linzaları işığı sındırır. Səbəb odur ki, işıq müxtəlif şəffaf mühitlərdə müxtəlif sürətlə yayılır, mühit dəyişəndə istiqaməti də dəyişir.</p>
+
+      <h3><span class="st">2</span> Sındırma əmsalı</h3>
+      <p>Vakuumda işığın sürəti <span class="m">c = 3·10⁸ m/s</span>-dir. Maddələrdə daha azdır. Mühitin <b>mütləq sındırma əmsalı</b> işığın vakuumdakı sürətinin mühitdəki sürətinə nisbətidir:</p>
+      <div class="fm">n = c/v        v = c/n</div>
+      <p>Havada <span class="m">n ≈ 1</span>, suda <span class="m">n = 4/3</span>, şüşədə təxminən <span class="m">1,5</span>, almazda <span class="m">2,4</span>. <span class="m">n</span> nə qədər böyükdürsə, mühit <b>optik sıxdır</b> və işıq orada yavaş gedir. Məsələn şüşədə <span class="m">v = 3·10⁸/1,5 = 2·10⁸ m/s</span>.</p>
+
+      <h3><span class="st">3</span> Sınma qanunu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Şüa az sıx mühitdən sıx mühitə keçir: sınma bucağı düşmə bucağından kiçikdir">
+          <defs><marker id="isq5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="15" y="100" width="230" height="85" fill="var(--accent-soft)"/>
+          <line x1="15" y1="100" x2="245" y2="100" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="130" y1="12" x2="130" y2="188" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="55" y1="25" x2="130" y2="100" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="80" y1="50" x2="95" y2="65" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#isq5)"/>
+          <line x1="130" y1="100" x2="170" y2="170" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq5)"/>
+          <line x1="130" y1="100" x2="195" y2="35" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#isq5)"/>
+          <path d="M130 70A30 30 0 0 0 109 79" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+          <path d="M130 130A30 30 0 0 0 146 126" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+          <text x="112" y="64" class="lbl" text-anchor="middle">α</text>
+          <text x="141" y="148" class="lbl" text-anchor="middle">β</text>
+          <text x="28" y="45" class="lbl">n₁ (az sıx)</text>
+          <text x="28" y="175" class="lbl">n₂ (sıx)</text>
+          <text x="196" y="30" fill="var(--muted)">qayıdan şüa</text>
+        </svg>
+        <div class="cap">
+          <p>Şüa <span class="m">n₁</span> mühitindən <span class="m">n₂ &gt; n₁</span> mühitinə keçir. Sərhəddə bir hissə qayıdır (nöqtəli), qalanı sınır və <b>normala yaxınlaşır</b>: <span class="m">β &lt; α</span>.</p>
+        </div>
+      </div>
+      <div class="fm">n₁ sin α = n₂ sin β
+sin α / sin β = n₂/n₁ = v₁/v₂</div>
+      <p>Bucaqlar yenə normaldan ölçülür. Sıx mühitə keçəndə şüa normala yaxınlaşır (<span class="m">β &lt; α</span>), seyrək mühitə keçəndə normaldan uzaqlaşır (<span class="m">β &gt; α</span>). Normal düşən şüa (<span class="m">α = 0</span>) sınmadan düz keçir. Qanun <b>geri qaytarıla bilər</b>: şüa eyni yolla geri gedə bilər.</p>
+      <p>Çox qatlı mühitdə <span class="m">n₁ sin α₁ = n₂ sin α₂ = n₃ sin α₃ = …</span> sabit qalır; aralıq qatların bucağı yalnız aralıq hesab üçündür. Paralel tərəfli şüşə lövhədən keçən şüa istiqamətini saxlayır, yalnız yana sürüşür: çıxış bucağı düşmə bucağına bərabərdir.</p>
+      <p>Şüanın bir hissəsi qayıdır, bir hissəsi sınır. Əks olunmuş və sınmış şüalar arasındakı bucaq <span class="m">180° − α − β</span>-dır. Onlar <b>perpendikulyar</b> olarsa, <span class="m">α + β = 90°</span>, yəni <span class="m">sin β = cos α</span> (bu halda <span class="m">n₂/n₁ = tg α</span>).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Havadan şüşəyə (n = 1,5) düşən şüanın düşmə bucağının
+sinusu 0,6-dır. Sınma bucağının sinusu və şüşədə sürət?
+  1·0,6 = 1,5·sin β  →  sin β = 0,6/1,5 = 0,4
+  v = c/n = 3·10⁸/1,5 = 2·10⁸ m/s
+  Şüa normala yaxınlaşır: 0,4 &lt; 0,6 ✓</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Şüa havadan n = 1,5 olan şüşə lövhəyə sin α = 0,6 ilə düşür.
+Lövhənin altında n = 2 olan maye qatı var. Mayedə sin γ = ?
+  Çox qatlı mühit: 1·sin α = 1,5·sin β = 2·sin γ
+  sin γ = 0,6/2 = 0,3
+  (Şüşənin n-i cavaba təsir etmir — aralıq qatdır.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Şüa havadan maye səthinə düşür. Əks olunmuş və sınmış şüalar
+perpendikulyardır, sin α = 0,8. Mayenin sındırma əmsalı?
+  α + 90° + β = 180° → β = 90° − α
+  sin β = cos α = 0,6   (sin α = 0,8 olduğundan)
+  1·0,8 = n·0,6  →  n = 4/3 (su)</div>
+      <div class="life"><b>Həyatdan.</b> Suya batırılmış çubuq suyun səthində “sınmış” görünür: sudan çıxan şüalar normaldan uzaqlaşır, ona görə gözümüz çubuğun suya batmış hissəsini real yerindən yuxarıda görür. Almaz o qədər parıldayır ki, <span class="m">n = 2,4</span> olduğundan işıq onun içində 1,25·10⁸ m/s sürətlə gedir və tez-tez daxildən qayıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düsturu tərsinə yazmaq: <span class="m">sin β = n₂ sin α / n₁</span> yazmaq. Düzü: <span class="m">sin β = n₁ sin α / n₂</span>.</li>
+        <li>Bucağın özünü <span class="m">n</span>-ə bölmək (<span class="m">α/n</span>). Düstur <b>sinuslar</b> üçündür, bucaqlar üçün yox.</li>
+        <li>Bucağı səthdən ölçmək. Sınma qanununda da bucaqlar normaldandır.</li>
+        <li>Sıx mühitə keçəndə şüanın normaldan uzaqlaşdığını düşünmək. Sıx mühit → normala yaxınlaşır.</li>
+        <li><span class="m">n = v/c</span> yazmaq. Düzü: <span class="m">n = c/v</span> (n həmişə ≥ 1).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n = c/v,  c = 3·10⁸ m/s,  n ≥ 1
+n₁ sin α = n₂ sin β  (bucaqlar normaldan)
+sıx mühitə → normala yaxın;  seyrəyə → uzaq
+çox qat:  n·sin α sabitdir
+əks olunmuş ⟂ sınmış:  sin β = cos α,  n₂/n₁ = tg α</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mayedə işığın sürəti 2,5·10⁸ m/s. n = ? <span class="ans">3/2,5 = 1,2.</span></li>
+        <li>Havadan n = 2 olan mühitə sin α = 0,8 ilə düşür. sin β = ? <span class="ans">0,8/2 = 0,4.</span></li>
+        <li>n = 1,6 olan mühitdən havaya çıxan şüanın sin α = 0,5-dir. sin β = ? <span class="ans">1,6·0,5/1 = 0,8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Tam daxili qayıtma və görünən dərinlik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Suyun altından yuxarı baxanda səthin bir yerində “güzgü” görünür. Optik lif işığı yüzlərlə kilometr aparır və itirmir. Prizmalı durbinlər şüanı güzgüsüz qaytarır. Almaz içində işığı tələyə salır və parıldayır. Hamısı <b>tam daxili qayıtmadır</b>.</p>
+
+      <h3><span class="st">2</span> Həddi bucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 175" role="img" aria-label="Sıx mühitdən seyrək mühitə üç şüa: kiçik bucaqda sınır, həddi bucaqda sərhəd boyunca gedir, böyük bucaqda tam qayıdır">
+          <defs><marker id="isq6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="10" y="80" width="240" height="90" fill="var(--accent-soft)"/>
+          <line x1="10" y1="80" x2="250" y2="80" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="40" y1="155" x2="70" y2="80" stroke="var(--vec)" stroke-width="2" />
+          <line x1="70" y1="80" x2="110" y2="20" stroke="var(--vec)" stroke-width="2" marker-end="url(#isq6)"/>
+          <line x1="40" y1="155" x2="107" y2="80" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="107" y1="80" x2="165" y2="80" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#isq6)"/>
+          <line x1="40" y1="155" x2="170" y2="80" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="170" y1="80" x2="248" y2="125" stroke="var(--ink)" stroke-width="2" marker-end="url(#isq6)"/>
+          <line x1="107" y1="22" x2="107" y2="150" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <text x="20" y="38" class="lbl">n₂ (seyrək)</text>
+          <text x="170" y="165" class="lbl">n₁ (sıx)</text>
+          <text x="93" y="118" class="lbl" text-anchor="middle" fill="var(--accent)">α₀</text>
+          <text x="118" y="16">α &lt; α₀</text>
+          <text x="125" y="72" fill="var(--accent)">α = α₀</text>
+          <text x="175" y="140">α &gt; α₀</text>
+        </svg>
+        <div class="cap">
+          <p>Şüa <span class="m">n₁ &gt; n₂</span> olan mühitdən seyrəyə çıxır. Düşmə bucağı artdıqca sınma bucağı daha tez artır və nəhayət <span class="m">90°</span> olur — şüa sərhəd boyunca gedir. Bu düşmə bucağı <b>həddi bucaqdır α₀</b>. Ondan böyük bucaqlarda sınmış şüa yoxdur: bütün işıq qayıdır.</p>
+        </div>
+      </div>
+      <p>Həddi bucaqda <span class="m">β = 90°</span>, <span class="m">sin β = 1</span>:</p>
+      <div class="fm">n₁ sin α₀ = n₂ · 1
+sin α₀ = n₂/n₁      (n₁ > n₂)
+havaya çıxanda:  sin α₀ = 1/n</div>
+      <p>İki şərt lazımdır: şüa <b>sıx mühitdən seyrəyə</b> getməlidir (<span class="m">n₁ &gt; n₂</span>) və düşmə bucağı <span class="m">α₀</span>-dan <b>böyük</b> (və ya ona bərabər) olmalıdır. Seyrəkdən sıxa keçəndə tam qayıtma <b>olmur</b>.</p>
+      <p>Şüşə (<span class="m">n = 1,5</span>) üçün <span class="m">sin α₀ = 2/3</span>, <span class="m">α₀ ≈ 42°</span>; su (4/3) üçün <span class="m">sin α₀ = 3/4</span>, <span class="m">α₀ ≈ 49°</span>; almaz (2,4) üçün <span class="m">α₀ ≈ 25°</span>. Almazın həddi bucağı kiçik olduğu üçün işıq içində tez-tez qayıdır — buna görə parıldayır.</p>
+
+      <h3><span class="st">3</span> Görünən dərinlik</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Suyun dibindəki cisim yuxarıdan real dərinlikdən dayaz görünür">
+          <defs><marker id="isq7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="10" y="70" width="240" height="115" fill="var(--accent-soft)"/>
+          <line x1="10" y1="70" x2="250" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+          <circle cx="90" cy="165" r="6" fill="var(--ink)"/>
+          <circle cx="90" cy="128" r="6" fill="none" stroke="var(--ink)" stroke-dasharray="3 3"/>
+          <line x1="90" y1="165" x2="120" y2="70" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="120" y1="70" x2="152" y2="10" stroke="var(--accent)" stroke-width="2" marker-end="url(#isq7)"/>
+          <line x1="120" y1="70" x2="90" y2="126" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="90" y1="165" x2="105" y2="70" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="105" y1="70" x2="120" y2="10" stroke="var(--accent)" stroke-width="2" marker-end="url(#isq7)"/>
+          <line x1="105" y1="70" x2="90" y2="126" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="40" y1="72" x2="40" y2="163" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#isq7)" marker-end="url(#isq7)"/>
+          <text x="34" y="122" class="lbl" text-anchor="end">h</text>
+          <line x1="62" y1="72" x2="62" y2="126" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#isq7)" marker-end="url(#isq7)"/>
+          <text x="68" y="104" class="lbl">h′</text>
+          <text x="100" y="180">cisim</text><text x="112" y="132" fill="var(--muted)">xəyal</text>
+        </svg>
+        <div class="cap">
+          <p>Sudan çıxan şüalar normaldan uzaqlaşır. Göz onları geri uzadanda cismi real yerindən <b>yuxarıda</b> görür.</p>
+        </div>
+      </div>
+      <div class="fm">düz yuxarıdan baxanda:  h′ = h/n</div>
+      <p>Bu dəqiq düstur yalnız normala yaxın şüalar (düz yuxarıdan baxış) üçündür. Suda <span class="m">h′ = 3h/4</span>: 2,4 m dərin hovuz 1,8 m dərin görünür. Ona görə hovuza tullanmazdan əvvəl dərinliyi bilmək vacibdir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Şüşədən (n = 1,5) havaya çıxan şüa üçün həddi bucaq.
+Şüşə prizmanın 45°-lik düşmə bucağı ilə içərisinə düşən şüa
+tam qayıdacaqmı?
+  sin α₀ = 1/1,5 = 2/3 ≈ 0,667
+  sin 45° ≈ 0,707 &gt; 0,667  →  α &gt; α₀
+  Bəli, tam daxili qayıtma olacaq (prizmalı durbinlərdə belə edilir).</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Sındırma əmsalı 1,25 olan mayenin dibində səthdən 1,5 m
+dərinlikdə nöqtəvi işıq mənbəyi var. Səthdə işığın havaya
+çıxdığı dairənin radiusunu tap.
+  Kənardakı şüa həddi bucaqla düşür: sin α₀ = 1/1,25 = 0,8
+  cos α₀ = 0,6,  tg α₀ = 0,8/0,6 = 4/3
+  R = h·tg α₀ = 1,5·4/3 = 2 m
+  Dairənin diametri 4 m, ondan kənarda işıq havaya çıxmır.</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Optik lifin özəyinin n₁ = 1,5, örtüyünün n₂ = 1,2-dir.
+Özək–örtük sərhəddində tam qayıtma üçün düşmə bucağının
+sinusu ən azı nə qədər olmalıdır?
+  sin α₀ = n₂/n₁ = 1,2/1,5 = 0,8
+  sin α ≥ 0,8 olmalıdır, yəni şüa sərhəddə çox yataya yaxın
+  getməlidir. Belə şüalar lifdən çıxmır və uzaq yola gedir.</div>
+      <div class="life"><b>Həyatdan.</b> Hovuzun yanında dayanıb suya baxanda dərinlik ¾ görünür; 4 m dərin hovuz 3 m kimi. Sualtı üzgüçü yuxarı baxanda səthin kənarlarında “güzgü” görür, düz yuxarıda isə göyü. Optik lifdə bu hadisə sayəsində internet siqnalı işıq kimi gedir və çox itki olmur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">sin α₀ = n₁/n₂</span> yazmaq — bu, 1-dən böyük çıxar. Həmişə kiçik <span class="m">n</span> böyüyə bölünür: <span class="m">sin α₀ = n₂/n₁</span>.</li>
+        <li>Seyrək mühitdən sıxa keçən şüa üçün tam qayıtma axtarmaq. Orada heç vaxt olmur.</li>
+        <li>Həddi bucağı sərhədlə şüa arasındakı bucaq saymaq. Bucaq normaldan ölçülür.</li>
+        <li>Görünən dərinlikdə <span class="m">h′ = hn</span> yazmaq. Su qatı dayaz görünür: <span class="m">h′ = h/n</span>.</li>
+        <li>Dairə radiusunda <span class="m">R = h·sin α₀</span> yazmaq. Düzü: <span class="m">R = h·tg α₀</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">tam qayıtma: sıx → seyrək və α &gt; α₀ (n₁ &gt; n₂)
+sin α₀ = n₂/n₁;  havaya: sin α₀ = 1/n
+α = α₀: sınmış şüa sərhəd boyunca
+nöqtəvi mənbə dərinlik h:  R = h·tg α₀
+düz yuxarıdan:  h′ = h/n</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mühitin həddi bucağının sinusu havaya çıxanda 0,5-dir. n = ? <span class="ans">n = 1/0,5 = 2 (α₀ = 30°).</span></li>
+        <li>Suda (n = 4/3) 1,2 m dərinlikdə olan balıq yuxarıdan nə qədər dərində görünür? <span class="ans">1,2/(4/3) = 0,9 m.</span></li>
+        <li>n₁ = 1,6 olan mühitdən havaya çıxan şüanın sin α = 0,5-dir. Tam qayıdırmı? <span class="ans">sin α₀ = 1/1,6 = 0,625. 0,5 &lt; 0,625 → qayıtmır, sınır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
