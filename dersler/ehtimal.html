@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ehtimal dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ehtimal.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Ehtimal</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Ehtimal nəzəriyyəsinin elementləri</div>
+    <h1>Ehtimal: toplama və vurma prinsipləri, hadisənin ehtimalı</h1>
+    <p>Zər atırsan, sikkə fırladırsan, kisədən kürə çəkirsən — nəticəni əvvəlcədən bilmirsən, amma <b>nə qədər mümkün olduğunu</b> ədədlə demək olar. Bu ədəd ehtimaldır. Burada hadisələri tanıyacaq, halları saymağı (toplama və vurma prinsipləri) öyrənəcək və ehtimalı kəsr kimi hesablayacaqsan.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Hadisələr</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Sayma prinsipləri</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Ehtimal P = m/n</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Əks hadisə, qaydalar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Hadisələr və onların növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hava proqnozu deyir: "sabah yağış ehtimalı 30%". Lotereya bileti alırsan — uduş "mümkündür", amma "yəqin deyil". Gündəlik həyatda bu sözləri hiss ilə işlədirik. Riyaziyyat onlara dəqiq məna verir.</p>
+
+      <h3><span class="st">2</span> Əsas anlayışlar</h3>
+      <p><b>Sınaq</b> — nəticəsi təsadüfdən asılı olan əməliyyatdır: zər atmaq, sikkə fırlatmaq, kisədən kürə çıxarmaq. Sınağın hər mümkün nəticəsi <b>elementar nəticə</b> adlanır (zərdə 1, 2, 3, 4, 5, 6).</p>
+      <p><b>Hadisə</b> — sınağın bəzi nəticələrinin toplusudur. Məsələn, zər atanda "cüt xal düşdü" hadisəsi <span class="m">{2, 4, 6}</span> nəticələrindən ibarətdir. Üç növ var:</p>
+      <div class="fm">Yəqin hadisə:               həmişə baş verir   (zərdə xal ≤ 6)
+Mümkün olmayan hadisə:      heç vaxt baş vermir (zərdə xal 7)
+Təsadüfi hadisə:            baş verə də bilər, verməyə də (zərdə xal 6)</div>
+      <p>Hadisələrlə iki əməliyyat edirik: <b>A və B</b> (hər ikisi baş verdi — ortaq nəticələr) və <b>A və ya B</b> (heç olmasa biri baş verdi — hər iki hadisənin nəticələri birlikdə). Eyni anda baş verə bilməyən hadisələr <b>uyuşmayan</b> adlanır: "cüt xal" və "tək xal".</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Zər atılır.  A — "tək xal":  {1, 3, 5}.   B — "3-dən böyük xal":  {4, 5, 6}.
+  A və B (ikisi də):   {5}
+  A və ya B:           {1, 3, 4, 5, 6}
+  A və "cüt xal":      uyuşmayan (ortaq nəticə yoxdur).
+
+Nümunə 2.  Kisədə 5 qırmızı və 3 göy kürə var. 4 kürə çıxarılır.
+  "Heç olmasa biri qırmızıdır" — hansı hadisədir?
+  Göy kürə cəmi 3-dür, 4 kürənin hamısı göy ola bilməz → biri mütləq qırmızıdır.
+  Cavab: yəqin hadisə.
+  Əgər 3 kürə çıxarılsaydı: hamısı göy ola da bilər, olmaya da bilər → təsadüfi hadisə.
+
+Nümunə 3.  1-dən 20-yə qədər ədədlərdən biri seçilir.  "Ədəd 21-ə bölünür".
+  21-ə bölünən ən kiçik natural ədəd 21-dir, 20-dən böyükdür.
+  Cavab: mümkün olmayan hadisə.</div>
+      <div class="life"><b>Həyatdan.</b> "Sabah gün ya yağışlı, ya yağışsız olacaq" — yəqin hadisədir, heç nə demir. "Bakıda iyulda qar yağacaq" — praktik olaraq mümkün olmayandır. Yalnız təsadüfi hadisələr üçün ehtimal maraqlıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Təsadüfi hadisə" ilə "bərabər ehtimallı nəticələr"i qarışdırmaq. Təsadüfi hadisənin ehtimalı 0-la 1 arasındadır, nəticələr isə bərabər ehtimallı olmaya bilər (qüsurlu zər).</li>
+        <li>Hadisəni nəticə ilə qarışdırmaq: "cüt xal" bir hadisədir, onun içində 3 nəticə var.</li>
+        <li>"Mümkün olmayan"ı "çətin"lə qarışdırmaq. Lotereyada udmaq çətindir, amma mümkündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sınaq → nəticələr → hadisə (nəticələr toplusu)
+Yəqin: həmişə,  mümkün olmayan: heç vaxt,  təsadüfi: ola da bilər
+A və B — ortaq nəticələr;  A və ya B — birlikdə
+Uyuşmayan hadisələrin ortaq nəticəsi yoxdur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Zər atılır. "Xal 0-dan böyükdür" hansı hadisədir? <span class="ans">Yəqin hadisə: bütün xallar 1–6.</span></li>
+        <li>Kisədə yalnız ağ kürələr var. "Çıxan kürə qaradır" hansı hadisədir? <span class="ans">Mümkün olmayan hadisə.</span></li>
+        <li>Zər atılır. "Xal 2-yə bölünür" və "xal 3-ə bölünür" — A və B-nin ortaq nəticəsi nədir? <span class="ans">{6}. A = {2, 4, 6}, B = {3, 6}.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Toplama və vurma prinsipləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ehtimal = əlverişli hallar / bütün hallar. Hər iki ədədi tapmaq üçün halları <b>saymaq</b> lazımdır. Hamısını bir-bir yazmaq vaxt aparır və səhvə aparır. İki sadə qayda bunu qısaldır.</p>
+
+      <h3><span class="st">2</span> İki prinsip</h3>
+      <div class="fm">Toplama:  ya A, ya B  (eyni anda yox)
+          m üsul + n üsul = m + n
+
+Vurma:    həm 1-ci addım, həm 2-ci addım (ardıcıl)
+          m üsul · n üsul = m · n</div>
+      <p>Açar sözlər: <b>"ya … ya …"</b> — topla; <b>"həm … həm …"</b> və ya addım-addım seçim — vur.</p>
+      <p>Vurma prinsipinin iki məşhur halı:</p>
+      <div class="fm">n müxtəlif əşyanın düzülüşü:  n! = n · (n − 1) · … · 2 · 1
+Təkrar olunan seçim (n seçim, k dəfə):  nᵏ</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Yeməkxanada 3 növ şorba, 4 növ əsas yemək, 2 növ desert var.
+  Bir şorba + bir əsas yemək + bir desert: 3 · 4 · 2 = 24 nahar (vurma).
+  Yalnız bir şey: ya şorba, ya desert: 3 + 2 = 5 (toplama).
+
+Nümunə 2.  1, 2, 3, 4, 5 rəqəmlərindən ikirəqəmli ədədlər.
+  Rəqəmlər təkrarlana bilər:  5 · 5 = 25.
+  Təkrarlanmır:                5 · 4 = 20  (ikinci yerdə bir seçim azdır).
+
+Nümunə 3.  0, 1, 2, 3 rəqəmlərindən ikirəqəmli ədədlər (0 birinci ola bilməz).
+  Təkrarlana bilər:  3 · 4 = 12.   Təkrarlanmır:  3 · 3 = 9.
+
+Nümunə 4.  A-dan B-yə 3 yol, B-dən C-yə 2 yol, A-dan C-yə B-dən keçməyən 1 birbaşa yol var.
+  B-dən keçməklə:  3 · 2 = 6.   Birbaşa: 1.   Cəmi: 6 + 1 = 7.
+
+Nümunə 5.  4 şagird növbəyə düzülür.  4! = 4 · 3 · 2 · 1 = 24.
+  Əgər Elvin həmişə birincidirsə: qalan 3 nəfər 3! = 6 üsulla düzülür.</div>
+      <p>Bunlar ehtimalda "bütün halların sayı"dır: iki zər atanda <span class="m">6 · 6 = 36</span> nəticə, sikkəni 3 dəfə atanda <span class="m">2 · 2 · 2 = 8</span> nəticə var.</p>
+      <div class="life"><b>Həyatdan.</b> Parolun 4 rəqəmli PIN-dir. Hər yerdə 10 rəqəm: <span class="m">10⁴ = 10 000</span> mümkün PIN. Təsadüfi cəhdlə düz PIN tapmaq ehtimalı yalnız <span class="m">1/10 000</span>-dir. Rəqəmlərin təkrarını qadağan etsən: <span class="m">10 · 9 · 8 · 7 = 5040</span> — az olur, deməli PIN zəifləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Toplamaq əvəzinə vurmaq (və əksinə). Soruş: iki seçimi <b>eyni anda</b> edirəm (vur), yoxsa <b>biri</b> seçilir (topla)?</li>
+        <li>Rəqəmlər təkrarlanmayanda ikinci yerdə yenə eyni sayda seçim götürmək.</li>
+        <li>Ədədin ilk rəqəminə 0 qoymaq.</li>
+        <li><span class="m">3!</span>-ı <span class="m">3 · 2</span> hesab etmək: düzü <span class="m">3 · 2 · 1 = 6</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">"Ya … ya" → topla (m + n).  "Həm … həm" → vur (m · n).
+n! = n · (n − 1) · … · 1,   0 birinci rəqəm ola bilməz
+İki zər: 36 hal.  Sikkə n dəfə: 2ⁿ hal.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 köynək və 3 şalvardan neçə geyim dəsti düzəltmək olar? <span class="ans">Vurma: 5 · 3 = 15.</span></li>
+        <li>1, 2, 3 rəqəmlərindən (təkrarsız) neçə üçrəqəmli ədəd düzəltmək olar? <span class="ans">3 · 2 · 1 = 6.</span></li>
+        <li>5 kitab rəfdə neçə üsulla düzülə bilər? <span class="ans">5! = 120.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Hadisənin ehtimalı: P = m/n</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Ehtimal 1/6-dır" — bu, zərdə altı düşməsinin nə qədər mümkün olduğunu ədədlə deyir. Ehtimalı bilən şəxs oyunda, sığortada, hava proqnozunda düzgün qərar verir.</p>
+
+      <h3><span class="st">2</span> Klassik düstur</h3>
+      <p>Sınağın bütün nəticələri <b>bərabər imkanlıdırsa</b> (düzgün zər, adi sikkə, qarışdırılmış kartlar):</p>
+      <div class="fm">P(A) = m / n
+
+n — sınağın bütün mümkün nəticələrinin sayı
+m — A hadisəsinin əlverişli nəticələrinin sayı</div>
+      <div class="fm">0 ≤ P(A) ≤ 1
+Yəqin hadisə:               P = 1
+Mümkün olmayan hadisə:      P = 0</div>
+      <p>Cavabı <b>ixtisar olunmuş kəsr</b> yaz: <span class="m">2/6</span> deyil, <span class="m">1/3</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Zər atılır. Xalın sadə ədəd olması ehtimalı?
+  n = 6.  Sadə ədədlər: 2, 3, 5 (1 sadə deyil!) → m = 3.
+  P = 3/6 = 1/2.
+
+Nümunə 2.  Kisədə 4 ağ, 6 qara, 5 qırmızı kürə var. Qırmızı kürə çıxarmaq ehtimalı?
+  n = 4 + 6 + 5 = 15,  m = 5.   P = 5/15 = 1/3.
+
+Nümunə 3.  1, 2, …, 30 ədədlərindən biri seçilir. 4-ə bölünməsi ehtimalı?
+  n = 30.  4-ə bölünənlər: 4, 8, …, 28 → 30 : 4 = 7 (tam hissə).
+  P = 7/30.
+
+Nümunə 4.  36 kartlıq dəstdən bir kart çəkilir (hər dəstdə 9 kart, 4 dəst). Kartın tuz olması?
+  n = 36,  m = 4 (hər dəstdə bir tuz).   P = 4/36 = 1/9.
+
+Nümunə 5.  İki zər atılır. Xalların cəmi 7 olması ehtimalı?
+  n = 6 · 6 = 36 (vurma prinsipi).
+  Cəm 7: (1; 6), (2; 5), (3; 4), (4; 3), (5; 2), (6; 1) → m = 6.
+  P = 6/36 = 1/6.   Cəm 8 üçün: m = 5, P = 5/36.</div>
+      <div class="fig">
+        <svg viewBox="0 0 216 216" role="img" aria-label="İki zərin xalları cəmi cədvəli; cəmi 7 olan altı xana rənglidir">
+          <text x="48" y="23" text-anchor="middle" class="lbl">1</text>
+          <text x="18" y="53" text-anchor="middle" class="lbl">1</text>
+          <text x="78" y="23" text-anchor="middle" class="lbl">2</text>
+          <text x="18" y="83" text-anchor="middle" class="lbl">2</text>
+          <text x="108" y="23" text-anchor="middle" class="lbl">3</text>
+          <text x="18" y="113" text-anchor="middle" class="lbl">3</text>
+          <text x="138" y="23" text-anchor="middle" class="lbl">4</text>
+          <text x="18" y="143" text-anchor="middle" class="lbl">4</text>
+          <text x="168" y="23" text-anchor="middle" class="lbl">5</text>
+          <text x="18" y="173" text-anchor="middle" class="lbl">5</text>
+          <text x="198" y="23" text-anchor="middle" class="lbl">6</text>
+          <text x="18" y="203" text-anchor="middle" class="lbl">6</text>
+          <rect x="33" y="33" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="48" y="53" text-anchor="middle" class="lbl">2</text>
+          <rect x="63" y="33" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="78" y="53" text-anchor="middle" class="lbl">3</text>
+          <rect x="93" y="33" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="108" y="53" text-anchor="middle" class="lbl">4</text>
+          <rect x="123" y="33" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="138" y="53" text-anchor="middle" class="lbl">5</text>
+          <rect x="153" y="33" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="168" y="53" text-anchor="middle" class="lbl">6</text>
+          <rect x="183" y="33" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="198" y="53" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="33" y="63" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="48" y="83" text-anchor="middle" class="lbl">3</text>
+          <rect x="63" y="63" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="78" y="83" text-anchor="middle" class="lbl">4</text>
+          <rect x="93" y="63" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="108" y="83" text-anchor="middle" class="lbl">5</text>
+          <rect x="123" y="63" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="138" y="83" text-anchor="middle" class="lbl">6</text>
+          <rect x="153" y="63" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="168" y="83" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="183" y="63" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="198" y="83" text-anchor="middle" class="lbl">8</text>
+          <rect x="33" y="93" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="48" y="113" text-anchor="middle" class="lbl">4</text>
+          <rect x="63" y="93" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="78" y="113" text-anchor="middle" class="lbl">5</text>
+          <rect x="93" y="93" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="108" y="113" text-anchor="middle" class="lbl">6</text>
+          <rect x="123" y="93" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="138" y="113" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="153" y="93" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="168" y="113" text-anchor="middle" class="lbl">8</text>
+          <rect x="183" y="93" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="198" y="113" text-anchor="middle" class="lbl">9</text>
+          <rect x="33" y="123" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="48" y="143" text-anchor="middle" class="lbl">5</text>
+          <rect x="63" y="123" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="78" y="143" text-anchor="middle" class="lbl">6</text>
+          <rect x="93" y="123" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="108" y="143" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="123" y="123" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="138" y="143" text-anchor="middle" class="lbl">8</text>
+          <rect x="153" y="123" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="168" y="143" text-anchor="middle" class="lbl">9</text>
+          <rect x="183" y="123" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="198" y="143" text-anchor="middle" class="lbl">10</text>
+          <rect x="33" y="153" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="48" y="173" text-anchor="middle" class="lbl">6</text>
+          <rect x="63" y="153" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="78" y="173" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="93" y="153" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="108" y="173" text-anchor="middle" class="lbl">8</text>
+          <rect x="123" y="153" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="138" y="173" text-anchor="middle" class="lbl">9</text>
+          <rect x="153" y="153" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="168" y="173" text-anchor="middle" class="lbl">10</text>
+          <rect x="183" y="153" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="198" y="173" text-anchor="middle" class="lbl">11</text>
+          <rect x="33" y="183" width="30" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="48" y="203" text-anchor="middle" class="lbl" font-weight="700">7</text>
+          <rect x="63" y="183" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="78" y="203" text-anchor="middle" class="lbl">8</text>
+          <rect x="93" y="183" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="108" y="203" text-anchor="middle" class="lbl">9</text>
+          <rect x="123" y="183" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="138" y="203" text-anchor="middle" class="lbl">10</text>
+          <rect x="153" y="183" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="168" y="203" text-anchor="middle" class="lbl">11</text>
+          <rect x="183" y="183" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="0.6"/>
+          <text x="198" y="203" text-anchor="middle" class="lbl">12</text>
+        </svg>
+        <div class="cap"><p>İki zərin 36 nəticəsi: sətir — birinci zərin xalı, sütun — ikincinin xalı, xanada cəmi yazılıb. Cəmi 7 olan 6 xana rənglidir: <span class="m">6/36 = 1/6</span>. Cəmi 2 yalnız bir xanadadır (1 + 1), ona görə <span class="m">1/36</span>.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Lotereyada 1000 bilet var, 25-i uduşludur. Bir bilet alsan, udmaq ehtimalı <span class="m">25/1000 = 1/40</span>-dır. Yəni orta hesabla 40 biletdən biri udur — "çox" bilet almaq ehtimalı bu qədər artırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kəsri onluğa yuvarlaqlaşdırmaq: <span class="m">1/3 ≈ 0,33</span> dəqiq deyil. Cavab <span class="m">1/3</span> olmalıdır.</li>
+        <li>Kəsri ixtisar etməmək: <span class="m">4/36</span> əvəzinə <span class="m">1/9</span>.</li>
+        <li>İki zərdə <span class="m">n = 12</span> götürmək (6 + 6). Düzü <span class="m">6 · 6 = 36</span>.</li>
+        <li>İki zərdə <span class="m">(1; 6)</span> və <span class="m">(6; 1)</span>-i bir nəticə saymaq. Zərlər fərqlidir, bunlar iki nəticədir.</li>
+        <li>1-i sadə ədəd saymaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P = m/n   (əlverişli / bütün),  nəticələr bərabər imkanlı
+İki zər: n = 36;  iki sikkə: n = 4;  üç sikkə: n = 8
+Cavab — ixtisar olunmuş kəsr
+0 ≤ P ≤ 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Zər atılır. Xalın 4-dən böyük olması ehtimalı? <span class="ans">Əlverişli: 5, 6 → 2/6 = 1/3.</span></li>
+        <li>20 biletdən 3-ü uduşludur. Bir bilet çəkən şagirdin udmaq ehtimalı? <span class="ans">3/20.</span></li>
+        <li>Sikkə iki dəfə atılır. İki dəfə eyni tərəfin düşməsi ehtimalı? <span class="ans">Hallar: GG, GR, RG, RR; əlverişli: GG, RR → 2/4 = 1/2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Əks hadisə, ehtimalların toplanması və vurulması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İki zər atılanda ən azı bir dəfə altı düşməsi" — bunu birbaşa saymaq çətindir. Amma əks sual ("heç bir dəfə altı düşməməsi") çox asandır. Ehtimalda iki sadə qayda bir çox sualı bir sətrə sığdırır.</p>
+
+      <h3><span class="st">2</span> Üç qayda</h3>
+      <div class="fm">Əks hadisə:       P(Ā) = 1 − P(A)
+                   (A olmasa, Ā olur; ikisi birlikdə yəqindir)
+
+Uyuşmayan A, B:   P(A və ya B) = P(A) + P(B)
+
+Asılı olmayan A, B:  P(A və B) = P(A) · P(B)</div>
+      <p><b>Asılı olmayan</b> hadisələr — birinin baş verməsi o birinin ehtimalını dəyişmir: bir sikkənin ardıcıl iki atılışı, iki fərqli atıcı, kürənin <b>geri qaytarıldığı</b> iki çəkiliş. Kürə geri qaytarılmırsa, ikinci çəkilişdə kürələrin sayı dəyişir — hadisələr asılıdır; ikinci ehtimal birincidən sonra yenidən hesablanır.</p>
+      <p><b>"Ən azı bir"</b> sualında əksinə keç: <span class="m">P(ən azı bir) = 1 − P(heç biri)</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  İki zər atılır. Ən azı bir zərdə 6 düşməsi?
+  Əks hadisə: heç birində 6 yoxdur → hər zərdə 5 variant: 5 · 5 = 25 hal (36-dan).
+  P = 1 − 25/36 = 11/36.
+
+Nümunə 2.  Zər atılır. Xal cüt və ya 5-dir?
+  "Cüt" = {2, 4, 6}, "5" = {5}: ortaq nəticə yoxdur → uyuşmayan.
+  P = 3/6 + 1/6 = 4/6 = 2/3.
+
+Nümunə 3.  Sikkə və zər atılır. Gerb və 6 düşməsi?
+  Asılı olmayan: 1/2 · 1/6 = 1/12.
+
+Nümunə 4.  Kisədə 3 ağ, 2 qara kürə. Ardıcıl iki kürə çıxarılır. İkisi də ağ?
+  Geri qaytarılmır:  3/5 · 2/4 = 6/20 = 3/10.   (ikinci çəkilişdə 4 kürə, 2 ağ qalıb)
+  Geri qaytarılır:   3/5 · 3/5 = 9/25.
+
+Nümunə 5.  Atıcıların hədəfi vurma ehtimalları 0,8 və 0,7-dir (asılı olmayaraq).
+  Hər ikisi vurur:      0,8 · 0,7 = 0,56.
+  Heç biri vurmur:      0,2 · 0,3 = 0,06.
+  Ən azı biri vurur:    1 − 0,06 = 0,94.
+
+Nümunə 6.  Sikkə 3 dəfə atılır. Ən azı bir gerb?
+  Heç gerb olmasın: RRR → 1/8.   P = 1 − 1/8 = 7/8.</div>
+      <div class="life"><b>Həyatdan.</b> Sığorta şirkəti bilir ki, avtomobilin bir ildə qəza keçirməsi ehtimalı 0,05-dir. Qəzasız keçmək ehtimalı <span class="m">1 − 0,05 = 0,95</span>-dir; 2 ardıcıl il qəzasız keçmək ehtimalı <span class="m">0,95 · 0,95 = 0,9025</span>-dir. Qaydalar riskin qiymətini belə hesablayır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Uyuşmayan olmayan hadisələrin ehtimalını toplamaq. Zər: "cüt" (<span class="m">3/6</span>) və "3-dən böyük" (<span class="m">3/6</span>) — cəm 1 olardı, amma düzü <span class="m">{2, 4, 5, 6}</span> yəni <span class="m">4/6</span>: 4 və 6 iki dəfə sayılıb.</li>
+        <li>Kürə geri qaytarılmayanda ikinci çəkilişdə də eyni sayda kürə götürmək.</li>
+        <li>"Ən azı bir" üçün <span class="m">P(A) + P(A)</span> yazmaq.</li>
+        <li>Əks hadisənin ehtimalını tapıb <span class="m">1 −</span> çıxmağı unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P(Ā) = 1 − P(A);  "ən azı bir" = 1 − P(heç biri)
+Uyuşmayan: topla.   Asılı olmayan "həm … həm": vur.
+Qaytarılmayan çəkiliş: ikinci dəfə bir kürə az.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sabah yağış ehtimalı 0,35-dir. Yağmamaq ehtimalı? <span class="ans">1 − 0,35 = 0,65.</span></li>
+        <li>Sikkə 3 dəfə atılır. Ən azı bir dəfə rəqəm düşməsi ehtimalı? <span class="ans">1 − 1/8 = 7/8.</span></li>
+        <li>Kisədə 2 ağ, 3 qara kürə. İki kürə geri qaytarılmadan çıxarılır. İkisinin də ağ olması ehtimalı? <span class="ans">2/5 · 1/4 = 2/20 = 1/10.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Viyet teoremi (olimpiada məsələləri) dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-viyet.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Viyet teoremi (olimpiada məsələləri)</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Tənliklər — Viyet teoremi</div>
+    <h1>Viyet teoremi (olimpiada məsələləri)</h1>
+    <p>Məktəb Viyet teoremini bilirsən: <span class="m">x₁ + x₂ = −b/a</span>, <span class="m">x₁x₂ = c/a</span>. Olimpiadada isə kökləri heç tapmırlar — çünki ya çirkindir, ya da lazım deyil. Burada Viyetin gücünü açacaqsan: kökün yüksək qüvvətlərinin cəmi (rekurrent düstur), kub tənlik üçün Viyet, parametrli məsələlərdə köklərin yerləşməsi, kökləri dəyişdirilmiş tənliklər və simmetrik sistemlər.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Məktəb mövzusu (<a href="viyet.html">Viyet teoremi</a>) bilinir sayılır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Simmetrik ifadələr</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kub tənlik</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Parametr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Yeni tənlik, sistem</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Simmetrik ifadələr və qüvvətlərin cəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">x² − 3x + 1 = 0</span> tənliyinin kökləri <span class="m">(3 ± √5)/2</span>-dir. Soruşurlar: <span class="m">x₁⁵ + x₂⁵</span> nəyə bərabərdir? Köklərə qüvvət yazıb hesablamaq dəhşətdir. Amma cavab tam ədəddir və Viyetlə bir neçə sətirdə tapılır.</p>
+      <p>Olimpiada qaydası: <b>kökləri tapma</b>. İfadə kökləri bərabər şəkildə daxil edirsə — Viyet bəs edir.</p>
+
+      <h3><span class="st">2</span> Simmetrik ifadə və əsas düsturlar</h3>
+      <p><b>Simmetrik ifadə</b> — <span class="m">x₁</span> və <span class="m">x₂</span> yerlərini dəyişəndə dəyişməyən ifadədir. Hər belə ifadəni <span class="m">s = x₁ + x₂</span> və <span class="m">p = x₁x₂</span> ilə yazmaq olar.</p>
+      <div class="fm">s = x₁ + x₂ = −b/a,     p = x₁x₂ = c/a
+
+x₁² + x₂²   = s² − 2p
+x₁³ + x₂³   = s³ − 3ps
+x₁⁴ + x₂⁴   = (s² − 2p)² − 2p²
+(x₁ − x₂)²  = s² − 4p
+1/x₁ + 1/x₂ = s/p
+x₁/x₂ + x₂/x₁ = (s² − 2p)/p</div>
+      <p>Hamısı bir fikirdən çıxır: <span class="m">(x₁ + x₂)² = x₁² + 2x₁x₂ + x₂²</span>.</p>
+
+      <h3><span class="st">3</span> Qüvvətlərin cəmi: rekurrent düstur</h3>
+      <p><span class="m">Sₙ = x₁ⁿ + x₂ⁿ</span> yazaq. Hər kök <span class="m">x² = sx − p</span> tənliyini ödəyir (tənlik <span class="m">x² − sx + p = 0</span>). Hər iki tərəfi <span class="m">xⁿ⁻²</span>-yə vursaq: <span class="m">xⁿ = s·xⁿ⁻¹ − p·xⁿ⁻²</span>. İki kök üçün toplayırıq:</p>
+      <div class="fm">Sₙ = s·Sₙ₋₁ − p·Sₙ₋₂
+S₀ = 2 (1 + 1!),   S₁ = s</div>
+      <div class="ex">Nümunə 1.  x² − 3x + 1 = 0,  S₅ = ?
+  s = 3, p = 1.
+  S₀ = 2,  S₁ = 3
+  S₂ = 3·3 − 1·2 = 7
+  S₃ = 3·7 − 1·3 = 18
+  S₄ = 3·18 − 1·7 = 47
+  S₅ = 3·47 − 1·18 = 123
+Cavab: 123.
+
+Nümunə 2.  x + 1/x = 3 olarsa, x⁵ + 1/x⁵ = ?
+  x və 1/x — t² − 3t + 1 = 0 tənliyinin kökləridir (cəm 3, hasil 1).
+  Eyni rekurrent: cavab 123.
+
+Nümunə 3.  (2 + √3)³ + (2 − √3)³ = ?
+  İki ədədin cəmi 4, hasili 4 − 3 = 1. Yəni t² − 4t + 1 = 0 kökləri.
+  S₀ = 2, S₁ = 4, S₂ = 4·4 − 2 = 14, S₃ = 4·14 − 4 = 52.
+  Yoxla: (2 + √3)³ = 26 + 15√3, cəm 52 ✓.</div>
+      <p><b>Olimpiada məsələsi 1.</b> İsbat et: istənilən natural <span class="m">n</span> üçün <span class="m">(3 + √5)ⁿ + (3 − √5)ⁿ</span> tam ədəddir və <span class="m">2ⁿ</span>-ə bölünür.</p>
+      <div class="ex">Həlli.
+  Cəm 6, hasil 9 − 5 = 4: ədədlər t² − 6t + 4 = 0 kökləridir.
+  Sₙ = 6Sₙ₋₁ − 4Sₙ₋₂,  S₀ = 2,  S₁ = 6.
+  1) Rekurrentdən görünür: S₀, S₁ tamdır → bütün Sₙ tamdır.
+  2) 2ⁿ-ə bölünmə induksiya ilə.
+     S₀ = 2 (2⁰-a bölünür), S₁ = 6 (2¹-ə bölünür).
+     Tutaq ki, 2ⁿ⁻¹ | Sₙ₋₁ və 2ⁿ⁻² | Sₙ₋₂. Onda
+       6Sₙ₋₁ = 2·3·Sₙ₋₁ → 2ⁿ-ə bölünür,
+       4Sₙ₋₂ = 2²·Sₙ₋₂ → 2ⁿ-ə bölünür.
+     Fərq də 2ⁿ-ə bölünür: 2ⁿ | Sₙ.  ∎
+  Yoxla: S₂ = 36 − 8 = 28 = 4·7,  S₃ = 6·28 − 4·6 = 144 = 8·18.</div>
+      <div class="life"><b>Həyatdan.</b> Fibonaççi ədədləri də belə rekurrentdir: <span class="m">Fₙ = Fₙ₋₁ + Fₙ₋₂</span>. Onların düsturundakı <span class="m">(1 ± √5)/2</span> məhz <span class="m">x² = x + 1</span> tənliyinin kökləridir. Rekurrent ardıcıllıq = kvadrat tənlik.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x₁² + x₂² = (x₁ + x₂)²</span> yazmaq. Ortaq hədd <span class="m">−2x₁x₂</span> unudulur.</li>
+        <li><span class="m">S₀ = 1</span> götürmək. <span class="m">x₁⁰ + x₂⁰ = 1 + 1 = 2</span>.</li>
+        <li>Rekurrentdə <span class="m">p</span>-nin işarəsini pozmaq: <span class="m">x² − 2x − 3</span> üçün <span class="m">p = −3</span>, onda <span class="m">Sₙ = 2Sₙ₋₁ + 3Sₙ₋₂</span>.</li>
+        <li>Tənlik <span class="m">ax² + bx + c</span> olanda <span class="m">s = −b</span>, <span class="m">p = c</span> götürmək (<span class="m">a</span>-ya bölməyi unutmaq).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kökü tapma — s = −b/a, p = c/a.
+x₁² + x₂² = s² − 2p,   x₁³ + x₂³ = s³ − 3ps
+Sₙ = s·Sₙ₋₁ − p·Sₙ₋₂,   S₀ = 2, S₁ = s
+Birdən çox qüvvət: x + 1/x = s → x və 1/x kökdür (p = 1).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 5x + 3 = 0</span> tənliyinin kökləri üçün <span class="m">x₁² + x₂²</span> nədir? <span class="ans">s = 5, p = 3: 25 − 6 = 19.</span></li>
+        <li><span class="m">x² − x − 1 = 0</span> üçün <span class="m">x₁³ + x₂³</span> nədir? <span class="ans">s = 1, p = −1: 1 − 3·(−1)·1 = 4.</span></li>
+        <li><span class="m">x + 1/x = 4</span> olarsa, <span class="m">x³ + 1/x³</span> nədir? <span class="ans">s = 4, p = 1: 64 − 12 = 52.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kub tənlik üçün Viyet teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kub tənliyin kökləri adətən çirkindir, amma olimpiada onların cəmini, kvadratlarının cəmini, tərs qiymətlərinin cəmini soruşur. İki kök əvəzinə üç kök var — Viyet isə yenə işləyir, sadəcə üç kombinasiya olur.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p><span class="m">ax³ + bx² + cx + d = 0</span> tənliyinin kökləri <span class="m">x₁, x₂, x₃</span> olsun. Üç <b>elementar simmetrik ifadə</b>:</p>
+      <div class="fm">e₁ = x₁ + x₂ + x₃        = −b/a
+e₂ = x₁x₂ + x₂x₃ + x₃x₁  =  c/a
+e₃ = x₁x₂x₃             = −d/a</div>
+      <p>Fənd: tənlik <span class="m">a(x − x₁)(x − x₂)(x − x₃)</span> ilə eynidir, mötərizələri açanda <span class="m">x³ − e₁x² + e₂x − e₃</span> alınır. İşarələr növbələşir: <b>− + −</b>.</p>
+      <div class="fm">x₁² + x₂² + x₃² = e₁² − 2e₂
+1/x₁ + 1/x₂ + 1/x₃ = e₂/e₃
+x₁³ + x₂³ + x₃³ = e₁³ − 3e₁e₂ + 3e₃
+(x₁ + x₂)(x₂ + x₃)(x₃ + x₁) = e₁e₂ − e₃</div>
+      <p>Qüvvətlərin cəmi üçün də rekurrent var. Hər kök <span class="m">x³ = e₁x² − e₂x + e₃</span> ödəyir, ona görə <span class="m">pₖ = x₁ᵏ + x₂ᵏ + x₃ᵏ</span> üçün (k ≥ 4):</p>
+      <div class="fm">pₖ = e₁·pₖ₋₁ − e₂·pₖ₋₂ + e₃·pₖ₋₃</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x³ − 6x² + 11x − 6 = 0.  Köklərin kvadratlarının, kublarının cəmi?
+  e₁ = 6, e₂ = 11, e₃ = 6.
+  x₁² + x₂² + x₃² = 36 − 22 = 14.
+  x₁³ + x₂³ + x₃³ = 216 − 3·6·11 + 3·6 = 216 − 198 + 18 = 36.
+  p₄ = e₁p₃ − e₂p₂ + e₃p₁ = 6·36 − 11·14 + 6·6 = 216 − 154 + 36 = 98.
+  Yoxla (köklər 1, 2, 3): 1 + 4 + 9 = 14, 1 + 8 + 27 = 36, 1 + 16 + 81 = 98 ✓.
+
+Nümunə 2.  x³ + 2x² − 5x − 6 = 0.
+  e₁ = −2, e₂ = −5, e₃ = 6.
+  1/x₁ + 1/x₂ + 1/x₃ = e₂/e₃ = −5/6.
+  (x₁ + x₂)(x₂ + x₃)(x₃ + x₁) = e₁e₂ − e₃ = 10 − 6 = 4.
+  (Köklər 2, −1, −3: 1/2 − 1 − 1/3 = −5/6 ✓;  1·(−4)·(−1) = 4 ✓.)
+
+Nümunə 3 (silsilə).  x³ − 7x² + 14x + k = 0 tənliyinin kökləri həndəsi silsilədir. k = ?
+  Kökləri b/q, b, bq götür (ortası b). Cüt hasillərin cəmi:
+    b²/q + b² + b²q = b(b/q + b + bq) = b·e₁.
+  e₂ = b·e₁ → 14 = 7b → b = 2.
+  Hasil: e₃ = b³ = 8 = −k → k = −8.
+  (Köklər 1, 2, 4.)</div>
+      <p>Ədədi silsilədə kökləri <span class="m">a − d, a, a + d</span> götür: <span class="m">e₁ = 3a</span>, ortadakı <span class="m">a</span> tənliyi özü ödəyir.</p>
+
+      <div class="life"><b>Həyatdan.</b> Qutunun tilləri <span class="m">a, b, c</span>-dir. Bütün tillərin cəmi <span class="m">4e₁</span>, tam səthi <span class="m">2e₂</span>-dir; diaqonalın kvadratı <span class="m">a² + b² + c² = e₁² − 2e₂</span>. Ölçüləri tapmadan diaqonal tapılır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">e₁ = b/a</span> yazmaq (işarə <span class="m">−</span>), <span class="m">e₃ = d/a</span> yazmaq (düzü <span class="m">−d/a</span>).</li>
+        <li>Baş əmsal 1 deyilsə, <span class="m">a</span>-ya bölməyi unutmaq: <span class="m">2x³ − 5x² + … </span> üçün <span class="m">e₁ = 5/2</span>.</li>
+        <li><span class="m">1/x₁ + 1/x₂ + 1/x₃</span> üçün <span class="m">e₁/e₃</span> yazmaq. Düzü: <span class="m">e₂/e₃</span>.</li>
+        <li>Kub kök cəmində <span class="m">+3e₃</span>-ü unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">e₁ = −b/a,  e₂ = c/a,  e₃ = −d/a
+Σx² = e₁² − 2e₂,   Σ1/x = e₂/e₃
+Σx³ = e₁³ − 3e₁e₂ + 3e₃
+pₖ = e₁pₖ₋₁ − e₂pₖ₋₂ + e₃pₖ₋₃
+Silsilə: ədədi — a − d, a, a + d;  həndəsi — b/q, b, bq</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x³ − 4x² + x + 6 = 0</span> üçün <span class="m">x₁² + x₂² + x₃²</span> nədir? <span class="ans">e₁ = 4, e₂ = 1: 16 − 2 = 14.</span></li>
+        <li><span class="m">x³ − 2x² − x + 2 = 0</span> üçün <span class="m">1/x₁ + 1/x₂ + 1/x₃</span> nədir? <span class="ans">e₂ = −1, e₃ = −2: e₂/e₃ = 1/2.</span></li>
+        <li><span class="m">2x³ − 5x² + x − 8 = 0</span> kökləri hasili nədir? <span class="ans">−d/a = 8/2 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Parametr və köklərin şərtləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Parametrin hansı qiymətində tənliyin iki müsbət kökü var?" — olimpiadanın sevimli sualı. Kökləri tapmaq mümkün deyil (parametr var), amma <span class="m">s</span>, <span class="m">p</span> və <span class="m">D</span> işarələri hər şeyi deyir.</p>
+
+      <h3><span class="st">2</span> Köklərin yerləşməsi cədvəli</h3>
+      <p><span class="m">f(x) = x² − sx + p</span> (baş əmsal müsbət), diskriminant <span class="m">D = s² − 4p</span>:</p>
+      <div class="fm">Həqiqi kökləri var:           D ≥ 0
+İkisi də müsbət:             D ≥ 0,  s &gt; 0,  p &gt; 0
+İkisi də mənfi:              D ≥ 0,  s &lt; 0,  p &gt; 0
+Müxtəlif işarəli:            p &lt; 0   (D özü müsbət olur)
+m ədədi köklərin arasında:   f(m) &lt; 0
+İkisi də m-dən böyük:        D ≥ 0,  f(m) &gt; 0,  s/2 &gt; m</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Parabola: m ədədi iki kökün arasındadır, f(m) mənfidir">
+          <line x1="10" y1="60" x2="290" y2="60" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M50 5 Q150 215 250 5" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="85" cy="60" r="4" fill="var(--vec)"/><circle cx="215" cy="60" r="4" fill="var(--vec)"/>
+          <line x1="150" y1="60" x2="150" y2="110" stroke="var(--vec)" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="150" cy="60" r="4" fill="var(--ink)"/>
+          <text x="85" y="50" text-anchor="middle" class="lbl">x₁</text>
+          <text x="215" y="50" text-anchor="middle" class="lbl">x₂</text>
+          <text x="150" y="50" text-anchor="middle" class="lbl">m</text>
+          <text x="165" y="118" class="lbl">f(m) &lt; 0</text>
+        </svg>
+        <div class="cap"><p>Parabolanın qolları yuxarıdır. <span class="m">m</span> kökləri arasında olanda <span class="m">m</span>-də parabola oxdan aşağıdadır: <span class="m">f(m) &lt; 0</span>. Bu şərt özü iki həqiqi kökün varlığını da təmin edir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x² − 2(a − 1)x + (a + 5) = 0 tənliyinin iki müsbət kökü var. a-nın qiymətləri?
+  s = 2(a − 1) &gt; 0  →  a &gt; 1.
+  p = a + 5 &gt; 0     →  a &gt; −5.
+  D/4 = (a − 1)² − (a + 5) = a² − 3a − 4 = (a − 4)(a + 1) ≥ 0  →  a ≤ −1 və ya a ≥ 4.
+  Üçünü birləşdir: a ≥ 4.
+
+Nümunə 2.  x² − 2ax + a + 2 = 0 kökləri arasında 1 ədədi yerləşir. a = ?
+  f(1) = 1 − 2a + a + 2 = 3 − a &lt; 0  →  a &gt; 3.
+  (D-ni ayrıca yoxlamağa ehtiyac yoxdur: f(1) &lt; 0 olan parabola oxu kəsir.)
+
+Nümunə 3.  x² − 6x + k = 0 kökləri üçün x₁ = 2x₂. k = ?
+  x₁ + x₂ = 3x₂ = 6 → x₂ = 2,  x₁ = 4.  k = x₁x₂ = 8.
+  Yoxla: D = 36 − 32 = 4 &gt; 0 ✓.</div>
+      <p><b>Olimpiada məsələsi 2.</b> <span class="m">x² − 2kx + (k + 6) = 0</span> tənliyinin həqiqi kökləri <span class="m">x₁, x₂</span>-dir. <span class="m">x₁² + x₂²</span>-nin ən kiçik qiymətini tap.</p>
+      <div class="ex">Həlli.
+  s = 2k,  p = k + 6.
+  x₁² + x₂² = s² − 2p = 4k² − 2k − 12.
+  Köklər həqiqi olmalıdır: D/4 = k² − (k + 6) = k² − k − 6 = (k − 3)(k + 2) ≥ 0
+    →  k ≤ −2  və ya  k ≥ 3.
+  f(k) = 4k² − 2k − 12 parabolasının təpəsi k = 1/4-dir — amma bu nöqtə icazəli deyil!
+  Hər iki icazəli şüada f(k) təpədən uzaqlaşdıqca artır, ona görə minimum sərhəddədir:
+    f(−2) = 16 + 4 − 12 = 8,   f(3) = 36 − 6 − 12 = 18.
+  Cavab: 8  (k = −2, tənlik x² + 4x + 4 = 0, x₁ = x₂ = −2).</div>
+
+      <div class="life"><b>Həyatdan.</b> Dördbucaqlı sahənin perimetri <span class="m">P</span>, sahəsi <span class="m">S</span> verilib: tərəflər <span class="m">t² − (P/2)t + S = 0</span> kökləridir. Belə sahə mövcuddur ancaq <span class="m">D = (P/2)² − 4S ≥ 0</span> olanda. Ən böyük sahə kvadratdır (<span class="m">D = 0</span>) — olimpiada məsələlərinin çoxu bu fikirdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Parametr tapılandan sonra <span class="m">D ≥ 0</span> yoxlamamaq. Misal: "<span class="m">x₁² + x₂²</span> verilib, <span class="m">k</span> tap" tipli məsələlərdə kvadrat tənlikdən çıxan iki <span class="m">k</span>-nın biri çox vaxt həqiqi kök vermir.</li>
+        <li>"İkisi də müsbət" üçün yalnız <span class="m">p &gt; 0</span> yoxlamaq: ikisi də mənfi ola bilər. <span class="m">s &gt; 0</span> da lazımdır.</li>
+        <li><span class="m">f(m) &lt; 0</span> şərtində baş əmsalın işarəsini nəzərə almamaq (baş əmsal mənfidirsə, şərt <span class="m">f(m) &gt; 0</span> olur).</li>
+        <li>Minimumu parabolanın təpəsində axtarmaq, amma təpənin parametr üçün icazəli olub-olmadığını yoxlamamaq (məsələ 2).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İki müsbət kök: D ≥ 0, s &gt; 0, p &gt; 0
+Müxtəlif işarəli: p &lt; 0
+m arada: f(m) &lt; 0 (baş əmsal &gt; 0)
+Parametri tapdın — D ≥ 0 ilə yoxla.
+Ekstremum: icazəli oblastın sərhədlərinə bax.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 4x + k = 0</span> kökləri üçün <span class="m">x₁ − x₂ = 2</span>. <span class="m">k</span> nədir? <span class="ans">(x₁ − x₂)² = 16 − 4k = 4 → k = 3.</span></li>
+        <li><span class="m">x² − ax + 4 = 0</span> tənliyinin kökləri eyni işarəlidir. <span class="m">a</span> hansı qiymətləri ala bilər? <span class="ans">p = 4 &gt; 0 həmişə; D = a² − 16 ≥ 0 → |a| ≥ 4 (a ≤ −4 və ya a ≥ 4).</span></li>
+        <li><span class="m">x² + ax + (a − 3) = 0</span> kökləri müxtəlif işarəlidir. <span class="m">a</span> nə olmalıdır? <span class="ans">p = a − 3 &lt; 0 → a &lt; 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kökləri dəyişdirilmiş tənliklər və simmetrik sistemlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Kökləri <span class="m">x₁²</span> və <span class="m">x₂²</span> olan kvadrat tənlik qur" — kökləri tapmadan tənlik qurmaq Viyetin tərs istifadəsidir. Eyni fikir iki dəyişənli simmetrik sistemləri də həll edir: <span class="m">x + y</span> və <span class="m">xy</span> tapılır, sonra <span class="m">x, y</span> kvadrat tənliyin kökləridir.</p>
+
+      <h3><span class="st">2</span> Yeni tənlik qurmaq</h3>
+      <p>Yeni köklərin cəmi <span class="m">S</span> və hasili <span class="m">P</span> olarsa, tənlik <span class="m">y² − Sy + P = 0</span>-dır.</p>
+      <div class="fm">Yeni kökləri         cəm S                hasil P
+x₁², x₂²              s² − 2p              p²
+1/x₁, 1/x₂            s/p                  1/p
+x₁ + t, x₂ + t        s + 2t               p + ts + t²
+k·x₁, k·x₂            ks                   k²p
+x₁ + 1/x₂, x₂ + 1/x₁  s + s/p              p + 2 + 1/p</div>
+      <p><b>Əvəzləmə üsulu</b> (tez): yeni kök <span class="m">y = x + t</span> olarsa, <span class="m">x = y − t</span>-ni tənliyə yaz. <span class="m">y = 1/x</span> olarsa, <span class="m">x = 1/y</span> yaz və <span class="m">y²</span>-yə vur (əmsallar tərsinə düzülür). Kub tənlikdə də eynidir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x² + 3x − 2 = 0 kökləri x₁, x₂. Kökləri x₁ + 1/x₂ və x₂ + 1/x₁ olan tənlik?
+  s = −3, p = −2.
+  Cəm: s + s/p = −3 + (−3)/(−2) = −3 + 3/2 = −3/2.
+  Hasil: p + 2 + 1/p = −2 + 2 − 1/2 = −1/2.
+  Tənlik: y² + (3/2)y − 1/2 = 0  →  2y² + 3y − 1 = 0.
+
+Nümunə 2.  x³ − 3x + 1 = 0 kökləri a, b, c. Kökləri a², b², c² olan kub tənlik?
+  Əvəzləmə: x(x² − 3) = −1.  Kvadrata yüksəlt: x²(x² − 3)² = 1.
+  y = x² qoy: y(y − 3)² = 1  →  y³ − 6y² + 9y − 1 = 0.
+  Yoxla Viyetlə: a² + b² + c² = e₁² − 2e₂ = 0 + 6 = 6 ✓,  a²b² + … = e₂² − 2e₁e₃ = 9 ✓,
+  a²b²c² = e₃² = 1 ✓.
+
+Nümunə 3 (simmetrik sistem).  x + y = 5,  x³ + y³ = 65.
+  x³ + y³ = s³ − 3ps → 125 − 15p = 65 → p = 4.
+  x, y — t² − 5t + 4 = 0 kökləri: 1 və 4.
+  Cavab: (1; 4) və (4; 1).
+
+Nümunə 4.  x² + y² = 13,  xy = 6.
+  s² = x² + y² + 2xy = 13 + 12 = 25 → s = 5 və ya s = −5.
+  s = 5:  t² − 5t + 6 = 0 → 2 və 3.   s = −5: t² + 5t + 6 = 0 → −2 və −3.
+  Cavab: (2; 3), (3; 2), (−2; −3), (−3; −2).</div>
+      <p><b>Olimpiada məsələsi 3.</b> Həqiqi <span class="m">a, b, c</span> ədədləri üçün <span class="m">a + b + c = 6</span> və <span class="m">ab + bc + ca = 9</span>. İsbat et: hər biri <span class="m">[0; 4]</span> parçasındadır.</p>
+      <div class="ex">Həlli.
+  c-ni sabit saxla. Onda a + b = 6 − c,  ab = 9 − c(a + b) = 9 − c(6 − c).
+  Deməli, a və b — t² − (6 − c)t + (9 − 6c + c²) = 0 tənliyinin həqiqi kökləridir.
+  Həqiqi olmaq üçün D ≥ 0:
+    D = (6 − c)² − 4(9 − 6c + c²) = 36 − 12c + c² − 36 + 24c − 4c² = 12c − 3c² = 3c(4 − c) ≥ 0
+    →  0 ≤ c ≤ 4.
+  a, b, c simmetrikdir — eyni mühakimə a və b üçün də doğrudur.  ∎
+  (Məsələn, a = b = 1, c = 4 və ya a = 0, b = c = 3 sərhəd halıdır.)</div>
+
+      <div class="life"><b>Həyatdan.</b> Bağın perimetri 28 m, sahəsi 48 m²-dir: tərəflər <span class="m">x + y = 14</span>, <span class="m">xy = 48</span> sistemindən <span class="m">t² − 14t + 48 = 0</span> kökləridir — 6 m və 8 m. Qapının ölçülərini bilmədən diaqonal: <span class="m">x² + y² = 196 − 96 = 100</span>, yəni 10 m.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sistemdə <span class="m">s² = 25</span> olanda yalnız <span class="m">s = 5</span> götürmək. <span class="m">s = −5</span> də həlldir.</li>
+        <li>Yeni tənlikdə <span class="m">y² + Sy + P</span> yazmaq. Düzü: <span class="m">y² − Sy + P</span>.</li>
+        <li><span class="m">x₁ + t, x₂ + t</span> üçün hasilə yalnız <span class="m">t²</span> əlavə etmək: <span class="m">ts</span> həddi unudulur.</li>
+        <li>Əvəzləmədən sonra tənliyi sadələşdirməyi unutmaq (kəsr məxrəcini atmaq).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yeni tənlik: y² − (yeni cəm)y + (yeni hasil) = 0
+x → x + t:  x = y − t qoy;   x → 1/x: əmsalları tərsinə yaz
+Simmetrik sistem: s, p tap → t² − st + p = 0
+s² = c olsa, iki s var: ±√c
+a, b həqiqidirsə: D ≥ 0 — hədd şərtlərinin mənbəyi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 3x + 1 = 0</span> kökləri <span class="m">x₁, x₂</span>. Kökləri <span class="m">1/x₁, 1/x₂</span> olan tənlik hansıdır? <span class="ans">Əmsalları tərsinə yaz: x² − 3x + 1 = 0 (eyni; kökləri tərsdir, çünki p = 1).</span></li>
+        <li><span class="m">x + y = 6</span>, <span class="m">xy = 5</span> olarsa, <span class="m">x² + y²</span> nədir? <span class="ans">36 − 10 = 26.</span></li>
+        <li><span class="m">x² + y² = 10</span>, <span class="m">xy = 3</span> sisteminin neçə həlli (x; y) var? <span class="ans">s² = 16 → s = ±4. s = 4: (1; 3), (3; 1); s = −4: (−1; −3), (−3; −1). Cəmi 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

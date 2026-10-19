@@ -116,7 +116,8 @@
    "bolme": "Statistika, çoxluqlar, ehtimal",
    "ad": "Ehtimal: toplama və vurma prinsipləri, hadisənin ehtimalı",
    "status": "yox",
-   "menbe": "DİM: …Ehtimal nəzəriyyəsinin elementləri"
+   "menbe": "DİM: …Ehtimal nəzəriyyəsinin elementləri",
+   "ders": "dersler/ehtimal.html"
   },
   {
    "bolme": "Tənliklər",
@@ -454,13 +455,15 @@
    "bolme": "Tənliklər",
    "ad": "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-metnli.html"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Viyet teoremi (olimpiada məsələləri)",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-viyet.html"
   },
   {
    "bolme": "Tənliklər",

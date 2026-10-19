@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mətnli məsələlər (olimpiada) dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-metnli.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Mətnli məsələlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Tənliklər — mətnli məsələlər</div>
+    <h1>Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz</h1>
+    <p>Olimpiadanın mətnli məsələləri məktəb məsələlərindən tələsik dəyişənlərlə fərqlənir: hər şey "sadə" görünür, amma birbaşa tənlik qurmaq uzundur. Burada fənd axtarırıq: nisbi hərəkət, ümumi iş = 1, əmsallar vurulur, "dəyişməyən kəmiyyət". Hər dərsdə bir klassik olimpiada məsələsi tam həll olunub.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Hərəkət</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İş və hovuz</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Faiz, qarışıq</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Yaş, texnikalar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Hərəkət: görüş, yetişmə, çay</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki qatar bir-birinə doğru gedir, bir qayıq çayla axır, bir qaçışçı digərini dövrə ilə qabaqlayır. Hər birində üç ölçü var — məsafə, sürət, vaxt — və biri məlum deyil. Olimpiada bir şey əlavə edir: məlum kəmiyyətlər məsələnin <b>özünü</b> tənlik etməyə imkan vermir, fənd lazımdır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">S = v · t          (məsafə = sürət · vaxt)
+Qarşı-qarşıya:     yaxınlaşma sürəti = v₁ + v₂
+Eyni istiqamətdə:  yetişmə sürəti    = v₁ − v₂
+Çayda:  axınla v + u,   axına qarşı v − u,   sal: u
+Orta sürət = bütün yol / bütün vaxt   (sürətlərin ortası deyil!)</div>
+      <p>Fənd: iki cismin hərəkətini <b>bir cisim</b> kimi qur — ikincini dayandır və birincinin sürətini nisbi sürətə dəyişdir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 320 90" role="img" aria-label="A və B nöqtələri, görüş nöqtəsi M; görüşdən sonra birinci a, ikinci b saat gedir">
+          <line x1="20" y1="40" x2="300" y2="40" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="20" cy="40" r="5" fill="var(--ink)"/><circle cx="300" cy="40" r="5" fill="var(--ink)"/>
+          <circle cx="130" cy="40" r="5" fill="var(--accent)"/>
+          <text x="20" y="25" text-anchor="middle" class="lbl">A</text>
+          <text x="300" y="25" text-anchor="middle" class="lbl">B</text>
+          <text x="130" y="25" text-anchor="middle" class="lbl">M</text>
+          <path d="M20 55H130" stroke="var(--accent)" stroke-width="3"/><path d="M130 70H300" stroke="var(--vec)" stroke-width="3"/>
+          <text x="75" y="78" text-anchor="middle" class="lbl">1-ci: T saat</text>
+          <text x="215" y="88" text-anchor="middle" class="lbl">1-ci: a saat</text>
+        </svg>
+        <div class="cap"><p>Birinci A-dan çıxıb <span class="m">T</span> saata görüş nöqtəsinə çatır, sonra B-yə <span class="m">a</span> saat gedir. İkinci B-dən çıxıb həmin <span class="m">T</span> saata <span class="m">M</span>-ə, sonra A-ya <span class="m">b</span> saat gedir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1 (yetişmə).  Velosipedçi A-dan 15 km/saat sürətlə çıxdı. 4 saat sonra motosikletçi 18 km/saat ilə onun ardınca çıxdı. Harada yetişər?
+  Motosikletçi çıxanda velosipedçi artıq 15·4 = 60 km gedib.
+  Yetişmə sürəti 18 − 15 = 3 km/saat → 60/3 = 20 saat.
+  Məsafə (A-dan): 18·20 = 360 km.
+
+Nümunə 2 (orta sürət).  Yol gedişdə 60 km/saat, qayıdışda 40 km/saat.
+  Yol d. Vaxt: d/60 + d/40 = 5d/120 = d/24.  Bütün yol 2d.
+  Orta sürət = 2d : d/24 = 48 km/saat.   (50 deyil!)
+
+Nümunə 3 (çay).  Gəmi A-dan B-yə axınla 3 saata, geri axına qarşı 6 saata gedir. Sal A-dan B-yə neçə saata gedər?
+  d/(v + u) = 3,  d/(v − u) = 6  →  v + u = d/3,  v − u = d/6.
+  Çıxsaq: 2u = d/3 − d/6 = d/6 → u = d/12.  Sal: d/u = 12 saat.
+  Düstur: 2·t₁t₂/(t₂ − t₁) = 2·3·6/3 = 12.
+
+Nümunə 4 (dairə).  Dairəvi yolun uzunluğu 400 m. Eyni nöqtədən eyni istiqamətdə 5 və 3 m/san sürətlə qaçırlar. Birinci ikincini neçə saniyədən sonra dövrə ilə qabaqlayır?
+  Birinci ikincidən bir dövrə (400 m) artıq qaçmalıdır: yetişmə sürəti 2 m/san → 400/2 = 200 san.
+  (Əks istiqamətdə: 400/(5 + 3) = 50 san.)</div>
+      <p><b>Olimpiada məsələsi 1.</b> A və B şəhərlərindən eyni anda iki avtomobil bir-birinə doğru çıxdı. Görüşdən sonra birinci B-yə çatmaq üçün <span class="m">9</span> saat, ikinci A-ya çatmaq üçün <span class="m">4</span> saat sərf etdi. Onlar yola çıxandan neçə saat sonra görüşdü? Sürətlər nisbəti nədir?</p>
+      <div class="ex">Həlli.
+  Sürətlər v₁ (birinci) və v₂ (ikinci), görüşə qədər T saat getdilər.
+  Görüşə qədər: birinci v₁T, ikinci v₂T məsafə gedib.
+  Görüşdən sonra birinci ikincinin getdiyi yolu (v₂T) v₁ sürətlə gedir:  v₂T / v₁ = 9.
+  İkinci birincinin getdiyi yolu (v₁T) v₂ sürətlə gedir:                   v₁T / v₂ = 4.
+  Vur:   (v₂T / v₁)·(v₁T / v₂) = T² = 9·4 = 36  →  T = 6 saat.
+  Bölmə:  (v₂T / v₁) : (v₁T / v₂) = v₂²/v₁² = 9/4  →  v₂/v₁ = 3/2.
+  Cavab: 6 saat, v₁ : v₂ = 2 : 3.
+  Yoxla (v₁ = 2, v₂ = 3): 6 saatda 12 və 18 km gedib, yol 30 km. Birinci qalan 18 km-i 2 sürətlə 9 saata, ikinci qalan 12 km-i 3 sürətlə 4 saata gedir ✓.
+  Ümumi: T = √(ab), v₁ : v₂ = √b : √a.</div>
+
+      <div class="life"><b>Həyatdan.</b> GPS "orta sürətin 48 km/saat" deyəndə bu, sürətlərin ortası deyil, bütün yolun bütün vaxta nisbətidir. Dağ yolunda yoxuşda 30, enişdə 60 km/saat gedən avtomobilin orta sürəti 45 deyil, <span class="m">2·30·60/(30 + 60) = 40</span> km/saatdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orta sürəti <span class="m">(v₁ + v₂)/2</span> hesab etmək. Bu yalnız <b>vaxtlar</b> bərabər olanda doğrudur.</li>
+        <li>Yetişmədə sürətləri toplamaq (düzü: çıxmaq) və ya qarşı-qarşıya hərəkətdə çıxmaq.</li>
+        <li>Vahidləri qarışdırmaq: km/saat və dəqiqə, m/san və km.</li>
+        <li>Çayda salın sürətini 0 hesab etmək. Sal axının sürəti <span class="m">u</span> ilə gedir.</li>
+        <li>Gec çıxan cismin başlama vaxtını nəzərə almamaq (nümunə 1-də 60 km "fərq").</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qarşı-qarşıya: v₁ + v₂,  eyni istiqamətdə: v₁ − v₂
+Orta sürət = bütün yol / bütün vaxt;  yarı yol v₁, v₂: 2v₁v₂/(v₁ + v₂)
+Çay: v ± u;  sal: u;   sal vaxtı = 2t₁t₂/(t₂ − t₁)
+Görüşdən sonra vaxtlar a və b: T = √(ab)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>İki qatar 90 km məsafədən bir-birinə doğru 50 və 40 km/saat ilə çıxdı. Neçə saatdan sonra görüşərlər? <span class="ans">Yaxınlaşma sürəti 90 km/saat → 1 saat.</span></li>
+        <li>Turist yarı yolu 4, qalan yarını 6 km/saat ilə getdi. Orta sürəti? <span class="ans">2·4·6/(4 + 6) = 48/10 = 4,8 km/saat.</span></li>
+        <li>Qayıq çayda axınla 20 km/saat, axına qarşı 10 km/saat gedir. Axının sürəti? <span class="ans">v + u = 20, v − u = 10 → 2u = 10 → u = 5 km/saat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İş və hovuz məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Bir usta işi 12 günə, o biri 6 günə bitirir; birlikdə neçə günə?" — cavab 18 deyil, 9 də deyil. Burada sürətlərin toplandığını görmək vacibdir. Olimpiada isə komandanı dəyişdirir, işçinin gedişini, boruların növbəli açılmasını əlavə edir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Bütün işi (hovuzu) <b>1</b> götür. Təkbaşına <span class="m">x</span> günə bitirən işçinin sürəti <span class="m">1/x</span> iş/gündür. <b>Birlikdə işləyənlərin sürətləri toplanır.</b> Boşaldan boru mənfi sürətdir.</p>
+      <div class="fm">A:  x günə,  B:  y günə   →  birlikdə  1/x + 1/y = (x + y)/(xy)
+Birlikdə vaxt:   T = xy/(x + y)
+İş = sürət · vaxt;  işçilərin sayı eyni sürətdə: iş = fəhlə-gün</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Usta A işi 12 günə, B 6 günə bitirir. Birlikdə?
+  1/12 + 1/6 = 1/12 + 2/12 = 3/12 = 1/4  → 4 gün.
+
+Nümunə 2 (komanda dəyişir).  Birinci usta işi 15 günə, ikinci 24 günə bitirir. 8 gün birlikdə işlədilər, sonra ikinci getdi, qalanını birinci bitirdi. İş cəmi neçə günə?
+  Birlikdə 1 günə 1/15 + 1/24 = 8/120 + 5/120 = 13/120.   8 günə 104/120 = 13/15.
+  Qalan 2/15. Birinci 1 günə 1/15 görür → 2 günə bitirir.
+  Cəmi: 8 + 2 = 10 gün.
+
+Nümunə 3 (cüt vaxtlar verilib).  A + B işi 12 günə, B + C 15 günə, A + C 20 günə bitirir. Üçü birlikdə? A təkbaşına?
+  Sürətləri topla:  (A + B) + (B + C) + (A + C) = 1/12 + 1/15 + 1/20 = 5/60 + 4/60 + 3/60 = 1/5.
+  Deməli, 2(A + B + C) = 1/5 → A + B + C = 1/10 → 10 gün.
+  A = (A + B + C) − (B + C) = 1/10 − 1/15 = 1/30 → A təkbaşına 30 gün.
+  (B = 1/10 − 1/20 = 1/20 → 20 gün, C = 1/10 − 1/12 = 1/60 → 60 gün.)
+
+Nümunə 4 (hovuz, boşaldan boru).  Hovuzu 1-ci boru 10, 2-ci boru 15 saata doldurur; 3-cü boru dolu hovuzu 30 saata boşaldır. Üçü birlikdə açılsa?
+  1/10 + 1/15 − 1/30 = 3/30 + 2/30 − 1/30 = 4/30 = 2/15.  Hovuz 15/2 = 7,5 saata dolur.
+
+Nümunə 5 (növbə).  1-ci boru hovuzu 6, 2-ci boru 12 saata doldurur. Növbə ilə açılır: əvvəl 1-ci 1 saat, sonra 2-ci 1 saat və s. Neçə saata dolur?
+  İki saatda: 1/6 + 1/12 = 3/12 = 1/4. Hovuz 4 belə dövrəyə → 8 saatda dolur.
+  (Axırıncı dövrədən əvvəl 3/4 dolu; qalan 1/4-ü 1-ci boru 1 saata 1/6 görür, qalır 1/12 — onu 2-ci boru bir saata tamamlayır. Yəni 8 saatdan tez deyil.)
+
+Nümunə 6 (fəhlə-gün).  12 fəhlə yolu 20 günə çəkir. 5 gün işlədikdən sonra 4 fəhlə getdi. İş cəmi neçə günə?
+  Bütün iş 12·20 = 240 fəhlə-gün. 5 gündə 60 görülüb. Qalıb 180. 8 fəhlə: 180/8 = 22,5 gün. Cəmi 27,5 gün.</div>
+      <div class="life"><b>Həyatdan.</b> Hovuzu doldurmaq 5 saat çəkir, boşaltmaq 8 saat. Kran açıq və drenaj açıqdırsa, hovuz dolur ancaq çox yavaş: <span class="m">1/5 − 1/8 = 3/40</span> hovuz/saat → <span class="m">40/3</span> saat. Eyni şey ev büdcəsində: gəlir sürəti və xərc sürəti.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Vaxtları toplamaq: "12 gün + 6 gün = 18". Toplanan <b>sürətlərdir</b>.</li>
+        <li>Hovuz məsələsində boşaldan borunu qeyd etməmək və ya plus işarəsi ilə yazmaq.</li>
+        <li>Bütün işi bilmədən "1 gündə neçə faiz" kimi qarışdırmaq. İş = 1 götürsən, kəsrlərlə işləmək asandır.</li>
+        <li>Növbəli işdə dövrənin sonunda bitib-bitmədiyini yoxlamamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İş = 1;  x günə → sürət 1/x
+Birlikdə: sürətlər toplanır;  boşaldan: mənfi
+T = xy/(x + y) iki nəfər üçün
+Cüt vaxtlar verilsə: üçünü topla, 2-yə böl
+Dəyişən komanda: fəhlə-gün ilə say</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A işi 6 günə, B 3 günə bitirir. Birlikdə? <span class="ans">1/6 + 1/3 = 1/2 → 2 gün.</span></li>
+        <li>Boru hovuzu 4 saata doldurur, drenaj 12 saata boşaldır. İkisi açıqdırsa neçə saata dolur? <span class="ans">1/4 − 1/12 = 1/6 → 6 saat.</span></li>
+        <li>10 fəhlə işi 6 günə bitirir. 5 fəhlə neçə günə? <span class="ans">İş 60 fəhlə-gün; 60/5 = 12 gün.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Mürəkkəb faiz, qarışıq və sulandırma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qiymət 20% artdı, sonra 20% azaldı — əvvəlki qiymətə qayıtdı? Yox: 4% ucuz oldu. Depozit hər il 10% artırsa 3 ilə 30% yox, 33,1% artır. Spirt qabından bir hissəni çıxarıb su tökürlər və təkrar edirlər — qalan spirt tədricən azalır. Bunların hamısında <b>əmsallar vurulur</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">p% artım:   × (1 + p/100)         p% azalma:  × (1 − p/100)
+Ardıcıl dəyişmələr:  əmsallar vurulur  (faizlər toplanmır)
+Mürəkkəb faiz:  S · (1 + r/100)ⁿ        (n il, hər il r%)
+
+Konsentrasiya = maddənin kütləsi / məhlulun kütləsi
+Su əlavə etdikdə: maddə dəyişmir
+Sulandırma: hər dəfə a litr çıxarılır, a litr su əlavə edilir (qab V):
+   qalan maddə = V · (1 − a/V)ⁿ</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  2000 manat illik 10% mürəkkəb faizlə 3 il.
+  2000 · 1,1³ = 2000 · 1,331 = 2662 manat. Gəlir: 662 manat (30% olsa 600 olardı).
+
+Nümunə 2.  Qiymət 20% artdı, sonra 20% azaldı.
+  Əmsal: 1,2 · 0,8 = 0,96 → ilkin qiymətin 96%-i, yəni 4% ucuz.
+
+Nümunə 3.  1000 manat 2 ildən sonra 1440 manat oldu (hər il eyni faiz, mürəkkəb). r = ?
+  1000 · (1 + r/100)² = 1440 → (1 + r/100)² = 1,44 → 1 + r/100 = 1,2 → r = 20%.
+
+Nümunə 4 (qarışıq).  200 kq 30%-li və 300 kq 20%-li duz məhlulu qarışdırıldı.
+  Duz: 200·0,3 + 300·0,2 = 60 + 60 = 120 kq.  Məhlul 500 kq.  Konsentrasiya 120/500 = 24%.
+
+Nümunə 5 (su əlavə).  40 kq 15%-li məhlula nə qədər su qatmaq lazımdır ki, 10% olsun?
+  Duz 40·0,15 = 6 kq (dəyişmir).  Yeni məhlul 6/0,1 = 60 kq.  Su: 60 − 40 = 20 kq.
+
+Nümunə 6 (qurutma).  20 kq təzə meyvədə 90% su var. Qurudulduqda 20% su qalır. Qurudulmuş meyvə neçə kq?
+  Quru maddə dəyişmir: 20 · 0,1 = 2 kq.  Qurudulmuşda quru maddə 80% → 2/0,8 = 2,5 kq.</div>
+      <p><b>Olimpiada məsələsi 2.</b> Qabda <span class="m">27</span> litr təmiz spirt var. Qabdan <span class="m">9</span> litr çıxarıb yerinə <span class="m">9</span> litr su tökürlər, qarışdırırlar. Bu əməliyyat cəmi 3 dəfə təkrarlanır. Qabda neçə litr təmiz spirt qalır? Əgər 2 dəfədən sonra spirtin konsentrasiyası <span class="m">49%</span> olubsa və qabın tutumu <span class="m">V = 20</span> litrdirsə, hər dəfə neçə litr çıxarılıb?</p>
+      <div class="ex">Həlli (1-ci sual).
+  Hər çıxarışda qabdakı spirtin 9/27 = 1/3 hissəsi qarışıqla çıxır, 2/3 hissəsi qalır
+  (qarışıq bircinsdir — hər litrdə eyni nisbətdə spirt var).
+  1-ci dəfədən sonra: 27 · 2/3 = 18 litr.
+  2-ci dəfədən sonra: 18 · 2/3 = 12 litr.
+  3-cü dəfədən sonra: 12 · 2/3 = 8 litr.
+  Qısa: 27 · (2/3)³ = 8 litr.   Konsentrasiya 8/27.
+
+Həlli (2-ci sual).
+  Hər dəfə spirtin (1 − a/20) hissəsi qalır.
+  2 dəfədən sonra: (1 − a/20)² = 49/100 → 1 − a/20 = 7/10 → a/20 = 3/10 → a = 6 litr.</div>
+      <p>Diqqət: çıxarılan 9 litr <b>təmiz spirt</b> deyil, qarışıqdır. Bu səhv (hər dəfə "9 litr spirt getdi" demək) 27 − 27 = 0 verərdi.</p>
+      <div class="life"><b>Həyatdan.</b> Bank kartında hər ay 2% faiz yığılan kredit borcu ildə 2% yox, <span class="m">1,02¹² ≈ 1,268</span> dəfə, yəni təxminən 26,8% artır. Kredit şərtini oxuyanda illik faiz ilə aylıq faizi qarışdırma.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ardıcıl faizləri toplamaq: 20% artım + 20% azalma = 0.</li>
+        <li>Mürəkkəb faizdə <span class="m">S + n·r·S</span> (sadə faiz) yazmaq.</li>
+        <li>Su əlavə edəndə maddənin də artdığını düşünmək. Maddənin kütləsi sabitdir.</li>
+        <li>Sulandırmada hər dəfə çıxarılan hissəni təmiz maddə saymaq.</li>
+        <li>Faiz əmsalını yanlış yazmaq: 25% azalma <span class="m">× 0,75</span>-dir, <span class="m">× 0,25</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əmsallar vurulur: +p% → ×(1 + p/100), −p% → ×(1 − p/100)
+Mürəkkəb faiz: S·(1 + r/100)ⁿ
+Konsentrasiya = maddə / məhlul;  su qatanda maddə sabit
+Sulandırma n dəfə: V·(1 − a/V)ⁿ
+Qurutma: quru maddə sabit</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qiymət 10% artdı, sonra 10% azaldı. İlkin qiymətə nisbətən dəyişmə? <span class="ans">1,1 · 0,9 = 0,99 → 1% azalma.</span></li>
+        <li>500 manat illik 20% mürəkkəb faizlə 2 il. Hesabda? <span class="ans">500 · 1,44 = 720 manat.</span></li>
+        <li>100 kq 40%-li məhlula 100 kq su qatıldı. Yeni konsentrasiya? <span class="ans">Maddə 40 kq, məhlul 200 kq → 20%.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Yaş məsələləri və həll texnikaları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yaş məsələləri olimpiadanın sevimli janrıdır: şərti dolaşıqdır, amma arxasında iki sadə fakt var. Birincisi, <b>yaşlar fərqi heç vaxt dəyişmir</b>. İkincisi, hər şəxsin yaşı zamanla eyni sürətlə artır. Burada texnika öyrənirik — hər mətnli məsələyə tətbiq oluna bilər.</p>
+
+      <h3><span class="st">2</span> Cədvəl texnikası</h3>
+      <p>Hər şəxs üçün bir sətir, hər zaman üçün bir sütun:</p>
+      <div class="fm">           indi     t il əvvəl     u il sonra
+Ata         y        y − t          y + u
+Oğul        x        x − t          x + u
+Fərq: həmişə y − x</div>
+      <p>Mətnin hər cümləsi cədvəldən bir tənlikdir. Dəyişən sayı = tənlik sayı. Sonda nəticənin <b>məntiqi</b> yoxlanır: yaş müsbətdir, tam ədəddir, atanın oğlundan böyük olması və s.</p>
+      <div class="fm">Mətnli məsələ üçün 5 addım
+1. Soruşulanı oxu, dəyişən(lər) seç.
+2. Cədvəl və ya sxem çək.
+3. Hər şərti tənliyə çevir.
+4. Həll et.
+5. Mənanı yoxla (mənfi, kəsr, şərtə uyğunluq).</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  10 il əvvəl ata oğlundan 4 dəfə böyük idi. 6 ildən sonra 2 dəfə böyük olacaq. Ata indi neçə yaşındadır?
+  Oğul x, ata y.   y − 10 = 4(x − 10)   →  y = 4x − 30.
+                   y + 6 = 2(x + 6)    →  y = 2x + 6.
+  4x − 30 = 2x + 6 → x = 18,  y = 42.
+  Yoxla: 10 il əvvəl 32 və 8 (4 dəfə ✓); 6 ildən sonra 48 və 24 (2 dəfə ✓).
+
+Nümunə 2 (fərq sabit).  Ata oğlundan 28 yaş böyükdür, oğul indi 8 yaşındadır. Neçə ildən sonra ata oğlundan 3 dəfə böyük olacaq?
+  O vaxt oğul z yaşında, ata 3z yaşında: 3z − z = 28 → z = 14.
+  Oğul indi 8 → 14 − 8 = 6 il sonra.
+  Yoxla: 6 ildən sonra oğul 14, ata 42 = 3·14 ✓.
+
+Nümunə 3.  Ana qızından 24 yaş böyükdür. 3 il əvvəl ana qızından 5 dəfə böyük idi. İndi neçə yaşdadırlar?
+  3 il əvvəl qız z, ana 5z yaşında idi: 5z − z = 24 → z = 6.
+  İndi qız 6 + 3 = 9, ana 9 + 24 = 33.
+  Yoxla: 3 il əvvəl 30 və 6 (5 dəfə ✓).
+</div>
+      <p><b>Olimpiada məsələsi 3.</b> Əli ilə Vəlinin yaşlarının cəmi <span class="m">28</span>-dir. Əli Vəlinin indiki yaşında olanda Vəlinin yaşı Əlinin indiki yaşının yarısı idi. Əli indi neçə yaşındadır?</p>
+      <div class="ex">Həlli.
+  Əli x, Vəli y yaşındadır, x &gt; y.
+  Əli y yaşında olanda (x − y) il əvvəl idi. O vaxt Vəlinin yaşı y − (x − y) = 2y − x.
+  Şərt: 2y − x = x/2  →  2y = 3x/2  →  y = 3x/4.
+  Cəm: x + 3x/4 = 28  →  7x/4 = 28  →  x = 16,  y = 12.
+  Yoxla: 4 il əvvəl Əli 12 idi (Vəlinin indiki yaşı), Vəli isə 12 − 4 = 8 = 16/2 idi ✓.</div>
+
+      <div class="life"><b>Həyatdan.</b> Nənə ilə nəvə arasındakı yaş fərqi həmişə eynidir: 60 il. Nənə nəvədən 3 dəfə böyük olduqda nəvə 30 yaşındadır (3z − z = 60). Zaman keçdikcə nisbət kiçilir: 1 yaşlıda nənə 61 dəfə böyük, 60 yaşlıda isə cəmi 2 dəfə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yaşları zamanla müxtəlif ədədlərlə dəyişmək. Hamı eyni sayda il yaşlanır (yaşlar fərqi sabitdir).</li>
+        <li>Fərqi ("neçə il böyük") nisbətlə ("neçə dəfə böyük") qarışdırmaq. Fərq sabitdir, nisbət zamanla dəyişir.</li>
+        <li>Cavabı yoxlamamaq: mənfi və ya kəsr yaş, ata oğlundan kiçik çıxa bilməz.</li>
+        <li>Soruşulandan başqa dəyişən seçib cavabı yazanda onu qaytarmamaq (x tapılıb, y soruşulur).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yaşlar fərqi həmişə sabitdir
+Cədvəl: şəxs × zaman;  hər cümlə — bir tənlik
+"k dəfə böyük" → k·(kiçiyin yaşı)
+Həmişə yoxla: müsbət, tam, şərtə uyğun</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ata 40, oğul 10 yaşındadır. Neçə ildən sonra ata oğlundan 2 dəfə böyük olacaq? <span class="ans">Fərq 30; 2z − z = 30 → z = 30 (oğlun yaşı). 30 − 10 = 20 il sonra.</span></li>
+        <li>5 il əvvəl ana qızından 5 dəfə böyük idi, qızı o vaxt 6 yaşında idi. Ana indi neçə yaşındadır? <span class="ans">5 il əvvəl ana 30; indi 35.</span></li>
+        <li>İki nəfərin yaşları fərqi 12-dir. 8 ildən sonra cəmləri 60 olacaq. İndiki yaşlar? <span class="ans">İndi cəm 60 − 16 = 44; böyük (44 + 12)/2 = 28, kiçik 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
