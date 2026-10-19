@@ -157,3 +157,9 @@ html{scrollbar-gutter:stable}
 .oy-key:active{transform:scale(.95)}
 .vec{position:relative;display:inline-block}
 .vec::after{content:"→";position:absolute;left:50%;top:-.38em;transform:translateX(-50%);font-size:.7em;font-style:normal;line-height:1}
+/* figures: larger so labels are readable */
+.fig svg{flex:0 1 380px;width:380px}
+.explain svg{width:320px}
+.playrow svg,.trirow svg{flex:0 1 380px;width:380px}
+.oy-svg{max-width:420px}
+@media (max-width:640px){.fig svg,.playrow svg,.trirow svg,.explain svg{width:100%;flex-basis:100%}}

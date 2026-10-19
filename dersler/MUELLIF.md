@@ -34,3 +34,4 @@ Nümunə: `triqonometriya-1.html` + `oyun-triqonometriya.js` (o, şablondan əvv
 node tools/oyun-test.js dersler/oyun-<slug>.js 300
 ```
 Hamısı `ok` olmalıdır. `data/movzular.json`-a toxunma — onu koordinator yeniləyir.
+Vektor işarəsi: birləşdirici ox simvolu (U+20D7) yaza bilərsən — ders.js onu avtomatik hərfin üstündə ox kimi çəkir. Dərsin son h3-ü "Özünü yoxla" adlanırsa, ayrıca ikinci "Özünü yoxla" addımı yaranmır.

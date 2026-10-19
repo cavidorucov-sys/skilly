@@ -20,8 +20,8 @@
         const ch = p[0];
         if (inSvg) {
           const a = document.createElementNS(NS, "tspan"); a.textContent = ch; frag.append(a);
-          const b = document.createElementNS(NS, "tspan"); b.setAttribute("dx", "-0.62em"); b.setAttribute("dy", "-0.72em"); b.setAttribute("font-size", "0.62em"); b.textContent = "→"; frag.append(b);
-          const c = document.createElementNS(NS, "tspan"); c.setAttribute("dy", "0.446em"); c.textContent = " "; frag.append(c);
+          const b = document.createElementNS(NS, "tspan"); b.setAttribute("dx", "-0.7em"); b.setAttribute("dy", "-0.72em"); b.setAttribute("font-size", "0.9em"); b.setAttribute("font-weight", "700"); b.textContent = "→"; frag.append(b);
+          const c = document.createElementNS(NS, "tspan"); c.setAttribute("dy", "0.648em"); c.textContent = " "; frag.append(c);
         } else { const sp = document.createElement("span"); sp.className = "vec"; sp.textContent = ch; frag.append(sp); }
       });
       t.replaceWith(frag);
