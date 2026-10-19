@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<a href="../index.html" style="position:fixed;right:12px;bottom:12px;z-index:50;background:#2c4a8a;color:#fff;padding:8px 12px;border-radius:6px;font:600 14px system-ui;text-decoration:none">← Portal</a>
+<title>Funksiyalar dərsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: same paper as the DİM booklet. Two parts (linear, quadratic), each opens with a short worked example and a small graph, then numbered tasks checked one by one. */
+:root{
+  --paper:#f6f7f9; --sheet:#ffffff; --ink:#1c2433; --muted:#5b6578;
+  --line:#d8dde6; --accent:#2c4a8a; --accent-soft:#e6ecf7; --bubble:#9aa6bc;
+  --ok:#2f6b3e; --ok-soft:#e5f2e8; --warn:#a3361f; --warn-soft:#fbe9e4; --grid:#e3e7ee;
+  --f-body:"Noto Sans",system-ui,"Segoe UI",Arial,sans-serif;
+  --f-task:"Noto Serif",Georgia,"Times New Roman",serif;
+  --f-num:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 80px;display:grid;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:20px;margin:12px 0 0;text-wrap:balance}
+p{margin:0;max-width:65ch}
+.intro{display:grid;gap:8px}
+.prog{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.prog b{font-family:var(--f-num);font-size:20px;font-variant-numeric:tabular-nums}
+.meter{flex:1 1 160px;height:8px;border-radius:4px;background:var(--grid);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.explain{background:var(--accent-soft);border-radius:6px;padding:16px;display:grid;gap:10px}
+.explain .row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.explain .txt{flex:1 1 300px;min-width:0;display:grid;gap:8px}
+.explain ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.explain svg{flex:0 0 auto;width:220px;max-width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.m{font-family:var(--f-task);font-style:italic;white-space:nowrap}
+.ex{font-family:var(--f-num);font-size:13px;background:var(--sheet);border-radius:6px;padding:10px;white-space:pre-wrap;overflow-x:auto}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px}
+.task.solved{border-color:var(--ok)}
+.task .head{display:flex;gap:12px;align-items:baseline}
+.task .n{font-family:var(--f-num);font-weight:700;color:var(--accent);min-width:2ch;font-variant-numeric:tabular-nums}
+.task .t{font-family:var(--f-task);font-size:16px;min-width:0}
+.tag{font-family:var(--f-body);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);margin-left:6px}
+.ans{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ans input{font-family:var(--f-num);font-size:18px;width:9ch;padding:6px 8px;border:2px solid var(--bubble);border-radius:6px;background:var(--paper);color:var(--ink)}
+.btn{font:inherit;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);border-radius:6px;padding:8px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,.ans input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.fb{font-size:14px;font-weight:700}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--warn)}
+.hint{font-size:14px;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px}
+.end{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:10px}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:6px;padding:14px;display:grid;gap:10px}
+.fail{background:var(--warn-soft);border:1px solid var(--warn);border-radius:6px;padding:14px;display:grid;gap:10px}
+pre.copy{white-space:pre-wrap;word-break:break-word;font-family:var(--f-num);font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0;max-height:260px;overflow:auto}
+svg text{font-family:var(--f-num);font-size:10px;fill:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.lesson{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.lesson h3{font-size:17px;margin:10px 0 0;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.lesson .st{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--sheet);background:var(--accent);border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;flex:none}
+.lesson ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:65ch}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-family:var(--f-num);font-size:14px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center;white-space:nowrap}
+.tbl th{background:var(--accent-soft);font-family:var(--f-task);font-style:italic;font-weight:600}
+.fm{font-family:var(--f-num);font-size:15px;font-weight:700;background:var(--accent-soft);border-radius:6px;padding:10px 14px;white-space:pre-wrap;overflow-x:auto;justify-self:start;max-width:100%;box-sizing:border-box}
+.play{background:var(--accent-soft);border-radius:6px;padding:14px;display:grid;gap:10px;margin-top:6px}
+.playrow{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.playrow svg{flex:0 1 300px;width:300px;max-width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.ctl{flex:1 1 200px;min-width:0;display:grid;gap:6px}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl label{font-family:var(--f-num);font-size:14px}
+.eqn{font-family:var(--f-task);font-style:italic;font-size:20px;font-weight:600}
+.facts{font-family:var(--f-num);font-size:13px;display:grid;gap:3px;margin-top:6px;color:var(--ink)}
+.hintline{font-size:14px;color:var(--muted)}
+.tasks-h{font-size:17px;margin:8px 0 0}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);display:flex;gap:4px;border-bottom:2px solid var(--line);overflow-x:auto;overflow-y:hidden;padding-top:4px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tab small{display:block;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.panel{display:grid;gap:14px}
+.next{justify-self:end}
+.prog{top:calc(env(safe-area-inset-top,0px) + 58px)}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Fikrət üçün · 3 oktyabr 2026</div>
+    <h1>Funksiyalar</h1>
+    <p>Xətti və kvadrat funksiyalar — dərs və 23 tapşırıq. Əvvəl dərsləri oxu, sonra məşqə keç.</p>
+    <p>Sıra ilə get: <b>Dərs 1</b>, sonra <b>Dərs 2</b>, sonra <b>Məşq</b>. Dərsdəki nümunələri kağızda özün təkrarla, qrafikdə sürgüləri tərpət.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Bölmələr">
+    <button class="tab" role="tab" id="tb-ders1" aria-controls="ders1" type="button"><small>Dərs 1</small>Xətti funksiya</button>
+    <button class="tab" role="tab" id="tb-ders2" aria-controls="ders2" type="button"><small>Dərs 2</small>Kvadrat funksiya</button>
+    <button class="tab" role="tab" id="tb-mesq" aria-controls="mesq" type="button"><small>Məşq</small>23 tapşırıq</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="ders1" aria-labelledby="tb-ders1">
+    <h2>Xətti funksiya: y = kx + b</h2>
+    <article class="lesson">
+      <div class="eyebrow">Dərs — əvvəl bunu oxu</div>
+
+      <h3><span class="st">1</span> Funksiya nədir</h3>
+      <p>Funksiya bir qaydadır: hər <span class="m">x</span>-ə <b>bir</b> <span class="m">y</span> uyğun gəlir. Onu maşın kimi təsəvvür et: <span class="m">x</span> daxil olur, qayda işləyir, <span class="m">y</span> çıxır.</p>
+      <p>Qayda <span class="m">y = 2x + 4</span> olsun. Bu o deməkdir: "<span class="m">x</span>-i 2-yə vur, üstünə 4 gəl".</p>
+      <div class="tbl"><table><tr><th>x</th><td>−3</td><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td></tr><tr><th>y = 2x + 4</th><td>−2</td><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td></tr></table></div>
+      <p>Özün yoxla: <span class="m">x = 1</span> → <span class="m">2·1 + 4 = 6</span>. Cədvəldəki hər rəqəmi bir dəfə kağızda hesabla.</p>
+
+      <h3><span class="st">2</span> Qrafik cədvəlin şəklidir</h3>
+      <p>Cədvəldəki hər cüt <span class="m">(x; y)</span> koordinat müstəvisində bir nöqtədir: <span class="m">(−2; 0)</span>, <span class="m">(0; 4)</span>, <span class="m">(1; 6)</span>… Bu nöqtələrin hamısı bir düz xəttin üstünə düşür. Ona görə <span class="m">y = kx + b</span> şəklində funksiyaya <b>xətti</b> deyilir.</p>
+
+      <h3><span class="st">3</span> b: xəttin Oy oxunu kəsdiyi yer</h3>
+      <p>Oy oxunun üstündəki hər nöqtədə <span class="m">x = 0</span>. Onda <span class="m">y = k·0 + b = b</span>. Deməli, qrafik Oy oxunu həmişə <span class="m">(0; b)</span> nöqtəsində kəsir. <span class="m">y = 2x + 4</span> üçün bu, <span class="m">(0; 4)</span>-dür. <span class="m">b</span>-ni dəyişəndə xətt yuxarı-aşağı sürüşür, mailliyi dəyişmir.</p>
+
+      <h3><span class="st">4</span> k: xəttin mailliyi</h3>
+      <p>Cədvələ yenidən bax: <span class="m">x</span> hər dəfə 1 artanda <span class="m">y</span> 2 artır. Bu 2 elə <span class="m">k</span>-dır. İstənilən iki nöqtədən:</p>
+      <div class="fm">k = (y₂ − y₁) / (x₂ − x₁)</div>
+      <p>Məsələn <span class="m">(0; 4)</span> və <span class="m">(2; 8)</span>: <span class="m">k = (8 − 4) / (2 − 0) = 2</span>.</p>
+      <ul>
+        <li><span class="m">k &gt; 0</span>: soldan sağa xətt <b>qalxır</b> (funksiya artandır).</li>
+        <li><span class="m">k &lt; 0</span>: xətt <b>enir</b> (azalandır).</li>
+        <li><span class="m">k = 0</span>: xətt üfüqidir, <span class="m">y</span> dəyişmir.</li>
+      </ul>
+
+      <h3><span class="st">5</span> Ox oxu ilə kəsişmə</h3>
+      <p>Ox oxunun üstündəki hər nöqtədə <span class="m">y = 0</span>. Ona görə <span class="m">0 = kx + b</span> tənliyini həll edirik:</p>
+      <div class="fm">2x + 4 = 0  →  2x = −4  →  x = −2  →  (−2; 0)</div>
+      <p>Diqqət: cavab <b>nöqtədir</b>, <span class="m">(−2; 0)</span>. Sınaqda variantlarda <span class="m">(0; −4)</span> kimi tələlər olur. O, Oy oxu ilə kəsişmədir.</p>
+
+      <h3><span class="st">6</span> İki xəttin kəsişməsi</h3>
+      <p>Kəsişmə nöqtəsi hər iki xəttin üstündədir, yəni orada <span class="m">y</span>-lər bərabərdir. <span class="m">y = x + 1</span> və <span class="m">y = −x + 5</span>: <span class="m">x + 1 = −x + 5</span> → <span class="m">x = 2</span>, <span class="m">y = 3</span> → <span class="m">(2; 3)</span>.</p>
+
+      <div class="play">
+        <div class="eyebrow">Özün sına: sürgüləri tərpət</div>
+        <div class="playrow">
+          <svg id="g1" viewBox="0 0 300 300" role="img" aria-label="y = kx + b qrafiki"></svg>
+          <div class="ctl">
+            <div class="eqn" id="e1"></div>
+            <label for="k1">k = <b id="k1v"></b></label><input type="range" id="k1" min="-3" max="3" step="0.5" value="2">
+            <label for="b1">b = <b id="b1v"></b></label><input type="range" id="b1" min="-5" max="5" step="1" value="4">
+            <div class="facts" id="f1"></div>
+          </div>
+        </div>
+        <p class="hintline">Sına: <span class="m">k</span>-nı mənfi et, xətt nə edir? <span class="m">b</span>-ni dəyiş, mailliyi dəyişirmi?</p>
+      </div>
+    </article>
+    <button class="btn next" type="button" data-go="ders2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="ders2" aria-labelledby="tb-ders2" hidden>
+    <h2>Kvadrat funksiya: y = ax² + bx + c</h2>
+    <article class="lesson">
+      <div class="eyebrow">Dərs — əvvəl bunu oxu</div>
+
+      <h3><span class="st">1</span> Ən sadə parabola: y = x²</h3>
+      <div class="tbl"><table><tr><th>x</th><td>−3</td><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>y = x²</th><td>9</td><td>4</td><td>1</td><td>0</td><td>1</td><td>4</td><td>9</td></tr></table></div>
+      <p>Nöqtələr düz xəttə düşmür, "U" şəklində əyri alınır. Buna <b>parabola</b> deyilir. İki şeyə bax:</p>
+      <ul>
+        <li><b>Simmetriya:</b> <span class="m">x = 2</span> və <span class="m">x = −2</span> eyni <span class="m">y = 4</span> verir. Parabola bir şaquli xəttə görə güzgü kimidir.</li>
+        <li><b>Təpə:</b> ən aşağı nöqtə <span class="m">(0; 0)</span>-dır. Bütün məsələlərin açarı təpədir.</li>
+      </ul>
+
+      <h3><span class="st">2</span> a: parabola hara açılır</h3>
+      <ul>
+        <li><span class="m">a &gt; 0</span>: yuxarı açılır. Təpə <b>ən aşağı</b> nöqtədir, yəni funksiyanın <b>ən kiçik qiyməti</b> var.</li>
+        <li><span class="m">a &lt; 0</span>: aşağı açılır. Təpə <b>ən yuxarı</b> nöqtədir, yəni <b>ən böyük qiyməti</b> var.</li>
+        <li><span class="m">|a|</span> böyüdükcə parabola daralır.</li>
+      </ul>
+
+      <h3><span class="st">3</span> c: Oy oxu ilə kəsişmə</h3>
+      <p>Xətti funksiyadakı kimi: <span class="m">x = 0</span> qoy, <span class="m">y = c</span> alınır. Qrafik Oy oxunu <span class="m">(0; c)</span> nöqtəsində kəsir.</p>
+
+      <h3><span class="st">4</span> Ox oxu ilə kəsişmə: köklər</h3>
+      <p>Ox oxunda <span class="m">y = 0</span>, yəni <span class="m">ax² + bx + c = 0</span> kvadrat tənliyini həll edirik. Neçə kəsişmə olduğunu diskriminant deyir:</p>
+      <div class="fm">D = b² − 4ac</div>
+      <ul>
+        <li><span class="m">D &gt; 0</span>: iki nöqtədə kəsir.</li>
+        <li><span class="m">D = 0</span>: Ox oxuna bir nöqtədə <b>toxunur</b> (təpə oxun üstündədir).</li>
+        <li><span class="m">D &lt; 0</span>: Ox oxunu kəsmir.</li>
+      </ul>
+      <p><span class="m">a = 1</span> olanda Viyet teoremi tez işləyir: köklərin cəmi <span class="m">−b</span>, hasili <span class="m">c</span>-dir.</p>
+
+      <h3><span class="st">5</span> Təpənin düsturu haradan gəlir</h3>
+      <p>Parabola simmetrikdir, ona görə təpə iki kökün <b>düz ortasındadır</b>. Ortanı tapmaq üçün kökləri toplayıb 2-yə bölürük. Viyetə görə köklərin cəmi <span class="m">−b/a</span>-dır. Deməli:</p>
+      <div class="fm">x₀ = −b / (2a),    y₀ = y(x₀)</div>
+      <p><span class="m">y₀</span> funksiyanın ən kiçik (<span class="m">a &gt; 0</span>) və ya ən böyük (<span class="m">a &lt; 0</span>) qiymətidir. Düsturu əzbərləmək lazım deyil, "köklərin ortası" fikrini yadda saxla.</p>
+
+      <h3><span class="st">6</span> Hamısı bir nümunədə: y = x² − 2x − 3</h3>
+      <div class="ex">a = 1 &gt; 0          → yuxarı açılır, ən kiçik qiymət var
+Oy:   x = 0       → y = −3            → (0; −3)
+Ox:   x² − 2x − 3 = 0, Viyet: cəm 2, hasil −3 → x = −1, x = 3
+Təpə: x₀ = (−1 + 3) / 2 = 1   (və ya −(−2) / (2·1) = 1)
+      y₀ = 1² − 2·1 − 3 = −4  → ən kiçik qiymət −4</div>
+
+      <div class="play">
+        <div class="eyebrow">Özün sına: sürgüləri tərpət</div>
+        <div class="playrow">
+          <svg id="g2" viewBox="0 0 300 300" role="img" aria-label="y = ax² + bx + c qrafiki"></svg>
+          <div class="ctl">
+            <div class="eqn" id="e2"></div>
+            <label for="a2">a = <b id="a2v"></b></label><input type="range" id="a2" min="-2" max="2" step="0.5" value="1">
+            <label for="b2">b = <b id="b2v"></b></label><input type="range" id="b2" min="-6" max="6" step="1" value="-2">
+            <label for="c2">c = <b id="c2v"></b></label><input type="range" id="c2" min="-6" max="6" step="1" value="-3">
+            <div class="facts" id="f2"></div>
+          </div>
+        </div>
+        <p class="hintline">Sına: <span class="m">a</span>-nı mənfi et. <span class="m">c</span>-ni elə seç ki, D = 0 olsun və parabola Ox oxuna toxunsun.</p>
+      </div>
+    </article>
+    <button class="btn next" type="button" data-go="mesq">Məşqə keç →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="mesq" aria-labelledby="tb-mesq" hidden>
+    <h2>Məşq</h2>
+    <p>Vaxt limiti yoxdur. Hər sualın cavabını yaz və <b>Yoxla</b> bas. İki dəfə səhv olsa, ipucu çıxır. Cavab göstərilmir, özün tapmalısan. Çətin olsa, dərsə qayıt. Kağız-qələm yanında olsun.</p>
+  <div class="prog" aria-live="polite"><span><b id="pc">0 / 23</b> həll olunub</span><div class="meter"><i id="pm"></i></div></div>
+    <h3 class="tasks-h">Xətti funksiya · 1–10</h3>
+    <div id="part1" style="display:grid;gap:12px"></div>
+    <h3 class="tasks-h">Kvadrat funksiya · 11–23</h3>
+    <div id="part2" style="display:grid;gap:12px"></div>
+    <section class="end">
+      <p><b>Bitirəndə</b> (hamısını həll etməsən də) düyməni bas. Cavabların mətn kimi çıxacaq: <b>kopyala</b> və atana WhatsApp-da göndər.</p>
+      <div class="ans"><button class="btn" type="button" id="send">Bitir və cavabları göstər</button></div>
+    </section>
+    <div id="result" hidden></div>
+  </section>
+</div>
+
+<script>
+const H={"1":"e2f68e741af35ffe","2":"aa55e0cdc4697a28","3":"d5e1e8efa33e06e9","4":"6d5829d62d64e739","5":"17c3bed10d958daf","6":"d1f4bfe76d3298e3","7":"bf4fc438540cd159","8":"07be0e2cd817a9cf","9":"702dd7283ec5fa7f","10":"e35c5292409ed5e7","11":"81e7a996e4e42e1a","12":"f49d5cc8d31a3615","13":"f4496e4daa3be5de","14":"be5e4c30e75471e7","15":"228fe12a0645b2e1","16":"e2d6a4e8e6c56ca0","17":"ac42539455703a92","18":"f28465f3e8dfa5ed","19":"0e634fc7d28bb949","20":"e0e779a85931e0fb","21":"17d7b114ffd9dd88","22":"5b341e5d99006dd9","23":"76d578ac65a28046"};
+const T=[
+ [1,1,"y = 3x − 6. x = 2 olanda y neçədir?","x yerinə 2 qoy."],
+ [2,1,"y = 3x − 6 qrafiki Oy oxunu kəsir. Kəsişmə nöqtəsinin y-ni yaz.","Oy oxunda x = 0."],
+ [3,1,"y = 3x − 6 qrafiki Ox oxunu kəsir. Kəsişmə nöqtəsinin x-ni yaz.","Ox oxunda y = 0: 3x − 6 = 0."],
+ [4,1,"y = −2x + 8 qrafiki Ox oxunu kəsir. x-i tap.","−2x + 8 = 0."],
+ [5,1,"Düz xətt (1; 5) və (3; 11) nöqtələrindən keçir. k-nı tap.","k = (y₂ − y₁) / (x₂ − x₁)."],
+ [6,1,"Həmin düz xətt (5-ci sual) üçün b-ni tap.","Bir nöqtəni y = kx + b-yə qoy: 5 = k·1 + b."],
+ [7,1,"y = kx + 1 qrafiki (2; 7) nöqtəsindən keçir. k-nı tap.","7 = k·2 + 1."],
+ [8,1,"y = 2x + 3 və y = −x + 9 qrafikləri kəsişir. Kəsişmə nöqtəsinin x-ni tap.","Kəsişmədə y-lər bərabərdir: 2x + 3 = −x + 9."],
+ [9,1,"Taksidə minik 2 AZN, hər km 0,8 AZN: y = 0,8x + 2. 15 km yol neçə AZN-dir?","x = 15 qoy."],
+ [10,1,"y = 2x − 4 qrafiki Ox oxunu hansı nöqtədə kəsir? x-i yaz.","y = 0 qoy.","Sınaq 1, sual 8"],
+ [11,2,"y = x² − 4x + 3 qrafiki Oy oxunu kəsir. Kəsişmə nöqtəsinin y-ni yaz.","x = 0 qoy."],
+ [12,2,"y = x² − 4x + 3 Ox oxunu iki nöqtədə kəsir. Kiçik x-i yaz.","x² − 4x + 3 = 0. Viyet: köklərin cəmi 4, hasili 3."],
+ [13,2,"Eyni funksiya: böyük x-i yaz.","x² − 4x + 3 = 0. Viyet: köklərin cəmi 4, hasili 3."],
+ [14,2,"y = x² − 4x + 3 parabolasının təpəsinin x₀-ı?","x₀ = −b / (2a). Burada a = 1, b = −4."],
+ [15,2,"y = x² − 4x + 3 funksiyasının ən kiçik qiyməti?","x₀-ı funksiyaya qoy."],
+ [16,2,"y = x² − 6x + 5 funksiyasının ən kiçik qiyməti?","Əvvəl x₀ = −b / (2a), sonra y(x₀). a > 0, ona görə təpə ən aşağı nöqtədir.","Sınaq 1, sual 20"],
+ [17,2,"y = −x² + 4x + 5 funksiyasının ən böyük qiyməti?","a < 0 — parabola aşağı açılır, təpə ən yuxarı nöqtədir. x₀ = −b / (2a)."],
+ [18,2,"y = 2x² − 8x + 1 parabolasının təpəsinin y₀-ı?","x₀ = −(−8) / (2·2)."],
+ [19,2,"y = x² + bx + c parabolasının təpəsi (3; −2). b-ni tap.","x₀ = −b / 2 = 3."],
+ [20,2,"Həmin parabola (19-cu sual) üçün c-ni tap.","Təpə parabolanın üstündədir: 3² + b·3 + c = −2."],
+ [21,2,"y = x² − 2x − 8 Ox oxunu iki nöqtədə kəsir. Bu nöqtələr arasındakı məsafə?","Kökləri tap, böyükdən kiçiyi çıx."],
+ [22,2,"Yuxarı atılan topun hündürlüyü h = −5t² + 20t (metr). Top ən çox neçə metr qalxır?","t₀ = −b / (2a) anında top ən yuxarıdadır. Sonra h(t₀)."],
+ [23,2,"y = x² − 4x + k qrafiki Ox oxuna bir nöqtədə toxunur. k-nı tap.","Toxunur = tək kök = diskriminant sıfırdır: b² − 4ac = 0."]
+];
+const KEY="funk-mesq-1",START=Date.now();
+const $=id=>document.getElementById(id);
+function el(t,a,...c){const e=document.createElement(t);for(const k in a||{})e.setAttribute(k,a[k]);c.forEach(x=>e.append(x));return e}
+let st={s:{},startedAt:START,sent:false};
+try{const v=JSON.parse(localStorage.getItem(KEY)||"null");if(v)st=v}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function rec(n){return st.s[n]||(st.s[n]={tries:0,wrong:[],ok:false,hint:false})}
+function norm(v){let s=String(v).trim().replace(/[−–—]/g,"-").replace(/,/g,".").replace(/\s+/g,"").replace(/^[a-zA-Zkbcx₀y]+=/,"").replace(/^\+/,"");
+  const f=Number(s);if(s!==""&&isFinite(f))return Number.isInteger(f)?String(f):String(+f.toFixed(6));return s}
+async function hash(n,s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("f1|"+n+"|"+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,16)}
+function prog(){const c=T.filter(([n])=>st.s[n]&&st.s[n].ok).length;$("pc").textContent=c+" / 23";$("pm").style.width=(c/23*100)+"%"}
+T.forEach(([n,part,text,hint,tag])=>{
+  const r=rec(n);
+  const inp=el("input",{type:"text",id:"a"+n,inputmode:"decimal",autocomplete:"off","aria-label":"Sual "+n+" cavabı"});
+  const btn=el("button",{class:"btn ghost",type:"button"},"Yoxla");
+  const fb=el("span",{class:"fb","aria-live":"polite"});
+  const hn=el("div",{class:"hint"},"İpucu: "+hint);hn.hidden=!r.hint;
+  const head=el("div",{class:"head"},el("span",{class:"n"},String(n)),el("span",{class:"t"},text));
+  if(tag)head.querySelector(".t").append(el("span",{class:"tag"},tag));
+  const box=el("div",{class:"task"},head,el("div",{class:"ans"},inp,btn,fb),hn);
+  function solvedView(){box.classList.add("solved");inp.disabled=true;btn.disabled=true;fb.className="fb ok";fb.textContent="Düz ✓"}
+  if(r.ok){inp.value=r.answer||"";solvedView()}
+  async function check(){const s=norm(inp.value);if(!s)return;r.tries++;
+    if(await hash(n,s)===H[n]){r.ok=true;r.answer=inp.value.trim();solvedView()}
+    else{r.wrong.push(inp.value.trim());fb.className="fb no";fb.textContent="Yox. Yenə yoxla.";if(r.wrong.length>=2){r.hint=true;hn.hidden=false}}
+    save();prog()}
+  btn.addEventListener("click",check);inp.addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+  $(part===1?"part1":"part2").append(box);
+});
+prog();
+const NS="http://www.w3.org/2000/svg";
+function sv(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e}
+function fmtN(v){v=Math.round(v*100)/100;if(v===0)return "0";return (v<0?"−":"")+Math.abs(v)}
+function plot(svg,f,ymax,pts){svg.replaceChildren();const W=300,X=6,sx=W/(2*X),sy=W/(2*ymax),px=x=>W/2+x*sx,py=y=>W/2-y*sy;
+  let d="";for(let i=-X;i<=X;i++)d+="M"+px(i)+" 0V"+W;const st=ymax>6?2:1;for(let j=-ymax;j<=ymax;j+=st)d+="M0 "+py(j)+"H"+W;
+  svg.append(sv("path",{d,stroke:"var(--grid)","stroke-width":1,fill:"none"}));
+  svg.append(sv("path",{d:"M0 "+W/2+"H"+W+"M"+W/2+" 0V"+W,stroke:"var(--muted)","stroke-width":1.3,fill:"none"}));
+  const yl=ymax>6?ymax-2:ymax-1;
+  [[px(5)-4,W/2+14,"5"],[px(-5)-8,W/2+14,"−5"],[W/2+5,py(yl)+4,String(yl)],[W/2+5,py(-yl)+4,"−"+yl]].forEach(([x,y,t])=>{const e=sv("text",{x,y});e.textContent=t;svg.append(e)});
+  let p="",on=false;for(let x=-X;x<=X+1e-9;x+=0.05){const y=f(x);if(Math.abs(y)<=ymax*1.5){p+=(on?"L":"M")+px(x).toFixed(1)+" "+py(y).toFixed(1);on=true}else on=false}
+  svg.append(sv("path",{d:p,fill:"none",stroke:"var(--accent)","stroke-width":2.5}));
+  pts.forEach(([x,y,lab])=>{if(Math.abs(x)>X||Math.abs(y)>ymax)return;svg.append(sv("circle",{cx:px(x),cy:py(y),r:4.5,fill:"var(--warn)"}));const t=sv("text",{x:Math.min(px(x)+7,W-70),y:Math.max(py(y)-7,12)});t.textContent=lab;svg.append(t)})}
+function lin(){const k=+$("k1").value,b=+$("b1").value;$("k1v").textContent=fmtN(k);$("b1v").textContent=fmtN(b);
+  const term=k===0?"":(k===1?"x":k===-1?"−x":fmtN(k)+"x");
+  $("e1").textContent="y = "+(term?term+(b?(b>0?" + ":" − ")+Math.abs(b):""):fmtN(b));
+  const pts=[[0,b,"(0; "+fmtN(b)+")"]],facts=["Oy: (0; "+fmtN(b)+")"];
+  if(k!==0){const x0=-b/k;if(b!==0)pts.push([x0,0,"("+fmtN(x0)+"; 0)"]);facts.push("Ox: "+fmtN(k)+"x "+(b>=0?"+ ":"− ")+Math.abs(b)+" = 0 → x = "+fmtN(x0))}
+  else facts.push(b===0?"Ox: xətt Ox oxunun özüdür":"Ox: kəsmir (k = 0)");
+  facts.push(k>0?"k > 0 → artan":k<0?"k < 0 → azalan":"k = 0 → üfüqi");
+  $("f1").replaceChildren(...facts.map(s=>el("div",{},s)));plot($("g1"),x=>k*x+b,6,pts)}
+function quad(){let a=+$("a2").value;if(a===0){a=0.5;$("a2").value=0.5}const b=+$("b2").value,c=+$("c2").value;
+  $("a2v").textContent=fmtN(a);$("b2v").textContent=fmtN(b);$("c2v").textContent=fmtN(c);
+  const A=a===1?"x²":a===-1?"−x²":fmtN(a)+"x²",B=b===0?"":(b>0?" + ":" − ")+(Math.abs(b)===1?"":Math.abs(b))+"x",C=c===0?"":(c>0?" + ":" − ")+Math.abs(c);
+  $("e2").textContent="y = "+A+B+C;
+  const D=b*b-4*a*c,x0=-b/(2*a),y0=a*x0*x0+b*x0+c,pts=[[x0,y0,"təpə ("+fmtN(x0)+"; "+fmtN(y0)+")"]];
+  if(x0!==0)pts.push([0,c,"(0; "+fmtN(c)+")"]);
+  const facts=[(a>0?"a > 0 → yuxarı açılır, ən kiçik qiymət ":"a < 0 → aşağı açılır, ən böyük qiymət ")+fmtN(y0),"x₀ = −b/(2a) = "+fmtN(x0),"D = b² − 4ac = "+fmtN(D)];
+  if(D>0){const r1=(-b-Math.sqrt(D))/(2*a),r2=(-b+Math.sqrt(D))/(2*a);pts.push([r1,0,fmtN(r1)],[r2,0,fmtN(r2)]);facts.push("D > 0 → iki kök: "+fmtN(Math.min(r1,r2))+" və "+fmtN(Math.max(r1,r2)))}
+  else if(D===0)facts.push("D = 0 → Ox oxuna toxunur");else facts.push("D < 0 → Ox oxunu kəsmir");
+  $("f2").replaceChildren(...facts.map(s=>el("div",{},s)));plot($("g2"),x=>a*x*x+b*x+c,10,pts)}
+["k1","b1"].forEach(id=>$(id).addEventListener("input",lin));["a2","b2","c2"].forEach(id=>$(id).addEventListener("input",quad));lin();quad();
+function summary(){const l=["Funksiyalar məşqi 1 (Fikrət)","Göndərildi: "+new Date().toLocaleString(),"Həll olunub: "+T.filter(([n])=>st.s[n]&&st.s[n].ok).length+" / 23"];
+  T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false};l.push(n+". "+(r.ok?"✓":"—")+" cəhd "+r.tries+(r.wrong.length?" · səhvlər: "+r.wrong.join(", "):"")+(r.hint?" · ipucu":""))});return l.join("\n")}
+function show(cls,nodes){const r=$("result");r.className=cls;r.replaceChildren(...nodes);r.hidden=false;r.scrollIntoView({block:"nearest"})}
+$("send").addEventListener("click",()=>{
+  st.sent=true;save();
+  const txt=summary(),pre=el("pre",{class:"copy",id:"copytext"},txt);
+  const b=el("button",{class:"btn",type:"button"},"Cavabları kopyala");
+  b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(txt);b.textContent="Kopyalandı ✓"}catch(e){const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Mətn seçildi, indi kopyala (Ctrl+C / uzun bas)"}});
+  const wa=el("a",{class:"btn ghost",href:"https://wa.me/?text="+encodeURIComponent(txt),target:"_blank",rel:"noopener"},"WhatsApp-da aç");
+  show("done",[el("b",{},"Hazırdır."),el("p",{},"1) “Cavabları kopyala” bas. 2) WhatsApp-da atana yapışdır və göndər. “WhatsApp-da aç” düyməsi də mətni hazır açır — işləməsə, kopyala-yapışdır et."),pre,el("div",{class:"ans"},b,wa)]);
+  const doc={sentAt:new Date().toISOString(),startedAt:new Date(st.startedAt).toISOString(),solved:T.filter(([n])=>st.s[n]&&st.s[n].ok).length,items:{}};
+  T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false,hint:false};doc.items[String(n)]={ok:!!r.ok,tries:r.tries,wrong:r.wrong.slice(0,10),hint:!!r.hint}});
+  Promise.resolve().then(()=>claude.use("db")).then(db=>db&&db.collection("cehdler").add(doc)).catch(()=>{});
+});
+const TABS=['ders1','ders2','mesq'];
+function tab(id,focus){if(!TABS.includes(id))id='ders1';TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$('tb-'+t);b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});try{localStorage.setItem('funk-tab',id)}catch(e){}if(focus)$('tb-'+id).focus();window.scrollTo({top:0})}
+TABS.forEach(t=>$('tb-'+t).addEventListener('click',()=>tab(t)));
+document.querySelector('.tabs').addEventListener('keydown',e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==='ArrowRight')tab(TABS[(i+1)%3],true);if(e.key==='ArrowLeft')tab(TABS[(i+2)%3],true)});
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.go)));
+{let t=(location.hash||'').slice(1);if(!TABS.includes(t)){try{t=localStorage.getItem('funk-tab')}catch(e){}}tab(t||'ders1')}
+</script>
+
+</body></html>

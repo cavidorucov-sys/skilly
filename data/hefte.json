@@ -1,0 +1,37 @@
+{
+  "hefte": "19–25 oktyabr 2026",
+  "qeyd": "Oyanma 06:30, yuxu 22:00 (Cümə və Şənbə 23:00). Ev tapşırığı məktəbdə.",
+  "gunler": [
+    {"gun": "Bazar ertəsi", "tarix": "2026-10-19", "isler": [
+      {"saat": "16:45–18:15", "is": "Riyaziyyat: triqonometriya, Dərs 1–2", "link": "dersler/triqonometriya-1.html"}
+    ]},
+    {"gun": "Çərşənbə axşamı", "tarix": "2026-10-20", "isler": [
+      {"saat": "15:00–17:00", "is": "FRİTL"},
+      {"saat": "18:20–19:20", "is": "Riyaziyyat: triqonometriya, Dərs 3", "link": "dersler/triqonometriya-1.html"},
+      {"saat": "19:20–19:50", "is": "Səhv jurnalı"}
+    ]},
+    {"gun": "Çərşənbə", "tarix": "2026-10-21", "isler": [
+      {"saat": "16:00–18:00", "is": "Fizika: maili müstəvi, Dərs 1–4", "link": "dersler/maili-mustevi-1.html"}
+    ]},
+    {"gun": "Cümə axşamı", "tarix": "2026-10-22", "isler": [
+      {"saat": "13:30–15:00", "is": "Riyaziyyat: triqonometriya, Dərs 4–5", "link": "dersler/triqonometriya-1.html"},
+      {"saat": "15:00–16:30", "is": "Riyaziyyat olimpiadası: giriş testi (tezliklə)"},
+      {"saat": "17:00–18:30", "is": "Cüdo"}
+    ]},
+    {"gun": "Cümə", "tarix": "2026-10-23", "isler": [
+      {"saat": "12:40–13:20", "is": "1 olimpiada məsələsi (məktəbdə)"},
+      {"saat": "15:00–17:00", "is": "FRİTL"}
+    ]},
+    {"gun": "Şənbə", "tarix": "2026-10-24", "isler": [
+      {"saat": "11:00–12:30", "is": "Vaxt limitli sınaq: riyaziyyat (tezliklə)"},
+      {"saat": "14:00–16:00", "is": "Layihə: Experiment 2 — 8 ölçmə (son tarix bazar)"},
+      {"saat": "17:00–18:30", "is": "Cüdo"}
+    ]},
+    {"gun": "Bazar", "tarix": "2026-10-25", "isler": [
+      {"saat": "11:00–13:00", "is": "Riyaziyyat olimpiadası (tezliklə)"},
+      {"saat": "13:00–13:30", "is": "Səhv jurnalı — həftənin icmalı"},
+      {"saat": "16:00–16:45", "is": "Esse (ingiliscə, ~300 söz)"},
+      {"saat": "19:50–20:20", "is": "Həftəlik baxış + atanın məktubları"}
+    ]}
+  ]
+}

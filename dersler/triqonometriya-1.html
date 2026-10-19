@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<a href="../index.html" style="position:fixed;right:12px;bottom:12px;z-index:50;background:#2c4a8a;color:#fff;padding:8px 12px;border-radius:6px;font:600 14px system-ui;text-decoration:none">← Portal</a>
+<title>Triqonometriya dərsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: same paper as Fikrət's other lesson pages. Four lesson tabs; each lesson ends with mistakes, summary and a self-check with hidden answers. */
+:root{
+  --hyp:#7a3fb0; --opp:#c0392b; --adj:#2f7d4a;
+  --paper:#f6f7f9; --sheet:#ffffff; --ink:#1c2433; --muted:#5b6578;
+  --line:#d8dde6; --accent:#2c4a8a; --accent-soft:#e6ecf7; --bubble:#9aa6bc;
+  --ok:#2f6b3e; --ok-soft:#e5f2e8; --warn:#a3361f; --warn-soft:#fbe9e4; --grid:#e3e7ee; --vec:#b4561b;
+  --f-body:"Noto Sans",system-ui,"Segoe UI",Arial,sans-serif;
+  --f-task:"Noto Serif",Georgia,"Times New Roman",serif;
+  --f-num:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; --hyp:#c39bf0; --opp:#f08a7e; --adj:#7fd19a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; --hyp:#c39bf0; --opp:#f08a7e; --adj:#7fd19a; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 80px;display:grid;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:20px;margin:6px 0 0;text-wrap:balance}
+p{margin:0;max-width:65ch}
+.intro{display:grid;gap:8px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);display:flex;gap:4px;border-bottom:2px solid var(--line);overflow-x:auto;overflow-y:hidden;padding-top:4px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tab small{display:block;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.panel{display:grid;gap:14px}
+.lesson{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.lesson h3{font-size:17px;margin:10px 0 0;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.lesson .st{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--sheet);background:var(--accent);border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;flex:none}
+.lesson ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:65ch}
+.m{font-family:var(--f-task);font-style:italic;white-space:nowrap}
+.fm{font-family:var(--f-num);font-size:15px;font-weight:700;background:var(--accent-soft);border-radius:6px;padding:10px 14px;white-space:pre-wrap;overflow-x:auto;justify-self:start;max-width:100%;box-sizing:border-box}
+.ex{font-family:var(--f-num);font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;white-space:pre-wrap;overflow-x:auto}
+.warnbox{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.fig{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.fig svg{flex:0 1 260px;width:260px;max-width:100%;height:auto;background:var(--paper);border-radius:6px}
+.fig .cap{flex:1 1 220px;min-width:0;display:grid;gap:6px}
+svg text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
+svg .lbl{fill:var(--ink);font-weight:700}
+.play{background:var(--accent-soft);border-radius:6px;padding:14px;display:grid;gap:10px;margin-top:6px}
+.graphs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.graphs figure{margin:0;display:grid;gap:4px;min-width:0}
+.graphs figcaption{font-family:var(--f-num);font-size:13px;font-weight:700}
+.graphs svg{width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.ctl{display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ctl div{display:grid;gap:2px}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl label{font-family:var(--f-num);font-size:14px}
+.facts{font-family:var(--f-num);font-size:13px;display:grid;gap:3px}
+.next{justify-self:end}
+.btn{font:inherit;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);border-radius:6px;padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.clock{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.time{font-family:var(--f-num);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.time.low{color:var(--warn)}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px}
+.task.right{border-color:var(--ok);background:var(--ok-soft)}
+.task.wrong{border-color:var(--warn);background:var(--warn-soft)}
+.task .head{display:flex;gap:12px;align-items:baseline}
+.task .n{font-family:var(--f-num);font-weight:700;color:var(--accent);min-width:2ch;font-variant-numeric:tabular-nums}
+.task .t{font-family:var(--f-task);font-size:16px;min-width:0}
+.task .mark{font-weight:700;font-size:14px}
+.sec{font-size:17px;margin:8px 0 0}
+.ans input[type=text]{font-family:var(--f-num);font-size:18px;width:9ch;padding:6px 8px;border:2px solid var(--bubble);border-radius:6px;background:var(--paper);color:var(--ink)}
+.ans input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ans{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.unit{font-family:var(--f-num);font-size:14px;color:var(--muted)}
+.bub{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;cursor:pointer;font-family:var(--f-task)}
+.bub input{position:absolute;opacity:0;pointer-events:none}
+.bub .dot{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--bubble);display:grid;place-items:center;font-family:var(--f-num);font-size:12px;font-weight:700;color:var(--muted)}
+.bub input:checked + .dot{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.bub:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.opts{display:grid;gap:4px}
+.confirm{background:var(--warn-soft);border:1px solid var(--warn);border-radius:6px;padding:14px;display:grid;gap:10px}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:6px;padding:14px;display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+pre.copy{white-space:pre-wrap;word-break:break-word;font-family:var(--f-num);font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0;max-height:260px;overflow:auto}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.life{border-left:3px solid var(--ok);background:var(--ok-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.mist{border:1px solid var(--warn);border-radius:6px;padding:12px 14px;display:grid;gap:6px;margin-top:8px}
+.mist b,.sum b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.mist b{color:var(--warn)}.sum b{color:var(--accent)}
+.sum{background:var(--accent-soft);border-radius:6px;padding:12px 14px;display:grid;gap:8px}
+.sum .ex{background:var(--sheet);border:0;font-weight:700}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-family:var(--f-num);font-size:14px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center;white-space:nowrap}
+.tbl th{background:var(--accent-soft);font-family:var(--f-task);font-style:italic;font-weight:600}
+.trirow{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.trirow svg{flex:0 1 300px;width:300px;max-width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.trirow .facts{flex:1 1 200px;min-width:0;font-size:14px;gap:6px}
+.facts .c{color:var(--accent);font-weight:700}.facts .s{color:var(--vec);font-weight:700}
+details.check{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:var(--paper)}
+details.check summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.check ol{margin:10px 0 0;padding-left:20px;display:grid;gap:10px;max-width:65ch}
+details.check .ans{display:block;margin-top:4px;color:var(--muted);font-size:14px}
+details.check .ans::before{content:"Cavab: ";font-weight:700}
+.hyp{color:var(--hyp)} .opp{color:var(--opp)} .adj{color:var(--adj)}
+svg text.hyp{fill:var(--hyp)} svg text.opp{fill:var(--opp)} svg text.adj{fill:var(--adj)}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Fikrət üçün · 17 oktyabr 2026</div>
+    <h1>Triqonometriya — sıfırdan başlayırıq</h1>
+    <p>Bu mövzunu heç keçməmisən — eybi yoxdur, buradan başlayırıq. Bilməli olduğun yalnız iki şey var: <b>düzbucaqlı üçbucaq</b> nədir və <b>Pifaqor teoremi</b> (<span class="m">a² + b² = c²</span>). Qalan hər şeyi addım-addım izah edirəm.</p>
+    <p><b>Necə oxumaq:</b> hər dərsi yavaş oxu. Rəqəmli nümunələri kağızda <b>özün</b> təkrarla — gözlə oxumaq kifayət deyil. Dərsin sonundakı 3 sualı cavaba baxmadan həll et. Bir dərsi bitirmədən növbətisinə keçmə.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Dərslər">
+    <button class="tab" role="tab" id="tb-t1" aria-controls="t1" type="button"><small>Dərs 1</small>Tərəflərin adları</button>
+    <button class="tab" role="tab" id="tb-t2" aria-controls="t2" type="button"><small>Dərs 2</small>sin, cos, tg</button>
+    <button class="tab" role="tab" id="tb-t3" aria-controls="t3" type="button"><small>Dərs 3</small>30°, 45°, 60°</button>
+    <button class="tab" role="tab" id="tb-t4" aria-controls="t4" type="button"><small>Dərs 4</small>Vahid çevrə</button>
+    <button class="tab" role="tab" id="tb-t5" aria-controls="t5" type="button"><small>Dərs 5</small>sin² + cos² = 1</button>
+  </nav>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="t1" aria-labelledby="tb-t1">
+    <h2>Dərs 1. Düzbucaqlı üçbucağın tərəflərinin adları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə bu mövzu lazımdır</h3>
+      <p>Təsəvvür et: həyətdə hündür bir ağac var. Onun hündürlüyünü bilmək istəyirsən, amma ağaca çıxa bilmirsən. Triqonometriya buna kömək edir: yerdə bir məsafəni ölçürsən, bir bucağı ölçürsən — və hündürlüyü <b>hesablayırsan</b>.</p>
+      <p>Triqonometriyanın əsas fikri belədir: <b>düzbucaqlı üçbucağın bucağını bilsən, onun tərəflərinin bir-birindən neçə dəfə böyük olduğunu da bilirsən.</b> Bunu addım-addım görəcəyik.</p>
+
+      <h3><span class="st">2</span> Düzbucaqlı üçbucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzbucaqlı üçbucaq: hipotenuz, qarşı katet, bitişik katet">
+          <polygon points="40,170 250,170 250,40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M238 170V158H250" fill="none" stroke="var(--ink)"/>
+          <path d="M80 170A40 40 0 0 0 74 149" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="84" y="162" class="lbl">α</text>
+          <line x1="40" y1="170" x2="250" y2="40" stroke="var(--hyp)" stroke-width="4"/>
+          <line x1="250" y1="170" x2="250" y2="40" stroke="var(--opp)" stroke-width="4"/>
+          <line x1="40" y1="170" x2="250" y2="170" stroke="var(--adj)" stroke-width="4"/>
+          <text x="90" y="95" class="lbl hyp">hipotenuz</text>
+          <text x="256" y="110" class="lbl opp">qarşı</text>
+          <text x="256" y="124" class="lbl opp">katet</text>
+          <text x="105" y="190" class="lbl adj">bitişik katet</text>
+        </svg>
+        <div class="cap">
+          <p>Bir bucağı düz (90°) olan üçbucaq. Düz bucaq kiçik kvadratla işarələnir.</p>
+          <p><b>α</b> ("alfa" oxunur) — baxdığımız bucağın adıdır. Riyaziyyatda naməlum ədədi x adlandırdığımız kimi, bucağı da α adlandırırıq.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Üç tərəfin adı</h3>
+      <ul>
+        <li><b class="hyp">Hipotenuz</b> — düz bucağın <b>qarşısındakı</b> tərəf. Həmişə ən uzun tərəfdir.</li>
+        <li><b class="opp">Qarşı katet</b> — α bucağının <b>qarşısında</b> duran tərəf. α-ya toxunmur.</li>
+        <li><b class="adj">Bitişik katet</b> — α bucağına <b>toxunan</b> tərəf (hipotenuzdan başqa). "Bitişik" — "yanında olan" deməkdir.</li>
+      </ul>
+      <p><b>Yoxlama üsulu:</b> barmağını α bucağına qoy. Barmağının toxunduğu iki tərəfdən biri hipotenuzdur, o biri — <b>bitişik</b>. Barmağının toxunmadığı tərəf — <b>qarşı</b>.</p>
+
+      <h3><span class="st">4</span> Diqqət: adlar bucaqdan asılıdır</h3>
+      <p>Üçbucaqda iki iti bucaq var. Başqa bucağa baxsan, <b class="opp">qarşı</b> və <b class="adj">bitişik</b> yerlərini dəyişir. Hipotenuz isə həmişə eyni qalır. Ona görə hər məsələdə əvvəlcə soruş: <b>"Mən hansı bucaqdan baxıram?"</b></p>
+
+      <h3><span class="st">5</span> Bölmək — "neçə dəfə"</h3>
+      <p>Növbəti dərsdə tərəfləri bir-birinə <b>böləcəyik</b>. Bölmənin mənası: bir şey o birindən neçə dəfə böyük və ya kiçikdir. Məsələn, 3 ÷ 6 = 0,5 deməkdir: "3, 6-nın yarısıdır". Bütün mövzu məhz bu "neçə dəfə" rəqəminə əsaslanır.</p>
+
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>Üçbucağın tərəfləri 3, 4, 5-dir. Hipotenuz hansıdır? <span class="ans">5 — ən uzun tərəf.</span></li>
+          <li>Yuxarıdakı şəkildə o biri iti bucağa (yuxarı sağdakına) baxsaq, qarşı katet hansı tərəf olar? <span class="ans">Aşağıdakı üfüqi tərəf (indi yaşıl olan).</span></li>
+          <li>Hipotenuzdan uzun katet ola bilərmi? <span class="ans">Xeyr. Hipotenuz həmişə ən uzundur.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="t2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="t2" aria-labelledby="tb-t2" hidden>
+    <h2>Dərs 2. Sinus, kosinus, tangens</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Kiçik təcrübə</h3>
+      <p>Kağızda 30°-li düzbucaqlı üçbucaq çək, hipotenuzu 10 sm olsun. Xətkeşlə qarşı kateti ölç — <b>5 sm</b> alınacaq. İndi eyni 30°-li üçbucağı hipotenuzu 20 sm olmaqla çək. Qarşı katet — <b>10 sm</b>.</p>
+      <div class="tbl"><table>
+        <tr><th>Bucaq 30°</th><td>kiçik üçbucaq</td><td>böyük üçbucaq</td><td>nəhəng üçbucaq</td></tr>
+        <tr><th>hipotenuz</th><td>10 sm</td><td>20 sm</td><td>100 m</td></tr>
+        <tr><th>qarşı katet</th><td>5 sm</td><td>10 sm</td><td>50 m</td></tr>
+        <tr><th>qarşı ÷ hipotenuz</th><td>0,5</td><td>0,5</td><td>0,5</td></tr>
+      </table></div>
+      <p>Üçbucaq böyüyür, amma <b>bölmə həmişə 0,5 çıxır</b>. Çünki bucaq eynidirsə, üçbucağın <b>forması</b> eynidir — sadəcə böyüdülüb, telefonda şəkli böyütmək kimi.</p>
+      <p>Bucağı dəyişsən, bölmə də dəyişir. Deməli, <b>hər bucağın öz rəqəmi var</b>. Bu rəqəmə ad veriblər — <b>sinus</b>.</p>
+
+      <h3><span class="st">2</span> Üç ad</h3>
+      <div class="fm">sin α = qarşı katet ÷ hipotenuz
+cos α = bitişik katet ÷ hipotenuz
+tg α  = qarşı katet ÷ bitişik katet</div>
+      <p>Oxunuşu: "sinus alfa", "kosinus alfa", "tangens alfa". Bunlar sadəcə adlardır — <b>hər biri bir bölmənin nəticəsidir</b>, yəni adi rəqəmdir.</p>
+      <p><b>Yadda saxlamaq üçün:</b> <b>s</b>inus — <b>q</b>arşı ("s-q"), <b>k</b>osinus — <b>b</b>itişik ("k-b"). sin və cos-da aşağıda həmişə <b>hipotenuz</b> durur. tg-də hipotenuz yoxdur — iki katet.</p>
+
+      <h3><span class="st">3</span> Rəqəmlə nümunə</h3>
+      <div class="ex">Üçbucağın katetləri 3 və 4, hipotenuzu 5. α — 3-ün qarşısındakı bucaq.
+
+  qarşı katet = 3      bitişik katet = 4      hipotenuz = 5
+
+  sin α = 3 ÷ 5 = 0,6
+  cos α = 4 ÷ 5 = 0,8
+  tg α  = 3 ÷ 4 = 0,75</div>
+      <p>Hipotenuz ən uzun olduğu üçün sin və cos həmişə <b>1-dən kiçikdir</b>. sin α = 1,2 alırsansa — haradasa səhv var.</p>
+
+      <div class="play">
+        <div class="eyebrow">Sürgüləri tərpət: bucağı və ölçünü dəyiş</div>
+        <div class="ctl">
+          <div><label for="ta">α = <b id="tav"></b>°</label><input type="range" id="ta" min="10" max="80" step="1" value="30"></div>
+          <div><label for="ts">Hipotenuz = <b id="tsv"></b></label><input type="range" id="ts" min="2" max="10" step="1" value="6"></div>
+        </div>
+        <div class="trirow">
+          <svg id="tri" viewBox="0 0 300 220" role="img" aria-label="Düzbucaqlı üçbucaq"></svg>
+          <div class="facts" id="trif"></div>
+        </div>
+        <p class="unit">Tapşırıq: bucağı 30°-də saxla və hipotenuzu dəyiş. Tərəflər dəyişir, bəs sin, cos, tg? Sonra bucağı dəyiş.</p>
+      </div>
+
+      <h3><span class="st">4</span> Nəyə lazımdır: naməlum tərəfi tapmaq</h3>
+      <p>Bucağı bilirsənsə, onun sin, cos, tg rəqəmi məlumdur (cədvəldən və ya kalkulyatordan). Onda bir tərəfi bilib o birini tapa bilərsən. Bölmənin tərsi — vurma:</p>
+      <div class="fm">qarşı katet   = hipotenuz × sin α
+bitişik katet = hipotenuz × cos α
+qarşı katet   = bitişik katet × tg α</div>
+
+      <div class="life"><b>Həyatdan: nərdivan.</b> 5 m-lik nərdivanı divara söykəyirsən. Nərdivanla yer arasındakı bucaq 60°-dir.
+        <br><b>Sual:</b> nərdivan divarda nə qədər hündürlüyə çatır?
+        <br><b>Həll:</b> nərdivan — hipotenuz (5 m). Hündürlük — 60° bucağın qarşısındakı katet.
+        <br>hündürlük = 5 × sin 60° ≈ 5 × 0,87 ≈ <b>4,3 m</b>.
+        <br><b>Sual 2:</b> nərdivanın ayağı divardan nə qədər uzaqdadır? Bu, bitişik katetdir: 5 × cos 60° = 5 × 0,5 = <b>2,5 m</b>.</div>
+
+      <div class="life"><b>Həyatdan: kölgə ilə ağacın hündürlüyü.</b> Günəşin şüası yerlə 30° bucaq altında düşür. Ağacın kölgəsinin uzunluğunu addımla ölçdün — 20 m.
+        <br>Ağac, kölgə və günəş şüası düzbucaqlı üçbucaq yaradır. Kölgə — 30° bucağa <b>bitişik</b> katet. Ağac — <b>qarşı</b> katet.
+        <br>ağac = kölgə × tg 30° ≈ 20 × 0,58 ≈ <b>11,6 m</b>. Ağaca çıxmadan hündürlüyünü tapdıq.</div>
+
+      <h3><span class="st">5</span> Fizikada sən bunu artıq görmüsən</h3>
+      <p>Mexanika dərsində maşın sürətlənəndə güzgüdən asılmış ətir geri əyilirdi və <span class="m">tg α = a / g</span> yazmışdıq. Bu, tangensin tərifidir: qarşı katet — üfüqi qüvvə <span class="m">ma</span>, bitişik katet — şaquli qüvvə <span class="m">mg</span>.</p>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li>Qarşı və bitişiyi qarışdırmaq. Əvvəl barmağını bucağa qoy (Dərs 1).</li>
+          <li>sin-də aşağıya katet yazmaq. sin və cos-da aşağıda <b>həmişə hipotenuz</b>.</li>
+          <li>Kalkulyatorda "DEG" (dərəcə) əvəzinə "RAD" rejimi açıq qalıb — sin 30 = −0,99 kimi qəribə cavab çıxır.</li>
+        </ul>
+      </div>
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>Katetləri 6 və 8 olan üçbucaqda hipotenuz neçədir və 6-nın qarşısındakı bucaq üçün sin, cos, tg neçədir? <span class="ans">Hipotenuz √(36 + 64) = 10. sin = 6/10 = 0,6; cos = 8/10 = 0,8; tg = 6/8 = 0,75. (Dərs 2-dəki 3-4-5 üçbucağının iki dəfə böyüyü — rəqəmlər eynidir!)</span></li>
+          <li>10 m-lik ip yerlə 30° bucaq altında çəkilib, sin 30° = 0,5. İpin ucu hansı hündürlükdədir? <span class="ans">10 × 0,5 = 5 m.</span></li>
+          <li>Bir üçbucaqda iki katet bərabərdir. tg α neçədir? <span class="ans">1 — eyni ədədi özünə bölürük.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="t3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="t3" aria-labelledby="tb-t3" hidden>
+    <h2>Dərs 3. Üç xüsusi bucaq: 30°, 45°, 60°</h2>
+    <article class="lesson">
+      <p>İmtahanda kalkulyator yoxdur. Amma məsələlərin çoxu bu üç bucaqla olur. Onların sin, cos, tg-ni bilmək lazımdır. Əzbərləmək əvəzinə <b>özün çıxaracaqsan</b> — onda heç vaxt unutmazsan.</p>
+
+      <h3><span class="st">1</span> 45°: kvadratı yarıya böl</h3>
+      <div class="fig">
+        <svg viewBox="0 0 220 170" role="img" aria-label="Kvadrat diaqonalla iki üçbucağa bölünüb">
+          <rect x="40" y="20" width="120" height="120" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="140" x2="160" y2="20" stroke="var(--hyp)" stroke-width="3"/>
+          <text x="92" y="158" class="lbl">1</text><text x="166" y="84" class="lbl">1</text><text x="74" y="72" class="lbl hyp">√2</text>
+          <text x="62" y="133">45°</text>
+        </svg>
+        <div class="cap">
+          <p>Tərəfi 1 olan kvadrat çək. Küncdən küncə xətt (diaqonal) çək. İki eyni üçbucaq alındı.</p>
+          <p>Hər birində katetlər 1 və 1. Hipotenuz — Pifaqorla: <span class="m">√(1² + 1²) = √2 ≈ 1,41</span>. Bucaqlar 45° və 45°.</p>
+        </div>
+      </div>
+      <div class="fm">sin 45° = 1 ÷ √2 ≈ 0,71     cos 45° ≈ 0,71     tg 45° = 1 ÷ 1 = 1</div>
+      <p>Dərsliklərdə <span class="m">1/√2</span> belə yazılır: <span class="m">√2/2</span>. Bu, eyni rəqəmdir (≈ 0,71).</p>
+
+      <h3><span class="st">2</span> 30° və 60°: bərabərtərəfli üçbucağı yarıya böl</h3>
+      <div class="fig">
+        <svg viewBox="0 0 220 180" role="img" aria-label="Bərabərtərəfli üçbucaq hündürlüklə iki yerə bölünüb">
+          <polygon points="30,160 190,160 110,22" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="22" x2="110" y2="160" stroke="var(--opp)" stroke-width="3"/>
+          <path d="M110 148H122V160" fill="none" stroke="var(--ink)"/>
+          <text x="62" y="86" class="lbl">2</text><text x="64" y="176" class="lbl">1</text><text x="114" y="100" class="lbl opp">√3</text>
+          <text x="44" y="154">60°</text><text x="98" y="50">30°</text>
+        </svg>
+        <div class="cap">
+          <p>Tərəfləri 2 olan bərabərtərəfli üçbucaq — bütün bucaqları 60°-dir. Təpədən aşağı düz xətt (hündürlük) endir.</p>
+          <p>Sol yarıda: hipotenuz 2, aşağı tərəf 1 (2-nin yarısı), hündürlük — Pifaqorla <span class="m">√(2² − 1²) = √3 ≈ 1,73</span>. Bucaqlar: aşağıda 60°, yuxarıda 30°.</p>
+        </div>
+      </div>
+      <div class="ex">30°-dən baxanda: qarşı = 1, bitişik = √3, hipotenuz = 2
+   sin 30° = 1/2 = 0,5     cos 30° = √3/2 ≈ 0,87     tg 30° = 1/√3 ≈ 0,58
+
+60°-dən baxanda: qarşı = √3, bitişik = 1, hipotenuz = 2
+   sin 60° = √3/2 ≈ 0,87   cos 60° = 1/2 = 0,5      tg 60° = √3 ≈ 1,73</div>
+      <p>Gördün? <b>sin 30° = cos 60°</b>. Çünki 30°-nin qarşısındakı tərəf 60°-yə bitişikdir — eyni tərəfdir, sadəcə başqa bucaqdan baxırıq.</p>
+
+      <h3><span class="st">3</span> Cədvəl</h3>
+      <div class="tbl"><table>
+        <tr><th>bucaq</th><td>30°</td><td>45°</td><td>60°</td></tr>
+        <tr><th>sin</th><td>1/2 = 0,5</td><td>√2/2 ≈ 0,71</td><td>√3/2 ≈ 0,87</td></tr>
+        <tr><th>cos</th><td>√3/2 ≈ 0,87</td><td>√2/2 ≈ 0,71</td><td>1/2 = 0,5</td></tr>
+        <tr><th>tg</th><td>√3/3 ≈ 0,58</td><td>1</td><td>√3 ≈ 1,73</td></tr>
+      </table></div>
+      <p><b>Fənd:</b> sin sətrində kökün altına 1, 2, 3 yaz və hamısını 2-yə böl: <span class="m">√1/2, √2/2, √3/2</span>. cos sətri — eyni rəqəmlər tərsinə. <b>Bucaq böyüdükcə sin böyüyür, cos kiçilir.</b></p>
+
+      <div class="life"><b>Həyatdan: maili müstəvi (sənin fizika olimpiadan).</b> Buz üzərində 30°-li təpədən xizək sürüşür. Onu aşağı çəkən təcil <span class="m">g × sin 30° = 10 × 0,5 = 5 m/s²</span>. 60°-li təpədə: <span class="m">10 × 0,87 ≈ 8,7 m/s²</span>. Təpə nə qədər dikdirsə, sin o qədər böyük, sürüşmə o qədər sürətli.</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li>sin 30° ilə sin 60°-ni qarışdırmaq. Yoxla: kiçik bucağın sinusu kiçikdir → sin 30° = 0,5 (kiçik), sin 60° ≈ 0,87 (böyük).</li>
+          <li>√3/2 ilə √3-ü qarışdırmaq: birincisi ≈ 0,87 (1-dən kiçik, sin/cos ola bilər), ikincisi ≈ 1,73 (yalnız tg ola bilər).</li>
+        </ul>
+      </div>
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>Hipotenuz 8. 30°-nin qarşısındakı katet neçədir? <span class="ans">8 × sin 30° = 8 × 0,5 = 4.</span></li>
+          <li>Hipotenuz 6. 60°-yə bitişik katet neçədir? <span class="ans">6 × cos 60° = 6 × 0,5 = 3.</span></li>
+          <li>Katet 5, ona bitişik bucaq 45°. O biri katet neçədir? <span class="ans">5 × tg 45° = 5 × 1 = 5.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="t4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="t4" aria-labelledby="tb-t4" hidden>
+    <h2>Dərs 4. Vahid çevrə: 90°-dən böyük bucaqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sual</h3>
+      <p>Düzbucaqlı üçbucaqda α həmişə 90°-dən kiçikdir. Bəs 120°-nin sinusu nədir? Üçbucaqda 120° ola bilməz. Amma fizikada belə bucaqlar çoxdur: təkər fırlanır, 120°, 200°, 300° dönür. Ona görə sin və cos-u <b>başqa yolla</b> da tərif edirlər. Kiçik bucaqlar üçün nəticə eyni qalır.</p>
+
+      <h3><span class="st">2</span> Nöqtənin "ünvanı"</h3>
+      <p>Koordinat müstəvisində hər nöqtənin iki rəqəmdən ibarət ünvanı var: <b>(x; y)</b>. x — sağa (mənfi isə sola) nə qədər, y — yuxarı (mənfi isə aşağı) nə qədər. Bunu funksiyalar dərsindən bilirsən.</p>
+
+      <h3><span class="st">3</span> Vahid çevrə və yeni tərif</h3>
+      <p>Mərkəzi (0; 0) nöqtəsində, radiusu <b>1</b> olan çevrə çək. Buna <b>vahid çevrə</b> deyilir ("vahid" — "bir").</p>
+      <p>Saat əqrəbi kimi bir ox təsəvvür et: başlanğıcda sağa (Ox oxu boyunca) baxır. Onu <b>saat əqrəbinin əksinə</b> α bucağı qədər döndər. Oxun ucu çevrədə bir nöqtəyə gəlir. Yeni tərif:</p>
+      <div class="fm">cos α = həmin nöqtənin x-i
+sin α = həmin nöqtənin y-i</div>
+      <p><b>Bu tərif əvvəlkindən fərqlənirmi?</b> İti bucaqlarda — yox, nəticə eynidir. Nöqtədən Ox oxuna düz xətt endir — düzbucaqlı üçbucaq alınır. Onun hipotenuzu radiusdur, yəni 1. Onda sin α = qarşı katet ÷ 1 = qarşı katet = nöqtənin hündürlüyü = y. Eyni ilə cos α = x.</p>
+      <div class="play">
+        <div class="eyebrow">Sürgünü tərpət: oxu fırlat</div>
+        <div class="ctl"><div><label for="ua">α = <b id="uav"></b>°</label><input type="range" id="ua" min="0" max="360" step="5" value="30"></div></div>
+        <div class="trirow">
+          <svg id="uc" viewBox="0 0 260 260" role="img" aria-label="Vahid çevrə"></svg>
+          <div class="facts" id="ucf"></div>
+        </div>
+        <p class="unit">Tapşırıq: 30°, sonra 150° qoy. sin (y) eynidir, cos (x) isə işarəsini dəyişir. Niyə? Şəklə bax.</p>
+      </div>
+
+      <h3><span class="st">4</span> Dörd hissə (rüblər) və işarələr</h3>
+      <p>Oxlar müstəvini dörd hissəyə bölür — <b>rüblər</b>. Nöqtə sola keçəndə x mənfi olur, aşağı düşəndə y mənfi olur:</p>
+      <div class="tbl"><table>
+        <tr><th>Rüb</th><td>I (0°–90°)</td><td>II (90°–180°)</td><td>III (180°–270°)</td><td>IV (270°–360°)</td></tr>
+        <tr><th>nöqtə harada</th><td>sağ-yuxarı</td><td>sol-yuxarı</td><td>sol-aşağı</td><td>sağ-aşağı</td></tr>
+        <tr><th>sin (y)</th><td>+</td><td>+</td><td>−</td><td>−</td></tr>
+        <tr><th>cos (x)</th><td>+</td><td>−</td><td>−</td><td>+</td></tr>
+      </table></div>
+      <p>Əzbərləmə — çevrəni çək və nöqtənin harada olduğuna bax. Oxların üstündə: <span class="m">0°</span> → (1; 0), <span class="m">90°</span> → (0; 1), <span class="m">180°</span> → (−1; 0), <span class="m">270°</span> → (0; −1).</p>
+
+      <div class="life"><b>Həyatdan: Şeytan çarxı.</b> Çarxın radiusu 30 m, mərkəzi yerdən 32 m yuxarıdadır. Sən ən aşağıdakı kabinəyə mindin (yerdən 2 m). Çarx α qədər dönəndə hündürlüyün: <span class="m">h = 32 − 30 × cos α</span>.
+        <br>α = 0° (hələ dönməyib): 32 − 30 × 1 = <b>2 m</b>.
+        <br>α = 90° (dörddə bir dövr): 32 − 30 × 0 = <b>32 m</b> — mərkəzin hündürlüyündə.
+        <br>α = 180° (yarım dövr): 32 − 30 × (−1) = <b>62 m</b> — ən yuxarıda. Burada cos-un mənfi olması lazımdır!</div>
+
+      <h3><span class="st">5</span> Radian — fizikadan tanış</h3>
+      <p>Mexanikada <span class="m">φ = l / R</span> yazmışdın: bucaq radianla = qövsün uzunluğu ÷ radius. Vahid çevrədə R = 1, deməli radian sadəcə <b>qövsün uzunluğudur</b>. Bütün çevrənin uzunluğu <span class="m">2π ≈ 6,28</span>, ona görə <span class="m">360° = 2π</span>, <span class="m">180° = π</span>, <span class="m">90° = π/2</span>.</p>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li><b>cos — x, sin — y.</b> Qarışdırma! Funksiyalar məşqində də "x, yoxsa y?" səhvi etmişdin — burada eyni tələdir. Yadda saxlamaq: əlifbada <b>c</b> s-dən əvvəl gəlir, <b>x</b> də y-dən əvvəl.</li>
+          <li>Bucağı saat əqrəbi istiqamətində saymaq. Müsbət bucaq — saat əqrəbinin <b>əksinə</b>.</li>
+        </ul>
+      </div>
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>sin 90° və cos 90° neçədir? <span class="ans">90°-də nöqtə (0; 1) — ən yuxarıda. sin 90° = 1, cos 90° = 0.</span></li>
+          <li>cos 180° neçədir? <span class="ans">180°-də nöqtə (−1; 0) — ən solda. cos 180° = −1.</span></li>
+          <li>sin 150° neçədir? <span class="ans">0,5. 150°-dəki nöqtə 30°-dəkinin güzgü əksidir (sol tərəfdə), hündürlüyü (y) eynidir.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="t5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="t5" aria-labelledby="tb-t5" hidden>
+    <h2>Dərs 5. Ən vacib bərabərlik: sin²α + cos²α = 1</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Bu bərabərlik Pifaqor teoremindən çıxır</h3>
+      <p>Vahid çevrədəki nöqtə <span class="m">(cos α; sin α)</span>, mərkəzdən məsafəsi 1. Nöqtədən Ox oxuna xətt endirək — düzbucaqlı üçbucaq: katetlər <span class="m">cos α</span> və <span class="m">sin α</span>, hipotenuz 1. Pifaqor teoremi:</p>
+      <div class="fm">(sin α)² + (cos α)² = 1²
+qısa yazılışı:   sin²α + cos²α = 1</div>
+      <p><span class="m">sin²α</span> — "sinus alfanın kvadratı", yəni <span class="m">sin α × sin α</span>. Bu bərabərlik <b>istənilən bucaq</b> üçün doğrudur.</p>
+      <div class="ex">Yoxla 30°-də:  sin 30° = 0,5    cos 30° ≈ 0,87
+   0,5² + 0,87² = 0,25 + 0,75 = 1  ✓
+
+Yoxla 3-4-5 üçbucağında:  sin = 0,6   cos = 0,8
+   0,6² + 0,8² = 0,36 + 0,64 = 1  ✓</div>
+
+      <h3><span class="st">2</span> Nəyə lazımdır: sin məlumdursa, cos-u tapmaq</h3>
+      <div class="ex">Verilib: sin α = 0,6, α iti bucaqdır. Tap: cos α.
+
+Addım 1. Bərabərliyi yaz:          sin²α + cos²α = 1
+Addım 2. Məlumu yerinə qoy:        0,36 + cos²α = 1
+Addım 3. cos²α-nı tap:              cos²α = 1 − 0,36 = 0,64
+Addım 4. Kök al:                    cos α = 0,8   (və ya −0,8)
+Addım 5. İşarəni seç:               iti bucaq — I rüb, cos müsbət → cos α = 0,8</div>
+      <p><b>Addım 5 ən vacibidir.</b> Kökdən <b>iki</b> cavab çıxır: + və −. Hansının düz olduğunu <b>rüb</b> deyir (Dərs 4-dəki cədvəl). Bu, riyaziyyat sınağındakı 25-ci suala oxşayır: orada da −12-ni atmaq və <b>niyə</b> atdığını yazmaq lazım idi. Burada da yaz: "α II rübdədir, cos mənfidir".</p>
+
+      <h3><span class="st">3</span> Tangens sin və cos ilə</h3>
+      <p>Tangens = qarşı ÷ bitişik. Hər ikisini hipotenuza bölsək, nəticə dəyişmir, amma sin və cos alınır:</p>
+      <div class="fm">tg α = sin α ÷ cos α</div>
+      <div class="ex">sin α = 0,6, cos α = 0,8   →   tg α = 0,6 ÷ 0,8 = 0,75   (Dərs 2-dəki ilə eyni ✓)</div>
+      <p>Bir də <b>kotangens</b> var: <span class="m">ctg α = cos α ÷ sin α = 1 ÷ tg α</span>. Sadəcə tangensin tərsidir.</p>
+
+      <div class="life"><b>Həyatdan: ustanın düz künc yoxlaması.</b> Usta otağın küncünün düz (90°) olub-olmadığını belə yoxlayır: bir divar boyu 3 m, o biri boyu 4 m ölçür. İki ucun arası düz 5 m-dirsə, künc düzdür. Çünki <span class="m">3² + 4² = 5²</span>. Bu, Pifaqordur — yəni <span class="m">sin²α + cos²α = 1</span>-in "tikinti" variantı: <span class="m">0,6² + 0,8² = 1</span>.</div>
+
+      <div class="life"><b>Həyatdan: düz xəttin mailliyi.</b> Funksiyalar dərsində <span class="m">y = kx + b</span>-də k-nı "mailliyi" adlandırmışdıq. İndi deyə bilərik: <span class="m">k = tg α</span>, burada α — xəttin Ox oxu ilə bucağıdır. Məsələn, <span class="m">y = x</span> xətti (k = 1) Ox ilə 45° bucaq yaradır, çünki tg 45° = 1.</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li><span class="m">sin α + cos α = 1</span> yazmaq — kvadratlar olmadan səhvdir. Yoxla 45°-də: 0,71 + 0,71 = 1,42 ≠ 1.</li>
+          <li>Kökdən sonra "−"-ni unutmaq və ya rübə baxmadan "+" seçmək.</li>
+        </ul>
+      </div>
+      <div class="sum"><b>Yadda saxla — bütün mövzu</b>
+        <div class="ex">sin α = qarşı ÷ hipotenuz      cos α = bitişik ÷ hipotenuz      tg α = qarşı ÷ bitişik
+sin 30° = 0,5      sin 45° = √2/2 ≈ 0,71      sin 60° = √3/2 ≈ 0,87
+cos 30° = sin 60°  cos 60° = sin 30°           tg 45° = 1
+Vahid çevrədə:  cos α = x,  sin α = y
+sin²α + cos²α = 1          tg α = sin α ÷ cos α          ctg α = 1 ÷ tg α
+Kök alanda: ± → düzgününü rüb seçir</div>
+      </div>
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>cos α = 0,8, α iti bucaqdır. sin α = ? <span class="ans">sin²α = 1 − 0,64 = 0,36 → sin α = 0,6 (iti bucaq, müsbət).</span></li>
+          <li>sin α = 0,8, cos α = 0,6. tg α = ? <span class="ans">0,8 ÷ 0,6 ≈ 1,33.</span></li>
+          <li>sin α = 0,6 və α 90°-180° arasındadır (II rüb). cos α = ? <span class="ans">cos² = 0,64 → ±0,8. II rübdə cos mənfidir → cos α = −0,8.</span></li>
+        </ol>
+      </details>
+    </article>
+  </section>
+</div>
+
+
+<script>
+const $=id=>document.getElementById(id);
+function el(t,a,...c){const e=document.createElement(t);for(const k in a||{})e.setAttribute(k,a[k]);c.forEach(x=>e.append(x));return e}
+const NS="http://www.w3.org/2000/svg";
+function sv(t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e}
+const f2=v=>(Math.round(v*100)/100).toFixed(2).replace("-","−");
+/* Dərs 1: üçbucaq */
+function tri(){const a=+$("ta").value,h=+$("ts").value,r=a*Math.PI/180;$("tav").textContent=a;$("tsv").textContent=h;
+  const opp=h*Math.sin(r),adj=h*Math.cos(r),sc=200/Math.max(adj,opp,1)*0.9,ox=40,oy=195;
+  const A=[ox,oy],B=[ox+adj*sc,oy],C=[ox+adj*sc,oy-opp*sc];const s=$("tri");s.replaceChildren();
+  s.append(sv("polygon",{points:[A,B,C].map(p=>p.join(",")).join(" "),fill:"var(--accent-soft)",stroke:"var(--accent)","stroke-width":2.5}));
+  s.append(sv("path",{d:`M${B[0]-12} ${B[1]}V${B[1]-12}H${B[0]}`,fill:"none",stroke:"var(--muted)"}));
+  const ar=34;s.append(sv("path",{d:`M${A[0]+ar} ${A[1]}A${ar} ${ar} 0 0 0 ${A[0]+ar*Math.cos(r)} ${A[1]-ar*Math.sin(r)}`,fill:"none",stroke:"var(--vec)","stroke-width":2}));
+  s.append(sv("text",{x:A[0]+ar+4,y:A[1]-6,class:"lbl"},"α"));
+  s.append(sv("line",{x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:"var(--adj)","stroke-width":4}));s.append(sv("line",{x1:B[0],y1:B[1],x2:C[0],y2:C[1],stroke:"var(--opp)","stroke-width":4}));s.append(sv("line",{x1:A[0],y1:A[1],x2:C[0],y2:C[1],stroke:"var(--hyp)","stroke-width":4}));s.append(sv("text",{x:(A[0]+B[0])/2-30,y:A[1]+16,class:"lbl adj"},"bitişik "+f2(adj)));
+  s.append(sv("text",{x:Math.min(B[0]+6,230),y:(B[1]+C[1])/2,class:"lbl opp"},"qarşı "+f2(opp)));
+  s.append(sv("text",{x:(A[0]+C[0])/2-60,y:(A[1]+C[1])/2-8,class:"lbl hyp"},"hipotenuz "+h));
+  $("trif").replaceChildren(...["sin α = "+f2(opp)+" / "+h+" = "+f2(Math.sin(r)),"cos α = "+f2(adj)+" / "+h+" = "+f2(Math.cos(r)),"tg α = "+f2(opp)+" / "+f2(adj)+" = "+f2(Math.tan(r))].map(x=>el("div",{},x)))}
+["ta","ts"].forEach(id=>$(id).addEventListener("input",tri));tri();
+/* Dərs 3: vahid çevrə */
+function uc(){const a=+$("ua").value,r=a*Math.PI/180,c=Math.cos(r),s=Math.sin(r);$("uav").textContent=a;
+  const R=100,O=130,px=O+R*c,py=O-R*s,S=$("uc");S.replaceChildren();
+  S.append(sv("path",{d:`M10 ${O}H250M${O} 10V250`,stroke:"var(--muted)","stroke-width":1.2,fill:"none"}));
+  S.append(sv("circle",{cx:O,cy:O,r:R,fill:"none",stroke:"var(--line)","stroke-width":2}));
+  [["I",190,70],["II",60,70],["III",60,200],["IV",190,200]].forEach(([t,x,y])=>S.append(sv("text",{x,y},t)));
+  S.append(sv("text",{x:236,y:O-6},"x"));S.append(sv("text",{x:O+6,y:20},"y"));S.append(sv("text",{x:O+R+3,y:O+14},"1"));
+  S.append(sv("path",{d:`M${px} ${py}V${O}`,stroke:"var(--vec)","stroke-width":2.5,"stroke-dasharray":"0"}));
+  S.append(sv("path",{d:`M${O} ${O}H${px}`,stroke:"var(--accent)","stroke-width":3}));
+  S.append(sv("path",{d:`M${O} ${O}L${px} ${py}`,stroke:"var(--ink)","stroke-width":2}));
+  if(a>0&&a<360){const ar=22,large=a>180?1:0;S.append(sv("path",{d:`M${O+ar} ${O}A${ar} ${ar} 0 ${large} 0 ${O+ar*c} ${O-ar*s}`,fill:"none",stroke:"var(--muted)","stroke-width":1.5}))}
+  S.append(sv("circle",{cx:px,cy:py,r:5,fill:"var(--ink)"}));
+  const q=a%90===0?"oxun üstündə":a<90?"I rüb":a<180?"II rüb":a<270?"III rüb":"IV rüb";
+  const t=Math.abs(c)<1e-9?"yoxdur (cos = 0)":f2(s/c);
+  $("ucf").replaceChildren(...[["Nöqtə: ("+f2(c)+"; "+f2(s)+") — "+q,""],["cos α = x = "+f2(c),"c"],["sin α = y = "+f2(s),"s"],["tg α = y / x = "+t,""],["sin²α + cos²α = "+f2(s*s+c*c),""]].map(([x,k])=>el("div",{class:k},x)))}
+$("ua").addEventListener("input",uc);uc();
+/* Tablar */
+const TABS=["t1","t2","t3","t4","t5"];
+function tab(id,focus){if(!TABS.includes(id))id="t1";TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$("tb-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});try{localStorage.setItem("trig-tab",id)}catch(e){}if(focus)$("tb-"+id).focus();window.scrollTo({top:0})}
+TABS.forEach(t=>$("tb-"+t).addEventListener("click",()=>tab(t)));
+document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%5],true);if(e.key==="ArrowLeft")tab(TABS[(i+4)%5],true)});
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.go)));
+{let t=(location.hash||"").slice(1);if(!TABS.includes(t)){try{t=localStorage.getItem("trig-tab")}catch(e){}}tab(t||"t1")}
+</script>
+
+</body></html>

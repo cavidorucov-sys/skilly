@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<a href="../index.html" style="position:fixed;right:12px;bottom:12px;z-index:50;background:#2c4a8a;color:#fff;padding:8px 12px;border-radius:6px;font:600 14px system-ui;text-decoration:none">← Portal</a>
+<title>Maili müstəvi dərsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: same paper as Fikrət's other lesson pages. Five lesson tabs on the inclined plane; colours match the force arrows; each lesson ends with a self-check. */
+:root{
+  --hyp:#7a3fb0; --opp:#c0392b; --adj:#2f7d4a;
+  --paper:#f6f7f9; --sheet:#ffffff; --ink:#1c2433; --muted:#5b6578;
+  --line:#d8dde6; --accent:#2c4a8a; --accent-soft:#e6ecf7; --bubble:#9aa6bc;
+  --ok:#2f6b3e; --ok-soft:#e5f2e8; --warn:#a3361f; --warn-soft:#fbe9e4; --grid:#e3e7ee; --vec:#b4561b;
+  --f-body:"Noto Sans",system-ui,"Segoe UI",Arial,sans-serif;
+  --f-task:"Noto Serif",Georgia,"Times New Roman",serif;
+  --f-num:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; --hyp:#c39bf0; --opp:#f08a7e; --adj:#7fd19a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; --hyp:#c39bf0; --opp:#f08a7e; --adj:#7fd19a; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 80px;display:grid;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:20px;margin:6px 0 0;text-wrap:balance}
+p{margin:0;max-width:65ch}
+.intro{display:grid;gap:8px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);display:flex;gap:4px;border-bottom:2px solid var(--line);overflow-x:auto;overflow-y:hidden;padding-top:4px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tab small{display:block;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.panel{display:grid;gap:14px}
+.lesson{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.lesson h3{font-size:17px;margin:10px 0 0;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.lesson .st{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--sheet);background:var(--accent);border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;flex:none}
+.lesson ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:65ch}
+.m{font-family:var(--f-task);font-style:italic;white-space:nowrap}
+.fm{font-family:var(--f-num);font-size:15px;font-weight:700;background:var(--accent-soft);border-radius:6px;padding:10px 14px;white-space:pre-wrap;overflow-x:auto;justify-self:start;max-width:100%;box-sizing:border-box}
+.ex{font-family:var(--f-num);font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;white-space:pre-wrap;overflow-x:auto}
+.warnbox{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.fig{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.fig svg{flex:0 1 260px;width:260px;max-width:100%;height:auto;background:var(--paper);border-radius:6px}
+.fig .cap{flex:1 1 220px;min-width:0;display:grid;gap:6px}
+svg text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
+svg .lbl{fill:var(--ink);font-weight:700}
+.play{background:var(--accent-soft);border-radius:6px;padding:14px;display:grid;gap:10px;margin-top:6px}
+.graphs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.graphs figure{margin:0;display:grid;gap:4px;min-width:0}
+.graphs figcaption{font-family:var(--f-num);font-size:13px;font-weight:700}
+.graphs svg{width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.ctl{display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ctl div{display:grid;gap:2px}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl label{font-family:var(--f-num);font-size:14px}
+.facts{font-family:var(--f-num);font-size:13px;display:grid;gap:3px}
+.next{justify-self:end}
+.btn{font:inherit;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);border-radius:6px;padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.clock{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.time{font-family:var(--f-num);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.time.low{color:var(--warn)}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px}
+.task.right{border-color:var(--ok);background:var(--ok-soft)}
+.task.wrong{border-color:var(--warn);background:var(--warn-soft)}
+.task .head{display:flex;gap:12px;align-items:baseline}
+.task .n{font-family:var(--f-num);font-weight:700;color:var(--accent);min-width:2ch;font-variant-numeric:tabular-nums}
+.task .t{font-family:var(--f-task);font-size:16px;min-width:0}
+.task .mark{font-weight:700;font-size:14px}
+.sec{font-size:17px;margin:8px 0 0}
+.ans input[type=text]{font-family:var(--f-num);font-size:18px;width:9ch;padding:6px 8px;border:2px solid var(--bubble);border-radius:6px;background:var(--paper);color:var(--ink)}
+.ans input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ans{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.unit{font-family:var(--f-num);font-size:14px;color:var(--muted)}
+.bub{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;cursor:pointer;font-family:var(--f-task)}
+.bub input{position:absolute;opacity:0;pointer-events:none}
+.bub .dot{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--bubble);display:grid;place-items:center;font-family:var(--f-num);font-size:12px;font-weight:700;color:var(--muted)}
+.bub input:checked + .dot{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.bub:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.opts{display:grid;gap:4px}
+.confirm{background:var(--warn-soft);border:1px solid var(--warn);border-radius:6px;padding:14px;display:grid;gap:10px}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:6px;padding:14px;display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+pre.copy{white-space:pre-wrap;word-break:break-word;font-family:var(--f-num);font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0;max-height:260px;overflow:auto}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.life{border-left:3px solid var(--ok);background:var(--ok-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.mist{border:1px solid var(--warn);border-radius:6px;padding:12px 14px;display:grid;gap:6px;margin-top:8px}
+.mist b,.sum b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.mist b{color:var(--warn)}.sum b{color:var(--accent)}
+.sum{background:var(--accent-soft);border-radius:6px;padding:12px 14px;display:grid;gap:8px}
+.sum .ex{background:var(--sheet);border:0;font-weight:700}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-family:var(--f-num);font-size:14px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center;white-space:nowrap}
+.tbl th{background:var(--accent-soft);font-family:var(--f-task);font-style:italic;font-weight:600}
+.trirow{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.trirow svg{flex:0 1 300px;width:300px;max-width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.trirow .facts{flex:1 1 200px;min-width:0;font-size:14px;gap:6px}
+.facts .c{color:var(--accent);font-weight:700}.facts .s{color:var(--vec);font-weight:700}
+details.check{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:var(--paper)}
+details.check summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.check ol{margin:10px 0 0;padding-left:20px;display:grid;gap:10px;max-width:65ch}
+details.check .ans{display:block;margin-top:4px;color:var(--muted);font-size:14px}
+details.check .ans::before{content:"Cavab: ";font-weight:700}
+.hyp{color:var(--hyp)} .opp{color:var(--opp)} .adj{color:var(--adj)}
+svg text.hyp{fill:var(--hyp)} svg text.opp{fill:var(--opp)} svg text.adj{fill:var(--adj)}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika · Fikrət üçün · 17 oktyabr 2026</div>
+    <h1>Maili müstəvi — addım-addım</h1>
+    <p>Bu həftə FRİTL-də maili müstəvini və sürtünməni keçdiniz. Dəftərində <span class="m">mg·sin α</span>, <span class="m">mg·cos α</span>, <span class="m">μ = tg α</span> kimi düsturlar var. Bu səhifə onların <b>haradan gəldiyini</b> sadə dillə izah edir.</p>
+    <p><b>Əvvəlcə:</b> triqonometriya səhifəsinin 1-ci və 2-ci dərsini oxu (sin, cos, tg nədir). Sonra bura qayıt. Nümunələri kağızda özün hesabla, hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Dərslər">
+    <button class="tab" role="tab" id="tb-m1" aria-controls="m1" type="button"><small>Dərs 1</small>Qüvvələr</button>
+    <button class="tab" role="tab" id="tb-m2" aria-controls="m2" type="button"><small>Dərs 2</small>Ağırlığı bölmək</button>
+    <button class="tab" role="tab" id="tb-m3" aria-controls="m3" type="button"><small>Dərs 3</small>Sürtünməsiz</button>
+    <button class="tab" role="tab" id="tb-m4" aria-controls="m4" type="button"><small>Dərs 4</small>Sürtünmə ilə</button>
+    <button class="tab" role="tab" id="tb-m5" aria-controls="m5" type="button"><small>Dərs 5</small>Yuxarı hərəkət</button>
+  </nav>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="m1" aria-labelledby="tb-m1">
+    <h2>Dərs 1. Maili müstəvi nədir və cismə hansı qüvvələr təsir edir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Maili müstəvi — sadəcə əyri səth</h3>
+      <p><b>Maili müstəvi</b> — üfüqə bucaq altında duran düz səthdir. Uşaq parkındakı sürüşmə, dağ yolu, yük maşınına qutu qaldırmaq üçün qoyulan taxta, xizək yamacı — hamısı maili müstəvidir.</p>
+      <p>Səthin üfüqlə yaratdığı bucağı yenə <b>α</b> adlandırırıq. α = 0° — düz döşəmə. α = 90° — divar.</p>
+
+      <h3><span class="st">2</span> Üç qüvvə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 220" role="img" aria-label="Maili müstəvidə cisim və üç qüvvə">
+          <defs>
+            <marker id="m-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--opp)"/></marker>
+            <marker id="m-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--adj)"/></marker>
+            <marker id="m-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--hyp)"/></marker>
+          </defs>
+          <polygon points="20,190 280,190 280,40" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M70 190A50 50 0 0 0 63 165" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <text x="74" y="182" class="lbl">α</text>
+          <g transform="translate(170,104) rotate(-30)">
+            <rect x="-22" y="-30" width="44" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          </g>
+          <line x1="168" y1="88" x2="168" y2="158" stroke="var(--opp)" stroke-width="3" marker-end="url(#m-g)"/>
+          <text x="174" y="156" class="lbl opp">mg</text>
+          <line x1="168" y1="88" x2="140" y2="40" stroke="var(--adj)" stroke-width="3" marker-end="url(#m-n)"/>
+          <text x="126" y="40" class="lbl adj">N</text>
+          <line x1="182" y1="100" x2="234" y2="70" stroke="var(--hyp)" stroke-width="3" marker-end="url(#m-f)"/>
+          <text x="214" y="62" class="lbl hyp">F sürt.</text>
+        </svg>
+        <div class="cap">
+          <p><b class="opp">mg — ağırlıq qüvvəsi.</b> Yer cismi həmişə <b>düz aşağı</b> çəkir. Səthin maili olması bunu dəyişmir.</p>
+          <p><b class="adj">N — dayaq reaksiyası.</b> Səth cismi "geri itələyir". Həmişə səthə <b>perpendikulyar</b> (düz bucaq altında) yönəlir.</p>
+          <p><b class="hyp">F sürt. — sürtünmə.</b> Səth boyu, hərəkətin (və ya hərəkət etmək istəyinin) <b>əksinə</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Əsas çətinlik</h3>
+      <p>Düz döşəmədə hər şey sadədir: mg aşağı, N yuxarı, bir-birini tarazlayır. Maili müstəvidə isə qüvvələr <b>müxtəlif istiqamətlərə</b> baxır: biri düz aşağı, biri maili, biri səth boyu. Onları birbaşa toplamaq çətindir.</p>
+      <p>Həll yolu: <b>ağırlıq qüvvəsini iki hissəyə bölmək</b> — biri səth boyu, biri səthə perpendikulyar. Bunu növbəti dərsdə edəcəyik. Sin və cos məhz burada lazım olur.</p>
+
+      <div class="life"><b>Həyatdan.</b> Ağır çantanı maili yolda yuxarı aparanda düz yolda aparmaqdan daha çətindir — çünki ağırlığın bir hissəsi səni <b>geri</b> çəkir. Dik yolda bu hissə böyükdür, az maili yolda kiçik. Bu "hissə"nin dəqiq ölçüsü — <span class="m">mg·sin α</span>.</div>
+
+      <details class="check"><summary>Özünü yoxla (2 sual)</summary>
+        <ol>
+          <li>Ağırlıq qüvvəsi maili müstəvidə hansı istiqamətə yönəlir? <span class="ans">Həmişə düz aşağı — səth necə olursa olsun.</span></li>
+          <li>Dayaq reaksiyası N hansı istiqamətə yönəlir? <span class="ans">Səthə perpendikulyar, səthdən kənara.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="m2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="m2" aria-labelledby="tb-m2" hidden>
+    <h2>Dərs 2. Ağırlığı iki hissəyə bölmək</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> İki hissə</h3>
+      <p>Ağırlıq qüvvəsini (<span class="m">mg</span>) iki qüvvənin cəmi kimi təsəvvür edirik:</p>
+      <ul>
+        <li><b class="opp">Səth boyu aşağı çəkən hissə</b> — cismi sürüşdürməyə çalışır.</li>
+        <li><b class="adj">Səthə basan hissə</b> — cismi səthə sıxır.</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 300 230" role="img" aria-label="Ağırlıq qüvvəsinin iki toplanana ayrılması">
+          <defs>
+            <marker id="d-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--ink)"/></marker>
+            <marker id="d-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--opp)"/></marker>
+            <marker id="d-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--adj)"/></marker>
+          </defs>
+          <line x1="20" y1="200" x2="280" y2="50" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="200" x2="280" y2="200" stroke="var(--muted)" stroke-dasharray="4 4"/>
+          <path d="M66 200A46 46 0 0 0 60 177" fill="none" stroke="var(--vec)" stroke-width="2"/><text x="70" y="194" class="lbl">α</text>
+          <circle cx="150" cy="125" r="5" fill="var(--ink)"/>
+          <line x1="150" y1="125" x2="150" y2="215" stroke="var(--ink)" stroke-width="3" marker-end="url(#d-g)"/>
+          <text x="156" y="222" class="lbl">mg</text>
+          <line x1="150" y1="125" x2="111" y2="147" stroke="var(--opp)" stroke-width="3" marker-end="url(#d-s)"/>
+          <text x="52" y="146" class="lbl opp">mg·sin α</text>
+          <line x1="150" y1="125" x2="189" y2="193" stroke="var(--adj)" stroke-width="3" marker-end="url(#d-c)"/>
+          <text x="194" y="190" class="lbl adj">mg·cos α</text>
+          <line x1="111" y1="147" x2="150" y2="215" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="189" y1="193" x2="150" y2="215" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <path d="M150 195A20 20 0 0 1 160 192" fill="none" stroke="var(--vec)" stroke-width="2"/><text x="160" y="208" class="lbl" font-size="10">α</text>
+        </svg>
+        <div class="cap">
+          <p>Qara ox — <span class="m">mg</span>. Qırmızı və yaşıl oxlar — onun iki hissəsi. Üçü birlikdə düzbucaqlı üçbucaq yaradır: <span class="m">mg</span> — hipotenuz, iki hissə — katetlər.</p>
+          <p>Bu üçbucaqda aşağıdakı bucaq da <b>α-ya bərabərdir</b> (şəkildə kiçik α).</p>
+        </div>
+      </div>
+      <div class="fm">səth boyu aşağı çəkən hissə:  mg · sin α
+səthə basan hissə:            mg · cos α</div>
+
+      <h3><span class="st">2</span> Niyə sin və niyə cos</h3>
+      <p>Üçbucaqda hipotenuz <span class="m">mg</span>. Kiçik α bucağının <b>qarşısında</b> səth boyu hissə durur → <span class="m">qarşı = hipotenuz × sin α = mg·sin α</span>. Bucağa <b>bitişik</b> olan — səthə basan hissə → <span class="m">mg·cos α</span>. Bu, triqonometriyanın 2-ci dərsindəki qaydanın eynisidir.</p>
+
+      <h3><span class="st">3</span> Yoxlama: ən sadə hallar</h3>
+      <p>Düsturu yoxlamağın ən yaxşı yolu — ən sadə hallara baxmaq:</p>
+      <ul>
+        <li><b>α = 0° (düz döşəmə):</b> sin 0° = 0 → səth boyu çəkən hissə <b>0</b>. Doğrudur — düz döşəmədə cisim özü sürüşmür. cos 0° = 1 → bütün ağırlıq döşəməyə basır.</li>
+        <li><b>α = 90° (divar):</b> sin 90° = 1 → bütün ağırlıq "səth boyu" — yəni cisim sərbəst düşür. cos 90° = 0 → divara heç basmır.</li>
+      </ul>
+      <p>Hər iki hal ağlabatandır. Deməli, sin və cos-u düzgün yerə qoymuşuq. <b>Bu yoxlamanı imtahanda da et</b> — sin ilə cos-u qarışdırmısansa, dərhal görəcəksən.</p>
+
+      <h3><span class="st">4</span> Dayaq reaksiyası</h3>
+      <p>Cisim səthin içinə batmır və səthdən qalxmır. Deməli, səthə perpendikulyar istiqamətdə qüvvələr tarazdır: səth cismi nə qədər basırsa, o qədər də geri itələyir:</p>
+      <div class="fm">N = mg · cos α</div>
+      <p>Diqqət: maili müstəvidə <span class="m">N</span> <b>mg-dən kiçikdir</b>. Düz döşəmədə olduğu kimi <span class="m">N = mg</span> yazmaq — ən çox edilən səhvdir.</p>
+
+      <div class="ex">Nümunə: 2 kq cisim, 30°-li maili müstəvi.
+  mg = 2 × 10 = 20 N
+  səth boyu çəkən:  20 × sin 30° = 20 × 0,5  = 10 N
+  səthə basan:      20 × cos 30° ≈ 20 × 0,87 ≈ 17,4 N   →   N ≈ 17,4 N</div>
+
+      <div class="play">
+        <div class="eyebrow">Sürgünü tərpət: bucağı dəyiş</div>
+        <div class="ctl"><div><label for="ia">α = <b id="iav"></b>°</label><input type="range" id="ia" min="0" max="90" step="5" value="30"></div></div>
+        <div class="facts" id="iaf"></div>
+        <p class="unit">Tapşırıq: bucaq böyüdükcə hansı hissə artır, hansı azalır? 45°-də iki hissə necədir?</p>
+      </div>
+
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>5 kq cisim 30°-li müstəvidə. Səth boyu aşağı çəkən hissə neçə N-dur? <span class="ans">50 × 0,5 = 25 N.</span></li>
+          <li>Həmin cisim üçün N = ? <span class="ans">50 × cos 30° ≈ 50 × 0,87 ≈ 43,5 N.</span></li>
+          <li>Hansı bucaqda iki hissə bərabərdir? <span class="ans">45° — çünki sin 45° = cos 45°.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="m3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="m3" aria-labelledby="tb-m3" hidden>
+    <h2>Dərs 3. Sürtünməsiz maili müstəvi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Hansı qüvvə cismi sürətləndirir</h3>
+      <p>Sürtünmə yoxdursa (buz, çox hamar səth), cismə səth boyu yalnız bir qüvvə təsir edir — <span class="m">mg·sin α</span>. Səthə perpendikulyar qüvvələr (<span class="m">mg·cos α</span> və <span class="m">N</span>) bir-birini tarazlayır, onlar cismi sürətləndirmir.</p>
+      <p>Nyutonun II qanunu: <span class="m">F = m·a</span>:</p>
+      <div class="ex">m · a = m · g · sin α
+Hər iki tərəfi m-ə bölək:
+a = g · sin α</div>
+      <div class="fm">a = g · sin α</div>
+
+      <h3><span class="st">2</span> Maraqlı nəticə: kütlə yoxdur</h3>
+      <p>Düsturda <b>m yoxdur</b>. Yəni hamar müstəvidə yüngül və ağır cisim <b>eyni təcillə</b> sürüşür. Sərbəst düşmədə də belə idi — maili müstəvi sadəcə "yavaşladılmış düşmədir". Qalileo düşməni öyrənmək üçün məhz maili müstəvidən istifadə edib: cisim yavaş hərəkət etdiyi üçün vaxtı ölçmək asan olurdu.</p>
+
+      <div class="ex">Nümunələr (g = 10):
+  α = 30°:  a = 10 × 0,5  = 5 m/s²
+  α = 45°:  a = 10 × 0,71 ≈ 7,1 m/s²
+  α = 60°:  a = 10 × 0,87 ≈ 8,7 m/s²
+  α = 90°:  a = 10 × 1    = 10 m/s²   ← sərbəst düşmə</div>
+
+      <div class="life"><b>Həyatdan: buzlu yamac.</b> Qışda buz bağlamış 10°-li küçədə (sin 10° ≈ 0,17) ayağın sürüşsə, təcilin təxminən <span class="m">10 × 0,17 = 1,7 m/s²</span> olar. Çox görünmür, amma 3 saniyədən sonra sürətin <span class="m">1,7 × 3 ≈ 5 m/s</span> (18 km/saat) olar — qaçış sürəti. Ona görə buzlu yamacda kiçik sürüşmə tez təhlükəli olur.</div>
+
+      <h3><span class="st">3</span> Kinematika ilə birləşdirmək</h3>
+      <p>Təcili tapdıqdan sonra mexanika dərsinin 1-ci hissəsindəki düsturlar işləyir.</p>
+      <div class="ex">Məsələ: hamar müstəvi 30°, uzunluğu 10 m. Cisim yuxarıdan sükunətdən buraxılır. Aşağıda sürəti nə qədər olar?
+  a = 10 × 0,5 = 5 m/s²
+  v² − v₀² = 2·a·s   →   v² = 2 × 5 × 10 = 100   →   v = 10 m/s</div>
+
+      <details class="check"><summary>Özünü yoxla (2 sual)</summary>
+        <ol>
+          <li>Hamar 30°-li müstəvidə 1 kq və 10 kq cisim buraxılır. Hansının təcili böyükdür? <span class="ans">Eynidir: hər ikisi 5 m/s². Kütlə düsturda yoxdur.</span></li>
+          <li>Hamar 30°-li müstəvidə cisim sükunətdən 2 s sürüşür. Sürəti? <span class="ans">a = 5 m/s², v = a·t = 10 m/s.</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="m4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="m4" aria-labelledby="tb-m4" hidden>
+    <h2>Dərs 4. Sürtünmə ilə maili müstəvi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sürtünmə nə qədərdir</h3>
+      <p>Dəftərindəki kimi: sürtünmənin ən böyük qiyməti <span class="m">μ·N</span>-dir. Maili müstəvidə <span class="m">N = mg·cos α</span>, deməli:</p>
+      <div class="fm">F sürt. (max) = μ · m · g · cos α</div>
+      <p>Bu qüvvə səth boyu, cismin hərəkət etmək istədiyi istiqamətin <b>əksinə</b> — yəni sürüşüb düşmək istəyirsə, <b>yuxarı</b> yönəlir.</p>
+
+      <h3><span class="st">2</span> Üç hal: durur, bərabər sürüşür, sürətlənir</h3>
+      <p>İki qüvvəni müqayisə edirik: <b class="opp">aşağı çəkən</b> <span class="m">mg·sin α</span> və <b class="hyp">saxlayan</b> sürtünmə <span class="m">μ·mg·cos α</span>. Hər ikisində <span class="m">mg</span> var — ixtisar edirik və <span class="m">cos α</span>-ya bölürük (sin ÷ cos = tg):</p>
+      <div class="tbl"><table>
+        <tr><th>müqayisə</th><th>nə baş verir</th></tr>
+        <tr><td>tg α ≤ μ_s</td><td>cisim <b>durur</b> — sürtünmə saxlaya bilir</td></tr>
+        <tr><td>tg α = μ</td><td>itələsən, <b>sabit sürətlə</b> sürüşür (F əv = 0)</td></tr>
+        <tr><td>tg α &gt; μ</td><td>cisim <b>sürətlənərək</b> sürüşür</td></tr>
+      </table></div>
+      <p>Bunlar dəftərindəki üç qutudur: <span class="m">μ_s &gt; tg α</span>, <span class="m">μ = tg α</span>, <span class="m">tg α &gt; μ_k</span>. İndi onların haradan gəldiyini bilirsən.</p>
+
+      <h3><span class="st">3</span> Sürətlənəndə təcil</h3>
+      <div class="ex">m·a = (aşağı çəkən) − (sürtünmə)
+m·a = mg·sin α − μ·mg·cos α        | m-ə bölək
+a = g·sin α − μ·g·cos α</div>
+      <div class="fm">a = g · (sin α − μ · cos α)</div>
+      <p>Yoxlama: <span class="m">μ = 0</span> → <span class="m">a = g·sin α</span>, Dərs 3-dəki kimi ✓. Kütlə yenə yoxdur.</p>
+      <div class="ex">Nümunə: 30°, μ = 0,2.
+  a = 10 × (0,5 − 0,2 × 0,87) = 10 × (0,5 − 0,174) = 10 × 0,326 ≈ 3,3 m/s²
+  (sürtünməsiz 5 m/s² olardı — sürtünmə təcili azaldır)</div>
+
+      <div class="play">
+        <div class="eyebrow">Sürgüləri tərpət: bucaq və sürtünmə</div>
+        <div class="ctl">
+          <div><label for="fa">α = <b id="fav"></b>°</label><input type="range" id="fa" min="0" max="80" step="1" value="30"></div>
+          <div><label for="fm">μ = <b id="fmv"></b></label><input type="range" id="fm" min="0" max="1" step="0.05" value="0.3"></div>
+        </div>
+        <div class="facts" id="ff"></div>
+        <p class="unit">Tapşırıq: μ = 0,3 qoy və bucağı yavaş-yavaş artır. Cisim hansı bucaqda sürüşməyə başlayır? tg həmin bucaq neçədir?</p>
+      </div>
+
+      <div class="life"><b>Evdə təcrübə: μ-nü ölç.</b> Kitabı masaya qoy, üstünə sikkə qoy. Kitabın bir ucunu yavaş-yavaş qaldır. Sikkə sürüşməyə başladığı anda dayan və bucağı telefonun <b>Measure → Level</b> funksiyası ilə ölç. Məsələn, 17°-də sürüşdüsə: <span class="m">μ_s = tg 17° ≈ 0,31</span>. Bir ölçmə ilə sürtünmə əmsalını tapdın! (Experiment üçün yaxşı ideya.)</div>
+      <div class="life"><b>Həyatdan: niyə maşın yamacda durur.</b> Yaş asfaltda <span class="m">μ ≈ 0,5</span> → maşın <span class="m">tg α ≤ 0,5</span>, yəni təxminən 27°-yə qədər yamacda əyləclə dura bilər. Buzda <span class="m">μ ≈ 0,1</span> → yalnız ~6°-yə qədər. Ona görə qışda kiçik yamacda da maşınlar sürüşür.</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li>Maili müstəvidə <span class="m">N = mg</span> yazmaq. Düzgünü: <span class="m">N = mg·cos α</span>.</li>
+          <li>Sürtünməni <span class="m">μ·mg·sin α</span> yazmaq. Sürtünmə <b>N</b>-dən asılıdır → cos.</li>
+          <li>Sin və cos-u qarışdırmaq — yoxla: α = 0°-də aşağı çəkən qüvvə 0 olmalıdır.</li>
+          <li>Cisim durursa, sürtünməni yenə <span class="m">μN</span> götürmək. Durursa, sürtünmə <b>tam lazım olan qədərdir</b>: <span class="m">mg·sin α</span>, μN isə yalnız onun ən böyük qiymətidir.</li>
+        </ul>
+      </div>
+      <details class="check"><summary>Özünü yoxla (3 sual)</summary>
+        <ol>
+          <li>μ_s = 0,6. Cisim 30°-li müstəvidə durarmı? <span class="ans">tg 30° ≈ 0,58 &lt; 0,6 → durur (az fərqlə).</span></li>
+          <li>45°-li müstəvidə cisim sabit sürətlə sürüşür. μ = ? <span class="ans">μ = tg 45° = 1.</span></li>
+          <li>60°, μ = 0,5. a = ? <span class="ans">10 × (0,87 − 0,5 × 0,5) = 10 × 0,62 = 6,2 m/s².</span></li>
+        </ol>
+      </details>
+    </article>
+    <button class="btn next" type="button" data-go="m5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="m5" aria-labelledby="tb-m5" hidden>
+    <h2>Dərs 5. Cisim yuxarı hərəkət edəndə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Nə dəyişir</h3>
+      <p>Cismi müstəvi boyu yuxarı itələdin və buraxdın. O, yuxarı sürüşür və yavaşıyır. İndi sürtünmə hərəkətin əksinə — yəni <b>aşağı</b> yönəlir. Ağırlığın hissəsi də aşağı çəkir. İki qüvvə <b>eyni tərəfə</b> baxır — toplanır:</p>
+      <div class="fm">a = g · (sin α + μ · cos α)     (yavaşıma, yuxarı gedəndə)</div>
+      <p>Aşağı sürüşəndə mənfi idi, yuxarı gedəndə müsbətdir. Yadda saxlamaq üçün: <b>sürtünmə həmişə hərəkətə mane olur</b>. Aşağı gedəndə təcili azaldır, yuxarı gedəndə yavaşımanı artırır.</p>
+      <div class="ex">Məsələ: 30°, μ = 0,2. Cismə yuxarı 8 m/s sürət verildi. Nə qədər yuxarı qalxar?
+  a = 10 × (0,5 + 0,2 × 0,87) = 10 × 0,674 ≈ 6,7 m/s²   (yavaşıma)
+  v² − v₀² = −2·a·s   →   0 − 64 = −2 × 6,7 × s   →   s ≈ 4,8 m</div>
+
+      <h3><span class="st">2</span> Dartmaq: qüvvə nə qədər olmalıdır</h3>
+      <p>Qutunu müstəvi boyu yuxarı <b>sabit sürətlə</b> dartmaq üçün qüvvə iki şeyi aşmalıdır: ağırlığın hissəsini və sürtünməni:</p>
+      <div class="fm">F = mg · sin α + μ · mg · cos α</div>
+      <div class="life"><b>Həyatdan: niyə pandus "qüvvə qənaət edir".</b> 50 kq qutunu 1 m hündürlüyə birbaşa qaldırmaq üçün 500 N lazımdır. 30°-li hamar taxta ilə (μ ≈ 0) dartsan: <span class="m">500 × 0,5 = 250 N</span> — iki dəfə az. Amma yol iki dəfə uzundur (1 m əvəzinə 2 m). Qüvvədən qazanırsan, yoldan itirirsən — bu, mexanikanın "qızıl qaydası"dır.</div>
+
+      <div class="sum"><b>Yadda saxla — bütün mövzu</b>
+        <div class="ex">Ağırlığın hissələri:   səth boyu  mg·sin α      səthə basan  mg·cos α
+Dayaq reaksiyası:      N = mg·cos α             (mg deyil!)
+Sürtünmə (max):        μ·mg·cos α
+Durur:                 tg α ≤ μ_s
+Sabit sürətlə sürüşür: tg α = μ
+Aşağı sürüşür:         a = g(sin α − μ cos α)
+Yuxarı gedir:          a = g(sin α + μ cos α)  (yavaşıma)
+Yoxlama:               α = 0° → çəkən 0;  α = 90° → sərbəst düşmə</div>
+      </div>
+      <details class="check"><summary>Özünü yoxla (2 sual)</summary>
+        <ol>
+          <li>Sürtünmə yoxdursa, yuxarı və aşağı hərəkətdə təcil fərqlidirmi? <span class="ans">Xeyr: hər ikisində g·sin α, aşağı yönəlib.</span></li>
+          <li>10 kq qutunu 30°-li, μ = 0,1 olan müstəvi boyu yuxarı sabit sürətlə dartmaq üçün qüvvə? <span class="ans">100 × 0,5 + 0,1 × 100 × 0,87 = 50 + 8,7 ≈ 58,7 N.</span></li>
+        </ol>
+      </details>
+    </article>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function el(t,a,...c){const e=document.createElement(t);for(const k in a||{})e.setAttribute(k,a[k]);c.forEach(x=>e.append(x));return e}
+const f2=v=>(Math.round(v*100)/100).toFixed(2).replace(".",",");
+function parts(){const a=+$("ia").value,r=a*Math.PI/180;$("iav").textContent=a;
+  $("iaf").replaceChildren(...[["m = 2 kq, mg = 20 N",""],["sin "+a+"° = "+f2(Math.sin(r))+"   →   səth boyu çəkən: 20 × "+f2(Math.sin(r))+" = "+f2(20*Math.sin(r))+" N","opp"],["cos "+a+"° = "+f2(Math.cos(r))+"   →   səthə basan (N): 20 × "+f2(Math.cos(r))+" = "+f2(20*Math.cos(r))+" N","adj"]].map(([x,k])=>el("div",{class:k},x)))}
+$("ia").addEventListener("input",parts);parts();
+function fr(){const a=+$("fa").value,mu=+$("fm").value,r=a*Math.PI/180;$("fav").textContent=a;$("fmv").textContent=f2(mu);
+  const s=Math.sin(r),c=Math.cos(r),t=Math.tan(r),acc=10*(s-mu*c);
+  const st=t<mu-1e-9?["DURUR — sürtünmə saxlayır","adj"]:Math.abs(t-mu)<0.005?["SƏRHƏD — itələsən, sabit sürətlə sürüşər","hyp"]:["SÜRÜŞÜR — sürətlənir","opp"];
+  const lines=[["1 kq üçün: aşağı çəkən qüvvə g·sin α = "+f2(10*s)+" N",""],["1 kq üçün: saxlayan sürtünmə (max) μ·g·cos α = "+f2(10*mu*c)+" N",""],["tg α = "+f2(t)+"   müqayisə   μ = "+f2(mu),""],[st[0],st[1]]];
+  if(t>mu)lines.push(["a = g(sin α − μ cos α) = "+f2(acc)+" m/s²","opp"]);
+  $("ff").replaceChildren(...lines.map(([x,k])=>el("div",{class:k},x)))}
+["fa","fm"].forEach(id=>$(id).addEventListener("input",fr));fr();
+const TABS=["m1","m2","m3","m4","m5"];
+function tab(id,focus){if(!TABS.includes(id))id="m1";TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$("tb-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});try{localStorage.setItem("maili-tab",id)}catch(e){}if(focus)$("tb-"+id).focus();window.scrollTo({top:0})}
+TABS.forEach(t=>$("tb-"+t).addEventListener("click",()=>tab(t)));
+document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%5],true);if(e.key==="ArrowLeft")tab(TABS[(i+4)%5],true)});
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.go)));
+{let t=(location.hash||"").slice(1);if(!TABS.includes(t)){try{t=localStorage.getItem("maili-tab")}catch(e){}}tab(t||"m1")}
+</script>
+
+</body></html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="az"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Düsturlar · Fikrət</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head><body>
+<main>
+<h1>Düsturlar</h1>
+<p class="lead">Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs.</p>
+<input class="search" id="q" type="search" placeholder="Axtar: məsələn, sin, təcil, parabola" aria-label="Düstur axtar">
+<div id="list" style="display:grid;gap:12px"><p class="empty">Yüklənir…</p></div>
+</main>
+<footer>Fikrət · Hazırlıq portalı. Cavablar səhifələrdə şifrəlidir — özün həll et.</footer>
+<script>
+let ALL = [];
+function draw(q) {
+  q = (q || "").toLowerCase();
+  const box = document.getElementById("list"); box.replaceChildren();
+  let fenn = null, mov = null;
+  ALL.filter(f => !q || (f.ad + f.fx + f.movzu + (f.nevaxt||"")).toLowerCase().includes(q)).forEach(f => {
+    if (f.fenn !== fenn) { fenn = f.fenn; mov = null; box.append(el("h2", {}, fenn)); }
+    const card = el("div", { class: "card f" },
+      el("div", { class: "muted" }, f.movzu + " · " + f.ad),
+      el("div", { class: "fx" }, f.fx),
+      el("div", { class: "note" }, f.nevaxt || ""));
+    if (f.sehv) card.append(el("div", { class: "err" }, "Tipik səhv: " + f.sehv));
+    if (f.ders) card.append(el("a", { href: f.ders, class: "note" }, "İzahı dərsdə →"));
+    box.append(card);
+  });
+  if (!box.children.length) box.append(el("p", { class: "empty" }, "Tapılmadı."));
+}
+load("data/dusturlar.json").then(d => { ALL = d; draw(""); }).catch(e => { document.getElementById("list").textContent = "Yüklənmədi: " + e.message; });
+document.addEventListener("input", e => { if (e.target.id === "q") draw(e.target.value); });
+</script>
+</body></html>

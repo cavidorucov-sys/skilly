@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<a href="../index.html" style="position:fixed;right:12px;bottom:12px;z-index:50;background:#2c4a8a;color:#fff;padding:8px 12px;border-radius:6px;font:600 14px system-ui;text-decoration:none">← Portal</a>
+<title>Mexanika dərsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: the same paper as Fikrət's DİM and functions pages. Four tabs: three lessons in the order of his lyceum notebook, then a timed test. */
+:root{
+  --paper:#f6f7f9; --sheet:#ffffff; --ink:#1c2433; --muted:#5b6578;
+  --line:#d8dde6; --accent:#2c4a8a; --accent-soft:#e6ecf7; --bubble:#9aa6bc;
+  --ok:#2f6b3e; --ok-soft:#e5f2e8; --warn:#a3361f; --warn-soft:#fbe9e4; --grid:#e3e7ee; --vec:#b4561b;
+  --f-body:"Noto Sans",system-ui,"Segoe UI",Arial,sans-serif;
+  --f-task:"Noto Serif",Georgia,"Times New Roman",serif;
+  --f-num:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12161d; --sheet:#1a1f28; --ink:#e4e8ef; --muted:#9aa4b5;
+  --line:#2e3644; --accent:#8fb0f0; --accent-soft:#223152; --bubble:#5d6a80;
+  --ok:#8fd19f; --ok-soft:#1d3324; --warn:#f09a85; --warn-soft:#3a1f19; --grid:#262d39; --vec:#f0a46e; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 80px;display:grid;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:20px;margin:6px 0 0;text-wrap:balance}
+p{margin:0;max-width:65ch}
+.intro{display:grid;gap:8px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);display:flex;gap:4px;border-bottom:2px solid var(--line);overflow-x:auto;overflow-y:hidden;padding-top:4px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tab small{display:block;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.panel{display:grid;gap:14px}
+.lesson{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.lesson h3{font-size:17px;margin:10px 0 0;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.lesson .st{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--sheet);background:var(--accent);border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;flex:none}
+.lesson ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:65ch}
+.m{font-family:var(--f-task);font-style:italic;white-space:nowrap}
+.fm{font-family:var(--f-num);font-size:15px;font-weight:700;background:var(--accent-soft);border-radius:6px;padding:10px 14px;white-space:pre-wrap;overflow-x:auto;justify-self:start;max-width:100%;box-sizing:border-box}
+.ex{font-family:var(--f-num);font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;white-space:pre-wrap;overflow-x:auto}
+.warnbox{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.fig{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.fig svg{flex:0 1 260px;width:260px;max-width:100%;height:auto;background:var(--paper);border-radius:6px}
+.fig .cap{flex:1 1 220px;min-width:0;display:grid;gap:6px}
+svg text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
+svg .lbl{fill:var(--ink);font-weight:700}
+.play{background:var(--accent-soft);border-radius:6px;padding:14px;display:grid;gap:10px;margin-top:6px}
+.graphs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.graphs figure{margin:0;display:grid;gap:4px;min-width:0}
+.graphs figcaption{font-family:var(--f-num);font-size:13px;font-weight:700}
+.graphs svg{width:100%;height:auto;background:var(--sheet);border-radius:6px}
+.ctl{display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ctl div{display:grid;gap:2px}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl label{font-family:var(--f-num);font-size:14px}
+.facts{font-family:var(--f-num);font-size:13px;display:grid;gap:3px}
+.next{justify-self:end}
+.btn{font:inherit;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);border-radius:6px;padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.clock{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.time{font-family:var(--f-num);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.time.low{color:var(--warn)}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px}
+.task.right{border-color:var(--ok);background:var(--ok-soft)}
+.task.wrong{border-color:var(--warn);background:var(--warn-soft)}
+.task .head{display:flex;gap:12px;align-items:baseline}
+.task .n{font-family:var(--f-num);font-weight:700;color:var(--accent);min-width:2ch;font-variant-numeric:tabular-nums}
+.task .t{font-family:var(--f-task);font-size:16px;min-width:0}
+.task .mark{font-weight:700;font-size:14px}
+.sec{font-size:17px;margin:8px 0 0}
+.ans input[type=text]{font-family:var(--f-num);font-size:18px;width:9ch;padding:6px 8px;border:2px solid var(--bubble);border-radius:6px;background:var(--paper);color:var(--ink)}
+.ans input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ans{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.unit{font-family:var(--f-num);font-size:14px;color:var(--muted)}
+.bub{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;cursor:pointer;font-family:var(--f-task)}
+.bub input{position:absolute;opacity:0;pointer-events:none}
+.bub .dot{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--bubble);display:grid;place-items:center;font-family:var(--f-num);font-size:12px;font-weight:700;color:var(--muted)}
+.bub input:checked + .dot{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.bub:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.opts{display:grid;gap:4px}
+.confirm{background:var(--warn-soft);border:1px solid var(--warn);border-radius:6px;padding:14px;display:grid;gap:10px}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:6px;padding:14px;display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+pre.copy{white-space:pre-wrap;word-break:break-word;font-family:var(--f-num);font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0;max-height:260px;overflow:auto}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.life{border-left:3px solid var(--ok);background:var(--ok-soft);padding:10px 14px;border-radius:0 6px 6px 0;max-width:65ch}
+.mist{border:1px solid var(--warn);border-radius:6px;padding:12px 14px;display:grid;gap:6px;margin-top:8px}
+.mist b,.sum b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.mist b{color:var(--warn)}.sum b{color:var(--accent)}
+.sum{background:var(--accent-soft);border-radius:6px;padding:12px 14px;display:grid;gap:8px}
+.sum .ex{background:var(--sheet);border:0;font-weight:700}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-family:var(--f-num);font-size:14px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center;white-space:nowrap}
+.tbl th{background:var(--accent-soft);font-family:var(--f-task);font-style:italic;font-weight:600}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika · Fikrət üçün · 6 oktyabr 2026</div>
+    <h1>Mexanika: hərəkət və qüvvə</h1>
+    <p>Bu səhifə sənin lisey dəftərindəki üç mövzu üzrədir: bərabərtəcilli hərəkət, çevrə üzrə hərəkət və bağlı cisimlər. Sıra ilə get: <b>Dərs 1 → Dərs 2 → Dərs 3 → Sınaq</b>. Hər addımda yaşıl qutuda <b>həyatdan nümunə</b> var — əvvəl onu oxu, sonra düsturu. Nümunələri kağızda özün hesabla. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Bölmələr">
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bərabərtəcilli</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Çevrə üzrə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Dinamika</button>
+    <button class="tab" role="tab" id="tb-sq" aria-controls="sq" type="button"><small>Sınaq</small>24 tapşırıq</button>
+  </nav>
+
+  <!-- ============ DƏRS 1 ============ -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1">
+    <h2>Bərabərtəcilli düzxətli hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Təcil: sürət nə qədər tez dəyişir</h3>
+      <p>Metroda qatar stansiyadan çıxanda bədənin bir az geri itələnir. Qatar dayananda isə irəli əyilirsən. Bu, qatarın sürətinin <b>dəyişdiyini</b> hiss etməyindir. Sürətin dəyişmə tempinə <b>təcil</b> deyirik.</p>
+      <p>Təcil bir sualın cavabıdır: <b>hər saniyədə sürət neçə m/s dəyişir?</b></p>
+      <div class="fm">a = (v − v₀) / t        vahidi: m/s²</div>
+      <p><span class="m">v₀</span> — başlanğıc sürət, <span class="m">v</span> — son sürət, <span class="m">t</span> — keçən vaxt.</p>
+      <div class="life"><b>Həyatdan.</b> Metro qatarı 30 saniyədə 0-dan 15 m/s-ə (54 km/saat) çatır: <span class="m">a = 15 / 30 = 0,5 m/s²</span>. İdman avtomobili 4 saniyədə 0-dan 28 m/s-ə (100 km/saat) çatır: <span class="m">a = 7 m/s²</span>. Avtomobildə oturanı oturacağa daha bərk sıxan budur — təcil 14 dəfə böyükdür.</div>
+      <div class="ex">km/saat → m/s:  3,6-ya böl.   72 km/saat = 72 / 3,6 = 20 m/s
+m/s → km/saat:  3,6-ya vur.   10 m/s = 36 km/saat</div>
+      <p>"<b>Bərabərtəcilli</b>" o deməkdir ki, təcil bütün hərəkət boyu eynidir: sürət hər saniyə <b>eyni miqdarda</b> dəyişir.</p>
+
+      <h3><span class="st">2</span> Ox seçmək və işarələr</h3>
+      <p>Fizikada "sağa 5 m/s" və "sola 5 m/s" fərqli şeylərdir. Bunu ədədlə yazmaq üçün əvvəlcə <b>ox seçirik</b> — hansı istiqaməti "müsbət" sayacağımızı özümüz qərar veririk. Sonra:</p>
+      <ul>
+        <li>oxla eyni istiqamətdə olan sürət, təcil, yerdəyişmə — <b>müsbət</b>;</li>
+        <li>oxun əksinə olan — <b>mənfi</b>.</li>
+      </ul>
+      <div class="life"><b>Həyatdan.</b> Topu yuxarı atırsan. Oxu yuxarı seç. Atan anda topun sürəti yuxarıdır → <span class="m">v₀ = +20 m/s</span>. Yer cazibəsi isə həmişə aşağı çəkir → <span class="m">a = −10 m/s²</span>. İşarələr bu iki fərqli istiqaməti ayırır.</div>
+      <p>Ox istənilən tərəfə seçilə bilər, cavab dəyişmir. Amma bir dəfə seçdinsə, bütün məsələ boyu ona sadiq qal.</p>
+
+      <h3><span class="st">3</span> Sürət düsturu</h3>
+      <p>Əgər hər saniyə sürətə <span class="m">a</span> əlavə olunursa, <span class="m">t</span> saniyədən sonra sürət başlanğıc sürətdən <span class="m">a·t</span> qədər fərqlənəcək:</p>
+      <div class="fm">vₓ = v₀ₓ + aₓ·t</div>
+      <div class="tbl"><table><tr><th>t, s</th><td>0</td><td>10</td><td>20</td><td>30</td></tr><tr><th>v, m/s (metro)</th><td>0</td><td>5</td><td>10</td><td>15</td></tr></table></div>
+      <p>Bu, funksiyalar dərsindəki <span class="m">y = kx + b</span>-dir: <span class="m">k = aₓ</span>, <span class="m">b = v₀ₓ</span>. Ona görə <span class="m">v(t)</span> qrafiki <b>düz xəttdir</b>, xəttin mailliyi təcildir. Mailli xətt — böyük təcil, üfüqi xətt — təcil yoxdur.</p>
+
+      <h3><span class="st">4</span> Sürətlənir, yoxsa yavaşıyır?</h3>
+      <p>Bunu "təcil müsbətdir, deməli sürətlənir" deyə müəyyən etmək <b>səhvdir</b>. Qayda belədir: sürət və təcilin işarələrini müqayisə et.</p>
+      <ul>
+        <li><span class="m">vₓ</span> və <span class="m">aₓ</span> <b>eyni işarəli</b> → təcil hərəkətə "kömək edir" → sürət artır.</li>
+        <li><b>Əks işarəli</b> → təcil hərəkətə "mane olur" → sürət azalır.</li>
+      </ul>
+      <div class="life"><b>Həyatdan.</b> Yuxarı atılan top: qalxarkən <span class="m">v &gt; 0</span>, <span class="m">a &lt; 0</span> → yavaşıyır. Ən yuxarıda bir anlıq dayanır (<span class="m">v = 0</span>). Sonra düşür: <span class="m">v &lt; 0</span>, <span class="m">a &lt; 0</span> → sürətlənir. Təcil bütün vaxt eyni idi (−10), amma hərəkətin xarakteri dəyişdi.</div>
+      <div class="ex">Nümunə: vₓ = 10 − 2t   (v₀ₓ = 10, aₓ = −2)
+  t = 0…5 s:  vₓ > 0, aₓ < 0 → yavaşıyır
+  t = 5 s:    vₓ = 10 − 10 = 0 → dayanır
+  t > 5 s:    vₓ < 0, aₓ < 0 → geri gedir və sürətlənir</div>
+
+      <h3><span class="st">5</span> Yerdəyişmə: orta sürət × vaxt</h3>
+      <p>Sürət sabit olsaydı, yol sadəcə <span class="m">v·t</span> olardı. Sürət bərabər artırsa, onun <b>orta qiyməti</b> başlanğıc və son sürətin ortasıdır. Yerdəyişmə = orta sürət × vaxt:</p>
+      <div class="fm">sₓ = (v₀ₓ + vₓ)/2 · t</div>
+      <p><span class="m">vₓ = v₀ₓ + aₓt</span>-ni bura qoysaq, ikinci forma alınır:</p>
+      <div class="fm">sₓ = v₀ₓ·t + aₓt²/2</div>
+      <div class="life"><b>Həyatdan.</b> Metro qatarı 30 s-də 0-dan 15 m/s-ə çatdı. Orta sürət <span class="m">(0 + 15)/2 = 7,5 m/s</span>. Bu müddətdə getdiyi yol <span class="m">7,5 · 30 = 225 m</span>. İkinci düsturla yoxla: <span class="m">0,5 · 30² / 2 = 225 m</span>. Eynidir.</div>
+      <p>Qrafikdə: <span class="m">v(t)</span> xəttinin altındakı sahə yerdəyişməyə bərabərdir. Sabit sürətdə bu sahə düzbucaqlıdır (<span class="m">v·t</span>), bərabərtəcilli hərəkətdə — trapesiya.</p>
+
+      <h3><span class="st">6</span> Koordinat: parabola</h3>
+      <p>Cismin harada olduğunu bilmək üçün başlanğıc nöqtəyə yerdəyişməni əlavə edirik:</p>
+      <div class="fm">x = x₀ + v₀ₓ·t + aₓt²/2</div>
+      <p>Bu, kvadrat funksiyadır: <span class="m">c = x₀</span>, <span class="m">b = v₀ₓ</span>, <span class="m">a = aₓ/2</span>. Qrafiki parabola. Parabolanın <b>təpəsi</b> cismin dayandığı və geri döndüyü andır.</p>
+      <div class="life"><b>Həyatdan.</b> Funksiyalar məşqindəki 22-ci tapşırığı xatırla: yuxarı atılan topun hündürlüyü <span class="m">h = 20t − 5t²</span>. Bu, <span class="m">v₀ = 20 m/s</span>, <span class="m">a = −10 m/s²</span> olan hərəkətdir. Təpə <span class="m">t = 2 s</span>-də, <span class="m">h = 20 m</span>. Riyaziyyatdakı "ən böyük qiymət" fizikada "topun qalxdığı ən yüksək nöqtə"dir.</div>
+
+      <h3><span class="st">7</span> Vaxt verilməyəndə</h3>
+      <p>Bəzən məsələdə vaxt yoxdur, yalnız sürətlər və məsafə var. Onda vaxtı düsturlardan çıxarsaq, belə bir əlaqə qalır:</p>
+      <div class="fm">vₓ² − v₀ₓ² = 2·aₓ·sₓ</div>
+      <div class="life"><b>Həyatdan: niyə sürət həddi vacibdir.</b> Avtomobil <span class="m">a = −5 m/s²</span> ilə əyləc edir. 10 m/s (36 km/saat) sürətdə əyləc yolu <span class="m">s = 10² / (2·5) = 10 m</span>. 20 m/s (72 km/saat) sürətdə — <span class="m">20² / 10 = 40 m</span>. Sürət 2 dəfə artdı, əyləc yolu <b>4 dəfə</b>. Çünki düsturda sürətin kvadratı var.</div>
+
+      <h3><span class="st">8</span> Sərbəst düşmə</h3>
+      <p>Hava müqaviməti olmasa, ağır da, yüngül də eyni təcillə düşür: <span class="m">g ≈ 10 m/s²</span>. Bu, adi bərabərtəcilli hərəkətdir, sadəcə <span class="m">a = g</span>. Sükunətdən düşən cisim üçün:</p>
+      <div class="fm">h = g·t²/2        v = g·t</div>
+      <div class="life"><b>Həyatdan.</b> Telefon 5 m hündürlükdən (təxminən 2-ci mərtəbə) düşür: <span class="m">5 = 10·t²/2</span> → <span class="m">t = 1 s</span>, yerə dəyəndə <span class="m">v = 10 m/s</span> (36 km/saat). 1971-ci ildə astronavt Dəvid Skott Ayda (hava yoxdur) çəkic və quş lələyini eyni anda buraxdı — ikisi eyni anda yerə düşdü.</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li>km/saat-ı m/s-ə çevirməmək.</li>
+          <li>"<span class="m">a &lt; 0</span>, deməli yavaşıyır" — yalnız <span class="m">v &gt; 0</span> olanda doğrudur.</li>
+          <li>Yuxarı atılan cisimdə <span class="m">g</span>-nin işarəsini unutmaq.</li>
+          <li>Yolu <span class="m">v·t</span> kimi hesablamaq — bu, yalnız sabit sürətdə doğrudur.</li>
+        </ul>
+      </div>
+      <div class="sum"><b>Yadda saxla</b>
+        <div class="ex">a = (v − v₀)/t          vₓ = v₀ₓ + aₓt
+sₓ = (v₀ₓ + vₓ)/2 · t  = v₀ₓt + aₓt²/2
+x = x₀ + v₀ₓt + aₓt²/2  vₓ² − v₀ₓ² = 2aₓsₓ</div>
+      </div>
+
+      <div class="play">
+        <div class="eyebrow">Özün sına: sürgüləri tərpət</div>
+        <div class="ctl">
+          <div><label for="kv0">v₀ₓ = <b id="kv0v"></b> m/s</label><input type="range" id="kv0" min="-10" max="10" step="1" value="10"></div>
+          <div><label for="ka">aₓ = <b id="kav"></b> m/s²</label><input type="range" id="ka" min="-4" max="4" step="0.5" value="-2"></div>
+        </div>
+        <div class="graphs">
+          <figure><figcaption id="kvcap"></figcaption><svg id="gv" viewBox="0 0 280 200" role="img" aria-label="Sürətin zamandan asılılıq qrafiki"></svg></figure>
+          <figure><figcaption id="kxcap"></figcaption><svg id="gx" viewBox="0 0 280 200" role="img" aria-label="Koordinatın zamandan asılılıq qrafiki"></svg></figure>
+        </div>
+        <div class="facts" id="kf"></div>
+        <p class="unit">Sına: <span class="m">aₓ</span>-nı <span class="m">v₀ₓ</span>-ın əks işarəsi ilə seç. Sürət xətti sıfırı haradan keçir? Parabolanın təpəsi harada olur?</p>
+      </div>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ============ DƏRS 2 ============ -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Çevrə üzrə bərabərsürətli hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Bucağı niyə radianla ölçürük</h3>
+      <p>Velosiped təkərinin kənarına bir ip sar. İpin uzunluğu təkərin radiusuna bərabər olsun. İpin örtdüyü qövsü mərkəzdən görən bucaq <b>1 radiandır</b> (≈ 57°).</p>
+      <p>Yəni radian sadə bir sual verir: <b>qövs radiusdan neçə dəfə uzundur?</b></p>
+      <div class="fm">φ = l / R   (radian)</div>
+      <p>Tam çevrənin uzunluğu <span class="m">2πR</span>-dir, deməli tam dövr <span class="m">2π</span> radiandır. Buradan: <span class="m">360° = 2π rad</span>, <span class="m">180° = π rad</span>, <span class="m">90° = π/2 rad</span>.</p>
+      <div class="life"><b>Niyə dərəcə yox?</b> Radianla qövsün uzunluğu çox sadə tapılır: <span class="m">l = φ·R</span>. Dərəcə ilə eyni şey üçün <span class="m">l = 2πR·φ/360</span> yazmalı olardıq. Fizikadakı bütün çevrə düsturları radian üçün yazılıb.</div>
+
+      <h3><span class="st">2</span> Period və tezlik</h3>
+      <p>Çevrə üzrə hərəkət təkrarlanır. Onu iki üsulla təsvir edirik:</p>
+      <ul>
+        <li><b>Period T</b> — <b>bir</b> dövrə nə qədər vaxt gedir (saniyə).</li>
+        <li><b>Tezlik n</b> — <b>bir saniyədə</b> neçə dövr edilir (1/s).</li>
+      </ul>
+      <div class="fm">T = t / N        n = N / t        T = 1 / n</div>
+      <p>Bunlar bir-birinin tərsidir: bir dövr 0,5 s çəkirsə, bir saniyəyə 2 dövr sığır.</p>
+      <div class="life"><b>Həyatdan.</b> Paltaryuyan maşın sıxanda dəqiqədə 1200 dövr edir: <span class="m">n = 1200 / 60 = 20 1/s</span>, <span class="m">T = 1/20 = 0,05 s</span>. Yer öz oxu ətrafında <span class="m">T = 24 saat</span> periodla fırlanır. Saatın saniyə əqrəbinin periodu 60 s-dir.</div>
+
+      <h3><span class="st">3</span> Xətti sürət və onun istiqaməti</h3>
+      <p>Cisim bir dövrdə çevrənin uzunluğu qədər yol gedir. Sürət = yol / vaxt:</p>
+      <div class="fm">v = 2πR / T = 2πR·n</div>
+      <p>Bu sürətin <b>modulu</b> dəyişmir, amma <b>istiqaməti</b> hər an dəyişir. Sürət həmişə çevrəyə <b>toxunan</b> üzrə yönəlir.</p>
+      <div class="life"><b>Həyatdan.</b> Bıçaq itilənən daşdan qığılcımlar daşa toxunan üzrə uçur. Yağışda velosipedin təkərindən palçıq toxunan üzrə sıçrayır. Gürz atan atlet gürzü buraxanda o, çevrə üzrə yox, buraxıldığı anın toxunanı üzrə düz uçur. Hər üç halda cisim "azad" olan kimi sürətinin həmin anki istiqamətində gedir.</div>
+      <div class="ex">Nümunə: Bulvardakı Şeytan çarxının radiusu 30 m, bir dövrü 15 dəq = 900 s olsun (π = 3).
+  v = 2·3·30 / 900 = 0,2 m/s — çox yavaş, ona görə kabinədə rahatdır.</div>
+
+      <h3><span class="st">4</span> Bucaq sürəti</h3>
+      <p>Fırlanan karuselə iki nəfər minib: sən mərkəzə yaxın, dostun kənarda. Karusel bir dövr edəndə ikiniz də bir dövr edirsiniz — eyni vaxtda eyni <b>bucaq</b> qədər dönürsünüz. Bunu <b>bucaq sürəti ω</b> göstərir: saniyədə neçə radian dönürsən.</p>
+      <div class="fm">ω = φ / t = 2π / T = 2πn      (rad/s)</div>
+      <p>Amma dostun daha böyük çevrə çəkir, yəni daha çox yol gedir — onun <b>xətti sürəti</b> böyükdür. Əlaqə:</p>
+      <div class="fm">v = ω·R</div>
+      <div class="warnbox"><b>Vahid yoxlaması.</b> <span class="m">ω</span> rad/s ilə ölçülür. <span class="m">2πn</span>: <span class="m">n</span>-in vahidi 1/s → düzdür. <span class="m">2πR</span>-in vahidi isə metrdir — bucaq sürəti ola bilməz. Hər yeni düsturu belə yoxla: iki tərəfin vahidi eyni olmalıdır.</div>
+
+      <h3><span class="st">5</span> Mərkəzəqaçma təcili</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="Çevrə üzrə hərəkətdə sürət toxunan üzrə, təcil mərkəzə yönəlir">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>
+          <circle cx="120" cy="115" r="80" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <circle cx="120" cy="115" r="3" fill="var(--ink)"/>
+          <line x1="120" y1="115" x2="120" y2="35" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <circle cx="120" cy="35" r="5" fill="var(--ink)"/>
+          <line x1="120" y1="35" x2="205" y2="35" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ar2)"/>
+          <line x1="120" y1="35" x2="120" y2="85" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ar)"/>
+          <text class="lbl" x="190" y="28">v</text><text class="lbl" x="126" y="72">a</text><text x="104" y="78">R</text><text x="126" y="128">O</text>
+        </svg>
+        <div class="cap">
+          <p>Sürətin modulu sabitdirsə, təcil necə ola bilər? Təcil sürətin <b>istənilən</b> dəyişməsidir — istiqamətin dəyişməsi də. Cismi düz xətdən çəkib dairəyə salan təcil həmişə <b>mərkəzə</b> yönəlir.</p>
+        </div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> İpə bağlı topu başının üstündə fırladırsan. İp topu daim mərkəzə dartır — bu, mərkəzəqaçma təcilini yaradır. İpi buraxan kimi top düz uçur. Avtobus döngəyə girəndə "çölə atıldığını" hiss edirsən. Əslində bədənin düz getmək istəyir, avtobus isə səni döngəyə — mərkəzə doğru çəkir.</div>
+      <div class="fm">a = v² / R = ω²·R</div>
+      <p>Başqa formalar da var (<span class="m">a = ω·v = 4π²R/T² = 4π²n²R</span>) — bunlar eyni düsturdur, sadəcə <span class="m">v = ωR</span> və <span class="m">ω = 2π/T</span> yerinə qoyulub. Məsələdə nə verilibsə, onu seç.</p>
+      <div class="ex">Nümunə: avtomobil radiusu 50 m olan döngəyə 10 m/s (36 km/saat) sürətlə girir.
+  a = 10² / 50 = 2 m/s²
+Eyni döngəyə 20 m/s ilə girsə: a = 400 / 50 = 8 m/s² — 4 dəfə çox.
+Ona görə döngədən əvvəl sürət azaldılır: təcil sürətin kvadratı ilə artır.</div>
+
+      <h3><span class="st">6</span> Müqayisə məsələləri</h3>
+      <ul>
+        <li><b>Eyni ω</b> (bir diskin nöqtələri, Yer kürəsinin nöqtələri): <span class="m">a = ω²R</span> → radius neçə dəfə böyükdürsə, təcil o qədər böyükdür.</li>
+        <li><b>Eyni v</b> (zəncir və ya qayışla bağlı iki təkər): <span class="m">a = v²/R</span> → kiçik təkərin təcili böyükdür.</li>
+      </ul>
+      <div class="life"><b>Həyatdan.</b> Velosipeddə zəncir ön və arxa ulduzcuqları birləşdirir — zəncirin sürəti hər yerdə eynidir. Arxadakı kiçik ulduzcuq öndəki böyükdən daha tez fırlanır. Yer kürəsində Bakı və ekvator eyni ω ilə fırlanır, amma Bakının fırlanma radiusu kiçikdir (Yerin oxuna daha yaxındır). Dəftərindəki məsələ: 60° enlikdə radius <span class="m">R·cos 60° = R/2</span>, ona görə təcil ekvatordakının yarısıdır.</div>
+
+      <h3><span class="st">7</span> Yol və yerdəyişmə fərqlidir</h3>
+      <p><b>Yol</b> — getdiyin qövsün uzunluğu: <span class="m">l = φR</span>. <b>Yerdəyişmə</b> — başlanğıcdan sona düz xətt (vətər):</p>
+      <div class="fm">s = R·√(2 − 2cos φ)</div>
+      <div class="life"><b>Həyatdan.</b> Stadionda 400 metrlik dairəni tam qaçdın: yol 400 m, yerdəyişmə <b>0</b> — başladığın yerdəsən. Yarım dairə qaçsan, yerdəyişmə diametrə bərabərdir (<span class="m">2R</span>).</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li><span class="m">T</span> ilə <span class="m">n</span>-i qarışdırmaq. Yoxla: "1 dövr neçə saniyədir?" — <span class="m">T</span>; "1 saniyədə neçə dövr?" — <span class="m">n</span>.</li>
+          <li>Dəqiqəni saniyəyə çevirməmək (dövr/dəq → dövr/s).</li>
+          <li>Radiusu sm-də saxlamaq — həmişə metrə çevir.</li>
+          <li>"Sürət sabitdir, deməli təcil sıfırdır" — çevrədə bu səhvdir.</li>
+        </ul>
+      </div>
+      <div class="sum"><b>Yadda saxla</b>
+        <div class="ex">φ = l/R        T = t/N = 1/n
+v = 2πR/T = 2πRn = ωR
+ω = 2π/T = 2πn   (rad/s)
+a = v²/R = ω²R   (mərkəzə)</div>
+      </div>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ============ DƏRS 3 ============ -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dinamika: Nyutonun II qanunu və bağlı cisimlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Nyutonun II qanunu: qüvvə təcil yaradır</h3>
+      <p>Marketdə boş arabanı itələyəndə o asanlıqla sürətlənir. Dolu arabanı eyni güclə itələsən, çətin tərpənir. Qüvvə eyni, amma kütlə böyükdür — təcil kiçikdir. Nyutonun II qanunu bunu bir düsturla deyir:</p>
+      <div class="fm">F_əv = m·a</div>
+      <p><span class="m">F_əv</span> — cismə təsir edən <b>bütün</b> qüvvələrin cəmi (əvəzləyici qüvvə). Qüvvələr bir-birini tarazlayırsa, <span class="m">F_əv = 0</span> və cisim ya dayanır, ya sabit sürətlə gedir.</p>
+      <div class="life"><b>Həyatdan.</b> 1 N — 1 kq kütləyə 1 m/s² təcil verən qüvvədir. Sənin çəkin: <span class="m">mg = 46 · 10 = 460 N</span>. Cüdoda yüngül rəqibi yerindən oynatmaq ağır rəqibdən asandır: eyni qüvvə kiçik kütləyə böyük təcil verir.</div>
+      <p>Hər dinamika məsələsində eyni dörd addım:</p>
+      <ul>
+        <li><b>Şəkil çək.</b> Hər cismə təsir edən qüvvələri ox kimi göstər: ağırlıq <span class="m">mg</span> (aşağı), dayaq reaksiyası <span class="m">N</span> (səthdən), ipin gərilməsi <span class="m">T</span> (ip boyunca), dartıcı qüvvə <span class="m">F</span>, sürtünmə (hərəkətin əksinə).</li>
+        <li><b>Ox seç</b> — təcilin istiqamətində.</li>
+        <li><b>Hər cisim üçün ayrıca</b> <span class="m">F_əv = m·a</span> yaz.</li>
+        <li><b>Tənlikləri birlikdə həll et.</b></li>
+      </ul>
+
+      <h3><span class="st">2</span> İplə bağlı cisimlər</h3>
+      <p>İp uzanmırsa, bağlı cisimlər <b>eyni təcillə</b> hərəkət edir. Ona görə əvvəlcə hamısına bir böyük cisim kimi bax:</p>
+      <div class="fm">a = F / (m₁ + m₂)</div>
+      <p>İpin gərilməsini tapmaq üçün <b>yalnız ipin dartdığı</b> cismi fikrən ayır. Ona təkcə <span class="m">T</span> təsir edir, deməli:</p>
+      <div class="fm">T = m_arxa · a</div>
+      <div class="life"><b>Həyatdan.</b> Metro qatarında birinci vaqon qalanlarını dartır. Birinci və ikinci vaqonu birləşdirən qoşqu arxadakı <b>bütün</b> vaqonları sürətləndirməlidir — ona görə ən çox o yüklənir. Sonuncu qoşqu yalnız bir vaqonu dartır. Avtomobil qoşqu (treyler) dartanda da qoşqu yalnız treyleri sürətləndirir: <span class="m">T = m_treyler·a</span>.</div>
+      <div class="ex">Dəftərindəki məsələ: 2 kq (arxada) + 3 kq, F = 50 N, sürtünmə yoxdur
+  a = 50 / (2 + 3) = 10 m/s²
+  T = 2 · 10 = 20 N        (ip yalnız 2 kq-lığı dartır)</div>
+
+      <h3><span class="st">3</span> İki tərəfdən dartılan çubuq</h3>
+      <p>Çubuğu bir ucdan <span class="m">F₁</span>, o biri ucdan <span class="m">F₂</span> ilə əks tərəflərə dartırlar (<span class="m">F₁ &gt; F₂</span>). Çubuq güclü tərəfə doğru <span class="m">a = (F₁ − F₂)/m</span> təcili ilə gedir. Çubuğun içindəki gərilmə hər yerdə fərqlidir: zəif ucda <span class="m">F₂</span>-dən başlayır, güclü ucda <span class="m">F₁</span>-ə çatır.</p>
+      <div class="fm">T = F₂ + (F₁ − F₂)·x / l     (x — F₂ ucundan məsafə)</div>
+      <p>Dəftərindəki <span class="m">T = F₁ − (F₁ − F₂)·x / l</span> eyni düsturdur, sadəcə orada <span class="m">x</span> <span class="m">F₁</span> tərəfdən ölçülür. Uclarda yoxla: <span class="m">x = 0</span> → <span class="m">T = F₂</span>, <span class="m">x = l</span> → <span class="m">T = F₁</span>.</p>
+      <div class="life"><b>Həyatdan.</b> İki nəfər ağır taxta tiri əks tərəflərə dartır: biri 600 N, o biri 500 N. Tir güclü tərəfə doğru sürüşür. Tirin düz ortasında gərilmə 550 N-dur — iki qüvvənin arasında. Güclü tərəfə yaxınlaşdıqca gərilmə artır.</div>
+
+      <h3><span class="st">4</span> Masa üstündə cisim, kənardan asılan yük</h3>
+      <p>Masada <span class="m">m_x</span>, ip masanın kənarındakı blokdan aşıb <span class="m">m_y</span> yükünü saxlayır. Sürtünmə yoxdur. Sistemi hərəkətə gətirən yalnız asılan yükün ağırlığıdır (<span class="m">m_y·g</span>), amma sürətlənməli olan kütlə ikisinin cəmidir:</p>
+      <div class="fm">a = m_y·g / (m_x + m_y)        T = m_x·a</div>
+      <div class="life"><b>Həyatdan.</b> Masanın üstündəki kitaba ip bağla, ipi masanın kənarından sallayıb ucuna açar dəstəsi as. Açar düşür, kitabı da özü ilə çəkir. Kitab nə qədər ağırdırsa, hər şey o qədər yavaş sürətlənir.</div>
+      <div class="ex">Nümunə: m_x = 3 kq (masada), m_y = 1 kq (asılı)
+  a = 1·10 / (3 + 1) = 2,5 m/s²
+  T = 3 · 2,5 = 7,5 N    — asılan yükün ağırlığından (10 N) az, çünki yük də sürətlənir</div>
+
+      <h3><span class="st">5</span> Atvud maşını: blokdan asılmış iki yük</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="Atvud maşını: blokdan asılmış iki yük">
+          <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <line x1="70" y1="12" x2="190" y2="12" stroke="var(--muted)" stroke-width="3"/>
+          <line x1="130" y1="12" x2="130" y2="40" stroke="var(--muted)" stroke-width="2"/>
+          <circle cx="130" cy="55" r="22" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="130" cy="55" r="3" fill="var(--ink)"/>
+          <line x1="108" y1="55" x2="108" y2="150" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="152" y1="55" x2="152" y2="110" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="93" y="150" width="30" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="135" y="110" width="34" height="38" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text class="lbl" x="100" y="170">m₁</text><text class="lbl" x="143" y="133">m₂</text>
+          <line x1="60" y1="185" x2="60" y2="150" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ar3)"/><text x="40" y="200">a ↑</text>
+          <line x1="200" y1="110" x2="200" y2="148" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ar3)"/><text x="190" y="165">a ↓</text>
+        </svg>
+        <div class="cap">
+          <p>Blokdan aşan ipin iki ucunda iki yük asılıb, <span class="m">m₂ &gt; m₁</span>. Ağır yük aşağı, yüngül yük yuxarı <b>eyni</b> <span class="m">a</span> ilə gedir. Hər yük üçün ayrıca:</p>
+          <div class="ex">m₁ (qalxır):  T − m₁g = m₁a
+m₂ (düşür):   m₂g − T = m₂a</div>
+        </div>
+      </div>
+      <p>İki tənliyi toplasaq <span class="m">T</span> yox olur və təcil alınır. Sonra <span class="m">T</span>-ni tapırıq:</p>
+      <div class="fm">a = (m₂ − m₁)·g / (m₁ + m₂)        T = 2m₁m₂·g / (m₁ + m₂)</div>
+      <div class="life"><b>Həyatdan.</b> Liftin kabinəsi trosla bağlıdır, trosun o biri ucunda ağır <b>əks yük</b> asılıb — bu, Atvud maşınıdır. Əks yük kabinəni "tarazlayır", ona görə mühərrik bütün kabinəni yox, yalnız fərqi qaldırır. Kütlələr bərabər olanda <span class="m">a = 0</span>, <span class="m">T = mg</span> — tam tarazlıq.</div>
+      <div class="ex">Nümunə: m₁ = 2 kq, m₂ = 3 kq
+  a = (3 − 2)·10 / 5 = 2 m/s²
+  T = 2·2·3·10 / 5 = 24 N</div>
+
+      <h3><span class="st">6</span> Bir-birini itələyən cisimlər</h3>
+      <p>İki qutu yan-yana durur. Birincini itələyirsən, o da ikincini itələyir. Hər ikisi eyni təcillə gedir: <span class="m">a = F/(m₁ + m₂)</span>. İkinci qutunu <b>yalnız</b> birincinin qüvvəsi <span class="m">N</span> itələyir:</p>
+      <div class="fm">N = m₂·a     (m₂ — itələnən, qabaqdakı cisim)</div>
+      <div class="life"><b>Həyatdan.</b> Ev köçürəndə iki qutunu birlikdə itələyirsən: qabaqdakı qutu ağırdırsa, iki qutunun arasındakı qüvvə böyük olur və arxadakı yüngül qutu əzilə bilər. Dəftərindəki məsələ: <span class="m">a = 20/5 = 4 m/s²</span>, qabaqdakı 4 kq-lıq → <span class="m">N = 4·4 = 16 N</span>.</div>
+
+      <h3><span class="st">7</span> Təcilli maşında asılmış əşya</h3>
+      <p>Maşın sürətlənəndə güzgüdən asılmış ətir və ya oyuncaq <b>geri</b> meyl edir. Niyə? Onu da maşınla birlikdə sürətləndirmək lazımdır, bunu ipin gərilməsi edir. İp maili olanda onun üfüqi hissəsi əşyaya <span class="m">ma</span>, şaquli hissəsi <span class="m">mg</span>-ni tarazlayır:</p>
+      <div class="fm">tg α = ma / mg = a / g</div>
+      <div class="life"><b>Həyatdan.</b> Avtomobil <span class="m">a = 3 m/s²</span> ilə sürətlənir: <span class="m">tg α = 3/10 = 0,3</span>, α ≈ 17°. Bucağa baxıb maşının təcilini ölçmək olar — sadə akselerometr. Kütlə ixtisar olunur, ona görə ağır və yüngül əşya eyni bucaqla meyl edir.</div>
+
+      <h3><span class="st">8</span> Sürtünmə qüvvəsi</h3>
+      <p>Döşəmədə sürüşən cismə həmişə hərəkətin <b>əksinə</b> sürtünmə qüvvəsi təsir edir:</p>
+      <div class="fm">F_sür = μ·N = μ·m·g     (üfüqi səthdə)</div>
+      <p><span class="m">μ</span> — sürtünmə əmsalı, səthlərdən asılıdır: buz üstündə kiçik (≈ 0,05), rezin asfaltda böyük (≈ 0,7).</p>
+      <div class="life"><b>Həyatdan.</b> Tatamidə corabla sürüşürsən, ayaqyalın isə sürüşmürsən — ayaqla tatami arasında μ böyükdür. Qışda yollara qum səpilir ki, μ artsın.</div>
+      <div class="ex">Nümunə: 4 kq qutu, μ = 0,25, üfüqi F = 18 N
+  F_sür = 0,25 · 4 · 10 = 10 N
+  a = (18 − 10) / 4 = 2 m/s²</div>
+
+      <div class="mist"><b>Tez-tez edilən səhvlər</b>
+        <ul>
+          <li>Gərilməni bütün sistemin kütləsi ilə hesablamaq — <span class="m">T</span> yalnız ipin dartdığı hissənin kütləsinə vurulur.</li>
+          <li>Atvud maşınında <span class="m">T = m₂g</span> yazmaq — yük düşürsə, gərilmə onun ağırlığından azdır.</li>
+          <li>Sürtünmədə <span class="m">μ·m</span> yazıb <span class="m">g</span>-ni unutmaq.</li>
+          <li>Qüvvələri şəkildə göstərmədən düstura keçmək.</li>
+        </ul>
+      </div>
+      <div class="sum"><b>Yadda saxla</b>
+        <div class="ex">F_əv = m·a                    F_sür = μmg
+Bağlı cisimlər:  a = F/(m₁+m₂),  T = m_arxa·a
+Masa + asılı:    a = m_y·g/(m_x+m_y)
+Atvud:           a = (m₂−m₁)g/(m₁+m₂),  T = 2m₁m₂g/(m₁+m₂)
+Maşında sap:     tg α = a/g</div>
+      </div>
+    </article>
+    <button class="btn next" type="button" data-go="sq">Sınağa keç →</button>
+  </section>
+
+  <!-- ============ SINAQ ============ -->
+  <section class="panel" role="tabpanel" id="sq" aria-labelledby="tb-sq" hidden>
+    <h2>Sınaq: 24 tapşırıq</h2>
+    <div id="sqIntro" style="display:grid;gap:10px">
+      <p>Tövsiyə olunan vaxt <b>60 dəqiqə</b>. Saat başlayanda dayanmır, amma vaxt bitəndə də cavab yaza bilərsən — sadəcə nəticədə görünəcək. Dərslərə baxmadan işlə. Kağız-qələm, kalkulyator olmadan.</p>
+      <p>Ədədi cavabda yalnız ədədi yaz (vahidsiz). Onluq kəsr üçün vergül və ya nöqtə olar: <span class="m">1,5</span>. <span class="m">π = 3</span> götür, əgər şərtdə deyilibsə.</p>
+      <p>Sonda <b>Bitir və yoxla</b>: hər sualın düz və ya səhv olduğunu görəcəksən. Düz cavablar göstərilmir.</p>
+      <div class="row"><button class="btn" type="button" id="sqStart">Sınağa başla</button></div>
+    </div>
+    <div class="clock" id="clock" hidden><span><b class="time" id="time">60:00</b></span><span class="unit" id="answered">0 / 24 cavablanıb</span></div>
+    <form id="sheet" hidden novalidate>
+      <fieldset id="fs">
+        <h3 class="sec">Kinematika · 1–10</h3><div id="s1" style="display:grid;gap:12px"></div>
+        <h3 class="sec">Çevrə üzrə hərəkət · 11–17</h3><div id="s2" style="display:grid;gap:12px"></div>
+        <h3 class="sec">Dinamika · 18–24</h3><div id="s3" style="display:grid;gap:12px"></div>
+        <div class="row"><button class="btn" type="submit" id="finish">Bitir və yoxla</button></div>
+      </fieldset>
+    </form>
+    <div class="confirm" id="confirm" hidden>
+      <p id="confirmText"></p>
+      <div class="row"><button class="btn" type="button" id="yes">Bəli, bitir</button><button class="btn ghost" type="button" id="no">Geri qayıt</button></div>
+    </div>
+    <div id="result" hidden></div>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function el(t,a,...c){const e=document.createElement(t);for(const k in a||{})e.setAttribute(k,a[k]);c.forEach(x=>e.append(x));return e}
+const NS="http://www.w3.org/2000/svg";
+function sv(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e}
+function fmtN(v){v=Math.round(v*100)/100;if(v===0)return "0";return (v<0?"−":"")+Math.abs(v)}
+
+/* ---------- Dərs 1: v(t) və x(t) ---------- */
+function tplot(svg,f,ymax,pts,ylab){svg.replaceChildren();const W=280,H=200,L=34,R=10,T=10,B=24,tx=t=>L+t*(W-L-R)/10,ty=y=>T+(ymax-y)*(H-T-B)/(2*ymax);
+  let d="";for(let t=0;t<=10;t++)d+="M"+tx(t)+" "+T+"V"+(H-B);for(let k=-4;k<=4;k++)d+="M"+L+" "+ty(k*ymax/4)+"H"+(W-R);
+  svg.append(sv("path",{d,stroke:"var(--grid)","stroke-width":1,fill:"none"}));
+  svg.append(sv("path",{d:"M"+L+" "+ty(0)+"H"+(W-R)+"M"+L+" "+T+"V"+(H-B),stroke:"var(--muted)","stroke-width":1.3,fill:"none"}));
+  [[0,"0"],[5,"5"],[10,"10 s"]].forEach(([t,s])=>{const e=sv("text",{x:tx(t)-4,y:H-8});e.textContent=s;svg.append(e)});
+  [ymax,ymax/2,-ymax/2,-ymax].forEach(y=>{const e=sv("text",{x:2,y:ty(y)+4});e.textContent=fmtN(y);svg.append(e)});
+  const lab=sv("text",{x:L+4,y:T+12,class:"lbl"});lab.textContent=ylab;svg.append(lab);
+  let p="",on=false;for(let t=0;t<=10.0001;t+=0.05){const y=f(t);if(Math.abs(y)<=ymax){p+=(on?"L":"M")+tx(t).toFixed(1)+" "+ty(y).toFixed(1);on=true}else on=false}
+  svg.append(sv("path",{d:p,fill:"none",stroke:"var(--accent)","stroke-width":2.5}));
+  pts.forEach(([t,y])=>{if(t<0||t>10||Math.abs(y)>ymax)return;svg.append(sv("circle",{cx:tx(t),cy:ty(y),r:4.5,fill:"var(--vec)"}))})}
+function kin(){const v0=+$("kv0").value,a=+$("ka").value;$("kv0v").textContent=fmtN(v0);$("kav").textContent=fmtN(a);
+  const vs=(a===0?fmtN(v0):(v0?fmtN(v0)+(a>0?" + ":" − ")+fmtN(Math.abs(a))+"t":fmtN(a)+"t"));
+  const xs=(v0?fmtN(v0)+"t":"")+(a?((v0?(a>0?" + ":" − "):(a<0?"−":""))+(Math.abs(a)===2?"":fmtN(Math.abs(a)/2))+"t²"):"");
+  $("kvcap").textContent="vₓ = "+vs+"  (m/s)";$("kxcap").textContent="x = "+(xs||"0")+"  (m)";
+  const facts=[],pv=[],px=[];
+  if(a!==0&&-v0/a>0&&-v0/a<=10){const ts=-v0/a,xm=v0*ts+a*ts*ts/2;pv.push([ts,0]);px.push([ts,xm]);
+    facts.push("Dayanma anı: vₓ = 0 → t = "+fmtN(ts)+" s (sürət xətti Ox-u kəsir)");
+    facts.push("Həmin an x = "+fmtN(xm)+" m — parabolanın təpəsi, cisim geri dönür");
+    facts.push("0–"+fmtN(ts)+" s: "+(v0>0?"vₓ > 0":"vₓ < 0")+", "+(a>0?"aₓ > 0":"aₓ < 0")+" → yavaşıyır; sonra sürətlənir")}
+  else facts.push(a===0?"aₓ = 0 → bərabərsürətli hərəkət, x(t) düz xəttdir":(v0===0?"Sükunətdən başlayır və sürətlənir":"vₓ və aₓ eyni işarəli → bütün vaxt sürətlənir"));
+  facts.push("10 s-də: vₓ = "+fmtN(v0+10*a)+" m/s, x = "+fmtN(10*v0+50*a)+" m");
+  $("kf").replaceChildren(...facts.map(s=>el("div",{},s)));
+  tplot($("gv"),t=>v0+a*t,40,pv,"vₓ");tplot($("gx"),t=>v0*t+a*t*t/2,200,px,"x")}
+["kv0","ka"].forEach(id=>$(id).addEventListener("input",kin));kin();
+
+/* ---------- Tablar ---------- */
+const TABS=["d1","d2","d3","sq"];
+function tab(id,focus){if(!TABS.includes(id))id="d1";TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$("tb-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});try{localStorage.setItem("mex-tab",id)}catch(e){}if(focus)$("tb-"+id).focus();window.scrollTo({top:0})}
+TABS.forEach(t=>$("tb-"+t).addEventListener("click",()=>tab(t)));
+document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%4],true);if(e.key==="ArrowLeft")tab(TABS[(i+3)%4],true)});
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.go)));
+{let t=(location.hash||"").slice(1);if(!TABS.includes(t)){try{t=localStorage.getItem("mex-tab")}catch(e){}}tab(t||"d1")}
+
+/* ---------- Sınaq ---------- */
+const H={"1":"770b097d7320ce77","2":"89aa3a5b39e0637c","3":"2f0c4225da87b792","4":"1b1148f3b1508979","5":"f96c75ea48e638de","6":"3cfbbbf760631a9a","7":"e27c9c6b6e10b116","8":"26db512412ebb39c","9":"fd080852cd433124","10":"f7b2f2b406cdbbf4","11":"12aebbcd20ae908f","12":"7783b70af5f505e7","13":"6ea45041a18697c3","14":"0052f236e86b2ee6","15":"9e1edd22442f3e4f","16":"aa06cd99cdf63c05","17":"35eb51efb927663b","18":"fc9dbfc855d005f8","19":"f2d69e9596f43375","20":"de4e774e0c68138c","21":"ae47c1c6f7762872","22":"9f5f11b9d8c3c853","23":"7b08daffee15fc55","24":"59be52e46f60ea4b"};
+const Q=[
+ [1,1,"Avtomobil 4 s-də sürətini 2 m/s-dən 14 m/s-ə çatdırdı. Təcili tapın.","m/s²"],
+ [2,1,"Cismin sürəti vₓ = 12 − 3t (m/s) qanunu ilə dəyişir. Cisim neçə saniyədən sonra dayanır?","s"],
+ [3,1,"Həmin cisim (vₓ = 12 − 3t) dayanana qədər hansı yerdəyişməni edir?","m"],
+ [4,1,"Cismin sürəti vₓ = −6 + 2t (m/s). t = 1 s anında cisim:",["sürətlənir","yavaşıyır","sükunətdədir","bərabərsürətli hərəkət edir","təcilsiz hərəkət edir"]],
+ [5,1,"Sükunətdən 2 m/s² təcillə hərəkətə başlayan cisim 5 s-də hansı yolu gedir?","m"],
+ [6,1,"Cismin koordinatı x = 4 + 6t − t² (m). Başlanğıc sürətin proyeksiyası v₀ₓ nəyə bərabərdir?","m/s"],
+ [7,1,"Həmin hərəkətdə (x = 4 + 6t − t²) təcilin proyeksiyası aₓ nəyə bərabərdir?","m/s²"],
+ [8,1,"Həmin cismin (x = 4 + 6t − t²) ala biləcəyi ən böyük koordinat nədir?","m"],
+ [9,1,"20 m/s sürətlə gedən avtomobil 5 m/s² təcillə əyləc edir. Əyləc yolunu tapın.","m"],
+ [10,1,"Cisim sükunətdən sərbəst düşür. 3 s-də hansı hündürlükdən düşər?","m"],
+ [11,2,"Təkər 1 dəqiqədə 120 dövr edir. Fırlanma periodunu tapın.","s"],
+ [12,2,"Cisim radiusu 0,5 m olan çevrə üzrə 2 s periodla hərəkət edir. Xətti sürəti tapın (π = 3).","m/s"],
+ [13,2,"Fırlanma tezliyi 2 1/s-dir. Bucaq sürətini tapın (π = 3).","rad/s"],
+ [14,2,"Cisim radiusu 2 m olan çevrə üzrə 6 m/s sürətlə hərəkət edir. Mərkəzəqaçma təcilini tapın.","m/s²"],
+ [15,2,"Bucaq sürəti 4 rad/s, radius 0,5 m. Mərkəzəqaçma təcilini tapın.","m/s²"],
+ [16,2,"Çevrə üzrə bərabərsürətli hərəkətdə cismin təcili necə yönəlir?",["sürət istiqamətində","sürətin əksinə","çevrənin mərkəzinə","mərkəzdən xaricə","təcil sıfırdır"]],
+ [17,2,"Disk fırlanır. A nöqtəsi mərkəzdən 10 sm, B nöqtəsi 30 sm məsafədədir. a_B / a_A nisbətini tapın.",""],
+ [18,3,"Hamar üfüqi səthdə 2 kq və 3 kq kütləli cisimlər iplə bağlıdır. 3 kq-lıq cismi 20 N qüvvə ilə üfüqi dartırlar. İpin gərilmə qüvvəsini tapın.","N"],
+ [19,3,"Atvud maşınında yüklərin kütlələri 2 kq və 3 kq-dır. Yüklərin təcilini tapın.","m/s²"],
+ [20,3,"Həmin Atvud maşınında (2 kq və 3 kq) ipin gərilmə qüvvəsini tapın.","N"],
+ [21,3,"Hamar masa üzərindəki 3 kq kütləli cisim blokdan aşan iplə 1 kq-lıq asılmış yüklə bağlıdır. Sistemin təcilini tapın.","m/s²"],
+ [22,3,"Vaqon 5 m/s² təcillə hərəkət edir. Tavandan asılmış sapın şaquldan meyl bucağının tangensini tapın.",""],
+ [23,3,"5 kq kütləli cismə üfüqi səthdə 20 N üfüqi qüvvə təsir edir. Sürtünmə əmsalı 0,2-dir. Cismin təcilini tapın.","m/s²"],
+ [24,3,"Hamar səthdə yan-yana duran 2 kq və 4 kq kütləli cisimlərdən 2 kq-lığa 30 N üfüqi qüvvə təsir edir, o da 4 kq-lığı itələyir. Cisimlər arasındakı qarşılıqlı təsir qüvvəsini tapın.","N"]
+];
+const LIMIT=60*60,KEY="mex-sinaq-1",LET="ABCDE";
+let st={a:{},startedAt:null,doneAt:null,res:null};
+try{const v=JSON.parse(localStorage.getItem(KEY)||"null");if(v)st=v}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function norm(v){let s=String(v).trim().toUpperCase().replace(/[−–—]/g,"-").replace(/,/g,".").replace(/\s+/g,"").replace(/^\+/,"");
+  const f=Number(s);if(s!==""&&isFinite(f))return Number.isInteger(f)?String(f):String(+f.toFixed(6));return s}
+async function hash(n,s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("p1|"+n+"|"+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,16)}
+function count(){return Q.filter(([n])=>st.a[n]&&String(st.a[n]).trim()).length}
+function upd(){$("answered").textContent=count()+" / 24 cavablanıb"}
+const boxes={};
+Q.forEach(([n,sec,text,x])=>{
+  const head=el("div",{class:"head"},el("span",{class:"n"},String(n)),el("span",{class:"t"},text));
+  let body;
+  if(Array.isArray(x)){body=el("div",{class:"opts",role:"radiogroup","aria-label":"Sual "+n});
+    x.forEach((o,i)=>{const id="q"+n+"_"+i,inp=el("input",{type:"radio",name:"q"+n,id,value:LET[i]});if(st.a[n]===LET[i])inp.checked=true;
+      inp.addEventListener("change",()=>{st.a[n]=LET[i];save();upd()});body.append(el("label",{class:"bub",for:id},inp,el("span",{class:"dot"},LET[i]),o))})}
+  else{const inp=el("input",{type:"text",id:"q"+n,inputmode:"decimal",autocomplete:"off","aria-label":"Sual "+n+" cavabı"});inp.value=st.a[n]||"";
+    inp.addEventListener("input",()=>{st.a[n]=inp.value;save();upd()});body=el("div",{class:"ans"},inp,el("span",{class:"unit"},x))}
+  const mark=el("span",{class:"mark"});const box=el("div",{class:"task"},head,body,mark);boxes[n]={box,mark};
+  $("s"+sec).append(box)});
+function fmt(s){const neg=s<0;s=Math.abs(s);return (neg?"+":"")+String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+let tick=null;
+function clock(){const used=Math.floor(((st.doneAt||Date.now())-st.startedAt)/1000),left=LIMIT-used,t=$("time");
+  if(left>=0){t.textContent=fmt(left);t.classList.toggle("low",left<=300)}else{t.textContent="Vaxt bitdi "+fmt(left);t.classList.add("low")}}
+function begin(){$("sqIntro").hidden=true;$("clock").hidden=false;$("sheet").hidden=false;upd();clock();if(!st.doneAt)tick=setInterval(clock,1000)}
+$("sqStart").addEventListener("click",()=>{if(!st.startedAt){st.startedAt=Date.now();save()}begin()});
+$("sheet").addEventListener("submit",e=>{e.preventDefault();const c=count();$("confirmText").textContent=(c<24?"Cavablanmayan sual: "+(24-c)+". ":"Bütün suallar cavablanıb. ")+"Bitirəndən sonra cavabları dəyişmək olmaz.";$("confirm").hidden=false;$("confirm").scrollIntoView({block:"nearest"})});
+$("no").addEventListener("click",()=>{$("confirm").hidden=true});
+$("yes").addEventListener("click",async()=>{$("yes").disabled=true;st.doneAt=Date.now();const res={};
+  for(const [n] of Q){const s=norm(st.a[n]||"");res[n]=s?(await hash(n,s))===H[n]:null}
+  st.res=res;save();finish()});
+function summary(){const secs=Math.floor((st.doneAt-st.startedAt)/1000),ok=Q.filter(([n])=>st.res[n]===true).length;
+  const l=["Fizika sınağı 1: mexanika (Fikrət)","Başlama: "+new Date(st.startedAt).toLocaleString(),"Vaxt: "+fmt(secs)+(secs>LIMIT?" (60 dəqiqədən artıq)":""),"Bal: "+ok+" / 24"];
+  Q.forEach(([n])=>l.push(n+". "+((st.a[n]||"").toString().trim()||"—")+" "+(st.res[n]===true?"✓":st.res[n]===false?"✗":"boş")));return l.join("\n")}
+function finish(){clearInterval(tick);clock();$("fs").disabled=true;$("finish").hidden=true;$("confirm").hidden=true;
+  Q.forEach(([n])=>{const r=st.res[n],b=boxes[n];b.box.classList.add(r===true?"right":"wrong");b.mark.textContent=r===true?"Düz ✓":r===false?"Səhv ✗":"Boş"});
+  const ok=Q.filter(([n])=>st.res[n]===true).length,txt=summary(),pre=el("pre",{class:"copy"},txt);
+  const b=el("button",{class:"btn",type:"button"},"Cavabları kopyala");
+  b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(txt);b.textContent="Kopyalandı ✓"}catch(e){const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Mətn seçildi, indi kopyala"}});
+  const wa=el("a",{class:"btn ghost",href:"https://wa.me/?text="+encodeURIComponent(txt),target:"_blank",rel:"noopener"},"WhatsApp-da aç");
+  const r=$("result");r.className="done";r.replaceChildren(el("b",{},"Nəticə: "+ok+" / 24"),el("p",{},"Səhv olan sualları kağızda yenidən həll et, sonra uyğun dərsə qayıt. Sonra “Cavabları kopyala” bas və atana WhatsApp-da göndər."),pre,el("div",{class:"row"},b,wa));r.hidden=false;r.scrollIntoView({block:"nearest"});
+  const doc={startedAt:new Date(st.startedAt).toISOString(),doneAt:new Date(st.doneAt).toISOString(),score:ok,answers:{},res:{}};Q.forEach(([n])=>{doc.answers[n]=String(st.a[n]||"");doc.res[n]=st.res[n]});
+  Promise.resolve().then(()=>claude.use("db")).then(db=>db&&db.collection("sinaq").add(doc)).catch(()=>{})}
+if(st.startedAt){begin();if(st.res)finish()}
+</script>
+
+</body></html>
