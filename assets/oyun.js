@@ -208,8 +208,7 @@
       // wrong answers: back to that level (re-master it) and into the error journal
       answers.forEach((a, i) => { if (a.ok) return;
         Object.assign(st.lv[a.id], { streak: 0, done: false });
-        if (window.Skilly) Skilly.sehv({ id: cfg.key + "-test@" + st.test.at + "#" + (i + 1), fenn: cfg.fenn, movzu: cfg.title, menbe: cfg.title + " — yekun sınaq",
-          sual: typeof a.q.text === "string" ? a.q.text : a.q.text.textContent, cavab: a.q.choices ? (a.q.choices[a.val] || "") : String(a.val || ""), duz: a.q.show, link: cfg.link });
+        logWrong("yekun sınaq", "test@" + st.test.at + "#" + (i + 1), a.q, a.val);
       });
       if (!passed) st.boss.passed = false;
       save(); drawMap();
@@ -238,6 +237,7 @@
       delete st.reviewRun;
       const bal = res.filter(x => x.ok).length, ok = bal >= r.n - (r.n > 3 ? 1 : 0);
       Skilly.reviewDone(r.id, ok);
+      const at = Date.now(); res.forEach((x, i) => { if (!x.ok) logWrong("yaddaş yoxlaması", "yoxla@" + at + "#" + (i + 1), x.q, run.vals[i]); });
       if (!ok) {
         res.filter(x => !x.ok).forEach(x => Object.assign(st.lv[x.id], { streak: 0, done: false }));
         st.boss.passed = false; st.test = { ...st.test, passed: false };
@@ -278,6 +278,14 @@
       });
     }
 
+    // a wrong answer from the entry test, final test or a review goes to the error journal (Səhvlər sheet)
+    function logWrong(where, id, q, val) {
+      if (!window.Skilly) return;
+      Skilly.sehv({ id: cfg.key + "-" + id, fenn: cfg.fenn, movzu: cfg.title, menbe: cfg.title + " — " + where,
+        sual: typeof q.text === "string" ? q.text : q.text.textContent,
+        cavab: val == null ? "(vaxt bitdi, cavab yoxdur)" : q.choices ? (q.choices[val] || "") : String(val), duz: q.show, link: cfg.link });
+    }
+
     function report(kind, r) {
       if (!window.Skilly) return;
       Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", yoxla: " — yaddaş yoxlaması", giris: " — giriş testi" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
@@ -313,8 +321,10 @@
         run.vals.push(val); save();
       }
       clearInterval(tick);
-      let bal = 0;
-      run.vals.forEach((val, i) => { const q = genS(L(pickIds[i]), run.seeds[i]); if (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q))) bal++; });
+      let bal = 0; const at = Date.now();
+      pickIds.forEach((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i];
+        if (val != null && (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)))) bal++;
+        else logWrong("giriş testi", "giris@" + at + "#" + (i + 1), q, val); });
       delete st.entryRun;
       st.entry = { bal, at: Date.now() };
       if (bal === n) cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK }));
