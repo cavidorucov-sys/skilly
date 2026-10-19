@@ -32,13 +32,15 @@
    "bolme": "Nisbət, tənasüb, faiz",
    "ad": "Nisbət, tənasüb, düz və tərs mütənasiblik",
    "status": "yox",
-   "menbe": "DİM: Nisbət. Tənasüb. Faiz"
+   "menbe": "DİM: Nisbət. Tənasüb. Faiz",
+   "ders": "dersler/nisbet-tenasub.html"
   },
   {
    "bolme": "Nisbət, tənasüb, faiz",
    "ad": "Faiz",
    "status": "yox",
-   "menbe": "DİM: Nisbət. Tənasüb. Faiz"
+   "menbe": "DİM: Nisbət. Tənasüb. Faiz",
+   "ders": "dersler/faiz.html"
   },
   {
    "bolme": "Rasional ifadələr",
@@ -100,7 +102,8 @@
    "bolme": "Statistika, çoxluqlar, ehtimal",
    "ad": "Ölçü vahidləri və statistika: median, moda, diaqramlar",
    "status": "yox",
-   "menbe": "DİM: Ölçmə. Statistika… (+ Faiz: Diaqramlar)"
+   "menbe": "DİM: Ölçmə. Statistika… (+ Faiz: Diaqramlar)",
+   "ders": "dersler/statistika.html"
   },
   {
    "bolme": "Statistika, çoxluqlar, ehtimal",

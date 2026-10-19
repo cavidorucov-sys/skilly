@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nisbət, tənasüb, mütənasiblik dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-nisbet-tenasub.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Nisbət və tənasüb</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Nisbət. Tənasüb. Faiz</div>
+    <h1>Nisbət, tənasüb, düz və tərs mütənasiblik</h1>
+    <p>Xəritənin miqyası, plovun resepti, işin neçə günə bitəcəyi, qazancın bölünməsi — hamısı bir fikrə söykənir: iki kəmiyyəti <b>bölüb müqayisə etmək</b>. Bu mövzu DİM-in mətnli məsələlərinin təxminən yarısının açarıdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Nisbət</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tənasüb</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düz və tərs</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Hissələrə bölmə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Nisbət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çay dəmləyəndə 1 qaşıq çaya 2 stəkan su götürürsən. Qonaq çoxdursa — 3 qaşığa 6 stəkan. Ədədlər dəyişdi, amma dad eynidir: su həmişə çaydan <b>2 dəfə</b> çoxdur. Bu "neçə dəfə" — nisbətdir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Nisbət</b> — iki ədədin qisməti: <span class="m">a : b</span> və ya <span class="m">a/b</span>. Göstərir ki, <span class="m">a</span> ədədi <span class="m">b</span>-nin neçə misli (və ya hansı hissəsi) qədərdir. Bölmənin nəticəsi — <b>nisbətin qiyməti</b>.</p>
+      <div class="fm">a : b = a/b
+Hər iki həddi eyni ədədə vurmaq (bölmək) olar:
+12 : 18 = 2 : 3</div>
+      <p>Kəmiyyətlərin nisbətini tapmazdan əvvəl onları <b>eyni vahidə</b> gətir: metri santimetrə, saatı dəqiqəyə və s.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 12 : 18 = 12/18 = 2/3
+   (hər ikisini 6-ya böldük)
+
+2) 75 sm : 2 m
+   2 m = 200 sm
+   75 : 200 = 3/8
+
+3) a : b = 2 : 3,  b : c = 4 : 5.  a : c = ?
+   a/c = (a/b) · (b/c) = 2/3 · 4/5 = 8/15
+   Yoxla: a = 8, b = 12, c = 15 →
+   8 : 12 = 2 : 3 ✓,  12 : 15 = 4 : 5 ✓</div>
+
+      <h3><span class="st">4</span> Miqyas — xəritədə nisbət</h3>
+      <p>Miqyas <span class="m">1 : 200 000</span> deməkdir: xəritədə 1 sm yerdə 200 000 sm-dir. 200 000 sm = 2000 m = 2 km.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 110" role="img" aria-label="Xəritə miqyası: 1 sm xəritədə 2 km yerdə">
+          <line x1="20" y1="40" x2="245" y2="40" stroke="var(--accent)" stroke-width="4"/>
+          <line x1="20" y1="32" x2="20" y2="48" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="65" y1="32" x2="65" y2="48" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="245" y1="32" x2="245" y2="48" stroke="var(--ink)" stroke-width="2"/>
+          <text x="42" y="25" text-anchor="middle" class="lbl">1 sm</text>
+          <text x="245" y="25" text-anchor="middle" class="lbl">4,5 sm</text>
+          <text x="42" y="68" text-anchor="middle" class="lbl" style="fill:var(--vec)">2 km</text>
+          <text x="245" y="68" text-anchor="middle" class="lbl" style="fill:var(--vec)">9 km</text>
+          <text x="150" y="98" text-anchor="middle" class="lbl">miqyas 1 : 200 000</text>
+        </svg>
+        <div class="cap"><p>Xəritədə 4,5 sm olan məsafə yerdə <span class="m">4,5 · 2 = 9</span> km-dir. Tərsinə: yerdə 9 km → xəritədə <span class="m">9 : 2 = 4,5</span> sm.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Sinifdə 12 oğlan, 16 qız var. Oğlanların qızlara nisbəti <span class="m">12 : 16 = 3 : 4</span>. Yəni hər 3 oğlana 4 qız düşür — sinif böyük olsa da, kiçik olsa da, bu "şəkil" saxlanırsa nisbət eynidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Vahidləri eyniləşdirmədən bölmək: <span class="m">75 sm : 2 m ≠ 75/2</span>.</li>
+        <li>Sıranı qarışdırmaq: "a-nın b-yə nisbəti" — <span class="m">a : b</span>-dir, <span class="m">b : a</span> yox.</li>
+        <li>Miqyasda sm-i km-ə səhv çevirmək: 1 km = 100 000 sm (beş sıfır).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a : b = a/b — ixtisar etmək olar.
+Əvvəl eyni vahid, sonra bölmə.
+a : c = (a : b) · (b : c).
+1 : 100 000 → 1 sm = 1 km.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">45 : 60</span> nisbətinin qiyməti? <span class="ans">45/60 = 3/4 (15-ə böldük).</span></li>
+        <li>30 dəqiqənin 2 saata nisbəti? <span class="ans">2 saat = 120 dəq. 30 : 120 = 1/4.</span></li>
+        <li>Miqyas 1 : 50 000. Xəritədə 6 sm yerdə neçə km-dir? <span class="ans">1 sm = 50 000 sm = 0,5 km. 6 · 0,5 = 3 km.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tənasüb və onun əsas xassəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>4 dəftər 6 manatdır. 10 dəftər neçəyədir? Bu sualı tənasüb bir sətirdə həll edir. Nisbət sabit qalırsa, naməlumu tənasübdən tapırıq.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Tənasüb</b> — iki nisbətin bərabərliyi: <span class="m">a : b = c : d</span>. Burada <span class="m">a</span> və <span class="m">d</span> — <b>kənar hədlər</b>, <span class="m">b</span> və <span class="m">c</span> — <b>orta hədlər</b>.</p>
+      <div class="fm">Əsas xassə:
+a : b = c : d   ⇔   a · d = b · c
+(kənar hədlərin hasili = orta hədlərin hasili)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 120" role="img" aria-label="a:b=c:d tənasübündə kənar hədlər a və d, orta hədlər b və c">
+          <path d="M45 52 Q150 -10 255 52" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <path d="M105 72 Q150 108 195 72" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="45" y="70" text-anchor="middle" class="lbl" style="font-size:22px">a</text>
+          <text x="75" y="70" text-anchor="middle" class="lbl" style="font-size:22px">:</text>
+          <text x="105" y="70" text-anchor="middle" class="lbl" style="font-size:22px">b</text>
+          <text x="150" y="70" text-anchor="middle" class="lbl" style="font-size:22px">=</text>
+          <text x="195" y="70" text-anchor="middle" class="lbl" style="font-size:22px">c</text>
+          <text x="225" y="70" text-anchor="middle" class="lbl" style="font-size:22px">:</text>
+          <text x="255" y="70" text-anchor="middle" class="lbl" style="font-size:22px">d</text>
+          <text x="150" y="16" text-anchor="middle" class="lbl" style="fill:var(--vec)">kənar: a · d</text>
+          <text x="150" y="116" text-anchor="middle" class="lbl" style="fill:var(--accent)">orta: b · c</text>
+        </svg>
+        <div class="cap"><p>Kəsr yazılışında bu "çarpaz vurma"dır: <span class="m">a/b = c/d → a · d = b · c</span>. Naməlum hədd = məlum cütün hasili ÷ o biri cütün məlum həddi.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x : 12 = 5 : 4
+   4 · x = 12 · 5  →  4x = 60  →  x = 15
+   Yoxla: 15/12 = 5/4 ✓
+
+2) 3,5 : x = 7 : 4
+   7 · x = 3,5 · 4 = 14  →  x = 2
+   Yoxla: 3,5/2 = 1,75 = 7/4 ✓
+
+3) (x − 2) : 6 = 5 : 3
+   3(x − 2) = 6 · 5 = 30
+   x − 2 = 10  →  x = 12</div>
+      <div class="ex">Tənasübdürmü?  3 : 4 və 9 : 12
+   3 · 12 = 36,  4 · 9 = 36 — bərabərdir → bəli, tənasübdür.</div>
+      <div class="life"><b>Həyatdan.</b> 4 dəftər 6 manatdır, 10 dəftər — <span class="m">x</span> manat. <span class="m">4 : 6 = 10 : x → 4x = 60 → x = 15</span> manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kənar və orta hədləri qarışdırmaq: <span class="m">x : 12 = 5 : 4</span>-də <span class="m">x · 5 = 12 · 4</span> yazmaq. Düzü: <span class="m">x · 4 = 12 · 5</span>.</li>
+        <li><span class="m">(x − 2)</span> kimi həddi mötərizəsiz vurmaq: <span class="m">3x − 2</span> yox, <span class="m">3x − 6</span>.</li>
+        <li>Cavabı yoxlamamaq. Tapdığın ədədi yerinə qoy — iki nisbət bərabər çıxmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a : b = c : d  →  a · d = b · c
+Kənar: a, d.   Orta: b, c.
+Naməlum = (o biri cütün hasili) : (öz cütündəki ədəd)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">8 : x = 2 : 5</span>. x = ? <span class="ans">2x = 40 → x = 20.</span></li>
+        <li><span class="m">6/9 = x/12</span>. x = ? <span class="ans">9x = 72 → x = 8.</span></li>
+        <li>Tənasübün kənar hədlərinin hasili 42-dir, orta hədlərdən biri 6. O biri orta hədd? <span class="ans">Orta hədlərin hasili də 42-dir: 42 : 6 = 7.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Düz və tərs mütənasib kəmiyyətlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Alma çox alırsan — çox pul verirsən. Fəhlə çox olur — iş tez bitir. Birinci halda kəmiyyətlər <b>birlikdə</b> böyüyür, ikincidə biri böyüyəndə o biri <b>kiçilir</b>. Hansı hal olduğunu düz tanımaq — məsələnin yarısıdır.</p>
+
+      <h3><span class="st">2</span> Düz mütənasiblik</h3>
+      <p>Biri neçə dəfə artırsa, o biri də <b>o qədər dəfə artır</b>. Onların <b>nisbəti sabitdir</b>.</p>
+      <div class="fm">y/x = k   →   y = k · x
+x₁ : x₂ = y₁ : y₂</div>
+      <div class="ex">5 kq alma 12 manatdır. 8 kq neçəyədir?
+   Düz mütənasib (kq artır → pul artır)
+   5 : 8 = 12 : x  →  5x = 96  →  x = 19,2 manat
+   (1 kq = 12 : 5 = 2,4 manat; 8 · 2,4 = 19,2 ✓)</div>
+
+      <h3><span class="st">3</span> Tərs mütənasiblik</h3>
+      <p>Biri neçə dəfə artırsa, o biri <b>o qədər dəfə azalır</b>. Onların <b>hasili sabitdir</b>.</p>
+      <div class="fm">x · y = k   →   y = k/x
+x₁ : x₂ = y₂ : y₁   (nisbət çevrilir)</div>
+      <div class="ex">6 fəhlə işi 15 günə görür. Eyni məhsuldarlıqla 9 fəhlə neçə günə görər?
+   Tərs mütənasib (fəhlə artır → gün azalır)
+   6 · 15 = 9 · x  →  90 = 9x  →  x = 10 gün</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Solda düz mütənasiblik qrafiki y=2x düz xətt, sağda tərs mütənasiblik y=8/x hiperbola">
+          <line x1="15" y1="125" x2="135" y2="125" stroke="var(--ink)" stroke-width="1.5"/><line x1="20" y1="130" x2="20" y2="10" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="20" y1="125" x2="120" y2="25" stroke="var(--accent)" stroke-width="3"/>
+          <text x="75" y="145" text-anchor="middle" class="lbl">y = kx (düz)</text>
+          <line x1="165" y1="125" x2="285" y2="125" stroke="var(--ink)" stroke-width="1.5"/><line x1="170" y1="130" x2="170" y2="10" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M180 15 Q 190 85 280 115" fill="none" stroke="var(--vec)" stroke-width="3"/>
+          <text x="225" y="145" text-anchor="middle" class="lbl">y = k/x (tərs)</text>
+        </svg>
+        <div class="cap"><p>Düz mütənasibliyin qrafiki — başlanğıcdan keçən <b>düz xətt</b>. Tərs mütənasibliyin qrafiki — <b>hiperbola</b>: x böyüdükcə y kiçilir, amma sıfıra çatmır.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Cədvəldən tanımaq</h3>
+      <div class="tbl"><table>
+        <tr><th>x</th><td>1</td><td>2</td><td>4</td><td>8</td></tr>
+        <tr><th>y</th><td>16</td><td>8</td><td>4</td><td>2</td></tr>
+      </table></div>
+      <p>Hasillər: <span class="m">1·16 = 2·8 = 4·4 = 8·2 = 16</span> — sabitdir, deməli <b>tərs</b> mütənasib. Nisbətləri yoxlasaydıq: <span class="m">16/1 ≠ 8/2</span> — düz deyil.</p>
+      <div class="life"><b>Həyatdan.</b> Taksi: oturma 1 manat + hər km 0,5 manat. 2 km — 2 manat, 4 km — 3 manat. Məsafə 2 dəfə artdı, pul 2 dəfə artmadı. Hər ikisi artır, amma <b>mütənasib deyil</b> — sabit "oturma haqqı" mütənasibliyi pozur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"İkisi də artırsa — düz mütənasibdir" demək. Lazımdır ki, <b>eyni dəfə</b> artsın (kvadratın tərəfi 2 dəfə artanda sahəsi 4 dəfə artır — mütənasib deyil).</li>
+        <li>Tərs mütənasib məsələni düz kimi həll etmək: 9 fəhlə üçün <span class="m">15 · 9 : 6 = 22,5</span> gün — çox fəhlə daha çox işləyir? Məntiqsizdir.</li>
+        <li>"Eyni məhsuldarlıq" şərtini unutmaq — o olmasa, heç bir mütənasiblik yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Düz:  y/x sabit  →  x₁/x₂ = y₁/y₂
+Tərs: x·y sabit  →  x₁·y₁ = x₂·y₂
+Əvvəl soruş: biri artanda o biri artır, yoxsa azalır?</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>4 m parça 30 manatdır. 6 m neçəyədir? <span class="ans">Düz: 30 : 4 = 7,5 manat 1 metr; 6 · 7,5 = 45 manat.</span></li>
+        <li>8 eyni boru hovuzu 9 saata doldurur. 12 boru neçə saata doldurar? <span class="ans">Tərs: 8 · 9 = 72; 72 : 12 = 6 saat.</span></li>
+        <li>x: 2, 3, 5; y: 10, 15, 25. Asılılıq necədir? <span class="ans">y/x = 5 hər yerdə — düz mütənasib.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Ədədin düz və tərs mütənasib hissələrə bölünməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üç dost işə 2, 3 və 5 min manat qoydu, qazanc 4000 manatdır. Ədalətlə necə bölmək? Kim çox qoyubsa, çox almalıdır — qazanc qoyulan pula <b>düz mütənasib</b> bölünür.</p>
+
+      <h3><span class="st">2</span> Düz mütənasib bölmə</h3>
+      <div class="fm">N-i a : b : c nisbətində böl:
+1 hissə = N : (a + b + c)
+Hissələr: a·hissə, b·hissə, c·hissə</div>
+      <div class="ex">120-ni 2 : 3 : 5 nisbətində böl.
+   Cəmi 2 + 3 + 5 = 10 hissə
+   1 hissə = 120 : 10 = 12
+   Hissələr: 24, 36, 60   (yoxla: 24 + 36 + 60 = 120 ✓)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 70" role="img" aria-label="120 zolağı 10 bərabər hissəyə bölünüb: 2, 3 və 5 hissə">
+          <rect x="10" y="15" width="56" height="28" style="fill:var(--accent)"/>
+          <rect x="66" y="15" width="84" height="28" style="fill:var(--vec)"/>
+          <rect x="150" y="15" width="140" height="28" style="fill:var(--adj)"/>
+          <g stroke="var(--sheet)" stroke-width="1.5"><line x1="38" y1="15" x2="38" y2="43"/><line x1="94" y1="15" x2="94" y2="43"/><line x1="122" y1="15" x2="122" y2="43"/><line x1="178" y1="15" x2="178" y2="43"/><line x1="206" y1="15" x2="206" y2="43"/><line x1="234" y1="15" x2="234" y2="43"/><line x1="262" y1="15" x2="262" y2="43"/></g>
+          <text x="38" y="62" text-anchor="middle" class="lbl">24</text>
+          <text x="108" y="62" text-anchor="middle" class="lbl">36</text>
+          <text x="220" y="62" text-anchor="middle" class="lbl">60</text>
+        </svg>
+        <div class="cap"><p>Zolaq 10 bərabər hissədir, hər hissə 12. Birinciyə 2 hissə, ikinciyə 3, üçüncüyə 5 düşür.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Tərs mütənasib bölmə</h3>
+      <p>"a, b, c ədədlərinə <b>tərs</b> mütənasib" — hissələr <span class="m">1/a : 1/b : 1/c</span> nisbətindədir. Kəsrləri ortaq məxrəcə vurub tam ədədlərə çeviririk.</p>
+      <div class="ex">104-ü 2, 3, 4 ədədlərinə tərs mütənasib hissələrə böl.
+   1/2 : 1/3 : 1/4   (12-yə vururuq)
+   = 6 : 4 : 3
+   Cəmi 13 hissə;  1 hissə = 104 : 13 = 8
+   Hissələr: 48, 32, 24   (yoxla: 48 + 32 + 24 = 104 ✓)</div>
+      <p>Diqqət: tərs bölmədə <b>ən kiçik ədədə ən böyük hissə</b> düşür.</p>
+      <div class="life"><b>Həyatdan.</b> Dostların qazancı: <span class="m">2 : 3 : 5</span>, cəmi 10 hissə, 1 hissə = <span class="m">4000 : 10 = 400</span> manat. Paylar: 800, 1200, 2000 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tərs bölmədə <span class="m">2 : 3 : 4</span> nisbətini olduğu kimi götürmək. Əvvəl tərsə çevir: <span class="m">1/2 : 1/3 : 1/4 = 6 : 4 : 3</span>.</li>
+        <li>Cəmi hissəni səhv saymaq (nisbətin hədlərini toplamağı unutmaq).</li>
+        <li>Bir hissəni tapıb cavab yazmaq. Soruşulan hissə = <b>hissə sayı · 1 hissə</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Düz: a : b : c → cəm hissə → 1 hissə → vur.
+Tərs: 1/a : 1/b : 1/c → tam ədədlərə çevir → sonra düz kimi.
+Yoxlama: hissələrin cəmi = N.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>90-ı 1 : 2 : 3 nisbətində böl. <span class="ans">6 hissə, 1 hissə = 15. Hissələr: 15, 30, 45.</span></li>
+        <li>60-ı 2 və 3 ədədlərinə tərs mütənasib hissələrə böl. <span class="ans">1/2 : 1/3 = 3 : 2; 5 hissə, 1 hissə = 12. Hissələr: 36 və 24.</span></li>
+        <li>Sinifdə oğlanların qızlara nisbəti 4 : 5, cəmi 36 şagird. Oğlan neçədir? <span class="ans">9 hissə, 1 hissə = 4. Oğlanlar: 4 · 4 = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

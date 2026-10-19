@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Faiz dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-faiz.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Faiz</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Nisbət. Tənasüb. Faiz</div>
+    <h1>Faiz</h1>
+    <p>Endirim, bank əmanəti, vergi, məhlulun qatılığı, diaqramdakı paylar — hamısı faizlə ölçülür. DİM-də faiz məsələləri hər il var və çox vaxt tələ ilə: faiz <b>hansı ədəddən</b> götürülür?</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Faiz nədir</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Faizlə dəyişmə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qarışıq və bank</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Diaqramlar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Faiz. Ədədin faizi və faizinə görə ədəd</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mağazada "−30%" yazılıb. Bu, 30 manat endirim deyil — qiymətin <b>yüzdə 30 hissəsi</b> qədər endirimdir. 50 manatlıq köynəkdə 15 manat, 200 manatlıq gödəkçədə 60 manat.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Faiz</b> — ədədin yüzdə bir hissəsi: <span class="m">1% = 1/100 = 0,01</span>. Bütün ədəd — <span class="m">100%</span>.</p>
+      <div class="fm">p% = p/100
+Kəsri faizə:   · 100%     3/8 = 0,375 = 37,5%
+Faizi kəsrə:   : 100      36% = 36/100 = 9/25</div>
+      <div class="tbl"><table>
+        <tr><th>faiz</th><td>10%</td><td>12,5%</td><td>20%</td><td>25%</td><td>50%</td><td>75%</td></tr>
+        <tr><th>kəsr</th><td>1/10</td><td>1/8</td><td>1/5</td><td>1/4</td><td>1/2</td><td>3/4</td></tr>
+      </table></div>
+
+      <h3><span class="st">3</span> Ədədin faizi</h3>
+      <div class="fm">a-nın p%-i = a · p/100</div>
+      <div class="ex">240-ın 15%-i:
+   15% = 0,15
+   240 · 0,15 = 36</div>
+
+      <h3><span class="st">4</span> Faizinə görə ədəd</h3>
+      <p>Hissə və onun faizi məlumdur, bütün ədəd naməlumdur — bölürük.</p>
+      <div class="fm">Ədədin p%-i b-dirsə:
+ədəd = b : p/100 = b · 100/p</div>
+      <div class="ex">Ədədin 35%-i 42-dir. Ədəd?
+   35% → 42
+   1% → 42 : 35 = 1,2
+   100% → 1,2 · 100 = 120
+   Yoxla: 120 · 0,35 = 42 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Telefonun 20%-i doludur və bu 800 mAh-dır. Batareyanın tam tutumu: <span class="m">800 : 0,2 = 4000</span> mAh.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Faizi ədəd kimi çıxmaq: "200-dən 30% az" — 170 yox, <span class="m">200 − 60 = 140</span>.</li>
+        <li>Onluğa çevirəndə vergülü səhv sürüşdürmək: <span class="m">4,5% = 0,045</span>, 0,45 yox.</li>
+        <li>"Ədədin faizi" ilə "faizinə görə ədəd"i qarışdırmaq. Bütün ədəd naməlumdursa — <b>böl</b>, məlumdursa — <b>vur</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p% = p/100
+a-nın p%-i:          a · p/100
+p%-i b olan ədəd:    b · 100/p</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">7/20</span> neçə faizdir? <span class="ans">7/20 · 100% = 35%.</span></li>
+        <li>80-in 45%-i? <span class="ans">80 · 0,45 = 36.</span></li>
+        <li>Ədədin 8%-i 6-dır. Ədəd? <span class="ans">6 : 0,08 = 75.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Nisbətin faizlə ifadəsi. Kəmiyyətin faizlə dəyişməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Benzinin litri 80 qəpikdən 92 qəpiyə qalxdı. Xəbərlərdə yazırlar: "15% bahalaşdı". Bu 15 haradan çıxır? Və niyə qiymət 20% artıb sonra 20% enəndə əvvəlki yerinə qayıtmır?</p>
+
+      <h3><span class="st">2</span> İki ədədin nisbəti faizlə</h3>
+      <div class="fm">a ədədi b-nin neçə faizidir:  a/b · 100%
+Dəyişmə faizi:  (yeni − köhnə)/köhnə · 100%</div>
+      <div class="ex">1) 18 ədədi 72-nin neçə faizidir?
+   18/72 · 100% = 25%
+
+2) Qiymət 80 qəpikdən 92 qəpiyə qalxdı.
+   Artım 12; baza — köhnə qiymət 80
+   12/80 · 100% = 15%
+
+3) 60 ədədi 50-dən neçə faiz çoxdur?   10/50 = 20%
+   50 ədədi 60-dan neçə faiz azdır?    10/60 = 16 2/3 %
+   Fərq eynidir (10), baza fərqlidir!</div>
+
+      <h3><span class="st">3</span> Ardıcıl dəyişmələr</h3>
+      <p>Hər yeni faiz <b>dəyişmiş qiymətdən</b> hesablanır. Rahat yol — vurma: <span class="m">+p% → · (1 + p/100)</span>, <span class="m">−q% → · (1 − q/100)</span>.</p>
+      <div class="ex">Qiymət 20% artırıldı, sonra 20% endirildi.
+   1,2 · 0,8 = 0,96 → ilkin qiymətin 96%-i
+   Nəticə: 4% ucuzlaşdı (0% yox!)
+
+500 manat iki dəfə 10% artırıldı:
+   500 · 1,1 = 550;  550 · 1,1 = 605
+   Ümumi artım: 21% (20% yox)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 130" role="img" aria-label="100 manat 20 faiz artıb 120 olur, sonra 20 faiz enib 96 olur">
+          <rect x="20" y="30" width="50" height="70" style="fill:var(--accent)"/>
+          <rect x="125" y="16" width="50" height="84" style="fill:var(--vec)"/>
+          <rect x="230" y="33" width="50" height="67" style="fill:var(--adj)"/>
+          <line x1="10" y1="100" x2="290" y2="100" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="15" y1="30" x2="290" y2="30" stroke="var(--ink)" stroke-dasharray="4 4" stroke-width="1"/>
+          <text x="45" y="120" text-anchor="middle" class="lbl">100</text>
+          <text x="150" y="120" text-anchor="middle" class="lbl">120</text>
+          <text x="255" y="120" text-anchor="middle" class="lbl">96</text>
+          <text x="98" y="12" text-anchor="middle" class="lbl" style="fill:var(--vec)">+20</text>
+          <text x="203" y="12" text-anchor="middle" class="lbl" style="fill:var(--adj)">−24</text>
+        </svg>
+        <div class="cap"><p>Artım 100-ün 20%-i (20), endirim isə 120-nin 20%-i (24). Ona görə 100-ə qayıtmırıq — 96 alırıq.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Faizin faizi və geriyə hesab</h3>
+      <div class="ex">Məktəbdə 600 şagird var, 40%-i qızdır, qızların 25%-i şahmat oynayır.
+   Qızlar: 600 · 0,4 = 240
+   Şahmatçı qızlar: 240 · 0,25 = 60
+   (40%-in 25%-i = 10%; 600-ün 10%-i = 60 ✓)
+
+25% artımdan sonra qiymət 150 manatdır. İlkin qiymət?
+   150 — ilkin qiymətin 125%-i
+   150 : 1,25 = 120 manat
+   (150-nin 25%-ni çıxmaq səhvdir: 112,5 alınar)</div>
+      <div class="life"><b>Həyatdan.</b> Mağaza qiyməti əvvəl 25% qaldırıb, sonra "20% endirim" elan edir: <span class="m">1,25 · 0,8 = 1</span>. Alıcı əslində ilkin qiyməti ödəyir — "endirim" yalnız sözdədir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Faizləri toplamaq: +20% və −20% → "dəyişmədi". Vur: <span class="m">1,2 · 0,8 = 0,96</span>.</li>
+        <li>Dəyişmə faizini <b>yeni</b> qiymətə bölmək. Baza — həmişə köhnə (müqayisə olunan) qiymətdir.</li>
+        <li>Geriyə hesabda yeni qiymətdən faizi çıxmaq. Yeni qiymətə <span class="m">(1 ± p/100)</span>-ə böl.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a ədədi b-nin a/b · 100%-i
+Dəyişmə: fərq/köhnə · 100%
++p% → ·(1 + p/100);  −q% → ·(1 − q/100)
+Ardıcıl faizlər vurulur, toplanmır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>15 ədədi 60-ın neçə faizidir? <span class="ans">15/60 · 100% = 25%.</span></li>
+        <li>200 manat əvvəl 10% artdı, sonra 10% endirildi. Son qiymət? <span class="ans">200 · 1,1 · 0,9 = 198 manat.</span></li>
+        <li>30% endirimdən sonra qiymət 280 manatdır. İlkin qiymət? <span class="ans">280 : 0,7 = 400 manat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qarışıqlar, qatılıq və bank faizi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Aptekdə "3%-li hidrogen peroksid", mağazada "2,5%-li süd", bankda "illik 8%". Faiz burada "bütövün hansı hissəsi"dir: məhlulun neçə faizi maddədir, əmanət ildə neçə faiz böyüyür.</p>
+
+      <h3><span class="st">2</span> Qatılıq</h3>
+      <div class="fm">qatılıq = maddənin kütləsi / məhlulun kütləsi · 100%
+maddə = məhlul · qatılıq/100</div>
+      <p>Əsas fikir: su əlavə edəndə və ya su buxarlananda <b>maddənin özü dəyişmir</b> — dəyişən bütün məhlulun kütləsidir.</p>
+      <div class="ex">1) 300 q 12%-li duz məhluluna 100 q su əlavə edildi.
+   Duz: 300 · 0,12 = 36 q (dəyişmir)
+   Yeni kütlə: 400 q
+   36/400 · 100% = 9%
+
+2) 200 q 10%-li və 300 q 20%-li məhlul qarışdırıldı.
+   Maddə: 20 + 60 = 80 q;  kütlə: 500 q
+   80/500 · 100% = 16%
+
+3) 150 q 20%-li məhlulu 15%-li etmək üçün neçə q su lazımdır?
+   Duz: 150 · 0,2 = 30 q
+   30 q yeni məhlulun 15%-i olmalıdır: 30 : 0,15 = 200 q
+   Su: 200 − 150 = 50 q</div>
+      <div class="ex">Quruma: üzüm 90% sudur, kişmiş 20% su. 10 kq kişmiş üçün neçə kq üzüm?
+   Kişmişdə quru maddə 80%: 10 · 0,8 = 8 kq
+   Üzümdə bu 8 kq — 10%-dir: 8 : 0,1 = 80 kq üzüm</div>
+
+      <h3><span class="st">3</span> Bank faizi</h3>
+      <p><b>Sadə faiz:</b> faiz hər il <b>ilkin</b> məbləğdən hesablanır. <b>Mürəkkəb faiz:</b> hər il faiz hesaba əlavə olunur və növbəti il <b>yeni</b> məbləğdən hesablanır (ardıcıl artım).</p>
+      <div class="fm">Sadə:     S = P · (1 + n · p/100)
+Mürəkkəb:  S = P · (1 + p/100)ⁿ</div>
+      <div class="ex">2000 manat, illik 8%, 3 il.
+   Sadə: hər il 2000 · 0,08 = 160 manat;  3 ildə 480
+         S = 2000 + 480 = 2480 manat
+   Mürəkkəb, 2 il: 2000 · 1,08 = 2160;  2160 · 1,08 = 2332,8 manat</div>
+      <div class="life"><b>Həyatdan.</b> Kredit də faizlə işləyir, amma əksinə: borc böyüyür. 1000 manat illik 20% mürəkkəb faizlə 2 ildə <span class="m">1000 · 1,2 · 1,2 = 1440</span> manat olur — 440 manat "artıq".</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Su əlavə edəndə duzun kütləsini də dəyişmək. Duz eyni qalır.</li>
+        <li>Qarışığın qatılığını faizlərin ədədi ortası kimi götürmək (10% və 20% → 15%). Yalnız kütlələr bərabər olanda doğrudur.</li>
+        <li>Sadə və mürəkkəb faizi qarışdırmaq: "faiz hesaba əlavə olunur" — mürəkkəbdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Maddə = məhlul · qatılıq. Su əlavəsi maddəni dəyişmir.
+Qarışıq: maddələri topla, kütlələri topla, böl.
+Sadə faiz: P(1 + np/100).  Mürəkkəb: P(1 + p/100)ⁿ.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>500 q 6%-li məhlula 100 q su əlavə edildi. Yeni qatılıq? <span class="ans">Duz 30 q, kütlə 600 q: 30/600 = 5%.</span></li>
+        <li>1000 manat illik 5% sadə faizlə 4 il. Sonda nə qədər? <span class="ans">Hər il 50, 4 ildə 200. Cəmi 1200 manat.</span></li>
+        <li>1000 manat illik 10% mürəkkəb faizlə 2 il? <span class="ans">1000 · 1,1 · 1,1 = 1210 manat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Dairəvi diaqramlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Büdcənin, səslərin, sinfin "necə bölündüyünü" bir baxışda göstərmək üçün dairəvi diaqram çəkilir. DİM-də ondan say, faiz və ya bucaq tapmaq soruşulur.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Bütün dairə — <span class="m">100%</span> və <span class="m">360°</span>. Hər sektor bütövün bir payıdır.</p>
+      <div class="fm">1% = 360° : 100 = 3,6°
+Sektorun bucağı = p · 3,6°
+Sektorun sayı   = cəm · p/100</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 160" role="img" aria-label="Dairəvi diaqram: futbol 40 faiz, basketbol 25 faiz, voleybol 20 faiz, şahmat 15 faiz">
+          <path d="M80 80L80 15A65 65 0 0 1 118.2 132.6Z" style="fill:var(--accent);stroke:var(--sheet);stroke-width:2"/>
+          <path d="M80 80L118.2 132.6A65 65 0 0 1 27.4 118.2Z" style="fill:var(--vec);stroke:var(--sheet);stroke-width:2"/>
+          <path d="M80 80L27.4 118.2A65 65 0 0 1 27.4 41.8Z" style="fill:var(--adj);stroke:var(--sheet);stroke-width:2"/>
+          <path d="M80 80L27.4 41.8A65 65 0 0 1 80 15Z" style="fill:var(--hyp);stroke:var(--sheet);stroke-width:2"/>
+          <rect x="165" y="30" width="14" height="14" rx="3" style="fill:var(--accent)"/><text x="186" y="42" class="lbl">Futbol 40%</text>
+          <rect x="165" y="58" width="14" height="14" rx="3" style="fill:var(--vec)"/><text x="186" y="70" class="lbl">Basketbol 25%</text>
+          <rect x="165" y="86" width="14" height="14" rx="3" style="fill:var(--adj)"/><text x="186" y="98" class="lbl">Voleybol 20%</text>
+          <rect x="165" y="114" width="14" height="14" rx="3" style="fill:var(--hyp)"/><text x="186" y="126" class="lbl">Şahmat 15%</text>
+        </svg>
+        <div class="cap"><p>240 şagirdin sevdiyi idman növü. Sektorlar saat əqrəbi istiqamətində, yuxarıdan başlayır.</p></div>
+      </div>
+      <div class="ex">Cəmi 240 şagird.
+   Futbol:    240 · 0,40 = 96 şagird;   bucaq 40 · 3,6 = 144°
+   Basketbol: 240 · 0,25 = 60;          bucaq 90°
+   Voleybol:  240 · 0,20 = 48;          bucaq 72°
+   Şahmat:    240 · 0,15 = 36;          bucaq 54°
+   Yoxla: 96 + 60 + 48 + 36 = 240 ✓;  144 + 90 + 72 + 54 = 360 ✓
+
+Futbolu seçənlər şahmatı seçənlərdən neçə nəfər çoxdur?
+   40% − 15% = 25%;  240 · 0,25 = 60</div>
+
+      <h3><span class="st">4</span> Cəm verilməyəndə</h3>
+      <div class="ex">Diaqramda voleybol 20%-dir və onu 48 şagird seçib. Basketbolu neçə nəfər seçib?
+   20% → 48, onda 1% → 2,4;  cəmi 240
+   Basketbol (25%): 25 · 2,4 = 60
+
+Sektorun bucağı 108°-dir. Neçə faizdir?
+   108 : 3,6 = 30%</div>
+      <div class="life"><b>Həyatdan.</b> Ailənin aylıq xərcinin 35%-i ərzaqdır və bu 420 manatdır. Bütün büdcə: <span class="m">420 : 0,35 = 1200</span> manat. Kommunal 15%-dirsə — <span class="m">180</span> manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Faizi birbaşa dərəcə saymaq: 25% → 25° yox, <span class="m">25 · 3,6 = 90°</span>.</li>
+        <li>Cəmi bilmədən sektorun sayını "gözlə" təxmin etmək. Ya cəm verilir, ya da bir sektorun sayı — oradan cəmi tap.</li>
+        <li>Fərqi faizlə soruşanda sayla cavab vermək (və ya əksinə). Sual nə istəyir — oxu.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Dairə = 100% = 360°;  1% = 3,6°
+Say = cəm · p/100;  cəm = say : p/100
+Bütün sektorların cəmi 100% (360°) olmalıdır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sektor 35%-dir. Mərkəzi bucağı? <span class="ans">35 · 3,6 = 126°.</span></li>
+        <li>Sektorun bucağı 72°, cəmi 500 nəfər. Sektorda neçə nəfər? <span class="ans">72 : 3,6 = 20%; 500 · 0,2 = 100 nəfər.</span></li>
+        <li>Diaqramda "Alma" 30% və bu 45 ağacdır. "Armud" 20%. Neçə armud ağacı var? <span class="ans">1% → 1,5 ağac; 20% → 30 ağac (cəmi 150).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
