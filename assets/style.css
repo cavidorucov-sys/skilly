@@ -374,3 +374,9 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .gate-note .list{margin-top:0;gap:6px}
 .gate-note .row .ic{width:40px;height:40px}
 .gate-note a.row{text-decoration:none;color:var(--ink)}
+
+.gate-start .row{background:var(--white,#fff);box-shadow:inset 0 0 0 1.5px var(--ink);border-radius:var(--r)}
+.gate-sub{color:var(--muted);font-size:13px;margin-top:6px}
+.gate-more summary{cursor:pointer;font-size:14px;color:var(--ink-2)}
+.gate-more .list{margin-top:10px}
+.gate-start a.row{margin:0;padding:10px 12px}

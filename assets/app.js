@@ -87,6 +87,15 @@ const LIST_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
 function topicIndex(m) { const ix = {}; for (const k in m) m[k].forEach(t => { ix[k + ":" + t.ad] = { ...t, list: k }; }); return ix; }
 const isClosed = t => t && (t.status === "bag" || (t.ders && passedHere().includes(t.ders)));
 const missingPrereqs = (t, ix) => (t.on || []).map(id => ix[id]).filter(x => x && !isClosed(x));
+// everything still to close below a topic, and the ones of them that can be opened right now (in plan order)
+function openChain(t, ix) {
+  const all = new Map(), stack = missingPrereqs(t, ix);
+  while (stack.length) { const x = stack.pop(), id = x.list + ":" + x.ad; if (all.has(id)) continue; all.set(id, x); stack.push(...missingPrereqs(x, ix)); }
+  const pos = Object.keys(ix), list = [...all.values()];
+  const now = list.filter(x => x.ders && (x.status === "isl" || !missingPrereqs(x, ix).length))
+    .sort((a, b) => (a.hefte || "").localeCompare(b.hefte || "") || pos.indexOf(a.list + ":" + a.ad) - pos.indexOf(b.list + ":" + b.ad));
+  return { total: list.length, now };
+}
 const weekLabel = iso => { const d = new Date(iso + "T12:00"); return d.getDate() + " " + AY[d.getMonth()].slice(0, 3); };
 function allTopics(m) {
   const bag = passedHere();
@@ -566,8 +575,13 @@ async function pageLesson() {
     el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + x.bolme), el("b", { title: x.ad }, x.ad)),
     stPill(x.status), x.ders ? el("span", { class: "gate-go" }, icon("ArrowRight")) : null); };
   if (me && miss.length && me.status === "yox" && !isClosed(me)) {
+    // the chain can be long (up to ~17 steps), so the page points straight at the topic to open now
+    const ch = openChain(me, ix), first = ch.now[0];
     wrap.replaceChildren(el("div", { class: "gate" }, el("h2", {}, me.ad),
-      el("p", {}, "Bu mövzu bunlara əsaslanır. Əvvəl onları bağla — sonra bu dərs açılacaq:"),
+      el("p", {}, "Bu dərs açılmamışdan əvvəl " + ch.total + " mövzu bağlanmalıdır. İndi buradan başla:"),
+      first ? el("div", { class: "list gate-start" }, missRow(first)) : null,
+      ch.now.length > 1 ? el("details", { class: "gate-more" }, el("summary", {}, "İndi açıq olan başqa " + (ch.now.length - 1) + " mövzu"), el("div", { class: "list" }, ...ch.now.slice(1).map(missRow))) : null,
+      el("p", { class: "gate-sub" }, "Birbaşa əsaslandığı mövzular:"),
       el("div", { class: "list" }, ...miss.map(missRow))));
     return;
   }
