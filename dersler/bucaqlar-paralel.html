@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bucaqlar və paralel düz xətlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-bucaqlar-paralel.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Bucaqlar və paralel düz xətlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Həndəsənin əsas anlayışları</div>
+    <h1>Bucaqlar, paralel və perpendikulyar düz xətlər</h1>
+    <p>Həndəsənin bütün məsələləri — üçbucaq, paraleloqram, trapesiya, çevrə — bucaqlarla başlayır. Burada qonşu və qarşılıqlı bucaqları, tənböləni, paralel düz xətlərin kəsənlə əmələ gətirdiyi bucaqları öyrənəcəksən. Bunlar imtahanda həm ayrıca sual, həm də böyük məsələnin ilk addımı olur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bucaq, tənbölən</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Qonşu, qarşılıqlı</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Paralel və kəsən</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Bucaq, onun ölçüsü və tənböləni</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Saatın əqrəbləri, qayçının tiyələri, açılan qapı — hamısı bucaqdır. Qapı nə qədər çox açılsa, bucaq o qədər böyükdür. Bucağı ölçmək üçün <b>dərəcə</b> işlədirik: tam dövrə 360°-dir.</p>
+
+      <h3><span class="st">2</span> Bucaq və onun növləri</h3>
+      <p><b>Bucaq</b> — bir nöqtədən (təpədən) çıxan iki şüadan əmələ gəlir. <span class="m">∠AOB</span> yazanda təpə həmişə ortada durur: O — təpə, OA və OB — tərəflər.</p>
+      <div class="fm">iti bucaq:   0° &lt; α &lt; 90°
+düz bucaq:   α = 90°
+kor bucaq:   90° &lt; α &lt; 180°
+açıq bucaq:  α = 180°  (tərəflər bir düz xətt)</div>
+      <p>Bucaqlar toplanır: OC şüası ∠AOB-nin daxilindən keçirsə, <span class="m">∠AOB = ∠AOC + ∠COB</span>.</p>
+
+      <h3><span class="st">3</span> Bucağın tənböləni</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="AOB bucağı və onun OC tənböləni">
+          <line x1="40" y1="170" x2="270" y2="170" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="170" x2="98" y2="10" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="170" x2="204" y2="55" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M80 170A40 40 0 0 0 72.8 147" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M77.7 143.6A46 46 0 0 0 55.7 126.8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="26" y="186" class="lbl">O</text><text x="272" y="186" class="lbl">A</text><text x="102" y="18" class="lbl">B</text><text x="208" y="52" class="lbl">C</text>
+          <text x="92" y="162">α</text><text x="64" y="122">α</text>
+        </svg>
+        <div class="cap"><p>OC — ∠AOB-nin <b>tənböləni</b>: bucağı iki bərabər hissəyə bölən şüa. <span class="m">∠AOC = ∠COB = ∠AOB : 2</span>.</p></div>
+      </div>
+      <div class="fm">OC — tənbölən  ⇔  ∠AOC = ∠COB = ∠AOB/2</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ∠AOB = 124°, OC — tənbölən. ∠AOC = ?
+  ∠AOC = 124° : 2 = 62°
+  Cavab: 62°</div>
+      <div class="ex">Nümunə 2.  OC şüası ∠AOB-nin daxilindədir.
+  ∠AOB = 110°, ∠AOC = 40°. OM — ∠COB-nin tənböləni. ∠AOM = ?
+  ∠COB = 110° − 40° = 70°
+  ∠COM = 70° : 2 = 35°
+  ∠AOM = ∠AOC + ∠COM = 40° + 35° = 75°
+  Cavab: 75°</div>
+      <div class="life"><b>Həyatdan.</b> Pizzanı 8 bərabər dilimə kəsəndə hər dilimin bucağı 360° : 8 = 45° olur. Hər kəsik əvvəlki iki dilimin birləşdiyi bucağın tənbölənidir: 90°-lik dörddə biri yarıya bölürsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucağın adında təpəni ortaya yazmamaq: ∠AOB-də təpə O-dur, A yox.</li>
+        <li>Tənbölənin yaratdığı bucağı bütün bucaqla qarışdırmaq: tənbölən tərəflə 35° əmələ gətirirsə, bucaq 70°-dir.</li>
+        <li>180°-lik bucağı "bucaq deyil" saymaq. O, açıq bucaqdır — tərəfləri bir düz xətt üzərindədir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">iti &lt; 90° = düz &lt; kor &lt; 180° = açıq
+Tənbölən: hər hissə = bucaq : 2
+∠AOB = ∠AOC + ∠COB (OC daxildədirsə)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bucağın tənböləni tərəfi ilə 48° bucaq əmələ gətirir. Bucaq neçə dərəcədir? <span class="ans">2 · 48° = 96° — kor bucaq.</span></li>
+        <li>OC şüası ∠AOB-nin daxilindədir, ∠AOC = 35°, ∠COB = 50°. ∠AOB = ? <span class="ans">35° + 50° = 85°.</span></li>
+        <li>∠AOB = 150°, OC — tənbölən, OD — ∠AOC-nin tənböləni. ∠DOB = ? <span class="ans">∠AOC = 75°, ∠AOD = ∠DOC = 37,5°. ∠DOB = 37,5° + 75° = 112,5°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Qonşu və qarşılıqlı bucaqlar. Perpendikulyar düz xətlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki yol kəsişəndə dörd bucaq alınır. Bunlardan birini bilsən, qalan üçünü dərhal tapırsan — ölçməyə ehtiyac yoxdur. Bunu iki sadə qayda edir.</p>
+
+      <h3><span class="st">2</span> Qonşu və qarşılıqlı bucaqlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="İki düz xətt kəsişir: dörd bucaq, qarşı-qarşıya duranlar bərabərdir">
+          <line x1="20" y1="100" x2="280" y2="100" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="100" y1="187" x2="200" y2="13" stroke="var(--ink)" stroke-width="2"/>
+          <text x="176" y="88" class="lbl">α</text><text x="124" y="122" class="lbl">α</text>
+          <text x="124" y="78" class="lbl">β</text><text x="168" y="130" class="lbl">β</text>
+        </svg>
+        <div class="cap"><p>Yanaşı duran α və β <b>qonşu</b> bucaqlardır: bir tərəfi ortaqdır, o biri tərəfləri bir düz xətt əmələ gətirir. Qarşı-qarşıya duran iki α (və iki β) <b>qarşılıqlı</b> bucaqlardır.</p></div>
+      </div>
+      <div class="fm">Qonşu bucaqlar:      α + β = 180°
+Qarşılıqlı bucaqlar: bərabərdir
+Kəsişmədə 4 bucağın cəmi: 360°</div>
+      <p>Niyə qarşılıqlı bucaqlar bərabərdir? Hər ikisi eyni β-ya qonşudur: <span class="m">α = 180° − β</span>, o biri də <span class="m">180° − β</span>.</p>
+
+      <h3><span class="st">3</span> Perpendikulyar düz xətlər</h3>
+      <p>İki düz xətt kəsişəndə dörd bucağın biri 90° olarsa, hamısı 90° olur. Belə düz xətlər <b>perpendikulyardır</b>: <span class="m">a ⊥ b</span>.</p>
+      <p>Nöqtədən düz xəttə çəkilmiş perpendikulyarın uzunluğu — <b>nöqtədən düz xəttə qədər məsafədir</b>. Bu, nöqtədən düz xəttə çəkilə bilən ən qısa parçadır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  Qonşu bucaqların nisbəti 2 : 7. Böyüyü?
+  Cəm 180°, hissələr 2 + 7 = 9
+  Bir hissə = 180° : 9 = 20°
+  Bucaqlar: 2 · 20° = 40°,  7 · 20° = 140°
+  Cavab: 140°</div>
+      <div class="ex">Nümunə 2.  İki düz xətt kəsişir. Alınan bucaqlardan
+ikisinin cəmi 110°. Böyük bucaq?
+  Qonşu olsaydılar, cəm 180° olardı → bunlar qarşılıqlıdır.
+  Hər biri 110° : 2 = 55°
+  Qalan ikisi 180° − 55° = 125°
+  Cavab: 125°</div>
+      <div class="ex">Nümunə 3.  OC ⊥ AB, O ∈ AB. OD şüası C və B arasındadır,
+∠AOD = 130°. ∠COD = ?
+  ∠AOC = 90°  →  ∠COD = 130° − 90° = 40°
+  Cavab: 40°</div>
+      <div class="life"><b>Həyatdan.</b> Qayçının tiyələri qarşılıqlı bucaqlar kimi işləyir: dəstəkləri 40° açanda tiyələr də düz 40° açılır. Dəstəklər ilə tiyə arasındakı bucaq isə 180° − 40° = 140°-dir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ortaq təpəsi olan hər iki bucağı "qonşu" saymaq. Qonşu bucaqların o biri tərəfləri bir düz xətt əmələ gətirməlidir.</li>
+        <li>"İki bucağın cəmi 110°" görüb qonşu sanmaq. Qonşuların cəmi həmişə 180°-dir, deməli 110° yalnız qarşılıqlılarda ola bilər.</li>
+        <li>Nöqtədən düz xəttə məsafə kimi maili parçanı götürmək. Məsafə — yalnız perpendikulyarın uzunluğudur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qonşu: cəmi 180°.   Qarşılıqlı: bərabər.
+Kəsişmədə: iki cüt bərabər bucaq, cəmi 360°.
+a ⊥ b: dörd bucağın hamısı 90°.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qonşu bucaqlardan biri digərindən 4 dəfə böyükdür. Kiçiyi? <span class="ans">x + 4x = 180° → x = 36°.</span></li>
+        <li>İki düz xətt kəsişəndə alınan bucaqlardan üçünün cəmi 290°. Dördüncü? <span class="ans">360° − 290° = 70°.</span></li>
+        <li>Qonşu bucaqların fərqi 40°. Böyüyü? <span class="ans">x + (x + 40°) = 180° → x = 70°. Böyüyü 110°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Paralel düz xətlər və kəsən</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dəmir yolunun relsləri, dəftərin xətləri, pilləkənin pillələri paraleldir. Onları üçüncü düz xətt kəsəndə səkkiz bucaq alınır — və onların hamısı yalnız <b>iki</b> fərqli qiymət alır. Birini bilirsənsə, hamısını bilirsən.</p>
+
+      <h3><span class="st">2</span> Səkkiz bucağın adları</h3>
+      <p>Bir müstəvidə yerləşən və kəsişməyən düz xətlər <b>paraleldir</b>: <span class="m">a ∥ b</span>. Onları kəsən c düz xəttinə <b>kəsən</b> deyilir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="a və b paralel düz xətləri c kəsəni ilə kəsişir, bucaqlar 1-dən 8-ə qədər nömrələnib">
+          <line x1="20" y1="60" x2="280" y2="60" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="150" x2="280" y2="150" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="195" x2="190" y2="15" stroke="var(--vec)" stroke-width="2"/>
+          <text x="156" y="50">1</text><text x="181" y="55">2</text><text x="151" y="75">3</text><text x="176" y="80">4</text>
+          <text x="116" y="140">5</text><text x="141" y="145">6</text><text x="111" y="165">7</text><text x="136" y="170">8</text>
+          <text x="266" y="52" class="lbl">a</text><text x="266" y="142" class="lbl">b</text><text x="196" y="22" class="lbl">c</text>
+        </svg>
+        <div class="cap"><p>3, 4, 5, 6 — <b>daxili</b> bucaqlar (a və b arasında). 1, 2, 7, 8 — <b>xarici</b> bucaqlar.</p></div>
+      </div>
+      <div class="fm">uyğun:              1 və 5, 2 və 6, 3 və 7, 4 və 8
+daxili çarpaz:      3 və 6, 4 və 5
+xarici çarpaz:      1 və 8, 2 və 7
+daxili birtərəfli:  3 və 5, 4 və 6
+xarici birtərəfli:  1 və 7, 2 və 8</div>
+      <p>"Çarpaz" — kəsənin müxtəlif tərəflərində; "birtərəfli" — eyni tərəfində; "uyğun" — hər biri öz düz xəttində eyni yerdə (məs. ikisi də "sağ-yuxarı").</p>
+
+      <h3><span class="st">3</span> Paralel düz xətlərin xassələri və əlamətləri</h3>
+      <div class="fm">a ∥ b olarsa:
+  uyğun bucaqlar bərabərdir
+  çarpaz bucaqlar (daxili, xarici) bərabərdir
+  birtərəfli bucaqların cəmi 180°</div>
+      <p>Tərsi də doğrudur — bunlar <b>paralellik əlamətləri</b>dir: uyğun və ya çarpaz bucaqlar bərabərdirsə, yaxud birtərəfli bucaqların cəmi 180°-dirsə, a ∥ b.</p>
+      <p>İki paralel düz xətt arasındakı <b>məsafə</b> — birinin istənilən nöqtəsindən digərinə çəkilmiş perpendikulyarın uzunluğudur; hər yerdə eynidir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  a ∥ b, ∠3 = 70°. ∠5 = ?
+  ∠3 və ∠5 daxili birtərəfli → cəmi 180°
+  ∠5 = 180° − 70° = 110°
+  Cavab: 110°</div>
+      <div class="ex">Nümunə 2.  ∠4 = (3x + 10)°, ∠5 = (5x − 30)°.
+x-in hansı qiymətində a ∥ b?
+  ∠4 və ∠5 daxili çarpazdır → bərabər olmalıdır
+  3x + 10 = 5x − 30  →  40 = 2x  →  x = 20
+  Yoxla: ∠4 = 70°, ∠5 = 70° ✓
+  Cavab: x = 20</div>
+      <div class="ex">Nümunə 3.  a ∥ b. Daxili birtərəfli bucaqların nisbəti 4 : 5.
+Kiçiyi?
+  Cəm 180°, bir hissə = 180° : 9 = 20°
+  Kiçik bucaq = 4 · 20° = 80°
+  Cavab: 80°</div>
+      <div class="life"><b>Həyatdan.</b> Dülgər iki taxtanın paralel olduğunu belə yoxlayır: üçüncü taxtanı köndələn qoyur və uyğun bucaqları bucaqölçənlə ölçür. Bərabərdirsə — taxtalar paraleldir (paralellik əlaməti).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Birtərəfli bucaqları bərabər saymaq. Bərabər olanlar uyğun və çarpaz bucaqlardır; birtərəflilərin cəmi 180°-dir.</li>
+        <li>Düz xətlər paralel olmayanda da bu xassələri işlətmək. Şərtdə <span class="m">a ∥ b</span> yoxdursa, bucaqlar bərabər olmaya bilər.</li>
+        <li>Tənliyi həll edib x-i cavab yazmaq, halbuki bucaq soruşulur. x-i ifadədə yerinə qoy.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a ∥ b: uyğun = uyğun, çarpaz = çarpaz,
+birtərəfli + birtərəfli = 180°.
+Səkkiz bucaq: yalnız iki qiymət, α və 180° − α.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a ∥ b, ∠1 = 115°. ∠8 = ? <span class="ans">∠1 və ∠8 xarici çarpazdır — bərabərdir: 115°.</span></li>
+        <li>a ∥ b, ∠2 = 65°. ∠8 = ? <span class="ans">∠2 və ∠8 xarici birtərəflidir: 180° − 65° = 115°.</span></li>
+        <li>∠3 = 75°, ∠7 = 80°. a və b paraleldirmi? <span class="ans">Yox. ∠3 və ∠7 uyğun bucaqlardır; paralel olsaydılar, bərabər olardılar.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Bucaqların cəminə aid məsələlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda tez-tez belə şəkil olur: iki paralel düz xətt və onların arasında "sınıq" xətt. Bucaqların heç biri kəsənlə verilmir — burada köməkçi xətt çəkməyi bacarmaq lazımdır. Bu, həndəsənin ən güclü fəndlərindən biridir.</p>
+
+      <h3><span class="st">2</span> Paralel xətlər arasında sınıq xətt</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="a ∥ b, M nöqtəsi onların arasında, AMB sınıq xətti və M-dən keçən köməkçi paralel xətt">
+          <line x1="20" y1="40" x2="280" y2="40" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="160" x2="280" y2="160" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="60" y1="100" x2="270" y2="100" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <polyline points="110,40 200,100 120,160" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M135 40A25 25 0 0 1 130.8 53.9" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M145 160A25 25 0 0 0 140 145" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M183.4 88.9A20 20 0 0 0 184 112" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="140" y="56">α</text><text x="150" y="152">β</text><text x="166" y="92">α</text><text x="166" y="118">β</text>
+          <text x="104" y="32" class="lbl">A</text><text x="114" y="182" class="lbl">B</text><text x="206" y="98" class="lbl">M</text>
+          <text x="282" y="36" class="lbl">a</text><text x="282" y="156" class="lbl">b</text>
+        </svg>
+        <div class="cap"><p>M-dən a-ya paralel (qırıq) xətt çəkirik — o, b-yə də paraleldir. ∠AMB iki hissəyə bölünür; daxili çarpaz bucaqlara görə hissələr α və β-dır.</p></div>
+      </div>
+      <div class="fm">∠AMB = α + β</div>
+
+      <h3><span class="st">3</span> Nöqtə ətrafında bucaqlar. Tərəfləri paralel bucaqlar</h3>
+      <div class="fm">Bir nöqtə ətrafındakı bucaqların cəmi: 360°
+Uyğun tərəfləri paralel (və ya perpendikulyar)
+olan bucaqlar:
+  ikisi də iti / ikisi də kor → bərabərdir
+  biri iti, o biri kor        → cəmi 180°</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  a ∥ b, AM ilə a arasında 35°, BM ilə b arasında 50°.
+∠AMB = ?
+  M-dən paralel xətt → hissələr 35° və 50°
+  ∠AMB = 35° + 50° = 85°
+  Cavab: 85°</div>
+      <div class="ex">Nümunə 2.  Bir nöqtədən çıxan üç şüa müstəvini
+2 : 3 : 4 nisbətində üç bucağa bölür. Ən böyüyü?
+  Bir hissə = 360° : 9 = 40°
+  Ən böyük = 4 · 40° = 160°
+  Cavab: 160°</div>
+      <div class="ex">Nümunə 3.  ∠A və ∠B-nin uyğun tərəfləri paraleldir,
+biri o birindən 3 dəfə böyükdür. Böyüyü?
+  Bərabər deyillər → cəmi 180°
+  x + 3x = 180°  →  x = 45°,  böyük 135°
+  Cavab: 135°</div>
+      <div class="life"><b>Həyatdan: saat.</b> Dəqiqə əqrəbi 60 dəqiqədə 360° dönür — dəqiqədə 6°. Saat əqrəbi 12 saatda 360° — saatda 30°, dəqiqədə 0,5°. Saat 4:20-də: dəqiqə əqrəbi 20 · 6° = 120°, saat əqrəbi 4 · 30° + 20 · 0,5° = 130° (hər ikisi 12-dən ölçülür). Aralarındakı bucaq 10°.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sınıq xətt məsələsində ∠AMB = 180° − (α + β) yazmaq. Köməkçi xətt çək — hissələr α və β-dır, toplanır.</li>
+        <li>Saat məsələsində saat əqrəbinin də hərəkət etdiyini unutmaq: 4:20-də o, düz 4-ün üstündə deyil.</li>
+        <li>Tərəfləri paralel bucaqları həmişə bərabər saymaq. Biri iti, o biri kordursa, cəmi 180°-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sınıq xətt a ∥ b arasında: ∠AMB = α + β
+Nöqtə ətrafında: 360°
+Tərəfləri paralel: bərabər və ya cəmi 180°
+Saat: dəqiqə əqrəbi 6°/dəq, saat əqrəbi 0,5°/dəq</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a ∥ b, ∠AMB = 100°, AM ilə a arasında 30°. BM ilə b arasında? <span class="ans">100° − 30° = 70°.</span></li>
+        <li>Saat 3:00. Əqrəblər arasındakı bucaq? <span class="ans">3 · 30° = 90°.</span></li>
+        <li>Saat 9:30. Əqrəblər arasındakı kiçik bucaq? <span class="ans">Dəqiqə: 30 · 6° = 180°. Saat: 9 · 30° + 30 · 0,5° = 285°. Fərq 105°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

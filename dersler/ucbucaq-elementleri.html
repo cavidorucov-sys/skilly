@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Üçbucağın elementləri dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ucbucaq-elementleri.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Üçbucağın elementləri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Üçbucaqlar</div>
+    <h1>Üçbucağın elementləri, tərəf-bucaq münasibətləri</h1>
+    <p>Üçbucağın təpəsindən çəkilən üç vacib parça — <b>median</b>, <b>tənbölən</b> və <b>hündürlük</b> — və üçbucağın tərəfləri ilə bucaqları arasındakı qaydalar: hansı uzunluqlardan üçbucaq qurmaq olar, böyük tərəfin qarşısında hansı bucaq durur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Median, tənbölən</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Hündürlük, bucaqlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizlik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tərəf və bucaq</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Üçbucağın medianı və tənböləni</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Karton üçbucağı karandaşın ucunda saxlamağa çalış. Yalnız bir nöqtədə alınır — medianların kəsişmə nöqtəsində. Bu, üçbucağın <b>ağırlıq mərkəzidir</b>. Median, tənbölən və hündürlük üçbucağın "daxili quruluşunu" göstərir və imtahanın ən sevimli parçalarıdır.</p>
+
+      <h3><span class="st">2</span> Üç parça: tərif</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağı, B təpəsindən BH hündürlüyü, BL tənböləni və BM medianı çəkilib">
+          <polygon points="40,170 120,30 270,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="120" y1="30" x2="120" y2="170" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="120" y1="30" x2="141.2" y2="170" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="120" y1="30" x2="155" y2="170" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M120 160L130 160L130 170" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <line x1="97.5" y1="164" x2="97.5" y2="176" stroke="var(--vec)" stroke-width="2"/>
+          <line x1="212.5" y1="164" x2="212.5" y2="176" stroke="var(--vec)" stroke-width="2"/>
+          <text x="26" y="186" class="lbl">A</text><text x="114" y="22" class="lbl">B</text><text x="272" y="186" class="lbl">C</text>
+          <text x="112" y="190" class="lbl">H</text><text x="134" y="190" class="lbl">L</text><text x="154" y="190" class="lbl">M</text>
+        </svg>
+        <div class="cap"><p><b>BH — hündürlük</b>: B-dən AC-yə perpendikulyar. <b>BL — tənbölən</b>: ∠B-ni yarıya bölür. <b>BM — median</b>: B-ni AC-nin orta nöqtəsi ilə birləşdirir (AM = MC).</p></div>
+      </div>
+      <div class="fm">Median:     AM = MC
+Tənbölən:   ∠ABL = ∠LBC
+Hündürlük:  BH ⊥ AC</div>
+      <p>Hər üçbucaqda üç median, üç tənbölən və üç hündürlük var. Bərabəryanlı üçbucaqda oturacağa çəkilən median, tənbölən və hündürlük üst-üstə düşür.</p>
+
+      <h3><span class="st">3</span> Medianların və tənbölənlərin xassəsi</h3>
+      <div class="fm">Medianlar bir nöqtədə kəsişir və
+təpədən başlayaraq 2 : 1 bölünür:
+  AO : OM = 2 : 1,  AO = 2/3 · AM
+
+Tənbölənlər bir nöqtədə kəsişir.
+Tənbölən qarşı tərəfi qonşu tərəflərə
+mütənasib hissələrə bölür:
+  AD — tənbölən  →  BD : DC = AB : AC</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  AM və BN medianları O-da kəsişir, AM = 15. AO, OM?
+  AO : OM = 2 : 1, cəmi 3 hissə: 15 : 3 = 5
+  AO = 10, OM = 5
+  Cavab: 10 və 5</div>
+      <div class="ex">Nümunə 2.  AB = 6, AC = 9, BC = 10. AD — tənbölən. BD = ?
+  BD : DC = 6 : 9 = 2 : 3, BC = 10 → bir hissə 2
+  BD = 4, DC = 6
+  Cavab: 4</div>
+      <div class="ex">Nümunə 3.  AM — median. P(ABM) = 30, P(ACM) = 26, AB = 12. AC = ?
+  BM = MC, AM ortaq → P(ABM) − P(ACM) = AB − AC
+  12 − AC = 4  →  AC = 8
+  Cavab: 8</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq formalı rəf lövhəsini divara bir mismarla asmaq istəyirsən ki, əyilməsin. Mismarı medianların kəsişmə nöqtəsinin düz üstünə vur: 30 sm-lik median üzrə təpədən 20 sm, tərəfdən 10 sm.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Medianı tənbölənlə qarışdırmaq: median <b>tərəfi</b> yarıya bölür, tənbölən <b>bucağı</b>.</li>
+        <li>2 : 1 nisbətini tərsinə götürmək. Böyük hissə (2) təpəyə yaxındır.</li>
+        <li>Tənbölən xassəsində tərəfləri qarışdırmaq: BD (B-yə yaxın hissə) AB-yə uyğundur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Median → tərəfin ortası; medianlar 2 : 1 (təpədən)
+Tənbölən → bucağın yarısı; BD : DC = AB : AC
+Hündürlük → 90°</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AM — median, BC = 22. BM = ? <span class="ans">11.</span></li>
+        <li>Medianların kəsişmə nöqtəsi O, OM = 4. AM = ? <span class="ans">AO = 8, AM = 12.</span></li>
+        <li>AD — tənbölən, AB = 4, AC = 6, BC = 5. DC = ? <span class="ans">BD : DC = 2 : 3, bir hissə 1. DC = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Hündürlük və elementlərlə bağlı bucaqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hündürlük düzbucaqlı üçbucaq yaradır, tənbölən bucağı yarıya bölür. Bu ikisini birləşdirəndə çoxlu "bucaq tap" məsələsi bir-iki addımda həll olunur.</p>
+
+      <h3><span class="st">2</span> Hündürlük harada olur</h3>
+      <p>İtibucaqlı üçbucaqda bütün hündürlüklər daxildədir. Düzbucaqlı üçbucaqda iki hündürlük katetlərin özüdür. <b>Korbucaqlı</b> üçbucaqda iti bucaqlardan çəkilən hündürlüklər üçbucaqdan <b>kənara</b> düşür — qarşı tərəfin uzantısına.</p>
+      <div class="fm">AH ⊥ BC  →  ABH düzbucaqlı üçbucaqdır
+  ∠BAH = 90° − ∠B</div>
+
+      <h3><span class="st">3</span> Bilmək faydalı olan üç nəticə</h3>
+      <div class="fm">1) A-dan çəkilmiş hündürlük və tənbölən
+   arasındakı bucaq:  |∠B − ∠C| / 2
+2) A və B tənbölənlərinin kəsişməsi O:
+   ∠AOB = 90° + ∠C/2
+3) İtibucaqlıda AH, BK hündürlükləri O-da:
+   ∠AOB = 180° − ∠C</div>
+      <p>Bunları əzbərləmək şərt deyil — hər birini 1–2 addımda çıxarmaq olar (nümunələrə bax). Amma bilsən, testdə vaxt qazanırsan.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ∠B = 70°, ∠C = 40°. AH — hündürlük, AD — tənbölən.
+∠HAD = ?
+  ∠A = 180° − 70° − 40° = 70°,  ∠BAD = 35°
+  ∠BAH = 90° − 70° = 20°
+  ∠HAD = 35° − 20° = 15°   (yoxla: (70° − 40°) : 2 = 15°)
+  Cavab: 15°</div>
+      <div class="ex">Nümunə 2.  ∠C = 50°. A və B tənbölənləri O-da kəsişir. ∠AOB = ?
+  ∠A + ∠B = 130°  →  ∠OAB + ∠OBA = 65°
+  ∠AOB = 180° − 65° = 115°
+  Cavab: 115°</div>
+      <div class="ex">Nümunə 3.  ∠A = 80°, ∠B = 60°. AD — tənbölən. ∠ADB = ?
+  ∠BAD = 40°
+  ABD üçbucağında: ∠ADB = 180° − 60° − 40° = 80°
+  Cavab: 80°</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq formalı torpaq sahəsinin "dərinliyi" — yoldan (bir tərəfdən) qarşı küncə qədər ən qısa məsafə — hündürlükdür. Maili parça ilə ölçsən, rəqəm həmişə böyük çıxacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hündürlüyü median kimi tərəfin ortasına çəkmək. Hündürlük tərəfin ortasına yalnız bərabəryanlı üçbucaqda (oturacağa) düşür.</li>
+        <li>Tənbölənlərin kəsişməsində ∠AOB = 90° − ∠C/2 yazmaq. ∠AOB həmişə 90°-dən böyükdür: 90° + ∠C/2.</li>
+        <li>Korbucaqlı üçbucaqda hündürlüyü daxildə axtarmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">∠BAH = 90° − ∠B
+∠(hündürlük, tənbölən) = |∠B − ∠C| / 2
+tənbölənlər: ∠AOB = 90° + ∠C/2
+hündürlüklər: ∠AOB = 180° − ∠C</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AH — hündürlük, ∠C = 52°. ∠CAH = ? <span class="ans">90° − 52° = 38°.</span></li>
+        <li>∠C = 80°. A və B tənbölənləri arasındakı ∠AOB? <span class="ans">90° + 40° = 130°.</span></li>
+        <li>İtibucaqlı ABC-də ∠C = 70°, AH və BK hündürlükləri O-da kəsişir. ∠AOB? <span class="ans">180° − 70° = 110°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Üçbucaq bərabərsizliyi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Evdən məktəbə düz getmək mağazanın yanından keçməkdən həmişə qısadır. Bu sadə fikrin riyazi adı <b>üçbucaq bərabərsizliyidir</b>. Onunla 3, 4, 8 uzunluqlu çubuqlardan üçbucaq qurmağın mümkün olmadığını hesabla bilirsən — qurmağa çalışmadan.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">Hər tərəf o biri iki tərəfin cəmindən kiçikdir:
+  a &lt; b + c,  b &lt; a + c,  c &lt; a + b
+İki tərəf a, b məlumdursa:
+  |a − b| &lt; c &lt; a + b</div>
+      <p><b>Tez yoxlama:</b> iki kiçik tərəfin cəmi ən böyük tərəfdən <b>böyük</b> olmalıdır. Bərabər olsa, üç nöqtə bir düz xətt üzərinə düşür — üçbucaq yoxdur.</p>
+      <p>c tam ədəddirsə, onun qiymətləri <span class="m">|a − b| + 1</span>-dən <span class="m">a + b − 1</span>-ə qədər: cəmi <span class="m">2 · min(a, b) − 1</span> qiymət.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  3, 4, 8 — üçbucaq olarmı?
+  3 + 4 = 7 &lt; 8  →  yox
+  5, 7, 11:  5 + 7 = 12 > 11  →  bəli</div>
+      <div class="ex">Nümunə 2.  İki tərəf 5 və 9. Üçüncü tərəf tam ədəddir.
+Neçə qiymət ala bilər?
+  9 − 5 &lt; c &lt; 9 + 5  →  4 &lt; c &lt; 14
+  c = 5, 6, …, 13  →  9 qiymət   (2 · 5 − 1 = 9 ✓)
+  Cavab: 9</div>
+      <div class="ex">Nümunə 3.  Bərabəryanlı üçbucağın iki tərəfi 4 və 10. Perimetri?
+  Yan tərəflər 4 olsa: 4 + 4 = 8 &lt; 10 — olmaz.
+  Deməli yan tərəflər 10, oturacaq 4.
+  P = 10 + 10 + 4 = 24
+  Cavab: 24</div>
+      <div class="life"><b>Həyatdan.</b> Xəritədə A şəhərindən B şəhərinə düz xətt boyu 120 km, B-dən C-yə 70 km-dir. A ilə C arasındakı düz məsafə haqqında ölçmədən nə demək olar? Şəhərlər bir xətt üzərində deyilsə: 120 − 70 = 50 km-dən çox, 120 + 70 = 190 km-dən az.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sərhədləri daxil etmək: 4 &lt; c &lt; 14-də c = 4 və c = 14 olmaz.</li>
+        <li>Yalnız bir bərabərsizliyi yoxlamaq: 2, 3, 10 üçün 10 + 2 > 3 doğrudur, amma 2 + 3 &lt; 10 — üçbucaq yoxdur. Ən böyük tərəfi yoxla.</li>
+        <li>Bərabəryanlıda "iki tərəf verilib" görüb kiçiyini yan tərəf seçmək — bərabərsizliyi yoxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|a − b| &lt; c &lt; a + b
+Yoxlama: kiçik + orta > böyük
+Tam c-lərin sayı: 2 · min(a, b) − 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>6, 6, 12 — üçbucaq olarmı? <span class="ans">Yox: 6 + 6 = 12, cəm böyük olmalıdır, bərabər yox.</span></li>
+        <li>İki tərəf 7 və 3. Üçüncü tərəfin ən böyük tam qiyməti? <span class="ans">c &lt; 10, ən böyüyü 9.</span></li>
+        <li>İki tərəf 8 və 8. Üçüncü tərəf neçə tam qiymət alar? <span class="ans">0 &lt; c &lt; 16: 1, …, 15 — 15 qiymət.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Üçbucağın tərəfləri və bucaqları arasında münasibət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qapını nə qədər çox açsan, onun kənarı ilə çərçivə arasındakı məsafə o qədər böyük olur. Üçbucaqda da belədir: böyük bucaq böyük tərəfi "açır". Bu qayda ilə ölçmədən tərəfləri və bucaqları müqayisə edirsən.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">Böyük tərəfin qarşısında böyük bucaq durur.
+Böyük bucağın qarşısında böyük tərəf durur.
+Bərabər tərəflər ⇔ bərabər bucaqlar.</div>
+      <p><b>Qarşı tərəfi tapmaq:</b> ∠A-nın qarşısında A hərfi olmayan tərəf durur — BC. ∠B-nin qarşısında AC, ∠C-nin qarşısında AB.</p>
+      <p>Nəticələr: düzbucaqlı üçbucaqda ən böyük tərəf hipotenuzdur (90° ən böyük bucaqdır). Korbucaqlı üçbucaqda ən böyük tərəf kor bucağın qarşısındadır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  AB = 7, BC = 5, AC = 9. Ən böyük bucaq?
+  Ən böyük tərəf AC = 9, qarşısında ∠B.
+  Cavab: ∠B</div>
+      <div class="ex">Nümunə 2.  ∠A = 45°, ∠B = 80°. Tərəfləri artan sıra ilə düz.
+  ∠C = 180° − 125° = 55°
+  Bucaqlar: ∠A &lt; ∠C &lt; ∠B
+  Tərəflər: BC &lt; AB &lt; AC
+  Cavab: BC, AB, AC</div>
+      <div class="ex">Nümunə 3.  Bərabəryanlı üçbucağın təpə bucağı 50°. Hansı tərəf böyükdür?
+  Oturacaq bucaqları (180° − 50°) : 2 = 65° > 50°
+  Yan tərəflər 65°-lik bucaqların qarşısındadır → yan tərəflər böyükdür.
+  Cavab: yan tərəflər</div>
+      <div class="life"><b>Həyatdan.</b> Üç dost parkda üçbucaq şəklində dayanıb. Əli Vüsalı və Nərgizi 100°-lik bucaq altında görür. Deməli, ən uzaq olanlar Vüsal ilə Nərgizdir — onların arasındakı məsafə Əlinin qarşısındakı tərəfdir və ən böyük bucağın qarşısındadır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucağın qarşısındakı tərəf əvəzinə ona bitişik tərəfi götürmək. ∠A-nın qarşısında BC-dir, AB və AC yox.</li>
+        <li>Üçüncü bucağı hesablamağı unutmaq: iki bucaq verilir, ən böyüyü isə çox vaxt üçüncüsü olur.</li>
+        <li>Tərəflərin nisbətini bucaqların nisbətinə bərabər saymaq: tərəf 2 dəfə böyükdürsə, bucaq 2 dəfə böyük olmur — yalnız böyükdür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">böyük tərəf ⇔ qarşısında böyük bucaq
+∠A ↔ BC,  ∠B ↔ AC,  ∠C ↔ AB
+Kor və ya düz bucağın qarşısında — ən böyük tərəf</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AB = 4, BC = 6, AC = 5. Ən kiçik bucaq? <span class="ans">Ən kiçik tərəf AB, qarşısında ∠C.</span></li>
+        <li>∠A = 30°, ∠B = 100°. Ən böyük tərəf? <span class="ans">∠B ən böyükdür, qarşısında AC.</span></li>
+        <li>∠A = ∠B = 70°. Hansı tərəflər bərabərdir? <span class="ans">Bərabər bucaqların qarşısındakılar: BC = AC.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -236,19 +236,22 @@
    "bolme": "Sadə həndəsi fiqurlar",
    "ad": "Bucaqlar, paralel və perpendikulyar düz xətlər",
    "status": "yox",
-   "menbe": "DİM: Sadə həndəsi fiqurlar"
+   "menbe": "DİM: Sadə həndəsi fiqurlar",
+   "ders": "dersler/bucaqlar-paralel.html"
   },
   {
    "bolme": "Üçbucaqlar",
    "ad": "Üçbucaqlar, bərabərlik əlamətləri",
    "status": "yox",
-   "menbe": "DİM: Üçbucaqlar"
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/ucbucaq-beraberlik.html"
   },
   {
    "bolme": "Üçbucaqlar",
    "ad": "Üçbucağın elementləri, tərəf-bucaq münasibətləri",
    "status": "yox",
-   "menbe": "DİM: Üçbucaqlar"
+   "menbe": "DİM: Üçbucaqlar",
+   "ders": "dersler/ucbucaq-elementleri.html"
   },
   {
    "bolme": "Üçbucaqlar",
