@@ -5,7 +5,8 @@
 #  - olympiad math: number theory, combinatorics and algebra basics before the district round, final-level topics after it; 3,5 h/week
 #  - physics follows the FRİTL order (list order), 6 h/week
 #  - a topic never starts before its prerequisites (any track); in the same week it comes after them.
-#    This holds for in-progress topics too: the portal locks a lesson until its prerequisites are closed (20 Oct 2026).
+#    Not-started topics are locked in the portal until their prerequisites are closed; topics in progress stay open
+#    (taught at school now) and their prerequisites are pulled to the front (20 Oct 2026).
 import json, sys, os, datetime as dt
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
 start = dt.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else dt.date(2026, 10, 19)
@@ -35,10 +36,13 @@ def closure(keys):
 PHYS_NEED = {}  # math topic -> rank of the first physics topic (FRİTL order) that needs it
 for r, t in enumerate(x for x in d["fizika"] if x["status"] != "bag"):
     for key in closure(["fizika:" + t["ad"]]): PHYS_NEED.setdefault(key, r)
+# topics in progress (taught at school now) stay open and keep their week; what they build on is closed first
+ISL_NEED = closure([k + ":" + t["ad"] for k in d for t in d[k] if t["status"] == "isl"])
 def prio(k, i, t):  # lower = earlier
-    if k == "olimpiada": return (0 if (t["bolme"] in OLY_CORE or t["ad"] in OLY_CORE_TOPICS or t["status"] == "isl") else 1, i)
-    if k == "riyaziyyat": return (PHYS_NEED.get(k + ":" + t["ad"], 99), i)
-    return (0, i)
+    urgent = -2 if t["status"] == "isl" else -1 if k + ":" + t["ad"] in ISL_NEED else 0
+    if k == "olimpiada": return (urgent, 0 if (t["bolme"] in OLY_CORE or t["ad"] in OLY_CORE_TOPICS or t["status"] == "isl") else 1, i)
+    if k == "riyaziyyat": return (urgent, PHYS_NEED.get(k + ":" + t["ad"], 99), i)
+    return (urgent, 0, i)
 # continuous time per track (in weeks). A topic starts when its track is free and all its prerequisites are FINISHED
 # (the portal locks a lesson until they are closed). The track that is furthest behind moves next and takes the topic
 # that can start earliest (ties: priority order), so a track never idles while some topic of it could already start.
@@ -54,7 +58,7 @@ while any(queue.values()):
         # with strict prerequisite locks, physics would otherwise wait weeks for the 4 h/week math track
         cands = [(k, i) for i in queue[k]] + ([("riyaziyyat", i) for i in queue["riyaziyyat"] if "riyaziyyat:" + d["riyaziyyat"][i]["ad"] in PHYS_NEED] if k == "fizika" else [])
         for kk, i in cands:
-            t = d[kk][i]; pre = [p for p in t.get("on", []) if p.split(":", 1)[0] in d]
+            t = d[kk][i]; pre = [] if t["status"] == "isl" else [p for p in t.get("on", []) if p.split(":", 1)[0] in d]
             if any(p not in end_at for p in pre): continue
             s0 = max([clock[k]] + [end_at[p] for p in pre])
             if best is None or s0 < best[0] - 1e-9: best = (s0, kk, i)
@@ -72,7 +76,7 @@ for k in d:
     # sanity: prerequisites strictly earlier
     for t in d[k]:
         for p in t.get("on", []):
-            if p in week: assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
+            if p in week and t["status"] != "isl": assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
 json.dump(d, open("data/movzular.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 for k in d:
     ws = sorted(set(t["hefte"] for t in d[k]))

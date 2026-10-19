@@ -368,3 +368,9 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .gate-go{width:28px;height:28px;display:grid;place-items:center;color:var(--ink-2);flex:none;transition:transform .15s var(--ease),color .15s}
 .gate-go svg{width:18px;height:18px}
 .gate a.row:hover .gate-go{color:var(--ink);transform:translateX(3px)}
+
+.gate-note{display:grid;gap:10px;max-width:none}
+.gate-note p{margin:0}
+.gate-note .list{margin-top:0;gap:6px}
+.gate-note .row .ic{width:40px;height:40px}
+.gate-note a.row{text-decoration:none;color:var(--ink)}

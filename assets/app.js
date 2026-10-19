@@ -284,7 +284,7 @@ function renderTopics(content, m, key, lead) {
           el("small", {}, r.bolme + (miss.length && r.status !== "bag" ? " · əvvəl: " + miss.map(x => x.ad.split(/[:,(]/)[0].trim()).join(", ") : ""))))),
       el("td", { class: "wk" }, r.hefte ? weekLabel(r.hefte) : ""),
       el("td", {}, stPill(r.status)),
-      el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status !== "bag" ? " wait" : ""), href: r.ders }, miss.length && r.status !== "bag" ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
+      el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status === "yox" ? " wait" : ""), href: r.ders }, miss.length && r.status === "yox" ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
   });
   content.append(el("div", { class: "tbl" }, el("table", { class: "mt" }, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Həftə"), el("th", {}, "Vəziyyət"), el("th", {}, ""))), tb)));
 }
@@ -560,15 +560,19 @@ async function pageLesson() {
   if (window.Skilly) await Skilly.ready;
   const ix = m ? topicIndex(m) : {}, me = Object.values(ix).find(t => t.ders === "dersler/" + name + ".html");
   const miss = me ? missingPrereqs(me, ix) : [];
-  // a topic opens only when everything it builds on is closed; each missing topic links straight to its lesson
-  if (me && miss.length && !isClosed(me)) {
+  // a new topic opens only when everything it builds on is closed; a topic already in progress (taught at school now)
+  // stays open with a note. Either way each missing topic links straight to its lesson.
+  const missRow = x => { const k = KAT[LIST_KAT[x.list]]; return el(x.ders ? "a" : "div", { class: "row", ...(x.ders ? { href: "ders.html?p=" + x.ders.split("/").pop().replace(/\.html$/, "") } : {}) },
+    el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + x.bolme), el("b", { title: x.ad }, x.ad)),
+    stPill(x.status), x.ders ? el("span", { class: "gate-go" }, icon("ArrowRight")) : null); };
+  if (me && miss.length && me.status === "yox" && !isClosed(me)) {
     wrap.replaceChildren(el("div", { class: "gate" }, el("h2", {}, me.ad),
       el("p", {}, "Bu mövzu bunlara əsaslanır. Əvvəl onları bağla — sonra bu dərs açılacaq:"),
-      el("div", { class: "list" }, ...miss.map(x => { const k = KAT[LIST_KAT[x.list]]; return el(x.ders ? "a" : "div", { class: "row", ...(x.ders ? { href: "ders.html?p=" + x.ders.split("/").pop().replace(/\.html$/, "") } : {}) },
-        el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + x.bolme), el("b", { title: x.ad }, x.ad)),
-        stPill(x.status), x.ders ? el("span", { class: "gate-go" }, icon("ArrowRight")) : null); }))));
+      el("div", { class: "list" }, ...miss.map(missRow))));
     return;
   }
+  if (me && miss.length && !isClosed(me)) wrap.prepend(el("div", { class: "gate-note" },
+    el("p", {}, "Bu mövzu bunlara əsaslanır. Dərs açıqdır, amma bunları da bağla — boşluq qalmasın:"), el("div", { class: "list" }, ...miss.map(missRow))));
   frame.src = "dersler/" + name + ".html" + location.hash;
   frame.addEventListener("load", () => {
     const d = frame.contentDocument; if (!d) return;
