@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sahələr dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-saheler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Sahələr</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Fiqurların sahəsi</div>
+    <h1>Sahələr: üçbucaq, dördbucaqlılar, dairə</h1>
+    <p>Sahə — fiqurun müstəvidə tutduğu yerdir. İmtahanda demək olar hər həndəsə məsələsi sonda sahəyə gəlir: düstur seçmək, çatışmayan hündürlüyü Pifaqorla tapmaq, mürəkkəb fiquru hissələrə bölmək. Dairə sahələrində cavab adətən "kπ" şəklində olur — onda yalnız <span class="m">k</span>-nı yazırsan.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Üçbucaq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Dördbucaqlılar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Dairə və sektor</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb fiqurlar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Üçbucağın sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Torpaq ölçənlər istənilən çoxbucaqlı sahəni diaqonallarla üçbucaqlara bölür və üçbucaqların sahələrini toplayır. Üçbucağın sahəsini bilən istənilən çoxbucaqlının sahəsini tapa bilər.</p>
+
+      <h3><span class="st">2</span> Əsas düstur</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağı, AH — BC tərəfinə çəkilmiş hündürlük">
+          <polygon points="110,35 40,165 260,165" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="35" x2="110" y2="165" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <path d="M110 156L119 156L119 165" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="106" y="27" class="lbl">A</text>
+          <text x="26" y="171" class="lbl">B</text>
+          <text x="266" y="171" class="lbl">C</text>
+          <text x="106" y="185" class="lbl">H</text>
+          <text x="150" y="182">a</text>
+          <text x="114" y="105">h</text>
+        </svg>
+        <div class="cap">
+          <p>Üçbucaq eyni oturacaqlı və eyni hündürlüklü paraleloqramın yarısıdır.</p>
+          <p>Hündürlük qarşı təpədən tərəfə (və ya onun uzantısına) endirilən perpendikulyardır. Kütbucaqlı üçbucaqda o, üçbucağın xaricinə düşə bilər.</p>
+        </div>
+      </div>
+      <div class="fm">S = a · h / 2          h = 2S / a
+Düzbucaqlı üçbucaq:  S = (katet · katet) / 2</div>
+
+      <h3><span class="st">3</span> İki tərəf və aralarındakı bucaq</h3>
+      <div class="fm">S = a · b · sin C / 2
+
+sin 30° = sin 150° = 1/2
+sin 45° = sin 135° = √2/2
+sin 60° = sin 120° = √3/2
+Bərabərtərəfli: S = a²√3/4</div>
+
+      <h3><span class="st">4</span> Üç tərəf: Heron düsturu</h3>
+      <div class="fm">p = (a + b + c) / 2
+S = √(p(p − a)(p − b)(p − c))</div>
+      <p>Bərabəryanlı üçbucaqda Heron lazım deyil: oturacağa çəkilmiş hündürlük onu yarıya bölür, hündürlüyü Pifaqorla tap.</p>
+
+      <h3><span class="st">5</span> Sahələrin nisbəti</h3>
+      <p>Hündürlükləri eyni olan üçbucaqların sahələri oturacaqları kimi nisbətdədir. Məsələn, <span class="m">D</span> nöqtəsi <span class="m">BC</span>-ni <span class="m">2 : 3</span> nisbətində bölürsə, <span class="m">S(ABD) : S(ADC) = 2 : 3</span>. Median üçbucağı iki bərabərsahəli hissəyə bölür.</p>
+
+      <h3><span class="st">6</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. a = 10, h = 7.   S = 10 · 7 / 2 = 35</div>
+      <div class="ex">Nümunə 2. a = 8, b = 5, ∠C = 30°.
+  S = 8 · 5 · 1/2 / 2 = 10</div>
+      <div class="ex">Nümunə 3. Tərəflər 13, 14, 15.
+  p = 21, S = √(21 · 8 · 7 · 6) = √7056 = 84</div>
+      <div class="ex">Nümunə 4. Bərabərtərəfli üçbucağın tərəfi 6.
+  S = 36√3/4 = 9√3</div>
+      <div class="ex">Nümunə 5. Katetlər 6 və 8. Hipotenuza çəkilmiş hündürlük?
+  S = 6 · 8 / 2 = 24, hipotenuz = 10
+  24 = 10 · h / 2 → h = 48 / 10 = 24/5</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq şəkilli qazonun katetləri 12 m və 9 m-dir. Sahə 12 · 9 / 2 = 54 m². Hər m²-ə 3 q toxum səpilirsə, 162 q toxum lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>2-yə bölməyi unutmaq: <span class="m">a · h</span> — paraleloqramın sahəsidir.</li>
+        <li>Hündürlük əvəzinə yan tərəfi götürmək. Hündürlük tərəfə <b>perpendikulyar</b> olmalıdır.</li>
+        <li>Heronda <span class="m">p</span> əvəzinə tam perimetri yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S = a·h/2 = a·b·sin C/2 = √(p(p−a)(p−b)(p−c)).
+Bərabərtərəfli: a²√3/4. Hündürlük: h = 2S/a.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a = 12, h = 5. S? <span class="ans">30.</span></li>
+        <li>a = 6, b = 10, ∠C = 150°. S? <span class="ans">6 · 10 · 1/2 / 2 = 15.</span></li>
+        <li>Tərəflər 5, 5, 6. S? <span class="ans">p = 8, S = √(8 · 3 · 3 · 2) = 12 (və ya h = 4, S = 6 · 4 / 2).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Paraleloqram, romb və trapesiyanın sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Otağın döşəməsi, kafel, pəncərə şüşəsi, torpaq sahəsi — çoxu dördbucaqlıdır. Düzgün düstur seçmək üçün əvvəl fiqurun növünü tanı.</p>
+
+      <h3><span class="st">2</span> Paraleloqram və onun "qohumları"</h3>
+      <div class="fm">Paraleloqram:  S = a · h = a · b · sin α
+Düzbucaqlı:    S = a · b
+Kvadrat:       S = a² = d² / 2
+Romb:          S = d₁ · d₂ / 2 = a · h = a² · sin α</div>
+      <p>Paraleloqramın iki hündürlüyü var, amma sahə birdir: <span class="m">a · h₁ = b · h₂</span> (<span class="m">h₁</span> — <span class="m">a</span>-ya, <span class="m">h₂</span> — <span class="m">b</span>-yə çəkilmiş hündürlük). Bir hündürlükdən o birini belə tapırsan.</p>
+
+      <h3><span class="st">3</span> Trapesiya</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABCD trapesiyası, BC və AD oturacaqlar, BH — hündürlük">
+          <polygon points="30,165 90,45 200,45 270,165" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="45" x2="90" y2="165" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <path d="M90 156L99 156L99 165" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="16" y="171" class="lbl">A</text>
+          <text x="84" y="37" class="lbl">B</text>
+          <text x="202" y="37" class="lbl">C</text>
+          <text x="276" y="171" class="lbl">D</text>
+          <text x="86" y="185" class="lbl">H</text>
+          <text x="145" y="38">a</text>
+          <text x="180" y="182">b</text>
+          <text x="96" y="110">h</text>
+        </svg>
+        <div class="cap">
+          <p>Diaqonal trapesiyanı iki üçbucağa bölür: <span class="m">a·h/2 + b·h/2</span>.</p>
+          <p>Orta xətt <span class="m">m = (a + b) / 2</span>, ona görə <span class="m">S = m · h</span>.</p>
+        </div>
+      </div>
+      <div class="fm">S = (a + b) / 2 · h = m · h
+Bərabəryanlı trapesiya: AH = (b − a) / 2,  h = √(c² − AH²)</div>
+      <p>Hər hansı çoxbucaqlının sahəsini tapmaq üçün onu diaqonallarla üçbucaqlara (və ya tanış dördbucaqlılara) böl və sahələri topla.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Paraleloqram: tərəflər 10 və 6, bucaq 30°.
+  S = 10 · 6 · 1/2 = 30</div>
+      <div class="ex">Nümunə 2. Romb: diaqonallar 10 və 24.
+  S = 10 · 24 / 2 = 120   (tərəf √(5² + 12²) = 13, hündürlük 120 / 13)</div>
+      <div class="ex">Nümunə 3. Trapesiya: oturacaqlar 4 və 10, h = 5.
+  S = (4 + 10) / 2 · 5 = 7 · 5 = 35</div>
+      <div class="ex">Nümunə 4. Bərabəryanlı trapesiya: oturacaqlar 6 və 14, yan tərəf 5.
+  AH = (14 − 6) / 2 = 4, h = √(25 − 16) = 3
+  S = (6 + 14) / 2 · 3 = 30</div>
+      <div class="ex">Nümunə 5. Düzbucaqlı trapesiya: oturacaqlar 5 və 9, iti bucaq 45°.
+  C-dən hündürlük: HD = 9 − 5 = 4, 45° → h = HD = 4
+  S = (5 + 9) / 2 · 4 = 28</div>
+      <div class="life"><b>Həyatdan.</b> Trapesiya şəkilli torpağın paralel tərəfləri 60 m və 100 m, aralarındakı məsafə 60 m-dir. S = 80 · 60 = 4800 m² = 48 sot (1 sot = 100 m²).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Paraleloqramda <span class="m">a · b</span> yazmaq. Bu yalnız düzbucaqlıda doğrudur; ümumi halda <span class="m">a · b · sin α</span>.</li>
+        <li>Trapesiyada yan tərəfi hündürlük götürmək (düzbucaqlı trapesiyanın perpendikulyar yan tərəfi istisna).</li>
+        <li>Rombda <span class="m">d₁ · d₂</span>-ni 2-yə bölməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Paraleloqram: a·h = ab·sin α.  Romb: d₁d₂/2.
+Kvadrat: a² = d²/2.  Trapesiya: (a + b)/2 · h = m·h.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kvadratın diaqonalı 10. S? <span class="ans">100 / 2 = 50.</span></li>
+        <li>Trapesiyanın orta xətti 9, hündürlüyü 4. S? <span class="ans">36.</span></li>
+        <li>Rombun tərəfi 6, bucağı 30°. S? <span class="ans">36 · 1/2 = 18.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Dairə və onun hissələrinin sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Pizzanın dilimi, dairəvi gül sahəsi, ətrafındakı cığır — bunlar dairə, sektor və halqadır. Sahələrini bir düstur və bir nisbətlə tapırsan.</p>
+
+      <h3><span class="st">2</span> Dairənin sahəsi</h3>
+      <div class="fm">S = πR²          (çevrənin uzunluğu C = 2πR)</div>
+      <p><b>Cavab yazmaq:</b> çox vaxt sual "sahə <span class="m">kπ</span>-dir, <span class="m">k</span>-nı tap" şəklindədir: <span class="m">R = 6</span> olsa, <span class="m">S = 36π</span>, cavab <b>36</b>. Əgər "π ≈ 3,14 götür" deyilibsə, onluq kəsrlə hesablayırsan: <span class="m">3,14 · 36 = 113,04</span>.</p>
+      <p>Radius <span class="m">n</span> dəfə artanda sahə <span class="m">n²</span> dəfə artır.</p>
+
+      <h3><span class="st">3</span> Sektor</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Mərkəzi bucağı α olan dairə sektoru">
+          <path d="M150 110L228.8 96.1L227.3 89.3L225.2 82.6L222.5 76.2L219.3 70L215.5 64.1L211.3 58.6L206.6 53.4L201.4 48.7L195.9 44.5L190 40.7L183.8 37.5L177.4 34.8L170.7 32.7L163.9 31.2L157 30.3L150 30L143 30.3L136.1 31.2L129.3 32.7L122.6 34.8L116.2 37.5L110 40.7L104.1 44.5L98.6 48.7Z" fill="var(--accent-soft)" stroke="none"/>
+          <circle cx="150" cy="110" r="80" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="110" x2="228.8" y2="96.1" stroke="var(--vec)" stroke-width="2"/>
+          <line x1="150" y1="110" x2="98.6" y2="48.7" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M167.7 106.9A18 18 0 0 0 138.4 96.2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="150" cy="110" r="2.6" fill="var(--ink)"/>
+          <text x="146" y="128" class="lbl">O</text>
+          <text x="234.8" y="100.1" class="lbl">A</text>
+          <text x="84.6" y="44.7" class="lbl">B</text>
+          <text x="154" y="86">α</text>
+          <text x="189.4" y="119.1">R</text>
+        </svg>
+        <div class="cap">
+          <p><b>Sektor</b> — iki radius və qövslə hüdudlanan hissə. Mərkəzi bucaq <span class="m">α</span> olsa, sektor bütöv dairənin <span class="m">α / 360°</span> hissəsidir.</p>
+        </div>
+      </div>
+      <div class="fm">S(sektor) = πR² · α / 360°
+Qövsün uzunluğu = 2πR · α / 360°</div>
+
+      <h3><span class="st">4</span> Seqment və halqa</h3>
+      <div class="fm">Seqment = sektor − üçbucaq (AOB)
+Halqa    = πR² − πr² = π(R² − r²)</div>
+      <p>90°-lik seqment: <span class="m">πR²/4 − R²/2</span>, çünki <span class="m">AOB</span> katetləri <span class="m">R</span> olan düzbucaqlı üçbucaqdır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Diametr 10. S = kπ, k = ?
+  R = 5, S = 25π, k = 25</div>
+      <div class="ex">Nümunə 2. R = 6, α = 120°. Sektor = kπ, k = ?
+  S = 36π · 120 / 360 = 36π / 3 = 12π, k = 12</div>
+      <div class="ex">Nümunə 3. Halqa: R = 5, r = 3.
+  S = π(25 − 9) = 16π</div>
+      <div class="ex">Nümunə 4. R = 10, 90°-lik seqment (π ≈ 3,14).
+  Sektor = 3,14 · 100 / 4 = 78,5;  üçbucaq = 10 · 10 / 2 = 50
+  Seqment = 78,5 − 50 = 28,5</div>
+      <div class="ex">Nümunə 5. Çevrənin uzunluğu 14π. Dairənin sahəsi kπ, k = ?
+  2πR = 14π → R = 7, S = 49π, k = 49</div>
+      <div class="life"><b>Həyatdan.</b> Diametri 30 sm olan pizza 6 bərabər dilimə bölünüb. Bütün pizza π · 15² = 225π sm², bir dilim 225π : 6 = 37,5π ≈ 118 sm².</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Diametri radius kimi götürmək: <span class="m">d = 10</span> olanda <span class="m">S = 25π</span>, <span class="m">100π</span> yox.</li>
+        <li>Sahə ilə çevrənin uzunluğunu qarışdırmaq: <span class="m">πR²</span> və <span class="m">2πR</span>.</li>
+        <li>Sektorda 360° əvəzinə 180°-ə bölmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Dairə: πR². Sektor: πR² · α/360°.
+Halqa: π(R² − r²). Seqment = sektor − üçbucaq.
+"kπ" sualında yalnız k-nı yaz.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 7. S = kπ, k? <span class="ans">49.</span></li>
+        <li>R = 12, α = 30°. Sektor = kπ, k? <span class="ans">144 · 30 / 360 = 12.</span></li>
+        <li>Çevrənin uzunluğu 8π. Dairənin sahəsi kπ, k? <span class="ans">R = 4, k = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Mürəkkəb fiqurların sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Həyatdakı fiqurlar nadir hallarda "təmiz" olur: L şəkilli otaq, yuxarısı tağlı pəncərə, kvadrat həyətdə dairəvi hovuz. Belə fiqurun sahəsi tanış fiqurların sahələrindən yığılır.</p>
+
+      <h3><span class="st">2</span> İki üsul</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Kvadratın içinə çəkilmiş dairə; kvadratın dairədən kənar hissəsi rənglənib">
+          <polygon points="75,25 225,25 225,175 75,175" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="150" cy="100" r="75" style="fill:var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="225" y2="100" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="150" cy="100" r="2.6" fill="var(--ink)"/>
+          <text x="182" y="94">r</text>
+          <text x="132" y="194">a = 2r</text>
+        </svg>
+        <div class="cap">
+          <p><b>Topla:</b> fiquru tanış hissələrə böl (düzbucaqlı + yarımdairə, iki düzbucaqlı və s.).</p>
+          <p><b>Çıx:</b> fiquru böyük tanış fiqurun içinə sal və artıq hissəni çıx. Şəkildə rənglənmiş hissə = kvadrat − dairə.</p>
+        </div>
+      </div>
+      <div class="fm">S(fiqur) = S₁ + S₂ + …      və ya      S(fiqur) = S(böyük) − S(artıq)</div>
+
+      <h3><span class="st">3</span> Vahidlər</h3>
+      <div class="fm">1 m² = 100 · 100 sm² = 10 000 sm²
+1 sot = 100 m²          1 ha = 10 000 m²</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. L şəkilli otaq: 10 × 8 düzbucaqlıdan küncdəki 4 × 3 kəsilib.
+  S = 80 − 12 = 68</div>
+      <div class="ex">Nümunə 2. Pəncərə: 8 × 6 düzbucaqlı + üstündə diametri 8 olan yarımdairə (π ≈ 3,14).
+  48 + 3,14 · 4² / 2 = 48 + 25,12 = 73,12</div>
+      <div class="ex">Nümunə 3. Tərəfi 10 olan kvadratın içinə çevrə çəkilib. Kvadratın dairədən kənar hissəsi?
+  r = 5: 100 − 3,14 · 25 = 100 − 78,5 = 21,5</div>
+      <div class="ex">Nümunə 4. Radiusu 5 olan dairəyə kvadrat daxil edilib. Dairənin kvadratdan kənar hissəsi?
+  Kvadratın diaqonalı 10, sahəsi 100 / 2 = 50
+  78,5 − 50 = 28,5</div>
+      <div class="ex">Nümunə 5. Tərəfi 8 olan kvadratın qonşu tərəflərinin ortaları birləşdirilib. İçdəki kvadrat?
+  4 künc üçbucağı: 4 · (4 · 4 / 2) = 32 → 64 − 32 = 32 (yarısı)</div>
+      <div class="life"><b>Həyatdan.</b> Döşəmə 4 m × 3 m-dir, kafel 20 sm × 20 sm. Döşəmə 12 m² = 120 000 sm², bir kafel 400 sm², lazım olan kafel 120 000 : 400 = 300 ədəd.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kəsilmiş küncün ölçülərini səhv tapmaq: onları böyük ölçülərdən çıxmaqla tap.</li>
+        <li>Yarımdairədə 2-yə bölməyi unutmaq.</li>
+        <li>m² ilə sm²-ni qarışdırmaq: 1 m² = 10 000 sm², 100 sm² yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mürəkkəb fiqur: hissələrə böl və topla, ya da böyükdən çıx.
+Əvvəl şəkil çək, hər hissənin ölçüsünü yaz.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tərəfi 6 olan kvadratda mərkəzi bir təpədə, radiusu 6 olan dörddəbir dairə var (π ≈ 3,14). Qalan hissə? <span class="ans">36 − 3,14 · 36 / 4 = 36 − 28,26 = 7,74.</span></li>
+        <li>12 × 10 düzbucaqlıdan küncdəki 5 × 4 kəsilib. S? <span class="ans">120 − 20 = 100.</span></li>
+        <li>Kvadratın sahəsi 36. İçinə çəkilmiş dairənin sahəsi kπ, k? <span class="ans">Tərəf 6, r = 3, k = 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

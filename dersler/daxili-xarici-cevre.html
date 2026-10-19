@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Daxilə və xaricə çəkilmiş çevrələr dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-daxili-xarici-cevre.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Daxilə və xaricə çəkilmiş çevrələr</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Üçbucaqlar, dördbucaqlılar və çoxbucaqlılar</div>
+    <h1>Daxilə və xaricə çəkilmiş çevrələr</h1>
+    <p>Daxilə çəkilmiş çevrə fiqurun bütün tərəflərinə toxunur, xaricə çəkilmiş çevrə isə bütün təpələrdən keçir. İmtahanda onların radiuslarını tərəflərlə ifadə etmək və hansı dördbucaqlıya çevrə çəkmək olduğunu bilmək lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Daxilə çəkilmiş çevrə</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xaricə çəkilmiş çevrə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düzgün çoxbucaqlılar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Dördbucaqlılar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Üçbucağın daxilinə çəkilmiş çevrə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üçbucaq şəkilli bağın içində ən böyük dairəvi hovuz salmaq istəyirsən. Hovuz hər üç hasara toxunmalıdır — bu, daxilə çəkilmiş çevrədir. Onun radiusu üçbucağın sahəsi və perimetri ilə çox sadə bağlıdır.</p>
+
+      <h3><span class="st">2</span> Mərkəz harada?</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağına daxil çəkilmiş çevrə; K, L, M — toxunma nöqtələri">
+          <polygon points="139,7 40,175 209,175" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="131" cy="123" r="52" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="131" y1="123" x2="131" y2="175" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <path d="M131 166L140 166L140 175" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="131" cy="123" r="2.6" fill="var(--ink)"/>
+          <circle cx="86.2" cy="96.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="131" cy="175" r="2.6" fill="var(--ink)"/>
+          <circle cx="179" cy="103" r="2.6" fill="var(--ink)"/>
+          <text x="135" y="-1" class="lbl">A</text>
+          <text x="26" y="181" class="lbl">B</text>
+          <text x="215" y="181" class="lbl">C</text>
+          <text x="135" y="117" class="lbl">O</text>
+          <text x="70.2" y="96.6" class="lbl">K</text>
+          <text x="127" y="193" class="lbl">L</text>
+          <text x="185" y="101" class="lbl">M</text>
+          <text x="135" y="153">r</text>
+        </svg>
+        <div class="cap">
+          <p>Daxilə çəkilmiş çevrənin mərkəzi <span class="m">O</span> üç tərəfdən eyni <span class="m">r</span> məsafəsindədir. Bucağın tərəflərindən eyni məsafədə olan nöqtələr onun tənböləni üzərindədir.</p>
+          <p>Deməli, <span class="m">O</span> — üçbucağın <b>tənbölənlərinin kəsişmə nöqtəsidir</b>. Hər üçbucağa daxilə çevrə çəkmək olar.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Toxunan parçaları</h3>
+      <p>Bir təpədən çəkilmiş iki toxunan parçası bərabərdir: <span class="m">AK = AM</span>, <span class="m">BK = BL</span>, <span class="m">CL = CM</span>. Üçbucağın tərəfləri <span class="m">a = BC</span>, <span class="m">b = CA</span>, <span class="m">c = AB</span>, yarımperimetr <span class="m">p = (a + b + c) / 2</span> olsun:</p>
+      <div class="fm">AK = AM = p − a
+BK = BL = p − b
+CL = CM = p − c</div>
+
+      <h3><span class="st">4</span> Radius</h3>
+      <p><span class="m">O</span>-nu təpələrlə birləşdirsək, üç üçbucaq alınır; hər birinin hündürlüyü <span class="m">r</span>-dir: <span class="m">S = a·r/2 + b·r/2 + c·r/2 = r · p</span>.</p>
+      <div class="fm">S = r · p          r = S / p
+Düzbucaqlı üçbucaq (a, b — katetlər, c — hipotenuz):
+r = (a + b − c) / 2</div>
+      <p>Düzbucaqlı üçbucaqda düz bucaq təpəsindəki toxunan parçaları <span class="m">r</span>-ə bərabərdir (orada kvadrat alınır), ona görə <span class="m">a + b − c = 2r</span>.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Tərəflər 13, 14, 15. r = ?
+  p = 21. Heron: S = √(21 · 8 · 7 · 6) = √7056 = 84
+  r = 84 / 21 = 4</div>
+      <div class="ex">Nümunə 2. Katetlər 6 və 8. r = ?
+  c = 10, r = (6 + 8 − 10) / 2 = 2</div>
+      <div class="ex">Nümunə 3. Bərabəryanlı üçbucaq: 13, 13, 10. r = ?
+  Hündürlük oturacağı yarıya bölür: h = √(13² − 5²) = 12
+  S = 10 · 12 / 2 = 60, p = 18, r = 60 / 18 = 10/3</div>
+      <div class="ex">Nümunə 4. AB = 7, BC = 8, AC = 9. Çevrə AB-yə K-da toxunur. AK = ?
+  p = 12, AK = p − BC = 12 − 8 = 4</div>
+      <div class="life"><b>Həyatdan.</b> Katetləri 6 m və 8 m olan üçbucaq şəkilli həyətdə hər üç hasara toxunan dairəvi gül sahəsinin radiusu 2 m olur (Nümunə 2). Daha böyük dairə həyətə sığmaz.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">r = S / P</span> yazmaq (tam perimetrə bölmək). Bölünən <b>yarım</b>perimetrdir.</li>
+        <li>Düzbucaqlı üçbucaqda <span class="m">(a + b + c) / 2</span> götürmək — bu <span class="m">p</span>-dir, <span class="m">r</span> yox.</li>
+        <li><span class="m">AK</span>-ni tapanda <span class="m">A</span>-ya bitişik tərəfi çıxmaq. <span class="m">p</span>-dən <b>qarşı</b> tərəf çıxılır: <span class="m">AK = p − BC</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mərkəz — tənbölənlərin kəsişməsi.
+r = S / p;  düzbucaqlıda r = (a + b − c) / 2.
+Toxunan parçası: təpədən = p − qarşı tərəf.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Katetlər 5 və 12. r? <span class="ans">c = 13, r = (5 + 12 − 13) / 2 = 2.</span></li>
+        <li>Perimetr 30, r = 3. Sahə? <span class="ans">S = r · p = 3 · 15 = 45.</span></li>
+        <li>AB = 10, BC = 12, AC = 8. AK (K — AB üzərində)? <span class="ans">p = 15, AK = 15 − 12 = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Üçbucağın xaricinə çəkilmiş çevrə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üç kəndə eyni məsafədə su quyusu qazmaq lazımdır. Üç nöqtədən eyni məsafədə olan nöqtə — onlardan keçən çevrənin mərkəzidir. Bu, üçbucağa xaricə çəkilmiş çevrədir.</p>
+
+      <h3><span class="st">2</span> Mərkəz harada?</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağına xaric çəkilmiş çevrə, O — mərkəz">
+          <circle cx="150" cy="100" r="82" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="122,22.9 82.8,147 224.3,134.7" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="122" y2="22.9" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="150" y1="100" x2="82.8" y2="147" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="150" y1="100" x2="224.3" y2="134.7" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="150" cy="100" r="2.6" fill="var(--ink)"/>
+          <text x="116" y="14.9" class="lbl">A</text>
+          <text x="66.8" y="155" class="lbl">B</text>
+          <text x="230.3" y="142.7" class="lbl">C</text>
+          <text x="156" y="104" class="lbl">O</text>
+          <text x="122" y="61.5">R</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">OA = OB = OC = R</span>. Parçanın uclarından eyni məsafədə olan nöqtələr onun orta perpendikulyarı üzərindədir.</p>
+          <p>Deməli, <span class="m">O</span> — tərəflərin <b>orta perpendikulyarlarının kəsişmə nöqtəsidir</b>. İtibucaqlı üçbucaqda mərkəz içəridə, kütbucaqlıda xaricdə, düzbucaqlıda — hipotenuzun üzərindədir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Düzbucaqlı üçbucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzbucaqlı üçbucağa xaric çəkilmiş çevrənin mərkəzi hipotenuzun ortasıdır">
+          <circle cx="150" cy="100" r="80" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="70,100 116.2,27.5 230,100" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="100" x2="116.2" y2="27.5" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <path d="M111.4 35.1L119 39.9L123.8 32.3" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="150" cy="100" r="2.6" fill="var(--ink)"/>
+          <text x="54" y="106" class="lbl">A</text>
+          <text x="236" y="106" class="lbl">B</text>
+          <text x="112.2" y="19.5" class="lbl">C</text>
+          <text x="146" y="118" class="lbl">O</text>
+          <text x="139.1" y="67.8">R</text>
+        </svg>
+        <div class="cap">
+          <p>Düz bucaq diametrə söykənir (Çevrədə bucaqlar, Dərs 1), ona görə hipotenuz — diametrdir.</p>
+          <p>Mərkəz — hipotenuzun ortası, hipotenuza çəkilmiş median <span class="m">CO</span> isə radiusdur.</p>
+        </div>
+      </div>
+      <div class="fm">R = c / 2          hipotenuza median = c / 2</div>
+
+      <h3><span class="st">4</span> İxtiyari üçbucaq</h3>
+      <div class="fm">R = a · b · c / (4S)</div>
+      <p>Bucaq məlumdursa, mərkəzi bucaqdan istifadə et: <span class="m">AB</span>-yə söykənən mərkəzi bucaq <span class="m">∠AOB = 2∠C</span> (küt <span class="m">C</span> üçün <span class="m">360° − 2∠C</span>), <span class="m">AOB</span> isə bərabəryanlı üçbucaqdır:</p>
+      <div class="fm">∠C = 30° (və ya 150°):  AB = R
+∠C = 45° (və ya 135°):  AB = R√2
+∠C = 60° (və ya 120°):  AB = R√3
+∠C = 90°:               AB = 2R</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Katetlər 6 və 8. R = ?
+  c = 10, R = 10 / 2 = 5</div>
+      <div class="ex">Nümunə 2. Tərəflər 13, 14, 15 (S = 84). R = ?
+  R = 13 · 14 · 15 / (4 · 84) = 2730 / 336 = 65/8</div>
+      <div class="ex">Nümunə 3. Bərabəryanlı üçbucaq: 5, 5, 6. R = ?
+  h = √(5² − 3²) = 4, S = 6 · 4 / 2 = 12
+  R = 5 · 5 · 6 / (4 · 12) = 150 / 48 = 25/8</div>
+      <div class="ex">Nümunə 4. ∠C = 30°, AB = 7. R = ?
+  ∠AOB = 60°, OA = OB → AOB bərabərtərəflidir → R = AB = 7</div>
+      <div class="life"><b>Həyatdan.</b> Kəndlər katetləri 6 km və 8 km olan düzbucaqlı üçbucağın təpələrindədirsə, quyu hipotenuzun ortasında qazılır və hər kənddən 5 km aralı olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düzbucaqlı üçbucaqda <span class="m">R = c</span> yazmaq. Hipotenuz <b>diametrdir</b>, radius onun yarısıdır.</li>
+        <li>Daxilə və xaricə çəkilmiş çevrənin mərkəzlərini qarışdırmaq: daxili — <b>tənbölənlər</b>, xarici — <b>orta perpendikulyarlar</b>.</li>
+        <li><span class="m">R = abc / (4S)</span>-də 4-ü unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mərkəz — orta perpendikulyarların kəsişməsi.
+Düzbucaqlı üçbucaq: R = c / 2 (mərkəz — hipotenuzun ortası).
+İxtiyari: R = abc / (4S).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Katetlər 5 və 12. R? <span class="ans">13 / 2 = 13/2.</span></li>
+        <li>Üçbucaq 10, 13, 13. R? <span class="ans">h = 12, S = 60, R = 13 · 13 · 10 / 240 = 169/24.</span></li>
+        <li>∠C = 90°, AB = 10. R? <span class="ans">5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Düzgün çoxbucaqlılar və çevrələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qayka, arı pətəyi, "Yol ver" nişanı — düzgün çoxbucaqlılardır. Qaykanı açmaq üçün açarın ağzı qarşı tərəflər arasındakı məsafəyə, yəni daxilə çəkilmiş çevrənin diametrinə bərabər olmalıdır.</p>
+
+      <h3><span class="st">2</span> Düzgün çoxbucaqlı</h3>
+      <p>Bütün tərəfləri və bütün bucaqları bərabər olan çoxbucaqlı <b>düzgün</b> çoxbucaqlıdır. Ona həm daxilə, həm xaricə çevrə çəkmək olar, iki çevrənin mərkəzi eynidir. Tərəf mərkəzdən <span class="m">360° / n</span> bucaq altında görünür.</p>
+
+      <h3><span class="st">3</span> Bərabərtərəfli üçbucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Bərabərtərəfli üçbucaq: xaricə çəkilmiş çevrənin radiusu R, daxilə çəkilmiş çevrənin radiusu r, R = 2r">
+          <circle cx="150" cy="108" r="84" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="150,24 77.3,150 222.7,150" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="150" cy="108" r="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="24" x2="150" y2="150" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <path d="M150 141L159 141L159 150" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="150" cy="108" r="2.6" fill="var(--ink)"/>
+          <text x="146" y="16" class="lbl">A</text>
+          <text x="61.3" y="158" class="lbl">B</text>
+          <text x="228.7" y="158" class="lbl">C</text>
+          <text x="146" y="168" class="lbl">H</text>
+          <text x="156" y="112" class="lbl">O</text>
+          <text x="136" y="72">R</text>
+          <text x="138" y="136">r</text>
+        </svg>
+        <div class="cap">
+          <p>Burada tənbölənlər, medianlar və hündürlüklər üst-üstə düşür, mərkəz medianı 2 : 1 nisbətində bölür.</p>
+          <p>Hündürlük <span class="m">h = a√3/2</span>, <span class="m">R = 2h/3</span>, <span class="m">r = h/3</span>.</p>
+        </div>
+      </div>
+      <div class="fm">R = a√3/3      r = a√3/6      R = 2r      h = 3r</div>
+
+      <h3><span class="st">4</span> Kvadrat və düzgün altıbucaqlı</h3>
+      <div class="fm">Kvadrat:     R = a√2/2 (diaqonalın yarısı)    r = a/2
+Altıbucaqlı: R = a                            r = a√3/2</div>
+      <p>Düzgün altıbucaqlı 6 bərabərtərəfli üçbucaqdan ibarətdir: ona görə <span class="m">R = a</span>, <span class="m">r</span> isə həmin üçbucağın hündürlüyüdür. Böyük diaqonal <span class="m">2a</span>, qarşı tərəflər arası məsafə <span class="m">2r = a√3</span>.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Bərabərtərəfli üçbucağın tərəfi 6. R və r?
+  R = 6√3/3 = 2√3,  r = 6√3/6 = √3   (R = 2r ✓)</div>
+      <div class="ex">Nümunə 2. Kvadrata xaricə çəkilmiş çevrənin radiusu 5. Tərəf?
+  Diaqonal = 2R = 10, a = 10 / √2 = 5√2</div>
+      <div class="ex">Nümunə 3. Düzgün altıbucaqlının tərəfi 4. r = ?
+  r = 4√3/2 = 2√3</div>
+      <div class="ex">Nümunə 4. Bərabərtərəfli üçbucağın hündürlüyü 9. R = ?
+  R = 2/3 · 9 = 6</div>
+      <div class="life"><b>Həyatdan.</b> Tərəfi 10 mm olan altıbucaqlı qayka üçün açarın ağzı <span class="m">10√3 ≈ 17,3</span> mm olmalıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabərtərəfli üçbucaqda <span class="m">R</span> və <span class="m">r</span>-i qarışdırmaq. Böyük olan <span class="m">R</span>-dir: <span class="m">R = 2r</span>.</li>
+        <li>Kvadratda <span class="m">R = a/2</span> yazmaq. <span class="m">a/2</span> — daxilə çəkilmiş çevrənin radiusudur.</li>
+        <li>Altıbucaqlıda <span class="m">R = 2a</span> yazmaq. <span class="m">2a</span> — böyük diaqonaldır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Üçbucaq:  R = a√3/3, r = a√3/6, R = 2r.
+Kvadrat:  R = a√2/2, r = a/2.
+Altıbucaqlı: R = a, r = a√3/2.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bərabərtərəfli üçbucaqda r = 2. R və a? <span class="ans">R = 4, a = 6r/√3 = 4√3.</span></li>
+        <li>Kvadratın tərəfi 8. r və R? <span class="ans">r = 4, R = 4√2.</span></li>
+        <li>Altıbucaqlıda r = 3√3. Tərəf? <span class="ans">a = 2r/√3 = 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Dördbucaqlının daxilinə və xaricinə çəkilmiş çevrələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hər üçbucağa iki çevrə çəkmək olur, dördbucaqlıya isə — həmişə yox. Məsələn, uzunsov düzbucaqlının içinə dörd tərəfə toxunan çevrə sığmaz. Hansı halda çəkmək olduğunu göstərən iki sadə şərt var.</p>
+
+      <h3><span class="st">2</span> İki şərt</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Solda çevrə daxil edilmiş dördbucaqlı, sağda çevrəyə daxil edilmiş dördbucaqlı">
+          <polygon points="109.4,49.1 19.4,65 50.6,150.9 140.6,135" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="80" cy="100" r="45" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="228" cy="100" r="55" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="200.5,52.4 176.3,118.8 255.5,147.6 275.6,72.5" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M181.1 105.6A14 14 0 0 1 189.5 123.6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M272 86A14 14 0 0 1 262.1 68.9" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="107.4" y="43.1" class="lbl">B</text>
+          <text x="5.4" y="65" class="lbl">A</text>
+          <text x="46.6" y="166.9" class="lbl">D</text>
+          <text x="146.6" y="139" class="lbl">C</text>
+          <text x="190.5" y="46.4" class="lbl">B</text>
+          <text x="162.3" y="124.8" class="lbl">A</text>
+          <text x="253.5" y="163.6" class="lbl">D</text>
+          <text x="281.6" y="70.5" class="lbl">C</text>
+        </svg>
+        <div class="cap">
+          <p><b>Solda:</b> çevrə dördbucaqlıya daxil edilib — qarşı <b>tərəflərin</b> cəmləri bərabərdir (toxunan parçalarından gəlir).</p>
+          <p><b>Sağda:</b> dördbucaqlı çevrəyə daxil edilib — qarşı <b>bucaqların</b> cəmi 180°-dir (iki daxilə çəkilmiş bucaq birlikdə 360°-lik qövsün yarısını görür).</p>
+        </div>
+      </div>
+      <div class="fm">Daxilə çevrə:  AB + CD = BC + AD     S = r · p
+Xaricə çevrə:  ∠A + ∠C = ∠B + ∠D = 180°</div>
+      <p>Xaricə çevrə çəkilə bilən dördbucaqlıda xarici bucaq qarşı daxili bucağa bərabərdir.</p>
+
+      <h3><span class="st">3</span> Hansı fiqurlar?</h3>
+      <ul>
+        <li><b>Daxilə çevrə:</b> romb və kvadrat — həmişə; düzbucaqlı (kvadrat deyilsə) — heç vaxt. Trapesiya — yan tərəflərin cəmi oturacaqların cəminə bərabər olanda.</li>
+        <li><b>Xaricə çevrə:</b> düzbucaqlı, kvadrat, bərabəryanlı trapesiya — həmişə; romb (kvadrat deyilsə), qeyri-bərabəryanlı trapesiya — heç vaxt. Düzbucaqlıda <span class="m">R = d / 2</span>.</li>
+      </ul>
+      <p>Bərabəryanlı trapesiyaya çevrə daxil edilibsə (oturacaqlar <span class="m">a</span>, <span class="m">b</span>): yan tərəf <span class="m">(a + b) / 2</span>, hündürlük <span class="m">h = √(ab)</span>, <span class="m">r = h / 2</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çevrə daxil edilib: AB = 7, BC = 9, CD = 12. AD = ?
+  7 + 12 = 9 + AD → AD = 10</div>
+      <div class="ex">Nümunə 2. Bərabəryanlı trapesiyaya çevrə daxil edilib, oturacaqlar 2 və 8.
+  Yan tərəf = (2 + 8) / 2 = 5, proyeksiya = (8 − 2) / 2 = 3
+  h = √(25 − 9) = 4 (= √(2 · 8) ✓), r = 2, S = 5 · 4 = 20</div>
+      <div class="ex">Nümunə 3. Çevrəyə daxil edilib, ∠A = 75°. ∠C = ?
+  ∠C = 180° − 75° = 105°</div>
+      <div class="ex">Nümunə 4. Çevrəyə daxil edilib, ∠A : ∠B : ∠C = 2 : 3 : 7. ∠D = ?
+  ∠A + ∠C = 180° → 9 hissə, 1 hissə = 20°
+  ∠A = 40°, ∠B = 60°, ∠C = 140°, ∠D = 180° − 60° = 120°</div>
+      <div class="life"><b>Həyatdan.</b> Paraleloqram şəkilli süfrənin dörd küncünü dairəvi masanın kənarına düzmək istəyirsən. Bu, yalnız süfrə düzbucaqlı olanda alınır: paraleloqramın qarşı bucaqları bərabərdir, cəmlərinin 180° olması üçün hər biri 90° olmalıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İki şərti qarışdırmaq: <b>daxilə — tərəflər</b>, <b>xaricə — bucaqlar</b>.</li>
+        <li>Qonşu tərəfləri toplamaq. Qarşı tərəflər: <span class="m">AB</span> və <span class="m">CD</span>, <span class="m">BC</span> və <span class="m">AD</span>.</li>
+        <li>Xaricə çevrə çəkilmiş dördbucaqlıda qarşı bucaqları bərabər yazmaq. Onların <b>cəmi</b> 180°-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Daxilə çevrə ⇔ a + c = b + d.
+Xaricə çevrə ⇔ ∠A + ∠C = 180°.
+Çevrə daxil edilmiş bərabəryanlı trapesiya: h = √(ab).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Çevrə daxil edilib, AB + CD = 15. Perimetr? <span class="ans">2 · 15 = 30.</span></li>
+        <li>Çevrəyə daxil edilib, ∠B = 110°. ∠D? <span class="ans">70°.</span></li>
+        <li>Düzbucaqlının tərəfləri 6 və 8. Xaricə çəkilmiş çevrənin radiusu? <span class="ans">d = 10, R = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -303,19 +303,22 @@
    "bolme": "Çevrə və dairə",
    "ad": "Çevrədə bucaqlar, toxunan və kəsən",
    "status": "yox",
-   "menbe": "DİM: Çevrə və dairə"
+   "menbe": "DİM: Çevrə və dairə",
+   "ders": "dersler/cevrede-bucaqlar.html"
   },
   {
    "bolme": "Çevrə və dairə",
    "ad": "Daxilə və xaricə çəkilmiş çevrələr",
    "status": "yox",
-   "menbe": "DİM: Üçbucaqlar + Dördbucaqlılar"
+   "menbe": "DİM: Üçbucaqlar + Dördbucaqlılar",
+   "ders": "dersler/daxili-xarici-cevre.html"
   },
   {
    "bolme": "Fiqurların sahəsi",
    "ad": "Sahələr",
    "status": "yox",
-   "menbe": "DİM: Fiqurların sahəsi"
+   "menbe": "DİM: Fiqurların sahəsi",
+   "ders": "dersler/saheler.html"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
