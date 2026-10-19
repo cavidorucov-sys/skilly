@@ -172,3 +172,8 @@ html{scrollbar-gutter:stable}
 .tab[aria-selected=true] small{color:var(--subj);opacity:1}
 .stepchip[aria-current=step]{background:var(--subj-soft);color:var(--subj);box-shadow:inset 0 0 0 1.5px var(--subj)}
 .stepchip[aria-current=step] .no{background:var(--subj);color:var(--white)}
+/* tabs fill the row, equal widths; on phones they scroll sideways */
+.tabs{display:flex;width:100%}
+.tab{flex:1 1 0;min-width:0;text-align:center;overflow:hidden;text-overflow:ellipsis}
+.tab small{display:block}
+@media (max-width:640px){.tab{flex:1 0 auto}}
