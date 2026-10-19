@@ -363,3 +363,8 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .tx.sf span{margin:0 0 3px}
 .list .tx b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .list.dl{grid-auto-rows:1fr}
+
+.gate .row{text-decoration:none;color:inherit}
+.gate-go{width:28px;height:28px;display:grid;place-items:center;color:var(--ink-2);flex:none;transition:transform .15s var(--ease),color .15s}
+.gate-go svg{width:18px;height:18px}
+.gate a.row:hover .gate-go{color:var(--ink);transform:translateX(3px)}
