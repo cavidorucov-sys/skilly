@@ -84,8 +84,19 @@ async function shell(content) {
   const term = await load("data/terminler.json").catch(() => []);
   const exam = term.find(t => t.tarix >= isoToday() && t.ad.startsWith("Buraxılış"));
   const toExam = exam ? Math.round((new Date(exam.tarix) - new Date(isoToday())) / 864e5) : "–";
+  // collapsible rail; the choice is remembered on this device
+  let collapsed = false; try { collapsed = localStorage.getItem("skilly-rail") === "1"; } catch (e) {}
+  const toggle = el("button", { class: "rail-toggle", type: "button" });
+  const setRail = c => {
+    collapsed = c; document.documentElement.classList.toggle("rail-min", c);
+    toggle.setAttribute("aria-label", c ? "Paneli aç" : "Paneli yığ"); toggle.setAttribute("aria-expanded", String(!c));
+    toggle.replaceChildren(icon(c ? "PanelLeftOpen" : "PanelLeftClose"));
+    try { localStorage.setItem("skilly-rail", c ? "1" : "0"); } catch (e) {}
+  };
+  toggle.addEventListener("click", () => setRail(!collapsed));
+  setRail(collapsed);
   const rail = el("aside", { class: "rail" },
-    el("a", { class: "logo", href: "index.html" }, "Skilly"),
+    el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), toggle),
     el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : "")),
     ring,
     el("div", { class: "minis" },
