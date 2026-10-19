@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>n-ci dərəcədən kök dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-n-ci-kok.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · n-ci dərəcədən kök</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: n-ci dərəcədən kök. İrrasional ifadələr. Rasional üstlü qüvvət</div>
+    <h1>n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr</h1>
+    <p>Kvadrat kökü bilirsən: <span class="m">√49 = 7</span>. İndi kub kök (<span class="m">∛8 = 2</span>), dördüncü dərəcədən kök və ümumiyyətlə <span class="m">n</span>-ci dərəcədən kök. Sonra kökü qüvvət kimi yazmağı (<span class="m">∛5 = 5¹ᐟ³</span>), kökləri sadələşdirməyi və kəsrin məxrəcindən kökü "çıxarmağı" öyrənəcəksən. İmtahanda bu mövzudan sual demək olar ki, həmişə olur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>n-ci kök</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rasional üst</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sadələşdirmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məxrəcdə kök</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. n-ci dərəcədən kök və onun xassələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kub şəkilli akvariumun həcmi 27 litrdir (27 dm³). Tili nə qədərdir? Elə ədəd lazımdır ki, kubu 27 olsun: <span class="m">3³ = 27</span>, deməli til 3 dm. Bu əməl kub kök çıxarmaqdır: <span class="m">∛27 = 3</span>.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <div class="fm">ⁿ√a = b   ⇔   bⁿ = a          (n = 2, 3, 4, …)
+n — kökün dərəcəsi,  a — kökaltı ifadə</div>
+      <p><b>Cüt dərəcə</b> (<span class="m">√, ∜, ⁶√</span>): kökaltı ifadə <span class="m">a ≥ 0</span> olmalıdır, kök də <span class="m">≥ 0</span> götürülür (hesabi kök). <span class="m">∜(−16)</span>-nın mənası yoxdur.</p>
+      <p><b>Tək dərəcə</b> (<span class="m">∛, ⁵√</span>): istənilən ədəddən çıxarılır: <span class="m">∛(−27) = −3</span>, çünki <span class="m">(−3)³ = −27</span>.</p>
+      <div class="fm">ⁿ√(aⁿ) = |a|,  n cüt     məs.  ∜((−5)⁴) = 5
+ⁿ√(aⁿ) = a,    n tək     məs.  ∛((−5)³) = −5</div>
+
+      <h3><span class="st">3</span> Xassələr</h3>
+      <p><span class="m">a ≥ 0, b ≥ 0</span> (məxrəcdə <span class="m">b &gt; 0</span>) olanda:</p>
+      <div class="fm">ⁿ√(ab) = ⁿ√a · ⁿ√b
+ⁿ√(a/b) = ⁿ√a / ⁿ√b
+(ⁿ√a)ᵏ = ⁿ√(aᵏ)
+ⁿ√(ᵏ√a) = ⁿᵏ√a              dərəcələr vurulur
+ⁿᵏ√(aᵐᵏ) = ⁿ√(aᵐ)           dərəcə və üst eyni ədədə bölünür</div>
+      <div class="ex">1) ∜81 = 3,                 çünki 3⁴ = 81
+2) ∛(−125/8) = −5/2,        çünki (−5/2)³ = −125/8
+3) ∛2 · ∛32 = ∛64 = 4
+4) ∜162 : ∜2 = ∜81 = 3
+5) √(∛729) = ⁶√729 = 3,     çünki 3⁶ = 729
+6) ∜((−2)⁴) + ∛((−3)³) = 2 + (−3) = −1</div>
+
+      <h3><span class="st">4</span> İrrasional ifadənin DMQ-su</h3>
+      <p>Cüt dərəcəli kökün altı mənfi ola bilməz. Tək dərəcəli kök üçün məhdudiyyət yoxdur. Kök məxrəcdədirsə, kökaltı ciddi müsbət olmalıdır.</p>
+      <div class="ex">√(x − 2) + ∜(6 − x):   x − 2 ≥ 0 və 6 − x ≥ 0  →  2 ≤ x ≤ 6
+   tam ədədlər: 2, 3, 4, 5, 6 — beş ədəd
+∛(x + 1):              bütün x
+1/√(4 − x):            4 − x &gt; 0  →  x &lt; 4</div>
+      <div class="life"><b>Həyatdan.</b> Kubun tili 2 dəfə artanda həcmi <span class="m">2³ = 8</span> dəfə artır. Tərsinə: həcm 8 dəfə artıbsa, til <span class="m">∛8 = 2</span> dəfə artıb. Paketləmə zavodunda qutunun həcmini 27 dəfə artırmaq istəyirlərsə, tilləri <span class="m">∛27 = 3</span> dəfə böyüdürlər.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">∜((−3)⁴) = −3</span> yazmaq. Cüt dərəcəli kök mənfi olmur: <span class="m">= |−3| = 3</span>.</li>
+        <li>Fərqli dərəcəli kökləri birbaşa vurmaq: <span class="m">√2 · ∛2 ≠ ∛4</span>. Vurmaq üçün dərəcələr eyni olmalıdır.</li>
+        <li>Kökü cəmə "paylamaq": <span class="m">√(9 + 16) ≠ 3 + 4</span>. Düzü: <span class="m">√25 = 5</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ⁿ√a = b  ⇔  bⁿ = a
+cüt n: a ≥ 0, kök ≥ 0;  tək n: istənilən a
+ⁿ√(ab) = ⁿ√a·ⁿ√b,   ⁿ√(ᵏ√a) = ⁿᵏ√a</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">∛(−64) = ?</span> <span class="ans">−4, çünki (−4)³ = −64.</span></li>
+        <li><span class="m">∛4 · ∛54 = ?</span> <span class="ans">∛216 = 6.</span></li>
+        <li><span class="m">√(x + 3)</span> ifadəsinin DMQ-suna daxil olan ən kiçik tam ədəd? <span class="ans">x + 3 ≥ 0 → x ≥ −3. Cavab: −3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Rasional üstlü qüvvət. Qüvvətlərin müqayisəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kökləri qüvvət kimi yazanda onlarla bildiyin xassələrlə işləyirsən: üstləri toplayır, çıxır, vurursan. Ayrı "kök qaydaları" əzbərləmək lazım olmur.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <div class="fm">a^(m/n) = ⁿ√(aᵐ)         (a &gt; 0, n ≥ 2 natural, m tam)
+a^(1/n) = ⁿ√a</div>
+      <p>Yazılış: <span class="m">8²ᐟ³</span> — "8-in 2/3 qüvvəti". Kəsrin məxrəci — kökün dərəcəsi, surəti — qüvvətin üstü. Bütün qüvvət xassələri (<span class="m">aᵖ·aᵠ = aᵖ⁺ᵠ</span>, <span class="m">(aᵖ)ᵠ = aᵖᵠ</span> və s.) burada da doğrudur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 8²ᐟ³ = (∛8)² = 2² = 4
+2) 16⁻³ᐟ⁴ = 1/(∜16)³ = 1/2³ = 1/8
+3) 32³ᐟ⁵ = (2⁵)³ᐟ⁵ = 2³ = 8          ← əsası qüvvət kimi yaz, üstləri vur
+4) (1/4)⁻³ᐟ² = 4³ᐟ² = (2²)³ᐟ² = 2³ = 8
+5) 5¹ᐟ³ · 5⁵ᐟ³ = 5⁶ᐟ³ = 5² = 25
+6) (∛7)⁶ = (7¹ᐟ³)⁶ = 7² = 49
+7) √3 · 3³ᐟ² = 3¹ᐟ² · 3³ᐟ² = 3² = 9</div>
+
+      <h3><span class="st">4</span> Qüvvətlərin və köklərin müqayisəsi</h3>
+      <p><b>Eyni əsas:</b> <span class="m">a &gt; 1</span> olanda böyük üst — böyük qüvvət; <span class="m">0 &lt; a &lt; 1</span> olanda əksinə.</p>
+      <div class="ex">2¹ᐟ² &gt; 2¹ᐟ³,  çünki 1/2 &gt; 1/3 və 2 &gt; 1
+(1/2)¹ᐟ² &lt; (1/2)¹ᐟ³,  çünki əsas 1-dən kiçikdir</div>
+      <p><b>Fərqli dərəcəli köklər:</b> hamısını dərəcələrin ƏKOB-u qədər qüvvətə yüksəlt — köklər yox olur, adi ədədləri müqayisə edirsən.</p>
+      <div class="ex">√2 və ∛3:   ƏKOB(2, 3) = 6
+   (√2)⁶ = 2³ = 8,   (∛3)⁶ = 3² = 9   →  ∛3 &gt; √2
+
+√3, ∛5, ⁶√30:   6-cı qüvvət
+   27,  25,  30   →  ən böyüyü ⁶√30, ən kiçiyi ∛5</div>
+      <div class="life"><b>Həyatdan: piano.</b> Pianoda oktava 12 yarımtona bölünür, oktavada tezlik 2 dəfə artır. Hər yarımtonda tezlik eyni sayda dəfə artır — <span class="m">2¹ᐟ¹² = ¹²√2 ≈ 1,059</span> dəfə. 12 yarımton sonra: <span class="m">(2¹ᐟ¹²)¹² = 2</span>. Pianonun köklənməsi rasional üstlü qüvvət üzərində qurulub.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Surət və məxrəci qarışdırmaq: <span class="m">8²ᐟ³</span> — "8-in kvadratının kub kökü", "8-in kubunun kvadrat kökü" yox.</li>
+        <li>Mənfi üstü mənfi ədəd saymaq: <span class="m">16⁻³ᐟ⁴ = 1/8</span>, <span class="m">−8</span> yox.</li>
+        <li>Müqayisədə yalnız kökaltı ədədlərə baxmaq: <span class="m">∛5</span> "5 &gt; 3 olduğu üçün" <span class="m">√3</span>-dən böyük deyil (25 &lt; 27).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a^(m/n) = ⁿ√(aᵐ),  a &gt; 0
+Əsası qüvvət kimi yaz (8 = 2³), sonra üstləri vur.
+Müqayisə: ƏKOB qədər qüvvətə yüksəlt.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">27²ᐟ³ = ?</span> <span class="ans">(∛27)² = 3² = 9.</span></li>
+        <li><span class="m">4⁻¹ᐟ² = ?</span> <span class="ans">1/√4 = 1/2.</span></li>
+        <li>Hansı böyükdür: <span class="m">∜5</span> yoxsa <span class="m">√2</span>? <span class="ans">4-cü qüvvət: 5 və 4. ∜5 böyükdür.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İrrasional ifadələrin eynilik çevrilmələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Testdə cavab variantları adətən sadələşdirilmiş şəkildə olur: <span class="m">6√2</span>, <span class="m">√72</span> yox. <span class="m">√50 + √18</span>-i toplamaq üçün də əvvəl onları "oxşar" etmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Vuruğu kök altından çıxarmaq və kök altına salmaq</h3>
+      <div class="fm">√(a²b) = a√b          (a ≥ 0, b ≥ 0)
+∛(a³b) = a∛b
+a√b = √(a²b)          (a ≥ 0)</div>
+      <p>Kök altındakı ədədi elə vuruqlara ayır ki, biri <b>tam kvadrat</b> (4, 9, 16, 25, 36, 49, …) — kub kökdə <b>tam kub</b> (8, 27, 64, 125) — olsun.</p>
+      <div class="ex">√72 = √(36·2) = 6√2
+∛54 = ∛(27·2) = 3∛2
+3√5 = √(9·5) = √45
+4∛3 = ∛(64·3) = ∛192</div>
+
+      <h3><span class="st">3</span> Oxşar köklər</h3>
+      <p>Kök altı və dərəcəsi eyni olan köklər oxşardır. Onlar oxşar hədlər kimi toplanır: əmsallar toplanır, kök dəyişmir.</p>
+      <div class="ex">√50 + √18 − √8 = 5√2 + 3√2 − 2√2 = 6√2
+2√12 − √27 = 2·2√3 − 3√3 = 4√3 − 3√3 = √3
+∛54 − ∛16 = 3∛2 − 2∛2 = ∛2</div>
+
+      <h3><span class="st">4</span> Müxtəsər vurma düsturları ilə</h3>
+      <div class="ex">(√7 − √3)(√7 + √3) = 7 − 3 = 4         (a − b)(a + b) = a² − b²
+(√3 + √5)² = 3 + 2√15 + 5 = 8 + 2√15     (a + b)² = a² + 2ab + b²
+(2√3)² = 4·3 = 12
+√((2 − √5)²) = |2 − √5| = √5 − 2         √(x²) = |x|, √5 ≈ 2,24 &gt; 2</div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat şəkilli bağın sahəsi 50 m²-dir. Tərəfi <span class="m">√50 = 5√2 ≈ 5·1,41 = 7,05</span> m. Hasar üçün perimetr: <span class="m">4·5√2 = 20√2 ≈ 28,3</span> m. Sadələşdirilmiş şəkillə hesablamaq daha asandır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kök altından ədədin özünü çıxarmaq: <span class="m">√(16·3) ≠ 16√3</span>. Çıxan <span class="m">√16 = 4</span>-dür: <span class="m">4√3</span>.</li>
+        <li>Fərqli kökləri toplamaq: <span class="m">√2 + √3 ≠ √5</span>. Yalnız oxşar köklər toplanır.</li>
+        <li>Oxşar köklərdə kök altını da toplamaq: <span class="m">2√5 + 3√5 = 5√5</span>, <span class="m">5√10</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√(a²b) = a√b;  tam kvadratı (kubu) tap və çıxar.
+Oxşar köklər: əmsalları topla, kök eyni qalır.
+(√a − √b)(√a + √b) = a − b</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√98 = ?</span> <span class="ans">√(49·2) = 7√2.</span></li>
+        <li><span class="m">√75 − √12 = ?</span> <span class="ans">5√3 − 2√3 = 3√3.</span></li>
+        <li><span class="m">(√11 − √2)(√11 + √2) = ?</span> <span class="ans">11 − 2 = 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kəsrin məxrəcinin irrasionallıqdan azad edilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">1/√2</span>-ni kalkulyatorsuz hesablamaq üçün 1-i 1,414-ə bölmək lazımdır — çətindir. Amma <span class="m">1/√2 = √2/2 = 1,414 : 2 = 0,707</span> — asandır. Cavab variantları da məxrəcində kök olmayan şəkildə verilir.</p>
+
+      <h3><span class="st">2</span> Məxrəcdə bir kök</h3>
+      <div class="fm">a/√b = a√b/b                 (surət və məxrəci √b-yə vur)
+a/∛b = a∛(b²)/b              (∛b²-yə vur: ∛b·∛b² = b)</div>
+      <div class="ex">6/√3 = 6√3/3 = 2√3
+5/(2√5) = 5√5/(2·5) = √5/2
+4/∛2 = 4∛4/∛8 = 4∛4/2 = 2∛4</div>
+
+      <h3><span class="st">3</span> Məxrəcdə cəm və ya fərq: qoşma ifadə</h3>
+      <p><span class="m">√m − √n</span> və <span class="m">√m + √n</span> <b>qoşma</b> ifadələrdir. Onların hasilində kök itir: <span class="m">(√m − √n)(√m + √n) = m − n</span>.</p>
+      <div class="ex">4/(√7 − √3) = 4(√7 + √3)/((√7)² − (√3)²) = 4(√7 + √3)/4 = √7 + √3
+
+6/(3 − √3) = 6(3 + √3)/(9 − 3) = 6(3 + √3)/6 = 3 + √3
+
+2/(√5 + 1) = 2(√5 − 1)/(5 − 1) = (√5 − 1)/2</div>
+
+      <h3><span class="st">4</span> Qoşma kəsrlərin cəmi</h3>
+      <div class="ex">(√5 + √3)/(√5 − √3) + (√5 − √3)/(√5 + √3)
+  Ortaq məxrəc: 5 − 3 = 2
+  Surət: (√5 + √3)² + (√5 − √3)² = (8 + 2√15) + (8 − 2√15) = 16
+  Cavab: 16/2 = 8</div>
+      <div class="life"><b>Həyatdan.</b> Kvadratın diaqonalı 10 sm-dir. Tərəfi <span class="m">10/√2 = 10√2/2 = 5√2 ≈ 7,07</span> sm. Usta ölçünü məhz ikinci şəkildə hesablayır — <span class="m">1,414·5</span> vurmaq bölməkdən asandır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yalnız məxrəci vurub surəti unutmaq. Kəsrin qiyməti dəyişməsin deyə <b>hər ikisi</b> eyni ifadəyə vurulur.</li>
+        <li>Qoşma əvəzinə eyni ifadəyə vurmaq: <span class="m">(√7 − √3)²</span>-də kök qalır. Lazım olan <span class="m">√7 + √3</span>-dür.</li>
+        <li>Məxrəcdə <span class="m">m − n</span> əvəzinə <span class="m">m + n</span> yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a/√b → √b-yə vur;   a/∛b → ∛b²-yə vur
+a/(√m ± √n) → qoşmaya (√m ∓ √n) vur, məxrəc m − n
+Sonda sadələşdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">10/√5 = ?</span> <span class="ans">10√5/5 = 2√5.</span></li>
+        <li><span class="m">2/(√3 − 1) = ?</span> <span class="ans">2(√3 + 1)/(3 − 1) = √3 + 1.</span></li>
+        <li><span class="m">6/(√5 + √2) = ?</span> <span class="ans">6(√5 − √2)/3 = 2√5 − 2√2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

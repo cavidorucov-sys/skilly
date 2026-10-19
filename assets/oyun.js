@@ -37,6 +37,11 @@
   }
   const close = (x, v, tol) => Math.abs(x - v) <= (tol ?? Math.max(0.005, Math.abs(v) * 0.005));
 
+  // small on-screen keys for √, / and − (hard to type on a phone keyboard)
+  function keys(input) {
+    return h("div", { class: "oy-keys" }, ...["√", "/", "−"].map(k => h("button", { type: "button", class: "oy-key", "aria-label": "Daxil et: " + k,
+      on: { click: () => { const a = input.selectionStart ?? input.value.length, b = input.selectionEnd ?? a; input.value = input.value.slice(0, a) + k + input.value.slice(b); input.focus(); input.setSelectionRange(a + 1, a + 1); input.dispatchEvent(new Event("input")); } } }, k)));
+  }
   function mount(cfg) {
     const KEY = "oyun:" + cfg.key;
     const st = get(KEY, { lv: {}, boss: { passed: false, tries: 0 }, test: null, log: [] });
@@ -86,7 +91,7 @@
           getVal = () => input.value;
         }
         const btn = h("button", { type: "button", class: "btn", on: { click: () => check() } }, "Yoxla");
-        const row = h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, btn);
+        const row = h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, q.choices ? null : keys(input), btn);
         box.replaceChildren(h("div", { class: "oy-q" }, opts.label ? h("div", { class: "oy-label" }, opts.label) : null,
           h("div", { class: "oy-text" }, q.text), q.svg || null, row, err, fb));
         if (!q.choices) input.focus({ preventScroll: true });
@@ -260,7 +265,7 @@
         }
         const btn = h("button", { type: "button", class: "btn", on: { click: () => go() } }, isLast ? "Bitir" : "Növbəti →");
         box.replaceChildren(h("div", { class: "oy-q" }, h("div", { class: "oy-label" }, label), h("div", { class: "oy-text" }, q.text), q.svg || null,
-          h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, btn), err));
+          h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, q.choices ? null : keys(input), btn), err));
         if (!q.choices) input.focus({ preventScroll: true });
         function go() {
           const v = getVal();

@@ -152,3 +152,6 @@ html{scrollbar-gutter:stable}
 .oy-done.no,.oy-locked{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line-0)}
 .oy-review{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14px}
 .oy-review li.no{color:#791f1f}
+.oy-keys{display:flex;gap:6px}
+.oy-key{font:600 18px var(--f-num);width:40px;height:40px;border:1px solid var(--line-1);border-radius:var(--r-sm);background:var(--paper);color:var(--ink-0);cursor:pointer}
+.oy-key:active{transform:scale(.95)}

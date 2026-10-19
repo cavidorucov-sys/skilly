@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çoxluqlar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-coxluqlar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Çoxluqlar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Ölçmə. Statistikanın elementləri. Çoxluqlar</div>
+    <h1>Çoxluqlar, Eyler-Venn diaqramı</h1>
+    <p>Çoxluq — əşyaların, ədədlərin, insanların bir yerə yığılmış dəstəsidir: sinifdəki şagirdlər, 12-nin bölənləri, cüt ədədlər. Burada çoxluqları birləşdirməyi, kəsişdirməyi, fərqini tapmağı və dairələrlə (Eyler-Venn diaqramı) çəkməyi öyrənəcəksən. Ən çox düşən sual — "neçə nəfər hər ikisinə gedir?" tipli məsələdir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Çoxluq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Əməllər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Elementlərin sayı</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Çoxluq anlayışı. Alt çoxluq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Telefonundakı kontaktlar, sinif jurnalındakı adlar, mağazadakı mallar — hamısı çoxluqdur. "Həm WhatsApp-da, həm Telegram-da olan dostlar" sualı çoxluqların kəsişməsidir. Riyaziyyatda da tənliyin kökləri, ifadənin DMQ-su — çoxluqdur.</p>
+
+      <h3><span class="st">2</span> Əsas anlayışlar</h3>
+      <div class="fm">a ∈ A     a elementi A çoxluğuna daxildir
+a ∉ A     a elementi A çoxluğuna daxil deyil
+n(A)      A çoxluğunun elementlərinin sayı
+∅         boş çoxluq (heç bir elementi yoxdur)</div>
+      <p>Çoxluğu iki cür verirlər: <b>sadalamaqla</b> — <span class="m">A = {2; 4; 6}</span>, və ya <b>xassə ilə</b> — <span class="m">A = {x ∈ N | x ≤ 6, x cütdür}</span> (oxunuşu: "elə natural x-lər ki, …").</p>
+      <p><b>Sonlu</b> çoxluğun elementləri sayıla bilir (12-nin bölənləri), <b>sonsuz</b> çoxluğunku yox (bütün cüt ədədlər). Ədəd çoxluqları: <span class="m">N</span> — natural (1, 2, 3, …), <span class="m">Z</span> — tam, <span class="m">Q</span> — rasional, <span class="m">R</span> — həqiqi ədədlər.</p>
+      <p>Çoxluqda elementin sırası və təkrarı rol oynamır: <span class="m">{1; 2; 3} = {3; 1; 2}</span>. Eyni elementlərdən ibarət çoxluqlar <b>bərabərdir</b>.</p>
+
+      <h3><span class="st">3</span> Alt çoxluq</h3>
+      <div class="fm">A ⊂ B   ⇔   A-nın hər elementi B-də var
+∅ ⊂ A  və  A ⊂ A  — həmişə
+n elementli çoxluğun alt çoxluqlarının sayı: 2ⁿ</div>
+      <p>Niyə <span class="m">2ⁿ</span>: alt çoxluq qurarkən hər element üçün iki seçim var — "götürürəm" və ya "götürmürəm". <span class="m">n</span> element: <span class="m">2·2·…·2 = 2ⁿ</span>.</p>
+      <div class="ex">{1; 2; 3}-ün alt çoxluqları (2³ = 8):
+  ∅, {1}, {2}, {3}, {1; 2}, {1; 3}, {2; 3}, {1; 2; 3}
+Özündən fərqli: 8 − 1 = 7.   Boş olmayan: 8 − 1 = 7.
+N ⊂ Z ⊂ Q ⊂ R</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) A = {x ∈ Z | −2 ≤ x &lt; 3} = {−2; −1; 0; 1; 2},   n(A) = 5
+   (−2 daxildir, 3 daxil deyil)
+2) A — 12-nin natural bölənləri: {1; 2; 3; 4; 6; 12},   n(A) = 6
+3) A = {x ∈ N | x² &lt; 20} = {1; 2; 3; 4},   n(A) = 4   (5² = 25 &gt; 20)
+4) A = {x ∈ Z | |x| ≤ 3} = {−3; −2; −1; 0; 1; 2; 3},   n(A) = 7
+5) 5-ə bölünən ikirəqəmli ədədlər: 10, 15, …, 95
+   1–99 arasında 99 : 5 → 19 ədəd, birrəqəmli 1 ədəd (5).  19 − 1 = 18</div>
+      <div class="life"><b>Həyatdan.</b> Pizzaya 4 əlavə seçmək olar: pendir, göbələk, zeytun, kolbasa. Neçə müxtəlif pizza sifariş etmək olar (heç bir əlavəsiz də daxil)? Hər sifariş — əlavələr çoxluğunun alt çoxluğudur: <span class="m">2⁴ = 16</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Alt çoxluqları sayanda boş çoxluğu və çoxluğun özünü unutmaq. Hamısı <span class="m">2ⁿ</span>-dir.</li>
+        <li><span class="m">N</span>-ə 0-ı daxil etmək. Natural ədədlər 1-dən başlayır.</li>
+        <li>Ciddi bərabərsizlikdə ucu saymaq: <span class="m">x &lt; 3</span>-də 3 daxil deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">∈ — daxildir,  ⊂ — alt çoxluqdur,  ∅ — boş çoxluq
+n elementli çoxluğun 2ⁿ alt çoxluğu var.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">A = {x ∈ Z | −3 &lt; x ≤ 2}</span>. <span class="m">n(A) = ?</span> <span class="ans">{−2; −1; 0; 1; 2} — 5 element.</span></li>
+        <li><span class="m">{a; b; c; d}</span> çoxluğunun neçə alt çoxluğu var? <span class="ans">2⁴ = 16.</span></li>
+        <li>18-in natural bölənləri neçədir? <span class="ans">{1; 2; 3; 6; 9; 18} — 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Birləşmə, kəsişmə, fərq. Eyler-Venn diaqramı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sinif şənliyinə iki siyahı var: rəqs edənlər və mahnı oxuyanlar. Müəllim üçün üç sual vacibdir: ümumilikdə kim çıxış edir (birləşmə), kim hər ikisində var (kəsişmə — onların nömrələri ard-arda olmamalıdır), kim yalnız rəqs edir (fərq).</p>
+
+      <h3><span class="st">2</span> Üç əməl</h3>
+      <div class="fm">A ∪ B   birləşmə:  A-da və ya B-də olanlar (ən azı birində)
+A ∩ B   kəsişmə:   həm A-da, həm B-də olanlar
+A \ B   fərq:      A-da olub B-də olmayanlar</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 112" role="img" aria-label="Üç Eyler-Venn diaqramı: birləşmə, kəsişmə, fərq — rənglənmiş hissələr">
+          <defs><clipPath id="cl-b2"><circle cx="165" cy="50" r="28"/></clipPath></defs>
+          <!-- A ∪ B -->
+          <circle cx="35" cy="50" r="28" fill="var(--accent)" fill-opacity=".35"/>
+          <circle cx="65" cy="50" r="28" fill="var(--accent)" fill-opacity=".35"/>
+          <circle cx="35" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="65" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="50" y="102" text-anchor="middle" class="lbl">A ∪ B</text>
+          <!-- A ∩ B -->
+          <circle cx="135" cy="50" r="28" fill="var(--accent)" fill-opacity=".55" clip-path="url(#cl-b2)"/>
+          <circle cx="135" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="165" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="150" y="102" text-anchor="middle" class="lbl">A ∩ B</text>
+          <!-- A \ B -->
+          <circle cx="235" cy="50" r="28" fill="var(--accent)" fill-opacity=".55"/>
+          <circle cx="265" cy="50" r="28" fill="var(--paper)"/>
+          <circle cx="235" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="265" cy="50" r="28" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="250" y="102" text-anchor="middle" class="lbl">A \ B</text>
+          <text x="18" y="16" class="lbl">A</text><text x="76" y="16" class="lbl">B</text>
+          <text x="118" y="16" class="lbl">A</text><text x="176" y="16" class="lbl">B</text>
+          <text x="218" y="16" class="lbl">A</text><text x="276" y="16" class="lbl">B</text>
+        </svg>
+        <div class="cap"><p><b>Eyler-Venn diaqramı:</b> hər çoxluq bir dairədir. Rənglənmiş hissə — əməlin nəticəsi. Ortaq hissə (iki dairənin kəsişdiyi "linza") — <span class="m">A ∩ B</span>.</p><p>Bütün baxılan elementlər çoxluğu — <b>universal çoxluq</b> <span class="m">U</span> — dairələri əhatə edən düzbucaqlı kimi çəkilir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">A = {1; 2; 3; 4; 5; 6},  B = {4; 5; 6; 7; 8}
+  A ∪ B = {1; 2; 3; 4; 5; 6; 7; 8}     n = 8   (4, 5, 6 bir dəfə yazılır)
+  A ∩ B = {4; 5; 6}                   n = 3
+  A \ B = {1; 2; 3}                   n = 3
+  B \ A = {7; 8}                      n = 2</div>
+      <div class="ex">A — 12-nin bölənləri, B — 18-in bölənləri
+  A = {1; 2; 3; 4; 6; 12},  B = {1; 2; 3; 6; 9; 18}
+  A ∩ B = {1; 2; 3; 6} — ortaq bölənlər = ƏBOB(12; 18) = 6-nın bölənləri</div>
+      <div class="ex">Aralıqlar:  A = [−2; 5),  B = (1; 7]
+  [ ] — uc daxildir,  ( ) — daxil deyil
+  A ∩ B = (1; 5)    tam ədədlər: 2; 3; 4            — 3 ədəd
+  A ∪ B = [−2; 7]   tam ədədlər: −2; −1; …; 7       — 10 ədəd
+  A \ B = [−2; 1]   tam ədədlər: −2; −1; 0; 1       — 4 ədəd</div>
+
+      <h3><span class="st">4</span> Xassələr</h3>
+      <div class="fm">A ∪ B = B ∪ A,    A ∩ B = B ∩ A
+A ∪ ∅ = A,        A ∩ ∅ = ∅
+A ⊂ B  olarsa:  A ∪ B = B,  A ∩ B = A,  A \ B = ∅
+A \ B ≠ B \ A  (adətən)</div>
+      <div class="life"><b>Həyatdan.</b> İnternet axtarışında iki söz yazanda axtarış sistemi hər iki sözün olduğu səhifələri — kəsişməni — göstərir. "Bakı OR Gəncə" yazanda isə ən azı birinin olduğu səhifələri — birləşməni. "Bakı −hava" yazanda "hava" sözü olmayanları — fərqi.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Birləşmədə ortaq elementləri iki dəfə saymaq: <span class="m">n(A ∪ B) ≠ n(A) + n(B)</span>, əgər ortaq element varsa.</li>
+        <li><span class="m">A \ B</span> ilə <span class="m">B \ A</span>-nı qarışdırmaq. Fərqdə birinci yazılan çoxluqdan götürürük.</li>
+        <li>Aralıqlarda mötərizənin növünə baxmamaq: <span class="m">(1; 5)</span>-də 1 və 5 yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">∪ — ən azı birində,  ∩ — hər ikisində,  \ — birincidə var, ikincidə yox
+Venn: dairələr — çoxluqlar, düzbucaqlı — U.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">A = {1; 3; 5; 7}</span>, <span class="m">B = {3; 4; 5}</span>. <span class="m">A ∪ B = ?</span> <span class="ans">{1; 3; 4; 5; 7} — 5 element.</span></li>
+        <li>Eyni çoxluqlar üçün <span class="m">A \ B = ?</span> <span class="ans">{1; 7}.</span></li>
+        <li><span class="m">A = [0; 4]</span>, <span class="m">B = (2; 6)</span>. <span class="m">A ∩ B</span>-də neçə tam ədəd var? <span class="ans">(2; 4] → 3 və 4 — 2 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İki sonlu çoxluğun birləşməsinin elementlərinin sayı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sorğu: 18 nəfər şahmat, 15 nəfər futbol oynayır. Cəmi 33 nəfərmi? Yox — hər ikisini oynayanlar iki dəfə sayılıb. Düz saymağın düsturu bu dərsdədir. Bu tip məsələlər buraxılış imtahanında tez-tez olur.</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fm">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)
+n(A \ B) = n(A) − n(A ∩ B)
+heç birinə daxil olmayan = n(U) − n(A ∪ B)</div>
+      <p><span class="m">n(A) + n(B)</span> topladıqda ortaq hissə <b>iki dəfə</b> sayılır — ona görə onu bir dəfə çıxırıq.</p>
+      <div class="ex">100-dən böyük olmayan natural ədədlərdən neçəsi 2-yə və ya 3-ə bölünür?
+  2-yə bölünənlər: 100 : 2 = 50
+  3-ə bölünənlər: 100 : 3 → 33
+  Hər ikisinə (6-ya) bölünənlər: 100 : 6 → 16
+  n(A ∪ B) = 50 + 33 − 16 = 67</div>
+
+      <h3><span class="st">3</span> Məsələ: Venn diaqramı ilə</h3>
+      <div class="ex">Sinifdə 30 şagird var. 18 nəfər şahmata, 15 nəfər futbola gedir,
+4 nəfər heç birinə getmir. Neçə nəfər hər ikisinə gedir?
+
+  Ən azı birinə gedən:  30 − 4 = 26 = n(A ∪ B)
+  n(A ∩ B) = 18 + 15 − 26 = 7
+  Yalnız şahmat: 18 − 7 = 11,   yalnız futbol: 15 − 7 = 8
+  Yoxla: 11 + 7 + 8 + 4 = 30 ✓</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 172" role="img" aria-label="Venn diaqramı: yalnız şahmat 11, hər ikisi 7, yalnız futbol 8, heç biri 4">
+          <rect x="4" y="4" width="252" height="164" rx="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="100" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="160" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="14" y="24" class="lbl">Şahmat</text><text x="200" y="24" class="lbl">Futbol</text>
+          <text x="70" y="93" text-anchor="middle" class="lbl">11</text>
+          <text x="130" y="93" text-anchor="middle" class="lbl">7</text>
+          <text x="190" y="93" text-anchor="middle" class="lbl">8</text>
+          <text x="228" y="154" text-anchor="middle" class="lbl">4</text>
+        </svg>
+        <div class="cap"><p>Diaqramı <b>ortadan</b> doldur: əvvəl kəsişmə (7), sonra "yalnız" hissələr (<span class="m">18 − 7</span>, <span class="m">15 − 7</span>), sonda kənar (4).</p><p>Hər hissə bir dəfə sayılır — cəmi U-nu verir.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Üç çoxluq</h3>
+      <div class="fm">n(A ∪ B ∪ C) = n(A) + n(B) + n(C)
+             − n(A∩B) − n(A∩C) − n(B∩C)
+             + n(A∩B∩C)</div>
+      <div class="ex">Hər şagird ən azı bir dərnəyə gedir. Rəsm — 15, musiqi — 12, rəqs — 10.
+Rəsm və musiqi — 5, rəsm və rəqs — 4, musiqi və rəqs — 3, üçü də — 2.
+  15 + 12 + 10 − 5 − 4 − 3 + 2 = 27 şagird</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 222" role="img" aria-label="Üç çoxluqlu Venn diaqramı: yalnız rəsm 8, yalnız musiqi 6, yalnız rəqs 5, rəsm və musiqi 3, rəsm və rəqs 2, musiqi və rəqs 1, üçü də 2">
+          <rect x="4" y="4" width="252" height="214" rx="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="100" cy="85" r="55" fill="var(--accent-soft)" fill-opacity=".45" stroke="var(--accent)" stroke-width="2.2"/>
+          <circle cx="160" cy="85" r="55" fill="var(--accent-soft)" fill-opacity=".45" stroke="var(--vec)" stroke-width="2.2"/>
+          <circle cx="130" cy="137" r="55" fill="var(--accent-soft)" fill-opacity=".45" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="12" y="24" class="lbl">Rəsm</text><text x="196" y="24" class="lbl">Musiqi</text><text x="192" y="204" class="lbl">Rəqs</text>
+          <text x="78" y="76" text-anchor="middle" class="lbl">8</text>
+          <text x="182" y="76" text-anchor="middle" class="lbl">6</text>
+          <text x="130" y="170" text-anchor="middle" class="lbl">5</text>
+          <text x="130" y="62" text-anchor="middle" class="lbl">3</text>
+          <text x="100" y="124" text-anchor="middle" class="lbl">2</text>
+          <text x="160" y="124" text-anchor="middle" class="lbl">1</text>
+          <text x="130" y="103" text-anchor="middle" class="lbl">2</text>
+        </svg>
+        <div class="cap"><p>Yenə ortadan doldur: üçü də — 2. Rəsm və musiqi, amma rəqs yox: <span class="m">5 − 2 = 3</span>; rəsm və rəqs: <span class="m">4 − 2 = 2</span>; musiqi və rəqs: <span class="m">3 − 2 = 1</span>.</p><p>Yalnız rəsm: <span class="m">15 − 3 − 2 − 2 = 8</span>, yalnız musiqi: <span class="m">12 − 3 − 1 − 2 = 6</span>, yalnız rəqs: <span class="m">10 − 2 − 1 − 2 = 5</span>. Cəmi: 27 ✓</p></div>
+      </div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Heç birinə getməyən"ləri çıxmamaq: <span class="m">18 + 15 − 30</span> yox, <span class="m">18 + 15 − 26</span>.</li>
+        <li>"Yalnız şahmat" soruşulanda <span class="m">n(A)</span>-nı yazmaq. Yalnız şahmat <span class="m">= n(A) − n(A ∩ B)</span>.</li>
+        <li>Üç çoxluqda <span class="m">n(A∩B∩C)</span>-ni geri əlavə etməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)
+Venn-i ortadan doldur: kəsişmə → yalnız A, yalnız B → kənar.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">n(A) = 12, n(B) = 9, n(A ∩ B) = 4</span>. <span class="m">n(A ∪ B) = ?</span> <span class="ans">12 + 9 − 4 = 17.</span></li>
+        <li><span class="m">n(A ∪ B) = 20, n(A) = 14, n(B) = 11</span>. <span class="m">n(A ∩ B) = ?</span> <span class="ans">14 + 11 − 20 = 5.</span></li>
+        <li>25 turistdən 15-i ingilis, 12-si rus dilini bilir, 3-ü heç birini bilmir. Neçəsi hər iki dili bilir? <span class="ans">25 − 3 = 22; 15 + 12 − 22 = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

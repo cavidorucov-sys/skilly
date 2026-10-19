@@ -86,13 +86,15 @@
    "bolme": "Köklər və qüvvətlər",
    "ad": "Tam üstlü qüvvət, ədədin standart şəkli",
    "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…"
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/tam-uslu-quvvet.html"
   },
   {
    "bolme": "Köklər və qüvvətlər",
    "ad": "n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr",
    "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…"
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/n-ci-kok.html"
   },
   {
    "bolme": "Statistika, çoxluqlar, ehtimal",
@@ -104,7 +106,8 @@
    "bolme": "Statistika, çoxluqlar, ehtimal",
    "ad": "Çoxluqlar, Eyler-Venn diaqramı",
    "status": "yox",
-   "menbe": "DİM: Ölçmə. Statistika. Çoxluqlar…"
+   "menbe": "DİM: Ölçmə. Statistika. Çoxluqlar…",
+   "ders": "dersler/coxluqlar.html"
   },
   {
    "bolme": "Statistika, çoxluqlar, ehtimal",
