@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ƏBOB/ƏKOB, Evklid alqoritmi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-ebob-evklid.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · ƏBOB/ƏKOB, Evklid alqoritmi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Natural ədədlər — ƏBOB, ƏKOB, Evklid alqoritmi</div>
+    <h1>ƏBOB/ƏKOB, Evklid alqoritmi</h1>
+    <p>ƏBOB və ƏKOB-u sadə vuruqlarla tapmağı <a href="natural-ededler.html">Natural ədədlər</a> mövzusunda öyrənmisən. Olimpiadada isə ədədlər böyük olur, ya da ümumiyyətlə ədəd deyil, ifadə olur: <span class="m">ƏBOB(n + 3; 2n + 1)</span>. Belə yerdə vuruqlara ayırmaq işləmir — <b>Evklid alqoritmi</b> işləyir. Burada onu, <span class="m">ƏBOB · ƏKOB = a · b</span> düsturunun olimpiada tətbiqlərini və <span class="m">ax + by = ƏBOB</span> bərabərliyini (Bezu) öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Evklid</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>ƏBOB · ƏKOB</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İfadələr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Bezu</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Evklid alqoritmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>ƏBOB(1071; 462) tap. Vuruqlara ayırmaq olar, amma 1071-in böləni 17 olduğunu tapmaq vaxt aparır. Ədəd 6 rəqəmli olsa, iş daha da uzanır. Evklid (təxminən 2300 il əvvəl) elə bir yol tapıb ki, heç bir vuruq axtarmadan, yalnız <b>qalıqlı bölmə</b> ilə ƏBOB tapılır. Kompüterlər bu gün də məhz belə hesablayır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Tutaq ki, <span class="m">a = b · q + r</span> (qalıqlı bölmə, <span class="m">0 ≤ r &lt; b</span>). Onda</p>
+      <div class="fm">ƏBOB(a; b) = ƏBOB(b; r)
+xüsusi halda:  ƏBOB(a; b) = ƏBOB(a − b; b)</div>
+      <p><b>Niyə (isbatın ideyası).</b> <span class="m">d</span> həm <span class="m">a</span>-nı, həm <span class="m">b</span>-ni bölürsə, <span class="m">r = a − bq</span> fərqini də bölür. Tərsinə: <span class="m">d</span> həm <span class="m">b</span>-ni, həm <span class="m">r</span>-i bölürsə, <span class="m">a = bq + r</span> cəmini də bölür. Deməli <span class="m">(a; b)</span> və <span class="m">(b; r)</span> cütlərinin ortaq bölənləri <b>eyni</b> çoxluqdur — ən böyükləri də eynidir.</p>
+      <p>Alqoritm: böyüyü kiçiyə qalıqla böl; sonra böləni qalığa böl; sonra yenə böləni qalığa… Qalıqlar hər dəfə kiçilir, nə vaxtsa 0 olur. <b>Son sıfırdan fərqli qalıq — ƏBOB-dur.</b></p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ƏBOB(1071; 462)
+  1071 = 2 · 462 + 147
+   462 = 3 · 147 + 21
+   147 = 7 · 21  + 0
+  Son sıfırdan fərqli qalıq 21.   Cavab: 21
+  Yoxlama: 1071 = 3² · 7 · 17,  462 = 2 · 3 · 7 · 11 → ortaq 3 · 7 = 21 ✓
+
+Nümunə 2. ƏBOB(3587; 2743)
+  3587 = 1 · 2743 + 844
+  2743 = 3 · 844  + 211
+   844 = 4 · 211  + 0
+  Cavab: 211   (3587 = 17 · 211,  2743 = 13 · 211)</div>
+      <div class="fig">
+        <svg viewBox="0 0 250 100" role="img" aria-label="8×3 düzbucaqlı kvadratlara kəsilib: iki 3×3, bir 2×2, iki 1×1">
+          <rect x="5" y="5" width="90" height="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="95" y="5" width="90" height="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="185" y="5" width="60" height="60" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <rect x="185" y="65" width="30" height="30" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <rect x="215" y="65" width="30" height="30" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <text x="50" y="55" text-anchor="middle" class="lbl">3×3</text>
+          <text x="140" y="55" text-anchor="middle" class="lbl">3×3</text>
+          <text x="215" y="40" text-anchor="middle" class="lbl">2×2</text>
+        </svg>
+        <div class="cap"><p>ƏBOB(8; 3) şəkildə: 8 × 3 düzbucaqlıdan ən böyük kvadratları kəsirik. <span class="m">8 = 2 · 3 + 2</span> — iki 3×3; <span class="m">3 = 1 · 2 + 1</span> — bir 2×2; <span class="m">2 = 2 · 1 + 0</span> — iki 1×1. Ən kiçik kvadratın tərəfi 1 = ƏBOB. Qismətlərin cəmi (2 + 1 + 2 = 5) — kvadratların sayıdır.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. A = 111…1 (12 dənə 1),  B = 111…1 (8 dənə 1).  ƏBOB(A; B) = ?
+
+Həll. Belə ədədi Rₖ ilə işarə edək (k dənə 1).
+  R₁₂ = R₈ · 10⁴ + R₄     (8 vahidin arxasına 4 sıfır, üstəgəl 1111)
+  R₈  = R₄ · 10⁴ + R₄  = R₄ · 10001  → qalıq 0
+  Evklid: ƏBOB(R₁₂; R₈) = ƏBOB(R₈; R₄) = R₄ = 1111.
+Cavab: 1111.   Ümumi qayda: ƏBOB(Rₘ; Rₙ) = R_ƏBOB(m; n).</div>
+      <div class="life"><b>Həyatdan.</b> Usta 1071 × 462 sm döşəməni eyni ölçülü kvadrat plitələrlə kəsmədən örtmək istəyir, plitələr mümkün qədər böyük olsun. Plitənin tərəfi = ƏBOB(1071; 462) = 21 sm. Usta Evklidin addımlarını faktiki olaraq lentlə edir: böyük kvadratları kəsib qalan zolağa baxır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cavab kimi 0-ı və ya son qisməti yazmaq. ƏBOB — <b>son sıfırdan fərqli qalıqdır</b> (son bölmədəki bölən).</li>
+        <li>İkinci addımda yenə ilk ədədi bölmək. Hər addımda: <b>bölən → bölünən, qalıq → bölən</b>.</li>
+        <li>Qalığı böləndən böyük yazmaq (qisməti az götürmək). Həmişə <span class="m">0 ≤ r &lt; b</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = b·q + r  →  ƏBOB(a; b) = ƏBOB(b; r)
+Qalıq 0 olana qədər davam et; son sıfırdan fərqli qalıq — ƏBOB
+ƏBOB(a; b) = ƏBOB(a − b; b) — fərqə keçmək olar</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ƏBOB(391; 299) = ? <span class="ans">23. 391 = 1 · 299 + 92; 299 = 3 · 92 + 23; 92 = 4 · 23 + 0.</span></li>
+        <li>ƏBOB(1001; 455) = ? <span class="ans">91. 1001 = 2 · 455 + 91; 455 = 5 · 91 + 0.</span></li>
+        <li>Niyə ƏBOB(n; n + 1) = 1 istənilən natural n üçün? <span class="ans">ƏBOB(n + 1; n) = ƏBOB(n; 1) = 1 — fərq 1-dir, ortaq bölən 1-i bölməlidir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. ƏBOB · ƏKOB = a · b və cütləri saymaq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada tez-tez ədədlərin özü verilmir, yalnız ƏBOB-u, ƏKOB-u, cəmi və ya hasili verilir: "ƏBOB 12, ƏKOB 360 olan neçə cüt var?" Bunu yoxlama ilə yox, bir fikirlə həll edirik.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: ƏBOB-u "çıxarmaq"</h3>
+      <p><span class="m">d = ƏBOB(a; b)</span> olsun. Onda <span class="m">a = d·x</span>, <span class="m">b = d·y</span>, burada <span class="m">x</span> və <span class="m">y</span> <b>qarşılıqlı sadədir</b> (ortaq vuruq qalsaydı, ƏBOB daha böyük olardı).</p>
+      <div class="fm">a = d·x,  b = d·y,  ƏBOB(x; y) = 1
+ƏKOB(a; b) = d·x·y
+ƏBOB · ƏKOB = d · dxy = a · b</div>
+      <p>Bu yazılış olimpiadanın əsas açarıdır: məsələ <span class="m">x</span>, <span class="m">y</span> üçün sadə şərtə çevrilir.</p>
+
+      <h3><span class="st">3</span> Cütləri saymaq</h3>
+      <p><b>ƏBOB və ƏKOB verilib.</b> <span class="m">x · y = ƏKOB : ƏBOB = m</span>, ƏBOB(x; y) = 1. <span class="m">m</span>-in hər sadə vuruğu öz qüvvəti ilə <b>bütövlükdə</b> ya <span class="m">x</span>-ə, ya <span class="m">y</span>-ə gedir (bölünsə, ortaq vuruq yaranar). <span class="m">m</span>-də <span class="m">k</span> müxtəlif sadə vuruq varsa:</p>
+      <div class="fm">sıralı cütlər: 2ᵏ,   a &lt; b olan cütlər: 2ᵏ⁻¹</div>
+      <div class="ex">Nümunə 1. ƏBOB(a; b) = 12, ƏKOB(a; b) = 360. Neçə cüt (a &lt; b)?
+  m = 360 : 12 = 30 = 2 · 3 · 5  →  k = 3  →  2² = 4 cüt
+  x · y = 30: (1; 30), (2; 15), (3; 10), (5; 6)
+  (a; b) = (12; 360), (24; 180), (36; 120), (60; 72)
+
+Nümunə 2. a + b = 168, ƏBOB(a; b) = 24. Neçə cüt (a &lt; b)?
+  x + y = 168 : 24 = 7, ƏBOB(x; y) = 1, x &lt; y
+  (1; 6), (2; 5), (3; 4) — hamısı qarşılıqlı sadədir
+  (a; b) = (24; 144), (48; 120), (72; 96).   Cavab: 3</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. ƏBOB(a; b) + ƏKOB(a; b) = a + b. İsbat et ki, ədədlərdən biri digərinin bölənidir.
+
+Həll. a = dx, b = dy, ƏKOB = dxy:
+  d + dxy = dx + dy   | : d
+  1 + xy = x + y
+  xy − x − y + 1 = 0
+  (x − 1)(y − 1) = 0  →  x = 1 və ya y = 1
+x = 1 olsa, a = d — a ədədi b-ni bölür. y = 1 olsa, əksinə. ∎</div>
+      <div class="life"><b>Həyatdan.</b> İki mayak: biri hər 12 saniyədən, digəri hər 18 saniyədən bir yanır. Hər <span class="m">ƏKOB(12; 18) = 36</span> saniyədən bir birlikdə yanırlar. Düstura görə yoxla: <span class="m">ƏBOB · ƏKOB = 6 · 36 = 216 = 12 · 18</span> ✓. Əgər ƏBOB məlumdursa, ƏKOB-u bir bölmə ilə tapırsan.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x</span> və <span class="m">y</span>-nin qarşılıqlı sadə olmasını unutmaq. <span class="m">x + y = 8</span>-də (2; 6) cütü yaramır: ƏBOB(2; 6) = 2, ƏBOB böyüyər.</li>
+        <li>Sadə vuruğun qüvvətini bölmək: <span class="m">m = 2² · 3</span>-də <span class="m">x = 2, y = 6</span> olmaz — 2² bütövlükdə bir tərəfə gedir.</li>
+        <li>Sıralı və sırasız cütləri qarışdırmaq: <span class="m">2ᵏ</span> — sıralı, <span class="m">a &lt; b</span> üçün yarısı.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = dx, b = dy, ƏBOB(x; y) = 1, ƏKOB = dxy
+ƏBOB · ƏKOB = a · b
+ƏKOB : ƏBOB-da k sadə vuruq → 2ᵏ⁻¹ cüt (a &lt; b)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a = 36, ƏBOB(a; b) = 12, ƏKOB(a; b) = 180. b = ? <span class="ans">60. b = 12 · 180 : 36 = 60.</span></li>
+        <li>ƏBOB 6, ƏKOB 210 olan neçə cüt var (a &lt; b)? <span class="ans">2. m = 210 : 6 = 35 = 5 · 7 → k = 2 → 2¹ = 2 cüt: (6; 210), (30; 42).</span></li>
+        <li>a + b = 60, ƏBOB(a; b) = 12. Neçə cüt (a &lt; b)? <span class="ans">2. x + y = 5: (1; 4), (2; 3) → (12; 48), (24; 36).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İfadələrin ƏBOB-u, ixtisar olunan kəsrlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadanın klassik sualı: "<span class="m">(n + 3)/(2n + 1)</span> kəsri hansı <span class="m">n</span>-lərdə ixtisar olunur?" Burada <span class="m">n</span> məlum deyil, vuruqlara ayırmaq mümkün deyil. Amma Evklidin fikri — <b>birindən o birinin mislini çıx</b> — ifadələrlə də işləyir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: <span class="m">n</span>-i yox et</h3>
+      <div class="fm">ƏBOB(A; B) = ƏBOB(A; B − k·A)   (k — istənilən tam)
+k-nı elə seç ki, n yox olsun</div>
+      <div class="ex">ƏBOB(n + 3; 2n + 1) = ƏBOB(n + 3; 2n + 1 − 2(n + 3))
+                    = ƏBOB(n + 3; −5) = ƏBOB(n + 3; 5)
+Deməli ƏBOB ya 1, ya 5-dir.
+5 olur ⇔ n + 3 ədədi 5-ə bölünür ⇔ n = 2, 7, 12, …
+1-dən 100-ə qədər belə n: 2, 7, …, 97 — 20 dənə.
+Yoxla: n = 2 → 5/5;  n = 7 → 10/15 ✓</div>
+
+      <h3><span class="st">3</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1 (Beynəlxalq olimpiada, 1959). İsbat et ki, (21n + 4)/(14n + 3) kəsri heç bir natural n üçün ixtisar olunmur.
+
+Həll. ƏBOB(21n + 4; 14n + 3) = ƏBOB(14n + 3; 7n + 1)     (21n + 4 − (14n + 3))
+                        = ƏBOB(7n + 1; 1)              (14n + 3 − 2(7n + 1))
+                        = 1. ∎
+
+Məsələ 2. ƏBOB(2¹² − 1; 2¹⁸ − 1) = ?
+
+Həll. Fikir: 2ᵐ − 1 − 2ᵐ⁻ⁿ(2ⁿ − 1) = 2ᵐ⁻ⁿ − 1. Yəni
+  ƏBOB(2ᵐ − 1; 2ⁿ − 1) = ƏBOB(2ᵐ⁻ⁿ − 1; 2ⁿ − 1) —
+üstlərdə Evklid alqoritmi gedir! Nəticə:
+  ƏBOB(2ᵐ − 1; 2ⁿ − 1) = 2ᵈ − 1,  d = ƏBOB(m; n)
+ƏBOB(12; 18) = 6 → 2⁶ − 1 = 63.   Cavab: 63
+
+Məsələ 3. ƏBOB(n² + 1; n + 1) hansı qiymətləri ala bilər?
+
+Həll. n² + 1 = (n + 1)(n − 1) + 2 → ƏBOB = ƏBOB(n + 1; 2).
+n tək olanda 2, cüt olanda 1.</div>
+      <div class="life"><b>Həyatdan.</b> Dişli çarxlarda 21 və 14 diş olsa, eyni dişlər tez-tez rastlaşır və tez yeyilir. Ona görə mühəndislər diş saylarını qarşılıqlı sadə seçir (məs. 21 və 13). Yoxlamaq üçün vuruqlara ayırmağa ehtiyac yoxdur: <span class="m">21 − 13 = 8</span>, <span class="m">ƏBOB(13; 8) = ƏBOB(8; 5) = … = 1</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi ədəddə ilişib qalmaq: <span class="m">ƏBOB(n + 3; −5) = ƏBOB(n + 3; 5)</span> — işarə ƏBOB-a təsir etmir.</li>
+        <li>"ƏBOB 5-dir" demək. ƏBOB 5-in <b>bölənidir</b>: bəzən 1, bəzən 5. Hansı <span class="m">n</span>-də 5 olduğunu ayrıca tapmaq lazımdır.</li>
+        <li>Saymada başlanğıcı səhv tapmaq: <span class="m">n + 3 = 5k</span> → ilk natural n = 2 (n = −3 yox).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ƏBOB(A; B) = ƏBOB(A; B − kA) — n-i yox et, sabit ədəd qalsın
+ƏBOB həmin sabitin bölənidir
+ƏBOB(2ᵐ − 1; 2ⁿ − 1) = 2^ƏBOB(m; n) − 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ƏBOB(n + 5; 3n + 4) hansı qiymətləri ala bilər? <span class="ans">1 və 11. 3n + 4 − 3(n + 5) = −11; 11 olur, məs. n = 6: 11 və 22.</span></li>
+        <li>ƏBOB(2¹² − 1; 2¹⁸ − 1) neçədir? <span class="ans">63 = 2⁶ − 1, çünki ƏBOB(12; 18) = 6.</span></li>
+        <li>(n² + 2)/(n + 1) hansı natural n-də natural ədəddir? <span class="ans">n = 2. n² + 2 = (n + 1)(n − 1) + 3 → n + 1 ədədi 3-ü bölməlidir → n + 1 = 3. Yoxla: 6/3 = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Bezu bərabərliyi: ax + by = ƏBOB(a; b)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>9 litrlik və 4 litrlik qabla düz 1 litr su ölçmək olarmı? Olar: 9-luğu doldur, ondan 4-lüyü iki dəfə doldurub boşalt — 9-luqda <span class="m">9 − 2 · 4 = 1</span> litr qalır. Ümumi sual: <span class="m">a</span> və <span class="m">b</span>-ni toplayıb-çıxmaqla hansı ədədləri almaq olar? Cavab: <b>ƏBOB-un bütün misllərini</b>, başqa heç nə.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Bezu teoremi: elə tam x, y var ki,
+  a·x + b·y = ƏBOB(a; b)
+Nəticə: ax + by = c tam həlli var ⇔ ƏBOB(a; b) ədədi c-ni bölür</div>
+      <p><b>Niyə.</b> Evklid alqoritminin hər qalığı <span class="m">a</span> və <span class="m">b</span>-nin "tam kombinasiyasıdır": <span class="m">r₁ = a − q₁b</span>, <span class="m">r₂ = b − q₂r₁</span> və s. Son qalıq — ƏBOB — da belədir. Tərsinə: <span class="m">ax + by</span> həmişə ƏBOB-a bölünür, çünki hər iki toplanan bölünür.</p>
+
+      <h3><span class="st">3</span> Evklidi geriyə açmaq</h3>
+      <div class="ex">Nümunə 1. 37x + 11y = 1 üçün tam x, y tap.
+  İrəli:  37 = 3 · 11 + 4
+          11 = 2 · 4  + 3
+           4 = 1 · 3  + 1
+  Geri (hər qalığı yuxarıdakı bərabərlikdən əvəz et):
+  1 = 4 − 3
+    = 4 − (11 − 2 · 4) = 3 · 4 − 11
+    = 3 · (37 − 3 · 11) − 11 = 3 · 37 − 10 · 11
+  x = 3, y = −10.   Yoxla: 111 − 110 = 1 ✓
+
+Nümunə 2. 1071x + 462y = 21   (Dərs 1-in addımları)
+  21 = 462 − 3 · 147 = 462 − 3(1071 − 2 · 462) = 7 · 462 − 3 · 1071
+  x = −3, y = 7.   Yoxla: −3213 + 3234 = 21 ✓</div>
+      <p>Bir həll tapılandan sonra başqaları da var: <span class="m">x</span>-ə <span class="m">b/d</span> əlavə edib <span class="m">y</span>-dən <span class="m">a/d</span> çıxsan, cəm dəyişmir (<span class="m">d</span> = ƏBOB). Məsələn, 37x + 11y = 1: (3; −10), (14; −47), (−8; 27), …</p>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Kalkulyatorda iki düymə var: "+7" və "−11". Ekranda 0 var. Ən azı neçə basma ilə 1 almaq olar?
+
+Həll. 7x − 11y = 1, x, y ≥ 0 — basmaların sayı. 7 · 8 = 56 = 55 + 1 → x = 8, y = 5.
+Bütün həllər: x = 8 + 11t, y = 5 + 7t; t &lt; 0 olsa y &lt; 0. Ən kiçik x + y = 13.
+Cavab: 13.
+
+Məsələ 2 (Evklid lemması). ƏBOB(a; b) = 1 və a ədədi bc-ni bölür. İsbat et ki, a ədədi c-ni bölür.
+
+Həll. Bezu: ax + by = 1. Hər tərəfi c-yə vur: acx + bcy = c.
+acx a-ya bölünür, bcy də (bc bölünür) → cəm c də a-ya bölünür. ∎
+(Bundan çıxır: sadə p ədədi hasili bölürsə, vuruqlardan birini bölür.)</div>
+      <div class="life"><b>Həyatdan.</b> 5 və 3 litrlik qabla 4 litr: <span class="m">2 · 5 − 2 · 3 = 4</span>. 5-liyi doldur, 3-lüyə tök (5-likdə 2 qalır); 3-lüyü boşalt, 2 litri ora tök; 5-liyi yenə doldur, 3-lüyə 1 litr tök — 5-likdə düz 4 litr qalır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Geri açanda qalığı səhv bərabərlikdən götürmək. Hər addımda <b>ən son qalığı</b> əvəz et, işarələrə diqqət.</li>
+        <li>Tək həll olduğunu düşünmək: həllər sonsuzdur, addım <span class="m">b/d</span> və <span class="m">a/d</span>.</li>
+        <li>6x + 15y = 7 kimi tənlikdə həll axtarmaq: ƏBOB = 3, 7-ni bölmür — <b>tam həll yoxdur</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Elə tam x, y var ki, ax + by = ƏBOB(a; b)
+Tapmaq: Evklidi geriyə aç
+ax + by = c həll olunur ⇔ ƏBOB(a; b) | c</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>13x + 8y = 1 üçün tam x, y tap. <span class="ans">x = −3, y = 5 (−39 + 40 = 1). Başqa həllər də var: x = 5, y = −8 və s.</span></li>
+        <li>6x + 15y = 7 tənliyinin tam həlli varmı? <span class="ans">Yox. ƏBOB(6; 15) = 3, 7 isə 3-ə bölünmür.</span></li>
+        <li>5 və 3 litrlik qabla 4 litr ölçmək olarmı? <span class="ans">Olar: ƏBOB(5; 3) = 1, 4 = 2 · 5 − 2 · 3 (yuxarıdakı "Həyatdan" üsulu).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

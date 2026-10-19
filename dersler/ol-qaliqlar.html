@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Qalıqlar, modul arifmetikası dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-qaliqlar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Qalıqlar, modul arifmetikası</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Qalıqlı bölmə, ədədi müqayisələr, qüvvətlərin qalıqları</div>
+    <h1>Qalıqlar, modul arifmetikası</h1>
+    <p>Qalıqlı bölməni <a href="natural-ededler.html">Natural ədədlər</a> mövzusunda öyrənmisən: <span class="m">a = b · q + r</span>. Olimpiadada qalıqlarla <b>hesablayırlar</b>: <span class="m">7²⁰²⁶</span> ədədinin son rəqəmini, <span class="m">2¹⁰⁰</span> ədədini 7-yə böləndə qalığı tapırlar, "bu tənliyin həlli yoxdur" deyə isbat edirlər. Bunun dili — <b>müqayisələr</b> (modul arifmetikası).</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Müqayisələr</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Son rəqəm</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Böyük qüvvətlər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kvadratlar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Müqayisələr: qalıqlarla hesablamaq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Saat 22:00-dır. 5 saat sonra saat 27 yox, 3 olur. Saat əqrəbi 12-yə (elektron saat 24-ə) bölmədə qalıqla "sayır". Riyaziyyatçılar bu fikri ümumiləşdirib: ədədin özü yox, yalnız qalığı maraqlıdırsa, böyük ədədləri kiçik qalıqlarla əvəz edirik — hesab bir neçə saniyəyə enir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">a</span> və <span class="m">b</span>-ni <span class="m">m</span>-ə böldükdə qalıqlar eynidirsə, deyirik: <span class="m">a</span> ilə <span class="m">b</span> <b><span class="m">m</span> moduluna görə müqayisə olunandır</b>.</p>
+      <div class="fm">a ≡ b (mod m)  ⇔  a − b ədədi m-ə bölünür
+Məs.: 38 ≡ 3 (mod 7),  99 ≡ −1 (mod 100)</div>
+      <p>Müqayisələri bərabərliklər kimi toplamaq, çıxmaq, vurmaq və qüvvətə yüksəltmək olar:</p>
+      <div class="fm">a ≡ b, c ≡ d (mod m)  ⇒  a + c ≡ b + d,  a − c ≡ b − d,
+                           a · c ≡ b · d,  aⁿ ≡ bⁿ</div>
+      <p><b>Niyə (vurma üçün).</b> <span class="m">a = b + mk</span>, <span class="m">c = d + ml</span>. Onda <span class="m">ac = bd + m(bl + dk + mkl)</span> — fərq <span class="m">m</span>-ə bölünür. Qüvvət — təkrar vurmadır.</p>
+      <p><b>Diqqət:</b> bölmək olmaz! <span class="m">2 · 3 ≡ 2 · 1 (mod 4)</span>, amma <span class="m">3 ≢ 1 (mod 4)</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2024 · 2025 · 2026 hasilini 7-yə böldükdə qalıq?
+  2023 = 7 · 289 → 2024 ≡ 1, 2025 ≡ 2, 2026 ≡ 3 (mod 7)
+  1 · 2 · 3 = 6.   Cavab: 6
+
+Nümunə 2. 99 · 98 · 97 hasilinin son iki rəqəmi?  (mod 100)
+  99 ≡ −1, 98 ≡ −2, 97 ≡ −3 → (−1)(−2)(−3) = −6 ≡ 94
+  Cavab: 94   (yoxla: 99 · 98 · 97 = 941094)
+
+Nümunə 3. a ≡ 3, b ≡ 5 (mod 7). a² + b² ≡ ?
+  9 + 25 = 34 = 4 · 7 + 6.   Cavab: 6</div>
+
+      <h3><span class="st">4</span> Olimpiada fikri: bölünmə əlamətlərinin isbatı</h3>
+      <div class="ex">10 ≡ 1 (mod 9)  ⇒  10ᵏ ≡ 1  ⇒
+  abcd = a·10³ + b·10² + c·10 + d ≡ a + b + c + d (mod 9)
+Ədəd 9-a bölmədə rəqəmlər cəmi ilə EYNİ qalığı verir (3 üçün də).
+
+10 ≡ −1 (mod 11)  ⇒  10ᵏ ≡ (−1)ᵏ  ⇒
+  abcd ≡ −a + b − c + d (mod 11)   — işarələri növbələşən cəm
+
+Məsələ. 123456789 ədədini 11-ə böldükdə qalıq?
+  Sağdan: 9 − 8 + 7 − 6 + 5 − 4 + 3 − 2 + 1 = 5.   Cavab: 5</div>
+      <div class="life"><b>Həyatdan.</b> Kassir 1234 · 5678 = 7006652 yazıb. Yoxlama "9-lar üsulu" ilə: 1234 ≡ 1 + 2 + 3 + 4 = 10 ≡ 1, 5678 ≡ 26 ≡ 8 (mod 9) → hasil ≡ 8. 7006652 ≡ 7 + 6 + 6 + 5 + 2 = 26 ≡ 8 ✓. Qalıqlar uyğun gəlməsəydi, səhv olduğu dəqiq olardı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Müqayisəni bölmək: <span class="m">2a ≡ 2b (mod 4)</span>-dən <span class="m">a ≡ b (mod 4)</span> çıxmır.</li>
+        <li>Mənfi qalığı cavab kimi yazmaq: <span class="m">−6 ≡ 94 (mod 100)</span> — qalıq həmişə <span class="m">0 ≤ r &lt; m</span>.</li>
+        <li>Rəqəmlər cəmi qaydasını 7-yə, 4-ə tətbiq etmək — o yalnız 3 və 9 üçündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a ≡ b (mod m) ⇔ m | a − b
+Toplamaq, çıxmaq, vurmaq, qüvvət — olar; bölmək — olmaz
+Böyük ədədi qalığı ilə (lazım olsa mənfi qalıqla) əvəz et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>123 · 456 hasilini 9-a böldükdə qalıq? <span class="ans">0. 123 ≡ 6, 456 ≡ 15 ≡ 6 → 36 ≡ 0.</span></li>
+        <li>1001 · 1002 · 1003 hasilini 1000-ə böldükdə qalıq? <span class="ans">6. 1 · 2 · 3 = 6.</span></li>
+        <li>a ≡ 4 (mod 9). 2a + 5 ifadəsini 9-a böldükdə qalıq? <span class="ans">4. 2 · 4 + 5 = 13 ≡ 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Qüvvətin son rəqəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">7²⁰²⁶</span> ədədində 1700-dən çox rəqəm var — heç bir kalkulyator onu göstərmir. Amma son rəqəmini bir dəqiqəyə tapmaq olar. Bu, olimpiadanın ən çox düşən suallarındandır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: son rəqəmlər dövrü</h3>
+      <p>Son rəqəm — 10-a bölmədə qalıqdır. Hasilin son rəqəmi yalnız vuruqların son rəqəmlərindən asılıdır. Ona görə <span class="m">aⁿ</span>-in son rəqəmləri <b>təkrarlanır</b>:</p>
+      <div class="ex">son rəqəm   qüvvətlərin son rəqəmləri    dövr
+   0, 1, 5, 6   həmişə özü                1
+   4            4, 6, 4, 6, …             2
+   9            9, 1, 9, 1, …             2
+   2            2, 4, 8, 6, …             4
+   3            3, 9, 7, 1, …             4
+   7            7, 9, 3, 1, …             4
+   8            8, 4, 2, 6, …             4</div>
+      <div class="fm">Bütün dövrlər 4-ün bölənidir:
+n = 4q + r  →  aⁿ son rəqəmi = aʳ son rəqəmi   (r = 0 olsa, a⁴)</div>
+      <p><span class="m">n</span>-i 4-ə bölmək üçün yalnız son iki rəqəminə bax (100 ədədi 4-ə bölünür).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 7²⁰²⁶ son rəqəmi?
+  26 = 4 · 6 + 2 → r = 2 → dövr 7, 9, 3, 1-in 2-ci elementi: 9
+
+Nümunə 2. 2²⁰²⁶ + 3²⁰²⁶ son rəqəmi?
+  r = 2: 2 → 4,  3 → 9;  4 + 9 = 13 → 3
+
+Nümunə 3. 1348¹⁰⁰ son rəqəmi?
+  Yalnız 8 vacibdir; 100 = 4 · 25 + 0 → r = 0 → dövrün sonuncusu: 6</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. 7²⁰²⁶ ədədinin son İKİ rəqəmi?
+Həll. 7² = 49, 7⁴ = 2401 ≡ 1 (mod 100).
+  2026 = 4 · 506 + 2 → 7²⁰²⁶ = (7⁴)⁵⁰⁶ · 7² ≡ 1 · 49.   Cavab: 49
+
+Məsələ 2. İsbat et ki, 2026²⁰²⁶ + 2027²⁰²⁷ ədədi 5-ə bölünmür.
+Həll. Son rəqəmlər: 6-nın qüvvəti → 6. 7²⁰²⁷: 27 = 4 · 6 + 3 → 3.
+  6 + 3 = 9 — son rəqəm 9, nə 0, nə 5. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Bank kartı nömrəsinin son rəqəmi "nəzarət rəqəmi"dir — qalan rəqəmlərdən qalıqla hesablanır (Lun alqoritmi). Bir rəqəmi səhv yazsan, qalıq uyğun gəlmir və sistem nömrəni dərhal rədd edir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">r = 0</span> olanda dövrün birinci elementini götürmək. <span class="m">r = 0</span> — dövrün <b>sonuncusu</b> (2⁴ → 6, 2¹ → 2 yox).</li>
+        <li>Üstü 4-ə bölmək üçün yalnız son rəqəmə baxmaq: 2026-nın son rəqəmi 6, 6 : 4 qalıq 2 — təsadüfən düz; amma 2016: 6 → 2 deyər, əslində 16 → 0.</li>
+        <li>Əsasın bütün rəqəmlərinə baxmaq: 1348¹⁰⁰-da yalnız 8 vacibdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Son rəqəm = mod 10; yalnız əsasın son rəqəmi vacibdir
+Dövrlər: 1, 2 və ya 4 uzunluqda; üstü 4-ə böl (son iki rəqəmlə)
+r = 0 → dövrün sonuncusu</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>3¹⁰⁰ son rəqəmi? <span class="ans">1. 100 = 4 · 25 + 0 → dövrün sonuncusu (3, 9, 7, 1).</span></li>
+        <li>8²⁰²⁷ son rəqəmi? <span class="ans">2. 27 = 4 · 6 + 3 → 8, 4, 2, 6-nın 3-cü elementi.</span></li>
+        <li>2²⁰²⁶ + 4²⁰²⁶ son rəqəmi? <span class="ans">0. 2²⁰²⁶ → 4, 4²⁰²⁶ → 6 (üst cüt); 4 + 6 = 10.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Böyük qüvvətlərin qalığı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Son rəqəm — 10-a bölmədə qalıqdır. Bəs 7-yə, 11-ə, 13-ə bölmədə? Fikir eynidir: qüvvətlərin qalıqları təkrarlanır. Açar — <b>qalığı 1 (və ya −1) olan qüvvəti tapmaq</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">aᵏ ≡ 1 (mod m) olsun.  n = k·q + s  ⇒
+  aⁿ = (aᵏ)^q · aˢ ≡ 1 · aˢ = aˢ (mod m)</div>
+      <p><span class="m">k</span>-nı tapmaq üçün <span class="m">a, a², a³, …</span> qalıqlarını 1 alınana qədər yaz. <span class="m">a</span> ilə <span class="m">m</span> qarşılıqlı sadədirsə, 1 mütləq gələcək.</p>
+      <p><b>Fermanın kiçik teoremi</b> (RFO proqramındadır): <span class="m">p</span> sadə, <span class="m">a</span> ədədi <span class="m">p</span>-yə bölünmürsə, <span class="m">aᵖ⁻¹ ≡ 1 (mod p)</span>. Məs. <span class="m">a⁶ ≡ 1 (mod 7)</span>, <span class="m">a¹⁰ ≡ 1 (mod 11)</span>. Bəzən daha kiçik <span class="m">k</span> da olur (<span class="m">2³ ≡ 1 (mod 7)</span>).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2¹⁰⁰ ədədini 7-yə böldükdə qalıq?
+  2¹ ≡ 2, 2² ≡ 4, 2³ = 8 ≡ 1 → k = 3
+  100 = 3 · 33 + 1 → 2¹⁰⁰ ≡ 2¹ = 2.   Cavab: 2
+
+Nümunə 2. 3²⁰²⁶ ədədini 7-yə böldükdə qalıq?
+  Ferma: 3⁶ ≡ 1. 2026 = 6 · 337 + 4 → 3⁴ = 81 = 77 + 4.   Cavab: 4
+
+Nümunə 3. 5²⁰²⁶ + 7²⁰²⁶ ədədini 6-ya böldükdə qalıq?
+  5 ≡ −1, 7 ≡ 1 (mod 6) → (−1)²⁰²⁶ + 1 = 1 + 1 = 2.   Cavab: 2</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. İsbat et ki, istənilən natural n üçün 11ⁿ − 4ⁿ ədədi 7-yə bölünür.
+Həll. 11 ≡ 4 (mod 7) → 11ⁿ ≡ 4ⁿ → 11ⁿ − 4ⁿ ≡ 0. ∎
+(Ümumi qayda: a − b ədədi aⁿ − bⁿ-i bölür.)
+
+Məsələ 2. 10²⁰²⁶ + 1 ədədi 11-ə bölünürmü?
+Həll. 10 ≡ −1 (mod 11) → 10²⁰²⁶ ≡ (−1)²⁰²⁶ = 1 → 10²⁰²⁶ + 1 ≡ 2.
+Bölünmür (qalıq 2). Tək üstdə isə bölünərdi: 10²⁰²⁷ + 1 ≡ −1 + 1 = 0.
+
+Məsələ 3. 2²⁰²⁶ ədədini 7-yə böldükdə qalıq?
+Həll. 2³ ≡ 1, 2026 = 3 · 675 + 1 → qalıq 2.</div>
+      <div class="life"><b>Həyatdan.</b> İnternetdə şifrələmə (RSA) məhz böyük qüvvətlərin qalığı ilə işləyir: kompüter <span class="m">aⁿ</span>-in yüzlərlə rəqəmli ədədə bölünməsindən qalığı hesablayır. Ədədin özünü heç kim hesablamır — sənin kimi, qalıqlarla addım-addım gedir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Üstü <span class="m">m</span>-ə bölmək: 2¹⁰⁰ mod 7 üçün 100-ü 7-yə yox, <b>dövrün uzunluğuna</b> (3) bölürük.</li>
+        <li><span class="m">s = 0</span> olanda <span class="m">a⁰</span>-ı unutmaq: cavab 1-dir.</li>
+        <li>Mənfi qalığı tək/cüt üstdə qarışdırmaq: <span class="m">(−1)ⁿ</span> cüt n-də 1, tək n-də −1.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">aᵏ ≡ 1 tap; n = kq + s → aⁿ ≡ aˢ
+Ferma: aᵖ⁻¹ ≡ 1 (mod p), p sadə
+±1-ə bərabər qalıq ən yaxşı dostdur: 10 ≡ −1 (mod 11), 5 ≡ −1 (mod 6)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>3¹⁰⁰ ədədini 5-ə böldükdə qalıq? <span class="ans">1. 3⁴ = 81 ≡ 1; 100 = 4 · 25.</span></li>
+        <li>2⁵⁰ ədədini 3-ə böldükdə qalıq? <span class="ans">1. 2 ≡ −1 → (−1)⁵⁰ = 1.</span></li>
+        <li>6²⁰²⁶ + 8²⁰²⁶ ədədini 7-yə böldükdə qalıq? <span class="ans">2. 6 ≡ −1 → 1; 8 ≡ 1 → 1; 1 + 1 = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kvadratların qalıqları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"<span class="m">x² + y² = 2027</span> tənliyinin tam həlli varmı?" Bütün cütləri yoxlamaq uzun çəkir. Amma qalıqlara baxsan, cavab bir sətirdir: <b>yoxdur</b>. Kvadratlar hər qalığı ala bilmir — bu, olimpiadada "həll yoxdur" isbatlarının əsas silahıdır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">mod 3:  n² ≡ 0 və ya 1          (heç vaxt 2)
+mod 4:  n² ≡ 0 və ya 1          (heç vaxt 2, 3)
+mod 8:  n² ≡ 0, 1 və ya 4;  n tək → n² ≡ 1
+son rəqəm: 0, 1, 4, 5, 6, 9     (heç vaxt 2, 3, 7, 8)</div>
+      <p><b>Niyə.</b> Bütün qalıqları yoxla: mod 3-də <span class="m">n ≡ 0, ±1</span> → <span class="m">n² ≡ 0, 1</span>. Mod 4-də: cüt <span class="m">n = 2k</span> → <span class="m">4k² ≡ 0</span>; tək <span class="m">n = 2k + 1</span> → <span class="m">4k(k + 1) + 1</span>. <span class="m">k(k + 1)</span> iki ardıcıl ədədin hasilidir — cütdür, ona görə <span class="m">4k(k + 1)</span> hətta 8-ə bölünür: tək kvadrat ≡ 1 (mod 8).</p>
+      <p>Qısa yol: <span class="m">n = mk + r</span> olsa, <span class="m">n² ≡ r² (mod m)</span>.</p>
+
+      <h3><span class="st">3</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. x² + y² = 2027 tam həlli yoxdur.
+Həll. x², y² ≡ 0 və ya 1 (mod 4) → cəm ≡ 0, 1, 2.
+  2027 = 4 · 506 + 3 ≡ 3. Ola bilməz. ∎
+
+Məsələ 2. 11, 111, 1111, … ədədlərinin heç biri tam kvadrat deyil.
+Həll. 11…11 = 11…00 + 11. 100 ədədi 4-ə bölünür → ədəd ≡ 11 ≡ 3 (mod 4).
+  Kvadrat 3 qalığını vermir. ∎
+
+Məsələ 3. p — 3-dən böyük sadə ədəd. İsbat et ki, p² − 1 ədədi 24-ə bölünür.
+Həll. p tək → p² ≡ 1 (mod 8) → 8 | p² − 1.
+  p 3-ə bölünmür → p² ≡ 1 (mod 3) → 3 | p² − 1.
+  8 və 3 qarşılıqlı sadədir → 24 | p² − 1. ∎   (Yoxla: 5² − 1 = 24, 7² − 1 = 48.)
+
+Məsələ 4. x² + y² + z² = 2023 tam həlli yoxdur.
+Həll. Mod 8-də kvadrat yalnız 0, 1, 4 olur. Bu ədədlərdən üçünü
+  istənilən cür topla: 0, 1, 2, 3, 4, 5, 6 alınır (4 + 4 + 4 = 12 ≡ 4), 7 — heç vaxt.
+  2023 = 8 · 252 + 7 ≡ 7. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Memar 2023 m² sahəni tərəfləri tam metr olan üç kvadrat meydança şəklində salmaq istəyir. Mod 8 dərhal deyir: alınmayacaq. Riyaziyyat bəzən "olar" yox, "heç vaxt olmaz" deyə bilir — və bunu yoxlamadan, isbatla deyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qalıq yalnız "olmaz" deməyə yarayır. Mod 4-də 1 alınması həllin <b>olduğunu</b> isbat etmir.</li>
+        <li><span class="m">n = 3k + 2</span> üçün <span class="m">n² ≡ 2</span> yazmaq: <span class="m">2² = 4 ≡ 1 (mod 3)</span>.</li>
+        <li>Mod 8-ə cüt ədəd üçün də "≡ 1" demək: <span class="m">2² = 4</span>, <span class="m">4² ≡ 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n² mod 3: 0, 1;   mod 4: 0, 1;   mod 8: 0, 1, 4 (tək → 1)
+x² + y² ≢ 3 (mod 4);   x² + y² + z² ≢ 7 (mod 8)
+p &gt; 3 sadə → p² ≡ 1 (mod 24)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tam kvadrat 7 ilə bitə bilərmi? <span class="ans">Yox. Kvadratın son rəqəmi yalnız 0, 1, 4, 5, 6, 9 olur.</span></li>
+        <li>n² + 2 ədədi 3-ə bölünə bilərmi? <span class="ans">Bəli. n ≡ ±1 → n² ≡ 1 → n² + 2 ≡ 0. Məs. n = 1: 3.</span></li>
+        <li>x² + y² = 4003 tam həlli varmı? <span class="ans">Yox. 4003 = 4 · 1000 + 3 ≡ 3 (mod 4).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

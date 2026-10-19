@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diofant tənlikləri dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-diofant.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Diofant tənlikləri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Diofant tənlikləri, tənliklərin tam və natural həlləri</div>
+    <h1>Diofant tənlikləri, tənliklərin tam həlləri</h1>
+    <p>Adi tənlikdə istənilən ədəd cavab ola bilər. <b>Diofant tənliyində</b> isə yalnız <b>tam</b> (və ya natural) həllər axtarılır: neçə xoruz, neçə əskinas, neçə marka. Bir tənlik, iki məchul — amma tamlıq şərti həlləri saya bilinən hala gətirir. Burada <span class="m">ax + by = c</span>, vuruqlara ayırma hiyləsi və <span class="m">x² − y² = n</span> tənliyini öyrənəcəksən. Lazım olan alətlər: <a href="ol-ebob-evklid.html">ƏBOB, Evklid, Bezu</a> və <a href="ol-qaliqlar.html">qalıqlar</a>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>ax + by = c</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Natural həllər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Vuruqlara ayır</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>x² − y² = n</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Xətti Diofant tənliyi: ax + by = c</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dəftər 3 manat, qələm 5 manatdır. 47 manatı tam xərcləmək üçün neçə dəftər, neçə qələm almaq olar? <span class="m">3x + 5y = 47</span>. Adi mənada bu tənliyin sonsuz həlli var (düz xətt). Amma dəftərin yarısını almaq olmaz — bizə yalnız <b>tam</b> həllər lazımdır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">d = ƏBOB(a; b)
+1) Tam həll var  ⇔  d ədədi c-ni bölür
+2) (x₀; y₀) bir həlldirsə, BÜTÜN tam həllər:
+     x = x₀ + (b/d)·t,   y = y₀ − (a/d)·t,   t — tam</div>
+      <p><b>Niyə 1.</b> <span class="m">ax + by</span> həmişə <span class="m">d</span>-yə bölünür; tərsinə, Bezuya görə <span class="m">ax + by = d</span>-nin həlli var — onu <span class="m">c/d</span>-yə vur.</p>
+      <p><b>Niyə 2.</b> İki həlli çıx: <span class="m">a(x − x₀) = −b(y − y₀)</span>. <span class="m">d</span>-yə böl: <span class="m">a/d</span> və <span class="m">b/d</span> qarşılıqlı sadədir, deməli <span class="m">b/d</span> ədədi <span class="m">x − x₀</span>-ı bölür: <span class="m">x − x₀ = (b/d)t</span>. Buradan <span class="m">y</span> da tapılır.</p>
+      <p>Mənası: x-i <span class="m">b/d</span> qədər artırsan, y-i <span class="m">a/d</span> qədər azaltmalısan — "itki" ilə "qazanc" bərabərləşir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 3x + 5y = 47
+  ƏBOB(3; 5) = 1 — həll var.
+  Xüsusi həll: y = 1 → 3x = 42 → x = 14.   (14; 1)
+  Ümumi həll: x = 14 + 5t,  y = 1 − 3t
+  t = 0: (14; 1),  t = −1: (9; 4),  t = −2: (4; 7),  t = −3: (−1; 10) …
+
+Nümunə 2. 6x + 9y = 20
+  ƏBOB(6; 9) = 3, 20 isə 3-ə bölünmür → tam həll YOXDUR.
+  (Sol tərəf həmişə 3-ə bölünür, sağ tərəf yox.)
+
+Nümunə 3. 37x + 11y = 5   (xüsusi həll Bezu ilə)
+  Bezu: 37 · 3 + 11 · (−10) = 1.  5-ə vur: 37 · 15 + 11 · (−50) = 5
+  Ümumi: x = 15 + 11t,  y = −50 − 37t
+  t = −1: x = 4, y = −13.  Yoxla: 148 − 143 = 5 ✓</div>
+      <p>Kiçik əmsallarda xüsusi həlli tez tapmaq üçün: böyük əmsallı məchulu 0, 1, 2, … götür və o birinin tam olmasını yoxla (ən çox kiçik əmsal qədər yoxlama lazımdır).</p>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 2027x + 2026y = 1 tənliyinin bütün tam həllərini tap.
+Həll. 2027 − 2026 = 1 → x = 1, y = −1 xüsusi həldir.
+  ƏBOB = 1 → x = 1 + 2026t,  y = −1 − 2027t,  t — tam.
+Dərs: böyük əmsallarda belə "yaxın" ədədlər axtar — Evklid bir addımda bitir.</div>
+      <div class="life"><b>Həyatdan.</b> Mağaza 7 və 4 manatlıq hədiyyə kartları satır. 30 manatlıq hədiyyəni kartlarla tam ödəmək olarmı? <span class="m">7x + 4y = 30</span>: x = 2 → 4y = 16 → y = 4. Bəli: 2 kart 7 manatlıq, 4 kart 4 manatlıq. Bəs 7 və 14 manatlıqla? ƏBOB = 7, 30 bölünmür — mümkün deyil.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ümumi həldə əmsalları qarışdırmaq: <b>x-ə b</b>, <b>y-yə a</b> gedir (çarpaz). <span class="m">x = 14 + 3t</span> yazsan, cəm dəyişər.</li>
+        <li>İşarəni unutmaq: biri artırsa, o biri <b>azalır</b>.</li>
+        <li>ƏBOB &gt; 1 olanda <span class="m">b/d</span> yerinə <span class="m">b</span> yazmaq — həllərin yarısını (və ya daha çoxunu) itirirsən.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ax + by = c tam həlli var ⇔ ƏBOB(a; b) | c
+x = x₀ + (b/d)t,  y = y₀ − (a/d)t
+Xüsusi həll: yoxlama ilə və ya Bezu ilə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>4x + 6y = 15 tam həlli varmı? <span class="ans">Yox. ƏBOB(4; 6) = 2, 15 tək ədəddir.</span></li>
+        <li>5x + 3y = 31 üçün bir həll və ümumi həll yaz. <span class="ans">x = 2, y = 7 (10 + 21 = 31). Ümumi: x = 2 + 3t, y = 7 − 5t.</span></li>
+        <li>4x + 6y = 50 ümumi həllində x hər dəfə neçə dəyişir? <span class="ans">3. d = 2, b/d = 6 : 2 = 3 (y isə 2 dəyişir). Məs. (2; 7), (5; 5), (8; 3), (11; 1).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Natural həllərin sayı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Həyatda say mənfi və ya sıfır olmur: "neçə yolla ödəmək olar", "neçə variant var". Ümumi həlldən <span class="m">x ≥ 1</span>, <span class="m">y ≥ 1</span> şərtini ödəyən <span class="m">t</span>-ləri seçirik — bu, iki bərabərsizlikdir.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fm">1. Ümumi həll: x = x₀ + (b/d)t,  y = y₀ − (a/d)t
+2. x ≥ 1 və y ≥ 1  →  t üçün aralıq
+3. Aralıqdakı tam t-lərin sayı — cavab</div>
+      <div class="ex">Nümunə 1. 3x + 5y = 47, x, y natural.
+  x = 14 + 5t ≥ 1  →  t ≥ −2,6  →  t ≥ −2
+  y = 1 − 3t ≥ 1   →  t ≤ 0
+  t = −2, −1, 0 → (4; 7), (9; 4), (14; 1).   Cavab: 3
+
+Nümunə 2 (qalıqla). 7x + 4y = 100, x, y natural.
+  100 və 4y 4-ə bölünür → 7x də → x 4-ə bölünür: x = 4, 8, 12
+  (x = 16 olsa, 7x = 112 &gt; 100)
+  y = (100 − 7x) : 4 = 18, 11, 4.   Cavab: 3</div>
+
+      <h3><span class="st">3</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1 (qədim Çin, "100 quş"). Xoruz 5 manat, toyuq 3 manat, 3 cücə 1 manatdır. 100 manata 100 quş alındı, hər növdən ən azı biri. Neçə xoruz, toyuq, cücə?
+Həll. x + y + z = 100,  5x + 3y + z/3 = 100.
+  İkincini 3-ə vur: 15x + 9y + z = 300. Birincini çıx: 14x + 8y = 200 → 7x + 4y = 100.
+  Yuxarıdakı nümunə 2: (x; y) = (4; 18), (8; 11), (12; 4) → z = 78, 81, 84.
+  Yoxla: 4 · 5 + 18 · 3 + 78 : 3 = 20 + 54 + 26 = 100 ✓.   3 variant.
+
+Məsələ 2. 3 və 5 manatlıq əskinaslarla (istənilən sayda, sıfır da olar) hansı məbləğləri ödəmək OLMAZ?
+Həll. 1, 2, 4, 7 alınmır (yoxla). 8 = 3 + 5, 9 = 3 + 3 + 3, 10 = 5 + 5.
+  Ardıcıl üç məbləğ alınırsa, hər birinə 3 əlavə edib növbəti üçünü alırıq — 8-dən sonra hamısı olur.
+  Cavab: 1, 2, 4, 7.   (Ümumi fakt: a, b qarşılıqlı sadədirsə, ödənə bilməyən ən böyük məbləğ ab − a − b; burada 15 − 3 − 5 = 7.)</div>
+      <div class="life"><b>Həyatdan.</b> Avtobusda 2 və 5 manatlıq biletlər var, sinif 41 manat ödəyib, hər növdən ən azı bir bilet alınıb. <span class="m">2x + 5y = 41</span>: y tək olmalıdır (41 tək) → y = 1, 3, 5, 7 → x = 18, 13, 8, 3. Dörd variant — mühasib əlavə məlumat olmadan dəqiq sayı deyə bilməz.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabərsizliyi bölərkən istiqaməti unutmaq: <span class="m">−3t ≥ 0 → t ≤ 0</span> (mənfi ədədə böləndə işarə dəyişir).</li>
+        <li>"Natural" ilə "mənfi olmayan"ı qarışdırmaq: natural x ≥ 1; şərtdə "sıfır da olar" deyilsə, x ≥ 0.</li>
+        <li>Aralığın ucunu itirmək: <span class="m">−2 ≤ t ≤ 0</span>-da 3 tam ədəd var, 2 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ümumi həll → x ≥ 1, y ≥ 1 → t aralığı → say
+Tez yol: qalıqla x-in hansı ədədə bölündüyünü tap
+3 və 5 ilə 7-dən böyük hər məbləğ ödənir (ab − a − b)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2x + 5y = 41 neçə natural həlli var? <span class="ans">4: (18; 1), (13; 3), (8; 5), (3; 7).</span></li>
+        <li>5x + 7y = 100 natural həllərini tap. <span class="ans">(6; 10), (13; 5). 100 − 7y 5-ə bölünməlidir → y 5-ə bölünür: y = 5, 10 (y = 15 olsa 105 &gt; 100).</span></li>
+        <li>4 və 7 manatlıq əskinaslarla ödənə bilməyən ən böyük məbləğ? <span class="ans">17 = 4 · 7 − 4 − 7.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Vuruqlara ayırma: xy + ax + by = c</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tənlikdə <span class="m">xy</span> varsa, o artıq xətti deyil. Amma tam ədədlər üçün güclü fikir var: <b>tənliyi "hasil = ədəd" şəklinə sal</b>. Ədədin bölənləri sonlu sayda olduğu üçün həllər də sonlu sayda olur — sadəcə bölənləri yoxlayırıq.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">xy + ax + by = c
+(x + b)(y + a) = c + ab</div>
+      <p>Yoxla: <span class="m">(x + b)(y + a) = xy + ax + by + ab</span>. Yəni hər tərəfə <span class="m">ab</span> əlavə edirik. Sonra sağ tərəfin bölən cütlərini yazırıq və <span class="m">x</span>, <span class="m">y</span>-nin natural olmasını yoxlayırıq.</p>
+      <p>xy-nin əmsalı 1 deyilsə, əvvəl tənliyi həmin əmsala vururuq: <span class="m">2xy + x + y = 22</span> → <span class="m">4xy + 2x + 2y = 44</span> → <span class="m">(2x + 1)(2y + 1) = 45</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. xy + 2x + 3y = 29, natural həllər.
+  (x + 3)(y + 2) = 29 + 6 = 35
+  x + 3 ≥ 4, y + 2 ≥ 3 → 35 = 5 · 7 = 7 · 5   (35 · 1 yaramır)
+  x + 3 = 5, y + 2 = 7 → (2; 5);   x + 3 = 7, y + 2 = 5 → (4; 3)
+  Yoxla: 10 + 4 + 15 = 29 ✓, 12 + 8 + 9 = 29 ✓.   Cavab: 2 həll
+
+Nümunə 2. 2xy + x + y = 22
+  (2x + 1)(2y + 1) = 45;  natural x → 2x + 1 ≥ 3
+  45 = 3 · 15 = 5 · 9 = 9 · 5 = 15 · 3
+  (x; y) = (1; 7), (2; 4), (4; 2), (7; 1).   Cavab: 4 həll</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. xy = x + y tənliyinin bütün tam həlləri.
+Həll. xy − x − y + 1 = 1 → (x − 1)(y − 1) = 1.
+  1 = 1 · 1 = (−1)(−1) → (2; 2) və (0; 0).
+
+Məsələ 2. 1/x + 1/y = 1/6 tənliyinin natural həlləri neçədir?
+Həll. 6y + 6x = xy → xy − 6x − 6y + 36 = 36 → (x − 6)(y − 6) = 36.
+  x ≤ 6 ola bilməz (onda 1/x ≥ 1/6, 1/y > 0). Deməli hər iki vuruq müsbətdir.
+  36-nın bölənləri: 1, 2, 3, 4, 6, 9, 12, 18, 36 — 9 dənə.
+  Həllər: (7; 42), (8; 24), (9; 18), (10; 15), (12; 12) və tərsləri.   Cavab: 9
+  Ümumi: 1/x + 1/y = 1/n həllərinin sayı = n² ədədinin bölənlərinin sayı.</div>
+      <div class="life"><b>Həyatdan.</b> Bağban düzbucaqlı sahənin ətrafına çəpər çəkir; tərəflər tam metrdir və sahənin ədədi qiyməti (m²) perimetrin ədədi qiymətinə (m) bərabərdir: <span class="m">xy = 2x + 2y</span> → <span class="m">(x − 2)(y − 2) = 4</span> → <b>4 × 4</b> və ya <b>3 × 6</b>. Başqa belə sahə yoxdur!</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sağ tərəfə <span class="m">ab</span> əlavə etməyi unutmaq: <span class="m">(x + 3)(y + 2) = 29</span> yox, <span class="m">35</span>.</li>
+        <li>Hər bölən cütünü həll saymaq: <span class="m">x + 3 = 1</span> natural x vermir — sərhədi yoxla.</li>
+        <li>Tam həllər soruşulanda mənfi bölənləri unutmaq: <span class="m">1 = (−1)(−1)</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">xy + ax + by = c → (x + b)(y + a) = c + ab
+xy-nin əmsalı k → əvvəl k-ya vur
+Bölən cütləri yaz, sərhədləri (x ≥ 1, y ≥ 1) yoxla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>xy + x + y = 11 natural həllər? <span class="ans">(x + 1)(y + 1) = 12; vuruqlar ≥ 2: 2 · 6, 3 · 4, 4 · 3, 6 · 2 → (1; 5), (2; 3), (3; 2), (5; 1) — 4 həll.</span></li>
+        <li>1/x + 1/y = 1/2 natural həllər? <span class="ans">(x − 2)(y − 2) = 4 → (3; 6), (4; 4), (6; 3) — 3 həll (4-ün 3 böləni).</span></li>
+        <li>xy − x − y = 5 natural həllərinin sayı? <span class="ans">4. (x − 1)(y − 1) = 6 → bölənlər 1, 2, 3, 6: (2; 7), (3; 4), (4; 3), (7; 2).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kvadratlar fərqi: x² − y² = n</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hansı ədədlər iki kvadratın fərqidir? <span class="m">45 = 7² − 2²</span>, <span class="m">24 = 7² − 5²</span>, bəs 2026? Bu sual olimpiadada dəfələrlə düşüb. Açar — müxtəsər vurma düsturu və <b>cütlük</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">x² − y² = (x − y)(x + y) = n
+x − y = d,  x + y = e,  d · e = n,  d &lt; e
+x = (d + e)/2,   y = (e − d)/2</div>
+      <p><b>Cütlük şərti.</b> <span class="m">d + e = 2x</span> cütdür, deməli <span class="m">d</span> və <span class="m">e</span> <b>eyni cütlükdədir</b>: ya ikisi də tək, ya ikisi də cüt.</p>
+      <ul>
+        <li><span class="m">n</span> təkdir → bütün bölənlər tək → hər cüt <span class="m">d &lt; e</span> həll verir.</li>
+        <li><span class="m">n</span> 4-ə bölünür → <span class="m">d, e</span> ikisi də cüt: <span class="m">d = 2d′, e = 2e′, d′e′ = n/4</span>.</li>
+        <li><span class="m">n ≡ 2 (mod 4)</span> → <b>həll yoxdur</b>: ikisi tək olsa hasil tək, ikisi cüt olsa hasil 4-ə bölünür.</li>
+      </ul>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. x² − y² = 45, natural həllər.
+  45 = 1 · 45 = 3 · 15 = 5 · 9   (hamısı tək)
+  (x; y) = (23; 22), (9; 6), (7; 2).   Yoxla: 81 − 36 = 45 ✓.   Cavab: 3
+
+Nümunə 2. x² − y² = 24
+  İkisi də cüt: 2 · 12, 4 · 6   (1 · 24, 3 · 8 — müxtəlif cütlük)
+  (x; y) = (7; 5), (5; 1).   Cavab: 2
+
+Nümunə 3. x² − y² = 2026
+  2026 = 4 · 506 + 2 ≡ 2 (mod 4) → həll yoxdur.
+Nümunə 4. x² − y² = 2027  (2027 sadədir)
+  Yalnız 1 · 2027 → x = 1014, y = 1013.   Cavab: 1</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. x² = y² + 2y + 13 tənliyini natural ədədlərdə həll et.
+Həll. Tam kvadrat düzəlt: y² + 2y + 1 = (y + 1)².
+  x² − (y + 1)² = 12 → (x − y − 1)(x + y + 1) = 12.
+  Eyni cütlük, birinci kiçik: 2 · 6 → x = 4, y + 1 = 2 → y = 1.
+  Yoxla: 16 = 1 + 2 + 13 ✓.   Cavab: (4; 1)
+
+Məsələ 2. İsbat et ki, istənilən tək ədəd iki ardıcıl ədədin kvadratları fərqidir.
+Həll. (k + 1)² − k² = 2k + 1. ∎   (Məs. 2027 = 1014² − 1013².)
+
+Məsələ 3. x² + y² = 4k + 3 tam həlli yoxdur — <a href="ol-qaliqlar.html">qalıqlar</a> mövzusundan: kvadrat mod 4-də yalnız 0, 1. Diofant tənliyində "həll yoxdur" isbatı çox vaxt belə — qalıqla aparılır.</div>
+      <div class="fig">
+        <svg viewBox="0 0 200 140" role="img" aria-label="7×7 kvadratdan 2×2 kvadrat kəsilib, qalan sahə 45">
+          <rect x="10" y="10" width="119" height="119" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="95" y="95" width="34" height="34" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2"/>
+          <text x="55" y="70" text-anchor="middle" class="lbl">45</text>
+          <text x="112" y="117" text-anchor="middle" class="lbl">4</text>
+          <text x="69" y="6" text-anchor="middle" class="lbl">7</text>
+          <text x="150" y="115" class="lbl">2</text>
+        </svg>
+        <div class="cap"><p><span class="m">7² − 2² = 45</span>: 7×7 kvadratdan küncdəki 2×2 kəsilsə, qalan "bucaq" fiqurunun sahəsi 45-dir. Onu kəsib yenidən yığsan, <span class="m">(7 − 2) × (7 + 2) = 5 × 9</span> düzbucaqlısı alınır — düsturun özü budur.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat həyətin küncündən kvadrat hissə ayrılıb gül əkilib, qalan sahə 45 m²-dir, ölçülər tam metrdir. Həyətin tərəfi neçə ola bilər? 23, 9 və ya 7 m — üç variant (nümunə 1). Bir ölçü də verilsə, cavab tək olar.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cütlüyü yoxlamamaq: <span class="m">24 = 1 · 24</span> → <span class="m">x = 12,5</span> — natural deyil.</li>
+        <li><span class="m">d = e</span> götürmək: onda <span class="m">y = 0</span>, natural deyil (n tam kvadrat olanda diqqət).</li>
+        <li><span class="m">n ≡ 2 (mod 4)</span> olanda bölənləri bir-bir yoxlamaq — bir sətirlik isbat var: həll yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(x − y)(x + y) = n,  d · e = n,  d &lt; e,  d və e eyni cütlükdə
+x = (d + e)/2,  y = (e − d)/2
+n ≡ 2 (mod 4) → həll yoxdur;  tək n → ən azı bir həll</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>x² − y² = 33 natural həllər? <span class="ans">2: 1 · 33 → (17; 16), 3 · 11 → (7; 4).</span></li>
+        <li>x² − y² = 50 natural həllər? <span class="ans">0. 50 = 4 · 12 + 2 ≡ 2 (mod 4).</span></li>
+        <li>x² − y² = 32 natural həllər? <span class="ans">2. 32/4 = 8 = 1 · 8 = 2 · 4 → d, e = (2; 16), (4; 8) → (9; 7), (6; 2).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
