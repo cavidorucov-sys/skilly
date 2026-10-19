@@ -6,6 +6,31 @@
   if (window.top === window.self) { location.replace("../ders.html?p=" + encodeURIComponent(name) + location.hash); return; }
   document.documentElement.classList.add("in-frame");
 
+  // Vector notation: the combining arrow (a + U+20D7) has no glyph in our fonts and shows as a box.
+  // Rewrite it everywhere — static lessons and game questions added later — as a drawn arrow over the letter.
+  const VEC = "⃗", NS = "http://www.w3.org/2000/svg";
+  function fixVec(root) {
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.includes(VEC) ? 1 : 3 });
+    const list = []; while (w.nextNode()) list.push(w.currentNode);
+    list.forEach(t => {
+      const parts = t.nodeValue.split(/(.⃗)/), inSvg = t.parentNode.namespaceURI === NS, frag = document.createDocumentFragment();
+      parts.forEach(p => {
+        if (!p) return;
+        if (!p.endsWith(VEC)) { frag.append(p); return; }
+        const ch = p[0];
+        if (inSvg) {
+          const a = document.createElementNS(NS, "tspan"); a.textContent = ch; frag.append(a);
+          const b = document.createElementNS(NS, "tspan"); b.setAttribute("dx", "-0.62em"); b.setAttribute("dy", "-0.72em"); b.setAttribute("font-size", "0.62em"); b.textContent = "→"; frag.append(b);
+          const c = document.createElementNS(NS, "tspan"); c.setAttribute("dy", "0.446em"); c.textContent = " "; frag.append(c);
+        } else { const sp = document.createElement("span"); sp.className = "vec"; sp.textContent = ch; frag.append(sp); }
+      });
+      t.replaceWith(frag);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    fixVec(document.body);
+    new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 || n.nodeType === 3) fixVec(n.nodeType === 1 ? n : n.parentNode || document.body); }))).observe(document.body, { childList: true, subtree: true });
+  });
   document.addEventListener("DOMContentLoaded", () => {
     // links that leave the lesson open in the portal window, not inside the frame
     document.querySelectorAll('a[href^="../"]').forEach(a => { a.target = "_top"; });
@@ -25,7 +50,9 @@
     });
     if (!steps.length) return;
     steps[0].nodes.unshift(...intro);
-    if (tail.length) steps.push({ title: "Özünü yoxla", nodes: tail });
+    // the self-check goes into a step of its own — or into the last step if the lesson already ends with one
+    const last = steps[steps.length - 1];
+    if (tail.length) { if (/özünü yoxla/i.test(last.title)) last.nodes.push(...tail); else steps.push({ title: "Özünü yoxla", nodes: tail }); }
 
     const bar = document.createElement("nav"); bar.className = "stepbar"; bar.setAttribute("aria-label", "Addımlar");
     const secs = steps.map((s, i) => {
