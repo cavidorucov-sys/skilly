@@ -507,7 +507,7 @@ async function pageSehv() {
   draw();
   const on = await Skilly.configured();
   sync.className = "sync " + (on ? "on" : "off");
-  sync.textContent = on ? "✓ Google Sheets-ə qoşulub — səhvlər və nəticələr atana gedir" : "Yalnız bu cihazda saxlanır — Google Sheets qoşulmayıb";
+  sync.textContent = on ? "✓ Google Sheets-ə qoşulub" : "Yalnız bu cihazda saxlanır — Google Sheets qoşulmayıb";
   if ((await Skilly.pull()).synced) draw();
 }
 
