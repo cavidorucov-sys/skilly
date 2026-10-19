@@ -152,45 +152,71 @@ function topicCard(t) {
   return a;
 }
 
+// Home = "what do I do now": today's plan first, then what needs attention, the week, and the next dates.
+const GUN = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
+const AY = ["yanvar", "fevral", "mart", "aprel", "may", "iyun", "iyul", "avqust", "sentyabr", "oktyabr", "noyabr", "dekabr"];
+const hm = () => { const d = new Date(); return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+const span = t => t.split("–").map(x => x.trim());
+const mins = t => { const [a, b] = span(t).map(x => { const [h, m] = x.split(":"); return +h * 60 + +m; }); return b - a; };
+
 async function pageIndex() {
   const content = el("div", { style: "margin-top:30px" });
-  const { m, w, topics, term } = await shell(content);
-  if (!m || !w) { content.append(el("p", { class: "empty" }, "Məlumat yüklənmədi.")); return; }
-  // progress cards with tabs
-  const groups = {
-    isl: topics.filter(t => t.status === "isl"),
-    yox: topics.filter(t => t.status === "yox" && t.novbeti).sort((x, y) => x.novbeti - y.novbeti),
-    bag: topics.filter(t => t.status === "bag"),
-  };
-  const cards = el("div", { class: "cards" });
-  const tabs = [["isl", "İşlənir"], ["yox", "Növbəti"], ["bag", "Bağlanıb"]].map(([k, label]) => {
-    const b = el("button", { class: "tab", role: "tab", "aria-selected": String(k === "isl"), type: "button" }, label);
-    b.addEventListener("click", () => { tabs.forEach(x => x.setAttribute("aria-selected", String(x === b))); draw(k); });
-    return b;
-  });
-  function draw(k) {
-    const list = groups[k];
-    cards.replaceChildren(...(list.length ? list.map(topicCard) : [el("p", { class: "empty" }, k === "bag" ? "Hələ bağlanmış mövzu yoxdur — ilk mövzu yekun testdən sonra burada görünəcək." : "Boşdur.")]));
+  const { w, term } = await shell(content);
+  if (!w) { content.append(el("p", { class: "empty" }, "Məlumat yüklənmədi.")); return; }
+  const today = isoToday(), now = hm(), d = new Date();
+  const day = w.gunler.find(g => g.tarix === today) || w.gunler.find(g => g.tarix > today);
+  const isToday = day && day.tarix === today;
+
+  // 1. today
+  const total = day ? day.isler.filter(t => t.kat !== "misc" || /esse|səhv/i.test(t.is)).reduce((n, t) => n + mins(t.saat), 0) : 0;
+  const hero = el("section", { class: "today" },
+    el("p", { class: "eyebrow" }, isToday ? "Bu gün" : "Növbəti iş günü"),
+    el("h1", {}, day ? `${GUN[new Date(day.tarix + "T12:00").getDay()]}, ${+day.tarix.slice(8)} ${AY[+day.tarix.slice(5, 7) - 1]}` : `${GUN[d.getDay()]}, ${d.getDate()} ${AY[d.getMonth()]}`),
+    day ? el("p", { class: "lead" }, `${day.isler.length} iş · hazırlıq ${fmtH(Math.round(total / 6) / 10)} saat`) : null);
+  const list = el("div", { class: "agenda" });
+  if (!day) list.append(el("p", { class: "empty" }, "Bu həftənin planı bitib. Yeni cədvəl bazar axşamı gələcək."));
+  else {
+    let nextMarked = false;
+    day.isler.forEach(t => {
+      const [from, to] = span(t.saat), k = KAT[t.kat] || KAT.misc;
+      const state = !isToday ? "" : now >= to ? "past" : now >= from ? "now" : (!nextMarked ? (nextMarked = true, "next") : "");
+      const row = el(t.link ? "a" : "div", { class: "ag " + state, ...(t.link ? { href: t.link } : {}) },
+        el("span", { class: "ag-time" }, from, el("small", {}, to)),
+        el("span", { class: "ag-ic " + k.cls }, icon(iconFor(t.kat, t.is), k.ink)),
+        el("span", { class: "ag-tx" }, el("b", {}, t.is), el("small", {}, state === "now" ? "indi" : state === "next" ? "növbəti" : state === "past" ? "keçdi" : k.ad)),
+        t.link ? el("span", { class: "ag-go" }, "Aç →") : null);
+      list.append(row);
+    });
   }
-  draw("isl");
-  const left = el("div", { class: "stack" },
-    el("section", {}, el("div", { class: "head", role: "tablist" }, ...tabs, el("a", { class: "more", href: "riyaziyyat.html" }, "Hamısı")), cards));
-  // timeline
-  const today = isoToday();
+  hero.append(list);
+  content.append(hero);
+
+  // 2. needs attention: the error journal
+  if (window.Skilly) {
+    await Skilly.ready;
+    const all = Skilly.all(), yeni = all.filter(e => e.status === "yeni").length;
+    const due = all.filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= today).length;
+    if (yeni || due) content.append(el("a", { class: "attn", href: "temrar.html" },
+      el("span", { class: "ag-ic k-misc" }, icon("NotebookPen")),
+      el("span", { class: "ag-tx" }, el("b", {}, "Səhv jurnalı"),
+        el("small", {}, [yeni ? `${yeni} səhv təhlil gözləyir` : "", due ? `${due} təkrar vaxtıdır` : ""].filter(Boolean).join(" · "))),
+      el("span", { class: "ag-go" }, "Aç →")));
+  }
+
+  // 3. the week
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
     el("div", { class: "dname" + (g.tarix === today ? " today" : "") }, g.qisa + " " + g.tarix.slice(8)),
     ...g.isler.map(t => { const k = KAT[t.kat] || KAT.misc; return el(t.link ? "a" : "div", t.link ? { class: "slot " + k.cls, href: t.link } : { class: "slot " + k.cls }, el("small", {}, icon(iconFor(t.kat, t.is), k.ink), t.saat), t.is); }))));
-  left.append(el("section", {}, el("div", { class: "head" }, el("h2", {}, "Həftənin cədvəli"), el("span", { class: "more" }, w.hefte)), days));
-  // right column
-  const upcoming = term.filter(t => t.tarix >= today).slice(0, 5);
-  const dl = el("section", {}, el("div", { class: "head" }, el("h2", {}, "Yaxın tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim")),
-      el("p", { class: "lead" }, "Sınaq günləri və layihədə nəyin hansı günə hazır olmalı olduğu."),
-      el("div", { class: "list dl" }, ...(upcoming.length ? upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
-        el("span", { class: "ic " + k.cls }, icon(iconFor(t.kat, t.ad), k.ink)),
-        el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, t.qeyd || k.ad)),
-        el("span", { class: "badge " + k.cls }, daysLeft(today, t.tarix))); }) : [el("p", { class: "empty" }, "Yaxında tarix yoxdur.")])));
-  left.children[0].after(dl);
-  content.append(left);
+  content.append(el("section", { class: "home-sec" }, el("div", { class: "head" }, el("h2", {}, "Bu həftə"), el("span", { class: "more" }, w.hefte)), days));
+
+  // 4. next dates (three; the rest are in the calendar)
+  const upcoming = term.filter(t => t.tarix >= today).slice(0, 3);
+  if (upcoming.length) content.append(el("section", { class: "home-sec" },
+    el("div", { class: "head" }, el("h2", {}, "Yaxın tarixlər"), el("a", { class: "more", href: "teqvim.html" }, "Təqvim →")),
+    el("div", { class: "list dl" }, ...upcoming.map(t => { const k = KAT[t.kat] || KAT.misc; return el("div", { class: "row" },
+      el("span", { class: "ic " + k.cls }, icon(iconFor(t.kat, t.ad), k.ink)),
+      el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, t.qeyd || k.ad)),
+      el("span", { class: "badge " + k.cls }, daysLeft(today, t.tarix))); }))));
 }
 
 async function pageTopics(key, title, lead) {
