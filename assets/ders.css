@@ -11,6 +11,7 @@
   --f-task:Georgia,"Times New Roman",serif;
   --f-num:ui-monospace,"SF Mono",Consolas,monospace;
   --ease:cubic-bezier(.23,1,.32,1);
+  --r-xs:4px; --r-sm:6px; --r:8px; --r-lg:12px;
   color-scheme:light;
 }
 :root[data-kat="phys"]{ --subj:#0c447c; --subj-soft:#e6f1fb; --subj-mid:#d6e8f8; }
@@ -23,7 +24,7 @@ body{margin:0;-webkit-font-smoothing:antialiased}
 .sk-bar a{color:inherit;text-decoration:none}
 .sk-logo{font-weight:700;font-size:20px;letter-spacing:-.02em}
 .sk-sub{color:#888780;font-size:13px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sk-back{font-size:14px;font-weight:600;border-radius:40px;padding:6px 14px;background:#2a2a2e;transition:background .2s var(--ease)}
+.sk-back{font-size:14px;font-weight:600;border-radius:var(--r-sm);padding:6px 14px;background:#2a2a2e;transition:background .2s var(--ease)}
 .sk-back:hover{background:#3a3a40}
 
 /* type */
@@ -33,39 +34,39 @@ h2{font-weight:600;letter-spacing:-.01em}
 
 /* tabs: pills like the portal */
 .tabs{top:56px;background:var(--paper);border-bottom:0;gap:8px;padding:8px 0;overflow-x:auto;scrollbar-width:none}
-.tab{border:0;border-radius:40px;padding:8px 16px;color:var(--ink-2);background:var(--white);box-shadow:inset 0 0 0 1px var(--line-0);white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease)}
+.tab{border:0;border-radius:var(--r-sm);padding:8px 16px;color:var(--ink-2);background:var(--white);box-shadow:inset 0 0 0 1px var(--line-0);white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease)}
 .tab small{letter-spacing:0;text-transform:none;font-weight:500;color:inherit;opacity:.75}
 .tab[aria-selected=true]{background:var(--ink-0);color:var(--white);box-shadow:none}
 .tab:hover{color:var(--ink-0)}
 .tab[aria-selected=true]:hover{color:var(--white)}
 
 /* surfaces */
-.lesson,.task,.end,.clock,.prog{border:0;border-radius:22px}
+.lesson,.task,.end,.clock,.prog{border:0;border-radius:var(--r-lg)}
 .lesson{padding:24px}
-.task{border-radius:16px;box-shadow:inset 0 0 0 1px var(--line-0)}
+.task{border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line-0)}
 .task.right,.task.solved{box-shadow:inset 0 0 0 2px var(--ok)}
 .task.wrong{box-shadow:inset 0 0 0 2px var(--warn)}
 .task .t{font-family:var(--f-body)}
-.lesson .st{border-radius:40px;background:var(--ink-0);color:var(--white)}
-.fm,.ex,.play,.explain,.sum,.fig svg,.graphs svg,.explain svg,.playrow svg,.trirow svg{border-radius:14px}
+.lesson .st{border-radius:var(--r-sm);background:var(--ink-0);color:var(--white)}
+.fm,.ex,.play,.explain,.sum,.fig svg,.graphs svg,.explain svg,.playrow svg,.trirow svg{border-radius:var(--r)}
 .fm{background:var(--subj-soft);color:var(--subj)}
 .explain,.play,.sum{background:var(--subj-soft)}
 .ex{border:0;background:var(--paper)}
 .warnbox,.life{border-radius:0}
-.mist,.confirm,.done,.fail{border-radius:16px}
-details.check{border-radius:16px;border:0;box-shadow:inset 0 0 0 1px var(--line-0);background:var(--white)}
+.mist,.confirm,.done,.fail{border-radius:var(--r)}
+details.check{border-radius:var(--r);border:0;box-shadow:inset 0 0 0 1px var(--line-0);background:var(--white)}
 details.check summary{color:var(--subj)}
 .mist b,.sum b{letter-spacing:0;text-transform:none;font-size:14px}
-.tag{letter-spacing:0;text-transform:none;border-radius:40px}
+.tag{letter-spacing:0;text-transform:none;border-radius:var(--r-sm)}
 .tbl th{background:var(--subj-soft)}
 
 /* controls */
-.btn{border:0;border-radius:40px;padding:10px 20px;background:var(--ink-0);color:var(--white);cursor:pointer;transition:transform .15s var(--ease)}
+.btn{border:0;border-radius:var(--r-sm);padding:10px 20px;background:var(--ink-0);color:var(--white);cursor:pointer;transition:transform .15s var(--ease)}
 .btn:active{transform:scale(.97)}
 .btn.ghost{background:transparent;color:var(--ink-0);box-shadow:inset 0 0 0 1px var(--line-1)}
-.ans input,.ans input[type=text]{border:1px solid var(--line-1);border-radius:12px;background:var(--white)}
+.ans input,.ans input[type=text]{border:1px solid var(--line-1);border-radius:var(--r-sm);background:var(--white)}
 .btn:focus-visible,.ans input:focus-visible,.tab:focus-visible,.bub:focus-within{outline:3px solid var(--subj-mid);outline-offset:2px}
-.bub{border-radius:12px}
+.bub{border-radius:var(--r-sm)}
 .bub input:checked + .dot{background:var(--ink-0);border-color:var(--ink-0)}
 .meter{background:var(--line-0)}
 .ctl input[type=range]{accent-color:var(--ink-0)}
@@ -81,7 +82,7 @@ details.check summary{color:var(--subj)}
 
 /* steps inside a lesson card */
 .stepbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:-4px -4px 6px;padding:4px}
-.stepchip{font:inherit;display:flex;align-items:center;gap:8px;border:0;border-radius:40px;padding:6px 14px 6px 6px;background:var(--paper);color:var(--ink-2);cursor:pointer;white-space:nowrap;font-size:13px;font-weight:500;transition:background .2s var(--ease),color .2s var(--ease)}
+.stepchip{font:inherit;display:flex;align-items:center;gap:8px;border:0;border-radius:var(--r-sm);padding:6px 14px 6px 6px;background:var(--paper);color:var(--ink-2);cursor:pointer;white-space:nowrap;font-size:13px;font-weight:500;transition:background .2s var(--ease),color .2s var(--ease)}
 .stepchip .no{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--white);font-weight:700;font-size:12px}
 .stepchip.done .no{background:var(--ok-soft);color:var(--ok)}
 .stepchip[aria-current=step]{background:var(--ink-0);color:var(--white)}

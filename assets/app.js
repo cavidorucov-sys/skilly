@@ -4,7 +4,19 @@ const NAV = [
   ["olimpiada.html", "Olimpiada", "Trophy"], ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Səhvlər", "NotebookPen"],
   ["dusturlar.html", "Düsturlar", "Sigma"],
 ];
-const NAV_SUB = { "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat olimpiadası", "Pi"], ["olimpiada.html#fizika", "Fizika olimpiadası", "Atom"]] };
+const NAV_SUB = {
+  "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat", "Pi"], ["olimpiada.html#fizika", "Fizika", "Atom"]],
+  "sinaqlar.html": [["sinaqlar.html#riyaziyyat", "Riyaziyyat", "Pi"], ["sinaqlar.html#fizika", "Fizika", "Atom"]],
+  "dusturlar.html": [["dusturlar.html#riyaziyyat", "Riyaziyyat", "Pi"], ["dusturlar.html#fizika", "Fizika", "Atom"]],
+};
+// pages whose subject comes from the nav sub-item (#riyaziyyat / #fizika): marks the sub-item, returns the key
+function subjectFromHash() {
+  const k = location.hash.slice(1) === "fizika" ? "fizika" : "riyaziyyat";
+  document.querySelectorAll(".nav-dd .dd a").forEach(a => a.getAttribute("href").endsWith(location.pathname.split("/").pop() + "#" + k) || a.getAttribute("href") === (location.pathname.split("/").pop() || "index.html") + "#" + k
+    ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  return k;
+}
+function onSubject(draw) { const run = () => draw(subjectFromHash()); run(); window.addEventListener("hashchange", run); }
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
   olym: { cls: "k-olym", ink: "var(--olym-ink)", ad: "Olimpiada" },
@@ -113,8 +125,16 @@ async function shell(content) {
       if (!sub) return link;
       // dropdown on hover / keyboard focus (desktop); on phones the page has the same choices as tabs
       link.append(icon("ChevronDown"));
-      return el("div", { class: "nav-dd" }, link, el("div", { class: "dd" },
-        ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), el("span", {}, l)))));
+      const dd = el("div", { class: "dd" }, ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), el("span", {}, l))));
+      const box = el("div", { class: "nav-dd" }, link, dd);
+      link.addEventListener("click", ev => {
+        if (!matchMedia("(max-width:980px)").matches) return;
+        ev.preventDefault();
+        const open = !box.classList.contains("open");
+        document.querySelectorAll(".nav-dd.open").forEach(x => x.classList.remove("open"));
+        if (open) { const r = link.getBoundingClientRect(); dd.style.left = Math.min(r.left, innerWidth - 210) + "px"; dd.style.top = r.bottom + 6 + "px"; box.classList.add("open"); }
+      });
+      return box;
     }));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
   return { m, w, topics, term };
@@ -192,11 +212,9 @@ async function pageOlympiad() {
   if (!m) { body.append(el("p", { class: "empty" }, "Siyahı yüklənmədi.")); return; }
   function draw(k) {
     h1.textContent = SUBJ[k][0]; document.title = SUBJ[k][0] + " · Skilly";
-    document.querySelectorAll(".nav-dd .dd a").forEach(a => a.getAttribute("href").endsWith("#" + k) ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     body.replaceChildren(); renderTopics(body, m, SUBJ_KAT_KEY[k], SUBJ[k][1]);
   }
-  const fromHash = () => { const h = location.hash.slice(1); draw(SUBJ[h] ? h : "riyaziyyat"); };
-  fromHash(); window.addEventListener("hashchange", fromHash);
+  onSubject(draw);
 }
 const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
 
@@ -225,18 +243,11 @@ function renderTopics(content, m, key, lead) {
 }
 
 async function pageFormulas() {
-  const q = el("input", { class: "search", type: "search", placeholder: "Axtar: sin, təcil, parabola…", "aria-label": "Düstur axtar" });
-  const list = el("div");
-  let fenn = "Riyaziyyat";
-  const tabs = ["Riyaziyyat", "Fizika"].map(f => {
-    const b = el("button", { class: "tab", role: "tab", type: "button", "aria-selected": String(f === fenn) }, f);
-    b.addEventListener("click", () => { fenn = f; tabs.forEach(t => t.setAttribute("aria-selected", String(t === b))); q.placeholder = f === "Fizika" ? "Axtar: təcil, impuls, Om…" : "Axtar: sin, diskriminant, parabola…"; draw(); });
-    return b;
-  });
-  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Düsturlar"), el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."),
-    el("div", { class: "head", role: "tablist", style: "margin-top:22px" }, ...tabs), q, list);
-  await shell(content);
+  const FENN = { riyaziyyat: ["Riyaziyyat", "Axtar: sin, diskriminant, parabola…"], fizika: ["Fizika", "Axtar: təcil, impuls, Om…"] };
+  const h1 = el("h1"), q = el("input", { class: "search", type: "search", "aria-label": "Düstur axtar" }), list = el("div");
+  await shell(el("div", { style: "margin-top:30px" }, h1, el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."), q, list));
   const all = await load("data/dusturlar.json").catch(() => []);
+  let fenn = "Riyaziyyat";
   function draw() {
     const s = q.value.trim().toLowerCase(); list.replaceChildren();
     const inTab = all.filter(x => x.fenn === fenn);
@@ -247,9 +258,39 @@ async function pageFormulas() {
         el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, x.fx), el("div", { class: "note" }, x.nevaxt || ""),
         x.sehv ? el("div", { class: "err" }, "Tipik səhv: " + x.sehv) : null, x.ders ? el("a", { href: x.ders }, "İzahı dərsdə →") : null))));
     });
-    if (!f.length) list.append(el("p", { class: "empty" }, `${fenn} bölməsində tapılmadı.`));
+    if (!f.length) list.append(el("p", { class: "empty" }, "Tapılmadı."));
   }
-  draw(); q.addEventListener("input", draw);
+  onSubject(k => {
+    const [name, ph] = FENN[k]; fenn = name;
+    h1.textContent = name + " düsturları"; document.title = name + " düsturları · Skilly"; q.placeholder = ph; q.value = ""; draw();
+  });
+  q.addEventListener("input", draw);
+}
+
+/* ---------- sınaqlar ---------- */
+async function pageTests() {
+  const h1 = el("h1"), lead = el("p", { class: "lead" }), body = el("div");
+  const { term } = await shell(el("div", { style: "margin-top:30px" }, h1, lead, body));
+  const today = isoToday();
+  const row = (ic, kat, title, sub, right) => { const k = KAT[kat]; return el("div", { class: "row" },
+    el("span", { class: "ic " + k.cls }, icon(ic, k.ink)), el("div", { class: "tx" }, el("b", {}, title), el("span", {}, sub)), right); };
+  const sec = (title, kids) => el("section", { class: "e-sec" }, el("div", { class: "head" }, el("h2", {}, title)), el("div", { class: "list" }, ...kids));
+  onSubject(k => {
+    body.replaceChildren();
+    if (k === "riyaziyyat") {
+      h1.textContent = "Buraxılış sınaqları"; document.title = "Buraxılış sınaqları · Skilly";
+      lead.textContent = "Məktəbdə DİM formatında sınaqlar (10:00–13:00) və evdə şənbə günləri 11:00–12:30 vaxt limitli sınaq.";
+      const dim = term.filter(t => /Buraxılış sınağı/.test(t.ad));
+      body.append(
+        sec("Qarşıdakı", dim.filter(t => t.tarix >= today).map(t => row("ClipboardCheck", "math", t.ad, t.qeyd, el("span", { class: "badge k-math" }, daysLeft(today, t.tarix))))),
+        sec("Keçmiş", [row("ClipboardCheck", "math", "Buraxılış sınağı 1", "3 oktyabr · nəticə səhv jurnalına və təkrar planına salınıb", el("span", { class: "st st-bag" }, "edilib"))]));
+    } else {
+      h1.textContent = "Fizika sınaqları"; document.title = "Fizika sınaqları · Skilly";
+      lead.textContent = "Hər bölmənin sonunda vaxt limitli sınaq: FRİTL-də keçilən mövzular üzrə.";
+      body.append(sec("Sınaqlar", [row("Atom", "phys", "Mexanika sınağı 1", "24 tapşırıq · 60 dəqiqə · kinematika və dinamika",
+        el("a", { class: "go", href: "ders.html?p=fizika-mexanika-1#sq" }, "Aç →"))]));
+    }
+  });
 }
 
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
@@ -307,11 +348,11 @@ const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiad
 const dmy = iso => iso ? iso.slice(8) + "." + iso.slice(5, 7) : "–";
 const SST = { yeni: ["Təhlil gözləyir", "st-err"], aciq: ["Təkrarda", "st-isl"], baglandi: ["Bağlanıb", "st-bag"] };
 
-function seg(opts, onPick) {
-  let val = "";
+function seg(opts, onPick, initial) {
+  let val = initial || "";
   const box = el("div", { class: "seg", role: "radiogroup" });
   Object.entries(opts).forEach(([k, label]) => {
-    const b = el("button", { type: "button", role: "radio", "aria-checked": "false" }, label);
+    const b = el("button", { type: "button", role: "radio", "aria-checked": String(k === val) }, label);
     b.addEventListener("click", () => { val = k; box.querySelectorAll("button").forEach(x => x.setAttribute("aria-checked", String(x === b))); onPick && onPick(k); });
     box.append(b);
   });
@@ -330,7 +371,7 @@ function errBody(e) {
 
 function analyseCard(e, redraw) {
   const err = errMsg();
-  const kat = seg(KATS, () => { err.textContent = ""; });
+  const kat = seg(KATS, () => { err.textContent = ""; }, e.kat);
   const yol = el("input", { class: "fld", type: "text", placeholder: "Məsələn: əvvəl vahidləri SI-yə çevirməliydim", "aria-label": "Düzgün yol, bir cümlə" });
   yol.addEventListener("input", () => { err.textContent = ""; });
   const btn = el("button", { class: "btn", type: "button" }, "Saxla");
@@ -341,6 +382,8 @@ function analyseCard(e, redraw) {
   });
   return el("div", { class: "e-card fade" }, errHead(e), errBody(e),
     el("p", { class: "e-ans" }, e.bos ? "Boş qalıb" : "Sənin cavabın: " + (e.cavab || "—") + (e.vahid ? " " + e.vahid : "")),
+    e.qeyd ? el("p", { class: "e-note" }, e.qeyd) : null,
+    e.duz ? el("details", { class: "e-det" }, el("summary", {}, "Düz cavabı göstər"), e.duz) : null,
     el("div", { class: "e-lbl" }, "Niyə səhv oldu?"), kat,
     el("div", { class: "e-lbl" }, "Düzgün yol (bir cümlə)"), yol, err, el("div", { class: "e-act" }, btn));
 }
@@ -432,6 +475,7 @@ async function pageSehv() {
           el("td", {}, el("span", { class: "st " + (SST[e.status] || SST.yeni)[1] }, (SST[e.status] || SST.yeni)[0])))))))]
         : [el("p", { class: "empty" }, "Hələ səhv yoxdur.")]));
   }
+  if (Skilly.ready) await Skilly.ready;
   draw();
   sync.textContent = (await Skilly.configured()) ? "Google Sheets-ə qoşulub." : "Hələlik yalnız bu cihazda saxlanır. Google Sheets qoşulandan sonra ata da görəcək.";
   if ((await Skilly.pull()).synced) draw();
@@ -442,8 +486,10 @@ const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html" };
 async function pageLesson() {
   const name = new URLSearchParams(location.search).get("p") || "";
   if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }
-  const frame = el("iframe", { class: "lesson-frame", src: "dersler/" + name + ".html" + location.hash, title: "Dərs" });
+  const frame = el("iframe", { class: "lesson-frame", title: "Dərs" });
   await shell(el("div", { class: "lesson-wrap" }, frame));
+  if (window.Skilly) await Skilly.ready;
+  frame.src = "dersler/" + name + ".html" + location.hash;
   frame.addEventListener("load", () => {
     const d = frame.contentDocument; if (!d) return;
     document.title = d.title.replace(/ dərsi$/, "") + " · Skilly";
@@ -458,6 +504,8 @@ async function pageStatic(title, lead, html) {
   await shell(el("div", { style: "margin-top:30px" }, el("h1", {}, title), el("p", { class: "lead" }, lead), box));
 }
 
+document.addEventListener("click", ev => { if (!ev.target.closest(".nav-dd")) document.querySelectorAll(".nav-dd.open").forEach(x => x.classList.remove("open")); });
+window.addEventListener("scroll", () => document.querySelectorAll(".nav-dd.open").forEach(x => x.classList.remove("open")), { passive: true });
 document.addEventListener("DOMContentLoaded", () => {
   const p = document.body.dataset.page;
   if (p === "index") pageIndex();
@@ -467,7 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (p === "olimpiada") pageOlympiad();
   else if (p === "fizika") location.replace("olimpiada.html#fizika");
   else if (p === "dusturlar") pageFormulas();
-  else if (p === "sinaqlar") pageStatic("Sınaqlar", "Şənbə 11:00–12:30 vaxt limitli sınaq: bir həftə riyaziyyat, bir həftə fizika.",
-    '<p><b>Fizika</b> — <a href="dersler/fizika-mexanika-1.html">Mexanika sınağı 1</a> · 24 tapşırıq, 60 dəq <span class="st st-bag">işlənib: 23/24</span></p><p><b>Riyaziyyat</b> — <span class="empty">növbəti sınaq tezliklə.</span></p>');
+  else if (p === "sinaqlar") pageTests();
   else if (p === "temrar") pageSehv();
 });
