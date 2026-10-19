@@ -696,19 +696,22 @@
    "bolme": "İş, güc, enerji",
    "ad": "Kinetik və potensial enerji",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3"
+   "menbe": "RFO fiz (aşağı): 1.3",
+   "ders": "dersler/fiz-enerji.html"
   },
   {
    "bolme": "İş, güc, enerji",
    "ad": "Enerjinin saxlanması",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3"
+   "menbe": "RFO fiz (aşağı): 1.3",
+   "ders": "dersler/fiz-enerji-saxlanma.html"
   },
   {
    "bolme": "İmpuls",
    "ad": "İmpuls və onun saxlanması, toqquşmalar",
    "status": "yox",
-   "menbe": "RFO fiz (aşağı): 1.3"
+   "menbe": "RFO fiz (aşağı): 1.3",
+   "ders": "dersler/fiz-impuls.html"
   },
   {
    "bolme": "Hidrostatika",

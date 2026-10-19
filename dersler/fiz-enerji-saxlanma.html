@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Enerjinin saxlanması dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-enerji-saxlanma.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Enerjinin saxlanması</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika. Mexaniki enerjinin saxlanması</div>
+    <h1>Enerjinin saxlanması</h1>
+    <p>Düşən daşın Ep-si azalır, Ek-si artır, amma ikisinin cəmi dəyişmir. Bu, mexanikanın ən faydalı qanunlarından biridir: ara hərəkəti bilmədən yalnız iki vəziyyətə baxıb sürəti, hündürlüyü, sıxılmanı tapırıq. Sürüşkə, rəqqas, yay — hamısı bir sxemlə həll olunur. Sürtünmə olanda isə enerjinin bir hissəsi istiliyə çevrilir; bunu da hesablamağı öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>. «Kinetik və potensial enerji» mövzusunu bilmək lazımdır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Saxlanma qanunu</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rəqqas, sürüşkə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yay, itkilər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Mexaniki enerjinin saxlanması qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Balkondan topu yuxarı atırsan: nə qədər yüksəklərə qalxacaq? Yerə hansı sürətlə düşəcək? Zamanı, təcili, trayektoriyanı bilmədən cavab vermək olar, əgər <b>enerjiyə</b> baxsan. Top yuxarı qalxdıqca Ek-i Ep-yə çevrilir, aşağı enəndə əksinə. Cəmi dəyişmir.</p>
+
+      <h3><span class="st">2</span> Qanun</h3>
+      <p><b>Mexaniki enerji</b> kinetik və potensial enerjilərin cəmidir: <span class="m">E = Ek + Ep</span>. Cismə yalnız <b>ağırlıq qüvvəsi və elastiklik qüvvəsi</b> iş görürsə (başqa qüvvələr ya yoxdur, ya da iş görmür), mexaniki enerji saxlanır:</p>
+      <div class="fm">Ek₁ + Ep₁ = Ek₂ + Ep₂
+mv₁²/2 + mgh₁ = mv₂²/2 + mgh₂</div>
+      <p>Kütlə hər tərəfdə var, ixtisar olur. Demək, sürət kütlədən asılı deyil: ağır və yüngül daş eyni hündürlükdən eyni sürətlə düşür.</p>
+      <p>Hansı qüvvələr iş <b>görmür</b>? Hərəkətə perpendikulyar olanlar: ipin dartılma qüvvəsi rəqqasda, hamar səthin reaksiya qüvvəsi sürüşkədə. Onlar enerjini dəyişmir. Sürtünmə və müqavimət isə iş görür — onda qanun dəyişir (Dərs 3).</p>
+
+      <h3><span class="st">3</span> Düşmə və atma: bir sxem</h3>
+      <p>Həll qaydası: (1) <b>iki vəziyyət</b> seç (başlanğıc, son); (2) sıfır səviyyəsini seç (adətən aşağı nöqtə); (3) hər vəziyyətdə <span class="m">Ek</span> və <span class="m">Ep</span> yaz; (4) bərabərləşdir.</p>
+      <p>Faydalı düsturlar (buraxılma və atılma, <span class="m">v₀</span> başlanğıc sürət):</p>
+      <div class="fm">sərbəst düşmə:      v = √(2gh)
+yuxarı atma:         h_max = v₀²/(2g)
+hündürlük h-da:      v² = v₀² − 2gh
+yerə çatanda:        v² = v₀² + 2gH        (H — atıldığı hündürlük)</div>
+      <p>Mühüm nəticə: sürət yalnız <b>hündürlük fərqindən</b> asılıdır, atılma istiqamətindən yox. Eyni <span class="m">v₀</span>-la yuxarı, aşağı və ya üfüqi atılan daş yerə eyni sürətlə çatır (düşmə vaxtları isə fərqlidir).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Top yerdən şaquli yuxarı 12 m/s sürətlə atılır.
+Maksimal hündürlük? Sürəti 6 m/s olanda hündürlük?
+  h_max = v₀²/(2g) = 144/20 = 7,2 m
+  v² = v₀² − 2gh → 36 = 144 − 20h → h = 108/20 = 5,4 m</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Daş 20 m hündürlükdən sərbəst buraxılır. Hansı hündürlükdə
+kinetik enerjisi potensial enerjisindən 3 dəfə böyükdür?
+  Tam enerji (yerə nəzərən) E = mg·20
+  Ek = 3Ep, Ek + Ep = E → 4Ep = E → Ep = E/4
+  mgh = mg·20/4 → h = 5 m</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Üç eyni daş 20 m hündürlükdən eyni 15 m/s sürətlə atılır:
+biri yuxarı, biri aşağı, biri üfüqi. Yerə çatma sürətləri?
+  Enerji: v² = v₀² + 2gH = 225 + 20·20 = 625
+  v = 25 m/s — üç daş üçün eynidir.
+  (Yuxarı atılan daş qalxıb, 20 m-də yenə 15 m/s ilə aşağı düşür,
+  sonra üçüncü daş kimi davam edir.)</div>
+      <div class="life"><b>Həyatdan.</b> Hündürlükdən tullanan idmançı yerdən ayrılma sürətindən qalxma hündürlüyünü <span class="m">h = v²/2g</span> ilə tapır: 6 m/s sürətlə ayrılan tullanıcının kütlə mərkəzi 1,8 m qalxır. Dənizə atılan daşın suya düşmə sürəti də atılma istiqamətindən asılı deyil: yuxarı, aşağı və ya yan — eyni olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qanunu sürtünmə, müqavimət və ya zərbə olan hallarda tətbiq etmək. Orada mexaniki enerji itir.</li>
+        <li>Sıfır səviyyəsini bir hesabda iki cür götürmək: hər iki vəziyyətdə eyni səviyyəyə nəzərən.</li>
+        <li><span class="m">v² = v₀² − 2gh</span>-də <span class="m">v₀</span>-ı kvadratsız yazmaq və ya 2-ni unutmaq.</li>
+        <li>Üfüqi atılan cismin sürətini yalnız şaquli toplananla hesablamaq. Enerji tam sürətin kvadratını verir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yalnız mg və kx iş görürsə:  Ek + Ep = const
+Kütlə ixtisar olur; sürət istiqamətdən asılı deyil
+Sərbəst düşmə v = √(2gh);  yuxarı atma h = v₀²/(2g)
+Plan: iki vəziyyət → Ek, Ep → bərabərləşdir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Daş 45 m hündürlükdən düşür. Yerə sürəti? <span class="ans">v = √(20·45) = √900 = 30 m/s.</span></li>
+        <li>Top 20 m/s ilə yuxarı atılıb. 10 m hündürlükdə sürət? <span class="ans">v² = 400 − 200 = 200, v = √200 ≈ 14,1 m/s.</span></li>
+        <li>Daşı 10 m/s ilə yuxarı atdılar, başqasını 10 m/s ilə aşağı, eyni hündürlükdən. Yerə çatanda hansının sürəti çoxdur? <span class="ans">Eynidir: sürət yalnız hündürlük fərqindən və v₀ modulundan asılıdır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Rəqqas, sürüşkə və döngə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sallanqacda, lunaparkın dağ sürüşkəsində, aqua-parkın sürüşkəsində hərəkət trayektoriyası mürəkkəbdir: əyri, dönməli. Nyuton qanunları ilə hesablamaq çətindir. Amma enerji yalnız <b>hündürlüyə</b> baxır — yolun şəkli maraqlı deyil.</p>
+
+      <h3><span class="st">2</span> Hamar sürüşkə</h3>
+      <p>Cisim hamar sürüşkənin <span class="m">h₁</span> hündürlüyündən sürətsiz buraxılır. Sürüşkənin reaksiya qüvvəsi hərəkətə perpendikulyardır, iş görmür. Deməli</p>
+      <div class="fm">mg(h₁ − h₂) = mv²/2     →     v = √(2g·Δh)</div>
+      <p>Sürüşkə düz, əyri, pilləli ola bilər — hər halda eyni Δh üçün eyni sürət. Cisim eyni hündürlüyə qalxa bilər, daha yuxarı yox (enerji saxlanır).</p>
+
+      <h3><span class="st">3</span> Rəqqas</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Rəqqas: ip, şaquli ilə α bucağı, hündürlük fərqi h">
+          <defs><marker id="sx2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="70" y1="15" x2="190" y2="15" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="130" y1="15" x2="130" y2="135" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="130" y1="15" x2="190" y2="119" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="190" cy="119" r="9" fill="var(--accent)"/>
+          <circle cx="130" cy="135" r="9" fill="none" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <path d="M130 43A28 28 0 0 1 144 39" fill="none" stroke="var(--ink)"/>
+          <text x="148" y="46" class="lbl">α</text>
+          <text x="152" y="82" class="lbl">L</text>
+          <line x1="215" y1="119" x2="215" y2="135" stroke="var(--vec)" stroke-width="1.5"/>
+          <line x1="200" y1="135" x2="228" y2="135" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <text x="232" y="129" class="lbl">h</text>
+        </svg>
+        <div class="cap">
+          <p>Kürə ipin <span class="m">α</span> bucağı altında buraxılır. Ən aşağı nöqtədən hesablanan hündürlük <span class="m">h = L − L cos α = L(1 − cos α)</span>. İpin qüvvəsi hər an hərəkətə perpendikulyardır, iş görmür.</p>
+        </div>
+      </div>
+      <div class="fm">h = L(1 − cos α)
+mgh = mv²/2      →   v = √(2gL(1 − cos α))
+α = 60°:  v = √(gL)         α = 90°:  v = √(2gL)</div>
+      <p>İpin dartılma qüvvəsini ən aşağı nöqtədə tapmaq üçün dairəvi hərəkət tənliyi lazımdır: mərkəzə doğru (yuxarı) <span class="m">T − mg = mv²/L</span>. Buradan</p>
+      <div class="fm">T = mg + mv²/L = mg(3 − 2cos α)
+α = 60°:  T = 2mg          α = 90°:  T = 3mg</div>
+      <p>İp uzunluğu <span class="m">L</span> ixtisar olur — ipin dartılma qüvvəsi uzunluqdan asılı deyil, yalnız başlanğıc bucaqdan.</p>
+
+      <h3><span class="st">4</span> Şaquli döngə</h3>
+      <p>Cisim radiusu <span class="m">R</span> olan şaquli dairəvi döngənin yuxarı nöqtəsindən düşmədən keçməlidir. Yuxarı nöqtədə ağırlıq mərkəzə (aşağı) yönəlib, ən azı mərkəzəqaçma təcilini verməlidir: <span class="m">mg ≤ mv²/R</span> (sərhəddə yalnız ağırlıq). Deməli ən kiçik sürət <span class="m">v² = gR</span>. Enerji:</p>
+      <div class="fm">mg·h = mg·2R + mv²/2 = 2mgR + mgR/2 = 2,5·mgR
+h_min = 2,5·R           (döngənin dibindən)</div>
+      <p>Döngənin yuxarı nöqtəsi dibdən <span class="m">2R</span> hündürlükdədir. Əgər yalnız <span class="m">h = 2R</span>-dən buraxsan, cisim yuxarı nöqtəyə sürətsiz çatardı və düşərdi.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Uzunluğu 1,6 m ipdən asılmış kürə ipi 60° meyl etdirib
+sürətsiz buraxılır. Ən aşağı nöqtədə sürət? Dartılma qüvvəsi (m = 0,5 kq)?
+  h = 1,6·(1 − 0,5) = 0,8 m
+  v = √(2·10·0,8) = √16 = 4 m/s
+  T = mg(3 − 2·0,5) = 2mg = 2·0,5·10 = 10 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Hamar sürüşkənin dibində radiusu 0,8 m olan şaquli döngə var.
+Cisim döngənin yuxarı nöqtəsindən düşmədən keçsin deyə sürüşkənin
+neçə metr hündürlüyündən buraxılmalıdır?
+  h_min = 2,5R = 2,5·0,8 = 2 m
+  Yoxlama: yuxarıda v² = 2g(h − 2R) = 20·(2 − 1,6) = 8 = gR = 8 ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Xizəkçi hamar yamacın 25 m hündürlüyündən sürətsiz sürüşür və
+yerdən 5 m yuxarıdakı üfüqi trampləndən uçur. Yerə düşdüyü nöqtə
+trampləndən üfüqi istiqamətdə nə qədər uzaqdadır?
+  Sürət trampləndə: v² = 2g(25 − 5) = 400 → v = 20 m/s (üfüqi)
+  Düşmə vaxtı: 5 = 5t² → t = 1 s
+  Üfüqi məsafə: x = v·t = 20·1 = 20 m</div>
+      <div class="life"><b>Həyatdan.</b> Lunapark dağ sürüşkəsində ilk təpə ən hündür qurulur, sonrakılar daha alçaq. Vaqonçuq yalnız ilk təpədən itələnməklə sürətlənir, sonra bütün təpələri enerjiyə görə keçir. Sürtünmə olduğu üçün hər növbəti təpə əvvəlkindən alçaqdır, yoxsa vaqon dayanardı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Rəqqasda hündürlük kimi ipin uzunluğunu götürmək. Düzü <span class="m">L(1 − cos α)</span> (yalnız 90°-də <span class="m">h = L</span>).</li>
+        <li>Rəqqasın ən aşağı nöqtəsində <span class="m">T = mg</span> yazmaq. Dairəvi hərəkətdə <span class="m">T = mg + mv²/L</span> (T daha böyükdür).</li>
+        <li>Döngədə <span class="m">h_min = 2R</span> demək. Yuxarıda sürət sıfır ola bilməz: <span class="m">h_min = 2,5R</span>.</li>
+        <li>Sürüşkənin uzunluğunu enerji tənliyinə qatmaq. Yalnız hündürlük fərqi.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hamar sürüşkə:  v = √(2g·Δh)
+Rəqqas:  h = L(1 − cos α),  T_aşağı = mg(3 − 2cos α)
+Döngə:  v_yuxarı² ≥ gR  →  h_min = 2,5R
+Üfüqi tramplen: v-ni enerjidən, x = v·t kinematikadan</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Hamar sürüşkənin 5 m hündürlüyündən buraxılan cisim dibdə hansı sürətlə olar? <span class="ans">v = √(2·10·5) = 10 m/s.</span></li>
+        <li>Rəqqas 90° meyl etdirilib (ip üfüqi), L = 0,8 m. Ən aşağıda sürət? <span class="ans">v = √(2gL) = √16 = 4 m/s.</span></li>
+        <li>m = 0,2 kq kürə üçün 90° halında ən aşağıda T = ? <span class="ans">T = 3mg = 3·0,2·10 = 6 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yay və enerji itkiləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Oyuncaq tapança, avtomobilin amortizatoru, bungi ipi, trambolin — yayda toplanan enerji hərəkətə və ya hündürlüyə çevrilir. Real həyatda isə hər şeydə sürtünmə var: enerjinin bir hissəsi istiliyə gedir. Bunu hesablamağı bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Yaylı sistemlərdə saxlanma</h3>
+      <p>Yayın enerjisi <span class="m">kx²/2</span>-dir. Tam mexaniki enerji üç hissədən ibarətdir:</p>
+      <div class="fm">E = mv²/2 + mgh + kx²/2</div>
+      <p><b>Üfüqi yay:</b> <span class="m">kx²/2 = mv²/2</span> → <span class="m">v = x·√(k/m)</span>.</p>
+      <p><b>Şaquli yaydan atma:</b> <span class="m">kx²/2 = mgh</span>, burada <span class="m">h</span> cismin yaydan <b>ayrıldığı nöqtədən</b> deyil, <b>yayın sıxılmış vəziyyətindən</b> ölçülür (cisim yay sıxılmış nöqtədən qalxmağa başlayır).</p>
+      <p><b>Yayın üstünə düşmə.</b> Cisim yayın yuxarı ucundan <span class="m">H</span> hündürlükdə buraxılır. Ən çox sıxılanda cisim anlıq dayanır. Enmə yolu <span class="m">H + x</span> (yay da <span class="m">x</span> qədər sıxılır!):</p>
+      <div class="fm">mg(H + x) = kx²/2</div>
+      <p>Bu kvadrat tənlikdir. Sıfır səviyyəsini ən aşağı nöqtədə götürüb eyni tənliyi alırsan. Ən çox yayılmış səhv: <span class="m">mgH = kx²/2</span> yazmaq — cismin yayı sıxarkən də enməsini unutmaq.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 180" role="img" aria-label="Solda yayın üstündə H hündürlükdə cisim, sağda yay x qədər sıxılıb">
+          <defs><marker id="sx3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="160" x2="250" y2="160" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M60 160L60 150L48 142L72 128L48 114L72 100L48 86L60 80L60 75" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="42" y="15" width="36" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="60" y="33" class="lbl" text-anchor="middle">m</text>
+          <line x1="95" y1="42" x2="95" y2="74" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#sx3)" marker-end="url(#sx3)"/>
+          <text x="101" y="62" class="lbl">H</text>
+          <path d="M180 160L180 152L168 146L192 136L168 126L192 116L168 106L180 102L180 100" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="162" y="74" width="36" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="180" y="92" class="lbl" text-anchor="middle">m</text>
+          <line x1="120" y1="75" x2="215" y2="75" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="225" y1="75" x2="225" y2="100" stroke="var(--vec)" stroke-width="1.5" marker-start="url(#sx3)" marker-end="url(#sx3)"/>
+          <text x="231" y="92" class="lbl">x</text>
+        </svg>
+        <div class="cap">
+          <p>Solda cisim yayın boş ucundan <span class="m">H</span> hündürlükdədir. Sağda ən aşağı nöqtədir: yay <span class="m">x</span> qədər sıxılıb. Cismin ümumi enmə yolu <span class="m">H + x</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Sürtünmə və itki</h3>
+      <p>Sürtünmə və müqavimət olanda mexaniki enerji azalır. Azalan hissə istiliyə çevrilir (cisim və mühit qızır). Enerji bütövlükdə saxlanır — sadəcə mexaniki formadan istilik formasına keçir:</p>
+      <div class="fm">E₁ = E₂ + Q
+Q = F_sürt·s = μmg·s       (kobud səthdə)
+Q = mgh − mv²/2            (sürüşkədə, sürtünmə ilə)</div>
+      <p>Qum, palçıq, taxta kimi mühitdə cisim <b>dayanana qədər</b> hərəkət edirsə: bütün enerji (Ep + Ek) mühitin müqavimətinin işinə gedir. Ağırlıq həm havada, həm mühitdə iş görür, müqavimət isə yalnız mühitdə:</p>
+      <div class="fm">mg(H + d) = F·d          →   F = mg(H + d)/d</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Oyuncaq tapançada k = 400 N/m yay 5 sm sıxılır,
+40 q kürəcik atılır (üfüqi, sürtünməsiz). Çıxış sürəti?
+  kx²/2 = mv²/2 → v = x√(k/m)
+  m = 0,04 kq: k/m = 10 000, √ = 100
+  v = 0,05·100 = 5 m/s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Sərtliyi 1000 N/m olan şaquli yayın yuxarı ucundan 0,15 m
+hündürlükdə 2 kq cisim buraxılır. Yayın maksimal sıxılması?
+  mg(H + x) = kx²/2
+  20·(0,15 + x) = 500x²
+  500x² − 20x − 3 = 0
+  D = 400 + 6000 = 6400, √D = 80
+  x = (20 + 80)/1000 = 0,1 m
+  (mgH = kx²/2 yazsaydın x ≈ 0,078 m çıxardı — səhv.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). 5 kq yük 1 m hündürlükdən qumun üstünə düşür
+və qumda 5 sm batıb dayanır. Qumun orta müqavimət qüvvəsi?
+  Ümumi yol H + d = 1,05 m. Ağırlığın işi: 50·1,05 = 52,5 J
+  Qum yalnız d = 0,05 m yolda təsir edir:  F·0,05 = 52,5
+  F = 1050 N  (yükün ağırlığından 21 dəfə çox!)</div>
+      <div class="life"><b>Həyatdan.</b> Bungi tullanışında ip yay rolunu oynayır: adam tullanır, ip dartılır, ən aşağıda anlıq dayanır. Ağırlığın işi ipin enerjisinə çevrilir: <span class="m">mg(L₀ + x) = kx²/2</span>. Ona görə ipin sərtliyi və uzunluğu «hesablanır», yoxsa adam yerə dəyər. Velosipedçi yoxuşdan enəndə də Ep-nin bir hissəsi küləyin müqavimətinə və sürtünməyə gedir: sürət <span class="m">√(2gh)</span>-dən kiçik olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yayın üstünə düşmədə enmə yolunu <span class="m">H</span> götürmək, <span class="m">x</span>-i unutmaq: düzü <span class="m">H + x</span>.</li>
+        <li>Sürtünmə olan məsələdə qanunu sürtünməsiz yazmaq: <span class="m">mgh = mv²/2</span> yox, <span class="m">mgh = mv²/2 + Q</span>.</li>
+        <li>Qumun müqavimətini bütün yola aid etmək. Qumda yalnız <span class="m">d</span> yolunda təsir edir.</li>
+        <li>Şaquli yaydan atmada <span class="m">h</span>-ı yayın boş ucundan hesablamaq. Cisim yayın <b>sıxılmış</b> vəziyyətindən qalxmağa başlayır, hündürlük oradan ölçülür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">E = mv²/2 + mgh + kx²/2
+Yayın üstünə düşmə:  mg(H + x) = kx²/2
+Sürtünmə ilə:  E₁ = E₂ + Q,  Q = F_sürt·yol
+Mühitdə dayanma:  F = mg(H + d)/d</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Üfüqi yay (k = 200 N/m) 10 sm sıxılıb, 0,1 kq kürəni atır. Sürət? <span class="ans">kx²/2 = 1 J, mv²/2 = 1 → v² = 20, v ≈ 4,5 m/s.</span></li>
+        <li>3 kq cisim sürüşkənin 4 m hündürlüyündən enib dibdə 6 m/s sürətlə çıxır. İstiliyə çevrilən enerji? <span class="ans">Q = 3·10·4 − 3·36/2 = 120 − 54 = 66 J.</span></li>
+        <li>Top 5 m-dən düşüb 3,2 m hündürlüyə sıçradı. Enerjinin neçə faizi itib? <span class="ans">(5 − 3,2)/5 = 0,36 = 36%.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

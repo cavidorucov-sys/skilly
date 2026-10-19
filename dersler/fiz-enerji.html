@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kinetik və potensial enerji dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-enerji.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Kinetik və potensial enerji</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika. İş və enerji</div>
+    <h1>Kinetik və potensial enerji</h1>
+    <p>Enerji — cismin iş görmək qabiliyyətinin ölçüsüdür. Hərəkət edən cismin enerjisi var (kinetik), qaldırılmış və ya sıxılmış cismin də (potensial). Qüvvələri və təcili yazmadan, yalnız hərəkətin əvvəlinə və sonuna baxıb sürəti və yolu tapmağa imkan verən ən güclü alətlərdən biridir. Olimpiadada «iş–enerji teoremi» bir çox məsələni üç sətirdə həll edir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İş və güc</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kinetik enerji</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Potensial enerji</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İş–enerji teoremi</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Mexaniki iş və güc</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Fizikada «iş» gündəlik sözdən fərqlidir. Divarı bütün gün itələsən də, divar tərpənmirsə, fizika baxımından iş sıfırdır. Çamadanı üfüqi daşıyanda da əlinin qüvvəsi (yuxarı) yerdəyişməyə (irəli) perpendikulyar olduğundan iş görmür. Kran yükü qaldıranda isə iş görür. Qüvvənin <b>yol boyu</b> nə qədər «işlədiyini» ölçmək lazımdır — enerji də bu ölçüdən çıxır.</p>
+
+      <h3><span class="st">2</span> İş düsturu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Yerdə cisim, ona bucaq altında qüvvə, altında yerdəyişmə oxu">
+          <defs><marker id="en1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="120" x2="250" y2="120" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="60" y="88" width="52" height="32" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="112" y1="100" x2="196" y2="56" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#en1)"/>
+          <text x="152" y="62" class="lbl">F</text>
+          <line x1="112" y1="100" x2="196" y2="100" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="144" y="94" class="lbl">α</text>
+          <line x1="60" y1="145" x2="200" y2="145" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#en1)"/>
+          <text x="130" y="163" class="lbl" text-anchor="middle">s (yerdəyişmə)</text>
+        </svg>
+        <div class="cap">
+          <p>Cismi <span class="m">F</span> qüvvəsi ilə dartırlar, qüvvə yerdəyişmə ilə <span class="m">α</span> bucağı əmələ gətirir. Yerdəyişmə istiqamətindəki toplananın işi var: <span class="m">F·cos α</span>.</p>
+        </div>
+      </div>
+      <div class="fm">A = F·s·cos α          (vahidi: 1 J = 1 N·m)</div>
+      <p>Üç xüsusi hal olimpiadada tez-tez gəlir:</p>
+      <div class="fm">α = 0°    cos = 1     A = F·s         (qüvvə hərəkət istiqamətində)
+α = 90°   cos = 0     A = 0           (qüvvə yola perpendikulyar)
+α = 180°  cos = −1    A = −F·s        (qüvvə hərəkətin əksinə)</div>
+      <p><b>Mənfi iş</b> o deməkdir ki, qüvvə cismi yavaşıdır, onun enerjisini alır. Sürtünmə qüvvəsi həmişə hərəkətin əksinə olduğundan işi mənfidir: <span class="m">A_sürt = −μmg·s</span>. Yük yuxarı qalxanda ağırlıq qüvvəsinin işi mənfidir (<span class="m">−mgh</span>), aşağı enəndə müsbətdir (<span class="m">+mgh</span>).</p>
+
+      <h3><span class="st">3</span> Dəyişən qüvvə: qrafikdəki sahə</h3>
+      <p>Qüvvə sabit deyilsə (məsələn, yay), <span class="m">A = F·s</span> işləmir. Amma <span class="m">F</span>-in <span class="m">s</span>-dən asılılıq qrafikini çəksən, <b>qrafikin altındakı sahə</b> işə bərabərdir. Sabit <span class="m">F</span> üçün bu düzbucaqlıdır (<span class="m">F·s</span>), xətti artan <span class="m">F</span> üçün üçbucaq (<span class="m">F·s/2</span>). Yayın <span class="m">kx²/2</span> enerjisi məhz belə alınır.</p>
+
+      <h3><span class="st">4</span> Güc</h3>
+      <p>Güc — işin görülmə sürətidir. Eyni iş 10 s-də görülürsə güc 2 dəfə böyükdür, nəinki 20 s-də.</p>
+      <div class="fm">P = A/t            (vahidi: 1 W = 1 J/s)
+P = F·v            (sabit sürətlə hərəkətdə)</div>
+      <p>Avtomobil eyni mühərrik gücü ilə sürəti 2 dəfə çox olanda çəkmə qüvvəsini 2 dəfə az verir: <span class="m">F = P/v</span>. Ona görə maşın yoxuşda yavaşlayır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Xizəyi ipdən 40 N qüvvə ilə dartırlar, ip üfüqlə 60° bucaq
+əmələ gətirir. Xizək 10 m gedir. Qüvvənin işi?
+  A = F·s·cos 60° = 40·10·0,5 = 200 J
+  (Qüvvənin yalnız yerdəyişmə istiqamətindəki toplananı: 40·0,5 = 20 N.)</div>
+      <div class="ex">Nümunə 2. Kran 500 kq yükü 12 m hündürlüyə bərabər sürətlə
+30 saniyəyə qaldırır. Faydalı gücü?
+  Bərabər sürət → çəkmə qüvvəsi F = mg = 5000 N
+  A = F·h = 5000·12 = 60000 J
+  P = A/t = 60000/30 = 2000 W</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Cismə təsir edən qüvvə yolun ilk 4 m-ində 0-dan 20 N-a qədər
+bərabər artır, sonrakı 3 m-də 20 N sabit qalır. Cəmi 7 m yolda
+qüvvənin işi?
+  Üçbucaq: 20·4/2 = 40 J
+  Düzbucaqlı: 20·3 = 60 J
+  A = 40 + 60 = 100 J
+  (Orta qüvvə: 100/7 ≈ 14,3 N — hər iki hissəni ayrı-ayrı hesablamaq asandır.)</div>
+      <div class="life"><b>Həyatdan.</b> Pilləkənlə çıxanda da, liftlə qalxanda da eyni iş görülür: <span class="m">mgh</span>. Fərq güc fərqidir: pilləkəndə bu işi sən 40 s-yə görürsən, liftdə mühərrik 15 s-yə görür. Saatda 1 kilovat-saat «enerji haqqı» da işin vahididir: 1 kVt·saat = 3 600 000 J.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Perpendikulyar qüvvənin də iş gördüyünü düşünmək. Üfüqi daşınan yükü tutan qüvvə iş görmür.</li>
+        <li>Bucağı səhv götürmək: <span class="m">α</span> — qüvvə ilə <b>yerdəyişmə</b> arasındakıdır, qüvvə ilə şaquli arasında yox.</li>
+        <li>Sürtünmənin işini müsbət yazmaq. Sürtünmə hərəkətə qarşıdır, işi həmişə mənfidir.</li>
+        <li>Gücü işlə qarışdırmaq: <span class="m">P = A/t</span> (vat), <span class="m">A = F·s</span> (coul).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A = F·s·cos α,  1 J = 1 N·m
+Sürtünmənin işi mənfi: −μmg·s
+Yük qaldırılanda mg-nin işi −mgh
+Dəyişən qüvvədə iş = F–s qrafikinin altındakı sahə
+P = A/t = F·v,  1 W = 1 J/s</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>30 N qüvvə cismi öz istiqamətində 5 m aparır. İş? <span class="ans">30·5 = 150 J.</span></li>
+        <li>Mühərrikin gücü 6000 W, avtomobil 15 m/s sabit sürətlə gedir. Çəkmə qüvvəsi? <span class="ans">F = P/v = 6000/15 = 400 N.</span></li>
+        <li>10 kq yükü 3 m aşağı endirirlər. Ağırlıq qüvvəsinin işi? <span class="ans">+mgh = 10·10·3 = 300 J (müsbət: qüvvə və hərəkət eyni istiqamətdədir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kinetik enerji</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hərəkət edən cisim iş görə bilir: yuvarlanan top kegli yıxır, çaydakı su dəyirmanı döndərir, uçan güllə lövhəni deşir. Sürət nə qədər çoxdursa, təsir o qədər güclüdür. Bu «hərəkət enerjisini» ölçməyi öyrənək. Maraqlıdır ki, sürət 2 dəfə artanda enerji 2 yox, 4 dəfə artır — yol qəzalarının ağır olmasının səbəbi də budur.</p>
+
+      <h3><span class="st">2</span> Kinetik enerji düsturu</h3>
+      <p>Cisim dayanıb. Ona sabit <span class="m">F</span> qüvvəsi <span class="m">s</span> yol boyu təsir edir. İş <span class="m">A = F·s</span>. Nyuton qanunu: <span class="m">F = ma</span>. Sabit təcildə <span class="m">v² = 2as</span>, yəni <span class="m">s = v²/(2a)</span>. Onda</p>
+      <div class="fm">A = F·s = m·a·v²/(2a) = mv²/2</div>
+      <p>Görülən iş cismin hərəkət enerjisinə çevrilir:</p>
+      <div class="fm">Ek = m·v²/2          (vahidi: J)</div>
+      <p>Enerji həmişə müsbətdir, istiqamətdən asılı deyil. Sürət kvadrata yüksəlir:</p>
+      <div class="fm">v 2 dəfə artsa → Ek 4 dəfə
+v 3 dəfə artsa → Ek 9 dəfə
+m 2 dəfə artsa → Ek 2 dəfə</div>
+
+      <h3><span class="st">3</span> Ek-in dəyişməsi</h3>
+      <p>Cisim <span class="m">v₁</span>-dən <span class="m">v₂</span>-yə sürətlənirsə:</p>
+      <div class="fm">ΔEk = m·(v₂² − v₁²)/2</div>
+      <p>Çox yayılmış səhv: <span class="m">m·(v₂ − v₁)²/2</span> yazmaq. Kvadratlar fərqi fərqin kvadratına bərabər deyil. Məsələn, 2 kq cismin sürəti 10 m/s-dən 20 m/s-ə çatır: <span class="m">ΔEk = 2·(400 − 100)/2 = 300 J</span>, <span class="m">2·(20 − 10)²/2 = 100 J</span> yox.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Avtomobilin kütləsi 1000 kq, sürəti saatda 72 km. Ek = ?
+  v = 72/3,6 = 20 m/s
+  Ek = 1000·20²/2 = 200 000 J = 200 kJ
+  Sürət 144 km/saat olsa: 4 dəfə çox, 800 kJ.</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Cismin sürəti 2 dəfə artanda kinetik enerjisi 30 J artır.
+Başlanğıc kinetik enerji?
+  Ek₂ = 4·Ek₁ → artım = 3·Ek₁ = 30 J
+  Ek₁ = 10 J</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Kütlələri 1 kq və 4 kq olan cisimlərin kinetik enerjiləri
+bərabərdir. Sürətlərinin nisbəti v₁ : v₂ = ?
+  m₁v₁²/2 = m₂v₂²/2 → v₁²/v₂² = m₂/m₁ = 4
+  v₁/v₂ = 2
+  Yüngül cisim 2 dəfə sürətli olmalıdır.</div>
+      <div class="life"><b>Həyatdan.</b> Sürəti 50 km/saatdan 100 km/saata qaldırsan, qəza zamanı sərf olunan enerji 4 dəfə çox olur, tormoz yolu da 4 dəfə uzanır. Şəhərdə 30 km/saat limitinin səbəbi budur: piyadaya dəyən maşının enerjisi 90 km/saatdakından 9 dəfə azdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">Ek = mv</span> və ya <span class="m">Ek = mv²</span> — 1/2-ni unutmaq.</li>
+        <li>km/saat-ı m/s-yə çevirməmək. 36 km/saat = 10 m/s (÷ 3,6), 36 m/s yox.</li>
+        <li>Enerji artımını <span class="m">(v₂ − v₁)²</span> ilə hesablamaq. Düzü: <span class="m">v₂² − v₁²</span>.</li>
+        <li>Kinetik enerjini mənfi hesab etmək. <span class="m">v²</span> həmişə müsbətdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ek = mv²/2
+v ×k → Ek ×k²
+ΔEk = m(v₂² − v₁²)/2
+km/saat ÷ 3,6 = m/s</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 kq cisim 6 m/s sürətlə gedir. Ek? <span class="ans">2·36/2 = 36 J.</span></li>
+        <li>Kütlə 2 dəfə, sürət 3 dəfə artdı. Ek neçə dəfə artdı? <span class="ans">2·9 = 18 dəfə.</span></li>
+        <li>0,5 kq cismin Ek = 25 J. Sürət? <span class="ans">v² = 2·25/0,5 = 100 → v = 10 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Potensial enerji</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qaldırılmış çəkic, sıxılmış yay, dartılmış kaman — hərəkət etmir, amma «hazır» enerji saxlayır. Buraxsan, iş görəcək. Belə enerjiyə <b>potensial</b> («mümkün») enerji deyilir. O, cismin <b>vəziyyətindən</b> asılıdır.</p>
+
+      <h3><span class="st">2</span> Ağırlıq qüvvəsinin potensial enerjisi</h3>
+      <p>Cismi <span class="m">h</span> qədər yavaş-yavaş qaldırırıq. Çəkmə qüvvəsi <span class="m">mg</span>-yə bərabərdir, iş <span class="m">mgh</span>. Bu iş cismin enerjisinə çevrilir:</p>
+      <div class="fm">Ep = m·g·h</div>
+      <p><span class="m">h</span> — <b>sıfır səviyyəsindən</b> hündürlükdür. Sıfır səviyyəsini özün seçirsən (döşəmə, masa, quyunun dibi). Səviyyədən aşağıda <span class="m">h</span> mənfidir, ona görə <span class="m">Ep</span> də mənfi ola bilər. Fiziki mənası yalnız <b>fərqdədir</b>: <span class="m">ΔEp = mg(h₂ − h₁)</span> sıfır səviyyəsindən asılı deyil.</p>
+
+      <h3><span class="st">3</span> İş yoldan asılı deyil</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="A nöqtəsindən B nöqtəsinə üç müxtəlif yol; hündürlük fərqi h eynidir">
+          <defs><marker id="en3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="30" x2="215" y2="30" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="20" y1="140" x2="240" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="30" cy="30" r="5" fill="var(--accent)"/><text x="30" y="20" class="lbl" text-anchor="middle">A</text>
+          <circle cx="200" cy="140" r="5" fill="var(--accent)"/><text x="200" y="158" class="lbl" text-anchor="middle">B</text>
+          <line x1="30" y1="30" x2="200" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M30 30C30 120 80 140 200 140" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M30 30L70 30L70 60L100 60L100 90L130 90L130 115L165 115L165 140L200 140" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="232" y1="32" x2="232" y2="138" stroke="var(--ink)" stroke-width="1.5" marker-start="url(#en3)" marker-end="url(#en3)"/>
+          <text x="226" y="90" class="lbl" text-anchor="end">h</text>
+        </svg>
+        <div class="cap">
+          <p>Cisim <span class="m">A</span>-dan <span class="m">B</span>-yə düz maili müstəvi ilə, əyri sürüşkə ilə və ya pilləkənlə enir. Yol fərqli, <span class="m">h</span> eynidir. Ağırlıq qüvvəsinin işi hər üçündə <span class="m">mgh</span>-dır.</p>
+        </div>
+      </div>
+      <p>Ağırlıq qüvvəsinin işi yalnız başlanğıc və son hündürlükdən asılıdır, yoldan yox. Belə qüvvələr <b>potensial</b> (konservativ) qüvvələrdir: ağırlıq, elastiklik. Onlar üçün</p>
+      <div class="fm">A_qüvvə = −ΔEp = Ep₁ − Ep₂</div>
+      <p>Sürtünmə potensial qüvvə deyil: yol uzandıqca iş artır, ona görə sürtünmə üçün Ep düşünmək olmaz.</p>
+
+      <h3><span class="st">4</span> Yayın enerjisi və qüvvə ilə əlaqə</h3>
+      <p>Yay üçün <span class="m">Ep = kx²/2</span> (bunu «Elastiklik, Huk qanunu» mövzusunda F–x qrafikinin altındakı üçbucaq kimi çıxarmışdıq). Qüvvə ilə enerji arasında əlaqə belədir: potensial enerji qrafikinin <b>maillik</b>i qüvvəni verir. Ağırlıq üçün <span class="m">Ep = mgh</span> xətti düzdür, maillik <span class="m">mg</span>-dir; yay üçün <span class="m">kx²/2</span> parabolasıdır, <span class="m">x</span> artdıqca daha dik olur — qüvvə <span class="m">kx</span> artır.</p>
+
+      <h3><span class="st">5</span> Bircins cismin Ep-si və həll olunmuş nümunələr</h3>
+      <p>Bircins cismin (çubuq, zəncir, kərpic qalağı) potensial enerjisini <b>kütlə mərkəzinin</b> hündürlüyü ilə hesablayırıq: <span class="m">Ep = m·g·h_mərkəz</span>. Bircins çubuğun mərkəzi ortadadır.</p>
+      <div class="ex">Nümunə 1. 4 kq daş yerdən 3 m yuxarıdadır.
+  Yerə nəzərən: Ep = 4·10·3 = 120 J
+  2 m hündürlükdəki stola nəzərən: h = 3 − 2 = 1 m, Ep = 40 J
+  Sıfır səviyyəsi dəyişdi, Ep dəyişdi. Amma daşı yerə endirəndə
+  ΔEp hər iki halda eynidir: 120 J azalır (40 J → −80 J, yəni −120 J).</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Yerdə üfüqi uzanmış 4 eyni kərpicin hər birinin kütləsi 2 kq,
+qalınlığı 10 sm-dir. Onları bir-birinin üstünə qoyub qalaq
+düzəltmək üçün minimal iş?
+  Alttakı kərpic yerində qalır. Qalanları qaldırma hündürlükləri:
+  2-ci: 0,1 m; 3-cü: 0,2 m; 4-cü: 0,3 m  (cəmi 0,6 m)
+  A = mg·(0,1 + 0,2 + 0,3) = 2·10·0,6 = 12 J</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Uzunluğu 1 m, kütləsi 2 kq olan nazik zəncir hamar stolun
+kənarından aşağı sallanıb: zəncirin 1/4 hissəsi stoldan asılıb.
+Zənciri tamamilə stolun üstünə çəkmək üçün minimal iş?
+  Sallanan hissə: kütləsi 2/4 = 0,5 kq, uzunluğu 0,25 m.
+  Onun mərkəzi stoldan 0,25/2 = 0,125 m aşağıdadır.
+  Hissə stolun səviyyəsinə qalxır: ΔEp = 0,5·10·0,125 = 0,625 J
+  A = 0,625 J  (zəncirin stolun üstündəki hissəsi hərəkət etmir)</div>
+      <div class="life"><b>Həyatdan.</b> Su elektrik stansiyasında bəndin arxasındakı suyun potensial enerjisi var. Su aşağı axanda bu enerji turbinə keçir. Hündürlük 2 dəfə çoxdursa, hər kiloqram sudan 2 dəfə çox enerji alınır. Eyni səbəbdən böyük bəndlər dağlarda tikilir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sıfır səviyyəsini unudub hündürlüyü səhv ölçmək. Soruşulan: «nəyə nəzərən?»</li>
+        <li>Bircins çubuğun enerjisini onun ucunun hündürlüyü ilə hesablamaq. Mərkəzin hündürlüyü götürülür.</li>
+        <li>Kərpic qalağında bütün kərpicləri eyni hündürlüyə qaldırmaq. Alttakı qalxmır, hər növbəti bir qalınlıq çox qalxır.</li>
+        <li>Mənfi <span class="m">Ep</span>-dən qorxmaq. Sıfır səviyyəsindən aşağıda mənfi olması normaldır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ep = mgh (sıfır səviyyəsindən),  Ep = kx²/2 (yay)
+Fiziki mənası — ΔEp
+Potensial qüvvənin işi:  A = −ΔEp  (yoldan asılı deyil)
+Bircins cisim: kütlə mərkəzinin hündürlüyü</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 kq cisim yerdən 4 m hündürlükdədir. Ep? <span class="ans">5·10·4 = 200 J.</span></li>
+        <li>3 kq daş yerdən 10 m-dən 6 m-ə düşür. ΔEp? <span class="ans">3·10·(6 − 10) = −120 J.</span></li>
+        <li>3 m uzunluqlu, 6 kq bircins çubuq yerdə üfüqi uzanıb. Şaquli qaldırmaq üçün iş? <span class="ans">Mərkəz 1,5 m qalxır: 6·10·1,5 = 90 J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. İş–enerji teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobil tormozlayır, sürücü bilmək istəyir: neçə metrdə dayanacaq? Yol, sürət, sürtünmə — hamısını Nyuton qanunları ilə də həll etmək olar, amma bir qədər uzun olur. İş–enerji teoremi isə qısa yol verir: yalnız <b>əvvəl və sonra</b> baxırıq, aradakı mürəkkəb hərəkətə girmirik.</p>
+
+      <h3><span class="st">2</span> Teorem</h3>
+      <p>Cismə təsir edən <b>bütün</b> qüvvələrin işlərinin cəmi kinetik enerjinin dəyişməsinə bərabərdir:</p>
+      <div class="fm">A_cəmi = Ek₂ − Ek₁
+A_ağırlıq + A_sürtünmə + A_çəkən + … = mv₂²/2 − mv₁²/2</div>
+      <p>Ağırlıq üçün <span class="m">A = −ΔEp</span> yazıb teoremi başqa formada da yaza bilərsən: <span class="m">Ek₁ + Ep₁ + A_qalan = Ek₂ + Ep₂</span>. Burada «qalan» — sürtünmə və xaricdən çəkən qüvvələrdir (enerjinin saxlanması mövzusuna baxın).</p>
+      <p>Həll qaydası: (1) başlanğıc və son vəziyyəti seç; (2) hansı qüvvələr iş görür, işarələrini yaz; (3) <span class="m">A_cəmi = ΔEk</span>.</p>
+
+      <h3><span class="st">3</span> Tormoz yolu</h3>
+      <p>Avtomobil <span class="m">v</span> sürətlə gedir, təkərlər bloklanıb, sürtünmə əmsalı <span class="m">μ</span>. Dayanana qədər:</p>
+      <div class="fm">−μmg·s = 0 − mv²/2
+s = v²/(2μg)</div>
+      <p>Kütlə ixtisar olur — ağır və yüngül maşının tormoz yolu eynidir (eyni əmsalda). Yol <b>sürətin kvadratı</b> ilə artır: sürət 2 dəfə çoxdursa, yol 4 dəfə uzundur.</p>
+
+      <h3><span class="st">4</span> Maili müstəvidə sürtünmə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Maili müstəvi: hündürlük h, əsas b, cisim yuxarıdadır">
+          <defs><marker id="en4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <polygon points="50,125 220,125 50,35" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="62" y="38" width="22" height="16" transform="rotate(27 62 38)" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="38" y1="37" x2="38" y2="123" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#en4)" marker-end="url(#en4)"/>
+          <text x="30" y="85" class="lbl" text-anchor="end">h</text>
+          <line x1="52" y1="142" x2="218" y2="142" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#en4)" marker-end="url(#en4)"/>
+          <text x="135" y="157" class="lbl" text-anchor="middle">b</text>
+          <text x="150" y="70" class="lbl">L</text>
+          <text x="196" y="118" class="lbl">α</text>
+        </svg>
+        <div class="cap">
+          <p>Maili müstəvinin uzunluğu <span class="m">L</span>, hündürlüyü <span class="m">h</span>, əsasının uzunluğu <span class="m">b</span> (üfüqi proyeksiya). Cisim sürüşür, sürtünmə əmsalı <span class="m">μ</span>.</p>
+        </div>
+      </div>
+      <p>Müstəviyə perpendikulyar təzyiq qüvvəsi <span class="m">N = mg·cos α</span>, sürtünmə <span class="m">F_s = μmg·cos α</span>. Sürtünmənin işi: <span class="m">−μmg·cos α·L</span>. Amma <span class="m">L·cos α = b</span> (əsas!). Deməli</p>
+      <div class="fm">A_sürt = −μmg·b</div>
+      <p>İş yalnız əsasın uzunluğundan asılıdır, meylin bucağından yox. Tam sürüşmədə (başlanğıc sürət 0): <span class="m">mgh − μmg·b = mv²/2</span>, buradan <span class="m">v² = 2g(h − μb)</span>.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq dayanan cismi hamar səthdə 8 N qüvvə 4,5 m itələyir.
+Son sürət?
+  A = F·s = 8·4,5 = 36 J
+  A = Ek = 2·v²/2 = v²  →  v² = 36  →  v = 6 m/s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Kobud üfüqi səthdə qutuya 6 m/s başlanğıc sürət verilir, o,
+9 m gedib dayanır. Sürtünmə əmsalı?
+  −μmg·s = 0 − mv²/2 → μ = v²/(2gs) = 36/(2·10·9) = 0,2</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Hündürlüyü 2 m, əsasının uzunluğu 3 m olan maili müstəvinin
+başından cisim sürüşür. μ = 0,25. Müstəvinin dibində sürət?
+  mgh − μmg·b = mv²/2
+  v² = 2g(h − μb) = 20·(2 − 0,25·3) = 20·1,25 = 25
+  v = 5 m/s
+  (Hamar olsaydı: v = √40 ≈ 6,3 m/s.)</div>
+      <div class="life"><b>Həyatdan.</b> Hərəkət polisi qəza yerində yoldakı tormoz izinin uzunluğunu ölçür və <span class="m">v = √(2μgs)</span> düsturu ilə maşının sürətini tapır. 40 m iz, quru asfalt (<span class="m">μ ≈ 0,8</span>): <span class="m">v = √(2·0,8·10·40) = √640 ≈ 25 m/s ≈ 91 km/saat</span>. Bu üsulla sürücünün «60-la gedirdim» sözünü yoxlayırlar.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Teoremdə yalnız bir qüvvənin işini yazmaq. Bütün qüvvələrin işi cəmlənir (ağırlıq, sürtünmə, çəkən qüvvə).</li>
+        <li>Sürtünmənin işini maili müstəvidə <span class="m">μmg·L</span> yazmaq (<span class="m">cos α</span>-nı unudub). Düzü: <span class="m">μmg·cos α·L = μmg·b</span>.</li>
+        <li>Tormoz yolunda <span class="m">v²/(μg)</span> yazmaq — 2-ni itirmək.</li>
+        <li>km/saat-ı çevirməmək və ya dayanan cismi «Ek = 0»-dan başlamamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A_cəmi = Ek₂ − Ek₁   (bütün qüvvələrin işi)
+Tormoz yolu:  s = v²/(2μg)   (v ×2 → s ×4)
+Maili müstəvidə sürtünmənin işi:  −μmg·b  (b — əsas)
+Sürüşmə:  v² = 2g(h − μb)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Avtomobil 20 m/s-dən μ = 0,5 yolda tormozlayır. s = ? <span class="ans">400/(2·0,5·10) = 40 m.</span></li>
+        <li>3 kq cisim hamar sürüşkənin 5 m hündürlüyündən sürüşür. Dibdə sürət? <span class="ans">mgh = mv²/2 → v = √(2·10·5) = 10 m/s (kütlə ixtisar olur).</span></li>
+        <li>Cisim hamar yoxuşdan düşüb μ = 0,2 olan üfüqi yolda dayanır, yoxuşun hündürlüyü 1 m. Üfüqi yolda gedilən məsafə? <span class="ans">mgh = μmg·s → s = h/μ = 1/0,2 = 5 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

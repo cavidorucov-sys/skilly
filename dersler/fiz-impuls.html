@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İmpuls və toqquşmalar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-impuls.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · İmpuls, toqquşmalar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika. İmpuls və onun saxlanması</div>
+    <h1>İmpuls və onun saxlanması, toqquşmalar</h1>
+    <p>Tüfəngdən güllə çıxanda tüfəng geri təpir. Qayıqdan sahilə tullananda qayıq geri gedir. Bilyard toplarının toqquşmasında bəzən biri dayanır, o biri gedir. Bütün bunlar tək qanunla izah olunur: qapalı sistemdə <b>impuls saxlanır</b>. Kinematik və dinamik hesabları atıb yalnız «əvvəl» və «sonra»ya baxırıq. Toqquşmalarda bu qanun enerji ilə birlikdə işləyir: yapışıb gedən cisimlərdə enerji itir, elastik toqquşmada saxlanır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>. Bütün sürətlər bir düz xətt boyunca götürülür, istiqaməti işarə ilə göstəririk.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İmpuls, F·Δt</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Saxlanma, geri təpmə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qeyri-elastik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Elastik</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İmpuls və qüvvə impulsu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Eyni sürətlə gələn pinq-pong topunu və boulinq kürəsini əllə saxlamağa çalış: kürəni saxlamaq çox çətindir. Sürət eynidir, amma «hərəkət miqdarı» fərqlidir. Yaxud qəzada sərnişin sərt divara dəyirsə, ölümcül qüvvə yaranır; hava yastığına dəyirsə, sağ qalır. Hər iki halda sürət eynidir, saxlanma vaxtı fərqlidir. Bunu ölçmək üçün <b>impuls</b> anlayışı lazımdır.</p>
+
+      <h3><span class="st">2</span> Cismin impulsu</h3>
+      <p>Cismin <b>impulsu</b> (hərəkət miqdarı) kütlənin sürətə hasilidir. O, <b>vektordur</b> və sürətlə eyni istiqamətə yönəlir:</p>
+      <div class="fm">p = m·v          (vahidi: kq·m/s)</div>
+      <p>Bir xətt üzrə hərəkətdə istiqaməti işarə ilə veririk: sağa müsbət, sola mənfi. Məsələn <span class="m">m = 2 kq</span> cisim sola 3 m/s ilə gedirsə, <span class="m">p = −6 kq·m/s</span>.</p>
+      <p>Kinetik enerji ilə əlaqə (tez-tez lazım olur): <span class="m">Ek = mv²/2 = p²/(2m)</span>. Enerji skalyardır, impuls vektordur — iki cisim eyni enerjiyə malik olub əks istiqamətə gedə bilər, onların impulsları isə əks işarəli olacaq.</p>
+
+      <h3><span class="st">3</span> Qüvvə impulsu</h3>
+      <p>Nyutonun II qanunu <span class="m">F = ma = m(v₂ − v₁)/Δt</span> belə də yazılır:</p>
+      <div class="fm">F·Δt = m·v₂ − m·v₁ = Δp</div>
+      <p>Sol tərəf — <b>qüvvə impulsu</b>, sağ tərəf — impulsun dəyişməsi. Qüvvə (orta) <span class="m">F = Δp/Δt</span>: eyni <span class="m">Δp</span>-ni uzun müddətə alsan, qüvvə kiçik olur. Ona görə hava yastığı, mexaniki zərbəni yumşaldan lent və konkiçilərin diz bükərək enməsi işləyir.</p>
+      <p>Əks istiqamətə sıçrayan cisim (məsələn divardan) üçün <span class="m">v₁</span> və <span class="m">v₂</span> əks işarəlidir:</p>
+      <div class="fm">Δp = m·v₂ − m·(−v₁) = m(v₁ + v₂)        (modullarla)
+Eyni sürətlə sıçrama:  Δp = 2mv</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 0,5 kq top divara 10 m/s ilə perpendikulyar dəyir,
+6 m/s ilə geri sıçrayır. Təmas 0,02 s çəkir. Divarın topa orta qüvvəsi?
+  Δp = m(v₁ + v₂) = 0,5·(10 + 6) = 8 kq·m/s
+  F = Δp/Δt = 8/0,02 = 400 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Kütləsi 2 kq olan cismin kinetik enerjisi 16 J-dur. İmpulsu?
+  p² = 2m·Ek = 2·2·16 = 64
+  p = 8 kq·m/s   (yoxlama: v = 4 m/s, p = 2·4 = 8)</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Yağış damcıları damın 1 m² sahəsinə şaquli, 10 m/s sürətlə yağır.
+Hər saniyə sahəyə 0,01 kq su düşür və damcılar sıçramadan axır.
+Yağışın damı basan orta qüvvəsi?
+  1 s-də damcıların impulsu: p = 0,01·10 = 0,1 kq·m/s sıfıra düşür
+  F = Δp/Δt = 0,1/1 = 0,1 N  (sıçrasaydı 2 dəfə çox olardı)</div>
+      <div class="life"><b>Həyatdan.</b> Voleybolçu topu qarşılayanda qollarını geri çəkir: saxlama vaxtı artır, əldəki qüvvə kiçilir. Hündürlükdən tullanan insan dizini bükərək yerə enir: bükülmədən enəndə təmas vaxtı çox qısa, qüvvə çox böyükdür və oynaqlar zədələnir. Bunların hamısı eyni <span class="m">F = Δp/Δt</span>-dir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İmpulsu skalyar saymaq. Əks istiqamətə hərəkət ona mənfi işarə verir.</li>
+        <li>Sıçrayan cisim üçün <span class="m">Δp = m(v₁ − v₂)</span> yazmaq. Sıçrayış sürətləri toplanır: <span class="m">m(v₁ + v₂)</span>.</li>
+        <li>Qüvvə ilə qüvvə impulsunu qarışdırmaq: <span class="m">F</span> — nyuton, <span class="m">F·Δt</span> — kq·m/s.</li>
+        <li>Kütləni qramla, vaxtı millisaniyə ilə qoyub çevirməmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p = mv  (vektor),  Ek = p²/(2m)
+F·Δt = Δp = m·v₂ − m·v₁
+Əks sıçrama:  Δp = m(v₁ + v₂)
+Uzun müddət → kiçik qüvvə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1500 kq avtomobil 20 m/s ilə gedir. p = ? <span class="ans">1500·20 = 30 000 kq·m/s.</span></li>
+        <li>0,4 kq top 25 m/s ilə uçur və divardan eyni sürətlə sıçrayır; təmas 0,01 s. F = ? <span class="ans">Δp = 2·0,4·25 = 20; F = 20/0,01 = 2000 N.</span></li>
+        <li>Eyni sürətlə, bir cismin kütləsi 4 dəfə çoxdur. İmpulsu və kinetik enerjisi neçə dəfə çoxdur? <span class="ans">İmpuls 4 dəfə, enerji 4 dəfə (sürət eynidir, Ek ~ m).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İmpulsun saxlanması, geri təpmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Buz üstündə dayanıb dostunu itələsən, sən də geri sürüşürsən. Qayıqdan sahilə tullananda qayıq uzaqlaşır. Raket kosmosda heç nəyə söykənmədən sürətlənir. Bunların hamısında cisimlər bir-birinə eyni böyüklükdə, əks istiqamətli qüvvələrlə təsir edir (Nyutonun III qanunu), ona görə <b>ümumi impuls dəyişmir</b>.</p>
+
+      <h3><span class="st">2</span> Qanun</h3>
+      <p>Sistem <b>qapalıdır</b>, əgər xarici qüvvələr yoxdur və ya onların cəmi sıfırdır (və ya təsir çox qısa müddətdədir). Onda sistemin ümumi impulsu zamanla dəyişmir:</p>
+      <div class="fm">p₁ + p₂ + … (əvvəl) = p₁' + p₂' + … (sonra)
+m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</div>
+      <p>Qanun <b>vektordur</b>: hər oxa ayrıca tətbiq olunur. Əgər üfüqi istiqamətdə xarici qüvvə yoxdursa (hamar səth), üfüqi impuls saxlanır, şaquli impuls isə dəyişə bilər (Yer şaquli qüvvə verir).</p>
+      <p>Həll qaydası: (1) oxu və müsbət istiqaməti seç; (2) əvvəl və sonra bütün cisimlərin <span class="m">mv</span> hasilini işarə ilə yaz; (3) bərabərləşdir. Sürətlər <b>eyni cisimə (eyni hesablama sisteminə: Yerə, sahilə) nəzərən</b> götürülməlidir!</p>
+
+      <h3><span class="st">3</span> Geri təpmə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 120" role="img" aria-label="Qayıq və insan: əvvəl durur, sonra insan sağa tullanır, qayıq sola gedir">
+          <defs><marker id="ip2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M20 90Q130 112 240 90" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <path d="M60 70L190 70L175 88L75 88z" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="176" cy="34" r="7" fill="var(--accent)"/><line x1="176" y1="41" x2="176" y2="66" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="190" y1="50" x2="245" y2="40" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ip2)"/>
+          <text x="236" y="32" class="lbl" text-anchor="end">m·u</text>
+          <line x1="130" y1="62" x2="85" y2="62" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ip2)"/>
+          <text x="108" y="55" class="lbl" text-anchor="middle">M·V</text>
+        </svg>
+        <div class="cap">
+          <p>İnsan sağa tullanır — qayıq sola gedir. Başlanğıcda impuls 0 idi, sonda da cəmi 0: <span class="m">m·u − M·V = 0</span>.</p>
+        </div>
+      </div>
+      <p>Əvvəl hər şey dayanırsa, cəmi impuls 0-dır və hissələr əks tərəfə ayrılır, <b>sürətləri kütlələrə tərs mütənasibdir</b>:</p>
+      <div class="fm">0 = m₁v₁ + m₂v₂   →   v₂ = −m₁v₁/m₂
+Tüfəng:  M·V = m·v   →   V = m·v/M</div>
+      <p>Ağır hissə yavaş, yüngül hissə sürətlə gedir. Bu səbəbdən tüfəngin geri təpməsi kiçikdir, güllənin sürəti böyükdür.</p>
+      <p><b>Nisbi sürət tələsi.</b> Əgər insanın sürəti <b>qayığa nəzərən</b> <span class="m">u</span> verilirsə, sahilə nəzərən onun sürəti <span class="m">u − V</span> olur (qayıq özü geri gedir):</p>
+      <div class="fm">m(u − V) = M·V    →   V = m·u/(m + M)</div>
+      <p>Partlayış (mərmi parçalanır) da eyni qanundur: partlayış çox qısa olduğundan ağırlıq qüvvəsinin təsiri unudula bilər, impuls saxlanır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Kütləsi 4 kq olan tüfəngdən 10 q güllə 600 m/s ilə çıxır.
+Geri təpmə sürəti?
+  0 = m·v − M·V → V = 0,01·600/4 = 1,5 m/s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Sakit suda 120 kq qayıqdan 60 kq insan qayığa nəzərən 3 m/s sürətlə
+üfüqi tullanır. Qayığın sahilə nəzərən sürəti və insanın sahilə
+nəzərən sürəti?
+  m(u − V) = M·V → V = m·u/(m + M) = 60·3/180 = 1 m/s
+  İnsan sahilə nəzərən: u − V = 3 − 1 = 2 m/s
+  Yoxlama: 60·2 = 120·1 ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+3 kq mərmi üfüqi istiqamətdə 20 m/s ilə uçarkən partlayır:
+1 kq-lıq parça geriyə (əks istiqamətə) 10 m/s ilə uçur.
+İkinci parçanın sürəti?
+  Uçuş istiqaməti müsbət. Partlayışdan əvvəl: 3·20 = 60
+  Sonra: 1·(−10) + 2·v = 60 → 2v = 70 → v = 35 m/s</div>
+      <div class="life"><b>Həyatdan.</b> Reaktiv təyyarə və raket yanacaq qazını arxaya ata-ata irəli gedir: qazın impulsu bir tərəfə, raketin impulsu əks tərəfə. Kosmosda ətraf cisim yoxdur, amma qanun işləyir. Kalmar və sürətlə üzən meduza da suyu püskürtməklə hərəkət edir. Konkiçi bir-birini itələyəndə yüngül olan daha uzağa sürüşür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sürətləri müxtəlif hesablama sistemində götürmək: qayığa nəzərən sürəti sahilə nəzərən sürətə çevirmədən saxlanma tənliyinə yazmaq.</li>
+        <li>İşarələri unutmaq. Əks istiqamətli parçalar bir-birindən çıxılmalıdır, toplanmamalıdır.</li>
+        <li>Saxlanma qanununu xarici qüvvə olduqda tətbiq etmək. Divara söykənmiş tüfəngdə, ya da kobud səthdə uzun müddətdə impuls saxlanmır.</li>
+        <li>Gülləni «0,01 kq» əvəzinə «10 kq» götürmək. Qramı kiloqrama çevir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qapalı sistemdə  Σ mv  saxlanır (vektor, işarə ilə)
+Əvvəl dayanırdısa:  0 = m₁v₁ + m₂v₂,  v ~ 1/m
+Qayığa nəzərən u:  V = m·u/(m + M)
+Partlayış: impuls saxlanır; hər sürət eyni sistemə nəzərən</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Buzda 60 kq və 40 kq konkiçi itələşir. 40 kq-lıq 3 m/s ilə gedir. Digəri? <span class="ans">60·v = 40·3 → v = 2 m/s (əks tərəfə).</span></li>
+        <li>2 kq top 400 m/s ilə atılır, 800 kq-lıq top geri təpir. Sürəti? <span class="ans">V = 2·400/800 = 1 m/s.</span></li>
+        <li>Qayığın kütləsi insanın kütləsindən 3 dəfə böyükdür. İnsan qayığa nəzərən 4 m/s ilə tullanır. Qayığın sürəti? <span class="ans">V = m·u/(m + 3m) = u/4 = 1 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qeyri-elastik toqquşma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qatar vaqonları bir-birinə qoşulur, plastilin top divara yapışır, güllə taxta blokda ilişib qalır, futbolçu topu başı ilə «öldürür». Bunlar <b>qeyri-elastik</b> toqquşmalardır: cisimlər ya birlikdə hərəkət edir (<b>mütləq qeyri-elastik</b>), ya da formasını itirir. Burada həmişə sual: «sonra sürət nə olur və enerjinin hansı hissəsi itdi?»</p>
+
+      <h3><span class="st">2</span> Yapışma və sürət</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 140" role="img" aria-label="Toqquşmadan əvvəl iki araba, sonra yapışıb birlikdə gedirlər">
+          <defs><marker id="ip3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="8" y1="55" x2="252" y2="55" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="25" y="25" width="50" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="50" y="45" class="lbl" text-anchor="middle">m₁</text>
+          <rect x="150" y="25" width="40" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="170" y="45" class="lbl" text-anchor="middle">m₂</text>
+          <line x1="80" y1="40" x2="125" y2="40" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ip3)"/><text x="100" y="32" class="lbl" text-anchor="middle">v₁</text>
+          <text x="215" y="45" class="lbl">v₂ = 0</text>
+          <line x1="8" y1="125" x2="252" y2="125" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="110" y="75" width="90" height="30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text x="155" y="95" class="lbl" text-anchor="middle">m₁ + m₂</text>
+          <line x1="205" y1="90" x2="245" y2="90" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ip3)"/><text x="225" y="82" class="lbl" text-anchor="middle">V</text>
+          <text x="25" y="100" class="lbl">sonra</text>
+        </svg>
+        <div class="cap">
+          <p>Yuxarıda toqquşmadan əvvəl, aşağıda yapışandan sonra. Toqquşma qısadır, xarici üfüqi qüvvə yoxdur: üfüqi impuls saxlanır.</p>
+        </div>
+      </div>
+      <p>Yapışan cisimlər eyni sürətlə gedir, ona görə:</p>
+      <div class="fm">m₁v₁ + m₂v₂ = (m₁ + m₂)·V
+V = (m₁v₁ + m₂v₂)/(m₁ + m₂)</div>
+      <p>Cisimlər əks istiqamətdə gəlirsə, birinin sürətini mənfi yaz. <span class="m">V</span> mənfi çıxsa, birləşmiş cisim mənfi istiqamətdə gedir. Kütlələr və sürətlərin hasili bərabər olsa, <span class="m">V = 0</span> — hər ikisi dayanır.</p>
+
+      <h3><span class="st">3</span> Enerji itkisi</h3>
+      <p>Qeyri-elastik toqquşmada impuls saxlanır, <b>kinetik enerji yox</b>. Enerji deformasiyaya, istiliyə, səsə gedir:</p>
+      <div class="fm">Q = Ek(əvvəl) − Ek(sonra)
+dayanan m₂-yə yapışma:  Ek(sonra)/Ek(əvvəl) = m₁/(m₁ + m₂)
+itirilən hissə = m₂/(m₁ + m₂)</div>
+      <p>Hər ikisi bərabər kütləli (<span class="m">m₁ = m₂</span>) və biri dayanırsa, enerjinin <b>yarısı</b> itir. Dayanan cisim nə qədər ağırdırsa, itki o qədər böyükdür. Ağır divara yapışan plastilin enerjisinin demək olar hamısını itirir.</p>
+      <p><b>Ballistik rəqqas.</b> Güllə asılmış yeşiyə girib ilişir. Əvvəl qeyri-elastik toqquşma (impuls saxlanır), sonra yeşik qalxır (enerji saxlanır). İki mərhələni ayrıca həll et:</p>
+      <div class="fm">1) mv = (m + M)·V              toqquşma
+2) (m + M)V²/2 = (m + M)·g·h    qalxma  →  V = √(2gh)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq araba 6 m/s ilə dayanan 4 kq-lıq arabaya yapışır.
+Sürət və itirilən enerji?
+  V = 2·6/6 = 2 m/s
+  Əvvəl: 2·36/2 = 36 J. Sonra: 6·4/2 = 12 J. Q = 24 J
+  Yoxlama: itirilən hissə m₂/(m₁ + m₂) = 4/6 = 2/3 → 36·2/3 = 24 ✓</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+3 kq araba sağa 4 m/s, 5 kq-lıq araba sola 2 m/s sürətlə gəlib
+toqquşur və yapışır. Sürət?
+  Sağ müsbət: 3·4 − 5·2 = (3 + 5)V
+  12 − 10 = 8V → V = 0,25 m/s (sağa)</div>
+      <div class="ex">Nümunə 3 (RFO tipli, ballistik rəqqas).
+Kütləsi 10 q güllə 1,99 kq yeşiyə üfüqi dəyib ilişir. Yeşik
+0,8 m qalxır. Güllənin sürəti?
+  Qalxma: V = √(2gh) = √16 = 4 m/s
+  Toqquşma: m·v = (m + M)V → v = 2·4/0,01 = 800 m/s
+  Enerjinin itən hissəsi M/(m + M) = 1,99/2 ≈ 99,5%</div>
+      <div class="life"><b>Həyatdan.</b> Maşın qəzasında avtomobillərin deformasiyası enerjini udur: maşın bərk divara dəyəndə kinetik enerji deformasiyaya gedir. Ona görə avtomobilin ön hissəsi «əzilən zona» kimi yumşaq qurulur: əzilmə vaxtı uzadır (qüvvə azalır) və enerjini udur (sərnişin zərbəsi azalır). İki maşın yapışıb sürüşəndə nə qədər sürəti saxladıqlarını da bu düsturla qəza ekspertləri hesablayır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qeyri-elastik toqquşmada kinetik enerjinin saxlanmasını yazmaq. Saxlanan impulsdur.</li>
+        <li>Məxrəcə yalnız bir kütləni qoymaq. Yapışandan sonra kütlə <span class="m">m₁ + m₂</span> olur.</li>
+        <li>Əks istiqamətli sürətə işarə verməmək.</li>
+        <li>Ballistik rəqqasda bütün prosesi bir tənliklə yazmaq. İki mərhələ ayrıdır: toqquşmada enerji itir, yeşik qalxanda saxlanır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">m₁v₁ + m₂v₂ = (m₁ + m₂)V   (işarə ilə)
+Q = Ek(əvvəl) − Ek(sonra)
+Dayanan cismə yapışma: itki = m₂/(m₁ + m₂) hissə
+Ballistik: toqquşma (p) + qalxma (E)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1 kq plastilin 6 m/s ilə dayanan 2 kq plastilinə yapışır. V = ? <span class="ans">V = 6/3 = 2 m/s.</span></li>
+        <li>Eyni kütləli iki top eyni sürətlə bir-birinə doğru gəlib yapışır. V = ? <span class="ans">0: impulslar bərabər və əksdir.</span></li>
+        <li>3 kq cisim dayanan 1 kq-lıq cismə yapışır. İlkin enerjinin neçə hissəsi itir? <span class="ans">m₂/(m₁ + m₂) = 1/4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Elastik toqquşma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bilyard topları, polad kürələr (Nyuton beşiyi), molekulların toqquşması — buradakı deformasiya geri qayıdır, enerji istiliyə getmir. Bu toqquşmalara <b>elastik</b> deyilir. İki məchul var (zərbədən sonrakı iki sürət), deməli iki tənlik lazımdır: impuls və enerji.</p>
+
+      <h3><span class="st">2</span> İki tənlik</h3>
+      <div class="fm">m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'              (impuls)
+m₁v₁²/2 + m₂v₂²/2 = m₁v₁'²/2 + m₂v₂'²/2    (enerji)</div>
+      <p>Bu sistemin həllini ən asan belə tapırıq. Enerji tənliyini impulsdan istifadə edib bölsək, <b>nisbi sürət qaydası</b> alınır: toqquşma zamanı nisbi sürət işarəsini dəyişir, modulu eyni qalır:</p>
+      <div class="fm">v₂' − v₁' = −(v₂ − v₁)</div>
+      <p>Bu xətti tənliyi impuls tənliyi ilə birgə həll edəndə</p>
+      <div class="fm">v₁' = ((m₁ − m₂)v₁ + 2m₂v₂)/(m₁ + m₂)
+v₂' = ((m₂ − m₁)v₂ + 2m₁v₁)/(m₁ + m₂)</div>
+      <p>İkinci cisim əvvəl dayanırsa (<span class="m">v₂ = 0</span>):</p>
+      <div class="fm">v₁' = (m₁ − m₂)v₁/(m₁ + m₂)      v₂' = 2m₁v₁/(m₁ + m₂)</div>
+
+      <h3><span class="st">3</span> Xüsusi hallar</h3>
+      <div class="fm">m₁ = m₂, v₂ = 0:   v₁' = 0, v₂' = v₁    (sürətlər «dəyişir»)
+m₁ ≪ m₂ (divar):     v₁' = −v₁              (geri sıçrayır, sürət modulu eyni)
+m₁ ≫ m₂, v₂ = 0:     v₁' ≈ v₁,  v₂' ≈ 2v₁   (ağır yüngülü «qabağına qatır»)</div>
+      <p>Yüngül cisim ağır cismə dəyəndə geri sıçrayır (<span class="m">v₁' &lt; 0</span>). Ağır cisim yüngülü vuranda isə ikisi də irəli gedir. Bərabər kütlələrdə hər halda sürətlər dəyişir (hər iki cisim hərəkət edirsə də).</p>
+      <p><b>Hərəkət edən divar (raket).</b> Top <span class="m">v</span> sürətlə uçur, ağır raket ona doğru <span class="m">u</span> sürətlə hərəkət edir. Raket sistemində top <span class="m">v + u</span> ilə yaxınlaşır və eyni modulla geri qayıdır. Yerə nəzərən: <span class="m">v' = (v + u) + u = v + 2u</span>. Ona görə sürətlə vurulan top daha sürətlə qayıdır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq top 5 m/s ilə dayanan eyni kütləli topa elastik dəyir.
+  Kütlələr bərabərdir, ikinci dayanırdı: birinci dayanır, ikinci 5 m/s ilə gedir.
+  Yoxlama: impuls 2·5 = 10 → 2·0 + 2·5 ✓; enerji 25 → 25 ✓</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+1 kq cisim 8 m/s ilə sağa gedib dayanan 3 kq-lıq cismə elastik dəyir.
+Zərbədən sonra sürətlər?
+  v₁' = (1 − 3)·8/4 = −4 m/s   (geri sıçrayır)
+  v₂' = 2·1·8/4 = 4 m/s
+  Yoxlama: impuls 8 → 1·(−4) + 3·4 = 8 ✓
+           enerji 32 → 8 + 24 = 32 ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Tennisçi topu 10 m/s ilə uçarkən raketlə 2 m/s ilə qarşılayır
+(top raketdən çox yüngüldür). Topun zərbədən sonrakı sürəti?
+  Raketin sistemində: yaxınlaşma sürəti 10 + 2 = 12 m/s.
+  Eyni modulla geri: 12 m/s. Yerə nəzərən: 12 + 2 = 14 m/s.</div>
+      <div class="life"><b>Həyatdan.</b> Bilyardda ağ kürə eyni kütləli kürəyə düz dəyəndə dayanır, ikinci kürə gedir — nümunə 1. Kosmik aparatlar planetin «cazibə manevri» ilə sürətlənir: planetə yaxınlaşıb ondan sürətini artırır (planetin sistemində elastik «dəymə», planet isə hərəkətdədir və <span class="m">v' = v + 2u</span> qaydası). Molekullar hava otağında da bir-biri ilə elastik toqquşur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Elastik toqquşmada yalnız impulsu yazıb enerjini unutmaq (tək tənlik iki məchulu verə bilməz).</li>
+        <li>Elastik toqquşmada «hər şey dayanır» düşünmək. Dayanan yalnız bərabər kütlələrin xüsusi halıdır.</li>
+        <li>İşarəni unutmaq: <span class="m">v₁'</span> mənfi çıxsa, cisim geri qayıdır.</li>
+        <li>Düsturu qarışdırmaq. Yoxlama: <span class="m">m₁ = m₂</span>-də <span class="m">v₂' = v₁</span> çıxmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Elastik: impuls və enerji saxlanır
+v₂' − v₁' = −(v₂ − v₁)   (nisbi sürət işarəsini dəyişir)
+v₂ = 0:  v₁' = (m₁ − m₂)v₁/(m₁ + m₂),  v₂' = 2m₁v₁/(m₁ + m₂)
+Bərabər kütlə: sürətlər dəyişir; divar: v' = −v;  hərəkətli divar: v + 2u</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>3 kq cisim 6 m/s ilə dayanan 1 kq-lıq cismə elastik dəyir. v₂' = ? <span class="ans">2·3·6/4 = 9 m/s.</span></li>
+        <li>1 kq cisim 6 m/s ilə dayanan 3 kq-lıq cismə elastik dəyir. v₁' = ? <span class="ans">(1 − 3)·6/4 = −3 m/s (geri).</span></li>
+        <li>Elastik toqquşmada toqquşmadan əvvəl nisbi sürət 5 m/s idi. Sonra? <span class="ans">Modul eyni, istiqamət əks: 5 m/s (ayrılma sürəti).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
