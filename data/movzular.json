@@ -180,7 +180,8 @@
    "bolme": "Funksiyalar",
    "ad": "Koordinat sistemi, funksiya anlayışı",
    "status": "yox",
-   "menbe": "DİM: Funksiyalar və qrafiklər"
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/koordinat-funksiya.html"
   },
   {
    "bolme": "Funksiyalar",
@@ -200,13 +201,15 @@
    "bolme": "Funksiyalar",
    "ad": "y = k/x, y = √x, y = |x|, y = x³ funksiyaları",
    "status": "yox",
-   "menbe": "DİM: Funksiyalar və qrafiklər"
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/esas-funksiyalar.html"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "Qrafiklərin çevrilməsi",
    "status": "yox",
-   "menbe": "DİM: Funksiyalar və qrafiklər"
+   "menbe": "DİM: Funksiyalar və qrafiklər",
+   "ders": "dersler/qrafik-cevrilme.html"
   },
   {
    "bolme": "Bərabərsizliklər",
