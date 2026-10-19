@@ -59,7 +59,7 @@ async function shell(content) {
   requestAnimationFrame(() => requestAnimationFrame(() => { ring.querySelectorAll("circle")[1].style.strokeDashoffset = C * (1 - Math.max(pct, 1) / 100); }));
   const hours = w ? w.saatlar.reduce((a, s) => a + s.saat, 0) : 0;
   const rail = el("aside", { class: "rail" },
-    el("a", { class: "logo", href: "index.html" }, "Hazırlıq"),
+    el("a", { class: "logo", href: "index.html" }, "Skilly"),
     el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : "")),
     ring,
     el("div", { class: "minis" },
