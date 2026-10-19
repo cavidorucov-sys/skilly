@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Natural ədədlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-natural-ededler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Natural ədədlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Həqiqi ədədlər (təkrar)</div>
+    <h1>Natural ədədlər: bölünmə, sadə vuruqlar, ƏBOB və ƏKOB</h1>
+    <p>Bu, 5–6-cı sinif materialıdır, amma buraxılışda hər il çıxır — adətən tələ ilə: "rəqəmi tap", "qalığı tap", "ən çox neçə hədiyyə". Hesab çətin deyil, səhvlər diqqətsizlikdən olur. Bu mövzu həm də kəsrlərin bazasıdır: ixtisar ƏBOB-la, ortaq məxrəc ƏKOB-la tapılır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bölünmə, qalıq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Sadə vuruqlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>ƏBOB, ƏKOB</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Bölünmə əlamətləri və qalıqlı bölmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>252 dəftəri 9 şagird arasında bərabər bölmək olarmı? Bölmədən də bilmək olar: 2 + 5 + 2 = 9, cəm 9-a bölünür — deməli, olar (hər şagirdə 28). Bölünmə əlamətləri böyük ədədlərlə işləmədən cavab verir. İmtahanda isə əsas sual tipi belədir: ədəddə bir rəqəm gizlədilib, onu əlamətlə tapmaq lazımdır.</p>
+
+      <h3><span class="st">2</span> Əlamətlər</h3>
+      <div class="fm">2-yə:   son rəqəm cütdür (0, 2, 4, 6, 8)
+5-ə:   son rəqəm 0 və ya 5
+10-a:  son rəqəm 0
+4-ə:   son iki rəqəmdən düzələn ədəd 4-ə bölünür
+3-ə:   rəqəmlərin cəmi 3-ə bölünür
+9-a:   rəqəmlərin cəmi 9-a bölünür</div>
+      <p><b>Birləşmiş əlamətlər.</b> 6 = 2 · 3, 12 = 3 · 4, 15 = 3 · 5, 18 = 2 · 9, 36 = 4 · 9, 45 = 5 · 9. Ədəd 12-yə bölünürsə — həm 3-ə, həm 4-ə bölünür, və tərsinə. Vuruqlar <b>qarşılıqlı sadə</b> olmalıdır (ortaq böləni yalnız 1): 12 üçün "2-yə və 6-ya" yoxlamaq olmaz — 18 həm 2-yə, həm 6-ya bölünür, amma 12-yə yox.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 5*28 dördrəqəmli ədədi 3-ə bölünür. * yerinə hansı rəqəmlər yazıla bilər?
+  Məlum rəqəmlərin cəmi: 5 + 2 + 8 = 15.
+  15 + * 3-ə bölünməlidir: * = 0, 3, 6, 9  (cəmlər 15, 18, 21, 24).
+  Cavab: 0, 3, 6, 9 — dörd rəqəm, cəmi 18.
+
+Nümunə 2. 37*4 ədədi 12-yə bölünür. * = ?
+  12 = 3 · 4, iki əlaməti ayrıca yoxla.
+  4-ə: *4 iki rəqəmli ədədi 4-ə bölünməlidir → 04, 24, 44, 64, 84 → * = 0, 2, 4, 6, 8.
+  3-ə: 3 + 7 + * + 4 = 14 + * → * = 1, 4, 7.
+  Hər ikisində olan: * = 4.  Yoxlama: 3744 : 12 = 312.
+  Cavab: 4</div>
+
+      <h3><span class="st">4</span> Qalıqlı bölmə</h3>
+      <div class="fm">a = b · q + r,   0 ≤ r &lt; b
+a — bölünən, b — bölən, q — qismət, r — qalıq</div>
+      <p>Qalıq <b>həmişə böləndən kiçikdir</b>. 7-yə bölmədə qalıq 0, 1, …, 6 ola bilər — 7 və ya 8 ola bilməz.</p>
+      <div class="ex">Nümunə 3. 100-ü 7-yə böl.  7 · 14 = 98,  100 − 98 = 2.  100 = 7 · 14 + 2, qalıq 2.
+
+Nümunə 4. n-i 5-ə böləndə qalıq 3. 4n-i 5-ə böləndə qalıq?
+  n = 5q + 3 → 4n = 20q + 12 = 5·(4q + 2) + 2.
+  Qısa yol: qalığı vur — 4 · 3 = 12, 12-ni 5-ə böləndə qalıq 2.
+  Yoxlama: n = 8 → 4n = 32 = 5 · 6 + 2.  Cavab: 2
+
+Nümunə 5. 1234567-ni 9-a böləndə qalıq?
+  9-a bölmədə qalıq = rəqəmlər cəminin qalığı.
+  1+2+3+4+5+6+7 = 28 = 9 · 3 + 1.  Cavab: 1</div>
+      <div class="life"><b>Həyatdan: həftənin günü.</b> Bu gün çərşənbədir. 100 gündən sonra hansı gün olacaq? Həftə 7 gündür: 100 = 7 · 14 + 2. 14 tam həftə heç nəyi dəyişmir, qalan 2 gün: çərşənbə → cümə axşamı → <b>cümə</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>4-ə bölünməni yalnız son rəqəmlə yoxlamaq: 14-ün son rəqəmi 4-dür, amma 14 4-ə bölünmür. Son <b>iki</b> rəqəmə bax.</li>
+        <li>Birləşmiş əlamətdə qarşılıqlı sadə olmayan vuruqlar götürmək (12 üçün 2 və 6).</li>
+        <li>* birinci yerdədirsə, 0 yazmaq — ədəd 0 ilə başlamır.</li>
+        <li>Qalığı böləndən böyük yazmaq: "47 = 5 · 8 + 7" səhvdir, düzü 47 = 5 · 9 + 2.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">2, 5, 10 — son rəqəm;   4 — son iki rəqəm;   3, 9 — rəqəmlərin cəmi
+Birləşmiş: 6 = 2·3, 12 = 3·4, 15 = 3·5, 18 = 2·9, 45 = 5·9
+a = b·q + r,  0 ≤ r &lt; b
+Qalıqla hesabla: n-in qalığı r-dirsə, k·n-in qalığı = k·r-in qalığı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Üçrəqəmli 7*5 ədədi 45-ə bölünür. * = ? <span class="ans">6. Son rəqəm 5 — 5-ə bölünür. 9-a: 7 + * + 5 = 12 + * → * = 6. Yoxlama: 765 : 45 = 17.</span></li>
+        <li>250-ni 12-yə böləndə qalıq neçədir? <span class="ans">10. 12 · 20 = 240, 250 − 240 = 10.</span></li>
+        <li>n-i 6-ya böləndə qalıq 5. n + 3-ü 6-ya böləndə qalıq? <span class="ans">2. 5 + 3 = 8 = 6 + 2. Yoxlama: n = 11, 14 = 6 · 2 + 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Sadə ədədlər və sadə vuruqlara ayırma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sadə və mürəkkəb</h3>
+      <p><b>Sadə ədəd</b> — düz iki natural böləni olan ədəd: 1 və özü. <b>Mürəkkəb ədəd</b> — ikidən çox böləni olan ədəd. <b>1</b> nə sadədir, nə mürəkkəb (bircə böləni var). <b>2</b> — yeganə cüt sadə ədəd.</p>
+      <div class="fm">50-yə qədər sadə ədədlər:
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+31, 37, 41, 43, 47</div>
+      <p><b>Yoxlama üsulu:</b> n-i √n-dən kiçik və ya ona bərabər sadə ədədlərə böl. Heç birinə bölünmürsə — sadədir. Məsələn, 97: √97 &lt; 10, yoxlanacaq 2, 3, 5, 7 — heç birinə bölünmür, deməli 97 sadədir.</p>
+      <p><b>Tələ ədədlər</b> — sadə "görünən" mürəkkəb ədədlər: 51 = 3 · 17, 57 = 3 · 19, 87 = 3 · 29, 91 = 7 · 13, 119 = 7 · 17, 133 = 7 · 19, 143 = 11 · 13.</p>
+
+      <h3><span class="st">2</span> Sadə vuruqlara ayırma</h3>
+      <p>Hər mürəkkəb ədəd sadə ədədlərin hasilidir və bu yazılış yeganədir. Ədədi ən kiçik sadə ədəddən başlayaraq ardıcıl bölürük:</p>
+      <div class="ex">360 | 2
+180 | 2
+ 90 | 2
+ 45 | 3
+ 15 | 3
+  5 | 5
+  1 |
+
+360 = 2 · 2 · 2 · 3 · 3 · 5 = 2³ · 3² · 5
+Yoxlama: 8 · 9 · 5 = 360</div>
+
+      <h3><span class="st">3</span> Bölənlərin sayı</h3>
+      <div class="fm">n = pᵃ · qᵇ · rᶜ  →  bölənlərin sayı = (a + 1)(b + 1)(c + 1)</div>
+      <p>Niyə: hər bölən 2-ni 0, 1, …, a dəfə götürür (a + 1 seçim), 3-ü — b + 1 seçim və s.</p>
+      <div class="ex">12 = 2² · 3  →  (2 + 1)(1 + 1) = 6 bölən: 1, 2, 3, 4, 6, 12.
+360 = 2³ · 3² · 5  →  (3 + 1)(2 + 1)(1 + 1) = 4 · 3 · 2 = 24 bölən.
+Ən böyük sadə bölən: 5.  Müxtəlif sadə bölənlərin cəmi: 2 + 3 + 5 = 10.</div>
+      <div class="life"><b>Həyatdan.</b> Bank kartı və internetdə şifrələmə iki çox böyük sadə ədədin hasilinə əsaslanır. Hasili hesablamaq asandır, amma onu geri — sadə vuruqlara — ayırmaq ən güclü kompüterlərə də illər çəkir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>1-i sadə saymaq. 1 sadə deyil.</li>
+        <li>51, 87, 91-i sadə saymaq. 51 və 87 — rəqəmlər cəmi 3-ə bölünür; 91 = 7 · 13.</li>
+        <li>Ayırmada mürəkkəb vuruq saxlamaq: 360 = 2³ · 45 — hələ bitməyib, 45 = 3² · 5.</li>
+        <li>Bölənlərin sayında üstləri vurmaq (3 · 2 · 1 = 6) — hər üstə 1 əlavə et: 4 · 3 · 2 = 24.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sadə: düz 2 böləni var. 1 — nə sadə, nə mürəkkəb. 2 — yeganə cüt sadə.
+Yoxlama: √n-ə qədər sadə ədədlərə böl
+n = pᵃ · qᵇ · rᶜ  →  bölənlərin sayı (a+1)(b+1)(c+1)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>84-ü sadə vuruqlara ayır. <span class="ans">84 = 2² · 3 · 7.</span></li>
+        <li>72-nin neçə natural böləni var? <span class="ans">12. 72 = 2³ · 3² → (3 + 1)(2 + 1) = 12.</span></li>
+        <li>1-dən 20-yə qədər neçə sadə ədəd var? <span class="ans">8: 2, 3, 5, 7, 11, 13, 17, 19.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. ƏBOB və ƏKOB</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><b>ƏBOB</b> (ən böyük ortaq bölən) — iki ədədin hər ikisini qalıqsız bölən ən böyük ədəd. <b>ƏKOB</b> (ən kiçik ortaq bölünən) — hər iki ədədə qalıqsız bölünən ən kiçik ədəd. Həyatda: "bərabər paylamaq, ən çox" → ƏBOB; "yenidən birlikdə, ən az" → ƏKOB. Kəsrlərdə də: ixtisar ƏBOB-la, ortaq məxrəc ƏKOB-la tapılır.</p>
+
+      <h3><span class="st">2</span> Sadə vuruqlarla tapmaq</h3>
+      <div class="fm">ƏBOB: yalnız ortaq vuruqlar, hər biri ən KİÇİK üstlə
+ƏKOB: bütün vuruqlar, hər biri ən BÖYÜK üstlə
+ƏBOB(a; b) · ƏKOB(a; b) = a · b</div>
+      <div class="ex">ƏBOB(72; 120) və ƏKOB(72; 120):
+  72  = 2³ · 3²
+  120 = 2³ · 3 · 5
+  ƏBOB = 2³ · 3 = 24          (5 ortaq deyil — götürülmür)
+  ƏKOB = 2³ · 3² · 5 = 360
+  Yoxlama: 24 · 360 = 8640 = 72 · 120</div>
+
+      <h3><span class="st">3</span> Xüsusi hallar</h3>
+      <ul>
+        <li><b>Qarşılıqlı sadə</b> ədədlər — ƏBOB-u 1 olan ədədlər. Onda ƏKOB = a · b. Məsələn, 8 və 15 (ikisi də mürəkkəbdir, amma qarşılıqlı sadədir): ƏKOB = 120.</li>
+        <li>Biri o birinin bölənidirsə: ƏBOB(12; 36) = 12, ƏKOB(12; 36) = 36.</li>
+        <li>Düstur tərsinə: a = 18, ƏBOB = 6, ƏKOB = 180 → b = 6 · 180 : 18 = 60.</li>
+      </ul>
+
+      <h3><span class="st">4</span> Mətnli məsələlər</h3>
+      <div class="ex">Nümunə 1. 48 qələm və 36 dəftər var. Hər hədiyyədə eyni sayda qələm və eyni sayda dəftər olmaqla, ən çox neçə hədiyyə düzəltmək olar?
+  Hədiyyələrin sayı 48-in də, 36-nın da böləni, ən böyüyü → ƏBOB.
+  48 = 2⁴ · 3,  36 = 2² · 3²  →  ƏBOB = 2² · 3 = 12.
+  Cavab: 12 hədiyyə (hərəsində 4 qələm, 3 dəftər).
+
+Nümunə 2. Şagirdləri 4-4 və ya 6-6 qruplara böləndə hər dəfə 1 nəfər artıq qalır. Şagirdlərin sayı 30 ilə 40 arasındadır. Neçə şagird var?
+  Sayı − 1 həm 4-ə, həm 6-ya bölünür → ƏKOB(4; 6) = 12-nin misli.
+  Sayı = 12k + 1: 13, 25, 37, 49 … → aralıqda 37.
+  Yoxlama: 37 = 4 · 9 + 1 = 6 · 6 + 1.  Cavab: 37</div>
+      <div class="life"><b>Həyatdan: avtobuslar.</b> Bir avtobus hər 12 dəqiqədən, digəri hər 18 dəqiqədən bir yola düşür. 7:00-da birlikdə getdilər. Növbəti dəfə birlikdə: ƏKOB(12; 18) = 36 dəqiqədən sonra, yəni <b>7:36</b>-da.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>ƏBOB ilə ƏKOB-u qarışdırmaq. Yoxla: ƏBOB ədədlərin hər birindən kiçik və ya bərabərdir, ƏKOB — böyük və ya bərabər.</li>
+        <li>ƏKOB-u həmişə a · b saymaq: 72 · 120 = 8640, amma ƏKOB 360-dır. a · b yalnız qarşılıqlı sadə ədədlər üçün düzdür.</li>
+        <li>ƏBOB-a ortaq olmayan vuruğu da salmaq (yuxarıda 5).</li>
+        <li>"1 nəfər artıq qalır" məsələsində ƏKOB tapıb +1-i unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ƏBOB — ortaq vuruqlar, kiçik üst;   ƏKOB — bütün vuruqlar, böyük üst
+ƏBOB · ƏKOB = a · b;   qarşılıqlı sadə → ƏKOB = a · b
+"ən çox, bərabər paylamaq" → ƏBOB;   "ən az, yenidən birlikdə" → ƏKOB</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ƏBOB(84; 126) = ? <span class="ans">42. 84 = 2² · 3 · 7, 126 = 2 · 3² · 7 → 2 · 3 · 7 = 42.</span></li>
+        <li>ƏKOB(84; 126) = ? <span class="ans">252. 2² · 3² · 7 = 252. Yoxlama: 42 · 252 = 10584 = 84 · 126.</span></li>
+        <li>Ölçüləri 24 sm × 36 sm olan kağızı qalıqsız ən böyük bərabər kvadratlara kəsirlər. Neçə kvadrat alınar? <span class="ans">6. Kvadratın tərəfi ƏBOB(24; 36) = 12 sm; 2 · 3 = 6 kvadrat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

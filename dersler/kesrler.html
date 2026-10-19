@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kəsrlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-kesrler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kəsrlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Həqiqi ədədlər (təkrar)</div>
+    <h1>Adi və onluq kəsrlər, dövri kəsrlər</h1>
+    <p>Kəsrlərsiz buraxılışda demək olar ki, heç bir məsələ həll olunmur: tənlikdə, faizdə, ehtimalda — hamısında kəsr var. Burada üç şeyi təkrarlayırıq: kəsrlərlə əməlləri, onluq və dövri kəsrlərin adi kəsrə çevrilməsini və "hissə" məsələlərini.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+    <p><b>Yazılış:</b> qarışıq ədəd 2⅓ kimi yazılır — "2 tam üçdə bir", yəni 2 + 1/3 = 7/3.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Adi kəsrlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Onluq və dövri</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hissə məsələləri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Adi kəsrlər: ixtisar, müqayisə, əməllər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Kəsrin əsas xassəsi</h3>
+      <p>Kəsrin surətini və məxrəcini eyni ədədə vursan və ya bölsən, kəsrin qiyməti dəyişmir. Bölmək — <b>ixtisar</b>, vurmaq — <b>genişləndirmə</b> (ortaq məxrəcə gətirmək üçün).</p>
+      <div class="fm">a/b = (a · k)/(b · k)
+18/24 = 3/4      (ƏBOB(18; 24) = 6-ya ixtisar)</div>
+      <p><b>Düzgün kəsr</b> — surəti məxrəcindən kiçik (3/4). <b>Düzgün olmayan</b> — surət ≥ məxrəc (7/3). Düzgün olmayan kəsri qarışıq ədəd kimi yazmaq olar və tərsinə:</p>
+      <div class="ex">2⅓ = (2 · 3 + 1)/3 = 7/3
+17/5 = 3 tam, qalıq 2 → 3⅖</div>
+
+      <h3><span class="st">2</span> Müqayisə</h3>
+      <ul>
+        <li>Məxrəclər eynidirsə — surəti böyük olan böyükdür: 5/9 &gt; 4/9.</li>
+        <li>Surətlər eynidirsə — məxrəci <b>kiçik</b> olan böyükdür: 3/7 &gt; 3/8 (pizzanı 7 yerə bölsən, tikə 8 yerə böləndən böyükdür).</li>
+        <li>Ümumi hal — çarpaz vur: a/b ilə c/d-ni müqayisə üçün a · d ilə b · c-ni müqayisə et.</li>
+      </ul>
+      <div class="ex">5/8 ? 7/12     5 · 12 = 60,  8 · 7 = 56,  60 &gt; 56  →  5/8 &gt; 7/12</div>
+
+      <h3><span class="st">3</span> Dörd əməl</h3>
+      <div class="fm">a/b ± c/d:  ortaq məxrəc (ƏKOB), sonra surətlər
+a/b · c/d = (a · c)/(b · d)
+a/b : c/d = a/b · d/c</div>
+      <div class="ex">Nümunə 1. 5/6 + 3/8
+  ƏKOB(6; 8) = 24:  5/6 = 20/24,  3/8 = 9/24
+  20/24 + 9/24 = 29/24 = 1⁵⁄₂₄
+
+Nümunə 2. 3¼ − 1⅚
+  Düzgün olmayan kəsrə çevir: 13/4 − 11/6
+  ƏKOB(4; 6) = 12:  39/12 − 22/12 = 17/12 = 1⁵⁄₁₂
+
+Nümunə 3. 2¼ : 1½
+  9/4 : 3/2 = 9/4 · 2/3 = 18/12 = 3/2 = 1½</div>
+      <div class="life"><b>Həyatdan: resept.</b> Bir porsiya üçün 3/4 stəkan şəkər lazımdır. 2½ porsiya üçün: 3/4 · 5/2 = 15/8 = 1⅞ stəkan — iki stəkandan bir az az.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Surəti surətlə, məxrəci məxrəclə toplamaq: 1/2 + 1/3 ≠ 2/5. Düzü 3/6 + 2/6 = 5/6.</li>
+        <li>Qarışıq ədədləri vurarkən tam hissələri ayrıca vurmaq: 2½ · 2½ ≠ 4¼. Əvvəl çevir: 5/2 · 5/2 = 25/4 = 6¼.</li>
+        <li>Bölmədə birinci kəsri çevirmək. Yalnız <b>ikinci</b> (bölən) kəsr çevrilir.</li>
+        <li>Cavabı ixtisar etməmək — test variantlarında cavab həmişə ixtisar olunmuş şəkildədir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a/b = ak/bk;   ixtisar — ƏBOB-a böl;   ortaq məxrəc — ƏKOB
+Müqayisə: a/b ? c/d  →  ad ? bc
+Toplama — ortaq məxrəclə;  vurma — düz;  bölmə — tərsinə vur
+Qarışıq ədəd: əvvəl düzgün olmayan kəsrə çevir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>7/12 + 5/18 = ? <span class="ans">31/36. ƏKOB(12; 18) = 36: 21/36 + 10/36.</span></li>
+        <li>1⅗ · 2¹⁄₁₂ = ? <span class="ans">10/3 = 3⅓. 8/5 · 25/12 = 200/60 = 10/3.</span></li>
+        <li>Hansı böyükdür: 4/7 yoxsa 5/9? <span class="ans">4/7. 4 · 9 = 36 &gt; 7 · 5 = 35.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Onluq və dövri kəsrlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Onluq kəsr ↔ adi kəsr</h3>
+      <p><b>Onluqdan adiyə:</b> vergüldən sonra neçə rəqəm varsa, məxrəcdə 1-dən sonra o qədər 0 yaz, sonra ixtisar et.</p>
+      <div class="ex">0,375 = 375/1000 = 3/8
+2,45  = 245/100  = 49/20</div>
+      <p><b>Adidən onluğa:</b> surəti məxrəcə böl. İxtisar olunmuş kəsrin məxrəcində <b>yalnız 2 və 5</b> vuruqları varsa, sonlu onluq kəsr alınır; başqa vuruq (3, 7, 11, …) varsa — sonsuz dövri kəsr.</p>
+      <div class="ex">7/40:  40 = 2³ · 5 → sonlu:  7/40 = 0,175
+9/24:  24-də 3 var, amma əvvəl ixtisar et: 9/24 = 3/8 → sonlu: 0,375
+5/12:  12 = 2² · 3 → dövri:  5/12 = 0,41666… = 0,41(6)</div>
+      <p><b>Müqayisə:</b> vergüldən sonra rəqəm-rəqəm müqayisə et (lazım olsa sona 0 yaz): 0,7 = 0,70 &gt; 0,65. Rəqəm sayının çox olması böyük demək deyil.</p>
+      <p><b>Yuvarlaqlaşdırma:</b> lazım olan yerdən sonrakı rəqəm 5 və ya çoxdursa, son saxlanan rəqəm 1 artır. 3,14159 → yüzdə birlərə 3,14; mində birlərə 3,142. 2,(6) = 2,666… → yüzdə birlərə 2,67.</p>
+
+      <h3><span class="st">2</span> Dövri kəsrdən adi kəsrə</h3>
+      <p>Dövri kəsrdə bir rəqəm qrupu sonsuz təkrarlanır, mötərizədə yazılır: 0,363636… = 0,(36). Niyə 99-a bölürük:</p>
+      <div class="ex">x = 0,(36)
+100x = 36,(36)
+100x − x = 36  →  99x = 36  →  x = 36/99 = 4/11</div>
+      <div class="fm">Surət:  bütün rəqəmlər (tam hissə də) − dövrə qədər olan rəqəmlər
+Məxrəc: dövrdə neçə rəqəm — o qədər 9,
+        dövrdən əvvəl (vergüldən sonra) neçə rəqəm — o qədər 0</div>
+      <div class="ex">0,(36)  = 36/99 = 4/11
+0,1(6)  = (16 − 1)/90 = 15/90 = 1/6
+2,(3)   = (23 − 2)/9 = 21/9 = 7/3
+1,2(3)  = (123 − 12)/90 = 111/90 = 37/30</div>
+
+      <h3><span class="st">3</span> Dövrdə n-ci rəqəm</h3>
+      <p>Dövr təkrarlanır, ona görə n-i dövrün uzunluğuna böl — <b>qalıq</b> yeri göstərir (qalıq 0 olsa — dövrün sonuncu rəqəmi).</p>
+      <div class="ex">1/7 = 0,(142857) — dövrdə 6 rəqəm.
+Vergüldən sonra 50-ci rəqəm:  50 = 6 · 8 + 2  →  dövrün 2-ci rəqəmi: 4.</div>
+      <div class="life"><b>Həyatdan: kalkulyator.</b> 2 : 3 yazanda kalkulyator 0,6666667 göstərir. Əslində 2/3 = 0,(6) — sonsuzdur; ekran yerləşmədiyi üçün son rəqəmi yuvarlaqlaşdırır. Ona görə kalkulyatorla hesablanmış "0,67" ilə dəqiq "2/3" fərqlidir — testdə adi kəsr variantını seç.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>0,(3)-ü 3/10 yazmaq. 3/10 = 0,3 — sonlu. Düzü 0,(3) = 3/9 = 1/3.</li>
+        <li>0,1(6)-da məxrəci 99 götürmək. Dövrdə 1 rəqəm (9), dövrdən əvvəl 1 rəqəm (0): 90.</li>
+        <li>Surətdə dövrə qədər olan hissəni çıxmağı unutmaq: 0,1(6) ≠ 16/90.</li>
+        <li>Sonluluğu ixtisardan əvvəl yoxlamaq: 9/24 — 24-də 3 var, amma 9/24 = 3/8 sonludur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sonlu onluq ⇔ ixtisar olunmuş məxrəcdə yalnız 2 və 5
+0,(ab) = ab/99     0,a(b) = (ab − a)/90     0,ab(c) = (abc − ab)/900
+n-ci rəqəm: n-i dövrün uzunluğuna böl, qalığa bax</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,(45)-i adi kəsrə çevir. <span class="ans">45/99 = 5/11.</span></li>
+        <li>0,2(7)-ni adi kəsrə çevir. <span class="ans">(27 − 2)/90 = 25/90 = 5/18.</span></li>
+        <li>3/11-in onluq yazılışında vergüldən sonra 25-ci rəqəm? <span class="ans">2. 3/11 = 0,(27); 25 = 2 · 12 + 1 → dövrün 1-ci rəqəmi.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Hissə məsələləri və birgə əməllər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Üç sual — üç əməl</h3>
+      <div class="fm">Ədədin m/n hissəsi:              a · m/n
+Hissəsinə görə ədəd:              b : m/n
+a ədədi b-nin hansı hissəsidir:   a/b</div>
+      <div class="ex">120-nin 3/8 hissəsi:  120 · 3/8 = 120 : 8 · 3 = 45
+Ədədin 2/7 hissəsi 18-dir:  18 : 2/7 = 18 · 7/2 = 63   (yoxla: 63 · 2/7 = 18)
+15 ədədi 40-ın hansı hissəsidir:  15/40 = 3/8</div>
+      <p>Yoxlama üsulu: "hissəsinə görə ədəd" cavabı həmişə verilmiş hissədən <b>böyük</b> olur (düzgün kəsr üçün). 18-dən kiçik cavab alırsansa — vurub-bölməni qarışdırmısan.</p>
+
+      <h3><span class="st">2</span> "Qalanın" tələsi</h3>
+      <p>"Kitabın 2/3-ü" ilə "qalanın 2/3-ü" fərqli şeylərdir. "Qalanın" görəndə — hissəni bütövdən yox, qalan hissədən götür.</p>
+      <div class="ex">Nümunə 1. Kitab 240 səhifədir. Birinci gün kitabın 1/4-ünü, ikinci gün qalanın 2/3-ünü oxudu. Neçə səhifə qaldı?
+  Birinci gün: 240 · 1/4 = 60;  qaldı 180.
+  İkinci gün: 180 · 2/3 = 120;  qaldı 180 − 120 = 60.
+  Cavab: 60  (240 · 2/3 = 160 götürsən — səhv)
+
+Nümunə 2 (tərsinə). Birinci gün kitabın 1/3-ünü, ikinci gün qalanın 3/4-ünü oxudu. 30 səhifə qaldı. Kitab neçə səhifədir?
+  Birincidən sonra qalır 1 − 1/3 = 2/3.
+  İkincidən sonra qalır: 2/3-ün 1/4-ü = 2/3 · 1/4 = 1/6.
+  Bütövün 1/6 hissəsi 30 → 30 : 1/6 = 180.
+  Cavab: 180</div>
+
+      <h3><span class="st">3</span> Birgə iş</h3>
+      <p>İşi (hovuzu) 1 qəbul et. 6 saata dolduran boru 1 saatda 1/6 hissəni doldurur.</p>
+      <div class="ex">Birinci boru hovuzu 6 saata, ikinci 3 saata doldurur. Birlikdə?
+  1 saatda: 1/6 + 1/3 = 1/6 + 2/6 = 1/2 hovuz.
+  Bütün hovuz: 1 : 1/2 = 2 saat.
+Boşaldan boru olsa — onun hissəsini çıx: 1/a − 1/b.</div>
+
+      <h3><span class="st">4</span> Adi və onluq kəsrlər birlikdə</h3>
+      <p>Qarışıq ifadədə hamısını bir növə gətir — çox vaxt adi kəsrə (dövri kəsr onluqla dəqiq yazılmır).</p>
+      <div class="ex">(0,75 + 1/4) : 0,2 = (3/4 + 1/4) : 1/5 = 1 · 5 = 5
+1,2 · 5/6 − 0,(3) = 6/5 · 5/6 − 1/3 = 1 − 1/3 = 2/3
+Ədədin 3/4-ü onun 2/5-indən 14 çoxdur:
+  3/4 − 2/5 = 15/20 − 8/20 = 7/20  →  ədədin 7/20-si 14  →  14 : 7/20 = 40</div>
+      <div class="life"><b>Həyatdan: hissə-hissə ödəniş.</b> Telefonun qiymətinin 2/5-ni ödədin, 360 manat qaldı. Qalan hissə 1 − 2/5 = 3/5-dir, deməli 3/5 hissə 360 manatdır: 360 : 3/5 = 600 manat — telefonun qiyməti.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Hissəsinə görə ədəd"də vurmaq: 18 · 2/7 — səhv, 18 : 2/7 lazımdır.</li>
+        <li>"Qalanın" hissəsini bütövdən hesablamaq.</li>
+        <li>Birgə işdə vaxtları toplamaq: 6 + 3 = 9 saat — iki boru birdən bir borudan <b>tez</b> doldurmalıdır. Vaxtları yox, 1 saatdakı hissələri topla.</li>
+        <li>Qalan hissəni yox, xərclənən hissəni qalan pula bərabər tutmaq (telefon məsələsində 2/5 = 360 yazmaq).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">hissəsi → vur;   hissəsinə görə ədəd → böl;   hansı hissə → a/b
+"qalanın" → əvvəl qalanı tap, hissəni ondan götür
+birgə iş: 1 saatda 1/a + 1/b, vaxt = 1 : (cəm)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>84-ün 5/12 hissəsi neçədir? <span class="ans">35. 84 : 12 · 5.</span></li>
+        <li>Ədədin 0,6 hissəsi 27-dir. Ədəd? <span class="ans">45. 27 : 0,6 = 27 : 3/5 = 27 · 5/3.</span></li>
+        <li>Turist yolun 2/5-ni birinci gün, qalanın 1/2-ni ikinci gün getdi. 24 km qaldı. Yol neçə km-dir? <span class="ans">80. Qalır 3/5 · 1/2 = 3/10 hissə; 24 : 3/10 = 80.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
