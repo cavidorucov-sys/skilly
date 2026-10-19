@@ -220,7 +220,7 @@ async function pageIndex() {
   const thisWeek = mm ? Object.entries(mm).flatMap(([k, v]) => v.filter(t => t.hefte === monday && t.status !== "bag").map(t => ({ ...t, kat: LIST_KAT[k] }))) : [];
   if (thisWeek.length) content.append(el("section", { class: "home-sec" }, el("div", { class: "head" }, el("h2", {}, "Bu həftənin mövzuları"), el("span", { class: "more" }, thisWeek.length + " mövzu")),
     el("div", { class: "list dl" }, ...thisWeek.map(t => { const k = KAT[t.kat]; return el(t.ders ? "a" : "div", { class: "row", ...(t.ders ? { href: t.ders, style: "text-decoration:none;color:inherit" } : {}) },
-      el("span", { class: "ic " + k.cls }, icon(topicIcon(t), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + t.bolme), el("b", { title: t.ad }, t.ad)), stPill(t.status)); }))));
+      el("span", { class: "ic " + k.cls }, icon(topicIcon(t), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + t.bolme + (t.saat === "fizika" ? " · fizika saatında" : "")), el("b", { title: t.ad }, t.ad)), stPill(t.status)); }))));
 
   // 3. the week
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
@@ -352,7 +352,7 @@ async function pageCalendar() {
   const add = (d, e) => (ev[d] = ev[d] || []).push(e);
   term.forEach(t => add(t.tarix, { kat: t.kat, is: t.ad, qeyd: t.qeyd, son: true }));
   const mm = await load("data/movzular.json").catch(() => null);
-  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "" }); });
+  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "", qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
   const today = isoToday();
   let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
