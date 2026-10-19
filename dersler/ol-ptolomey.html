@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ptolomey teoremi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-ptolomey.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Ptolomey teoremi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Həndəsə</div>
+    <h1>Çevrəyə daxil çəkilmiş dördbucaqlı, Ptolomey teoremi</h1>
+    <p>Dörd nöqtə bir çevrə üzərində olanda onların arasında sərt əlaqələr yaranır: qarşı bucaqların cəmi 180°-dir, tərəflər və diaqonallar isə <b>Ptolomey teoremi</b> ilə bağlanır: <span class="m">AC · BD = AB · CD + BC · AD</span>. Bu mövzuda həm bucaq əlamətlərini, həm teoremin sübutunu, həm də onun olimpiada tətbiqlərini öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Xassə və əlamətlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ptolomey teoremi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizlik, tətbiqlər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada məsələləri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Daxilə çəkilmiş dördbucaqlı: xassələr və əlamətlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dairəvi meydançanın kənarında dörd işarə var. Üçünün arasındakı bucaqları ölçüb dördüncüdəki bucağı hesablamaq, ya da dörd nöqtənin bir çevrə üzərində olduğunu bucaqlara baxaraq yoxlamaq lazımdır. Olimpiadada "dörd nöqtə bir çevrədədir" demək bir çox məsələni bir addıma gətirir.</p>
+
+      <h3><span class="st">2</span> Qarşı bucaqlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Çevrəyə daxil çəkilmiş ABCD dördbucaqlısı, A və C qarşı bucaqlardır">
+          <polygon points="120.4,36.6 86.6,129.6 203.6,145 207.3,59.8" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M139.7 41.7L138.6 44.9L137 47.7L134.9 50.3L132.5 52.5L129.7 54.3L126.6 55.6L123.4 56.3L120.1 56.6L116.8 56.2L113.6 55.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="136.1" y="70.7" text-anchor="middle" style="fill:var(--accent);font-size:12px">α</text>
+          <path d="M183.8 142.4L184.4 139.5L185.4 136.7L186.8 134.1L188.6 131.7L190.8 129.7L193.2 127.9L195.8 126.6L198.6 125.6L201.5 125.1L204.5 125" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="181.8" y="122.9" text-anchor="middle" style="fill:var(--accent);font-size:12px">β</text>
+          <circle cx="120.4" cy="36.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="86.6" cy="129.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="203.6" cy="145" r="2.6" fill="var(--ink)"/>
+          <circle cx="207.3" cy="59.8" r="2.6" fill="var(--ink)"/>
+          <text x="114.5" y="28.9" text-anchor="middle" class="lbl">A</text>
+          <text x="73.9" y="140.5" text-anchor="middle" class="lbl">B</text>
+          <text x="214.3" y="159" text-anchor="middle" class="lbl">C</text>
+          <text x="218.8" y="56.8" text-anchor="middle" class="lbl">D</text>
+          </svg>
+        <div class="cap">
+          <p>Dördbucaqlının dörd təpəsi çevrə üzərindədir: ona çevrəyə <b>daxil çəkilmiş</b> dördbucaqlı deyirlər.</p>
+          <p>Qarşı bucaqlar <span class="m">A</span> və <span class="m">C</span> (həmçinin <span class="m">B</span> və <span class="m">D</span>) üçün cəm 180°-dir.</p>
+        </div>
+      </div>
+      <div class="fm">∠A + ∠C = 180°,      ∠B + ∠D = 180°</div>
+      <p><b>Niyə?</b> <span class="m">∠A</span> daxilə çəkilmiş bucaqdır, o <span class="m">BCD</span> qövsünün yarısıdır. <span class="m">∠C</span> isə <span class="m">DAB</span> qövsünün yarısıdır. Bu iki qövs birlikdə bütöv çevrədir, yəni 360°. Onda <span class="m">∠A + ∠C = (360°) : 2 = 180°</span>.</p>
+
+      <h3><span class="st">3</span> Xarici bucaq və eyni qövs</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="BC tərəfinin C-dən o yana uzadılması: xarici bucaq DCK">
+          <polygon points="93.5,36.6 59.6,129.6 176.7,145 180.4,59.8" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="123.1" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="176.7" y1="145" x2="246.9" y2="154.2" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M112.8 41.7L111.7 44.9L110.1 47.7L108 50.3L105.5 52.5L102.7 54.3L99.7 55.6L96.4 56.3L93.1 56.6L89.8 56.2L86.6 55.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="109.2" y="70.7" text-anchor="middle" style="fill:var(--accent);font-size:12px">α</text>
+          <path d="M177.6 125L180.9 125.4L184 126.4L187 127.9L189.7 129.8L192 132.1L193.9 134.8L195.4 137.8L196.3 141L196.7 144.3L196.5 147.6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="202.7" y="127.1" text-anchor="middle" style="fill:var(--accent);font-size:12px">α</text>
+          <circle cx="93.5" cy="36.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="59.6" cy="129.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="176.7" cy="145" r="2.6" fill="var(--ink)"/>
+          <circle cx="180.4" cy="59.8" r="2.6" fill="var(--ink)"/>
+          <text x="87.6" y="28.9" text-anchor="middle" class="lbl">A</text>
+          <text x="46.9" y="140.5" text-anchor="middle" class="lbl">B</text>
+          <text x="187.4" y="159" text-anchor="middle" class="lbl">C</text>
+          <text x="191.9" y="56.8" text-anchor="middle" class="lbl">D</text>
+          <text x="254.9" y="173.2" text-anchor="middle" class="lbl">K</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">BC</span> tərəfini <span class="m">C</span>-dən o yana <span class="m">K</span> nöqtəsinə qədər uzadaq. <span class="m">∠BCD + ∠DCK = 180°</span> (qonşu bucaqlar), <span class="m">∠BCD + ∠A = 180°</span> (qarşı bucaqlar). Deməli xarici bucaq <b>daxili qarşı bucağa bərabərdir</b>: <span class="m">∠DCK = ∠A</span>.</p>
+        </div>
+      </div>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="BC qövsünə söykənən ∠BAC və ∠BDC bərabərdir">
+          <polygon points="89.4,65 105,153.6 213.4,129.6 185,39.4" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="89.4" y1="65" x2="213.4" y2="129.6" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="105" y1="153.6" x2="185" y2="39.4" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <path d="M93.2 86.7L95.2 86.2L97.1 85.6L98.9 84.8L100.7 83.9L102.4 82.7L104 81.5L105.4 80.1L106.7 78.5L107.9 76.9L108.9 75.2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="110.7" y="98" text-anchor="middle" style="fill:var(--accent);font-size:12px">γ</text>
+          <path d="M172.4 57.4L174.1 58.5L175.9 59.4L177.7 60.1L179.7 60.7L181.7 61.1L183.7 61.3L185.7 61.4L187.7 61.2L189.7 60.9L191.6 60.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="179.5" y="79" text-anchor="middle" style="fill:var(--accent);font-size:12px">γ</text>
+          <circle cx="89.4" cy="65" r="2.6" fill="var(--ink)"/>
+          <circle cx="105" cy="153.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="213.4" cy="129.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="185" cy="39.4" r="2.6" fill="var(--ink)"/>
+          <text x="77.3" y="63" text-anchor="middle" class="lbl">A</text>
+          <text x="96" y="169.3" text-anchor="middle" class="lbl">B</text>
+          <text x="226.1" y="140.5" text-anchor="middle" class="lbl">C</text>
+          <text x="192" y="32.3" text-anchor="middle" class="lbl">D</text>
+          </svg>
+        <div class="cap">
+          <p>Eyni <span class="m">BC</span> qövsünə söykənən daxilə çəkilmiş bucaqlar bərabərdir (təpələri qövsün eyni tərəfindədirsə): <span class="m">∠BAC = ∠BDC</span>. Başqa sözlə, <span class="m">A</span> və <span class="m">D</span> nöqtələrindən <span class="m">BC</span> parçası eyni bucaq altında görünür.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Tərs teorem: çevrə çəkmək olar?</h3>
+      <p>Bu xassələrin hər biri həm də <b>əlamətdir</b>. Aşağıdakılardan biri ödənərsə, dörd nöqtə bir çevrə üzərindədir:</p>
+      <div class="fm">1) ∠A + ∠C = 180°
+2) A və D nöqtələri BC-nin eyni tərəfindədir və ∠BAC = ∠BDC
+3) xarici bucaq daxili qarşı bucağa bərabərdir
+4) diaqonallar E-də kəsişir və AE · EC = BE · ED</div>
+      <p><b>Niyə?</b> (1) üçün <span class="m">ABD</span> üçbucağının çevrəsini çək. <span class="m">C</span> nöqtəsi çevrənin daxilində olsa, <span class="m">BD</span> parçası <span class="m">C</span>-dən daha böyük bucaq altında, xaricində olsa daha kiçik bucaq altında görünür. Yalnız <span class="m">C</span> çevrənin üzərində olanda <span class="m">∠C = 180° − ∠A</span> alınır. (4) üçün: <span class="m">AE · EC = BE · ED</span> bərabərliyindən <span class="m">AE / ED = BE / EC</span>; <span class="m">AEB</span> və <span class="m">DEC</span> üçbucaqlarında <span class="m">E</span> bucaqları qarşılıqlıdır, deməli onlar oxşardır, <span class="m">∠BAC = ∠BDC</span> — bu isə (2)-dir.</p>
+      <p>Xüsusi hallar: çevrəyə daxil çəkilmiş <b>paraleloqram</b> düzbucaqlıdır (<span class="m">∠A = ∠C</span> və cəmləri 180°). Çevrəyə daxil çəkilmiş <b>trapesiya</b> bərabəryanlıdır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ABCD çevrəyə daxil çəkilib, ∠A = (3x + 10)°, ∠C = (2x + 50)°. ∠A = ?
+  ∠A + ∠C = 180: 3x + 10 + 2x + 50 = 180 → 5x = 120 → x = 24
+  ∠A = 3 · 24 + 10 = 82°  (yoxla: ∠C = 98°, cəmi 180°)</div>
+      <div class="ex">Nümunə 2. Daxilə çəkilmiş ABCD-də ∠A : ∠B : ∠C = 2 : 3 : 4. ∠D = ?
+  ∠A + ∠C = 180° → (2 + 4) = 6 hissə = 180°, bir hissə = 30°
+  ∠B = 3 · 30° = 90°
+  ∠D = 180° − ∠B = 90°</div>
+      <div class="ex">Nümunə 3. Çevrəyə daxil çəkilmiş paraleloqramın bucaqları?
+  Paraleloqramda qarşı bucaqlar bərabərdir: ∠A = ∠C.
+  Daxilə çəkilmişdə ∠A + ∠C = 180°. Onda 2∠A = 180°, ∠A = 90°. Paraleloqram düzbucaqlıdır.</div>
+      <div class="ex">Nümunə 4. ABCD çevrəyə daxil çəkilib, ∠BAC = 35°. ∠BDC = ?
+  İkisi də eyni BC qövsünə söykənir, A və D qövsün eyni tərəfindədir: ∠BDC = 35°.</div>
+      <div class="life"><b>Həyatdan.</b> Dörd ağac dairəvi bağın kənarında ardıcıl A, B, C, D nöqtələrindədir. A-dan B və D ağaclarına baxanda bucaq 72°-dirsə, qarşı C nöqtəsindən həmin iki ağaca baxanda bucaq 108°-dir.</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qonşu bucaqların cəmini 180° saymaq. 180° yalnız <b>qarşı</b> bucaqlar üçündür.</li>
+        <li>Eyni qövsə söykənən bucaqları "bərabərdir" demək, amma təpələr qövsün əks tərəflərindədir: onda cəmləri 180°-dir.</li>
+        <li>Bütün dördbucaqlıya çevrə çəkmək olar sanmaq. Məsələn, bucaqları 60° və 120° olan rombun qarşı bucaqları bərabərdir (60° + 60° = 120° ≠ 180°), ona çevrə çəkmək olmur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Daxilə çəkilmişdə: ∠A + ∠C = 180°, ∠B + ∠D = 180°.
+Xarici bucaq = daxili qarşı bucaq.
+Eyni qövsə söykənən bucaqlar bərabərdir.
+Bunların hər biri həm də əlamətdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Daxilə çəkilmiş ABCD-də ∠A = 95°, ∠B = 70°. ∠C və ∠D? <span class="ans">∠C = 180° − 95° = 85°, ∠D = 180° − 70° = 110°.</span></li>
+        <li>∠A = 80°, ∠B = 95°, ∠C = 100°, ∠D = 85°. Çevrə çəkmək olarmı? <span class="ans">Bəli: 80° + 100° = 180° və 95° + 85° = 180°.</span></li>
+        <li>Çevrəyə daxil çəkilmiş trapesiyanın (AD ∥ BC) ∠B = 65°. ∠D? <span class="ans">B və D qarşı bucaqlardır: ∠D = 180° − 65° = 115°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ptolomey teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dairəvi gölün sahilində dörd nöqtə var. Dörd tərəf və bir diaqonal ölçülüb, ikinci diaqonalı ölçmək üçün gölün üstündən keçmək lazımdır. Ptolomey teoremi onu hesablamağa imkan verir.</p>
+
+      <h3><span class="st">2</span> Teorem</h3>
+      <p>Çevrəyə daxil çəkilmiş <span class="m">ABCD</span> dördbucaqlısında (təpələr çevrə üzərində ardıcıl yerləşir) diaqonalların hasili qarşı tərəflərin hasillərinin cəminə bərabərdir.</p>
+      <div class="fm">AC · BD = AB · CD + BC · AD</div>
+
+      <h3><span class="st">3</span> Niyə belədir? (sübut)</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="AC diaqonalı üzərində ∠ABK = ∠DBC olan K nöqtəsi">
+          <polygon points="89.4,65 100.5,149.5 215.8,123.9 131.9,32.4" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="89.4" y1="65" x2="215.8" y2="123.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="100.5" y1="149.5" x2="131.9" y2="32.4" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="100.5" y1="149.5" x2="168.5" y2="101.9" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <circle cx="89.4" cy="65" r="2.6" fill="var(--ink)"/>
+          <circle cx="100.5" cy="149.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="215.8" cy="123.9" r="2.6" fill="var(--ink)"/>
+          <circle cx="131.9" cy="32.4" r="2.6" fill="var(--ink)"/>
+          <circle cx="168.5" cy="101.9" r="2.6" fill="var(--ink)"/>
+          <text x="77.3" y="63" text-anchor="middle" class="lbl">A</text>
+          <text x="90.6" y="164.4" text-anchor="middle" class="lbl">B</text>
+          <text x="228.9" y="133.7" text-anchor="middle" class="lbl">C</text>
+          <text x="128.3" y="23.9" text-anchor="middle" class="lbl">D</text>
+          <text x="162.5" y="123.9" text-anchor="middle" class="lbl">K</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">AC</span> diaqonalı üzərində elə <span class="m">K</span> nöqtəsi götürək ki, <span class="m">∠ABK = ∠DBC</span> olsun. (<span class="m">∠DBC &lt; ∠ABC</span>, ona görə belə şüa <span class="m">∠ABC</span>-nin daxilindən keçir və <span class="m">AC</span>-ni kəsir.)</p>
+        </div>
+      </div>
+      <p><b>1-ci cüt.</b> <span class="m">△ABK</span> və <span class="m">△DBC</span>: <span class="m">∠ABK = ∠DBC</span> (seçdik), <span class="m">∠BAK = ∠BAC = ∠BDC</span> (eyni <span class="m">BC</span> qövsünə söykənir). İki bucaq bərabərdir, üçbucaqlar oxşardır:</p>
+      <div class="fm">AK / DC = AB / DB      →      AK · DB = AB · DC</div>
+      <p><b>2-ci cüt.</b> <span class="m">∠KBC = ∠ABC − ∠ABK = ∠ABC − ∠DBC = ∠ABD</span>. Və <span class="m">∠BCK = ∠BCA = ∠BDA</span> (eyni <span class="m">AB</span> qövsünə söykənir). Deməli <span class="m">△KBC ∼ △ABD</span>:</p>
+      <div class="fm">KC / AD = BC / BD      →      KC · BD = BC · AD</div>
+      <p>İki bərabərliyi toplayaq: <span class="m">(AK + KC) · BD = AB · DC + BC · AD</span>. <span class="m">AK + KC = AC</span> olduğundan teorem sübut olundu.</p>
+
+      <h3><span class="st">4</span> Xüsusi hallar</h3>
+      <p><b>Düzbucaqlı.</b> Diaqonallar bərabərdir (<span class="m">AC = BD = d</span>), qarşı tərəflər bərabərdir: <span class="m">d² = a · a + b · b</span> — Pifaqor teoremi. Beləliklə Ptolomey Pifaqorun ümumiləşməsidir.</p>
+      <p><b>Bərabəryanlı trapesiya.</b> Əsasları <span class="m">a</span> və <span class="m">b</span>, yan tərəfi <span class="m">c</span> olan daxilə çəkilmiş trapesiyada diaqonallar bərabərdir:</p>
+      <div class="fm">d² = a · b + c²</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ABCD daxilə çəkilib: AB = 7, BC = 24, CD = 20, DA = 15, AC = 25. BD = ?
+  AC · BD = AB · CD + BC · DA
+  25 · BD = 7 · 20 + 24 · 15 = 140 + 360 = 500
+  BD = 500 : 25 = 20</div>
+      <div class="ex">Nümunə 2. Eyni dördbucaqlıda AB = 7, BC = 24, CD = 20, AC = 25, BD = 20. DA = ?
+  25 · 20 = 7 · 20 + 24 · DA → 500 = 140 + 24 · DA
+  24 · DA = 360, DA = 15</div>
+      <div class="ex">Nümunə 3. Daxilə çəkilmiş trapesiyanın əsasları 7 və 25, yan tərəfi 15. Diaqonal = ?
+  d² = a · b + c² = 7 · 25 + 15² = 175 + 225 = 400
+  d = 20</div>
+      <div class="life"><b>Həyatdan.</b> Dairəvi gölün sahilində ardıcıl dörd A, B, C, D nöqtəsində: AB = 7 m, BC = 24 m, CD = 20 m, DA = 15 m və AC = 25 m. B ilə D arasındakı məsafəni gölün üstündən ölçmədən tapmaq olar: 20 m (Nümunə 1).</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qonşu tərəflərin hasillərini götürmək: <span class="m">AB · BC + CD · DA</span>. Teoremdə <b>qarşı</b> tərəflərdir: <span class="m">AB · CD</span> və <span class="m">BC · DA</span>.</li>
+        <li>Teoremi daxil çəkilməyən dördbucaqlıya tətbiq etmək. Təpələr çevrə üzərində olmalıdır, və ardıcıl yerləşməlidir (A, B, C, D çevrə boyu ardıcıl).</li>
+        <li>Cəmi tapıb dayanmaq. <span class="m">AB · CD + BC · AD</span> diaqonalın özü deyil, diaqonalların <b>hasilidir</b>; onu məlum diaqonala bölmək lazımdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AC · BD = AB · CD + BC · AD (qarşı tərəflər).
+Sübut: AC üzərində K, ∠ABK = ∠DBC; iki cüt oxşar üçbucaq.
+Düzbucaqlı → Pifaqor. Bərabəryanlı trapesiya: d² = ab + c².</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düzbucaqlının tərəfləri 6 və 8. Diaqonal? <span class="ans">d² = 6 · 6 + 8 · 8 = 100, d = 10.</span></li>
+        <li>ABCD daxilə çəkilib: AB = 3, BC = 4, CD = 4, DA = 3, AC = 5. BD? <span class="ans">5 · BD = 3 · 4 + 4 · 3 = 24, BD = 24/5 = 4,8.</span></li>
+        <li>Daxilə çəkilmiş trapesiyanın əsasları 9 və 16, diaqonalı 20. Yan tərəf? <span class="ans">400 = 9 · 16 + c² = 144 + c², c² = 256, c = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Ptolomey bərabərsizliyi və tətbiqlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ptolomey teoremi yalnız hesablamaq üçün deyil, həm də sübut üçün alətdir: "bir parça digər ikisinin cəmidir" kimi nəticələr dərhal alınır. Bərabərsizlik versiyası isə dördbucaqlının çevrəyə daxil çəkilib-çəkilməyəcəyini yoxlamağa imkan verir.</p>
+
+      <h3><span class="st">2</span> Ptolomey bərabərsizliyi</h3>
+      <p>İstənilən dörd <span class="m">A, B, C, D</span> nöqtəsi üçün:</p>
+      <div class="fm">AC · BD ≤ AB · CD + BC · AD</div>
+      <p>Bərabərlik yalnız dördbucaqlı çevrəyə daxil çəkiləndə olur (Dərs 2-dəki teorem və onun tərsi).</p>
+      <p><b>Niyə?</b> <span class="m">K</span> nöqtəsini elə qur ki, <span class="m">△ABK ∼ △ACD</span> olsun (<span class="m">A</span> ortaq təpə, <span class="m">B → C</span>, <span class="m">K → D</span>). Onda:</p>
+      <ul>
+        <li><span class="m">AB / AC = BK / CD</span>, yəni <span class="m">BK = AB · CD / AC</span>.</li>
+        <li><span class="m">∠BAK = ∠CAD</span>, ona görə <span class="m">∠BAC = ∠KAD</span> və <span class="m">AB / AK = AC / AD</span>. Deməli <span class="m">△ABC ∼ △AKD</span> və <span class="m">KD = BC · AD / AC</span>.</li>
+      </ul>
+      <p>Üçbucaq bərabərsizliyi: <span class="m">BD ≤ BK + KD = (AB · CD + BC · AD) / AC</span>. <span class="m">AC</span>-yə vursaq, bərabərsizlik alınır.</p>
+      <p>Bərabərlik yalnız <span class="m">K</span> nöqtəsi <span class="m">BD</span> parçası üzərində olanda mümkündür. Onda <span class="m">∠ABD = ∠ABK = ∠ACD</span>: <span class="m">B</span> və <span class="m">C</span> nöqtələrindən <span class="m">AD</span> parçası eyni bucaq altında görünür, yəni <span class="m">A, B, C, D</span> bir çevrə üzərindədir (Dərs 1, əlamət 2).</p>
+
+      <h3><span class="st">3</span> Bərabərtərəfli üçbucaq: PA = PB + PC</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Bərabərtərəfli ABC üçbucağı və BC qövsü üzərində P nöqtəsi">
+          <polygon points="150,30 89.4,135 210.6,135" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="137.8" y1="168.9" x2="150" y2="30" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="137.8" y1="168.9" x2="89.4" y2="135" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="137.8" y1="168.9" x2="210.6" y2="135" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M123.1 158.6L125.6 155.8L128.6 153.5L132 151.9L135.7 151.1L139.4 151L143.1 151.7L146.6 153.2L149.7 155.4L152.2 158.1L154.2 161.3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="150" cy="30" r="2.6" fill="var(--ink)"/>
+          <circle cx="89.4" cy="135" r="2.6" fill="var(--ink)"/>
+          <circle cx="210.6" cy="135" r="2.6" fill="var(--ink)"/>
+          <circle cx="137.8" cy="168.9" r="2.6" fill="var(--ink)"/>
+          <text x="150" y="21" text-anchor="middle" class="lbl">A</text>
+          <text x="77.3" y="147" text-anchor="middle" class="lbl">B</text>
+          <text x="222.7" y="147" text-anchor="middle" class="lbl">C</text>
+          <text x="135.4" y="187.7" text-anchor="middle" class="lbl">P</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">ABC</span> bərabərtərəfli üçbucaqdır, <span class="m">P</span> nöqtəsi onun xaricinə çəkilmiş çevrənin <span class="m">BC</span> qövsü (A-nı saxlamayan) üzərindədir. <span class="m">ABPC</span> çevrəyə daxil çəkilmiş dördbucaqlıdır, diaqonalları <span class="m">AP</span> və <span class="m">BC</span>.</p>
+        </div>
+      </div>
+      <div class="fm">Ptolomey:  AP · BC = AB · PC + AC · PB
+AB = AC = BC = a:   a · AP = a · PC + a · PB
+PA = PB + PC</div>
+      <p>Eyni dördbucaqlıdan başqa bir nəticə: <span class="m">ABPC</span> daxilə çəkilmişdir, ona görə <span class="m">∠BPC = 180° − ∠BAC = 120°</span>.</p>
+
+      <h3><span class="st">4</span> Düzgün beşbucaqlı</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzgün ABCDE beşbucaqlısı və diaqonalları">
+          <polygon points="150,30 83.4,78.4 108.9,156.6 191.1,156.6 216.6,78.4" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="30" x2="108.9" y2="156.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="83.4" y1="78.4" x2="191.1" y2="156.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="150" y1="30" x2="191.1" y2="156.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="150" cy="30" r="2.6" fill="var(--ink)"/>
+          <circle cx="83.4" cy="78.4" r="2.6" fill="var(--ink)"/>
+          <circle cx="108.9" cy="156.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="191.1" cy="156.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.6" cy="78.4" r="2.6" fill="var(--ink)"/>
+          <text x="150" y="21" text-anchor="middle" class="lbl">A</text>
+          <text x="70.1" y="79" text-anchor="middle" class="lbl">B</text>
+          <text x="100.6" y="173" text-anchor="middle" class="lbl">C</text>
+          <text x="199.4" y="173" text-anchor="middle" class="lbl">D</text>
+          <text x="229.9" y="79" text-anchor="middle" class="lbl">E</text>
+          </svg>
+        <div class="cap">
+          <p>Düzgün beşbucaqlının tərəfi <span class="m">a</span>, bütün diaqonalları bərabərdir: <span class="m">d</span>. <span class="m">ABCD</span> dördbucaqlısına Ptolomey: <span class="m">AC · BD = AB · CD + BC · AD</span>, yəni <span class="m">d · d = a · a + a · d</span>.</p>
+        </div>
+      </div>
+      <div class="fm">d² = a² + a · d      →      d = a · (1 + √5) / 2</div>
+      <p>Kvadrat tənliyin <span class="m">d² − a·d − a² = 0</span> müsbət kökü: <span class="m">d = (a + √(a² + 4a²)) / 2 = a(1 + √5)/2</span>. Bu — qızıl nisbətdir.</p>
+
+      <h3><span class="st">5</span> Diaqonalların nisbəti</h3>
+      <p>Ptolomey diaqonalların <b>hasilini</b> verir. Onların <b>nisbətini</b> tapmaq üçün çevrənin radiusundan istifadə et: radiusu <span class="m">R</span> olan çevrəyə daxil çəkilmiş üçbucağın sahəsi <span class="m">S = xyz / (4R)</span>-dir (<span class="m">x, y, z</span> — tərəfləri). Dördbucaqlının sahəsini iki yolla yaz:</p>
+      <div class="fm">S = S(ABD) + S(CBD) = BD · (AB · AD + CB · CD) / (4R)
+S = S(ABC) + S(ADC) = AC · (AB · BC + AD · DC) / (4R)</div>
+      <p>İkisini bərabərləşdirsək:</p>
+      <div class="fm">AC / BD = (AB · AD + CB · CD) / (AB · BC + AD · DC)</div>
+      <p>Hasil və nisbət birlikdə hər iki diaqonalı verir.</p>
+
+      <h3><span class="st">6</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Bərabərtərəfli ABC, P — BC qövsündə, PB = 3, PC = 5. PA = ?
+  PA = PB + PC = 3 + 5 = 8</div>
+      <div class="ex">Nümunə 2. Düzgün beşbucaqlının tərəfi 4. Diaqonal = ?
+  d = a(1 + √5)/2 = 4(1 + √5)/2 = 2 + 2√5</div>
+      <div class="ex">Nümunə 3. Daxilə çəkilmiş ABCD-də AB = 7, BC = 24, CD = 15, DA = 20. AC / BD = ?
+  AC / BD = (AB · AD + CB · CD) / (AB · BC + AD · DC) = (7 · 20 + 24 · 15) / (7 · 24 + 20 · 15)
+  = (140 + 360) / (168 + 300) = 500 / 468 = 125 / 117</div>
+      <div class="life"><b>Həyatdan.</b> Üçbucaq şəkilli bağın üç küncündə ağaclar var və bağın hər üç küncündən keçən dairəvi hasar çəkilib. Hasar üzərindəki quyunun B və C ağaclarından məsafələri 3 m və 5 m-dirsə, A ağacına olan məsafə birbaşa 8 m olur — ölçmə lazım deyil.</div>
+
+      <h3><span class="st">7</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">PA = PB + PC</span> düsturunu <span class="m">P</span> çevrənin istənilən nöqtəsi üçün tətbiq etmək. Yalnız <span class="m">P</span> <span class="m">A</span>-nı saxlamayan <span class="m">BC</span> qövsündə olanda doğrudur.</li>
+        <li>Beşbucaqlıda <span class="m">d = a · (1 + √5)</span> yazmaq (2-yə bölməyi unutmaq).</li>
+        <li>Nisbət düsturunda surəti və məxrəci dəyişmək. Surətdə <span class="m">A</span>-dan və <span class="m">C</span>-dən çıxan tərəflərin hasilləri yazılır (<span class="m">AB · AD + CB · CD</span>), məxrəcdə <span class="m">B</span>-dən və <span class="m">D</span>-dən çıxanlar (<span class="m">AB · BC + AD · DC</span>).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AC · BD ≤ AB · CD + BC · AD, bərabərlik ⇔ çevrə.
+Bərabərtərəfli üçbucaq: PA = PB + PC.
+Beşbucaqlı: d = a(1 + √5)/2.
+AC / BD = (AB·AD + CB·CD) / (AB·BC + AD·DC).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bərabərtərəfli ABC, P — BC qövsündə, PB = 6, PC = 7. PA? <span class="ans">6 + 7 = 13.</span></li>
+        <li>Düzgün beşbucaqlının tərəfi 6. Diaqonal? <span class="ans">6 · (1 + √5)/2 = 3 + 3√5.</span></li>
+        <li>Daxilə çəkilmiş ABCD: AB = 3, BC = 4, CD = 4, DA = 3. AC / BD? <span class="ans">(3 · 3 + 4 · 4) / (3 · 4 + 3 · 4) = 25/24.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Klassik olimpiada məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Necə yanaşmaq</h3>
+      <p>Çevrə üzərində dörd nöqtə görəndə üç sual ver: (1) bucaqlar arasında əlaqə varmı (qarşı bucaqlar, eyni qövs)? (2) diaqonalların və tərəflərin uzunluqları arasında Ptolomey işə düşürmü? (3) üçbucaq çevrə üzərində nöqtə ilə tamamlanırmı? Aşağıdakı məsələlərdə bunların hamısı işləyir.</p>
+
+      <h3><span class="st">2</span> Məsələ 1. Bərabərtərəfli üçbucaq və çevrə nöqtəsi</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="PB = 3, PC = 5">
+          <polygon points="150,30 89.4,135 210.6,135" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="130.2" y1="167.1" x2="150" y2="30" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="130.2" y1="167.1" x2="89.4" y2="135" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="130.2" y1="167.1" x2="210.6" y2="135" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M116.1 156L118.7 153.3L121.8 151.2L125.3 149.8L129 149.2L132.8 149.3L136.4 150.3L139.8 151.9L142.8 154.2L145.2 157.1L146.9 160.5" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="150" cy="30" r="2.6" fill="var(--ink)"/>
+          <circle cx="89.4" cy="135" r="2.6" fill="var(--ink)"/>
+          <circle cx="210.6" cy="135" r="2.6" fill="var(--ink)"/>
+          <circle cx="130.2" cy="167.1" r="2.6" fill="var(--ink)"/>
+          <text x="150" y="21" text-anchor="middle" class="lbl">A</text>
+          <text x="77.3" y="147" text-anchor="middle" class="lbl">B</text>
+          <text x="222.7" y="147" text-anchor="middle" class="lbl">C</text>
+          <text x="126.2" y="185.6" text-anchor="middle" class="lbl">P</text>
+          <text x="117.2" y="145.6" text-anchor="middle" style="fill:var(--accent);font-size:13px">3</text>
+          <text x="166" y="143.9" text-anchor="middle" style="fill:var(--accent);font-size:13px">5</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">ABC</span> bərabərtərəfli üçbucaqdır, <span class="m">P</span> nöqtəsi onun xaricinə çəkilmiş çevrənin <span class="m">BC</span> qövsü (A-nı saxlamayan) üzərindədir, <span class="m">PB = 3</span>, <span class="m">PC = 5</span>. <span class="m">PA</span> və <span class="m">BC</span>-ni tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  1) PA. ABPC çevrəyə daxildir, Ptolomey: PA · BC = AB · PC + AC · PB.
+     AB = AC = BC olduğundan PA = PC + PB = 5 + 3 = 8.
+  2) BC. ABPC daxilə çəkilmişdir, A və P qarşı təpələrdir:
+     ∠BPC = 180° − ∠BAC = 180° − 60° = 120°.
+     BPC üçbucağında kosinuslar teoremi:
+     BC² = PB² + PC² − 2 · PB · PC · cos 120° = 9 + 25 − 2 · 3 · 5 · (−1/2) = 34 + 15 = 49.
+     BC = 7.
+Cavab: PA = 8, BC = 7</div>
+
+      <h3><span class="st">3</span> Məsələ 2. Hər iki diaqonal</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABCD: AB = 7, BC = 24, CD = 15, DA = 20">
+          <polygon points="80,100 91,62.4 220,100 169.6,167.2" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="80" y1="100" x2="220" y2="100" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="91" y1="62.4" x2="169.6" y2="167.2" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="80" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="91" cy="62.4" r="2.6" fill="var(--ink)"/>
+          <circle cx="220" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="169.6" cy="167.2" r="2.6" fill="var(--ink)"/>
+          <text x="66" y="105" text-anchor="middle" class="lbl">A</text>
+          <text x="79.2" y="59.8" text-anchor="middle" class="lbl">B</text>
+          <text x="234" y="105" text-anchor="middle" class="lbl">C</text>
+          <text x="173.5" y="185.6" text-anchor="middle" class="lbl">D</text>
+          <text x="97" y="88.5" text-anchor="middle" style="fill:var(--accent);font-size:13px">7</text>
+          <text x="152.1" y="96.7" text-anchor="middle" style="fill:var(--accent);font-size:13px">24</text>
+          <text x="185.2" y="130.4" text-anchor="middle" style="fill:var(--accent);font-size:13px">15</text>
+          <text x="132" y="128" text-anchor="middle" style="fill:var(--accent);font-size:13px">20</text>
+          </svg>
+        <div class="cap">
+          <p>Çevrəyə daxil çəkilmiş <span class="m">ABCD</span> dördbucaqlısında <span class="m">AB = 7</span>, <span class="m">BC = 24</span>, <span class="m">CD = 15</span>, <span class="m">DA = 20</span>. Diaqonalları <span class="m">AC</span> və <span class="m">BD</span> tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  Ptolomey (hasil): AC · BD = AB · CD + BC · DA = 7 · 15 + 24 · 20 = 105 + 480 = 585.
+  Nisbət (Dərs 3): AC / BD = (AB · AD + CB · CD) / (AB · BC + AD · DC)
+                         = (7 · 20 + 24 · 15) / (7 · 24 + 20 · 15) = 500 / 468 = 125 / 117.
+  BD = (117/125) · AC. Hasilə qoy: AC · (117/125) · AC = 585 → AC² = 585 · 125 / 117 = 5 · 125 = 625.
+  AC = 25.   BD = 585 : 25 = 23,4 = 117/5.
+Yoxlama: 7² + 24² = 625 = 25², deməli ABC düz bucaqlıdır və AC — diametrdir (Dərs 1, diametrə söykənən bucaq).
+Cavab: AC = 25, BD = 117/5</div>
+
+      <h3><span class="st">4</span> Məsələ 3. Düzgün yeddibucaqlı</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzgün yeddibucaqlı ABCDEFG: AB = a, AC = b, AD = c">
+          <polygon points="150,30 95.3,56.4 81.8,115.6 119.6,163.1 180.4,163.1 218.2,115.6 204.7,56.4" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="30" x2="81.8" y2="115.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="95.3" y1="56.4" x2="180.4" y2="163.1" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="81.8" y1="115.6" x2="180.4" y2="163.1" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="150" y1="30" x2="180.4" y2="163.1" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <circle cx="150" cy="30" r="2.6" fill="var(--ink)"/>
+          <circle cx="95.3" cy="56.4" r="2.6" fill="var(--ink)"/>
+          <circle cx="81.8" cy="115.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="119.6" cy="163.1" r="2.6" fill="var(--ink)"/>
+          <circle cx="180.4" cy="163.1" r="2.6" fill="var(--ink)"/>
+          <circle cx="218.2" cy="115.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="204.7" cy="56.4" r="2.6" fill="var(--ink)"/>
+          <text x="150" y="21" text-anchor="middle" class="lbl">A</text>
+          <text x="84.3" y="52.6" text-anchor="middle" class="lbl">B</text>
+          <text x="68.1" y="123.7" text-anchor="middle" class="lbl">C</text>
+          <text x="113.6" y="180.7" text-anchor="middle" class="lbl">D</text>
+          <text x="186.4" y="180.7" text-anchor="middle" class="lbl">E</text>
+          <text x="231.9" y="123.7" text-anchor="middle" class="lbl">F</text>
+          <text x="215.7" y="52.6" text-anchor="middle" class="lbl">G</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">ABCDEFG</span> — düzgün yeddibucaqlıdır. <span class="m">AB = a</span>, <span class="m">AC = b</span>, <span class="m">AD = c</span> olsun. Sübut et: <span class="m">1/a = 1/b + 1/c</span>.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  Düzgün çoxbucaqlıda bərabər qövsləri tutan vətərlər bərabərdir. Ona görə:
+  BC = a (qonşu təpələr), CE = b (bir təpə atlayır, AC kimi), AE = c (E → F → G → A üç addımdır, AD kimi), BE = c (B → C → D → E də üç addımdır).
+  ABCE dördbucaqlısı çevrəyə daxildir (təpələr çevrə üzərində ardıcıl: A, B, C, E).
+  Ptolomey: AC · BE = AB · CE + BC · EA
+            b · c = a · b + a · c
+  Hər iki tərəfi a · b · c-yə böl: 1/a = 1/c + 1/b.
+Sübut tamamdır.</div>
+      <div class="life"><b>Həyatdan.</b> Yeddi küncü dairəvi meydançanın kənarında olan yeddibucaqlı pavilyonda tərəfi və iki növ diaqonalı ölçən memar üçüncü ölçünü həmişə birinci ikisindən tapa bilər: <span class="m">c = ab / (b − a)</span>. Ptolomey şəkildən ölçməsiz əlaqə verir.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Məsələ 1-də <span class="m">BC</span>-ni "<span class="m">3 + 5 = 8</span>" hesab etmək. <span class="m">PA = PB + PC</span> — <span class="m">A</span>-ya qədər olan məsafədir, <span class="m">BC</span> tərəf deyil.</li>
+        <li>Məsələ 2-də yalnız nisbəti və ya yalnız hasili tapıb dayanmaq: ikisini birləşdirmək lazımdır.</li>
+        <li>Məsələ 3-də dördbucaqlıların təpələrinin ardıcıllığını qarışdırmaq: <span class="m">ABCE</span> (A, B, C, E) çevrə boyu ardıcıldır, <span class="m">ABEC</span> deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Çevrə üzərində üçbucağa nöqtə əlavə et → ABPC daxilə çəkilmiş dördbucaqlı → Ptolomey + qarşı bucaqlar.
+Hasil (Ptolomey) + nisbət → hər iki diaqonal.
+Çoxbucaqlıda bərabər qövs = bərabər vətər.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Məsələ 1-də PB = 4, PC = 6. PA və BC? <span class="ans">PA = 10. BC² = 16 + 36 + 2 · 4 · 6 · (1/2) = 76, BC = 2√19.</span></li>
+        <li>Daxilə çəkilmiş ABCD-də AB = 5, BC = 12, CD = 12, DA = 5. AC? <span class="ans">∠B = ∠D (simmetriya) və cəmləri 180° ⇒ 90°. AC = √(5² + 12²) = 13.</span></li>
+        <li>Düzgün yeddibucaqlıda b = 6, c = 12. a? <span class="ans">1/a = 1/6 + 1/12 = 3/12 = 1/4, a = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Oyuna keç →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

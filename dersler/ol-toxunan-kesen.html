@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Toxunan və kəsənin xassələri dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-toxunan-kesen.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Toxunan və kəsənin xassələri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Həndəsə</div>
+    <h1>Toxunan və kəsənin xassələri</h1>
+    <p>Çevrə ilə bağlı olimpiada məsələlərinin çoxu bir ideyaya gəlir: nöqtədən çevrəyə çəkilmiş istənilən kəsən üçün parçaların hasili eynidir. Bu mövzuda <b>nöqtənin qüvvəsini</b>, <b>toxunan və kəsən teoremini</b>, <b>toxunan çevrələri</b> və <b>ortaq toxunanın uzunluğunu</b> sübutla birlikdə öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Kəsişən vətərlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toxunan və kəsən</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İki çevrə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada məsələləri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kəsişən vətərlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Körpünün tağı çevrə qövsüdür. Tağın ucları arasındakı məsafəni və hündürlüyünü ölçmək asandır, çevrənin radiusunu isə ölçmək olmur — mərkəz havadadır. Kəsişən vətərlərin xassəsi radiusu iki ölçüdən hesablamağa imkan verir. Olimpiadada bu xassə "uzunluğu tap", "sübut et: hasillər bərabərdir" məsələlərinin əsasıdır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="AB və CD vətərləri E nöqtəsində kəsişir">
+          <circle cx="150" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="84.2" y1="76.1" x2="217.6" y2="118.1" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="143.9" y1="30.3" x2="173.9" y2="165.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="84.2" y1="76.1" x2="143.9" y2="30.3" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="173.9" y1="165.8" x2="217.6" y2="118.1" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <circle cx="84.2" cy="76.1" r="2.6" fill="var(--ink)"/>
+          <circle cx="217.6" cy="118.1" r="2.6" fill="var(--ink)"/>
+          <circle cx="143.9" cy="30.3" r="2.6" fill="var(--ink)"/>
+          <circle cx="173.9" cy="165.8" r="2.6" fill="var(--ink)"/>
+          <circle cx="159.3" cy="99.7" r="2.6" fill="var(--ink)"/>
+          <text x="71.1" y="76.3" text-anchor="middle" class="lbl">A</text>
+          <text x="231.1" y="126.7" text-anchor="middle" class="lbl">B</text>
+          <text x="142.7" y="21.3" text-anchor="middle" class="lbl">C</text>
+          <text x="178.7" y="183.9" text-anchor="middle" class="lbl">D</text>
+          <text x="165.3" y="121.7" text-anchor="middle" class="lbl">E</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">AB</span> və <span class="m">CD</span> vətərləri çevrənin daxilində <span class="m">E</span> nöqtəsində kəsişir. Hər vətər iki parçaya bölünür.</p>
+          <p>Bir vətərin parçalarının hasili o birinin parçalarının hasilinə bərabərdir.</p>
+        </div>
+      </div>
+      <div class="fm">AE · EB = CE · ED</div>
+
+      <h3><span class="st">3</span> Niyə belədir? (sübut)</h3>
+      <p><span class="m">AEC</span> və <span class="m">DEB</span> üçbucaqlarına bax (şəkildə qırıq xətlərlə çəkilib).</p>
+      <ul>
+        <li><span class="m">∠AEC = ∠DEB</span> — qarşılıqlı (qarşı) bucaqlardır.</li>
+        <li><span class="m">∠CAB = ∠CDB</span> — hər ikisi daxilə çəkilmiş bucaqdır və eyni <span class="m">CB</span> qövsünə söykənir.</li>
+      </ul>
+      <p>İki bucağı bərabər olan üçbucaqlar oxşardır: <span class="m">△AEC ∼ △DEB</span>. Oxşar üçbucaqlarda uyğun tərəflər mütənasibdir:</p>
+      <div class="fm">AE / DE = CE / BE      →      AE · EB = CE · ED</div>
+      <p>Xüsusi hal: <span class="m">CD</span> vətəri <span class="m">AB</span> diametrinə perpendikulyardırsa, diametr <span class="m">E</span> nöqtəsində <span class="m">CD</span>-ni yarıya bölür: <span class="m">CE = ED = h</span>. Onda:</p>
+      <div class="fm">h² = AE · EB      (yəni h = √(AE · EB))</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. AE = 6, EB = 4, CE = 3. ED = ?
+  AE · EB = CE · ED
+  6 · 4 = 3 · ED → ED = 24 : 3 = 8</div>
+      <div class="ex">Nümunə 2. Körpünün tağı: uclar arası 24 m, tağın hündürlüyü 4 m. Tağın çevrəsinin radiusu R = ?
+  Hündürlük xətti vətəri yarıya bölür: 12 və 12. O, diametrin hissəsidir: 4 və (2R − 4).
+  12 · 12 = 4 · (2R − 4) → 2R − 4 = 36 → R = 20 m</div>
+      <div class="ex">Nümunə 3. AB diametri 26-dır. CD vətəri AB-yə perpendikulyardır və AB-ni AE : EB = 1 : 25 nisbətində bölür. CD = ?
+  AE + EB = 26, 1 : 25 → AE = 1, EB = 25
+  h² = AE · EB = 1 · 25 = 25, h = CE = 5
+  CD = 2h = 10</div>
+      <div class="life"><b>Həyatdan.</b> Dairəvi bağın içində iki cığır kəsişir. Biri kəsişmə nöqtəsində 6 m və 4 m hissələrə bölünür, o biri 3 m və x m hissələrə. Cığırların uclarının hamısı bağın sərhədindədirsə, x = 8 m olur (Nümunə 1) — bağı dolaşmadan hesabladın.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Parçaları toplamaq: <span class="m">AE + EB = CE + ED</span> yazmaq. Düzgün: hasillər bərabərdir.</li>
+        <li>Bütün vətəri parça kimi götürmək: <span class="m">AB · CD</span>. Hasil <b>hissələr</b> arasındadır: <span class="m">AE · EB</span>.</li>
+        <li>Tağın məsələsində <span class="m">h² = a · b</span> düsturunda <span class="m">h</span>-ı tam vətər sanmaq. <span class="m">h</span> vətərin <b>yarısıdır</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kəsişən vətərlər: AE · EB = CE · ED.
+Sübut: △AEC ∼ △DEB (qarşılıqlı bucaqlar + eyni qövsə söykənən bucaqlar).
+Diametrə perpendikulyar vətər: h² = a · b.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AE = 2, EB = 9, CE = 3. ED? <span class="ans">2 · 9 = 3 · ED, ED = 6.</span></li>
+        <li>Diametrə perpendikulyar vətər diametri 4 və 16 hissələrinə bölür. Vətərin uzunluğu? <span class="ans">h² = 4 · 16 = 64, h = 8, vətər = 16.</span></li>
+        <li>E nöqtəsi CD vətərinin ortasıdır, CD = 10, AE = 1. EB? <span class="ans">CE = ED = 5. 1 · EB = 25, EB = 25.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Toxunan və kəsən; nöqtənin qüvvəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Göldən 10 m məsafədəki ağacdan gölə toxunan cığır çəkmək istəyirsən. Cığırın uzunluğunu bilmək üçün göl ətrafında gəzməyə ehtiyac yoxdur: ağacdan gölün ən yaxın və ən uzaq nöqtələrinə qədər məsafəni ölçmək kifayətdir.</p>
+
+      <h3><span class="st">2</span> Toxunan və kəsən teoremi</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="M nöqtəsindən çevrəyə MT toxunanı və MAB kəsəni">
+          <circle cx="108" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="262" y1="100" x2="139.8" y2="37.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="262" y1="100" x2="104.9" y2="169.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="108" y1="100" x2="139.8" y2="37.6" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <path d="M135.7 45.7L143.7 49.8L147.8 41.7" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="108" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="262" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="139.8" cy="37.6" r="2.6" fill="var(--ink)"/>
+          <circle cx="162" cy="144.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="104.9" cy="169.9" r="2.6" fill="var(--ink)"/>
+          <text x="274" y="117" text-anchor="middle" class="lbl">M</text>
+          <text x="143.8" y="30.6" text-anchor="middle" class="lbl">T</text>
+          <text x="160" y="164.5" text-anchor="middle" class="lbl">A</text>
+          <text x="98.9" y="190.9" text-anchor="middle" class="lbl">B</text>
+          <text x="116" y="96" text-anchor="middle" class="lbl">O</text>
+          </svg>
+        <div class="cap">
+          <p><span class="m">M</span> çevrədən kənardadır. <span class="m">MT</span> — toxunan, <span class="m">MAB</span> — kəsən (<span class="m">A</span> nöqtəsi <span class="m">M</span>-ə daha yaxındır).</p>
+          <p>Toxunanın kvadratı kəsənin bütün uzunluğu ilə onun xarici hissəsinin hasilinə bərabərdir.</p>
+        </div>
+      </div>
+      <div class="fm">MT² = MA · MB</div>
+
+      <h3><span class="st">3</span> Niyə belədir? (sübut)</h3>
+      <p><span class="m">MTA</span> və <span class="m">MBT</span> üçbucaqlarını götür.</p>
+      <ul>
+        <li><span class="m">M</span> bucağı ikisində də ortaqdır.</li>
+        <li><span class="m">∠MTA</span> toxunanla vətər arasındakı bucaqdır, o, <span class="m">TA</span> qövsünün yarısıdır. <span class="m">∠MBT = ∠ABT</span> daxilə çəkilmiş bucaqdır, o da eyni <span class="m">TA</span> qövsünün yarısıdır. Deməli <span class="m">∠MTA = ∠MBT</span>.</li>
+      </ul>
+      <p>Onda <span class="m">△MTA ∼ △MBT</span>, uyğun tərəflər mütənasibdir:</p>
+      <div class="fm">MT / MB = MA / MT      →      MT² = MA · MB</div>
+      <p><b>İki kəsən.</b> <span class="m">M</span>-dən iki kəsən çəksək, hər ikisi üçün hasil <span class="m">MT²</span>-yə bərabərdir, ona görə bir-birinə də bərabərdir:</p>
+      <div class="fm">MA · MB = MC · MD</div>
+      <p><b>Nöqtənin qüvvəsi.</b> Hasil kəsənin istiqamətindən asılı deyil. Mərkəzdən keçən kəsəni götürsək, <span class="m">MO = d</span> və radius <span class="m">R</span> olanda parçalar <span class="m">d − R</span> və <span class="m">d + R</span> olur:</p>
+      <div class="fm">M çevrədən kənardadır:   MA · MB = d² − R²   (= MT²)
+P çevrənin daxilindədir:  PA · PB = R² − d²   (d = OP)</div>
+      <p>Daxildəki hal Dərs 1-dəki kəsişən vətərlərdir: <span class="m">P</span>-dən keçən diametr parçaları <span class="m">R − d</span> və <span class="m">R + d</span> verir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. MA = 8, AB = 10. MT = ?
+  MB = MA + AB = 18
+  MT² = MA · MB = 8 · 18 = 144, MT = 12</div>
+      <div class="ex">Nümunə 2. M-dən iki kəsən: MA = 3, AB = 5, MC = 4. CD = ?
+  MB = 3 + 5 = 8, MA · MB = 24
+  MC · MD = 24 → 4 · MD = 24 → MD = 6
+  CD = MD − MC = 6 − 4 = 2</div>
+      <div class="ex">Nümunə 3. M nöqtəsindən çevrənin ən yaxın nöqtəsinə qədər 4, ən uzaq nöqtəsinə qədər 16. Toxunanın uzunluğu?
+  M və mərkəzdən keçən düz xətt çevrəni ən yaxın və ən uzaq nöqtələrdə kəsir: bu — mərkəzdən keçən kəsəndir.
+  MT² = 4 · 16 = 64, MT = 8
+  (Yoxlama: d = 10, R = 6, d² − R² = 64.)</div>
+      <div class="ex">Nümunə 4. R = 13, P çevrənin daxilindədir, OP = 5. P-dən keçən ən qısa vətərin uzunluğu?
+  Vətərin mərkəzdən məsafəsi h olsa, yarısı √(R² − h²)-dir. Qısa vətər üçün h böyük olmalıdır, h ≤ OP, deməli ən qısa vətər OP-yə perpendikulyardır.
+  Yarısı √(13² − 5²) = 12, vətər = 24
+  (Yoxlama: PA · PB = R² − d² = 144 = 12 · 12.)</div>
+      <div class="life"><b>Həyatdan.</b> Dairəvi parka 4 m məsafədən girən və 16 m-də çıxan yolun əvəzinə eyni nöqtədən parka toxunan cığır çəkmək olar — onun uzunluğu √(4 · 16) = 8 m olar. Hər hansı kəsən yolun uzunluğunu bilməyə ehtiyac yoxdur, yalnız giriş və çıxış məsafələri lazımdır.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">MT² = MA · AB</span> yazmaq. Kəsənin <b>bütün</b> uzunluğu götürülür: <span class="m">MB = MA + AB</span>.</li>
+        <li>Toxunan və kəsəndə kvadratı unutmaq: <span class="m">MT = MA · MB</span>. Düzgün: <span class="m">MT² = MA · MB</span>.</li>
+        <li>Daxildəki nöqtə üçün <span class="m">d² − R²</span> götürmək. Daxildə <span class="m">R² − d²</span> olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">MT² = MA · MB = MC · MD.
+Kənardakı nöqtə: d² − R². Daxildəki: R² − d².
+Sübut: △MTA ∼ △MBT (ortaq M bucağı + toxunanla vətər arasındakı bucaq).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>MT = 6, MA = 4. AB? <span class="ans">36 = 4 · MB, MB = 9, AB = 9 − 4 = 5.</span></li>
+        <li>R = 5, MO = 13. MT? <span class="ans">MT² = 13² − 5² = 144, MT = 12.</span></li>
+        <li>P çevrənin daxilindədir, R = 10, OP = 6. P-dən keçən vətərin bir hissəsi 4-dür. O biri hissə? <span class="ans">PA · PB = 100 − 36 = 64, PB = 64 : 4 = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İki çevrə: toxunma və ortaq toxunanlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Velosiped zəncirinə, kəmərli ötürməyə və iki çarxı bürüyən kəmərə baxanda iki çevrənin ortaq toxunanı görünür: kəmərin düz hissəsi çarxların ikisinə də toxunur. Onun uzunluğunu iki radiusdan və oxlar arasındakı məsafədən tapmaq olur.</p>
+
+      <h3><span class="st">2</span> İki çevrənin vəziyyəti</h3>
+      <p>Radiusları <span class="m">R ≥ r</span>, mərkəzləri arasındakı məsafə <span class="m">d</span> olan çevrələr üçün:</p>
+      <div class="fm">d > R + r           aralı — 4 ortaq toxunan
+d = R + r           xaricdən toxunur — 3 ortaq toxunan
+R − r < d < R + r   kəsişir — 2 ortaq toxunan
+d = R − r           daxildən toxunur — 1 ortaq toxunan
+d < R − r           biri digərinin içindədir — 0</div>
+      <p>Toxunma nöqtəsi həmişə mərkəzləri birləşdirən düz xətt üzərindədir.</p>
+
+      <h3><span class="st">3</span> Ortaq toxunanın uzunluğu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="İki çevrənin ortaq xarici toxunanı AB">
+          <circle cx="90" cy="100" r="60" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="240" cy="100" r="30" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="102" y1="41.2" x2="246" y2="70.6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="90" y1="100" x2="102" y2="41.2" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="240" y1="100" x2="246" y2="70.6" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="90" y1="100" x2="240" y2="100" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <path d="M100.2 50L109 51.8L110.8 43" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M244.2 79.4L235.4 77.6L237.2 68.8" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="90" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="240" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="102" cy="41.2" r="2.6" fill="var(--ink)"/>
+          <circle cx="246" cy="70.6" r="2.6" fill="var(--ink)"/>
+          <text x="87" y="121" text-anchor="middle" class="lbl">O</text>
+          <text x="250" y="120" text-anchor="middle" class="lbl">Q</text>
+          <text x="96" y="34.2" text-anchor="middle" class="lbl">A</text>
+          <text x="254" y="66.6" text-anchor="middle" class="lbl">B</text>
+          </svg>
+        <div class="cap">
+          <p><b>Xarici toxunan.</b> <span class="m">OA ⟂ AB</span> və <span class="m">QB ⟂ AB</span>, deməli <span class="m">OA ∥ QB</span>. <span class="m">Q</span>-dan <span class="m">OA</span>-ya perpendikulyar endirsək, hipotenuzu <span class="m">OQ = d</span>, katetləri <span class="m">AB</span> və <span class="m">R − r</span> olan düzbucaqlı üçbucaq alınır.</p>
+        </div>
+      </div>
+      <div class="fm">xarici:  AB = √(d² − (R − r)²)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="İki çevrənin ortaq daxili toxunanı AB">
+          <circle cx="94" cy="100" r="64" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="238" cy="100" r="32" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="136.7" y1="52.3" x2="216.7" y2="123.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="94" y1="100" x2="136.7" y2="52.3" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="238" y1="100" x2="216.7" y2="123.9" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <line x1="94" y1="100" x2="238" y2="100" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <path d="M130.7 59L137.4 65L143.4 58.3" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M222.7 117.1L216 111.1L210 117.9" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="94" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="238" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="136.7" cy="52.3" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.7" cy="123.9" r="2.6" fill="var(--ink)"/>
+          <text x="91" y="121" text-anchor="middle" class="lbl">O</text>
+          <text x="248" y="120" text-anchor="middle" class="lbl">Q</text>
+          <text x="130.7" y="45.3" text-anchor="middle" class="lbl">A</text>
+          <text x="224.7" y="142.9" text-anchor="middle" class="lbl">B</text>
+          </svg>
+        <div class="cap">
+          <p><b>Daxili toxunan.</b> Bu dəfə çevrələr toxunanın əks tərəflərindədir. <span class="m">Q</span>-dan <span class="m">AB</span>-yə paralel çəkək; o, <span class="m">OA</span>-nın davamını <span class="m">K</span> nöqtəsində kəsir. <span class="m">OKQ</span> düzbucaqlı üçbucaqdır: hipotenuz <span class="m">OQ = d</span>, katetlər <span class="m">KQ = AB</span> və <span class="m">OK = OA + AK = R + r</span>.</p>
+        </div>
+      </div>
+      <div class="fm">daxili:  AB = √(d² − (R + r)²)</div>
+
+      <h3><span class="st">4</span> Xaricdən toxunan çevrələr</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Xaricdən toxunan çevrələr: ortaq toxunan AB, daxili toxunan MT">
+          <circle cx="122.8" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="216.1" cy="138.9" r="31.1" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="122.8" y1="170" x2="216.1" y2="170" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="169.4" y1="170" x2="187.4" y2="126.9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="122.8" y1="100" x2="216.1" y2="138.9" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <circle cx="122.8" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.1" cy="138.9" r="2.6" fill="var(--ink)"/>
+          <circle cx="122.8" cy="170" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.1" cy="170" r="2.6" fill="var(--ink)"/>
+          <circle cx="187.4" cy="126.9" r="2.6" fill="var(--ink)"/>
+          <circle cx="169.4" cy="170" r="2.6" fill="var(--ink)"/>
+          <text x="134.8" y="97" text-anchor="middle" class="lbl">O</text>
+          <text x="220.1" y="132.9" text-anchor="middle" class="lbl">Q</text>
+          <text x="116.8" y="189" text-anchor="middle" class="lbl">A</text>
+          <text x="222.1" y="190" text-anchor="middle" class="lbl">B</text>
+          <text x="169.4" y="192" text-anchor="middle" class="lbl">M</text>
+          <text x="173.4" y="125.9" text-anchor="middle" class="lbl">T</text>
+          </svg>
+        <div class="cap">
+          <p>Çevrələr <span class="m">T</span> nöqtəsində xaricdən toxunur: <span class="m">d = R + r</span>. Xarici toxunan <span class="m">AB</span> üçün: <span class="m">AB² = (R + r)² − (R − r)² = 4Rr</span>.</p>
+          <p><span class="m">T</span>-dən keçən ortaq daxili toxunan <span class="m">AB</span>-ni <span class="m">M</span> nöqtəsində kəsir. <span class="m">M</span>-dən birinci çevrəyə iki toxunan: <span class="m">MA = MT</span>, ikinci çevrəyə: <span class="m">MB = MT</span>. Deməli <span class="m">M</span> — <span class="m">AB</span>-nin ortasıdır.</p>
+        </div>
+      </div>
+      <div class="fm">AB = 2√(R · r)
+MT = MA = MB = √(R · r)
+∠ATB = 90°   (T nöqtəsi diametri AB olan çevrənin üzərindədir)</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. R = 8, r = 3, d = 13. Ortaq xarici toxunanın uzunluğu?
+  AB² = 13² − (8 − 3)² = 169 − 25 = 144, AB = 12</div>
+      <div class="ex">Nümunə 2. R = 5, r = 3, d = 17 (çevrələr aralıdır). Ortaq daxili toxunanın uzunluğu?
+  AB² = 17² − (5 + 3)² = 289 − 64 = 225, AB = 15</div>
+      <div class="ex">Nümunə 3. Radiusları 9 və 4 olan çevrələr xaricdən toxunur. AB və MT = ?
+  AB = 2√(9 · 4) = 2 · 6 = 12
+  MT = AB : 2 = 6</div>
+      <div class="life"><b>Həyatdan.</b> Radiusları 11 sm və 3 sm olan iki çarxın oxları arasında 17 sm var. Onları bürüyən kəmərin düz hissəsi √(17² − 8²) = 15 sm-dir. Kəmərin tam uzunluğuna bu hissələr və çarxlara sarılan qövslər daxildir.</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Xarici toxunanda <span class="m">R + r</span>, daxilidə <span class="m">R − r</span> götürmək — tərsinə. Xarici: <b>fərq</b>, daxili: <b>cəm</b>.</li>
+        <li>Düsturda kvadratları çıxmamaq: <span class="m">AB = d − (R − r)</span>. Düzgün: <span class="m">AB² = d² − (R − r)²</span>.</li>
+        <li>Daxili toxunanı çevrələr kəsişəndə axtarmaq. Kəsişən çevrələrin daxili ortaq toxunanı yoxdur (<span class="m">d &lt; R + r</span> olanda <span class="m">d² − (R + r)²</span> mənfi alınır).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xarici toxunan: √(d² − (R − r)²).
+Daxili toxunan: √(d² − (R + r)²).
+Xaricdən toxunan çevrələr: AB = 2√(Rr), MT = √(Rr), ∠ATB = 90°.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 9, r = 3, d = 10. Ortaq xarici toxunan? <span class="ans">√(100 − 36) = 8.</span></li>
+        <li>R = 3, r = 2, d = 13 (aralıdır). Ortaq daxili toxunan? <span class="ans">√(169 − 25) = 12.</span></li>
+        <li>Radiusları 2 və 8 olan çevrələr xaricdən toxunur. Ortaq xarici toxunanın toxunma nöqtələri arası? <span class="ans">2√(2 · 8) = 2 · 4 = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Klassik olimpiada məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Necə yanaşmaq</h3>
+      <p>Çevrə məsələsində toxunan və ya kəsən görünəndə üç sual ver: (1) bir nöqtədən hansı toxunanlar və ya kəsənlər çıxır? (2) onlardan hansı hasillər qurmaq olar? (3) iki çevrə varsa, ortaq toxunan və ya ortaq vətər varmı? Hər dərsdəki qayda bir məsələdə işləyir.</p>
+
+      <h3><span class="st">2</span> Məsələ 1. Ortaq vətər və ortaq toxunan</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Kəsişən çevrələr, ortaq vətər AB və ortaq toxunan PQ">
+          <circle cx="108" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="210.7" cy="100" r="51.3" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="120.7" y1="31.2" x2="220" y2="49.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="170.4" y1="40.3" x2="170.4" y2="131.8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="170.4" cy="68.2" r="2.6" fill="var(--ink)"/>
+          <circle cx="170.4" cy="131.8" r="2.6" fill="var(--ink)"/>
+          <circle cx="120.7" cy="31.2" r="2.6" fill="var(--ink)"/>
+          <circle cx="220" cy="49.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="170.4" cy="40.3" r="2.6" fill="var(--ink)"/>
+          <text x="157.4" y="69.2" text-anchor="middle" class="lbl">A</text>
+          <text x="157.4" y="146.8" text-anchor="middle" class="lbl">B</text>
+          <text x="116.7" y="24.2" text-anchor="middle" class="lbl">P</text>
+          <text x="228" y="43.5" text-anchor="middle" class="lbl">Q</text>
+          <text x="180.4" y="33.3" text-anchor="middle" class="lbl">M</text>
+          </svg>
+        <div class="cap">
+          <p>İki çevrə <span class="m">A</span> və <span class="m">B</span> nöqtələrində kəsişir. <span class="m">PQ</span> — ortaq toxunan (<span class="m">P</span> və <span class="m">Q</span> toxunma nöqtələridir). <span class="m">AB</span> düz xətti <span class="m">PQ</span>-ni <span class="m">M</span> nöqtəsində kəsir. <span class="m">MA = 4</span>, <span class="m">AB = 5</span> olarsa, <span class="m">PQ</span>-ni tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  M nöqtəsi hər iki çevrənin kənarındadır, MB kəsəni hər ikisini A və B-də kəsir (A, B ortaq nöqtələrdir).
+  Birinci çevrə: MP² = MA · MB. İkinci çevrə: MQ² = MA · MB.
+  Deməli MP² = MQ², yəni MP = MQ: M — PQ-nin ortasıdır.
+  MB = MA + AB = 4 + 5 = 9, MP² = 4 · 9 = 36, MP = 6.
+  PQ = 2 · MP = 12.
+Cavab: 12</div>
+
+      <h3><span class="st">3</span> Məsələ 2. Üç toxunan çevrə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Üç çevrə ortaq düz xəttə toxunur">
+          <circle cx="122.8" cy="100" r="70" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="216.1" cy="138.9" r="31.1" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="178.8" cy="158.8" r="11.2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="122.8" y1="170" x2="216.1" y2="170" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="122.8" cy="170" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.1" cy="170" r="2.6" fill="var(--ink)"/>
+          <circle cx="178.8" cy="170" r="2.6" fill="var(--ink)"/>
+          <circle cx="122.8" cy="100" r="2.6" fill="var(--ink)"/>
+          <circle cx="216.1" cy="138.9" r="2.6" fill="var(--ink)"/>
+          <circle cx="178.8" cy="158.8" r="2.6" fill="var(--ink)"/>
+          <text x="112.8" y="190" text-anchor="middle" class="lbl">A</text>
+          <text x="226.1" y="190" text-anchor="middle" class="lbl">B</text>
+          <text x="178.8" y="192" text-anchor="middle" class="lbl">C</text>
+          <text x="133.8" y="101" text-anchor="middle" class="lbl">O</text>
+          <text x="226.1" y="139.9" text-anchor="middle" class="lbl">Q</text>
+          <text x="176.8" y="143.8" text-anchor="middle" class="lbl">K</text>
+          </svg>
+        <div class="cap">
+          <p>Radiusları 9 və 4 olan iki çevrə xaricdən toxunur və ikisi də düz xəttə toxunur. İkisinin arasındakı boşluğa elə çevrə yerləşdirilib ki, o, ikisinə də və həmin düz xəttə toxunur. Onun radiusu <span class="m">ρ</span>-ni tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  Dərs 3-ə görə, xaricdən toxunan və eyni düz xəttə toxunan iki çevrənin toxunma nöqtələri arasındakı məsafə 2√(R · r)-dir.
+  AB = 2√(9 · 4) = 12
+  AC = 2√(9 · ρ) = 6√ρ,   CB = 2√(4 · ρ) = 4√ρ
+  C nöqtəsi A ilə B arasındadır: AC + CB = AB
+  6√ρ + 4√ρ = 12 → 10√ρ = 12 → √ρ = 6/5
+  ρ = 36/25
+Cavab: 36/25 = 1,44</div>
+
+      <h3><span class="st">4</span> Məsələ 3. Düzbucaqlı üçbucaq və diametr</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Düzbucaqlı ABC üçbucağı, AC diametrli çevrə AB-ni D nöqtəsində kəsir">
+          <polygon points="95.5,34.5 270,165.5 95.5,165.5" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="95.5" cy="100" r="65.5" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="95.5" y1="165.5" x2="158.3" y2="81.7" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <path d="M95.5 156.5L104.5 156.5L104.5 165.5" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M152.9 88.9L145.7 83.5L151.1 76.3" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <circle cx="95.5" cy="34.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="270" cy="165.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="95.5" cy="165.5" r="2.6" fill="var(--ink)"/>
+          <circle cx="158.3" cy="81.7" r="2.6" fill="var(--ink)"/>
+          <text x="91.5" y="28.5" text-anchor="middle" class="lbl">A</text>
+          <text x="280" y="184.5" text-anchor="middle" class="lbl">B</text>
+          <text x="85.5" y="184.5" text-anchor="middle" class="lbl">C</text>
+          <text x="172.3" y="82.7" text-anchor="middle" class="lbl">D</text>
+          </svg>
+        <div class="cap">
+          <p>ABC düzbucaqlı üçbucağında <span class="m">∠C = 90°</span>, <span class="m">AC = 15</span>, <span class="m">BC = 20</span>. <span class="m">AC</span> diametr olmaqla çevrə çəkilib; o, <span class="m">AB</span> hipotenuzunu <span class="m">D</span> nöqtəsində kəsir. <span class="m">AD</span> və <span class="m">CD</span>-ni tap.</p>
+        </div>
+      </div>
+      <div class="ex">Həll.
+  AB = √(15² + 20²) = 25.
+  BC ⟂ AC və AC diametrdir, deməli BC çevrəyə C nöqtəsində toxunur.
+  B nöqtəsindən toxunan BC və kəsən BDA: BC² = BD · BA
+  400 = BD · 25 → BD = 16, AD = 25 − 16 = 9.
+  ∠ADC diametrə söykənir, 90°-dir. ADC düzbucaqlıdır: CD² = AC² − AD² = 225 − 81 = 144, CD = 12.
+Cavab: AD = 9, CD = 12</div>
+      <div class="life"><b>Həyatdan.</b> Üç məsələnin üçündə də ölçməyi çətinləşdirən hissə (çevrənin mərkəzi, çevrənin kənarı boyunca məsafə) hesablamadan çıxdı: yalnız toxunan və kəsən parçalarının hasili qaldı.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ortaq toxunanın ortasını (<span class="m">M</span>) şəkildən "görmək" və sübutsuz yazmaq. Səbəb: iki toxunan parçası bərabərdir və hasil <span class="m">MA · MB</span> hər iki çevrə üçün eynidir.</li>
+        <li>Üç çevrə məsələsində <span class="m">√ρ</span>-ni <span class="m">ρ</span> kimi yazmaq: <span class="m">10√ρ = 12</span>-dən <span class="m">ρ = 1,2</span> çıxarmaq. Əvvəl <span class="m">√ρ = 6/5</span>, sonra kvadrat.</li>
+        <li>Diametrə söykənən bucağı unutmaq: <span class="m">∠ADC = 90°</span> olmadan <span class="m">CD</span>-ni tapmaq olmur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ortaq vətərin davamı ortaq toxunanı yarıya bölür (MP = MQ).
+Üç toxunan çevrə: 2√(R·r) = 2√(R·ρ) + 2√(r·ρ).
+Diametrin ucuna çəkilmiş perpendikulyar — toxunandır: BC² = BD · BA.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Məsələ 1-də MA = 2, AB = 7. PQ? <span class="ans">MB = 9, MP² = 18, MP = 3√2, PQ = 6√2.</span></li>
+        <li>Radiusları 16 və 1 olan çevrələr xaricdən toxunur və eyni düz xəttə toxunur. Aralarındakı üçüncü çevrənin radiusu? <span class="ans">Toxunma nöqtələri arası 2√(16 · 1) = 8. 8 = 2√(16ρ) + 2√ρ = 8√ρ + 2√ρ = 10√ρ, √ρ = 4/5, ρ = 16/25.</span></li>
+        <li>Məsələ 3-də AC = 9, BC = 12. AD? <span class="ans">AB = 15, BC² = BD · BA → 144 = BD · 15, BD = 9,6, AD = 15 − 9,6 = 5,4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Oyuna keç →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

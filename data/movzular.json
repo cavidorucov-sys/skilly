@@ -996,7 +996,8 @@
     "olimpiada:Çevrədə bucaqlar (mərkəzi, daxili)",
     "riyaziyyat:Oxşar üçbucaqlar"
    ],
-   "hefte": "2027-04-19"
+   "hefte": "2027-04-19",
+   "ders": "dersler/ol-toxunan-kesen.html"
   },
   {
    "bolme": "Həndəsə",
@@ -1008,7 +1009,8 @@
     "riyaziyyat:Daxilə və xaricə çəkilmiş çevrələr",
     "riyaziyyat:Oxşar üçbucaqlar"
    ],
-   "hefte": "2027-04-19"
+   "hefte": "2027-04-19",
+   "ders": "dersler/ol-ptolomey.html"
   },
   {
    "bolme": "Həndəsə",
@@ -1019,7 +1021,8 @@
     "olimpiada:Üçbucaqda tənbölən və median xassələri, Stüart düsturu",
     "riyaziyyat:Sahələr"
    ],
-   "hefte": "2027-04-26"
+   "hefte": "2027-04-26",
+   "ders": "dersler/ol-ceva-menelay.html"
   }
  ],
  "fizika": [
