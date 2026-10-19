@@ -1,7 +1,8 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
-  ["index.html", "Bu həftə"], ["teqvim.html", "Təqvim"], ["riyaziyyat.html", "Buraxılış"], ["olimpiada.html", "Olimpiada"],
-  ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Səhvlər"], ["dusturlar.html", "Düsturlar"],
+  ["index.html", "Bu həftə", "House"], ["teqvim.html", "Təqvim", "Calendar"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"],
+  ["olimpiada.html", "Olimpiada", "Trophy"], ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Səhvlər", "NotebookPen"],
+  ["dusturlar.html", "Düsturlar", "Sigma"],
 ];
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
@@ -105,7 +106,7 @@ async function shell(content) {
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.ders).length)), "dərs"),
       el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")));
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
-    NAV.map(([href, label]) => el("a", href === here ? { href, "aria-current": "page" } : { href }, label)));
+    NAV.map(([href, label, ic]) => el("a", href === here ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label))));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
   return { m, w, topics, term };
 }
@@ -205,30 +206,42 @@ function renderTopics(content, m, key, lead) {
   rows.forEach(r => {
     if (r.bolme !== sec) { sec = r.bolme; tb.append(el("tr", { class: "sec" }, el("td", { colspan: "4" }, sec))); }
     i++;
-    tb.append(el("tr", {}, el("td", { class: "n" }, String(i)),
-      el("td", {}, r.ders ? el("a", { href: r.ders }, r.ad) : r.ad, r.fritl ? el("span", { class: "tag" }, "FRİTL") : null, r.yeni ? el("span", { class: "tag" }, "əlavə") : null),
-      el("td", {}, stPill(r.status)), el("td", { style: "color:var(--muted)" }, r.ders ? "dərs var" : "tezliklə")));
+    const k = KAT[kat] || KAT.misc;
+    tb.append(el("tr", {}, el("td", { class: "n" }, String(i).padStart(2, "0")),
+      el("td", {}, el("div", { class: "tname" }, el("span", { class: "tic " + k.cls }, icon(topicIcon({ ...r, kat }), k.ink)),
+        el("span", {}, r.ad, r.fritl ? el("span", { class: "tag" }, "FRİTL") : null, r.yeni ? el("span", { class: "tag" }, "əlavə") : null))),
+      el("td", {}, stPill(r.status)),
+      el("td", { class: "act" }, r.ders ? el("a", { class: "go", href: r.ders }, "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
   });
-  content.append(el("div", { class: "tbl" }, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Vəziyyət"), el("th", {}, "Material"))), tb)));
+  content.append(el("div", { class: "tbl" }, el("table", { class: "mt" }, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Vəziyyət"), el("th", {}, ""))), tb)));
 }
 
 async function pageFormulas() {
   const q = el("input", { class: "search", type: "search", placeholder: "Axtar: sin, təcil, parabola…", "aria-label": "Düstur axtar" });
   const list = el("div");
-  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Düsturlar"), el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."), q, list);
+  let fenn = "Riyaziyyat";
+  const tabs = ["Riyaziyyat", "Fizika"].map(f => {
+    const b = el("button", { class: "tab", role: "tab", type: "button", "aria-selected": String(f === fenn) }, f);
+    b.addEventListener("click", () => { fenn = f; tabs.forEach(t => t.setAttribute("aria-selected", String(t === b))); q.placeholder = f === "Fizika" ? "Axtar: təcil, impuls, Om…" : "Axtar: sin, diskriminant, parabola…"; draw(); });
+    return b;
+  });
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Düsturlar"), el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."),
+    el("div", { class: "head", role: "tablist", style: "margin-top:22px" }, ...tabs), q, list);
   await shell(content);
   const all = await load("data/dusturlar.json").catch(() => []);
-  function draw(s) {
-    s = s.toLowerCase(); list.replaceChildren();
-    const f = all.filter(x => !s || (x.ad + x.fx + x.movzu + (x.nevaxt || "")).toLowerCase().includes(s));
-    [...new Set(f.map(x => x.fenn))].forEach(fenn => {
-      list.append(el("div", { class: "fsec" }, fenn), el("div", { class: "fgrid" }, ...f.filter(x => x.fenn === fenn).map(x => el("div", { class: "fcard" },
-        el("div", { class: "m" }, x.movzu + " · " + x.ad), el("div", { class: "fx" }, x.fx), el("div", { class: "note" }, x.nevaxt || ""),
+  function draw() {
+    const s = q.value.trim().toLowerCase(); list.replaceChildren();
+    const inTab = all.filter(x => x.fenn === fenn);
+    const f = inTab.filter(x => !s || (x.ad + x.fx + x.movzu + (x.nevaxt || "") + (x.sehv || "")).toLowerCase().includes(s));
+    list.append(el("p", { class: "count" }, s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`));
+    [...new Set(f.map(x => x.movzu))].forEach(mz => {
+      list.append(el("div", { class: "fsec" }, mz), el("div", { class: "fgrid" }, ...f.filter(x => x.movzu === mz).map(x => el("div", { class: "fcard" },
+        el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, x.fx), el("div", { class: "note" }, x.nevaxt || ""),
         x.sehv ? el("div", { class: "err" }, "Tipik səhv: " + x.sehv) : null, x.ders ? el("a", { href: x.ders }, "İzahı dərsdə →") : null))));
     });
-    if (!f.length) list.append(el("p", { class: "empty" }, "Tapılmadı."));
+    if (!f.length) list.append(el("p", { class: "empty" }, `${fenn} bölməsində tapılmadı.`));
   }
-  draw(""); q.addEventListener("input", () => draw(q.value));
+  draw(); q.addEventListener("input", draw);
 }
 
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
