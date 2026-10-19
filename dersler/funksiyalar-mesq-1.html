@@ -231,8 +231,8 @@ Təpə: x₀ = (−1 + 3) / 2 = 1   (və ya −(−2) / (2·1) = 1)
     <h3 class="tasks-h">Kvadrat funksiya · 11–23</h3>
     <div id="part2" style="display:grid;gap:12px"></div>
     <section class="end">
-      <p><b>Bitirəndə</b> (hamısını həll etməsən də) düyməni bas. Cavabların mətn kimi çıxacaq: <b>kopyala</b> və atana WhatsApp-da göndər.</p>
-      <div class="ans"><button class="btn" type="button" id="send">Bitir və cavabları göstər</button></div>
+      <p><b>Bitirəndə</b> (hamısını həll etməsən də) <b>Bitir</b> düyməsini bas. Nəticə atana özü gedir.</p>
+      <div class="ans"><button class="btn" type="button" id="send">Bitir</button></div>
     </section>
     <div id="result" hidden></div>
   </section>
@@ -329,19 +329,17 @@ function quad(){let a=+$("a2").value;if(a===0){a=0.5;$("a2").value=0.5}const b=+
   else if(D===0)facts.push("D = 0 → Ox oxuna toxunur");else facts.push("D < 0 → Ox oxunu kəsmir");
   $("f2").replaceChildren(...facts.map(s=>el("div",{},s)));plot($("g2"),x=>a*x*x+b*x+c,10,pts)}
 ["k1","b1"].forEach(id=>$(id).addEventListener("input",lin));["a2","b2","c2"].forEach(id=>$(id).addEventListener("input",quad));lin();quad();
-function summary(){const l=["Funksiyalar məşqi 1 (Fikrət)","Göndərildi: "+new Date().toLocaleString(),"Həll olunub: "+T.filter(([n])=>st.s[n]&&st.s[n].ok).length+" / 23"];
-  T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false};l.push(n+". "+(r.ok?"✓":"—")+" cəhd "+r.tries+(r.wrong.length?" · səhvlər: "+r.wrong.join(", "):"")+(r.hint?" · ipucu":""))});return l.join("\n")}
 function show(cls,nodes){const r=$("result");r.className=cls;r.replaceChildren(...nodes);r.hidden=false;r.scrollIntoView({block:"nearest"})}
 $("send").addEventListener("click",()=>{
   st.sent=true;save();
-  const txt=summary(),pre=el("pre",{class:"copy",id:"copytext"},txt);
-  const b=el("button",{class:"btn",type:"button"},"Cavabları kopyala");
-  b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(txt);b.textContent="Kopyalandı ✓"}catch(e){const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Mətn seçildi, indi kopyala (Ctrl+C / uzun bas)"}});
-  const wa=el("a",{class:"btn ghost",href:"https://wa.me/?text="+encodeURIComponent(txt),target:"_blank",rel:"noopener"},"WhatsApp-da aç");
-  show("done",[el("b",{},"Hazırdır."),el("p",{},"1) “Cavabları kopyala” bas. 2) WhatsApp-da atana yapışdır və göndər. “WhatsApp-da aç” düyməsi də mətni hazır açır — işləməsə, kopyala-yapışdır et."),pre,el("div",{class:"ans"},b,wa)]);
-  const doc={sentAt:new Date().toISOString(),startedAt:new Date(st.startedAt).toISOString(),solved:T.filter(([n])=>st.s[n]&&st.s[n].ok).length,items:{}};
-  T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false,hint:false};doc.items[String(n)]={ok:!!r.ok,tries:r.tries,wrong:r.wrong.slice(0,10),hint:!!r.hint}});
-  Promise.resolve().then(()=>claude.use("db")).then(db=>db&&db.collection("cehdler").add(doc)).catch(()=>{});
+  const solved=T.filter(([n])=>st.s[n]&&st.s[n].ok).length;
+  const hard=T.filter(([n])=>{const r=st.s[n];return r&&(r.wrong.length||!r.ok)}).map(([n])=>n);
+  show("done",[el("b",{},"Bitdi: "+solved+" / 23 həll olunub."),
+    el("p",{},hard.length?"Çətin olan suallar: "+hard.join(", ")+". Onlar səhv jurnalına düşüb — bir həftə sonra təkrar gələcək.":"Hamısı ilk cəhddə. Əla."),
+    el("p",{},"Nəticə atana avtomatik göndərildi.")]);
+  const items={};T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false,hint:false};items[n]={ok:!!r.ok,tries:r.tries,wrong:r.wrong.slice(0,10),hint:!!r.hint}});
+  if(window.Skilly)Skilly.netice({id:"funk-mesq-1@"+st.startedAt,ders:"Funksiyalar məşqi 1",fenn:"riyaziyyat",bal:solved,max:23,
+    deq:Math.round((Date.now()-st.startedAt)/60000),qeyd:hard.length?"çətin: "+hard.join(", "):"hamısı ilk cəhddə",items});
 });
 const TABS=['ders1','ders2','mesq'];
 function tab(id,focus){if(!TABS.includes(id))id='ders1';TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$('tb-'+t);b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});try{localStorage.setItem('funk-tab',id)}catch(e){}if(focus)$('tb-'+id).focus();window.scrollTo({top:0})}

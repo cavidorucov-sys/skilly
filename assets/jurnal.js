@@ -24,15 +24,20 @@
   const all = () => get(LS, []);
   function save(list) { put(LS, list); }
   function enqueue(item) { const q = get(QUEUE, []).filter(x => x.id !== item.id); q.push(item); put(QUEUE, q); flush(); }
+  const RES = "skilly-netice";
 
   let flushing = false;
   async function flush() {
     if (flushing) return; const a = await api(); const q = get(QUEUE, []);
     if (!a || !q.length) return; flushing = true;
     try {
-      const r = await fetch(a.url, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ key: a.key, op: "upsert", items: q }) });
-      const j = await r.json();
-      if (j.ok) { const sent = new Set(q.map(x => x.id + x.upd)); put(QUEUE, get(QUEUE, []).filter(x => !sent.has(x.id + x.upd))); }
+      // mistakes and results go in separate calls; each queued item leaves the queue only after its call succeeded
+      for (const [op, part] of [["upsert", q.filter(x => x._t !== "netice")], ["netice", q.filter(x => x._t === "netice")]]) {
+        if (!part.length) continue;
+        const r = await fetch(a.url, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ key: a.key, op, items: part }) });
+        const j = await r.json();
+        if (j.ok) { const sent = new Set(part.map(x => x.id + x.upd)); put(QUEUE, get(QUEUE, []).filter(x => !sent.has(x.id + x.upd))); }
+      }
     } catch (e) { /* offline: stays queued */ } finally { flushing = false; }
   }
 
@@ -49,6 +54,12 @@
     sehv(e) {
       if (all().some(x => x.id === e.id)) return null;
       return upsert({ tarix: today(), menbe: "", movzu: "", sual: "", cavab: "", duz: "", kat: "", yol: "", status: "yeni", novbeti: plus(today(), 7), tekrar: 0, ...e });
+    },
+    // Finished lesson/test: score, time and per-question detail; one record per attempt (same id = no duplicate).
+    netice(r) {
+      const list = get(RES, []); if (list.some(x => x.id === r.id)) return null;
+      const item = { tarix: today(), ...r, _t: "netice", upd: Date.now() };
+      list.push(item); put(RES, list); enqueue(item); return item;
     },
     update(id, fields) { const x = all().find(x => x.id === id); return x ? upsert({ ...x, ...fields }) : null; },
     // Redo result: success moves 7 days → 30 days → closed; failure returns to 7 days.
@@ -87,6 +98,7 @@
     if (get("skilly-kecmis", 0) >= past.versiya) return;
     for (const k in past.lessons) { try { if (!localStorage.getItem(k)) localStorage.setItem(k, JSON.stringify(past.lessons[k])); } catch (e) {} }
     past.sehvler.forEach(e => window.Skilly.sehv(e));
+    (past.neticeler || []).forEach(r => window.Skilly.netice(r));
     put("skilly-kecmis", past.versiya);
   })();
   window.addEventListener("online", flush);

@@ -1,5 +1,5 @@
 {
- "versiya": 1,
+ "versiya": 2,
  "lessons": {
   "mex-sinaq-1": {
    "a": {
@@ -423,6 +423,28 @@
    "status": "yeni",
    "novbeti": "2026-10-10",
    "tekrar": 0
+  }
+ ],
+ "neticeler": [
+  {
+   "id": "funk-mesq-1@kecmis",
+   "tarix": "2026-10-03",
+   "ders": "Funksiyalar məşqi 1",
+   "fenn": "riyaziyyat",
+   "bal": 23,
+   "max": 23,
+   "deq": "",
+   "qeyd": "19-u ilk cəhddə; çətin: 2, 15, 17, 18"
+  },
+  {
+   "id": "dim-sinaq-1@kecmis",
+   "tarix": "2026-10-03",
+   "ders": "DİM riyaziyyat sınağı 1",
+   "fenn": "riyaziyyat",
+   "bal": 20,
+   "max": 29,
+   "deq": 63,
+   "qeyd": "DİM bal hesabı: 20/29; 18 cavab, 0 səhv, 7 boş: 8, 9, 19, 20, 21, 23, 24"
   }
  ]
 }

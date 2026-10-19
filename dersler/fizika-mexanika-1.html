@@ -540,20 +540,18 @@ $("no").addEventListener("click",()=>{$("confirm").hidden=true});
 $("yes").addEventListener("click",async()=>{$("yes").disabled=true;st.doneAt=Date.now();const res={};
   for(const [n] of Q){const s=norm(st.a[n]||"");res[n]=s?(await hash(n,s))===H[n]:null}
   st.res=res;save();finish()});
-function summary(){const secs=Math.floor((st.doneAt-st.startedAt)/1000),ok=Q.filter(([n])=>st.res[n]===true).length;
-  const l=["Fizika sınağı 1: mexanika (Fikrət)","Başlama: "+new Date(st.startedAt).toLocaleString(),"Vaxt: "+fmt(secs)+(secs>LIMIT?" (60 dəqiqədən artıq)":""),"Bal: "+ok+" / 24"];
-  Q.forEach(([n])=>l.push(n+". "+((st.a[n]||"").toString().trim()||"—")+" "+(st.res[n]===true?"✓":st.res[n]===false?"✗":"boş")));return l.join("\n")}
 function logErrors(){if(!window.Skilly)return;Q.forEach(([n,sec,text,x])=>{const r=st.res[n];if(r===true)return;
   Skilly.sehv({id:"mex-sinaq-1#"+n,fenn:"fizika",movzu:"Mexanika",menbe:"Mexanika sınağı 1, sual "+n,sual:text,opts:Array.isArray(x)?x:null,vahid:Array.isArray(x)?"":x,cavab:r===false?String(st.a[n]||""):"",bos:r===null,chk:{p:"p1",n:n,h:H[n]},link:"dersler/fizika-mexanika-1.html"})})}
 function finish(){logErrors();clearInterval(tick);clock();$("fs").disabled=true;$("finish").hidden=true;$("confirm").hidden=true;
   Q.forEach(([n])=>{const r=st.res[n],b=boxes[n];b.box.classList.add(r===true?"right":"wrong");b.mark.textContent=r===true?"Düz ✓":r===false?"Səhv ✗":"Boş"});
-  const ok=Q.filter(([n])=>st.res[n]===true).length,txt=summary(),pre=el("pre",{class:"copy"},txt);
-  const b=el("button",{class:"btn",type:"button"},"Cavabları kopyala");
-  b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(txt);b.textContent="Kopyalandı ✓"}catch(e){const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Mətn seçildi, indi kopyala"}});
-  const wa=el("a",{class:"btn ghost",href:"https://wa.me/?text="+encodeURIComponent(txt),target:"_blank",rel:"noopener"},"WhatsApp-da aç");
-  const r=$("result");r.className="done";r.replaceChildren(el("b",{},"Nəticə: "+ok+" / 24"),el("p",{},"Səhv olan sualları kağızda yenidən həll et, sonra uyğun dərsə qayıt. Sonra “Cavabları kopyala” bas və atana WhatsApp-da göndər."),pre,el("div",{class:"row"},b,wa));r.hidden=false;r.scrollIntoView({block:"nearest"});
-  const doc={startedAt:new Date(st.startedAt).toISOString(),doneAt:new Date(st.doneAt).toISOString(),score:ok,answers:{},res:{}};Q.forEach(([n])=>{doc.answers[n]=String(st.a[n]||"");doc.res[n]=st.res[n]});
-  Promise.resolve().then(()=>claude.use("db")).then(db=>db&&db.collection("sinaq").add(doc)).catch(()=>{})}
+  const ok=Q.filter(([n])=>st.res[n]===true).length,bad=Q.filter(([n])=>st.res[n]!==true).map(([n])=>n);
+  const secs=Math.floor((st.doneAt-st.startedAt)/1000);
+  const r=$("result");r.className="done";r.replaceChildren(el("b",{},"Nəticə: "+ok+" / 24 · vaxt "+fmt(secs)),
+    el("p",{},bad.length?"Səhv və ya boş: "+bad.join(", ")+". Bu suallar səhv jurnalına düşüb — kağızda yenidən həll et, sonra uyğun dərsə qayıt.":"Hamısı düz."),
+    el("p",{},"Nəticə atana avtomatik göndərildi."));r.hidden=false;r.scrollIntoView({block:"nearest"});
+  const items={};Q.forEach(([n])=>{items[n]={cavab:String(st.a[n]||""),ok:st.res[n]}});
+  if(window.Skilly)Skilly.netice({id:"mex-sinaq-1@"+st.startedAt,ders:"Mexanika sınağı 1",fenn:"fizika",bal:ok,max:24,deq:Math.round(secs/60),
+    qeyd:bad.length?"səhv/boş: "+bad.join(", "):"hamısı düz",items,tarix:new Date(st.startedAt).toISOString().slice(0,10)})}
 if(st.startedAt){begin();if(st.res)finish()}
 </script>
 

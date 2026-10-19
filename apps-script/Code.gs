@@ -2,8 +2,16 @@
 // script property SKILLY_KEY, deploy as a web app (Execute as: Me, Who has access: Anyone).
 // The key keeps the public web-app URL from being read or written by others.
 const SHEET = "Səhvlər";
+const RSHEET = "Nəticələr";
+const RCOLS = ["id", "tarix", "ders", "fenn", "bal", "max", "faiz", "deq", "qeyd", "json"];
 const COLS = ["id", "tarix", "fenn", "movzu", "menbe", "sual", "cavab", "duz", "kat", "yol", "status", "novbeti", "tekrar", "bos", "link", "upd", "json"];
 
+function rsheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(RSHEET);
+  if (!sh) { sh = ss.insertSheet(RSHEET); sh.appendRow(RCOLS); sh.setFrozenRows(1); }
+  return sh;
+}
 function sheet_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sh = ss.getSheetByName(SHEET);
@@ -11,7 +19,7 @@ function sheet_() {
   return sh;
 }
 // Run once from the editor: grants permissions and creates the "Səhvlər" sheet.
-function setup() { sheet_(); }
+function setup() { sheet_(); rsheet_(); }
 function out_(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }
 function keyOk_(k) { return k && k === PropertiesService.getScriptProperties().getProperty("SKILLY_KEY"); }
 
@@ -27,6 +35,18 @@ function doPost(e) {
   if (!keyOk_(body.key)) return out_({ ok: false, error: "key" });
   const lock = LockService.getScriptLock(); lock.waitLock(10000);
   try {
+    if (body.op === "netice") {
+      // results: one row per attempt, never overwritten
+      const rs = rsheet_();
+      const have = rs.getRange(1, 1, rs.getLastRow(), 1).getValues().map(r => String(r[0]));
+      (body.items || []).forEach(it => {
+        if (have.indexOf(String(it.id)) > 0) return;
+        const faiz = it.max ? Math.round(it.bal / it.max * 100) : "";
+        rs.appendRow(RCOLS.map(c => c === "json" ? JSON.stringify(it) : c === "faiz" ? faiz : (it[c] === undefined || it[c] === null ? "" : it[c])));
+        have.push(String(it.id));
+      });
+      return out_({ ok: true });
+    }
     const sh = sheet_();
     const ids = sh.getRange(1, 1, sh.getLastRow(), 1).getValues().map(r => String(r[0]));
     (body.items || []).forEach(it => {
