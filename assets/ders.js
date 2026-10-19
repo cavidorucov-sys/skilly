@@ -80,8 +80,21 @@
     img.onerror = () => fig.remove();
     fig.append(img); h.after(fig);
   }
+  // Self-check: the questions are open, each answer stays hidden until its own "Cavabı göstər" is pressed.
+  function hideAnswers(root) {
+    root.querySelectorAll("details.check").forEach(d => {
+      d.open = true;
+      d.querySelectorAll(".ans").forEach(a => {
+        a.hidden = true;
+        const b = document.createElement("button"); b.type = "button"; b.className = "ans-btn"; b.textContent = "Cavabı göstər";
+        b.addEventListener("click", () => { a.hidden = false; b.remove(); });
+        a.before(b);
+      });
+    });
+  }
   document.addEventListener("DOMContentLoaded", () => {
     illustrate();
+    hideAnswers(document);
     // links that leave the lesson open in the portal window, not inside the frame
     document.querySelectorAll('a[href^="../"]').forEach(a => { a.target = "_top"; });
     document.querySelectorAll("article.lesson").forEach((art, li) => stepify(art, name + ":" + li));
