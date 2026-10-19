@@ -1103,7 +1103,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər",
     "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
    ],
-   "hefte": "2026-10-26"
+   "hefte": "2026-10-26",
+   "ders": "dersler/fiz-cazibe.html"
   },
   {
    "bolme": "Dinamika",
@@ -1150,7 +1151,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər",
     "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "ders": "dersler/fiz-tezyiq.html"
   },
   {
    "bolme": "Hidrostatika",
@@ -1161,7 +1163,8 @@
     "fizika:Təzyiq, hidrostatik təzyiq, Paskal qanunu",
     "fizika:Nyuton qanunları, bağlı cisimlər"
    ],
-   "hefte": "2026-11-23"
+   "hefte": "2026-11-23",
+   "ders": "dersler/fiz-arximed.html"
   },
   {
    "bolme": "Riyazi bacarıqlar",

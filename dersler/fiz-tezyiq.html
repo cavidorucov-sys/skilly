@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Təzyiq, Paskal qanunu dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-tezyiq.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Təzyiq, Paskal qanunu</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Hidrostatika</div>
+    <h1>Təzyiq, hidrostatik təzyiq, Paskal qanunu</h1>
+    <p>Eyni qüvvə iti bıçaqla kəsir, küt bıçaqla kəsmir. Fərq təzyiqdədir: <span class="m">p = F/S</span>. Mayenin içində isə təzyiq dərinliyə görə artır: <span class="m">p = ρgh</span>. Bu iki düsturdan atmosfer təzyiqi, rabitəli qablar və hidravlik press çıxır. Olimpiadada bu mövzu "iki maye", "U-boru" və "press" məsələləri ilə gəlir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>, suyun sıxlığı <span class="m">1000 kq/m³</span>, atmosfer təzyiqi təxminən <span class="m">100 kPa</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Təzyiq p = F/S</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Hidrostatik, atmosfer</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Rabitəli qablar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Paskal, press</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Təzyiq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qarda piyada batır, xizəkçi batmır. Düymə taxtaya iti ucu ilə girir, küt tərəfi ilə girmir. Traktor yumşaq torpaqda ağır olsa da batmır, çünki zəncirləri geniş sahə ilə dayanır. Hamısında məsələ qüvvədə yox, qüvvənin <b>nə qədər sahəyə paylanmasındadır</b>.</p>
+
+      <h3><span class="st">2</span> Təzyiq nədir</h3>
+      <p><b>Təzyiq</b> — səthə perpendikulyar təsir edən qüvvənin həmin səthin sahəsinə nisbətidir.</p>
+      <div class="fm">p = F/S
+vahidi: 1 Pa = 1 N/m²
+1 kPa = 1000 Pa,   1 MPa = 1 000 000 Pa</div>
+      <p>Burada <span class="m">F</span> — səthə <b>perpendikulyar</b> təsir edən qüvvədir (təsir edən sahəyə düşən hissəsi), <span class="m">S</span> — toxunma sahəsi. Eyni qüvvədə sahə nə qədər kiçikdirsə, təzyiq o qədər böyükdür.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Eyni kərpic üfüqi və şaquli qoyulub: ağırlıq eynidir, toxunma sahəsi fərqlidir">
+          <defs><marker id="tz1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="120" x2="250" y2="120" stroke="var(--ink)" stroke-width="2.5"/>
+          <rect x="25" y="92" width="100" height="28" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="75" y1="45" x2="75" y2="88" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#tz1)"/>
+          <text x="82" y="62" class="lbl">mg</text>
+          <text x="75" y="140" class="lbl" text-anchor="middle">S böyük, p kiçik</text>
+          <rect x="180" y="62" width="28" height="58" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="194" y1="15" x2="194" y2="58" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#tz1)"/>
+          <text x="201" y="32" class="lbl">mg</text>
+          <text x="194" y="140" class="lbl" text-anchor="middle">S kiçik, p böyük</text>
+        </svg>
+        <div class="cap">
+          <p>Eyni kərpic: ağırlıq eynidir, amma dar üzü üstə qoyulanda təzyiq böyük olur. Təzyiq aşağıdakı sahədən asılıdır, yuxarıdakı yox.</p>
+        </div>
+      </div>
+      <p>Cisim sərt səthin üstündə durursa və yalnız ağırlıq basırsa, <span class="m">F = mg</span>. Bu halda <span class="m">p = mg/S</span>.</p>
+      <p><b>Sahəni metrə çevir.</b> Bu, ən çox buraxılan səhvdir: <span class="m">1 sm² = 0,0001 m²</span>, <span class="m">1 dm² = 0,01 m²</span>, <span class="m">1 mm² = 0,000001 m²</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Kərpicin kütləsi 4 kq, ölçüləri 20 × 10 × 5 sm.
+Ən böyük və ən kiçik üzü üstə qoyulanda təzyiq?
+  Ağırlıq: mg = 4·10 = 40 N
+  Böyük üz: 20·10 = 200 sm² = 0,02 m²
+    p = 40/0,02 = 2000 Pa
+  Kiçik üz: 10·5 = 50 sm² = 0,005 m²
+    p = 40/0,005 = 8000 Pa
+  Sahə 4 dəfə kiçikdir → təzyiq 4 dəfə böyükdür.</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Stolun üstündə iki kub üst-üstə qoyulub. Alt kubun tili 20 sm,
+kütləsi 8 kq. Üst kubun tili 10 sm, kütləsi 2 kq.
+a) Üst kubun alt kuba təzyiqi? b) Alt kubun stola təzyiqi?
+  a) Üst kubun ağırlığı 20 N, toxunma sahəsi 10·10 = 100 sm² = 0,01 m²
+     p₁ = 20/0,01 = 2000 Pa
+  b) Stola ümumi ağırlıq basır: (8 + 2)·10 = 100 N
+     Sahə = 20·20 = 400 sm² = 0,04 m²
+     p₂ = 100/0,04 = 2500 Pa</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Alüminium silindrin hündürlüyü 20 sm,
+ρ = 2700 kq/m³. Düz səthə təzyiqi? (Əsasının sahəsi verilməyib.)
+  Silindrin həcmi V = S·h, kütləsi m = ρSh, ağırlığı ρShg
+  p = F/S = ρShg/S = ρgh
+  p = 2700·10·0,2 = 5400 Pa
+  Sahə ixtisar olundu: eyni hündürlükdə bütün düzgün silindrlərin
+  və prizmaların təzyiqi eynidir.</div>
+      <div class="life"><b>Həyatdan.</b> 70 kq-lıq xizəkçinin ağırlığı 700 N-dur. Çəkmələrinin altı cəmi 400 sm² = 0,04 m² olsa, təzyiq <span class="m">700/0,04 = 17 500 Pa</span> olar. Xizəklərin sahəsi 0,32 m² olanda isə <span class="m">700/0,32 ≈ 2200 Pa</span>: təxminən 8 dəfə az. Qarın dözə biləcəyi təzyiqdən az olduğu üçün xizəkçi batmır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sahəni sm²-lə qoyub qüvvəni N-la bölmək, sonra cavabı "Pa" adlandırmaq. <span class="m">40/200 = 0,2</span> deyil, <span class="m">40/0,02 = 2000 Pa</span>.</li>
+        <li>Kütləni qüvvə sanmaq. <span class="m">F = mg</span>: 4 kq-ın ağırlığı 40 N-dur.</li>
+        <li>Toxunma sahəsi əvəzinə cismin hər hansı üzünün sahəsini götürmək. Üst-üstə qoyulmuş cisimlərdə <b>toxunan hissə</b> sayılır (nümunə 2a).</li>
+        <li>İki ayaq üstə dayananda sahəni bir ayağın sahəsi qədər götürmək. Sahə iki dəfə çoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p = F/S,   1 Pa = 1 N/m²,   1 kPa = 10³ Pa
+Ağırlıq altında:  p = mg/S
+Düzgün silindr/prizma:  p = ρgh
+1 sm² = 10⁻⁴ m²,   1 mm² = 10⁻⁶ m²</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>600 N yük 0,05 m² sahəyə bərabər paylanıb. Təzyiq? <span class="ans">600/0,05 = 12 000 Pa = 12 kPa.</span></li>
+        <li>Eyni qüvvə ilə basırsan, təmas sahəsi 5 dəfə azalıb. Təzyiq necə dəyişdi? <span class="ans">5 dəfə artdı (p ~ 1/S).</span></li>
+        <li>Zəmin 10 kPa-dan çox təzyiqə dözmür. Ayağın sahəsi 200 sm² olan şəxsin bir ayaq üstə dura biləcəyi ən böyük ağırlıq? <span class="ans">F = pS = 10 000·0,02 = 200 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Hidrostatik təzyiq və atmosfer təzyiqi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dalğıc dərinə getdikcə qulaqları ağrıyır. Su anbarının bəndi dibdə qalın, yuxarıda nazik tikilir. Tibbi şpris, kokteyl borusu, su nasosu, barometr — hamısı mayenin və havanın təzyiqi ilə işləyir.</p>
+
+      <h3><span class="st">2</span> Mayenin təzyiqi: p = ρgh</h3>
+      <p>Mayenin içində təzyiq üstdəki maye sütununun çəkisindən yaranır. Hündürlüyü <span class="m">h</span>, en kəsiyi <span class="m">S</span> olan sütunu götürək: kütləsi <span class="m">ρSh</span>, çəkisi <span class="m">ρShg</span>. Onu <span class="m">S</span> sahəsinə bölsək:</p>
+      <div class="fm">p = ρ·g·h
+h — səthdən şaquli məsafə (dərinlik)</div>
+      <p>Üç vacib fakt:</p>
+      <ul>
+        <li>Təzyiq <b>dərinliyə düz mütənasibdir</b>: suda hər 10 m-ə 100 kPa əlavə olunur.</li>
+        <li>Eyni dərinlikdə təzyiq <b>hər istiqamətdə eynidir</b> (aşağı, yuxarı, yanlara).</li>
+        <li>Təzyiq qabın <b>formasından və mayenin miqdarından asılı deyil</b>, yalnız ρ və h-dan asılıdır.</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 260 160" role="img" aria-label="Üç müxtəlif formalı qabda su eyni h səviyyəsindədir, dibdə təzyiq eynidir">
+          <defs><marker id="tz2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M20 40L20 130L60 130L60 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M20 70L20 130L60 130L60 70z" fill="var(--accent-soft)"/>
+          <path d="M100 40L120 130L160 130L180 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M104 70L120 130L160 130L176 70z" fill="var(--accent-soft)"/>
+          <path d="M200 40L210 85L210 130L250 130L250 85L240 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M207 70L210 85L210 130L250 130L250 85L246 70z" fill="var(--accent-soft)"/>
+          <line x1="12" y1="70" x2="258" y2="70" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="6" y1="72" x2="6" y2="128" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#tz2)" marker-end="url(#tz2)"/>
+          <text x="12" y="104" class="lbl">h</text>
+          <text x="130" y="152" class="lbl" text-anchor="middle">dibdə təzyiq hər üçündə eynidir: p = ρgh</text>
+        </svg>
+        <div class="cap">
+          <p>Su hər üç qabda eyni <span class="m">h</span> hündürlüyündədir. Qablarda suyun miqdarı çox fərqlənsə də, dibə təzyiq eynidir.</p>
+        </div>
+      </div>
+      <p>Dibə təsir edən qüvvə <span class="m">F = pS = ρghS</span>. Bu qüvvə yalnız silindr qabda suyun çəkisinə bərabərdir. Yuxarıya doğru genişlənən qabda dibə qüvvə suyun çəkisindən kiçikdir, daralan qabda böyükdür (divarlar da qüvvə ötürür).</p>
+
+      <h3><span class="st">3</span> Atmosfer təzyiqi</h3>
+      <p>Hava da çəkiyə malikdir. Yerin üstündə bir neçə on kilometr hava sütunu var və o, səthə təxminən <b>100 kPa</b> təzyiqlə basır. Mayenin içində ümumi təzyiq atmosfer təzyiqini də əhatə edir:</p>
+      <div class="fm">p = p₀ + ρgh</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 180" role="img" aria-label="Torriçelli təcrübəsi: civə ilə dolu şüşə boru civə qabında, boruda civə sütunu atmosfer təzyiqini tarazlayır">
+          <defs><marker id="tz2b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M70 130L70 150L190 150L190 130" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M72 132L72 148L188 148L188 132z" fill="var(--accent-soft)"/>
+          <line x1="70" y1="132" x2="190" y2="132" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M115 140L115 15L145 15L145 140" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="117" y="55" width="26" height="85" fill="var(--accent-soft)"/>
+          <text x="130" y="38" class="lbl" text-anchor="middle">boşluq</text>
+          <line x1="150" y1="55" x2="215" y2="55" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="205" y1="57" x2="205" y2="130" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#tz2b)" marker-end="url(#tz2b)"/>
+          <text x="212" y="98" class="lbl">h = 760 mm</text>
+          <line x1="90" y1="104" x2="90" y2="128" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#tz2b)"/>
+          <line x1="170" y1="104" x2="170" y2="128" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#tz2b)"/>
+          <text x="90" y="98" class="lbl" text-anchor="middle">p₀</text><text x="170" y="98" class="lbl" text-anchor="middle">p₀</text>
+          <text x="130" y="170" class="lbl" text-anchor="middle">civə</text>
+        </svg>
+        <div class="cap">
+          <p>İtaliyalı Torriçelli bir ucu bağlı civə dolu boruyu civəli qaba çevirdi. Boruda civə qalxıb ~760 mm-də dayandı. Atmosfer qabdakı civənin səthinə basır, boruda isə civə sütunu basır: <span class="m">p₀ = ρ_civə·g·h</span>.</p>
+        </div>
+      </div>
+      <p>Təzyiq vahidi kimi <b>mm Hg</b> (civə sütununun mm-i) də işlənir: <span class="m">1 mm Hg = 13600·10·0,001 = 136 Pa</span> (g = 10 ilə). Normal atmosfer 760 mm Hg-dir (real g = 9,8 ilə 101,3 kPa; məsələlərdə <span class="m">p₀ ≈ 100 kPa</span> götürürük). Suyun sıxlığı civədən 13,6 dəfə azdır, ona görə su barometrinin hündürlüyü 10 m olardı. Nasos suyu atmosfer təzyiqi ilə qaldırdığı üçün 10 m-dən hündür qaldıra bilməz.</p>
+      <p>Hündürlük artdıqca atmosfer təzyiqi azalır: yer səthinə yaxın hər ~12 m-ə təxminən 1 mm Hg.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Dalğıc 30 m dərinlikdədir (göl, p₀ = 100 kPa).
+  Suyun təzyiqi: ρgh = 1000·10·30 = 300 000 Pa = 300 kPa
+  Ümumi təzyiq: p = 100 + 300 = 400 kPa
+  Əlinin üstündəki 100 sm² = 0,01 m² səthə qüvvə:
+    F = 400 000·0,01 = 4000 N
+  (Bunun 3000 N-u suyun, 1000 N-u atmosferin payıdır.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Silindr qabın dibinin sahəsi 100 sm², içində 40 sm hündürlüyündə
+su var. Suyun dibə təzyiq qüvvəsi və suyun çəkisi?
+  p = 1000·10·0,4 = 4000 Pa
+  F = pS = 4000·0,01 = 40 N
+  Suyun çəkisi: m = ρSh = 1000·0,01·0,4 = 4 kq → 40 N
+  Silindrdə bərabərdir. Eyni dibi və eyni 40 sm
+  hündürlüyü olan, yuxarı genişlənən qabda su çox olardı,
+  amma dibə qüvvə yenə 40 N olardı.</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Bir ucu bağlı şaquli şüşə borunun
+içində 100 mm uzunluğunda civə sütunu bir miqdar hava saxlayıb.
+Atmosfer təzyiqi 750 mm Hg. Hava təzyiqini tap, açıq ucu a) yuxarı,
+b) aşağı olanda.
+  a) Hava dibdədir, civə onun üstündə, atmosfer civənin üstündə:
+     p = 750 + 100 = 850 mm Hg = 0,136·850 = 115,6 kPa
+  b) Açıq ucu aşağı: civə havanın altındadır, atmosfer civəni
+     yuxarı itələyir, çəkisi aşağı çəkir:
+     p + 100 = 750 → p = 650 mm Hg = 88,4 kPa</div>
+      <div class="life"><b>Həyatdan.</b> Kokteyl borusunu sormaq üçün ağızda təzyiqi atmosfer təzyiqindən az edirsən. Atmosfer təzyiqi mayeni borunun içinə itələyir. Su borunun 0,5 m-ə qalxması üçün ağızda təzyiq <span class="m">1000·10·0,5 = 5000 Pa</span> az olmalıdır. Bu, ən güclü sormaqla da yalnız 10 m-ə qədər mümkündür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dərinlik əvəzinə qabın uzunluğunu götürmək. Hündürlük <b>şaquli</b> ölçülür; maili borudakı maye sütununda h = l·sin α.</li>
+        <li>Dibə təzyiqi qabdakı suyun çəkisinə bölmək. Qabın formasından asılı deyil: yalnız ρgh.</li>
+        <li>Mayenin içində ümumi təzyiq soruşulanda p₀-ı yazmamaq (və ya soruşulmayanda əlavə etmək). Mətndə "atmosfersiz" və ya "ümumi" sözünə bax.</li>
+        <li>Borunun açıq ucu aşağı olanda civə sütununun təzyiqini <b>əlavə etmək</b>; orada azaldılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p = ρgh   (dərinlik h şaquli)
+Mayenin içində:  p = p₀ + ρgh
+p₀ ≈ 100 kPa,   1 mm Hg = 136 Pa (g = 10)
+Dibə qüvvə:  F = ρghS   (qabın formasından asılı deyil)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Suyun 20 m dərinliyində hidrostatik təzyiq? Ümumi təzyiq? <span class="ans">1000·10·20 = 200 kPa; ümumi 300 kPa.</span></li>
+        <li>Neftin (ρ = 800) hidrostatik təzyiqi 40 kPa olan dərinlik? <span class="ans">h = 40 000/(800·10) = 5 m.</span></li>
+        <li>Üç müxtəlif formalı qabda eyni mayenin eyni h hündürlüyündə dibdə təzyiqlər necə müqayisə olunur? <span class="ans">Eynidir: p = ρgh forma və miqdardan asılı deyil.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Rabitəli qablar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çaydanın burnu və gövdəsində su eyni səviyyədədir. Su təchizatı qüllələri, şlüzlər, bağban su şlanqı ilə səviyyə ölçmək — hamısı rabitəli qablardır. Olimpiadada isə bu mövzu yağ-su-civə ilə U-borular şəklində gəlir.</p>
+
+      <h3><span class="st">2</span> Eyni maye</h3>
+      <p>Aşağıdan birləşmiş qablara bir cür maye tökülübsə, mayenin səthi bütün qollarda <b>eyni səviyyədə</b> dayanır — qolların forma və genişliyindən asılı olmayaraq. Səbəb: qolun dibindəki təzyiq <span class="m">p₀ + ρgh</span>-dır; qollar birləşdiyi yerdə təzyiqlər bərabər olmalıdır, deməli <span class="m">h</span> eynidir.</p>
+
+      <h3><span class="st">3</span> İki maye: ρ₁h₁ = ρ₂h₂</h3>
+      <p>Qarışmayan iki maye tökülsə, səviyyələr fərqlənir. Mayelərin <b>sərhəd səviyyəsini</b> götürək (sərhəd bir qolun içindədir). Bu səviyyədə iki qoldakı təzyiqlər bərabərdir. Hər iki qolda atmosfer var, p₀ ixtisar olunur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 210" role="img" aria-label="U-şəkilli boruda sol qolda yağ və su, sağ qolda su: yağın hündürlüyü h₁, sərhəddən sağ qolda suyun hündürlüyü h₂">
+          <path d="M60 30L60 190L200 190L200 30" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M90 30L90 160L170 160L170 30" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M62 120L88 120L88 160L172 160L172 56L198 56L198 188L62 188z" fill="var(--accent-soft)"/>
+          <rect x="62" y="40" width="26" height="80" fill="var(--vec)" fill-opacity="0.25"/>
+          <line x1="40" y1="120" x2="215" y2="120" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="48" y1="42" x2="48" y2="118" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#tz3)" marker-end="url(#tz3)"/>
+          <text x="42" y="84" class="lbl" text-anchor="end">h₁</text>
+          <line x1="215" y1="58" x2="215" y2="118" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#tz3)" marker-end="url(#tz3)"/>
+          <text x="222" y="92" class="lbl">h₂</text>
+          <text x="75" y="30" class="lbl" text-anchor="middle">yağ ρ₁</text>
+          <text x="130" y="178" class="lbl" text-anchor="middle">su ρ₂</text>
+          <defs><marker id="tz3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        </svg>
+        <div class="cap">
+          <p>Sol qolda sərhəd səviyyəsindən yuxarıda yağ, sağ qolda həmin səviyyədən yuxarı su. Qoldan asılı olmayaraq sərhəd səviyyəsində təzyiqlər eynidir: <span class="m">ρ₁gh₁ = ρ₂gh₂</span>. Yağ suyundan yüngüldür, ona görə yağ sütunu daha hündür olmalıdır.</p>
+        </div>
+      </div>
+      <div class="fm">ρ₁·h₁ = ρ₂·h₂
+Sıxlıq çox olsa, sütun alçaq olur: h ~ 1/ρ</div>
+      <p>Sərhəd səviyyəsindən <b>aşağı</b> hissəyə hər iki qolda eyni maye olduğu üçün təzyiq tarazlığına təsir etmir. Sütunları həmişə sərhədin <b>səviyyəsindən</b> ölç.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. U-boruda bir qolda sərhəddən 20 sm kerosin
+(ρ = 800), digər qolda su. Suyun sütunu?
+  800·20 = 1000·h → h = 16 sm</div>
+      <div class="ex">Nümunə 2. U-boruda civədir. Qollardan birinə 27,2 sm
+su sütunu tökdülər. Civənin səviyyələri arasındakı fərq?
+  Civənin aşağı səviyyəsində təzyiqlər bərabərdir:
+  1000·27,2 = 13600·Δh → Δh = 2 sm
+  (Qolların kəsiyi eyni olduqda su tökülən qolda civə 1 sm enir,
+  o birində 1 sm qalxır.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). U-boruda su var. Sol qolun en kəsiyi
+3 sm², sağ qolun 6 sm². Sol qola 20 sm yağ (ρ = 900) tökdülər.
+Sağ qolda suyun səviyyəsi nə qədər qalxar?
+  Sol qolda su x₁ enir, sağ qolda x₂ qalxır. Həcm saxlanır:
+    3x₁ = 6x₂ → x₁ = 2x₂
+  Sərhəd səviyyəsində: sağ qolda həmin səviyyədən yuxarı suyun
+  hündürlüyü x₁ + x₂:
+    1000(x₁ + x₂) = 900·20 → x₁ + x₂ = 18 sm
+  3x₂ = 18 → x₂ = 6 sm, x₁ = 12 sm
+  Cavab: 6 sm. (Qolların kəsiyi fərqli olduqda həcm şərti də lazımdır.)</div>
+      <div class="life"><b>Həyatdan.</b> Tikinti işçisi uzaq divarlarda eyni səviyyə nişanını şəffaf şlanqla (su səviyyəsi) qoyur: şlanq rabitəli qabdır, iki ucunda su eyni hündürlükdə durur. Su qüllələri də eyni prinsiplə işləyir: yüksəkdəki çən evlərdəki kranlara təzyiq verir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sütunları sərhəddən yox, borunun dibindən ölçmək. Yalnız <b>sərhəd səviyyəsindən yuxarı</b> hissələr müqayisə olunur.</li>
+        <li>Daha sıx mayenin sütununu daha hündür sanmaq. Sıx maye ağırdır, qısa sütun kifayətdir: <span class="m">h₁/h₂ = ρ₂/ρ₁</span>.</li>
+        <li>Qollar fərqli enlidirsə, "səviyyə eynidir" deyib həcmi unutmaq. Mayenin həcmi saxlanır (nümunə 3).</li>
+        <li>Səthləri müqayisə edəndə fərqi sütunların fərqi ilə qarışdırmaq. Sual "səthlər arasındakı fərq" soruşursa, <span class="m">h₁ − h₂</span> axtarılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bir maye: səviyyələr eynidir.
+İki maye: ρ₁h₁ = ρ₂h₂  (sərhəd səviyyəsindən ölç)
+Qolların kəsikləri fərqlidirsə: S₁x₁ = S₂x₂ (həcm)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Benzin (ρ = 700) 30 sm, onun sərhəddi ilə suyun sütunu? <span class="ans">700·30 = 1000·h → h = 21 sm.</span></li>
+        <li>Civədən 13,6 sm su sütunu neçə sm civə fərqi yaradır? <span class="ans">1000·13,6 = 13600·Δh → Δh = 1 sm.</span></li>
+        <li>U-boruda su var. Sol qola 10 sm yağ (ρ = 800) tökülüb. Yağın səthi sağ qolda suyun səthindən nə qədər yuxarıdadır? <span class="ans">Sağ qolda su sərhəddən 8 sm yuxarıdadır. Fərq: 10 − 8 = 2 sm.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Paskal qanunu və hidravlik press</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobil servisində maşını bir adam əli ilə qaldırır. Ekskavatorun qolu, dişçi kreslosu, avtomobilin əyləcləri — hamısı eyni qanunla işləyir. Paskal qanunu kiçik qüvvənin böyük qüvvəyə çevrilməsinin açarıdır.</p>
+
+      <h3><span class="st">2</span> Paskal qanunu</h3>
+      <p>Qapalı qabdakı maye (və ya qaz) üzərinə edilən <b>təzyiq</b> mayenin hər nöqtəsinə <b>dəyişmədən</b> ötürülür. Diqqət: ötürülən qüvvə yox, təzyiqdir.</p>
+      <p>Məsələn, mayeyə kənardan <span class="m">Δp</span> təzyiq əlavə etsən, mayenin hər nöqtəsində təzyiq <span class="m">Δp</span> qədər artar. Hidrostatik <span class="m">ρgh</span> isə bunun üstünə gəlir.</p>
+
+      <h3><span class="st">3</span> Hidravlik press</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Hidravlik press: kiçik porşenə F₁ qüvvəsi təsir edir, böyük porşen F₂ ilə yükü qaldırır">
+          <defs><marker id="tz4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M40 40L40 170L230 170L230 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M80 40L80 130L130 130L130 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M42 82L78 82L78 132L132 132L132 72L228 72L228 168L42 168z" fill="var(--accent-soft)"/>
+          <rect x="42" y="74" width="36" height="8" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="134" y="64" width="92" height="8" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="160" y="30" width="40" height="34" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="180" y="52" class="lbl" text-anchor="middle">yük</text>
+          <line x1="60" y1="20" x2="60" y2="70" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#tz4)"/>
+          <text x="52" y="28" class="lbl" text-anchor="end">F₁</text>
+          <line x1="215" y1="125" x2="215" y2="78" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#tz4)"/>
+          <text x="208" y="116" class="lbl" text-anchor="end">F₂</text>
+          <text x="60" y="108" class="lbl" text-anchor="middle">S₁</text>
+          <text x="180" y="150" class="lbl" text-anchor="middle">S₂</text>
+        </svg>
+        <div class="cap">
+          <p>Kiçik porşenin sahəsi <span class="m">S₁</span>, böyüyünün <span class="m">S₂</span>. Kiçik porşenə <span class="m">F₁</span> qüvvəsi mayedə <span class="m">p = F₁/S₁</span> təzyiqi yaradır. Paskal qanununa görə eyni təzyiq böyük porşenə də təsir edir: <span class="m">F₂ = pS₂</span>.</p>
+        </div>
+      </div>
+      <div class="fm">F₁/S₁ = F₂/S₂   →   F₂ = F₁·S₂/S₁
+Qüvvədə qazanc = sahələrin nisbəti</div>
+      <p>Amma enerjidən qazanc yoxdur. Mayeni sıxmaq olmur, ona görə kiçik porşenin sıxışdırdığı həcm böyük porşenin qalxdığı həcmə bərabərdir:</p>
+      <div class="fm">S₁·l₁ = S₂·l₂   →   F₁·l₁ = F₂·l₂
+Qüvvədə neçə dəfə qazanırsan, yolda o qədər itirirsən.</div>
+      <p>İş eynidir (sürtünməsiz): "qüvvədə qazanc" iş qazancı deyil. Ona görə nasosda porşeni dəfələrlə basırlar.</p>
+      <p>Sahə <span class="m">S = πd²/4</span>: diametrlər verilibsə, sahələrin nisbəti diametrlərin <b>kvadratlarının</b> nisbətidir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. S₁ = 5 sm², S₂ = 500 sm², F₁ = 40 N.
+  F₂ = 40·500/5 = 4000 N   (100 dəfə qazanc)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Avtomobil qaldırıcısında böyük porşenin sahəsi kiçiyinkindən
+75 dəfə çoxdur. 1500 kq-lıq maşını 4 sm qaldırmaq lazımdır.
+Kiçik porşenə nə qədər qüvvə təsir etməlidir və o, nə qədər
+yol getməlidir?
+  Böyük porşendə lazım olan qüvvə: F₂ = 1500·10 = 15 000 N
+  F₁ = F₂/75 = 200 N
+  Yol: l₁ = 75·l₂ = 75·4 = 300 sm = 3 m
+  Yoxla: F₁l₁ = 200·3 = 600 J, F₂l₂ = 15000·0,04 = 600 J ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Press suyla doludur. Böyük porşenin
+sahəsi 200 sm², üstündə 40 kq yük var. Kiçik porşenin sahəsi
+10 sm² və o, böyükdən 0,5 m yuxarıdadır. Porşenlərin çəkisini
+nəzərə almadan tarazlıq üçün kiçik porşenə hansı F₁ qüvvəsi
+təsir etməlidir?
+  Böyük porşenin altındakı təzyiq: p₂ = 400/0,02 = 20 000 Pa
+  Kiçik porşenin altındakı təzyiq böyükdən ρgh qədər azdır
+  (o, 0,5 m yuxarıdadır):
+    p₁ = 20 000 − 1000·10·0,5 = 15 000 Pa
+  F₁ = p₁S₁ = 15 000·0,001 = 15 N
+  (Səviyyə fərqini nəzərə almasaydıq 20 N alınardı.)</div>
+      <div class="life"><b>Həyatdan.</b> Avtomobilin əyləc pedalı kiçik porşeni basır, təzyiq tormoz mayesi ilə dörd təkərin əyləc silindrlərinə ötürülür. Mayenin hər nöqtəsində təzyiq eyni olduğu üçün təkərlər eyni qüvvə ilə əyləclənir. Ekskavatorun qolu da eyni qaydada hərəkət edir: təzyiq verib silindrin içindən porşeni itələyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qüvvənin eyni ötürüldüyünü düşünmək. Eyni qalan <b>təzyiqdir</b>, qüvvə sahəyə mütənasibdir.</li>
+        <li>Sahələrin nisbətini tərsinə yazmaq. Böyük porşenin qüvvəsi böyükdür: <span class="m">F₂ = F₁·S₂/S₁</span>.</li>
+        <li>Sahəni sm² və dm² ilə qarışdırmaq (1 dm² = 100 sm²). Eyni vahidə gətir.</li>
+        <li>Press iş qazancı verir sanmaq. Qüvvədə qazanılan yolda itirilir.</li>
+        <li>Porşenlər müxtəlif hündürlüklərdədirsə, <span class="m">ρgh</span> fərqini unutmaq (nümunə 3).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Paskal:  mayeyə verilən təzyiq hər yerə eyni ötürülür.
+Press:   F₁/S₁ = F₂/S₂,   S₁l₁ = S₂l₂
+İş saxlanır:  F₁l₁ = F₂l₂
+Diametr verilibsə:  S₂/S₁ = (d₂/d₁)²</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>S₁ = 2 sm², S₂ = 100 sm², F₁ = 30 N. F₂ = ? <span class="ans">30·100/2 = 1500 N.</span></li>
+        <li>Pressin sahələri 50 dəfə fərqlənir. Kiçik porşen 20 sm düşəndə böyük porşen nə qədər qalxar? <span class="ans">20/50 = 0,4 sm.</span></li>
+        <li>Diametrləri 2 sm və 10 sm olan porşenli press neçə dəfə qüvvə qazandırır? <span class="ans">(10/2)² = 25 dəfə.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

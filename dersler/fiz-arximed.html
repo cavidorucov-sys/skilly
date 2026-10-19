@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arximed qüvvəsi, kəsilməzlik dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-arximed.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Arximed, kəsilməzlik</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Hidrostatika</div>
+    <h1>Arximed qüvvəsi; kəsilməzlik teoremi</h1>
+    <p>Yüz tonluq gəmi üzür, kiçik daş batır. Su cismi yuxarı itələyir: bu <b>Arximed qüvvəsidir</b>, <span class="m">F_A = ρgV</span>. Ondan üzmə şərti, mayedə çəki və sıxlığın çəkilərlə tapılması çıxır. Sonda mayenin axınına baxırıq: boru daralanda su niyə sürətlənir? Cavab <b>kəsilməzlik teoremidir</b>: <span class="m">S₁v₁ = S₂v₂</span>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>, <span class="m">ρ_su = 1000 kq/m³</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Arximed qüvvəsi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Mayedə çəki, sıxlıq</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Üzmə şərti</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kəsilməzlik</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Arximed qüvvəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hovuzda ağır adam da özünü yüngül hiss edir: su onu yuxarı itələyir. Dəniz suyunda üzmək çay suyundan asandır. Hava şarı yuxarı qalxır, çünki hava onu da itələyir. Bu qüvvəni hesablamağı öyrənmək lazımdır, olimpiadada hər məsələ ona çıxır.</p>
+
+      <h3><span class="st">2</span> Qüvvə haradan gəlir</h3>
+      <p>Mayeyə batırılmış cismin alt üzü üst üzündən dərində olur. Dərinlikdə təzyiq böyükdür, deməli alt üzə yuxarı qüvvə üst üzə aşağı qüvvədən böyükdür. Bu fərq cismi yuxarı itələyir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Suya batırılmış silindr: üst üzə aşağı F₁, alt üzə yuxarı F₂ təsir edir, F₂ böyükdür">
+          <defs><marker id="ax1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="20" y="30" width="220" height="160" fill="var(--accent-soft)"/>
+          <line x1="20" y1="30" x2="240" y2="30" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="100" y="70" width="60" height="60" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="130" y1="38" x2="130" y2="66" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ax1)"/>
+          <text x="138" y="56" class="lbl">F₁ = ρgh₁S</text>
+          <line x1="130" y1="178" x2="130" y2="134" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax1)"/>
+          <text x="138" y="170" class="lbl">F₂ = ρgh₂S</text>
+          <line x1="50" y1="32" x2="50" y2="68" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#ax1)" marker-end="url(#ax1)"/>
+          <text x="44" y="54" class="lbl" text-anchor="end">h₁</text>
+          <line x1="80" y1="32" x2="80" y2="128" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#ax1)" marker-end="url(#ax1)"/>
+          <text x="74" y="104" class="lbl" text-anchor="end">h₂</text>
+        </svg>
+        <div class="cap">
+          <p>Yan üzlərə təsir edən qüvvələr bir-birini tarazlayır. Qalır alt və üst üzün fərqi: <span class="m">F₂ − F₁ = ρgS(h₂ − h₁) = ρg·V</span>, burada <span class="m">V = S(h₂ − h₁)</span> silindrin həcmidir.</p>
+        </div>
+      </div>
+      <p>Bu nəticə istənilən formalı cisim üçün doğrudur.</p>
+
+      <h3><span class="st">3</span> Arximed qanunu</h3>
+      <p>Mayeyə (və ya qaza) batırılmış cismə <b>yuxarı</b> yönəlmiş qüvvə təsir edir. Onun modulu cismin sıxışdırdığı mayenin çəkisinə bərabərdir:</p>
+      <div class="fm">F_A = ρ_maye · g · V_batan
+V_batan — cismin mayeyə batmış hissəsinin həcmi</div>
+      <p>Bu qüvvə:</p>
+      <ul>
+        <li>mayenin <b>sıxlığından</b> və batan <b>həcmdən</b> asılıdır;</li>
+        <li>cismin materialından, kütləsindən, formasından və <b>dərinlikdən asılı deyil</b> (tam batmış cisim üçün; mayeni sıxmaq olmursa, sıxlıq dərinlikdə dəyişmir);</li>
+        <li>sıxışdırılan həcmin ağırlıq mərkəzinə tətbiq olunur.</li>
+      </ul>
+      <p>Ağır cisim (məsələn, 1 kq qurğuşun) və yüngül cisim (1 kq tük) eyni həcmdədirsə, onlara eyni Arximed qüvvəsi təsir edir. Fərq ağırlığın Arximed qüvvəsi ilə müqayisəsindədir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Həcmi 200 sm³ olan cisim suya tam batırılıb. F_A = ?
+  V = 200 sm³ = 0,0002 m³
+  F_A = 1000·10·0,0002 = 2 N
+  Eyni cisim kerosində (ρ = 800): F_A = 800·10·0,0002 = 1,6 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Dinamometrdən asılmış cismin ağırlığı havada 5 N-dur. Cismi
+suya yarısına qədər batırdılar, dinamometr 4 N göstərdi. Tam
+batırsaq, dinamometr nə göstərər?
+  Yarım batanda F_A = 5 − 4 = 1 N
+  Tam batanda batan həcm 2 dəfə çoxdur: F_A = 2 N
+  Dinamometr: 5 − 2 = 3 N</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Su dolu stəkan tərəzinin üstündədir,
+tərəzi 600 q göstərir. Həcmi 100 sm³ olan kürəni ipdən asıb suya
+tam batırırlar (kürə stəkana toxunmur, su daşmır). Tərəzi nə
+göstərər?
+  Su kürəyə F_A = 1000·10·0,0001 = 1 N yuxarı təsir edir.
+  Nyutonun III qanununa görə kürə də suya 1 N aşağı təsir edir.
+  Tərəzi əlavə 1 N, yəni 100 q göstərəcək: 600 + 100 = 700 q.
+  (Əlavə kütlə sıxışdırılan suyun kütləsidir: ρV = 1000·10⁻⁴ = 0,1 kq.)</div>
+      <div class="life"><b>Həyatdan.</b> Dəniz suyu (≈ 1030 kq/m³) çay suyundan sıxdır, ona görə dənizdə eyni adama daha böyük Arximed qüvvəsi təsir edir və batan həcm azdır. Ölü Dənizdə duzluluq çox yüksək olduğundan (≈ 1200 kq/m³) adam hətta kitab oxuyaraq suyun üzərində uzana bilir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">V</span> kimi cismin tam həcmini götürmək. Yarım batmış cisimdə yalnız <b>batan</b> hissə sayılır.</li>
+        <li>Həcmi çevirməmək: <span class="m">1 sm³ = 10⁻⁶ m³</span>, <span class="m">1 dm³ = 10⁻³ m³</span>, <span class="m">1 L = 1 dm³</span>.</li>
+        <li>Cismin sıxlığını Arximed qüvvəsi düsturuna yazmaq. Orada <b>mayenin</b> sıxlığı durur.</li>
+        <li>Dərinləşdikcə qüvvənin artdığını düşünmək. Tam batmış cisim üçün dərinlikdən asılı deyil.</li>
+        <li>Cisim qabın dibinə möhkəm yapışıbsa və altına maye keçmirsə, yuxarı itələmə yoxdur. Adi hallarda isə dibdə dayanan cismə də Arximed qüvvəsi təsir edir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F_A = ρ_maye·g·V_batan   (yuxarı yönəlib)
+Dərinlikdən, materialdan asılı deyil.
+Tərəzidə: stəkana əlavə qüvvə = F_A (Nyutonun III qanunu)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Həcmi 5 dm³ olan cisim tam suya batıb. F_A? <span class="ans">1000·10·0,005 = 50 N.</span></li>
+        <li>Eyni cisim 2 dəfə dərinə batırıldı. F_A necə dəyişdi? <span class="ans">Dəyişmədi.</span></li>
+        <li>Həcmi 10 dm³ olan cismin yarısı kerosində (ρ = 800) batıb. F_A? <span class="ans">800·10·0,005 = 40 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Mayedə çəki; sıxlığın çəkilərlə tapılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Arximedin məşhur hekayəsi: şah taxdan şübhələnirdi ki, zərgər tacda qızılın bir hissəsini gümüşlə əvəz edib. Tacı sındırmadan yoxlamaq lazım idi. Cavab çəkilərdən sıxlığı tapmaqdır. Bu üsul bu gün də işləyir.</p>
+
+      <h3><span class="st">2</span> Mayedə çəki</h3>
+      <p>Dinamometrdən asılmış cismə üç qüvvə təsir edir: aşağı <span class="m">mg</span>, yuxarı <span class="m">F_A</span> və yuxarı dinamometrin yayının qüvvəsi <span class="m">P</span> (onu dinamometr göstərir). Tarazlıqda:</p>
+      <div class="fm">P + F_A = mg
+P = mg − F_A = mg − ρ_maye·g·V</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Solda cisim havada dinamometrdən asılıb, sağda eyni cisim suda: dinamometr daha az göstərir">
+          <line x1="20" y1="12" x2="240" y2="12" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M70 12L70 22L60 28L80 36L60 44L80 52L60 60L80 68L70 74L70 85" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="52" y="85" width="36" height="32" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="70" y="106" class="lbl" text-anchor="middle">m</text>
+          <text x="70" y="140" text-anchor="middle">havada:</text>
+          <text x="70" y="157" class="lbl" text-anchor="middle">P₁ = mg</text>
+          <path d="M180 12L180 22L170 28L190 36L170 44L190 52L170 60L190 68L180 74L180 80" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <path d="M140 105L140 175L220 175L220 105" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="141" y="108" width="78" height="66" fill="var(--accent-soft)"/>
+          <line x1="180" y1="80" x2="180" y2="125" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="162" y="125" width="36" height="32" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="180" y="146" class="lbl" text-anchor="middle">m</text>
+          <text x="180" y="187" class="lbl" text-anchor="middle">suda: P₂ = mg − F_A</text>
+        </svg>
+        <div class="cap">
+          <p>Eyni cisim havada <span class="m">P₁ = mg</span>, suda <span class="m">P₂ = mg − F_A</span> göstərir. Fərq <span class="m">P₁ − P₂ = F_A</span> Arximed qüvvəsidir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Çəkilərdən həcm və sıxlıq</h3>
+      <div class="fm">F_A = P₁ − P₂   →   V = (P₁ − P₂)/(ρ_su·g)
+ρ_cisim = m/V = ρ_su·P₁/(P₁ − P₂)</div>
+      <p>Cismin sıxlığı suyun sıxlığından <span class="m">P₁/(P₁ − P₂)</span> dəfə çoxdur: ölçmək üçün cisim həcmini bilmək belə lazım deyil.</p>
+      <p><b>Naməlum maye.</b> Eyni cismi suya, sonra naməlum mayeyə batır: cismin həcmi eynidir, <span class="m">F_A ~ ρ_maye</span>, yəni</p>
+      <div class="fm">ρ_maye/ρ_su = (P₁ − P₃)/(P₁ − P₂)</div>
+      <p><b>Boşluq.</b> Cismin içində boşluq varsa, tam həcm <span class="m">V = (P₁ − P₂)/(ρ_su g)</span>, metalın həcmi isə <span class="m">m/ρ_metal</span>-dir. Fərq boşluqdur.</p>
+      <p><b>Ərinti.</b> İki metaldan ərintidə <span class="m">V₁ + V₂ = V</span> və <span class="m">ρ₁V₁ + ρ₂V₂ = m</span>. Hər ikisini bilən (çəkilərlə) məchulları tapılır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Metal parça havada 5,4 N, suda 3,4 N göstərir.
+  F_A = 5,4 − 3,4 = 2 N → V = 2/(1000·10) = 0,0002 m³ = 200 sm³
+  m = 0,54 kq → ρ = 0,54/0,0002 = 2700 kq/m³ (alüminium)
+  Və ya birbaşa: ρ = 1000·5,4/2 = 2700</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Alüminiumdan (2700 kq/m³) hazırlanmış topun içi boşdur. Havada
+çəkisi 8,1 N, suda 3,1 N. Boşluğun həcmini tap.
+  F_A = 8,1 − 3,1 = 5 N → topun həcmi V = 5/10⁴ = 5·10⁻⁴ m³ = 500 sm³
+  Metalın həcmi: m = 0,81 kq, V_m = 0,81/2700 = 3·10⁻⁴ m³ = 300 sm³
+  Boşluq: 500 − 300 = 200 sm³</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Alüminium (2,7 q/sm³) və misdən
+(8,9 q/sm³) ərinti havada 2,86 N, suda 2,26 N göstərir.
+Misin kütləsi?
+  F_A = 0,6 N → V = 0,6/10⁴ = 6·10⁻⁵ m³ = 60 sm³
+  m = 2,86/10 = 0,286 kq = 286 q
+  V₁ + V₂ = 60,   2,7V₁ + 8,9V₂ = 286
+  Birincini 2,7-yə vur: 2,7V₁ + 2,7V₂ = 162
+  Çıx:  6,2V₂ = 124 → V₂ = 20 sm³ (mis)
+  m_mis = 8,9·20 = 178 q</div>
+      <div class="life"><b>Həyatdan.</b> Maşın akkumulyatorunun elektrolitinin sıxlığını areometr (üzən şüşə boru) ölçür: sıxlıq çox olduqca areometr yuxarı itələnir, az batır. Eyni prinsiplə süd, şərab, soyuducu maye yoxlanır. Bu da "naməlum maye" üsuludur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Suda çəkini <span class="m">mg + F_A</span> kimi toplamaq. Arximed qüvvəsi yuxarıdır, çəki azalır.</li>
+        <li>Düsturda <span class="m">ρ = P₁/(P₁ − P₂)</span>-i suyun sıxlığına vurmağı unutmaq.</li>
+        <li>Boşluqlu cismin metal sıxlığını cismin ümumi sıxlığı ilə qarışdırmaq.</li>
+        <li>Çəkini kütlə kimi götürmək (N-u kq yerinə). <span class="m">m = P/g</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P = mg − ρ_maye·g·V
+V = (P₁ − P₂)/(ρ_su·g)
+ρ = ρ_su·P₁/(P₁ − P₂)
+ρ_maye = ρ_su·(P₁ − P₃)/(P₁ − P₂)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Cisim havada 3 N, suda 2 N göstərir. ρ = ? <span class="ans">1000·3/1 = 3000 kq/m³.</span></li>
+        <li>Kütləsi 2 kq, həcmi 1 dm³ olan cisim suda dinamometrdə nə göstərər? <span class="ans">20 − 10 = 10 N.</span></li>
+        <li>Cisim havada 4 N, suda 3 N, naməlum mayedə 3,2 N. ρ_maye? <span class="ans">1000·(4 − 3,2)/(4 − 3) = 800 kq/m³.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Üzmə şərti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Polad gəmi üzür, polad mıxı isə batır. Buz suda üzür, amma yalnız kiçik hissəsi görünür. Sualtı qayıq istədiyi vaxt batır, istədiyi vaxt qalxır. Hamısı eyni qaydadır: ağırlıq və Arximed qüvvəsinin müqayisəsi.</p>
+
+      <h3><span class="st">2</span> Üç hal</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 180" role="img" aria-label="Üç stəkan: cisim dibə batır, mayenin içində asılı qalır, səthdə üzür">
+          <defs><marker id="ax3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M10 40L10 165L80 165L80 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="11" y="62" width="68" height="102" fill="var(--accent-soft)"/>
+          <rect x="30" y="130" width="30" height="34" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="45" y1="147" x2="45" y2="175" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <line x1="45" y1="147" x2="45" y2="127" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <path d="M95 40L95 165L165 165L165 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="96" y="62" width="68" height="102" fill="var(--accent-soft)"/>
+          <rect x="115" y="95" width="30" height="34" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="130" y1="112" x2="130" y2="140" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <line x1="130" y1="112" x2="130" y2="84" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <path d="M180 40L180 165L250 165L250 40" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="181" y="62" width="68" height="102" fill="var(--accent-soft)"/>
+          <rect x="200" y="50" width="30" height="34" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="215" y1="67" x2="215" y2="95" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <line x1="215" y1="67" x2="215" y2="39" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax3)"/>
+          <text x="45" y="20" class="lbl" text-anchor="middle">ρ_c &gt; ρ_m</text><text x="45" y="34" text-anchor="middle">batır</text>
+          <text x="130" y="20" class="lbl" text-anchor="middle">ρ_c = ρ_m</text><text x="130" y="34" text-anchor="middle">asılı qalır</text>
+          <text x="215" y="20" class="lbl" text-anchor="middle">ρ_c &lt; ρ_m</text><text x="215" y="34" text-anchor="middle">üzür</text>
+        </svg>
+        <div class="cap">
+          <p>Aşağı ox — ağırlıq <span class="m">mg</span>, yuxarı ox — Arximed qüvvəsi <span class="m">F_A</span>. Cisim tam batıb olanda <span class="m">F_A = ρ_mVg</span>, <span class="m">mg = ρ_cVg</span>: müqayisə sıxlıqların müqayisəsinə çevrilir.</p>
+        </div>
+      </div>
+      <div class="fm">ρ_cisim &gt; ρ_maye  →  batır
+ρ_cisim = ρ_maye  →  istənilən dərinlikdə asılı qalır
+ρ_cisim &lt; ρ_maye  →  qalxır və səthdə üzür</div>
+
+      <h3><span class="st">3</span> Üzən cisim: nə qədər batır</h3>
+      <p>Cisim səthdə üzəndə tarazlıqdadır: <span class="m">F_A = mg</span>.</p>
+      <div class="fm">ρ_maye·g·V_batan = ρ_cisim·g·V
+V_batan / V = ρ_cisim / ρ_maye</div>
+      <p>Batan hissə sıxlıqların nisbətinə bərabərdir. Buz (900 kq/m³) suda: 90% batır, 10% yuxarıda qalır. Mayenin sıxlığı artdıqca cisim daha az batır.</p>
+      <p><b>Üzən cismin yükqaldırma gücü.</b> Cismi tam batırmaq həddində <span class="m">F_A = ρ_mVg</span> olur, cismin çəkisi <span class="m">ρ_cVg</span>. Üstünə qoyula biləcək maksimal yük: <span class="m">m = (ρ_m − ρ_c)V</span>.</p>
+      <p><b>Gəmi.</b> Polad gəmi içi boş olduğu üçün orta sıxlığı sudan azdır. Gəminin kütləsi ilə sıxışdırdığı suyun kütləsi bərabərdir (<b>sıxışdırma</b>, "displacement"). Yük əlavə edəndə gəmi o qədər batır ki, əlavə sıxışdırılan suyun çəkisi yükün çəkisinə bərabər olur.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Sıxlığı 600 kq/m³ olan taxta bloku suda.
+  V_batan/V = 600/1000 = 0,6 → 60% batır, 40% yuxarıdadır.
+  Duzlu suda (1200): 600/1200 = 50%.
+  Sıxlıq çox olduqca az batır.</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Aysberqin suyun üstündəki hissəsinin həcmi 1000 m³-dir
+(ρ_buz = 900, ρ_su = 1000). Aysberqin tam həcmi?
+  Batan hissə 90%, qalan 10% = 1000 m³
+  V = 10 000 m³, batan 9000 m³
+  Yoxla:  900·10 000 = 1000·9000 ✓</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+a) Həcmi 10 dm³, sıxlığı 600 kq/m³ olan blok suda üzür.
+   Üstünə hansı ən böyük kütləli yük qoymaq olar ki, blok
+   tam suyun içində olsun?
+     m = (1000 − 600)·0,01 = 4 kq
+b) Sıxlığı 800 kq/m³ olan yağın altında su var (qarışmır).
+   Sıxlığı 900 kq/m³ olan kürə sərhəddə üzür. Hissəsi suda x:
+     900 = 1000x + 800(1 − x) → 200x = 100 → x = 0,5
+   Kürənin yarısı suda, yarısı yağdadır.</div>
+      <div class="life"><b>Həyatdan.</b> Sualtı qayıq balast çənlərinə su doldurub orta sıxlığını suyun sıxlığına çatdırır: bu zaman istənilən dərinlikdə "asılı" qalır. Çənlərdən suyu sıxılmış hava ilə çıxaranda sıxlıq azalır və qayıq qalxır. Balıqlar isə üzgəc yastığındakı qazın həcmini dəyişib eyni işi görür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Batan hissəni <span class="m">ρ_m/ρ_c</span> yazmaq. Düzü: <span class="m">V_batan/V = ρ_c/ρ_m</span>.</li>
+        <li>Ağır cismin həmişə batdığını düşünmək. Polad gəmi üzür, çünki orta sıxlığı sudan azdır.</li>
+        <li>"Yuxarıda qalan hissə" soruşulanda batan hissəni yazmaq. Cavab <span class="m">1 − ρ_c/ρ_m</span>.</li>
+        <li>Üzən cismin üstünə yük qoyanda Arximed qüvvəsini köhnə qiymətlə saxlamaq. Batan həcm artır, F_A artır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ρ_c &gt; ρ_m batır;   ρ_c = ρ_m asılı;   ρ_c &lt; ρ_m üzür
+Üzəndə:  F_A = mg,   V_batan/V = ρ_c/ρ_m
+Maksimal yük (tam batana qədər):  m = (ρ_m − ρ_c)·V
+İki mayenin sərhəddində:  ρ_c = xρ₁ + (1 − x)ρ₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ρ = 750 kq/m³ olan bloku suda batan hissəsi? <span class="ans">750/1000 = 75%.</span></li>
+        <li>Cisim suda həcminin 3/5-i batmış halda üzür. ρ_cisim? <span class="ans">600 kq/m³.</span></li>
+        <li>Üzən gəmiyə yük qoyulanda Arximed qüvvəsi dəyişirmi? <span class="ans">Bəli, gəmi dərinə batır, batan həcm və F_A artır, yükün çəkisi qədər.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kəsilməzlik teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şlanqın ucunu barmaqla qismən bağlayanda su sürətlə fışqırır. Çay dar yerdə sürətlənir, geniş yerdə yavaşıyır. Qan damarları daralanda sürət artır. Hamısı kəsilməzlik teoreminin nəticəsidir.</p>
+
+      <h3><span class="st">2</span> Teorem</h3>
+      <p>Mayeni sıxmaq olmur (sıxılmayan maye), boru bağlıdır, boruda maye yığılmır və yoxa çıxmır. Deməli hər saniyədə borunun istənilən kəsiyindən <b>eyni həcm</b> keçir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 130" role="img" aria-label="Geniş boru daralır: geniş hissədə sürət v₁ kiçik, dar hissədə v₂ böyükdür">
+          <defs><marker id="ax4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M15 25L100 25L150 55L245 55M15 105L100 105L150 75L245 75" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+          <path d="M16 27L100 27L150 56L244 56L244 74L150 74L100 103L16 103z" fill="var(--accent-soft)"/>
+          <line x1="35" y1="65" x2="75" y2="65" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax4)"/>
+          <text x="55" y="58" class="lbl" text-anchor="middle">v₁</text>
+          <line x1="165" y1="65" x2="235" y2="65" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ax4)"/>
+          <text x="200" y="50" class="lbl" text-anchor="middle">v₂</text>
+          <text x="55" y="122" class="lbl" text-anchor="middle">S₁ (böyük)</text>
+          <text x="200" y="95" class="lbl" text-anchor="middle">S₂ (kiçik)</text>
+        </svg>
+        <div class="cap">
+          <p>Δt müddətində geniş hissədən <span class="m">S₁v₁Δt</span> həcm keçir. Maye yığılmadığı üçün dar hissədən də eyni həcm <span class="m">S₂v₂Δt</span> keçməlidir.</p>
+        </div>
+      </div>
+      <div class="fm">S₁·v₁ = S₂·v₂ = const
+Q = S·v   (həcmi axın, m³/s)</div>
+      <p>Daralan yerdə (<span class="m">S</span> kiçik) sürət böyükdür, genişlənən yerdə kiçikdir. Dairəvi boruda <span class="m">S = πd²/4</span>, yəni:</p>
+      <div class="fm">v₁/v₂ = S₂/S₁ = (d₂/d₁)²</div>
+      <p>Diametr yarıya enəndə sürət 4 dəfə artır. Sürətin kvadrat asılılığı olimpiadada tez-tez tələ olur.</p>
+      <p>Daha sonra Bernulli tənliyində göstəriləcək ki, sürətli yerdə təzyiq kiçikdir. Bu dərsdə yalnız sürət və sahənin əlaqəsi lazımdır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Boru kəsiyi 40 sm²-dən 10 sm²-ə daralır. Geniş
+yerdə sürət 2 m/s. Dar yerdə?
+  v₂ = v₁S₁/S₂ = 2·40/10 = 8 m/s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Suyun axdığı borunun diametri 6 sm-dən 3 sm-ə daralır. Geniş
+hissədə sürət 1,5 m/s. Dar hissədə sürət?
+  v₂ = v₁(d₁/d₂)² = 1,5·(6/3)² = 1,5·4 = 6 m/s
+  (Diametr 2 dəfə azaldı, sürət 4 dəfə artdı.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Kəsiyi 20 sm² olan şlanqdan 10 litrlik
+vedrə 5 s-də dolur. Şlanqın içində suyun sürəti? Ucluğun kəsiyi
+2 sm²-dirsə, sudan çıxış sürəti?
+  Q = 10 L / 5 s = 2 L/s = 0,002 m³/s
+  v₁ = Q/S₁ = 0,002/(20·10⁻⁴) = 1 m/s
+  v₂ = v₁S₁/S₂ = 1·20/2 = 10 m/s
+  (Ucluq şaquli yuxarı tutulsa, su v²/(2g) = 100/20 = 5 m qalxar.)</div>
+      <div class="life"><b>Həyatdan.</b> Bağban şlanqın ucunu barmağı ilə yarıya qədər qapadanda çıxış sahəsi azalır, su daha uzağa fışqırır. Qan damarının aterosklerozla daralmış yerində sürət artır, bu isə təzyiq dəyişikliyinə gətirir. Çayın darıldığı yerdə axın sürəti artır, ona görə ora təhlükəli olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sürətin hər yerdə eyni olduğunu düşünmək. Eyni olan <b>həcmi axın</b> <span class="m">Q = Sv</span>-dir.</li>
+        <li>Sahəni diametrlə mütənasib götürmək. Sahə <b>diametrin kvadratı</b> ilə mütənasibdir.</li>
+        <li>Dar yerdə sürətin azalmasını gözləmək. Dar yerdə sürət artır.</li>
+        <li>Sahəni sm²-lə, sürəti m/s ilə qarışdırıb Q-nu səhv m³/s ilə yazmaq. <span class="m">1 sm² = 10⁻⁴ m²</span>, <span class="m">1 m³ = 1000 L</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S₁v₁ = S₂v₂ = Q   (Q — hər saniyə keçən həcm)
+Dairəvi boru:  v₁/v₂ = (d₂/d₁)²
+Çay (eyni dərinlik):  w₁v₁ = w₂v₂
+Daralma → sürət artır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>S₁ = 12 sm², v₁ = 0,5 m/s, S₂ = 3 sm². v₂ = ? <span class="ans">0,5·12/3 = 2 m/s.</span></li>
+        <li>Boru diametri 3 dəfə azalır. Sürət necə dəyişir? <span class="ans">9 dəfə artır.</span></li>
+        <li>Sahəsi 10 sm² olan borudan su 2 m/s ilə axır. Hər saniyə neçə litr? <span class="ans">10·10⁻⁴·2 = 0,002 m³ = 2 L/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

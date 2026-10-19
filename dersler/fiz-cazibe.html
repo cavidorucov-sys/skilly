@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cazibə qanunu, Kepler, peyklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-cazibe.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Cazibə qanunu, peyklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Cazibə</div>
+    <h1>Ümumdünya cazibə qanunu, Kepler qanunları, peyklər</h1>
+    <p>Alma Yerə düşür, Ay isə Yer ətrafında dönür. Nyuton başa düşdü ki, ikisinin səbəbi eynidir: kütləli cisimlər bir-birini cəzb edir, <span class="m">F = G·m₁m₂/r²</span>. Bu bir düsturdan hündürlükdə <span class="m">g</span>-nin azalması, peyklərin sürəti və dövr müddəti, Keplerin üç qanunu çıxır. Olimpiadada çox hesab yoxdur: əsasən <b>nisbətlərlə</b> işləyirik.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>, <span class="m">R_Yer = 6400 km</span>, <span class="m">G = 6,67·10⁻¹¹ N·m²/kq²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Cazibə qanunu</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>g hündürlükdə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Peyklər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kepler qanunları</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Ümumdünya cazibə qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Niyə atdığın top yerə qayıdır, amma Ay düşmür? Niyə dəniz suyu qabarıb çəkilir? Niyə Yerin çəkisi Ayda altı dəfə azdır? Hamısı eyni qüvvədir: <b>cazibə qüvvəsi</b>. Onun düsturunu bilmək kosmosdan stulun ayağına qədər hər şeyi izah edir.</p>
+
+      <h3><span class="st">2</span> Qanun</h3>
+      <p>İki nöqtəvi cisim bir-birini cazibə qüvvəsi ilə cəzb edir. Bu qüvvə kütlələrin hasilinə <b>düz</b>, aralarındakı məsafənin kvadratına <b>tərs</b> mütənasibdir:</p>
+      <div class="fm">F = G·m₁·m₂ / r²
+G = 6,67·10⁻¹¹ N·m²/kq²  — qravitasiya sabiti</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 130" role="img" aria-label="İki cisim bir-birini bərabər modullu qüvvələrlə cəzb edir, aralarındakı məsafə r">
+          <defs><marker id="cz1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="60" cy="55" r="16" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="200" cy="55" r="24" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="60" y="59" class="lbl" text-anchor="middle">m₁</text>
+          <text x="200" y="59" class="lbl" text-anchor="middle">m₂</text>
+          <line x1="80" y1="55" x2="118" y2="55" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cz1)"/>
+          <line x1="172" y1="55" x2="134" y2="55" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cz1)"/>
+          <text x="126" y="45" class="lbl" text-anchor="middle">F</text>
+          <line x1="60" y1="95" x2="200" y2="95" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cz1)" marker-end="url(#cz1)"/>
+          <line x1="60" y1="75" x2="60" y2="100" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="200" y1="80" x2="200" y2="100" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <text x="130" y="115" class="lbl" text-anchor="middle">r (mərkəzlər arası)</text>
+        </svg>
+        <div class="cap">
+          <p>Qüvvələr bərabər modula malikdir və əks yönəlib (Nyutonun III qanunu): kiçik cisim böyüyü nə qədər cəzb edirsə, böyük cisim də kiçiyi o qədər cəzb edir.</p>
+        </div>
+      </div>
+      <p>Vacib qeydlər:</p>
+      <ul>
+        <li><span class="m">r</span> — cisimlərin <b>mərkəzləri</b> arasındakı məsafədir. Kürəvi cisimlər (planet, Ay, top) üçün düstur dəqiq doğrudur, cisimləri nöqtə kimi mərkəzdə yerləşmiş saymaq olar.</li>
+        <li><span class="m">G</span> çox kiçikdir. Gündəlik cisimlər arasındakı cazibə hiss olunmur, planetlərin kütləsi çox böyük olduğu üçün yalnız onlarla görünür.</li>
+        <li>Məsafə 2 dəfə artsa, qüvvə 4 dəfə, 3 dəfə artsa 9 dəfə azalır. Kütlələrdən biri 2 dəfə artsa, qüvvə 2 dəfə artır.</li>
+      </ul>
+      <p>Nisbət məsələləri üçün düsturu belə yaz: <span class="m">F₂/F₁ = (m₁'m₂'/m₁m₂)·(r₁/r₂)²</span>. G ixtisar olunur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. m₁ = 1000 kq və m₂ = 2000 kq, r = 10 m.
+  F = 6,67·10⁻¹¹·1000·2000/10² = 6,67·10⁻¹¹·2·10⁴
+    = 1,334·10⁻⁶ N ≈ 1,3 µN   (təxminən bir toz dənəsinin çəkisi qədər)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Birinci cismin kütləsini 3 dəfə, ikincinin kütləsini 2 dəfə
+artırdılar, aralarındakı məsafəni isə 2 dəfə azaltdılar.
+Cazibə qüvvəsi neçə dəfə dəyişdi?
+  F ~ m₁m₂/r²
+  F₂/F₁ = 3·2 / (1/2)² = 6·4 = 24
+  24 dəfə artdı.</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Yer və Ay arasında düz xətt üzərində
+elə nöqtə var ki, orada kiçik cismə təsir edən cazibə qüvvələri
+bərabərdir. Yerin kütləsi Ayın kütləsindən 81 dəfə çoxdur,
+Yer–Ay məsafəsi 384 000 km. Bu nöqtə Aydan nə qədər məsafədədir?
+  Aydan x məsafədə:  G·M_A/x² = G·81M_A/(d − x)²
+  (d − x)²/x² = 81 → (d − x)/x = 9
+  d = 10x → x = 38 400 km
+  (Yerdən 345 600 km. Orada cisim Aya düşməyə başlayır.)</div>
+      <div class="life"><b>Həyatdan.</b> Aydan gələn cazibə Yerin okeanlarını çəkir: Aya baxan tərəfdə su qabarır. Ay Yerə yaxın tərəfi uzaq tərəfdən daha güclü cəzb edir (məsafə fərqli olduğu üçün qüvvə fərqlidir), buna görə sutkada iki qabarma olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">r²</span> əvəzinə <span class="m">r</span> yazmaq. Qüvvə məsafənin <b>kvadratı</b> ilə azalır.</li>
+        <li>Məsafəni Yer səthindən götürmək. Düsturda <span class="m">r</span> mərkəzlərin arasıdır.</li>
+        <li>Kiçik cismin böyük cismi az cəzb etdiyini düşünmək. Qüvvələr bərabərdir (Nyutonun III qanunu).</li>
+        <li>km-i m-ə çevirməmək. G-ni işlədəndə kq, m seçilməlidir.</li>
+        <li>Nisbət məsələsində G-ni yenidən hesablamağa çalışmaq. Nisbətdə G ixtisar olunur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = G·m₁m₂/r²,   G = 6,67·10⁻¹¹ N·m²/kq²
+r — mərkəzlər arası məsafə
+F ~ m₁m₂,   F ~ 1/r²
+Qüvvələr bərabərdir və əks yönəlib</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Məsafə 4 dəfə artdı. Qüvvə neçə dəfə dəyişdi? <span class="ans">16 dəfə azaldı.</span></li>
+        <li>İki cismin kütlələri hərəsi 2 dəfə artdı, məsafə dəyişmədi. F? <span class="ans">2·2 = 4 dəfə artır.</span></li>
+        <li>Kütlələri M və 4M olan cisimlər arasında kiçik cismə qüvvələr bərabər olan nöqtə kütləsi M olan cisimdən d məsafənin hansı hissəsindədir? <span class="ans">(d − x)/x = 2 → x = d/3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Sərbəstdüşmə təcili: hündürlükdə və başqa planetlərdə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Peykdəki kosmonavt çəkisizdir, amma ona Yerin cazibəsi hələ də təsir edir. Marsda yük Yerdəkindən yüngüldür, Yupiterdə ağırdır. İdmançı Ayda 6 dəfə hündür tullanardı. Bunların hamısı bir sualın cavabıdır: <span class="m">g</span> haradan gəlir və harada nə qədərdir?</p>
+
+      <h3><span class="st">2</span> g = GM/R²</h3>
+      <p>Planetin səthində kütləsi <span class="m">m</span> olan cisim çəkisi cazibə qüvvəsidir: <span class="m">mg = GMm/R²</span>. Buradan <span class="m">m</span> ixtisar olunur:</p>
+      <div class="fm">g = G·M / R²
+M — planetin kütləsi,  R — radiusu</div>
+      <p>Sərbəstdüşmə təcili <b>cismin kütləsindən asılı deyil</b>, yalnız planetin <span class="m">M</span> və <span class="m">R</span>-indən asılıdır. Yer üçün <span class="m">g ≈ 10 m/s²</span>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Yer, səthdə g, 2R məsafədə g/4">
+          <defs><marker id="cz2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="110" cy="140" r="38" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="110" cy="96" r="5" fill="var(--ink)"/>
+          <circle cx="110" cy="64" r="5" fill="var(--ink)"/>
+          <line x1="110" y1="102" x2="110" y2="122" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cz2)"/>
+          <text x="120" y="118" class="lbl">g</text>
+          <line x1="110" y1="69" x2="110" y2="80" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cz2)"/>
+          <text x="120" y="80" class="lbl">g/4</text>
+          <circle cx="110" cy="140" r="2" fill="var(--ink)"/>
+          <line x1="190" y1="140" x2="190" y2="102" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cz2)" marker-end="url(#cz2)"/>
+          <text x="198" y="124" class="lbl">R</text>
+          <line x1="215" y1="140" x2="215" y2="64" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cz2)" marker-end="url(#cz2)"/>
+          <text x="223" y="104" class="lbl">2R</text>
+          <text x="110" y="184" text-anchor="middle">r = 2R (h = R) → g_r = g/4</text>
+        </svg>
+        <div class="cap">
+          <p>Mərkəzdən məsafə ikiqat artanda (<span class="m">h = R</span>) təcil 4 dəfə azalır. Burada məsafə <b>Yerin mərkəzindən</b> ölçülür.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Hündürlükdə g</h3>
+      <p>Yer səthindən <span class="m">h</span> hündürlükdə mərkəzdən məsafə <span class="m">r = R + h</span>-dır:</p>
+      <div class="fm">g_h = GM/(R + h)²  =  g·R²/(R + h)²
+r = nR olsa:  g_h = g/n²</div>
+
+      <h3><span class="st">4</span> Başqa planetlər</h3>
+      <p>Planetin kütləsi Yerinkinin <span class="m">a</span> misli, radiusu <span class="m">b</span> misli olarsa:</p>
+      <div class="fm">g_p = g·a/b²</div>
+      <p>Planet bircinsli kürədirsə, <span class="m">M = ρ·(4/3)πR³</span> və <span class="m">g = (4/3)πGρR</span>: yəni <span class="m">g ~ ρR</span>. Radius iki dəfə böyük, sıxlıq eyni olsa, <span class="m">g</span> iki dəfə böyükdür.</p>
+      <p><b>Çəki və kütlə.</b> Kütlə cismin özündən asılıdır, Marsda da Yerdəki kimidir. Çəki <span class="m">P = mg_p</span> planetdən asılıdır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Yerin səthindən h = R hündürlükdə g?
+  r = R + R = 2R
+  g_h = 10/2² = 2,5 m/s²</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Mars-a bənzər planetin kütləsi Yerin kütləsinin 0,1 hissəsi,
+radiusu Yerin radiusunun 0,5 hissəsidir. Orada g və 50 kq-lıq
+cismin çəkisi?
+  g_p = 10·0,1/0,5² = 10·0,1/0,25 = 4 m/s²
+  P = 50·4 = 200 N   (Yerdə 500 N olardı)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Cismin Yerin səthində çəkisi 160 N-dur.
+Hansı hündürlükdə çəkisi 10 N olar? R = 6400 km.
+  P ~ g_h ~ 1/r² → 160/10 = 16 = (r/R)² → r = 4R
+  h = r − R = 3R = 19 200 km
+  (Kütlə dəyişmir: 16 kq, yalnız çəki azalır.)</div>
+      <div class="life"><b>Həyatdan.</b> Beynəlxalq kosmik stansiya Yerdən təxminən 400 km hündürlükdədir, bu, Yerin radiusundan çox kiçikdir (<span class="m">400/6400 = 1/16</span>). Orada <span class="m">g</span> yer səthindəkindən cəmi təxminən 11% az olur, yəni cazibə qüvvəsi demək olar ki, tam saxlanır. Kosmonavtlar çəkisiz görünür, çünki stansiya ilə birlikdə sərbəst düşürlər, cazibənin olmamasından yox.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">g_h = g/h²</span> yazmaq. Düzü: mərkəzdən məsafə <span class="m">R + h</span>-dır, kvadratda <span class="m">g/n²</span>.</li>
+        <li><span class="m">g/n</span> yazmaq (kvadratı unutmaq).</li>
+        <li>Kütlə ilə çəkini qarışdırmaq. Planetdə kütlə dəyişmir.</li>
+        <li>"Kütlə a dəfə çox" olanda <span class="m">g</span>-nin də a dəfə artdığını düşünmək, radiusun kvadratını unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">g = GM/R²,   g_h = g·R²/(R + h)²,   r = R + h
+Planet:  g_p = g·a/b²    (M — a misli, R — b misli)
+Kürə, sıxlıq ρ:  g ~ ρR
+Çəki P = mg,   kütlə dəyişmir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>h = 3R hündürlükdə g? <span class="ans">r = 4R, g/16 = 0,625 m/s².</span></li>
+        <li>Planetin radiusu Yerinkinin 2 misli, orta sıxlığı eynidir. g? <span class="ans">g ~ ρR → 20 m/s².</span></li>
+        <li>Ayda g = 1,6 m/s². 60 kq-lıq adamın Aydakı çəkisi? <span class="ans">60·1,6 = 96 N (Yerdə 600 N).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Peyklər: kosmik sürət və dövr müddəti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Peyk niyə düşmür? Ay niyə düşmür? Cavab: düşür, amma eyni zamanda yan tərəfə də elə sürətlə gedir ki, düşdüyü yerdə Yer "əyilib qaçır". Peyk Yerin ətrafında sonsuz düşməkdədir. Televiziya, GPS, hava proqnozu, internet peyklərə bağlıdır.</p>
+
+      <h3><span class="st">2</span> Birinci kosmik sürət</h3>
+      <p>Peyk radiusu <span class="m">r</span> olan dairəvi orbitdə bərabər sürətlə hərəkət edir. Ona yalnız cazibə qüvvəsi təsir edir və o, mərkəzəqaçma təcil verir:</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Yer ətrafında dairəvi orbit: peykin sürəti toxunan istiqamətdədir, cazibə qüvvəsi mərkəzə yönəlib">
+          <defs><marker id="cz3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="130" cy="105" r="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="130" cy="105" r="85" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="130" cy="20" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="138" y1="20" x2="200" y2="20" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cz3)"/>
+          <text x="196" y="12" class="lbl" text-anchor="end">v</text>
+          <line x1="130" y1="28" x2="130" y2="60" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#cz3)"/>
+          <text x="138" y="50" class="lbl">F_cazibə</text>
+          <line x1="130" y1="105" x2="170" y2="105" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cz3)" marker-end="url(#cz3)"/>
+          <text x="150" y="122" class="lbl" text-anchor="middle">R</text>
+          <line x1="95" y1="105" x2="95" y2="22" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#cz3)" marker-end="url(#cz3)"/>
+          <text x="88" y="68" class="lbl" text-anchor="end">r</text>
+          <text x="130" y="180" text-anchor="middle">peyk: cazibə = mərkəzəqaçma təcil</text>
+        </svg>
+        <div class="cap">
+          <p>Sürət toxunan istiqamətdədir, cazibə qüvvəsi mərkəzə yönəlib və sürətin <b>istiqamətini</b> dəyişir, modulunu yox.</p>
+        </div>
+      </div>
+      <div class="fm">GMm/r² = mv²/r   →   v = √(GM/r)
+Yer səthinə yaxın (r ≈ R, GM = gR²):  v₁ = √(gR)</div>
+      <p>Bu, <b>birinci kosmik sürətdir</b>: <span class="m">v₁ = √(10·6,4·10⁶) = √(6,4·10⁷) = 8000 m/s = 8 km/s</span> (həqiqətdə 7,9 km/s). Daha uzaq orbitdə sürət azalır: <span class="m">r = nR</span> olsa,</p>
+      <div class="fm">v = √(GM/r) = v₁/√n
+(İkinci kosmik sürət: √2·v₁ ≈ 11,2 km/s — Yeri tərk etmək üçün.)</div>
+      <p>Hündürlük artdıqca peykin sürəti <b>azalır</b>, amma onu orbitə çıxarmaq üçün daha çox enerji lazımdır.</p>
+
+      <h3><span class="st">3</span> Dövr müddəti</h3>
+      <p>Bir dövrdə peyk <span class="m">2πr</span> yol gedir: <span class="m">T = 2πr/v</span>. Yer səthinə yaxın orbitdə</p>
+      <div class="fm">T₀ = 2πR/v₁ = 2·3,14·6,4·10⁶ / 8000 ≈ 5030 s ≈ 84 dəq
+r = nR olsa:  T = T₀·n^(3/2)</div>
+      <p>İzahı: <span class="m">T = 2πr/v = 2π·nR / (v₁/√n) = T₀·n√n</span>. Radiusu 4 dəfə artırsaq <span class="m">T</span> 8 dəfə, 9 dəfə artırsaq 27 dəfə artır.</p>
+      <p><b>Geostasionar peyk.</b> Dövr müddəti 24 saat olan peyk Yerin fırlanması ilə bərabər dönür və göydə sabit nöqtədə görünür. Hesab: <span class="m">T/T₀ = 1440/84 ≈ 17,1 = n^(3/2)</span>, <span class="m">n ≈ 6,6</span>. Deməli orbit radiusu təxminən 6,6R ≈ 42 000 km, hündürlük ≈ 36 000 km, ekvator müstəvisində. Televiziya antenalarının "bir yerə baxması" bundandır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Ayın radiusu təxminən 1600 km (hesab üçün),
+səthində g = 1,6 m/s². Ayın birinci kosmik sürəti?
+  v₁ = √(gR) = √(1,6·1 600 000) = √2 560 000 = 1600 m/s = 1,6 km/s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Peyk Yer səthindən 19 200 km hündürlükdə dairəvi orbitdə
+hərəkət edir. Sürəti və dövr müddəti? (T₀ = 84 dəq, v₁ = 8 km/s)
+  r = R + h = 6400 + 19 200 = 25 600 km = 4R
+  v = 8/√4 = 4 km/s
+  T = 84·4·√4 = 84·8 = 672 dəq = 11,2 saat</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Dairəvi orbitdə peykin sürəti
+2 km/s-dir. Orbit Yer səthindən nə qədər hündürdür?
+  v₁/√n = 2 → √n = 4 → n = 16
+  r = 16R = 102 400 km, h = r − R = 96 000 km
+  T = 84·16·4 = 5376 dəq ≈ 3,7 sutka</div>
+      <div class="life"><b>Həyatdan.</b> GPS peykləri təxminən 20 000 km hündürlükdə, yəni r ≈ 4,1R-də uçur. Yuxarıdakı düstura görə sürətləri ~4 km/s, dövr müddəti ~12 saatdır. Peyklər Yerin üzərində növbələşir, ona görə hər an telefon ən azı dörd peyki görür. Yerə yaxın peyklər (400 km) isə 90 dəqiqədə bir dövr edirlər, kosmonavt sutkada 16 dəfə gün doğuşu görür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orbit radiusu <span class="m">r</span> əvəzinə hündürlüyü <span class="m">h</span> götürmək. <span class="m">r = R + h</span>.</li>
+        <li>Yüksək orbitdə peykin sürətinin artdığını sanmaq. Orbit nə qədər böyükdürsə, sürət o qədər kiçikdir.</li>
+        <li><span class="m">T ~ r</span> yazmaq (<span class="m">T ~ r^(3/2)</span> olmalıdır) və ya <span class="m">v ~ 1/r</span> yazmaq (<span class="m">v ~ 1/√r</span> olmalıdır).</li>
+        <li>"Kosmonavtlar çəkisizdir, deməli cazibə yoxdur" demək. Cazibə var, kosmonavt və stansiya birlikdə sərbəst düşür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v = √(GM/r),   v₁ = √(gR) ≈ 8 km/s
+r = nR:  v = v₁/√n,   T = T₀·n^(3/2),   T₀ ≈ 84 dəq
+T² ~ r³,   v ~ 1/√r
+Geostasionar: T = 24 saat, r ≈ 6,6R</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>r = 9R orbitdə sürət və dövr müddəti? <span class="ans">v = 8/3 ≈ 2,67 km/s; T = 84·27 = 2268 dəq.</span></li>
+        <li>İki peykin orbit radiusları nisbəti 1:4. Dövr müddətlərinin nisbəti? <span class="ans">1:8.</span></li>
+        <li>Planetin g = 4 m/s², radiusu 2500 km. Birinci kosmik sürəti? <span class="ans">√(4·2,5·10⁶) = √10⁷ ≈ 3,16 km/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kepler qanunları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Nyutondan əvvəl Kepler Tixo Brahenin illərlə topladığı müşahidələrdən planetlərin hərəkətinin üç qanununu tapdı. Nyuton sonra göstərdi ki, bunların hamısı cazibə qanunundan çıxır. Olimpiadada Keplerin üçüncü qanunu ən çox istifadə olunur: orbitin ölçüsü ilə dövr müddəti arasındakı sadə əlaqə.</p>
+
+      <h3><span class="st">2</span> Üç qanun</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 180" role="img" aria-label="Günəş ətrafında ellips orbit: perihelidə yaxın, afelidə uzaq, iki bərabər sahəli sektor">
+          <ellipse cx="130" cy="90" rx="100" ry="80" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M190 90L230 90Q224 62 212 44Z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M190 90L30 90Q30 84 31 79Z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="190" cy="90" r="7" fill="var(--accent)"/>
+          <text x="190" y="112" class="lbl" text-anchor="middle">Günəş</text>
+          <circle cx="230" cy="90" r="3" fill="var(--ink)"/>
+          <circle cx="30" cy="90" r="3" fill="var(--ink)"/>
+          <text x="232" y="106" class="lbl" text-anchor="middle">perihelii</text>
+          <text x="32" y="106" class="lbl" text-anchor="middle">afelii</text>
+          <text x="212" y="38" class="lbl" text-anchor="middle">S₁</text>
+          <text x="60" y="72" class="lbl" text-anchor="middle">S₂</text>
+          <text x="130" y="168" text-anchor="middle">S₁ = S₂ (eyni zaman intervalında)</text>
+        </svg>
+        <div class="cap">
+          <p>Perihelidə planet Günəşə yaxındır və sürətlidir, afelidə uzaqdır və yavaşdır. Radius-vektorun eyni zamanda çəkdiyi sahələr bərabərdir.</p>
+        </div>
+      </div>
+      <p><b>I qanun.</b> Planetlər Günəş ətrafında <b>ellipslə</b> hərəkət edir, Günəş ellipsin fokuslarından birindədir. Ən yaxın nöqtə <b>perihelii</b>, ən uzaq nöqtə <b>afelii</b> adlanır. Yarımox <span class="m">a = (r_p + r_a)/2</span>.</p>
+      <p><b>II qanun.</b> Günəşi planetlə birləşdirən radius-vektor <b>bərabər zamanlarda bərabər sahələr</b> çəkir. Nəticə: perihelidə sürət böyük, afelidə kiçikdir. Perihelinin və afelinin nöqtələrində sürət radius-vektora perpendikulyardır və</p>
+      <div class="fm">r_p·v_p = r_a·v_a</div>
+      <p><b>III qanun.</b> Dövr müddətinin kvadratı orbitin yarımoxunun kubuna mütənasibdir. Bu, Günəş ətrafında dönən bütün cisimlər üçün eyni sabitdir:</p>
+      <div class="fm">T₁²/T₂² = a₁³/a₂³
+Günəş sistemində (T — il, a — AU):  T² = a³</div>
+      <p>Dairəvi orbitdə <span class="m">a = r</span>. Yer ətrafında dönən peyklərə də eyni qayda tətbiq olunur: ellips orbitli peykin dövr müddəti yarımoxu eyni olan dairəvi orbitin dövr müddətinə bərabərdir. Əvvəlki dərsdə <span class="m">T = T₀·(a/R)^(3/2)</span> yazdıq; ellips üçün <span class="m">a</span> yarımoxdur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Günəşdən orta məsafəsi 4 AU olan planetin dövr müddəti?
+  T² = a³ = 64 → T = 8 il
+  (Yupiter: a ≈ 5,2 AU → T = 5,2^(3/2) ≈ 11,9 il ✓)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Kometin perihelii 1 AU, afelii 7 AU-dur. Dövr müddəti?
+  a = (1 + 7)/2 = 4 AU
+  T = 4^(3/2) = 8 il
+  (Əgər afeliyə qədər olan ən uzaq məsafəni a götürsəydik,
+   7^(3/2) ≈ 18,5 il — səhv olardı.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Peyk Yer ətrafında ellips orbitdədir:
+perigeydə hündürlüyü 3200 km, apogeydə 35 200 km. Dövr müddəti?
+(R = 6400 km, T₀ = 84 dəq)
+  Yarımox: a = R + (3200 + 35 200)/2 = 6400 + 19 200 = 25 600 km = 4R
+  T = T₀·4^(3/2) = 84·8 = 672 dəq
+  Sürət: perigeydə r_p = 6400 + 3200 = 9600 km, apogeydə
+  r_a = 6400 + 35 200 = 41 600 km;  v_p/v_a = r_a/r_p = 13/3.</div>
+      <div class="life"><b>Həyatdan.</b> Halley kometi 76 ildə bir dəfə Günəşə yaxınlaşır. Perihelinin yaxınlığında o, çox sürətli hərəkət edir və yalnız bir neçə ay görünür, afelidə isə Neptundan da uzaqdadır və onilliklərlə yavaş sürünür. Bu, II qanunun nəticəsidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Afeli məsafəsini yarımox götürmək. <span class="m">a = (r_p + r_a)/2</span>.</li>
+        <li><span class="m">T ~ a</span> yazmaq. Düzü: <span class="m">T² ~ a³</span> (<span class="m">T ~ a^(3/2)</span>).</li>
+        <li><span class="m">a³</span> əvəzinə <span class="m">3a</span> yazmaq və ya <span class="m">T²</span>-dən kök almağı unutmaq.</li>
+        <li>Sürət üçün <span class="m">r·v = const</span> qaydasını apsidlərdən başqa nöqtələrdə tətbiq etmək. Ümumi halda sahə sürəti sabitdir (<span class="m">r·v·sin α/2</span>).</li>
+        <li>Peyk məsələsində hündürlüyü yarımoxa qatmaq: <span class="m">a = R + (h₁ + h₂)/2</span>, çünki R əlavə olunmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">I:  ellips, Günəş fokusda,  a = (r_p + r_a)/2
+II: bərabər zamanda bərabər sahə;  r_p·v_p = r_a·v_a
+III: T₁²/T₂² = a₁³/a₂³   (il, AU:  T² = a³)
+Peyk: T = T₀(a/R)^(3/2), a — yarımox</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Planetin a = 9 AU. T? <span class="ans">T = 9^(3/2) = 27 il.</span></li>
+        <li>Planet 64 ilə bir dövr edir. a? <span class="ans">a³ = 4096 → a = 16 AU.</span></li>
+        <li>Komet perihelidə 2 AU məsafədə 30 km/s sürətlə gedir, afelidə 10 AU-dur. Afelidə sürət? <span class="ans">v_a = 30·2/10 = 6 km/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
