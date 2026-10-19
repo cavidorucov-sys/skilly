@@ -4,7 +4,7 @@
   "saatlar": [
     {"kat": "math", "ad": "Riyaziyyat (buraxılış)", "saat": 4},
     {"kat": "olym", "ad": "Riyaziyyat olimpiadası", "saat": 3.5},
-    {"kat": "phys", "ad": "Fizika (FRİTL + ev)", "saat": 7},
+    {"kat": "phys", "ad": "Fizika (FRİTL + ev)", "saat": 6},
     {"kat": "proj", "ad": "Layihə", "saat": 2}
   ],
   "gunler": [
@@ -25,7 +25,6 @@
       {"saat": "17:00–18:30", "kat": "misc", "is": "Cüdo"}
     ]},
     {"qisa": "Cümə", "gun": "Cümə", "tarix": "2026-10-23", "isler": [
-      {"saat": "12:40–13:20", "kat": "phys", "is": "Fizika: 1 olimpiada məsələsi (kimya saatında)"},
       {"saat": "15:00–17:00", "kat": "phys", "is": "FRİTL"}
     ]},
     {"qisa": "Şən", "gun": "Şənbə", "tarix": "2026-10-24", "isler": [
