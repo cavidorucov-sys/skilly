@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Həqiqi ədədlər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-heqiqi-ededler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Həqiqi ədədlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Həqiqi ədədlər</div>
+    <h1>İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta</h1>
+    <p>√2, π kimi ədədlər kəsrlə yazılmır — onlar irrasionaldır. Kalkulyatorsuz onların təxmini qiymətini tapmağı, müqayisə etməyi, ədədin tam və kəsr hissəsini və iki növ ortanı öyrənəcəksən. Testdə bunlar həm ayrıca sual, həm də böyük məsələnin bir addımı kimi çıxır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İrrasional ədədlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kökləri qiymətləndir</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>[x] və {x}</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Ədədi və həndəsi orta</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İrrasional ədədlər və həqiqi ədədlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kvadratın sahəsi 2 m²-dir. Tərəfi neçə metrdir? Elə ədəd lazımdır ki, kvadratı 2 olsun: <span class="m">√2</span>. 1,4² = 1,96 — az; 1,5² = 2,25 — çox. 1,41² = 1,9881, 1,42² = 2,0164… Bu ədəd heç vaxt "bitmir" və heç bir kəsrlə dəqiq yazılmır.</p>
+      <p>Belə ədədlər <b>irrasional</b> adlanır. Onlarla rasional ədədlər birlikdə <b>həqiqi ədədlər</b>dir.</p>
+
+      <h3><span class="st">2</span> Onluq yazılışa bax</h3>
+      <div class="fm">Rasional ədəd  → sonlu və ya dövri onluq kəsr
+   1/4 = 0,25        1/3 = 0,333… = 0,(3)
+   2/11 = 0,(18)     0,(6) = 6/9 = 2/3
+
+İrrasional ədəd → sonsuz, DÖVRİ OLMAYAN onluq kəsr
+   √2 = 1,41421356…   π = 3,14159265…
+   0,1010010001…  (birlər arasında sıfırlar artır)</div>
+      <p>Diqqət: <b>3,14 rasionaldır</b> (314/100). π isə 3,14-ə yalnız təxminən bərabərdir.</p>
+
+      <h3><span class="st">3</span> Kök nə vaxt rasionaldır?</h3>
+      <p>Natural <span class="m">n</span> üçün <span class="m">√n</span> yalnız <span class="m">n</span> tam kvadrat olanda (1, 4, 9, 16, …) rasionaldır. Qalan hallarda irrasionaldır: √2, √3, √5, √20, √99.</p>
+      <p>Kəsr və ya onluq kəsr kök altındadırsa — əvvəl sadələşdir:</p>
+      <div class="ex">√49 = 7                 — rasional
+√0,04 = 0,2             — rasional (0,2² = 0,04)
+√0,4  = √(4/10) = √(2/5) — irrasional!  (0,4 tam kvadrat deyil)
+√(9/16) = 3/4           — rasional
+√2 · √8 = √16 = 4       — rasional
+√50 : √2 = √25 = 5      — rasional
+(√7)² = 7               — rasional
+5 + √3                  — irrasional</div>
+      <p>Qayda: rasional + irrasional = irrasional; sıfırdan fərqli rasional · irrasional = irrasional. İki irrasionalın hasili isə hər şey ola bilər: √2 · √3 = √6 (irrasional), √2 · √8 = 4 (rasional).</p>
+
+      <h3><span class="st">4</span> Həqiqi ədədlər ədəd oxunda</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 185" role="img" aria-label="Vahid kvadratın diaqonalı pərgarla ədəd oxuna köçürülür və √2 nöqtəsi alınır">
+          <rect x="40" y="70" width="80" height="80" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="40" y1="150" x2="120" y2="70" stroke="var(--vec)" stroke-width="3"/>
+          <path d="M120 70A113.14 113.14 0 0 1 153.14 150" fill="none" stroke="var(--vec)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="14" y1="150" x2="288" y2="150" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M292 150l-9 -5v10z" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="40" y1="144" x2="40" y2="156"/><line x1="120" y1="144" x2="120" y2="156"/><line x1="200" y1="144" x2="200" y2="156"/><line x1="280" y1="144" x2="280" y2="156"/></g>
+          <g font-size="12" text-anchor="middle" fill="var(--ink)"><text x="40" y="172">0</text><text x="120" y="172">1</text><text x="200" y="172">2</text><text x="280" y="172">3</text></g>
+          <circle cx="153.14" cy="150" r="5" fill="var(--vec)"/>
+          <text x="160" y="134" class="lbl" font-size="13">√2 ≈ 1,41</text>
+          <text x="58" y="104" class="lbl" font-size="12">√2</text>
+        </svg>
+        <div class="cap">
+          <p>Tərəfi 1 olan kvadratın diaqonalı Pifaqor teoreminə görə √(1² + 1²) = √2-dir.</p>
+          <p>Pərgarla diaqonalı oxa köçürsək, √2 nöqtəsini alırıq. Deməli irrasional ədədlərin də oxda öz nöqtəsi var.</p>
+          <p>Hər həqiqi ədədə oxda bir nöqtə, hər nöqtəyə bir həqiqi ədəd uyğundur.</p>
+        </div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat formalı kafel 30 sm × 30 sm-dir. Diaqonalı 30√2 ≈ 30 · 1,41 ≈ <b>42,4 sm</b>. Usta bunu bilir: kafeli diaqonal kəsəndə uzun xətkeş lazım olacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>√0,4 = 0,2 yazmaq. 0,2² = 0,04, 0,4 yox. √0,4 irrasionaldır.</li>
+        <li>"Kök işarəsi var — deməli irrasionaldır". √49 = 7 rasionaldır. Əvvəl sadələşdir.</li>
+        <li>π = 3,14 hesab etmək. 3,14 — π-nin təxmini qiymətidir, özü rasionaldır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Rasional — sonlu və ya dövri onluq kəsr
+İrrasional — sonsuz, dövri olmayan
+√n rasionaldır ⇔ n tam kvadratdır
+Həqiqi = rasional + irrasional</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neçəsi irrasionaldır: √36; √0,9; 2/7; π − 1; √3 · √12? <span class="ans">2: √0,9 və π − 1. (√36 = 6, √3 · √12 = √36 = 6.)</span></li>
+        <li>0,(4) ədədini adi kəsrlə yaz. <span class="ans">4/9.</span></li>
+        <li>√2 · √18 rasionaldır? <span class="ans">Bəli: √36 = 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kökləri qiymətləndirmək və müqayisə etmək</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda kalkulyator yoxdur. Amma "√50 hansı iki tam ədəd arasındadır?", "3√2 və 2√3-dən hansı böyükdür?" kimi suallar tez-tez çıxır. Hamısı bir fikirlə həll olunur: <b>tam kvadratları bil</b>.</p>
+
+      <h3><span class="st">2</span> Tam kvadratlar və əsas qayda</h3>
+      <div class="tbl"><table>
+        <tr><th>n</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><th>n²</th><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td><td>49</td><td>64</td><td>81</td><td>100</td></tr>
+        <tr><th>n</th><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+        <tr><th>n²</th><td>121</td><td>144</td><td>169</td><td>196</td><td>225</td><td>256</td><td>289</td><td>324</td><td>361</td><td>400</td></tr>
+      </table></div>
+      <div class="fm">k² &lt; n &lt; (k + 1)²   ⇒   k &lt; √n &lt; k + 1
+Böyük ədədin kökü də böyükdür:  a &lt; b ⇒ √a &lt; √b</div>
+      <div class="fig">
+        <svg viewBox="0 0 310 80" role="img" aria-label="Ədəd oxunda √2, √5, √10, √20 nöqtələri">
+          <line x1="10" y1="45" x2="298" y2="45" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M302 45l-9 -5v10z" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="25" y1="39" x2="25" y2="51"/><line x1="79" y1="39" x2="79" y2="51"/><line x1="133" y1="39" x2="133" y2="51"/><line x1="187" y1="39" x2="187" y2="51"/><line x1="241" y1="39" x2="241" y2="51"/><line x1="295" y1="39" x2="295" y2="51"/></g>
+          <g font-size="12" text-anchor="middle" fill="var(--ink)"><text x="25" y="68">0</text><text x="79" y="68">1</text><text x="133" y="68">2</text><text x="187" y="68">3</text><text x="241" y="68">4</text><text x="295" y="68">5</text></g>
+          <g fill="var(--vec)"><circle cx="101.4" cy="45" r="4.5"/><circle cx="145.7" cy="45" r="4.5"/><circle cx="195.8" cy="45" r="4.5"/><circle cx="266.5" cy="45" r="4.5"/></g>
+          <g font-size="12" text-anchor="middle" class="lbl"><text x="101.4" y="28">√2</text><text x="145.7" y="28">√5</text><text x="195.8" y="28">√10</text><text x="266.5" y="28">√20</text></g>
+        </svg>
+        <div class="cap">
+          <p>1 &lt; 2 &lt; 4, ona görə 1 &lt; √2 &lt; 2.</p>
+          <p>16 &lt; 20 &lt; 25, ona görə 4 &lt; √20 &lt; 5.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. √50 hansı iki ardıcıl tam ədəd arasındadır?
+49 &lt; 50 &lt; 64  ⇒  7 &lt; √50 &lt; 8.
+
+Nümunə 2. −√50 hansı iki ardıcıl tam ədəd arasındadır?
+7 &lt; √50 &lt; 8. −1-ə vuranda işarələr çevrilir:
+−8 &lt; −√50 &lt; −7.  (Kiçiyi −8-dir, −7 yox!)
+
+Nümunə 3. 3√5 hansı iki tam ədəd arasındadır?
+Vuruğu kök altına sal: 3√5 = √(9 · 5) = √45.
+36 &lt; 45 &lt; 49  ⇒  6 &lt; 3√5 &lt; 7.
+
+Nümunə 4. √50 hansı tam ədədə daha yaxındır?
+7 ilə 8-in ortası 7,5;  7,5² = 56,25.
+50 &lt; 56,25  ⇒  √50 &lt; 7,5  ⇒  7-yə daha yaxındır.</div>
+
+      <h3><span class="st">4</span> Müqayisə: vuruğu kök altına sal</h3>
+      <div class="fm">a√b = √(a² · b)     (a ≥ 0)
+3√2 = √18,   2√3 = √12,   5 = √25</div>
+      <div class="ex">Nümunə 5. Ən böyüyü hansıdır: 3√3;  2√7;  5?
+3√3 = √27,  2√7 = √28,  5 = √25.
+25 &lt; 27 &lt; 28  ⇒  5 &lt; 3√3 &lt; 2√7.   Ən böyüyü 2√7.
+
+Nümunə 6. −3√2 və −2√3: hansı kiçikdir?
+3√2 = √18 &gt; √12 = 2√3. Mənfilərdə tərsinə: −3√2 &lt; −2√3.</div>
+
+      <h3><span class="st">5</span> Aralıqda neçə tam ədəd var?</h3>
+      <div class="ex">Nümunə 7. −√10 ilə √30 arasında neçə tam ədəd var?
+3 &lt; √10 &lt; 4  ⇒  −4 &lt; −√10 &lt; −3.
+5 &lt; √30 &lt; 6.
+Tam ədədlər: −3; −2; −1; 0; 1; 2; 3; 4; 5 — 9 ədəd.</div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat otağın sahəsi 20 m²-dir. Döşəmə üçün plintus alırsan. Otağın tərəfi √20 m: 16 &lt; 20 &lt; 25, deməli 4 m ilə 5 m arasındadır (√20 ≈ 4,47). Perimetr təxminən 4 · 4,47 ≈ <b>17,9 m</b> — 18 m plintus bəs edər.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>3√2 = √6 yazmaq. Vuruq kök altına <b>kvadratı ilə</b> girir: 3√2 = √18.</li>
+        <li>−√50 üçün "−7 ilə −6 arasında" və ya "kiçiyi −7" demək. Düzü: −8 &lt; −√50 &lt; −7.</li>
+        <li>"√50 ≈ 7,5, çünki 50 49 ilə 64-ün ortasındadır" — yox. 50 49-a çox yaxındır, √50 ≈ 7,07.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k² &lt; n &lt; (k+1)²  ⇒  k &lt; √n &lt; k+1
+a√b = √(a²b) — sonra kök altındakıları müqayisə et
+Mənfi işarə bərabərsizliyi çevirir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>√90 hansı iki ardıcıl tam ədəd arasındadır? <span class="ans">81 &lt; 90 &lt; 100: 9 ilə 10.</span></li>
+        <li>Ən böyüyü: 4√2; 3√3; 5? <span class="ans">√32, √27, √25 — ən böyüyü 4√2.</span></li>
+        <li>−√20 ilə √12 arasında neçə tam ədəd var? <span class="ans">−5 &lt; −√20 &lt; −4 və 3 &lt; √12 &lt; 4. Tam ədədlər: −4; −3; …; 3 — 8 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Ədədin tam və kəsr hissəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Film 2,75 saat çəkir: bu 2 tam saat və 0,75 saat (45 dəqiqə) deməkdir. 2 — tam hissə, 0,75 — kəsr hissə. Müsbət ədədlərdə hər şey sadədir. Tələ mənfi ədədlərdədir — imtahan da məhz onu soruşur.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <div class="fm">[x] — x-i aşmayan ən böyük tam ədəd (x-in tam hissəsi)
+{x} = x − [x]  (x-in kəsr hissəsi)
+
+[x] ≤ x &lt; [x] + 1        0 ≤ {x} &lt; 1        x = [x] + {x}</div>
+      <p>Başqa sözlə: ədəd oxunda <span class="m">x</span>-dən <b>solda</b> (və ya onun özündə) duran ən yaxın tam ədəd — <span class="m">[x]</span>. Kəsr hissə — ondan <span class="m">x</span>-ə qədər olan məsafə. Ona görə kəsr hissə heç vaxt mənfi olmur.</p>
+
+      <h3><span class="st">3</span> Müsbət ədədlər</h3>
+      <div class="ex">[5,7] = 5,      {5,7} = 5,7 − 5 = 0,7
+[7/3] = 2,      {7/3} = 7/3 − 2 = 1/3      (7/3 = 2 + 1/3)
+[8] = 8,        {8} = 0
+[0,4] = 0,      {0,4} = 0,4</div>
+
+      <h3><span class="st">4</span> Mənfi ədədlər — əsas tələ</h3>
+      <div class="fig">
+        <svg viewBox="0 0 310 96" role="img" aria-label="Ədəd oxunda −2,3: tam hissəsi −3, kəsr hissəsi 0,7">
+          <line x1="8" y1="55" x2="298" y2="55" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M302 55l-9 -5v10z" fill="var(--ink)"/>
+          <g stroke="var(--ink)" stroke-width="1.5"><line x1="20" y1="49" x2="20" y2="61"/><line x1="75" y1="49" x2="75" y2="61"/><line x1="130" y1="49" x2="130" y2="61"/><line x1="185" y1="49" x2="185" y2="61"/><line x1="240" y1="49" x2="240" y2="61"/><line x1="295" y1="49" x2="295" y2="61"/></g>
+          <g font-size="12" text-anchor="middle" fill="var(--ink)"><text x="20" y="78">−4</text><text x="75" y="78">−3</text><text x="130" y="78">−2</text><text x="185" y="78">−1</text><text x="240" y="78">0</text><text x="295" y="78">1</text></g>
+          <line x1="75" y1="40" x2="113.5" y2="40" stroke="var(--accent)" stroke-width="4"/>
+          <text x="94" y="30" text-anchor="middle" class="lbl" font-size="12">{x} = 0,7</text>
+          <circle cx="75" cy="55" r="5" fill="var(--accent)"/>
+          <circle cx="113.5" cy="55" r="5" fill="var(--vec)"/>
+          <text x="140" y="30" class="lbl" font-size="12">x = −2,3</text>
+          <text x="75" y="94" text-anchor="middle" class="lbl" font-size="12">[x] = −3</text>
+        </svg>
+        <div class="cap">
+          <p>−2,3 ədədi −3 ilə −2 arasındadır. Soldakı tam ədəd −3-dür, ona görə [−2,3] = −3.</p>
+          <p>{−2,3} = −2,3 − (−3) = 0,7 — −3-dən −2,3-ə qədər olan məsafə.</p>
+        </div>
+      </div>
+      <div class="ex">[−2,3] = −3  (−2 yox! −2 &gt; −2,3, yəni −2 ədədi x-i aşır)
+{−2,3} = −2,3 − (−3) = 0,7   (0,3 yox!)
+
+[−7/3]: −7/3 = −3 + 2/3  ⇒  [−7/3] = −3,  {−7/3} = 2/3
+[−0,4] = −1,  {−0,4} = 0,6
+[−5] = −5,  {−5} = 0</div>
+
+      <h3><span class="st">5</span> Köklərlə və iki faydalı fakt</h3>
+      <div class="ex">Nümunə 1. [√30] və {√30}.
+25 &lt; 30 &lt; 36  ⇒  5 &lt; √30 &lt; 6.
+[√30] = 5,   {√30} = √30 − 5.
+
+Nümunə 2. [−√30] və {−√30}.
+−6 &lt; −√30 &lt; −5.
+[−√30] = −6,   {−√30} = −√30 − (−6) = 6 − √30.
+
+Nümunə 3. x = −3,4 olarsa, [x] − 2{x} = ?
+[x] = −4,  {x} = −3,4 + 4 = 0,6.
+[x] − 2{x} = −4 − 1,2 = −5,2.</div>
+      <div class="fm">x tam deyilsə:  [x] + [−x] = −1,   {x} + {−x} = 1
+Məs.: [2,6] + [−2,6] = 2 + (−3) = −1
+      {2,6} + {−2,6} = 0,6 + 0,4 = 1</div>
+      <div class="life"><b>Həyatdan.</b> Avtobusa 47 şagird minməlidir, bir avtobusda 12 yer var. 47/12 = 3,91…: [47/12] = 3 avtobus dolur, kəsr hissə 11/12 — daha 11 şagird qalır. Ona görə <b>4 avtobus</b> lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>[−2,3] = −2 yazmaq (sadəcə vergüldən sonranı atmaq). Mənfi ədəddə tam hissə bir vahid kiçikdir: −3.</li>
+        <li>{−2,3} = 0,3 yazmaq. Düzü: −2,3 − (−3) = 0,7.</li>
+        <li>Kəsr hissəni mənfi almaq. Həmişə 0 ≤ {x} &lt; 1.</li>
+        <li>[x]-i yuvarlaqlaşdırma ilə qarışdırmaq: [4,9] = 4, 5 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">[x] — x-dən solda (və ya özündə) olan ən yaxın tam
+{x} = x − [x],  0 ≤ {x} &lt; 1
+[−2,3] = −3,  {−2,3} = 0,7</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>[−5,2] = ? <span class="ans">−6.</span></li>
+        <li>{−5,2} = ? <span class="ans">−5,2 − (−6) = 0,8.</span></li>
+        <li>{√11} = ? <span class="ans">9 &lt; 11 &lt; 16, [√11] = 3, {√11} = √11 − 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Ədədi orta və həndəsi orta</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Orta bal", "həftənin orta temperaturu", "orta xərc" — bunların hamısı ədədi ortadır. Həndəsi orta isə daha az tanışdır, amma həndəsədə (düzbucaqlı üçbucaqda hündürlük) və proqressiyalarda qarşına çıxacaq.</p>
+
+      <h3><span class="st">2</span> Ədədi orta</h3>
+      <div class="fm">Ədədi orta = (a₁ + a₂ + … + aₙ) / n
+Buradan:  cəm = orta · say</div>
+      <div class="ex">Nümunə 1. 7; −3; 5; 0; 6 ədədlərinin ədədi ortası.
+Cəm: 7 − 3 + 5 + 0 + 6 = 15.  Say: 5 (0 da sayılır!).
+Orta: 15 : 5 = 3.
+
+Nümunə 2. 2, 9 və x ədədlərinin ədədi ortası 4. x = ?
+Cəm = 3 · 4 = 12.  x = 12 − 2 − 9 = 1.</div>
+
+      <h3><span class="st">3</span> Həndəsi orta</h3>
+      <div class="fm">a &gt; 0, b &gt; 0 ədədlərinin həndəsi ortası = √(a · b)</div>
+      <div class="ex">Nümunə 3. 4 və 9:  √(4 · 9) = √36 = 6.
+Nümunə 4. 2 və 6:  √(2 · 6) = √12 = √(4 · 3) = 2√3.
+Nümunə 5. 8 və x ədədlərinin həndəsi ortası 6. x = ?
+√(8x) = 6  ⇒  8x = 36  ⇒  x = 4,5.</div>
+      <p><b>Həndəsi mənası:</b> ölçüləri <span class="m">a</span> və <span class="m">b</span> olan düzbucaqlı ilə eyni sahəli kvadratın tərəfi <span class="m">√(ab)</span>-dir. 4 × 9 düzbucaqlının sahəsi 36-dır, eyni sahəli kvadratın tərəfi 6.</p>
+      <p>Üç müsbət ədədin həndəsi ortası — <span class="m">∛(a · b · c)</span>: məsələn, 2, 4, 8 üçün ∛64 = 4.</p>
+
+      <h3><span class="st">4</span> Hansı böyükdür?</h3>
+      <div class="fm">a, b &gt; 0:   (a + b) / 2  ≥  √(ab)
+Bərabərlik yalnız a = b olanda.</div>
+      <div class="ex">2 və 8:  ədədi orta 5, həndəsi orta √16 = 4.  5 &gt; 4.
+6 və 6:  ədədi orta 6, həndəsi orta 6.  Bərabər.
+
+Niyə? (√a − √b)² ≥ 0  ⇒  a − 2√(ab) + b ≥ 0  ⇒  (a + b)/2 ≥ √(ab).</div>
+      <div class="life"><b>Həyatdan.</b> Üç sınaqdan 78, 85, 80 bal almısan. Dörd sınağın orta balının 82 olması üçün 4-cü sınaqdan neçə lazımdır?
+        <br>Cəm 4 · 82 = 328 olmalıdır. Artıq var: 78 + 85 + 80 = 243. Lazımdır: 328 − 243 = <b>85 bal</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sayda 0-ı və ya mənfi ədədləri unutmaq. 0 da ədəddir, say artır.</li>
+        <li>Həndəsi ortanı (a + b)/2 ilə qarışdırmaq. Həndəsi — vurma və kök.</li>
+        <li>Orta sürəti sürətlərin ədədi ortası saymaq. Gedişdə 60 km/saat, qayıdışda 40 km/saat — orta sürət 50 deyil, 48 km/saat (ümumi yol : ümumi vaxt).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ədədi orta = cəm / say;  cəm = orta · say
+Həndəsi orta = √(ab)  (a, b &gt; 0)
+(a + b)/2 ≥ √(ab)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>−4; 6; 10; −2 ədədlərinin ədədi ortası? <span class="ans">10 : 4 = 2,5.</span></li>
+        <li>3 və 27 ədədlərinin həndəsi ortası? <span class="ans">√81 = 9.</span></li>
+        <li>İki ədədin ədədi ortası 7, biri −3. O biri? <span class="ans">14 − (−3) = 17.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

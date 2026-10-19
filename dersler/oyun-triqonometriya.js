@@ -135,7 +135,7 @@
         const text = h("div", {}, h("p", {}, `Məsələ: hipotenuz ${c}, α = ${d}°. α-${wantOpp ? "nın qarşısındakı" : "ya bitişik"} katet = ?`),
           h("ol", { class: "oy-steps" }, ...steps.map(s => h("li", {}, s.slice(3)))));
         const why = ["1-ci addımda tərəf səhv adlandırılıb — məsələ başqa katet soruşur.", `2-ci addımda funksiya səhvdir: ${wantOpp ? "qarşı katet üçün sin" : "bitişik katet üçün cos"} lazımdır.`, `3-cü addımda qiymət səhvdir: ${f} ${d}° = ${SPECIAL[f][d][0]}.`][bad];
-        return { text, choices: ["1-ci addım", "2-ci addım", "3-cü addım"], correct: bad, show: (bad + 1) + "-ci addım", solution: why };
+        return { text, choices: ["1-ci addım", "2-ci addım", "3-cü addım"], correct: bad, show: ["1-ci", "2-ci", "3-cü"][bad] + " addım", solution: why };
       } },
   ];
 

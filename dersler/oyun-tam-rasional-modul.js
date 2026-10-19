@@ -94,7 +94,7 @@
         const half = Math.random() < .4, step = half ? .5 : 1, count = 12;
         const L = half ? rnd(-5, -1) : rnd(-10, -2);
         const zeroI = Math.round(-L / step), oneI = Math.round((1 - L) / step);
-        let i, j; do { i = rnd(0, count); j = rnd(0, count); } while (i === j || i === zeroI || i === oneI || j === zeroI || j === oneI);
+        let i, j; do { i = rnd(0, count); j = rnd(0, count); } while (Math.abs(i - j) < 2 || i === zeroI || i === oneI || j === zeroI || j === oneI);
         const a = L + i * step, b = L + j * step, svg = numberLine(L, step, count, { A: a, B: b });
         const unitTxt = half ? "0 ilə 1 arasında 2 bölgü var — bir bölgü 1/2 = 0,5 vahiddir." : "0 ilə 1 arasında 1 bölgü var — bir bölgü 1 vahiddir.";
         const kinds = half ? ["A", "B", "dist", "cnt"] : ["A", "B", "dist", "mid", "cnt"], k = pick(kinds);

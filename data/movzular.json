@@ -18,13 +18,15 @@
    "bolme": "Həqiqi ədədlər",
    "ad": "Tam və rasional ədədlər, ədəd oxu, modul",
    "status": "yox",
-   "menbe": "DİM: Həqiqi ədədlər"
+   "menbe": "DİM: Həqiqi ədədlər",
+   "ders": "dersler/tam-rasional-modul.html"
   },
   {
    "bolme": "Həqiqi ədədlər",
    "ad": "İrrasional və həqiqi ədədlər; tam və kəsr hissə; ədədi və həndəsi orta",
    "status": "yox",
-   "menbe": "DİM: Həqiqi ədədlər"
+   "menbe": "DİM: Həqiqi ədədlər",
+   "ders": "dersler/heqiqi-ededler.html"
   },
   {
    "bolme": "Nisbət, tənasüb, faiz",
