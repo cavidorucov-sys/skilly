@@ -65,19 +65,22 @@
    "bolme": "Rasional ifadələr",
    "ad": "Vuruqlara ayırma",
    "status": "yox",
-   "menbe": "DİM: Rasional ifadələr"
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/vuruqlara-ayirma.html"
   },
   {
    "bolme": "Rasional ifadələr",
    "ad": "Rasional ifadələrin çevrilməsi, DMQ",
    "status": "yox",
-   "menbe": "DİM: Rasional ifadələr"
+   "menbe": "DİM: Rasional ifadələr",
+   "ders": "dersler/rasional-ifadeler.html"
   },
   {
    "bolme": "Köklər və qüvvətlər",
    "ad": "Kvadrat kök, hesabi kökün xassələri",
    "status": "yox",
-   "menbe": "DİM: n-ci dərəcədən kök…"
+   "menbe": "DİM: n-ci dərəcədən kök…",
+   "ders": "dersler/kvadrat-kok.html"
   },
   {
    "bolme": "Köklər və qüvvətlər",

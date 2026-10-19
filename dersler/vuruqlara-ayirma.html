@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vuruqlara ayırma dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-vuruqlara-ayirma.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Vuruqlara ayırma</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Rasional ifadələr</div>
+    <h1>Vuruqlara ayırma</h1>
+    <p>Çoxhədlini <b>hasil</b> şəklində yazmaq: <span class="m">x² − 9 = (x − 3)(x + 3)</span>. Bu bacarıq hər yerdə lazımdır — kəsrləri ixtisar edəndə, tənlik həll edəndə, böyük ədədləri kalkulyatorsuz hesablayanda. Dörd üsul öyrənəcəksən: ortaq vuruq, qruplaşdırma, düsturlar və kvadrat üçhədli.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ortaq vuruq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Düsturlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kvadrat üçhədli</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tam kvadrat</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Ortaq vuruğun mötərizə xaricinə çıxarılması və qruplaşdırma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hesabla: <span class="m">37·64 + 37·36</span>. İki böyük vurma, sonra toplama? Yox — 37 hər iki həddə var: <span class="m">37·(64 + 36) = 37·100 = 3700</span>. Bir saniyəlik iş.</p>
+      <p>Hərflərlə də eynidir. Cəmi hasilə çevirmək — <b>vuruqlara ayırmaq</b> deməkdir. Hasil ilə işləmək asandır: ixtisar etmək, sıfıra bərabər etmək olur.</p>
+
+      <h3><span class="st">2</span> Ortaq vuruq</h3>
+      <p>Paylama qanununu tərsinə oxuyuruq. Bütün hədlərdə olan vuruğu mötərizə xaricinə çıxarırıq:</p>
+      <div class="fm">ab + ac = a(b + c)</div>
+      <p><b>Ən böyük</b> ortaq vuruq: əmsalların ƏBOB-u və hər dəyişənin ən kiçik qüvvəti.</p>
+      <div class="ex">1) 12x³ − 18x²
+   ƏBOB(12; 18) = 6, x-in ən kiçik qüvvəti x²
+   12x³ − 18x² = 6x²(2x − 3)
+   Yoxla: 6x²·2x = 12x³,  6x²·3 = 18x² ✓
+
+2) 15a²b + 10ab² = 5ab(3a + 2b)
+
+3) 5x + 5 = 5(x + 1)     ← mötərizədə 1 qalır, boş yox</div>
+
+      <h3><span class="st">3</span> Qruplaşdırma</h3>
+      <p>Bütün hədlərdə ortaq vuruq yoxdursa, hədləri cüt-cüt qruplaşdır. Hər cütdən ortaq vuruq çıxar — <b>eyni mötərizə</b> alınmalıdır. Sonra onu da çıxar.</p>
+      <div class="fm">ax + ay + bx + by = a(x + y) + b(x + y)
+                  = (x + y)(a + b)</div>
+      <div class="ex">4) xy + 3x − 2y − 6
+   = x(y + 3) − 2(y + 3)      ← −2y − 6 = −2(y + 3)
+   = (y + 3)(x − 2)
+   Yoxla: (y + 3)(x − 2) = xy − 2y + 3x − 6 ✓
+
+5) x³ + 2x² + 5x + 10
+   = x²(x + 2) + 5(x + 2)
+   = (x + 2)(x² + 5)</div>
+      <div class="life"><b>Həyatdan.</b> Ailə kinoya 4 bilet (hərəsi 7,5 manat) və 4 popkorn (hərəsi 2,5 manat) aldı. Kassir belə hesablayır: <span class="m">4·7,5 + 4·2,5 = 4·(7,5 + 2,5) = 4·10 = 40</span> manat. Bu, ortaq vuruğu mötərizə xaricinə çıxarmaqdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi çıxaranda işarəni dəyişməmək: <span class="m">−2y − 6 = −2(y + 3)</span>, <span class="m">−2(y − 3)</span> yox.</li>
+        <li>Mötərizədə 1-i unutmaq: <span class="m">5x + 5 = 5(x + 1)</span>, <span class="m">5x</span> yox.</li>
+        <li>Ən böyük vuruğu çıxarmamaq: <span class="m">12x³ − 18x² = 2x(6x² − 9x)</span> — mötərizədə hələ ortaq vuruq (3x) qalır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ab + ac = a(b + c)
+Ortaq vuruq = ƏBOB(əmsallar) · dəyişənin ən kiçik qüvvəti
+Qruplaşdırma: cüt-cüt → eyni mötərizə → onu çıxar
+Həmişə açıb yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">8x² + 12x</span> ifadəsini vuruqlara ayır. <span class="ans">4x(2x + 3).</span></li>
+        <li><span class="m">ab − 3a + 2b − 6</span> ifadəsini vuruqlara ayır. <span class="ans">a(b − 3) + 2(b − 3) = (b − 3)(a + 2).</span></li>
+        <li>Hesabla: <span class="m">43·17 + 57·17</span>. <span class="ans">17·(43 + 57) = 17·100 = 1700.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Müxtəsər vurma düsturlarının tətbiqi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hesabla: <span class="m">53² − 47²</span>. Kvadratları hesablayıb çıxmaq uzun işdir. Düsturla: <span class="m">(53 − 47)(53 + 47) = 6·100 = 600</span>. Müxtəsər vurma düsturlarını sağdan sola oxusan, onlar vuruqlara ayırma alətinə çevrilir.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fm">a² − b² = (a − b)(a + b)
+a² + 2ab + b² = (a + b)²
+a² − 2ab + b² = (a − b)²
+a³ − b³ = (a − b)(a² + ab + b²)
+a³ + b³ = (a + b)(a² − ab + b²)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Tərəfi a olan kvadratdan tərəfi b olan kvadrat kəsilib">
+          <rect x="20" y="15" width="120" height="120" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="95" y="15" width="45" height="45" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="80" y="148" text-anchor="middle" class="lbl">a</text>
+          <text x="117" y="42" text-anchor="middle" class="lbl">b</text>
+          <text x="58" y="80" text-anchor="middle" class="lbl">a² − b²</text>
+          <text x="215" y="60" text-anchor="middle" class="lbl">qalan sahə =</text>
+          <text x="215" y="85" text-anchor="middle" class="lbl">(a − b)(a + b)</text>
+        </svg>
+        <div class="cap"><p>Böyük kvadratdan kiçik kvadrat kəsilib. Qalan fiquru iki düzbucaqlıya bölüb yan-yana qoysan, tərəfləri <span class="m">a − b</span> və <span class="m">a + b</span> olan düzbucaqlı alınır.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 9x² − 25 = (3x)² − 5² = (3x − 5)(3x + 5)
+
+2) 4x² − 12x + 9
+   4x² = (2x)²,  9 = 3²,  orta hədd: 2·2x·3 = 12x ✓
+   = (2x − 3)²
+
+3) x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)
+
+4) 2x³ − 50x = 2x(x² − 25) = 2x(x − 5)(x + 5)
+   ← əvvəl ortaq vuruq, sonra düstur
+
+5) 53² − 47² = (53 − 47)(53 + 47) = 6·100 = 600</div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat meydançanın tərəfi 65 m-dir. Ortasında tərəfi 35 m olan kvadrat çəmənlik var. Qalan hissənin sahəsi: <span class="m">65² − 35² = (65 − 35)(65 + 35) = 30·100 = 3000</span> m².</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(a − b)² = a² − b²</span> yazmaq. Düzü: <span class="m">a² − 2ab + b²</span>.</li>
+        <li><span class="m">x² + 9</span> ifadəsini <span class="m">(x − 3)(x + 3)</span> kimi ayırmaq. Kvadratların <b>cəmi</b> bu düsturla ayrılmır.</li>
+        <li>Tam kvadratı yoxlamamaq: <span class="m">x² + 6x + 4</span> tam kvadrat deyil, çünki <span class="m">4 = 2²</span>, amma <span class="m">2·x·2 = 4x ≠ 6x</span>.</li>
+        <li><span class="m">a³ − b³</span>-də ikinci mötərizənin işarəsi: <span class="m">a² + ab + b²</span> (hamısı +).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a² − b² = (a − b)(a + b)
+a² ± 2ab + b² = (a ± b)²
+a³ ∓ b³ = (a ∓ b)(a² ± ab + b²)
+Əvvəl ortaq vuruğu çıxar, sonra düsturu axtar.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 64</span> ifadəsini vuruqlara ayır. <span class="ans">(x − 8)(x + 8).</span></li>
+        <li><span class="m">x² + 10x + 25</span> ifadəsini vuruqlara ayır. <span class="ans">(x + 5)², çünki 2·x·5 = 10x.</span></li>
+        <li>Hesabla: <span class="m">101² − 99²</span>. <span class="ans">(101 − 99)(101 + 99) = 2·200 = 400.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Kvadrat üçhədlinin vuruqlara ayrılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">x² − 7x + 12</span> nə ortaq vuruqla, nə də düsturla ayrılır. Amma imtahanda belə üçhədlilər çox olur: kəsri ixtisar etmək üçün onları hasil kimi yazmaq lazımdır. Açar — kvadrat tənliyin kökləri.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Əgər <span class="m">x₁</span> və <span class="m">x₂</span> — <span class="m">ax² + bx + c = 0</span> tənliyinin kökləridirsə:</p>
+      <div class="fm">ax² + bx + c = a(x − x₁)(x − x₂)</div>
+      <div class="fm">D > 0 — iki vuruq: a(x − x₁)(x − x₂)
+D = 0 — tam kvadrat: a(x − x₁)²
+D < 0 — vuruqlara ayrılmır</div>
+      <p>Kök 3-dürsə vuruq <span class="m">(x − 3)</span>, kök −2-dirsə vuruq <span class="m">(x + 2)</span>. İşarə tərsinə dönür.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x² − 7x + 12
+   Viyet: x₁ + x₂ = 7, x₁·x₂ = 12  →  x₁ = 3, x₂ = 4
+   x² − 7x + 12 = (x − 3)(x − 4)</div>
+      <div class="ex">2) 2x² + 5x − 3
+   D = 25 + 24 = 49,  x = (−5 ± 7)/4  →  x₁ = 1/2, x₂ = −3
+   2x² + 5x − 3 = 2(x − 1/2)(x + 3) = (2x − 1)(x + 3)
+   Yoxla: (2x − 1)(x + 3) = 2x² + 6x − x − 3 ✓</div>
+      <div class="ex">3) 3x² − 12x + 12 = 3(x² − 4x + 4) = 3(x − 2)²     (D = 0)
+
+4) x² + x + 5:  D = 1 − 20 &lt; 0  →  vuruqlara ayrılmır</div>
+
+      <h3><span class="st">4</span> Tətbiq: kəsrin ixtisarı</h3>
+      <div class="ex">(x² − 7x + 12)/(x − 3) = (x − 3)(x − 4)/(x − 3) = x − 4    (x ≠ 3)</div>
+      <div class="life"><b>Həyatdan.</b> Düzbucaqlı otağın sahəsi <span class="m">x² + 7x + 12</span> m²-dir. Tərəflər? <span class="m">x² + 7x + 12 = (x + 3)(x + 4)</span>, yəni tərəflər <span class="m">x + 3</span> və <span class="m">x + 4</span> metrdir. <span class="m">x = 5</span> olsa — 8 m və 9 m, sahə 72 m². Yoxla: <span class="m">25 + 35 + 12 = 72</span> ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a</span>-nı unutmaq: <span class="m">2x² + 5x − 3 = (x − 1/2)(x + 3)</span> yanlışdır — açsan, <span class="m">x²</span> alınır, <span class="m">2x²</span> yox.</li>
+        <li>İşarəni səhv qoymaq: kök 3 → vuruq <span class="m">(x − 3)</span>, <span class="m">(x + 3)</span> yox.</li>
+        <li>D &lt; 0 olanda vuruq "uydurmaq". Belə üçhədli vuruqlara ayrılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ax² + bx + c = a(x − x₁)(x − x₂)
+Kökləri tap (Viyet və ya D) → a-nı unutma → aç və yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − x − 6</span> ifadəsini vuruqlara ayır. <span class="ans">Köklər 3 və −2: (x − 3)(x + 2).</span></li>
+        <li><span class="m">2x² − 7x + 3</span> ifadəsini vuruqlara ayır. <span class="ans">D = 49 − 24 = 25, x = (7 ± 5)/4 → 3 və 1/2. 2(x − 3)(x − 1/2) = (x − 3)(2x − 1).</span></li>
+        <li><span class="m">x² + 2x + 7</span> vuruqlara ayrılırmı? <span class="ans">Yox: D = 4 − 28 = −24 &lt; 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kvadrat üçhədlidən tam kvadratın ayrılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İfadənin ən kiçik qiymətini tap" — imtahanda tez-tez çıxan sualdır. <span class="m">x² − 6x + 14</span> üçün bütün <span class="m">x</span>-ləri yoxlamaq olmaz. Amma ifadəni <span class="m">(x − 3)² + 5</span> kimi yazsan, cavab görünür: kvadrat ən azı 0-dır, deməli ifadə ən azı 5-dir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">x</span>-in əmsalının yarısını götür, onun kvadratını əlavə et və dərhal çıx:</p>
+      <div class="fm">x² + 2px + q = (x² + 2px + p²) − p² + q
+              = (x + p)² + (q − p²)</div>
+      <div class="fm">(x + p)² ≥ 0  →  ən kiçik qiymət q − p²,
+                   x = −p olduqda</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x² − 6x + 14
+   x-in əmsalı −6, yarısı −3, kvadratı 9
+   = (x² − 6x + 9) − 9 + 14 = (x − 3)² + 5
+   Ən kiçik qiymət 5 (x = 3 olduqda)</div>
+      <div class="ex">2) x² + 8x + 7 = (x + 4)² − 16 + 7 = (x + 4)² − 9
+   Bu, kvadratların fərqidir: (x + 4)² − 3²
+   = (x + 4 − 3)(x + 4 + 3) = (x + 1)(x + 7)
+   ← tam kvadrat vuruqlara ayırmağa da kömək edir</div>
+      <div class="ex">3) 2x² − 8x + 3 = 2(x² − 4x) + 3
+   = 2(x² − 4x + 4) − 8 + 3      ← mötərizədə +4, xaricdə 2·4 = 8 çıxırıq
+   = 2(x − 2)² − 5
+   Ən kiçik qiymət −5 (x = 2 olduqda)</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan: ən böyük bağ.</b> 20 m hasarla düzbucaqlı bağ çəpərləmək lazımdır. Bir tərəf <span class="m">x</span>, o biri <span class="m">10 − x</span>. Sahə:
+        <br><span class="m">x(10 − x) = −x² + 10x = −(x² − 10x + 25) + 25 = 25 − (x − 5)²</span>.
+        <br>Kvadrat 0 olanda sahə ən böyükdür: <span class="m">x = 5</span>, sahə 25 m². Deməli eyni hasarla ən böyük sahəni kvadrat bağ verir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əlavə etdiyin kvadratı çıxmağı unutmaq: <span class="m">x² − 6x + 14 = (x − 3)² + 14</span> yanlışdır, 9-u çıxmaq lazımdır.</li>
+        <li>Ən kiçik qiyməti alan <span class="m">x</span>-in işarəsi: <span class="m">(x + 4)²</span> sıfır olur <span class="m">x = −4</span> olanda.</li>
+        <li><span class="m">a ≠ 1</span> olanda xaricə çıxan ədədi unutmaq: nümunə 3-də 4 yox, <span class="m">2·4 = 8</span> çıxılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x² + 2px + q = (x + p)² + (q − p²)
+Kvadrat ≥ 0 → ən kiçik qiymət q − p² (x = −p).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² + 4x + 1</span> ifadəsini <span class="m">(x + m)² + n</span> şəklində yaz. <span class="ans">(x + 2)² − 3.</span></li>
+        <li><span class="m">x² − 10x + 30</span> ifadəsinin ən kiçik qiyməti nədir? <span class="ans">(x − 5)² + 5 → ən kiçik qiymət 5 (x = 5 olduqda).</span></li>
+        <li>Niyə <span class="m">x² − 2x + 3</span> həmişə müsbətdir? <span class="ans">x² − 2x + 3 = (x − 1)² + 2 ≥ 2 > 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

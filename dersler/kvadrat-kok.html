@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kvadrat kök dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-kvadrat-kok.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kvadrat kök</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: n-ci dərəcədən kök. İrrasional ifadələr</div>
+    <h1>Kvadrat kök, hesabi kökün xassələri</h1>
+    <p>Kvadratın sahəsi 49 m²-dirsə, tərəfi 7 m-dir: <span class="m">√49 = 7</span>. Bəs sahə 50 m² olsa? Cavab <span class="m">√50 = 5√2</span>. Bu mövzuda kökləri hesablamağı, sadələşdirməyi, vuruğu kök altından çıxarmağı və məxrəci kökdən azad etməyi öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Hesabi kök</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xassələr</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kök altından çıxar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrilmələr</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kvadrat kök və hesabi kvadrat kök</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kvadrat formalı xalçanın sahəsi 9 m²-dir. Tərəfi? Elə ədəd lazımdır ki, öz-özünə vurulanda 9 versin: 3. Bu, kvadratlaşdırmanın tərs əməlidir — <b>kvadrat kök</b>.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <p><span class="m">a</span>-nın <b>kvadrat kökü</b> — kvadratı <span class="m">a</span> olan ədəddir. 49-un iki kvadrat kökü var: 7 və −7, çünki <span class="m">7² = (−7)² = 49</span>.</p>
+      <p><b>Hesabi kvadrat kök</b> <span class="m">√a</span> — kvadratı <span class="m">a</span> olan <b>mənfi olmayan</b> ədəddir. Yəni <span class="m">√49 = 7</span>, −7 yox.</p>
+      <div class="fm">√a = b  ⇔  b ≥ 0 və b² = a
+√a yalnız a ≥ 0 olanda var
+(√a)² = a</div>
+
+      <h3><span class="st">3</span> Ən vacib eynilik: √(a²) = |a|</h3>
+      <p><span class="m">√((−6)²) = √36 = 6</span>, −6 yox. Kök altından həmişə mənfi olmayan ədəd çıxır. Ona görə:</p>
+      <div class="fm">√(a²) = |a|
+a ≥ 0 olanda: a;   a &lt; 0 olanda: −a</div>
+      <div class="ex">1) √0,49 = 0,7          (0,7² = 0,49)
+2) √(1 9/16) = √(25/16) = 5/4
+3) √((−6)²) = |−6| = 6
+4) √((3 − √10)²) = |3 − √10|
+   3 = √9 &lt; √10, deməli 3 − √10 mənfidir
+   = √10 − 3
+5) √(−9) — mənası yoxdur (kvadratı mənfi olan ədəd yoxdur)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 130" role="img" aria-label="Sahəsi 49 olan kvadratın tərəfi 7-dir">
+          <rect x="30" y="15" width="100" height="100" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="80" y="70" text-anchor="middle" class="lbl">S = 49</text>
+          <text x="80" y="128" text-anchor="middle" class="lbl">a = ?</text>
+          <text x="215" y="55" text-anchor="middle" class="lbl">a² = 49</text>
+          <text x="215" y="85" text-anchor="middle" class="lbl">a = √49 = 7</text>
+        </svg>
+        <div class="cap"><p>Tərəf uzunluqdur, mənfi ola bilməz. Ona görə kvadratın tərəfi hesabi kökdür: <span class="m">a = √S</span>.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Daş <span class="m">h</span> metr hündürlükdən düşəndə <span class="m">h = 5t²</span> (g = 10 m/s²), yəni <span class="m">t = √(h/5)</span>. 45 m hündürlükdən: <span class="m">t = √9 = 3</span> s. 80 m-dən: <span class="m">√16 = 4</span> s.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">√16 = ±4</span> yazmaq. Hesabi kök birdir: <span class="m">√16 = 4</span>.</li>
+        <li><span class="m">√((−5)²) = −5</span> yazmaq. Düzü: <span class="m">|−5| = 5</span>.</li>
+        <li><span class="m">√0,4 = 0,2</span> demək. Yoxla: <span class="m">0,2² = 0,04</span>. Düzü: <span class="m">√0,04 = 0,2</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√a ≥ 0,  a ≥ 0,  (√a)² = a
+√(a²) = |a|
+Yoxlama: cavabı kvadrata yüksəlt.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√0,09</span> = ? <span class="ans">0,3 (0,3² = 0,09).</span></li>
+        <li><span class="m">√((−11)²)</span> = ? <span class="ans">|−11| = 11.</span></li>
+        <li><span class="m">√((2 − √5)²)</span> = ? <span class="ans">2 = √4 &lt; √5, ona görə |2 − √5| = √5 − 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Hesabi kvadrat kökün xassələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">√8</span> də, <span class="m">√18</span> də "pis" ədədlərdir. Amma <span class="m">√8·√18 = √144 = 12</span> — tam ədəd! Xassələr kökləri birləşdirib tam kvadrat yaratmağa imkan verir.</p>
+
+      <h3><span class="st">2</span> Xassələr</h3>
+      <div class="fm">√(ab) = √a·√b        (a ≥ 0, b ≥ 0)
+√(a/b) = √a/√b       (a ≥ 0, b > 0)
+√(a²ⁿ) = |aⁿ|,  məs. √(a⁴) = a²</div>
+      <p>Soldan sağa: hasilin kökü — köklərin hasili. Sağdan sola: köklərin hasili — hasilin kökü. Hər iki istiqamət lazımdır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) √(16·81) = √16·√81 = 4·9 = 36
+2) √8·√18 = √(8·18) = √144 = 12
+3) √75/√3 = √(75/3) = √25 = 5
+4) √(2⁴·3²) = 2²·3 = 12
+5) √(17² − 8²) = √((17 − 8)(17 + 8)) = √(9·25) = 3·5 = 15</div>
+      <div class="life"><b>Həyatdan.</b> Televizor ekranının eni 48 sm, hündürlüyü 20 sm-dir. Diaqonal: <span class="m">√(48² + 20²) = √(2304 + 400) = √2704 = 52</span> sm. Böyük ədədləri hesablamamaq üçün: <span class="m">√(4²·(12² + 5²)) = 4·√169 = 4·13 = 52</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">√(a + b) = √a + √b</span> yazmaq. Yoxla: <span class="m">√(9 + 16) = √25 = 5</span>, amma <span class="m">3 + 4 = 7</span>. Cəmin kökü belə açılmır!</li>
+        <li><span class="m">√(17² − 8²) = 17 − 8 = 9</span> demək. Əvvəl hesabla: <span class="m">289 − 64 = 225</span>, kök 15.</li>
+        <li>Mənfi ədədlərlə <span class="m">√(ab) = √a·√b</span> yazmaq: <span class="m">√((−4)(−9))</span>-u <span class="m">√(−4)·√(−9)</span> kimi yazmaq olmaz.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√(ab) = √a·√b,  √(a/b) = √a/√b
+Hasil və nisbət — bəli. Cəm və fərq — YOX.
+√(c² − a²) = √((c − a)(c + a))</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√(25·0,04)</span> = ? <span class="ans">5·0,2 = 1.</span></li>
+        <li><span class="m">√2·√32</span> = ? <span class="ans">√64 = 8.</span></li>
+        <li><span class="m">√(10² − 6²)</span> = ? <span class="ans">√(4·16) = √64 = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Vuruğun kök işarəsi altından çıxarılması və altına salınması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Testdə cavab variantları belə olur: <span class="m">5√2</span>, <span class="m">6√2</span>, <span class="m">4√3</span>. Sən isə <span class="m">√72</span> almısan. Hansıdır? Kök altındakı ədədi "sadələşdirməyi" bacarmasan, cavabı tanımayacaqsan.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">Çıxarmaq:  √(a²b) = a√b      (a ≥ 0, b ≥ 0)
+Salmaq:    a√b = √(a²b)      (a ≥ 0)</div>
+      <p>Çıxaranda: kök altındakı ədəddən <b>ən böyük tam kvadratı</b> ayır (4, 9, 16, 25, 36, 49, 64, 81, 100, …).</p>
+      <div class="ex">1) √72 = √(36·2) = 6√2
+2) √300 = √(100·3) = 10√3
+3) √48 = √(16·3) = 4√3       (√(4·12) = 2√12 — hələ bitməyib!)
+4) 3√5 = √(9·5) = √45
+5) −2√3 = −√12               (mənfi kök xaricində qalır)</div>
+
+      <h3><span class="st">3</span> Müqayisə və bənzər köklər</h3>
+      <div class="ex">Müqayisə et: 3√5 və 4√3
+   3√5 = √45,   4√3 = √48
+   45 &lt; 48  →  4√3 böyükdür</div>
+      <div class="ex">Bənzər köklər (eyni kök altı) toplanır, adi hədlər kimi:
+   √50 + √18 − √8 = 5√2 + 3√2 − 2√2 = 6√2
+   2√3 + 3√2 — bənzər deyil, toplanmır</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 140" role="img" aria-label="Sahəsi 50 kvadrat metr olan kvadrat otaq, tərəfi 5√2">
+          <rect x="30" y="15" width="105" height="105" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="82" y="72" text-anchor="middle" class="lbl">50 m²</text>
+          <text x="82" y="136" text-anchor="middle" class="lbl">5√2 ≈ 7,07 m</text>
+          <text x="215" y="55" text-anchor="middle" class="lbl">√50 = √(25·2)</text>
+          <text x="215" y="85" text-anchor="middle" class="lbl">= 5√2</text>
+        </svg>
+        <div class="cap"><p>Sahəsi 50 m² olan kvadrat otağın tərəfi: <span class="m">√50 = 5√2 ≈ 5·1,414 ≈ 7,07</span> m.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Kvadrat otağa döşəmə alırsan: sahə 50 m². Divar boyu plintus üçün tərəf lazımdır: <span class="m">5√2 ≈ 7,07</span> m, perimetr <span class="m">20√2 ≈ 28,3</span> m. <span class="m">√50</span>-ni kalkulyatorsuz qiymətləndirmək üçün <span class="m">5√2</span> forması daha rahatdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">√72 = 36√2</span> yazmaq — 36-nın kökünü almağı unutmaq. Düzü: <span class="m">6√2</span>.</li>
+        <li><span class="m">√2 + √3 = √5</span> yazmaq. Bənzər olmayan köklər toplanmır.</li>
+        <li>Ən böyük kvadratı ayırmamaq: <span class="m">√48 = 2√12</span> — hələ <span class="m">√12 = 2√3</span> qalıb.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√(a²b) = a√b — ən böyük tam kvadratı ayır.
+a√b = √(a²b) — müqayisə üçün kök altına sal.
+Yalnız bənzər köklər toplanır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√48</span> sadələşdir. <span class="ans">√(16·3) = 4√3.</span></li>
+        <li><span class="m">5√2</span> ifadəsini kök altına sal. <span class="ans">√(25·2) = √50.</span></li>
+        <li><span class="m">√12 + √27</span> = ? <span class="ans">2√3 + 3√3 = 5√3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kvadrat köklər daxil olan ifadələrin çevrilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Köklərlə də mötərizə açılır, müxtəsər vurma düsturları işləyir. Məqsəd adətən köklərdən <b>qurtulmaq</b>: <span class="m">(√7 − √2)(√7 + √2) = 5</span> — kök yox oldu. Bu hiylə ilə məxrəcdəki kökü də aradan qaldırırıq.</p>
+
+      <h3><span class="st">2</span> Düsturlar köklərlə</h3>
+      <div class="fm">(√a)² = a
+(√a − √b)(√a + √b) = a − b
+(√a ± √b)² = a ± 2√(ab) + b</div>
+      <div class="ex">1) (√3 + √12)² = (√3 + 2√3)² = (3√3)² = 9·3 = 27
+2) (√7 − √2)(√7 + √2) = 7 − 2 = 5
+3) (3 − √2)² = 9 − 6√2 + 2 = 11 − 6√2
+4) √3·(√12 + √27) = √36 + √81 = 6 + 9 = 15</div>
+
+      <h3><span class="st">3</span> Məxrəcin irrasionallıqdan azad edilməsi</h3>
+      <p>Məxrəcdə kök varsa, kəsri elə ifadəyə vururuq ki, məxrəcdə kök itsin:</p>
+      <div class="fm">k/√a = k√a/a
+k/(√a − √b) = k(√a + √b)/(a − b)
+k/(√a + √b) = k(√a − √b)/(a − b)</div>
+      <p><span class="m">√a + √b</span> və <span class="m">√a − √b</span> — <b>qoşma ifadələrdir</b>: hasilləri köksüzdür.</p>
+      <div class="ex">5) 6/√3 = 6√3/(√3·√3) = 6√3/3 = 2√3
+6) 8/(√7 − √3) = 8(√7 + √3)/(7 − 3) = 2(√7 + √3) = 2√7 + 2√3
+7) 1/(√5 − 2) = (√5 + 2)/((√5)² − 2²) = (√5 + 2)/1 = √5 + 2</div>
+      <div class="life"><b>Həyatdan.</b> Kalkulyatorsuz <span class="m">1/√2</span> hesablamaq çətindir: 1-i 1,414-ə bölmək. Amma <span class="m">1/√2 = √2/2 ≈ 1,414/2 = 0,707</span> — iki dəqiqəlik bölmə bir saniyəlik işə çevrildi. Mühəndislər də ona görə məxrəci kökdən azad edirlər.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">√3·√3 = 9</span> yazmaq. Düzü: <span class="m">√3·√3 = 3</span>, ona görə <span class="m">6/√3 = 6√3/3</span>.</li>
+        <li><span class="m">(√a + √b)² = a + b</span> yazmaq — orta həddi <span class="m">2√(ab)</span> unutmaq.</li>
+        <li>Qoşmanı səhv seçmək: <span class="m">√5 − 2</span> üçün qoşma <span class="m">√5 + 2</span>-dir, və surət də vurulur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(√a − √b)(√a + √b) = a − b
+k/√a → surət və məxrəci √a-ya vur
+k/(√a ± √b) → qoşmaya (√a ∓ √b) vur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(√5 − 1)(√5 + 1)</span> = ? <span class="ans">5 − 1 = 4.</span></li>
+        <li><span class="m">10/√5</span> = ? <span class="ans">10√5/5 = 2√5.</span></li>
+        <li><span class="m">2/(√3 + 1)</span> = ? <span class="ans">2(√3 − 1)/(3 − 1) = √3 − 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

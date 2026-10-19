@@ -41,6 +41,7 @@ for (const l of levels) {
       const shown = String(q.show).replace(/\s*(m|sm|km|kq|q|s|san|dəq|°|%|m\/s²|m\/s|N|J|W|Pa|V|A|Ω|sm²|m²|sm³|m³|dm³|l)$/i, "").replace(/,/g, ".");
       const v = parse(shown);
       if (!close(v, q.answer, q.tol)) fails.push(`shown answer "${q.show}" not accepted (answer ${q.answer}): ${t}`);
+      if (!ctx.window.Oyun.okForm(shown)) fails.push(`shown answer "${q.show}" is not in finished-number form (the game would reject it): ${t}`);
     }
   }
   fails = [...new Set(fails)];

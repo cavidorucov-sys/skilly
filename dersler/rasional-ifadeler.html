@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rasional ifadələr dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-rasional-ifadeler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Rasional ifadələr, DMQ</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Rasional ifadələr</div>
+    <h1>Rasional ifadələrin çevrilməsi, DMQ</h1>
+    <p>Hərfli kəsrlər: <span class="m">(x² − 9)/(x + 3)</span>, <span class="m">1/x + 2/(x − 1)</span>. Onlarla adi kəsrlər kimi işləyirik — ixtisar edirik, toplayırıq, vururuq, bölürük. Fərq ikidir: əvvəl hər şeyi <b>vuruqlara ayırmaq</b> lazımdır və məxrəci sıfır edən qiymətləri (DMQ) yadda saxlamaq lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>DMQ və ixtisar</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Vurma, bölmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sadələşdir, hesabla</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Rasional ifadə, DMQ və kəsrin ixtisarı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">24/36</span> kəsrini <span class="m">2/3</span> kimi yazırsan — ixtisar edirsən. Hərfli kəsrlərdə də eyni iş görülür, sadəcə ortaq vuruğu görmək üçün əvvəl surəti və məxrəci vuruqlara ayırmaq lazımdır. İmtahanda "sadələşdirin" sualları məhz budur.</p>
+
+      <h3><span class="st">2</span> Rasional ifadə və DMQ</h3>
+      <p><b>Rasional ifadə</b> — ədədlərdən və dəyişənlərdən toplama, çıxma, vurma, bölmə və natural üstlü qüvvət ilə qurulan ifadədir. Dəyişənə bölmə varsa, bu, <b>kəsr ifadədir</b>: <span class="m">5/(x − 2)</span>.</p>
+      <p><b>DMQ</b> (dəyişənin mümkün qiymətləri) — ifadənin mənası olan bütün qiymətlər. Qayda bir dənədir: <b>məxrəc sıfır ola bilməz</b>.</p>
+      <div class="ex">x/(x² − 4) + 3/x
+   x² − 4 = 0 → x = ±2;   x = 0
+   DMQ: x ≠ −2; 0; 2</div>
+
+      <h3><span class="st">3</span> Kəsrin əsas xassəsi və ixtisar</h3>
+      <div class="fm">A/B = (A·C)/(B·C),   C ≠ 0
+İxtisar: surəti və məxrəci vuruqlara ayır,
+         ortaq VURUĞU ixtisar et.</div>
+      <div class="ex">1) (x² − 9)/(x² + 3x)
+   = (x − 3)(x + 3)/(x(x + 3))
+   = (x − 3)/x          DMQ: x ≠ 0, x ≠ −3
+
+2) (x² − 5x + 6)/(2x − 6)
+   = (x − 2)(x − 3)/(2(x − 3))
+   = (x − 2)/2          DMQ: x ≠ 3
+
+3) (a² − 2ab + b²)/(b − a)
+   = (a − b)²/(−(a − b))      ← b − a = −(a − b)
+   = −(a − b) = b − a</div>
+      <div class="life"><b>Həyatdan.</b> Ekskursiya üçün 120 manat <span class="m">x</span> şagird arasında bölünür — hərəyə <span class="m">120/x</span> manat. Bu, kəsr ifadədir və onun DMQ-su <span class="m">x ≠ 0</span>-dır: şagird yoxdursa, bölmək mənasızdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Toplananı ixtisar etmək: <span class="m">(x + 3)/x ≠ 3</span>. Yalnız <b>vuruq</b> ixtisar olunur — əvvəl vuruqlara ayır.</li>
+        <li>DMQ-nu ixtisardan sonra yazmaq. <span class="m">(x² − 9)/(x² + 3x)</span>-də <span class="m">x = −3</span> ixtisardan sonra görünmür, amma yenə qadağandır.</li>
+        <li><span class="m">b − a</span> ilə <span class="m">a − b</span>-ni eyni saymaq. Onlar əks ədədlərdir: <span class="m">b − a = −(a − b)</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">DMQ: hər məxrəc ≠ 0 (ixtisardan ƏVVƏL).
+İxtisar: vuruqlara ayır → ortaq vuruğu at.
+Toplananı yox, vuruğu ixtisar et.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² − 16)/(x + 4)</span> kəsrini ixtisar et. <span class="ans">(x − 4)(x + 4)/(x + 4) = x − 4, x ≠ −4.</span></li>
+        <li><span class="m">(5x − 10)/(x² − 4)</span> kəsrini ixtisar et. <span class="ans">5(x − 2)/((x − 2)(x + 2)) = 5/(x + 2), x ≠ ±2.</span></li>
+        <li><span class="m">7/(x² − 3x)</span> ifadəsinin DMQ-su nədir? <span class="ans">x(x − 3) ≠ 0 → x ≠ 0, x ≠ 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Rasional ifadələrin toplanması və çıxılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Birgə iş, orta sürət, borular — bu məsələlərdə hər dəfə <span class="m">1/x + 1/y</span> kimi kəsrləri toplamaq lazım gəlir. Qayda adi kəsrlərdəki kimidir: ortaq məxrəc.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">A/C ± B/C = (A ± B)/C
+A/B ± C/D = (A·D ± B·C)/(B·D)</div>
+      <p>Ən kiçik ortaq məxrəci tapmaq üçün məxrəcləri <b>vuruqlara ayır</b> — ƏKOB kimi: hər vuruq bir dəfə, ən böyük qüvvəti ilə.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x²/(x − 3) − 9/(x − 3)
+   = (x² − 9)/(x − 3) = (x − 3)(x + 3)/(x − 3) = x + 3
+
+2) 1/(x − 2) + 1/(x + 2)
+   = ((x + 2) + (x − 2))/((x − 2)(x + 2)) = 2x/(x² − 4)
+
+3) 2/(x − 3) − 12/(x² − 9)
+   Ortaq məxrəc: x² − 9 = (x − 3)(x + 3)
+   = (2(x + 3) − 12)/(x² − 9) = (2x − 6)/(x² − 9)
+   = 2(x − 3)/((x − 3)(x + 3)) = 2/(x + 3)
+
+4) a/(a − b) + b/(b − a)
+   = a/(a − b) − b/(a − b) = (a − b)/(a − b) = 1</div>
+      <div class="life"><b>Həyatdan.</b> Bir boru hovuzu <span class="m">x</span> saata, ikincisi <span class="m">x + 2</span> saata doldurur. Bir saatda birlikdə: <span class="m">1/x + 1/(x + 2) = (2x + 2)/(x(x + 2))</span> hissə. <span class="m">x = 4</span> olsa: <span class="m">10/24 = 5/12</span> hissə saatda.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Surətləri və məxrəcləri ayrıca toplamaq: <span class="m">1/x + 1/y ≠ 2/(x + y)</span>.</li>
+        <li>Surəti əlavə vuruğa vurmağı unutmaq: <span class="m">2/(x − 3) − 12/(x² − 9)</span>-də 2-ni <span class="m">(x + 3)</span>-ə vurmaq lazımdır.</li>
+        <li>Kəsrin qarşısındakı mənfini bütün surətə tətbiq etməmək: <span class="m">− (x − 3)/x = (−x + 3)/x</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Məxrəcləri vuruqlara ayır → ortaq məxrəc
+Hər surəti çatışmayan vuruğa vur → topla
+Sonda yenə ixtisar etməyə çalış.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x/(x − 1) − 1/(x − 1)</span> = ? <span class="ans">(x − 1)/(x − 1) = 1 (x ≠ 1).</span></li>
+        <li><span class="m">1/x − 1/(x + 1)</span> = ? <span class="ans">(x + 1 − x)/(x(x + 1)) = 1/(x(x + 1)).</span></li>
+        <li><span class="m">3/(x + 2) + 6/(x² − 4)</span> sadələşdir. <span class="ans">(3(x − 2) + 6)/(x² − 4) = 3x/(x² − 4).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Vurma, bölmə və qüvvətə yüksəltmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Vurma və bölmə toplamadan asandır — ortaq məxrəc lazım deyil. Amma bir şərt var: vurmazdan əvvəl hər şeyi vuruqlara ayır, yoxsa ixtisar olunan vuruqları görməyəcəksən və nəhəng ifadə alınacaq.</p>
+
+      <h3><span class="st">2</span> Qaydalar</h3>
+      <div class="fm">A/B · C/D = (A·C)/(B·D)
+A/B : C/D = A/B · D/C      (C ≠ 0!)
+(A/B)ⁿ = Aⁿ/Bⁿ</div>
+      <p>Bölmədə ikinci kəsri <b>çevirib</b> vururuq. Diqqət: bölən kəsrin surəti də sıfır ola bilməz — DMQ-ya bir qadağan qiymət də əlavə olunur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x² − 4)/(3x) · 6x²/(x + 2)
+   = (x − 2)(x + 2)·6x² / (3x·(x + 2))
+   = 2x(x − 2)</div>
+      <div class="ex">2) (x² − 9)/(x² + 3x) : (x − 3)/(5x)
+   = (x − 3)(x + 3)/(x(x + 3)) · 5x/(x − 3)
+   = 5
+   DMQ: x ≠ 0, x ≠ −3 (məxrəclər), x ≠ 3 (bölən sıfır olmasın)</div>
+      <div class="ex">3) (x² − 5x + 6)/(x² − 16) : (x − 2)/(x + 4)
+   = (x − 2)(x − 3)/((x − 4)(x + 4)) · (x + 4)/(x − 2)
+   = (x − 3)/(x − 4)
+
+4) (2a/b²)³ = 8a³/b⁶</div>
+      <div class="life"><b>Həyatdan.</b> Sürət = yol : vaxt. Maşın <span class="m">(x² − 1)</span> km yolu <span class="m">(x − 1)</span> saata gedirsə, sürəti <span class="m">(x² − 1)/(x − 1) = x + 1</span> km/saat. <span class="m">x = 61</span> olsa — 3720 km 60 saata, sürət 62 km/saat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bölmədə ikinci kəsri çevirməmək: <span class="m">A/B : C/D ≠ (A·C)/(B·D)</span>.</li>
+        <li>Bölən kəsrin surətini DMQ-da unutmaq (nümunə 2-də <span class="m">x ≠ 3</span>).</li>
+        <li>Qüvvətdə yalnız surəti yüksəltmək: <span class="m">(3x/y)² = 9x²/y²</span>, <span class="m">9x²/y</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Vurma: surət·surət, məxrəc·məxrəc.
+Bölmə: ikincini çevir və vur.
+Əvvəl vuruqlara ayır, sonra ixtisar et, sonra vur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x/y · y²/x²</span> = ? <span class="ans">y/x.</span></li>
+        <li><span class="m">(a² − 1)/a : (a − 1)/a²</span> = ? <span class="ans">(a − 1)(a + 1)/a · a²/(a − 1) = a(a + 1).</span></li>
+        <li><span class="m">(3x/y)²</span> = ? <span class="ans">9x²/y².</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Eynilik çevrilmələri: sadələşdir, sonra hesabla</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İfadənin <span class="m">x = 98</span> olduqda qiymətini tapın." Ədədi birbaşa qoysan, böyük kəsrlərlə əziyyət çəkəcəksən. Əvvəl sadələşdirsən, çox vaxt cavab bir addımda çıxır. DİM məhz bunu yoxlayır.</p>
+
+      <h3><span class="st">2</span> Plan</h3>
+      <div class="fm">1. DMQ-nu yaz.
+2. Mötərizələrin içini sadələşdir.
+3. Vur / böl, vuruqlara ayır, ixtisar et.
+4. Qiyməti yerinə qoy (DMQ-dadırmı?).</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x/(x − 2) − 1) : 2/(x² − 4),  x = 98
+   x/(x − 2) − 1 = (x − x + 2)/(x − 2) = 2/(x − 2)
+   2/(x − 2) · (x − 2)(x + 2)/2 = x + 2
+   x = 98: 100</div>
+      <div class="ex">2) x/y = 3 olarsa, (2x + y)/(x − y) = ?
+   Surəti və məxrəci y-ə böl: (2·x/y + 1)/(x/y − 1)
+   = (2·3 + 1)/(3 − 1) = 7/2</div>
+      <div class="ex">3) a + 1/a = 5 olarsa, a² + 1/a² = ?
+   (a + 1/a)² = a² + 2·a·(1/a) + 1/a² = a² + 2 + 1/a²
+   a² + 1/a² = 25 − 2 = 23</div>
+
+      <h3><span class="st">4</span> Tələ: DMQ-dan kənar qiymət</h3>
+      <div class="ex">(x² − 1)/(x − 1),  x = 1 olduqda?
+   Sadələşdirsən: x + 1 → "2"?
+   Yox! x = 1 olanda məxrəc sıfırdır.
+   İfadənin bu nöqtədə qiyməti YOXDUR.</div>
+      <div class="life"><b>Həyatdan: orta sürət.</b> Maşın şəhərə 40 km/saat, geri 60 km/saat sürətlə gedir. Orta sürət 50 deyil! Yol <span class="m">s</span> olsun: vaxt <span class="m">s/40 + s/60 = 5s/120 = s/24</span>. Orta sürət = <span class="m">2s : (s/24) = 48</span> km/saat. Ümumi düstur: <span class="m">2uv/(u + v)</span> — sadələşdirilmiş rasional ifadə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sadələşdirmədən ədədi qoyub hesabda səhv etmək. Əvvəl sadələşdir.</li>
+        <li><span class="m">(a + 1/a)²</span>-da orta həddi unutmaq: <span class="m">2·a·(1/a) = 2</span>.</li>
+        <li>Verilən qiymətin DMQ-da olduğunu yoxlamamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl sadələşdir, sonra yerinə qoy.
+x/y verilibsə — surəti və məxrəci y-ə böl.
+a² + 1/a² = (a + 1/a)² − 2 = (a − 1/a)² + 2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a + 1/a = 3</span>. <span class="m">a² + 1/a²</span> = ? <span class="ans">9 − 2 = 7.</span></li>
+        <li><span class="m">x/y = 2</span>. <span class="m">(x + y)/(x − y)</span> = ? <span class="ans">(2 + 1)/(2 − 1) = 3.</span></li>
+        <li><span class="m">(1/(x − 1) − 1/(x + 1)) · (x² − 1)</span> = ? <span class="ans">2/(x² − 1) · (x² − 1) = 2 (x ≠ ±1).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

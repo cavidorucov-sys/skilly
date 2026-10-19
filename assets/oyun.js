@@ -25,6 +25,16 @@
   const newSeed = () => (Math.random() * 4294967296) >>> 0;
   function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
   function genS(level, seed) { const keep = Math.random; Math.random = rng(seed); try { return level.gen(); } finally { Math.random = keep; } }
+  // The answer must be written as a finished number, not as an expression for the browser to compute:
+  // up to two terms, each a number, a fraction, or k√n (optionally /m), e.g. 12 · −0,5 · 3/5 · 5√3 · √3/2 · √23 − 4.
+  const TERM = /^(?:\d+(?:[.,]\d+)?(?:\/\d+)?|\d*√\d+(?:[.,]\d+)?(?:\/\d+)?)$/;
+  function okForm(raw) {
+    const t = String(raw).replace(/\s+/g, "").replace(/sqrt/gi, "√").replace(/[−–]/g, "-").replace(/°$/, "").replace(/^[-+]/, "");
+    const parts = t.split(/(?<=.)[-+]/);
+    if (parts.length > 2 || !parts.every(x => TERM.test(x))) return false;
+    // two terms only when a root is involved (√23 − 4, 2√3 + 1); "7/9+1/4" must be computed, not typed
+    return parts.length === 1 || parts.some(x => x.includes("√"));
+  }
   const close = (x, v, tol) => Math.abs(x - v) <= (tol ?? Math.max(0.005, Math.abs(v) * 0.005));
 
   function mount(cfg) {
@@ -87,7 +97,7 @@
           else {
             const x = parse(v);
             if (!String(v).trim()) { err.textContent = "Əvvəl cavabı yaz."; return; }
-            if (isNaN(x)) { err.textContent = "Cavabı ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2."; return; }
+            if (isNaN(x) || !okForm(v)) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
             ok = close(x, q.answer, q.tol);
           }
           btn.disabled = true; if (input.disabled !== undefined) input.disabled = true; input.querySelectorAll && input.querySelectorAll("button").forEach(b => b.disabled = true);
@@ -255,7 +265,7 @@
         function go() {
           const v = getVal();
           if (q.choices ? v < 0 : !String(v).trim()) { err.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
-          if (!q.choices && isNaN(parse(v))) { err.textContent = "Cavabı ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2."; return; }
+          if (!q.choices && (isNaN(parse(v)) || !okForm(v))) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
           resolve(v);
         }
       });
@@ -312,5 +322,5 @@
     return { state: st, drawTest };
   }
 
-  window.Oyun = { mount, parse, h };
+  window.Oyun = { mount, parse, h, okForm };
 })();
