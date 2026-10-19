@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Üstlü ifadələr və tənliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-ustlu.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Üstlü ifadələr və tənliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Üstlü ifadələr, üstlü tənliklər və sistemlər</div>
+    <h1>Üstlü ifadələr, sadə üstlü tənliklər və sistemlər</h1>
+    <p><span class="m">2³⁰⁰</span> və <span class="m">3²⁰⁰</span> ədədlərindən hansı böyükdür? Kalkulyator bunları göstərə bilmir, amma bir fikir bunu bir sətirdə həll edir: qüvvətləri eyni üstə gətirmək. Bu mövzuda qüvvət qaydalarını, <span class="m">aˣ = aʸ</span> tipli tənlikləri, <span class="m">t = 2ˣ</span> əvəzləməsini, sistemləri və böyük qüvvətlərin müqayisəsini öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Qüvvət qaydaları</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>aˣ = aʸ</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>t = 2ˣ əvəzləməsi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sistemlər, müqayisə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Qüvvət qaydaları və sadələşdirmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada tez-tez <span class="m">2²⁰²⁴ − 2²⁰²²</span> kimi nəhəng ədədlər görürsən. Onları hesablamaq lazım deyil — <b>ortaq vuruğu mötərizə xaricinə çıxarmaq</b> kifayətdir. Bunun üçün qüvvət qaydalarını yaxşı bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">aᵐ · aⁿ = aᵐ⁺ⁿ          aᵐ : aⁿ = aᵐ⁻ⁿ
+(aᵐ)ⁿ = aᵐⁿ            (ab)ⁿ = aⁿ · bⁿ
+a⁰ = 1                  a⁻ⁿ = 1/aⁿ
+a^(m/n) = ⁿ√(aᵐ)       (a &gt; 0)</div>
+      <p><b>Əsas strategiya:</b> bütün əsasları <b>sadə vuruqlara</b> ayır (4 = 2², 9 = 3², 6 = 2·3, 12 = 2²·3) və hər sadə ədədin üstlərini ayrıca topla. Qalan iş sadə hesabdır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (4¹⁵ · 9¹⁰) : 6²⁰
+   4¹⁵ = (2²)¹⁵ = 2³⁰,   9¹⁰ = (3²)¹⁰ = 3²⁰,   6²⁰ = 2²⁰ · 3²⁰
+   (2³⁰ · 3²⁰) : (2²⁰ · 3²⁰) = 2³⁰⁻²⁰ = 2¹⁰ = 1024
+
+2) (3²⁰²⁶ − 3²⁰²⁴) : 3²⁰²³
+   Ortaq vuruq 3²⁰²⁴:  3²⁰²⁴ · (3² − 1) = 3²⁰²⁴ · 8
+   3²⁰²⁴ · 8 : 3²⁰²³ = 3 · 8 = 24
+
+3) √2 · ∛2 · ⁶√2 = 2^(1/2) · 2^(1/3) · 2^(1/6) = 2^(1/2 + 1/3 + 1/6) = 2¹ = 2</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Hesabla:  (2²⁰²⁴ − 2²⁰²²) : (3 · 2²⁰²¹)
+
+Həll. Surətdə ortaq vuruq 2²⁰²²:
+2²⁰²² · (2² − 1) = 2²⁰²² · 3.
+Kəsr:  (2²⁰²² · 3) : (3 · 2²⁰²¹) = 2²⁰²²⁻²⁰²¹ = 2.
+Cavab: 2.
+
+Məsələ 2. 7²⁰²⁶ ədədinin son rəqəmini tap.
+
+Həll. 7-nin qüvvətlərinin son rəqəmləri:
+7¹ → 7,  7² = 49 → 9,  7³ → 3,  7⁴ → 1,  7⁵ → 7 …
+Dövr 4-dür (7, 9, 3, 1). Üstü 4-ə bölək: 2026 = 4 · 506 + 2.
+Deməli 7²⁰²⁶ də 7²-nin son rəqəmi ilə bitir: 9.
+Cavab: 9.</div>
+      <div class="life"><b>Həyatdan.</b> Kompüter yaddaşı 2-nin qüvvətləri ilə ölçülür: 1 KB = 2¹⁰ = 1024 bayt, 1 MB = 2²⁰ bayt. Beləliklə 1 MB-da neçə KB var? 2²⁰ : 2¹⁰ = 2¹⁰ = 1024.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">aᵐ + aⁿ = aᵐ⁺ⁿ</span> yazmaq. Düzü: toplananda üstlər toplanmır; ortaq vuruğu çıxar: <span class="m">2⁵ + 2³ = 2³(4 + 1)</span>.</li>
+        <li><span class="m">(aᵐ)ⁿ</span> ilə <span class="m">a^(mⁿ)</span>-i qarışdırmaq. <span class="m">(2³)² = 2⁶</span>, amma <span class="m">2^(3²) = 2⁹</span>.</li>
+        <li>Əsasları fərqli olan qüvvətlərin üstlərini toplamaq: <span class="m">2³ · 3² ≠ 6⁵</span>.</li>
+        <li><span class="m">(−2)⁴</span> ilə <span class="m">−2⁴</span>-ü eyni saymaq: birincisi 16, ikincisi −16.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əsasları sadə vuruqlara ayır, üstləri ayrı-ayrı topla
+Toplama/çıxmada ortaq vuruğu mötərizə xaricinə çıxar
+Son rəqəm: qüvvətlərin dövrünü tap
+a^(m/n) = ⁿ√(aᵐ)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2⁵ · 4³ = 2ᵏ</span> olarsa, <span class="m">k</span> nədir? <span class="ans">4³ = 2⁶, onda 2⁵ · 2⁶ = 2¹¹. k = 11.</span></li>
+        <li><span class="m">27^(2/3)</span> neçədir? <span class="ans">27 = 3³, (3³)^(2/3) = 3² = 9.</span></li>
+        <li><span class="m">5⁻²</span> neçədir? <span class="ans">1/5² = 1/25.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Sadə üstlü tənliklər: aˣ = aʸ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bakteriyalar hər saat iki dəfə artır: neçə saatdan sonra 1 000 000 olarlar? Naməlum üstdə dayanır — bu <b>üstlü tənlikdir</b>. İlk addım həmişə eynidir: iki tərəfi <b>eyni əsaslı</b> qüvvət şəklinə gətir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">a &gt; 0, a ≠ 1 olduqda:
+aˣ = aʸ   ⇔   x = y
+Həmişə: aˣ &gt; 0  (üstlü ifadə heç vaxt mənfi və ya sıfır deyil)</div>
+      <p>Niyə? <span class="m">a &gt; 1</span> olduqda <span class="m">aˣ</span> həmişə artır, <span class="m">0 &lt; a &lt; 1</span> olduqda həmişə azalır. Monoton funksiya hər qiyməti yalnız bir dəfə alır, ona görə bərabər qüvvətlərdə üstlər də bərabərdir.</p>
+      <p><b>Plan:</b> (1) hər iki tərəfi eyni əsasa gətir; (2) üstləri bərabərləşdir; (3) alınan xətti (və ya kvadrat) tənliyi həll et. Toplananlar varsa, ortaq vuruğu çıxar.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 4ˣ = 32
+   (2²)ˣ = 2⁵  →  2²ˣ = 2⁵  →  2x = 5  →  x = 5/2
+
+2) (1/3)ˣ = 27
+   3⁻ˣ = 3³  →  −x = 3  →  x = −3
+
+3) 9^(x−1) = 27^(2x)
+   3^(2x−2) = 3^(6x)  →  2x − 2 = 6x  →  x = −1/2
+
+4) 2^(x+3) + 2ˣ = 72
+   2ˣ · 2³ + 2ˣ = 2ˣ · (8 + 1) = 9 · 2ˣ = 72  →  2ˣ = 8  →  x = 3
+
+5) 2ˣ · 3ˣ = 36
+   (2 · 3)ˣ = 6ˣ = 6²  →  x = 2
+
+6) 2ˣ = −4  →  heç vaxt: 2ˣ &gt; 0. Kök yoxdur.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi: monotonluq</h3>
+      <div class="ex">Məsələ. 2ˣ + 3ˣ = 5ˣ tənliyini həll et.
+
+Həll. Hər tərəfi 5ˣ-ə bölək (5ˣ &gt; 0):
+(2/5)ˣ + (3/5)ˣ = 1.
+2/5 və 3/5 hər ikisi 1-dən kiçikdir, ona görə (2/5)ˣ və (3/5)ˣ azalan funksiyalardır.
+Sol tərəf azalandır, deməli 1 qiymətini ən çox bir dəfə alır — yəni tənliyin ən çox bir kökü var.
+x = 1 yoxlayaq: 2/5 + 3/5 = 1 ✓.
+Cavab: x = 1 (yeganə kök). ∎</div>
+      <div class="life"><b>Həyatdan.</b> Bank əmanəti hər il 10% artırsa, məbləğ <span class="m">1,1ⁿ</span> dəfə böyüyür. "Neçə ildən sonra iki dəfə olar" sualı <span class="m">1,1ⁿ = 2</span> tənliyidir. Eyni əsasa gətirmək həmişə mümkün deyil, belə hallarda loqarifm lazımdır (10–11-ci sinifdə öyrənəcəksən), amma tam üstlü nümunələrdə bu dərsin üsulu kifayətdir.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əsasları eyni etmədən üstləri bərabərləşdirmək: <span class="m">4ˣ = 2⁵</span> üçün <span class="m">x = 5</span> yazmaq. Düzü: <span class="m">2²ˣ = 2⁵</span>, <span class="m">x = 5/2</span>.</li>
+        <li><span class="m">2^(x+3) + 2ˣ</span>-i <span class="m">2^(2x+3)</span> kimi toplamaq. Ortaq vuruğu çıxarmaq lazımdır.</li>
+        <li><span class="m">(1/3)ˣ = 3⁻ˣ</span> işarəsini unutmaq.</li>
+        <li>Mənfi və ya sıfır qiymətə bərabər qüvvəti həll etməyə çalışmaq: <span class="m">aˣ = 0</span> və <span class="m">aˣ = −4</span> kök vermir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Eyni əsas → üstləri bərabərləşdir
+aˣ &gt; 0  həmişə
+Cəm olarsa, ortaq vuruğu çıxar
+Fərqli əsaslar: sadə vuruqlara ayır və ya bölüb monotonluqdan istifadə et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">8ˣ = 1/4</span> tənliyini həll et. <span class="ans">2³ˣ = 2⁻², 3x = −2, x = −2/3.</span></li>
+        <li><span class="m">5^(x+1) + 5ˣ = 150</span> tənliyini həll et. <span class="ans">5ˣ · 6 = 150, 5ˣ = 25, x = 2.</span></li>
+        <li><span class="m">2ˣ = −4</span> tənliyinin kökü varmı? <span class="ans">Yoxdur, çünki 2ˣ həmişə müsbətdir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. t = 2ˣ əvəzləməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">4ˣ − 5 · 2ˣ + 4 = 0</span> tənliyində iki fərqli qüvvət var, amma onlar bir-birinə bağlıdır: <span class="m">4ˣ = (2ˣ)²</span>. Ona görə <span class="m">2ˣ</span>-i yeni bir hərflə əvəz etsək, adi kvadrat tənlik alırıq.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">t = aˣ qoy.  Onda a²ˣ = t²,  a^(x+k) = aᵏ · t,  a⁻ˣ = 1/t
+Əsas şərt:  t &gt; 0
+t üçün tənliyi həll et, mənfi və sıfır kökləri at,
+qalanlar üçün aˣ = t tənliyini həll et.</div>
+      <p><b>Ən vacib yoxlama:</b> <span class="m">t</span> üçün alınan kök mənfi və ya 0 olarsa, atılır — çünki <span class="m">aˣ</span> mənfi ola bilməz.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 4ˣ − 5 · 2ˣ + 4 = 0
+   t = 2ˣ:  t² − 5t + 4 = 0  →  t = 1, t = 4  (hər ikisi &gt; 0)
+   2ˣ = 1 → x = 0.    2ˣ = 4 → x = 2.     Cavab: 0 və 2
+
+2) 9ˣ − 4 · 3ˣ − 45 = 0
+   t = 3ˣ:  t² − 4t − 45 = 0  →  t = 9 və t = −5
+   t = −5 &lt; 0 yararsızdır.   3ˣ = 9 → x = 2.     Cavab: 2
+
+3) 2^(2x+1) − 5 · 2ˣ + 2 = 0
+   2^(2x+1) = 2 · (2ˣ)² = 2t².   2t² − 5t + 2 = 0  →  t = 2, t = 1/2
+   2ˣ = 2 → x = 1.   2ˣ = 1/2 → x = −1.     Cavab: 1 və −1
+
+4) 2ˣ + 2⁻ˣ = 5/2
+   t + 1/t = 5/2  →  2t² − 5t + 2 = 0  →  t = 2, t = 1/2
+   Cavab: x = 1 və x = −1</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. (2 + √3)ˣ + (2 − √3)ˣ = 4 tənliyini həll et.
+
+Həll. (2 + √3)(2 − √3) = 4 − 3 = 1.  Deməli (2 − √3) = 1/(2 + √3).
+t = (2 + √3)ˣ  qoyaq, onda (2 − √3)ˣ = 1/t.
+t + 1/t = 4  →  t² − 4t + 1 = 0  →  t = 2 ± √3.
+t = 2 + √3:  (2 + √3)ˣ = (2 + √3)¹ → x = 1.
+t = 2 − √3 = (2 + √3)⁻¹:  x = −1.
+Cavab: x = 1 və x = −1.
+
+Məsələ 2. 2ˣ + 2⁻ˣ = 2 tənliyini həll et.
+
+Həll. t + 1/t = 2 → t² − 2t + 1 = 0 → (t − 1)² = 0 → t = 1 → x = 0.
+Qeyd: t &gt; 0 üçün həmişə t + 1/t ≥ 2 (orta qiymətlər mövzusunda sübut edəcəyik), bərabərlik yalnız t = 1-də. Ona görə sol tərəf heç vaxt 2-dən kiçik deyil.</div>
+      <div class="life"><b>Həyatdan.</b> Radioaktiv maddənin kütləsi hər yarımparçalanma dövründə 2 dəfə azalır: <span class="m">m = m₀ · 2^(−t/T)</span>. Bu kimi düsturlar üstlü tənliyə gətirir, əvəzləmə üsulu isə mürəkkəb halları da həll edir.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi <span class="m">t</span> kökünü atmamaq və <span class="m">aˣ = −5</span> həll etməyə çalışmaq.</li>
+        <li><span class="m">t</span> tapıb dayanmaq. Sual <span class="m">x</span>-i soruşur: <span class="m">aˣ = t</span> həll etmək lazımdır.</li>
+        <li><span class="m">4ˣ</span>-i <span class="m">2ˣ</span>-in iki mislidir hesab etmək. Düzü: <span class="m">4ˣ = (2ˣ)²</span>.</li>
+        <li><span class="m">2^(x+1) = 2t</span> əvəzinə <span class="m">t + 1</span> yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">t = aˣ,  t &gt; 0
+a²ˣ = t²,  a^(x+k) = aᵏ·t,  a⁻ˣ = 1/t
+Mənfi t atılır; qalan t üçün aˣ = t tənliyini həll et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">4ˣ − 6 · 2ˣ + 8 = 0</span> tənliyini həll et. <span class="ans">t² − 6t + 8 = 0, t = 2, 4. x = 1 və x = 2.</span></li>
+        <li><span class="m">3ˣ + 3^(1−x) = 4</span> tənliyini həll et. <span class="ans">3^(1−x) = 3/t. t + 3/t = 4 → t² − 4t + 3 = 0 → t = 1, 3. x = 0 və x = 1.</span></li>
+        <li><span class="m">9ˣ + 9 = 10 · 3ˣ</span> tənliyini həll et. <span class="ans">t² − 10t + 9 = 0, t = 1, 9. x = 0 və x = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Üstlü sistemlər və böyük qüvvətlərin müqayisəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada iki cür üstlü məsələ çox rast gəlinir: (1) bir neçə naməlum üstdə olan <b>sistemlər</b>; (2) hansı ədəd böyükdür sualı. Birincidə eyni əsasa gətirib xətti sistemə çevirirsən, ikincidə qüvvətləri <b>eyni üstə</b> gətirirsən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Sistem:  əsasları eyni et → üstlərdən xətti sistem qur
+Vurma / bölmə ilə bir tənlik alırsan:
+   2ˣ·3ʸ = A,  2ʸ·3ˣ = B   →  vur: 6^(x+y) = A·B;  böl: (2/3)^(x−y) = A/B
+Müqayisə:  aᵖᵏ və bᵠᵏ  →  (aᵖ)ᵏ və (bᵠ)ᵏ,  sonra aᵖ ilə bᵠ-ni müqayisə et</div>
+      <p>Müqayisə qaydası: <span class="m">k &gt; 0</span> və <span class="m">u, v &gt; 0</span> üçün <span class="m">uᵏ &gt; vᵏ ⇔ u &gt; v</span>. Ona görə üstləri bərabərləşdirmək kifayətdir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 2³⁰⁰ və 3²⁰⁰  — hansı böyükdür?
+   2³⁰⁰ = (2³)¹⁰⁰ = 8¹⁰⁰,   3²⁰⁰ = (3²)¹⁰⁰ = 9¹⁰⁰
+   8 &lt; 9  →  8¹⁰⁰ &lt; 9¹⁰⁰.   Cavab: 3²⁰⁰ daha böyükdür.
+
+2) 2¹⁰⁰ və 10³⁰
+   2¹⁰⁰ = (2¹⁰)¹⁰ = 1024¹⁰,   10³⁰ = (10³)¹⁰ = 1000¹⁰
+   1024 &gt; 1000  →  2¹⁰⁰ &gt; 10³⁰.
+
+3) 3⁴⁰ və 4³⁰
+   3⁴⁰ = (3⁴)¹⁰ = 81¹⁰,   4³⁰ = (4³)¹⁰ = 64¹⁰   →  3⁴⁰ &gt; 4³⁰
+
+4) 2ˣ · 4ʸ = 32,   3^(x−y) = 9
+   x + 2y = 5  (32 = 2⁵),   x − y = 2
+   Çıxsaq: 3y = 3  →  y = 1,  x = 3.   Yoxla: 8 · 4 = 32 ✓, 3² = 9 ✓</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi: simmetrik sistem</h3>
+      <div class="ex">Məsələ. 2ˣ · 3ʸ = 24,   2ʸ · 3ˣ = 54  sistemini həll et.
+
+Həll. Tənlikləri vuraq:
+2ˣ⁺ʸ · 3ˣ⁺ʸ = 6ˣ⁺ʸ = 24 · 54 = 1296 = 6⁴  →  x + y = 4.
+Tənlikləri bölək:
+(2ˣ·3ʸ) : (2ʸ·3ˣ) = 2^(x−y) · 3^(y−x) = (2/3)^(x−y) = 24/54 = 4/9 = (2/3)²
+→  x − y = 2.
+Toplasaq: 2x = 6, x = 3, y = 1.
+Yoxlama: 2³ · 3 = 24 ✓, 2 · 3³ = 54 ✓.
+Cavab: x = 3, y = 1.</div>
+      <div class="life"><b>Həyatdan.</b> İki şəhərin əhalisi müxtəlif tempdə artarsa (biri hər il 2 dəfə, digəri 3 dəfə), "nə vaxt eyni olarlar?" sualı eyni əsasa gətirmə və ya müqayisə tələb edir. Böyük qüvvətləri hesablamadan müqayisə etmək riyaziyyatçının əsas bacarığıdır.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Müqayisədə üstləri deyil, əsasları bir-biri ilə müqayisə etmək: <span class="m">2³⁰⁰</span> və <span class="m">3²⁰⁰</span> üçün "3 &gt; 2, deməli 3²⁰⁰ böyükdür" — bu üstlərin fərqini nəzərə almır.</li>
+        <li>Ortaq üstü düzgün tapmamaq. 300 və 200-ün ortaq böləni 100-dür, bu üstlərin ən böyük ortaq böləni (ƏBOB) götürülür.</li>
+        <li>Sistemdə üstləri bərabərləşdirəndə bir tənliyin sağ tərəfini səhv vuruqlara ayırmaq.</li>
+        <li>Vurma / bölmə ilə alınan tənliyin yoxlamasını unutmaq: iki tənlik ilə həll olunur, amma ilkin sistemə qoyub yoxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sistem: eyni əsas → xətti sistem; vur və böl
+Müqayisə: üstləri bərabərləşdir (ƏBOB)
+uᵏ &gt; vᵏ  ⇔  u &gt; v  (k &gt; 0, u, v &gt; 0)
+2¹⁰ = 1024 &gt; 10³</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2⁵⁰</span> və <span class="m">5²⁰</span> — hansı böyükdür? <span class="ans">2⁵⁰ = 32¹⁰, 5²⁰ = 25¹⁰. 2⁵⁰ böyükdür.</span></li>
+        <li><span class="m">2ˣ · 2ʸ = 16</span>, <span class="m">3ˣ : 3ʸ = 9</span> sistemini həll et. <span class="ans">x + y = 4, x − y = 2 → x = 3, y = 1.</span></li>
+        <li><span class="m">3¹⁰⁰</span> və <span class="m">2¹⁵⁰</span> — hansı böyükdür? <span class="ans">3¹⁰⁰ = 9⁵⁰, 2¹⁵⁰ = 8⁵⁰. 3¹⁰⁰ böyükdür.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

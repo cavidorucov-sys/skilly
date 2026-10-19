@@ -469,19 +469,22 @@
    "bolme": "Tənliklər",
    "ad": "Yüksəkdərəcəli tənliklər, rasional köklər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
+   "ders": "dersler/ol-yuksek-dereceli.html"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Üstlü ifadələr, sadə üstlü tənliklər və sistemlər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-ustlu.html"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Bərabərsizliklərin isbatı, orta qiymətlər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-berabersizlik.html"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",

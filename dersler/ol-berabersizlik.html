@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bərabərsizliklərin isbatı dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-berabersizlik.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Bərabərsizliklər, orta qiymətlər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Bərabərsizliklərin isbatı, orta qiymətlər</div>
+    <h1>Bərabərsizliklərin isbatı, orta qiymətlər</h1>
+    <p>Hasilləri verilmiş düzbucaqlılardan hansının perimetri ən kiçikdir? Cəmi verilmiş iki ədədin hasili ən çox nə qədər ola bilər? Bu suallara <b>diferensial hesabsız</b>, yalnız bir neçə sadə fikirlə cavab vermək olar: kvadratın qeyri-mənfiliyi və orta qiymətlər (<span class="m">HM ≤ GM ≤ AM ≤ QM</span>). Olimpiadada bərabərsizlik isbat etmək və ən böyük/kiçik qiyməti tapmaq məhz bunlarla həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Kvadratın qeyri-mənfiliyi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>AM ≥ GM</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>HM ≤ GM ≤ AM ≤ QM</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Min / max məsələləri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kvadratın qeyri-mənfiliyi və tam kvadrat</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bərabərsizlik isbat etmək üçün ən güclü alət çox sadədir: <b>hər həqiqi ədədin kvadratı sıfırdan kiçik deyil</b>. Qalan hər şey bu fikrin ağıllı istifadəsidir. Bu dərsdə onu necə işlətməyi öyrənəcəksən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">(a − b)² ≥ 0      ⇒   a² + b² ≥ 2ab
+Bərabərlik yalnız a = b olduqda
+Tam kvadrat:  ax² + bx + c = a(x − h)² + k
+a &gt; 0 olduqda minimum = k  (x = h-da),   a &lt; 0 olduqda maksimum = k</div>
+      <p>İsbat üçün plan: bərabərsizliyin bir tərəfini sıfıra gətir, fərqi kvadratların cəmi kimi yaz. Kvadratlar mənfi olmadığı üçün fərq də mənfi deyil.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x² − 6x + 11 ifadəsinin ən kiçik qiyməti?
+   x² − 6x + 11 = (x − 3)² + 2 ≥ 2.
+   Bərabərlik x = 3 olduqda. Minimum = 2.
+
+2) x(10 − x) ifadəsinin ən böyük qiyməti?
+   x(10 − x) = 10x − x² = 25 − (x − 5)² ≤ 25.
+   Bərabərlik x = 5 olduqda. Maksimum = 25.
+
+3) a &gt; 0 üçün a + 1/a ≥ 2.
+   a + 1/a − 2 = (a² − 2a + 1)/a = (a − 1)²/a ≥ 0.
+   Bərabərlik a = 1 olduqda.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et: a² + b² + c² ≥ ab + bc + ca.
+
+Həll. Fərqi iki dəfə böyüdək:
+2(a² + b² + c²) − 2(ab + bc + ca) = (a − b)² + (b − c)² + (c − a)² ≥ 0.
+(Açıb yoxla: (a − b)² + (b − c)² + (c − a)² = 2a² + 2b² + 2c² − 2ab − 2bc − 2ca.)
+Deməli a² + b² + c² ≥ ab + bc + ca. Bərabərlik a = b = c olduqda. ∎
+
+Məsələ 2. Sübut et: x² + y² + 1 ≥ x + y + xy.
+
+Həll. 2(x² + y² + 1 − x − y − xy) = (x − y)² + (x − 1)² + (y − 1)² ≥ 0.
+Yoxla: (x² − 2xy + y²) + (x² − 2x + 1) + (y² − 2y + 1) = 2x² + 2y² + 2 − 2x − 2y − 2xy ✓.
+Bərabərlik x = y = 1 olduqda. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Yuxarı atılan topun hündürlüyü <span class="m">h(t) = −5t² + 20t</span> metrdir (<span class="m">t</span> saniyədir). Tam kvadrat: <span class="m">h = 20 − 5(t − 2)²</span>. Ən yüksək nöqtə 20 m-dir və top ona 2-ci saniyədə çatır. Bu da "ən böyük qiymət" məsələsidir.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(x − 3)²</span> əvəzinə <span class="m">(x + 3)²</span> yazmaq: <span class="m">x² − 6x + 11 = (x − 3)² + 2</span>, çünki <span class="m">(x − 3)² = x² − 6x + 9</span>.</li>
+        <li>Bərabərlik halını yoxlamamaq: "ən kiçik qiymət" demək üçün həmin qiymətin <b>alındığını</b> göstərmək lazımdır.</li>
+        <li><span class="m">a² + b² ≥ 2ab</span> yalnız <span class="m">ab</span> müsbət olanda deyil, <b>istənilən</b> həqiqi <span class="m">a, b</span> üçün doğrudur.</li>
+        <li>İşarəni dəyişmək: <span class="m">a &lt; 0</span> olanda parabolanın qolu aşağıdır, minimum yox, maksimum olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(a − b)² ≥ 0 ⇒ a² + b² ≥ 2ab
+Tam kvadrat: a(x − h)² + k
+Fərqi kvadratlar cəmi kimi yaz
+Bərabərlik halını hər dəfə yoxla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 4x + 7</span> ifadəsinin ən kiçik qiyməti? <span class="ans">(x − 2)² + 3 ≥ 3; minimum 3 (x = 2).</span></li>
+        <li><span class="m">6x − x²</span> ifadəsinin ən böyük qiyməti? <span class="ans">9 − (x − 3)² ≤ 9; maksimum 9 (x = 3).</span></li>
+        <li><span class="m">a &gt; 0</span> olduqda <span class="m">a + 1/a</span> nə vaxt 2-yə bərabərdir? <span class="ans">(a − 1)² = 0, yəni a = 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ədədi və həndəsi orta (AM ≥ GM)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Perimetri 40 m olan düzbucaqlı sahənin sahəsi ən çox nə qədər ola bilər? Cavab kvadratdadır: 10 × 10 = 100 m². Bunu <b>AM ≥ GM</b> bərabərsizliyi bir sətirdə göstərir. Bu, olimpiada bərabərsizliklərinin ən çox işlədilən alətidir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">a, b ≥ 0:     (a + b)/2 ≥ √(ab)
+Bərabərlik yalnız a = b olduqda
+Üç ədəd:    (a + b + c)/3 ≥ ∛(abc)
+n ədəd:     ədədi orta ≥ həndəsi orta
+Cəm sabitdirsə → hasil ən böyük, bərabərlik a = b
+Hasil sabitdirsə → cəm ən kiçik,  bərabərlik a = b</div>
+      <p><b>İsbat.</b> <span class="m">(√a − √b)² ≥ 0</span> açsaq <span class="m">a − 2√(ab) + b ≥ 0</span>, yəni <span class="m">a + b ≥ 2√(ab)</span>. ∎</p>
+      <p><b>Şərt:</b> ədədlər <b>mənfi olmamalıdır</b>. Mənfi ədədlərdə AM-GM tətbiq etmək olmaz.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x &gt; 0 üçün x + 4/x-in ən kiçik qiyməti?
+   x + 4/x ≥ 2√(x · 4/x) = 2√4 = 4.
+   Bərabərlik x = 4/x → x² = 4 → x = 2 olduqda.   Minimum = 4.
+
+2) x + y = 10 (x, y &gt; 0). xy-in ən böyük qiyməti?
+   √(xy) ≤ (x + y)/2 = 5 → xy ≤ 25.
+   Bərabərlik x = y = 5. Maksimum = 25.
+
+3) xy = 16 (x, y &gt; 0). x + y-in ən kiçik qiyməti?
+   x + y ≥ 2√(xy) = 2√16 = 8. Bərabərlik x = y = 4. Minimum = 8.
+
+4) Bərabərlik halı alınmayanda tələ: √(x² + 4) + 1/√(x² + 4)-in ən kiçik qiyməti?
+   u = √(x² + 4) ≥ 2. AM-GM: u + 1/u ≥ 2, amma bərabərlik üçün u = 1 lazımdır,
+   u isə ən azı 2-dir! Deməli 2 alınmır.
+   u ≥ 2 üçün u + 1/u artandır, minimum u = 2-də: 2 + 1/2 = 5/2.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. a, b, c &gt; 0. Sübut et: (a + b)(b + c)(c + a) ≥ 8abc.
+
+Həll. Hər mötərizəyə AM-GM tətbiq edək:
+a + b ≥ 2√(ab),   b + c ≥ 2√(bc),   c + a ≥ 2√(ca).
+Hamısı müsbətdir, ona görə vura bilərik:
+(a + b)(b + c)(c + a) ≥ 8 · √(ab) · √(bc) · √(ca) = 8 · √(a²b²c²) = 8abc.
+Bərabərlik a = b = c olduqda. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Fermer 40 m hasar alıb və düzbucaqlı sahə hasarlamaq istəyir. Tərəflər x və 20 − x olarsa, sahə x(20 − x) olur. AM-GM: <span class="m">√(x(20 − x)) ≤ (x + 20 − x)/2 = 10</span>, yəni sahə ≤ 100. Ən çox sahə kvadratdadır: 10 × 10.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>AM-GM-i mənfi ədədlərə tətbiq etmək: <span class="m">x &lt; 0</span> üçün <span class="m">x + 1/x ≤ −2</span> olur, 2-dən kiçik deyil.</li>
+        <li>Bərabərlik halının mümkün olub-olmadığını yoxlamamaq (yuxarıdakı 4-cü nümunə).</li>
+        <li><span class="m">(a + b)/2</span> əvəzinə <span class="m">a + b</span> ilə müqayisə etmək: düstur <span class="m">a + b ≥ 2√(ab)</span>-dir.</li>
+        <li>Hasili sabit olmayan ifadəyə AM-GM tətbiq etmək: <span class="m">x + 2x ≥ 2√2 · x</span> alınır, sağ tərəf <span class="m">x</span>-dən asılıdır və ən kiçik qiymət vermir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(a + b)/2 ≥ √(ab),  bərabərlik a = b
+Cəm sabit → hasil max;  hasil sabit → cəm min
+Ədədlər ≥ 0 olmalı, bərabərlik halı mümkün olmalı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x &gt; 0</span> üçün <span class="m">x + 9/x</span>-in ən kiçik qiyməti və hansı <span class="m">x</span>-də? <span class="ans">2√9 = 6, x = 3-də.</span></li>
+        <li><span class="m">xy = 16</span>, <span class="m">x, y &gt; 0</span>. <span class="m">x + y</span>-in ən kiçik qiyməti? <span class="ans">8 (x = y = 4).</span></li>
+        <li><span class="m">x &lt; 0</span> üçün <span class="m">x + 1/x</span>-in ən kiçik qiyməti 2-dirmi? <span class="ans">Xeyr: x &lt; 0 üçün x + 1/x ≤ −2, yəni 2-dən kiçikdir; ən kiçik qiymət yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Orta qiymətlər: HM ≤ GM ≤ AM ≤ QM</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtomobil A şəhərindən B-yə 60 km/saat, geri 40 km/saat sürətlə gedir. Orta sürət 50 km/saat deyil! Haradan çıxır 48? Bu cür "orta" fərqli düsturlarla hesablanır. Dörd məşhur orta qiymət var və aralarındakı bərabərsizlik olimpiadanın əsas silahlarındandır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">a, b &gt; 0 üçün:
+HM = 2ab/(a + b)      harmonik orta
+GM = √(ab)            həndəsi orta
+AM = (a + b)/2        ədədi orta
+QM = √((a² + b²)/2)   kvadratik orta
+
+HM ≤ GM ≤ AM ≤ QM        (hamısında bərabərlik yalnız a = b)
+GM² = AM · HM</div>
+      <p><b>Niyə?</b> GM ≤ AM — keçən dərsdən. HM ≤ GM: <span class="m">2ab/(a + b) ≤ √(ab) ⇔ 2√(ab) ≤ a + b</span> (hər tərəfi <span class="m">√(ab)</span>-yə bölürük və yenə AM-GM-ə gəlirik). AM ≤ QM: <span class="m">((a + b)/2)² ≤ (a² + b²)/2 ⇔ 0 ≤ (a − b)²/4</span>.</p>
+      <p>Hər biri nə vaxt işlədilir: <b>HM</b> — "yolun uzunluğu eyni, sürətlər fərqli" (orta sürət); <b>GM</b> — hasil sabit olanda; <b>AM</b> — adi orta; <b>QM</b> — kvadratların cəmi iştirak edəndə.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) a = 2, b = 8:
+   HM = 2 · 16 / 10 = 3,2      GM = √16 = 4
+   AM = 5                       QM = √((4 + 64)/2) = √34 ≈ 5,83
+   3,2 ≤ 4 ≤ 5 ≤ 5,83 ✓.   Yoxla: GM² = 16 = 5 · 3,2 ✓.
+
+2) Avtomobil: gedişdə 60, qayıdışda 40 km/saat.
+   Yolun uzunluğu S olsun. Vaxt: S/60 + S/40 = S · 5/120 = S/24.
+   Orta sürət = 2S / (S/24) = 48 km/saat.
+   Bu dəqiq 60 və 40-ın HM-idir: 2 · 60 · 40 / 100 = 48.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. a, b &gt; 0 və a + b = 1. Sübut et: 1/a + 1/b ≥ 4.
+
+Həll. AM ≥ HM: (a + b)/2 ≥ 2ab/(a + b).
+a + b = 1 qoyaq: 1/2 ≥ 2ab → ab ≤ 1/4.
+1/a + 1/b = (a + b)/(ab) = 1/(ab) ≥ 4.
+Bərabərlik a = b = 1/2 olduqda. ∎
+
+Məsələ 2. a, b real, a + b = 1. Sübut et: a² + b² ≥ 1/2.
+
+Həll. QM ≥ AM: √((a² + b²)/2) ≥ (a + b)/2 = 1/2.
+Kvadrata yüksəldək: (a² + b²)/2 ≥ 1/4 → a² + b² ≥ 1/2.
+Bərabərlik a = b = 1/2 olduqda. ∎</div>
+      <div class="life"><b>Həyatdan.</b> 12 km yolu 4 km/saat sürətlə gedib, geri 12 km yolu 6 km/saat qaçırsan. Orta sürət 5 deyil, HM = 2 · 4 · 6 / 10 = 4,8 km/saat. Ona görə yavaş hissədə daha çox vaxt keçirirsən. Elektrikdə paralel müqavimətlər də buna bənzər düsturla hesablanır: <span class="m">1/R = 1/R₁ + 1/R₂</span>.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orta sürəti iki sürətin ədədi ortası kimi hesablamaq. Eyni yol üçün HM lazımdır.</li>
+        <li>Bərabərsizlik zəncirində sırasını qarışdırmaq: ən kiçik HM, ən böyük QM.</li>
+        <li><span class="m">GM = √(a + b)</span> yazmaq. Düzü: <span class="m">√(ab)</span>.</li>
+        <li>QM düsturunda 2-yə bölməyi unutmaq: <span class="m">√((a² + b²)/2)</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">HM ≤ GM ≤ AM ≤ QM,  bərabərlik a = b
+GM² = AM · HM
+Orta sürət (eyni yol) = HM
+a + b = S ⇒ ab ≤ S²/4,  a² + b² ≥ S²/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a = 2, b = 8</span>: HM və GM? <span class="ans">HM = 3,2; GM = 4.</span></li>
+        <li>Gediş 30, qayıdış 60 km/saat. Orta sürət? <span class="ans">2 · 30 · 60 / 90 = 40 km/saat.</span></li>
+        <li><span class="m">a + b = 4</span>, <span class="m">a, b &gt; 0</span>: <span class="m">1/a + 1/b</span>-nin ən kiçik qiyməti? <span class="ans">AM ≥ HM: 2 ≥ 2/(1/a + 1/b) → 1/a + 1/b ≥ 1. Minimum 1 (a = b = 2).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Ən böyük və ən kiçik qiymətin tapılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Ən çox", "ən az", "ən qənaətli" — real həyatın sualları. Olimpiadada məsələ belə qoyulur: <i>ifadənin ən kiçik qiymətini tap</i>. Cavab iki hissədən ibarətdir: (1) "ifadə ≥ C" isbatı; (2) bərabərliyin <b>doğrudan da alındığını</b> göstərmək.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Alqoritm:
+1) Hədləri elə böl ki, AM-GM-dən sonra dəyişən yox olsun (hasil sabit)
+2) AM-GM tətbiq et → ifadə ≥ C
+3) Bərabərlik şərti: bütün hədlər bərabər
+4) Həmin x həqiqətən mümkündürmü? Yoxla
+5) Cavab: ən kiçik qiymət = C</div>
+      <p><b>Çəkili hal.</b> Bərabər hədlər alınması üçün bəzən həddi hissələrə bölürük: <span class="m">x = x/2 + x/2</span> və üç hədli AM-GM: <span class="m">(u + v + w)/3 ≥ ∛(uvw)</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x &gt; 1. x + 9/(x − 1)-in ən kiçik qiyməti?
+   x + 9/(x − 1) = (x − 1) + 9/(x − 1) + 1.   x − 1 &gt; 0, ona görə AM-GM:
+   (x − 1) + 9/(x − 1) ≥ 2√9 = 6.   Cəmi ≥ 6 + 1 = 7.
+   Bərabərlik x − 1 = 9/(x − 1) → (x − 1)² = 9 → x = 4. Minimum 7.
+
+2) x, y &gt; 0, 2x + 3y = 12. xy-in ən böyük qiyməti?
+   xy = (1/6) · (2x)(3y) ≤ (1/6) · ((2x + 3y)/2)² = (1/6) · 36 = 6.
+   Bərabərlik 2x = 3y = 6 → x = 3, y = 2. Maksimum 6.
+
+3) x &gt; 0. x + 4/x²-in ən kiçik qiyməti?
+   x = x/2 + x/2.  x/2 + x/2 + 4/x² ≥ 3∛((x/2)(x/2)(4/x²)) = 3∛1 = 3.
+   Bərabərlik x/2 = 4/x² → x³ = 8 → x = 2. Yoxla: 2 + 4/4 = 3 ✓. Minimum 3.
+
+4) a + b = 6. a² + b²-in ən kiçik qiyməti?
+   QM ≥ AM: (a² + b²)/2 ≥ 9 → a² + b² ≥ 18. Bərabərlik a = b = 3.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. x, y &gt; 0, x + y = 1. (1 + 1/x)(1 + 1/y)-nin ən kiçik qiymətini tap.
+
+Həll. Mötərizələri açaq:
+(1 + 1/x)(1 + 1/y) = 1 + 1/x + 1/y + 1/(xy).
+1/x + 1/y = (x + y)/(xy) = 1/(xy).
+Deməli ifadə = 1 + 2/(xy).
+AM-GM: xy ≤ ((x + y)/2)² = 1/4, ona görə 1/(xy) ≥ 4.
+İfadə ≥ 1 + 2 · 4 = 9.
+Bərabərlik x = y = 1/2 olduqda: (1 + 2)(1 + 2) = 9 ✓.
+Cavab: ən kiçik qiymət 9. ∎</div>
+      <div class="life"><b>Həyatdan.</b> Bilet qiyməti <span class="m">p</span> manat, gündə <span class="m">100 − 4p</span> bilet satılır. Gəlir <span class="m">p(100 − 4p) = 4p(25 − p)</span>. <span class="m">p(25 − p) ≤ ((p + 25 − p)/2)² = 156,25</span> (bərabərlik p = 12,5). Ən böyük gəlir 4 · 156,25 = 625 manat.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabərlik halını yoxlamamaq. Misal: 2-ci dərsdəki 4-cü nümunə.</li>
+        <li>Hasili sabit etməmək. <span class="m">x + 4/x²</span> üçün <span class="m">x + 4/x² ≥ 2√(4/x)</span> yazmaq düzgün nəticə vermir (sağ tərəf <span class="m">x</span>-dən asılıdır); hədləri bölmək lazımdır.</li>
+        <li>Bölmədə bərabərlik şərtini səhv yazmaq: <span class="m">x/2 = 4/x²</span>, <span class="m">x = 4/x²</span> yox.</li>
+        <li>Maksimumu minimumla qarışdırmaq: cəm sabit → hasil max; hasil sabit → cəm min.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hasil sabit olana qədər hədləri böl
+AM-GM → qiymət ≥ C
+Bərabərlik şərti: hədlər bərabər
+x-in mümkünlüyünü yoxla, sonra cavab ver</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x &gt; 0</span> üçün <span class="m">4x + 25/x</span>-in ən kiçik qiyməti? <span class="ans">2√(4x · 25/x) = 2√100 = 20. Bərabərlik 4x = 25/x → x = 5/2.</span></li>
+        <li><span class="m">a + b = 6</span>. <span class="m">a² + b²</span>-in ən kiçik qiyməti? <span class="ans">18 (a = b = 3).</span></li>
+        <li><span class="m">x &gt; 2</span> üçün <span class="m">x + 1/(x − 2)</span>-nin ən kiçik qiyməti? <span class="ans">(x − 2) + 1/(x − 2) + 2 ≥ 2 + 2 = 4. Bərabərlik x − 2 = 1, yəni x = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
