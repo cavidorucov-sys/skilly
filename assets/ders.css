@@ -71,3 +71,26 @@ details.check summary{color:var(--subj)}
 .ctl input[type=range]{accent-color:var(--ink-0)}
 .clock,.prog{top:112px;box-shadow:0 10px 30px -22px rgba(23,23,26,.5)}
 @media (max-width:640px){h1{font-size:26px}.lesson{padding:18px}.sk-sub{display:none}}
+
+/* inside the portal frame: the portal provides the top bar */
+.in-frame .sk-bar{display:none}
+.in-frame .tabs{top:0}
+.in-frame .clock,.in-frame .prog{top:58px}
+.in-frame .wrap{padding-block:8px 60px}
+
+/* steps inside a lesson card */
+.stepbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:-4px -4px 6px;padding:4px}
+.stepchip{font:inherit;display:flex;align-items:center;gap:8px;border:0;border-radius:40px;padding:6px 14px 6px 6px;background:var(--paper);color:var(--ink-2);cursor:pointer;white-space:nowrap;font-size:13px;font-weight:500;transition:background .2s var(--ease),color .2s var(--ease)}
+.stepchip .no{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--white);font-weight:700;font-size:12px}
+.stepchip.done .no{background:var(--ok-soft);color:var(--ok)}
+.stepchip[aria-current=step]{background:var(--ink-0);color:var(--white)}
+.stepchip[aria-current=step] .no{background:var(--white);color:var(--ink-0)}
+.stepchip .tt{max-width:22ch;overflow:hidden;text-overflow:ellipsis}
+.step{display:grid;gap:12px}
+.step[hidden]{display:none}
+.stepnav{display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:16px;border-top:1px solid var(--line)}
+.stepnav .btn:last-child{margin-left:auto}
+.steppos{color:var(--ink-2);font-size:13px;font-variant-numeric:tabular-nums}
+@media (max-width:640px){.stepchip:not([aria-current=step]) .tt{display:none}.stepchip{padding:6px}}
+[hidden]{display:none!important}
+html{scrollbar-gutter:stable}

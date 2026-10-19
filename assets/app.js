@@ -429,6 +429,22 @@ async function pageSehv() {
   if ((await Skilly.pull()).synced) draw();
 }
 
+/* ---------- lesson inside the portal ---------- */
+const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html" };
+async function pageLesson() {
+  const name = new URLSearchParams(location.search).get("p") || "";
+  if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }
+  const frame = el("iframe", { class: "lesson-frame", src: "dersler/" + name + ".html" + location.hash, title: "Dərs" });
+  await shell(el("div", { class: "lesson-wrap" }, frame));
+  frame.addEventListener("load", () => {
+    const d = frame.contentDocument; if (!d) return;
+    document.title = d.title.replace(/ dərsi$/, "") + " · Skilly";
+    const href = LESSON_NAV[d.documentElement.dataset.kat];
+    document.querySelectorAll(".topnav a").forEach(a => a.toggleAttribute("aria-current", a.getAttribute("href") === href));
+    document.querySelectorAll(".topnav a[aria-current]").forEach(a => a.setAttribute("aria-current", "page"));
+  });
+}
+
 async function pageStatic(title, lead, html) {
   const box = el("div", { class: "box" }); box.innerHTML = html;
   await shell(el("div", { style: "margin-top:30px" }, el("h1", {}, title), el("p", { class: "lead" }, lead), box));
@@ -437,6 +453,7 @@ async function pageStatic(title, lead, html) {
 document.addEventListener("DOMContentLoaded", () => {
   const p = document.body.dataset.page;
   if (p === "index") pageIndex();
+  else if (p === "ders") pageLesson();
   else if (p === "teqvim") pageCalendar();
   else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Buraxılış — riyaziyyat", "Hər mövzu giriş testi ilə başlayır: 80% və çox — mövzu bağlanır. Az olarsa: dərs → 20–25 məşq sualı → yekun test (80%). Bir həftə və bir ay sonra təkrar.");
   else if (p === "olimpiada") pageOlympiad();
