@@ -102,3 +102,52 @@ html{scrollbar-gutter:stable}
 /* equations never break mid-line: formula boxes keep their own line breaks and scroll sideways on narrow screens */
 .fm{white-space:pre;overflow-x:auto;max-width:100%}
 .m,.eqn{white-space:nowrap}
+
+/* ---------- Oyun (mastery game) and Sınaq ---------- */
+.tab.locked{opacity:.6}
+.oy-intro{display:grid;gap:8px}
+.oy-intro h2{margin:0}
+.oy-fmt{color:var(--ink-2);font-size:14px}
+.oy-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:6px}
+.oy-lv{font:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 10px;align-items:center;padding:12px;border:0;border-radius:var(--r);background:var(--white);box-shadow:inset 0 0 0 1px var(--line-0);color:var(--ink-0);cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.oy-lv:hover{transform:translateY(-1px)}
+.oy-lv.active{box-shadow:inset 0 0 0 2px var(--ink-0)}
+.oy-lv.locked{opacity:.5;cursor:not-allowed;transform:none}
+.oy-lv.done{background:var(--ok-soft);box-shadow:inset 0 0 0 1px var(--ok)}
+.oy-lv.boss{background:var(--subj-soft)}
+.oy-lv.boss.done{background:var(--ok-soft)}
+.oy-no{grid-row:1/3;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--paper);font-weight:700;font-size:14px}
+.oy-lv.done .oy-no{background:var(--ok);color:var(--white)}
+.oy-name{font-weight:600;font-size:14px}
+.oy-sub{font-size:12px;color:var(--ink-2)}
+.oy-dots{display:flex;gap:4px}
+.oy-dots i{width:10px;height:10px;border-radius:50%;background:var(--line-1)}
+.oy-dots i.on{background:var(--ok)}
+.oy-stage{margin-top:8px;display:grid;gap:12px}
+.oy-head{display:grid;gap:2px}
+.oy-head span{color:var(--ink-2);font-size:14px}
+.oy-q{background:var(--white);border-radius:var(--r-lg);padding:20px;display:grid;gap:14px;box-shadow:inset 0 0 0 1px var(--line-0)}
+.oy-label{font-size:12px;font-weight:600;color:var(--subj)}
+.oy-text{font-size:18px;line-height:1.5}
+.oy-text p{margin:0 0 6px}
+.oy-steps{margin:6px 0 0;padding-left:22px;display:grid;gap:6px;font-size:16px}
+.oy-svg{width:100%;max-width:300px;height:auto;background:var(--paper);border-radius:var(--r)}
+.oy-lbl{font:600 14px var(--f-num);fill:var(--ink-0)}
+.oy-alpha{font:700 16px var(--f-task);font-style:italic;fill:#534ab7}
+.oy-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.oy-in{font:600 20px var(--f-num);width:12ch;padding:8px 12px;border:1px solid var(--line-1);border-radius:var(--r-sm);background:var(--white)}
+.oy-in:focus-visible{outline:3px solid var(--subj-mid);outline-offset:1px}
+.oy-unit{color:var(--ink-2)}
+.oy-choices{display:flex;flex-wrap:wrap;gap:8px}
+.oy-choices button{font:inherit;font-size:15px;border:1px solid var(--line-1);background:var(--white);color:var(--ink-0);border-radius:var(--r-sm);padding:10px 16px;cursor:pointer}
+.oy-choices button[aria-checked=true]{background:var(--ink-0);color:var(--white);border-color:var(--ink-0)}
+.oy-err{color:var(--warn);font-size:14px}
+.oy-err:empty,.oy-fb:empty{display:none}
+.oy-fb{border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;justify-items:start}
+.oy-fb.ok{background:var(--ok-soft);color:var(--ok);font-weight:700}
+.oy-fb.no{background:var(--warn-soft);color:#791f1f}
+.oy-fb p{margin:0;color:var(--ink-0)}
+.oy-done,.oy-locked{background:var(--ok-soft);border-radius:var(--r-lg);padding:18px;display:grid;gap:10px;justify-items:start}
+.oy-done.no,.oy-locked{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line-0)}
+.oy-review{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14px}
+.oy-review li.no{color:#791f1f}

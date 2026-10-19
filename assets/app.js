@@ -79,8 +79,11 @@ const daysLeft = (from, to) => { const n = Math.round((new Date(to) - new Date(f
 const t2 = iso => iso.slice(8) + "." + iso.slice(5, 7);
 const fmtH = h => String(h).replace(".", ",");
 
+// topics whose final test was passed on this device count as closed (until the data file catches up)
+const passedHere = () => { try { return JSON.parse(localStorage.getItem("skilly-bag") || "[]"); } catch (e) { return []; } };
 function allTopics(m) {
-  return Object.entries(m).flatMap(([subj, rows]) => rows.map(r => ({ ...r, subj, kat: SUBJ_KAT[subj] })));
+  const bag = passedHere();
+  return Object.entries(m).flatMap(([subj, rows]) => rows.map(r => ({ ...r, subj, kat: SUBJ_KAT[subj], status: r.ders && bag.includes(r.ders) ? "bag" : r.status })));
 }
 
 /* ---------- shell ---------- */

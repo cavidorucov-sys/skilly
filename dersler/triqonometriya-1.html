@@ -114,6 +114,9 @@ svg text.hyp{fill:var(--hyp)} svg text.opp{fill:var(--opp)} svg text.adj{fill:va
 </style>
 <link rel="stylesheet" href="../assets/ders.css">
 <script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="oyun-triqonometriya.js" defer></script>
 </head><body>
 <header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Triqonometriya</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
 
@@ -131,6 +134,8 @@ svg text.hyp{fill:var(--hyp)} svg text.opp{fill:var(--opp)} svg text.adj{fill:va
     <button class="tab" role="tab" id="tb-t3" aria-controls="t3" type="button"><small>Dərs 3</small>30°, 45°, 60°</button>
     <button class="tab" role="tab" id="tb-t4" aria-controls="t4" type="button"><small>Dərs 4</small>Vahid çevrə</button>
     <button class="tab" role="tab" id="tb-t5" aria-controls="t5" type="button"><small>Dərs 5</small>sin² + cos² = 1</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
 
   <!-- ===== DƏRS 1 ===== -->
@@ -458,7 +463,12 @@ Kök alanda: ± → düzgününü rüb seçir</div>
         </ol>
       </details>
     </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
   </section>
+
+  <!-- ===== OYUN (mənimsəmə) və SINAQ ===== -->
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
 </div>
 
 
@@ -498,7 +508,7 @@ function uc(){const a=+$("ua").value,r=a*Math.PI/180,c=Math.cos(r),s=Math.sin(r)
   $("ucf").replaceChildren(...[["Nöqtə: ("+f2(c)+"; "+f2(s)+") — "+q,""],["cos α = x = "+f2(c),"c"],["sin α = y = "+f2(s),"s"],["tg α = y / x = "+t,""],["sin²α + cos²α = "+f2(s*s+c*c),""]].map(([x,k])=>el("div",{class:k},x)))}
 $("ua").addEventListener("input",uc);uc();
 /* Tablar */
-const TABS=["t1","t2","t3","t4","t5"];
+const TABS=["t1","t2","t3","t4","t5","oyun","sinaq"];
 function tab(id,focus){if(!TABS.includes(id))id="t1";TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$("tb-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});try{localStorage.setItem("trig-tab",id)}catch(e){}if(focus)$("tb-"+id).focus();window.scrollTo({top:0})}
 TABS.forEach(t=>$("tb-"+t).addEventListener("click",()=>tab(t)));
 document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%5],true);if(e.key==="ArrowLeft")tab(TABS[(i+4)%5],true)});
