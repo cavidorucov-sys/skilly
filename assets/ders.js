@@ -52,7 +52,17 @@
     fixVec(document.body);
     new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 || n.nodeType === 3) fixVec(n.nodeType === 1 ? n : n.parentNode || document.body); }))).observe(document.body, { childList: true, subtree: true });
   });
+  // Topic illustration (assets/ill/<page>.webp) under the first "Niyə lazımdır" heading; dropped if the file is missing.
+  function illustrate() {
+    const h = [...document.querySelectorAll("article.lesson h3")].find(x => /Niyə lazımdır/i.test(x.textContent));
+    if (!h) return;
+    const fig = document.createElement("figure"); fig.className = "ill";
+    const img = new Image(); img.src = "../assets/ill/" + name + ".webp"; img.alt = ""; img.decoding = "async";
+    img.onerror = () => fig.remove();
+    fig.append(img); h.after(fig);
+  }
   document.addEventListener("DOMContentLoaded", () => {
+    illustrate();
     // links that leave the lesson open in the portal window, not inside the frame
     document.querySelectorAll('a[href^="../"]').forEach(a => { a.target = "_top"; });
     document.querySelectorAll("article.lesson").forEach((art, li) => stepify(art, name + ":" + li));

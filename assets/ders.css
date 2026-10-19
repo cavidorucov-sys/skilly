@@ -213,3 +213,6 @@ details.check summary:hover{text-decoration:underline}
 .flab{font-weight:700;color:var(--ink-2);font-size:13px;margin-right:2px}
 .fchip{background:var(--paper);border-radius:var(--r-sm);padding:6px 10px;white-space:nowrap;font-variant-numeric:lining-nums;color:var(--ink-0)}
 .fm.pretty .fchip{background:var(--white)}
+/* topic illustration under "Niyə lazımdır" */
+.ill{margin:4px 0 16px;max-width:640px;aspect-ratio:16/9;border-radius:var(--r-lg,12px);overflow:hidden;background:#F6F5F1}
+.ill img{display:block;width:100%;height:100%;object-fit:cover}
