@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Atomun və nüvənin quruluşu dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-atom.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Atomun və nüvənin quruluşu</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Atom və nüvə fizikası</div>
+    <h1>Atomun və nüvənin quruluşu</h1>
+    <p>Hər şey atomlardan qurulub, atomun mərkəzində isə kiçik, amma çox sıx nüvə var. Bu mövzuda nüvənin tərkibini (proton və neytron) saymağı, izotopları, radioaktiv parçalanmanı (α və β) və yarımparçalanma dövrünü öyrənəcəksən. Hesablamalar sadədir: toplama, çıxma, 2-yə bölmə. Əsas odur ki, qaydanı dəqiq bilək.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Bu mövzuda hər yerdə cavab ya hissəciklərin sayıdır (sadəcə ədəd), ya da vaxt, kütlə, aktivlik.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Atomun quruluşu</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İzotoplar və nüvə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>α və β parçalanma</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Yarımparçalanma</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Atomun quruluşu: proton, neytron, elektron</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Atom çox kiçikdir (təxminən <span class="m">10⁻¹⁰ m</span>), amma hər şeyin kimyəvi və elektrik xassəsi onun quruluşundan asılıdır. Mis məftil niyə cərəyan keçirir, duz suda niyə ionlara ayrılır, bəzi element niyə “şüalanır” — bunların hamısı atomdakı hissəciklərin sayından çıxır. İlk addım sadədir: hər atomda neçə proton, neytron və elektron var, onu sayıb tapmaq.</p>
+
+      <h3><span class="st">2</span> Rezerford təcrübəsi və planetar model</h3>
+      <p>XX əsrin əvvəlində atomu “kişmişli keks” kimi təsəvvür edirdilər (Tomson modeli): müsbət yük atomun hər yerinə yayılıb, elektronlar kişmiş kimi içində səpələnib. 1911-ci ildə Rezerford (onun tələbələri Hayger və Marsden) nazik qızıl vərəqə <b>α-hissəciklər</b> (müsbət yüklü, ağır, sürətli hissəciklər) göndərdi.</p>
+      <div class="fig">
+        <svg viewBox="0 0 320 190" role="img" aria-label="Rezerford təcrübəsi: α-hissəciklərin çoxu vərəqdən keçir, bir qismi sapır, çox azı geri qayıdır">
+          <defs><marker id="at1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="150" y="10" width="16" height="170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="158" y="8" class="lbl" text-anchor="middle" font-size="11">vərəq</text>
+          <line x1="10" y1="45" x2="300" y2="45" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <line x1="10" y1="70" x2="300" y2="70" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <line x1="10" y1="120" x2="300" y2="120" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <line x1="10" y1="145" x2="300" y2="145" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <circle cx="158" cy="95" r="4" fill="var(--vec)"/>
+          <path d="M10 88L158 91L215 150" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <path d="M10 99L152 96L60 40" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#at1)"/>
+          <text x="165" y="104" class="lbl" font-size="11" fill="var(--vec)">nüvə</text>
+          <text x="12" y="30" class="lbl" font-size="11">α-hissəciklər</text>
+        </svg>
+        <div class="cap"><p>Hissəciklərin demək olar hamısı vərəqdən sanki maneəsiz keçdi. Çox azı yan tərəfə sapdı, bəziləri hətta geri qayıtdı (təxminən 8000 hissəciyin biri).</p></div>
+      </div>
+      <p>Nəticə: atomda müsbət yük və demək olar bütün kütlə çox kiçik həcmdə, <b>nüvədə</b> cəmlənib. Nüvənin ölçüsü təxminən <span class="m">10⁻¹⁵ m</span>-dir, yəni atomdan təxminən <span class="m">10⁵</span> dəfə kiçikdir. Nüvə noxud boyda olsaydı, atom təxminən bir kilometr diametrli olardı. Atomun qalan hissəsi demək olar boşdur və orada yüngül <b>elektronlar</b> hərəkət edir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Litium atomunun planetar modeli: nüvədə 3 proton və 4 neytron, ətrafında 3 elektron">
+          <ellipse cx="120" cy="100" rx="48" ry="48" fill="none" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <ellipse cx="120" cy="100" rx="92" ry="92" fill="none" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <circle cx="132" cy="100" r="6" fill="var(--vec)"/><circle cx="114" cy="110.4" r="6" fill="var(--vec)"/><circle cx="114" cy="89.6" r="6" fill="var(--vec)"/>
+          <circle cx="120" cy="100" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/><circle cx="126" cy="110.4" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/><circle cx="108" cy="100" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/><circle cx="126" cy="89.6" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="168" cy="100" r="5" fill="var(--accent)"/><circle cx="72" cy="100" r="5" fill="var(--accent)"/><circle cx="120" cy="8" r="5" fill="var(--accent)"/>
+          <text x="176" y="96" class="lbl" font-size="12">e⁻</text>
+          <text x="130" y="14" class="lbl" font-size="12">e⁻</text>
+          <text x="48" y="96" class="lbl" font-size="12">e⁻</text>
+          <text x="120" y="140" class="lbl" font-size="11" text-anchor="middle">nüvə: 3 p, 4 n</text>
+        </svg>
+        <div class="cap"><p>Litium-7 atomu: nüvədə 3 proton (qırmızı) və 4 neytron (ağ), ətrafında 3 elektron. Elektronları nüvəyə Kulon cazibəsi bağlayır, çünki onlar əks işarəlidir. Rəsm miqyassızdır: həqiqətdə nüvə nöqtə kimi kiçikdir.</p></div>
+      </div>
+      <p>Bu <b>planetar modeldir</b>: elektronlar Günəş ətrafında planetlər kimi nüvə ətrafında fırlanır, planetləri cazibə, elektronları Kulon qüvvəsi saxlayır. Modelin zəif yerləri var (sonra Bor postulatları ilə düzəldilib), amma saymaq üçün tam yetərlidir.</p>
+
+      <h3><span class="st">3</span> Hissəciklər və nuklid yazılışı</h3>
+      <p>Nüvə iki növ hissəcikdən ibarətdir və onların hər ikisinə <b>nuklon</b> deyilir:</p>
+      <div class="fm">proton (p):   yük +e,  kütlə ≈ 1 a.k.v.
+neytron (n):  yük 0,   kütlə ≈ 1 a.k.v.
+elektron (e⁻): yük −e,  kütlə ≈ 1/1836 a.k.v.
+e = 1,6·10⁻¹⁹ C   (elementar yük)</div>
+      <p>Protonla neytronun kütləsi demək olar eynidir, elektron isə təxminən 1800 dəfə yüngüldür. Ona görə atomun kütləsinin 99,9 %-dən çoxu nüvədədir. Neytral atomda protonların və elektronların sayı bərabərdir, yüklər bir-birini ləğv edir.</p>
+      <p>Nüvəni (nuklidi) belə yazırlar:</p>
+      <div class="fm">ᴬ_Z X       məsələn  ²³⁵₉₂U
+A = Z + N</div>
+      <p><span class="m">X</span> — elementin simvolu, <span class="m">Z</span> — <b>sıra nömrəsi</b> (protonların sayı = nüvənin yükü <span class="m">+Ze</span>), <span class="m">A</span> — <b>kütlə ədədi</b> (nuklonların sayı), <span class="m">N = A − Z</span> — neytronların sayı. Üç qayda:</p>
+      <div class="fm">protonlar:    Z
+neytronlar:   N = A − Z
+neytral atomda elektronlar:  Z
+ionda elektronlar:  Z − (ionun yükü)</div>
+      <p>Ion — elektron itirmiş və ya qəbul etmiş atomdur. Na⁺ ionunda bir elektron çatmır (müsbət yük), Cl⁻ ionunda bir elektron artıqdır. <b>Nüvə dəyişmir</b>: yalnız elektronların sayı dəyişir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ²³⁵₉₂U (uran-235). Proton, neytron, elektron?
+  Z = 92 → 92 proton
+  N = A − Z = 235 − 92 = 143 neytron
+  neytral atom → 92 elektron</div>
+      <div class="ex">Nümunə 2. ³²₁₆S²⁻ ionunda (kükürd) hissəciklər?
+  proton:  Z = 16
+  neytron: 32 − 16 = 16
+  elektron: ion 2 elektron qəbul edib → 16 + 2 = 18
+  Ionun ümumi yükü: 16e − 18e = −2e</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Neytral atomda cəmi 82 hissəcik (proton, neytron, elektron) var,
+neytronların sayı protonların sayından 4 çoxdur. Bu hansı
+elementdir, kütlə ədədi neçədir?
+  proton = elektron = Z, neytron N = Z + 4
+  Z + (Z + 4) + Z = 82 → 3Z = 78 → Z = 26 (dəmir)
+  N = 30, A = Z + N = 56
+Cavab: ⁵⁶₂₆Fe, A = 56</div>
+      <div class="life"><b>Həyatdan.</b> Duzu (NaCl) suya atanda kristal Na⁺ və Cl⁻ ionlarına ayrılır. Na⁺ ionunda 11 proton və 10 elektron var, ona görə ion müsbətdir. Bu ionlar suyu elektrik cərəyanı keçirən edir. Atomun neçə elektronu olduğunu bilmək elə kimyanın əsasıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Neytronların sayını <span class="m">A</span> ilə qarışdırmaq. <span class="m">A</span> — nuklonların sayıdır (proton + neytron), neytronlar <span class="m">A − Z</span>-dir.</li>
+        <li>Ionda elektronların sayını <span class="m">Z</span> kimi götürmək. Müsbət ionda elektron <b>az</b>, mənfi ionda <b>çox</b> olur: Mg²⁺ — 10 elektron (12 − 2), O²⁻ — 10 elektron (8 + 2).</li>
+        <li>İon əmələ gələndə nüvənin dəyişdiyini düşünmək. Dəyişən yalnız elektronlardır.</li>
+        <li>Kütlə ədədini kütlə kimi götürmək: <span class="m">A</span> ədəddir (nuklonların sayı), kütlə təxminən <span class="m">A</span> a.k.v.-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ᴬ_Z X:  p = Z,  n = A − Z
+neytral atomda e⁻ = Z;  ionda e⁻ = Z − yük
+nüvənin yükü +Ze;  nuklonlar: p və n
+atomun kütləsi demək olar hamısı nüvədədir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>²³⁸₉₂U nüvəsində neçə neytron var? <span class="ans">238 − 92 = 146.</span></li>
+        <li>²⁴₁₂Mg²⁺ ionunda proton və elektron sayı? <span class="ans">Proton 12, elektron 12 − 2 = 10.</span></li>
+        <li>³⁷₁₇Cl⁻ ionunda proton, neytron, elektron? <span class="ans">Proton 17, neytron 37 − 17 = 20, elektron 17 + 1 = 18.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: İzotoplar →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İzotoplar, nüvə qüvvələri, bağlanma enerjisi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hidrogenin üç növü var: adi hidrogen, ağır su (D₂O) hazırlanan deyterium və radioaktiv tritium. Üçünün kimyası eynidir, amma nüvələri fərqlidir. Tibbdə, arxeologiyada, enerjidə istifadə olunan radioaktiv izotoplar da eyni elementin xüsusi “variantları”dır.</p>
+
+      <h3><span class="st">2</span> İzotoplar</h3>
+      <p><b>İzotoplar</b> — protonların sayı (<span class="m">Z</span>) eyni, neytronların sayı (deməli <span class="m">A</span>) müxtəlif olan nuklidlərdir. Eyni elementdir: kimyəvi xassələri bir-birinə çox yaxındır, çünki kimyanı elektronlar (yəni <span class="m">Z</span>) müəyyən edir.</p>
+      <div class="fm">hidrogen:  ¹₁H (protium), ²₁H (deyterium), ³₁H (tritium)
+karbon:    ¹²₆C,  ¹³₆C,  ¹⁴₆C
+Hər üçündə Z = 6 (karbon), N = 6, 7, 8</div>
+      <p>Təbiətdə element adətən izotopların qarışığıdır. Cədvəldəki <b>orta atom kütləsi</b> izotopların orta çəkili qiymətidir. Məsələn xlor: <span class="m">75 %</span> ³⁵Cl və <span class="m">25 %</span> ³⁷Cl:</p>
+      <div class="fm">orta kütlə = 35·0,75 + 37·0,25 = 26,25 + 9,25 = 35,5</div>
+
+      <h3><span class="st">3</span> Nüvə qüvvələri</h3>
+      <p>Nüvədə protonlar bir-birini <b>itələyir</b> (eyni yüklüdürlər, Kulon qüvvəsi), amma nüvə dağılmır. Demək, protonları və neytronları bir yerdə saxlayan daha güclü qüvvə var — <b>nüvə qüvvəsi</b> (güclü qarşılıqlı təsir). Xassələri:</p>
+      <ul>
+        <li>Cazibə qüvvəsidir və Kulon itələməsindən xeyli güclüdür.</li>
+        <li><b>Qısa təsirlidir</b>: yalnız <span class="m">~10⁻¹⁵ m</span> məsafədə, yəni qonşu nuklonlar arasında işləyir.</li>
+        <li>Yükdən asılı deyil: p–p, p–n və n–n arasında eynidir.</li>
+      </ul>
+      <p>Neytronlar “yapışqan” rolunu oynayır: protonları bir-birindən bir qədər uzaqlaşdırıb itələməni azaldır, özləri isə nüvə qüvvəsi ilə cəlb edir. Buna görə ağır nüvələrdə neytron protondan xeyli çox olur (məsələn ²⁰⁸₈₂Pb: 82 proton, 126 neytron), yüngül nüvələrdə isə təxminən bərabərdir.</p>
+
+      <h3><span class="st">4</span> Kütlə defekti və bağlanma enerjisi (keyfiyyətcə)</h3>
+      <p>Dəqiq ölçmələr qəribə nəticə verir: nüvənin kütləsi onu təşkil edən ayrı-ayrı protonların və neytronların kütlələri cəmindən <b>kiçikdir</b>. Fərq <b>kütlə defekti</b> adlanır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 190" role="img" aria-label="Nüvənin kütləsi ayrı nuklonların kütlələri cəmindən kiçikdir, fərq kütlə defektidir">
+          <defs><marker id="at2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="170" x2="260" y2="170" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="30" width="80" height="140" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="160" y="62" width="80" height="108" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="160" y="30" width="80" height="32" fill="none" stroke="var(--vec)" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="80" y="108" class="lbl" font-size="12" text-anchor="middle">Z·mp + N·mn</text>
+          <text x="80" y="124" class="lbl" font-size="11" text-anchor="middle">ayrı nuklonlar</text>
+          <text x="200" y="120" class="lbl" font-size="12" text-anchor="middle">m(nüvə)</text>
+          <text x="200" y="48" class="lbl" font-size="12" text-anchor="middle" fill="var(--vec)">Δm</text>
+          <line x1="248" y1="30" x2="248" y2="62" stroke="var(--vec)" stroke-width="2" marker-start="url(#at2)" marker-end="url(#at2)"/>
+        </svg>
+        <div class="cap"><p>Nuklonlar birləşəndə kütlənin bir hissəsi (Δm) enerji kimi ayrılır. Nüvəni yenidən ayrı nuklonlara parçalamaq üçün bu enerjini geri vermək lazımdır.</p></div>
+      </div>
+      <p>Bu, Eynşteyn düsturunun nəticəsidir: kütlə və enerji bir-birinə bağlıdır, <span class="m">E = Δm·c²</span>. Nüvəni bütünlüklə ayrı nuklonlara parçalamaq üçün lazım olan minimal enerji <b>bağlanma enerjisi</b> adlanır. Nə qədər böyükdürsə, nüvə o qədər möhkəmdir. Hesablama bu mövzuda lazım deyil, yalnız ideyanı bil:</p>
+      <div class="fm">m(nüvə) < Z·mp + N·mn
+kütlə defekti Δm > 0
+bağlanma enerjisi E = Δm·c²  (nüvəni ayırmaq üçün lazım olan enerji)</div>
+      <p>Ağır nüvənin parçalanması (<b>bölünmə</b>) və yüngül nüvələrin birləşməsi (<b>sintez</b>) zamanı daha möhkəm nüvələr yarandığı üçün kütlə defekti artır və böyük enerji ayrılır. Atom elektrik stansiyaları uranın bölünməsindən, Günəş isə hidrogenin heliuma sintezindən enerji alır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Aşağıdakılardan hansılar oksigenin izotopudur?
+¹⁶₈O, ¹⁷₉F, ¹⁷₈O, ¹⁸₈O, ¹⁴₇N
+  İzotop = Z eyni = 8.
+  ¹⁶₈O, ¹⁷₈O, ¹⁸₈O  → izotoplar (neytronlar 8, 9, 10)
+  ¹⁷₉F (Z = 9) və ¹⁴₇N (Z = 7) başqa elementlərdir.</div>
+      <div class="ex">Nümunə 2. Mis iki izotopdan ibarətdir: ⁶³Cu (70 %) və ⁶⁵Cu (30 %).
+Orta atom kütləsi?
+  63·0,7 + 65·0,3 = 44,1 + 19,5 = 63,6</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Borun iki izotopu var: kütlə ədədi 10 və 11.
+Orta atom kütləsi 10,8 a.k.v.-dir. Ağır izotopun payı?
+  Ağır izotopun payı x olsun:
+  10(1 − x) + 11x = 10,8
+  10 + x = 10,8 → x = 0,8
+Cavab: 80 %  (yüngül izotop 20 %)</div>
+      <div class="life"><b>Həyatdan.</b> Ağır su (D₂O) atom reaktorlarında neytronları yavaşıdır. Tritium bəzi saatların işıqlanan rəqəmlərində istifadə olunur. Karbon-14 isə qədim əşyaların yaşını təyin etməyə imkan verir (4-cü dərsdə).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İzotopları “eyni <span class="m">A</span>” kimi başa düşmək. İzotoplarda <span class="m">Z</span> eynidir, <span class="m">A</span> müxtəlifdir. (<span class="m">A</span> eyni, <span class="m">Z</span> müxtəlif olarsa — bunlar izobarlardır: ¹⁴₆C və ¹⁴₇N.)</li>
+        <li>Nüvə qüvvəsini uzaq məsafəyə işləyən saymaq. O, yalnız ~10⁻¹⁵ m-də təsir edir.</li>
+        <li>Orta atom kütləsini iki kütlənin sadə ortası götürmək (35 və 37 → 36). Düzü: <b>faizlərlə</b> çəkilmiş orta.</li>
+        <li>Kütlə defektini “itmiş kütlə” saymaq. Kütlə enerji kimi ayrılıb: <span class="m">E = Δm·c²</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">izotoplar: Z eyni, N (və A) fərqli
+orta kütlə = Σ (izotopun A-sı · payı)
+nüvə qüvvəsi: güclü, qısa təsirli, yükdən asılı deyil
+m(nüvə) < Σ m(nuklon);  E_bağ = Δm·c²</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>¹⁶₈O və ¹⁷₈O nüvələrində neytron sayı fərqi neçədir? <span class="ans">17 − 16 = 1.</span></li>
+        <li>Neon: ²⁰Ne (90 %) və ²²Ne (10 %). Orta kütlə? <span class="ans">20·0,9 + 22·0,1 = 18 + 2,2 = 20,2.</span></li>
+        <li>Nüvənin kütləsi ayrı nuklonların kütlələri cəmindən böyükdür, kiçikdir, yoxsa bərabərdir? <span class="ans">Kiçikdir. Fərq kütlə defektidir, bağlanma enerjisinə uyğundur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: α və β →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Radioaktiv parçalanma: α, β və zəncirlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzi nüvələr qeyri-sabitdir və özbaşına başqa nüvəyə çevrilir, bu zaman şüa buraxır. Buna <b>radioaktivlik</b> deyilir (1896-cı ildə Bekkerel uran duzlarında kəşf etdi, Mari Küri və Pyer Küri radium tapdılar). Radon qazı, tibbi izotoplar, atom stansiyalarının tullantıları — hamısı bununla bağlıdır. Burada qaydalar sadədir: <span class="m">A</span> və <span class="m">Z</span> sayılır, heç nə itmir.</p>
+
+      <h3><span class="st">2</span> α, β və γ şüalar</h3>
+      <ul>
+        <li><b>α-parçalanma.</b> Nüvə α-hissəcik buraxır — bu, helium nüvəsi ⁴₂He-dur (2 proton, 2 neytron). Ağır nüvələrdə olur.</li>
+        <li><b>β⁻-parçalanma.</b> Nüvədə bir neytron protona çevrilir və nüvədən elektron (β⁻-hissəcik) çıxır (həmçinin çox yüngül neytral hissəcik — antineytrino). Nüvədə elektron yoxdur, o parçalanma anında yaranır.</li>
+        <li><b>γ-şüa.</b> Nüvə artıq enerjini yüksək enerjili foton kimi buraxır. <span class="m">A</span> və <span class="m">Z</span> dəyişmir.</li>
+      </ul>
+      <p>İki saxlanma qanunu həmişə doğrudur: <b>kütlə ədədi A</b> (nuklonların sayı) və <b>yük Z</b> reaksiyadan əvvəl və sonra eynidir.</p>
+      <div class="fm">α:    ᴬ_Z X  →  ᴬ⁻⁴_(Z−2) Y  +  ⁴₂He
+β⁻:   ᴬ_Z X  →  ᴬ_(Z+1) Y   +  ⁰₋₁e  (+ antineytrino)</div>
+      <div class="fig">
+        <svg viewBox="0 0 280 210" role="img" aria-label="N–Z şəbəkəsində α və β parçalanma oxları">
+          <defs><marker id="at3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <g stroke="var(--muted)" stroke-width="0.8">
+            <line x1="40" y1="170" x2="250" y2="170"/><line x1="40" y1="140" x2="250" y2="140"/><line x1="40" y1="110" x2="250" y2="110"/><line x1="40" y1="80" x2="250" y2="80"/><line x1="40" y1="50" x2="250" y2="50"/><line x1="40" y1="20" x2="250" y2="20"/>
+            <line x1="40" y1="20" x2="40" y2="170"/><line x1="70" y1="20" x2="70" y2="170"/><line x1="100" y1="20" x2="100" y2="170"/><line x1="130" y1="20" x2="130" y2="170"/><line x1="160" y1="20" x2="160" y2="170"/><line x1="190" y1="20" x2="190" y2="170"/><line x1="220" y1="20" x2="220" y2="170"/><line x1="250" y1="20" x2="250" y2="170"/>
+          </g>
+          <circle cx="220" cy="80" r="6" fill="var(--ink)"/>
+          <text x="228" y="76" class="lbl" font-size="12">ilkin</text>
+          <line x1="215" y1="86" x2="165" y2="136" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#at3)"/>
+          <circle cx="160" cy="140" r="5" fill="var(--accent)"/>
+          <text x="104" y="134" class="lbl" font-size="12" fill="var(--accent)">α: N−2, Z−2</text>
+          <line x1="215" y1="74" x2="195" y2="54" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#at3)"/>
+          <circle cx="190" cy="50" r="5" fill="var(--vec)"/>
+          <text x="82" y="44" class="lbl" font-size="12" fill="var(--vec)">β⁻: N−1, Z+1</text>
+          <text x="140" y="192" class="lbl" font-size="12" text-anchor="middle">neytronların sayı N →</text>
+          <text x="12" y="100" class="lbl" font-size="12" transform="rotate(-90 12 100)" text-anchor="middle">Z</text>
+        </svg>
+        <div class="cap"><p>Hər α-parçalanma nüvəni şəbəkədə iki xana aşağı-sola aparır (neytron da, proton da 2 azalır). Hər β⁻-parçalanma bir xana yuxarı-sola aparır (neytron azalır, proton artır). Hər xana 1 neytron və ya 1 protondur. Kütlə ədədi A = N + Z α-da 4 azalır, β⁻-da dəyişmir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Zəncir parçalanma: neçə α və neçə β?</h3>
+      <p>Ağır nüvə çox vaxt bir pillədə dayanmır, ardıcıl parçalanmalar zənciri ilə sabit nüvəyə çatır (məsələn uran → … → qurğuşun). Başlanğıc və son nüvəni bilirsənsə, aralıq pillələri bilməyə ehtiyac yoxdur. İki addım:</p>
+      <div class="fm">1) A yalnız α-da dəyişir:  α sayı  a = (A_başl − A_son)/4
+2) Z-ə bax:  Z_son = Z_başl − 2a + b   →   b = Z_son − Z_başl + 2a</div>
+      <p>Burada <span class="m">b</span> — β⁻-parçalanmaların sayıdır. Alınan <span class="m">a</span> tam və <span class="m">b</span> mənfi olmayan ədəd olmalıdır: bu özünü yoxlamaqdır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ²²⁶₈₈Ra (radium) α-parçalanır. Yeni nüvə?
+  A = 226 − 4 = 222
+  Z = 88 − 2 = 86 (86-cı element — radon)
+  ²²⁶₈₈Ra → ²²²₈₆Rn + ⁴₂He</div>
+      <div class="ex">Nümunə 2. ²³⁴₉₀Th (torium) β⁻-parçalanır. Yeni nüvə?
+  A = 234 (dəyişmir)
+  Z = 90 + 1 = 91 (protaktinium)
+  ²³⁴₉₀Th → ²³⁴₉₁Pa + ⁰₋₁e</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+²³⁸₉₂U zəncir parçalanma ilə sabit ²⁰⁶₈₂Pb nüvəsinə çevrilir.
+Neçə α və neçə β⁻ hissəcik buraxılır?
+  a = (238 − 206)/4 = 32/4 = 8
+  8 α-dan sonra Z = 92 − 2·8 = 76
+  Lazım olan Z = 82 → b = 82 − 76 = 6
+Cavab: 8 α-hissəcik və 6 β⁻-hissəcik (cəmi 14).</div>
+      <div class="ex">Nümunə 4 (nüvə reaksiyası). ²³⁵₉₂U neytron udur və bölünür:
+²³⁵₉₂U + ¹₀n → ¹⁴¹₅₆Ba + ⁹²₃₆Kr + 3 ¹₀n
+  A: 235 + 1 = 236;   141 + 92 + 3 = 236  ✓
+  Z: 92 + 0 = 92;      56 + 36 + 0 = 92   ✓
+  Hər iki cəm sağda və solda eynidir.</div>
+      <div class="life"><b>Həyatdan.</b> Radon qazı (²²²₈₆Rn) radiumun α-parçalanmasından yaranır və torpaqdan binaların zirzəmisinə keçir. Onu ventilyasiya ilə kənarlaşdırırlar. Üçüncü nümunədəki zəncir isə Yerin istiliyinin bir hissəsini verir: uranın və toriumun yavaş parçalanması qatlarda istilik ayırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>α-da <span class="m">A</span>-nı 2 azaltmaq. α-hissəcik ⁴₂He-dur: <span class="m">A − 4</span>, <span class="m">Z − 2</span>.</li>
+        <li>β⁻-da <span class="m">A</span>-nın dəyişdiyini düşünmək. β⁻-da nuklonların sayı eyni qalır: neytron protona çevrilir, <span class="m">Z + 1</span>.</li>
+        <li>β⁻ sayını tapanda işarəni səhv qoymaq: <span class="m">b = Z_son − (Z_başl − 2a)</span>, tərsi yox. Mənfi çıxsa — yoxla.</li>
+        <li>Neytronların dəyişməsini unutmaq: α-da <span class="m">N</span> 2 azalır, β⁻-da 1 azalır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">α:  A − 4, Z − 2        β⁻:  A eyni, Z + 1
+zəncir: a = ΔA/4,  b = Z_son − Z_başl + 2a
+A və Z cəmləri reaksiyada saxlanır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>²¹⁰₈₄Po α-parçalanır. Yeni nüvənin A və Z? <span class="ans">A = 206, Z = 82 (qurğuşun ²⁰⁶₈₂Pb).</span></li>
+        <li>¹⁴₆C β⁻-parçalanır. Yeni nüvə? <span class="ans">A = 14, Z = 7 (azot ¹⁴₇N).</span></li>
+        <li>²³²₉₀Th → ²⁰⁸₈₂Pb. Neçə α və β⁻? <span class="ans">a = 24/4 = 6; b = 82 − 90 + 12 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Yarımparçalanma →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Yarımparçalanma dövrü və radioaktivlikdən istifadə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hansı radioaktiv maddə təhlükəlidir və nə qədər müddət? Qədim taxta parçası neçə yaşındadır? Xəstəyə verilən preparat nə vaxt bədəndə sönəcək? Bunların hamısına bir kəmiyyət cavab verir: <b>yarımparçalanma dövrü</b>.</p>
+
+      <h3><span class="st">2</span> Yarımparçalanma dövrü</h3>
+      <p><b>Yarımparçalanma dövrü T</b> — radioaktiv nüvələrin yarısının parçalandığı müddətdir. Konkret nüvənin nə vaxt parçalanacağını heç kim bilmir (təsadüfi hadisədir), amma <b>çox sayda</b> nüvə üçün qanun dəqiqdir. Hər T müddətində qalan nüvələrin sayı <b>yarıya düşür</b>:</p>
+      <div class="fig">
+        <svg viewBox="0 0 320 210" role="img" aria-label="Radioaktiv nüvələrin sayının zamandan asılılığı: hər T müddətində yarıya düşür">
+          <line x1="50" y1="172" x2="300" y2="172" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="50" y1="172" x2="50" y2="10" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M50 22L74 58.3L98 85.9L122 106.7L146 122.5L170 134.5L194 143.6L218 150.5L242 155.7L266 159.6L290 162.6" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <g stroke="var(--vec)" stroke-dasharray="4 3" stroke-width="1.2">
+            <line x1="50" y1="97" x2="110" y2="97"/><line x1="110" y1="97" x2="110" y2="172"/>
+            <line x1="50" y1="134" x2="170" y2="134"/><line x1="170" y1="134" x2="170" y2="172"/>
+            <line x1="50" y1="153" x2="230" y2="153"/><line x1="230" y1="153" x2="230" y2="172"/>
+          </g>
+          <circle cx="50" cy="22" r="4" fill="var(--ink)"/><circle cx="110" cy="97" r="4" fill="var(--vec)"/><circle cx="170" cy="134" r="4" fill="var(--vec)"/><circle cx="230" cy="153" r="4" fill="var(--vec)"/>
+          <text x="44" y="26" class="lbl" font-size="12" text-anchor="end">N₀</text>
+          <text x="44" y="101" class="lbl" font-size="12" text-anchor="end">N₀/2</text>
+          <text x="44" y="138" class="lbl" font-size="12" text-anchor="end">N₀/4</text>
+          <text x="44" y="157" class="lbl" font-size="12" text-anchor="end">N₀/8</text>
+          <text x="110" y="188" class="lbl" font-size="12" text-anchor="middle">T</text>
+          <text x="170" y="188" class="lbl" font-size="12" text-anchor="middle">2T</text>
+          <text x="230" y="188" class="lbl" font-size="12" text-anchor="middle">3T</text>
+          <text x="300" y="188" class="lbl" font-size="12" text-anchor="end">t</text>
+          <text x="56" y="14" class="lbl" font-size="12">N</text>
+        </svg>
+        <div class="cap"><p>Qrafik heç vaxt sıfıra çatmır: hər T-də qalanın yarısı gedir. Nöqtələr: <span class="m">t = 0, T, 2T, 3T</span> anlarında <span class="m">N₀, N₀/2, N₀/4, N₀/8</span>.</p></div>
+      </div>
+      <div class="fm">n = t / T            (neçə yarımparçalanma dövrü keçib)
+N = N₀ / 2ⁿ         (qalan nüvələr)
+parçalanan = N₀ − N
+m = m₀ / 2ⁿ,  A = A₀ / 2ⁿ</div>
+      <p><b>Aktivlik</b> <span class="m">A</span> — saniyədə baş verən parçalanmaların sayıdır (vahidi bekkerel: <span class="m">1 Bq = 1 parçalanma/san</span>). O, qalan nüvələrin sayına mütənasibdir, ona görə aktivlik də hər T-də yarıya düşür. Qalan <b>radioaktiv izotopun kütləsi</b> də eyni qaydada azalır (nümunənin ümumi kütləsi yox, yalnız həmin izotopunku).</p>
+      <p>Cədvəl:</p>
+      <div class="fm">t:        0    T    2T   3T   4T   5T   10T
+qalan:    1   1/2  1/4  1/8  1/16 1/32 1/1024</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. N₀ = 6400 nüvə, T = 3 gün. 12 gündən sonra neçə nüvə qalar?
+  n = t/T = 12/3 = 4
+  N = 6400/2⁴ = 6400/16 = 400</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+36 saat ərzində radioaktiv nüvələrin 7/8 hissəsi parçalanıb.
+Yarımparçalanma dövrü?
+  Qalan hissə: 1 − 7/8 = 1/8 = 1/2³ → n = 3
+  T = t/n = 36/3 = 12 saat</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Radioaktiv mənbənin aktivliyi 24 saatda
+640 Bq-dən 40 Bq-ə düşüb. T = ?
+  640/40 = 16 = 2⁴ → n = 4
+  T = 24/4 = 6 saat
+Yoxlama: 640 → 320 → 160 → 80 → 40 (dörd dəfə yarım).</div>
+
+      <h3><span class="st">4</span> Radioaktivlikdən həyatda istifadə</h3>
+      <div class="life"><b>Karbon ilə yaş təyini.</b> Canlı orqanizmlər karbon-14 qəbul edir və onun payı sabit qalır. Ölüm anından qəbul dayanır, mövcud ¹⁴C isə yarımparçalanma dövrü <span class="m">T ≈ 5730 il</span> (məsələlərdə 5700 götürürük) ilə azalır. Taxta parçasında ¹⁴C-nin payı canlıdakının 1/8-i qədərdirsə, 3 dövr keçib: yaş ≈ 3·5700 = 17100 il. Metod təxminən 50 min ilədək işləyir.</div>
+      <div class="life"><b>Tibb.</b> İod-131 (<span class="m">T ≈ 8 gün</span>) qalxanabənzər vəzin müalicəsində, texnesium-99m (<span class="m">T = 6 saat</span>) diaqnostikada, kobalt-60 (<span class="m">T ≈ 5 il</span>) şiş müalicəsində və alətlərin sterilizasiyasında işlənir. Diaqnostikada qısa T seçirlər ki, xəstə uzun müddət şüalanmasın.</div>
+      <div class="life"><b>Tüstü siqnalizatoru.</b> İçində az miqdarda amerisium-241 (T = 432 il) var. Onun α-hissəcikləri havanı ionlaşdırır və kiçik cərəyan keçir. Tüstü ionları udanda cərəyan azalır, siqnal işə düşür. T böyük olduğundan mənbə onilliklərlə işləyir.</div>
+      <div class="life"><b>Atom elektrik stansiyası.</b> ²³⁵U nüvələri neytron udub bölünür, ayrılan enerji suyu qızdırır, buxar turbini fırladır. Tullantıların çoxu uzun T-li olduğu üçün (yüzlərlə, minlərlə il) onları xüsusi saxlanclarda basdırırlar.</div>
+      <div class="life"><b>Qorunma.</b> Radioaktiv şüadan 3 yolla qoruyurlar: <b>vaxt</b> (az qal), <b>məsafə</b> (uzaq dur), <b>qoruyucu</b>. α-şüanı bir vərəq kağız saxlayır, β-şüanı bir neçə mm alüminium, γ-şüa üçün qalın qurğuşun və ya beton lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>“2T sonra hamısı parçalanır” demək. Düzü: 2T sonra <b>1/4</b> qalır. Hər T-də qalanın yarısı gedir.</li>
+        <li><span class="m">N = N₀/(2n)</span> yazmaq. Düzü: <span class="m">N = N₀/2ⁿ</span> (2 üstlə).</li>
+        <li><span class="m">n = t/T</span> hesablayanda vahidləri uyğunlaşdırmamaq (T saatla, t gün ilə). Əvvəl eyni vahidə gətir.</li>
+        <li>Bir nüvəyə 1 T sonra “yarısı” parçalanıb demək. Qanun yalnız çox sayda nüvə üçün işləyir.</li>
+        <li>Parçalanan və qalan nüvələri qarışdırmaq. Sual hansı sayı soruşur — ona bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n = t/T;   N = N₀/2ⁿ;   parçalanan = N₀ − N
+aktivlik və qalan kütlə də hər T-də yarıya düşür
+2T → 1/4,  3T → 1/8,  4T → 1/16
+¹⁴C: ~5700 il (yaş təyini);  T uzundursa, təsir uzun sürür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>N₀ = 2000 nüvə, T = 5 gün. 15 gündən sonra qalan? <span class="ans">n = 3, N = 2000/8 = 250.</span></li>
+        <li>Aktivlik 4 saatda 960 Bq-dən 60 Bq-ə düşüb. T = ? <span class="ans">960/60 = 16 = 2⁴ → n = 4, T = 4/4 = 1 saat.</span></li>
+        <li>30 gündə nüvələrin 1/32-si qalıb. T = ? <span class="ans">32 = 2⁵ → n = 5, T = 30/5 = 6 gün.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
