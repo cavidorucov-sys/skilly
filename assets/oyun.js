@@ -22,6 +22,9 @@
     if (!/^[-+*/().\d]*(?:Math\.sqrt\(\d+(?:\.\d+)?\)[-+*/().\d]*)*$/.test(s)) return NaN;
     try { const v = Function('"use strict";return (' + s + ")")(); return typeof v === "number" && isFinite(v) ? v : NaN; } catch (e) { return NaN; }
   }
+  const newSeed = () => (Math.random() * 4294967296) >>> 0;
+  function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function genS(level, seed) { const keep = Math.random; Math.random = rng(seed); try { return level.gen(); } finally { Math.random = keep; } }
   const close = (x, v, tol) => Math.abs(x - v) <= (tol ?? Math.max(0.005, Math.abs(v) * 0.005));
 
   function mount(cfg) {
@@ -29,6 +32,8 @@
     const st = get(KEY, { lv: {}, boss: { passed: false, tries: 0 }, test: null, log: [] });
     cfg.levels.forEach(l => { st.lv[l.id] = st.lv[l.id] || { streak: 0, done: false, tries: 0, wrong: 0 }; });
     const save = () => put(KEY, st);
+    let RUN = 0, current = null; // only the newest play/boss loop may continue
+    const L = id => cfg.levels.find(l => l.id === id);
     const isOpen = i => i === 0 || st.lv[cfg.levels[i - 1].id].done;
     const allDone = () => cfg.levels.every(l => st.lv[l.id].done);
 
@@ -98,18 +103,23 @@
     }
 
     async function play(id) {
-      const lv = cfg.levels.find(l => l.id === id), s = st.lv[id];
+      if (current === id) return;
+      const my = ++RUN; current = id;
+      const lv = L(id), s = st.lv[id];
       drawMap(id);
       const head = h("div", { class: "oy-head" }, h("b", {}, lv.ad), h("span", {}, lv.izah || ""));
       const box = h("div");
       stage.replaceChildren(head, box);
       stage.scrollIntoView({ block: "nearest", behavior: "smooth" });
       while (!s.done) {
-        const ok = await ask(lv.gen(), box, { label: "Ardıcıl düz: " + s.streak + " / " + STREAK });
-        s.tries++; if (ok) s.streak++; else { s.streak = 0; s.wrong++; }
+        if (!s.seed) { s.seed = newSeed(); save(); }
+        const ok = await ask(genS(lv, s.seed), box, { label: "Ardıcıl düz: " + s.streak + " / " + STREAK });
+        if (my !== RUN) return;
+        delete s.seed; s.tries++; if (ok) s.streak++; else { s.streak = 0; s.wrong++; }
         if (s.streak >= STREAK) s.done = true;
         save(); drawMap(id);
       }
+      current = null;
       const nextIdx = cfg.levels.findIndex(l => l.id === id) + 1;
       stage.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "Səviyyə bağlandı ✓"),
         nextIdx < cfg.levels.length ? h("button", { type: "button", class: "btn", on: { click: () => play(cfg.levels[nextIdx].id) } }, "Növbəti səviyyə →")
@@ -117,20 +127,27 @@
     }
 
     async function boss() {
+      if (current === "boss") return;
+      const my = ++RUN; current = "boss";
       drawMap("boss");
-      st.boss.tries++; save();
+      if (!st.boss.run) { st.boss.run = { seeds: cfg.levels.map(newSeed), i: 0 }; st.boss.tries++; save(); }
+      const run = st.boss.run;
       const box = h("div");
       stage.replaceChildren(h("div", { class: "oy-head" }, h("b", {}, "Boss raundu"), h("span", {}, "Hər səviyyədən bir sual. İpucu yoxdur. Bir səhv — həmin səviyyəyə qayıdırsan.")), box);
-      for (let i = 0; i < cfg.levels.length; i++) {
+      for (let i = run.i; i < cfg.levels.length; i++) {
         const lv = cfg.levels[i];
-        const ok = await ask(lv.gen(), box, { label: "Boss · " + (i + 1) + " / " + cfg.levels.length + " · " + lv.ad });
+        const ok = await ask(genS(lv, run.seeds[i]), box, { label: "Boss · " + (i + 1) + " / " + cfg.levels.length + " · " + lv.ad });
+        if (my !== RUN) return;
+        if (ok) { run.i = i + 1; save(); }
         if (!ok) {
+          current = null; delete st.boss.run;
           Object.assign(st.lv[lv.id], { streak: 0, done: false }); save(); drawMap();
           stage.replaceChildren(h("div", { class: "oy-done no" }, h("b", {}, "Boss keçilmədi."), h("p", {}, "“" + lv.ad + "” səviyyəsini yenidən bağla, sonra Boss yenidən başlayacaq."),
             h("button", { type: "button", class: "btn", on: { click: () => play(lv.id) } }, "Səviyyəyə qayıt →")));
           return;
         }
       }
+      current = null; delete st.boss.run;
       st.boss.passed = true; save(); drawMap();
       report("oyun", { bal: cfg.levels.length, max: cfg.levels.length, qeyd: cfg.levels.map((l, i) => (i + 1) + ":" + st.lv[l.id].tries + "/" + st.lv[l.id].wrong).join(" ") + " (cəhd/səhv), boss cəhdi " + st.boss.tries });
       stage.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "Boss keçildi ★ Mövzu mənimsənildi."), h("p", {}, "Sınaq açıldı."),
@@ -160,15 +177,15 @@
         h("button", { type: "button", class: "btn", on: { click: runTest } }, last ? "Yenidən başla" : "Sınağa başla")));
     }
     async function runTest() {
-      const qs = cfg.test.from.map(id => ({ id, q: cfg.levels.find(l => l.id === id).gen() }));
-      const answers = [];
+      if (!st.testRun) { st.testRun = { seeds: cfg.test.from.map(newSeed), vals: [] }; save(); }
+      const run = st.testRun, qs = cfg.test.from.map((id, i) => ({ id, q: genS(L(id), run.seeds[i]) }));
       const box = h("div");
       testRoot.replaceChildren(box);
-      for (let i = 0; i < qs.length; i++) {
-        const q = qs[i].q, val = await collect(q, box, "Sınaq · " + (i + 1) + " / " + qs.length, i + 1 === qs.length);
-        const ok = q.choices ? val === q.correct : close(parse(val), q.answer, q.tol);
-        answers.push({ id: qs[i].id, q, val, ok });
+      for (let i = run.vals.length; i < qs.length; i++) {
+        run.vals.push(await collect(qs[i].q, box, "Sınaq · " + (i + 1) + " / " + qs.length, i + 1 === qs.length)); save();
       }
+      const answers = qs.map((x, i) => { const q = x.q, val = run.vals[i]; return { id: x.id, q, val, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) }; });
+      delete st.testRun;
       const bal = answers.filter(a => a.ok).length, passed = bal >= cfg.test.pass;
       st.test = { bal, at: Date.now(), passed };
       // wrong answers: back to that level (re-master it) and into the error journal
@@ -190,14 +207,18 @@
 
     // spaced review: n random levels, same rules as the test, stricter pass mark
     async function runReview(r) {
-      const ids = cfg.levels.filter(l => !l.noReview).map(l => l.id).sort(() => Math.random() - .5).slice(0, r.n);
-      while (ids.length < r.n) ids.push(cfg.levels[Math.floor(Math.random() * cfg.levels.length)].id);
-      const box = h("div"); testRoot.replaceChildren(box);
-      const res = [];
-      for (let i = 0; i < ids.length; i++) {
-        const q = cfg.levels.find(l => l.id === ids[i]).gen(), val = await collect(q, box, "Yaddaş yoxlaması · " + (i + 1) + " / " + ids.length, i + 1 === ids.length);
-        res.push({ id: ids[i], q, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) });
+      if (!st.reviewRun || st.reviewRun.id !== r.id) {
+        const ids = cfg.levels.filter(l => !l.noReview).map(l => l.id).sort(() => Math.random() - .5).slice(0, r.n);
+        while (ids.length < r.n) ids.push(cfg.levels[Math.floor(Math.random() * cfg.levels.length)].id);
+        st.reviewRun = { id: r.id, ids, seeds: ids.map(newSeed), vals: [] }; save();
       }
+      const run = st.reviewRun, ids = run.ids;
+      const box = h("div"); testRoot.replaceChildren(box);
+      for (let i = run.vals.length; i < ids.length; i++) {
+        run.vals.push(await collect(genS(L(ids[i]), run.seeds[i]), box, "Yaddaş yoxlaması · " + (i + 1) + " / " + ids.length, i + 1 === ids.length)); save();
+      }
+      const res = ids.map((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i]; return { id, q, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) }; });
+      delete st.reviewRun;
       const bal = res.filter(x => x.ok).length, ok = bal >= r.n - (r.n > 3 ? 1 : 0);
       Skilly.reviewDone(r.id, ok);
       if (!ok) {
@@ -262,18 +283,22 @@
     async function runEntry() {
       const n = (cfg.entry && cfg.entry.n) || 8, mins = (cfg.entry && cfg.entry.min) || 10, E = cfg.entryEl;
       const ids = cfg.levels.map(l => l.id), pickIds = Array.from({ length: n }, (_, i) => ids[i % ids.length]);
+      if (!st.entryRun) { st.entryRun = { seeds: pickIds.map(newSeed), vals: [], end: Date.now() + mins * 60000 }; save(); }
+      const run = st.entryRun;
       const clock = h("div", { class: "oy-label" }), box = h("div");
       E.replaceChildren(clock, box);
-      const end = Date.now() + mins * 60000; let over = false;
+      const end = run.end; let over = Date.now() >= end;
       const tick = setInterval(() => { const left = Math.max(0, end - Date.now()); clock.textContent = "Qalan vaxt: " + Math.floor(left / 60000) + ":" + String(Math.floor(left / 1000) % 60).padStart(2, "0"); if (!left) { over = true; clearInterval(tick); box.dispatchEvent(new Event("timeup")); } }, 500);
-      let bal = 0;
-      for (let i = 0; i < n && !over; i++) {
-        const q = cfg.levels.find(l => l.id === pickIds[i]).gen();
+      for (let i = run.vals.length; i < n && !over; i++) {
+        const q = genS(L(pickIds[i]), run.seeds[i]);
         const val = await Promise.race([collect(q, box, "Giriş testi · " + (i + 1) + " / " + n, i + 1 === n), new Promise(r => box.addEventListener("timeup", () => r(null), { once: true }))]);
         if (val === null) break;
-        if (q.choices ? val === q.correct : close(parse(val), q.answer, q.tol)) bal++;
+        run.vals.push(val); save();
       }
       clearInterval(tick);
+      let bal = 0;
+      run.vals.forEach((val, i) => { const q = genS(L(pickIds[i]), run.seeds[i]); if (q.choices ? val === q.correct : close(parse(val), q.answer, q.tol)) bal++; });
+      delete st.entryRun;
       st.entry = { bal, at: Date.now() };
       if (bal === n) cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK }));
       save(); drawMap(); drawEntry();
@@ -281,6 +306,8 @@
     }
 
     drawMap(); drawTest(); drawEntry();
+    if (st.entryRun && cfg.entryEl) runEntry();
+    if (st.testRun && testRoot) runTest();
     cfg.refreshTest = drawTest;
     return { state: st, drawTest };
   }
