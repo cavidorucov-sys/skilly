@@ -437,6 +437,7 @@ Maşında sap:     tg α = a/g</div>
   </section>
 </div>
 
+<script src="../assets/jurnal.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 function el(t,a,...c){const e=document.createElement(t);for(const k in a||{})e.setAttribute(k,a[k]);c.forEach(x=>e.append(x));return e}
@@ -540,7 +541,9 @@ $("yes").addEventListener("click",async()=>{$("yes").disabled=true;st.doneAt=Dat
 function summary(){const secs=Math.floor((st.doneAt-st.startedAt)/1000),ok=Q.filter(([n])=>st.res[n]===true).length;
   const l=["Fizika sınağı 1: mexanika (Fikrət)","Başlama: "+new Date(st.startedAt).toLocaleString(),"Vaxt: "+fmt(secs)+(secs>LIMIT?" (60 dəqiqədən artıq)":""),"Bal: "+ok+" / 24"];
   Q.forEach(([n])=>l.push(n+". "+((st.a[n]||"").toString().trim()||"—")+" "+(st.res[n]===true?"✓":st.res[n]===false?"✗":"boş")));return l.join("\n")}
-function finish(){clearInterval(tick);clock();$("fs").disabled=true;$("finish").hidden=true;$("confirm").hidden=true;
+function logErrors(){if(!window.Skilly)return;Q.forEach(([n,sec,text,x])=>{const r=st.res[n];if(r===true)return;
+  Skilly.sehv({id:"mex-sinaq-1#"+n,fenn:"fizika",movzu:"Mexanika",menbe:"Mexanika sınağı 1, sual "+n,sual:text,opts:Array.isArray(x)?x:null,vahid:Array.isArray(x)?"":x,cavab:r===false?String(st.a[n]||""):"",bos:r===null,chk:{p:"p1",n:n,h:H[n]},link:"dersler/fizika-mexanika-1.html"})})}
+function finish(){logErrors();clearInterval(tick);clock();$("fs").disabled=true;$("finish").hidden=true;$("confirm").hidden=true;
   Q.forEach(([n])=>{const r=st.res[n],b=boxes[n];b.box.classList.add(r===true?"right":"wrong");b.mark.textContent=r===true?"Düz ✓":r===false?"Səhv ✗":"Boş"});
   const ok=Q.filter(([n])=>st.res[n]===true).length,txt=summary(),pre=el("pre",{class:"copy"},txt);
   const b=el("button",{class:"btn",type:"button"},"Cavabları kopyala");

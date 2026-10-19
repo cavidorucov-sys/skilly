@@ -1,7 +1,7 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
   ["index.html", "Bu həftə"], ["teqvim.html", "Təqvim"], ["riyaziyyat.html", "Riyaziyyat"], ["olimpiada.html", "Olimpiada"],
-  ["fizika.html", "Fizika"], ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Təkrar"], ["dusturlar.html", "Düsturlar"],
+  ["fizika.html", "Fizika"], ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Səhvlər"], ["dusturlar.html", "Düsturlar"],
 ];
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
@@ -216,6 +216,142 @@ async function pageCalendar() {
   draw();
 }
 
+/* ---------- səhv jurnalı ---------- */
+const KATS = { hesab: "Hesab / diqqət", qayda: "Qaydanı bilmirdim", sert: "Şərti səhv başa düşdüm" };
+const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"] };
+const dmy = iso => iso ? iso.slice(8) + "." + iso.slice(5, 7) : "–";
+const SST = { yeni: ["Təhlil gözləyir", "st-err"], aciq: ["Təkrarda", "st-isl"], baglandi: ["Bağlanıb", "st-bag"] };
+
+function seg(opts, onPick) {
+  let val = "";
+  const box = el("div", { class: "seg", role: "radiogroup" });
+  Object.entries(opts).forEach(([k, label]) => {
+    const b = el("button", { type: "button", role: "radio", "aria-checked": "false" }, label);
+    b.addEventListener("click", () => { val = k; box.querySelectorAll("button").forEach(x => x.setAttribute("aria-checked", String(x === b))); onPick && onPick(k); });
+    box.append(b);
+  });
+  box.value = () => val;
+  return box;
+}
+const errMsg = () => el("div", { class: "fld-err", "aria-live": "polite" });
+function errHead(e) {
+  const [kat, ad] = FENN[e.fenn] || ["misc", e.fenn];
+  return el("div", { class: "e-meta" }, el("span", { class: "badge " + KAT[kat].cls }, ad), el("span", {}, e.menbe || e.movzu), el("span", {}, dmy(e.tarix)));
+}
+function errBody(e) {
+  return el("div", {}, el("p", { class: "e-q" }, e.sual || "(sual mətni yoxdur)"),
+    e.opts ? el("ol", { class: "e-opts", type: "A" }, ...e.opts.map(o => el("li", {}, o))) : null);
+}
+
+function analyseCard(e, redraw) {
+  const err = errMsg();
+  const kat = seg(KATS, () => { err.textContent = ""; });
+  const yol = el("input", { class: "fld", type: "text", placeholder: "Məsələn: əvvəl vahidləri SI-yə çevirməliydim", "aria-label": "Düzgün yol, bir cümlə" });
+  yol.addEventListener("input", () => { err.textContent = ""; });
+  const btn = el("button", { class: "btn", type: "button" }, "Saxla");
+  btn.addEventListener("click", () => {
+    if (!kat.value()) { err.textContent = "Səhvin növünü seç."; return; }
+    if (yol.value.trim().length < 8) { err.textContent = "Düzgün yolu bir cümlə ilə yaz."; yol.focus(); return; }
+    Skilly.update(e.id, { kat: kat.value(), yol: yol.value.trim(), status: "aciq" }); redraw();
+  });
+  return el("div", { class: "e-card fade" }, errHead(e), errBody(e),
+    el("p", { class: "e-ans" }, e.bos ? "Boş qalıb" : "Sənin cavabın: " + (e.cavab || "—") + (e.vahid ? " " + e.vahid : "")),
+    el("div", { class: "e-lbl" }, "Niyə səhv oldu?"), kat,
+    el("div", { class: "e-lbl" }, "Düzgün yol (bir cümlə)"), yol, err, el("div", { class: "e-act" }, btn));
+}
+
+function redoCard(e, redraw) {
+  const out = errMsg(), act = el("div", { class: "e-act" });
+  const done = ok => {
+    Skilly.tekrar(e.id, ok);
+    out.className = "e-res " + (ok ? "ok" : "no");
+    out.textContent = (ok ? "Düz. " : "Hələ alınmadı, bir həftə sonra yenə gələcək. ") + "Sənin qeydin: " + (e.yol || "—");
+    const nx = el("button", { class: "btn ghost", type: "button" }, "Növbəti");
+    nx.addEventListener("click", redraw); act.replaceChildren(nx);
+  };
+  if (e.chk) {
+    let inp;
+    if (e.opts) inp = seg(Object.fromEntries(e.opts.map((o, i) => ["ABCDE"[i], "ABCDE"[i]])), () => { out.textContent = ""; });
+    else { inp = el("input", { class: "fld", type: "text", inputmode: "decimal", autocomplete: "off", "aria-label": "Cavab" }); inp.addEventListener("input", () => { out.textContent = ""; }); }
+    const btn = el("button", { class: "btn", type: "button" }, "Yoxla");
+    btn.addEventListener("click", async () => {
+      const v = Skilly.norm(e.opts ? inp.value() : inp.value, e.chk.p);
+      if (!v) { out.className = "fld-err"; out.textContent = "Əvvəl cavabı yaz."; return; }
+      done((await Skilly.hash(e.chk.p, e.chk.n, v)) === e.chk.h);
+    });
+    act.append(btn);
+    return el("div", { class: "e-card fade" }, errHead(e), errBody(e), el("div", { class: "e-lbl" }, "Kağızda yenidən həll et, sonra cavabı yaz" + (e.vahid ? " (" + e.vahid + ")" : "")), inp, out, act);
+  }
+  const yes = el("button", { class: "btn", type: "button" }, "Bacardım"), no = el("button", { class: "btn ghost", type: "button" }, "Bacarmadım");
+  yes.addEventListener("click", () => done(true)); no.addEventListener("click", () => done(false));
+  act.append(yes, no);
+  return el("div", { class: "e-card fade" }, errHead(e), errBody(e),
+    el("div", { class: "e-lbl" }, "Kağızda yenidən həll et, sonra düz cavabla yoxla"),
+    e.duz ? el("details", { class: "e-det" }, el("summary", {}, "Düz cavabı göstər"), e.duz) : null, out, act);
+}
+
+function addForm(redraw) {
+  const f = {
+    fenn: el("select", { class: "fld", "aria-label": "Fənn" }, ...Object.entries(FENN).map(([k, [, ad]]) => el("option", { value: k }, ad))),
+    menbe: el("input", { class: "fld", type: "text", placeholder: "Məktəb quizi, 21.10", "aria-label": "Mənbə" }),
+    movzu: el("input", { class: "fld", type: "text", placeholder: "Kvadrat tənliklər", "aria-label": "Mövzu" }),
+    sual: el("textarea", { class: "fld", rows: "2", placeholder: "Sualın qısa mətni", "aria-label": "Sual" }),
+    cavab: el("input", { class: "fld", type: "text", placeholder: "Sənin cavabın", "aria-label": "Sənin cavabın" }),
+    duz: el("input", { class: "fld", type: "text", placeholder: "Düz cavab", "aria-label": "Düz cavab" }),
+    yol: el("input", { class: "fld", type: "text", placeholder: "Bir cümlə", "aria-label": "Düzgün yol" }),
+  };
+  const err = errMsg(), kat = seg(KATS, () => { err.textContent = ""; });
+  Object.values(f).forEach(x => x.addEventListener("input", () => { err.textContent = ""; }));
+  const btn = el("button", { class: "btn", type: "button" }, "Əlavə et");
+  btn.addEventListener("click", () => {
+    const v = k => f[k].value.trim();
+    if (!v("sual")) { err.textContent = "Sualı yaz."; f.sual.focus(); return; }
+    if (!v("duz")) { err.textContent = "Düz cavabı yaz."; f.duz.focus(); return; }
+    if (!kat.value()) { err.textContent = "Səhvin növünü seç."; return; }
+    if (v("yol").length < 8) { err.textContent = "Düzgün yolu bir cümlə ilə yaz."; f.yol.focus(); return; }
+    Skilly.sehv({ id: "el-" + Date.now(), fenn: v("fenn"), menbe: v("menbe") || "Kağız", movzu: v("movzu"), sual: v("sual"), cavab: v("cavab"), duz: v("duz"), kat: kat.value(), yol: v("yol"), status: "aciq" });
+    redraw();
+  });
+  const row = (label, x) => el("label", { class: "e-row" }, el("span", { class: "e-lbl" }, label), x);
+  return el("div", { class: "e-card" },
+    el("div", { class: "e-grid" }, row("Fənn", f.fenn), row("Mənbə", f.menbe), row("Mövzu", f.movzu)),
+    row("Sual", f.sual), el("div", { class: "e-grid" }, row("Sənin cavabın", f.cavab), row("Düz cavab", f.duz)),
+    el("div", { class: "e-lbl" }, "Niyə səhv oldu?"), kat, row("Düzgün yol", f.yol), err, el("div", { class: "e-act" }, btn));
+}
+
+async function pageSehv() {
+  const body = el("div"), sync = el("p", { class: "lead" });
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Səhv jurnalı"),
+    el("p", { class: "lead" }, "Dərslərdə və sınaqlarda səhv etdiyin suallar özü bura düşür. Sən yalnız səhvin növünü seçirsən və düzgün yolu bir cümlə ilə yazırsan. Sual bir həftə sonra, sonra bir ay sonra yenə gəlir. İki dəfə düz həll edəndə səhv bağlanır."),
+    sync, body);
+  await shell(content);
+  function draw() {
+    const all = Skilly.all(), t = Skilly.today(), month = t.slice(0, 7);
+    const yeni = all.filter(e => e.status === "yeni");
+    const due = all.filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= t);
+    const open = all.filter(e => e.status !== "baglandi");
+    const thisMonth = all.filter(e => (e.tarix || "").startsWith(month));
+    const metric = (label, v) => el("div", { class: "metric" }, el("small", {}, label), el("b", {}, String(v)));
+    const sec = (title, kids, more) => el("section", { class: "e-sec" }, el("div", { class: "head" }, el("h2", {}, title), more ? el("span", { class: "more" }, more) : null), ...kids);
+    body.replaceChildren(
+      el("div", { class: "metrics" }, metric("Təhlil gözləyir", yeni.length), metric("Bu gün təkrar", due.length), metric("Açıq", open.length), metric("Bu ay", thisMonth.length)),
+      sec("Təhlil gözləyir", yeni.length ? [el("div", { class: "e-list" }, ...yeni.map(e => analyseCard(e, draw)))] : [el("p", { class: "empty" }, "Hamısı təhlil olunub.")]),
+      sec("Təkrar vaxtıdır", due.length ? [el("div", { class: "e-list" }, ...due.map(e => redoCard(e, draw)))] : [el("p", { class: "empty" }, "Bu gün təkrar yoxdur.")]),
+      sec("Kağızdakı səhvi əlavə et", [addForm(draw)], "quiz, FRİTL, DİM sınağı"),
+      sec("Bu ay növlər üzrə", [el("div", { class: "metrics" }, ...Object.entries(KATS).map(([k, l]) => metric(l, thisMonth.filter(e => e.kat === k).length)))]),
+      sec("Hamısı", all.length ? [el("div", { class: "tbl" }, el("table", {},
+        el("thead", {}, el("tr", {}, ...["Tarix", "Fənn", "Mənbə", "Növ", "Növbəti təkrar", "Vəziyyət"].map(h => el("th", {}, h)))),
+        el("tbody", {}, ...all.slice().sort((a, b) => (b.tarix || "").localeCompare(a.tarix || "")).map(e => el("tr", {},
+          el("td", {}, dmy(e.tarix)), el("td", {}, (FENN[e.fenn] || [0, e.fenn])[1]), el("td", {}, e.link ? el("a", { href: e.link }, e.menbe) : e.menbe),
+          el("td", {}, KATS[e.kat] || "–"), el("td", {}, dmy(e.novbeti)),
+          el("td", {}, el("span", { class: "st " + (SST[e.status] || SST.yeni)[1] }, (SST[e.status] || SST.yeni)[0])))))))]
+        : [el("p", { class: "empty" }, "Hələ səhv yoxdur.")]));
+  }
+  draw();
+  sync.textContent = (await Skilly.configured()) ? "Google Sheets-ə qoşulub." : "Hələlik yalnız bu cihazda saxlanır. Google Sheets qoşulandan sonra ata da görəcək.";
+  if ((await Skilly.pull()).synced) draw();
+}
+
 async function pageStatic(title, lead, html) {
   const box = el("div", { class: "box" }); box.innerHTML = html;
   await shell(el("div", { style: "margin-top:30px" }, el("h1", {}, title), el("p", { class: "lead" }, lead), box));
@@ -231,6 +367,5 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (p === "dusturlar") pageFormulas();
   else if (p === "sinaqlar") pageStatic("Sınaqlar", "Şənbə 11:00–12:30 vaxt limitli sınaq: bir həftə riyaziyyat, bir həftə fizika.",
     '<p><b>Fizika</b> — <a href="dersler/fizika-mexanika-1.html">Mexanika sınağı 1</a> · 24 tapşırıq, 60 dəq <span class="st st-bag">işlənib: 23/24</span></p><p><b>Riyaziyyat</b> — <span class="empty">növbəti sınaq tezliklə.</span></p>');
-  else if (p === "temrar") pageStatic("Təkrar", "Bağlanmış mövzulardan bir həftə və bir ay sonra 5 qarışıq sual; testlərdə səhv edilən suallar da bura düşür.",
-    '<p class="empty">Hələ bağlanmış mövzu yoxdur — ilk mövzu bağlananda burada suallar görünəcək.</p>');
+  else if (p === "temrar") pageSehv();
 });

@@ -14,7 +14,7 @@
     {"qisa": "Ç.a", "gun": "Çərşənbə axşamı", "tarix": "2026-10-20", "isler": [
       {"saat": "15:00–17:00", "kat": "phys", "is": "FRİTL"},
       {"saat": "18:20–19:20", "kat": "math", "is": "Triqonometriya, Dərs 3", "link": "dersler/triqonometriya-1.html"},
-      {"saat": "19:20–19:50", "kat": "misc", "is": "Səhv jurnalı"}
+      {"saat": "19:20–19:35", "kat": "misc", "is": "Səhv jurnalı", "link": "temrar.html"}
     ]},
     {"qisa": "Çər", "gun": "Çərşənbə", "tarix": "2026-10-21", "isler": [
       {"saat": "16:00–18:00", "kat": "phys", "is": "Maili müstəvi, Dərs 1–4", "link": "dersler/maili-mustevi-1.html"}
@@ -35,7 +35,7 @@
     ]},
     {"qisa": "Baz", "gun": "Bazar", "tarix": "2026-10-25", "isler": [
       {"saat": "11:00–13:00", "kat": "olym", "is": "Olimpiada (tezliklə)"},
-      {"saat": "13:00–13:30", "kat": "misc", "is": "Səhv jurnalı — icmal"},
+      {"saat": "13:00–13:15", "kat": "misc", "is": "Səhvlər: təkrar", "link": "temrar.html"},
       {"saat": "16:00–16:45", "kat": "misc", "is": "Esse (ingiliscə, ~300 söz)"},
       {"saat": "19:50–20:20", "kat": "misc", "is": "Həftəlik baxış + məktublar"}
     ]}
