@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Simmetriya və dönmə dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-simmetriya.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Simmetriya, dönmə</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Koordinatlar üsulu. Hərəkət. Oxşarlıq</div>
+    <h1>Simmetriya, dönmə, fiqurların çevrilməsi</h1>
+    <p>Güzgüdəki əks, fırlanan təkər, ekranda sürüşən şəkil — bunların hamısı fiqurun çevrilməsidir. Koordinat müstəvisində hər çevrilmənin sadə qaydası var: nöqtənin koordinatları necə dəyişir. Bu qaydaları və fiqurların neçə simmetriya oxu olduğunu öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ox simmetriyası</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Mərkəzi simmetriya</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Dönmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Köçürmə, hərəkət</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Ox simmetriyası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kəpənəyin qanadları, ağacın yarpağı, binaların fasadı — çoxu bir xəttə nəzərən simmetrikdir. Vərəqi qatlayıb mürəkkəb ləkəsini basanda o biri yarıda simmetrik iz alınır. Bu xətt <b>simmetriya oxudur</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>A və A' nöqtələri <span class="m">l</span> düz xəttinə nəzərən simmetrikdir, əgər <span class="m">l</span> AA' parçasına perpendikulyardır və onu yarı bölür. Koordinatlarda:</p>
+      <div class="fm">Ox oxuna nəzərən:     (x; y) → (x; −y)
+Oy oxuna nəzərən:     (x; y) → (−x; y)
+x = c düz xəttinə:     (x; y) → (2c − x; y)
+y = c düz xəttinə:     (x; y) → (x; 2c − y)
+y = x düz xəttinə:     (x; y) → (y; x)</div>
+      <div class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="A(3; 2) nöqtəsi, Ox oxuna nəzərən simmetriki (3; −2) və Oy oxuna nəzərən simmetriki (−3; 2)">
+          <line x1="0" y1="100" x2="200" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="100" y1="0" x2="100" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="190" y="94" class="lbl">x</text><text x="106" y="12" class="lbl">y</text>
+          <line x1="160" y1="60" x2="160" y2="140" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="40" y1="60" x2="160" y2="60" stroke="var(--vec)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="160" cy="60" r="4" fill="var(--ink)"/><circle cx="160" cy="140" r="4" fill="var(--accent)"/><circle cx="40" cy="60" r="4" fill="var(--vec)"/>
+          <text x="148" y="50" class="lbl">A(3; 2)</text><text x="122" y="160" class="lbl">(3; −2)</text><text x="10" y="50" class="lbl">(−3; 2)</text>
+        </svg>
+        <div class="cap"><p>Ox oxu "aşağı-yuxarı" güzgüdür — ordinatın işarəsi dəyişir. Oy oxu "sağ-sol" güzgüdür — absisin işarəsi dəyişir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">A(2; −5) nöqtəsinə simmetrik nöqtələr:
+  Ox oxuna nəzərən:  (2; 5)
+  Oy oxuna nəzərən:  (−2; −5)
+  x = 1 düz xəttinə:  (2 · 1 − 2; −5) = (0; −5)
+  y = x düz xəttinə:  (−5; 2)</div>
+
+      <h3><span class="st">4</span> Fiqurların simmetriya oxları</h3>
+      <p>Fiqur <span class="m">l</span> düz xəttinə nəzərən simmetrikdirsə (qatlayanda iki yarı üst-üstə düşür), <span class="m">l</span> onun simmetriya oxudur.</p>
+      <div class="fm">kvadrat                         4 ox
+düzbucaqlı (kvadrat deyil)      2 ox (diaqonallar ox deyil!)
+romb (kvadrat deyil)            2 ox (diaqonallar)
+paraleloqram (adi)              0 ox
+bərabərtərəfli üçbucaq          3 ox
+bərabəryanlı üçbucaq            1 ox
+müxtəliftərəfli üçbucaq         0 ox
+bərabəryanlı trapesiya          1 ox
+düzgün n-bucaqlı                n ox
+parça                           2 ox
+çevrə                           sonsuz sayda ox</div>
+      <div class="life"><b>Həyatdan.</b> Dama dəftərində koordinat sistemi çək, L(4; 3) nöqtəsinə mürəkkəb damızdır, vərəqi x = 1 xətti boyunca qatla. İz <span class="m">(2 · 1 − 4; 3) = (−2; 3)</span> nöqtəsində olacaq. Yoxla: 4 və −2 ədədlərinin ortası 1-dir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ox oxuna nəzərən absisin işarəsini dəyişmək. Yadda saxla: Ox-a nəzərən <b>x qalır</b>.</li>
+        <li>x = c-yə nəzərən sadəcə <span class="m">−x</span> yazmaq. Bu, yalnız c = 0 (Oy oxu) üçün doğrudur.</li>
+        <li>Düzbucaqlının diaqonallarını simmetriya oxu saymaq. Qatlasan, künclər üst-üstə düşmür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ox: (x; −y)    Oy: (−x; y)    x = c: (2c − x; y)
+Kvadrat 4, düzbucaqlı 2, romb 2, paraleloqram 0,
+düzgün n-bucaqlı n.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(−3; 4)-ə Ox oxuna nəzərən simmetrik nöqtə? <span class="ans">(−3; −4).</span></li>
+        <li>B(5; 1)-ə x = 2 düz xəttinə nəzərən simmetrik nöqtə? <span class="ans">(2 · 2 − 5; 1) = (−1; 1).</span></li>
+        <li>Düzgün altıbucaqlının neçə simmetriya oxu var? <span class="ans">6: üçü qarşı təpələrdən, üçü qarşı tərəflərin ortalarından keçir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Mərkəzi simmetriya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Oyun kartını (məsələn, "valet") 180° çevir — şəkil eyni qalır. Belə fiqurların <b>simmetriya mərkəzi</b> var. Çarx, pərvanə, paraleloqram da belədir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>A və A' nöqtələri M nöqtəsinə nəzərən simmetrikdir, əgər M — AA' parçasının <b>ortasıdır</b>. Orta nöqtə düsturundan:</p>
+      <div class="fm">O(0; 0)-a nəzərən:   (x; y) → (−x; −y)
+M(a; b)-yə nəzərən:  (x; y) → (2a − x; 2b − y)
+Mərkəzi tapmaq:      M = ((x + x')/2; (y + y')/2)</div>
+      <div class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="A(4; 3) və A'(−2; −1) nöqtələri M(1; 1) nöqtəsinə nəzərən simmetrikdir">
+          <line x1="0" y1="110" x2="200" y2="110" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="90" y1="0" x2="90" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="190" y="104" class="lbl">x</text><text x="96" y="12" class="lbl">y</text>
+          <line x1="170" y1="50" x2="50" y2="130" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+          <circle cx="170" cy="50" r="4" fill="var(--ink)"/><circle cx="110" cy="90" r="4.5" fill="var(--accent)"/><circle cx="50" cy="130" r="4" fill="var(--vec)"/>
+          <text x="140" y="40" class="lbl">A(4; 3)</text><text x="116" y="84" class="lbl">M(1; 1)</text><text x="6" y="152" class="lbl">A'(−2; −1)</text>
+        </svg>
+        <div class="cap"><p>M — AA' parçasının ortası: (4 + (−2))/2 = 1, (3 + (−1))/2 = 1 ✓</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) A(4; 3), M(1; 1). A' = ?
+   x' = 2 · 1 − 4 = −2,  y' = 2 · 1 − 3 = −1   →  A'(−2; −1)
+
+2) A(5; −2)-yə O-ya nəzərən simmetrik:  (−5; 2)
+
+3) A(1; 5) və A'(7; −1) simmetrikdir. Mərkəz?
+   M = ((1 + 7)/2; (5 + (−1))/2) = (4; 2)</div>
+
+      <h3><span class="st">4</span> Simmetriya mərkəzi olan fiqurlar</h3>
+      <div class="fm">VAR:  paraleloqram, düzbucaqlı, romb, kvadrat
+      (diaqonalların kəsişmə nöqtəsi),
+      çevrə (mərkəzi), parça (ortası),
+      düzgün n-bucaqlı — yalnız n cüt olanda.
+YOX:  istənilən üçbucaq, trapesiya,
+      düzgün beşbucaqlı, yeddibucaqlı …</div>
+      <div class="life"><b>Həyatdan.</b> Velosiped çarxının mərkəzi simmetriya mərkəzidir: çarxı 180° döndərsən, şəkil dəyişmir. Ona görə çarxın hər mili qarşı tərəfdə "cüt" mil ilə tarazlanır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>M-ə nəzərən simmetriyada sadəcə işarələri dəyişmək. Bu, yalnız M = O(0; 0) üçün doğrudur.</li>
+        <li><span class="m">2a − x</span> əvəzinə <span class="m">a − x</span> yazmaq.</li>
+        <li>Bərabərtərəfli üçbucağın simmetriya mərkəzi var saymaq. 180° döndərsən, təpə aşağı düşür — üst-üstə düşmür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">O-ya nəzərən: (−x; −y)
+M(a; b)-yə nəzərən: (2a − x; 2b − y)
+Mərkəz = AA'-nin ortası.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(−2; 7)-yə O-ya nəzərən simmetrik nöqtə? <span class="ans">(2; −7).</span></li>
+        <li>A(3; 0)-a M(1; 2)-yə nəzərən simmetrik nöqtə? <span class="ans">(2 − 3; 4 − 0) = (−1; 4).</span></li>
+        <li>Bərabəryanlı trapesiyanın simmetriya mərkəzi varmı? <span class="ans">Yox. Onun yalnız bir simmetriya oxu var.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Koordinat başlanğıcı ətrafında dönmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Telefonu yan çevirəndə şəkil 90° dönür. Saat əqrəbi 15 dəqiqədə 90° dönür. Dönmədə bir nöqtə (mərkəz) yerində qalır, qalan nöqtələr onun ətrafında eyni bucaq qədər fırlanır və mərkəzdən məsafələri dəyişmir.</p>
+
+      <h3><span class="st">2</span> Qaydalar (mərkəz O(0; 0))</h3>
+      <div class="fm">90° saat əqrəbinin əksinə:        (x; y) → (−y; x)
+90° saat əqrəbi istiqamətində:    (x; y) → (y; −x)
+180° (istənilən istiqamətdə):    (x; y) → (−x; −y)
+270° əksinə = 90° saat əqrəbi istiqamətində</div>
+      <p>Yadda saxlamaq üçün: 90°-də koordinatlar <b>yerini dəyişir</b> və biri işarəsini dəyişir. Hansı? Yoxla: (1; 0) nöqtəsi əksinə 90° dönəndə (0; 1) olmalıdır — yuxarı qalxır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="A(3; 1) nöqtəsi O ətrafında döndərilir: əksinə 90° (−1; 3), 180° (−3; −1), saat istiqamətində 90° (1; −3)">
+          <line x1="0" y1="100" x2="200" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="100" y1="0" x2="100" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="190" y="94" class="lbl">x</text><text x="106" y="12" class="lbl">y</text>
+          <circle cx="100" cy="100" r="63.2" fill="none" stroke="var(--grid)" stroke-width="1.5"/>
+          <line x1="100" y1="100" x2="160" y2="80" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="100" y1="100" x2="80" y2="40" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="100" y1="100" x2="40" y2="120" stroke="var(--vec)" stroke-width="2"/>
+          <line x1="100" y1="100" x2="120" y2="160" stroke="var(--muted)" stroke-width="2"/>
+          <circle cx="160" cy="80" r="4" fill="var(--ink)"/><circle cx="80" cy="40" r="4" fill="var(--accent)"/><circle cx="40" cy="120" r="4" fill="var(--vec)"/><circle cx="120" cy="160" r="4" fill="var(--muted)"/>
+          <text x="150" y="72" class="lbl">A(3; 1)</text><text x="30" y="34" class="lbl">(−1; 3)</text><text x="6" y="140" class="lbl">(−3; −1)</text><text x="126" y="176" class="lbl">(1; −3)</text>
+        </svg>
+        <div class="cap"><p>Hər dönmədə OA = √10 qalır, bucaq isə 90° artır. Dörd nöqtə kvadratın təpələridir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">A(3; 1):
+  əksinə 90°:     (−1; 3)
+  180°:           (−3; −1)
+  saat ilə 90°:   (1; −3)
+Yoxlama (əksinə 90°): OA və OA' perpendikulyardır,
+  3 · (−1) + 1 · 3 = 0 ✓, uzunluqlar √10 və √10 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Saatın mərkəzini O(0; 0) götür. Dəqiqə əqrəbinin ucu saat 12-ni göstərəndə (0; 5)-dədir. 15 dəqiqədən sonra o, saat əqrəbi istiqamətində 90° dönür: <span class="m">(x; y) → (y; −x)</span>: <span class="m">(0; 5) → (5; 0)</span> — saat 3-ün yeri. Düzdür!</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İstiqaməti qarışdırmaq. "Saat əqrəbinin əksinə" — müsbət istiqamətdir: (1; 0) → (0; 1).</li>
+        <li>90°-də yalnız işarəni dəyişmək, koordinatların yerini dəyişməmək. 90° dönmə simmetriya deyil.</li>
+        <li>180°-ni Ox-a nəzərən simmetriya ilə qarışdırmaq. 180° — iki koordinatın da işarəsi dəyişir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">əksinə 90°: (−y; x)    saat ilə 90°: (y; −x)
+180°: (−x; −y) — mərkəzi simmetriya ilə eynidir.
+Yoxla: (1; 0) → əksinə 90° → (0; 1).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>(2; 5) əksinə 90° dönür. Nəticə? <span class="ans">(−5; 2).</span></li>
+        <li>(−4; 1) 180° dönür. Nəticə? <span class="ans">(4; −1).</span></li>
+        <li>(0; 3) saat əqrəbi istiqamətində 90° dönür. Nəticə? <span class="ans">(3; 0).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Paralel köçürmə və fiqurların çevrilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kompüter oyununda personaj sağa-sola, yuxarı-aşağı gedir, güzgüdən əks olunur, fırlanır. Proqram bütün bunları koordinatlar üzərində edir. İndi sən də bacarırsan — qalır köçürmə və ardıcıl çevrilmələr.</p>
+
+      <h3><span class="st">2</span> Paralel köçürmə</h3>
+      <p>Bütün nöqtələr eyni istiqamətdə, eyni məsafəyə sürüşür:</p>
+      <div class="fm">(x; y) → (x + a; y + b)
+a > 0 — sağa, a &lt; 0 — sola
+b > 0 — yuxarı, b &lt; 0 — aşağı</div>
+      <div class="ex">A(1; 2) → A'(4; 0) köçürməsi verilib. B(−2; 5) hara keçir?
+   a = 4 − 1 = 3,  b = 0 − 2 = −2
+   B' = (−2 + 3; 5 − 2) = (1; 3)</div>
+
+      <h3><span class="st">3</span> Hərəkət</h3>
+      <p>Ox simmetriyası, mərkəzi simmetriya, dönmə və paralel köçürmə — hamısı <b>hərəkətdir</b>: nöqtələr arasındakı məsafəni saxlayır. Ona görə fiqur özünə bərabər fiqura keçir: tərəflər, bucaqlar, sahə dəyişmir.</p>
+      <p>Bir neçə çevrilmə ardıcıl tətbiq ediləndə <b>sıra önəmlidir</b>:</p>
+      <div class="ex">A(2; 3).
+Əvvəl Oy-ə nəzərən, sonra 1 vahid sağa:   (−2; 3) → (−1; 3)
+Əvvəl 1 vahid sağa, sonra Oy-ə nəzərən:   (3; 3) → (−3; 3)
+Nəticələr fərqlidir!</div>
+      <div class="life"><b>Həyatdan.</b> Oyunda personaj A(−3; 1)-dədir. 5 vahid sağa və 2 vahid aşağı gedir: <span class="m">(2; −1)</span>. Sonra "güzgü" onu Ox oxuna nəzərən əks etdirir: <span class="m">(2; 1)</span>. Proqramçı məhz bu iki sətri yazır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Köçürməni tərsinə tapmaq: <span class="m">a = x − x'</span>. Düzü: <span class="m">a = x' − x</span> (yeni − köhnə).</li>
+        <li>Sağa/sola köçürməni ordinata tətbiq etmək. Sağ-sol — x, yuxarı-aşağı — y.</li>
+        <li>Ardıcıl çevrilmələrin sırasını dəyişmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Köçürmə: (x + a; y + b),  a = x' − x,  b = y' − y
+Hərəkət məsafəni, bucağı, sahəni saxlayır.
+Ardıcıl çevrilmələr — sıra ilə, addım-addım.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(3; −1) 2 vahid sağa və 5 vahid yuxarı köçürülür. Nəticə? <span class="ans">(5; 4).</span></li>
+        <li>Köçürmə O(0; 0)-ı (2; −3)-ə keçirir. B(4; 4) hara keçir? <span class="ans">(6; 1).</span></li>
+        <li>A(1; 4) əvvəl Oy-ə nəzərən əks olunur, sonra O ətrafında 180° dönür. Nəticə? <span class="ans">(−1; 4) → (1; −4).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

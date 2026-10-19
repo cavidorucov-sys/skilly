@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paralelepiped və kub dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-paralelepiped.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Paralelepiped və kub</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Çoxüzlülər, onların səthi və həcmi</div>
+    <h1>Düzbucaqlı paralelepiped və kub: səth və həcm</h1>
+    <p>Kərpic, kitab, otaq, akvarium, qutu — hamısı düzbucaqlı paralelepipeddir. Onun üç ölçüsü var: uzunluq, en, hündürlük. Bu üç ədədlə səthin sahəsini (nə qədər rəng, kağız lazımdır), həcmi (nə qədər su, yük yerləşir) və diaqonalı (içinə ən uzun nə sığar) tapırsan.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Elementlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Səthin sahəsi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Həcm, vahidlər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Diaqonal, boyalı kub</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Düzbucaqlı paralelepiped və kub: elementləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Usta qutunun karkasını məftildən düzəldir. Nə qədər məftil lazımdır? Bunun üçün qutunun neçə tili olduğunu və onların uzunluqlarını bilmək kifayətdir.</p>
+
+      <h3><span class="st">2</span> Əsas anlayışlar</h3>
+      <p><b>Düzbucaqlı paralelepiped</b> — 6 üzünün hamısı düzbucaqlı olan çoxüzlüdür. Üzlərin kəsişdiyi parçalar <b>tillər</b>, tillərin görüşdüyü nöqtələr <b>təpələrdir</b>. Bir təpədən çıxan üç tilin uzunluqları — paralelepipedin <b>ölçüləridir</b>: <span class="m">a</span> (uzunluq), <span class="m">b</span> (en), <span class="m">c</span> (hündürlük).</p>
+      <div class="fm">6 üz, 12 til, 8 təpə
+Qarşı üzlər bərabərdir.
+Hər ölçüdən 4 til var:  tillərin cəmi = 4(a + b + c)
+Kub: a = b = c, 6 üzü bərabər kvadratdır; tillərin cəmi = 12a</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABCDA1B1C1D1 düzbucaqlı paralelepipedi, ölçüləri a, b, c">
+          <polygon points="40,160 190,160 190,80 40,80" fill="var(--accent-soft)"/>
+          <polygon points="40,80 190,80 250,40 100,40" fill="var(--accent-soft)" fill-opacity=".6"/>
+          <polygon points="190,160 250,120 250,40 190,80" fill="var(--accent-soft)" fill-opacity=".8"/>
+          <path d="M40 160H190V80H40ZM190 160L250 120V40L190 80M40 80L100 40H250" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M40 160L100 120H250M100 120V40" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 4"/>
+          <text x="26" y="176" class="lbl">A</text><text x="190" y="178" class="lbl">B</text><text x="256" y="128" class="lbl">C</text><text x="104" y="136" class="lbl">D</text>
+          <text x="20" y="78" class="lbl">A₁</text><text x="172" y="96" class="lbl">B₁</text><text x="254" y="36" class="lbl">C₁</text><text x="84" y="34" class="lbl">D₁</text>
+          <text x="112" y="180" class="lbl">a</text><text x="226" y="152" class="lbl">b</text><text x="26" y="124" class="lbl">c</text>
+        </svg>
+        <div class="cap"><p>Alt oturacaq ABCD, üst oturacaq A₁B₁C₁D₁. Qırıq xətlər arxada qalan, görünməyən tillərdir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Ölçülər 5, 3, 2. Bütün tillərin cəmi?
+   4 · (5 + 3 + 2) = 4 · 10 = 40
+
+2) Kubun bütün tillərinin cəmi 60. Kubun tili?
+   12a = 60  →  a = 5</div>
+      <div class="life"><b>Həyatdan.</b> Ölçüləri 40 sm × 30 sm × 20 sm olan qutunun karkası üçün <span class="m">4 · (40 + 30 + 20) = 360</span> sm, yəni 3,6 m məftil lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tillərin cəmini <span class="m">a + b + c</span> saymaq. Hər ölçüdən <b>dörd</b> til var.</li>
+        <li>Kubun tillərinin sayını 6 saymaq. 6 — üzlərin sayıdır, tillər 12-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">6 üz, 12 til, 8 təpə.
+Tillərin cəmi: 4(a + b + c); kubda 12a.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Paralelepipedin neçə tili var? <span class="ans">12.</span></li>
+        <li>Ölçüləri 4, 5, 6 olan paralelepipedin tillərinin cəmi? <span class="ans">4 · 15 = 60.</span></li>
+        <li>Kubun tillərinin cəmi 48-dir. Tili? <span class="ans">48 : 12 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Səthin sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hədiyyə qutusunu bükmək üçün nə qədər kağız, otağın divarlarını rəngləmək üçün nə qədər boya lazımdır? Cavab — səthin sahəsidir: bütün üzlərin sahələrinin cəmi.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p>Üzlər cüt-cüt bərabərdir: iki dənə <span class="m">a × b</span>, iki dənə <span class="m">b × c</span>, iki dənə <span class="m">a × c</span>.</p>
+      <div class="fm">Tam səth:  S = 2(ab + bc + ac)
+Yan səth (4 yan üz, oturacaqsız):
+           S yan = 2(a + b) · c = oturacağın perimetri · hündürlük
+Kub:       S = 6a²</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Ölçülər 5, 3, 2 (hündürlük 2):
+   S = 2(5·3 + 3·2 + 5·2) = 2(15 + 6 + 10) = 62
+   S yan = 2(5 + 3) · 2 = 32
+
+2) Kubun tili 4:   S = 6 · 16 = 96
+
+3) Kubun səthi 150. Tili?
+   6a² = 150  →  a² = 25  →  a = 5</div>
+      <div class="life"><b>Həyatdan.</b> Otağın ölçüləri 5 m × 4 m, hündürlüyü 3 m. Divarlar — yan səthdir: <span class="m">2(5 + 4) · 3 = 54</span> m². Qapı və pəncərə birlikdə 4 m²-dirsə, 50 m² rənglənəcək. 1 litr boya 10 m²-yə çatırsa, 5 litr lazımdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>2-yə vurmağı unutmaq: <span class="m">ab + bc + ac</span> — bu, səthin yalnız yarısıdır.</li>
+        <li>Üzün sahəsi əvəzinə tərəfləri toplamaq: <span class="m">a + b</span> yox, <span class="m">a · b</span>.</li>
+        <li>Divar məsələsində tavan və döşəməni də saymaq. Divarlar — yalnız yan səthdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S = 2(ab + bc + ac)
+S yan = 2(a + b)·c
+Kub: S = 6a²</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ölçüləri 2, 3, 4 olan paralelepipedin tam səthi? <span class="ans">2(6 + 12 + 8) = 52.</span></li>
+        <li>Tili 7 olan kubun səthi? <span class="ans">6 · 49 = 294.</span></li>
+        <li>Kubun səthi 54-dür. Tili? <span class="ans">a² = 9, a = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Həcm və həcm vahidləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Akvariuma neçə litr su tutar? Hovuzu doldurmaq üçün neçə ton su lazımdır? Həcm fiqurun içinə nə qədər "sığdığını" göstərir və vahid kublarla ölçülür.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p>Oturacağa <span class="m">a · b</span> vahid kub düzülür, hündürlüyə <span class="m">c</span> qat — cəmi <span class="m">a · b · c</span>.</p>
+      <div class="fm">Paralelepiped:  V = a · b · c = S oturacaq · h
+Kub:            V = a³
+Til k dəfə artanda: səth k² dəfə, həcm k³ dəfə artır.</div>
+
+      <h3><span class="st">3</span> Həcm vahidləri</h3>
+      <p>1 m = 10 dm olduğu üçün 1 m³ kubun içinə <span class="m">10 · 10 · 10 = 1000</span> dənə 1 dm³ kub yerləşir.</p>
+      <div class="fm">1 m³  = 1000 dm³ = 1 000 000 sm³
+1 dm³ = 1000 sm³
+1 l   = 1 dm³ = 1000 sm³,   1 ml = 1 sm³
+1 m³  = 1000 l  (suyun kütləsi ≈ 1 ton)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Ölçülər 5, 3, 2:   V = 5 · 3 · 2 = 30
+2) Kubun tili 3:      V = 27
+3) V = 60, a = 5, b = 3.  c = 60 : 15 = 4
+4) Akvarium 50 sm × 30 sm × 40 sm:
+   V = 60 000 sm³ = 60 dm³ = 60 l
+5) 2,5 m³ = 2500 dm³ = 2500 l</div>
+      <div class="life"><b>Həyatdan.</b> Hovuz 25 m × 10 m, dərinliyi 2 m: <span class="m">V = 500</span> m³ = 500 000 l, yəni 500 ton su. Saatda 50 m³ su verən nasos onu 10 saata doldurar.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>1 m³ = 100 dm³ yazmaq. Həcmdə əmsal kubdur: <span class="m">10³ = 1000</span>.</li>
+        <li>Ölçüləri müxtəlif vahidlərdə vurmaq (biri m, biri sm). Əvvəl hamısını eyni vahidə çevir.</li>
+        <li>Til 2 dəfə artanda həcmi 2 dəfə artırmaq. Həcm <span class="m">2³ = 8</span> dəfə artır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">V = abc,  kub V = a³
+1 l = 1 dm³ = 1000 sm³,  1 m³ = 1000 l</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ölçüləri 3, 4, 5 olan paralelepipedin həcmi? <span class="ans">60.</span></li>
+        <li>2 m³ neçə litrdir? <span class="ans">2000 l.</span></li>
+        <li>Kubun həcmi 125-dir. Tili? <span class="ans">5 (5³ = 125).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Diaqonal və rənglənmiş kub</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Uzun çətiri çamadana qoymaq istəyirsən. Çamadanın heç bir tərəfi çətir qədər uzun deyil, amma çətir çəp vəziyyətdə — bir küncdən qarşı küncə — sığa bilər. Bu ən uzun parça paralelepipedin <b>diaqonalıdır</b>.</p>
+
+      <h3><span class="st">2</span> Diaqonal düsturu</h3>
+      <p>Diaqonal <span class="m">AC₁</span> qarşı təpələri birləşdirir. Pifaqor teoremini iki dəfə tətbiq et: əvvəl oturacağın diaqonalı <span class="m">AC² = a² + b²</span>, sonra düzbucaqlı <span class="m">ACC₁</span> üçbucağından <span class="m">AC₁² = AC² + c²</span>.</p>
+      <div class="fm">d² = a² + b² + c²
+d = √(a² + b² + c²)
+Kub: d = a√3</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Paralelepipedin AC1 diaqonalı və oturacağın AC diaqonalı">
+          <polygon points="40,160 190,160 190,80 40,80" fill="var(--accent-soft)"/>
+          <path d="M40 160H190V80H40ZM190 160L250 120V40L190 80M40 80L100 40H250" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M40 160L100 120H250M100 120V40" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 4"/>
+          <line x1="40" y1="160" x2="250" y2="120" stroke="var(--vec)" stroke-width="2" stroke-dasharray="6 4"/>
+          <line x1="40" y1="160" x2="250" y2="40" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="26" y="176" class="lbl">A</text><text x="256" y="128" class="lbl">C</text><text x="254" y="36" class="lbl">C₁</text>
+          <text x="112" y="180" class="lbl">a</text><text x="226" y="152" class="lbl">b</text><text x="26" y="124" class="lbl">c</text><text x="132" y="96" class="lbl">d</text>
+        </svg>
+        <div class="cap"><p>Rəngli qırıq xətt — oturacağın diaqonalı AC, qalın xətt — paralelepipedin diaqonalı AC₁ = d.</p></div>
+      </div>
+      <div class="ex">1) Ölçülər 2, 3, 6:   d = √(4 + 9 + 36) = √49 = 7
+2) Ölçülər 4, 5, 6:   d = √(16 + 25 + 36) = √77
+3) Kubun tili 5:      d = 5√3
+4) Kubun diaqonalı 4√3:  a = 4,  V = 64</div>
+
+      <h3><span class="st">3</span> Rənglənmiş kub</h3>
+      <p>Tili <span class="m">n</span> olan kubun səthi rənglənib, sonra o, <span class="m">n³</span> kiçik kuba kəsilib. Kiçik kubların neçə üzü rənglidir?</p>
+      <div class="fm">3 üzü rəngli:  8          (təpələrdə)
+2 üzü rəngli:  12(n − 2)   (tillərdə, təpəsiz)
+1 üzü rəngli:  6(n − 2)²   (üzlərin ortasında)
+rəngsiz:       (n − 2)³    (içəridə)</div>
+      <div class="ex">n = 4 (64 kubcuq):
+  3 üzü: 8,  2 üzü: 12 · 2 = 24,  1 üzü: 6 · 4 = 24,  rəngsiz: 2³ = 8
+  Yoxla: 8 + 24 + 24 + 8 = 64 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Çamadanın ölçüləri 60 sm × 40 sm × 20 sm. Diaqonal: <span class="m">√(3600 + 1600 + 400) = √5600 ≈ 74,8</span> sm. Deməli, 75 sm-lik çətir sığmayacaq, 70 sm-lik isə sığacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Diaqonalda yalnız iki ölçünü götürmək (<span class="m">√(a² + b²)</span> — bu, üzün diaqonalıdır).</li>
+        <li>Kökü almadan <span class="m">d²</span>-ni cavab yazmaq.</li>
+        <li>Rənglənmiş kubda kənarlardan <span class="m">n − 1</span> çıxmaq. Hər tildə iki təpə kubu var — <span class="m">n − 2</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">d = √(a² + b² + c²),  kub d = a√3
+Rənglənmiş kub: 8;  12(n − 2);  6(n − 2)²;  (n − 2)³</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ölçüləri 3, 4, 12 olan paralelepipedin diaqonalı? <span class="ans">√(9 + 16 + 144) = √169 = 13.</span></li>
+        <li>Tili 2 olan kubun diaqonalı? <span class="ans">2√3.</span></li>
+        <li>Tili 5 olan rənglənmiş kub 125 kubcuğa kəsilib. Neçəsinin yalnız bir üzü rənglidir? <span class="ans">6 · (5 − 2)² = 54.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

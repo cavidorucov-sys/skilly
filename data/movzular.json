@@ -318,25 +318,29 @@
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Oxşar üçbucaqlar",
    "status": "yox",
-   "menbe": "DİM: Oxşarlıq + Üçbucaqlar"
+   "menbe": "DİM: Oxşarlıq + Üçbucaqlar",
+   "ders": "dersler/oxsar-ucbucaqlar.html"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Koordinatlar üsulu: məsafə, orta nöqtə, düz xətt və çevrə tənliyi",
    "status": "yox",
-   "menbe": "DİM: Koordinatlar üsulu"
+   "menbe": "DİM: Koordinatlar üsulu",
+   "ders": "dersler/koordinatlar-usulu.html"
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",
    "ad": "Simmetriya, dönmə, fiqurların çevrilməsi",
    "status": "yox",
-   "menbe": "DİM: Hərəkət"
+   "menbe": "DİM: Hərəkət",
+   "ders": "dersler/simmetriya.html"
   },
   {
    "bolme": "Çoxüzlülər",
    "ad": "Düzbucaqlı paralelepiped və kub: səth və həcm",
    "status": "yox",
-   "menbe": "DİM: Çoxüzlülər"
+   "menbe": "DİM: Çoxüzlülər",
+   "ders": "dersler/paralelepiped.html"
   }
  ],
  "olimpiada": [

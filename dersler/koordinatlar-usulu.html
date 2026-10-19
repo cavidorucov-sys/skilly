@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Koordinatlar üsulu dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-koordinatlar-usulu.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Koordinatlar üsulu</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Koordinatlar üsulu. Hərəkət. Oxşarlıq</div>
+    <h1>Koordinatlar üsulu: məsafə, orta nöqtə, düz xətt və çevrə tənliyi</h1>
+    <p>Nöqtəni iki ədədlə — koordinatları ilə — yazanda həndəsə hesaba çevrilir. Məsafəni xətkeşsiz, orta nöqtəni pərgarsız tapırsan; düz xətt və çevrə isə tənliyə çevrilir. Bu dörd düstur imtahanda hər il çıxır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Məsafə</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Orta nöqtə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düz xətt</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İki nöqtə arasındakı məsafə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Xəritə tətbiqi iki ünvan arasındakı "quş uçuşu" məsafəni dərhal göstərir. O, heç nə ölçmür — sadəcə iki nöqtənin koordinatlarını bir düsturda yerinə qoyur. Bu düsturu indi öyrənəcəksən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Nöqtə <span class="m">A(x; y)</span> kimi yazılır: birinci ədəd — absis (x), ikinci — ordinat (y). A və B nöqtələrini birləşdir, sonra A-dan üfüqi, B-dən şaquli xətt çək. Düzbucaqlı üçbucaq alınır: katetləri koordinatların fərqləridir, hipotenuzu isə AB-dir. Pifaqor teoremi qalanını edir.</p>
+      <div class="fm">A(x₁; y₁), B(x₂; y₂):
+AB = √((x₂ − x₁)² + (y₂ − y₁)²)
+O(0; 0)-dan A(x; y)-ə qədər: OA = √(x² + y²)</div>
+      <div class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="A(1; 2) və B(4; 6) nöqtələri; üfüqi katet 3, şaquli katet 4, AB = 5">
+          <line x1="0" y1="174" x2="200" y2="174" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="42" y1="0" x2="42" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="190" y="168" class="lbl">x</text><text x="48" y="12" class="lbl">y</text><text x="30" y="188" class="lbl">0</text>
+          <polygon points="64,130 130,130 130,42" fill="var(--accent-soft)" stroke="none"/>
+          <line x1="64" y1="130" x2="130" y2="130" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="130" y1="130" x2="130" y2="42" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="64" y1="130" x2="130" y2="42" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="64" cy="130" r="4" fill="var(--ink)"/><circle cx="130" cy="42" r="4" fill="var(--ink)"/>
+          <text x="40" y="128" class="lbl">A</text><text x="138" y="40" class="lbl">B</text>
+          <text x="92" y="148" class="lbl">3</text><text x="138" y="92" class="lbl">4</text><text x="78" y="80" class="lbl">5</text>
+        </svg>
+        <div class="cap"><p>A(1; 2), B(4; 6): üfüqi katet 4 − 1 = 3, şaquli katet 6 − 2 = 4. AB = √(9 + 16) = 5.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) A(1; 2), B(4; 6)
+   x₂ − x₁ = 3,  y₂ − y₁ = 4
+   AB = √(9 + 16) = √25 = 5
+
+2) A(−2; 3), B(4; −1)
+   x₂ − x₁ = 4 − (−2) = 6,  y₂ − y₁ = −1 − 3 = −4
+   AB = √(36 + 16) = √52 = √(4 · 13) = 2√13
+
+3) O(0; 0) və A(5; −12)
+   OA = √(25 + 144) = √169 = 13</div>
+      <div class="life"><b>Həyatdan.</b> Şəhər xəritəsində hər vahid 100 m-dir. Ev E(1; 1), məktəb M(7; 9) nöqtəsindədir. Düz xətt boyunca məsafə: <span class="m">√(6² + 8²) = 10</span> vahid, yəni 1000 m. Küçələrlə yol bundan uzun olacaq, amma dron məhz 1 km uçacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi ədədi çıxanda işarəni itirmək: <span class="m">4 − (−2) = 6</span>, 2 yox.</li>
+        <li>Fərqləri toplayıb sonra kvadrata yüksəltmək: <span class="m">(6 + (−4))² = 4</span> — səhvdir. Hər fərq <b>ayrıca</b> kvadrata yüksəlir.</li>
+        <li>Kökü almağı unutmaq: <span class="m">AB² = 25</span> → AB = 5, 25 yox. Kökü sadələşdir: <span class="m">√52 = 2√13</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AB = √((x₂ − x₁)² + (y₂ − y₁)²)
+Fərqlərin işarəsi önəmli deyil (kvadrat müsbətdir),
+amma fərqi düz hesabla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>O(0; 0) və A(6; 8) arasındakı məsafə? <span class="ans">√(36 + 64) = 10.</span></li>
+        <li>A(−1; 2), B(2; −2). AB = ? <span class="ans">√(3² + (−4)²) = √25 = 5.</span></li>
+        <li>A(1; 1), B(3; 5). AB = ? <span class="ans">√(4 + 16) = √20 = 2√5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Parçanın orta nöqtəsinin koordinatları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki dost iki fərqli yerdən çıxıb yolun tən ortasında görüşmək istəyir. Görüş nöqtəsi harada olacaq? Cavab sadədir — koordinatların ədədi ortası.</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fm">A(x₁; y₁), B(x₂; y₂), M — AB-nin ortası:
+x = (x₁ + x₂)/2,   y = (y₁ + y₂)/2</div>
+      <p>Tərsinə: ortası M(x; y) və bir ucu A(x₁; y₁) məlumdursa, o biri uc:</p>
+      <div class="fm">x₂ = 2x − x₁,   y₂ = 2y − y₁</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) A(−3; 5), B(7; 1)
+   x = (−3 + 7)/2 = 2,  y = (5 + 1)/2 = 3   →  M(2; 3)
+
+2) A(2; −1), ortası M(5; 3). B = ?
+   x₂ = 2 · 5 − 2 = 8,  y₂ = 2 · 3 − (−1) = 7   →  B(8; 7)
+
+3) ABCD paraleloqramı: A(1; 1), B(5; 2), C(6; 6). D = ?
+   Paraleloqramın diaqonalları kəsişmə nöqtəsində yarı bölünür:
+   AC-nin ortası = BD-nin ortası.
+   AC-nin ortası: (3,5; 3,5)
+   D: x = 2 · 3,5 − 5 = 2,  y = 2 · 3,5 − 2 = 5   →  D(2; 5)</div>
+      <div class="life"><b>Həyatdan.</b> Fikrət A(−2; 4), dostu B(6; −2) nöqtəsindədir (1 vahid = 100 m). Görüş yeri: <span class="m">((−2 + 6)/2; (4 + (−2))/2) = (2; 1)</span>. Hər biri <span class="m">√(4² + 3²) = 5</span> vahid, yəni 500 m yol gedəcək.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Koordinatları toplamaq əvəzinə çıxmaq: orta nöqtədə <b>cəm</b>, məsafədə <b>fərq</b> var.</li>
+        <li>2-yə bölməyi unutmaq.</li>
+        <li>Ucu taparkən sadəcə <span class="m">x − x₁</span> yazmaq. Düzü: <span class="m">2x − x₁</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Orta nöqtə = koordinatların ədədi ortası
+M = ((x₁ + x₂)/2; (y₁ + y₂)/2)
+Uc: B = (2x − x₁; 2y − y₁)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(4; −2), B(−2; 6). Orta nöqtə? <span class="ans">((4 − 2)/2; (−2 + 6)/2) = (1; 2).</span></li>
+        <li>A(0; 3), ortası M(2; 0). B = ? <span class="ans">(2 · 2 − 0; 2 · 0 − 3) = (4; −3).</span></li>
+        <li>A(1; 2), B(4; 7). Orta nöqtənin absisi? <span class="ans">(1 + 4)/2 = 2,5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İki nöqtədən keçən düz xəttin tənliyi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Taksi 2 km üçün 3 manat, 6 km üçün 5 manat alır. Qiymət məsafədən xətti asılıdırsa, iki məlumatdan bütün qiymət cədvəlini qurmaq olar: iki nöqtə bir düz xətti tam təyin edir.</p>
+
+      <h3><span class="st">2</span> Bucaq əmsalı və tənlik</h3>
+      <p>Şaquli olmayan hər düz xəttin tənliyi <span class="m">y = kx + b</span> şəklindədir. <span class="m">k</span> — bucaq əmsalıdır: x 1 vahid artanda y nə qədər dəyişir. <span class="m">b</span> — düz xəttin Oy oxunu kəsdiyi nöqtənin ordinatıdır.</p>
+      <div class="fm">A(x₁; y₁), B(x₂; y₂), x₁ ≠ x₂:
+k = (y₂ − y₁)/(x₂ − x₁)
+b = y₁ − k·x₁</div>
+      <p>Əgər <span class="m">x₁ = x₂</span>-dirsə, düz xətt şaquli olur: <span class="m">x = x₁</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) A(1; 3), B(3; 7)
+   k = (7 − 3)/(3 − 1) = 4/2 = 2
+   b = 3 − 2 · 1 = 1          →  y = 2x + 1
+   Yoxla B ilə: 2 · 3 + 1 = 7 ✓
+
+2) A(−2; 5), B(4; 2)
+   k = (2 − 5)/(4 − (−2)) = −3/6 = −1/2
+   b = 5 − (−1/2) · (−2) = 5 − 1 = 4   →  y = −(1/2)x + 4
+   Yoxla B ilə: −2 + 4 = 2 ✓</div>
+
+      <h3><span class="st">4</span> Paralel və perpendikulyar düz xətlər</h3>
+      <div class="fm">y = k₁x + b₁ və y = k₂x + b₂:
+paraleldir        ⇔  k₁ = k₂  (b₁ ≠ b₂)
+perpendikulyardır ⇔  k₁ · k₂ = −1</div>
+      <div class="ex">P(2; 1) nöqtəsindən keçən və y = 2x + 3-ə perpendikulyar düz xətt:
+   k₂ = −1/2  (çünki 2 · (−1/2) = −1)
+   1 = −1/2 · 2 + b  →  b = 2
+   Cavab: y = −(1/2)x + 2
+
+P(2; 1)-dən keçən və y = 2x + 3-ə paralel düz xətt:
+   k = 2,  1 = 2 · 2 + b  →  b = −3
+   Cavab: y = 2x − 3</div>
+      <div class="life"><b>Həyatdan.</b> Taksi: (2; 3) və (6; 5) nöqtələri. <span class="m">k = (5 − 3)/(6 − 2) = 0,5</span> manat hər km üçün, <span class="m">b = 3 − 0,5 · 2 = 2</span> manat — minimum ödəniş. Tənlik <span class="m">y = 0,5x + 2</span>: 10 km üçün 7 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">k</span>-nı tərsinə yazmaq: <span class="m">(x₂ − x₁)/(y₂ − y₁)</span>. Surətdə həmişə y-lərin fərqi durur.</li>
+        <li>Surətdə və məxrəcdə nöqtələrin sırasını qarışdırmaq: yuxarıda <span class="m">y₂ − y₁</span>-dirsə, aşağıda da <span class="m">x₂ − x₁</span> olmalıdır.</li>
+        <li>Perpendikulyarda yalnız işarəni dəyişmək: 2-yə perpendikulyar <span class="m">−2</span> deyil, <span class="m">−1/2</span>-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k = (y₂ − y₁)/(x₂ − x₁),  b = y₁ − k·x₁
+Paralel: k eyni.   Perpendikulyar: k₂ = −1/k₁.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(0; −1), B(2; 5) nöqtələrindən keçən düz xəttin tənliyi? <span class="ans">k = 6/2 = 3, b = −1 → y = 3x − 1.</span></li>
+        <li>(1; 1)-dən keçən və y = 4x − 2-yə paralel düz xəttin b-si? <span class="ans">1 = 4 · 1 + b → b = −3.</span></li>
+        <li>y = −3x + 1-ə perpendikulyar düz xəttin bucaq əmsalı? <span class="ans">−1/(−3) = 1/3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Çevrənin tənliyi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Wi-Fi ötürücüsü 10 m radiusda işləyir. Sənin stulun siqnal zonasındadırmı? Zonanın sərhədi çevrədir, sual isə "nöqtədən mərkəzə qədər məsafə R-dən kiçikdirmi?" sualıdır.</p>
+
+      <h3><span class="st">2</span> Tənlik</h3>
+      <p>Çevrə — mərkəzdən eyni <span class="m">R</span> məsafədə olan nöqtələrdir. Mərkəz <span class="m">(a; b)</span>, nöqtə <span class="m">(x; y)</span>: məsafə düsturunu kvadrata yüksəlt.</p>
+      <div class="fm">(x − a)² + (y − b)² = R²
+mərkəz (a; b), radius R</div>
+      <p>Mərkəz O(0; 0)-dadırsa: <span class="m">x² + y² = R²</span>. Diqqət: mötərizədə <span class="m">x + 3</span> yazılıbsa, <span class="m">a = −3</span>-dür.</p>
+      <div class="fig">
+        <svg viewBox="0 0 220 220" role="img" aria-label="Mərkəzi (1; 2), radiusu 5 olan çevrə; A(4; 6) nöqtəsi çevrənin üzərindədir">
+          <line x1="0" y1="147" x2="220" y2="147" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="87" y1="0" x2="87" y2="220" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="210" y="141" class="lbl">x</text><text x="93" y="12" class="lbl">y</text>
+          <circle cx="102" cy="117" r="75" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="102" y1="117" x2="147" y2="57" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="102" cy="117" r="3.5" fill="var(--ink)"/><circle cx="147" cy="57" r="3.5" fill="var(--ink)"/>
+          <text x="106" y="134" class="lbl">(1; 2)</text><text x="152" y="54" class="lbl">A</text><text x="112" y="82" class="lbl">5</text>
+        </svg>
+        <div class="cap"><p>Mərkəz (1; 2), A(4; 6): R = √(3² + 4²) = 5. Tənlik: <span class="m">(x − 1)² + (y − 2)² = 25</span>.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Mərkəz (2; −1), R = 3:   (x − 2)² + (y + 1)² = 9
+
+2) (x + 3)² + (y − 4)² = 25:   mərkəz (−3; 4), R = 5
+
+3) Mərkəz (1; 2), çevrə A(4; 6)-dan keçir:
+   R = √((4 − 1)² + (6 − 2)²) = 5
+   (x − 1)² + (y − 2)² = 25
+
+4) x² + y² − 4x + 6y − 12 = 0
+   x² − 4x = (x − 2)² − 4,   y² + 6y = (y + 3)² − 9
+   (x − 2)² − 4 + (y + 3)² − 9 − 12 = 0
+   (x − 2)² + (y + 3)² = 25   →  mərkəz (2; −3), R = 5</div>
+      <div class="life"><b>Həyatdan.</b> Ötürücü O(0; 0)-da, radius 10 m. Stul (6; 7)-dədir: <span class="m">6² + 7² = 85 &lt; 100</span> — zonadasan. Masa (8; 7)-dədir: <span class="m">64 + 49 = 113 &gt; 100</span> — siqnal yoxdur. Kök almağa ehtiyac yoxdur: R² ilə müqayisə et.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sağ tərəfi radius saymaq: <span class="m">… = 25</span>-də R = 5-dir, 25 yox.</li>
+        <li>Mərkəzin işarəsini səhv götürmək: <span class="m">(x + 3)²</span> → a = −3.</li>
+        <li>Tam kvadrat ayıranda çıxılan ədədi unutmaq: <span class="m">x² − 4x = (x − 2)² − 4</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(x − a)² + (y − b)² = R²  →  mərkəz (a; b), radius R
+Mötərizədəki işarəni tərsinə çevir.
+Sağ tərəfdən kök al.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>(x − 5)² + (y + 2)² = 49. Mərkəz və radius? <span class="ans">Mərkəz (5; −2), R = 7.</span></li>
+        <li>Mərkəzi O(0; 0), A(−3; 4)-dən keçən çevrənin tənliyi? <span class="ans">R = 5: x² + y² = 25.</span></li>
+        <li>x² + y² + 2x − 8 = 0. Radius? <span class="ans">(x + 1)² − 1 + y² − 8 = 0 → (x + 1)² + y² = 9 → R = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Oxşar üçbucaqlar dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-oxsar-ucbucaqlar.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Oxşar üçbucaqlar</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Koordinatlar üsulu. Hərəkət. Oxşarlıq</div>
+    <h1>Oxşar üçbucaqlar</h1>
+    <p>Eyni formalı, amma fərqli ölçülü üçbucaqlar oxşardır: biri digərinin böyüdülmüş və ya kiçildilmiş surətidir. Oxşarlıq bir tərəfdən başqa tərəfi tapmağa, kölgəyə baxıb ağacın hündürlüyünü ölçməyə imkan verir. İmtahanda bu mövzu həm ayrıca, həm də başqa həndəsə məsələlərinin içində çıxır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Oxşarlıq, k</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Əlamətlər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Perimetr, sahə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Paralel xətt, kölgə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Mütənasib parçalar və oxşar üçbucaqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Telefonda şəkli iki barmaqla böyüdəndə hər şey eyni dəfə böyüyür: ev də, ağac da, adam da. Forma dəyişmir, yalnız ölçü dəyişir. Riyaziyyatda bunun adı <b>oxşarlıqdır</b>. Xəritə, çertyoj, maket — hamısı oxşarlıq üzərində qurulub.</p>
+
+      <h3><span class="st">2</span> Mütənasib parçalar</h3>
+      <p>AB və CD parçaları EF və GH parçalarına <b>mütənasibdir</b>, əgər onların nisbətləri bərabərdirsə:</p>
+      <div class="fm">AB/CD = EF/GH
+Məsələn: 4/6 = 10/15  (ikisi də 2/3)</div>
+
+      <h3><span class="st">3</span> Oxşar üçbucaqlar və oxşarlıq əmsalı</h3>
+      <p>ΔABC və ΔKLM <b>oxşardır</b> (yazılış: <span class="m">ΔABC ~ ΔKLM</span>), əgər bucaqları uyğun olaraq bərabərdir və uyğun tərəfləri mütənasibdir:</p>
+      <div class="fm">∠A = ∠K,  ∠B = ∠L,  ∠C = ∠M
+KL/AB = LM/BC = KM/AC = k</div>
+      <p><span class="m">k</span> — <b>oxşarlıq əmsalıdır</b>. Yazılışda hərflərin sırası vacibdir: birinci hərf birinci hərfə, ikinci ikinciyə uyğundur. <span class="m">ΔABC ~ ΔKLM</span> yazılıbsa, AB tərəfi KL-ə, BC — LM-ə, AC — KM-ə uyğundur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 190" role="img" aria-label="ABC üçbucağı (6, 8, 10) və ondan 1,5 dəfə böyük KLM üçbucağı (9, 12, 15)">
+          <polygon points="20,165 80,165 80,85" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="140,165 230,165 230,45" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M71 165V156H80" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M221 165V156H230" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="8" y="180" class="lbl">A</text><text x="84" y="180" class="lbl">B</text><text x="84" y="82" class="lbl">C</text>
+          <text x="128" y="180" class="lbl">K</text><text x="234" y="180" class="lbl">L</text><text x="234" y="42" class="lbl">M</text>
+          <text x="44" y="182" class="lbl">6</text><text x="86" y="130" class="lbl">8</text><text x="30" y="118" class="lbl">10</text>
+          <text x="180" y="182" class="lbl">9</text><text x="236" y="110" class="lbl">12</text><text x="160" y="98" class="lbl">15</text>
+        </svg>
+        <div class="cap"><p>Hər tərəf 1,5 dəfə böyüyüb: 9/6 = 12/8 = 15/10 = 1,5. Bucaqlar isə eynidir. Deməli, <span class="m">k = 3/2</span>.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">ΔABC ~ ΔKLM. AB = 6, BC = 8, AC = 10, KL = 9. LM və KM-i tap.
+Addım 1. Uyğun tərəflər: AB ↔ KL, BC ↔ LM, AC ↔ KM.
+Addım 2. k = KL/AB = 9/6 = 3/2.
+Addım 3. LM = BC · k = 8 · 3/2 = 12;  KM = AC · k = 10 · 3/2 = 15.
+Cavab: LM = 12, KM = 15.</div>
+      <div class="life"><b>Həyatdan.</b> Maketçi binanın 1 : 50 miqyaslı maketini qurur: maketdə hər ölçü əsl ölçüdən 50 dəfə kiçikdir. Maketdəki üçbucaq formalı dam əsl damın oxşarıdır, <span class="m">k = 1/50</span>. Damın əsl eni 10 m-dirsə, maketdə 10 : 50 = 0,2 m = 20 sm olacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tərəfləri sırasına görə yox, "göz ilə" uyğunlaşdırmaq. Uyğunluğu yazılışdakı hərflər deyir.</li>
+        <li><span class="m">k</span>-nı tərsinə götürmək: kiçik üçbucağın tərəfini tapanda böyük ədədlə vurmaq. Yoxla: kiçik üçbucağın tərəfi kiçik çıxmalıdır.</li>
+        <li>Oxşar üçbucaqlarda bucaqları da <span class="m">k</span> dəfə böyütmək. Bucaqlar <b>dəyişmir</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ΔABC ~ ΔKLM:  bucaqlar bərabər, tərəflər mütənasib.
+k = KL/AB = LM/BC = KM/AC
+Yeni tərəf = köhnə tərəf · k</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>ΔABC ~ ΔDEF, AB = 5, DE = 15, BC = 7. EF = ? <span class="ans">k = 15/5 = 3. EF = 7 · 3 = 21.</span></li>
+        <li>Üçbucaqların tərəfləri 4, 6, 8 və 6, 9, 12. Oxşarlıq əmsalı nədir? <span class="ans">6/4 = 9/6 = 12/8 = 3/2. k = 3/2.</span></li>
+        <li>ΔABC ~ ΔKLM, ∠A = 50°, ∠B = 70°. ∠M = ? <span class="ans">∠M = ∠C = 180° − 50° − 70° = 60°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Üçbucaqların oxşarlıq əlamətləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Oxşarlığı tərifə görə yoxlamaq üçün 3 bucaq və 3 nisbət lazımdır — bu, çoxdur. Əlamətlər deyir ki, daha az məlumat kifayətdir. Məsələlərdə adətən iki bərabər bucaq görürsən və dərhal "oxşardır" deyirsən.</p>
+
+      <h3><span class="st">2</span> Üç əlamət</h3>
+      <div class="fm">I əlamət (BB):   iki bucaq uyğun olaraq bərabərdir.
+II əlamət (TBT): iki tərəf mütənasibdir və
+                 aralarındakı bucaqlar bərabərdir.
+III əlamət (TTT): üç tərəf mütənasibdir.</div>
+      <p>I əlamətdə üçüncü bucaq özü bərabər çıxır, çünki cəm həmişə 180°-dir. II əlamətdə bucaq məhz həmin iki tərəfin <b>arasında</b> olmalıdır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) ΔABC: ∠A = 40°, ∠B = 75°.  ΔKLM: ∠K = 40°, ∠M = 65°.
+   ∠C = 180° − 40° − 75° = 65° = ∠M, ∠A = ∠K.
+   İki bucaq bərabərdir → oxşardır (I əlamət).
+
+2) ΔABC: AB = 4, AC = 6, ∠A = 50°.  ΔKLM: KL = 6, KM = 9, ∠K = 50°.
+   KL/AB = 6/4 = 3/2,  KM/AC = 9/6 = 3/2,  ∠K = ∠A.
+   Oxşardır (II əlamət), k = 3/2.
+
+3) Tərəflər 3, 5, 7 və 6, 10, 14:  6/3 = 10/5 = 14/7 = 2.
+   Oxşardır (III əlamət).
+   Tərəflər 4, 6, 7 və 8, 12, 15:  8/4 = 2, 12/6 = 2, 15/7 ≠ 2.
+   Oxşar deyil.</div>
+
+      <h3><span class="st">4</span> Düzbucaqlı üçbucaqların oxşarlığı</h3>
+      <p>Düzbucaqlı üçbucaqlarda düz bucaq onsuz da bərabərdir. Ona görə <b>bir iti bucağın</b> bərabərliyi kifayətdir (I əlamət).</p>
+      <p>Düz bucağın təpəsindən hipotenuza <span class="m">CH</span> hündürlüyünü çəkək. O, üçbucağı iki kiçik üçbucağa bölür və hər üçü oxşardır: <span class="m">ΔACH ~ ΔCBH ~ ΔABC</span>. Buradan üç düstur çıxır:</p>
+      <div class="fm">CH² = AH · HB
+AC² = AH · AB
+BC² = HB · AB</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 180" role="img" aria-label="Düzbucaqlı ABC üçbucağı, C düz bucaq, CH hipotenuza hündürlük; AH = 4, HB = 9">
+          <polygon points="20,150 280,150 100,30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="100" y1="30" x2="100" y2="150" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M100 141H109V150" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M95 37.5L102.5 42.5L107.5 35" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="6" y="164" class="lbl">A</text><text x="284" y="164" class="lbl">B</text><text x="94" y="22" class="lbl">C</text><text x="94" y="172" class="lbl">H</text>
+          <text x="54" y="170" class="lbl">4</text><text x="184" y="170" class="lbl">9</text><text x="106" y="96" class="lbl">?</text>
+        </svg>
+        <div class="cap"><p>AH = 4, HB = 9. CH² = 4 · 9 = 36, deməli <span class="m">CH = 6</span>. AB = 13, AC² = 4 · 13 = 52 → <span class="m">AC = 2√13</span>; BC² = 9 · 13 = 117 → <span class="m">BC = 3√13</span>. Yoxlama: 52 + 117 = 169 = 13² ✓</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Dülgər iki taxtanı düz bucaq altında birləşdirib künc dayağı düzəldir. Dayağın tən ortasından yerə dik taxta salmaq istəyir. Döşəmədə ölçdüyü iki parça 4 dm və 9 dm-dirsə, dik taxtanı hesablamadan kəsə bilər: <span class="m">√(4 · 9) = 6</span> dm.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>II əlamətdə tərəflərin arasında olmayan bucağı götürmək. Bucaq iki verilmiş tərəfin <b>arasında</b> olmalıdır.</li>
+        <li>III əlamətdə tərəfləri qarışıq bölmək. Hər iki üçbucaqda tərəfləri kiçikdən böyüyə düz, sonra uyğun cütləri böl.</li>
+        <li><span class="m">CH² = AH · HB</span> əvəzinə <span class="m">CH = AH · HB</span> yazmaq — kvadratı unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">I: iki bucaq   II: iki tərəf + aralarındakı bucaq   III: üç tərəf
+Düzbucaqlı üçbucaqlar: bir iti bucaq kifayətdir.
+CH² = AH·HB,  AC² = AH·AB,  BC² = HB·AB</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bir üçbucağın bucaqları 30° və 80°, digərininki 30° və 70°. Oxşardırmı? <span class="ans">Birincinin üçüncü bucağı 180° − 30° − 80° = 70°. İkisində də 30° və 70° var — oxşardır, I əlamət.</span></li>
+        <li>∠C = 90°, CH — hündürlük, AH = 2, HB = 8. CH = ? <span class="ans">CH² = 2 · 8 = 16, CH = 4.</span></li>
+        <li>Tərəflər 2, 3, 4 və 6, 9, 12. Oxşardırmı? <span class="ans">6/2 = 9/3 = 12/4 = 3. Bəli, III əlamət, k = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Oxşar üçbucaqların perimetrləri və sahələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Pizza diametri 2 dəfə böyüyəndə adam elə bilir ki, 2 dəfə çox pizza alır. Əslində 4 dəfə çox alır! Ölçü <span class="m">k</span> dəfə böyüyəndə uzunluqlar <span class="m">k</span> dəfə, sahə isə <span class="m">k²</span> dəfə böyüyür. Bu, imtahanın ən sevimli tələlərindən biridir.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">ΔABC ~ ΔKLM, oxşarlıq əmsalı k:
+P(KLM) / P(ABC) = k
+S(KLM) / S(ABC) = k²</div>
+      <p>Niyə? Perimetr tərəflərin cəmidir, hər tərəf <span class="m">k</span> dəfə böyüyüb — cəm də <span class="m">k</span> dəfə. Sahə <span class="m">½ · a · h</span>-dır: həm tərəf, həm hündürlük <span class="m">k</span> dəfə böyüyüb — sahə <span class="m">k · k = k²</span> dəfə.</p>
+      <p>Hündürlük, median, tənbölən kimi bütün xətti ölçülər də <span class="m">k</span> dəfə dəyişir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) ΔABC ~ ΔKLM, AB = 4, KL = 6. S(ABC) = 12, P(ABC) = 15.
+   k = 6/4 = 3/2.
+   P(KLM) = 15 · 3/2 = 22,5
+   S(KLM) = 12 · (3/2)² = 12 · 9/4 = 27
+
+2) Oxşar üçbucaqların sahələri 16 və 25. Uyğun tərəflərin nisbəti?
+   k² = 16/25  →  k = √(16/25) = 4/5
+
+3) Oxşar üçbucaqların sahələri 18 və 50, birincinin tərəfi 6.
+   k² = 50/18 = 25/9  →  k = 5/3.  Uyğun tərəf: 6 · 5/3 = 10</div>
+      <div class="life"><b>Həyatdan.</b> Xəritənin miqyası 1 : 1000-dir: xəritədə 1 sm yerdə 1000 sm = 10 m-dir. Xəritədə sahəsi 6 sm² olan üçbucaq formalı park əslində <span class="m">6 · 1000² sm² = 6 000 000 sm² = 600 m²</span>-dir. Uzunluğu 1000-ə vurursan, sahəni isə 1000²-na.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sahəni <span class="m">k</span> ilə vurmaq. Sahə üçün həmişə <span class="m">k²</span>.</li>
+        <li>Sahələrin nisbətindən <span class="m">k</span>-nı tapanda kök almağı unutmaq: sahələr 4 : 9-dursa, tərəflər 2 : 3-dür, 4 : 9 yox.</li>
+        <li>Perimetrə <span class="m">k²</span> tətbiq etmək. Perimetr uzunluqdur — <span class="m">k</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Uzunluqlar (tərəf, hündürlük, perimetr) → k
+Sahə → k²
+Sahələr verilib → k = √(S₂/S₁)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>k = 3, kiçik üçbucağın sahəsi 5. Böyüyünün sahəsi? <span class="ans">5 · 3² = 45.</span></li>
+        <li>Oxşar üçbucaqların sahələri 9 və 36, birincinin perimetri 12. İkincinin perimetri? <span class="ans">k² = 36/9 = 4 → k = 2. P = 12 · 2 = 24.</span></li>
+        <li>Sahələr 4 : 9 kimidir. Uyğun hündürlüklərin nisbəti? <span class="ans">√(4/9) = 2/3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Tərəfə paralel düz xətt və kölgə məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ağacın başına çıxmadan onun hündürlüyünü necə ölçmək olar? Qədim yunan alimi Fales Misir piramidasının hündürlüyünü məhz belə tapıb: öz çubuğunun kölgəsi ilə piramidanın kölgəsini müqayisə edib. Hamısının əsasında bir fikir durur — üçbucağın tərəfinə paralel düz xətt oxşar üçbucaq kəsir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>ΔABC-də <span class="m">MN ∥ AC</span> çəkək (M ∈ AB, N ∈ BC). ∠B ortaqdır, ∠BMN = ∠BAC (uyğun bucaqlar). I əlamətə görə <span class="m">ΔMBN ~ ΔABC</span>.</p>
+      <div class="fm">BM/BA = BN/BC = MN/AC = k
+Həm də: BM/MA = BN/NC</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 195" role="img" aria-label="ABC üçbucağı, AC-yə paralel MN parçası; BM = 4, MA = 2, AC = 9">
+          <polygon points="20,170 120,20 280,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="53.3" y1="120" x2="226.7" y2="120" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="8" y="186" class="lbl">A</text><text x="114" y="14" class="lbl">B</text><text x="284" y="186" class="lbl">C</text>
+          <text x="34" y="124" class="lbl">M</text><text x="234" y="124" class="lbl">N</text>
+          <text x="72" y="70" class="lbl">4</text><text x="26" y="150" class="lbl">2</text><text x="146" y="188" class="lbl">9</text><text x="136" y="114" class="lbl">?</text>
+        </svg>
+        <div class="cap"><p>BA = 4 + 2 = 6, <span class="m">k = BM/BA = 4/6 = 2/3</span>. MN = 9 · 2/3 = 6.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) MN ∥ AC, BM = 4, MA = 2, AC = 9. MN = ?
+   BA = BM + MA = 6,  k = BM/BA = 4/6 = 2/3
+   MN = AC · k = 9 · 2/3 = 6
+
+2) Eyni şəkildə BN = 6. NC = ?
+   BM/MA = BN/NC  →  4/2 = 6/NC  →  NC = 3
+
+3) MN ∥ AC, BM = 6, MN = 4, AC = 10. MA = ?
+   BA/BM = AC/MN = 10/4 = 5/2  →  BA = 6 · 5/2 = 15
+   MA = 15 − 6 = 9</div>
+
+      <h3><span class="st">4</span> Kölgə məsələləri</h3>
+      <p>Günəş çox uzaqdadır, onun şüaları paralel düşür. Ona görə eyni anda hər şaquli cismin hündürlüyü ilə kölgəsinin nisbəti eynidir — düzbucaqlı üçbucaqlar oxşardır.</p>
+      <div class="ex">1) 2 m-lik dirəyin kölgəsi 3 m, ağacın kölgəsi 12 m.
+   H/12 = 2/3  →  H = 8 m
+
+2) Boyu 1,6 m olan oğlan fənər dirəyindən 3 m aralıda dayanıb,
+   kölgəsi 2 m-dir. Fənər hansı hündürlükdədir?
+   Kölgənin ucundan dirəyə qədər: 2 + 3 = 5 m
+   H/5 = 1,6/2  →  H = 1,6 · 5/2 = 4 m</div>
+      <div class="life"><b>Həyatdan.</b> Günəşli gündə məktəbin həyətində öz kölgəni ölç, sonra binanın kölgəsini addımla. Boyun 1,7 m, kölgən 2 m, binanın kölgəsi 20 m-dirsə, bina təxminən <span class="m">1,7 · 20/2 = 17</span> m hündürlükdədir. Ruletsiz, nərdivansız.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">k = BM/MA</span> götürmək. Oxşarlıq əmsalı bütöv tərəflə qurulur: <span class="m">k = BM/BA</span>.</li>
+        <li>Fənər məsələsində oğlanın dirəyə qədər məsafəsini kölgəyə əlavə etməyi unutmaq.</li>
+        <li>Kölgə məsələsində nisbəti tərsinə yazmaq: hündürlük/kölgə = hündürlük/kölgə, qarışıq yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">MN ∥ AC  →  ΔMBN ~ ΔABC
+k = BM/BA = MN/AC
+BM/MA = BN/NC
+Kölgə: hündürlük₁/kölgə₁ = hündürlük₂/kölgə₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>MN ∥ AC, BM = 3, MA = 6, AC = 12. MN = ? <span class="ans">BA = 9, k = 3/9 = 1/3, MN = 12 · 1/3 = 4.</span></li>
+        <li>MN ∥ AC, BM = 2, MA = 3, BN = 4. NC = ? <span class="ans">2/3 = 4/NC → NC = 6.</span></li>
+        <li>1,5 m-lik çubuğun kölgəsi 2 m, binanın kölgəsi 24 m. Binanın hündürlüyü? <span class="ans">H = 1,5 · 24/2 = 18 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
