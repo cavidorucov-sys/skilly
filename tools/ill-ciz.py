@@ -1,4 +1,5 @@
 # Draw topic illustrations with Codex, 4 per sprite, then slice:  python tools/ill-ciz.py [workers=3] [only-group-numbers...]
+# Redraw a set:  python tools/ill-ciz.py 3 --file ../plan/illustrasiya/yeniden-1.json  (its own sprites, existing WebP overwritten)
 # Scenes: ../plan/illustrasiya/sehneler.json [{slug, scene}]. Style: ../plan/illustrasiya/style-A.txt (chosen 20 Oct 2026).
 # A group is skipped when all its WebP files exist, so the script can be re-run after failures.
 import json, os, subprocess, sys, shutil
@@ -6,11 +7,15 @@ from concurrent.futures import ThreadPoolExecutor
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
 PLAN = os.path.abspath("../plan/illustrasiya")
 SPR = os.path.join(PLAN, "sprites"); os.makedirs(SPR, exist_ok=True)
-scenes = json.load(open(os.path.join(PLAN, "sehneler.json"), encoding="utf-8"))
+args = sys.argv[1:]
+redo = None
+if "--file" in args: i = args.index("--file"); redo = args[i + 1]; del args[i:i + 2]
+scenes = json.load(open(redo or os.path.join(PLAN, "sehneler.json"), encoding="utf-8"))
+tag = os.path.splitext(os.path.basename(redo))[0] + "-" if redo else ""
 style = open(os.path.join(PLAN, "style-A.txt"), encoding="utf-8").read().strip()
 groups = [scenes[i:i + 4] for i in range(0, len(scenes), 4)]
-workers = int(sys.argv[1]) if len(sys.argv) > 1 else 3
-only = {int(x) for x in sys.argv[2:]}
+workers = int(args[0]) if args else 3
+only = {int(x) for x in args[1:]}
 CODEX = shutil.which("codex") or shutil.which("codex.cmd")
 
 def prompt(g, out):
@@ -30,8 +35,8 @@ Physical and geometric details must be correct (shadows away from the light, par
 def run(n):
     g = groups[n]
     slugs = [s["slug"] for s in g] + ["-"] * (4 - len(g))
-    if all(os.path.exists(f"assets/ill/{s}.webp") for s in slugs if s != "-"): return f"{n:02d} skip"
-    out = os.path.join(SPR, f"sprite-{n:02d}.png")
+    if not redo and all(os.path.exists(f"assets/ill/{s}.webp") for s in slugs if s != "-"): return f"{n:02d} skip"
+    out = os.path.join(SPR, f"sprite-{tag}{n:02d}.png")
     if not os.path.exists(out):
         # the prompt goes through stdin ("-"): on Windows codex.cmd cuts a multi-line argument at the first newline
         r = subprocess.run([CODEX, "exec", "--skip-git-repo-check", "-s", "workspace-write", "-C", SPR, "-"], input=prompt(g, out),
