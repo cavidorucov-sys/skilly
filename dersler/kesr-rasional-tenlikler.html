@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kəsr-rasional tənliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-kesr-rasional-tenlikler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kəsr-rasional tənliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli tənliklər</div>
+    <h1>Kəsr-rasional tənliklər</h1>
+    <p>Dəyişən <b>məxrəcdə</b> olan tənliklər: <span class="m">3/(x − 2) = 1</span>, <span class="m">x + 6/x = 5</span>. Həll yolu sadədir — kəsrləri atıb xətti və ya kvadrat tənlik alırıq. Tələ isə birdir: tapdığın kök məxrəci sıfır edə bilər. Belə kökü atmağı burada öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>DMQ</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xətti tənliyə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kənar köklər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Dəyişənin mümkün qiymətləri (DMQ)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>12 alma 3 nəfərə bölünür — hərəyə 4. Bəs 0 nəfərə? Sual mənasızdır: <b>sıfıra bölmək olmaz</b>. Kalkulyator da "Error" yazır.</p>
+      <p>Məxrəcdə <span class="m">x</span> olanda bəzi <span class="m">x</span>-lər məxrəci sıfır edir. Həmin <span class="m">x</span>-lərdə ifadənin mənası yoxdur. Tənliyi həll etməzdən əvvəl onları tapıb kənara qoyuruq.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><b>Kəsr-rasional tənlik</b> — dəyişəni məxrəcdə olan tənlikdir. Məsələn: <span class="m">5/(x − 3) = 2</span>, <span class="m">x/(x + 1) = 4/x</span>.</p>
+      <p><b>DMQ</b> (dəyişənin mümkün qiymətləri) — bütün məxrəcləri sıfırdan fərqli edən <span class="m">x</span>-lər. Tapmaq üçün hər məxrəci sıfıra bərabər edirik — çıxan qiymətlər <b>qadağandır</b>.</p>
+      <div class="fm">Məxrəc ≠ 0
+x − 3 ≠ 0  →  x ≠ 3</div>
+      <p>Surətə baxmırıq: surət sıfır ola bilər (0/5 = 0 — normal ədəddir).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) (x + 1)/(2x − 5)
+   2x − 5 = 0 → 2x = 5 → x = 5/2
+   DMQ: x ≠ 2,5
+
+2) 7/(x² − 9) + 1/x
+   x² − 9 = 0 → x² = 9 → x = 3 və x = −3
+   x = 0
+   DMQ: x ≠ −3; 0; 3   (üç qadağan qiymət)
+
+3) 4/(x² − 5x + 6)
+   x² − 5x + 6 = 0 → (x − 2)(x − 3) = 0 → x = 2, x = 3
+   DMQ: x ≠ 2; 3
+
+4) 8/(x² + 4)
+   x² + 4 həmişə ≥ 4, heç vaxt sıfır olmur
+   DMQ: bütün ədədlər</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 70" role="img" aria-label="Ədəd oxu: −3, 0 və 3 nöqtələri boş dairə ilə çıxarılıb">
+          <line x1="10" y1="35" x2="290" y2="35" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M282 29L292 35L282 41" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="70" cy="35" r="6" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="150" cy="35" r="6" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="230" cy="35" r="6" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="70" y="62" text-anchor="middle" class="lbl">−3</text>
+          <text x="150" y="62" text-anchor="middle" class="lbl">0</text>
+          <text x="230" y="62" text-anchor="middle" class="lbl">3</text>
+        </svg>
+        <div class="cap"><p>Nümunə 2-nin DMQ-su: bütün ədəd oxu, yalnız <b>üç deşik</b> var — <span class="m">−3</span>, <span class="m">0</span>, <span class="m">3</span>. Cavab bu deşiklərdən birinə düşsə, o cavab deyil.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan.</b> Sinif 120 manatlıq ekskursiya pulunu <span class="m">x</span> şagird arasında bərabər bölür: hər birinə <span class="m">120/x</span> manat. <span class="m">x = 0</span> mənasızdır — şagird yoxdursa, bölünəcək adam da yoxdur. Riyaziyyat bunu DMQ ilə deyir: <span class="m">x ≠ 0</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x² − 9 = 0</span>-dan yalnız <span class="m">x = 3</span> yazmaq. Kvadratın <b>iki</b> kökü var: <span class="m">±3</span>.</li>
+        <li>Surəti sıfıra bərabər edib "qadağan" saymaq. Qadağan olan yalnız məxrəcin sıfırıdır.</li>
+        <li><span class="m">x² + 4</span> kimi məxrəcdə qadağan qiymət axtarmaq. Kvadrat + müsbət ədəd heç vaxt sıfır olmur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hər məxrəci = 0 qoy və həll et.
+Çıxan x-lər — qadağandır (DMQ-ya daxil deyil).
+Tənliyin cavabı qadağan qiymətə düşə bilməz.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">7/(x + 4)</span> ifadəsinin DMQ-su nədir? <span class="ans">x + 4 ≠ 0 → x ≠ −4.</span></li>
+        <li><span class="m">1/(x² − 16)</span> üçün neçə qadağan qiymət var? <span class="ans">İki: x = 4 və x = −4.</span></li>
+        <li><span class="m">(x − 3)/5</span> ifadəsinin qadağan qiyməti varmı? <span class="ans">Yox. Məxrəc 5-dir, heç vaxt sıfır olmur. x = 3 olanda ifadə sadəcə 0-a bərabərdir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Xətti tənliyə gətirilən kəsr-rasional tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kəsrlərlə işləmək çətindir, xətti tənliyi isə sən artıq yaxşı həll edirsən. Fikir: tənliyi məxrəcə vurub kəsrlərdən <b>qurtulmaq</b>. Qalan iş — adi <span class="m">ax = b</span>.</p>
+
+      <h3><span class="st">2</span> Həll alqoritmi</h3>
+      <div class="fm">1. DMQ: qadağan qiymətləri yaz.
+2. Hər iki tərəfi ortaq məxrəcə vur.
+   Tənasüb a/b = c/d  →  a·d = b·c
+3. Alınan tənliyi həll et.
+4. Kökü DMQ ilə yoxla.</div>
+      <p>Tənasübdə bu, "çarpaz vurma"dır: birinci kəsrin surəti ikincinin məxrəcinə, ikincinin surəti birincinin məxrəcinə vurulur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  3/(x − 2) = 5/(x + 2)
+  DMQ: x ≠ 2, x ≠ −2
+  Çarpaz vur: 3(x + 2) = 5(x − 2)
+              3x + 6 = 5x − 10
+              16 = 2x  →  x = 8
+  8 qadağan deyil.  Yoxla: 3/6 = 1/2,  5/10 = 1/2 ✓
+  Cavab: x = 8</div>
+      <div class="ex">Nümunə 2.  (x + 4)/(x − 1) = 3
+  DMQ: x ≠ 1
+  (x − 1)-ə vur: x + 4 = 3(x − 1)
+                 x + 4 = 3x − 3
+                 7 = 2x  →  x = 3,5
+  Yoxla: 7,5/2,5 = 3 ✓
+  Cavab: x = 3,5</div>
+      <div class="ex">Nümunə 3.  1/x + 2/(3x) = 5/6
+  DMQ: x ≠ 0.   Ortaq məxrəc: 6x
+  6x-ə vur: 6 + 4 = 5x  →  x = 2
+  Yoxla: 1/2 + 2/6 = 1/2 + 1/3 = 5/6 ✓
+  Cavab: x = 2</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan: qatar və maşın.</b> Eyni vaxtda maşın 120 km, qatar 180 km yol gedir. Qatarın sürəti maşınınkından 20 km/saat çoxdur. Maşının sürəti nədir?
+        <br>x — maşının sürəti. Vaxt = yol ÷ sürət, vaxtlar bərabərdir:
+        <br><span class="m">120/x = 180/(x + 20)</span> → <span class="m">120(x + 20) = 180x</span> → <span class="m">2400 = 60x</span> → <span class="m">x = 40</span>.
+        <br>Maşın 40 km/saat, qatar 60 km/saat. Yoxla: 120 ÷ 40 = 3 saat, 180 ÷ 60 = 3 saat ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ortaq məxrəcə vurarkən kəsr olmayan həddi vurmağı unutmaq: <span class="m">1/x + 2 = 3/x</span> → <span class="m">1 + 2x = 3</span>, "1 + 2 = 3" yox.</li>
+        <li>Mötərizəni açarkən işarə səhvi: <span class="m">−2(x − 3) = −2x + 6</span>.</li>
+        <li>Kökü DMQ ilə yoxlamamaq. Növbəti dərsdə görəcəksən ki, bu, əsas tələdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">DMQ → məxrəcə vur → həll et → yoxla.
+a/b = c/d  →  a·d = b·c</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">4/(x − 1) = 2</span>. x = ? <span class="ans">4 = 2(x − 1) → 4 = 2x − 2 → x = 3. 3 ≠ 1 ✓</span></li>
+        <li><span class="m">2/(x + 3) = 1/(x − 1)</span>. x = ? <span class="ans">2(x − 1) = x + 3 → x = 5. Yoxla: 2/8 = 1/4 ✓</span></li>
+        <li><span class="m">x/(x − 2) = 2/(x − 2)</span>. x = ? <span class="ans">x = 2 alınır, amma DMQ: x ≠ 2. Kök yoxdur. (Növbəti dərsin mövzusu.)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Kvadrat tənliyə gətirilən tənliklər və kənar köklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda belə sual tez-tez olur: "tənliyin kökünü tap", amma kvadrat tənliyin iki kökündən biri <b>məxrəci sıfır edir</b>. O kök "saxta"dır — buna <b>kənar kök</b> deyilir. Kim yoxlamır, iki cavab yazır və ya çaşıb sualı boş buraxır. Sən alqoritmlə gedəcəksən — ilişməyəcəksən.</p>
+
+      <h3><span class="st">2</span> Kənar kök haradan çıxır</h3>
+      <p>Məxrəcə vuranda tənlik "genişlənir": yeni tənlik məxrəci sıfır edən <span class="m">x</span>-ə də icazə verir. Ona görə yeni tənliyin bütün kökləri əsl tənliyə uyğun olmaya bilər.</p>
+      <div class="fm">Məxrəcə vurdun  →  kökləri tapdın
+Hər kökü DMQ ilə yoxla:
+  qadağan qiymətdirsə — at (kənar kök)
+  heç biri qalmırsa — "kök yoxdur"</div>
+      <p>Xüsusi hal — kəsr sıfıra bərabərdir:</p>
+      <div class="fm">A/B = 0  ⇔  A = 0 və B ≠ 0</div>
+
+      <h3><span class="st">3</span> Hər iki kök yarayır</h3>
+      <div class="ex">x + 6/x = 5
+  DMQ: x ≠ 0
+  x-ə vur: x² + 6 = 5x  →  x² − 5x + 6 = 0
+  Viyet: x₁ + x₂ = 5, x₁·x₂ = 6  →  x = 2, x = 3
+  İkisi də 0 deyil → ikisi də kökdür.
+  Yoxla: 2 + 3 = 5 ✓   3 + 2 = 5 ✓
+  Cavab: 2 və 3</div>
+
+      <h3><span class="st">4</span> Bir kök atılır</h3>
+      <div class="ex">Nümunə 1.  x²/(x − 3) = 9/(x − 3)
+  DMQ: x ≠ 3
+  Məxrəclər eynidir → surətlər bərabərdir: x² = 9
+  x = 3  və  x = −3
+  x = 3 qadağandır → atılır.
+  Yoxla x = −3: 9/(−6) = 9/(−6) ✓
+  Cavab: x = −3</div>
+      <div class="ex">Nümunə 2.  (x² − x − 6)/(x − 3) = 0
+  Surət = 0: x² − x − 6 = 0 → x = 3, x = −2
+  Məxrəc ≠ 0: x ≠ 3 → x = 3 atılır.
+  Cavab: x = −2</div>
+      <div class="ex">Nümunə 3.  x/(x − 1) − 2/(x + 1) = 4/(x² − 1)
+  x² − 1 = (x − 1)(x + 1) — ortaq məxrəc.
+  DMQ: x ≠ 1, x ≠ −1
+  Ortaq məxrəcə vur: x(x + 1) − 2(x − 1) = 4
+                     x² + x − 2x + 2 = 4
+                     x² − x − 2 = 0  →  x = 2, x = −1
+  x = −1 qadağandır → atılır.
+  Yoxla x = 2: 2/1 − 2/3 = 4/3,  4/(4 − 1) = 4/3 ✓
+  Cavab: x = 2</div>
+
+      <h3><span class="st">5</span> Heç bir kök qalmır</h3>
+      <div class="ex">x/(x − 2) − 8/(x² − 4) = 1
+  DMQ: x ≠ 2, x ≠ −2
+  (x² − 4)-ə vur: x(x + 2) − 8 = x² − 4
+                  x² + 2x − 8 = x² − 4
+                  2x = 4  →  x = 2
+  x = 2 qadağandır → atılır.
+  Cavab: kök yoxdur (köklərin sayı 0)</div>
+      <p>"Kök yoxdur" da tam hüquqlu cavabdır. Testdə belə variant varsa, onu seçməkdən qorxma — yoxlama sənin tərəfindədir.</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kənar kökü saxlamaq: <span class="m">x²/(x − 3) = 9/(x − 3)</span> üçün "x = ±3" yazmaq. Düzü: yalnız <span class="m">x = −3</span>.</li>
+        <li>Kəsr sıfırdırsa, surəti həll edib məxrəci yoxlamamaq.</li>
+        <li>Bütün köklər atılanda çaşıb sualı boş buraxmaq. Cavab var: "kök yoxdur", köklərin sayı — 0.</li>
+        <li>Köklərin cəmi soruşulanda Viyetlə <span class="m">x₁ + x₂</span>-ni birbaşa yazmaq. Əvvəl kənar kökü at, sonra qalanları topla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1. DMQ  2. Ortaq məxrəcə vur  3. Həll et
+4. Hər kökü DMQ ilə yoxla — qadağanı at.
+A/B = 0  ⇔  A = 0, B ≠ 0</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x − 8/x = 2</span>. Köklərin cəmi? <span class="ans">x² − 2x − 8 = 0 → x = 4, x = −2. İkisi də 0 deyil. Cəm: 2.</span></li>
+        <li><span class="m">x²/(x + 5) = 25/(x + 5)</span>. Kökü tap. <span class="ans">x² = 25 → x = ±5. x = −5 məxrəci sıfır edir — atılır. Cavab: x = 5.</span></li>
+        <li><span class="m">(x² − 1)/(x − 1) = 0</span>. Neçə kök var? <span class="ans">x² − 1 = 0 → x = ±1. x = 1 atılır. Bir kök: x = −1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Rasional tənliklərin tətbiqi ilə məsələ həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sürət, vaxt, iş, qiymət — bunların çoxu bölmə ilə bağlıdır: vaxt = yol ÷ sürət, iş sürəti = 1 ÷ vaxt, say = pul ÷ qiymət. Naməlum məxrəcə düşür — və kəsr-rasional tənlik alınır.</p>
+
+      <h3><span class="st">2</span> Plan</h3>
+      <div class="fm">1. x — nə? (sürət, vaxt, qiymət...)
+2. Qalan kəmiyyətləri x ilə yaz.
+3. Bərabərliyi tap → tənlik.
+4. Həll et, mənasız kökü at:
+   mənfi sürət / vaxt / qiymət olmur.
+5. Cavabı şərtlə yoxla.</div>
+
+      <h3><span class="st">3</span> Hərəkət: çay axını</h3>
+      <div class="ex">Qayıq axınla 24 km, geri axına qarşı 24 km üzdü — cəmi 5 saat.
+Axının sürəti 2 km/saat. Qayığın öz sürəti?
+
+  x — qayığın öz sürəti.
+  Axınla: x + 2,  axına qarşı: x − 2
+  24/(x + 2) + 24/(x − 2) = 5
+  (x² − 4)-ə vur: 24(x − 2) + 24(x + 2) = 5(x² − 4)
+                  48x = 5x² − 20
+                  5x² − 48x − 20 = 0
+  D = 48² + 4·5·20 = 2304 + 400 = 2704 = 52²
+  x = (48 + 52)/10 = 10,  x = (48 − 52)/10 = −0,4 (atılır)
+  Yoxla: 24/12 + 24/8 = 2 + 3 = 5 ✓
+  Cavab: 10 km/saat</div>
+
+      <h3><span class="st">4</span> Birgə iş və qiymət</h3>
+      <div class="ex">İki boru hovuzu birlikdə 2 saata doldurur. Birinci boru
+təkbaşına ikincidən 3 saat tez doldurur. Birinci neçə saata doldurar?
+
+  x — birincinin vaxtı, x + 3 — ikincinin.
+  1 saatda: 1/x və 1/(x + 3) hissə; birlikdə 1/2 hissə.
+  1/x + 1/(x + 3) = 1/2
+  2x(x + 3)-ə vur: 2(x + 3) + 2x = x(x + 3)
+                   x² − x − 6 = 0  →  x = 3, x = −2 (atılır)
+  Yoxla: 1/3 + 1/6 = 1/2 ✓
+  Cavab: 3 saat</div>
+      <div class="ex">60 manata dəftərlər alındı. Hər dəftər 1 manat ucuz olsaydı,
+eyni pula 2 dəftər çox almaq olardı. Dəftər neçəyədir?
+
+  x — qiymət. Say: 60/x, ucuz olsa: 60/(x − 1)
+  60/(x − 1) − 60/x = 2
+  x(x − 1)-ə vur: 60x − 60(x − 1) = 2x(x − 1)
+                  60 = 2x² − 2x  →  x² − x − 30 = 0
+  x = 6,  x = −5 (atılır)
+  Yoxla: 60/6 = 10 dəftər, 60/5 = 12 dəftər — 2 çox ✓
+  Cavab: 6 manat</div>
+      <div class="life"><b>Həyatdan.</b> "Birlikdə" işdə <b>vaxtlar toplanmır</b> — iş sürətləri (1 saatda görülən hissə) toplanır. 3 saatlıq və 6 saatlıq boru birlikdə 9 saat yox, 2 saat işləyir: hər saatda hovuzun <span class="m">1/3 + 1/6 = 1/2</span>-si dolur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi kökü cavab yazmaq. Sürət, vaxt, qiymət mənfi olmur — atılır.</li>
+        <li>Axınla və axına qarşı sürəti qarışdırmaq: axınla <span class="m">x + u</span> (çay itələyir), axına qarşı <span class="m">x − u</span>.</li>
+        <li>Birgə işdə vaxtları toplamaq. Toplanan — <span class="m">1/x</span> kimi iş sürətləridir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">vaxt = yol ÷ sürət
+iş sürəti = 1 ÷ vaxt;  birgə: 1/x + 1/y = 1/t
+say = pul ÷ qiymət
+Mənasız (mənfi) kök atılır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bir boru hovuzu 6 saata, digəri 3 saata doldurur. Birlikdə neçə saata doldurarlar? <span class="ans">1/6 + 1/3 = 1/2 hissə saatda → 2 saat.</span></li>
+        <li>Qayıq axınla 15 km, geri 15 km üzdü, cəmi 4 saat. Axın 2 km/saat. Qayığın öz sürəti? <span class="ans">15/(x + 2) + 15/(x − 2) = 4 → 2x² − 15x − 8 = 0 → x = 8 (x = −0,5 atılır). Yoxla: 15/10 + 15/6 = 1,5 + 2,5 = 4 ✓. Cavab: 8 km/saat.</span></li>
+        <li>40 manata kitablar alındı. Hər kitab 2 manat baha olsaydı, 1 kitab az alınardı. Kitab neçəyədir? <span class="ans">40/x − 40/(x + 2) = 1 → x² + 2x − 80 = 0 → x = 8 (x = −10 atılır). Yoxla: 40/8 = 5, 40/10 = 4 ✓. Cavab: 8 manat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

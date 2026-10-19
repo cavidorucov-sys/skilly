@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kvadrat tənliyə gətirilən tənliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-kvadrat-tenliye-getirilen.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kvadrat tənliyə gətirilən tənliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli tənliklər</div>
+    <h1>Kvadrat tənliyə gətirilən və sadə irrasional tənliklər</h1>
+    <p><span class="m">x⁴ − 13x² + 36 = 0</span>, <span class="m">(x² − 2x)² − 11(x² − 2x) + 24 = 0</span>, <span class="m">√(x + 5) = x − 1</span> — qorxulu görünür, amma hamısı bir hiylə ilə adi kvadrat tənliyə çevrilir. Kvadrat tənliyi həll etməyi bilirsən — bu mövzu onun üstündə qurulur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bikvadrat</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Yeni dəyişən</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>√(ax + b) = c</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>√f = g</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Bikvadrat tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dördüncü dərəcəli tənlik üçün sadə düstur yoxdur. Amma <span class="m">x⁴ = (x²)²</span>. Əgər tənlikdə yalnız <span class="m">x⁴</span>, <span class="m">x²</span> və ədəd varsa, o, əslində <b>gizlənmiş kvadrat tənlikdir</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">ax⁴ + bx² + c = 0      (a ≠ 0)
+t = x²,  t ≥ 0
+at² + bt + c = 0</div>
+      <p>Əvvəl <span class="m">t</span>-ni tapırıq, sonra <span class="m">x² = t</span>-dən <span class="m">x</span>-i. Hər <span class="m">t</span> üçün:</p>
+      <div class="fm">t > 0  →  x = ±√t      (2 kök)
+t = 0  →  x = 0        (1 kök)
+t < 0  →  kök yoxdur   (kvadrat mənfi olmur)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x⁴ − 13x² + 36 = 0
+  t = x²:  t² − 13t + 36 = 0
+  Viyet: t₁ + t₂ = 13, t₁·t₂ = 36  →  t = 4, t = 9
+  x² = 4 → x = ±2;   x² = 9 → x = ±3
+  Cavab: −3; −2; 2; 3   (4 kök)</div>
+      <div class="ex">Nümunə 2.  x⁴ + 3x² − 4 = 0
+  t² + 3t − 4 = 0  →  t = 1, t = −4
+  x² = 1 → x = ±1;   x² = −4 → kök yoxdur
+  Cavab: −1; 1   (2 kök)</div>
+      <div class="ex">Nümunə 3.  x⁴ − 5x² = 0
+  x²(x² − 5) = 0
+  x² = 0 → x = 0;   x² = 5 → x = ±√5
+  Cavab: −√5; 0; √5   (3 kök)</div>
+      <p>Diqqət: bikvadrat tənliyin kökləri həmişə <b>cüt-cüt</b> gəlir (<span class="m">x</span> və <span class="m">−x</span>), ona görə köklərin cəmi həmişə 0-dır. İmtahanda adətən köklərin <b>sayını</b>, <b>ən böyüyünü</b> və ya <b>hasilini</b> soruşurlar.</p>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan: ekran.</b> Düzbucaqlı ekranın diaqonalı 10 sm, sahəsi 48 sm². Tərəfləri? Bir tərəf <span class="m">x</span>, o biri <span class="m">48/x</span>. Pifaqor: <span class="m">x² + (48/x)² = 100</span> → <span class="m">x⁴ − 100x² + 2304 = 0</span>. <span class="m">t = x²</span>: <span class="m">t = 36</span> və ya <span class="m">t = 64</span> → tərəflər <b>6 sm və 8 sm</b>. Yoxla: 6 · 8 = 48, 6² + 8² = 100 ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">t = −4</span>-dən <span class="m">x = ±2</span> yazmaq. <span class="m">x² = −4</span>-ün kökü yoxdur.</li>
+        <li><span class="m">t</span>-ləri cavab kimi yazmaq. Soruşulan <span class="m">x</span>-dir: iki müsbət <span class="m">t</span> → dörd <span class="m">x</span>.</li>
+        <li><span class="m">x⁴ − 5x² = 0</span>-da <span class="m">x²</span>-a bölüb <span class="m">x = 0</span> kökünü itirmək. Bölmə yox — mötərizə xaricinə çıxar.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">t = x² (t ≥ 0) → kvadrat tənlik → t-lər → x-lər
+t > 0: ±√t;  t = 0: 0;  t < 0: kök yoxdur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x⁴ − 10x² + 9 = 0</span>. Ən böyük kök? <span class="ans">t = 1, t = 9 → x = ±1, ±3. Ən böyüyü 3.</span></li>
+        <li><span class="m">x⁴ + 5x² + 4 = 0</span>. Neçə kök var? <span class="ans">t = −1, t = −4 — ikisi də mənfi. Kök yoxdur: 0.</span></li>
+        <li><span class="m">x⁴ − 16 = 0</span>. Neçə kök var? <span class="ans">t² = 16 → t = 4 (t = −4 yaramır) → x = ±2. 2 kök.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Yeni dəyişən daxil etmək (əvəzləmə)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">(x² − 2x)² − 11(x² − 2x) + 24 = 0</span>. Mötərizələri açsan, 4-cü dərəcəli uzun çoxhədli alınır — çox iş, çox səhv. Amma diqqət et: <span class="m">x² − 2x</span> iki dəfə təkrarlanır. Onu bir hərflə əvəz etsək, tənlik qısalır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Təkrarlanan ifadə = t
+1. t ilə kvadrat tənlik → t₁, t₂
+2. Hər t üçün: ifadə = t  → x-ləri tap
+3. Bütün x-ləri yığ</div>
+      <p>Bikvadrat tənlik də əvəzləmədir: orada <span class="m">t = x²</span> idi. İndi <span class="m">t</span> istənilən təkrarlanan ifadə ola bilər: <span class="m">x² − 2x</span>, <span class="m">(x + 1)²</span>, <span class="m">√x</span>...</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  (x² − 2x)² − 11(x² − 2x) + 24 = 0
+  t = x² − 2x:  t² − 11t + 24 = 0  →  t = 3, t = 8
+  x² − 2x = 3 → x² − 2x − 3 = 0 → x = 3, x = −1
+  x² − 2x = 8 → x² − 2x − 8 = 0 → x = 4, x = −2
+  Cavab: −2; −1; 3; 4   (4 kök)</div>
+      <div class="ex">Nümunə 2.  (x² + x)² − 4(x² + x) − 12 = 0
+  t = x² + x:  t² − 4t − 12 = 0  →  t = 6, t = −2
+  x² + x = 6  → x² + x − 6 = 0 → x = 2, x = −3
+  x² + x = −2 → x² + x + 2 = 0 → D = 1 − 8 < 0, kök yoxdur
+  Cavab: −3; 2   (2 kök)</div>
+      <div class="ex">Nümunə 3.  (x + 1)⁴ − 5(x + 1)² + 4 = 0
+  t = (x + 1)², t ≥ 0:  t² − 5t + 4 = 0  →  t = 1, t = 4
+  (x + 1)² = 1 → x + 1 = ±1 → x = 0, x = −2
+  (x + 1)² = 4 → x + 1 = ±2 → x = 1, x = −3
+  Cavab: −3; −2; 0; 1   (4 kök, cəmi −4)</div>
+      <p>Nümunə 2-də <span class="m">t = −2</span> mənfidir, amma bu, avtomatik "atılır" demək deyil — <span class="m">x² + x</span> mənfi ola bilər (məs. <span class="m">x = −0,5</span>-də). Burada sadəcə diskriminant mənfi çıxdı. <span class="m">t = x²</span> və ya <span class="m">t = (x + 1)²</span> olanda isə mənfi <span class="m">t</span> dərhal atılır.</p>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan.</b> Bu üsul hər yerdə işləyir: mürəkkəb bir hissəni "qutuya" qoy, qutunun içinə baxmadan məsələni həll et, sonra qutunu aç. Proqramçılar da belə edir — uzun ifadəyə ad verirlər. Fizikada da <span class="m">v²</span>-ni bir kəmiyyət kimi hesablayıb sonra kök alırıq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">t</span>-ni tapıb dayanmaq. Cavab <span class="m">x</span>-lərdir — hər <span class="m">t</span> üçün tənliyi axıra qədər həll et.</li>
+        <li>Hər <span class="m">t</span>-nin bir kök verdiyini düşünmək. Bir <span class="m">t</span> iki, bir, ya da sıfır <span class="m">x</span> verə bilər.</li>
+        <li>Mötərizəni açıb 4-cü dərəcəli çoxhədli ilə əlləşmək. Təkrarlanan ifadəni görən kimi əvəz et.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təkrarlanan ifadə → t → t-lər → hər t üçün x-lər.
+t = x² və ya t = (...)² olanda t ≥ 0.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² + x)² − 8(x² + x) + 12 = 0</span>. Ən böyük kök? <span class="ans">t = 2, t = 6. x² + x − 2 = 0 → 1, −2; x² + x − 6 = 0 → 2, −3. Ən böyüyü 2.</span></li>
+        <li><span class="m">(x − 3)⁴ − 3(x − 3)² − 4 = 0</span>. Neçə kök var? <span class="ans">t = (x − 3)²: t = 4, t = −1 (atılır). x − 3 = ±2 → x = 5, x = 1. 2 kök.</span></li>
+        <li><span class="m">(x² − 5x)² + 2(x² − 5x) − 24 = 0</span> tənliyində hansı əvəzləmə edilir? <span class="ans">t = x² − 5x. Onda t² + 2t − 24 = 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Sadə irrasional tənliklər: √(ax + b) = c</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dəyişən kök işarəsi altındadırsa, tənlik <b>irrasional</b> adlanır: <span class="m">√(2x + 3) = 5</span>. Kökdən qurtulmağın yolu — hər iki tərəfi <b>kvadrata yüksəltmək</b>. Amma əvvəl bir sual ver.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Kvadrat kök <b>heç vaxt mənfi olmur</b>: <span class="m">√9 = 3</span>, "−3" yox. Ona görə:</p>
+      <div class="fm">√(ax + b) = c
+c < 0  →  kök yoxdur
+c ≥ 0  →  ax + b = c²</div>
+      <p>DMQ: kökaltı ifadə <span class="m">≥ 0</span>. <span class="m">√(ax + b) = c</span> tipində bunu ayrıca yoxlamaq lazım deyil: <span class="m">ax + b = c²</span> onsuz da <span class="m">≥ 0</span>-dır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  √(2x + 3) = 5
+  5 ≥ 0 → kvadrata yüksəlt: 2x + 3 = 25 → x = 11
+  Yoxla: √(22 + 3) = √25 = 5 ✓</div>
+      <div class="ex">Nümunə 2.  √(x − 4) = −2
+  Sol tərəf ≥ 0, sağ tərəf mənfi.
+  Cavab: kök yoxdur.</div>
+      <div class="ex">Nümunə 3.  √(3x + 1) + 2 = 6
+  Əvvəl kökü tək saxla: √(3x + 1) = 4
+  3x + 1 = 16 → x = 5
+  Yoxla: √16 + 2 = 6 ✓</div>
+      <div class="ex">Nümunə 4.  √(5 − x) = 3
+  5 − x = 9 → x = −4
+  Yoxla: √(5 + 4) = √9 = 3 ✓   (x mənfidir — problem deyil!)</div>
+      <p>Nümunə 4 vacibdir: <b>x mənfi ola bilər</b>. Mənfi olmamalı olan — kökaltı ifadədir və kökün qiymətidir, <span class="m">x</span> özü yox.</p>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan: daşın düşməsi.</b> Hündürlükdən buraxılan daşın düşmə vaxtı təxminən <span class="m">t = √(h/5)</span> (t — saniyə, h — metr). Körpüdən buraxılan daş 3 saniyəyə suya düşdü. Körpünün hündürlüyü: <span class="m">√(h/5) = 3</span> → <span class="m">h/5 = 9</span> → <span class="m">h = 45</span> m. Fizikadan tanıyırsan: <span class="m">h = gt²/2 = 10 · 9 / 2 = 45</span> m ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">√(x − 4) = −2</span> → <span class="m">x − 4 = 4</span> → <span class="m">x = 8</span> yazmaq. Yoxla: <span class="m">√4 = 2 ≠ −2</span>. Kök yoxdur!</li>
+        <li><span class="m">√(3x + 1) + 2 = 6</span>-da kökü tək saxlamadan kvadrata yüksəltmək: <span class="m">3x + 1 + 4 = 36</span> — səhvdir.</li>
+        <li>Mənfi <span class="m">x</span>-i "kökaltı mənfi olur" deyə atmaq. Kökaltını hesabla, <span class="m">x</span>-ə baxma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√ ≥ 0 həmişə.
+Kökü tək saxla → sağ tərəf mənfidirsə: kök yoxdur
+→ deyilsə: kvadrata yüksəlt → həll et → yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√(x + 7) = 3</span>. x = ? <span class="ans">x + 7 = 9 → x = 2.</span></li>
+        <li><span class="m">√(4 − 3x) = 5</span>. x = ? <span class="ans">4 − 3x = 25 → x = −7. Yoxla: √(4 + 21) = √25 = 5 ✓</span></li>
+        <li><span class="m">√(2x − 1) + 4 = 1</span>. Neçə kök var? <span class="ans">√(2x − 1) = −3 — mənfi. Kök yoxdur: 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. √f = g tipli tənliklər: yoxlama məcburidir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İndi sağ tərəfdə də <span class="m">x</span> var: <span class="m">√(x + 5) = x − 1</span>. Kvadrata yüksəldəndə kvadrat tənlik alınır, onun iki kökü olur. Amma çox vaxt onlardan biri <b>saxtadır</b> (kənar kökdür). İmtahan sualının tələsi məhz budur.</p>
+
+      <h3><span class="st">2</span> Kənar kök haradan çıxır</h3>
+      <p><span class="m">3 = 3</span> də, <span class="m">3 = −3</span> də kvadrata yüksəldəndə <span class="m">9 = 9</span> olur. Yəni kvadrata yüksəltmək <span class="m">√f = g</span> ilə <span class="m">√f = −g</span>-ni "qarışdırır". Mənfi <span class="m">g</span> verən kök — o biri tənliyin köküdür, bizimki yox.</p>
+      <div class="fm">√f = g
+Şərt: g ≥ 0
+f = g²  →  kökləri tap
+Hər kökü yoxla: g ≥ 0?  yoxsa — at</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  √(x + 5) = x − 1
+  Şərt: x − 1 ≥ 0, yəni x ≥ 1
+  Kvadrata yüksəlt: x + 5 = (x − 1)² = x² − 2x + 1
+                    x² − 3x − 4 = 0  →  x = 4, x = −1
+  x = −1: sağ tərəf −2 < 0 → atılır.
+  Yoxla x = 4: √9 = 3,  4 − 1 = 3 ✓
+  Cavab: x = 4</div>
+      <div class="ex">Nümunə 2.  √(2x + 3) = x
+  Şərt: x ≥ 0
+  2x + 3 = x²  →  x² − 2x − 3 = 0  →  x = 3, x = −1
+  x = −1 < 0 → atılır.   Yoxla: √9 = 3 ✓
+  Cavab: x = 3</div>
+      <div class="ex">Nümunə 3.  √(5x − 4) = x
+  5x − 4 = x²  →  x² − 5x + 4 = 0  →  x = 1, x = 4
+  İkisi də ≥ 0.  Yoxla: √1 = 1 ✓,  √16 = 4 ✓
+  Cavab: 1 və 4 (iki kök — həmişə biri atılmır!)</div>
+      <div class="ex">Nümunə 4.  x − √x − 6 = 0       (əvəzləmə)
+  t = √x, t ≥ 0, x = t²:  t² − t − 6 = 0  →  t = 3, t = −2
+  t = −2 < 0 → atılır.   √x = 3 → x = 9
+  Yoxla: 9 − 3 − 6 = 0 ✓
+  Cavab: x = 9</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Divara söykənmiş nərdivan: uzunluq 13 m, hündürlük 12 m, aşağı uc divardan x qədər aralı">
+          <line x1="200" y1="20" x2="200" y2="180" stroke="var(--ink)" stroke-width="4"/>
+          <line x1="30" y1="180" x2="240" y2="180" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="130" y1="180" x2="200" y2="32" stroke="var(--vec)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M188 180V168H200" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="148" y="100" text-anchor="end" class="lbl">13 m</text>
+          <text x="208" y="110" class="lbl">12 m</text>
+          <text x="165" y="196" text-anchor="middle" class="lbl">x</text>
+        </svg>
+        <div class="cap"><p><b>Nərdivan.</b> 13 m-lik nərdivanın yuxarı ucu 12 m hündürlükdədir. Aşağı ucu divardan nə qədər aralıdır?</p>
+          <p><span class="m">√(169 − x²) = 12</span> → <span class="m">169 − x² = 144</span> → <span class="m">x² = 25</span> → <span class="m">x = ±5</span>. Məsafə mənfi olmur: <b>5 m</b>.</p></div>
+      </div>
+      <div class="life"><b>Həyatdan: ədəd tapmacası.</b> "Ədəd öz kvadrat kökündən 30 vahid böyükdür." <span class="m">x − √x = 30</span>, <span class="m">t = √x</span>: <span class="m">t² − t − 30 = 0</span> → <span class="m">t = 6</span> (t = −5 atılır) → <span class="m">x = 36</span>. Yoxla: 36 − 6 = 30 ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yoxlamamaq və hər iki kökü yazmaq. Nümunə 1-də "4 və −1" səhv cavabdır.</li>
+        <li><span class="m">(x − 1)² = x² − 1</span> yazmaq. Düzü: <span class="m">x² − 2x + 1</span> — ortadakı <span class="m">2ab</span> həddini unutma.</li>
+        <li>Həmişə bir kökün atılacağını düşünmək. Nümunə 3-də ikisi də yarayır — yoxlama qərar verir, vərdiş yox.</li>
+        <li>Əvəzləmədə <span class="m">t = √x</span>-in mənfi qiymətini saxlamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√f = g:  g ≥ 0 şərti → f = g² → köklər → hər birini yoxla.
+Kvadrata yüksəltmək kənar kök yarada bilər.
+x + p√x + q = 0:  t = √x ≥ 0.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√(x + 2) = x</span>. Kökü tap. <span class="ans">x² − x − 2 = 0 → x = 2, x = −1. x = −1 < 0 atılır. Cavab: 2.</span></li>
+        <li><span class="m">√(3x + 10) = x + 2</span>. Kökü tap. <span class="ans">Şərt x ≥ −2. 3x + 10 = x² + 4x + 4 → x² + x − 6 = 0 → x = 2, x = −3. −3 &lt; −2 — atılır. Yoxla: √16 = 4 ✓. Cavab: 2.</span></li>
+        <li><span class="m">x − 3√x + 2 = 0</span>. Köklərin cəmi? <span class="ans">t = √x: t² − 3t + 2 = 0 → t = 1, t = 2 → x = 1, x = 4. Cəm: 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -126,13 +126,15 @@
    "status": "yox",
    "menbe": "DİM: Birdəyişənli tənliklər",
    "novbeti": 3,
-   "sebeb": "Sınaq 1: vaxt çatmadı (sual 23)"
+   "sebeb": "Sınaq 1: vaxt çatmadı (sual 23)",
+   "ders": "dersler/kesr-rasional-tenlikler.html"
   },
   {
    "bolme": "Tənliklər",
    "ad": "Kvadrat tənliyə gətirilən və sadə irrasional tənliklər",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər",
+   "ders": "dersler/kvadrat-tenliye-getirilen.html"
   },
   {
    "bolme": "Tənliklər",
