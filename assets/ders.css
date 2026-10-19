@@ -76,7 +76,8 @@ details.check summary{color:var(--subj)}
 .in-frame .sk-bar{display:none}
 .in-frame .tabs{top:0}
 .in-frame .clock,.in-frame .prog{top:58px}
-.in-frame .wrap{padding-block:8px 60px}
+.in-frame .wrap{padding:32px 28px 60px}
+@media (max-width:640px){.in-frame .wrap{padding:22px 16px 48px}}
 
 /* steps inside a lesson card */
 .stepbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:-4px -4px 6px;padding:4px}

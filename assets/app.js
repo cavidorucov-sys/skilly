@@ -4,6 +4,7 @@ const NAV = [
   ["olimpiada.html", "Olimpiada", "Trophy"], ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Səhvlər", "NotebookPen"],
   ["dusturlar.html", "Düsturlar", "Sigma"],
 ];
+const NAV_SUB = { "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat", "Pi"], ["olimpiada.html#fizika", "Fizika", "Atom"]] };
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
   olym: { cls: "k-olym", ink: "var(--olym-ink)", ad: "Olimpiada" },
@@ -106,7 +107,15 @@ async function shell(content) {
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.ders).length)), "dərs"),
       el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")));
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
-    NAV.map(([href, label, ic]) => el("a", href === here ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label))));
+    NAV.map(([href, label, ic]) => {
+      const link = el("a", href === here ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label));
+      const sub = NAV_SUB[href];
+      if (!sub) return link;
+      // dropdown on hover / keyboard focus (desktop); on phones the page has the same choices as tabs
+      link.append(icon("ChevronDown"));
+      return el("div", { class: "nav-dd" }, link, el("div", { class: "dd" },
+        ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), l))));
+    }));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
   return { m, w, topics, term };
 }
@@ -190,8 +199,8 @@ async function pageOlympiad() {
     tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.k === k)));
     body.replaceChildren(); renderTopics(body, m, SUBJ_KAT_KEY[k], SUBJ[k][1]);
   }
-  const h = location.hash.slice(1);
-  draw(SUBJ[h] ? h : "riyaziyyat");
+  const fromHash = () => { const h = location.hash.slice(1); draw(SUBJ[h] ? h : "riyaziyyat"); };
+  fromHash(); window.addEventListener("hashchange", fromHash);
 }
 const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
 
