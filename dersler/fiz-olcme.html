@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ölçmə cihazları və ölçmə metodları dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-olcme.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Ölçmə cihazları</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Təcrübi tur</div>
+    <h1>Ölçmə cihazları və ölçmə metodları</h1>
+    <p>Təcrübi turda nəticən cihazı necə oxuduğundan və ölçməni necə qurduğundan asılıdır. Burada şkalanın bölgü qiymətini tapmağı, xətkeşi, ştangenzirkulu və əqrəbli cihazı oxumağı, xətanı azaltmaq üçün çox rəqsi ölçməyi və dolayı ölçməni öyrənəcəksən. Nümunələr sənin öz təcrübələrindəndir: <b>pendulum-lab</b> (sarğacın periodunun uzunluqdan asılılığı) və fırlanan oturacaqda telefonun <b>phyphox</b> sensorları ilə mərkəzəqaçma təcili <span class="m">a = ω²R</span>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bölgü qiyməti</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xətkeş, nonius, əqrəb</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Çox rəqs</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Dolayı ölçmə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Şkala və bölgü qiyməti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Pendulum-lab layihəndə sarğacın uzunluğunu xətkeşlə, vaxtı saniyəölçənlə ölçürsən. Phyphox-da isə telefonun harasından <span class="m">R</span>-i götürdüyünü xətkeşlə təyin edirsən. Hər cihazın bir <b>şkalası</b> var və şkalanın ən kiçik hissəsi nəyi göstərdiyini bilmədən bir rəqəm də düzgün oxuya bilməzsən. Olimpiadada cihazın üstündə yazılan rəqəmlər çox vaxt hər bölgünü göstərmir, bölgü qiymətini özün tapmalısan.</p>
+
+      <h3><span class="st">2</span> Bölgü qiyməti</h3>
+      <p><b>Bölgü qiyməti</b> <span class="m">c</span> — şkalanın iki qonşu cizgisi arasındakı fərqdir, yəni cihazla oxuna bilən ən kiçik dəyər. Onu bu qayda ilə tapırsan: şkalada iki <b>bitişik rəqəmli</b> işarə seç, onların fərqini aralarındakı <b>bölgülərin sayına</b> böl.</p>
+      <div class="fm">c = (b − a) / n
+a, b — bitişik rəqəmli işarələr, n — aralarındakı bölgü sayı</div>
+      <div class="fig">
+        <svg viewBox="0 0 320 112" role="img" aria-label="Xətkeşin şkalası: 2 sm-dən 5 sm-ə qədər, göstərici 3,4 sm-də"><rect x="8" y="52" width="304" height="54" rx="4" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/><line x1="24" y1="52" x2="24" y2="72" stroke="var(--ink)" stroke-width="1.8"/><text x="24" y="90" text-anchor="middle" class="lbl">2</text><line x1="33.07" y1="52" x2="33.07" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="42.13" y1="52" x2="42.13" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="51.2" y1="52" x2="51.2" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="60.27" y1="52" x2="60.27" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="69.33" y1="52" x2="69.33" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="78.4" y1="52" x2="78.4" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="87.47" y1="52" x2="87.47" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="96.53" y1="52" x2="96.53" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="105.6" y1="52" x2="105.6" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="114.67" y1="52" x2="114.67" y2="72" stroke="var(--ink)" stroke-width="1.8"/><text x="114.67" y="90" text-anchor="middle" class="lbl">3</text><line x1="123.73" y1="52" x2="123.73" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="132.8" y1="52" x2="132.8" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="141.87" y1="52" x2="141.87" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="150.93" y1="52" x2="150.93" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="160" y1="52" x2="160" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="169.07" y1="52" x2="169.07" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="178.13" y1="52" x2="178.13" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="187.2" y1="52" x2="187.2" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="196.27" y1="52" x2="196.27" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="205.33" y1="52" x2="205.33" y2="72" stroke="var(--ink)" stroke-width="1.8"/><text x="205.33" y="90" text-anchor="middle" class="lbl">4</text><line x1="214.4" y1="52" x2="214.4" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="223.47" y1="52" x2="223.47" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="232.53" y1="52" x2="232.53" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="241.6" y1="52" x2="241.6" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="250.67" y1="52" x2="250.67" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="259.73" y1="52" x2="259.73" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="268.8" y1="52" x2="268.8" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="277.87" y1="52" x2="277.87" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="286.93" y1="52" x2="286.93" y2="62" stroke="var(--ink)" stroke-width="1.1"/><line x1="296" y1="52" x2="296" y2="72" stroke="var(--ink)" stroke-width="1.8"/><text x="296" y="90" text-anchor="middle" class="lbl">5</text><text x="306" y="103" text-anchor="end" class="lbl" style="font-size:12px">sm</text><path d="M150.93 51L143.93 35L157.93 35Z" fill="var(--vec)"/><line x1="150.93" y1="51" x2="150.93" y2="74" stroke="var(--vec)" stroke-width="1.4"/></svg>
+        <div class="cap">
+          <p>Şəkildə xətkeşin parçası. Rəqəmli işarələr 2 sm və 3 sm-dir, aralarında 10 bölgü var: <span class="m">c = (3 − 2)/10 = 0,1 sm = 1 mm</span>. Qırmızı göstərici 3-dən sonra 4-cü bölgüdədir: <span class="m">3 + 4·0,1 = 3,4 sm</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Oxuma qaydası və cihaz xətası</h3>
+      <p>Oxumaq üçün şkalada ən yaxın solda duran rəqəmli işarədən başla və neçə bölgü keçdiyini say. Bölgüləri deyil, <b>aralıqları</b> say: 4 cizgi arasında 5 aralıq (5 bölgü) var.</p>
+      <p>Cihazla oxuna bilən nəticənin dəqiqliyi bölgü qiymətindən yaxşı ola bilməz. Əgər əqrəb iki cizgi arasında dayanıbsa, ən yaxın cizgini götürürsən. Buna görə <b>cihaz xətası</b> (mütləq xəta) bölgü qiymətinin yarısı götürülür:</p>
+      <div class="fm">Δ = c / 2
+nəticə:  x = (x_oxunan ± Δ)</div>
+      <p>Nəticəni bölgü qiymətindən çox rəqəmlə yazmaq olmaz: <span class="m">c = 0,2</span> olan şkalada <span class="m">2,43</span> yazmaq yalandır, <span class="m">2,4</span> yazılır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Ölçü silindrində 20 və 30 mL işarələri arasında
+5 bölgü var. Səviyyə 20-dən yuxarı 3-cü bölgüdədir.
+  c = (30 − 20)/5 = 2 mL
+  V = 20 + 3·2 = 26 mL
+  Δ = c/2 = 1 mL
+Cavab: V = (26 ± 1) mL</div>
+      <div class="ex">Nümunə 2. Voltmetrdə 2 V və 3 V işarələri arasında 5 bölgü var,
+əqrəb 2 V-dan sonra 3-cü bölgüdədir.
+  c = (3 − 2)/5 = 0,2 V
+  U = 2 + 3·0,2 = 2,6 V,  Δ = 0,1 V
+Cavab: U = (2,6 ± 0,1) V</div>
+      <div class="ex">Nümunə 3 (tələ). Şkalada 10 və 20 arasında 4 cizgi çəkilib.
+Bölgü qiyməti?
+  4 cizgi arasında 5 aralıq var → n = 5
+  c = (20 − 10)/5 = 2
+  (n = 4 götürsən c = 2,5 çıxar — səhvdir)</div>
+      <div class="life"><b>Həyatdan.</b> Telefonun saniyəölçəni 0,01 s göstərir, deməli bölgü qiyməti 0,01 s-dir. Amma sən onu əllə işə salıb dayandırırsan və insanın reaksiyası təxminən 0,2 s-dir. Real xətanı bölgü yox, reaksiyan təyin edir. Bunu 3-cü dərsdə görəcəksən: ona görə rəqəmli cihazın çox rəqəmi dəqiqlik demək deyil.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bölgüləri saymaq əvəzinə cizgiləri saymaq: aralıq həmişə cizgidən bir azdır.</li>
+        <li>Bitişik olmayan rəqəmli işarələri götürmək. Fərqi və aralarındakı bölgü sayını eyni cütdən götür.</li>
+        <li>Vahidi unutmaq və ya qarışdırmaq (sm ilə mm, mL ilə L).</li>
+        <li>Göstəricinin üstündən yuxarıdan, yandan baxmaq: baxış şkalaya perpendikulyar olmalıdır (paralaks).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">c = (b − a)/n  (n — aralıqların sayı)
+oxunuş = ilk işarə + (keçilmiş bölgü)·c
+cihaz xətası Δ = c/2
+nəticəni c-dən çox rəqəmlə yazma</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Dinamometrdə 1 N və 2 N arasında 5 bölgü var. c = ? <span class="ans">c = (2 − 1)/5 = 0,2 N.</span></li>
+        <li>Termometrin c = 0,5 °C-dir. Cihaz xətası? <span class="ans">Δ = 0,25 °C.</span></li>
+        <li>Termometrdə 20 °C-dən sonra 7-ci bölgüdədir, c = 0,5 °C. Temperatur? <span class="ans">20 + 7·0,5 = 23,5 °C.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Xətkeş, ştangenzirkul və əqrəbli cihazlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Təcrübi turda üç cür cihaz əsasən qarşına çıxır: xətkeş (uzunluq), ştangenzirkul (kiçik uzunluq, diametr) və əqrəbli elektrik cihazları (ampermetr, voltmetr). Hər birinin öz oxuma texnikası və öz tələləri var. Sarğacın topunun diametrini ştangenzirkulla ölçmək xətkeşlə ölçməkdən 10 dəfə dəqiqdir.</p>
+
+      <h3><span class="st">2</span> Xətkeşlə düzgün ölçmə</h3>
+      <p>Xətkeşin kənarı çox vaxt silinib, ona görə ölçməni <b>0-dan yox, 1 sm işarəsindən</b> başlamaq və sonda 1 sm çıxmaq daha etibarlıdır. Xətkeşi ölçülən cismin üstünə sıx qoy ki, cizgi cismə toxunsun. Göz şkalaya perpendikulyar baxsın.</p>
+      <p>Çox vaxt lazım olan uzunluğu birbaşa ölçmək olmur: məsələn, sarğacın uzunluğu <span class="m">l</span> asılma nöqtəsindən <b>topun mərkəzinə</b> qədərdir, mərkəzə xətkeş toxunmur. Onda hissələri ölçüb toplayırsan:</p>
+      <div class="fm">l = (ipin uzunluğu) + (topun diametri)/2
+R = (oxdan telefonun yaxın kənarına) + (telefonun eni)/2</div>
+
+      <h3><span class="st">3</span> Ştangenzirkul və nonius</h3>
+      <p>Ştangenzirkulda əsas şkala mm-lə bölünüb. Sürüşən hissədə <b>nonius</b> var: 10 bölgü əsas şkalanın 9 mm-nə bərabərdir. Deməli bir nonius bölgüsü 0,9 mm, əsas bölgüdən 0,1 mm qısadır. Elə buna görə cihaz 0,1 mm dəqiqliklə oxuyur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 296 122" role="img" aria-label="Ştangenzirkul: əsas şkala və nonius, oxunuş 13,4 mm"><rect x="1" y="6" width="294" height="52" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.3"/><line x1="8" y1="58" x2="8" y2="36" stroke="var(--ink)" stroke-width="1.2"/><text x="8" y="30" text-anchor="middle" class="lbl" style="font-size:13px">10</text><line x1="24" y1="58" x2="24" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="40" y1="58" x2="40" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="56" y1="58" x2="56" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="72" y1="58" x2="72" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="88" y1="58" x2="88" y2="43" stroke="var(--ink)" stroke-width="1.2"/><line x1="104" y1="58" x2="104" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="120" y1="58" x2="120" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="136" y1="58" x2="136" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="152" y1="58" x2="152" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="168" y1="58" x2="168" y2="36" stroke="var(--ink)" stroke-width="1.2"/><text x="168" y="30" text-anchor="middle" class="lbl" style="font-size:13px">20</text><line x1="184" y1="58" x2="184" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="200" y1="58" x2="200" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="216" y1="58" x2="216" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="232" y1="58" x2="232" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="248" y1="58" x2="248" y2="43" stroke="var(--ink)" stroke-width="1.2"/><line x1="264" y1="58" x2="264" y2="48" stroke="var(--ink)" stroke-width="1.2"/><line x1="280" y1="58" x2="280" y2="48" stroke="var(--ink)" stroke-width="1.2"/><text x="290" y="20" text-anchor="end" class="lbl" style="font-size:12px">mm</text><rect x="55.4" y="58" width="168" height="52" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.3"/><line x1="62.4" y1="58" x2="62.4" y2="75" stroke="var(--ink)" stroke-width="1.2"/><text x="62.4" y="90" text-anchor="middle" class="lbl" style="font-size:10px">0</text><line x1="76.8" y1="58" x2="76.8" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="76.8" y="90" text-anchor="middle" class="lbl" style="font-size:10px">1</text><line x1="91.2" y1="58" x2="91.2" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="91.2" y="90" text-anchor="middle" class="lbl" style="font-size:10px">2</text><line x1="105.6" y1="58" x2="105.6" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="105.6" y="90" text-anchor="middle" class="lbl" style="font-size:10px">3</text><line x1="120" y1="58" x2="120" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="120" y="90" text-anchor="middle" class="lbl" style="font-size:10px">4</text><line x1="134.4" y1="58" x2="134.4" y2="75" stroke="var(--ink)" stroke-width="1.2"/><text x="134.4" y="90" text-anchor="middle" class="lbl" style="font-size:10px">5</text><line x1="148.8" y1="58" x2="148.8" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="148.8" y="90" text-anchor="middle" class="lbl" style="font-size:10px">6</text><line x1="163.2" y1="58" x2="163.2" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="163.2" y="90" text-anchor="middle" class="lbl" style="font-size:10px">7</text><line x1="177.6" y1="58" x2="177.6" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="177.6" y="90" text-anchor="middle" class="lbl" style="font-size:10px">8</text><line x1="192" y1="58" x2="192" y2="69" stroke="var(--ink)" stroke-width="1.2"/><text x="192" y="90" text-anchor="middle" class="lbl" style="font-size:10px">9</text><line x1="206.4" y1="58" x2="206.4" y2="75" stroke="var(--ink)" stroke-width="1.2"/><text x="206.4" y="90" text-anchor="middle" class="lbl" style="font-size:10px">10</text><text x="60.4" y="106" text-anchor="start" class="lbl" style="font-size:11px">nonius</text></svg>
+        <div class="cap">
+          <p>Noniusun sıfırı əsas şkalanın 13 mm cizgisindən bir az sağdadır. Tam millimetr: <b>13</b>. Noniusun <b>4-cü</b> cizgisi əsas şkalanın hansısa cizgisi ilə üst-üstə düşür. Deməli onda hissə 4·0,1 = 0,4 mm. Oxunuş: <span class="m">13,4 mm = 1,34 sm</span>.</p>
+        </div>
+      </div>
+      <div class="fm">x = M + 0,1·k
+M — noniusun sıfırından solda qalan tam mm
+k — üst-üstə düşən nonius cizgisinin nömrəsi
+dəqiqlik = 1 mm / (nonius bölgülərinin sayı)</div>
+      <p>20 bölgülü nonius 19 mm-ə uyğundur, dəqiqliyi <span class="m">1/20 = 0,05 mm</span>; 50 bölgülüdə <span class="m">0,02 mm</span>. Çənələr tam bağlananda noniusun sıfırı əsas şkalanın sıfırında olmalıdır. Əgər olmursa, cihazın <b>sıfır xətası</b> var: bu oxunuşu hər ölçmədən çıxmalısan (mənfi olsa, toplayırsan).</p>
+
+      <h3><span class="st">4</span> Əqrəbli cihazlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 320 190" role="img" aria-label="Ampermetr, əqrəb 1,7 A göstərir"><rect x="6" y="6" width="308" height="178" rx="10" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/><path d="M53.51 97.44A130 130 0 0 1 266.49 97.44" fill="none" stroke="var(--ink)" stroke-width="1.6"/><line x1="53.51" y1="97.44" x2="68.25" y2="107.76" stroke="var(--ink)" stroke-width="1.8"/><text x="80.54" y="121.36" text-anchor="middle" class="lbl">0</text><line x1="58.5" y1="90.78" x2="66.3" y2="97.03" stroke="var(--ink)" stroke-width="1.1"/><line x1="63.9" y1="84.45" x2="71.29" y2="91.19" stroke="var(--ink)" stroke-width="1.1"/><line x1="69.69" y1="78.49" x2="76.64" y2="85.68" stroke="var(--ink)" stroke-width="1.1"/><line x1="75.86" y1="72.9" x2="82.33" y2="80.52" stroke="var(--ink)" stroke-width="1.1"/><line x1="82.37" y1="67.72" x2="88.34" y2="75.75" stroke="var(--ink)" stroke-width="1.1"/><line x1="89.2" y1="62.97" x2="94.64" y2="71.36" stroke="var(--ink)" stroke-width="1.1"/><line x1="96.31" y1="58.67" x2="101.21" y2="67.39" stroke="var(--ink)" stroke-width="1.1"/><line x1="103.69" y1="54.83" x2="108.02" y2="63.84" stroke="var(--ink)" stroke-width="1.1"/><line x1="111.3" y1="51.47" x2="115.05" y2="60.74" stroke="var(--ink)" stroke-width="1.1"/><line x1="119.11" y1="48.6" x2="124.77" y2="65.68" stroke="var(--ink)" stroke-width="1.8"/><text x="129.49" y="84.92" text-anchor="middle" class="lbl">1</text><line x1="127.08" y1="46.24" x2="129.62" y2="55.91" stroke="var(--ink)" stroke-width="1.1"/><line x1="135.19" y1="44.39" x2="137.1" y2="54.2" stroke="var(--ink)" stroke-width="1.1"/><line x1="143.41" y1="43.06" x2="144.68" y2="52.98" stroke="var(--ink)" stroke-width="1.1"/><line x1="151.69" y1="42.27" x2="152.33" y2="52.25" stroke="var(--ink)" stroke-width="1.1"/><line x1="160" y1="42" x2="160" y2="52" stroke="var(--ink)" stroke-width="1.1"/><line x1="168.31" y1="42.27" x2="167.67" y2="52.25" stroke="var(--ink)" stroke-width="1.1"/><line x1="176.59" y1="43.06" x2="175.32" y2="52.98" stroke="var(--ink)" stroke-width="1.1"/><line x1="184.81" y1="44.39" x2="182.9" y2="54.2" stroke="var(--ink)" stroke-width="1.1"/><line x1="192.92" y1="46.24" x2="190.38" y2="55.91" stroke="var(--ink)" stroke-width="1.1"/><line x1="200.89" y1="48.6" x2="195.23" y2="65.68" stroke="var(--ink)" stroke-width="1.8"/><text x="190.51" y="84.92" text-anchor="middle" class="lbl">2</text><line x1="208.7" y1="51.47" x2="204.95" y2="60.74" stroke="var(--ink)" stroke-width="1.1"/><line x1="216.31" y1="54.83" x2="211.98" y2="63.84" stroke="var(--ink)" stroke-width="1.1"/><line x1="223.69" y1="58.67" x2="218.79" y2="67.39" stroke="var(--ink)" stroke-width="1.1"/><line x1="230.8" y1="62.97" x2="225.36" y2="71.36" stroke="var(--ink)" stroke-width="1.1"/><line x1="237.63" y1="67.72" x2="231.66" y2="75.75" stroke="var(--ink)" stroke-width="1.1"/><line x1="244.14" y1="72.9" x2="237.67" y2="80.52" stroke="var(--ink)" stroke-width="1.1"/><line x1="250.31" y1="78.49" x2="243.36" y2="85.68" stroke="var(--ink)" stroke-width="1.1"/><line x1="256.1" y1="84.45" x2="248.71" y2="91.19" stroke="var(--ink)" stroke-width="1.1"/><line x1="261.5" y1="90.78" x2="253.7" y2="97.03" stroke="var(--ink)" stroke-width="1.1"/><line x1="266.49" y1="97.44" x2="251.75" y2="107.76" stroke="var(--ink)" stroke-width="1.8"/><text x="239.46" y="121.36" text-anchor="middle" class="lbl">3</text><text x="26" y="170" text-anchor="start" class="lbl" style="font-size:22px;font-weight:700">A</text><line x1="160" y1="172" x2="176.08" y2="47.03" stroke="var(--vec)" stroke-width="2.6" stroke-linecap="round"/><circle cx="160" cy="172" r="7" fill="var(--ink)"/></svg>
+        <div class="cap">
+          <p>Ampermetrin şkalası 0-dan 3 A-ə qədərdir. Rəqəmli işarələr 0, 1, 2, 3, hər birinin arasında 10 bölgü: <span class="m">c = (1 − 0)/10 = 0,1 A</span>. Əqrəb 1-dən sonra 7-ci bölgüdədir: <span class="m">I = 1,7 A</span>, cihaz xətası <span class="m">Δ = 0,05 A</span>.</p>
+        </div>
+      </div>
+      <p>Əqrəbli cihazlarda üç qayda var. Birincisi, ölçməyə başlamazdan əvvəl əqrəbin <b>sıfırda</b> olduğuna bax (yoxsa mexaniki düzəldiciylə sıfıra qur). İkincisi, <b>diapazonu</b> elə seç ki, əqrəb şkalanın ikinci yarısında dayansın: kiçik göstərişdə nisbi xəta böyük olur. Üçüncüsü, yenə perpendikulyar bax (güzgülü şkala bunun üçündür: əqrəb öz əksini örtəndə baxış düzgündür).</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Ştangenzirkul. Noniusun sıfırı 22 və 23 mm
+cizgiləri arasındadır, noniusun 7-ci cizgisi üst-üstə düşür.
+  x = 22 + 7·0,1 = 22,7 mm = 2,27 sm</div>
+      <div class="ex">Nümunə 2 (sıfır xətası). Çənələr bağlananda nonius +0,2 mm
+göstərir. Detalı ölçəndə 22,7 mm oxundu.
+  Cihaz həmişə 0,2 mm çox göstərir → düzəliş: 22,7 − 0,2 = 22,5 mm
+  (sıfır xətası −0,2 mm olsaydı: 22,7 + 0,2 = 22,9 mm)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Oturacaqda ox işarəsindən telefonun yaxın
+kənarına qədər 12,0 sm, telefonun eni 7,4 sm. Akselerometr
+telefonun mərkəzindədirsə, R = ?
+  R = 12,0 + 7,4/2 = 12,0 + 3,7 = 15,7 sm = 0,157 m
+  (xətkeşin bölgüsü 1 mm → Δ = 0,05 sm)</div>
+      <div class="life"><b>Həyatdan.</b> Phyphox-da telefonun içindəki akselerometr çipi telefonun tam ortasında olmaya bilər. Xətkeşlə ölçdüyün <span class="m">R</span> telefonun ortasına, sensor isə bir az kənardadır. Bu fərqi sonra qrafikdən tapacaqsan. Amma bunun üçün <span class="m">R</span>-i əvvəlcə düzgün ölçmüş olmalısan.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Nonius cizgisini saymaq əvəzinə əsas şkaladakı rəqəmi götürmək. Üst-üstə düşən cizgi <b>nonius</b> şkalasında sayılır.</li>
+        <li>Tam millimetri noniusun sıfırından <b>sağdakı</b> cizgidən götürmək. Sol cizgi götürülür.</li>
+        <li>Sıfır xətasını unutmaq və ya işarəsini səhv çıxmaq.</li>
+        <li><span class="m">R</span>-i telefonun kənarına qədər ölçüb mərkəzə qədər yazmaq (eninin yarısını əlavə etməmək).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">nonius:  x = M + 0,1·k   (dəqiqlik 1 mm / n)
+sıfır xətası oxunuşdan çıxılır
+əqrəbli cihaz: c = (b − a)/n, Δ = c/2
+əqrəb şkalanın 2-ci yarısında olsun
+ölçülməyən mərkəzə qədər: hissələri topla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Noniusun sıfırı 8 və 9 mm arasında, 5-ci cizgi üst-üstə düşür. x = ? <span class="ans">8,5 mm.</span></li>
+        <li>Sarğacın ipi 90,0 sm, topun diametri 4 sm. l = ? <span class="ans">90,0 + 2 = 92,0 sm = 0,92 m.</span></li>
+        <li>Voltmetrin şkalası 0–6 V, 60 bölgü. Əqrəb 24-cü bölgüdədir. U = ? <span class="ans">c = 6/60 = 0,1 V, U = 24·0,1 = 2,4 V.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Çoxlu ölçmə: xətanı necə kiçik etmək olar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sarğacın periodu təxminən 1,5 s-dir. Əllə saniyəölçəni işə salıb dayandırarkən reaksiya gecikməsi təxminən 0,2 s edir. Bir rəqsi ölçsən nəticə <span class="m">T = 1,5 ± 0,2 s</span> olar: nisbi xəta 13%-dən çoxdur. Bu, cihazın xətası deyil, <b>ölçmə metodunun</b> xətasıdır. Həll sadədir: bir rəqsi yox, çox rəqsi ölç.</p>
+
+      <h3><span class="st">2</span> Çoxlu rəqsin vaxtı</h3>
+      <p><span class="m">N</span> tam rəqsin vaxtı <span class="m">t</span>-ni ölç və <span class="m">N</span>-ə böl. Reaksiya gecikməsi (<span class="m">Δt</span>) bir dəfə baş verir, amma <span class="m">N</span> rəqs arasında bölünür:</p>
+      <div class="fm">T = t / N
+ΔT = Δt / N
+ε = ΔT / T = Δt / t</div>
+      <p>Nisbi xəta <span class="m">ε = Δt/t</span>: ölçülən vaxt nə qədər uzundursa, xəta o qədər azdır. Mütləq xəta <span class="m">N</span> dəfə azalır.</p>
+
+      <h3><span class="st">3</span> Neçə rəqs ölçmək lazımdır</h3>
+      <p>İstədiyin dəqiqlik <span class="m">ΔT</span> verilibsə, rəqs sayını tərs məsələ kimi tapırsan:</p>
+      <div class="fm">N ≥ Δt / ΔT</div>
+      <p>Lakin həddi var. Çox rəqs ölçəndə amplituda azalır, saymada səhv ehtimalı artır və yorulursan. Əməli seçim: <span class="m">N = 20</span> rəqs, 3–5 təkrar. Sarğacda başlanğıc bucaq 10°-dən kiçik olsun.</p>
+      <p>Saymaq qaydası: saniyəölçəni sarğac tarazlıq vəziyyətindən bir istiqamətdə keçən anda işə sal və o anı <b>0</b> adlandır. Hər dəfə eyni istiqamətdə keçəndə 1, 2, 3… de. <span class="m">N</span>-ci keçidində dayandır. 1-dən başlasan bir rəqs artıq sayarsan.</p>
+
+      <h3><span class="st">4</span> Eyni ideya başqa yerdə</h3>
+      <p>Kiçik kəmiyyəti birbaşa ölçə bilmirsənsə, çoxunu ölç və böl: 100 vərəqin qalınlığını ölçüb 100-ə bölürsən. Məftilin diametrini tapmaq üçün onu qələmə sıx-sıx 40 dolaq sarıyıb sarğının uzunluğunu ölçürsən. Fırlanan oturacaqda 10 dövrün vaxtını ölçüb <span class="m">T</span>-ni, <span class="m">ω = 2π/T</span>-ni tapırsan. Phyphox-da isə sensor saniyədə yüzlərlə nöqtə yazır və sən vaxtı qrafikdəki zirvələrdən oxuyursan: ilk və sonuncu zirvənin vaxt fərqini zirvələr arasındakı dövr sayına bölürsən.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1 (pendulum-lab). Sarğac 20 rəqsi 28,6 s-də edir.
+Əllə ölçmə xətası Δt = 0,2 s.
+  T = 28,6/20 = 1,43 s
+  ΔT = 0,2/20 = 0,01 s
+  ε = ΔT/T = 0,01/1,43 ≈ 0,007 = 0,7 %
+(Bir rəqs ölçsəydin: 0,2/1,43 ≈ 14 %.)</div>
+      <div class="ex">Nümunə 2. Əllə ölçmədə Δt = 0,2 s. Periodu ΔT ≤ 0,004 s
+dəqiqliklə tapmaq üçün ən azı neçə rəqs ölçmək lazımdır?
+  N ≥ Δt/ΔT = 0,2/0,004 = 50 rəqs</div>
+      <div class="ex">Nümunə 3 (fırlanan oturacaq, π = 3,14). Oturacaq 5 tam dövrü
+12,5 s-də edir.
+  T = 12,5/5 = 2,5 s
+  ω = 2π/T = 6,28/2,5 ≈ 2,51 rad/s
+  (kreslo 3–4 saniyəyə dayanır, ona görə burada 20 dövr ölçmək mümkün deyil:
+   hər qeyddə mümkün olan qədər çox dövrü qrafikdən say)</div>
+      <div class="life"><b>Həyatdan.</b> Pendulum-lab-da 20 rəqs seçməsən, qrafikdə <span class="m">T²</span> nöqtələri yayılacaq və xətti düz çəkmək çətinləşəcək. 20 rəqsdə vaxtın nisbi xətası 0,7%-ə düşür. Amma uzunluğu 3% xətayla ölçsən, 20 rəqsin faydası görünməz: ən zəif ölçmə nəticənin xətasını təyin edir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">T = N/t</span> yazmaq: bu tezlikdir. Period <span class="m">t/N</span>-dir.</li>
+        <li>Saymağa 1-dən başlamaq: <span class="m">N + 1</span> rəqs alınır, <span class="m">T</span> kiçik çıxır.</li>
+        <li>Xətanı <span class="m">N</span> dəfə azaltmağı bütün xətalara aid etmək. Uzunluğu ölçmək xətası dəyişmir, yalnız vaxt hissəsi azalır.</li>
+        <li>Amplituda böyük olanda ölçmək: sarğacın periodu amplitudadan asılı olmağa başlayır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t/N,  ΔT = Δt/N,  ε = Δt/t
+N ≥ Δt/ΔT
+sayma 0-dan başlayır
+kiçik kəmiyyət: çoxunu ölç və böl</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>25 rəqs 40 s-də baş verir. T = ? <span class="ans">40/25 = 1,6 s.</span></li>
+        <li>Δt = 0,3 s, N = 30. ΔT = ? <span class="ans">0,3/30 = 0,01 s.</span></li>
+        <li>Oturacaq 10 dövrü 25 s-də edir. ω = ? (π = 3,14) <span class="ans">T = 2,5 s, ω = 6,28/2,5 ≈ 2,51 rad/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Dolayı ölçmə və əhəmiyyətli rəqəmlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çox kəmiyyəti birbaşa ölçmək olmur. Mərkəzəqaçma təcili üçün cihaz yoxdur, onu ölçülmüş <span class="m">ω</span> və <span class="m">R</span>-dən hesablayırsan. Sarğacda <span class="m">g</span> də belədir: ölçdüyün <span class="m">l</span> və <span class="m">T</span>-dir. Bu <b>dolayı ölçmədir</b>. Hesabın sonunda kalkulyator çox rəqəm verir və onlardan hansının mənalı olduğunu bilməlisən.</p>
+
+      <h3><span class="st">2</span> Birbaşa və dolayı ölçmə</h3>
+      <p><b>Birbaşa</b> ölçmədə kəmiyyəti cihaz bilavasitə göstərir (xətkeşlə uzunluq, saniyəölçənlə vaxt). <b>Dolayı</b> ölçmədə kəmiyyət birbaşa ölçülənlərdən düsturla tapılır:</p>
+      <div class="fm">ρ = m / V              sıxlıq (V = V₂ − V₁, suyun sıxışdırılması)
+d = L / n              məftilin diametri (n dolaq)
+a = ω²R                mərkəzəqaçma təcili
+g = 4π²l / T²          sarğacdan sərbəstdüşmə təcili</div>
+      <p>Hesabdan əvvəl <b>hər şeyi SI-yə çevir</b>: sm-i metrə, q-ı kq-a. 1 mL = 1 sm³ və 1 q/sm³ = 1000 kq/m³. Nizamsız cismin həcmini suyun səviyyəsinin artımından tap: <span class="m">V = V₂ − V₁</span>. Nizamsız fiqurun sahəsini tor kağızında saymaqla tap: tam xanalar + natamamların yarısı.</p>
+
+      <h3><span class="st">3</span> Əhəmiyyətli rəqəmlər</h3>
+      <p><b>Əhəmiyyətli rəqəmlər</b> ədədin ilk sıfırdan fərqli rəqəmindən başlayaraq sona qədər olan rəqəmlərdir. Soldakı sıfırlar sayılmır, vergüldən sonrakı sonuncu sıfırlar isə sayılır:</p>
+      <div class="fm">0,0450  → 3 rəqəm (4, 5, 0)
+12,30   → 4 rəqəm
+205     → 3 rəqəm
+0,3     → 1 rəqəm      0,30 → 2 rəqəm</div>
+      <p>Üç qayda: (1) vurma və bölmədə nəticədə ən az əhəmiyyətli rəqəmi olan ədədin qədər rəqəm saxlanır. (2) Xəta 1 (ən çoxu 2) əhəmiyyətli rəqəmlə yazılır. (3) Nəticə xətanın mərtəbəsinə qədər yuvarlaqlaşdırılır: xəta 0,02-dirsə nəticədə vergüldən sonra 2 rəqəm olmalıdır.</p>
+      <div class="fm">T = 2,0437 s, ΔT = 0,02 s  →  T = (2,04 ± 0,02) s</div>
+      <p>Yuvarlaqlaşdırmada sonuncu saxlanan rəqəmdən sonrakı rəqəm 5 və ya çoxdursa, sonuncu rəqəm 1 artır, yoxsa dəyişmir. Aralıq hesablamalarda 1–2 artıq rəqəm saxla, yalnız son cavabı yuvarlaqlaşdır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Ölçü silindrində su 40 mL, metal cismi salanda 55 mL.
+Cismin kütləsi 133,5 q. Sıxlıq?
+  V = 55 − 40 = 15 mL = 15 sm³
+  ρ = 133,5/15 = 8,9 q/sm³ = 8900 kq/m³</div>
+      <div class="ex">Nümunə 2. Phyphox: ω = 3,17 rad/s (3 əhəmiyyətli rəqəm),
+R = 0,200 m (3 əhəmiyyətli rəqəm). a = ω²R = ?
+  3,17² = 10,0489
+  a = 10,0489·0,200 = 2,00978 ≈ 2,01 m/s²  (3 rəqəm saxlanır)</div>
+      <div class="ex">Nümunə 3. Sarğac: l = 1,000 m, T = 2,01 s. g = 4π²l/T² = ?
+  T² = 4,0401
+  g = 39,478·1,000/4,0401 = 9,7716…
+  T-nin 3 əhəmiyyətli rəqəmi var → g ≈ 9,77 m/s²
+  (xəta təxminən ±0,1 çıxacaq — bunu növbəti mövzuda hesablayacaqsan —
+   onda nəticə g = (9,8 ± 0,1) m/s² yazılır: 9,77-nin ikinci rəqəmi mənasızdır)</div>
+      <div class="life"><b>Həyatdan.</b> Phyphox sənə <span class="m">a = 2,009782…</span> kimi uzun rəqəmlər verə bilər. Amma xətkeşlə ölçdüyün <span class="m">R</span> 3 rəqəmlidir, ona görə cavabda 3 rəqəm saxla. Kalkulyatorun ekranı dəqiqlik deyil. Yazdığın hər rəqəm "mən bunu bilirəm" deməkdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kalkulyatorun bütün rəqəmlərini cavaba yazmaq.</li>
+        <li>0,30-u 0,3 ilə eyni saymaq: 0,30 ölçmənin 0,01 dəqiqliklə edildiyini göstərir.</li>
+        <li>Aralıq hesabda da yuvarlaqlaşdırıb xətanı yığmaq. Yalnız sonda yuvarlaqlaşdır.</li>
+        <li>SI-yə çevirmədən hesablamaq: sm yerinə m, q yerinə kq yazmamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">dolayı ölçmə: ölçülənlər → düstur → nəticə (SI)
+soldakı sıfırlar sayılmır
+vurma-bölmə: ən az rəqəmli ədədin qədər
+xəta 1 əh. rəqəm; nəticə xətanın mərtəbəsinə qədər</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,0450 neçə əhəmiyyətli rəqəmdir? <span class="ans">3 (4, 5, 0).</span></li>
+        <li>12,3 · 4,5 (2 əhəmiyyətli rəqəm)? <span class="ans">55,35 → 55.</span></li>
+        <li>T = 1,2467 s, ΔT = 0,02 s. Nəticəni yaz. <span class="ans">T = (1,25 ± 0,02) s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

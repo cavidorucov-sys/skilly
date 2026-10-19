@@ -1130,7 +1130,8 @@
     "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar",
     "riyaziyyat:Faiz"
    ],
-   "hefte": "2026-11-09"
+   "hefte": "2026-11-09",
+   "ders": "dersler/fiz-olcme.html"
   },
   {
    "bolme": "Təcrübi tur",
@@ -1143,7 +1144,8 @@
     "riyaziyyat:Faiz",
     "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "ders": "dersler/fiz-xetalar.html"
   },
   {
    "bolme": "Hidrostatika",

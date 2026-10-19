@@ -33,7 +33,8 @@ def run(n):
     if all(os.path.exists(f"assets/ill/{s}.webp") for s in slugs if s != "-"): return f"{n:02d} skip"
     out = os.path.join(SPR, f"sprite-{n:02d}.png")
     if not os.path.exists(out):
-        r = subprocess.run([CODEX, "exec", "--skip-git-repo-check", "-s", "workspace-write", "-C", SPR, prompt(g, out)],
+        # the prompt goes through stdin ("-"): on Windows codex.cmd cuts a multi-line argument at the first newline
+        r = subprocess.run([CODEX, "exec", "--skip-git-repo-check", "-s", "workspace-write", "-C", SPR, "-"], input=prompt(g, out),
                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900)
         if not os.path.exists(out): return f"{n:02d} FAIL codex: " + (r.stdout + r.stderr)[-400:].replace("\n", " ")
     r = subprocess.run([sys.executable, "tools/sprite-kes.py", out, *slugs], capture_output=True, text=True, encoding="utf-8")
