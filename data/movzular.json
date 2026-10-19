@@ -1401,7 +1401,8 @@
     "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər",
     "riyaziyyat:Xətti tənliklər"
    ],
-   "hefte": "2027-02-22"
+   "hefte": "2027-02-22",
+   "ders": "dersler/fiz-om.html"
   },
   {
    "bolme": "Elektrik dövrələri",
@@ -1412,7 +1413,8 @@
     "fizika:Om qanunu, ardıcıl və paralel birləşmə",
     "fizika:Mexaniki iş və güc"
    ],
-   "hefte": "2027-02-22"
+   "hefte": "2027-02-22",
+   "ders": "dersler/fiz-elektrik-guc.html"
   },
   {
    "bolme": "Elektrik dövrələri",
@@ -1423,7 +1425,8 @@
     "fizika:Elektrik işi və gücü, Coul-Lens qanunu",
     "riyaziyyat:İkidəyişənli xətti tənliklər sistemi"
    ],
-   "hefte": "2027-03-01"
+   "hefte": "2027-03-01",
+   "ders": "dersler/fiz-ehq-kirxhof.html"
   },
   {
    "bolme": "Maqnetizm, mühitlərdə cərəyan",
@@ -1436,7 +1439,8 @@
     "fizika:Çevrə üzrə hərəkət",
     "fizika:Nyuton qanunları, bağlı cisimlər"
    ],
-   "hefte": "2027-03-08"
+   "hefte": "2027-03-08",
+   "ders": "dersler/fiz-maqnit.html"
   },
   {
    "bolme": "Maqnetizm, mühitlərdə cərəyan",

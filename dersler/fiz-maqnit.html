@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maqnit sahəsi, Amper qüvvəsi, yüklü zərrəciyin hərəkəti dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-maqnit.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Maqnit sahəsi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Maqnit sahəsi</div>
+    <h1>Maqnit sahəsi, Amper qüvvəsi, yüklü zərrəciyin hərəkəti</h1>
+    <p>Elektrik mühərriki, dinamik, kompas, televizorun şüa borusu, hissəcik sürətləndiriciləri — hamısında maqnit sahəsi cərəyana və hərəkət edən yükə qüvvə ilə təsir edir. Bu mövzuda sahənin xarakteristikasını (<span class="m">B</span>), cərəyanlı naqilə təsir edən qüvvəni (<span class="m">F = BIl sinα</span>) və yüklü zərrəciyin dairəvi hərəkətini (<span class="m">r = mv/(qB)</span>) öyrənəcəksən. İstiqamət qaydaları (sağ və sol əl) sözlə izah olunur, Oyunda isə onları tətbiq edəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Maqnit sahəsi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Amper qüvvəsi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Lorens qüvvəsi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Dairəvi hərəkət</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Maqnit sahəsi və maqnit induksiyası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Soyuducunun qapısındakı maqnit dəmiri çəkir, kompas iynəsi şimalı göstərir, elektrik mühərriki fırlanır. Maqnit əşyalara toxunmadan təsir edir. Bu təsir <b>maqnit sahəsi</b> vasitəsilə ötürülür. Sahə yalnız maqnitdən yox, <b>hərəkət edən yüklərdən, yəni cərəyandan</b> da yaranır. Elektrik və maqnitizm bir-birinə bağlıdır.</p>
+
+      <h3><span class="st">2</span> Maqnit sahəsi və xətləri</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Çubuq maqnitin maqnit sahəsinin xətləri: N qütbündən S qütbünə"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M165 85 C215 30, 45 30, 95 85" fill="none" stroke="var(--vec,#0c447c)" stroke-width="1.8" marker-end="url(#ck-ar)"/><path d="M165 85 C245 -10, -35 -10, 95 85" fill="none" stroke="var(--vec,#0c447c)" stroke-width="1.8" marker-end="url(#ck-ar)"/><path d="M165 85 C215 140, 45 140, 95 85" fill="none" stroke="var(--vec,#0c447c)" stroke-width="1.8" marker-end="url(#ck-ar)"/><path d="M165 85 C245 180, -35 180, 95 85" fill="none" stroke="var(--vec,#0c447c)" stroke-width="1.8" marker-end="url(#ck-ar)"/><rect x="95" y="75" width="35" height="20" fill="var(--vec,#0c447c)"/><rect x="130" y="75" width="35" height="20" fill="var(--accent,#a32d2d)"/><text x="112" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="inherit">S</text><text x="148" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="inherit">N</text></svg>
+        <div class="cap">
+          <p>Sahəni <b>maqnit induksiya xətləri</b> ilə göstəririk. Maqnitdən kənarda onlar <b>N</b> (şimal) qütbündən çıxıb <b>S</b> (cənub) qütbünə daxil olur, maqnitin içindən isə davam edib qapanır. Maqnit xətləri həmişə <b>qapalıdır</b> (başlanğıcı və sonu yoxdur). Xətlər sıx olan yerdə sahə güclüdür.</p>
+        </div>
+      </div>
+      <p>Kompas iynəsinin şimal ucu sahənin istiqamətini göstərir: <b>sahənin istiqaməti</b> kiçik maqnit iynəsinin şimal qütbünün göstərdiyi tərəfdir. Yer kürəsi özü böyük maqnitdir: təxminən 50 µT sahə yaradır. Coğrafi şimal qütbünün yaxınlığında Yerin maqnit <i>cənub</i> qütbü yerləşir, ona görə kompasın şimal ucu (N) coğrafi şimala doğru çəkilir.</p>
+
+      <h3><span class="st">3</span> Cərəyanın maqnit sahəsi: burğu və sağ əl qaydası</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Düz cərəyanlı naqilin ətrafında dairəvi maqnit xətləri"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><circle cx="130" cy="85" r="28" fill="none" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-dasharray="3 3"/><path d="M158 85 A28 28 0 0 0 130 57" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2" marker-end="url(#ck-ar)"/><path d="M102 85 A28 28 0 0 0 130 113" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2" marker-end="url(#ck-ar)"/><circle cx="130" cy="85" r="55" fill="none" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-dasharray="3 3"/><path d="M185 85 A55 55 0 0 0 130 30" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2" marker-end="url(#ck-ar)"/><path d="M75 85 A55 55 0 0 0 130 140" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2" marker-end="url(#ck-ar)"/><circle cx="130" cy="85" r="9" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><circle cx="130" cy="85" r="2" fill="var(--ink,#17171a)"/><text x="146" y="88" text-anchor="start" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">I</text></svg>
+        <div class="cap">
+          <p>Düz cərəyanlı naqilin ətrafında sahə xətləri naqili əhatə edən <b>çevrələrdir</b>. Şəkildə naqildə cərəyan <b>sənə doğru</b> axır (⊙ işarəsi), xətlər saat əqrəbinin əksinə yönəlib.</p>
+        </div>
+      </div>
+      <p><b>Burğu (sağ burğu) qaydası:</b> sağ burğunu cərəyan istiqamətində irəli batırırsansa, onun dəstəyinin fırlanma istiqaməti sahə xətlərinin istiqamətidir.</p>
+      <p><b>Sağ əl qaydası (naqil üçün):</b> sağ əlin baş barmağı cərəyan istiqamətində tutulsa, qalan dörd barmağın əyildiyi tərəf maqnit xətlərinin istiqamətidir.</p>
+      <p><b>Solenoid</b> (sıx sarılmış sarğı): sağ əlin dörd barmağını sarğıda cərəyan istiqamətində əyəndə, açılmış baş barmaq sarğının <b>içində</b> sahənin istiqamətini (yəni N qütbünü) göstərir. İçdə sahə demək olar ki, bircinsdir.</p>
+
+      <h3><span class="st">4</span> Maqnit induksiyası B</h3>
+      <p>Sahənin gücünü ölçmək üçün cərəyanlı naqilə təsir edən qüvvədən istifadə edirik. Naqil sahəyə perpendikulyar olanda qüvvə ən böyükdür (sonrakı dərsdə). <b>Maqnit induksiyası</b> — sahənin qüvvə xarakteristikasıdır, vektor kəmiyyətdir:</p>
+      <div class="fm">B = F_maks/(I·l)        vahidi tesla (T)
+1 T = 1 N/(A·m)</div>
+      <p>1 T o deməkdir ki, sahəyə perpendikulyar yerləşən 1 m uzunluqlu, 1 A cərəyanlı naqilə 1 N qüvvə təsir edir. Real sahələr: Yer — təxminən 50 µT = 0,00005 T; soyuducu maqniti — təxminən 5 mT; xəstəxana tomoqrafı — 1,5 T. Bircins sahədə B hər nöqtədə eynidir, xətlər paralel və eyni sıxlıqdadır.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Sahəyə perpendikulyar yerləşən 0,2 m uzunluqlu naqildən
+5 A cərəyan keçir, ona 0,1 N qüvvə təsir edir. B = ?
+  B = F/(I·l) = 0,1/(5·0,2) = 0,1/1 = 0,1 T</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli, tələli).
+Naqilin sahədəki hissəsi 15 sm-dir, cərəyan 4 A, perpendikulyar
+sahədə qüvvə 0,3 N. B = ?
+  l = 15 sm = 0,15 m
+  B = 0,3/(4·0,15) = 0,3/0,6 = 0,5 T
+  (15 yazsaydın 0,005 T alınardı — bu, 100 dəfə fərqdir.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli, istiqamət).
+Şaquli naqildə cərəyan aşağıdan yuxarı axır. Naqilə yuxarıdan baxanda
+sahə xətləri hansı istiqamətdədir?
+  Cərəyan yuxarı axır — yəni baxan gözə doğru.
+  Sağ əlin baş barmağı baxışa doğru (yuxarı) tutulur,
+  barmaqlar saat əqrəbinin əksinə əyilir.
+  Cavab: saat əqrəbinin əksinə (cərəyan əksinə olsaydı saat əqrəbi istiqamətində).</div>
+      <div class="life"><b>Həyatdan.</b> Elektromaqnit dəmir parçaları qaldırır: dəmir nüvə ətrafında sarğı, sarğıda cərəyan. Cərəyan açılıb-bağlanır, ona görə qaldırıcı kran yükü tuta və buraxa bilir. Cərəyanı artırsan və ya sarğıların sayını çoxaltsan, sahə güclənir və qaldırdığı yük artır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Maqnit xətlərinin "N-də başlayıb S-də bitdiyini" söyləmək. Xətlər qapalıdır, maqnitin içində S-dən N-ə davam edir.</li>
+        <li>Santimetri metrə çevirməmək: 15 sm = 0,15 m.</li>
+        <li>Cərəyan istiqamətini "mənfidən müsbətə" götürmək. Şərti istiqamət müsbət qütbdən mənfiyə doğrudur.</li>
+        <li>Sağ əl ilə sol əl qaydalarını qarışdırmaq: sağ əl — cərəyanın <b>yaratdığı sahənin istiqaməti</b>, sol əl — sahədə cərəyana təsir edən <b>qüvvənin istiqaməti</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Maqnit xətləri qapalıdır: N → S çöldə
+Sahənin istiqaməti — iynənin N ucu
+Düz naqil: xətlər çevrədir (sağ əl, burğu)
+B = F_maks/(Il),  vahid: tesla (T)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Perpendikulyar naqil: l = 0,5 m, I = 2 A, F = 0,4 N. B = ? <span class="ans">B = 0,4/(2·0,5) = 0,4 T.</span></li>
+        <li>2 mT neçə teslaya bərabərdir? <span class="ans">0,002 T.</span></li>
+        <li>Maqnit xətləri harada başlayır və harada bitir? <span class="ans">Qapalıdır: başlanğıcı və sonu yoxdur (çöldə N-dən S-ə, içdə S-dən N-ə).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Amper qüvvəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Elektrik mühərrikində fırlanan çərçivəni maqnit sahəsinin cərəyanlı naqilə göstərdiyi qüvvə döndərir. Dinamikdə (səsucaldanda) membran sarğıya təsir edən belə qüvvənin hesabına titrəyir. Bu qüvvəni Amper tapıb, ona görə <b>Amper qüvvəsi</b> adlanır.</p>
+
+      <h3><span class="st">2</span> Qüvvənin modulu</h3>
+      <p>Bircins <span class="m">B</span> sahəsində <span class="m">l</span> uzunluqlu, <span class="m">I</span> cərəyanlı düz naqilə təsir edən qüvvə:</p>
+      <div class="fm">F = B·I·l·sinα</div>
+      <p><span class="m">α</span> — cərəyanın istiqaməti ilə <span class="m">B</span> vektoru arasındakı bucaqdır. Üç xüsusi hal:</p>
+      <div class="fm">α = 90° (perpendikulyar):  F = BIl     — maksimum
+α = 30° (və ya 150°):      F = BIl/2
+α = 0° (paralel):          F = 0       — qüvvə yoxdur</div>
+      <p>Naqil sahə boyunca yerləşəndə qüvvə sıfırdır. Bu, çox vaxt məsələdə "gizlədilir".</p>
+
+      <h3><span class="st">3</span> Qüvvənin istiqaməti: sol əl qaydası</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 170" role="img" aria-label="Cərəyanlı naqil sahəyə perpendikulyar: cərəyan sağa, B səhifənin içinə, qüvvə yuxarı"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><circle cx="55" cy="28" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="51.5" y1="24.5" x2="58.5" y2="31.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="51.5" y1="31.5" x2="58.5" y2="24.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="105" cy="28" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="101.5" y1="24.5" x2="108.5" y2="31.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="101.5" y1="31.5" x2="108.5" y2="24.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="155" cy="28" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="151.5" y1="24.5" x2="158.5" y2="31.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="151.5" y1="31.5" x2="158.5" y2="24.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="205" cy="28" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="201.5" y1="24.5" x2="208.5" y2="31.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="201.5" y1="31.5" x2="208.5" y2="24.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="55" cy="52" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="51.5" y1="48.5" x2="58.5" y2="55.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="51.5" y1="55.5" x2="58.5" y2="48.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="105" cy="52" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="101.5" y1="48.5" x2="108.5" y2="55.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="101.5" y1="55.5" x2="108.5" y2="48.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="155" cy="52" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="151.5" y1="48.5" x2="158.5" y2="55.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="151.5" y1="55.5" x2="158.5" y2="48.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="205" cy="52" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="201.5" y1="48.5" x2="208.5" y2="55.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="201.5" y1="55.5" x2="208.5" y2="48.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="55" cy="118" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="51.5" y1="114.5" x2="58.5" y2="121.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="51.5" y1="121.5" x2="58.5" y2="114.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="105" cy="118" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="101.5" y1="114.5" x2="108.5" y2="121.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="101.5" y1="121.5" x2="108.5" y2="114.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="155" cy="118" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="151.5" y1="114.5" x2="158.5" y2="121.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="151.5" y1="121.5" x2="158.5" y2="114.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="205" cy="118" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="201.5" y1="114.5" x2="208.5" y2="121.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="201.5" y1="121.5" x2="208.5" y2="114.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="55" cy="142" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="51.5" y1="138.5" x2="58.5" y2="145.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="51.5" y1="145.5" x2="58.5" y2="138.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="105" cy="142" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="101.5" y1="138.5" x2="108.5" y2="145.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="101.5" y1="145.5" x2="108.5" y2="138.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="155" cy="142" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="151.5" y1="138.5" x2="158.5" y2="145.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="151.5" y1="145.5" x2="158.5" y2="138.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="205" cy="142" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="201.5" y1="138.5" x2="208.5" y2="145.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="201.5" y1="145.5" x2="208.5" y2="138.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="40" y1="85" x2="220" y2="85" stroke="var(--ink,#17171a)" stroke-width="4" stroke-linecap="round"/><line x1="60" y1="85" x2="110" y2="85" stroke="var(--vec,#0c447c)" stroke-width="4" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="85" y="78" text-anchor="middle" font-size="14" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">I</text><line x1="180" y1="80" x2="180" y2="50" stroke="var(--accent,#a32d2d)" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="192" y="62" text-anchor="start" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">F</text><text x="240" y="20" text-anchor="end" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">B</text></svg>
+        <div class="cap">
+          <p>Naqildə cərəyan <b>sağa</b> axır, maqnit induksiyası <b>səhifənin içinə</b> yönəlib (⊗). Qüvvə naqili <b>yuxarı</b> itələyir.</p>
+        </div>
+      </div>
+      <p><b>Sol əl qaydası:</b> sol əli elə tut ki,</p>
+      <p>1) <span class="m">B</span> xətləri <b>ovuca daxil olsun</b>;</p>
+      <p>2) dörd barmaq <b>cərəyan</b> istiqamətini göstərsin;</p>
+      <p>3) 90° açılmış baş barmaq <b>Amper qüvvəsinin</b> istiqamətini göstərir.</p>
+      <p>Cərəyanın istiqaməti və ya sahənin istiqaməti əksinə dəyişsə, qüvvənin istiqaməti də əksinə dəyişir. İkisi birdən dəyişsə, qüvvənin istiqaməti dəyişmir. Qüvvə həmişə <b>həm cərəyana, həm də B-yə perpendikulyardır</b>.</p>
+      <p><b>Paralel cərəyanlar.</b> Eyni istiqamətli iki paralel cərəyan bir-birini <b>çəkir</b>, əks istiqamətlilər <b>itələyir</b>. Səbəb: bir naqilin yaratdığı sahə o birinə sol əl qaydası ilə təsir edir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. B = 0,25 T, I = 5 A, l = 40 sm.
+a) naqil sahəyə perpendikulyar;  b) 30° bucaq altında.
+  l = 0,4 m
+  a) F = BIl = 0,25·5·0,4 = 0,5 N
+  b) F = BIl·sin 30° = 0,5·0,5 = 0,25 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+40 q kütləli, 0,5 m uzunluqlu üfüqi çubuq iki nazik naqildən asılıb.
+Üfüqi, çubuğa perpendikulyar sahə B = 0,2 T. Amper qüvvəsi yuxarı
+yönəlib. Naqillərin dartılması sıfır olsun deyə I = ?
+  mg = 0,04·10 = 0,4 N
+  BIl = mg → I = mg/(Bl) = 0,4/(0,2·0,5) = 4 A</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+0,1 kq kütləli, 0,5 m uzunluqlu çubuq üfüqi relslərdə
+yerləşir. Şaquli sahə B = 0,4 T, çubuqdan 10 A keçir,
+sürtünmə əmsalı μ = 0,5. Təcil?
+  Amper qüvvəsi (üfüqi): F = BIl = 0,4·10·0,5 = 2 N
+  Sürtünmə: μmg = 0,5·0,1·10 = 0,5 N
+  ma = F − μmg = 2 − 0,5 = 1,5 N
+  a = 1,5/0,1 = 15 m/s²</div>
+      <div class="life"><b>Həyatdan.</b> Dinamikdə (səsucaldanda) sarğı daimi maqnitin sahəsindədir. Musiqi siqnalı sarğıdan keçən cərəyanı dəyişir, Amper qüvvəsi də dəyişir və membran ritmlə irəli-geri hərəkət edib səs yaradır. 1 T sahədə 10 m məftildən 0,5 A cərəyan keçəndə qüvvə <span class="m">1·0,5·10 = 5 N</span>-dur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">sinα</span> əvəzinə <span class="m">cosα</span> yazmaq. <span class="m">α</span> cərəyan ilə <span class="m">B</span> arasındakı bucaqdır (naqilin sahəyə perpendikulyar olması α = 90° deməkdir).</li>
+        <li>Sol əl qaydasında barmaqları səhv istiqamətdə tutmaq: dörd barmaq <b>cərəyana</b> yönəlir, B isə ovuca daxil olur.</li>
+        <li>Qüvvənin istiqamətini cərəyanın və ya B-nin istiqaməti ilə eyni sanmaq. Qüvvə onların hər ikisinə perpendikulyardır.</li>
+        <li>Naqilin sahədən kənarda qalan hissəsini də uzunluğa daxil etmək. Yalnız sahədəki hissə sayılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = B·I·l·sinα
+Paralel naqil (α = 0): F = 0
+Sol əl: B ovuca, 4 barmaq cərəyana → baş barmaq qüvvəyə
+Eyni istiqamətli cərəyanlar çəkir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>B = 0,5 T, I = 4 A, l = 0,25 m (perpendikulyar). F = ? <span class="ans">0,5·4·0,25 = 0,5 N.</span></li>
+        <li>Cərəyan B boyunca axır. Qüvvə? <span class="ans">α = 0°, F = 0.</span></li>
+        <li>Cərəyanın istiqamətini əksinə çevirsək, qüvvə necə dəyişər? <span class="ans">Modulu eyni, istiqaməti əks.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Lorens qüvvəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Köhnə televizorların şüa borusunda elektron dəstəsini maqnit sahəsi əyir və ekranın istənilən nöqtəsinə yönəldir. Şimal işığında Günəşdən gələn yüklü zərrəciklər Yerin sahəsi ilə əyilib qütblərə yönəlir. Naqildəki cərəyan yüklərin hərəkətidir, ona görə Amper qüvvəsi hər bir yükə təsir edən qüvvənin cəmidir. Bu bir yükə təsir edən qüvvəyə <b>Lorens qüvvəsi</b> deyilir.</p>
+
+      <h3><span class="st">2</span> Lorens qüvvəsinin modulu</h3>
+      <div class="fm">F = |q|·v·B·sinα</div>
+      <p><span class="m">α</span> — zərrəciyin sürəti ilə <span class="m">B</span> arasındakı bucaqdır. Hərəkət edən zərrəciyə təsir edir (<span class="m">v = 0</span> olarsa qüvvə yoxdur). Zərrəcik sahə boyunca uçarsa (<span class="m">α = 0°</span>) qüvvə sıfırdır və o, düz xətt üzrə gedir.</p>
+      <p>Bu düstur Amper qüvvəsindən alınır: naqilin <span class="m">l</span> uzunluğunda <span class="m">N</span> yük daşıyıcısı var, hər birinə <span class="m">F_L</span> təsir edir, cəmi <span class="m">N·F_L = BIl</span>.</p>
+
+      <h3><span class="st">3</span> İstiqamət</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 175" role="img" aria-label="Müsbət zərrəcik B-yə (səhifənin içinə) perpendikulyar uçur: qüvvə sürətə perpendikulyar, mərkəzə yönəlib"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><circle cx="40" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="36.5" y1="26.5" x2="43.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="36.5" y1="33.5" x2="43.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="90" cy="22" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="86.5" y1="18.5" x2="93.5" y2="25.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="86.5" y1="25.5" x2="93.5" y2="18.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="170" cy="22" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="166.5" y1="18.5" x2="173.5" y2="25.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="166.5" y1="25.5" x2="173.5" y2="18.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="220" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="216.5" y1="26.5" x2="223.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="216.5" y1="33.5" x2="223.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="40" cy="150" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="36.5" y1="146.5" x2="43.5" y2="153.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="36.5" y1="153.5" x2="43.5" y2="146.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="90" cy="158" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="86.5" y1="154.5" x2="93.5" y2="161.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="86.5" y1="161.5" x2="93.5" y2="154.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="170" cy="158" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="166.5" y1="154.5" x2="173.5" y2="161.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="166.5" y1="161.5" x2="173.5" y2="154.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="220" cy="150" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="216.5" y1="146.5" x2="223.5" y2="153.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="216.5" y1="153.5" x2="223.5" y2="146.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="86.5" x2="133.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="93.5" x2="133.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="60" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="56.5" y1="86.5" x2="63.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="56.5" y1="93.5" x2="63.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="200" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="196.5" y1="86.5" x2="203.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="196.5" y1="93.5" x2="203.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="90" r="55" fill="none" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-dasharray="4 3"/><circle cx="130" cy="145" r="7" fill="var(--accent,#a32d2d)"/><text x="130" y="149" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="inherit">+</text><line x1="140" y1="145" x2="195" y2="145" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="190" y="135" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">v</text><line x1="130" y1="135" x2="130" y2="108" stroke="var(--accent,#a32d2d)" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="142" y="120" text-anchor="start" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">F</text><text x="243" y="20" text-anchor="end" font-size="14" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">B</text></svg>
+        <div class="cap">
+          <p>Müsbət zərrəcik <b>sağa</b> uçur, B <b>səhifənin içinə</b> yönəlib. Sol əl qaydasına görə qüvvə <b>yuxarı</b>, çevrənin mərkəzinə doğrudur. Qüvvə sürətə perpendikulyar olduğu üçün zərrəcik çevrə cızır (saat əqrəbinin əksinə).</p>
+        </div>
+      </div>
+      <p><b>Sol əl qaydası:</b> B xətləri ovuca daxil olur, dörd barmaq <b>müsbət yükün</b> sürəti istiqamətini göstərir, açılmış baş barmaq <b>Lorens qüvvəsini</b> göstərir. <b>Mənfi yükdə</b> (məsələn, elektronda) dörd barmaq sürətin <b>əksinə</b> tutulur, yəni qüvvə müsbət yük üçün olanın əksinə yönəlir.</p>
+      <p>Mühüm nəticə: Lorens qüvvəsi sürətə həmişə <b>perpendikulyardır</b>. Ona görə o <b>iş görmür</b>. Zərrəciyin sürətinin modulu və kinetik enerjisi dəyişmir, yalnız istiqamət dəyişir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. q = 5 µC, v = 200 m/s, B = 0,4 T, v ⟂ B.
+  q = 5·10⁻⁶ C
+  F = qvB = 5·10⁻⁶·200·0,4 = 4·10⁻⁴ N = 400 µN</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+q = 4 µC, v = 100 m/s, B = 0,5 T, v ilə B arasındakı bucaq 30°.
+  F = qvB·sin 30° = 4·10⁻⁶·100·0,5·0,5 = 10⁻⁴ N = 100 µN
+  Perpendikulyar olsaydı 200 µN olardı.</div>
+      <div class="ex">Nümunə 3 (RFO tipli, istiqamət).
+Elektron sağa uçur, B səhifənin içinə yönəlib. Qüvvə hara?
+  Müsbət yük üçün qüvvə yuxarı olardı (şəkil).
+  Elektron mənfidir → əks istiqamət: aşağı
+  Elektron saat əqrəbi istiqamətində çevrə cızır.</div>
+      <div class="life"><b>Həyatdan.</b> Günəşdən yüklü zərrəciklər Yerə doğru uçur. Yerin maqnit sahəsi onları əyir və qütblərə yönəldir. Orada atmosferin qazları ilə toqquşanda şimal işığı yaranır. Maqnit sahəsi olmasaydı bu zərrəciklər atmosferi və səthi bombalayardı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Lorens qüvvəsinin zərrəciyi sürətləndirdiyini düşünmək. Qüvvə sürətə perpendikulyardır, sürət modulu dəyişmir.</li>
+        <li>Mənfi yük üçün istiqaməti müsbət yükdəki kimi götürmək. Elektronda nəticə əksinə çevrilir.</li>
+        <li>Sürət sahə boyunca olanda qüvvə olduğunu düşünmək: <span class="m">α = 0°</span>-də <span class="m">F = 0</span>.</li>
+        <li>Mikrokulonu kuluna çevirməmək: 5 µC = 5·10⁻⁶ C.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = |q|·v·B·sinα
+F ⟂ v  →  iş görmür, v-nin modulu dəyişmir
+Sol əl: müsbət yükdə 4 barmaq v istiqamətində
+Mənfi yükdə nəticə əksinədir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>q = 2 µC, v = 50 m/s, B = 1 T, perpendikulyar. F = ? <span class="ans">2·50·1 = 100 µN.</span></li>
+        <li>Lorens qüvvəsi zərrəciyin kinetik enerjisini dəyişirmi? <span class="ans">Xeyr, iş görmür.</span></li>
+        <li>Zərrəcik B boyunca uçur. Qüvvə? <span class="ans">Sıfır, düz xətt üzrə gedir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Maqnit sahəsində dairəvi hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kütlə spektroqrafı hissəcikləri kütləsinə görə ayırır: kimya və tibbdə maddəni analiz edir. Tsiklotron zərrəcikləri çevrə üzrə fırladıb sürətləndirir. Hər ikisinin əsasında bir sadə fikir var: Lorens qüvvəsi sürətə perpendikulyardır və mərkəzəqaçma qüvvəsinin rolunu oynayır.</p>
+
+      <h3><span class="st">2</span> Radius, bucaq sürəti, dövr</h3>
+      <p>Zərrəcik <span class="m">B</span>-yə <b>perpendikulyar</b> daxil olursa, Lorens qüvvəsi həmişə mərkəzə yönəlib, modulu sabitdir. Deməli zərrəcik <b>çevrə</b> cızır:</p>
+      <div class="fm">qvB = mv²/r
+r = mv/(qB)
+ω = v/r = qB/m
+T = 2πr/v = 2πm/(qB)</div>
+      <p>Dövr <span class="m">T</span> <b>sürətdən asılı deyil</b>: sürət artanda radius da artır, çevrə uzanır, amma zərrəcik onu eyni müddətdə keçir. Dövr yalnız <span class="m">m/q</span> nisbətindən və <span class="m">B</span>-dən asılıdır.</p>
+      <p>Zərrəciyin sürəti <span class="m">B</span> ilə bucaq əmələ gətirirsə, sürəti iki hissəyə ayır: <span class="m">B</span>-yə paralel komponent (düz xətt üzrə sabit) və perpendikulyar komponent (çevrə). Birlikdə spiral (vint xətti) alınır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 195" role="img" aria-label="Eyni sürət və yükdə kütləsi böyük olan zərrəcik daha böyük radiuslu çevrə cızır"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><circle cx="30" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="26.5" y1="26.5" x2="33.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="26.5" y1="33.5" x2="33.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="30" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="26.5" y1="56.5" x2="33.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="26.5" y1="63.5" x2="33.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="30" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="26.5" y1="86.5" x2="33.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="26.5" y1="93.5" x2="33.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="80" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="76.5" y1="26.5" x2="83.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="76.5" y1="33.5" x2="83.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="80" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="76.5" y1="56.5" x2="83.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="76.5" y1="63.5" x2="83.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="80" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="76.5" y1="86.5" x2="83.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="76.5" y1="93.5" x2="83.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="26.5" x2="133.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="33.5" x2="133.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="56.5" x2="133.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="63.5" x2="133.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="86.5" x2="133.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="93.5" x2="133.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="180" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="176.5" y1="26.5" x2="183.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="176.5" y1="33.5" x2="183.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="180" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="176.5" y1="56.5" x2="183.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="176.5" y1="63.5" x2="183.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="180" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="176.5" y1="86.5" x2="183.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="176.5" y1="93.5" x2="183.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="230" cy="30" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="226.5" y1="26.5" x2="233.5" y2="33.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.5" y1="33.5" x2="233.5" y2="26.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="230" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="226.5" y1="56.5" x2="233.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.5" y1="63.5" x2="233.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="230" cy="90" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="226.5" y1="86.5" x2="233.5" y2="93.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.5" y1="93.5" x2="233.5" y2="86.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><path d="M60 150 A30 30 0 0 1 120 150" fill="none" stroke="var(--accent,#a32d2d)" stroke-width="2.5" marker-end="url(#ck-ar)"/><path d="M60 150 A50 50 0 0 1 160 150" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2.5" marker-end="url(#ck-ar)"/><line x1="40" y1="150" x2="200" y2="150" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="60" y1="185" x2="60" y2="156" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="90" y="142" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">m₁</text><text x="205" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">m₂ > m₁</text><text x="240" y="18" text-anchor="end" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">B</text></svg>
+        <div class="cap">
+          <p>Eyni <span class="m">q</span>, <span class="m">v</span>, <span class="m">B</span> ilə iki zərrəcik daxil olur. Kütləsi böyük olan (<span class="m">m₂</span>) daha böyük çevrə cızır: <span class="m">r ∼ m</span>. Kütlə spektroqrafı belə işləyir: detektorda zərrəciklərin düşdüyü yerlər kütləyə görə ayrılır.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Sürət seçici</h3>
+      <div class="fig">
+        <svg viewBox="0 0 280 150" role="img" aria-label="Sürət seçici: elektrik və maqnit sahələri qarşılıqlı perpendikulyar"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="30" y1="30" x2="250" y2="30" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="30" y1="120" x2="250" y2="120" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="262" y="34" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="262" y="124" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">−</text><circle cx="70" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="66.5" y1="56.5" x2="73.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="66.5" y1="63.5" x2="73.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="70" cy="95" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="66.5" y1="91.5" x2="73.5" y2="98.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="66.5" y1="98.5" x2="73.5" y2="91.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="56.5" x2="133.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="63.5" x2="133.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="130" cy="95" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="126.5" y1="91.5" x2="133.5" y2="98.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="126.5" y1="98.5" x2="133.5" y2="91.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="190" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="186.5" y1="56.5" x2="193.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="186.5" y1="63.5" x2="193.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="190" cy="95" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="186.5" y1="91.5" x2="193.5" y2="98.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="186.5" y1="98.5" x2="193.5" y2="91.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="240" cy="60" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="236.5" y1="56.5" x2="243.5" y2="63.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="236.5" y1="63.5" x2="243.5" y2="56.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="240" cy="95" r="5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6"/><line x1="236.5" y1="91.5" x2="243.5" y2="98.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="236.5" y1="98.5" x2="243.5" y2="91.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="40" y1="77" x2="100" y2="77" stroke="var(--accent,#a32d2d)" stroke-width="3" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="60" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v</text><line x1="150" y1="42" x2="150" y2="62" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ck-ar)"/><text x="166" y="56" text-anchor="start" font-size="14" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">E</text><text x="30" y="146" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">B səhifənin içinə</text></svg>
+        <div class="cap">
+          <p>Lövhələr arasında elektrik sahəsi <span class="m">E</span> (aşağı), perpendikulyar maqnit sahəsi <span class="m">B</span>. Müsbət zərrəciyə elektrik qüvvəsi <span class="m">qE</span> aşağı, Lorens qüvvəsi <span class="m">qvB</span> yuxarı təsir edir.</p>
+        </div>
+      </div>
+      <p>Qüvvələr bərabər olanda zərrəcik düz xətt üzrə keçir:</p>
+      <div class="fm">qE = qvB   →   v = E/B</div>
+      <p>Bu şərt <b>yükdən və kütlədən asılı deyil</b>: yalnız <span class="m">v = E/B</span> sürətli zərrəciklər keçir, qalanları yan tərəfə əyilir. Sonra bu zərrəciklər başqa maqnit sahəsinə daxil olub çevrə cızır və radiusdan <span class="m">m/q</span> tapılır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. m = 1 mq, q = 5 µC, v = 20 m/s, B = 0,4 T, v ⟂ B.
+  m = 10⁻⁶ kq, q = 5·10⁻⁶ C  →  m/q = 0,2 kq/C
+  r = (m/q)·v/B = 0,2·20/0,4 = 10 m
+  ω = v/r = 20/10 = 2 rad/s  (və ya qB/m = 5·0,4 = 2 ✓)
+  T = 2π/ω = π ≈ 3,14 s</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Proton (kütlə ədədi 1, yük 1) və alfa-zərrəcik (kütlə ədədi 4, yük 2)
+eyni sürətlə eyni sahəyə perpendikulyar daxil olur.
+Radiusların nisbəti?
+  r ∼ m/q.  Proton: 1/1 = 1.  Alfa: 4/2 = 2.
+  r_alfa/r_proton = 2
+  Eyni impulsla daxil olsaydılar: r ∼ 1/q → r_alfa/r_proton = 1/2.</div>
+      <div class="ex">Nümunə 3 (RFO tipli, seçici + analiz).
+Seçicidə E = 2000 V/m, B = 0,5 T. Keçən zərrəcik (q/m = 5·10⁶ C/kq)
+B₂ = 0,2 T-lıq sahəyə perpendikulyar daxil olur. Radius?
+  v = E/B = 2000/0,5 = 4000 m/s
+  r = v/((q/m)·B₂) = 4000/(5·10⁶·0,2) = 4000/10⁶ = 0,004 m = 4 mm</div>
+      <div class="life"><b>Həyatdan.</b> Tibbi cihazlarda (məsələn, PET tomoqrafında) və laboratoriyalarda kütlə spektroqrafı maddənin tərkibini təyin edir: nümunənin ionları sürətləndirilib maqnit sahəsinə göndərilir, hər ion öz kütləsinə uyğun radiuslu çevrə cızıb detektorda yerini tapır. Eyni qaydada fırlanan zərrəcikləri sürətləndirən tsiklotron da işləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dövrün sürətdən asılı olduğunu düşünmək. <span class="m">T = 2πm/(qB)</span> sürətdən asılı deyil.</li>
+        <li>Mərkəzəqaçma qüvvəsini <span class="m">mv/r</span> yazmaq. Düzü <span class="m">mv²/r</span>; ixtisardan sonra <span class="m">r = mv/(qB)</span> alınır.</li>
+        <li>Miqdarları SI-yə çevirməmək: mq → kq, µC → C. Amma <span class="m">m/q</span>-da mq/µC nisbəti kq/C-yə bərabərdir (10⁻⁶/10⁻⁶).</li>
+        <li>Sürət seçicidə "ağır zərrəciklər keçmir" demək. Keçmə şərti yalnız <span class="m">v = E/B</span>-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v ⟂ B:  qvB = mv²/r
+r = mv/(qB),  ω = qB/m,  T = 2πm/(qB)
+T sürətdən asılı deyil
+Seçici: qE = qvB → v = E/B
+Eyni v-də  r ∼ m/q</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sürəti 2 dəfə artırdıq (B, m, q eyni). Radius? <span class="ans">2 dəfə artır.</span></li>
+        <li>B-ni 2 dəfə artırdıq. Dövr? <span class="ans">2 dəfə azalır (T ∼ 1/B).</span></li>
+        <li>E = 1000 V/m, B = 0,25 T. Seçicidən keçən sürət? <span class="ans">v = 1000/0,25 = 4000 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
