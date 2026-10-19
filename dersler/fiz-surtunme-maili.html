@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sürtünmə və maili müstəvi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-surtunme-maili.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Sürtünmə, maili müstəvi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika</div>
+    <h1>Sürtünmə, maili müstəvi</h1>
+    <p>Sürtünmə olmasa, yerdə yeriyə bilməzdin, avtomobil əyləc edə bilməzdi. Maili müstəvi isə sürtünməni və ağırlığın toplananlarını bir yerə yığır. Sən bu həftələrdə FRİTL-də <span class="m">mg·sin α</span>, <span class="m">mg·cos α</span> və <span class="m">μ = tg α</span> düsturlarını keçmisən. Bu səhifə onların <b>haradan gəldiyini</b> və hansı hallarda işlədiyini sadə dillə yığır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>. Bucaqlar üçün hazır qiymətlər: <span class="m">sin 37° = 0,6; cos 37° = 0,8</span>; <span class="m">sin 53° = 0,8; cos 53° = 0,6</span>; <span class="m">sin 30° = 0,5</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sürtünmə</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Üfüqi hərəkət</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hamar müstəvi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sürtünmə ilə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sürtünmə qüvvəsi: sükunət və sürüşmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tatamidə corabla sürüşürsən, ayaqyalın isə sürüşmürsən. Qışda yollara qum səpilir. Buzda avtomobil əyləc etsə də dayanmır. Bunların hamısında iki səthin təması sürtünmə qüvvəsi yaradır. Sürtünmə həmişə <b>hərəkətə mane olur</b> və səth boyu yönəlir.</p>
+
+      <h3><span class="st">2</span> İki növ sürtünmə</h3>
+      <ul>
+        <li><b>Sükunət sürtünməsi</b> — cisim tərpənmir, amma tərpətməyə çalışırlar. Sürtünmə itələyən qüvvəni <b>tam tarazlayır</b> və onunla birlikdə artır, lakin müəyyən həddə qədər: <span class="m">f ≤ f_max = μ_s·N</span>.</li>
+        <li><b>Sürüşmə sürtünməsi</b> — cisim sürüşür. Sabit qiymətdir: <span class="m">f = μ_k·N</span> (adətən <span class="m">μ_k</span> bir az <span class="m">μ_s</span>-dən kiçikdir).</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Sürtünmə qüvvəsinin tətbiq olunan qüvvədən asılılığı: əvvəl f = F, sonra sıçrayış və sabit f = μ_k N">
+          <line x1="40" y1="180" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/><line x1="40" y1="175" x2="250" y2="175" stroke="var(--ink)" stroke-width="1.8"/>
+          <polyline points="40,175 160,55 160,85 240,85" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linejoin="round"/>
+          <line x1="160" y1="55" x2="160" y2="175" stroke="var(--muted)" stroke-dasharray="3 3"/><line x1="40" y1="55" x2="160" y2="55" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <text class="lbl" x="46" y="14">f</text><text class="lbl" x="232" y="168">F</text>
+          <text x="34" y="59" text-anchor="end">f_max</text><text x="34" y="89" text-anchor="end">μ_k N</text>
+          <text class="lbl" x="68" y="130">f = F (durur)</text><text class="lbl" x="168" y="74">sürüşmə</text>
+        </svg>
+        <div class="cap">
+          <p>İtələyən qüvvə <span class="m">F</span> artdıqca sürtünmə də ona bərabər artır (cisim durur). <span class="m">f_max</span>-a çatanda cisim qopur və sürtünmə <span class="m">μ_k N</span>-ə düşür, sonra sabit qalır. Ona görə ağır qutunu <i>tərpətmək</i> tərpətdikdən sonra <i>sürüşdürməkdən</i> çətindir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> f = μN: N həmişə mg deyil</h3>
+      <div class="fm">f = μ · N</div>
+      <p><span class="m">μ</span> — sürtünmə əmsalı (vahidsiz), iki səthdən asılıdır: buz üstündə polad ≈ 0,02; buz üstündə rezin ≈ 0,1–0,2; quru asfaltda rezin ≈ 0,7–0,8. <span class="m">N</span> — səthin cismə <b>perpendikulyar</b> təsir qüvvəsi. Üfüqi səthdə və yalnız şaquli qüvvə mg olanda <span class="m">N = mg</span>; maili müstəvidə və ya bucaq altında dartanda — yox!</p>
+      <div class="life"><b>Həyatdan.</b> Tatamidə: ayaqyalın <span class="m">μ</span> böyükdür, corabla kiçikdir. Kitabı divara sıxırsan ki, düşməsin: sürtünmə kitabın ağırlığını tarazlayır, <span class="m">μF = mg</span>, buna görə <span class="m">F = mg/μ</span>. Divar hamar (μ kiçik) olarsa, daha bərk sıxmaq lazımdır.</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 10 kq qutu, μ_s = 0,5, μ_k = 0,4. Üfüqi səth.
+  f_max = 0,5·100 = 50 N
+  F = 30 N: 30 &lt; 50 → qutu durur, f = 30 N (itələyən qüvvəyə bərabər, μN yox!)
+  F = 60 N: 60 &gt; 50 → sürüşür, f = 0,4·100 = 40 N
+Nümunə 2. 2 kq kitab şaquli divara sıxılıb, μ = 0,4.
+  mg = 20 N = μF → F = 20/0,4 = 50 N
+Nümunə 3 (bucaq altında dartma). 5 kq cisim, F = 25 N üfüqlə 37° yuxarı, μ = 0,2.
+  N + F·sin 37° = mg → N = 50 − 25·0,6 = 35 N      (qüvvə cismi yüngülləşdirdi)
+  f = 0,2·35 = 7 N     (mg ilə hesablasaydıq 10 N olardı — səhv)</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cisim durursa, sürtünməni yenə <span class="m">μN</span> götürmək. Durursa, sürtünmə <b>tam lazım olan qədərdir</b>; <span class="m">μN</span> yalnız onun ən böyük qiymətidir.</li>
+        <li>Hər yerdə <span class="m">N = mg</span> yazmaq. Bucaq altında dartanda və ya maili müstəvidə N başqa cür tapılır.</li>
+        <li>Sürtünmənin sürüşmə sürətindən və ya təmas sahəsindən asılı olduğunu düşünmək — təxminən asılı deyil.</li>
+        <li>Sürtünmənin istiqamətini hərəkətlə eyni götürmək: sürtünmə <b>əksinədir</b> (nisbi hərəkətin əksinə).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sükunət:  f = tətbiq olunan qüvvə,  f ≤ μ_s·N
+Sürüşmə:  f = μ_k·N
+N — səthə perpendikulyar qüvvə (həmişə mg deyil)
+Divara sıxılma:  μF = mg</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>8 kq cisim üfüqi səthdə sürüşür, μ = 0,25. Sürtünmə qüvvəsi? <span class="ans">f = 0,25·80 = 20 N.</span></li>
+        <li>10 kq cisim, μ_s = 0,5, μ_k = 0,4. İtələyən qüvvə 30 N, sonra 60 N olanda sürtünmə? <span class="ans">30 N-da durur: f = 30 N. 60 N-da sürüşür: f = 0,4·100 = 40 N.</span></li>
+        <li>2 kq kitab divara sıxılıb, μ = 0,4. Ən az hansı qüvvə lazımdır? <span class="ans">F = mg/μ = 20/0,4 = 50 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Üfüqi səthdə sürtünmə ilə hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qutunu döşəmədə sürüşdürürsən, avtomobil əyləc edir, şayba buzda yavaş-yavaş dayanır. Hamısı eyni sxemdir: hərəkət istiqamətində bir qüvvə (dartıcı), əks istiqamətdə sürtünmə.</p>
+
+      <h3><span class="st">2</span> Dartılan qutu</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Üfüqi səthdə cisim: F sağa, f sola, mg aşağı, N yuxarı">
+          <defs><marker id="sm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="5" y1="110" x2="295" y2="110" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="110" y="66" width="80" height="44" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="150" y1="66" x2="150" y2="22" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#sm1)"/><text class="lbl" x="156" y="30">N</text>
+          <line x1="150" y1="110" x2="150" y2="146" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#sm1)"/><text class="lbl" x="156" y="142">mg</text>
+          <line x1="190" y1="88" x2="260" y2="88" stroke="var(--ink)" stroke-width="2.8" marker-end="url(#sm1)"/><text class="lbl" x="226" y="80">F</text>
+          <line x1="110" y1="100" x2="52" y2="100" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#sm1)"/><text class="lbl" x="74" y="94">f</text>
+        </svg>
+        <div class="cap">
+          <p>Şaquli: <span class="m">N = mg</span> (cisim batmır, qalxmır). Üfüqi: <span class="m">F − f = ma</span>, <span class="m">f = μN = μmg</span>.</p>
+        </div>
+      </div>
+      <div class="fm">a = (F − μmg) / m</div>
+      <div class="ex">Nümunə. 4 kq qutu, F = 20 N, μ = 0,25.
+  f = 0,25·40 = 10 N
+  a = (20 − 10)/4 = 2,5 m/s²
+Əgər F = 8 N olsaydı (f_max = 10 N-dan kiçik): cisim tərpənməzdi, a = 0, f = 8 N.</div>
+
+      <h3><span class="st">3</span> Əyləc: yalnız sürtünmə yavaşıdır</h3>
+      <p>Cisimə ilkin sürət verilib, dartan qüvvə yoxdur. Yalnız sürtünmə yavaşıdır: <span class="m">ma = μmg</span> → <span class="m">a = μg</span>. <b>Kütlə ixtisar olunur</b>. Dayanana qədər yol və vaxt (sabit yavaşıma):</p>
+      <div class="fm">a = μ·g        s = v₀² / (2μg)        t = v₀ / (μg)</div>
+      <div class="ex">72 km/saat = 20 m/s sürətlə gedən avtomobil təkərləri bloklaşdırıb sürüşür.
+  Quru asfalt μ = 0,5:  a = 5,  s = 400/10 = 40 m
+  Yaş yol     μ = 0,25: a = 2,5, s = 400/5 = 80 m
+  Buz         μ = 0,1:  a = 1,  s = 400/2 = 200 m</div>
+      <div class="life"><b>Həyatdan.</b> Yaş yolda əyləc yolu 2 dəfə, buzda 5 dəfə uzanır. Üstəlik, <span class="m">s ~ v²</span>: sürət 2 dəfə artarsa yol 4 dəfə artır. Ona görə yağışda sürəti azaltmaq lazımdır. Yük maşınında qutu platformada sürüşməməsi üçün maşının maksimal yavaşıması qutunun <span class="m">μg</span>-sindən böyük olmamalıdır.</div>
+
+      <h3><span class="st">4</span> İplə bağlı cisimlər + sürtünmə</h3>
+      <p>Nyuton dərsindəki qayda eynidir, sadəcə hər cismə sürtünmə əlavə olunur. Hamısını bir cisim kimi götür:</p>
+      <div class="fm">a = F / (m₁ + m₂) − μg        T = m₁ · (a + μg)</div>
+      <div class="ex">m₁ = 2 kq (arxada), m₂ = 3 kq, F = 30 N, μ = 0,2 (hər ikisi üçün).
+  a = 30/5 − 0,2·10 = 6 − 2 = 4 m/s²
+  m₁ üçün:  T − μm₁g = m₁a → T = 2·(4 + 2) = 12 N
+  Yoxla m₂:  F − T − μm₂g = 30 − 12 − 6 = 12 = 3·4 ✓</div>
+
+      <h3><span class="st">5</span> Bucaq altında dartma</h3>
+      <p>Qutunu yuxarı-irəli (üfüqlə α bucağı altında) dartanda qüvvənin şaquli toplananı cismi qismən qaldırır, N azalır, sürtünmə də azalır. Üfüqi toplanan isə <span class="m">F cos α</span>-dır:</p>
+      <div class="fm">N = mg − F·sin α        a = (F·cos α − μN) / m</div>
+      <div class="ex">5 kq, F = 25 N, α = 37° (sin 0,6; cos 0,8), μ = 0,2.
+  N = 50 − 15 = 35 N,  f = 0,2·35 = 7 N
+  F cos α = 20 N → a = (20 − 7)/5 = 2,6 m/s²
+Aşağı itələsən (α bucağı ilə aşağı): N = mg + F sin α — sürtünmə artır.</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">f = μ·m</span> yazmaq (g unudulur) və ya <span class="m">f = μ·m·g</span>-ni vahidsiz buraxmaq.</li>
+        <li>Sürtünməni <span class="m">F</span>-ə əlavə etmək: <span class="m">a = (F + f)/m</span>. Sürtünmə hərəkətin əksinədir, çıxılır.</li>
+        <li>Bucaq altında dartanda hələ də <span class="m">N = mg</span> götürmək.</li>
+        <li>Əyləc yolunda kütləni düstura salmaq — <span class="m">s = v²/(2μg)</span> kütlədən asılı deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = (F − μmg)/m           (F tətbiq olunan, f = μmg)
+Əyləc:  a = μg,  s = v₀²/(2μg),  t = v₀/(μg)
+Bağlı cisimlər:  a = F/(m₁+m₂) − μg,  T = m_arxa(a + μg)
+Bucaq altında:  N = mg − F sin α</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 kq cismi F = 25 N ilə dartırlar, μ = 0,2. a = ? <span class="ans">a = (25 − 10)/5 = 3 m/s².</span></li>
+        <li>10 m/s sürətlə sürüşən şayba μ = 0,25 olan buzda neçə metr gedər? <span class="ans">a = 2,5; s = 100/5 = 20 m.</span></li>
+        <li>2 kq və 4 kq iplə bağlı, 4 kq-lıq F = 24 N ilə dartılır, μ = 0,1. a və T? <span class="ans">a = 24/6 − 1 = 3 m/s²; T = 2·(3 + 1) = 8 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Sürtünməsiz maili müstəvi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Uşaq parkındakı sürüşmə, dağ yolu, xizək yamacı, yük maşınına qutu qaldırmaq üçün qoyulan taxta — hamısı <b>maili müstəvidir</b>. Üfüqlə bucaq altında duran düz səth. Burada qüvvələr müxtəlif istiqamətə baxır: ağırlıq düz aşağı, dayaq reaksiyası səthə perpendikulyar. Çətinlik də budur. Həll yolu: ağırlığı iki hissəyə bölmək.</p>
+
+      <h3><span class="st">2</span> Ağırlığı iki hissəyə bölək</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Maili müstəvi 37°: mg müstəvi boyu mg·sin α və müstəviyə perpendikulyar mg·cos α toplananlarına ayrılır">
+          <defs><marker id="sm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <polygon points="24,182 196,182 196,53" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M70 182 A46 46 0 0 0 61 155" fill="none" stroke="var(--accent)" stroke-width="2"/><text class="lbl" x="76" y="176">α</text>
+          <polygon points="101,124 136,98 118,74 83,100" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="99" x2="110" y2="162" stroke="var(--ink)" stroke-width="2.8" marker-end="url(#sm2)"/><text class="lbl" x="116" y="176">mg</text>
+          <line x1="110" y1="99" x2="81" y2="121" stroke="var(--opp)" stroke-width="2.8" marker-end="url(#sm2)"/><text class="lbl opp" x="14" y="142">mg·sin α</text>
+          <line x1="110" y1="99" x2="139" y2="138" stroke="var(--adj)" stroke-width="2.8" marker-end="url(#sm2)"/><text class="lbl adj" x="142" y="150">mg·cos α</text>
+          <line x1="81" y1="121" x2="110" y2="162" stroke="var(--muted)" stroke-dasharray="3 3"/><line x1="139" y1="138" x2="110" y2="162" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="110" y1="99" x2="84" y2="64" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#sm2)"/><text class="lbl" x="66" y="60">N</text>
+        </svg>
+        <div class="cap">
+          <p>Qara ox — <span class="m">mg</span>. Qırmızı: müstəvi boyu aşağı çəkən hissə <span class="m">mg·sin α</span>. Yaşıl: müstəviyə basan hissə <span class="m">mg·cos α</span>. Üçü düzbucaqlı üçbucaq yaradır: <span class="m">mg</span> — hipotenuz, iki hissə — katetlər. Mavi: <span class="m">N</span>.</p>
+        </div>
+      </div>
+      <div class="fm">müstəvi boyu aşağı:       mg · sin α
+müstəviyə perpendikulyar:   mg · cos α
+N = mg · cos α</div>
+      <p>Yoxlama ən sadə hallarda: <b>α = 0° (düz yer)</b> → <span class="m">sin 0° = 0</span>: sürüşdürən hissə sıfırdır ✓; <span class="m">cos 0° = 1</span>: bütün ağırlıq yerə basır ✓. <b>α = 90° (divar)</b> → <span class="m">sin 90° = 1</span>: bütün ağırlıq "boyu" — sərbəst düşmə ✓; <span class="m">cos 90° = 0</span>: divara basmır ✓. Sin ilə cos-u qarışdırsan, bu yoxlama dərhal bildirər.</p>
+      <div class="tbl"><table><tr><th>α</th><td>30°</td><td>37°</td><td>45°</td><td>53°</td><td>60°</td></tr><tr><th>sin α</th><td>0,5</td><td>0,6</td><td>0,71</td><td>0,8</td><td>0,87</td></tr><tr><th>cos α</th><td>0,87</td><td>0,8</td><td>0,71</td><td>0,6</td><td>0,5</td></tr></table></div>
+
+      <h3><span class="st">3</span> Sürtünmə yoxdursa: a = g·sin α</h3>
+      <p>Sürtünmə yoxdursa, müstəvi boyu yalnız <span class="m">mg·sin α</span> qalır. Perpendikulyar istiqamətdə cisim hərəkət etmir — <span class="m">N</span> ilə <span class="m">mg·cos α</span> bir-birini tarazlayır. Nyutonun II qanunu:</p>
+      <div class="ex">m · a = m · g · sin α
+Hər iki tərəfi m-ə bölək:   a = g · sin α</div>
+      <p><b>Kütlə yoxdur!</b> Yüngül və ağır cisim hamar müstəvidə eyni təcillə sürüşür. Sərbəst düşmədə də belə idi — maili müstəvi "yavaşladılmış düşmədir". Qalileo düşməni öyrənmək üçün məhz maili müstəvidən istifadə edib: cisim yavaş hərəkət etdiyi üçün vaxtı ölçmək asan olurdu.</p>
+      <div class="ex">g = 10:
+  α = 30°:  a = 10·0,5 = 5 m/s²
+  α = 37°:  a = 10·0,6 = 6 m/s²
+  α = 53°:  a = 10·0,8 = 8 m/s²
+  α = 90°:  a = 10 m/s²   ← sərbəst düşmə
+N = mg·cos α:  2 kq cisim, 37°: N = 20·0,8 = 16 N  (mg = 20 N-dan kiçik!)</div>
+
+      <h3><span class="st">4</span> Kinematika ilə birləşdirmək</h3>
+      <p>Təcili tapdıqdan sonra kinematika düsturları işləyir.</p>
+      <div class="ex">Hamar müstəvi 30°, uzunluğu 10 m. Cisim yuxarıdan sükunətdən buraxılır.
+  a = 10·0,5 = 5 m/s²
+  v² = 2aL = 2·5·10 = 100 → v = 10 m/s
+  Vaxt:  L = at²/2 → t² = 2·10/5 = 4 → t = 2 s
+Yuxarı atılma. 37° hamar müstəvi boyu yuxarı 6 m/s başlanğıc sürət verilib.
+  Yavaşıma da a = g·sin 37° = 6 m/s² (təcil aşağı yönəlib)
+  L = v₀²/(2a) = 36/12 = 3 m yuxarı qalxar</div>
+      <div class="life"><b>Həyatdan: buzlu yamac.</b> Qışda buz bağlamış 37° yamacda ayağın sürüşsə, təcilin <span class="m">6 m/s²</span> olar — 2 saniyədən sonra sürətin 12 m/s (43 km/saat). Ona görə buzlu yamac təhlükəlidir: sürtünmə yox olanda cisim demək olar ki, sərbəst düşür.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Maili müstəvidə <span class="m">N = mg</span> yazmaq. Düzü: <span class="m">N = mg·cos α</span>, mg-dən kiçikdir.</li>
+        <li>Sin ilə cos-u qarışdırmaq: yoxla α = 0° və α = 90° üçün.</li>
+        <li><span class="m">a = g·cos α</span> yazmaq. Sürüşdürən hissə sin-lidir (α qarşı katetdir).</li>
+        <li>Kütləni cavabda saxlamaq: sürtünməsiz təcil kütlədən asılı deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ağırlığın hissələri:  mg·sin α (boyu aşağı),  mg·cos α (basır)
+N = mg·cos α
+Hamar müstəvi:  a = g·sin α   (aşağı hər iki istiqamətdə)
+Yoxlama:  α = 0° → a = 0;  α = 90° → a = g</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Hamar 37° müstəvidə cismin təcili və 2 s-dən sonra sürəti? <span class="ans">a = 6 m/s²; v = 12 m/s.</span></li>
+        <li>53°-li hamar müstəvidə 5 kq cisim üçün N və a? <span class="ans">N = 50·0,6 = 30 N; a = 10·0,8 = 8 m/s².</span></li>
+        <li>30° hamar müstəvi boyu yuxarı 10 m/s ilə atılan cisim neçə metr qalxar? <span class="ans">a = 5; L = 100/10 = 10 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Sürtünmə ilə maili müstəvi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Sürtünmə nə qədərdir</h3>
+      <p>Maili müstəvidə <span class="m">N = mg·cos α</span>, deməli sürtünmənin ən böyük qiyməti:</p>
+      <div class="fm">f_max = μ · m · g · cos α</div>
+      <p>Bu qüvvə müstəvi boyu, cismin hərəkət etdiyi (və ya etmək istədiyi) istiqamətin <b>əksinə</b> yönəlir: aşağı sürüşən cismə <b>yuxarı</b>, yuxarı gedənə <b>aşağı</b>.</p>
+
+      <h3><span class="st">2</span> Üç hal: durur, bərabər sürüşür, sürətlənir</h3>
+      <p>İki qüvvəni müqayisə et: <b class="opp">aşağı çəkən</b> <span class="m">mg·sin α</span> və <b>saxlayan</b> sürtünmə <span class="m">μ·mg·cos α</span>. Hər ikisində <span class="m">mg</span> var — ixtisar et, <span class="m">cos α</span>-ya böl (sin ÷ cos = tg):</p>
+      <div class="tbl"><table>
+        <tr><th>müqayisə</th><th>nə baş verir</th></tr>
+        <tr><td>tg α ≤ μ_s</td><td>cisim <b>durur</b> — sürtünmə saxlaya bilir</td></tr>
+        <tr><td>tg α = μ</td><td>itələsən, <b>sabit sürətlə</b> sürüşür (F_əv = 0)</td></tr>
+        <tr><td>tg α &gt; μ</td><td>cisim <b>sürətlənərək</b> sürüşür</td></tr>
+      </table></div>
+      <p>Cisim <b>durursa</b>, sürtünmə tam lazım olan qədərdir: <span class="m">f = mg·sin α</span> (ağırlığın boyu toplananı), <span class="m">μN</span> deyil.</p>
+      <div class="ex">5 kq cisim 37° müstəvidə, μ_s = 0,9.
+  tg 37° = 0,75 &lt; 0,9 → durur.
+  f = mg·sin α = 50·0,6 = 30 N   (ən böyük mümkün: 0,9·50·0,8 = 36 N — hamısını işlətmir)</div>
+
+      <h3><span class="st">3</span> Aşağı sürüşəndə təcil</h3>
+      <div class="ex">m·a = (aşağı çəkən) − (sürtünmə)
+m·a = mg·sin α − μ·mg·cos α        | m-ə böl
+a = g·sin α − μ·g·cos α</div>
+      <div class="fm">a = g · (sin α − μ · cos α)</div>
+      <p>Yoxlama: <span class="m">μ = 0</span> → <span class="m">a = g·sin α</span>, əvvəlki dərsdəki kimi ✓. Kütlə yenə yoxdur.</p>
+      <div class="ex">37°, μ = 0,25:   a = 10·(0,6 − 0,25·0,8) = 10·0,4 = 4 m/s²
+37°, μ = 0,75:   a = 10·(0,6 − 0,6) = 0   — sərhəd (tg 37° = μ)
+53°, μ = 0,5:    a = 10·(0,8 − 0,5·0,6) = 5 m/s²</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Maili müstəvi 37°: mg, N və yuxarı yönəlmiş sürtünmə f">
+          <defs><marker id="sm3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <polygon points="24,182 196,182 196,53" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M70 182 A46 46 0 0 0 61 155" fill="none" stroke="var(--accent)" stroke-width="2"/><text class="lbl" x="76" y="176">α</text>
+          <polygon points="101,124 136,98 118,74 83,100" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="99" x2="110" y2="150" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#sm3)"/><text class="lbl" x="116" y="152">mg</text>
+          <line x1="110" y1="99" x2="84" y2="64" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#sm3)"/><text class="lbl" x="66" y="60">N</text>
+          <line x1="110" y1="99" x2="142" y2="75" stroke="var(--ink)" stroke-width="2.8" marker-end="url(#sm3)"/><text class="lbl" x="146" y="74">f</text>
+        </svg>
+        <div class="cap">
+          <p>Cisim aşağı sürüşür. <span class="m">mg</span> aşağı, <span class="m">N</span> müstəviyə perpendikulyar, <span class="m">f = μN</span> müstəvi boyu <b>yuxarı</b> (hərəkətin əksinə). <span class="m">mg</span> iki hissəyə bölünür: boyu <span class="m">mg·sin α</span> — aşağı çəkir, <span class="m">mg·cos α</span> — N-i tarazlayır.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Yuxarı hərəkət</h3>
+      <p>Cismi müstəvi boyu yuxarı itələdin və buraxdın. İndi sürtünmə <b>aşağı</b> yönəlib, ağırlığın hissəsi də aşağı. İki qüvvə eyni tərəfə baxır — toplanır:</p>
+      <div class="fm">a = g · (sin α + μ · cos α)     (yavaşıma, yuxarı gedəndə)</div>
+      <p>Qayda: sürtünmə həmişə hərəkətə mane olur. Aşağı gedəndə təcili azaldır, yuxarı gedəndə yavaşımanı artırır.</p>
+      <div class="ex">Məsələ 1. 37°, μ = 0,25. Cismə yuxarı 8 m/s verildi. Nə qədər qalxar?
+  a = 10·(0,6 + 0,25·0,8) = 8 m/s² (yavaşıma)
+  L = v₀²/(2a) = 64/16 = 4 m
+Məsələ 2. 20 kq yükü 37° müstəvi boyu yuxarı SABİT sürətlə dartmaq üçün qüvvə?
+  F = mg·sin α + μ·mg·cos α = 200·(0,6 + 0,25·0,8) = 200·0,8 = 160 N
+  (Sürtünməsiz olsaydı 120 N. Pandus qüvvədən qazandırır, amma yol uzanır.)</div>
+      <div class="life"><b>Həyatdan: niyə pandus "qüvvə qənaət edir".</b> 50 kq qutunu 1 m hündürlüyə birbaşa qaldırmaq üçün 500 N lazımdır. 30°-li hamar taxta ilə dartsan: <span class="m">500·0,5 = 250 N</span> — iki dəfə az. Amma yol iki dəfə uzundur (1 m əvəzinə 2 m). Qüvvədən qazanırsan, yoldan itirirsən — bu, mexanikanın "qızıl qaydası"dır.</div>
+
+      <h3><span class="st">5</span> Evdə təcrübə və həyat</h3>
+      <div class="life"><b>μ-ni ölç.</b> Kitabı masaya qoy, üstünə sikkə qoy. Kitabın bir ucunu yavaş-yavaş qaldır. Sikkə sürüşməyə başladığı anda dayan və bucağı telefonun <b>Measure → Level</b> funksiyası ilə ölç. Sürüşmə həddində <span class="m">tg α = μ_s</span>. Məsələn, 17°-də sürüşdüsə: <span class="m">μ_s = tg 17° ≈ 0,31</span>. Bir ölçmə ilə sürtünmə əmsalını tapdın. Bucaq əvəzinə hündürlüyü də ölçə bilərsən: <span class="m">tg α = h/b</span> (h — qaldırılmış ucun hündürlüyü, b — kitabın masadakı izinin uzunluğu).</div>
+      <div class="life"><b>Niyə maşın yamacda durur.</b> Yaş asfaltda <span class="m">μ ≈ 0,5</span> → maşın <span class="m">tg α ≤ 0,5</span>, yəni təxminən 27°-yə qədər yamacda əyləclə dura bilər. Buzda <span class="m">μ ≈ 0,1</span> → yalnız ~6°-yə qədər. Ona görə qışda kiçik yamacda da maşınlar sürüşür.</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Maili müstəvidə <span class="m">N = mg</span> yazmaq. Düzü: <span class="m">N = mg·cos α</span>.</li>
+        <li>Sürtünməni <span class="m">μ·mg·sin α</span> yazmaq. Sürtünmə N-dən asılıdır → cos.</li>
+        <li>Sin ilə cos-u qarışdırmaq — yoxla: α = 0°-də aşağı çəkən qüvvə 0 olmalıdır.</li>
+        <li>Cisim durursa, sürtünməni yenə <span class="m">μN</span> götürmək. Durursa, sürtünmə <span class="m">mg·sin α</span>-dır.</li>
+        <li>Yuxarı gedəndə sürtünməni də aşağı çəkən qüvvənin əksinə yazmaq: yuxarı gedəndə o, <b>aşağıdır</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla — bütün mövzu</b><div class="ex">Ağırlığın hissələri:  boyu mg·sin α,  basır mg·cos α;   N = mg·cos α
+Sürtünmə (max):  μ·mg·cos α
+Durur:  tg α ≤ μ_s   (f = mg·sin α)
+Sabit sürətlə sürüşür:  tg α = μ
+Aşağı sürüşür:  a = g(sin α − μ cos α)
+Yuxarı gedir:  a = g(sin α + μ cos α)  (yavaşıma)
+Sabit sürətlə yuxarı dartma:  F = mg(sin α + μ cos α)
+Yoxlama:  α = 0° → çəkən 0;  α = 90° → sərbəst düşmə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>37° müstəvidə μ = 0,5. Cisim sürüşəndə təcil? <span class="ans">a = 10·(0,6 − 0,5·0,8) = 2 m/s². (tg 37° = 0,75 &gt; 0,5 — sürüşür.)</span></li>
+        <li>Cisim 37° müstəvi boyu sabit sürətlə sürüşür. μ = ? <span class="ans">μ = tg 37° = 0,75.</span></li>
+        <li>2 kq cismi 53° müstəvi boyu yuxarı sabit sürətlə dartmaq üçün qüvvə (μ = 0,5)? <span class="ans">F = 20·(0,8 + 0,5·0,6) = 20·1,1 = 22 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

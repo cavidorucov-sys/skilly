@@ -1034,7 +1034,7 @@
    "ad": "Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fizika-mexanika-1.html",
+   "ders": "dersler/fiz-kinematika.html",
    "fritl": true,
    "on": [
     "fizika:Vektorlar: proyeksiya və toplanma",
@@ -1047,7 +1047,7 @@
    "ad": "Sərbəst düşmə",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fizika-mexanika-1.html",
+   "ders": "dersler/fiz-serbest-dusme.html",
    "on": [
     "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər",
     "riyaziyyat:Kvadrat kök, hesabi kökün xassələri"
@@ -1059,7 +1059,7 @@
    "ad": "Çevrə üzrə hərəkət",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
-   "ders": "dersler/fizika-mexanika-1.html",
+   "ders": "dersler/fiz-cevre-herekat.html",
    "fritl": true,
    "on": [
     "fizika:Vektorlar: proyeksiya və toplanma",
@@ -1073,7 +1073,7 @@
    "ad": "Nyuton qanunları, bağlı cisimlər",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.3 Dinamika",
-   "ders": "dersler/fizika-mexanika-1.html",
+   "ders": "dersler/fiz-nyuton.html",
    "fritl": true,
    "on": [
     "fizika:Vektorlar: proyeksiya və toplanma",
@@ -1087,7 +1087,7 @@
    "ad": "Sürtünmə, maili müstəvi",
    "status": "isl",
    "menbe": "RFO fiz (aşağı): 1.2 Statika + 1.3",
-   "ders": "dersler/maili-mustevi-1.html",
+   "ders": "dersler/fiz-surtunme-maili.html",
    "fritl": true,
    "on": [
     "fizika:Nyuton qanunları, bağlı cisimlər",

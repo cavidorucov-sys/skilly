@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nyuton qanunları dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-nyuton.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Nyuton qanunları</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika</div>
+    <h1>Nyuton qanunları, bağlı cisimlər</h1>
+    <p>Dinamika "niyə bu hərəkət edir" sualına cavab verir. Üç Nyuton qanunu, bir şəkil çəkmək qaydası və bir tənlik — <span class="m">F_əv = ma</span> — demək olar ki, bütün məsələləri həll edir. Burada iplə bağlı cisimləri, lifti və Atvud maşınını keçəcəyik. Sürtünmə və maili müstəvi növbəti mövzudadır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>. İp çəkisiz və uzanmazdır, blok çəkisiz və sürtünməsizdir.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Üç qanun</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Şəkil, lift</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İplə bağlı</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Masa, Atvud</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Nyutonun üç qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Marketdə boş arabanı itələyəndə o asanlıqla sürətlənir. Dolu arabanı eyni güclə itələsən, çətin tərpənir. Metroda qatar tərpənəndə bədənin geri qalır. Yüngül cüdoçunu ağır rəqibdən asan yerindən oynadırsan. Bunların hamısı üç sadə qanunla izah olunur.</p>
+
+      <h3><span class="st">2</span> I qanun: ətalət</h3>
+      <p>Cismə qüvvə təsir etmirsə (və ya qüvvələr bir-birini <b>tarazlayırsa</b>), o, ya <b>dayanır</b>, ya <b>sabit sürətlə düzxətli</b> hərəkət edir. "Sabit sürətlə gedir" — qüvvələrin cəmi sıfırdır deməkdir. Sürət sabitdirsə, hərəkəti saxlamaq üçün qüvvə <b>lazım deyil</b>.</p>
+      <div class="life"><b>Həyatdan.</b> Avtobus qəfil əyləc edəndə irəli əyilirsən: bədənin sürətini saxlamaq istəyir (ətalət). Hamar buzda hokey şaybası uzun müddət düz sürüşür — sürtünmə az olduğu üçün sürəti çox yavaş dəyişir.</div>
+
+      <h3><span class="st">3</span> II qanun: qüvvə təcil yaradır</h3>
+      <div class="fm">F_əv = m·a</div>
+      <p><span class="m">F_əv</span> — cismə təsir edən <b>bütün</b> qüvvələrin vektorial cəmi (əvəzləyici qüvvə). Təcil əvəzləyici qüvvə ilə eyni istiqamətdədir, kütləyə tərs mütənasibdir. Vahid: <span class="m">1 N = 1 kq·m/s²</span> — 1 kq kütləyə 1 m/s² təcil verən qüvvə.</p>
+      <p><b>Kütlə</b> (kq) cismin ətalətinin ölçüsüdür, dəyişmir. <b>Ağırlıq qüvvəsi</b> <span class="m">mg</span> Yerin cismi çəkməsidir (N). 46 kq-lıq adamın ağırlıq qüvvəsi <span class="m">46·10 = 460 N</span>.</p>
+      <div class="ex">Nümunə. Hamar masada 4 kq cismə sağa 20 N, sola 8 N qüvvə təsir edir.
+  F_əv = 20 − 8 = 12 N (sağa)
+  a = F_əv/m = 12/4 = 3 m/s² (sağa)
+Eyni əvəzləyici qüvvə 12 kq cismə təsir etsəydi: a = 12/12 = 1 m/s² — kütlə 3 dəfə böyük, təcil 3 dəfə kiçik.</div>
+
+      <h3><span class="st">4</span> III qanun: qarşılıqlı təsir</h3>
+      <p>İki cisim bir-birinə <b>modulca bərabər, istiqamətcə əks</b> qüvvələrlə təsir edir. Həmişə <b>cütdür</b>, eyni təbiətlidir (cazibə ilə cazibə, sürtünmə ilə sürtünmə) və <b>müxtəlif cisimlərə</b> tətbiq olunur.</p>
+      <div class="life"><b>Həyatdan.</b> Divarı 100 N ilə itələyirsən — divar da səni 100 N ilə itələyir. Divar tərpənmir, çünki onun başqa bağlantıları var; sən isə tərpənə bilərsən (konkidə geri sürüşərsən). Yük maşını yüngül avtomobillə toqquşanda ikisi də eyni qüvvə alır, amma avtomobilin təcili çox böyükdür — çünki kütləsi kiçikdir.</div>
+      <p>Çox rast gəlinən fikir səhvi: "bu iki qüvvə bir-birini tarazlayır". Yox! Tarazlıq üçün qüvvələr <b>eyni cismə</b> təsir etməlidir. III qanunun qüvvələri müxtəlif cisimlərdədir, ona görə hesabda toplanmırlar.</p>
+      <div class="life"><b>Dinamometr.</b> Dinamometrin hər iki ucundan 50 N ilə dartırsan (əks tərəflərə). Göstəriş 100 N yox, <b>50 N</b>-dur. Bir ucunu divara bağlayıb o biri ucundan 50 N ilə dartsan da eyni olar: divar da 50 N ilə çəkir.</div>
+
+      <h3><span class="st">5</span> Hansı qüvvələr var və şəkildə necə göstərilir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 280 190" role="img" aria-label="Sol: masadakı cismə mg, N, F. Sağ: ipdən asılı cismə T və mg">
+          <defs><marker id="ny1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="8" y1="140" x2="150" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="45" y="92" width="48" height="48" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="69" y1="92" x2="69" y2="42" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny1)"/><text class="lbl" x="75" y="52">N</text>
+          <line x1="69" y1="140" x2="69" y2="182" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny1)"/><text class="lbl" x="75" y="175">mg</text>
+          <line x1="93" y1="116" x2="140" y2="116" stroke="var(--ink)" stroke-width="2.8" marker-end="url(#ny1)"/><text class="lbl" x="116" y="108">F</text>
+          <line x1="190" y1="10" x2="250" y2="10" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="220" y1="10" x2="220" y2="72" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="200" y="72" width="40" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="220" y1="72" x2="220" y2="34" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny1)"/><text class="lbl" x="226" y="50">T</text>
+          <line x1="220" y1="112" x2="220" y2="160" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny1)"/><text class="lbl" x="226" y="150">mg</text>
+        </svg>
+        <div class="cap">
+          <p><b>mg</b> — ağırlıq (həmişə şaquli aşağı). <b>N</b> — dayaq reaksiyası (səthə perpendikulyar, səthdən kənara). <b>T</b> — ipin gərilməsi (ip boyunca, ipdən cismə doğru). <b>F</b> — dartan/itələyən qüvvə. Sürtünmə (sonrakı mövzu) — səth boyu, hərəkətin əksinə.</p>
+        </div>
+      </div>
+      <p>Hər dinamika məsələsində eyni dörd addım: <b>(1)</b> hər cisim üçün ayrıca şəkil çək, hər qüvvəni ox kimi göstər; <b>(2)</b> ox seç (təcilin istiqamətində); <b>(3)</b> hər cisim üçün <span class="m">F_əv = ma</span> yaz; <b>(4)</b> tənlikləri birlikdə həll et.</p>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Qüvvə sürət yaradır" — yox, təcil yaradır. Sabit sürətdə qüvvələrin cəmi sıfırdır.</li>
+        <li>III qanun qüvvələrini bir-birinə tarazlayan kimi toplamaq (onlar müxtəlif cisimlərdədir).</li>
+        <li>Kütlə ilə ağırlığı (çəkini) qarışdırmaq: kq ilə N.</li>
+        <li>Qüvvələri şəkildə göstərmədən düstura keçmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">I: F_əv = 0 → dayanır və ya sabit sürətlə gedir
+II: F_əv = ma   (1 N = 1 kq·m/s²);   ağırlıq mg
+III: F₁₂ = −F₂₁, müxtəlif cisimlərə tətbiq olunur
+Qayda: şəkil → ox → hər cisim üçün F_əv = ma → həll</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>4 kq cismə sağa 20 N, sola 8 N qüvvə təsir edir. Təcil? <span class="ans">a = 12/4 = 3 m/s² (sağa).</span></li>
+        <li>2 kq cisim 5 m/s² təcil alır. Eyni qüvvə 5 kq cismə nə təcil verər? <span class="ans">F = 2·5 = 10 N; a = 10/5 = 2 m/s².</span></li>
+        <li>Sən 100 N ilə divarı itələyirsən. Divar səni hansı qüvvə ilə itələyir? <span class="ans">100 N, əks istiqamətdə (III qanun).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Lift və yükün qaldırılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Lift yuxarı tərpənəndə özünü ağır, aşağı tərpənəndə yüngül hiss edirsən. Tərəzi liftdə fərqli şeylər göstərə bilər. Bu, ağırlığın dəyişməsi deyil — <b>çəkinin</b> (dayağa basan qüvvənin) dəyişməsidir.</p>
+
+      <h3><span class="st">2</span> Liftdə adam</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Liftdə adam: yuxarı N, aşağı mg, təcil a yuxarı">
+          <defs><marker id="ny2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="60" y="20" width="90" height="150" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+          <rect x="95" y="100" width="20" height="60" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><circle cx="105" cy="90" r="9" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="105" y1="160" x2="105" y2="118" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny2)" transform="translate(-30 0)"/><text class="lbl" x="62" y="140">N</text>
+          <line x1="125" y1="120" x2="125" y2="168" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny2)" transform="translate(12 0)"/><text class="lbl" x="152" y="150">mg</text>
+          <line x1="190" y1="120" x2="190" y2="60" stroke="var(--ink)" stroke-width="3" marker-end="url(#ny2)"/><text class="lbl" x="198" y="82">a</text>
+        </svg>
+        <div class="cap">
+          <p>Adama yuxarı <span class="m">N</span> (tərəzinin itələməsi), aşağı <span class="m">mg</span> təsir edir. Ox yuxarı, təcil yuxarıdırsa (lift yuxarı sürətlənir və ya aşağı yavaşıyır):</p>
+          <div class="ex">N − mg = ma
+N = m(g + a)</div>
+          <p>Təcil aşağıdırsa: <span class="m">N = m(g − a)</span>. Tərəzinin göstərdiyi qüvvə (adamın <b>çəkisi</b>) <span class="m">N</span>-ə bərabərdir (III qanun).</p>
+        </div>
+      </div>
+      <p>Qayda yadda qalsın: <b>təcil yuxarıdırsa — çəki artır; aşağıdırsa — azalır</b>. Liftin hansı istiqamətdə getməsi yox, <b>təcilin</b> istiqaməti vacibdir.</p>
+      <div class="tbl"><table><tr><th>Lift</th><td>təcil</td><td>N (60 kq adam)</td></tr><tr><th>yuxarı sürətlənir</th><td>↑ 2</td><td>720 N</td></tr><tr><th>sabit sürətlə (↑ və ya ↓)</th><td>0</td><td>600 N</td></tr><tr><th>yuxarı yavaşıyır</th><td>↓ 2</td><td>480 N</td></tr><tr><th>aşağı sürətlənir</th><td>↓ 2</td><td>480 N</td></tr><tr><th>aşağı yavaşıyır</th><td>↑ 2</td><td>720 N</td></tr><tr><th>sərbəst düşür (tros qırıldı)</th><td>↓ 10</td><td>0 N</td></tr></table></div>
+      <div class="life"><b>Həyatdan.</b> Sərbəst düşən liftdə <span class="m">N = m(g − g) = 0</span>: çəkisizlik. Kosmik stansiyada astronavtlar da buna görə "ağırlıqsızdır" — onlar Yer ətrafında daim sərbəst düşürlər, ağırlıq qüvvəsi isə yoxa çıxmayıb (təxminən 90% qalır).</div>
+
+      <h3><span class="st">3</span> Yükü ipdən qaldırmaq</h3>
+      <p>Eyni məntiq: yükə yuxarı <span class="m">T</span>, aşağı <span class="m">mg</span>. Yük <span class="m">a</span> təcili ilə yuxarı gedirsə:</p>
+      <div class="fm">T − mg = ma    →    T = m(g + a)</div>
+      <div class="ex">Nümunə 1. 5 kq yük ipdən qaldırılır.
+  Sabit sürətlə:        T = mg = 50 N
+  2 m/s² təcillə yuxarı: T = 5·(10 + 2) = 60 N
+  2 m/s² təcillə aşağı (sürətlənərək): T = 5·(10 − 2) = 40 N
+Nümunə 2. Kranın tros 2400 N-ə qədər yükə dözür. 200 kq yükü ən çox hansı təcillə qaldırmaq olar?
+  T_max = m(g + a) → 2400 = 200·(10 + a) → a = 2 m/s²</div>
+      <div class="life"><b>Həyatdan.</b> Ağır yükü kranla qaldıranda qəfil tərpətsən, tros qırıla bilər: təcil gərilməni artırır. Ona görə kranlar yükü yavaş-yavaş sürətləndirir.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Lift yuxarı gedir, deməli çəki artır" — təcilə bax: yuxarı sabit sürətlə gedəndə çəki dəyişmir.</li>
+        <li>Yavaşıyan hərəkətdə təcilin istiqamətini sürət istiqaməti sanmaq: yuxarı yavaşıyan liftdə təcil <b>aşağıdır</b>.</li>
+        <li>Çəkini (N) ağırlıq qüvvəsi (mg) ilə eyniləşdirmək hərəkətli sistemdə.</li>
+        <li>İpin gərilməsini yalnız <span class="m">mg</span>-yə bərabər tutmaq təcil olanda.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ox yuxarı:  N − mg = ma   (tərəzi N göstərir)
+Təcil yuxarı → N = m(g + a);  aşağı → N = m(g − a)
+İpdən qaldırma:  T = m(g + a)
+Sərbəst düşmədə N = 0</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>50 kq adam liftdə yuxarı 2 m/s² təcillə sürətlənir. Tərəzi nə göstərir? <span class="ans">N = 50·12 = 600 N.</span></li>
+        <li>Həmin adam lift aşağı 3 m/s² təcillə sürətlənəndə? <span class="ans">N = 50·7 = 350 N.</span></li>
+        <li>200 kq yükü 2 m/s² təcillə qaldıran troslarda gərilmə? <span class="ans">T = 200·12 = 2400 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İplə bağlı cisimlər (üfüqi hərəkət)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Metro qatarı bir neçə vaqondan ibarətdir. Avtomobil treyleri çəkir. Alpinistlər bir kəndirlə bağlanıb. Hər yerdə eyni sual: bütün sistem hansı təcillə gedir və ipdə (qoşquda) nə qədər qüvvə var?</p>
+
+      <h3><span class="st">2</span> İp uzanmırsa — eyni təcil</h3>
+      <p>İp uzanmayan olduqda bağlı cisimlər həmişə <b>eyni sürətlə, eyni təcillə</b> gedir. Ona görə əvvəlcə hamısına bir böyük cisim kimi bax:</p>
+      <div class="fm">a = F / (m₁ + m₂ + …)</div>
+      <p>(Burada yalnız <b>xarici</b> qüvvələr yazılır: ip daxili qüvvədir və cəmi tək-tək ixtisar olur — III qanun.)</p>
+
+      <h3><span class="st">3</span> İpin gərilməsi: cisimləri ayır</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 160" role="img" aria-label="İki cismin ayrı şəkli: m₁ üçün T sağa, m₂ üçün F sağa və T sola">
+          <defs><marker id="ny3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="5" y1="110" x2="295" y2="110" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="20" y="60" width="64" height="50" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="52" y="90" text-anchor="middle">m₁</text>
+          <line x1="84" y1="85" x2="130" y2="85" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="130" y="60" width="80" height="50" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="170" y="90" text-anchor="middle">m₂</text>
+          <line x1="210" y1="85" x2="280" y2="85" stroke="var(--vec)" stroke-width="3" marker-end="url(#ny3)"/><text class="lbl" x="250" y="76">F</text>
+          <line x1="86" y1="40" x2="128" y2="40" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny3)"/><text class="lbl" x="20" y="44">m₁-ə T</text>
+          <line x1="128" y1="54" x2="86" y2="54" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny3)"/><text class="lbl" x="134" y="58">m₂-yə T</text>
+          <text x="20" y="150">m₁: yalnız T.   m₂: F sağa, T sola.</text>
+        </svg>
+        <div class="cap">
+          <p><b>m₁</b> cismini yalnız ip dartır: <span class="m">T = m₁a</span>. <b>m₂</b> cisminə F sağa, T sola: <span class="m">F − T = m₂a</span>. İpdəki T hər iki cismə eynidir (III qanun).</p>
+        </div>
+      </div>
+      <div class="fm">T = (ipin arxasında qalan kütlələrin cəmi) · a</div>
+      <div class="ex">Nümunə 1. m₁ = 2 kq (arxada), m₂ = 3 kq (qabaqda), F = 50 N qabağa, sürtünmə yoxdur.
+  a = 50/(2 + 3) = 10 m/s²
+  T = 2·10 = 20 N        (ip yalnız 2 kq-lığı dartır)
+  Yoxla qabaqda:  F − T = 50 − 20 = 30 = 3·10 ✓
+Nümunə 2. Üç cisim: 1 kq, 2 kq, 3 kq (3 kq-lıq qabaqda), F = 18 N.
+  a = 18/6 = 3 m/s²
+  T₁₂ = 1·3 = 3 N        (birinci ip yalnız 1 kq-lığı dartır)
+  T₂₃ = (1 + 2)·3 = 9 N  (ikinci ip arxadakı 1 və 2 kq-lığı dartır)
+  Yoxla 3 kq-lıq üçün:  F − T₂₃ = 18 − 9 = 9 = 3·3 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Metro qatarında birinci vaqonu lokomotiv dartır; birinci və ikinci vaqonu birləşdirən qoşqu arxadakı <b>bütün</b> vaqonları sürətləndirir — ona görə ən çox o yüklənir. Sonuncu qoşqu yalnız bir vaqonu dartır. Avtomobil treyleri dartanda qoşqu yalnız treyleri sürətləndirir: <span class="m">T = m_treyler·a</span>.</div>
+
+      <h3><span class="st">4</span> Bir-birini itələyən cisimlər</h3>
+      <p>İki qutu yan-yana durur, birincini itələyirsən. Hər ikisi eyni təcillə gedir: <span class="m">a = F/(m₁ + m₂)</span>. Qabaqdakı qutunu <b>yalnız</b> birincinin itələməsi (N) tərpədir:</p>
+      <div class="fm">N = m₂ · a      (m₂ — qabaqdakı, itələnən qutu)</div>
+      <div class="ex">m₁ = 1 kq, m₂ = 4 kq, F = 20 N: a = 20/5 = 4 m/s², N = 4·4 = 16 N.
+Qutuları dəyişsək (4 kq-lıq arxada, 1 kq-lıq qabaqda): a = 4 m/s² eyni, N = 1·4 = 4 N.</div>
+      <p>Qabaqdakı qutu ağırdırsa, aralarındakı qüvvə böyük olur. Ev köçürəndə ağır qutunu <b>qabaqda</b> saxlama.</p>
+
+      <h3><span class="st">5</span> Çubuq iki tərəfdən dartılanda</h3>
+      <p>Uniform çubuğu bir ucdan <span class="m">F₁</span>, əks ucdan <span class="m">F₂</span> ilə əks tərəflərə dartırlar (<span class="m">F₁ &gt; F₂</span>). Çubuq güclü tərəfə <span class="m">a = (F₁ − F₂)/m</span> ilə gedir. Çubuğun içindəki gərilmə hər yerdə fərqlidir: zəif ucdan <span class="m">x</span> məsafədə</p>
+      <div class="fm">T = F₂ + (F₁ − F₂)·x / l</div>
+      <p>Uclarda yoxla: <span class="m">x = 0</span> → <span class="m">T = F₂</span>, <span class="m">x = l</span> → <span class="m">T = F₁</span>.</p>
+      <div class="life"><b>Həyatdan.</b> İki nəfər ağır taxta tiri əks tərəflərə dartır: biri 600 N, o biri 500 N. Tir güclü tərəfə doğru sürüşür. Tirin düz ortasında gərilmə 550 N-dur — iki qüvvənin arasında. Güclü tərəfə yaxınlaşdıqca gərilmə artır.</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İpin gərilməsini bütün sistemin kütləsinə vurmaq. <span class="m">T</span> yalnız ipin dartdığı (arxadakı) hissənin kütləsinə vurulur.</li>
+        <li>Gərilməni dartan qüvvəyə bərabər tutmaq: <span class="m">T = F</span> yalnız çəkisiz cisim olanda doğrudur.</li>
+        <li>Cisimlər üçün eyni <span class="m">a</span> yerinə fərqli təcil yazmaq.</li>
+        <li>Qüvvələri hər cisim üçün ayrıca şəkildə göstərmədən tənlik yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = F/(m₁ + m₂ + …)  (eyni təcil)
+T = (ipin dartdığı kütlələrin cəmi)·a
+İtələmə: N = m_qabaq·a
+Çubuq: T = F₂ + (F₁ − F₂)x/l</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 kq və 4 kq iplə bağlı, 4 kq-lıq 18 N ilə dartılır. a və T? <span class="ans">a = 18/6 = 3 m/s²; T = 2·3 = 6 N.</span></li>
+        <li>2, 3, 5 kq-lıq üç cisim ardıcıl iplə bağlıdır, 5 kq-lıq 30 N ilə dartılır. İki ipdə gərilmə? <span class="ans">a = 30/10 = 3 m/s². T₁₂ = 2·3 = 6 N, T₂₃ = 5·3 = 15 N.</span></li>
+        <li>3 kq və 2 kq qutu yan-yana, 3 kq-lığı 15 N ilə itələyirlər. Qutular arasındakı qüvvə? <span class="ans">a = 15/5 = 3 m/s²; N = 2·3 = 6 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Masa üstündə cisim və Atvud maşını</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bloklu məsələlərdə ip dönür: bir cisim üfüqi, o biri şaquli hərəkət edir. Məntiq eynidir, amma hər cisim üçün <b>öz oxu</b> var və əsas fikir: ipin hərəkət istiqamətində ox seçmək.</p>
+
+      <h3><span class="st">2</span> Masa üstündə cisim, kənardan asılan yük</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 190" role="img" aria-label="Masa üstündəki m_x və kənardan asılmış m_y">
+          <defs><marker id="ny4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="10" y="60" width="170" height="12" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/><line x1="30" y1="72" x2="30" y2="180" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="28" width="60" height="32" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="70" y="49" text-anchor="middle">m_x</text>
+          <line x1="100" y1="44" x2="186" y2="44" stroke="var(--ink)" stroke-width="1.8"/><circle cx="186" cy="54" r="10" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="196" y1="54" x2="196" y2="112" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="176" y="112" width="40" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="196" y="137" text-anchor="middle">m_y</text>
+          <line x1="104" y1="38" x2="136" y2="38" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny4)"/><text class="lbl" x="116" y="30">T</text>
+          <line x1="218" y1="130" x2="218" y2="170" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny4)"/><text class="lbl" x="226" y="162">m_y g</text>
+          <line x1="178" y1="150" x2="178" y2="112" stroke="var(--accent)" stroke-width="2.8" marker-end="url(#ny4)"/><text class="lbl" x="150" y="132">T</text>
+        </svg>
+        <div class="cap">
+          <p>Sürtünmə yoxdur. Masadakı cismə üfüqi yalnız ip təsir edir. Asılan yükə aşağı <span class="m">m_y g</span>, yuxarı <span class="m">T</span>. İp uzanmır — eyni <span class="m">a</span>.</p>
+          <div class="ex">m_x:  T = m_x·a
+m_y:  m_y·g − T = m_y·a</div>
+        </div>
+      </div>
+      <p>Topla: <span class="m">m_y g = (m_x + m_y)a</span>. Sistemi hərəkətə gətirən yalnız asılan yükün ağırlığıdır, sürətlənən kütlə isə ikisinin cəmidir.</p>
+      <div class="fm">a = m_y·g / (m_x + m_y)        T = m_x·a</div>
+      <div class="ex">Nümunə. m_x = 3 kq, m_y = 1 kq.
+  a = 1·10/(3 + 1) = 2,5 m/s²
+  T = 3·2,5 = 7,5 N — asılan yükün ağırlığından (10 N) az, çünki yük də sürətlənir.</div>
+      <div class="life"><b>Həyatdan.</b> Masanın üstündəki kitaba ip bağla, ipi masanın kənarından sallayıb ucuna açar dəstəsi as. Açar düşür, kitabı da özü ilə çəkir. Kitab nə qədər ağırdırsa, hər şey o qədər yavaş sürətlənir.</div>
+
+      <h3><span class="st">3</span> Atvud maşını</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Atvud maşını: blokdan asılmış m₁ və m₂">
+          <defs><marker id="ny5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="70" y1="10" x2="190" y2="10" stroke="var(--ink)" stroke-width="3"/><line x1="130" y1="10" x2="130" y2="30" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="130" cy="48" r="18" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/><circle cx="130" cy="48" r="3" fill="var(--ink)"/>
+          <line x1="112" y1="48" x2="112" y2="130" stroke="var(--ink)" stroke-width="1.8"/><line x1="148" y1="48" x2="148" y2="96" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="94" y="130" width="36" height="34" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="112" y="152" text-anchor="middle">m₁</text>
+          <rect x="130" y="96" width="36" height="42" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/><text class="lbl" x="148" y="121" text-anchor="middle">m₂</text>
+          <line x1="64" y1="170" x2="64" y2="128" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny5)"/><text class="lbl" x="46" y="186">a ↑</text>
+          <line x1="196" y1="100" x2="196" y2="142" stroke="var(--vec)" stroke-width="2.8" marker-end="url(#ny5)"/><text class="lbl" x="184" y="158">a ↓</text>
+        </svg>
+        <div class="cap">
+          <p>Blokdan aşan ipin iki ucunda iki yük asılıb, <span class="m">m₂ &gt; m₁</span>. Ağır yük aşağı, yüngül yük yuxarı <b>eyni</b> <span class="m">a</span> ilə gedir. Hər yük üçün ayrıca, öz hərəkət istiqamətində:</p>
+          <div class="ex">m₁ (qalxır):  T − m₁g = m₁a
+m₂ (düşür):   m₂g − T = m₂a</div>
+        </div>
+      </div>
+      <p>İki tənliyi toplasaq <span class="m">T</span> yox olur və təcil alınır. Sonra <span class="m">T</span>-ni birinci tənlikdən tapırıq:</p>
+      <div class="fm">a = (m₂ − m₁)·g / (m₁ + m₂)        T = 2m₁m₂·g / (m₁ + m₂)</div>
+      <div class="ex">Nümunə. m₁ = 2 kq, m₂ = 3 kq.
+  a = (3 − 2)·10/5 = 2 m/s²
+  T = m₁(g + a) = 2·12 = 24 N      (düstur: 2·2·3·10/5 = 24 ✓)
+  m₂ üçün yoxla:  m₂(g − a) = 3·8 = 24 ✓
+Blokun tavana asqısındakı qüvvə: blokdan aşan ipin hər iki tərəfi onu aşağı T ilə dartır:
+  2T = 48 N. (Yüklər tərpənməsəydi (m₁ + m₂)g = 50 N olardı — fərq yüklərin sürətlənməsindəndir.)</div>
+      <div class="life"><b>Həyatdan.</b> Liftin kabinəsi trosla bağlıdır, trosun o biri ucunda ağır <b>əks yük</b> asılıb — bu, Atvud maşınıdır. Əks yük kabinəni "tarazlayır", ona görə mühərrik bütün kabinəni yox, yalnız fərqi qaldırır. Kütlələr bərabər olanda <span class="m">a = 0</span>, <span class="m">T = mg</span> — tam tarazlıq.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Atvud maşınında <span class="m">T = m₂g</span> yazmaq — yük düşürsə, gərilmə onun ağırlığından azdır.</li>
+        <li>Masadakı cisim və asılan yük üçün təcili <span class="m">m_y·g/m_y</span> yazmaq — sürətlənən kütlə <b>ikisinin cəmidir</b>.</li>
+        <li>Qalxan yük üçün <span class="m">T = m₁(g − a)</span> yazmaq (işarə): qalxan yükdə <span class="m">T &gt; m₁g</span>.</li>
+        <li>Bütün sistem üçün tək tənlik yazıb gərilməni tapa bilməmək — gərilməni tapmaq üçün cisimlərdən birini ayırıb ayrıca yaz.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Masa + asılı:  a = m_y·g/(m_x + m_y),   T = m_x·a
+Atvud:  a = (m₂ − m₁)g/(m₁ + m₂),   T = 2m₁m₂g/(m₁ + m₂)
+Blokun asqısı: 2T.   Yoxlama: m₁ = m₂ → a = 0, T = mg;  m₂ ≫ m₁ → a ≈ g</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Masada 2 kq cisim, ip blokdan aşıb 3 kq yük saxlayır. a və T? <span class="ans">a = 30/5 = 6 m/s²; T = 2·6 = 12 N.</span></li>
+        <li>Atvud maşınında 1 kq və 3 kq yüklər. a və T? <span class="ans">a = 2·10/4 = 5 m/s²; T = 1·(10 + 5) = 15 N (= 2·1·3·10/4).</span></li>
+        <li>Atvud maşınında m₁ = 1 kq, a = 5 m/s². m₂ = ? <span class="ans">a(m₁ + m₂) = (m₂ − m₁)g → 5(1 + m₂) = 10(m₂ − 1) → 15 = 5m₂ → m₂ = 3 kq.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

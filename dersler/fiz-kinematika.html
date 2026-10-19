@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hərəkət və qrafiklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-kinematika.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Kinematika</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Kinematika</div>
+    <h1>Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər</h1>
+    <p>Kinematika "cisim necə hərəkət edir" sualına cavab verir — səbəbini (qüvvəni) soruşmur. Burada üç şeyi bir yerə yığırıq: düsturlar, qrafiklər və koordinatla yerdəyişmənin fərqi. Bu fərq sınaqda sənə bir bal itirdi, buna görə ayrıca vurğulayacağıq.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Koordinat və yol</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Təcil, düsturlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qrafiklər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Görüş, yetişmə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Koordinat, yerdəyişmə, yol və bərabərsürətli hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Taksi sürücüsü üçün iki fərqli sual var: "indi hardayam?" və "bu gün nə qədər yol getdim?". Birincinin cavabı bir <b>nöqtədir</b>, ikincinin cavabı bir <b>məsafədir</b>. Fizikada da belədir: cismin yeri ilə onun getdiyi yol müxtəlif kəmiyyətlərdir. Onları qarışdırmaq kinematikada ən çox rast gəlinən səhvdir.</p>
+
+      <h3><span class="st">2</span> Üç ayrı kəmiyyət</h3>
+      <p>Düz xətt üzrə hərəkətdə bir <b>ox</b> seçirik (müsbət istiqaməti özümüz qərar veririk) və başlanğıc nöqtə qoyuruq. Sonra:</p>
+      <ul>
+        <li><b>Koordinat <span class="m">x</span></b> — cisim <b>hardadır</b>. Başlanğıc nöqtədən oxla ölçülür, mənfi ola bilər.</li>
+        <li><b>Yerdəyişmə <span class="m">sₓ</span></b> — yerin <b>dəyişməsi</b>: son koordinat çıxılsın ilk koordinat. İşarəlidir.</li>
+        <li><b>Yol <span class="m">l</span></b> — cismin <b>getdiyi</b> bütün məsafə. Heç vaxt mənfi olmur və azalmır.</li>
+      </ul>
+      <div class="fm">sₓ = x − x₀        x = x₀ + sₓ        l ≥ |sₓ|</div>
+      <div class="life"><b>Həyatdan.</b> Stadionda 400 metrlik dairəni tam qaçdın: yol 400 m, yerdəyişmə <b>0</b>, çünki başladığın yerə qayıtdın. Düz xətdə isə: evdən 30 m şərqə, sonra 50 m qərbə getdin. Yol 30 + 50 = 80 m. Ox şərqə baxırsa, yerdəyişmə <span class="m">sₓ = 30 − 50 = −20 m</span> — yəni ev nöqtəsindən 20 m qərbdəsən. Yol həmişə toplanır, yerdəyişmə işarə ilə.</div>
+
+      <h3><span class="st">3</span> Bərabərsürətli hərəkət: x(t) düz xəttdir</h3>
+      <p>Bərabərsürətli hərəkətdə sürət dəyişmir. Yerdəyişmə = sürət × vaxt, koordinat isə başlanğıc koordinatla yerdəyişmənin cəmidir:</p>
+      <div class="fm">x = x₀ + vₓ·t</div>
+      <p><span class="m">vₓ</span> — sürətin <b>proyeksiyası</b>: ox istiqamətində gedən cisimdə müsbət, əks istiqamətdə gedəndə mənfi. Bu, riyaziyyatdakı <span class="m">y = kx + b</span>-dir, mailiyyət sürətdir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Üç cismin x(t) qrafiki: sürət müsbət, mənfi və sıfır">
+          <line x1="40" y1="175" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="40" y1="148" x2="250" y2="148" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="40" y1="82" x2="250" y2="82" stroke="var(--line)"/><line x1="40" y1="15" x2="250" y2="15" stroke="var(--line)"/>
+          <text x="34" y="152" text-anchor="end">0</text><text x="34" y="86" text-anchor="end">5</text><text x="34" y="19" text-anchor="end">10</text>
+          <text x="108" y="164" text-anchor="middle">2</text><text x="177" y="164" text-anchor="middle">4</text><text x="245" y="164" text-anchor="middle">6</text>
+          <text class="lbl" x="46" y="14">x, m</text><text class="lbl" x="228" y="178">t, s</text>
+          <line x1="40" y1="135" x2="245" y2="15" stroke="var(--accent)" stroke-width="2.8"/>
+          <line x1="40" y1="28" x2="245" y2="148" stroke="var(--vec)" stroke-width="2.8"/>
+          <line x1="40" y1="82" x2="245" y2="82" stroke="var(--muted)" stroke-width="2.8" stroke-dasharray="6 4"/>
+          <text class="lbl" x="196" y="52">v &gt; 0</text><text class="lbl" x="196" y="128">v &lt; 0</text><text class="lbl" x="205" y="76">v = 0</text>
+        </svg>
+        <div class="cap">
+          <p>Üç cisim: biri oxun istiqamətində gedir (xətt yuxarı qalxır, <span class="m">v &gt; 0</span>), biri əksinə (xətt aşağı enir, <span class="m">v &lt; 0</span>), biri dayanıb (xətt üfüqi).</p>
+          <p>Xəttlərin kəsişdiyi nöqtə — <b>görüşdür</b>: həmin anda iki cismin koordinatı eynidir.</p>
+        </div>
+      </div>
+      <div class="ex">Nümunə. Cismin koordinatı x = −26 − 4t (m, s).
+  Burada x₀ = −26 m, vₓ = −4 m/s: cisim oxun əksinə gedir.
+  t = 10 s:  x = −26 + (−4)·10 = −66 m
+  t = 3 s:   x = −26 + (−4)·3 = −38 m — cisim başlanğıc nöqtədən
+  getdikcə uzaqlaşır, çünki həm x₀, həm vₓ mənfidir.
+  Yerdəyişmə 3 s-də:  sₓ = −4·3 = −12 m  (x₀ lazım deyil).</div>
+
+      <h3><span class="st">4</span> Orta sürət</h3>
+      <p><b>Orta (yol) sürəti</b> = bütün yol ÷ bütün vaxt. Sürətlərin orta hesabı <b>deyil</b>! Səbəb sadədir: yavaş getdiyin hissədə daha çox vaxt keçir, ona görə yavaş sürət "daha çox çəkiyə" malikdir.</p>
+      <div class="ex">Avtomobil yolun ilk yarısını 10 m/s, ikinci yarısını 15 m/s sürətlə getdi.
+  Yol 2L olsun. Vaxtlar: L/10 və L/15.
+  v_orta = 2L / (L/10 + L/15) = 2 / (1/10 + 1/15) = 2 / (1/6) = 12 m/s
+  Orta hesab (10 + 15)/2 = 12,5 olardı — səhv.</div>
+      <div class="fm">yarı YOL hər sürətlə:   v = 2v₁v₂ / (v₁ + v₂)
+yarı VAXT hər sürətlə:  v = (v₁ + v₂) / 2</div>
+      <div class="life"><b>Həyatdan.</b> Şəhərə gedəndə 60 km/saat, qayıdanda tıxacda 20 km/saat sürətlə getdin. Bütün yolun orta sürəti 40 yox, <span class="m">2·60·20/80 = 30 km/saat</span>-dır: tıxacda vaxt çox keçdi.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><b>Koordinatı yerdəyişmə ilə qarışdırmaq.</b> Sınaqda belə idi: <span class="m">x = 4 + 6t − t²</span>, ən böyük koordinat soruşuldu. Sən yerdəyişməni düzgün tapdın (9 m), amma <span class="m">x₀ = 4 m</span>-i əlavə etmədin və 9 yazdın. Düz cavab 4 + 9 = <b>13 m</b>. Qayda: soruşulan "harada?"-dırsa, <span class="m">x₀</span>-ı əlavə et; "nə qədər yerini dəyişdi?"-dirsə, yox.</li>
+        <li>Yolu yerdəyişmə kimi hesablamaq: cisim dönürsə, bunlar fərqlidir.</li>
+        <li>Orta sürəti iki sürətin orta hesabı kimi götürmək (yalnız <i>vaxt</i> bərabər olanda doğrudur).</li>
+        <li>Sürətin proyeksiyasının işarəsini unutmaq: ox əksinə gedən cisimdə <span class="m">vₓ &lt; 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">sₓ = x − x₀,   x = x₀ + sₓ,   l ≥ |sₓ|
+Bərabərsürətli:  x = x₀ + vₓt
+Orta sürət = bütün yol / bütün vaxt
+Yarı yol:  2v₁v₂/(v₁ + v₂);  yarı vaxt:  (v₁ + v₂)/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>x = 12 − 3t (m, s). Cisim hansı anda başlanğıc nöqtədən keçir və t = 6 s-də koordinatı nədir? <span class="ans">12 − 3t = 0 → t = 4 s. t = 6 s: x = 12 − 18 = −6 m.</span></li>
+        <li>Piyada 30 m şərqə, sonra 50 m qərbə getdi (ox şərqə). Yol və yerdəyişmənin proyeksiyası? <span class="ans">Yol 80 m, sₓ = −20 m.</span></li>
+        <li>Qatar vaxtın yarısında 4 m/s, qalan yarısında 6 m/s sürətlə getdi. Orta sürət? Əgər yolun yarısını 4, yarısını 6 getsəydi? <span class="ans">Vaxt yarı-yarı: (4 + 6)/2 = 5 m/s. Yol yarı-yarı: 2·4·6/10 = 4,8 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Bərabərtəcilli hərəkət və düsturlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Təcil: sürət nə qədər tez dəyişir</h3>
+      <p>Metroda qatar stansiyadan çıxanda bədənin bir az geri itələnir; dayananda isə irəli əyilirsən. Bu, qatarın sürətinin <b>dəyişdiyini</b> hiss etməyindir. Sürətin dəyişmə tempinə <b>təcil</b> deyirik: hər saniyədə sürət neçə m/s dəyişir?</p>
+      <div class="fm">a = (v − v₀) / t        vahidi: m/s²</div>
+      <p>"Bərabərtəcilli" o deməkdir ki, təcil bütün hərəkət boyu eynidir: sürət hər saniyə <b>eyni miqdarda</b> dəyişir.</p>
+      <div class="life"><b>Həyatdan.</b> Metro qatarı 30 s-də 0-dan 15 m/s-ə (54 km/saat) çatır: <span class="m">a = 15/30 = 0,5 m/s²</span>. İdman avtomobili 4 s-də 0-dan 28 m/s-ə (100 km/saat) çatır: <span class="m">a = 7 m/s²</span>. Avtomobildə səni oturacağa daha bərk sıxan budur — təcil 14 dəfə böyükdür.</div>
+      <div class="ex">km/saat → m/s:  3,6-ya böl.   72 km/saat = 72 / 3,6 = 20 m/s
+m/s → km/saat:  3,6-ya vur.   10 m/s = 36 km/saat</div>
+
+      <h3><span class="st">2</span> Ox, işarələr: sürətlənir, yoxsa yavaşıyır?</h3>
+      <p>Əvvəlcə ox seçilir. Oxun istiqamətində olan sürət, təcil, yerdəyişmə müsbət, əksinə olanlar mənfi sayılır. Sonra qayda:</p>
+      <ul>
+        <li><span class="m">vₓ</span> və <span class="m">aₓ</span> <b>eyni işarəli</b> → təcil hərəkətə kömək edir → sürət <b>artır</b>.</li>
+        <li><b>Əks işarəli</b> → təcil hərəkətə mane olur → sürət <b>azalır</b>.</li>
+      </ul>
+      <p>"Təcil müsbətdir, deməli sürətlənir" demək səhvdir — hər şey sürətin işarəsindən asılıdır.</p>
+      <div class="ex">Nümunə: vₓ = 10 − 2t   (v₀ₓ = 10, aₓ = −2)
+  t = 0…5 s:  vₓ > 0, aₓ < 0 → yavaşıyır
+  t = 5 s:    vₓ = 10 − 10 = 0 → bir anlıq dayanır
+  t > 5 s:    vₓ < 0, aₓ < 0 → geri gedir və sürətlənir</div>
+      <div class="life"><b>Həyatdan.</b> Yuxarı atılan top: ox yuxarıdır. Qalxanda <span class="m">v &gt; 0</span>, <span class="m">a = −10</span> → yavaşıyır; ən yuxarıda <span class="m">v = 0</span>; düşəndə <span class="m">v &lt; 0</span>, <span class="m">a = −10</span> → sürətlənir. Təcil bütün vaxt eyni idi, hərəkətin xarakteri dəyişdi.</div>
+
+      <h3><span class="st">3</span> Sürət və yerdəyişmə düsturları</h3>
+      <p>Hər saniyə sürətə <span class="m">a</span> əlavə olunursa, <span class="m">t</span> saniyədən sonra:</p>
+      <div class="fm">vₓ = v₀ₓ + aₓ·t</div>
+      <p>Sürət bərabər dəyişdiyi üçün onun <b>orta qiyməti</b> başlanğıc və son sürətin ortasıdır. Yerdəyişmə = orta sürət × vaxt:</p>
+      <div class="fm">sₓ = (v₀ₓ + vₓ)/2 · t  =  v₀ₓ·t + aₓt²/2</div>
+      <div class="life"><b>Həyatdan.</b> Metro qatarı 30 s-də 0-dan 15 m/s-ə çatdı. Orta sürət <span class="m">(0 + 15)/2 = 7,5 m/s</span>, yol <span class="m">7,5·30 = 225 m</span>. İkinci düsturla yoxla: <span class="m">0,5·30²/2 = 225 m</span>. Eynidir.</div>
+      <div class="tbl"><table><tr><th>t, s</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>s, m (a = 2, sükunətdən)</th><td>0</td><td>1</td><td>4</td><td>9</td><td>16</td></tr><tr><th>hər saniyədə yol</th><td>—</td><td>1</td><td>3</td><td>5</td><td>7</td></tr></table></div>
+      <p>Sükunətdən başlayan hərəkətdə ardıcıl saniyələrdə yollar <b>1 : 3 : 5 : 7 …</b> kimi nisbətdədir (tək ədədlər). Ümumi qayda: <span class="m">n</span>-ci saniyədə yol</p>
+      <div class="fm">s_n = v₀ + a(2n − 1)/2</div>
+
+      <h3><span class="st">4</span> Vaxt verilməyəndə. Əyləc yolu</h3>
+      <p>Bəzən məsələdə vaxt yoxdur. <span class="m">v = v₀ + at</span> və <span class="m">s</span>-dən <span class="m">t</span>-ni çıxarsaq:</p>
+      <div class="fm">vₓ² − v₀ₓ² = 2·aₓ·sₓ</div>
+      <div class="life"><b>Həyatdan: niyə sürət həddi vacibdir.</b> Avtomobil <span class="m">a = −5 m/s²</span> ilə əyləc edir. 10 m/s sürətdə əyləc yolu <span class="m">10²/(2·5) = 10 m</span>, 20 m/s sürətdə <span class="m">20²/10 = 40 m</span>. Sürət 2 dəfə artdı, yol <b>4 dəfə</b> — çünki düsturda sürətin kvadratı var.</div>
+
+      <h3><span class="st">5</span> Koordinat qanunu və onun oxunması</h3>
+      <div class="fm">x = x₀ + v₀ₓ·t + aₓt²/2</div>
+      <p>Qanun verilib: əmsallara baxıb hərəkəti oxuyursan. <span class="m">t</span>-nin əmsalı — başlanğıc sürət, <span class="m">t²</span>-nin əmsalı — <b>təcilin yarısı</b> (təcilin özü yox!).</p>
+      <div class="ex">x = 4 + 6t − t²   (m, s)
+  x₀ = 4 m,  v₀ₓ = 6 m/s,  aₓ/2 = −1 → aₓ = −2 m/s²
+  vₓ = 6 − 2t
+  Dayanma anı:  6 − 2t = 0 → t = 3 s
+  Dayanana qədər yerdəyişmə:  6·3 − 3² = 9 m
+  Ən böyük koordinat:  x = x₀ + sₓ = 4 + 9 = 13 m     (9 yox!)
+  t = 5 s:  x = 4 + 30 − 25 = 9 m;  yerdəyişmə 9 − 4 = 5 m
+  Yol 5 s-də:  3 s-ə qədər 9 m + sonra geri 2 s: 2² = 4 m → 13 m
+  Başlanğıc yerə (x = 4) qayıdır:  6t − t² = 0 → t = 6 s</div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>km/saat-ı m/s-ə çevirməmək.</li>
+        <li><span class="m">x = 4 + 6t − t²</span> qanununda <span class="m">a = −1</span> yazmaq. Düzü: <span class="m">a/2 = −1</span>, yəni <span class="m">a = −2</span>.</li>
+        <li>Ən böyük koordinatı yerdəyişmə kimi yazmaq — <span class="m">x₀</span> əlavə olunmalıdır.</li>
+        <li>Yolu <span class="m">v·t</span> kimi hesablamaq — bu, yalnız sabit sürətdə doğrudur.</li>
+        <li>Cisim dönəndən sonra yolu yerdəyişmə ilə eyniləşdirmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = (v − v₀)/t          vₓ = v₀ₓ + aₓt
+sₓ = (v₀ₓ + vₓ)/2·t = v₀ₓt + aₓt²/2
+vₓ² − v₀ₓ² = 2aₓsₓ      s_n = v₀ + a(2n − 1)/2
+x = x₀ + v₀ₓt + aₓt²/2    (t² əmsalı = a/2)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>54 km/saat sürətlə gedən avtomobil 5 m/s² təcillə əyləc edir. Əyləc yolu və vaxtı? <span class="ans">54 km/saat = 15 m/s. s = 15²/(2·5) = 22,5 m; t = 15/5 = 3 s.</span></li>
+        <li>vₓ = −8 + 2t (m/s). t = 2 s-də cisim sürətlənir, yoxsa yavaşıyır? <span class="ans">v = −4 (mənfi), a = +2 (müsbət) — əks işarəli → yavaşıyır. t = 4 s-də dayanır.</span></li>
+        <li>Sükunətdən 2 m/s² təcillə hərəkət edən cisim 5-ci saniyədə nə qədər yol gedir? <span class="ans">s₅ = 2·(2·5 − 1)/2 = 9 m. (Yoxla: s(5) − s(4) = 25 − 16 = 9.)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qrafiklər: v(t) və x(t)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qrafik hərəkətin "şəklidir": hesab aparmadan baxıb görürsən ki, cisim sürətlənir, yavaşıyır, dayanır, ya geri dönür. Olimpiadada qrafik verilir və soruşulur: "nə qədər yol getdi?", "təcil nədir?", "harada görüşdülər?". İki qaydanı bilmək kifayətdir: <b>mailiyyət</b> və <b>sahə</b>.</p>
+
+      <h3><span class="st">2</span> v(t) qrafikində mailiyyət = təcil</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Üç v(t) qrafiki: təcil müsbət, mənfi, sıfır">
+          <line x1="40" y1="180" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="40" y1="170" x2="250" y2="170" stroke="var(--ink)" stroke-width="1.8"/>
+          <text x="34" y="174" text-anchor="end">0</text><text x="34" y="96" text-anchor="end">5</text><text x="34" y="21" text-anchor="end">10</text>
+          <line x1="40" y1="95" x2="250" y2="95" stroke="var(--line)"/><line x1="40" y1="20" x2="250" y2="20" stroke="var(--line)"/>
+          <text x="108" y="186" text-anchor="middle">2</text><text x="177" y="186" text-anchor="middle">4</text><text x="245" y="186" text-anchor="middle">6</text>
+          <text class="lbl" x="46" y="14">v, m/s</text><text class="lbl" x="226" y="162">t, s</text>
+          <line x1="40" y1="140" x2="245" y2="50" stroke="var(--accent)" stroke-width="2.8"/>
+          <line x1="40" y1="50" x2="245" y2="140" stroke="var(--vec)" stroke-width="2.8"/>
+          <line x1="40" y1="95" x2="245" y2="95" stroke="var(--muted)" stroke-width="2.8" stroke-dasharray="6 4"/>
+          <text class="lbl" x="172" y="62">a &gt; 0</text><text class="lbl" x="172" y="134">a &lt; 0</text><text class="lbl" x="196" y="88">a = 0</text>
+        </svg>
+        <div class="cap">
+          <p>Xətt yuxarı qalxırsa, <span class="m">a &gt; 0</span>; aşağı enirsə, <span class="m">a &lt; 0</span>; üfüqidirsə, <span class="m">a = 0</span> (bərabərsürətli hərəkət). Mailiyyət: <span class="m">a = Δv/Δt</span>.</p>
+          <p>Diqqət: xətt oxun <b>altında</b> da ola bilər — onda <span class="m">v &lt; 0</span>, cisim oxun əksinə gedir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Qrafikin altındakı sahə = yerdəyişmə</h3>
+      <p>Sabit sürətdə yol <span class="m">v·t</span>-dir — bu, <span class="m">v(t)</span> qrafikində düzbucaqlının sahəsidir (hündürlük <span class="m">v</span>, eni <span class="m">t</span>). Hər kiçik zaman parçasında sürəti sabit saymaq olar, ona görə hər hərəkətdə <b>yerdəyişmə = qrafikin altındakı sahə</b>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 200" role="img" aria-label="v(t): sürətlənmə, sabit sürət, əyləc; sahələr 16, 48, 16">
+          <polygon points="40,170 104,50 200,50 264,170" fill="var(--accent-soft)" stroke="none"/>
+          <line x1="104" y1="50" x2="104" y2="170" stroke="var(--muted)" stroke-dasharray="3 3"/><line x1="200" y1="50" x2="200" y2="170" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="40" y1="180" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/><line x1="40" y1="170" x2="274" y2="170" stroke="var(--ink)" stroke-width="1.8"/>
+          <polyline points="40,170 104,50 200,50 264,170" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linejoin="round"/>
+          <text x="34" y="174" text-anchor="end">0</text><text x="34" y="54" text-anchor="end">8</text>
+          <text x="104" y="186" text-anchor="middle">4</text><text x="200" y="186" text-anchor="middle">10</text><text x="264" y="186" text-anchor="middle">14</text>
+          <text class="lbl" x="46" y="14">v, m/s</text><text class="lbl" x="250" y="162">t, s</text>
+          <text class="lbl" x="82" y="140" text-anchor="middle">16</text><text class="lbl" x="152" y="115" text-anchor="middle">48</text><text class="lbl" x="222" y="140" text-anchor="middle">16</text>
+        </svg>
+        <div class="cap">
+          <p>Qatar 4 s-də 0-dan 8 m/s-ə çatır, 6 s sabit sürətlə gedir, 4 s-də dayanır. Sahələr: üçbucaq <span class="m">8·4/2 = 16</span>, düzbucaqlı <span class="m">8·6 = 48</span>, üçbucaq <span class="m">8·4/2 = 16</span>.</p>
+          <p><b>Bütün yol = 16 + 48 + 16 = 80 m.</b> Bir düsturla (trapesiya): <span class="m">(14 + 6)/2 · 8 = 80</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Oxun altındakı sahə mənfidir</h3>
+      <p>Sürət mənfi olanda cisim geri gedir və onun yerdəyişməsi mənfidir. Qrafikdə bu, <b>oxdan aşağı</b> sahədir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 200" role="img" aria-label="v = 6 − 2t: yuxarı sahə +9, aşağı sahə −9">
+          <polygon points="40,100 40,22 142,100" fill="var(--accent-soft)"/><polygon points="142,100 244,178 244,100" fill="var(--warn-soft)"/>
+          <line x1="40" y1="190" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/><line x1="40" y1="100" x2="274" y2="100" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="40" y1="22" x2="244" y2="178" stroke="var(--accent)" stroke-width="2.8"/>
+          <text x="34" y="26" text-anchor="end">6</text><text x="34" y="104" text-anchor="end">0</text><text x="34" y="182" text-anchor="end">−6</text>
+          <text x="142" y="116" text-anchor="middle">3</text><text x="244" y="116" text-anchor="middle">6</text>
+          <text class="lbl" x="46" y="14">v, m/s</text><text class="lbl" x="250" y="94">t, s</text>
+          <text class="lbl" x="68" y="82">+9</text><text class="lbl" x="206" y="130">−9</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">v = 6 − 2t</span>. 3 s-ə qədər cisim irəli gedir (+9 m), sonra geri qayıdır (−9 m).</p>
+          <p><b>Yerdəyişmə:</b> 9 + (−9) = <b>0</b> — cisim başladığı yerdədir.<br><b>Yol:</b> |9| + |−9| = <b>18 m</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">5</span> x(t) qrafiki: mailiyyət = sürət</h3>
+      <p>Koordinatın zamandan asılılığı qrafikində hər nöqtədəki mailiyyət (toxunanın mailiyyəti) həmin andakı <b>sürətdir</b>. Düz xətt → sabit sürət. Parabola → təcilli hərəkət. Parabolanın <b>təpəsində</b> toxunan üfüqidir, yəni <span class="m">v = 0</span> — cisim döndü.</p>
+      <div class="fig">
+        <svg viewBox="0 0 280 200" role="img" aria-label="x = 4 + 6t − t² parabolası: təpə (3; 13), yerdəyişmə 9 m">
+          <line x1="40" y1="185" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/><line x1="40" y1="175" x2="274" y2="175" stroke="var(--ink)" stroke-width="1.8"/>
+          <polyline points="40,129 57,97.4 74,71.5 91,51.4 108,37 125,28.4 142,25.5 159,28.4 176,37 193,51.4 210,71.5 227,97.4 244,129" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linejoin="round"/>
+          <line x1="40" y1="25.5" x2="142" y2="25.5" stroke="var(--muted)" stroke-dasharray="3 3"/><line x1="142" y1="25.5" x2="142" y2="175" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="40" y1="129" x2="142" y2="129" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="100" y1="129" x2="100" y2="25.5" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="40" cy="129" r="4" fill="var(--vec)"/><circle cx="142" cy="25.5" r="4" fill="var(--vec)"/>
+          <text x="34" y="133" text-anchor="end">4</text><text x="34" y="29" text-anchor="end">13</text><text x="34" y="179" text-anchor="end">0</text>
+          <text x="142" y="191" text-anchor="middle">3</text><text x="244" y="191" text-anchor="middle">6</text>
+          <text class="lbl" x="46" y="14">x, m</text><text class="lbl" x="250" y="168">t, s</text>
+          <text class="lbl" x="104" y="84">s = 9</text><text class="lbl" x="150" y="20">təpə (3; 13)</text><text class="lbl" x="46" y="146">x₀ = 4</text>
+        </svg>
+        <div class="cap">
+          <p><span class="m">x = 4 + 6t − t²</span>. Cisim <span class="m">x₀ = 4</span> nöqtəsindən başlayır, 3 s-də ən yüksək koordinata çatır, sonra geri qayıdır.</p>
+          <p>Qırmızı parça — <b>yerdəyişmə</b> <span class="m">s = 13 − 4 = 9 m</span>. Təpənin hündürlüyü isə <b>koordinatdır</b> — 13 m. İki rəqəm fərqlidir; şəkil bunu aydın göstərir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">6</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>x(t) qrafikinin <b>hündürlüyünü</b> yerdəyişmə sanmaq. Hündürlük koordinatdır; yerdəyişmə iki koordinatın fərqidir.</li>
+        <li>v(t) qrafikinin <b>mailiyyətini</b> sürət, x(t) qrafikinin <b>sahəsini</b> yerdəyişmə sanmaq. Düzü: <span class="m">v(t)</span>-də mailiyyət = təcil, sahə = yerdəyişmə; <span class="m">x(t)</span>-də mailiyyət = sürət.</li>
+        <li>Yolu hesablayanda oxdan aşağı sahəni mənfi götürmək (yolda mütləq qiymətlərlə toplanır).</li>
+        <li>v(t) qrafikinin oxu kəsdiyi nöqtəni cismin dayandığı nöqtə ilə qarışdırmaq: o an cisim yalnız <i>bir anlıq</i> dayanıb dönür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v(t):  mailiyyət = a;  sahə (işarəli) = yerdəyişmə;  sahə (mütləq) = yol
+x(t):  mailiyyət = v;  düz xətt = bərabərsürətli;  parabola = təcilli
+Parabolanın təpəsi: v = 0, cisim dönür.
+Yerdəyişmə = x(son) − x(ilk)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>v(t): 0–2 s-də sürət 0-dan 6 m/s-ə qədər artır, 2–5 s-də 6 m/s sabit qalır. 5 s-də yerdəyişmə? <span class="ans">Üçbucaq 6·2/2 = 6 m, düzbucaqlı 6·3 = 18 m. Cəmi 24 m.</span></li>
+        <li>v = 4 − 2t, 0–4 s. Yerdəyişmə və yol? <span class="ans">v 2 s-də sıfır olur. 0–2 s: +4 m, 2–4 s: −4 m. Yerdəyişmə 0, yol 8 m.</span></li>
+        <li>x(t) qrafiki (0 s; 10 m) nöqtəsindən (5 s; 0 m) nöqtəsinə düz xəttdir. Sürət? <span class="ans">v = (0 − 10)/5 = −2 m/s (oxun əksinə).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Görüş, yetişmə və olimpiada üsulları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hansı anda və harada iki avtomobil görüşəcək? Polis motosikleti pozucuya nə vaxt çatacaq? Qatar tuneldən nə qədər vaxta çıxacaq? Bunlar olimpiadada ən çox verilən kinematika məsələləridir. Hamısının açarı bir cümlədir: <b>görüş anında iki cismin koordinatı eynidir</b>.</p>
+
+      <h3><span class="st">2</span> Görüş: x₁ = x₂</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="Velosipedçi x = 12 + 2t, motosikletçi x = 5t, görüş 4 s-də 20 m-də">
+          <line x1="40" y1="185" x2="40" y2="8" stroke="var(--ink)" stroke-width="1.8"/><line x1="40" y1="175" x2="250" y2="175" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="40" y1="115" x2="244" y2="55" stroke="var(--accent)" stroke-width="2.8"/>
+          <line x1="40" y1="175" x2="244" y2="25" stroke="var(--vec)" stroke-width="2.8"/>
+          <line x1="40" y1="75" x2="176" y2="75" stroke="var(--muted)" stroke-dasharray="3 3"/><line x1="176" y1="75" x2="176" y2="175" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <circle cx="176" cy="75" r="4.5" fill="var(--ink)"/>
+          <text x="34" y="179" text-anchor="end">0</text><text x="34" y="79" text-anchor="end">20</text><text x="34" y="119" text-anchor="end">12</text>
+          <text x="176" y="191" text-anchor="middle">4</text>
+          <text class="lbl" x="46" y="14">x, m</text><text class="lbl" x="226" y="168">t, s</text>
+          <text class="lbl" x="112" y="78" text-anchor="middle">görüş</text>
+          <text class="lbl" x="204" y="48">motosiklet</text><text class="lbl" x="170" y="108">velosiped</text>
+        </svg>
+        <div class="cap">
+          <p>Velosipedçi <span class="m">x₁ = 12 + 2t</span>, motosikletçi <span class="m">x₂ = 5t</span>. Görüş: <span class="m">12 + 2t = 5t</span> → <span class="m">t = 4 s</span>, <span class="m">x = 20 m</span>. Qrafikdə xətlərin kəsişməsidir.</p>
+        </div>
+      </div>
+      <div class="ex">Bir-birinə doğru. Cisimlər arası məsafə 100 m, sürətlər 6 və 4 m/s.
+  x₁ = 6t,  x₂ = 100 − 4t.   6t = 100 − 4t → 10t = 100 → t = 10 s.
+  Görüş yeri: x = 6·10 = 60 m.   (Yaxınlaşma sürəti 6 + 4 = 10 m/s.)
+Eyni istiqamətdə (yetişmə). 60 m qabaqda velosipedçi 5 m/s, arxadan
+motosikletçi 8 m/s.   Yaxınlaşma sürəti 8 − 5 = 3 m/s.
+  t = 60/3 = 20 s.   Motosikletçi 8·20 = 160 m gedəcək.</div>
+      <div class="fm">bir-birinə doğru:  t = d / (v₁ + v₂)
+eyni istiqamət:     t = d / (v₂ − v₁)</div>
+
+      <h3><span class="st">3</span> Təcilli yetişmə</h3>
+      <p>Avtomobil <span class="m">v</span> sabit sürətlə polis motosikleti olan işıqforu keçir. Həmin anda motosiklet sükunətdən <span class="m">a</span> təcili ilə qovmağa başlayır. Yetişmə: yollar bərabərdir.</p>
+      <div class="ex">v·t = a·t²/2   →   t = 2v/a
+Məsələn v = 12 m/s, a = 3 m/s²:  t = 2·12/3 = 8 s,  yol = 12·8 = 96 m.
+Çatanda motosikletin sürəti a·t = 3·8 = 24 m/s = 2v.</div>
+      <p>Sonuncu nəticə təsadüfi deyil: v(t) qrafikində avtomobil düzbucaqlı (sahə <span class="m">v·t</span>), motosiklet üçbucaq (sahə <span class="m">v_son·t/2</span>) cızır. Sahələr bərabər olanda <span class="m">v_son = 2v</span>. Bu fikir bir çox olimpiada məsələsini bir sətirdə həll edir.</p>
+      <div class="life"><b>Həyatdan.</b> Yol polisi qaçan avtomobilə çatanda motosiklet onun sürətindən <b>iki dəfə sürətli</b> olur. Ona görə motosikletçi çatandan sonra əyləc etməli olur, yoxsa ötüb keçər.</div>
+
+      <h3><span class="st">4</span> Nisbi sürət: uzun cisimlər</h3>
+      <p>Qatar kimi uzun cisimlər üçün "ötmə" məsafəsi uzunluqların cəmidir. Ən asan yol: bir cismi "dayanmış" sayıb ikincinin <b>nisbi sürəti</b> ilə hesablamaq.</p>
+      <div class="ex">1) 300 m uzunluqlu qatar 20 m/s sürətlə 100 m-lik tunelə girir.
+   Qatarın qabaq hissəsi girəndən arxa hissəsi çıxana qədər:
+   yol = 300 + 100 = 400 m,  t = 400/20 = 20 s.
+2) 150 m və 250 m uzunluqlu qatarlar 20 və 30 m/s sürətlə bir-birinə doğru gedir.
+   Nisbi sürət 20 + 30 = 50 m/s, ümumi uzunluq 400 m: t = 400/50 = 8 s.
+   Eyni istiqamətdə olsaydılar: 400/(30 − 20) = 40 s.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yaxınlaşma sürətini səhv seçmək: bir-birinə doğru <b>toplanır</b>, eyni istiqamətdə <b>çıxılır</b>.</li>
+        <li>İkinci cisim sonra yola düşəndə vaxtı eyni saymaq: ikinci cismin vaxtı <span class="m">t − τ</span>-dur.</li>
+        <li>Tunel məsələsində qatarın uzunluğunu unutmaq (yalnız tunelin uzunluğunu götürmək).</li>
+        <li>Görüş vaxtını tapıb məsafəni soruşulanda onu cavab yazmaq — hansı kəmiyyət soruşulub, ona bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Görüş:  x₁ = x₂
+Doğru:  t = d/(v₁ + v₂);  eyni istiqamət:  t = d/(v₂ − v₁)
+Təcilli yetişmə (sükunətdən):  t = 2v/a,  v_son = 2v
+Ötmə yolu = uzunluqların cəmi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Aralarında 100 m məsafə olan iki cisim 6 və 4 m/s sürətlə bir-birinə doğru gedir. Nə vaxt görüşərlər? <span class="ans">t = 100/(6 + 4) = 10 s.</span></li>
+        <li>Velosipedçi 5 m/s sürətlə gedir, 60 m arxadan motosikletçi 8 m/s ilə gəlir. Nə vaxt yetişər? <span class="ans">60/(8 − 5) = 20 s.</span></li>
+        <li>Avtomobil 12 m/s sabit sürətlə işıqforu keçir, motosiklet o anda sükunətdən 3 m/s² təcillə qovur. Nə vaxt və hansı yolda çatar? <span class="ans">t = 2·12/3 = 8 s, yol 12·8 = 96 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Çevrə üzrə hərəkət dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-cevre-herekat.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Çevrə üzrə hərəkət</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Kinematika</div>
+    <h1>Çevrə üzrə hərəkət</h1>
+    <p>Karusel, təkər, Yer kürəsi, saat əqrəbi — hamısı çevrə üzrə fırlanır. Burada dörd şeyi öyrənəcəksən: <b>period</b> və <b>tezlik</b>, <b>xətti sürət</b>, <b>bucaq sürəti</b> və ən vacibi — sürətin modulu dəyişmədikdə belə mövcud olan <b>mərkəzəqaçma təcili</b>. Sən <span class="m">a = ω²R</span> düsturunu telefonla təcrübədə də yoxlamısan; burada onun haradan gəldiyini və hansı hallarda işlədiyini öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>, hesabı asanlaşdırmaq üçün <span class="m">π = 3</span> götürülür (şərtdə yazılıb).</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Period, sürət</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bucaq sürəti</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Təcil</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Qüvvə, müqayisə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Period, tezlik və xətti sürət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Paltaryuyan maşın sıxanda barabanı dəqiqədə 1200 dövr edir. Yer 24 saatda öz oxu ətrafında bir dövr edir. Saatın saniyə əqrəbi 60 s-də bir dövr edir. Bunların hamısı təkrarlanan hərəkətdir. Fırlanmanı sadə iki ədədlə təsvir edirik: bir dövr nə qədər çəkir və bir saniyədə neçə dövr olur.</p>
+
+      <h3><span class="st">2</span> Period və tezlik</h3>
+      <ul>
+        <li><b>Period T</b> — <b>bir</b> dövrün vaxtı (saniyə).</li>
+        <li><b>Tezlik ν</b> — <b>bir saniyədə</b> neçə dövr olduğu (1/s).</li>
+      </ul>
+      <div class="fm">T = t / N        ν = N / t        T = 1 / ν</div>
+      <p>Bunlar bir-birinin tərsidir: bir dövr 0,5 s çəkirsə, bir saniyəyə 2 dövr sığır. Məsələdə "dəqiqədə" yazılıbsa, əvvəlcə saniyəyə çevir.</p>
+      <div class="life"><b>Həyatdan.</b> Paltaryuyan maşın sıxanda dəqiqədə 1200 dövr edir: <span class="m">ν = 1200/60 = 20 1/s</span>, <span class="m">T = 1/20 = 0,05 s</span>. Saatın saniyə əqrəbinin periodu 60 s, dəqiqə əqrəbinin 3600 s, saat əqrəbinin 12 saat = 43 200 s-dir.</div>
+
+      <h3><span class="st">3</span> Xətti sürət</h3>
+      <p>Cisim bir dövrdə çevrənin uzunluğu qədər yol gedir: <span class="m">2πR</span>. Sürət = yol / vaxt:</p>
+      <div class="fm">v = 2πR / T = 2πR·ν</div>
+      <p>Bu sürətin <b>modulu</b> sabitdir, amma <b>istiqaməti</b> hər an dəyişir: sürət həmişə çevrəyə <b>toxunan</b> üzrə yönəlir.</p>
+      <div class="life"><b>Həyatdan.</b> Bıçağı itiləyən daşdan qığılcımlar daşa toxunan üzrə uçur. Palçıqlı yolda velosipedin təkərindən palçıq da toxunan üzrə sıçrayır. Gürz atan atlet gürzü buraxanda gürz çevrə üzrə yox, buraxıldığı anın toxunanı üzrə düz uçur: cisim "azad" olan kimi sürətinin həmin anki istiqamətində gedir.</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr (π = 3)</h3>
+      <div class="ex">Nümunə 1. Bulvardakı Şeytan çarxının radiusu 30 m, bir dövrü 15 dəq = 900 s.
+  v = 2πR/T = 2·3·30/900 = 0,2 m/s — çox yavaş, ona görə kabinədə rahatdır.
+Nümunə 2. Təkər 60 s-də 120 dövr edir.
+  T = 60/120 = 0,5 s,  ν = 120/60 = 2 1/s  (T·ν = 1 ✓)
+Nümunə 3. Radiusu 0,25 m olan çarx dəqiqədə 600 dövr edir. Kənarın sürəti?
+  ν = 600/60 = 10 1/s
+  v = 2πRν = 6·0,25·10 = 15 m/s</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">T</span> ilə <span class="m">ν</span>-i qarışdırmaq. Yoxla: "1 dövr neçə saniyədir?" — <span class="m">T</span>; "1 saniyədə neçə dövr?" — <span class="m">ν</span>.</li>
+        <li>Dəqiqəni saniyəyə çevirməmək (dövr/dəq → dövr/s).</li>
+        <li>Radiusu sm-də saxlamaq — SI-də həmişə metr.</li>
+        <li>"Sürət sabitdir, deməli hərəkət bərabərsürətli düzxətlidir" — çevrədə sürətin istiqaməti dəyişir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t/N = 1/ν
+v = 2πR/T = 2πRν
+Sürət çevrəyə toxunan üzrədir, modulu sabitdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mühərrik dəqiqədə 2400 dövr edir. ν və T? <span class="ans">ν = 2400/60 = 40 1/s, T = 1/40 = 0,025 s.</span></li>
+        <li>R = 0,4 m, T = 2 s, π = 3. v = ? <span class="ans">v = 2·3·0,4/2 = 1,2 m/s.</span></li>
+        <li>Təkər 10 s-də 25 dövr edir. T və ν? <span class="ans">T = 10/25 = 0,4 s, ν = 25/10 = 2,5 1/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Radian və bucaq sürəti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Bucağı niyə radianla ölçürük</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="1 radian: qövsün uzunluğu radiusa bərabərdir">
+          <circle cx="110" cy="115" r="80" fill="none" stroke="var(--muted)" stroke-width="1.6"/>
+          <circle cx="110" cy="115" r="3" fill="var(--ink)"/>
+          <line x1="110" y1="115" x2="190" y2="115" stroke="var(--ink)" stroke-width="1.8"/>
+          <line x1="110" y1="115" x2="153.2" y2="47.7" stroke="var(--ink)" stroke-width="1.8"/>
+          <path d="M190 115 A80 80 0 0 0 153.2 47.7" fill="none" stroke="var(--vec)" stroke-width="4"/>
+          <path d="M140 115 A30 30 0 0 0 127 88" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text class="lbl" x="196" y="82">l = R</text><text class="lbl" x="146" y="106">φ</text><text class="lbl" x="146" y="132">R</text>
+          <text x="20" y="208">1 rad ≈ 57°</text>
+        </svg>
+        <div class="cap">
+          <p>Velosiped təkərinin kənarına bir ip sar. İpin uzunluğu təkərin radiusu qədər olsun. İpin örtdüyü qövsü mərkəzdən görən bucaq <b>1 radiandır</b> (≈ 57°).</p>
+          <p>Yəni radian bir sual verir: <b>qövs radiusdan neçə dəfə uzundur?</b></p>
+        </div>
+      </div>
+      <div class="fm">φ = l / R   (radian)</div>
+      <p>Tam çevrənin uzunluğu <span class="m">2πR</span>-dir, deməli tam dövr <span class="m">2π</span> radiandır: <span class="m">360° = 2π</span>, <span class="m">180° = π</span>, <span class="m">90° = π/2</span>, <span class="m">60° = π/3</span>.</p>
+      <div class="life"><b>Niyə dərəcə yox?</b> Radianla qövsün uzunluğu çox sadə tapılır: <span class="m">l = φ·R</span>. Dərəcə ilə eyni şey üçün <span class="m">l = 2πR·φ/360</span> yazmalı olardıq. Fizikadakı bütün çevrə düsturları radian üçün yazılıb.</div>
+
+      <h3><span class="st">2</span> Bucaq sürəti</h3>
+      <p>Fırlanan karuselə iki nəfər minib: sən mərkəzə yaxın, dostun kənarda. Karusel bir dövr edəndə ikiniz də bir dövr edirsiniz — eyni vaxtda eyni <b>bucaq</b> qədər dönürsünüz. Bunu <b>bucaq sürəti ω</b> göstərir: saniyədə neçə radian dönürsən.</p>
+      <div class="fm">ω = φ / t = 2π / T = 2πν        (rad/s)</div>
+
+      <h3><span class="st">3</span> Xətti və bucaq sürəti arasında əlaqə</h3>
+      <p>Dostun daha böyük çevrə çəkir, yəni daha çox yol gedir — onun <b>xətti sürəti</b> böyükdür. Əlaqə:</p>
+      <div class="fm">v = ω·R</div>
+      <p>Hər iki düstur eyni şeydir: <span class="m">v = 2πR/T = (2π/T)·R = ωR</span>.</p>
+      <div class="ex">Nümunə (π = 3). Disk 2 s-də bir dövr edir (T = 2 s).
+  ω = 2π/T = 6/2 = 3 rad/s
+  Mərkəzdən 0,5 m-də:  v = ωR = 3·0,5 = 1,5 m/s
+  Mərkəzdən 1 m-də:    v = 3·1 = 3 m/s   (ω eyni, v iki dəfə böyük)
+5 s-də dönmə bucağı:  φ = ωt = 15 rad;  dövrlərin sayı: 15/6 = 2,5</div>
+
+      <h3><span class="st">4</span> Vahid yoxlaması</h3>
+      <div class="warnbox"><b>Vahid yoxlaması.</b> <span class="m">ω</span> rad/s ilə ölçülür (radian ölçüsüz sayılır, ona görə vahid 1/s kimi də görünür). <span class="m">2πν</span>: <span class="m">ν</span>-in vahidi 1/s → düzdür. <span class="m">2πR</span>-in vahidi isə metrdir — bucaq sürəti ola bilməz. Hər yeni düsturda iki tərəfin vahidi eyni olmalıdır.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>ω-ni ν ilə eyniləşdirmək: <span class="m">ω = 2πν</span>, 2π çarpanı unudulmamalıdır.</li>
+        <li>Bucağı dərəcə ilə yazıb <span class="m">φ = ωt</span> düsturuna qoymaq — burada radian olmalıdır.</li>
+        <li>Disk üzərində müxtəlif nöqtələr üçün <span class="m">v</span>-ni eyni saymaq: eyni olan <span class="m">ω</span>-dır, <span class="m">v</span> radiusla artır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">φ = l/R,   360° = 2π rad
+ω = φ/t = 2π/T = 2πν   (rad/s)
+v = ω·R
+Bir diskin bütün nöqtələrində ω eynidir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>90° neçə radiandır (π = 3)? <span class="ans">π/2 = 1,5 rad.</span></li>
+        <li>T = 2 s, R = 0,5 m, π = 3. ω və v? <span class="ans">ω = 6/2 = 3 rad/s; v = 3·0,5 = 1,5 m/s.</span></li>
+        <li>ω = 12 rad/s, 5 s. Dönmə bucağı və dövrlərin sayı (π = 3)? <span class="ans">φ = 60 rad, N = 60/6 = 10 dövr.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Mərkəzəqaçma təcili</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtobus döngəyə girəndə bədənin "çölə atılır". Bunu necə izah edək? Əslində bədənin düz getmək istəyir (ətalət), avtobus isə səni döngəyə — mərkəzə — çəkir. Sürət dəyişir (istiqamətcə) — deməli, <b>təcil var</b>. Bu təcilin düsturu hər fizika olimpiadasında lazımdır.</p>
+
+      <h3><span class="st">2</span> Təcil sürətin modulu sabit olanda da var</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="Çevrə üzrə hərəkətdə sürət toxunan üzrə, təcil mərkəzə yönəlir">
+          <defs><marker id="cv1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+          <marker id="cv2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <circle cx="120" cy="115" r="80" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <circle cx="120" cy="115" r="3" fill="var(--ink)"/>
+          <line x1="120" y1="115" x2="120" y2="35" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <circle cx="120" cy="35" r="5" fill="var(--ink)"/>
+          <line x1="120" y1="35" x2="205" y2="35" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#cv1)"/>
+          <line x1="120" y1="35" x2="120" y2="88" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#cv2)"/>
+          <text class="lbl" x="190" y="28">v</text><text class="lbl" x="126" y="72">a</text><text x="104" y="78">R</text><text x="126" y="130">O</text>
+        </svg>
+        <div class="cap">
+          <p>Təcil sürətin <b>istənilən</b> dəyişməsidir — istiqamətin dəyişməsi də. Cismi düz xətdən çəkib çevrəyə salan təcil həmişə <b>mərkəzə</b> yönəlir, sürətə perpendikulyardır. Ona görə modulu dəyişmir, yalnız istiqaməti dəyişir.</p>
+        </div>
+      </div>
+      <p>Niyə məhz <span class="m">v²/R</span>? Kiçik <span class="m">t</span> vaxtında cisim <span class="m">φ = ωt</span> bucağı qədər dönür. Sürət vektoru da <b>eyni bucaq</b> qədər dönür, modulu <span class="m">v</span> qalır. Vektorun dəyişməsi (kiçik bucaqda) təxminən <span class="m">Δv ≈ v·φ</span> olur. Təcil = dəyişmə / vaxt = <span class="m">v·ωt/t = v·ω</span>. Sonra <span class="m">ω = v/R</span> qoyuruq.</p>
+      <div class="fm">a = v² / R = ω²·R = 4π²R / T²</div>
+      <p>Hamısı eyni düsturdur, sadəcə <span class="m">v = ωR</span> və <span class="m">ω = 2π/T</span> yerinə qoyulub. Məsələdə nə verilibsə, onu seç. Vahid: m/s².</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr (π = 3)</h3>
+      <div class="ex">Nümunə 1. Avtomobil radiusu 50 m olan döngəyə 10 m/s (36 km/saat) ilə girir.
+  a = v²/R = 100/50 = 2 m/s²
+  Eyni döngəyə 20 m/s ilə girsə: a = 400/50 = 8 m/s² — 4 dəfə çox.
+  Ona görə döngədən əvvəl sürət azaldılır: təcil sürətin KVADRATI ilə artır.
+Nümunə 2. Paltaryuyan maşının barabanı (R = 0,25 m) dəqiqədə 1200 dövr edir.
+  ν = 20 1/s, ω = 2πν = 120 rad/s
+  a = ω²R = 14 400·0,25 = 3600 m/s²  (g-dən 360 dəfə çox!)
+  Su və paltar bu təcili alır — su deşiklərdən çölə atılır.
+Nümunə 3. R = 2 m, T = 4 s.  ω = 6/4 = 1,5 rad/s,  a = 1,5²·2 = 4,5 m/s²</div>
+      <div class="life"><b>Təcrübə: telefonla a = ω²R.</b> Sən telefonun akselerometri ilə mərkəzəqaçma təcilini ölçüb <span class="m">a = ω²R</span> ilə müqayisə etmisən. Belə təcrübənin məntiqi: telefon fırlanan cismin üstündədir, <span class="m">R</span> — onun fırlanma oxundan məsafəsi, <span class="m">ω</span> isə period və ya videodan tapılır. Məsələn, <span class="m">R = 0,2 m</span>, saniyədə 1 dövr: <span class="m">ω = 2π ≈ 6,28</span> rad/s, <span class="m">a = 6,28²·0,2 ≈ 7,9 m/s²</span>. (Məsələlərdə <span class="m">π = 3</span> götürsək, 7,2 alınır; təcrübədə həmişə π = 3,14 götür.) Hesablanmış və ölçülmüş <span class="m">a</span> uyğun gəlirsə, qanun təsdiq olunur; fərq varsa, səbəbini axtar: <span class="m">R</span> dəqiq ölçülməyib, ω sabit deyil, sensor oxu mərkəzə doğru deyil.</div>
+
+      <h3><span class="st">4</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Sürət sabitdir, deməli təcil sıfırdır" — çevrədə bu səhvdir: istiqamət dəyişir.</li>
+        <li>Təcili sürət istiqamətində çəkmək. O, mərkəzə yönəlib, sürətə perpendikulyar.</li>
+        <li><span class="m">a = v/R</span> və ya <span class="m">a = ω·R</span> yazmaq: bunlar mənasızdır (vahid yoxlamasında uğursuz olur). Düzü: <span class="m">v²/R</span>, <span class="m">ω²R</span>.</li>
+        <li>Bucaq sürətini ν ilə eyniləşdirib <span class="m">a = ν²R</span> yazmaq: <span class="m">ω = 2πν</span>, deməli <span class="m">a = 4π²ν²R</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a = v²/R = ω²R = 4π²R/T²   (mərkəzə)
+Sürət 2 dəfə artsa, a 4 dəfə artır;  ω 2 dəfə artsa, a 4 dəfə artır.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 4 m, v = 8 m/s. a = ? <span class="ans">a = 64/4 = 16 m/s².</span></li>
+        <li>ω = 5 rad/s, R = 0,4 m. a = ? <span class="ans">a = 25·0,4 = 10 m/s².</span></li>
+        <li>Eyni çevrə üzrə sürət 3 dəfə artdı. Təcil neçə dəfə artır? <span class="ans">9 dəfə (a ~ v²).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Çevrəyə salan qüvvə və müqayisə məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Hansı qüvvə cismi çevrədə saxlayır</h3>
+      <p>Təcil varsa, Nyuton II qanununa görə qüvvə də var: <span class="m">F = m·a</span>. Çevrə üzrə hərəkətdə bu qüvvə <b>mərkəzə</b> yönəlir. Yeni "mərkəzəqaçma qüvvəsi" tapmaq lazım deyil — mərkəzə yönəlmiş <b>mövcud qüvvələrin əvəzləyicisi</b> belə olmalıdır:</p>
+      <div class="fm">F_əv = m·v²/R = m·ω²·R   (mərkəzə)</div>
+      <ul>
+        <li>İpə bağlı topu fırladanda — ipin gərilməsi.</li>
+        <li>Üfüqi yolda döngədə avtomobil — təkərlərlə yol arasındakı <b>sürtünmə qüvvəsi</b>.</li>
+        <li>Peyk Yer ətrafında — cazibə qüvvəsi.</li>
+      </ul>
+      <div class="ex">Nümunə 1. Kütləsi 0,2 kq olan kürə ipin ucunda hamar masada R = 0,5 m radiuslu çevrə üzrə
+5 m/s sürətlə fırlanır. İpin gərilməsi?
+  T = mv²/R = 0,2·25/0,5 = 10 N
+Nümunə 2. Avtomobil R = 20 m radiuslu üfüqi döngəni dönür, μ = 0,5. Ən böyük sürət?
+  Sürtünmə döngənin mərkəzinə yönəlib:  μmg = mv²/R
+  v = √(μgR) = √(0,5·10·20) = √100 = 10 m/s  (= 36 km/saat)
+  Kütlə ixtisar oldu: yüngül və ağır avtomobil eyni sürətlə dönə bilər.</div>
+      <div class="life"><b>Həyatdan.</b> Yağışda və buzda μ kiçikdir, ona görə döngədə sürəti kəskin azaltmaq lazımdır: <span class="m">v_max = √(μgR)</span>. μ 4 dəfə kiçik olarsa (quru yoldan buza), buraxıla bilən sürət 2 dəfə azalır.</div>
+
+      <h3><span class="st">2</span> Bir qayda: eyni ω, ya eyni v</h3>
+      <p>Müqayisə məsələlərinin hamısı bir sualdan başlayır: <b>hansı kəmiyyət eynidir?</b></p>
+      <ul>
+        <li><b>Eyni ω</b> — bir bərk cismin (diskin, Yer kürəsinin, əqrəbin) nöqtələri. Onda <span class="m">v = ωR</span>, <span class="m">a = ω²R</span>: radius neçə dəfə böyükdürsə, sürət o qədər, təcil o qədər böyükdür.</li>
+        <li><b>Eyni v</b> — qayışla və ya zəncirlə bağlı çarxların kənarı (qayış sürüşmür). Onda <span class="m">a = v²/R</span>: kiçik çarxın təcili böyükdür; <span class="m">ν₁R₁ = ν₂R₂</span>: kiçik çarx tez fırlanır.</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 280 160" role="img" aria-label="Qayışla bağlı iki çarx: kənarda sürət eynidir">
+          <circle cx="76" cy="80" r="28" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="206" cy="80" r="56" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="76" y1="52" x2="206" y2="24" stroke="var(--ink)" stroke-width="2"/><line x1="76" y1="108" x2="206" y2="136" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="76" cy="80" r="3" fill="var(--ink)"/><circle cx="206" cy="80" r="3" fill="var(--ink)"/>
+          <text class="lbl" x="62" y="85">R₁</text><text class="lbl" x="190" y="85">R₂</text>
+          <text x="20" y="152">kənarda v eynidir: ν₁R₁ = ν₂R₂</text>
+        </svg>
+        <div class="cap">
+          <p>Qayış sürüşmürsə, onun hər nöqtəsi eyni sürətlə gedir. Qayışın sürəti iki çarxın kənarının sürətidir, buna görə <span class="m">v₁ = v₂</span>.</p>
+        </div>
+      </div>
+      <div class="ex">Nümunə 3. Velosipedin ön dişlisi 48, arxa dişlisi 16 dişlidir. Pedallar saniyədə 1 dövr edir.
+  Zəncirin hər nöqtəsi eyni sürətlə gedir, hər dövrdə eyni sayda diş keçir:
+  48·1 = 16·ν₂ → ν₂ = 3 1/s (arxa təkər pedaldan 3 dəfə tez fırlanır).
+  Arxa təkərin radiusu 0,35 m olsa (π = 3):  v = 2πRν = 6·0,35·3 = 6,3 m/s  (≈ 22,7 km/saat)
+Nümunə 4. Qayışla bağlı çarxlar: R₁ = 10 sm, R₂ = 30 sm, ν₁ = 6 1/s.
+  ν₂ = ν₁R₁/R₂ = 6·10/30 = 2 1/s
+  a₂/a₁ = R₁/R₂ = 1/3 (sürət eyni, a = v²/R)</div>
+
+      <h3><span class="st">3</span> Yer kürəsi</h3>
+      <p>Yerin bütün nöqtələrinin fırlanma bucaq sürəti eynidir (<span class="m">T = 24 saat</span>). Amma fırlanma oxundan məsafə fərqlidir: ekvatorda <span class="m">R</span>, enlik <span class="m">φ</span>-də isə <span class="m">r = R·cos φ</span>. Ona görə:</p>
+      <div class="fm">v_φ = ω·R·cos φ        a_φ = ω²·R·cos φ</div>
+      <div class="life"><b>Həyatdan.</b> 60° enlikdə <span class="m">cos 60° = ½</span>: bu nöqtənin sürəti də, təcili də ekvatordakından <b>2 dəfə kiçikdir</b>. Qütbdə fırlanma radiusu sıfırdır — orada nöqtə yalnız dönür, "getmir".</div>
+
+      <h3><span class="st">4</span> Saat əqrəbləri</h3>
+      <div class="ex">Dəqiqə əqrəbi: T = 60 dəq. Saat əqrəbi: T = 12 saat = 720 dəq.
+  ω_dəq / ω_saat = 720/60 = 12 (dəqiqə əqrəbi 12 dəfə sürətli)
+Saniyə əqrəbi (T = 60 s) və dəqiqə əqrəbi (T = 3600 s):  ω nisbəti 60.
+Dəqiqə əqrəbinin ucunun sürəti (uzunluq 6 sm, π = 3):
+  v = 2πR/T = 6·60 mm/3600 s = 0,1 mm/s</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əvvəl "hansı kəmiyyət eynidir" deyə soruşmamaq: eyni olan kəmiyyəti görmədən düstur seçmək.</li>
+        <li>Qayışla bağlı çarxlarda ω-ni eyni saymaq (eyni olan kənarın sürətidir).</li>
+        <li>Şəkildə əlavə "mərkəzdənqaçma qüvvəsi" çəkmək. Cismə yalnız real qüvvələr (gərilmə, sürtünmə, cazibə, ağırlıq) təsir edir; onların mərkəzə yönəlmiş əvəzləyicisi <span class="m">mv²/R</span>-ə bərabərdir.</li>
+        <li>Döngədə maksimal sürət düsturunda kütləni saxlamaq: <span class="m">v_max = √(μgR)</span> kütlədən asılı deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F_əv = mv²/R = mω²R  (mərkəzə)
+Döngə (sürtünmə): v_max = √(μgR)
+Bir cisim: eyni ω.   Qayış/zəncir: eyni v.   Dişlilər: z₁N₁ = z₂N₂
+Enlik φ: r = R·cos φ</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Avtomobil R = 25 m radiuslu döngəni dönür, μ = 0,4. Ən böyük sürət? <span class="ans">v = √(0,4·10·25) = √100 = 10 m/s.</span></li>
+        <li>Qayışla bağlı çarxlar: R₁ = 10 sm (ν₁ = 6 1/s), R₂ = 30 sm. ν₂ və a₂/a₁? <span class="ans">ν₂ = 6·10/30 = 2 1/s; a₂/a₁ = R₁/R₂ = 1/3.</span></li>
+        <li>Dəqiqə əqrəbinin bucaq sürəti saat əqrəbinin bucaq sürətindən neçə dəfə böyükdür? <span class="ans">12 dəfə.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
