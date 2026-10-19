@@ -1,6 +1,6 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
-  ["index.html", "Bu həftə"], ["riyaziyyat.html", "Riyaziyyat"], ["olimpiada.html", "Olimpiada"],
+  ["index.html", "Bu həftə"], ["teqvim.html", "Təqvim"], ["riyaziyyat.html", "Riyaziyyat"], ["olimpiada.html", "Olimpiada"],
   ["fizika.html", "Fizika"], ["sinaqlar.html", "Sınaqlar"], ["temrar.html", "Təkrar"], ["dusturlar.html", "Düsturlar"],
 ];
 const KAT = {
@@ -53,17 +53,19 @@ async function shell(content) {
   const pct = Math.round(closed / total * 100);
   const C = 2 * Math.PI * 100;
   const ring = el("div", { class: "ring" });
-  ring.innerHTML = `<svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="100" fill="none" stroke="#2a2a30" stroke-width="2"/>
-    <circle cx="110" cy="110" r="100" fill="none" stroke="#f4f4f6" stroke-width="2" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>`;
+  ring.innerHTML = `<svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="100" fill="none" style="stroke:var(--rail-2)" stroke-width="2"/>
+    <circle cx="110" cy="110" r="100" fill="none" style="stroke:var(--rail-ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>`;
   ring.append(el("div", { class: "v" }, el("div", { class: "big" }, String(closed)), el("div", { class: "lbl" }, `${total} mövzudan bağlanıb`, el("br"), `${pct}%`)));
   requestAnimationFrame(() => requestAnimationFrame(() => { ring.querySelectorAll("circle")[1].style.strokeDashoffset = C * (1 - Math.max(pct, 1) / 100); }));
-  const hours = w ? w.saatlar.reduce((a, s) => a + s.saat, 0) : 0;
+  const term = await load("data/terminler.json").catch(() => []);
+  const exam = term.find(t => t.tarix >= isoToday() && t.ad.startsWith("Buraxılış"));
+  const toExam = exam ? Math.round((new Date(exam.tarix) - new Date(isoToday())) / 864e5) : "–";
   const rail = el("aside", { class: "rail" },
     el("a", { class: "logo", href: "index.html" }, "Skilly"),
     el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : "")),
     ring,
     el("div", { class: "minis" },
-      el("div", { class: "mini" }, el("i", {}, fmtH(hours)), "saat/həftə"),
+      el("div", { class: "mini" }, el("i", {}, String(toExam)), "gün sınağa"),
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.status === "isl").length)), "işlənir"),
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.ders).length)), "dərs"),
       el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")),
@@ -71,7 +73,7 @@ async function shell(content) {
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
     NAV.map(([href, label]) => el("a", href === here ? { href, "aria-current": "page" } : { href }, label)));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
-  return { m, w, topics };
+  return { m, w, topics, term };
 }
 
 /* ---------- pages ---------- */
@@ -88,7 +90,7 @@ function topicCard(t) {
 
 async function pageIndex() {
   const content = el("div", { class: "cols" });
-  const { m, w, topics } = await shell(content);
+  const { m, w, topics, term } = await shell(content);
   if (!m || !w) { content.append(el("p", { class: "empty" }, "Məlumat yüklənmədi.")); return; }
   // progress cards with tabs
   const groups = {
@@ -109,16 +111,6 @@ async function pageIndex() {
   draw("isl");
   const left = el("div", { class: "stack" },
     el("section", {}, el("div", { class: "head", role: "tablist" }, ...tabs, el("a", { class: "more", href: "riyaziyyat.html" }, "Hamısı")), cards));
-  // statistics
-  const hours = w.saatlar.reduce((a, s) => a + s.saat, 0);
-  const statItem = s => { const k = KAT[s.kat]; return el("div", { class: "stat" }, el("span", { class: "dot " + k.cls }, icon(s.kat, k.ink)), el("div", {}, el("small", {}, s.ad), el("b", {}, fmtH(s.saat) + " saat"))); };
-  const half = Math.ceil(w.saatlar.length / 2);
-  left.append(el("section", {},
-    el("div", { class: "head" }, el("h2", {}, "Həftəlik saatlar"), el("span", { class: "more" }, "plan üzrə")),
-    el("div", { class: "stats" },
-      el("div", {}, ...w.saatlar.slice(0, half).map(statItem)),
-      el("div", { class: "core" }, el("small", {}, "Hazırlıq saatı"), el("b", {}, fmtH(hours))),
-      el("div", {}, ...w.saatlar.slice(half).map(statItem)))));
   // timeline
   const today = isoToday();
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
@@ -126,7 +118,6 @@ async function pageIndex() {
     ...g.isler.map(t => { const k = KAT[t.kat] || KAT.misc; return el(t.link ? "a" : "div", t.link ? { class: "slot " + k.cls, href: t.link } : { class: "slot " + k.cls }, el("small", {}, t.saat), t.is); }))));
   left.append(el("section", {}, el("div", { class: "head" }, el("h2", {}, "Həftənin cədvəli"), el("span", { class: "more" }, w.hefte)), days));
   // right column
-  const term = await load("data/terminler.json").catch(() => []);
   const upcoming = term.filter(t => t.tarix >= today).slice(0, 5);
   const side = el("aside", { class: "side" },
     el("section", {}, el("div", { class: "head" }, el("h2", {}, "Son tarixlər")),
@@ -180,6 +171,55 @@ async function pageFormulas() {
   draw(""); q.addEventListener("input", () => draw(q.value));
 }
 
+const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+const iso = (y, m, d) => y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+
+async function pageCalendar() {
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Təqvim"),
+    el("p", { class: "lead" }, "Sınaqlar, layihə son tarixləri və bu həftənin dərsləri. Günə toxun — o günün işləri aşağıda açılır."));
+  const { w, term } = await shell(content);
+  // date → events: deadlines from terminler.json, lessons from the current week
+  const ev = {};
+  const add = (d, e) => (ev[d] = ev[d] || []).push(e);
+  term.forEach(t => add(t.tarix, { kat: t.kat, is: t.ad, qeyd: t.qeyd, son: true }));
+  (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
+  const today = isoToday();
+  let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
+  const title = el("h2", {});
+  const prev = el("button", { class: "nav-btn", type: "button", "aria-label": "Əvvəlki ay" }, "←");
+  const next = el("button", { class: "nav-btn", type: "button", "aria-label": "Növbəti ay" }, "→");
+  const grid = el("div", { class: "cal", role: "grid" });
+  const day = el("section", { class: "cal-day" });
+  prev.addEventListener("click", () => { mo--; if (mo < 0) { mo = 11; y--; } draw(); });
+  next.addEventListener("click", () => { mo++; if (mo > 11) { mo = 0; y++; } draw(); });
+  function draw() {
+    title.textContent = AYLAR[mo] + " " + y;
+    const first = (new Date(y, mo, 1).getDay() + 6) % 7, n = new Date(y, mo + 1, 0).getDate();
+    const cells = ["B.e", "Ç.a", "Çər", "C.a", "Cümə", "Şən", "Baz"].map(d => el("div", { class: "cal-h" }, d));
+    for (let i = 0; i < first; i++) cells.push(el("div", { class: "cal-c blank" }));
+    for (let d = 1; d <= n; d++) {
+      const k = iso(y, mo, d), list = ev[k] || [];
+      const b = el("button", { type: "button", class: "cal-c" + (k === today ? " today" : "") + (k === sel ? " sel" : "") + (k < today ? " past" : ""), "aria-label": d + " " + AYLAR[mo] + (list.length ? ", " + list.length + " iş" : "") },
+        el("span", { class: "num" }, String(d)),
+        el("span", { class: "evs" }, ...list.filter(e => e.son).map(e => el("span", { class: "cal-tag " + (KAT[e.kat] || KAT.misc).cls }, e.is))),
+        el("span", { class: "dots" }, ...[...new Set(list.filter(e => !e.son).map(e => e.kat))].map(kt => el("i", { class: (KAT[kt] || KAT.misc).cls }))));
+      b.addEventListener("click", () => { sel = k; draw(); });
+      cells.push(b);
+    }
+    grid.replaceChildren(...cells);
+    const list = (ev[sel] || []).slice().sort((a, b) => (a.saat || "").localeCompare(b.saat || ""));
+    const [yy, mm, dd] = sel.split("-");
+    day.replaceChildren(el("div", { class: "head" }, el("h2", {}, (+dd) + " " + AYLAR[+mm - 1]), sel === today ? el("span", { class: "more" }, "bu gün") : null),
+      el("div", { class: "list" }, ...(list.length ? list.map(e => { const k = KAT[e.kat] || KAT.misc; return el(e.link ? "a" : "div", { class: "row", ...(e.link ? { href: e.link, style: "text-decoration:none" } : {}) },
+        el("span", { class: "ic " + k.cls }, icon(e.kat, k.ink)),
+        el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, e.saat || e.qeyd || k.ad)),
+        e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : null); })
+        : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur. Nəticələr Google Sheets qoşulandan sonra burada görünəcək." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));
+  }
+  content.append(el("div", { class: "head", style: "margin-top:26px" }, title, el("span", { class: "more" }, prev, " ", next)), grid, day);
+  draw();
+}
+
 async function pageStatic(title, lead, html) {
   const box = el("div", { class: "box" }); box.innerHTML = html;
   await shell(el("div", { style: "margin-top:30px" }, el("h1", {}, title), el("p", { class: "lead" }, lead), box));
@@ -188,6 +228,7 @@ async function pageStatic(title, lead, html) {
 document.addEventListener("DOMContentLoaded", () => {
   const p = document.body.dataset.page;
   if (p === "index") pageIndex();
+  else if (p === "teqvim") pageCalendar();
   else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Riyaziyyat — buraxılış", "Hər mövzu giriş testi ilə başlayır: 80% və çox — mövzu bağlanır. Az olarsa: dərs → 20–25 məşq sualı → yekun test (80%). Bir həftə və bir ay sonra təkrar.");
   else if (p === "olimpiada") pageTopics("olimpiada", "Riyaziyyat olimpiadası", "Hər mövzuya ~2 həftə: dərs və 12–15 məşq sualı, sonra 5–6 olimpiada məsələsi (həll kağızda yazılır, şəkli göndərilir) və yekun test.");
   else if (p === "fizika") pageTopics("fizika", "Fizika", "FRİTL-də keçilən hər mövzu növbəti həftə burada təkrarlanır: sadə izah, məşq, test. FRİTL-in keçmədiyi mövzular ayrıca əlavə olunur.");
