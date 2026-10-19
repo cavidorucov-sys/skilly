@@ -314,3 +314,6 @@ a.ag:active,a.attn:active{transform:scale(.995)}
 @media (max-width:760px){.fgrid{grid-template-columns:1fr}}
 .sync{display:inline-block;margin:14px 0 0;font-size:13px;font-weight:600;border-radius:var(--r-sm);padding:6px 12px}
 .sync.on{background:var(--ok-bg);color:var(--ok-ink)}.sync.off{background:var(--bg);color:var(--ink-2)}
+.attn.rv{background:var(--math-soft);margin:0 0 10px}
+.attn.rv .ag-tx small{color:var(--ink-2)}
+.warnline{color:var(--err);font-size:13px;font-weight:600;margin:14px 0 0}

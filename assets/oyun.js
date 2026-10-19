@@ -146,6 +146,14 @@
         return;
       }
       const last = st.test;
+      const due = window.Skilly ? Skilly.dueReviews(cfg.key) : [];
+      if (due.length && last && last.passed) {
+        const r = due[0];
+        testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Yaddaş yoxlaması"),
+          h("p", {}, r.n + " sual. Hamısı düz olmalıdır" + (r.n > 3 ? " (ən çox 1 səhv)" : "") + ". Səhv olarsa, həmin səviyyələr yenidən açılır və mövzu təkrar “İşlənir” olur."),
+          h("button", { type: "button", class: "btn", on: { click: () => runReview(r) } }, "Başla")));
+        return;
+      }
       testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Yekun sınaq"),
         h("p", {}, cfg.test.n + " sual, ədədlər təsadüfidir. Cavablar sonda yoxlanır. Keçid: " + cfg.test.pass + " / " + cfg.test.n + ". Kağız və qələm yanında olsun."),
         last ? h("p", { class: "oy-fmt" }, "Son cəhd: " + last.bal + " / " + cfg.test.n + (last.bal >= cfg.test.pass ? " — keçib ✓" : " — keçməyib")) : null,
@@ -173,10 +181,35 @@
       save(); drawMap();
       report("test", { bal, max: cfg.test.n, qeyd: passed ? "keçdi" : "keçmədi; səhv səviyyələr: " + answers.filter(a => !a.ok).map(a => a.id).join(", ") });
       if (passed && cfg.onPass) cfg.onPass();
+      if (passed && window.Skilly) Skilly.planReview(cfg.key, cfg.link, cfg.title);
       testRoot.replaceChildren(h("div", { class: "oy-done" + (passed ? "" : " no") }, h("b", {}, "Nəticə: " + bal + " / " + cfg.test.n + (passed ? " — mövzu bağlandı ✓" : " — keçmədi")),
         h("ol", { class: "oy-review" }, ...answers.map(a => h("li", { class: a.ok ? "ok" : "no" }, (a.ok ? "✓ " : "✗ ") + (typeof a.q.text === "string" ? a.q.text : a.q.text.textContent) + (a.ok ? "" : " — düz: " + a.q.show)))),
         passed ? h("p", {}, "Bir həftə sonra 3 suallıq yaddaş yoxlaması gələcək.") : h("p", {}, "Səhv olan səviyyələr yenidən açıldı. Onları və Boss-u keç, sonra Sınaq yenidən açılacaq."),
         passed ? null : h("button", { type: "button", class: "btn", on: { click: () => cfg.goGame && cfg.goGame() } }, "Oyuna qayıt →")));
+    }
+
+    // spaced review: n random levels, same rules as the test, stricter pass mark
+    async function runReview(r) {
+      const ids = cfg.levels.filter(l => !l.noReview).map(l => l.id).sort(() => Math.random() - .5).slice(0, r.n);
+      while (ids.length < r.n) ids.push(cfg.levels[Math.floor(Math.random() * cfg.levels.length)].id);
+      const box = h("div"); testRoot.replaceChildren(box);
+      const res = [];
+      for (let i = 0; i < ids.length; i++) {
+        const q = cfg.levels.find(l => l.id === ids[i]).gen(), val = await collect(q, box, "Yaddaş yoxlaması · " + (i + 1) + " / " + ids.length, i + 1 === ids.length);
+        res.push({ id: ids[i], q, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) });
+      }
+      const bal = res.filter(x => x.ok).length, ok = bal >= r.n - (r.n > 3 ? 1 : 0);
+      Skilly.reviewDone(r.id, ok);
+      if (!ok) {
+        res.filter(x => !x.ok).forEach(x => Object.assign(st.lv[x.id], { streak: 0, done: false }));
+        st.boss.passed = false; st.test = { ...st.test, passed: false };
+        try { const b = JSON.parse(localStorage.getItem("skilly-bag") || "[]").filter(x => x !== cfg.link); localStorage.setItem("skilly-bag", JSON.stringify(b)); } catch (e) {}
+        save(); drawMap();
+      }
+      report("yoxla", { bal, max: r.n, qeyd: (ok ? "keçdi" : "keçmədi; yenidən açılan: " + res.filter(x => !x.ok).map(x => x.id).join(", ")) + " (" + r.id + ")" });
+      testRoot.replaceChildren(h("div", { class: "oy-done" + (ok ? "" : " no") }, h("b", {}, "Yaddaş yoxlaması: " + bal + " / " + r.n + (ok ? " ✓" : " — mövzu yenidən açıldı")),
+        h("ol", { class: "oy-review" }, ...res.map(x => h("li", { class: x.ok ? "ok" : "no" }, (x.ok ? "✓ " : "✗ ") + (typeof x.q.text === "string" ? x.q.text : x.q.text.textContent) + (x.ok ? "" : " — düz: " + x.q.show)))),
+        ok ? null : h("button", { type: "button", class: "btn", on: { click: () => cfg.goGame && cfg.goGame() } }, "Oyuna qayıt →")));
     }
 
     // test question: takes an answer without saying whether it is right
@@ -209,7 +242,7 @@
 
     function report(kind, r) {
       if (!window.Skilly) return;
-      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + (kind === "test" ? " — yekun sınaq" : " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
+      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", yoxla: " — yaddaş yoxlaması" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
     }
 
     drawMap(); drawTest();

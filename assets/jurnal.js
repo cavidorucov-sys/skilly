@@ -61,6 +61,22 @@
       const item = { tarix: today(), ...r, _t: "netice", upd: Date.now() };
       list.push(item); put(RES, list); enqueue(item); return item;
     },
+    // Topic reviews ("yaddaş yoxlaması"): planned when a final test is passed; done inside the lesson page.
+    planReview(key, link, title) {
+      const list = get("skilly-yoxla", []).filter(r => r.key !== key || r.done);
+      list.push({ id: key + "@" + plus(today(), 7), key, link, title, due: plus(today(), 7), n: 3 },
+                { id: key + "@" + plus(today(), 30), key, link, title, due: plus(today(), 30), n: 5 });
+      put("skilly-yoxla", list);
+    },
+    reviews: () => get("skilly-yoxla", []),
+    dueReviews(key) { const t = today(); return get("skilly-yoxla", []).filter(r => !r.done && r.due <= t && (!key || r.key === key)); },
+    reviewDone(id, ok) {
+      let list = get("skilly-yoxla", []);
+      const r = list.find(x => x.id === id); if (!r) return;
+      r.done = today(); r.ok = ok;
+      if (!ok) list = list.filter(x => x.key !== r.key || x.done); // topic reopens; new reviews come after the next pass
+      put("skilly-yoxla", list);
+    },
     update(id, fields) { const x = all().find(x => x.id === id); return x ? upsert({ ...x, ...fields }) : null; },
     // Redo result: success moves 7 days → 30 days → closed; failure returns to 7 days.
     tekrar(id, ok) {

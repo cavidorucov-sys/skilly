@@ -2,7 +2,7 @@
 const NAV = [
   // daily → study → check yourself → reference
   ["index.html", "Bu gün", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["olimpiada.html", "Olimpiada", "Trophy"],
-  ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Səhvlər", "NotebookPen"],
+  ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Təkrar", "Repeat"],
   ["dusturlar.html", "Düsturlar", "Sigma"], ["teqvim.html", "Təqvim", "Calendar"],
 ];
 const NAV_SUB = {
@@ -187,7 +187,7 @@ async function pageIndex() {
       const row = el(t.link ? "a" : "div", { class: "ag " + state, ...(t.link ? { href: t.link } : {}) },
         el("span", { class: "ag-time" }, from, el("small", {}, to)),
         el("span", { class: "ag-ic " + k.cls }, icon(iconFor(t.kat, t.is), k.ink)),
-        el("span", { class: "ag-tx" }, el("b", {}, t.is), el("small", {}, state === "now" ? "indi" : state === "next" ? "növbəti" : state === "past" ? "keçdi" : k.ad)),
+        el("span", { class: "ag-tx" }, el("b", {}, t.is + (t.link === "temrar.html" && window.Skilly ? ` · ${reviewQueue().nowQ} sual` : "")), el("small", {}, state === "now" ? "indi" : state === "next" ? "növbəti" : state === "past" ? "keçdi" : k.ad)),
         t.link ? el("span", { class: "ag-go" }, "Aç →") : null);
       list.append(row);
     });
@@ -373,6 +373,19 @@ async function pageCalendar() {
   draw();
 }
 
+/* ---------- təkrar: queue for the two weekly windows ---------- */
+const CAP = 10;
+function reviewQueue() {
+  const t = Skilly.today();
+  const items = [
+    ...Skilly.dueReviews().map(r => ({ type: "movzu", due: r.due, n: r.n, r })),
+    ...Skilly.all().filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= t).map(e => ({ type: "sehv", due: e.novbeti, n: 1, e })),
+  ].sort((a, b) => a.due.localeCompare(b.due));
+  const now = [], later = []; let used = 0;
+  items.forEach(x => { if (used + x.n <= CAP || !now.length) { now.push(x); used += x.n; } else later.push(x); });
+  return { now, later, nowQ: used, laterQ: later.reduce((n, x) => n + x.n, 0) };
+}
+
 /* ---------- səhv jurnalı ---------- */
 const KATS = { hesab: "Hesab / diqqət", qayda: "Qaydanı bilmirdim", sert: "Şərti səhv başa düşdüm" };
 const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"] };
@@ -480,22 +493,27 @@ function addForm(redraw) {
 
 async function pageSehv() {
   const body = el("div"), sync = el("p", { class: "lead" });
-  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Səhv jurnalı"),
-    el("p", { class: "lead" }, "Dərslərdə və sınaqlarda səhv etdiyin suallar özü bura düşür. Sən yalnız səhvin növünü seçirsən və düzgün yolu bir cümlə ilə yazırsan. Sual bir həftə sonra, sonra bir ay sonra yenə gəlir. İki dəfə düz həll edəndə səhv bağlanır."),
+  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Təkrar"),
+    el("p", { class: "lead" }, "Həftədə iki dəfə 15 dəqiqə: Çərşənbə axşamı və Bazar. Burada bağlanmış mövzuların yaddaş yoxlaması (7 və 30 gün sonra) və səhv jurnalının sualları növbə ilə gəlir — bir dəfəyə ən çox " + CAP + " sual, ən çox gecikən birinci."),
     sync, body);
   await shell(content);
   function draw() {
     const all = Skilly.all(), t = Skilly.today(), month = t.slice(0, 7);
     const yeni = all.filter(e => e.status === "yeni");
-    const due = all.filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= t);
+    const Q = reviewQueue(), due = Q.now.filter(x => x.type === "sehv").map(x => x.e), topics = Q.now.filter(x => x.type === "movzu");
     const open = all.filter(e => e.status !== "baglandi");
     const thisMonth = all.filter(e => (e.tarix || "").startsWith(month));
     const metric = (label, v) => el("div", { class: "metric" }, el("small", {}, label), el("b", {}, String(v)));
     const sec = (title, kids, more) => el("section", { class: "e-sec" }, el("div", { class: "head" }, el("h2", {}, title), more ? el("span", { class: "more" }, more) : null), ...kids);
     body.replaceChildren(
-      el("div", { class: "metrics" }, metric("Təhlil gözləyir", yeni.length), metric("Bu gün təkrar", due.length), metric("Açıq", open.length), metric("Bu ay", thisMonth.length)),
+      el("div", { class: "metrics" }, metric("Təhlil gözləyir", yeni.length), metric("Bu pəncərədə", Q.nowQ + " sual"), metric("Açıq", open.length), metric("Bu ay", thisMonth.length)),
+      sec("Bu pəncərədə", [
+        ...topics.map(x => el("a", { class: "attn rv", href: "ders.html?p=" + x.r.link.replace(/^dersler\/|\.html$/g, "") + "#sinaq" },
+          el("span", { class: "ag-ic k-math" }, icon("Repeat")), el("span", { class: "ag-tx" }, el("b", {}, x.r.title + " — yaddaş yoxlaması"), el("small", {}, x.r.n + " sual · tarixi " + dmy(x.r.due))), el("span", { class: "ag-go" }, "Başla →"))),
+        ...(due.length ? [el("div", { class: "e-list" }, ...due.map(e => redoCard(e, draw)))] : []),
+        ...(!Q.now.length ? [el("p", { class: "empty" }, "Bu gün təkrar yoxdur.")] : []),
+        ...(Q.laterQ ? [el("p", { class: Q.laterQ > CAP ? "warnline" : "count" }, `Növbəti pəncərəyə ${Q.laterQ} sual qaldı.` + (Q.laterQ > CAP ? " Növbə böyüyür — yeni mövzuların tempini azaltmaq lazımdır." : ""))] : [])], Q.nowQ ? `~${Q.nowQ} dəq` : ""),
       sec("Təhlil gözləyir", yeni.length ? [el("div", { class: "e-list" }, ...yeni.map(e => analyseCard(e, draw)))] : [el("p", { class: "empty" }, "Hamısı təhlil olunub.")]),
-      sec("Təkrar vaxtıdır", due.length ? [el("div", { class: "e-list" }, ...due.map(e => redoCard(e, draw)))] : [el("p", { class: "empty" }, "Bu gün təkrar yoxdur.")]),
       sec("Kağızdakı səhvi əlavə et", [addForm(draw)], "quiz, FRİTL, DİM sınağı"),
       sec("Bu ay növlər üzrə", [el("div", { class: "metrics" }, ...Object.entries(KATS).map(([k, l]) => metric(l, thisMonth.filter(e => e.kat === k).length)))]),
       sec("Hamısı", all.length ? [el("div", { class: "tbl" }, el("table", {},
