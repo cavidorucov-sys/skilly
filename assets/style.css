@@ -317,3 +317,8 @@ a.ag:active,a.attn:active{transform:scale(.995)}
 .attn.rv{background:var(--math-soft);margin:0 0 10px}
 .attn.rv .ag-tx small{color:var(--ink-2)}
 .warnline{color:var(--err);font-size:13px;font-weight:600;margin:14px 0 0}
+/* nav = segmented control too (selected item is a light card, not an ink button) */
+.topnav{background:var(--line)}
+.topnav a[aria-current=page]{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(23,23,26,.12)}
+.topnav a:hover{background:rgba(255,255,255,.6)}
+@media (max-width:980px){.nav-dd .dd a[aria-current]{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(23,23,26,.12)}}

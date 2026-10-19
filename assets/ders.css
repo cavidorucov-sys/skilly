@@ -163,3 +163,12 @@ html{scrollbar-gutter:stable}
 .playrow svg,.trirow svg{flex:0 1 380px;width:380px}
 .oy-svg{max-width:420px}
 @media (max-width:640px){.fig svg,.playrow svg,.trirow svg,.explain svg{width:100%;flex-basis:100%}}
+/* tabs are navigation, buttons are actions: tabs = segmented control (light track, selected card), buttons stay solid ink */
+.tabs{background:var(--line-0);border-radius:var(--r-lg);padding:4px;gap:2px;width:max-content;max-width:100%}
+.tab{background:transparent;box-shadow:none;border-radius:var(--r);color:var(--ink-2)}
+.tab:hover{background:rgba(255,255,255,.55);color:var(--ink-0)}
+.tab[aria-selected=true]{background:var(--white);color:var(--ink-0);box-shadow:0 1px 3px rgba(23,23,26,.12)}
+.tab[aria-selected=true]:hover{color:var(--ink-0)}
+.tab[aria-selected=true] small{color:var(--subj);opacity:1}
+.stepchip[aria-current=step]{background:var(--subj-soft);color:var(--subj);box-shadow:inset 0 0 0 1.5px var(--subj)}
+.stepchip[aria-current=step] .no{background:var(--subj);color:var(--white)}
