@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trapesiya dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-trapesiya.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Trapesiya, orta xətt</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Dördbucaqlılar və çoxbucaqlılar</div>
+    <h1>Trapesiya, orta xətt</h1>
+    <p>Trapesiya — yalnız iki tərəfi paralel olan dördbucaqlı. Onun məsələlərinin çoxu iki fəndlə həll olunur: <b>hündürlük endirib düzbucaqlı üçbucaq almaq</b> və <b>orta xətt</b>. Üçbucağın orta xəttindən başlayırıq — trapesiyanın orta xətti ondan çıxır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Üçbucağın orta xətti</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Trapesiya, bucaqlar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hündürlük, proyeksiya</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Orta xətt</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Sahə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Fales teoremi və üçbucağın orta xətti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Gölün iki sahili arasındakı məsafəni birbaşa ölçmək olmur. Amma sahildə bir nöqtə seçib iki parçanın ortasını tapsan, onların arasındakı məsafəni ölçüb <b>2-yə vurursan</b> — və gölün enini bilirsən. Bu, üçbucağın orta xəttinin xassəsidir.</p>
+
+      <h3><span class="st">2</span> Fales teoremi</h3>
+      <p>Bucağın bir tərəfi üzərində <b>bərabər</b> parçalar ayır və onların uclarından <b>paralel</b> düz xətlər çək. Bu xətlər bucağın o biri tərəfində də <b>bərabər</b> parçalar ayırır.</p>
+      <div class="fm">Paralel xətlər bir tərəfdə bərabər parçalar ayırırsa,
+o biri tərəfdə də bərabər parçalar ayırır.</div>
+      <p>Nəticə: üçbucağın bir tərəfinin ortasından o biri tərəfə paralel xətt çəksən, o, üçüncü tərəfin də <b>ortasından</b> keçir.</p>
+
+      <h3><span class="st">3</span> Üçbucağın orta xətti</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağı, M və N — AB və BC-nin ortaları, MN orta xətt">
+          <polygon points="30,170 130,30 270,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="80" y1="100" x2="200" y2="100" stroke="var(--vec)" stroke-width="3"/>
+          <circle cx="80" cy="100" r="3" fill="var(--ink)"/><circle cx="200" cy="100" r="3" fill="var(--ink)"/>
+          <text x="18" y="186" class="lbl">A</text><text x="126" y="22" class="lbl">B</text><text x="274" y="186" class="lbl">C</text>
+          <text x="62" y="98" class="lbl">M</text><text x="206" y="98" class="lbl">N</text>
+          <text x="128" y="92" class="lbl">m</text><text x="146" y="188" class="lbl">AC</text>
+        </svg>
+        <div class="cap">
+          <p><b>Orta xətt</b> — üçbucağın iki tərəfinin orta nöqtələrini birləşdirən parça. Burada <span class="m">AM = MB</span>, <span class="m">BN = NC</span>.</p>
+          <p>Üçbucağın üç orta xətti var (hər cüt tərəf üçün biri).</p>
+        </div>
+      </div>
+      <div class="fm">MN ∥ AC          MN = AC / 2</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. AC = 14. MN = ?
+  MN = 14 : 2 = 7</div>
+      <div class="ex">Nümunə 2. Üçbucağın tərəfləri 8, 10, 12. Orta xətlərin yaratdığı üçbucağın perimetri?
+  Orta xətlər: 4, 5, 6
+  P = 4 + 5 + 6 = 15    (= (8 + 10 + 12) : 2 — böyük perimetrin yarısı)</div>
+      <div class="ex">Nümunə 3. Orta xətt ilə ona paralel tərəfin cəmi 18. Orta xətt?
+  x + 2x = 18 → x = 6</div>
+      <div class="life"><b>Həyatdan.</b> Göl A və B nöqtələri arasındadır. Sahildə C nöqtəsi seçilib, AC-nin ortası M, BC-nin ortası N işarələnib, MN = 45 m. Deməli gölün eni AB = 2 · 45 = <b>90 m</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orta xətti ixtiyari iki nöqtəni birləşdirən parça hesab etmək. Uclar mütləq tərəflərin <b>ortasında</b> olmalıdır.</li>
+        <li>Orta xətti yanlış tərəfə bölmək. MN yalnız ona <b>paralel</b> tərəfin (AC) yarısıdır.</li>
+        <li>Tərəfi tapanda 2-yə bölmək. Orta xətt məlumdursa, tərəf onun <b>2 misli</b>dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Orta xətt ∥ üçüncü tərəf, orta xətt = üçüncü tərəf / 2.
+Orta xətlərin üçbucağı: perimetri P/2.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Orta xətt 9-dur. Ona paralel tərəf? <span class="ans">18.</span></li>
+        <li>Üçbucağın tərəfləri 6, 9, 11. BMN üçbucağının perimetri (M, N — AB və BC-nin ortaları, AB = 6, BC = 9, AC = 11)? <span class="ans">3 + 4,5 + 5,5 = 13.</span></li>
+        <li>Orta xətlərin yaratdığı üçbucağın perimetri 17. Böyük üçbucağın perimetri? <span class="ans">34.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Trapesiya və onun bucaqları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kanalın en kəsiyi, damın yan üzü, çantanın yan tərəfi, körpünün dayağı — çox vaxt trapesiyadır. Aşağısı geniş, yuxarısı dar: belə fiqur möhkəm dayanır.</p>
+
+      <h3><span class="st">2</span> Trapesiya nədir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="ABCD trapesiyası, AD ∥ BC">
+          <polygon points="30,160 90,60 200,60 270,160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="30" y1="160" x2="270" y2="160" stroke="var(--vec)" stroke-width="3"/>
+          <line x1="90" y1="60" x2="200" y2="60" stroke="var(--vec)" stroke-width="3"/>
+          <path d="M52 160A22 22 0 0 0 41 141" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M78.7 78.9A22 22 0 0 0 112 60" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="18" y="178" class="lbl">A</text><text x="80" y="52" class="lbl">B</text><text x="204" y="52" class="lbl">C</text><text x="274" y="178" class="lbl">D</text>
+          <text x="128" y="178" class="lbl">böyük əsas a</text><text x="112" y="52" class="lbl">kiçik əsas b</text>
+          <text x="20" y="108" class="lbl">yan</text><text x="244" y="108" class="lbl">yan</text>
+        </svg>
+        <div class="cap">
+          <p><b>Trapesiya</b> — iki qarşı tərəfi paralel, o biri ikisi paralel olmayan dördbucaqlı.</p>
+          <p>Paralel tərəflər — <b>əsaslar</b> (<span class="m">AD ∥ BC</span>), o biri iki tərəf — <b>yan tərəflər</b> (AB, CD).</p>
+          <p>Əsaslar arasındakı məsafə — <b>hündürlük</b>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Bucaqlar</h3>
+      <p>AB yan tərəfi iki paralel düz xətti (AD və BC) kəsir. Daxili birtərəfli bucaqların cəmi 180°-dir:</p>
+      <div class="fm">∠A + ∠B = 180°      ∠C + ∠D = 180°
+(eyni yan tərəfə bitişik bucaqlar)</div>
+      <div class="ex">Nümunə 1. ∠A = 70°, ∠D = 50°. ∠B və ∠C?
+  ∠B = 180° − 70° = 110°
+  ∠C = 180° − 50° = 130°
+Yoxlama: 70 + 110 + 130 + 50 = 360 ✓</div>
+      <p><b>Diqqət:</b> ∠A + ∠D isə 180° olmaq məcburiyyətində deyil — onlar eyni yan tərəfdə deyil, eyni əsasdadır.</p>
+
+      <h3><span class="st">4</span> Bərabəryanlı və düzbucaqlı trapesiya</h3>
+      <ul>
+        <li><b>Bərabəryanlı trapesiya:</b> yan tərəflər bərabərdir (AB = CD). Onda hər əsasdakı bucaqlar bərabərdir (<span class="m">∠A = ∠D</span>, <span class="m">∠B = ∠C</span>) və diaqonallar bərabərdir (<span class="m">AC = BD</span>).</li>
+        <li><b>Düzbucaqlı trapesiya:</b> bir yan tərəf əsaslara perpendikulyardır. Onun iki bucağı 90°-dir, o biri ikisinin cəmi 180°.</li>
+      </ul>
+      <div class="ex">Nümunə 2. Bərabəryanlı trapesiyada ∠A = 65°.
+  ∠D = ∠A = 65°,  ∠B = ∠C = 180° − 65° = 115°</div>
+      <div class="ex">Nümunə 3. Bərabəryanlı trapesiyanın iki bucağının fərqi 40°. Bucaqlar?
+  Bucaqlar x, x, 180° − x, 180° − x. Fərqli ikisi: x + (x + 40°) = 180°
+  x = 70°  →  bucaqlar 70°, 70°, 110°, 110°</div>
+      <div class="ex">Nümunə 4. Düzbucaqlı trapesiyanın ən böyük bucağı 120°. Ən kiçiyi?
+  90°, 90°, 120° və 180° − 120° = 60°</div>
+      <div class="life"><b>Həyatdan.</b> Kanalın divarı dibi ilə 120° bucaq əmələ gətirir. Onda yuxarıda, yer səthi ilə divar arasında bucaq 180° − 120° = <b>60°</b> olur — çünki dib və səth paraleldir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Eyni əsasdakı bucaqları (∠A və ∠D) toplayıb 180° yazmaq. 180° — <b>eyni yan tərəfdəki</b> bucaqların cəmidir.</li>
+        <li>Adi trapesiyada ∠A = ∠D yazmaq. Bu yalnız <b>bərabəryanlı</b> trapesiyada doğrudur.</li>
+        <li>"İki bucağın cəmi 140°" görüb onları qonşu saymaq. Cəm 180° deyilsə, bərabəryanlı trapesiyada bunlar bərabər bucaqlardır: hər biri 70°.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yan tərəfə bitişik bucaqlar: cəmi 180°.
+Bərabəryanlı: ∠A = ∠D, ∠B = ∠C, AC = BD.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Trapesiyada (AD ∥ BC) ∠B = 104°. ∠A? <span class="ans">76°.</span></li>
+        <li>Bərabəryanlı trapesiyada ∠C = 125°. ∠A? <span class="ans">∠D = 180° − 125° = 55°, ∠A = ∠D = 55°.</span></li>
+        <li>Bərabəryanlı trapesiyanın iki bucağının cəmi 260°. Kiçik bucaq? <span class="ans">Hər biri 130°, kiçik bucaq 50°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Bərabəryanlı trapesiya: hündürlük və proyeksiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda tez-tez belə sual olur: "bərabəryanlı trapesiyanın əsasları və yan tərəfi verilib — hündürlüyü (və ya sahəni) tap". Bir fikir bilsən — iki dəqiqəlik işdir. Bilməsən — boş qalır.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: iki hündürlük endir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Bərabəryanlı trapesiyada BH və CK hündürlükləri böyük əsası x, b, x parçalarına bölür">
+          <polygon points="30,150 90,50 210,50 270,150" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="50" x2="90" y2="150" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="210" y1="50" x2="210" y2="150" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M90 140H100V150" fill="none" stroke="var(--ink)"/><path d="M210 140H200V150" fill="none" stroke="var(--ink)"/>
+          <polygon points="30,150 90,50 90,150" fill="var(--vec)" opacity=".15"/>
+          <text x="18" y="166" class="lbl">A</text><text x="82" y="42" class="lbl">B</text><text x="210" y="42" class="lbl">C</text><text x="274" y="166" class="lbl">D</text>
+          <text x="86" y="166" class="lbl">H</text><text x="206" y="166" class="lbl">K</text>
+          <text x="56" y="186" class="lbl">x</text><text x="146" y="186" class="lbl">b</text><text x="236" y="186" class="lbl">x</text>
+          <text x="146" y="42" class="lbl">b</text><text x="94" y="104" class="lbl">h</text><text x="44" y="96" class="lbl">c</text>
+        </svg>
+        <div class="cap">
+          <p>B və C-dən böyük əsasa <span class="m">BH</span> və <span class="m">CK</span> hündürlüklərini endir. Ortada düzbucaqlı alınır: <span class="m">HK = BC = b</span>.</p>
+          <p>Kənarlarda iki <b>bərabər</b> düzbucaqlı üçbucaq qalır (yan tərəflər bərabərdir), ona görə <span class="m">AH = KD = x</span>.</p>
+        </div>
+      </div>
+      <div class="fm">x + b + x = a   →   AH = (a − b) / 2
+HD = a − x = (a + b) / 2
+c² = x² + h²</div>
+      <p><span class="m">AH</span> — yan tərəfin böyük əsas üzərindəki <b>proyeksiyasıdır</b>. Yadda saxla: proyeksiya <b>(a − b)/2</b>, hündürlüyün o biri tərəfindəki parça <b>(a + b)/2</b>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. AD = 20, BC = 8, AB = 10. Hündürlük?
+  Addım 1. AH = (20 − 8) / 2 = 6
+  Addım 2. ABH düzbucaqlıdır, AB — hipotenuz:
+           BH = √(10² − 6²) = √64 = 8
+  Əlavə:   HD = (20 + 8) / 2 = 14</div>
+      <div class="ex">Nümunə 2. BC = 5, AB = 13, BH = 12. Böyük əsas AD?
+  AH = √(13² − 12²) = √25 = 5
+  AD = 5 + 2 · 5 = 15</div>
+
+      <h3><span class="st">4</span> Bucaq verilibsə: 45° və 60°</h3>
+      <div class="ex">Nümunə 3. AD = 14, BC = 6, ∠A = 45°. Hündürlük?
+  AH = (14 − 6) / 2 = 4
+  ∠A = 45° → ∠ABH = 45° → ABH bərabəryanlıdır: BH = AH = 4</div>
+      <div class="ex">Nümunə 4. AD = 13, BC = 5, ∠A = 60°. Yan tərəf və hündürlük?
+  AH = (13 − 5) / 2 = 4
+  ∠ABH = 30°, 30°-li bucaq qarşısındakı katet hipotenuzun yarısıdır:
+  AB = 2 · AH = 8,  BH = √(8² − 4²) = √48 = 4√3</div>
+      <div class="life"><b>Həyatdan.</b> Kanalın en kəsiyi bərabəryanlı trapesiyadır: yuxarıda eni 10 m, dibi 4 m, maili divar 5 m. Divarın proyeksiyası (10 − 4) / 2 = 3 m, dərinlik √(25 − 9) = <b>4 m</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Proyeksiyanı <span class="m">a − b</span> götürmək. Fərq <b>iki</b> kənara bölünür: <span class="m">(a − b)/2</span>.</li>
+        <li>Pifaqorda kvadratları toplamaq. Yan tərəf hipotenuzdur: <span class="m">h² = c² − x²</span>.</li>
+        <li>Adi (bərabəryanlı olmayan) trapesiyada da (a − b)/2 yazmaq. Bu düstur yalnız bərabəryanlı trapesiya üçündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bərabəryanlı trapesiya: hündürlük endir.
+AH = (a − b)/2,  HD = (a + b)/2,  c² = AH² + h².</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bərabəryanlı trapesiyanın əsasları 25 və 11, yan tərəfi 25. Hündürlük? <span class="ans">AH = 7, h = √(625 − 49) = √576 = 24.</span></li>
+        <li>Əsaslar 30 və 12. Hündürlük böyük əsası hansı parçalara bölür? <span class="ans">9 və 21.</span></li>
+        <li>Əsaslar 17 və 9, ∠A = 45°. Hündürlük? <span class="ans">(17 − 9) / 2 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Trapesiyanın orta xətti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Nərdivanın aşağı pilləsi 50 sm, yuxarı pilləsi 30 sm-dir. Ortadakı pillə neçə sm olmalıdır? Cavab — <b>40 sm</b>, yəni ikisinin ədədi ortası. Bu, trapesiyanın orta xəttidir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Trapesiyanın orta xətti MN, AC diaqonalı onu iki parçaya bölür">
+          <polygon points="30,160 100,50 200,50 270,160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="65" y1="105" x2="235" y2="105" stroke="var(--vec)" stroke-width="3"/>
+          <line x1="30" y1="160" x2="200" y2="50" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="115" cy="105" r="3" fill="var(--ink)"/>
+          <text x="18" y="178" class="lbl">A</text><text x="92" y="42" class="lbl">B</text><text x="204" y="42" class="lbl">C</text><text x="274" y="178" class="lbl">D</text>
+          <text x="46" y="104" class="lbl">M</text><text x="240" y="104" class="lbl">N</text><text x="112" y="122" class="lbl">P</text>
+          <text x="80" y="98" class="lbl">b/2</text><text x="164" y="98" class="lbl">a/2</text>
+          <text x="146" y="178" class="lbl">a</text><text x="146" y="42" class="lbl">b</text>
+        </svg>
+        <div class="cap">
+          <p><b>Trapesiyanın orta xətti</b> — yan tərəflərin orta nöqtələrini birləşdirən parça (M — AB-nin, N — CD-nin ortası).</p>
+          <p><b>Niyə (a + b)/2?</b> AC diaqonalını çək. MP — ABC üçbucağının orta xəttidir: <span class="m">MP = b/2</span>. PN — ACD üçbucağının orta xəttidir: <span class="m">PN = a/2</span>. Cəmi: <span class="m">(a + b)/2</span>.</p>
+        </div>
+      </div>
+      <div class="fm">MN ∥ AD ∥ BC
+m = (a + b) / 2        a + b = 2m</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Əsaslar 16 və 10. Orta xətt?
+  m = (16 + 10) / 2 = 13</div>
+      <div class="ex">Nümunə 2. Orta xətt 11, böyük əsas 15. Kiçik əsas?
+  a + b = 22 → b = 22 − 15 = 7</div>
+      <div class="ex">Nümunə 3. Orta xətt 12, əsasların nisbəti 1 : 3. Əsaslar?
+  a + b = 24, 1 hissə = 24 : 4 = 6 → əsaslar 6 və 18</div>
+      <div class="ex">Nümunə 4. AD = 18, BC = 8. AC diaqonalı orta xətti hansı parçalara bölür?
+  MP = 8 : 2 = 4,  PN = 18 : 2 = 9     (yoxlama: 4 + 9 = 13 = (18 + 8)/2 ✓)</div>
+
+      <h3><span class="st">4</span> Daxilinə çevrə çəkilmiş trapesiya</h3>
+      <p>Dördbucaqlının daxilinə çevrə çəkmək olarsa, onun <b>qarşı tərəflərinin cəmləri bərabərdir</b>: <span class="m">a + b = c + d</span>. Bərabəryanlı trapesiyada <span class="m">c = d</span>, onda <span class="m">a + b = 2c</span>.</p>
+      <div class="ex">Nümunə 5. Bərabəryanlı trapesiyanın daxilinə çevrə çəkilib, yan tərəfi 9.
+  a + b = 2 · 9 = 18 → m = 18 : 2 = 9   (orta xətt = yan tərəf)
+  P = 18 + 18 = 36</div>
+      <div class="life"><b>Həyatdan.</b> 5 pilləli nərdivanın aşağı pilləsi 48 sm, yuxarı pilləsi 32 sm. Ortadakı (3-cü) pillə — orta xətt: (48 + 32) / 2 = <b>40 sm</b>. 2-ci pillə 40 ilə 48-in ortasıdır — <b>44 sm</b>, 4-cü pillə 32 ilə 40-ın ortası — <b>36 sm</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orta xətti əsasların fərqinin yarısı kimi yazmaq. <b>Cəminin</b> yarısıdır. (a − b)/2 — proyeksiyadır (Dərs 3).</li>
+        <li>Orta xətti bilib əsası taparkən 2-yə vurmağı unutmaq: a + b = <b>2m</b>.</li>
+        <li>Diaqonal orta xətti iki <b>bərabər</b> parçaya bölür deyə düşünmək. Parçalar b/2 və a/2-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">m = (a + b)/2, MN ∥ əsaslar.
+Diaqonal orta xətti b/2 və a/2 parçalarına bölür.
+Daxilinə çevrə çəkilmiş: a + b = yan tərəflərin cəmi.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Əsaslar 7 və 15. Orta xətt? <span class="ans">11.</span></li>
+        <li>Orta xətt 10, əsasların fərqi 6. Böyük əsas? <span class="ans">a + b = 20, a − b = 6 → a = 13.</span></li>
+        <li>Bərabəryanlı trapesiyanın orta xətti 8, yan tərəfi 5. Perimetr? <span class="ans">16 + 10 = 26.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Trapesiyanın sahəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Trapesiya şəkilli bağ, divar, dam üzü — rəngləmək, əkmək, örtmək üçün sahəsini bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Düstur haradan gəlir</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="BD diaqonalı trapesiyanı iki üçbucağa bölür">
+          <polygon points="30,160 90,60 270,160" fill="var(--accent-soft)" stroke="none"/>
+          <polygon points="90,60 200,60 270,160" fill="var(--vec)" opacity=".18"/>
+          <polygon points="30,160 90,60 200,60 270,160" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="60" x2="270" y2="160" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="90" y1="60" x2="90" y2="160" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M90 150H100V160" fill="none" stroke="var(--ink)"/>
+          <text x="18" y="178" class="lbl">A</text><text x="82" y="52" class="lbl">B</text><text x="204" y="52" class="lbl">C</text><text x="274" y="178" class="lbl">D</text><text x="86" y="178" class="lbl">H</text>
+          <text x="94" y="118" class="lbl">h</text><text x="176" y="178" class="lbl">a</text><text x="142" y="52" class="lbl">b</text>
+        </svg>
+        <div class="cap">
+          <p>BD diaqonalı trapesiyanı iki üçbucağa bölür. Hər ikisinin hündürlüyü eynidir — h (əsaslar arasındakı məsafə).</p>
+          <p><span class="m">S(ABD) = a · h / 2</span>, <span class="m">S(BCD) = b · h / 2</span>. Topla:</p>
+        </div>
+      </div>
+      <div class="fm">S = (a + b) / 2 · h = m · h</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Əsaslar 12 və 6, hündürlük 5.
+  S = (12 + 6) / 2 · 5 = 9 · 5 = 45</div>
+      <div class="ex">Nümunə 2. Orta xətt 13, hündürlük 4.
+  S = 13 · 4 = 52</div>
+      <div class="ex">Nümunə 3. Sahə 60, hündürlük 5, kiçik əsas 7. Böyük əsas?
+  (a + b)/2 = 60 : 5 = 12 → a + b = 24 → a = 24 − 7 = 17</div>
+
+      <h3><span class="st">4</span> Hündürlük verilməyibsə</h3>
+      <div class="ex">Nümunə 4. Bərabəryanlı trapesiya: əsaslar 20 və 8, yan tərəf 10.
+  Addım 1. AH = (20 − 8) / 2 = 6           (proyeksiya)
+  Addım 2. h = √(10² − 6²) = 8              (Pifaqor)
+  Addım 3. S = (20 + 8) / 2 · 8 = 14 · 8 = 112</div>
+      <div class="ex">Nümunə 5. Düzbucaqlı trapesiya: əsaslar 11 və 5, maili yan tərəf 10.
+  C-dən hündürlük endir: HD = 11 − 5 = 6    (burada 2-yə bölmək yoxdur!)
+  h = √(10² − 6²) = 8
+  S = (11 + 5) / 2 · 8 = 64</div>
+      <div class="ex">Nümunə 6. Bərabəryanlı trapesiya: əsaslar 16 və 10, iti bucaq 45°.
+  h = AH = (16 − 10) / 2 = 3
+  S = (16 + 10) / 2 · 3 = 39</div>
+      <div class="life"><b>Həyatdan.</b> Evin damının yan üzü bərabəryanlı trapesiyadır: aşağı kənar 12 m, yuxarı kənar 4 m, maili kənar 5 m. Proyeksiya 4 m, hündürlük √(25 − 16) = 3 m, sahə (12 + 4) / 2 · 3 = <b>24 m²</b>. 1 m² kirəmit 15 manatdırsa — 360 manat.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hündürlük əvəzinə yan tərəfi vurmaq. Maili tərəf hündürlük deyil — əvvəl Pifaqorla h-ı tap.</li>
+        <li>m · h-ı yenidən 2-yə bölmək. m-in içində artıq "/2" var.</li>
+        <li>Düzbucaqlı trapesiyada proyeksiyanı (a − b)/2 götürmək. Orada maili tərəf bir dənədir: proyeksiya <b>a − b</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S = (a + b)/2 · h = m · h.
+h yoxdursa: proyeksiya → Pifaqor → h.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Əsaslar 9 və 5, hündürlük 6. Sahə? <span class="ans">7 · 6 = 42.</span></li>
+        <li>Bərabəryanlı trapesiya: əsaslar 14 və 4, yan tərəf 13. Sahə? <span class="ans">AH = 5, h = 12, S = 9 · 12 = 108.</span></li>
+        <li>Sahə 56, orta xətt 14. Hündürlük? <span class="ans">56 : 14 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

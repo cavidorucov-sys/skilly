@@ -21,7 +21,7 @@
   }
 
   // ---- figure: points in math coordinates (y up); random quarter-turn rotation and mirror
-  // o: { poly:[names], names?:[names to letter], segs:[[p,q,"dash"|"acc"|"ink"]], lab:{PQ:text}, right:[[v,p,q]], arcs:[[v,p,q,text]], rot:[quarter turns] }
+  // o: { poly:[names], names?:[names to letter], place?:{name:[toward,"in"|"out"]}, segs:[[p,q,"dash"|"acc"|"ink"]], lab:{PQ:text}, right:[[v,p,q]], arcs:[[v,p,q,text]], rot:[quarter turns] }
   const INK = "#17171a", ACC = "#534ab7", RED = "#a32d2d";
   function figure(P, o) {
     const W = 280, H = 200, pad = 34;
@@ -61,9 +61,12 @@
       if (Math.hypot(...out) > 6 ? n[0] * out[0] + n[1] * out[1] < 0 : n[1] > 0) n = [-n[0], -n[1]];
       g.append(sv("text", { x: m[0] + n[0] * 14, y: m[1] + n[1] * 14 + 5, "text-anchor": "middle", class: "oy-lbl" }, o.lab[key]));
     }
+    const unit = v => { const L = Math.hypot(...v) || 1; return [v[0] / L, v[1] / L]; };
     for (const k of o.names || o.poly) {
       let d = [Q[k][0] - cen[0], Q[k][1] - cen[1]], L = Math.hypot(...d);
       if (L < 4) { d = [1, -1]; L = Math.SQRT2; }
+      const pl = (o.place || {})[k]; // [toward, "in"|"out"]: letter goes diagonally toward a point, inside or outside the figure
+      if (pl) { const t = unit([Q[pl[0]][0] - Q[k][0], Q[pl[0]][1] - Q[k][1]]), r = unit(pl[1] === "in" ? [-d[0], -d[1]] : d); d = [t[0] + r[0], t[1] + r[1]]; L = Math.hypot(...d) || 1; }
       g.append(sv("text", { x: Q[k][0] + d[0] / L * 15, y: Q[k][1] + d[1] / L * 15 + 5, "text-anchor": "middle", class: "oy-lbl", style: "fill:#5f5e5a;font-style:italic" }, k));
     }
     return g;
@@ -131,7 +134,7 @@
         const x = rnd(3, 10), y = rnd(2, 9), al = rnd(50, 75), c = Math.cos(rad(al)), s = Math.sin(rad(al)), ans = 4 * x + 2 * y;
         const P = { A: [0, 0], B: [x * c, x * s], C: [x * c + x + y, x * s], D: [x + y, 0], E: [x * c + x, x * s] };
         return { text: `ABCD paraleloqramında A bucağının tənböləni BC tərəfini E nöqtəsində kəsir. BE = ${x}, EC = ${y}. Paraleloqramın perimetrini tap.`,
-          svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "E"], segs: [["A", "E", "acc"]], arcs: [["A", "D", "E", "", 20], ["A", "E", "B", "", 26]], lab: { BE: String(x), EC: String(y) } }),
+          svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "E"], place: { E: ["C", "in"] }, segs: [["A", "E", "acc"]], arcs: [["A", "D", "E", "", 20], ["A", "E", "B", "", 26]], lab: { BE: String(x), EC: String(y) } }),
           answer: ans, show: String(ans), tol: 0.01,
           solution: `∠BAE = ∠EAD (tənbölən) və ∠EAD = ∠AEB (AD ∥ BC, çarpaz bucaqlar). Deməli ABE bərabəryanlı üçbucaqdır: AB = BE = ${x}. BC = ${x} + ${y} = ${x + y}. P = 2 · (${x} + ${x + y}) = ${ans}.` };
       } },
@@ -191,9 +194,10 @@
         if (kind === "ah") {
           const [p, q, c] = triple(20), sub = pick(["S", "h", "hb"]);
           let a = p + rnd(2, 12);
-          if (sub === "hb") { a = c * rnd(1, 3); while (a <= p + 1) a += c; }
+          if (sub === "hb") { a = c * rnd(1, 2); while (a <= p + 1) a += c; }
+          while (Math.abs(a / 2 - p) < .15 * a) a += sub === "hb" ? c : 1; // H not under the AD label
           const S = a * q, P = { A: [0, 0], B: [p, q], C: [a + p, q], D: [a, 0], H: [p, 0] };
-          const base = { poly: ABCD, names: ["A", "B", "C", "D", "H"], segs: [["B", "H", "dash"]], right: [["H", "D", "B"]] };
+          const base = { poly: ABCD, names: ["A", "B", "C", "D", "H"], place: { H: [p < a / 2 ? "A" : "D", "out"] }, segs: [["B", "H", "dash"]], right: [["H", "D", "B"]] };
           if (sub === "S") return { text: `ABCD paraleloqramında AD = ${a}, AB = ${c}, BH = ${q} — AD tərəfinə çəkilmiş hündürlük. Paraleloqramın sahəsini tap.`,
             svg: figure(P, { ...base, lab: { AD: String(a), AB: String(c), BH: String(q) } }), answer: S, show: String(S), tol: 0.01,
             solution: `S = tərəf · ona çəkilmiş hündürlük = AD · BH = ${a} · ${q} = ${S}. AB = ${c} lazım deyil — o, BH-a perpendikulyar deyil.` };
