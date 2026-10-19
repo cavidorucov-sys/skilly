@@ -18,7 +18,7 @@ for p in pairs:
     need = [f'oyun-{slug}.js', 'id="giris-root"', 'id="oyun-root"', 'id="sinaq-root"', '../assets/tabs.js', '../assets/oyun.js', '../assets/jurnal.js', '../assets/ders.css', 'data-kat="']
     miss = [n for n in need if n not in html]
     if miss: print(slug, "page missing:", miss); ok = False; break
-    r = subprocess.run(["node", "tools/oyun-test.js", game, "300"], capture_output=True, text=True, encoding="utf-8")
+    r = subprocess.run(["node", "tools/oyun-test.js", game, "300"], capture_output=True, text=True, encoding="utf-8", timeout=180)
     if r.returncode: print(slug, "SELF-TEST FAIL\n" + r.stdout[-1500:]); ok = False; break
     if not re.search(r'link:\s*"dersler/' + re.escape(slug) + r'\.html"', open(game, encoding="utf-8").read()): print(slug, "WARN: link field differs")
     names[name]["ders"] = page
