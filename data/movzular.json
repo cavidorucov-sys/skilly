@@ -490,25 +490,29 @@
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Ədədi silsilə",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-ededi-silsile.html"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Həndəsi silsilə",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-hendesi-silsile.html"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Ardıcıllıqlar və sonlu cəmlər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-ardicilliqlar.html"
   },
   {
    "bolme": "Ardıcıllıqlar və silsilələr",
    "ad": "Riyazi induksiya",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-induksiya.html"
   },
   {
    "bolme": "Funksiyalar",

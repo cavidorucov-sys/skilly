@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ədədi silsilə dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-ededi-silsile.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Ədədi silsilə</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Ardıcıllıqlar — ədədi silsilə</div>
+    <h1>Ədədi silsilə</h1>
+    <p>Pilləkənin pillələri, amfiteatrın sıraları, hər gün bir az çox yığılan pul — hamısında hər addımda eyni ədəd qədər artım var. Belə ardıcıllığa <b>ədədi silsilə</b> deyilir. Bu mövzu məktəb proqramında ancaq 10-cu sinifdə gəlir, amma RFO-da 9-cu sinifdən çıxır. Burada sıfırdan başlayıb rayon və yarımfinal səviyyəsinə qədər qalxacağıq.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Fərq və n-ci hədd</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xarakteristik xassə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sₙ cəmi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sₙ-dən geri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Fərq d və n-ci hədd</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Taksi: oturanda 3 manat, hər kilometrə 2 manat. 1 km — 5 manat, 2 km — 7, 3 km — 9, … Ardıcıl qiymətlər 5; 7; 9; 11; … hər dəfə <b>eyni ədəd qədər</b> artır. Soruşsalar ki, 40 km nə qədərdir, 39 dəfə toplamaq lazım deyil — düstur var.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Ardıcıllıqda ədədlərə <b>hədd</b> deyilir: <span class="m">a₁</span> — birinci, <span class="m">a₂</span> — ikinci, <span class="m">aₙ</span> — <span class="m">n</span>-ci hədd. Hər həddi əvvəlkindən eyni <span class="m">d</span> ədədi qədər fərqlənirsə, bu <b>ədədi silsilədir</b>, <span class="m">d</span> isə onun <b>fərqidir</b>:</p>
+      <div class="fm">aₙ₊₁ = aₙ + d,   d = a₂ − a₁ = a₃ − a₂ = …
+d &gt; 0 — silsilə artır;  d &lt; 0 — azalır;  d = 0 — hamısı eynidir</div>
+      <p>Birinci hədd <span class="m">a₁</span>, ikinci <span class="m">a₁ + d</span>, üçüncü <span class="m">a₁ + 2d</span>… <span class="m">n</span>-ci hədd üçün <span class="m">d</span> cəmi <span class="m">n − 1</span> dəfə əlavə olunub:</p>
+      <div class="fm">aₙ = a₁ + (n − 1)·d
+İki hədd verilibsə:  aₘ − aₖ = (m − k)·d</div>
+      <p>Sonuncu düstur çox işə yarayır: hədlər arasında <span class="m">m − k</span> addım var, hər addım <span class="m">d</span>-dir. Əvvəl <span class="m">d</span>-ni tap, sonra istənilən həddə get.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 5; 8; 11; 14; … silsiləsinin 30-cu həddi
+   d = 8 − 5 = 3.  a₃₀ = 5 + 29·3 = 92
+
+2) a₄ = 17, a₁₀ = 41.  a₂₅ = ?
+   a₁₀ − a₄ = 6d → 41 − 17 = 24 = 6d → d = 4
+   a₂₅ = a₁₀ + 15·4 = 41 + 60 = 101
+
+3) 100 ədədi 4; 11; 18; … silsiləsinin həddidirmi?
+   d = 7.  4 + (n − 1)·7 = 100 → (n − 1)·7 = 96 → n − 1 = 96/7 — tam deyil.
+   Deməli, 100 bu silsilənin həddi deyil.
+   102 üçün: (102 − 4)/7 = 14 → n = 15, yəni 102 — 15-ci həddir.
+   Nömrə tam və müsbət olmalıdır!</div>
+      <div class="life"><b>Həyatdan.</b> Pilləkəndə pillənin hündürlüyü hər dəfə eynidir: 1-ci pillə 18 sm, 2-ci 36 sm, 3-cü 54 sm. 25-ci mərtəbənin hündürlüyü <span class="m">a₂₅ = 18 + 24·18 = 450</span> sm. Qatarın stansiyalararası vaxtı, aylıq maaş artımı — hamısı belə qurulur.</div>
+
+      <h3><span class="st">4</span> Hədlərin sayı və təkrar nömrələr</h3>
+      <p>Sonlu silsilədə neçə hədd olduğunu tapmaq: ilk və son hədd məlumdursa,</p>
+      <div class="fm">hədlərin sayı = (son − ilk) / d + 1</div>
+      <p>Niyə "+ 1"? Çünki fərqlər sayını tapırıq, hədlər onlardan bir çoxdur (dirək-hasar məsələsi: 10 dirək arasında 9 aralıq var).</p>
+      <p><b>Mənfi və müsbət hədlər.</b> Azalan silsilədə ilk mənfi həddi tapmaq üçün <span class="m">aₙ &lt; 0</span> bərabərsizliyini həll et. Məsələn, 47; 41; 35; … üçün <span class="m">47 − 6(n − 1) &lt; 0</span> → <span class="m">n − 1 &gt; 7,83</span> → <span class="m">n ≥ 9</span>. İlk mənfi hədd 9-cudur (<span class="m">a₈ = 5 &gt; 0</span>, <span class="m">a₉ = −1</span>). Müsbət hədlərin sayı — 8.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 100-dən 999-a qədər üçrəqəmli ədədlərdən 7-yə bölünənlərin sayını və cəmini tap.
+
+Həll. 7-yə bölünən üçrəqəmli ədədlər ədədi silsilədir (d = 7).
+İlk: 100 = 7·14 + 2, deməli ilk 7·15 = 105.
+Son: 999 = 7·142 + 5, deməli son 7·142 = 994.
+Say: (994 − 105)/7 + 1 = 127 + 1 = 128.
+Cəm: (105 + 994)·128/2 = 1099·64 = 70 336.
+Cavab: 128 ədəd, cəmi 70 336.
+Qısa yol: ilk və son qatın nömrəsi 15 və 142-dir → 142 − 15 + 1 = 128.</div>
+      <div class="ex">Məsələ. Ədədi silsilənin 3-cü həddi 7, 8-ci həddi 27-dir. Hədlərdən biri 2027-dir. Doğrudurmu?
+
+Həll. 5d = 27 − 7 = 20 → d = 4, a₁ = 7 − 8 = −1.
+aₙ = −1 + 4(n − 1) = 4n − 5.  4n − 5 = 2027 → 4n = 2032 → n = 508.
+Bəli, 2027 silsilənin 508-ci həddidir.
+Ümumi qayda: hədlərin hamısı 4-ə bölünəndə 3 qalıq verir (4n − 5 = 4(n − 2) + 3). 2027 = 4·506 + 3 ✓.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">aₙ = a₁ + n·d</span> yazmaq. Düz: <span class="m">(n − 1)·d</span>. Yoxla: <span class="m">n = 1</span> üçün <span class="m">a₁</span> alınmalıdır.</li>
+        <li>Hədlərin sayında "+ 1"-i unutmaq: 5-dən 50-yə qədər d = 5 ilə <span class="m">(50 − 5)/5 = 9</span> yox, 10 hədd.</li>
+        <li>Nömrə kəsr çıxanda cavab vermək. Nömrə həmişə natural olmalıdır — yoxsa ədəd silsilənin həddi deyil.</li>
+        <li><span class="m">d</span>-ni mənfi silsilədə işarəsiz götürmək: 20; 17; 14 üçün <span class="m">d = −3</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">aₙ = a₁ + (n − 1)d
+aₘ − aₖ = (m − k)d
+hədlərin sayı = (son − ilk)/d + 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>−7; −3; 1; … silsiləsində <span class="m">a₂₀</span> = ? <span class="ans">d = 4, a₂₀ = −7 + 19·4 = 69.</span></li>
+        <li>3-cü hədd 10, 7-ci hədd 26. <span class="m">d</span> = ? <span class="ans">4d = 16, d = 4.</span></li>
+        <li>12-dən 300-ə qədər 6-ya bölünən ədədlərin sayı? <span class="ans">12, 18, …, 300: (300 − 12)/6 + 1 = 49.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Xarakteristik xassə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiada məsələsində çox vaxt <span class="m">a₁</span> və <span class="m">d</span> ayrıca verilmir, yalnız bir neçə hədd və ya onların cəmi verilir. Hər ikisini tapmadan cavab almaq üçün silsilənin gözəl xassəsi lazımdır: <b>mərkəzə görə simmetriya</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Hər hədd özündən sağda və solda eyni məsafədə duran iki həddin ədədi ortasıdır, çünki <span class="m">aₙ − d</span> və <span class="m">aₙ + d</span>-nin cəmində <span class="m">d</span> ixtisar olur:</p>
+      <div class="fm">aₙ = (aₙ₋₁ + aₙ₊₁)/2          (hətta aₙ = (aₙ₋ⱼ + aₙ₊ⱼ)/2)
+m + n = k + l  ⟹  aₘ + aₙ = aₖ + aₗ</div>
+      <p>İkinci düstur: nömrələrin cəmi eynidirsə, hədlərin cəmi də eynidir. Sübut: <span class="m">aₘ + aₙ = 2a₁ + (m + n − 2)d</span> — yalnız <span class="m">m + n</span>-dən asılıdır. Xüsusi hal: <span class="m">a₁ + aₙ = a₂ + aₙ₋₁ = …</span></p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) a₄ + a₁₂ = 50.  a₈ = ?
+   4 + 12 = 8 + 8 → a₄ + a₁₂ = 2a₈ → a₈ = 25
+
+2) a₃ + a₁₀ = 31.  a₅ + a₈ = ?
+   3 + 10 = 5 + 8 = 13 → a₅ + a₈ = 31
+
+3) x; 2x + 1; 5x − 3 ardıcıl üç həddir. x = ?
+   Orta hədd qonşuların ortasıdır: 2(2x + 1) = x + (5x − 3)
+   4x + 2 = 6x − 3 → 2x = 5 → x = 5/2</div>
+      <div class="life"><b>Həyatdan.</b> Pilləkənin pillələri 18, 36, 54, 72, 90 sm yüksəklikdədir. İki uc pillənin cəmi 18 + 90 = 108, ikinci ilə dördüncünün cəmi 36 + 72 = 108 — eynidir, ortadakı pillənin iki mislidir (2·54).</div>
+
+      <h3><span class="st">4</span> Üç hədd üçün "orta" təyin etmək</h3>
+      <p>Cəmi və ya hasili verilmiş ardıcıl hədlər üçün əlverişli yazılış:</p>
+      <div class="fm">3 hədd:  m − d,  m,  m + d          (cəm = 3m)
+4 hədd:  m − 3d, m − d, m + d, m + 3d   (fərq 2d)
+5 hədd:  m − 2d, m − d, m, m + d, m + 2d</div>
+      <p>Cəm bir dəyişənə düşür, qalan tənlik <span class="m">d²</span>-də olur.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Üç ədəd artan ədədi silsilə təşkil edir. Cəmləri 27, kvadratlarının cəmi 275-dir. Ədədləri tap.
+
+Həll. Ədədlər: m − d, m, m + d. Cəm: 3m = 27 → m = 9.
+Kvadratların cəmi: (9 − d)² + 81 + (9 + d)² = 243 + 2d² = 275 → d² = 16.
+Artan olduğundan d = 4. Ədədlər: 5, 9, 13.
+Yoxla: 25 + 81 + 169 = 275 ✓.
+
+Məsələ 2. Ədədi silsilənin 7-ci həddi 20-dir. İlk 13 həddin cəmini tap.
+
+Həll. Sₙ cəmini sonra öyrənəcəyik, amma burada xassə kifayətdir:
+a₁ + a₁₃ = a₂ + a₁₂ = … = a₆ + a₈ = 2a₇ = 40.
+13 hədd 6 cüt (hər biri 40) və tək qalan orta a₇ = 20 verir:
+6·40 + 20 = 260.   Cavab: 13·a₇ = 260.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">aₘ + aₙ = aₘ₊ₙ</span> yazmaq. Bu yanlışdır: <span class="m">a₂ + a₃ ≠ a₅</span> (məs. 3; 5; 7; 9; 11-də 5 + 7 = 12 ≠ 11).</li>
+        <li>Nömrələrin cəmini yoxlamamaq: <span class="m">a₂ + a₉ = a₄ + a₆</span> səhvdir (11 ≠ 10).</li>
+        <li>Üç ədədi <span class="m">m, m + d, m + 2d</span> götürüb hasil məsələsini çətinləşdirmək: simmetrik yazılış (<span class="m">m − d, m, m + d</span>) daha qısadır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">aₙ = (aₙ₋₁ + aₙ₊₁)/2
+m + n = k + l ⟹ aₘ + aₙ = aₖ + aₗ
+3 hədd: m − d, m, m + d</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a₂ + a₁₀ = 28</span>. <span class="m">a₆</span> = ? <span class="ans">2 + 10 = 6 + 6, a₆ = 14.</span></li>
+        <li><span class="m">a₅ + a₉ = 40</span>. <span class="m">a₆ + a₈</span> = ? <span class="ans">5 + 9 = 14 = 6 + 8, cavab 40.</span></li>
+        <li>Üç artan hədd, cəm 21, hasil 231 (m = 7). Ən böyüyü? <span class="ans">7·(49 − d²) = 231 → d² = 16, d = 4; hədlər 3, 7, 11; ən böyüyü 11.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İlk n həddin cəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Amfiteatrda 1-ci sırada 20 yer, hər növbəti sırada 2 yer çox, 30 sıra. Cəmi neçə yer var? 30 ədədi toplamaq olar, amma düstur bir sətirlikdir. Rəvayətə görə, 9 yaşlı Qauss müəllimin tapşırığını — 1-dən 100-ə qədər ədədlərin cəmini — saniyələrlə tapıb.</p>
+
+      <h3><span class="st">2</span> Qauss fəndi</h3>
+      <p>İlk <span class="m">n</span> həddin cəmi <span class="m">Sₙ</span>. Onu iki dəfə yaz: bir dəfə soldan sağa, bir dəfə sağdan sola, sütunları topla:</p>
+      <div class="fm">Sₙ = a₁ + a₂ + … + aₙ
+Sₙ = aₙ + aₙ₋₁ + … + a₁
+2Sₙ = (a₁ + aₙ) + (a₂ + aₙ₋₁) + … = n·(a₁ + aₙ)</div>
+      <p>Hər sütunun cəmi eynidir (Dərs 2 xassəsi!) və <span class="m">n</span> sütun var:</p>
+      <div class="fm">Sₙ = (a₁ + aₙ)·n/2 = (2a₁ + (n − 1)d)·n/2
+Hissə cəmi:  aₖ + … + aₘ = (aₖ + aₘ)·(m − k + 1)/2
+1 + 2 + … + n = n(n + 1)/2</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 1 + 2 + … + 100 = 100·101/2 = 5050
+
+2) 4; 7; 10; … ilk 20 həddin cəmi
+   a₂₀ = 4 + 19·3 = 61.  S₂₀ = (4 + 61)·20/2 = 650
+
+3) a₅ + a₆ + … + a₁₄ (a₁ = 2, d = 3)
+   a₅ = 14, a₁₄ = 41, say = 14 − 5 + 1 = 10
+   Cəm = (14 + 41)·10/2 = 275
+
+4) Amfiteatr: a₁ = 20, d = 2, n = 30
+   S₃₀ = (2·20 + 29·2)·30/2 = 98·15 = 1470 yer</div>
+      <div class="life"><b>Həyatdan.</b> Kötüklər qalaq şəklində yığılıb: altda 12, yuxarı doğru hər sırada bir az, ən üstdə 3 kötük. Sıraların sayı 10, kötüklərin sayı <span class="m">(12 + 3)·10/2 = 75</span>. Boru qalaqları, konserv piramidaları eyni qaydadır.</div>
+
+      <h3><span class="st">4</span> Tərs məsələ: n-i tapmaq</h3>
+      <p>Cəm verilib, hədlərin sayı soruşulur. Düsturdan kvadrat tənlik alınır, <b>mənfi və kəsr kök atılır</b>.</p>
+      <div class="ex">a₁ = 5, d = 4, Sₙ = 275.  n = ?
+(2·5 + (n − 1)·4)·n/2 = 275 → (3 + 2n)·n = 275 → 2n² + 3n − 275 = 0
+D = 9 + 2200 = 2209 = 47² → n = (−3 + 47)/4 = 11  (digər kök mənfidir).
+Yoxla: a₁₁ = 45, (5 + 45)·11/2 = 275 ✓</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et ki, ilk n tək ədədin cəmi n²-dir: 1 + 3 + 5 + … + (2n − 1) = n².
+Həll. a₁ = 1, d = 2, aₙ = 2n − 1. Sₙ = (1 + 2n − 1)·n/2 = n·n = n². ∎
+(Şəkil: n×n kvadrat, "Γ" şəklində qatlarla: 1, 3, 5, …)
+
+Məsələ 2. 1-dən 200-ə qədər 3-ə və ya 5-ə bölünən ədədlərin cəmini tap.
+Həll. Daxilolma-xaricolma: S(3) + S(5) − S(15).
+3-ə bölünənlər: 3, …, 198 — 66 ədəd, cəm (3 + 198)·66/2 = 6633.
+5-ə bölünənlər: 5, …, 200 — 40 ədəd, cəm (5 + 200)·40/2 = 4100.
+15-ə bölünənlər (hər ikisinə): 15, …, 195 — 13 ədəd, cəm (15 + 195)·13/2 = 1365.
+Cavab: 6633 + 4100 − 1365 = 9368.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yarıya bölməyi unutmaq: <span class="m">Sₙ = (a₁ + aₙ)·n/2</span>, "·n/2" yox, "·n" yox.</li>
+        <li>Hissə cəmində hədlərin sayını <span class="m">m − k</span> götürmək. Düz: <span class="m">m − k + 1</span>.</li>
+        <li>Kvadrat tənliyin ikinci kökünü (mənfi və ya kəsr) cavab kimi yazmaq.</li>
+        <li>Daxilolma-xaricolmada ortaq hissəni (15-ə bölünənləri) bir dəfə çıxmamaq: onlar iki dəfə sayılıb.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sₙ = (a₁ + aₙ)·n/2 = (2a₁ + (n − 1)d)·n/2
+1 + 2 + … + n = n(n + 1)/2;   1 + 3 + … + (2n − 1) = n²
+n-i tapanda: kvadrat tənlik, natural kök</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 + 4 + … + 50 = ? <span class="ans">25 hədd, (2 + 50)·25/2 = 650.</span></li>
+        <li><span class="m">a₁ = −3</span>, <span class="m">d = 2</span>. <span class="m">S₁₀</span> = ? <span class="ans">a₁₀ = 15, (−3 + 15)·10/2 = 60.</span></li>
+        <li>1 + 3 + 5 + … + 99 = ? <span class="ans">50 hədd, 50² = 2500.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Sₙ-dən geri qayıtmaq (yarımfinal səviyyəsi)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzən silsilənin özü verilmir, yalnız "ilk <span class="m">n</span> həddin cəmi belədir" deyilir. Hədləri və fərqi bundan tapmaq olimpiadada tez-tez rast gəlinən fəndir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: aₙ = Sₙ − Sₙ₋₁</h3>
+      <p>İlk <span class="m">n</span> həddin cəmindən ilk <span class="m">n − 1</span> həddin cəmini çıxsaq, yalnız <span class="m">n</span>-ci hədd qalır:</p>
+      <div class="fm">aₙ = Sₙ − Sₙ₋₁   (n ≥ 2),   a₁ = S₁
+Sₙ = p·n² + q·n  ⟹  silsilə ədədidir,  d = 2p,  a₁ = p + q</div>
+      <p>Niyə <span class="m">d = 2p</span>? Çünki <span class="m">Sₙ = (d/2)n² + (a₁ − d/2)n</span>. Cəmin düsturunda <span class="m">n²</span>-nin əmsalı <span class="m">d</span>-nin yarısıdır, sərbəst hədd isə yoxdur (<span class="m">S₀ = 0</span>).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Sₙ = 3n² + 2n.  a₁₀ = ?
+   S₁₀ = 300 + 20 = 320,  S₉ = 243 + 18 = 261.  a₁₀ = 59
+   Ümumi: aₙ = 3(n² − (n−1)²) + 2 = 3(2n − 1) + 2 = 6n − 1.  a₁₀ = 59 ✓, d = 6 = 2·3 ✓
+
+2) Sₙ = n² − 4n.  a₁ = ?  d = ?
+   a₁ = S₁ = −3.  d = 2·1 = 2.  Silsilə: −3; −1; 1; …
+
+3) Sₙ = 2n² + 5n + 1 üçün silsilə ədədi deyil: sərbəst hədd 1 ≠ 0.
+   a₁ = S₁ = 8, a₂ = S₂ − S₁ = 19 − 8 = 11, a₃ = S₃ − S₂ = 34 − 19 = 15
+   Fərqlər 3 və 4 — eyni deyil.</div>
+      <div class="life"><b>Həyatdan.</b> Bank hesabına hər ay əvvəlkindən 2 manat artıq yatırırsan. İlk <span class="m">n</span> ayda yığılan məbləğin düsturunu bilirsənsə, <span class="m">n</span>-ci ayda nə qədər yatırdığını <span class="m">Sₙ − Sₙ₋₁</span> verir.</div>
+
+      <h3><span class="st">4</span> Eyni cəmlər</h3>
+      <p>Əgər <span class="m">Sₘ = Sₙ</span> (<span class="m">m ≠ n</span>) isə, <span class="m">aₘ₊₁ + … + aₙ = 0</span> olur. Bundan <span class="m">a₁ + aₘ₊ₙ = 0</span> və <span class="m">Sₘ₊ₙ = 0</span> çıxır.</p>
+      <div class="ex">S₁₀ = S₃₀.  S₄₀ = ?
+S₃₀ − S₁₀ = a₁₁ + … + a₃₀ = 0. Bu 20 hədd, cəmi 10·(a₁₁ + a₃₀) = 0 → a₁₁ + a₃₀ = 0.
+11 + 30 = 1 + 40 → a₁ + a₄₀ = 0 → S₄₀ = (a₁ + a₄₀)·40/2 = 0.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Ədədi silsilədə a₁ = −33 və S₁₂ = S₂₂. d = ?
+Həll. S₂₂ − S₁₂ = 0 → a₁₃ + … + a₂₂ = 0 (10 hədd) → a₁₃ + a₂₂ = 0.
+13 + 22 = 1 + 34 = 35 → a₁ + a₃₄ = 0 → 2a₁ + 33d = 0 → −66 + 33d = 0 → d = 2.
+Başqa üsul: S₁₂ = S₂₂ → 12(2a₁ + 11d) = 22(2a₁ + 21d) → 24a₁ + 132d = 44a₁ + 462d → −20a₁ = 330d → d = −2a₁/33 = 66/33 = 2 ✓.
+
+Məsələ 2. Sübut et ki, ardıcıllıq üçün Sₙ = n² + 2n-dirsə, silsilə ədədidir və aₙ = 2n + 1.
+Həll. a₁ = S₁ = 3. n ≥ 2 üçün aₙ = n² + 2n − (n − 1)² − 2(n − 1) = 2n − 1 + 2 = 2n + 1. n = 1 üçün də 2·1 + 1 = 3 uyğundur. aₙ₊₁ − aₙ = 2 sabit → ədədi silsilə. ∎</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a₁ = S₁</span> halını ayrıca yoxlamamaq (<span class="m">Sₙ − Sₙ₋₁</span> düsturu <span class="m">n ≥ 2</span> üçündür).</li>
+        <li><span class="m">d = p</span> yazmaq (düz: <span class="m">d = 2p</span>).</li>
+        <li>Sərbəst həddi olan <span class="m">Sₙ</span>-i ədədi silsilə sanmaq.</li>
+        <li><span class="m">Sₘ = Sₙ</span> verilibsə, <span class="m">aₘ = aₙ</span> sanmaq. Düz: <span class="m">aₘ₊₁ + … + aₙ = 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">aₙ = Sₙ − Sₙ₋₁;  a₁ = S₁
+Sₙ = pn² + qn ⟹ d = 2p
+Sₘ = Sₙ ⟹ Sₘ₊ₙ = 0</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sₙ = 2n² + n. a₅ = ? <span class="ans">S₅ = 55, S₄ = 36, a₅ = 19.</span></li>
+        <li>Sₙ = 4n² − 3n üçün d = ? <span class="ans">d = 2·4 = 8.</span></li>
+        <li>S₆ = S₁₄ olarsa, S₂₀ = ? <span class="ans">0 (Sₘ = Sₙ ⟹ Sₘ₊ₙ = 0).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

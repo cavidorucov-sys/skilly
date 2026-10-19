@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Riyazi induksiya dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-induksiya.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Riyazi induksiya</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Ardıcıllıqlar — riyazi induksiya metodu və onun tətbiqləri</div>
+    <h1>Riyazi induksiya</h1>
+    <p>Fərz et ki, sonsuz sayda domino ardıcıl düzülüb. Birinci domino yıxılır və hər yıxılan domino növbətini yıxır — onda hamısı yıxılacaq. Riyazi induksiya məhz bu fikirdir: <b>sonsuz sayda iddianı</b> bir-bir yoxlamadan sübut edirsən. Düsturları "təxmin edib sübut etmək" olimpiadanın ən güclü alətlərindən biridir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Metod və cəmlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bölünmə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizliklər, baza</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Təxmin, güclü induksiya</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Metodun mahiyyəti və cəm düsturları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">1 + 3 + 5 + 7 = 16 = 4²</span>, <span class="m">1 + 3 + 5 + 7 + 9 = 25 = 5²</span>. Görünür ki, ilk <span class="m">n</span> tək ədədin cəmi <span class="m">n²</span>-dir. Amma bu 100 halda doğrudur deyə, 101-ci halda da doğrudur demək olarmı? Riyaziyyatda "bir neçə halda yoxladım" sübut deyil. İnduksiya bütün natural <span class="m">n</span> üçün sübutu verir.</p>
+
+      <h3><span class="st">2</span> Üç hissə</h3>
+      <p><span class="m">P(n)</span> — <span class="m">n</span>-dən asılı bir iddiadır. Onu bütün natural <span class="m">n</span> üçün sübut etmək üçün:</p>
+      <div class="fm">1) Baza:  P(1) doğrudur (və ya ilk n₀ üçün P(n₀)).
+2) Addım: P(k) doğrudur (induksiya fərziyyəsi) ⟹ P(k + 1) doğrudur.
+3) Nəticə: P(n) bütün n ≥ 1 (n ≥ n₀) üçün doğrudur.</div>
+      <p>Domino bənzətməsi: baza — ilk domino yıxılır; addım — hər <span class="m">k</span>-cı domino <span class="m">(k + 1)</span>-ciyə toxunur. İkisindən biri çatışmasa, sübut qüvvədən düşür.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Sübut: 1 + 3 + 5 + … + (2n − 1) = n².
+   Baza. n = 1: sol 1, sağ 1² = 1 ✓.
+   Addım. 1 + 3 + … + (2k − 1) = k² fərz edək. (k + 1)-ci hədd 2(k + 1) − 1 = 2k + 1.
+   k² + (2k + 1) = (k + 1)² — bu, P(k + 1)-dir.
+   Nəticə. P(n) bütün n üçün doğrudur. ∎
+
+2) Sübut: 1 + 2 + … + n = n(n + 1)/2.
+   Baza. n = 1: 1 = 1·2/2 ✓.
+   Addım. k(k + 1)/2 + (k + 1) = (k + 1)(k/2 + 1) = (k + 1)(k + 2)/2 ✓ ∎
+
+3) Sübut: 1·1! + 2·2! + … + n·n! = (n + 1)! − 1.
+   Baza. n = 1: 1 = 2! − 1 ✓.
+   Addım. (k + 1)! − 1 + (k + 1)·(k + 1)! = (k + 1)!·(1 + k + 1) − 1 = (k + 2)! − 1 ✓ ∎</div>
+      <div class="life"><b>Həyatdan.</b> Pilləkən: birinci pilləyə çıxa bilirsənsə və hər pillədən növbətiyə çıxa bilirsənsə, istənilən pilləyə çıxa bilərsən. Zəncirvari məktub, dominoların yıxılması, "bir addım irəli" — hamısı induksiyadır. Yalnız bir şərt: baza (başlanğıc pillə) mütləq olmalıdır.</div>
+
+      <h3><span class="st">4</span> İnduksiya addımını necə quraq</h3>
+      <p>Cəm düsturlarında addımın texnikası eynidir: <b>sol tərəfdə yeni hədd əlavə et, sağ tərəfin <span class="m">k</span>-lı formasını <span class="m">k + 1</span>-li formaya gətir</b>. Məqsədi əvvəlcədən yaz: <span class="m">P(k + 1)</span> nə olmalıdır (n əvəzinə k + 1 qoy). Sonra tərəfləri o ifadəyə çevir.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et: 1² + 2² + … + n² = n(n + 1)(2n + 1)/6.
+Baza. n = 1: 1 = 1·2·3/6 ✓.
+Addım. k(k + 1)(2k + 1)/6 + (k + 1)² = (k + 1)[k(2k + 1) + 6(k + 1)]/6 = (k + 1)(2k² + 7k + 6)/6 = (k + 1)(k + 2)(2k + 3)/6.
+Bu, n = k + 1 üçün n(n + 1)(2n + 1)/6-dir. ∎
+
+Məsələ 2. Sübut et: 1/(1·2) + 1/(2·3) + … + 1/(n(n + 1)) = n/(n + 1).
+Baza. 1/2 = 1/2 ✓. Addım. k/(k + 1) + 1/((k + 1)(k + 2)) = (k(k + 2) + 1)/((k + 1)(k + 2)) = (k + 1)²/((k + 1)(k + 2)) = (k + 1)/(k + 2) ✓ ∎
+
+Məsələ 3. Sübut et: 1·2⁰ + 2·2¹ + … + n·2ⁿ⁻¹ = (n − 1)·2ⁿ + 1.
+Baza. n = 1: 1 = 0·2 + 1 ✓.
+Addım. (k − 1)·2ᵏ + 1 + (k + 1)·2ᵏ = 2ᵏ·2k + 1 = k·2ᵏ⁺¹ + 1 = ((k + 1) − 1)·2ᵏ⁺¹ + 1 ✓ ∎</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bazanı yoxlamamaq. Misal: "<span class="m">n = n + 1</span>" yanlış iddiasında addım "doğru" çıxır (P(k)-nın hər iki tərəfinə 1 əlavə et), amma baza ödənmir. Deməli, addım tək başına heç nə sübut etmir.</li>
+        <li>İnduksiya addımında <span class="m">P(k + 1)</span>-i doğru qəbul etmək. Fərz olunan yalnız <span class="m">P(k)</span>-dır.</li>
+        <li>Yeni həddi səhv yazmaq: n-ci hədd <span class="m">2n − 1</span> isə, <span class="m">(k + 1)</span>-ci hədd <span class="m">2k + 1</span>-dir, <span class="m">2k − 1</span> yox.</li>
+        <li>Nəticədə yalnız bir-iki halı yoxlayıb "deməli, hər n üçün" demək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Baza + addım (P(k) ⟹ P(k + 1)) + nəticə
+Addım: sol tərəfə yeni hədd əlavə et, nəticəni P(k + 1)-ə gətir
+P(k + 1)-i əvvəlcədən yaz: n əvəzinə k + 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Induksiya sübutunun iki ayağı hansılardır? <span class="ans">Baza (ilk halın doğruluğu) və addım (P(k) ⟹ P(k + 1)).</span></li>
+        <li>1 + 2 + … + n = n(n + 1)/2 üçün <span class="m">P(k + 1)</span> necə yazılır? <span class="ans">1 + 2 + … + (k + 1) = (k + 1)(k + 2)/2.</span></li>
+        <li>n = 10 üçün 1² + … + 10² = ? <span class="ans">10·11·21/6 = 385.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Bölünmə məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"<span class="m">7ⁿ − 1</span> ifadəsi 6 ədədinə bölünür" iddiasını 6 halda yoxlamaq olar, amma hər <span class="m">n</span> üçün? Bölünmə məsələləri induksiyanın ən çox işləyən sahəsidir: ifadədən bölünən hissə ayırırsan, qalanı fərziyyəyə gətirirsən.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Bölünməni induksiya ilə sübut edəndə <span class="m">f(k + 1)</span>-i belə yaz:</p>
+      <div class="fm">f(k + 1) = c·f(k) + (bölünən ifadə)      — və ya —
+f(k + 1) = f(k) + (bölünən ifadə)</div>
+      <p><span class="m">f(k)</span> fərziyyəyə görə <span class="m">m</span> ədədinə bölünür, ikinci toplanan da bölünürsə, cəm də bölünür. "Bölünən ifadə"ni tapmaq üçün <span class="m">f(k + 1)</span>-də <span class="m">f(k)</span>-nın üstündəki hissəni ayır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 7ⁿ − 1 ifadəsi 6 ədədinə bölünür.
+   Baza. n = 1: 7 − 1 = 6 ✓.
+   Addım. 7ᵏ⁺¹ − 1 = 7·(7ᵏ − 1) + 7 − 1 = 7·(7ᵏ − 1) + 6.
+   Birinci toplanan fərziyyəyə görə 6-ya bölünür, ikincisi 6-dır ✓ ∎
+
+2) n³ + 5n ifadəsi 6 ədədinə bölünür.
+   Baza. n = 1: 6 ✓.
+   Addım. (k + 1)³ + 5(k + 1) = k³ + 5k + (3k² + 3k + 6) = f(k) + 3k(k + 1) + 6.
+   k(k + 1) cütdür → 3k(k + 1) 6-ya bölünür ✓ ∎
+
+3) "Ən böyük bölən" tapmaq: f(n) = n(n + 1)(n + 2).
+   f(1) = 6, f(2) = 24, f(3) = 60 → EBOB = 6. Cavab 6-dan böyük ola bilməz.
+   Sübut: f(k + 1) − f(k) = 3(k + 1)(k + 2), (k + 1)(k + 2) cütdür → fərq 6 ədədinə bölünür; baza f(1) = 6 ✓.</div>
+      <div class="life"><b>Həyatdan.</b> Kassada yalnız 6 manatlıq əskinas olsa, ümumi məbləğ həmişə 6-ya bölünəcək. Hər dəfə əlavə etdiyin məbləğ də 6-ya bölünürsə, bölünmə "ötürülür" — induksiya addımı məhz budur.</div>
+
+      <h3><span class="st">4</span> "Ən böyük bölən" üçün plan</h3>
+      <p>1) <span class="m">f(1), f(2), f(3)</span>-ü hesabla. 2) Onların <b>EBOB</b>-u cavabın yuxarı həddidir. 3) Bu EBOB-un bütün <span class="m">n</span> üçün bölündüyünü induksiya ilə sübut et. Bölünmənin bir neçə <span class="m">n</span>-dən sonra pozulması mümkün deyil — sübut bunu təmin edir.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et: 4ⁿ + 15n − 1 ifadəsi 9 ədədinə bölünür.
+Baza. n = 1: 4 + 15 − 1 = 18 ✓.
+Addım. f(k + 1) = 4ᵏ⁺¹ + 15k + 14 = 4(4ᵏ + 15k − 1) − 60k + 4 + 15k + 14 = 4f(k) − 45k + 18 = 4f(k) − 9(5k − 2).
+Hər iki toplanan 9-a bölünür ✓ ∎
+
+Məsələ 2. Sübut et: 11ⁿ⁺¹ + 12²ⁿ⁻¹ ifadəsi 133 ədədinə bölünür.
+Baza. n = 1: 121 + 12 = 133 ✓.
+Addım. f(k + 1) = 11ᵏ⁺² + 12²ᵏ⁺¹ = 11·11ᵏ⁺¹ + 144·12²ᵏ⁻¹ = 11(11ᵏ⁺¹ + 12²ᵏ⁻¹) + 133·12²ᵏ⁻¹ = 11f(k) + 133·12²ᵏ⁻¹ ✓ ∎
+
+Məsələ 3. 3^(2n+1) + 2^(n+2) ifadəsi bütün natural n üçün hansı ən böyük ədədə bölünür?
+Həll. f(1) = 27 + 8 = 35, f(2) = 243 + 16 = 259 = 7·37. EBOB(35, 259) = 7.
+Sübut. f(k + 1) = 9·3²ᵏ⁺¹ + 2·2ᵏ⁺² = 9f(k) − 7·2ᵏ⁺² ✓. Cavab: 7.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">f(k + 1)</span>-də <span class="m">f(k)</span>-nı çıxarmaq üçün qüvvəti səhv bölmək. İlk addım: <span class="m">7ᵏ⁺¹ = 7·7ᵏ</span>.</li>
+        <li>"Bölünən ifadə"yə fərziyyənin tətbiqini unutmaq: yalnız <span class="m">f(k)</span> bölünür, ikinci toplanan ayrıca yoxlanır.</li>
+        <li>Fərqin işarəsini səhv yazmaq: <span class="m">f(k + 1) − f(k)</span> yazanda <span class="m">f(k)</span>-nın üstündən çıx.</li>
+        <li>"Ən böyük bölən"də yalnız EBOB hesablayıb sübutu atmaq. EBOB yuxarı sərhəddir, bölünmə isə sübut olunmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">f(k + 1) = c·f(k) + (bölünən ifadə)
+Ən böyük bölən: EBOB(f(1), f(2), …) + induksiya ilə sübut
+7ⁿ − 1: 6;  aⁿ − 1: a − 1;  aⁿ − (a − 1)n − 1: (a − 1)²</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5ⁿ − 1 ifadəsi hansı ədədə bölünür? <span class="ans">4-ə: 5ᵏ⁺¹ − 1 = 5(5ᵏ − 1) + 4.</span></li>
+        <li>n³ + 5n üçün f(1), f(2)? <span class="ans">f(1) = 6, f(2) = 18, EBOB = 6.</span></li>
+        <li>9ⁿ − 8n − 1 ifadəsinin bölündüyü ən böyük ədəd? <span class="ans">f(2) = 81 − 17 = 64, f(3) = 729 − 25 = 704 = 64·11 → 64.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Bərabərsizliklər və baza n₀</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">2ⁿ &gt; n²</span> iddiasına bax: n = 1 üçün <span class="m">2 &gt; 1</span> ✓, n = 2: <span class="m">4 &gt; 4</span> ✗, n = 3: <span class="m">8 &gt; 9</span> ✗, n = 4: <span class="m">16 &gt; 16</span> ✗, n = 5: <span class="m">32 &gt; 25</span> ✓. Bərabərsizlik <span class="m">n ≥ 5</span> üçün həmişə doğrudur, bundan əvvəl isə yox. Belə iddialarda <b>baza n₀</b> məsələnin əsas hissəsidir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Baza:  ilk n₀ üçün yoxla (əl ilə, kiçik n-ləri sına)
+Addım: k ≥ n₀ üçün P(k) ⟹ P(k + 1)
+Nəticə: P(n) bütün n ≥ n₀ üçün</div>
+      <p>Bərabərsizliyin addımında adətən "sol tərəf 2 dəfə (və ya <span class="m">(k + 1)</span> dəfə) artır, sağ tərəf daha az artır" ideyası işləyir. Addımın doğru olması üçün <span class="m">k</span>-nın şərti (məs. <span class="m">k ≥ 5</span>) lazım ola bilər — məhz buna görə baza kiçik <span class="m">n</span>-lərdən başlamır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 2ⁿ &gt; n² bütün n ≥ 5 üçün.
+   Baza. n = 5: 32 &gt; 25 ✓.
+   Addım. k ≥ 5, 2ᵏ &gt; k² fərz edək. 2ᵏ⁺¹ = 2·2ᵏ &gt; 2k².
+   2k² ≥ (k + 1)² ⟺ k² − 2k − 1 ≥ 0, bu k ≥ 3 üçün doğrudur (k = 5: 14 ≥ 0). Deməli 2ᵏ⁺¹ &gt; (k + 1)² ✓ ∎
+
+2) n! &gt; 2ⁿ bütün n ≥ 4 üçün.
+   Baza. n = 4: 24 &gt; 16 ✓ (n = 3: 6 &gt; 8 ✗).
+   Addım. (k + 1)! = (k + 1)·k! &gt; (k + 1)·2ᵏ ≥ 2·2ᵏ = 2ᵏ⁺¹ (k + 1 ≥ 2) ✓ ∎
+
+3) Bernulli: x ≥ −1 olduqda (1 + x)ⁿ ≥ 1 + nx.
+   Baza. n = 1: 1 + x ≥ 1 + x ✓.
+   Addım. (1 + x)ᵏ⁺¹ = (1 + x)ᵏ·(1 + x) ≥ (1 + kx)(1 + x) = 1 + (k + 1)x + kx² ≥ 1 + (k + 1)x.
+   (1 + x ≥ 0 olduğuna görə bərabərsizliyi 1 + x-ə vurmaq olar.) ∎</div>
+      <div class="life"><b>Həyatdan.</b> İki bakteriya kolonisi: biri hər saat 2 dəfə, digəri hər saat sabit 100 ədəd artır. Əvvəlcə ikincisi çox ola bilər, amma müəyyən saatdan sonra birincisi həmişə qabaqda olacaq. "Hansı saatdan sonra" sualı məhz n₀-dır.</div>
+
+      <h3><span class="st">4</span> n₀-ı necə tapmaq olar</h3>
+      <p>1) <span class="m">n = 1, 2, 3, …</span> üçün hər iki tərəfi hesabla və pozulan ən böyük <span class="m">n</span>-i tap. 2) Ondan sonrakı <span class="m">n₀</span> baza olur. 3) Addımın <span class="m">k ≥ n₀</span> üçün işlədiyini göstər. Misal: <span class="m">2ⁿ &gt; 20n</span>. n = 6: 64 &lt; 120 ✗; n = 7: 128 &lt; 140 ✗; n = 8: 256 &gt; 160 ✓; n = 9: 512 &gt; 180 ✓. Pozulan ən böyük n = 7-dir, deməli <span class="m">n₀ = 8</span>.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Sübut et: 1/1² + 1/2² + … + 1/n² &lt; 2 (hər n üçün).
+Həll. Bu iddianı birbaşa induksiya ilə sübut etmək çətindir: addımda 1/(k + 1)² əlavə olunur, amma "&lt; 2" yetərli deyil. Güclü iddia sübut edək:
+P(n):  1/1² + 1/2² + … + 1/n² ≤ 2 − 1/n.
+Baza. n = 1: 1 ≤ 2 − 1 = 1 ✓.
+Addım. 1/1² + … + 1/(k + 1)² ≤ 2 − 1/k + 1/(k + 1)². Göstərək ki, bu ≤ 2 − 1/(k + 1):
+1/(k + 1)² ≤ 1/k − 1/(k + 1) = 1/(k(k + 1)) ⟺ k(k + 1) ≤ (k + 1)² ✓.
+Deməli cəm ≤ 2 − 1/n &lt; 2. ∎ (Güclü iddia induksiyanı "qüvvətləndirir".)
+
+Məsələ 2. 2ⁿ &gt; n³ bərabərsizliyi hansı n-lərdə doğrudur? Ən kiçik n₀ ki, n ≥ n₀ üçün doğrudur?
+Həll. n = 9: 512 &lt; 729 ✗. n = 10: 1024 &gt; 1000 ✓. n = 11: 2048 &gt; 1331 ✓. Addım: k ≥ 10: 2ᵏ⁺¹ &gt; 2k³ ≥ (k + 1)³ ⟺ (1 + 1/k)³ ≤ 2, bu k ≥ 4 üçün doğrudur. n₀ = 10.
+
+Məsələ 3. Sübut et: 1·2 + 2·3 + … + n(n + 1) = n(n + 1)(n + 2)/3.
+Baza. n = 1: 2 = 1·2·3/3 ✓. Addım. k(k + 1)(k + 2)/3 + (k + 1)(k + 2) = (k + 1)(k + 2)(k + 3)/3 ✓ ∎</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bazanı <span class="m">n = 1</span> götürmək, halbuki iddia <span class="m">n = 1</span>-də doğru ola bilər, amma <span class="m">n = 2, 3, 4</span>-də yox: <span class="m">2ⁿ &gt; n²</span>.</li>
+        <li>Addımda <span class="m">k ≥ n₀</span> şərtini istifadə etməyi unutmaq: <span class="m">k² − 2k − 1 ≥ 0</span> hər <span class="m">k</span> üçün doğru deyil.</li>
+        <li>Bərabərsizliyi mənfi ədədə vuranda istiqaməti dəyişməmək.</li>
+        <li>Güclü iddia seçəndə baza halını yoxlamamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Baza = ilk n₀ (kiçik n-ləri əl ilə sına)
+Addım yalnız k ≥ n₀ üçün
+Çətin iddia → daha güclü iddia (məs. ≤ 2 − 1/n)
+2ⁿ &gt; n²: n ≥ 5;  n! &gt; 2ⁿ: n ≥ 4;  2ⁿ &gt; n³: n ≥ 10</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2ⁿ &gt; 3n bərabərsizliyi üçün ən kiçik n₀? <span class="ans">n = 1: 2 &lt; 3; n = 2: 4 &lt; 6; n = 3: 8 &lt; 9; n = 4: 16 &gt; 12 ✓; n₀ = 4.</span></li>
+        <li>n! &gt; 3ⁿ üçün n₀? <span class="ans">n = 6: 720 &lt; 729; n = 7: 5040 &gt; 2187 ✓ → n₀ = 7.</span></li>
+        <li>Niyə 2ⁿ &gt; n² iddiasının bazası n = 1 deyil? <span class="ans">n = 2, 3, 4-də bərabərsizlik pozulur; addım k ≥ 5 üçün işləyir, ona görə baza n = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Düstur təxmini, güclü induksiya, səhv sübutlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çox vaxt düstur verilmir — onu özün tapırsan: ilk hədləri hesablayırsan, qanunu <b>təxmin edirsən</b>, sonra induksiya ilə <b>sübut edirsən</b>. Bundan əlavə, bəzən P(k)-dan P(k + 1) almaq üçün tək P(k) yetərli olmur — bütün əvvəlki hallar lazım olur (güclü induksiya).</p>
+
+      <h3><span class="st">2</span> Təxmin et və sübut et</h3>
+      <div class="fm">a₁ = 1, aₙ₊₁ = 2aₙ + 1:   1; 3; 7; 15; 31; …   təxmin: aₙ = 2ⁿ − 1
+Baza. a₁ = 2¹ − 1 = 1 ✓.
+Addım. aₖ = 2ᵏ − 1 ⟹ aₖ₊₁ = 2(2ᵏ − 1) + 1 = 2ᵏ⁺¹ − 1 ✓</div>
+      <p>Başqa misal: <span class="m">a₁ = 1</span>, <span class="m">aₙ₊₁ = aₙ + 2n + 1</span> → <span class="m">1; 4; 9; 16</span> → <span class="m">aₙ = n²</span>. <span class="m">aₙ₊₁ = (n + 1)aₙ</span>, <span class="m">a₁ = 1</span> → <span class="m">aₙ = n!</span>.</p>
+      <p><b>Xətti rekurrent.</b> <span class="m">aₙ₊₁ = 2aₙ + d</span> üçün: <span class="m">aₙ₊₁ + d = 2(aₙ + d)</span>, yəni <span class="m">aₙ + d = (a₁ + d)·2ⁿ⁻¹</span>. Məsələn <span class="m">a₁ = 2</span>, <span class="m">aₙ₊₁ = 2aₙ − 1</span> → <span class="m">aₙ − 1 = 2ⁿ⁻¹</span> → <span class="m">aₙ = 2ⁿ⁻¹ + 1</span>: 2, 3, 5, 9, 17 ✓.</p>
+
+      <h3><span class="st">3</span> Güclü induksiya</h3>
+      <p>Addımda yalnız <span class="m">P(k)</span> deyil, <span class="m">P(n₀), P(n₀ + 1), …, P(k)</span> hamısını fərz etmək olar. Bu, iki əvvəlki həddən asılı ardıcıllıqlarda (<span class="m">aₙ₊₂ = 3aₙ₊₁ − 2aₙ</span>) və bölməyə əsaslanan məsələlərdə lazımdır. İki əvvəlki hədd lazımdırsa, <b>iki baza</b> yoxlanmalıdır.</p>
+      <div class="ex">a₁ = 1, a₂ = 3, aₙ₊₂ = 3aₙ₊₁ − 2aₙ.  Sübut: aₙ = 2ⁿ − 1.
+Baza. a₁ = 1, a₂ = 3 ✓ (2¹ − 1, 2² − 1).
+Addım. aₖ = 2ᵏ − 1 və aₖ₊₁ = 2ᵏ⁺¹ − 1 fərz edək:
+aₖ₊₂ = 3(2ᵏ⁺¹ − 1) − 2(2ᵏ − 1) = 6·2ᵏ − 3 − 2·2ᵏ + 2 = 4·2ᵏ − 1 = 2ᵏ⁺² − 1 ✓</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Şokolad plitəsi: n parçadan ibarət plitəni (hər dəfə bir parçanı düz xətt boyunca sındırmaqla) n ayrı kvadrata ayırmaq üçün tam n − 1 sındırma lazımdır.
+   Baza. n = 1: 0 sındırma ✓.
+   Addım (güclü). n = k + 1 parçanı ilk sındırma a və b parçaya ayırır (a + b = k + 1). Güclü fərziyyə: a parçanı ayırmaq a − 1, b parçanı ayırmaq b − 1 sındırma tələb edir (a ≤ k və b ≤ k). Cəmi 1 + (a − 1) + (b − 1) = a + b − 1 = k ✓.
+
+2) Turnir: n oyunçu, hər oyunda bir nəfər kənarlaşır → qalibi təyin etmək üçün n − 1 oyun.
+
+3) Əskinaslar 3 və 5 manat: 8-dən böyük və ya bərabər hər məbləği vermək olar.
+   Baza. 8 = 3 + 5, 9 = 3 + 3 + 3, 10 = 5 + 5.
+   Addım (güclü). n ≥ 11 üçün n − 3 ≥ 8 məbləği verilir (fərziyyə) → üzərinə 3 əlavə et ✓.
+   7 verilə bilməz: 3x + 5y = 7 tənliyinin natural-sıfır həlli yoxdur (y = 0: 7/3; y = 1: 2/3). Deməli ən böyük verilməyən məbləğ 7 = 3·5 − 3 − 5.</div>
+      <div class="life"><b>Həyatdan.</b> Hanoy qülləsi: <span class="m">n</span> diski köçürmək üçün minimum <span class="m">Hₙ</span> gediş; <span class="m">Hₙ = 2Hₙ₋₁ + 1</span>, <span class="m">H₁ = 1</span>. İlk hədlər 1, 3, 7, 15 → <span class="m">Hₙ = 2ⁿ − 1</span>, induksiya ilə sübut: yuxarıdakı birinci nümunə ilə eyni. 64 disk üçün 2⁶⁴ − 1 gediş lazımdır: saniyədə bir gedişlə yüz milyardlarla il çəkər.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri və səhv sübutlar</h3>
+      <div class="ex">Məsələ 1. Əskinaslar a və b manatdır (a, b qarşılıqlı sadə). Ən böyük verilməyən məbləğ ab − a − b (3 və 5 üçün 7). 4 və 7 üçün ən böyük verilməyən məbləği tap.
+Həll. 4·7 − 4 − 7 = 17. Yoxla: 18 = 4 + 7 + 7, 19 = 4 + 4 + 4 + 7, 20 = 4·5, 21 = 7·3; 17 isə 4x + 7y = 17 tənliyinin natural-sıfır həllinə malik deyil (y = 0: 17/4; y = 1: 10/4; y = 2: 3/4).
+
+Məsələ 2 ("Bütün atlar eyni rəngdədir" paradoksu). "Sübut": n at üçün induksiya. Baza n = 1 ✓. Addım: k + 1 at olsun. Birinci k atı bir qrup, sonuncu k atı başqa qrup say. Hər qrup fərziyyəyə görə eyni rəngdədir, ortaq atlar var (k − 1 at) → hamısı eyni rəngdədir. Səhv hardadır?
+Cavab. Addım k = 1 (yəni k + 1 = 2 at) üçün işləmir: qrupların ortaq atı yoxdur (k − 1 = 0), bir-birinə bağlanmırlar. Beləliklə P(1) ⟹ P(2) addımı yanlışdır və zəncir qırılır. Dərs: addım <b>bütün</b> k ≥ n₀ üçün işləməlidir.
+
+Məsələ 3. a₁ = 3, aₙ₊₁ = 2aₙ − 1. a₁₀ = ?
+Həll. 3; 5; 9; 17 → aₙ = 2ⁿ + 1. İnduksiya: 2(2ᵏ + 1) − 1 = 2ᵏ⁺¹ + 1 ✓. a₁₀ = 1024 + 1 = 1025.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Təxmin etdiyin düsturu sübutsuz qəbul etmək. İlk 5 halda doğru olan qanun sonra pozula bilər (misal: <span class="m">n² + n + 41</span> ilk 39 natural ədəddə sadə ədəd verir, amma <span class="m">n = 40</span>-da yox).</li>
+        <li>İki əvvəlki həddən asılı rekurrentdə bir baza ilə kifayətlənmək.</li>
+        <li>Güclü induksiyada fərziyyəni lazım olan <span class="m">k</span>-lar üçün göstərməmək.</li>
+        <li>Addımda ayrıca halı (kiçik <span class="m">k</span>) unutmaq: paradoksdakı kimi.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qanunu təxmin et (ilk 4–5 hədd) → induksiya ilə sübut et
+İki əvvəlki hədd → iki baza
+Güclü induksiya: P(n₀), …, P(k) ⟹ P(k + 1)
+Addım bütün k ≥ n₀ üçün işləməlidir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a₁ = 2</span>, <span class="m">aₙ₊₁ = aₙ + 2n</span>: ilk hədlər və düstur? <span class="ans">2; 4; 8; 14 → aₙ = n² − n + 2 (yoxla: aₖ₊₁ = k² − k + 2 + 2k = (k + 1)² − (k + 1) + 2).</span></li>
+        <li>6×4 şokolad plitəsini 24 kvadrata ayırmaq üçün neçə sındırma? <span class="ans">24 − 1 = 23.</span></li>
+        <li>3 və 7 manatlıq əskinaslarla ən böyük verilməyən məbləğ? <span class="ans">3·7 − 3 − 7 = 11.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

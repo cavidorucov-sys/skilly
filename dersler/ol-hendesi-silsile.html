@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Həndəsi silsilə dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-hendesi-silsile.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Həndəsi silsilə</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Ardıcıllıqlar — həndəsi silsilə</div>
+    <h1>Həndəsi silsilə</h1>
+    <p>Bakteriyalar hər saat iki dəfə çoxalır, bank pulu hər il eyni faizlə artırır, top hər yerə dəyəndə əvvəlkindən aşağı qalxır. Bu hallarda ədədlər <b>toplanmır, vurulur</b>. Belə ardıcıllığa <b>həndəsi silsilə</b> deyilir. Dərslərdə sıfırdan başlayıb sonsuz azalan silsilə və dövri onluq kəsrlərə qədər gedəcəyik.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Məxrəc və n-ci hədd</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xarakteristik xassə</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sₙ cəmi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sonsuz azalan</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Məxrəc q və n-ci hədd</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bir kağızı yarıya qatlasan, qat sayı 1, 2, 4, 8, 16, … olur. Hər dəfə <b>2 ilə vurulur</b>. 10 qatdan sonra neçə qat var? Hamısını yazmaq lazım deyil: <span class="m">2¹⁰</span>. Belə ardıcıllığı düsturla idarə edəcəyik.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Hər hədd əvvəlkini eyni <span class="m">q</span> ədədinə vurmaqla alınırsa (<span class="m">b₁ ≠ 0</span>, <span class="m">q ≠ 0</span>), bu <b>həndəsi silsilədir</b>, <span class="m">q</span> isə onun <b>məxrəcidir</b>:</p>
+      <div class="fm">bₙ₊₁ = bₙ·q,   q = b₂ : b₁ = b₃ : b₂ = …
+bₙ = b₁·qⁿ⁻¹
+bₘ : bₖ = q^(m − k)</div>
+      <p><b>q-nun mənası.</b> <span class="m">q &gt; 1</span> — modulça artır; <span class="m">0 &lt; q &lt; 1</span> — modulça azalır (məs. <span class="m">q = 1/2</span>); <span class="m">q &lt; 0</span> — işarə növbələşir (<span class="m">3; −6; 12; −24</span>); <span class="m">q = 1</span> — bütün hədlər eynidir.</p>
+      <p>Ədədi silsilədə fərq (<span class="m">+d</span>) idi, burada <b>nisbət</b> (<span class="m">·q</span>). Ona görə <span class="m">q</span>-nu tapanda <b>bölürük</b>, çıxmırıq.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3; 6; 12; 24; … silsiləsinin 8-ci həddi
+   q = 6 : 3 = 2.  b₈ = 3·2⁷ = 3·128 = 384
+
+2) 162; 54; 18; … silsiləsinin 6-cı həddi
+   q = 54 : 162 = 1/3.  b₆ = 162·(1/3)⁵ = 162/243 = 2/3
+
+3) b₃ = 12, b₆ = −96.  b₉ = ?
+   b₆ : b₃ = q³ → −96 : 12 = −8, q = −2   (tək qüvvət: işarə birqiymətlidir)
+   b₉ = b₆·q³ = −96·(−8) = 768
+
+4) b₂ = 6, b₄ = 54, bütün hədlər müsbətdir.  b₅ = ?
+   b₄ : b₂ = q² = 9 → q = 3 (müsbət, çünki hədlər müsbətdir; q = −3 işarəni dəyişərdi)
+   b₅ = 54·3 = 162</div>
+      <div class="life"><b>Həyatdan.</b> Bakteriya hər saat 3 dəfə çoxalır, başlanğıcda 4-dür. 5 saatdan sonra <span class="m">4·3⁵ = 972</span>. Belə sürətli artıma "eksponensial artım" deyirlər. Əksinə, qiymət hər il 10% ucuzlaşırsa, qiymətlər <span class="m">q = 0,9</span> məxrəcli silsilədir: 1000; 900; 810; 729; …</div>
+
+      <h3><span class="st">4</span> Nömrəni tapmaq və "ilk dəfə aşmaq"</h3>
+      <p>Verilən ədədin nömrəsini tapanda <span class="m">b₁·qⁿ⁻¹ = x</span> bərabərliyindən <span class="m">qⁿ⁻¹</span>-i ayırıb 2-nin (3-ün…) qüvvəti kimi yaz. Məsələn, <span class="m">5; 10; 20; …</span>-də 1280: <span class="m">2ⁿ⁻¹ = 256 = 2⁸</span>, <span class="m">n = 9</span>.</p>
+      <p>"Hansı həddi ilk dəfə 1000-dən böyükdür" kimi suallarda hədləri ardıcıl yaz: 3; 6; 12; 24; 48; 96; 192; 384; 768; 1536 → 10-cu. Logaritm lazım deyil, 2-nin qüvvətlərini bilmək kifayətdir: <span class="m">2⁸ = 256</span>, <span class="m">2⁹ = 512</span>, <span class="m">2¹⁰ = 1024</span>.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Həndəsi silsilədə b₂ = 6, b₅ = 162. b₇-ni tap.
+Həll. b₅ : b₂ = q³ = 27 → q = 3. b₁ = b₂ : q = 2. b₇ = 2·3⁶ = 2·729 = 1458.
+Yoxla: 2; 6; 18; 54; 162 ✓.
+
+Məsələ 2. 3; 6; 12; … silsiləsində 1000-dən kiçik neçə hədd var?
+Həll. 3·2ⁿ⁻¹ &lt; 1000 → 2ⁿ⁻¹ &lt; 333,3. 2⁸ = 256 &lt; 333, 2⁹ = 512 &gt; 333 → n − 1 ≤ 8, n ≤ 9.
+Cavab: 9 hədd (b₉ = 3·256 = 768, b₁₀ = 1536).</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">q</span>-nu fərq kimi tapmaq: <span class="m">q = b₂ − b₁</span>. Düz: <span class="m">q = b₂ : b₁</span>.</li>
+        <li><span class="m">bₙ = b₁·qⁿ</span> yazmaq. Düz: <span class="m">qⁿ⁻¹</span> (<span class="m">n = 1</span> üçün <span class="m">b₁</span> alınmalıdır).</li>
+        <li>Cüt qüvvətdə <span class="m">q² = 9</span> ⟹ yalnız <span class="m">q = 3</span> demək. İki variant var: <span class="m">±3</span>; ikinci şərt (müsbətlik və ya başqa hədd) seçir.</li>
+        <li>Mənfi <span class="m">q</span>-ni qüvvətə yüksəldəndə mötərizəni unutmaq: <span class="m">(−2)⁴ = 16</span>, <span class="m">−2⁴ = −16</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">bₙ = b₁·qⁿ⁻¹;   q = b₂ : b₁
+bₘ : bₖ = q^(m − k)
+Cüt qüvvət ⟹ ±;  tək qüvvət ⟹ yeganə q</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2; −6; 18; … silsiləsində <span class="m">b₅</span> = ? <span class="ans">q = −3, b₅ = 2·(−3)⁴ = 162.</span></li>
+        <li><span class="m">b₂ = 4</span>, <span class="m">b₅ = 108</span>. <span class="m">q</span> = ? <span class="ans">q³ = 27, q = 3.</span></li>
+        <li>1; 2; 4; … silsiləsinin hansı həddi ilk dəfə 100-dən böyükdür? <span class="ans">2⁶ = 64, 2⁷ = 128: 2ⁿ⁻¹ = 128 → n = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Xarakteristik xassə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çox vaxt məsələdə <span class="m">b₁</span> və <span class="m">q</span> ayrıca verilmir. Məsələn: "<span class="m">b₃·b₉ = 144</span>, <span class="m">b₆</span> neçədir?" Hər ikisini tapmadan cavab almaq üçün silsilənin simmetriya xassəsi lazımdır. Bu, Dərs 2 (ədədi silsilə)-dəki xassənin vurma ilə analoqudur.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p><span class="m">bₙ₋₁ = bₙ/q</span> və <span class="m">bₙ₊₁ = bₙ·q</span>. Bunları vursaq <span class="m">q</span> ixtisar olur:</p>
+      <div class="fm">bₙ² = bₙ₋₁·bₙ₊₁          (hətta bₙ² = bₙ₋ⱼ·bₙ₊ⱼ)
+m + n = k + l  ⟹  bₘ·bₙ = bₖ·bₗ</div>
+      <p>Hədlər müsbətdirsə, <span class="m">bₙ = √(bₙ₋₁·bₙ₊₁)</span> — həndəsi orta. Hədlərin işarəsi növbələşərsə, <span class="m">bₙ² = …</span> bərabərliyi yenə doğrudur, amma <span class="m">bₙ</span>-in özü kvadrat kökdən birqiymətli çıxmır — şərtə bax.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Müsbət hədli silsilədə b₃·b₉ = 144.  b₆ = ?
+   3 + 9 = 6 + 6 → b₃·b₉ = b₆² = 144 → b₆ = 12
+
+2) b₂·b₁₁ = 20.  b₅·b₈ = ?
+   2 + 11 = 5 + 8 = 13 → b₅·b₈ = 20
+
+3) x; 6; 18 həndəsi silsilənin ardıcıl üç həddidir.
+   6² = 18x → 36 = 18x → x = 2.   (q = 3)
+
+4) x − 1; x + 3; 6x həndəsi silsilənin ardıcıl üç həddidir. x = ?
+   (x + 3)² = 6x(x − 1) → x² + 6x + 9 = 6x² − 6x → 5x² − 12x − 9 = 0
+   D = 144 + 180 = 324 = 18² → x = (12 ± 18)/10 → x = 3 və ya x = −3/5
+   x = 3: 2; 6; 18 (q = 3).  x = −3/5: −8/5; 12/5; −18/5 (q = −3/2). İkisi də yarayır.</div>
+      <div class="life"><b>Həyatdan.</b> Maşının qiyməti hər il 10% ucuzlaşır: 1000; 900; 810 manat. Ortadakı qiymət qonşularının <i>həndəsi</i> ortasıdır: <span class="m">900² = 810 000 = 1000·810</span>. Ədədi orta isə (1000 + 810)/2 = 905 olardı — düz deyil.</div>
+
+      <h3><span class="st">4</span> Üç hədd üçün orta ilə yazılış</h3>
+      <div class="fm">3 hədd:  m/q,  m,  m·q          (hasil = m³)
+5 hədd:  m/q², m/q, m, mq, mq²    (hasil = m⁵)</div>
+      <p>Hasil verilibsə, orta hədd dərhal çıxır. Qalan bir tənlik <span class="m">q</span> üçün olur.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Üç müsbət ədəd artan həndəsi silsilə təşkil edir, cəmləri 26, hasilləri 216-dır. Ədədləri tap.
+Həll. m/q, m, mq. Hasil m³ = 216 → m = 6.
+Cəm: 6/q + 6 + 6q = 26 → 6q + 6/q = 20 → 3q² − 10q + 3 = 0.
+D = 100 − 36 = 64 → q = (10 ± 8)/6 → q = 3 və ya q = 1/3. Artan → q = 3.
+Ədədlər: 2; 6; 18. Yoxla: 2 + 6 + 18 = 26; 2·6·18 = 216 ✓.
+
+Məsələ 2. Ədədi silsilənin 1-ci, 3-cü və 7-ci hədləri həndəsi silsilə təşkil edir (d ≠ 0). Həndəsi silsilənin məxrəcini tap.
+Həll. a₁, a₁ + 2d, a₁ + 6d. Xassə: (a₁ + 2d)² = a₁(a₁ + 6d).
+a₁² + 4a₁d + 4d² = a₁² + 6a₁d → 4d² = 2a₁d. d ≠ 0 → a₁ = 2d.
+Hədlər: 2d; 4d; 8d → q = 2.
+
+Məsələ 3. a, b, c həndəsi silsilədirsə, sübut et: (a² + b²)(b² + c²) = (ab + bc)².
+Həll. b² = ac. Sol tərəf: a²b² + a²c² + b⁴ + b²c². Sağ tərəf: a²b² + 2ab²c + b²c².
+Fərq: a²c² + b⁴ − 2ab²c = (ac − b²)² = 0. ∎</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">bₘ·bₙ = bₘ₊ₙ</span> yazmaq. Yanlışdır: <span class="m">b₂·b₃ ≠ b₅</span>.</li>
+        <li>Nömrələrin cəmini yoxlamamaq: <span class="m">b₂·b₉</span> ilə <span class="m">b₄·b₆</span> eyni deyil (11 ≠ 10).</li>
+        <li>Həndəsi ortanı ədədi orta kimi hesablamaq: 2 və 18-in arasında həndəsi orta 6-dır, 10 deyil.</li>
+        <li><span class="m">b² = 36</span> ⟹ <span class="m">b = 6</span> yazmaq. İşarə növbələşərsə <span class="m">−6</span> da ola bilər; şərtə bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">bₙ² = bₙ₋₁·bₙ₊₁
+m + n = k + l ⟹ bₘ·bₙ = bₖ·bₗ
+3 hədd: m/q, m, mq  (hasil m³)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Müsbət hədlərlə <span class="m">b₄·b₁₂ = 81</span>. <span class="m">b₈</span> = ? <span class="ans">4 + 12 = 8 + 8, b₈² = 81, b₈ = 9.</span></li>
+        <li>4; x; 36 müsbət həndəsi silsilədir. x = ? <span class="ans">x² = 144, x = 12.</span></li>
+        <li><span class="m">b₃·b₇ = 20</span>. <span class="m">b₄·b₆</span> = ? <span class="ans">3 + 7 = 4 + 6, cavab 20.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İlk n həddin cəmi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Zəncirvari məktub: sən 3 nəfərə göndərirsən, onların hər biri 3 nəfərə, və s. 6 dövrədə neçə nəfər məktub alıb? <span class="m">3 + 9 + 27 + 81 + 243 + 729</span>. Bu cəmi düsturla tapacağıq. Qədim rəvayətdə şahmat ixtiracısı birinci xanaya 1, ikinciyə 2, üçüncüyə 4 dən istəyib — yekunda dənlərin sayı kainatdakı bütün buğdadan çox olub.</p>
+
+      <h3><span class="st">2</span> Düstur və sübut</h3>
+      <p><span class="m">Sₙ = b₁ + b₁q + b₁q² + … + b₁qⁿ⁻¹</span>. Hər iki tərəfi <span class="m">q</span>-yə vur və çıx:</p>
+      <div class="fm">Sₙ·q = b₁q + b₁q² + … + b₁qⁿ
+Sₙ·q − Sₙ = b₁qⁿ − b₁     (ortadakılar ixtisar olur)
+Sₙ = b₁·(qⁿ − 1)/(q − 1),   q ≠ 1
+q = 1 olsa: Sₙ = n·b₁</div>
+      <p>Eyni fikir qısa vurma düsturudur: <span class="m">(q − 1)(1 + q + … + qⁿ⁻¹) = qⁿ − 1</span>. İkinci hal: <span class="m">q &lt; 1</span> olanda <span class="m">Sₙ = b₁(1 − qⁿ)/(1 − q)</span> bərabər düsturdur (surət və məxrəci −1-ə vurmaq).</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 3; 6; 12; … ilk 6 hədd:  S₆ = 3·(2⁶ − 1)/(2 − 1) = 3·63 = 189
+
+2) b₁ = 2, q = −3, n = 4:  S₄ = 2·((−3)⁴ − 1)/(−3 − 1) = 2·80/(−4) = −40
+   Yoxla: 2 − 6 + 18 − 54 = −40 ✓
+
+3) 5; 10; 20; …, Sₙ = 315.  n = ?
+   5·(2ⁿ − 1) = 315 → 2ⁿ − 1 = 63 → 2ⁿ = 64 → n = 6
+
+4) b₁ = 1, q = 3:  b₃ + b₄ + b₅ + b₆ = ?
+   İlk həddi b₃ = 9, say 4:  9·(3⁴ − 1)/(3 − 1) = 9·40 = 360
+   Yoxla: 9 + 27 + 81 + 243 = 360 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Ay ərzində ilk gün 1 manat, hər gün əvvəlki günün iki mislini yığırsan. 10-cu gün 512 manat qoyursan, ilk 10 gündə cəmi <span class="m">1·(2¹⁰ − 1) = 1023</span> manat. Sonuncu gün qoyduğun 512, əvvəlki bütün günlərin cəmindən (511) düz 1 çoxdur.</div>
+
+      <h3><span class="st">4</span> Tərs məsələ və hissə cəmi</h3>
+      <p><b>Hissə cəmi:</b> <span class="m">bₖ + … + bₘ</span> üçün ilk həd <span class="m">bₖ</span> götürülür, say <span class="m">m − k + 1</span>. <b>n-i tapmaq:</b> <span class="m">qⁿ</span>-i ayırıb qüvvət kimi yaz.</p>
+      <p>Hesabda 2-nin qüvvətləri cədvəli lazımdır: <span class="m">2⁷ = 128</span>, <span class="m">2⁸ = 256</span>, <span class="m">2⁹ = 512</span>, <span class="m">2¹⁰ = 1024</span>, <span class="m">2¹² = 4096</span>; 3-ün: <span class="m">3⁴ = 81</span>, <span class="m">3⁵ = 243</span>, <span class="m">3⁶ = 729</span>.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. Tərəzi və çəkilər: 1, 2, 4, 8, …, 512 qram çəkiləri var (hər biri bir dənə). Sübut et ki, 1-dən 1023-ə qədər istənilən tam çəkini bu çəkilərlə çəkmək olar.
+Həll. Cəm: 1 + 2 + … + 512 = (2¹⁰ − 1)/(2 − 1) = 1023 — maksimal çəki. Hər ədədin 2-lik sistemdə yazılışı 0 və 1-lərdən ibarətdir; "1" olan mövqelərdəki çəkiləri götürürük: 37 = 32 + 4 + 1. 10 çəkinin alt çoxluqlarının sayı 2¹⁰ = 1024 (boş çoxluq daxil), cəmlər fərqlidir (2-lik yazılış yeganədir) → 0-dan 1023-ə qədər hamısı alınır. ∎
+
+Məsələ 2. 1 + 11 + 111 + 1111 + 11111 = ?
+Həll. Hər hədd (10ᵏ − 1)/9 şəklindədir. 9S = (10 − 1) + (100 − 1) + … + (10⁵ − 1) = (10 + 100 + … + 10⁵) − 5 = 111 110 − 5 = 111 105.
+S = 111 105 : 9 = 12 345.
+(Ümumi: Sₙ = (10ⁿ⁺¹ − 10 − 9n)/81.)
+
+Məsələ 3. Həndəsi silsilənin ilk 3 həddinin cəmi 21, ilk 6 həddinin cəmi 189. İlk həddi tap.
+Həll. S₆ = S₃ + q³S₃ = S₃(1 + q³) → 189 = 21·(1 + q³) → 1 + q³ = 9 → q = 2. S₃ = b₁(1 + 2 + 4) = 7b₁ = 21 → b₁ = 3.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Düsturda <span class="m">qⁿ − 1</span> əvəzinə <span class="m">qⁿ⁻¹ − 1</span> yazmaq. Cəmdə üstün <span class="m">n</span>, hədd üçün isə <span class="m">n − 1</span> işlənir.</li>
+        <li><span class="m">q = 1</span> halını unutmaq: bu halda düstur 0/0 verir, cəm sadəcə <span class="m">n·b₁</span>-dir.</li>
+        <li>Mənfi <span class="m">q</span>-də mötərizəni unutmaq: <span class="m">(−3)⁴ = 81</span>.</li>
+        <li>Hissə cəmində ilk həddi <span class="m">b₁</span> götürmək. Düz: <span class="m">bₖ</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sₙ = b₁(qⁿ − 1)/(q − 1)  (q ≠ 1);   q = 1 ⟹ n·b₁
+1 + 2 + 4 + … + 2ⁿ⁻¹ = 2ⁿ − 1
+S₂ₙ = Sₙ(1 + qⁿ)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1 + 2 + 4 + … + 256 = ? <span class="ans">9 hədd, 2⁹ − 1 = 511.</span></li>
+        <li>2; 6; 18; … ilk 5 həddin cəmi? <span class="ans">q = 3, 2·(3⁵ − 1)/2 = 242.</span></li>
+        <li>3; 6; 12; … cəmi 93 olarsa, <span class="m">n</span> = ? <span class="ans">3(2ⁿ − 1) = 93 → 2ⁿ = 32 → n = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Sonsuz azalan həndəsi silsilə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Zenon paradoksu: Axilles tısbağanı qova-qova gedir. Hər dəfə onun qaldığı yerə çatanda tısbağa bir az irəli getmiş olur. Sonsuz sayda məsafə var — amma onların cəmi <b>sonludur</b>. Bu silsilə mövzusunun ən güclü fikridir: sonsuz sayda müsbət ədədin cəmi sonlu ola bilər.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Əgər <span class="m">|q| &lt; 1</span> olarsa, <span class="m">qⁿ</span> n artdıqca sıfıra yaxınlaşır (<span class="m">(1/2)¹⁰ ≈ 0,001</span>). Onda <span class="m">Sₙ = b₁(1 − qⁿ)/(1 − q)</span> düsturunda <span class="m">qⁿ → 0</span> və:</p>
+      <div class="fm">S = b₁ / (1 − q),   |q| &lt; 1
+Məs.: 1/2 + 1/4 + 1/8 + … = (1/2)/(1 − 1/2) = 1
+|q| ≥ 1 olsa, cəm sonlu deyil (yoxsa mənası yoxdur).</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 12 + 4 + 4/3 + …  b₁ = 12, q = 1/3
+   S = 12/(1 − 1/3) = 12 : (2/3) = 18
+
+2) 9 − 3 + 1 − 1/3 + …  q = −1/3
+   S = 9/(1 + 1/3) = 9 : (4/3) = 27/4
+
+3) Cəm 12, q = 3/4.  b₁ = ?
+   12 = b₁/(1/4) → b₁ = 12·(1/4) = 3
+
+4) b₁ = 20, S = 25.  q = ?
+   1 − q = 20/25 = 4/5 → q = 1/5</div>
+      <div class="life"><b>Həyatdan.</b> Top 10 m-dən düşür və hər dəfə əvvəlki hündürlüyün 2/3-i qədər sıçrayır. Bütün yol: 10 + 2·(10·2/3 + 10·(2/3)² + …) = <span class="m">10 + 2·(20/3)/(1/3) = 10 + 40 = 50 m</span> (sıçrayışlar yuxarı-aşağı iki dəfə sayılır).</div>
+
+      <h3><span class="st">4</span> Dövri onluq kəsr</h3>
+      <p><span class="m">0,(27) = 0,27 + 0,0027 + 0,000027 + …</span> — <span class="m">b₁ = 0,27</span>, <span class="m">q = 0,01</span>. <span class="m">S = 0,27/0,99 = 27/99 = 3/11</span>. Qısa qayda: dövr <span class="m">ab</span> iki rəqəmdirsə 99-a, üç rəqəmlidirsə 999-a bölünür:</p>
+      <div class="fm">0,(a) = a/9;   0,(ab) = ab/99;   0,(abc) = abc/999    (sonra ixtisar et)
+0,(9) = 9/9 = 1
+Qarışıq: 0,1(6): x = 0,1666… ; 10x = 1,666… ; 100x = 16,666…
+   100x − 10x = 15 → x = 15/90 = 1/6</div>
+      <p><span class="m">0,(9) = 1</span> təəccüblü görünür, amma düsturdan çıxır: <span class="m">0,9/(1 − 0,1) = 1</span>.</p>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. 0,(36) kəsrini adi kəsr kimi yaz.
+Həll. x = 0,(36). 100x = 36,(36). 100x − x = 36 → 99x = 36 → x = 36/99 = 4/11.
+
+Məsələ 2. Sonsuz azalan həndəsi silsilənin cəmi 6, hədlərinin kvadratlarının cəmi 12-dir. Silsilənin ilk həddini tap.
+Həll. Kvadratlar b₁², b₁²q², … — məxrəci q² olan sonsuz azalan silsilə: b₁²/(1 − q²) = 12.
+Birinci şərt: b₁/(1 − q) = 6. Kvadratını alıb bölək:
+(b₁²/(1 − q)²) : (b₁²/(1 − q²)) = 36/12 = 3 → (1 − q²)/(1 − q)² = (1 + q)/(1 − q) = 3.
+1 + q = 3 − 3q → q = 1/2. b₁ = 6·(1 − 1/2) = 3.
+Yoxla: 3/(1/2) = 6; 9/(1 − 1/4) = 12 ✓.
+
+Məsələ 3. Tərəfi 1 olan kvadratın içinə mərkəzləri üst-üstə düşən, tərəfi əvvəlkinin yarısı olan kvadratlar yazılır və s. (sonsuz). Hamısının sahələrinin cəmi?
+Həll. Sahələr: 1; 1/4; 1/16; … q = 1/4. S = 1/(1 − 1/4) = 4/3.</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">|q| ≥ 1</span> olanda <span class="m">b₁/(1 − q)</span> tətbiq etmək. Sonsuz cəm yoxdur (və ya məsələ düzgün deyil).</li>
+        <li>Mənfi <span class="m">q</span>-də: <span class="m">1 − q = 1 + |q|</span>, <span class="m">1 − |q|</span> deyil.</li>
+        <li>Dövri kəsrdə ixtisarı unutmaq: <span class="m">0,(36) = 36/99 = 4/11</span>, <span class="m">36/99</span> tam cavab deyil.</li>
+        <li>Topun yolunda sıçrayışları bir dəfə saymaq: hər sıçrayış yuxarı və aşağıdır, iki dəfə.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|q| &lt; 1:  S = b₁/(1 − q)
+0,(ab) = ab/99, sonra ixtisar;  0,(9) = 1
+S₂ = b₁²/(1 − q²)  (kvadratlar silsiləsi)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>8 + 4 + 2 + … = ? <span class="ans">8/(1 − 1/2) = 16.</span></li>
+        <li>0,(45) = ? (ixtisarlı) <span class="ans">45/99 = 5/11.</span></li>
+        <li>S = 10, q = 1/5. <span class="m">b₁</span> = ? <span class="ans">10·(4/5) = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
