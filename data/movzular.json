@@ -508,19 +508,22 @@
    "bolme": "Funksiyalar",
    "ad": "Funksiyanın xassələri; tərs və mürəkkəb funksiya",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-funksiya-xasse.html"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "[x] və {x} funksiyaları",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-tam-hisse.html"
   },
   {
    "bolme": "Funksiyalar",
    "ad": "Funksional tənliklər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
+   "ders": "dersler/ol-funksional.html"
   },
   {
    "bolme": "Triqonometriya",

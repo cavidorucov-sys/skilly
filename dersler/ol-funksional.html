@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Funksional tənliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-funksional.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Funksional tənliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Funksional tənliklər və onların bəzi həlli üsulları</div>
+    <h1>Funksional tənliklər</h1>
+    <p>Adi tənlikdə naməlum <b>ədəddir</b>, funksional tənlikdə naməlum <b>funksiyanın özüdür</b>. Məsələn: "<span class="m">f(x + y) = f(x) + f(y) + 2xy</span>, <span class="m">f(1) = 1</span>. <span class="m">f(2026)</span> neçədir?" Funksiyanı tapmaq üçün əsas alət çox sadədir: tənlikdə <b>ağıllı qiymətlər qoymaq</b>. Burada üç üsulu öyrənəcəksən: qiymət qoyma, Koşi tipli tənliklər, <span class="m">x → 1/x</span> əvəzləməsi.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, olimpiada məsələlərini əvvəl özün həll etməyə çalış, sonra həllə bax. Sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Qiymət qoyma</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Koşi tipli</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>f(x) və f(1/x)</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Qiymət qoyma üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sənə funksiyanın düsturunu vermirlər. Yalnız bir <b>qayda</b> verirlər: "iki ədədi toplayanda funksiyanın qiymətləri belə bağlanır". Qaydadan funksiyanı bərpa etmək lazımdır — bu, detektiv işidir. İzləri tapmaq üçün qaydaya sadə ədədlər qoyursan: 0, 1, <span class="m">y = x</span>.</p>
+      <div class="life"><b>Həyatdan.</b> Mağazada qiymət cədvəli: 1 kq alma 3 manat. 2 kq-ın qiyməti 1 kq + 1 kq = 6 manat. Hər yeni kq əvvəlkinə 3 manat əlavə edir. Bu da "<span class="m">f(n + 1) = f(n) + 3</span>" funksional tənliyidir.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">x = 0 və ya y = 0   →  f(0)-ı tap
+x = 1 və ya y = 1   →  f(n + 1)-i f(n) ilə bağla (rekurrent)
+y = x               →  f(2x)-i f(x) ilə bağla
+y = −x              →  f(x) ilə f(−x)-i bağla
+x və y yerini dəyiş →  simmetriya, yeni tənlik</div>
+      <p>Qaydanı belə tətbiq et: (1) bir neçə kiçik qiymət hesabla (<span class="m">f(1), f(2), f(3), …</span>); (2) qanunu <b>gör</b>; (3) <b>isbat et</b> (adətən induksiya və ya teleskop cəmi); (4) tapılan funksiyanı tənliyə qoyub <b>yoxla</b>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Natural ədədlərdə f(x + y) = f(x) + f(y) + 2xy və f(1) = 1. f(n) = ?
+  y = 1:  f(x + 1) = f(x) + 1 + 2x.
+  f(2) = 1 + 1 + 2 = 4,  f(3) = 4 + 1 + 4 = 9,  f(4) = 9 + 1 + 6 = 16.
+  Qanun: f(n) = n².   Yoxla: (x + y)² = x² + y² + 2xy ✓.
+  f(2026) = 2026² = 4 104 676.
+
+f(1) = 2, f(2) = 5 və f(n + 2) = f(n + 1) − f(n). f(7) = ?
+  f(3) = 5 − 2 = 3,  f(4) = 3 − 5 = −2,  f(5) = −2 − 3 = −5,
+  f(6) = −5 + 2 = −3,  f(7) = −3 + 5 = 2 = f(1).   Period 6-dır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ 1. Natural m, n üçün f(m + n) = f(m) + f(n) + mn və f(1) = 1.
+f(2026) = ?
+
+Həll. n = 1 qoyaq: f(m + 1) = f(m) + f(1) + m = f(m) + m + 1.
+  f(2) = f(1) + 2,  f(3) = f(2) + 3,  …,  f(n) = f(n − 1) + n.
+Hamısını toplasaq (teleskop): f(n) = 1 + 2 + 3 + … + n = n(n + 1)/2.
+Yoxlama: (m+n)(m+n+1)/2 = m(m+1)/2 + n(n+1)/2 + mn ✓.
+f(2026) = 2026 · 2027 / 2 = 1013 · 2027 = 2 053 351. ∎
+Fikir: bir dəyişəni 1 seç, rekurrent al, cəmlə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qanunu 2–3 qiymətdən "görüb" isbat etmədən qəbul etmək. Qanun induksiya və ya teleskoplamaqla əsaslandırılmalıdır.</li>
+        <li>Tapılan funksiyanı tənliyə qoyub yoxlamamaq.</li>
+        <li><span class="m">f(0)</span> təyin olunmayan yerdə (məsələn, yalnız natural ədədlərdə) <span class="m">x = 0</span> qoymaq.</li>
+        <li>Teleskop cəmində hədlərin sayını səhv saymaq: <span class="m">n − 1</span> addım var, <span class="m">n</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">y = 1 → rekurrent: f(n + 1) = f(n) + …
+Kiçik qiymətlər → qanun → isbat → yoxlama.
+Teleskop: f(n) = f(1) + [f(2) − f(1)] + … + [f(n) − f(n−1)].
+Dövrü rekurrentdə dövrü tap (f(n+2) = f(n+1) − f(n): period 6).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Natural x, y üçün <span class="m">f(x + y) = f(x) + f(y) + 2xy</span>, <span class="m">f(1) = 3</span>. <span class="m">f(2) = ?</span> <span class="ans">x = y = 1: f(2) = 3 + 3 + 2 = 8.</span></li>
+        <li><span class="m">f(1) = 1</span>, <span class="m">f(n + 1) = f(n) + n</span>. <span class="m">f(5) = ?</span> <span class="ans">1, 2, 4, 7, 11 → f(5) = 11.</span></li>
+        <li><span class="m">f(1) = 2</span>, <span class="m">f(2) = 5</span>, <span class="m">f(n + 2) = f(n + 1) − f(n)</span>. <span class="m">f(13) = ?</span> <span class="ans">Period 6; 13 = 6·2 + 1 → f(13) = f(1) = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Koşi tipli tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ən məşhur funksional tənlik: <span class="m">f(x + y) = f(x) + f(y)</span> ("cəmin qiyməti qiymətlərin cəmidir"). Düz mütənasib asılılıq belədir: 3 litr 6 manatdırsa, 5 litr = 3 litr + 2 litr. Bu tənliyin natural, tam və rasional ədədlərdə həlli yalnız <span class="m">f(x) = cx</span>-dir.</p>
+      <div class="life"><b>Həyatdan.</b> Su sayğacı: 9 litrın qiyməti 21 qəpikdir. 1098 litr = 122 dəfə 9 litr, deməli <span class="m">122 · 21 = 2562</span> qəpik. Qiymət həcmə mütənasibdir — Koşi tənliyinin cavabı.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">f(x + y) = f(x) + f(y)  ⇒  f(x) = c·x,  c = f(1)    (ℕ, ℤ, ℚ üzərində)
+f(xy) = f(x) + f(y)     ⇒  hasil cəmə çevrilir (loqarifm kimi), f(1) = 0
+f(xy) = f(x)·f(y)       ⇒  f sadə ədədlərdəki qiymətlərdən qurulur</div>
+      <p><b>Niyə f(x) = cx?</b> (1) <span class="m">x = y = 0</span> → <span class="m">f(0) = 0</span>. (2) <span class="m">f(n) = n·f(1)</span> — induksiya, <span class="m">n</span> dəfə toplayırıq. (3) <span class="m">y = −x</span> → <span class="m">f(−x) = −f(x)</span>, mənfi tam ədədlər də olur. (4) <span class="m">f(1) = q·f(1/q)</span> → <span class="m">f(1/q) = f(1)/q</span>, sonra <span class="m">f(p/q) = (p/q)·f(1)</span>.</p>
+      <p>Diqqət: həqiqi ədədlər üzərində əlavə şərt (artan, kəsilməz, məhdud) lazımdır, əks halda qəribə həllər olur. Məsələdə hansı çoxluq verilib, ona bax.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Natural ədədlərdə f(xy) = f(x)·f(y), f(2) = 3, f(3) = 5. f(72) = ?
+  72 = 8 · 9 = 2³ · 3²
+  f(72) = f(2)³ · f(3)² = 27 · 25 = 675.
+
+Müsbət ədədlərdə f(xy) = f(x) + f(y), f(2) = 1, f(3) = 2. f(12) = ?
+  12 = 2 · 2 · 3  →  f(12) = 1 + 1 + 2 = 4.
+  Həmçinin f(1) = 0 (x = y = 1), f(1/x) = −f(x).</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ 2. f: ℚ → ℚ funksiyası bütün rasional x, y üçün f(x + y) = f(x) + f(y)
+şərtini ödəyir və f(6) = 15. f(2026) = ?
+
+Həll. Koşi tənliyi: f(x) = c·x.
+  f(6) = 6c = 15  →  c = 5/2.
+  f(2026) = (5/2) · 2026 = 5 · 1013 = 5065.
+Başqa yol: 2026 = 6 · (2026/6), yəni f(2026) = (2026/6) · f(6) = (1013/3) · 15 = 5065. ∎
+Fikir: f(x) = cx; sabiti bir verilmiş qiymətdən tap.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tənlikləri qarışdırmaq. <span class="m">f(2) = 1</span> olanda <span class="m">f(xy) = f(x) + f(y)</span> üçün <span class="m">f(8) = 3</span>, <span class="m">f(x + y) = f(x) + f(y)</span> üçün isə <span class="m">f(8) = 4</span>.</li>
+        <li>Natural ədədlərdə <span class="m">f(x + y) = f(x) + f(y)</span> görüb <span class="m">f(0) = 0</span>, <span class="m">f(−1)</span> kimi qiymətlər istifadə etmək (təyin oblastı natural ədədlərdirsə, olmaz).</li>
+        <li><span class="m">f(xy) = f(x)f(y)</span> üçün hər ədədin ayrıca qiymətini tələb etmək. Əslində yalnız sadə ədədlərin qiymətləri kifayətdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">f(x + y) = f(x) + f(y)  ⇒  f(x) = cx (ℕ, ℤ, ℚ), c = f(1).
+f(xy) = f(x) + f(y)  ⇒  f(1) = 0, f(1/x) = −f(x); ədədi sadə vuruqlara ayır.
+f(xy) = f(x)f(y)  ⇒  ədədi sadə vuruqlara ayır, qüvvətləri hesabla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">f: ℚ → ℚ</span>, <span class="m">f(x + y) = f(x) + f(y)</span>, <span class="m">f(1) = 4</span>. <span class="m">f(3/2) = ?</span> <span class="ans">f(x) = 4x → f(3/2) = 6.</span></li>
+        <li><span class="m">f(xy) = f(x) + f(y)</span>, <span class="m">f(2) = 1</span>, <span class="m">f(3) = 2</span>. <span class="m">f(12) = ?</span> <span class="ans">12 = 2·2·3 → 1 + 1 + 2 = 4.</span></li>
+        <li><span class="m">f(xy) = f(x)·f(y)</span>, <span class="m">f(2) = 3</span>. <span class="m">f(16) = ?</span> <span class="ans">16 = 2⁴ → 3⁴ = 81.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. f(x) və f(1/x) sistemləri; dəyişən dəyişmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzən tənlikdə həm <span class="m">f(x)</span>, həm də <span class="m">f(1/x)</span> görünür, məsələn <span class="m">f(x) + 2f(1/x) = x</span>. İki naməlum, bir tənlik kimi görünür. Çıxış yolu: tənlikdə <span class="m">x</span> yerinə <span class="m">1/x</span> qoy — <b>ikinci tənlik</b> alırsan və iki naməlumlu adi sistem həll edirsən.</p>
+      <div class="life"><b>Həyatdan.</b> Maşın ayrı-ayrılıqda "A→B" və "B→A" üçün qiymət tapmaq: iki sadə tənlik var, iki naməlum var — sistemdir. Burada naməlumlar <span class="m">f(x)</span> və <span class="m">f(1/x)</span>-dir.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">f(x) + k·f(1/x) = g(x)
+x → 1/x:   f(1/x) + k·f(x) = g(1/x)
+(birinci) − k·(ikinci):   (1 − k²)·f(x) = g(x) − k·g(1/x)
+
+Eyni fikir:  f(x) və f(1 − x);  f(x) və f(−x);  üç üzvlü dövr x → 1/(1 − x) → (x − 1)/x</div>
+      <p><b>Dəyişən dəyişmə:</b> <span class="m">f(2x + 1) = …</span> verilibsə, <span class="m">u = 2x + 1</span> götür, <span class="m">x = (u − 1)/2</span> yaz — f-in öz arqumenti ilə düsturu alırsan. <span class="m">f(x − 1/x) = x² + 1/x²</span> üçün kvadratla: <span class="m">(x − 1/x)² = x² + 1/x² − 2</span>, deməli <span class="m">f(u) = u² + 2</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">f(2x + 1) = x + 4. f(7) = ?
+  2x + 1 = 7  →  x = 3.   f(7) = 3 + 4 = 7.
+  (Ümumi: f(u) = (u − 1)/2 + 4.)
+
+f(x − 1/x) = x² + 1/x². f(3) = ?
+  (x − 1/x)² = x² − 2 + 1/x²  →  x² + 1/x² = (x − 1/x)² + 2.
+  f(u) = u² + 2,  f(3) = 11.
+
+f(x) + f(1/(1 − x)) = x, f(2) = ?  (üç üzvlü dövr)
+  x₁ = 2,  x₂ = 1/(1 − 2) = −1,  x₃ = 1/(1 + 1) = 1/2,  1/(1 − 1/2) = 2.
+  f(2) + f(−1) = 2;  f(−1) + f(1/2) = −1;  f(1/2) + f(2) = 1/2.
+  1-ci − 2-ci + 3-cü: 2f(2) = 2 + 1 + 1/2 = 7/2  →  f(2) = 7/4.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ 3. Hər x ≠ 0 üçün f(x) + 2f(1/x) = x. f(x)-i tap, f(2) = ?
+
+Həll. Birinci tənlik:  f(x) + 2f(1/x) = x.
+  x yerinə 1/x:        f(1/x) + 2f(x) = 1/x.
+  İkinciyə 2 vurub birincidən çıxaq:
+    (f(x) + 2f(1/x)) − (4f(x) + 2f(1/x)) = x − 2/x
+    −3f(x) = x − 2/x   →   f(x) = (2/x − x)/3 = (2 − x²)/(3x).
+Yoxlama: f(2) = (2 − 4)/6 = −1/3,  f(1/2) = (2 − 1/4)/(3/2) = (7/4)·(2/3) = 7/6.
+  f(2) + 2f(1/2) = −1/3 + 7/3 = 2 ✓.
+Cavab: f(2) = −1/3. ∎
+Fikir: x ↔ 1/x əvəzləməsi iki naməlumlu sistem verir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İkinci tənlikdə sağ tərəfi dəyişməmək: <span class="m">x → 1/x</span> hər yerdə edilir, sağ tərəf də <span class="m">1/x</span> olur.</li>
+        <li><span class="m">f(x)</span>-in əmsalını <span class="m">1 − k</span> götürmək, düzü <span class="m">1 − k²</span>-dir.</li>
+        <li>Tapılan <span class="m">f</span>-i tənliyə qoyub yoxlamamaq — hesab səhvi çox olur.</li>
+        <li>Dəyişən dəyişmədə <span class="m">x</span>-i <span class="m">u</span> ilə qarışdırmaq: son cavab <span class="m">u</span> (arqument) ilə yazılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x → 1/x (və ya 1 − x, −x): ikinci tənlik, sonra f(x)-i yox et.
+f(x) + k f(1/x) = g(x)  ⇒  f(x) = [g(x) − k·g(1/x)] / (1 − k²).
+f(ax + b) = …  ⇒  u = ax + b götür.
+Həmişə tapılan funksiyanı tənliyə qoyub yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">f(x) + 2f(1/x) = 3x</span>. <span class="m">f(1) = ?</span> <span class="ans">x = 1: 3f(1) = 3 → f(1) = 1.</span></li>
+        <li><span class="m">f(2x + 1) = x + 4</span>. <span class="m">f(7) = ?</span> <span class="ans">2x + 1 = 7 → x = 3; f(7) = 7.</span></li>
+        <li><span class="m">f(x − 1/x) = x² + 1/x²</span>. <span class="m">f(3) = ?</span> <span class="ans">f(u) = u² + 2 → f(3) = 11.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

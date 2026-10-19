@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Funksiyanın xassələri; tərs və mürəkkəb funksiya dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-funksiya-xasse.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Funksiyanın xassələri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Funksiyanın xassələri; tərs və mürəkkəb funksiya</div>
+    <h1>Funksiyanın xassələri; tərs və mürəkkəb funksiya</h1>
+    <p>Olimpiadada funksiya çox vaxt düsturla verilmir. Deyirlər: "f tək funksiyadır", "f dövrüdür", "f artandır" — və bu bir cümlədən çoxlu məlumat çıxarmaq lazımdır. Burada cüt/tək, dövrü və monoton funksiyaların "gizli gücünü", sonra mürəkkəb funksiyanı, tərs funksiyanı və <span class="m">f(f(x))</span> tipli məsələləri öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, olimpiada məsələlərini əvvəl özün həll etməyə çalış, sonra həllə bax. Sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Cüt, tək, dövrü</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Monotonluq</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Mürəkkəb, tərs</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Cüt, tək və dövrü funksiyalar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Məsələdə deyilir: "<span class="m">f</span> tək funksiyadır, <span class="m">f(5) = 7</span>. <span class="m">f(−5)</span> neçədir?" Düstur yoxdur, qrafik yoxdur — amma cavab var: <span class="m">−7</span>. Xassənin özü məlumat daşıyır.</p>
+      <div class="life"><b>Həyatdan.</b> Saat 24 saatdan bir təkrarlanır. İndi saat 15:00-dırsa, 100 saat sonra neçədir? <span class="m">100 = 4·24 + 4</span> — yəni 4 saat sonrakı vaxt: 19:00. Dövrü funksiyanın bütün fikri budur: tam dövrləri atırıq.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Cüt:     f(−x) = f(x)     (qrafik Oy oxuna görə simmetrik)
+Tək:     f(−x) = −f(x)    (qrafik başlanğıca görə simmetrik)
+Dövrü:   f(x + T) = f(x)  ⇒  f(x + kT) = f(x), k tam</div>
+      <p>Cüt və tək üçün təyin oblastı <b>simmetrik</b> olmalıdır (<span class="m">x</span> varsa, <span class="m">−x</span> də var). Tək funksiya <span class="m">x = 0</span>-da təyin olunubsa, <span class="m">f(0) = 0</span> (çünki <span class="m">f(0) = −f(0)</span>).</p>
+      <div class="fm">cüt · cüt = cüt     tək · tək = cüt     cüt · tək = tək
+Hər f üçün:  f(x) = [f(x) + f(−x)]/2  +  [f(x) − f(−x)]/2
+                    (cüt hissə)           (tək hissə)</div>
+      <p>İkinci düstur çox işə yarayır: <span class="m">f(x) + f(−x)</span> həmişə cütdür, <span class="m">f(x) − f(−x)</span> həmişə təkdir. Əgər <span class="m">f(x + a) = −f(x)</span> olarsa, iki addımda <span class="m">f(x + 2a) = f(x)</span> — period <span class="m">2a</span>-dır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">f(x + 4) = f(x), f(1) = 2. f(2025) = ?
+  2025 = 4 · 506 + 1  →  2025 ≡ 1 (mod 4)
+  f(2025) = f(1) = 2.
+
+f tək funksiya, f(3) = 5. f(−3) + f(3) + f(0) = ?
+  f(−3) = −5, f(0) = 0  →  −5 + 5 + 0 = 0.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. f(x) = x⁵ + ax³ + bx − 8 və f(−2) = 10. f(2) = ?
+
+Həll. a və b naməlumdur, onları tapmağa ehtiyac yoxdur.
+  g(x) = f(x) + 8 = x⁵ + ax³ + bx — tək funksiyadır (yalnız tək qüvvətlər).
+  g(−2) = f(−2) + 8 = 18  →  g(2) = −18 (tək olduğu üçün).
+  f(2) = g(2) − 8 = −18 − 8 = −26.
+Fikir: sabiti ayır, qalan hissə təkdir.</div>
+      <div class="ex">Məsələ 2. Bütün x üçün f(x + 1) + f(x − 1) = √2 · f(x). İsbat et ki, f dövrü
+funksiyadır.
+
+Həll. a = f(x − 1), b = f(x) götürək. Tənlikdən ardıcıl tapırıq:
+  f(x + 1) = √2·b − a
+  f(x + 2) = √2·f(x + 1) − f(x) = √2(√2·b − a) − b = b − √2·a
+  f(x + 3) = √2·f(x + 2) − f(x + 1) = √2·b − 2a − √2·b + a = −a
+Deməli f(x + 3) = −f(x − 1). x yerinə x + 1 qoysaq: f(x + 4) = −f(x).
+Onda f(x + 8) = −f(x + 4) = f(x). Period 8-dir. ∎
+Fikir: f(x + a) = −f(x) ⇒ period 2a.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Bütün funksiyalar ya cütdür, ya tək." Yox! Çoxu nə cütdür, nə tək (məsələn, <span class="m">x² + x</span>).</li>
+        <li>Tək funksiya üçün <span class="m">f(−x) = f(x)</span> yazmaq. İşarə dəyişir.</li>
+        <li>Dövrü funksiyada qalığı səhv götürmək. Qalıq 0 çıxırsa, arqument dövrün sonuna düşür: məsələn, period 4 və <span class="m">f(8)</span> üçün <span class="m">f(4)</span> kimi oxu (verilmiş qiymətlərə bax).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tək: f(−x) = −f(x), f(0) = 0.   Cüt: f(−x) = f(x).
+Sabiti ayır: f(x) − c tək ola bilər.
+f(x + kT) = f(x):  arqumenti T-yə böl, qalıq vacibdir.
+f(x + a) = −f(x)  ⇒  period 2a.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>f tək funksiyadır, <span class="m">f(−4) = 7</span>. <span class="m">f(4) = ?</span> <span class="ans">−7</span></li>
+        <li><span class="m">f(x + 5) = f(x)</span>, <span class="m">f(2) = 9</span>. <span class="m">f(2027) = ?</span> <span class="ans">2027 = 5·405 + 2, deməli f(2027) = f(2) = 9.</span></li>
+        <li><span class="m">f(x) = ax³ + bx − 2</span>, <span class="m">f(1) = 5</span>. <span class="m">f(−1) = ?</span> <span class="ans">f(x) + 2 təkdir: f(1) + 2 = 7, deməli f(−1) + 2 = −7, f(−1) = −9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Artan və azalan funksiyalar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tənliyi <span class="m">x³ + x = 10</span> həll etmək üçün düstur lazım deyil: <span class="m">x = 2</span> uyğun gəlir, 8 + 2 = 10. Amma başqa kök varmı? Monotonluq deyir: <b>yox</b>. Sol tərəf artır, hər qiyməti bir dəfə alır. Bu üsul olimpiadada "təxmin et və yeganəliyi isbat et" adlanır.</p>
+      <div class="life"><b>Həyatdan.</b> Hovuza hər dəqiqə su tökülür və səviyyə yalnız qalxır. Səviyyə 1 m olan anı bir dəfə tapacaqsan — iki ayrı vaxtda eyni səviyyə ola bilməz.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">Ciddi artan:   x₁ &lt; x₂  ⇒  f(x₁) &lt; f(x₂)
+Ciddi azalan:  x₁ &lt; x₂  ⇒  f(x₁) &gt; f(x₂)
+Ciddi monoton funksiyada:  f(u) = f(v)  ⇒  u = v</div>
+      <div class="fm">artan + artan = artan        artan ∘ artan = artan
+artan ∘ azalan = azalan      −f artanın əksidir (azalan olur)</div>
+      <p>Artan funksiyada bərabərsizliyin istiqaməti <b>saxlanır</b>: <span class="m">f(u) &lt; f(v) ⇔ u &lt; v</span>. Azalanda istiqamət <b>dönür</b>: <span class="m">f(u) &lt; f(v) ⇔ u &gt; v</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">x⁷ + x³ + x = 3 tənliyini həll et.
+  x = 1 yoxlayırıq: 1 + 1 + 1 = 3. Uyğundur.
+  Sol tərəf üç artan funksiyanın cəmidir → artandır, hər qiyməti bir dəfə alır.
+  Deməli x = 1 yeganə kökdür.
+
+f artandır, f(2x − 1) &lt; f(x + 3). x-i tap.
+  Artanda istiqamət qalır:  2x − 1 &lt; x + 3  →  x &lt; 4.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ 3. f: ℝ → ℝ artan funksiyadır və hər x üçün f(f(x)) = x. İsbat et ki,
+f(x) = x.
+
+Həll. Əksini fərz edək: bir a üçün f(a) ≠ a.
+  Hal 1: f(a) &gt; a. f artandır → f(f(a)) &gt; f(a). Amma f(f(a)) = a.
+         Deməli a &gt; f(a) — fərziyyə ilə ziddiyyət.
+  Hal 2: f(a) &lt; a. f artandır → f(f(a)) &lt; f(a), yəni a &lt; f(a) — yenə ziddiyyət.
+Deməli hər a üçün f(a) = a. ∎
+Qeyd: azalan funksiya ola bilər, məsələn f(x) = −x üçün də f(f(x)) = x. Artan olması vacibdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Azalan funksiyada bərabərsizliyin istiqamətini saxlamaq. <span class="m">f</span> azalandırsa, <span class="m">f(u) &lt; f(v)</span> ⇒ <span class="m">u &gt; v</span>.</li>
+        <li>"Bir kök tapdım, bəsdir." Monotonluq göstərilməyibsə, başqa kök ola bilər. Yeganəliyi mütləq əsaslandır.</li>
+        <li>Artan və azalan funksiyanın cəmini artan sanmaq. Cəm artan da, azalan da olmaya bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ciddi monoton ⇒ f(u) = f(v) olanda u = v.
+Artan: bərabərsizlik istiqaməti qalır. Azalan: dönür.
+Təxmin et + monotonluqla yeganəliyi isbat et.
+f(f(x)) = x və f artan ⇒ f(x) = x.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>f ciddi artandır, <span class="m">f(3x − 1) = f(x + 5)</span>. <span class="m">x = ?</span> <span class="ans">3x − 1 = x + 5 → x = 3.</span></li>
+        <li>f ciddi azalandır, <span class="m">f(x) &lt; f(2)</span>. <span class="m">x</span> haqqında nə demək olar? <span class="ans">x &gt; 2 (azalanda istiqamət dönür).</span></li>
+        <li><span class="m">x³ + x = 10</span> tənliyinin kökü neçədir? <span class="ans">2 (8 + 2 = 10); sol tərəf artandır, kök yeganədir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Mürəkkəb və tərs funksiya; f(f(x))</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mağaza əvvəl 10 manat endirim edir, sonra qiymətin üstünə 20% əlavə edir. Bunu tərsinə etsən (əvvəl 20%, sonra 10 manat), eyni nəticə almazsan. Əməllərin <b>sırası</b> vacibdir — mürəkkəb funksiya belə yazılır. Tərs funksiya isə əməli <b>geri qaytarır</b>: son qiyməti bilirsən, ilk qiyməti tapırsan.</p>
+      <div class="life"><b>Həyatdan.</b> Selsi → Farenheyt: <span class="m">F = 1,8·C + 32</span>. Tərsi: <span class="m">C = (F − 32)/1,8</span>. Əvvəl 32-ni çıxırıq (sonuncu əməli əvvəl geri alırıq), sonra 1,8-ə bölürük.</div>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">(f∘g)(x) = f(g(x))     əvvəl g, sonra f
+y = f(x)  ⇔  x = f⁻¹(y)      f⁻¹(f(x)) = x,  f(f⁻¹(y)) = y</div>
+      <p><b>Tərsi necə tapmaq olar:</b> <span class="m">y = f(x)</span> tənliyindən <span class="m">x</span>-i <span class="m">y</span> vasitəsilə ifadə et. Tərsi olması üçün <span class="m">f</span> hər qiyməti bir dəfə almalıdır — ciddi monoton funksiyalar belədir.</p>
+      <div class="fm">f və f⁻¹ qrafikləri  y = x  düz xəttinə görə simmetrikdir.
+Kəsişmə nöqtələri adətən f(x) = x tənliyindən tapılır.
+Diqqət: f⁻¹(x) ≠ 1/f(x)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">f(x) = (2x + 1)/(x − 3). f⁻¹(5) = ?
+  f(x) = 5 olan x-i axtarırıq:  2x + 1 = 5(x − 3)
+  2x + 1 = 5x − 15  →  16 = 3x  →  x = 16/3.
+  Yoxlama: f(16/3) = (32/3 + 1)/(16/3 − 3) = (35/3)/(7/3) = 5. ✓
+
+f(x) = 3x − 1, g(x) = x². f(g(2)) və g(f(2)) neçədir?
+  f(g(2)) = f(4) = 11.     g(f(2)) = g(5) = 25.   Sıra vacibdir!</div>
+
+      <h3><span class="st">4</span> f(f(x)) tipli məsələlər</h3>
+      <p>İki fikir var. <b>Birinci:</b> f-in şəklini təxmin et (adətən <span class="m">ax + b</span>), əmsalları müqayisə et. <b>İkincisi:</b> f-i təkrar tətbiq edəndə nəticələr dövrü təkrarlanırsa, dövrü tap.</p>
+      <div class="ex">f xətti artan funksiyadır və f(f(f(x))) = 8x + 21. f(x) = ?
+  f(x) = ax + b. f(f(x)) = a²x + (a + 1)b.
+  f(f(f(x))) = a³x + (a² + a + 1)b.
+  a³ = 8 → a = 2.   (4 + 2 + 1)b = 21 → b = 3.   f(x) = 2x + 3.
+  Yoxla: f(f(x)) = 4x + 9, f(f(f(x))) = 8x + 21. ✓</div>
+      <div class="ex">Məsələ 4. f(x) = 1/(1 − x). f funksiyasını 2 ədədinə 2026 dəfə ardıcıl tətbiq edirik:
+f(f(…f(2)…)). Nəticə neçədir?
+
+Həll. f(2) = 1/(1 − 2) = −1.
+  f(−1) = 1/(1 + 1) = 1/2.
+  f(1/2) = 1/(1 − 1/2) = 2.   — başlanğıc ədədə qayıtdıq!
+Dövr 3-dür: f(f(f(x))) = x. 2026 = 3 · 675 + 1.
+675 tam dövr heç nə dəyişmir, qalır 1 tətbiq: nəticə f(2) = −1. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">f(g(x))</span> ilə <span class="m">g(f(x))</span>-i qarışdırmaq. Daxildəki funksiya əvvəl işləyir.</li>
+        <li><span class="m">f⁻¹(x)</span>-i <span class="m">1/f(x)</span> kimi oxumaq. Bunlar fərqli şeylərdir.</li>
+        <li><span class="m">f(f(x)) = 4x + 9</span> görüb <span class="m">f(x) = 2x + 9</span> yazmaq. Düz: <span class="m">f(x) = ax + b</span> götürüb <span class="m">a² = 4</span>, <span class="m">(a + 1)b = 9</span> həll et.</li>
+        <li>Dövrü tapmadan 2026 dəfə hesablamağa çalışmaq. Üç-dörd addımdan sonra təkrar axtar.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">f(g(x)): əvvəl g, sonra f.
+f⁻¹(y): f(x) = y tənliyini x-ə görə həll et.
+f(x) = ax + b:  f(f(x)) = a²x + (a + 1)b.
+Təkrar tətbiq: dövrü tap, n-i dövrə böl, qalığa bax.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">f(x) = 2x + 6</span>. <span class="m">f⁻¹(10) = ?</span> <span class="ans">2x + 6 = 10 → x = 2.</span></li>
+        <li><span class="m">f(x) = 3x − 1</span>, <span class="m">g(x) = x²</span>. <span class="m">g(f(1)) = ?</span> <span class="ans">f(1) = 2, g(2) = 4.</span></li>
+        <li><span class="m">f(x) = 1/x</span>. f-i 4 ədədinə 2027 dəfə tətbiq etsək nə alarıq? <span class="ans">f(f(x)) = x, dövr 2-dir; 2027 tək olduğundan nəticə f(4) = 1/4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
