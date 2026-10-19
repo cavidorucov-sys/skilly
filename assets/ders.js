@@ -27,6 +27,25 @@
       t.replaceWith(frag);
     });
   }
+  // Subscripts were typed as "F_əv", "v_0": show the part after "_" as a real subscript (HTML <sub> or an SVG tspan).
+  const SUB = /([A-Za-zΑ-Ωα-ω)])_([0-9A-Za-zƏəÜüÖöĞğIıÇçŞş]+)/g;
+  function fixSub(root) {
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => (SUB.lastIndex = 0, SUB.test(n.nodeValue)) && !n.parentNode.closest("script,style,textarea,input,code") ? 1 : 3 });
+    const list = []; while (w.nextNode()) list.push(w.currentNode);
+    list.forEach(t => {
+      const inSvg = t.parentNode.namespaceURI === NS, frag = document.createDocumentFragment();
+      let last = 0; const s = t.nodeValue; SUB.lastIndex = 0;
+      for (let m; (m = SUB.exec(s));) {
+        frag.append(s.slice(last, m.index) + m[1]);
+        if (inSvg) {
+          const a = document.createElementNS(NS, "tspan"); a.setAttribute("baseline-shift", "sub"); a.setAttribute("font-size", "0.72em"); a.textContent = m[2]; frag.append(a);
+          const b = document.createElementNS(NS, "tspan"); b.textContent = "​"; frag.append(b);
+        } else { const sb = document.createElement("sub"); sb.textContent = m[2]; frag.append(sb); }
+        last = m.index + m[0].length;
+      }
+      frag.append(s.slice(last)); t.replaceWith(frag);
+    });
+  }
   // Formula summaries were typed as space-aligned monospace text; show them as tidy rows of formula chips instead.
   // A line "Label: a = b    c = d" becomes a bold label and two chips; 2+ spaces separate formulas on a line.
   function prettyFormulas(root) {
@@ -49,8 +68,8 @@
   }
   document.addEventListener("DOMContentLoaded", () => {
     prettyFormulas(document.body);
-    fixVec(document.body);
-    new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 || n.nodeType === 3) fixVec(n.nodeType === 1 ? n : n.parentNode || document.body); }))).observe(document.body, { childList: true, subtree: true });
+    fixVec(document.body); fixSub(document.body);
+    new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 || n.nodeType === 3) { const r = n.nodeType === 1 ? n : n.parentNode || document.body; fixVec(r); fixSub(r); } }))).observe(document.body, { childList: true, subtree: true });
   });
   // Topic illustration (assets/ill/<page>.webp) under the first "Niyə lazımdır" heading; dropped if the file is missing.
   function illustrate() {
