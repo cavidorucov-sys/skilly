@@ -4,7 +4,7 @@ const NAV = [
   ["olimpiada.html", "Olimpiada", "Trophy"], ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Səhvlər", "NotebookPen"],
   ["dusturlar.html", "Düsturlar", "Sigma"],
 ];
-const NAV_SUB = { "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat", "Pi"], ["olimpiada.html#fizika", "Fizika", "Atom"]] };
+const NAV_SUB = { "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat olimpiadası", "Pi"], ["olimpiada.html#fizika", "Fizika olimpiadası", "Atom"]] };
 const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
   olym: { cls: "k-olym", ink: "var(--olym-ink)", ad: "Olimpiada" },
@@ -114,7 +114,7 @@ async function shell(content) {
       // dropdown on hover / keyboard focus (desktop); on phones the page has the same choices as tabs
       link.append(icon("ChevronDown"));
       return el("div", { class: "nav-dd" }, link, el("div", { class: "dd" },
-        ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), l))));
+        ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), el("span", {}, l)))));
     }));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
   return { m, w, topics, term };
@@ -182,21 +182,17 @@ async function pageTopics(key, title, lead) {
 
 // Olympiad page: one entry in the nav, math and physics as tabs (#riyaziyyat / #fizika).
 async function pageOlympiad() {
+  // the subject is chosen in the nav (dropdown on desktop, two items on phones); the page shows one subject
   const SUBJ = {
-    riyaziyyat: ["Riyaziyyat", "Hər mövzuya ~2 həftə: dərs və 12–15 məşq sualı, sonra 5–6 olimpiada məsələsi (həll kağızda yazılır, şəkli göndərilir) və yekun test."],
-    fizika: ["Fizika", "FRİTL-də keçilən hər mövzu növbəti həftə burada təkrarlanır: sadə izah, məşq, test. FRİTL-in keçmədiyi mövzular ayrıca əlavə olunur."],
+    riyaziyyat: ["Riyaziyyat olimpiadası", "Hər mövzuya ~2 həftə: dərs və 12–15 məşq sualı, sonra 5–6 olimpiada məsələsi (həll kağızda yazılır, şəkli göndərilir) və yekun test."],
+    fizika: ["Fizika olimpiadası", "FRİTL-də keçilən hər mövzu növbəti həftə burada təkrarlanır: sadə izah, məşq, test. FRİTL-in keçmədiyi mövzular ayrıca əlavə olunur."],
   };
-  const body = el("div");
-  const tabs = Object.entries(SUBJ).map(([k, [label]]) => {
-    const b = el("button", { class: "tab", role: "tab", type: "button", "aria-selected": "false" }, label);
-    b.addEventListener("click", () => { history.replaceState(null, "", "#" + k); draw(k); });
-    b.dataset.k = k; return b;
-  });
-  const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Olimpiada"), el("div", { class: "head", role: "tablist", style: "margin-top:18px" }, ...tabs), body);
-  const { m } = await shell(content);
+  const h1 = el("h1"), body = el("div");
+  const { m } = await shell(el("div", { style: "margin-top:30px" }, h1, body));
   if (!m) { body.append(el("p", { class: "empty" }, "Siyahı yüklənmədi.")); return; }
   function draw(k) {
-    tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.k === k)));
+    h1.textContent = SUBJ[k][0]; document.title = SUBJ[k][0] + " · Skilly";
+    document.querySelectorAll(".nav-dd .dd a").forEach(a => a.getAttribute("href").endsWith("#" + k) ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     body.replaceChildren(); renderTopics(body, m, SUBJ_KAT_KEY[k], SUBJ[k][1]);
   }
   const fromHash = () => { const h = location.hash.slice(1); draw(SUBJ[h] ? h : "riyaziyyat"); };

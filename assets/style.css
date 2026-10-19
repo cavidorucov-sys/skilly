@@ -263,4 +263,13 @@ html{scrollbar-gutter:stable}
 .nav-dd .dd a:hover{background:var(--bg)}
 .nav-dd:hover .dd,.nav-dd:focus-within .dd{opacity:1;visibility:visible;transform:none}
 .nav-dd:hover > a svg:last-child,.nav-dd:focus-within > a svg:last-child{transform:rotate(180deg)}
-@media (max-width:980px){.nav-dd .dd,.nav-dd > a svg:last-child{display:none}}
+.nav-dd .dd a[aria-current]{background:var(--bg);font-weight:600}
+/* phones and narrow windows: no hover, so the two olympiads become two ordinary nav items */
+@media (max-width:980px){
+  .nav-dd > a{display:none}
+  .nav-dd .dd{position:static;display:flex;gap:6px;min-width:0;padding:0;margin:0;background:none;box-shadow:none;border-radius:0;opacity:1;visibility:visible;transform:none}
+  .nav-dd .dd::before{display:none}
+  .nav-dd .dd a{color:var(--ink-2);border-radius:40px;padding:9px 16px}
+  .nav-dd .dd a[aria-current]{background:var(--ink);color:var(--panel);font-weight:600}
+}
+@media (max-width:640px){.nav-dd .dd a{padding:8px 12px}}

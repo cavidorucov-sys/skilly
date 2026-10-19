@@ -95,3 +95,6 @@ details.check summary{color:var(--subj)}
 @media (max-width:640px){.stepchip:not([aria-current=step]) .tt{display:none}.stepchip{padding:6px}}
 [hidden]{display:none!important}
 html{scrollbar-gutter:stable}
+/* inside the portal the lesson uses the full work area; text lines stay readable */
+.in-frame .wrap{max-width:none}
+.in-frame p,.in-frame .life,.in-frame .warnbox,.in-frame .lesson ul{max-width:80ch}
