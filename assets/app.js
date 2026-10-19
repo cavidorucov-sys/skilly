@@ -72,8 +72,10 @@ async function load(path) {
   if (!r.ok) throw new Error(path + " " + r.status);
   return r.json();
 }
-const ST = { yox: ["Başlanmayıb", "st-yox"], isl: ["İşlənir", "st-isl"], bag: ["Bağlanıb", "st-bag"] };
-const stPill = s => el("span", { class: "st " + (ST[s] || ST.yox)[1] }, (ST[s] || ST.yox)[0]);
+// statuses are shown by icon and colour; the word stays only as a tooltip and for screen readers
+const ST = { yox: ["Başlanmayıb", "st-yox", "CircleDashed"], isl: ["İşlənir", "st-isl", "Clock"], bag: ["Bağlanıb", "st-bag", "CircleCheck"] };
+const stMark = ([txt, cls, ic]) => el("span", { class: "sti " + cls, title: txt, "aria-label": txt, role: "img" }, icon(ic));
+const stPill = s => stMark(ST[s] || ST.yox);
 const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
 const daysLeft = (from, to) => { const n = Math.round((new Date(to) - new Date(from)) / 864e5); return t2(to) + " · " + (n === 0 ? "bu gün" : n === 1 ? "sabah" : n + " gün"); };
 const t2 = iso => iso.slice(8) + "." + iso.slice(5, 7);
@@ -218,7 +220,7 @@ async function pageIndex() {
   const thisWeek = mm ? Object.entries(mm).flatMap(([k, v]) => v.filter(t => t.hefte === monday && t.status !== "bag").map(t => ({ ...t, kat: LIST_KAT[k] }))) : [];
   if (thisWeek.length) content.append(el("section", { class: "home-sec" }, el("div", { class: "head" }, el("h2", {}, "Bu həftənin mövzuları"), el("span", { class: "more" }, thisWeek.length + " mövzu")),
     el("div", { class: "list dl" }, ...thisWeek.map(t => { const k = KAT[t.kat]; return el(t.ders ? "a" : "div", { class: "row", ...(t.ders ? { href: t.ders, style: "text-decoration:none;color:inherit" } : {}) },
-      el("span", { class: "ic " + k.cls }, icon(topicIcon(t), k.ink)), el("div", { class: "tx" }, el("b", {}, t.ad), el("span", {}, k.ad + " · " + t.bolme)), stPill(t.status)); }))));
+      el("span", { class: "ic " + k.cls }, icon(topicIcon(t), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + t.bolme), el("b", { title: t.ad }, t.ad)), stPill(t.status)); }))));
 
   // 3. the week
   const days = el("div", { class: "days" }, ...w.gunler.map(g => el("div", { class: "dcol" },
@@ -328,7 +330,7 @@ async function pageTests() {
       const dim = term.filter(t => /Buraxılış sınağı/.test(t.ad));
       body.append(
         sec("Qarşıdakı", dim.filter(t => t.tarix >= today).map(t => row("ClipboardCheck", "math", t.ad, t.qeyd, el("span", { class: "badge k-math" }, daysLeft(today, t.tarix))))),
-        sec("Keçmiş", [row("ClipboardCheck", "math", "Buraxılış sınağı 1", "3 oktyabr · nəticə səhv jurnalına və təkrar planına salınıb", el("span", { class: "st st-bag" }, "edilib"))]));
+        sec("Keçmiş", [row("ClipboardCheck", "math", "Buraxılış sınağı 1", "3 oktyabr · nəticə səhv jurnalına və təkrar planına salınıb", stMark(["Edilib", "st-bag", "CircleCheck"]))]));
     } else {
       h1.textContent = "Fizika sınaqları"; document.title = "Fizika sınaqları · Skilly";
       lead.textContent = "Hər bölmənin sonunda vaxt limitli sınaq: FRİTL-də keçilən mövzular üzrə.";
@@ -406,7 +408,7 @@ function reviewQueue() {
 const KATS = { hesab: "Hesab / diqqət", qayda: "Qaydanı bilmirdim", sert: "Şərti səhv başa düşdüm" };
 const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"] };
 const dmy = iso => iso ? iso.slice(8) + "." + iso.slice(5, 7) : "–";
-const SST = { yeni: ["Təhlil gözləyir", "st-err"], aciq: ["Təkrarda", "st-isl"], baglandi: ["Bağlanıb", "st-bag"] };
+const SST = { yeni: ["Təhlil gözləyir", "st-err", "CircleAlert"], aciq: ["Təkrarda", "st-isl", "Repeat"], baglandi: ["Bağlanıb", "st-bag", "CircleCheck"] };
 
 function seg(opts, onPick, initial) {
   let val = initial || "";
@@ -537,7 +539,7 @@ async function pageSehv() {
         el("tbody", {}, ...all.slice().sort((a, b) => (b.tarix || "").localeCompare(a.tarix || "")).map(e => el("tr", {},
           el("td", {}, dmy(e.tarix)), el("td", {}, (FENN[e.fenn] || [0, e.fenn])[1]), el("td", {}, e.link ? el("a", { href: e.link }, e.menbe) : e.menbe),
           el("td", {}, KATS[e.kat] || "–"), el("td", {}, dmy(e.novbeti)),
-          el("td", {}, el("span", { class: "st " + (SST[e.status] || SST.yeni)[1] }, (SST[e.status] || SST.yeni)[0])))))))]
+          el("td", {}, stMark(SST[e.status] || SST.yeni)))))))]
         : [el("p", { class: "empty" }, "Hələ səhv yoxdur.")]));
   }
   if (Skilly.ready) await Skilly.ready;
@@ -562,8 +564,8 @@ async function pageLesson() {
     wrap.replaceChildren(el("div", { class: "gate" }, el("h2", {}, me.ad),
       el("p", {}, "Bu mövzu bunlara əsaslanır. Əvvəl onları bağla — sonra bu dərs açılacaq:"),
       el("div", { class: "list" }, ...miss.map(x => { const k = KAT[LIST_KAT[x.list]]; return el(x.ders ? "a" : "div", { class: "row", ...(x.ders ? { href: x.ders } : {}) },
-        el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx" }, el("b", {}, x.ad), el("span", {}, x.bolme)),
-        el("span", { class: "st " + (x.status === "isl" ? "st-isl" : "st-yox") }, x.status === "isl" ? "İşlənir" : "Başlanmayıb")); }))));
+        el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + x.bolme), el("b", { title: x.ad }, x.ad)),
+        stPill(x.status)); }))));
     return;
   }
   if (me && miss.length) wrap.prepend(el("p", { class: "gate-note" }, "Diqqət: bu mövzu " + miss.map(x => "“" + x.ad + "”").join(", ") + " üzərində qurulub — onları da bağlamağı unutma."));

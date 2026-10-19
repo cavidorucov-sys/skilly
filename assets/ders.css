@@ -196,7 +196,7 @@ details.check summary:hover{text-decoration:underline}
 .stepchip[aria-current=step]{background:var(--white);color:var(--ink-0);box-shadow:inset 0 0 0 1.5px var(--ink-0)}
 .stepchip[aria-current=step] .no{background:var(--ink-0);color:var(--white)}
 /* inline math in textbook style: italic letters (KaTeX_Math), upright digits and signs (KaTeX_Main); Azerbaijani letters fall back to Onest */
-.m,.eqn{font-family:"KaTeX_Math","KaTeX_Main",var(--f-body);font-style:normal;font-size:1.08em;font-variant-numeric:normal}
+.m,.eqn{font-family:"KaTeX_Math","KaTeX_Main",var(--f-body);font-style:normal;font-size:1.2em;line-height:1;font-variant-numeric:normal}
 /* no monospace anywhere: numbers and worked examples use the page font with tabular digits */
 :root{--f-num:var(--f-body)}
 .ex,.fm,.tbl table,.time,.prog b,.task .n,.ans input,.ans input[type=text],svg text,.oy-in,.oy-key,.lbl,.oy-lbl{font-family:var(--f-body);font-variant-numeric:tabular-nums}

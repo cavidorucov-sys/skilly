@@ -347,3 +347,19 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .gate h2{margin:0}
 .gate-note{background:var(--olym-soft);color:var(--olym-ink);border-radius:var(--r);padding:10px 14px;font-size:14px;margin:0 0 10px}
 .slot small,.fcard .fx{font-variant-numeric:tabular-nums}
+/* list rows: hover area gets inner padding (negative margin keeps text aligned); tighter title leading */
+.list a.row,.list a .row{padding:8px 12px;margin:-8px -12px}
+.row .tx b{line-height:1.3}
+.row .tx span{display:block;margin-top:3px;line-height:1.35}
+
+/* status = icon + colour (word in tooltip) */
+.sti{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;vertical-align:middle}
+.sti svg{width:16px;height:16px;stroke-width:2}
+.sti.st-yox{background:transparent;color:var(--gray-600);box-shadow:none}
+.sti.st-isl{background:var(--blue-50);color:var(--blue-600)}
+.sti.st-bag{background:var(--ok-bg);color:var(--ok)}
+.sti.st-err{background:var(--err-bg);color:var(--err)}
+/* topic cards: subject line first, title clamped to two lines, all cards the same height */
+.tx.sf span{margin:0 0 3px}
+.list .tx b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.list.dl{grid-auto-rows:1fr}
