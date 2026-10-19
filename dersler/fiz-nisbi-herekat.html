@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nisbi hərəkət dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-nisbi-herekat.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Nisbi hərəkət</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Kinematika</div>
+    <h1>Nisbi hərəkət: sürətlərin və təcillərin toplanması</h1>
+    <p>Qatarda oturub pəncərədən yan yoldakı qatara baxırsan: ikisi də sanki dayanıb. Qatar tərpənəndə isə birdən hiss edirsən ki, hansı hərəkət edir. Eyni hərəkətin sürəti <b>nəyə nəzərən</b> baxdığından asılıdır. Olimpiada məsələlərinin çoxu bu sualla həll olunur: çay, külək, yağış, qatarların ötməsi, görüş.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sürətlərin toplanması</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Çayı keçmək</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yağış və külək</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Görüş, nisbi təcil</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İstinad sistemi və sürətlərin toplanması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtobusda gedirsən. Oturanda sənin sürətin sıfırdır: «avtobusa nəzərən». Yol kənarındakı adam üçün isə sən 15 m/s ilə gedirsən. İkisi də düzdür. Sürət <b>istinad sisteminə</b> görə dəyişir. Hansı sistemdə baxdığını bilməsən, məsələni həll edə bilməzsən.</p>
+
+      <h3><span class="st">2</span> İki sistem</h3>
+      <p>İki sistemi fərqləndiririk: <b>sabit</b> sistem (yer, sahil, yol) və <b>hərəkətli</b> sistem (avtobus, qatar, çayın suyu). Üç sürət var:</p>
+      <div class="fig">
+        <svg viewBox="0 0 270 130" role="img" aria-label="Qatarda sərnişin: qatarın sürəti, sərnişinin qatara nəzərən sürəti, yerə nəzərən sürət">
+          <defs><marker id="nh1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="100" x2="260" y2="100" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="55" width="150" height="40" rx="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="65" cy="100" r="5" fill="var(--ink)"/><circle cx="165" cy="100" r="5" fill="var(--ink)"/>
+          <circle cx="90" cy="75" r="7" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="82" x2="90" y2="94" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="100" y1="75" x2="145" y2="75" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#nh1)"/>
+          <text x="122" y="68" class="lbl" text-anchor="middle">v_nisbi</text>
+          <line x1="190" y1="45" x2="250" y2="45" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#nh1)"/>
+          <text x="220" y="38" class="lbl" text-anchor="middle">v_qatar</text>
+          <text x="135" y="122" class="lbl" text-anchor="middle">v_yerə = v_qatar + v_nisbi</text>
+        </svg>
+        <div class="cap">
+          <p>Qatar yerə nəzərən <span class="m">v_qatar</span> sürətlə gedir. Sərnişin qatarın içində <span class="m">v_nisbi</span> sürətlə yeriyir. Yerə nəzərən sərnişinin sürəti bu iki vektorun cəmidir.</p>
+        </div>
+      </div>
+      <div class="fm">v_yerə = v_nisbi + v_daşıyıcı     (vektor cəmi)
+v_nisbi = v₁ − v₂         (1-ci cismin 2-yə nəzərən sürəti)</div>
+      <p>Eyni xətt üzrə hərəkətdə: <b>eyni istiqamət</b> — sürətlər toplanır, <b>əks istiqamət</b> — çıxılır, <b>üz-üzə</b> hərəkətdə yaxınlaşma sürəti toplanır.</p>
+      <p>Qalileyin nisbilik prinsipi: sabit sürətlə hərəkət edən bütün sistemlərdə fizika qanunları eynidir. Qatar bərabərsürətlə gedəndə içəridə topu atsan, o, dayanmış qatardakı kimi düşür.</p>
+      <p>Sürət km/saat-la verilibsə, əvvəl m/s-ə çevir: <span class="m">v(m/s) = v(km/saat)/3,6</span>. Məsələn, 72 km/saat = 20 m/s.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Avtobus yerə nəzərən 15 m/s ilə gedir. Sərnişin avtobusun içində gediş istiqamətinin əksinə 2 m/s ilə yeriyir.
+  v_yerə = 15 − 2 = 13 m/s   (əks istiqamət — çıxılır)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+İki qatar paralel yolda bir-birinə doğru gedir: 72 km/saat və 54 km/saat.
+Birinci qatardakı sərnişin ikincinin sürətini m/s ilə nə qədər görür?
+  72 km/saat = 20 m/s,  54 km/saat = 15 m/s
+  Üz-üzə: v_nisbi = 20 + 15 = 35 m/s</div>
+      <div class="ex">Nümunə 3 (RFO tipli, tələli).
+Sürücü 20 m/s ilə gedir. Qabaqdakı maşını ona nəzərən 3 m/s sürətlə uzaqlaşan görür
+(eyni istiqamətdə gedirlər). Qabaqdakı maşının yerə nəzərən sürəti?
+  Eyni istiqamətdə: v_nisbi = v_qabaq − v_sürücü = 3
+  v_qabaq = 20 + 3 = 23 m/s
+  (Yoxla: qabaqdakı sürətlidir, çünki uzaqlaşır ✓.)</div>
+      <div class="life"><b>Həyatdan.</b> Magistralda 90 km/saat ilə gedən maşını 100 km/saat ilə ötürsən: ona nəzərən cəmi 10 km/saat (təxminən 2,8 m/s) ilə irəliləyirsən, ötmə uzun çəkir. Qarşıdan 90 km/saat ilə gələn maşın isə sənə 190 km/saat ilə yaxınlaşır. Ona görə qarşı zolaqda ötmə təhlükəlidir: bir neçə saniyədə yüzlərlə metr yol bitir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əks istiqamətdə sürətləri toplamaq, eyni istiqamətdə çıxmaq. Əvvəl istiqaməti çək.</li>
+        <li>km/saat-ı m/s-ə çevirmədən vaxtla (saniyə) hesablamaq.</li>
+        <li>«Nəyə nəzərən?» sualını unutmaq. Cavabda həmişə yaz: yerə nəzərən, avtobusa nəzərən…</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v_yerə = v_nisbi + v_daşıyıcı  (vektor)
+Eyni xətt: eyni istiqamət +, əks istiqamət −
+Üz-üzə yaxınlaşma: v₁ + v₂,  ötmə: |v₁ − v₂|
+km/saat → m/s: 3,6-ya böl</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Gəmi çaydan 8 m/s ilə axın istiqamətinə üzür, cərəyan 3 m/s. Sahilə nəzərən sürət? <span class="ans">8 + 3 = 11 m/s.</span></li>
+        <li>36 km/saat nə qədər m/s-dir? <span class="ans">36/3,6 = 10 m/s.</span></li>
+        <li>Velosipedçi 6 m/s, piyada onunla eyni istiqamətdə 1,5 m/s. Velosipedçi piyadaya nəzərən? <span class="ans">6 − 1,5 = 4,5 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Çayı keçmək</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çayı üzüb keçəndə düz qarşı nöqtəyə çatmırsan, cərəyan səni aşağı aparır. Bunu qabaqcadan hesablamaq lazımdır: ya nə qədər sürüşəcəyini, ya da düz keçmək üçün hansı istiqamətdə üzməyi. Bu, olimpiadada ən sevilən nisbi hərəkət məsələsidir.</p>
+
+      <h3><span class="st">2</span> İki sürət vektoru</h3>
+      <p>Qayığın <b>suya nəzərən</b> sürəti <span class="m">v</span>, suyun <b>sahilə nəzərən</b> sürəti (cərəyan) <span class="m">u</span>. Sahilə nəzərən sürət vektor cəmidir:</p>
+      <div class="fm">v_nəticə = v + u</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 175" role="img" aria-label="Çay: burnu sahilə perpendikulyar olan qayıq cərəyanla sürüşür; sağda isə qayıq cərəyana qarşı yönəlib və düz keçir">
+          <defs><marker id="nh2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="0" y="25" width="300" height="115" fill="var(--accent-soft)" opacity="0.5"/>
+          <line x1="0" y1="25" x2="300" y2="25" stroke="var(--ink)" stroke-width="2"/><line x1="0" y1="140" x2="300" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="140" x2="40" y2="55" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="30" y="100" class="lbl" text-anchor="end">v</text>
+          <line x1="40" y1="140" x2="100" y2="140" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="70" y="158" class="lbl" text-anchor="middle">u</text>
+          <line x1="40" y1="140" x2="100" y2="55" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="82" y="95" class="lbl">v_nət</text>
+          <line x1="100" y1="55" x2="100" y2="140" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="52" y="18" class="lbl" text-anchor="middle">burun sahilə ⟂</text>
+          <line x1="210" y1="140" x2="170" y2="70" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="178" y="108" class="lbl" text-anchor="end">v</text>
+          <line x1="170" y1="70" x2="210" y2="70" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="190" y="62" class="lbl" text-anchor="middle">u</text>
+          <line x1="210" y1="140" x2="210" y2="78" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#nh2)"/><text x="218" y="110" class="lbl">v_nət</text>
+          <text x="225" y="18" class="lbl" text-anchor="middle">düz qarşıya</text>
+          <path d="M210 128A12 12 0 0 0 204 130" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="238" y="150" class="lbl">α</text>
+        </svg>
+        <div class="cap">
+          <p><b>Solda:</b> burun sahilə perpendikulyar. <span class="m">v ⟂ u</span>, nəticəvi sürət çaprazdır, qayıq aşağı sürüşür. <b>Sağda:</b> qayığın burnu cərəyana qarşı çevrilib; <span class="m">u</span> sürətini <span class="m">v</span>-nin üfüqi komponenti tarazlayır, nəticə düz qarşıya yönəlir.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">3</span> Perpendikulyar üzmək</h3>
+      <p>Sahilə perpendikulyar istiqamətdə qayığı <b>yalnız</b> onun öz sürəti aparır, cərəyan bu istiqamətdə heç nə vermir. Vaxt yalnız çayın eni və <span class="m">v</span>-dən asılıdır, <span class="m">u</span>-dan yox.</p>
+      <div class="fm">t = d/v
+Sürüşmə:  s = u·t
+Sahilə nəzərən sürət:  v_nət = √(v² + u²)
+Qayığın getdiyi yol:  L = √(d² + s²)</div>
+
+      <h3><span class="st">4</span> Düz qarşı nöqtəyə</h3>
+      <p>Düz qarşıya çatmaq üçün qayığın burnunu cərəyana qarşı çevirmək lazımdır ki, <span class="m">v</span>-nin axın boyunca komponenti <span class="m">u</span>-nu tarazlasın. Bunun üçün <span class="m">v > u</span> olmalıdır.</p>
+      <div class="fm">v·sin α = u          (α — sahilə perpendikulyardan ölçülür)
+v_nət = √(v² − u²)       (sahilə perpendikulyar)
+t = d/√(v² − u²)</div>
+      <p><b>Gediş-gəliş:</b> cərəyanla <span class="m">L</span> yol getməyin vaxtı <span class="m">L/(v+u)</span>, geri qayıtmaq üçün <span class="m">L/(v−u)</span>. Cəmi sakit suda getdiyindən <b>çoxdur</b>: <span class="m">t = 2Lv/(v² − u²)</span>.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çayın eni 120 m, qayığın sürəti 4 m/s, cərəyan 3 m/s. Qayıq perpendikulyar üzür.
+  t = 120/4 = 30 s
+  s = u·t = 3·30 = 90 m
+  v_nət = √(4² + 3²) = 5 m/s
+  L = √(120² + 90²) = 150 m   (yoxla: 5·30 = 150 ✓)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Çayın eni 100 m, qayığın suya nəzərən sürəti 5 m/s, cərəyan 3 m/s.
+Qayıq düz qarşı nöqtəyə çatır. Vaxt və bucaq?
+  Sahilə perpendikulyar sürət √(25 − 9) = 4 m/s
+  t = 100/4 = 25 s
+  sin α = u/v = 3/5 = 0,6  (α ≈ 37°)
+  (Perpendikulyar üzsəydi: t = 100/5 = 20 s, amma 60 m sürüşərdi.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Qayığın suya nəzərən sürəti 4 m/s, cərəyan 2 m/s. Qayıq cərəyanla 60 m getdi və geri qayıtdı.
+Bütün vaxt? Sakit suda nə qədər olardı?
+  Cərəyanla: 60/(4 + 2) = 10 s
+  Əks:       60/(4 − 2) = 30 s
+  Cəmi 40 s
+  Sakit suda: 120/4 = 30 s    (cərəyan həmişə zərərlidir!)</div>
+      <div class="life"><b>Həyatdan.</b> Qayıqçı çayı düz keçmək istəyəndə burnunu axının əksinə «çevirir», sahildən baxanda qayığın yan tərəfi cərəyana doğru olur. Təyyarə də buna oxşar: küləyə görə kursu düzəldir ki, yer üzərində düz xətlə getsin.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Perpendikulyar üzəndə vaxtı <span class="m">d/v_nət</span> hesablamaq. Doğrusu <span class="m">d/v</span>: çayın enini keçmək yalnız <span class="m">v</span>-dən asılıdır.</li>
+        <li>Sürüşməni <span class="m">v·t</span> yazmaq. Sürüşməni cərəyan yaradır: <span class="m">u·t</span>.</li>
+        <li>Düz keçəndə sürətləri toplamaq. Düz keçəndə <span class="m">√(v² − u²)</span> alınır.</li>
+        <li>Gediş-gəlişdə orta sürəti <span class="m">v</span> saymaq: vaxt həmişə daha uzundur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Perpendikulyar üzmə:  t = d/v,  s = u·t,  v_nət = √(v² + u²)
+Düz keçmə:  v·sin α = u,  v_nət = √(v² − u²)
+Gediş-gəliş:  t = L/(v+u) + L/(v−u)
+Sahilə perpendikulyar hərəkətə cərəyan təsir etmir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>d = 60 m, v = 3 m/s, u = 4 m/s, perpendikulyar üzür. t və s? <span class="ans">t = 20 s, s = 80 m.</span></li>
+        <li>v = 13 m/s, u = 5 m/s. Düz keçərkən sahilə nəzərən sürət? <span class="ans">√(169 − 25) = 12 m/s.</span></li>
+        <li>v = 2u olanda düz keçmək üçün α = ? <span class="ans">sin α = 1/2, α = 30°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Yağış, külək və nisbi sürətin vektor fərqi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yağış yerə şaquli düşür, amma avtomobilin şüşəsində maili izlər buraxır. Dayananda iz şaquli, sürəndə maili. Velosipedçi küləyi arxadan, yandan və ya qarşıdan hiss edir, hərçənd külək eyni əsir. Bu, <b>nisbi sürətin vektor fərqi</b> ilə izah olunur.</p>
+
+      <h3><span class="st">2</span> Maşının içindən baxanda</h3>
+      <p>Avtomobilin sistemində hər şey əksinə hərəkət edir. Cisimin avtomobilə nəzərən sürəti:</p>
+      <div class="fm">v_nisbi = v_cisim − v_avto</div>
+      <div class="fig">
+        <svg viewBox="0 0 270 170" role="img" aria-label="Sürət üçbucağı: yağışın şaquli sürəti, mənfi avtomobil sürəti və nisbi sürət">
+          <defs><marker id="nh3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="190" y1="25" x2="190" y2="125" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#nh3)"/><text x="198" y="80" class="lbl">v_yağış</text>
+          <line x1="190" y1="25" x2="90" y2="25" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#nh3)"/><text x="140" y="16" class="lbl" text-anchor="middle">−v_avto</text>
+          <line x1="190" y1="25" x2="90" y2="125" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#nh3)"/><text x="125" y="84" class="lbl" text-anchor="end">v_nisbi</text>
+          <line x1="90" y1="25" x2="90" y2="125" stroke="var(--muted)" stroke-dasharray="4 3"/><line x1="90" y1="125" x2="190" y2="125" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <path d="M190 48A23 23 0 0 1 174 41" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="172" y="60" class="lbl" text-anchor="end">α</text>
+          <text x="135" y="152" class="lbl" text-anchor="middle">tg α = v_avto / v_yağış</text>
+        </svg>
+        <div class="cap">
+          <p>Yağışın yerə nəzərən sürəti şaquli aşağıdır. Avtomobilin sürətini ondan çıxırıq (yəni <span class="m">−v_avto</span> əlavə edirik). Yaranan düzbucaqlı üçbucağın hipotenuzu — damcının avtomobilə nəzərən sürəti. İz məhz bu istiqamətdədir.</p>
+        </div>
+      </div>
+      <div class="fm">v_nisbi = √(v_yağış² + v_avto²)
+tg α = v_avto / v_yağış        (α — şaquli ilə iz arasındakı bucaq)</div>
+      <p>İz şaquli ilə 45° əmələ gətirirsə, <span class="m">v_avto = v_yağış</span>. Avtomobil sürətlənəndə iz getdikcə yatıqlaşır. Bu üsulla yağışın sürətini ölçmək olar.</p>
+      <p>Küləyə gəlsək: <b>külək yerə nəzərən</b> verilir. Sən hərəkət edirsənsə, hiss etdiyin küləyin sürəti <span class="m">v_külək − v_sən</span>-dir. Burada vektorlar çıxılır, ədədlər yox.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Yağış şaquli 6 m/s ilə düşür. Avtomobil 8 m/s ilə gedir.
+  v_nisbi = √(6² + 8²) = 10 m/s
+  tg α = 8/6 = 4/3 (α ≈ 53° şaquli ilə)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Qatar 20 m/s ilə gedir. Yağış damcıları şaquli düşür. Pəncərədə izlər şaquli ilə
+tg α = 4/3 bucağı əmələ gətirir. Yağışın sürəti və damcının qatara nəzərən sürəti?
+  tg α = v_qatar/v_yağış = 4/3 → v_yağış = 20·3/4 = 15 m/s
+  v_nisbi = √(15² + 20²) = 25 m/s</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Velosipedçi şimala 4 m/s sürətlə gedir. Külək yerə nəzərən qərbdən şərqə 3 m/s əsir.
+Velosipedçinin hiss etdiyi küləyin sürəti və istiqaməti?
+  Külək: şərqə 3 m/s.  Velosipedçini çıxırıq: şimala −4 yəni cənuba 4 m/s.
+  v_nisbi = √(3² + 4²) = 5 m/s
+  Külək velosipedçiyə şimal-qərb tərəfdən (üzünə və soldan) əsir kimi görünür.</div>
+      <div class="life"><b>Həyatdan.</b> Küləksiz havada velosiped sürəndə üzünə külək dəyir: bu, <span class="m">−v_velosiped</span> sürətli «nisbi» küləkdir. Sürət ikiqat olsa, hiss olunan küləyin təzyiqi dörd qat artır, ona görə də yarış velosipedçiləri başı aşağı əyilir. Qatar yanından keçəndə yan küləyi də eyni cür hiss edirsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Perpendikulyar sürətləri toplamaq (6 + 8 = 14). Perpendikulyar vektorlar Pifaqorla birləşir.</li>
+        <li>tg α-nı tərsinə yazmaq. İzin şaquli ilə bucağında <span class="m">tg α = v_avto/v_yağış</span>.</li>
+        <li>Küləyin sürətini sənə nəzərən yox, yerə nəzərən saymaq (və ya əksinə). Mətndə «yerə nəzərən» sözünü axtar.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v_nisbi = v_cisim − v_sistem  (vektor fərqi)
+Perpendikulyar: v_nisbi = √(v₁² + v₂²)
+İz bucağı:  tg α = v_avto / v_yağış
+45° iz  →  v_yağış = v_avto</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Yağış 5 m/s şaquli, avtomobil 12 m/s. Nisbi sürət? <span class="ans">√(25 + 144) = 13 m/s.</span></li>
+        <li>İz şaquli ilə 45°, avtomobil 18 m/s. Yağışın sürəti? <span class="ans">18 m/s.</span></li>
+        <li>Yağış 12 m/s, tg α = 0,75. Avtomobilin sürəti? <span class="ans">0,75·12 = 9 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Görüş, yetişmə və nisbi təcil</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada ən çox rast gələn məsələ: iki cisim harada və nə vaxt görüşəcək? Hər ikisini ayrıca yazıb tənliyi həll etmək olar, amma <b>birini durğun saymaq</b> həm tez, həm də az səhvlidir.</p>
+
+      <h3><span class="st">2</span> Görüş və yetişmə</h3>
+      <p>İkinci cismin sistemində o, durur, birinci isə nisbi sürətlə gəlir:</p>
+      <div class="fm">Üz-üzə:           v_nisbi = v₁ + v₂,   t = d/(v₁ + v₂)
+Eyni istiqamət:   v_nisbi = |v₁ − v₂|,   t = d/|v₁ − v₂|
+Yer:  x₁ = v₁·t  (birincinin başlanğıcından)</div>
+      <p><b>Qatarların ötməsi:</b> nisbi yol onların uzunluqları cəmi <span class="m">L₁ + L₂</span>-dir (baş başa çatandan quyruq quyruğu keçənə qədər). <b>Sərnişinin qatar pəncərəsindən</b> baxması: qarşı qatarın uzunluğu <span class="m">L = (v₁ + v₂)·t</span>.</p>
+      <p><b>Sonradan çıxan:</b> birinci artıq irəlidədirsə, yetişmə yolu <span class="m">v₁·τ</span> olur: <span class="m">t = v₁τ/(v₂ − v₁)</span>.</p>
+
+      <h3><span class="st">3</span> Nisbi təcil</h3>
+      <p>Təcil də vektordur: <span class="m">a_nisbi = a₁ − a₂</span>. Bütün düsturlar eyni cür «nisbi» yazılır:</p>
+      <div class="fm">x_nisbi = v_nisbi·t + a_nisbi·t²/2</div>
+      <p>Üz-üzə təcillə gələn iki cisim, sükunətdən başlayanda: <span class="m">d = (a₁ + a₂)t²/2</span>.</p>
+      <p><b>Ən gözəl hal:</b> iki cisim yalnız ağırlıq qüvvəsi ilə hərəkət edirsə (sərbəst düşmə, atılma), hər ikisinin təcili <span class="m">g</span>-dir. Nisbi təcil sıfırdır. Onda onlar bir-birinə nəzərən <b>bərabərsürətlə</b> hərəkət edir: bir-birinə <span class="m">v_nisbi = v₀</span> sürəti ilə yaxınlaşır. <span class="m">g</span> məsələdən düşür.</p>
+      <div class="fig">
+        <svg viewBox="0 0 270 190" role="img" aria-label="Üstdən buraxılan daş və yerdən atılan daş şaquli xətt üzrə qarşılaşır">
+          <defs><marker id="nh4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="170" x2="250" y2="170" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="150" y1="20" x2="150" y2="170" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <circle cx="150" cy="20" r="7" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="164" y="24" class="lbl">1</text>
+          <circle cx="150" cy="170" r="7" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="164" y="174" class="lbl">2</text>
+          <line x1="112" y1="25" x2="112" y2="62" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#nh4)"/><text x="104" y="48" class="lbl" text-anchor="end">g</text>
+          <line x1="112" y1="165" x2="112" y2="128" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#nh4)"/><text x="104" y="150" class="lbl" text-anchor="end">v₀</text>
+          <line x1="205" y1="20" x2="205" y2="170" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#nh4)" marker-end="url(#nh4)"/><text x="213" y="100" class="lbl">H</text>
+          <text x="20" y="120" class="lbl">t = H / v₀</text>
+        </svg>
+        <div class="cap">
+          <p>Birinci daş <span class="m">H</span> hündürlükdən buraxılır, ikinci yerdən <span class="m">v₀</span> ilə yuxarı atılır. 1-ci daşa nəzərən 2-ci daş <span class="m">v₀</span> sürətlə bərabərsürətli yaxınlaşır: <span class="m">t = H/v₀</span>.</p>
+        </div>
+      </div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. A və B arasında 300 m. A-dan B-yə 5 m/s, B-dən A-ya 10 m/s, eyni anda yola çıxırlar.
+  t = 300/(5 + 10) = 20 s
+  Görüş A-dan 5·20 = 100 m məsafədə.</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Uzunluğu 150 m və 100 m olan qatarlar paralel yolda 15 m/s və 10 m/s sürətlə gedir.
+Bir-birinin yanından keçmə vaxtı: a) üz-üzə; b) eyni istiqamətdə, birincinin sürəti 20 m/s?
+  Nisbi yol L₁ + L₂ = 250 m
+  a) 250/(15 + 10) = 10 s
+  b) 250/(20 − 10) = 25 s</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Yerdən 20 m hündürlükdən daş sükunətdən buraxılır. Eyni anda onun düz altından
+yerdən başqa daş 20 m/s ilə yuxarı atılır. Nə vaxt və hansı hündürlükdə qarşılaşacaqlar?
+  Hər ikisinin təcili g → nisbi təcil 0, nisbi sürət 20 m/s
+  t = H/v₀ = 20/20 = 1 s
+  Hündürlük: y = v₀t − gt²/2 = 20 − 5 = 15 m
+  (Yoxla: yuxarıdan düşən 20 − 5·1² = 15 m ✓.)</div>
+      <div class="ex">Nümunə 4 (RFO tipli).
+Yük maşını 10 m/s sabit sürətlə dayanmış avtomobilin yanından keçdi.
+Həmin anda avtomobil 2 m/s² təcillə yetişməyə başladı. Nə vaxt və hansı məsafədə yetişəcək?
+  Yollar bərabər:  10t = 2t²/2 = t²  →  t = 10 s
+  Məsafə: 10·10 = 100 m
+  Yetişəndə avtomobilin sürəti 2·10 = 20 m/s = 2 v_maşın</div>
+      <div class="life"><b>Həyatdan.</b> Qatarın pəncərəsindən qarşıdan gələn qatara baxanda, onun uzunluğunu saniyəölçənlə tapa bilərsən: «keçmə vaxtı» ilə nisbi sürəti vur. Yol hərəkətində «ötmə məsafəsi» də belə hesablanır: sənə qarşı gələn maşının yaxınlaşma sürəti iki sürətin cəmidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Eyni istiqamətdə də sürətləri toplamaq. Fərqini götür.</li>
+        <li>Qatarların ötməsində yalnız bir qatarın uzunluğunu götürmək. Nisbi yol <span class="m">L₁ + L₂</span>-dir.</li>
+        <li>Sərbəst düşmə məsələsində <span class="m">g</span>-ni nisbi təcilə qatmaq. İki cisim üçün də <span class="m">g</span> eynidir, nisbi təcil <b>sıfırdır</b>.</li>
+        <li>Gec çıxan cismin vaxtını eyni saymaq. İkinci τ gec çıxıbsa, onun hərəkət vaxtı <span class="m">t − τ</span>-dur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Üz-üzə: v₁ + v₂,  ötmə: |v₁ − v₂|
+Qatarların keçməsi:  t = (L₁ + L₂)/v_nisbi
+a_nisbi = a₁ − a₂;  sərbəst düşməkdə a_nisbi = 0
+Düşən və yuxarı atılan daş: t = H/v₀</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Velosipedçilər 120 m aralı, 4 m/s və 6 m/s ilə üz-üzə gedir. Görüş vaxtı? <span class="ans">120/10 = 12 s.</span></li>
+        <li>Qatar 100 m, stolbanın yanından 5 s-yə keçir. Sürəti? <span class="ans">100/5 = 20 m/s.</span></li>
+        <li>İki araba sükunətdən 24 m aralıdan 1 m/s² və 2 m/s² təcillə üz-üzə başlayır. t? <span class="ans">d = (a₁ + a₂)t²/2 → t² = 2·24/3 = 16, t = 4 s. (Məsafə 24 m götürüldü.)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

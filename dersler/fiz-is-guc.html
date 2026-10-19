@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mexaniki iş və güc dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-is-guc.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Mexaniki iş və güc</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Dinamika, enerji</div>
+    <h1>Mexaniki iş və güc</h1>
+    <p>Gündəlik dildə «işləmək» çox şeydir: dərs hazırlamaq, çanta daşımaq. Fizikada <b>iş</b> dəqiq anlayışdır: qüvvə cismi yerindən tərpədəndə görülür. Divarı itələyib yorulmaq iş deyil. Güc isə işin nə qədər tez görülməsini göstərir. Bu mövzu avtomobilin, kranın, nasosun, ürəyin işini hesablayır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>A = F·s·cos α</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ağırlıq, sürtünmə, qrafik</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Güc</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>FİƏ</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Mexaniki iş</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çantanı əlində tutub dəhlizdə yeriyirsən. Fizika deyir ki, əlin çantaya <b>heç bir iş görmür</b>. Kirşəni ipdən çəkirsən: ipi yuxarı qaldırdıqca işin necə dəyişdiyini bilmək istəyirsən. İş anlayışı dəqiq olmasa, bu suallara cavab verə bilmərik.</p>
+
+      <h3><span class="st">2</span> İş necə hesablanır</h3>
+      <div class="fig">
+        <svg viewBox="0 0 270 150" role="img" aria-label="Qutu üfüqi səthdə, qüvvə α bucağı altında, yerdəyişmə üfüqi; qüvvənin yerdəyişmə boyunca komponenti F·cos α">
+          <defs><marker id="ig1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="110" x2="260" y2="110" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="40" y="75" width="60" height="35" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="100" y1="92" x2="165" y2="45" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#ig1)"/>
+          <text x="170" y="42" class="lbl">F</text>
+          <line x1="100" y1="92" x2="165" y2="92" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ig1)"/>
+          <text x="168" y="97" class="lbl">F·cos α</text>
+          <path d="M125 92A25 25 0 0 0 119 77" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="128" y="84" class="lbl">α</text>
+          <line x1="40" y1="130" x2="200" y2="130" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ig1)"/>
+          <text x="120" y="146" class="lbl" text-anchor="middle">s (yerdəyişmə)</text>
+        </svg>
+        <div class="cap">
+          <p>Qüvvə hərəkətin istiqamətinə α bucağı altındadır. İşi yalnız qüvvənin yerdəyişmə <b>boyunca</b> komponenti görür: <span class="m">F·cos α</span>.</p>
+        </div>
+      </div>
+      <div class="fm">A = F·s·cos α
+Vahid:  1 J = 1 N·m</div>
+      <p>Burada <span class="m">F</span> — sabit qüvvə, <span class="m">s</span> — yerdəyişmə (cismin getdiyi düz xətt boyunca məsafə), <span class="m">α</span> — onların arasındakı bucaq.</p>
+
+      <h3><span class="st">3</span> İşin işarəsi</h3>
+      <div class="fm">α = 0°     cos = 1      A = F·s    (qüvvə hərəkət istiqamətində, müsbət)
+0° &lt; α &lt; 90°   A &gt; 0
+α = 90°    cos = 0      A = 0      (qüvvə yola perpendikulyar)
+90° &lt; α &lt; 180°  A &lt; 0
+α = 180°   cos = −1     A = −F·s   (qüvvə hərəkətin əksinə)</div>
+      <p>Mənfi iş qüvvənin cismi <b>yavaşıtdığını</b> deməkdir: sürtünmə, hava müqaviməti. Müsbət iş cismi <b>sürətləndirir</b>.</p>
+      <p>İş sıfırdırsa: <b>(1)</b> qüvvə var, yerdəyişmə yoxdur (divarı itələyirsən); <b>(2)</b> qüvvə yerdəyişməyə perpendikulyardır (üfüqi gedən çantaya əlin qüvvəsi, normal reaksiya, dairə boyu sabit sürətlə fırlanan cismə mərkəzə yönəlmiş qüvvə).</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Qutunu üfüqlə 60° bucaq əmələ gətirən iplə 50 N qüvvə ilə 8 m çəkirlər.
+  A = F·s·cos 60° = 50·8·0,5 = 200 J</div>
+      <div class="ex">Nümunə 2. Xizəkçi qarda 15 m sürüşdü. Sürtünmə qüvvəsi 20 N.
+  Sürtünmə hərəkətin əksinədir: α = 180°, cos = −1
+  A = −20·15 = −300 J</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Kirşəni üfüqlə 30° bucaq əmələ gətirən iplə 40 N qüvvə ilə 10 m çəkirlər.
+İpin dartı qüvvəsinin işini tap.
+  A = 40·10·cos 30° = 400·√3/2 = 200√3 J
+  (Təqribən 346 J. Hazır cavab: 200√3.)
+Eyni halda ağırlıq qüvvəsinin və normal reaksiyanın işi?
+  Hər ikisi şaquli, yerdəyişmə üfüqi: α = 90°, iş 0.</div>
+      <div class="life"><b>Həyatdan.</b> Ağır çanta daşıyan adam üfüqi yolda getsə, əlinin çantaya gördüyü iş sıfırdır, amma əzələ yorulur: əzələ gərginlikdə daxili enerji sərf edir. Çantanı pilləkənlə yuxarı qaldırsan, iş artıq müsbətdir: <span class="m">A = mgh</span>. İşi hesablayanda həmişə soruş: «hansı qüvvənin işi?»</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucağı səhv götürmək. α — qüvvə ilə <b>yerdəyişmə</b> arasındakı bucaqdır. İp şaquli ilə 30° əmələ gətirirsə, yerdəyişmə üfüqi olanda α = 60°-dir.</li>
+        <li>Sürtünmənin işini müsbət yazmaq. Sürtünmə hərəkətin əksinədir: <span class="m">A = −F_s·s</span>.</li>
+        <li>İşi «qüvvə × zaman» saymaq. İş qüvvə × <b>yoldur</b>.</li>
+        <li>Əlin tutub durduğu çantanın işini hesablamaq: yerdəyişmə yoxdur — iş sıfırdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A = F·s·cos α,  1 J = 1 N·m
+α = 90° → A = 0;  α &gt; 90° → A &lt; 0
+Sürtünmənin işi:  A = −F_s·s
+İş skalyardır (istiqaməti yoxdur), işarəsi var</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>50 N qüvvə cismi öz istiqamətində 6 m aparır. A = ? <span class="ans">50·6 = 300 J.</span></li>
+        <li>10 N qüvvə yerdəyişməyə perpendikulyardır, yol 100 m. A = ? <span class="ans">0.</span></li>
+        <li>Qüvvə 20 N, α = 120°, s = 5 m. A = ? <span class="ans">20·5·(−1/2) = −50 J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ağırlıq və sürtünmənin işi, qrafikdən iş</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Ağırlıq qüvvəsinin işi</h3>
+      <p>Cisim hündürlükdən düşəndə ağırlıq qüvvəsi iş görür. Əsas xüsusiyyət: iş yalnız <b>başlanğıc və son hündürlüklərdən</b> asılıdır, trayektoriyanın şəklindən yox.</p>
+      <div class="fm">A_ağırlıq = mg(h₁ − h₂)
+Aşağı enəndə A &gt; 0,  yuxarı qalxanda A &lt; 0</div>
+      <p>Daşı 5 m-lik şaquli yolla da, 50 m-lik əyri yolla da (eyni hündürlük fərqi) buraxsan, ağırlığın işi eynidir. Maili müstəvidə <span class="m">h = l·sin α</span>.</p>
+
+      <h3><span class="st">2</span> Sürtünmənin işi</h3>
+      <p>Sürtünmə həmişə hərəkətə əks yönəlib, ona görə işi mənfidir. Üfüqi səthdə <span class="m">F_s = μmg</span>, maili müstəvidə isə <span class="m">F_s = μmg·cos α</span> (normal reaksiya <span class="m">N = mg·cos α</span>).</p>
+      <div class="fm">A_sür = −F_s·s
+üfüqi:  A = −μmg·s
+maili (l uzunluq):  A = −μmg·cos α·l</div>
+      <p>Sürtünmənin işi <b>yoldan asılıdır</b>: yol nə qədər uzundursa, itki o qədər böyükdür (ağırlıqdan fərqli olaraq).</p>
+
+      <h3><span class="st">3</span> Dəyişən qüvvə: qrafikdən iş</h3>
+      <div class="fig">
+        <svg viewBox="0 0 270 175" role="img" aria-label="F-in s-dən asılılıq qrafiki: 0–4 m-də artır, sonra sabit; altındakı sahə iş">
+          <defs><marker id="ig2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M40 140L100 50L220 50L220 140z" fill="var(--accent-soft)"/>
+          <line x1="40" y1="140" x2="245" y2="140" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ig2)"/>
+          <line x1="40" y1="140" x2="40" y2="12" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ig2)"/>
+          <polyline points="40,140 100,50 220,50" fill="none" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="100" y1="50" x2="100" y2="140" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="40" y1="50" x2="100" y2="50" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="220" y1="50" x2="220" y2="140" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <text x="236" y="158" class="lbl">s, m</text><text x="30" y="18" class="lbl" text-anchor="end">F, N</text>
+          <text x="34" y="54" class="lbl" text-anchor="end">30</text>
+          <text x="100" y="158" class="lbl" text-anchor="middle">4</text><text x="220" y="158" class="lbl" text-anchor="middle">10</text>
+          <text x="66" y="125" class="lbl" text-anchor="middle">60 J</text>
+          <text x="160" y="100" class="lbl" text-anchor="middle">180 J</text>
+        </svg>
+        <div class="cap">
+          <p>Qüvvə sabit olmayanda iş qrafikin altındakı <b>sahədir</b>. Üçbucaq: <span class="m">½·30·4 = 60 J</span>. Düzbucaqlı: <span class="m">30·6 = 180 J</span>. Cəmi <span class="m">240 J</span>.</p>
+        </div>
+      </div>
+      <p>Qrafikdən iş: hissələrə böl (düzbucaqlı, üçbucaq, trapesiya), sahələri topla. Qüvvə mənfi olarsa (ox altında), sahə mənfidir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 kq daş 5 m hündürlükdən düşdü (düz da, əyri də). Ağırlıq qüvvəsinin işi?
+  A = mgh = 2·10·5 = 100 J</div>
+      <div class="ex">Nümunə 2. 30 kq qutu üfüqi döşəmədə 10 m sürüşdürülür, μ = 0,2.
+  F_s = μmg = 0,2·30·10 = 60 N
+  A_sür = −60·10 = −600 J</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Kütləsi 10 kq olan kirşə uzunluğu 5 m olan təpədən sürüşüb enir. sin α = 0,6, cos α = 0,8, μ = 0,25.
+Ağırlıq qüvvəsinin, sürtünmənin və ümumi işi?
+  h = l·sin α = 5·0,6 = 3 m
+  A_ağırlıq = 10·10·3 = 300 J
+  N = mg·cos α = 100·0,8 = 80 N,  F_s = 0,25·80 = 20 N
+  A_sür = −20·5 = −100 J
+  A_ümumi = 300 − 100 = 200 J   (normal reaksiyanın işi 0)</div>
+      <div class="life"><b>Həyatdan.</b> Pilləkənlə 1-ci mərtəbədən 5-ci mərtəbəyə qalxanda (3 m-lik mərtəbələr, 4 mərtəbə = 12 m), 60 kq-lıq adam üçün ağırlığın işi <span class="m">−60·10·12 = −7200 J</span>. Liftlə qalxsan da ağırlığın işi eynidir: yalnız hündürlük fərqi sayılır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ağırlığın işini trayektoriyanın uzunluğundan hesablamaq. Yalnız hündürlük fərqi lazımdır.</li>
+        <li>Maili müstəvidə sürtünmə üçün <span class="m">μmg</span> yazmaq. Düzü <span class="m">μmg·cos α</span>.</li>
+        <li>Ağırlıq qüvvəsinin işini qalxanda müsbət yazmaq. Qalxanda ağırlıq hərəkətin əksinədir — iş mənfidir.</li>
+        <li>Qrafikdə üçbucaq sahəsini yarıya bölməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A_ağırlıq = mg(h₁ − h₂) — yoldan asılı deyil
+A_sür = −F_s·s — yola mütənasibdir
+Maili: h = l·sin α,  N = mg·cos α
+F(s) qrafikinin altındakı sahə = iş</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 kq yük 4 m qaldırıldı. Ağırlığın işi? <span class="ans">−5·10·4 = −200 J.</span></li>
+        <li>μ = 0,1, m = 20 kq, yol 15 m, üfüqi. A_sür = ? <span class="ans">F_s = 20 N, A = −20·15 = −300 J.</span></li>
+        <li>Qüvvə 0-dan 50 N-a qədər düz xətlə artır, yol 6 m. İş? <span class="ans">Üçbucaq: ½·50·6 = 150 J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Güc</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Eyni yükü iki kran qaldırır: biri 10 s-ə, digəri 20 s-ə. İş eynidir, amma birincisi daha <b>güclüdür</b>. Mühərrikin, kranın, adamın qabiliyyəti işin nə qədər tez görülməsi ilə ölçülür.</p>
+
+      <h3><span class="st">2</span> Gücün təyini</h3>
+      <div class="fm">P = A/t       vahid: 1 W = 1 J/s
+1 kW = 1000 W</div>
+      <p>Qüvvə sabit və cisim bərabərsürətlə gedirsə:</p>
+      <div class="fm">P = F·v     (qüvvə sürət istiqamətindədir)
+A = P·t</div>
+      <p>Buradan çıxış: avtomobil maksimal sürətə çatanda dartı qüvvəsi müqavimətə bərabər olur və <span class="m">P = F_müq·v_max</span>. Eyni güc üçün sürət artanda qüvvə azalır. Ona görə maşın dağa qalxanda aşağı pilləyə (kiçik sürət, böyük qüvvə) keçir.</p>
+      <p>Sürət km/saat-la verilirsə, m/s-ə çevir: <span class="m">72 km/saat = 20 m/s</span>.</p>
+
+      <h3><span class="st">3</span> Qaldırmanın gücü</h3>
+      <p>Yükü <span class="m">h</span> hündürlüyə bərabər sürətlə qaldıranda dartı qüvvəsi <span class="m">mg</span>-yə bərabərdir. Faydalı iş <span class="m">mgh</span>, faydalı güc:</p>
+      <div class="fm">P_f = mgh/t = mg·v</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Kran 200 kq yükü 15 m hündürlüyə 10 s-ə qaldırdı.
+  A = mgh = 200·10·15 = 30 000 J
+  P = A/t = 30 000/10 = 3000 W = 3 kW</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Avtomobil üfüqi yolda 72 km/saat sabit sürətlə gedir, müqavimət qüvvəsi 1500 N. Mühərrikin gücü?
+  v = 72/3,6 = 20 m/s
+  Sabit sürətdə dartı qüvvəsi = müqavimət = 1500 N
+  P = F·v = 1500·20 = 30 000 W = 30 kW</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Gücü 40 kW olan motorlu qayıq maksimal sürətlə gedərkən suyun müqaviməti 2000 N-dur.
+Maksimal sürəti? km/saat ilə də yaz.
+  P = F·v → v = 40 000/2000 = 20 m/s
+  20 m/s = 20·3,6 = 72 km/saat</div>
+      <div class="life"><b>Həyatdan.</b> Ürək hər döyüntüdə təxminən 1 J iş görür; dəqiqədə 72 döyüntüdə <span class="m">72 J/60 s ≈ 1,2 W</span>. Bu, adi lampanın gücündən dəfələrlə kiçikdir, amma ürək ömür boyu dayanmadan işləyir. Fikrət 46 kq-dır: 12 m hündürlüyə 20 s-ə qaçaraq qalxsa, orta faydalı gücü <span class="m">46·10·12/20 = 276 W</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>km/saat-ı m/s-ə çevirməmək: <span class="m">P = 1500·72 = 108 kW</span> səhvdir.</li>
+        <li>Sabit sürətdə dartı qüvvəsini sıfır saymaq. Dartı qüvvəsi müqavimətə <b>bərabərdir</b>, onu tarazlayır.</li>
+        <li>Güc və iş anlayışını qarışdırmaq: W və J eyni deyil. <span class="m">W = J/s</span>.</li>
+        <li>kW-dan W-a (və əksinə) keçməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P = A/t,  1 W = 1 J/s
+P = F·v (bərabərsürətli hərəkət)
+Maksimal sürət:  F_dartı = F_müq
+Qaldırma:  P = mgh/t = mg·v
+1 kW = 1000 W,  72 km/saat = 20 m/s</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mühərrik 5 s-də 2000 J iş görür. P = ? <span class="ans">2000/5 = 400 W.</span></li>
+        <li>Maşın 10 m/s sürətlə gedir, dartı 800 N. P = ? <span class="ans">8000 W = 8 kW.</span></li>
+        <li>P = 6 kW, F = 300 N. v = ? <span class="ans">6000/300 = 20 m/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Faydalı iş əmsalı (FİƏ)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mühərrik yanacaqdan enerji alır, amma onun yalnız bir hissəsi faydalı işə çevrilir. Qalanı istiliyə, səs-küyə, sürtünməyə gedir. «Neçə faizi faydalı iş oldu?» sualının cavabı <b>FİƏ</b>-dir. Real məsələlərdə ən çox istifadə olunan ölçüdür.</p>
+
+      <h3><span class="st">2</span> FİƏ</h3>
+      <div class="fig">
+        <svg viewBox="0 0 270 130" role="img" aria-label="Sərf olunan iş sütunu faydalı iş və itkiyə bölünür">
+          <rect x="30" y="20" width="80" height="90" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="70" y="70" class="lbl" text-anchor="middle">A_tam</text>
+          <rect x="150" y="38" width="80" height="72" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="190" y="78" class="lbl" text-anchor="middle">A_faydalı</text>
+          <rect x="150" y="20" width="80" height="18" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="190" y="33" text-anchor="middle">itki</text>
+          <text x="125" y="70" class="lbl" text-anchor="middle">→</text>
+          <text x="135" y="125" class="lbl" text-anchor="middle">η = A_faydalı / A_tam</text>
+        </svg>
+        <div class="cap">
+          <p>Sərf olunan bütün iş (enerji) bir hissəsi faydalı olur, qalanı itir. Faydalı hissənin bütövə nisbəti — FİƏ.</p>
+        </div>
+      </div>
+      <div class="fm">η = A_faydalı / A_tam · 100% = P_faydalı / P_sərf · 100%
+η &lt; 100%  həmişə</div>
+      <p>FİƏ 100%-dən çox ola bilməz: bu, enerjinin saxlanması qanununu pozar. Hesablayanda faydalı və sərf olunan kəmiyyətləri dəqiq müəyyən et. Faydalı iş çox vaxt <span class="m">mgh</span> (yükü qaldırmaq), sərf olunan iş isə <span class="m">P·t</span> (mühərrikin gücü × vaxt).</p>
+      <p><b>Nasos:</b> suyu qaldırmaq faydalı işdir: <span class="m">A_f = mgh = ρVgh</span>, <span class="m">ρ = 1000 kq/m³</span>. 1 m³ su 1000 kq-dır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Lift kütləsi 800 kq olan kabinanı 2 m/s sabit sürətlə qaldırır. Mühərrikin FİƏ-si 80%.
+Mühərrikin sərf etdiyi gücü tap.
+  Faydalı güc: P_f = mg·v = 8000·2 = 16 000 W
+  P_sərf = P_f/η = 16 000/0,8 = 20 000 W = 20 kW</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Nasos 5 dəqiqəyə 6 m³ suyu 20 m hündürlüyə vurur. Nasosun FİƏ-si 80%. Sərf etdiyi güc?
+  m = ρV = 6000 kq
+  A_f = mgh = 6000·10·20 = 1 200 000 J
+  P_f = A_f/t = 1 200 000/300 = 4000 W
+  P_sərf = 4000/0,8 = 5000 W</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Gücü 10 kW olan kran mühərriki 500 kq yükü 8 s ərzində 12 m hündürlüyə qaldırdı. Kranın FİƏ-si?
+  A_f = 500·10·12 = 60 000 J
+  A_tam = P·t = 10 000·8 = 80 000 J
+  η = 60 000/80 000 = 0,75 = 75%</div>
+      <div class="life"><b>Həyatdan.</b> Benzin mühərrikinin FİƏ-si təxminən 25–30%-dir: yanacağın enerjisinin dörddə üçü istilik kimi atmosferə atılır. Elektrik mühərrikləri 90%-ə çatır. Ona görə elektromobil eyni yolda daha az enerji sərf edir. Közərmə lampasının da yalnız ~5%-i işığa çevrilir, qalanı isti olur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>FİƏ-ni tərsinə bölmək (<span class="m">A_tam/A_f</span>) və 100%-dən çox almaq.</li>
+        <li>Faydalı işi <span class="m">P·t</span> yazmaq. <span class="m">P·t</span> sərf olunan işdir, faydalı iş yükə verilən <span class="m">mgh</span>-dır.</li>
+        <li>Suyun kütləsini hesablayanda ρ-nu unutmaq: 6 m³ = 6000 kq, 6 kq deyil.</li>
+        <li>Faizi kəsrə çevirməyi unutmaq: 80% = 0,8.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">η = A_faydalı / A_tam = P_f / P_sərf
+Nasos:  A_f = ρVgh,  ρ = 1000 kq/m³
+Lift/kran:  P_f = mg·v
+η həmişə 100%-dən azdır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mühərrik 2000 J sərf edir, 1500 J faydalı iş görür. η = ? <span class="ans">1500/2000 = 75%.</span></li>
+        <li>η = 60%, faydalı güc 3 kW. Sərf olunan güc? <span class="ans">3/0,6 = 5 kW.</span></li>
+        <li>2 m³ su 10 m qaldırılır. Faydalı iş? <span class="ans">m = 2000 kq, A = 2000·10·10 = 200 000 J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

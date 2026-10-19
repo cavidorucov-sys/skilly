@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="phys"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Qüvvə momenti, tarazlıq dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-fiz-moment.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Fizika · Qüvvə momenti, tarazlıq</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Fizika olimpiadası · RFO: Statika</div>
+    <h1>Qüvvə momenti, tarazlıq</h1>
+    <p>Qapını rezəyə yaxın yerdən itələmək çətindir, dəstəkdən itələmək asandır. Qaykanı uzun açarla açmaq qısa açardan yüngüldür. Burada qüvvənin <b>fırladıcı təsiri</b> var, və onun ölçüsü <span class="m">M = F·d</span> momentidir. Bu mövzu olimpiadada statikanın əsasıdır: yelləncək, lom, tir, nərdivan, kütlə mərkəzi.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Moment M = F·d</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tarazlıq, ling</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İki dayaqlı tir</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kütlə mərkəzi, nərdivan</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Qüvvə momenti</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Velosiped təkərinin qaykanı uzun açarla açırsan, çünki uzun qol az qüvvə ilə eyni nəticəni verir. Qapının dəstəyi rezədən ən uzaq nöqtədə qoyulub: orada qapını azca itələmək kifayətdir. Bunlar qüvvənin <b>fırlatma təsiridir</b>. Bu təsir yalnız qüvvənin böyüklüyündən yox, onun <b>harada və hansı istiqamətdə</b> tətbiq olunmasından da asılıdır.</p>
+
+      <h3><span class="st">2</span> Qüvvənin qolu və momenti</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 210" role="img" aria-label="Açar: yuxarıda qüvvə dəstəyə perpendikulyar, aşağıda bucaq altında; qol d və perpendikulyar komponent">
+          <defs><marker id="mo1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <circle cx="40" cy="45" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="45" x2="200" y2="45" stroke="var(--ink)" stroke-width="5"/>
+          <line x1="200" y1="45" x2="200" y2="8" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo1)"/>
+          <text x="208" y="20" class="lbl">F</text>
+          <line x1="40" y1="68" x2="200" y2="68" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo1)" marker-end="url(#mo1)"/>
+          <text x="120" y="86" class="lbl" text-anchor="middle">d = l</text>
+          <text x="22" y="30" class="lbl">O</text>
+          <circle cx="40" cy="150" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="40" y1="150" x2="200" y2="150" stroke="var(--ink)" stroke-width="5"/>
+          <line x1="200" y1="150" x2="240" y2="105" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo1)"/>
+          <text x="242" y="104" class="lbl">F</text>
+          <line x1="200" y1="150" x2="200" y2="105" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#mo1)"/>
+          <text x="170" y="118" class="lbl" text-anchor="end">F·sin α</text>
+          <path d="M215 150A15 15 0 0 0 211 138" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="222" y="146" class="lbl">α</text>
+          <text x="120" y="182" class="lbl" text-anchor="middle">M = F·l·sin α</text>
+        </svg>
+        <div class="cap">
+          <p><b>Yuxarıda:</b> qüvvə açarın dəstəyinə perpendikulyardır, qol <span class="m">d = l</span>. <b>Aşağıda:</b> qüvvə <span class="m">α</span> bucağı altındadır, fırladan yalnız perpendikulyar komponent <span class="m">F·sin α</span>-dir.</p>
+        </div>
+      </div>
+      <p>Fırlanma oxundan qüvvənin <b>təsir xəttinə</b> endirilən perpendikulyarın uzunluğuna qüvvənin <b>qolu</b> deyilir. Qüvvənin momenti qüvvə ilə qolun hasilidir.</p>
+      <div class="fm">M = F·d
+d — qol (m),  M — N·m
+α bucağı: d = l·sin α  (α — qüvvə ilə dəstək arasındakı bucaq)</div>
+      <p>Qüvvə dəstək boyunca yönəlibsə (<span class="m">α = 0°</span>), təsir xətti oxdan keçir, <span class="m">d = 0</span> və <span class="m">M = 0</span>: dəstəyi dartmaqla qaykanı açmaq olmaz. Ən böyük moment <span class="m">α = 90°</span>-də alınır.</p>
+
+      <h3><span class="st">3</span> Momentin işarəsi</h3>
+      <p>Fırlanma iki istiqamətdə ola bilər: saat əqrəbi istiqamətində və onun əksinə. Birini müsbət, o birini mənfi götürürük. Bir neçə qüvvə varsa, <b>momentlər cəbri cəmlənir</b>.</p>
+      <div class="fm">M_cəm = M₁ + M₂ + …   (saat əqrəbi: +,  əks: −)</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Açarın uzunluğu 30 sm, qüvvə 40 N, dəstəyə perpendikulyar.
+  d = 0,3 m
+  M = F·d = 40·0,3 = 12 N·m</div>
+      <div class="ex">Nümunə 2. Eyni açar, 60 N qüvvə dəstək ilə 30° bucaq əmələ gətirir. l = 0,4 m.
+  d = l·sin 30° = 0,4·0,5 = 0,2 m
+  M = 60·0,2 = 12 N·m</div>
+      <div class="ex">Nümunə 3 (RFO, rayon mərhələsi tipli).
+Oxa bərkidilmiş diskə iki qüvvə toxunan boyunca təsir edir:
+30 N oxdan 20 sm məsafədə diski saat əqrəbi istiqamətində,
+20 N oxdan 50 sm məsafədə əks istiqamətdə fırladır.
+Yekun momenti və istiqaməti tap.
+  M₁ = 30·0,2 = 6 N·m     (saat əqrəbi)
+  M₂ = 20·0,5 = 10 N·m    (əks)
+  M = 6 − 10 = −4 N·m
+Cavab: 4 N·m, disk saat əqrəbinin əksinə fırlanmağa başlayır.
+(Kiçik qüvvə, böyük qol: yenə də qalib gəlir.)</div>
+      <div class="life"><b>Həyatdan.</b> Qapını açmaq üçün 8 N·m moment lazımdırsa: dəstəkdən (rezədən 0,8 m) itələsən <span class="m">F = 8/0,8 = 10 N</span>, rezəyə 10 sm yaxın yerdən itələsən <span class="m">F = 8/0,1 = 80 N</span>. Səkkiz dəfə çox! Ona görə dəstək həmişə uzaqda qoyulur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qol kimi qüvvənin tətbiq nöqtəsindən oxa qədər məsafəni götürmək. Qol <b>perpendikulyar</b> məsafədir: bucaq altında <span class="m">d = l·sin α</span>.</li>
+        <li>Santimetri metrə çevirməmək: 30 sm = 0,3 m, vahid N·m.</li>
+        <li>Əks istiqamətli momentləri toplamaq. Onlar çıxılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">M = F·d,  d — oxdan təsir xəttinə perpendikulyar
+Bucaq altında:  M = F·l·sin α
+Qüvvə oxdan keçirsə:  M = 0
+Momentlər cəbri cəmlənir (istiqamətə görə + və −)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>80 N qüvvə oxdan 25 sm qolla təsir edir. M = ? <span class="ans">80·0,25 = 20 N·m.</span></li>
+        <li>Moment 15 N·m, qol 50 sm. F = ? <span class="ans">F = 15/0,5 = 30 N.</span></li>
+        <li>Açarın uzunluğu 50 sm, qüvvə 100 N, dəstək ilə 30° bucaq. M = ? <span class="ans">d = 0,5·0,5 = 0,25 m, M = 100·0,25 = 25 N·m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tarazlıq şərtləri və ling</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yelləncək-taxta, lom, qayçı, qapaq açan, qaldırıcı kran: hamısı <b>ling</b>dir. Ling dayaq nöqtəsi ətrafında fırlana bilən bərk cisimdir. Onun üçün tarazlıq tapmaq momentlər qaydasına gətirir.</p>
+
+      <h3><span class="st">2</span> İki tarazlıq şərti</h3>
+      <p>Bərk cisim yalnız yerini dəyişə bilmirsə <b>və</b> fırlanmırsa tarazlıqdadır. Bunun üçün iki şərt:</p>
+      <div class="fm">1) ΣF = 0       (qüvvələrin vektor cəmi sıfırdır — irəli hərəkət yoxdur)
+2) ΣM = 0       (istənilən nöqtəyə nəzərən momentlərin cəmi sıfırdır)</div>
+      <p>İkinci şərtdə oxu <b>özün seçirsən</b>. Ağıllı seçim: naməlum qüvvənin tətbiq nöqtəsi. Onda həmin qüvvənin qolu sıfırdır və tənlikdən düşür.</p>
+
+      <h3><span class="st">3</span> Ling qaydası</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Ling: dayaq nöqtəsi ortada, solda F₁ qolu d₁, sağda F₂ qolu d₂">
+          <defs><marker id="mo2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="60" x2="240" y2="60" stroke="var(--ink)" stroke-width="5"/>
+          <path d="M110 64L96 96L124 96z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="45" y1="60" x2="45" y2="108" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo2)"/>
+          <text x="45" y="124" class="lbl" text-anchor="middle">F₁</text>
+          <line x1="205" y1="60" x2="205" y2="108" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo2)"/>
+          <text x="205" y="124" class="lbl" text-anchor="middle">F₂</text>
+          <line x1="45" y1="40" x2="110" y2="40" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo2)" marker-end="url(#mo2)"/>
+          <text x="78" y="32" class="lbl" text-anchor="middle">d₁</text>
+          <line x1="110" y1="40" x2="205" y2="40" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo2)" marker-end="url(#mo2)"/>
+          <text x="158" y="32" class="lbl" text-anchor="middle">d₂</text>
+          <text x="110" y="142" class="lbl" text-anchor="middle">F₁d₁ = F₂d₂</text>
+        </svg>
+        <div class="cap">
+          <p>Dayaq nöqtəsinə nəzərən sol qüvvə lingi bir yöndə, sağ qüvvə əks yöndə fırladır. Tarazlıqda bu iki moment bərabərdir. Qol nə qədər uzundursa, qüvvə o qədər kiçikdir.</p>
+        </div>
+      </div>
+      <div class="fm">F₁·d₁ = F₂·d₂       (çəkisiz ling)
+Dayaqda reaksiya:  N = F₁ + F₂</div>
+      <p>Bu qaydadan «qüvvədə qazanc» çıxır: qol <span class="m">n</span> dəfə uzundursa, qüvvə <span class="m">n</span> dəfə azdır. Amma qazanc yolda itirilir: uzun qolun ucu <span class="m">n</span> dəfə çox yol gedir.</p>
+      <p>Bir neçə yük olduqda hər yükün momenti öz tərəfində toplanır: <span class="m">Σ(saat əqrəbi) = Σ(əks)</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çəkisiz lingin sol qolunda dayaqdan 0,5 m məsafədə 60 N qüvvə var.
+Sağ qolda dayaqdan 1,5 m məsafədə hansı qüvvə lingi tarazlaşdırır?
+  F₁d₁ = F₂d₂ → F₂ = 60·0,5/1,5 = 20 N
+  Dayaqda reaksiya: N = 60 + 20 = 80 N</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Çəkisiz taxta ortasından dayağa qoyulub. Solda dayaqdan 1,2 m məsafədə
+45 kq-lıq uşaq oturub. Sağda dayaqdan 1 m-də 30 kq-lıq uşaq var.
+Üçüncü uşaq sağda dayaqdan 1,5 m məsafədə oturub. Taxta tarazlıqdadır.
+Üçüncü uşağın kütləsi?
+  Sol:  45g·1,2 = 54g
+  Sağ:  30g·1 + m·g·1,5
+  54 = 30 + 1,5m → m = 16 kq
+(g hər yerdə ixtisar olunur — kütlə ilə işləmək olar.)</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Lomla 600 N ağırlıqlı daşı qaldırırlar.
+Daşdan dayaq nöqtəsinə qədər 5 sm, dayaqdan əlin tutduğu yerə qədər
+1,2 m. Hansı qüvvə lazımdır və dayaqdakı reaksiya?
+  F·1,2 = 600·0,05 → F = 30/1,2 = 25 N
+  Dayaq lomu yuxarı itələyir: N = 600 + 25 = 625 N
+  (Qüvvədə qazanc 600/25 = 24 dəfə.)</div>
+      <div class="life"><b>Həyatdan.</b> Yelləncək-taxtada ağır uşaq dayağa yaxın, yüngül uşaq uzaqda oturur. Fikrət 46 kq, atası 92 kq-dır. Ata dayaqdan 1 m-də otursa, Fikrət <span class="m">92·1/46 = 2 m</span>-də oturmalıdır. Qayçı da lingdir: kağızı dayağa (vintə) yaxın kəsirsən, çünki qol qısa, qüvvə böyükdür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qolu qüvvənin bütün lingin uzunluğundan ölçmək. Qol dayaq nöqtəsindən ölçülür.</li>
+        <li>Dayaqdakı reaksiyanı unutmaq: <span class="m">ΣF = 0</span> də lazımdır, <span class="m">N = F₁ + F₂</span>.</li>
+        <li>Tirin (lingin) öz ağırlığını nəzərə almamaq, olan yerdə. Bircins lingin ağırlığı onun <b>ortasında</b> tətbiq olunur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tarazlıq:  ΣF = 0  və  ΣM = 0
+Ling:  F₁d₁ = F₂d₂
+Oxu naməlum qüvvənin nöqtəsində seç — o düşür
+Bircins cismin ağırlığı ortada tətbiq olunur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Çəkisiz lingdə solda 40 N dayaqdan 0,6 m-dədir. Sağda 0,3 m-də hansı qüvvə lazımdır? <span class="ans">F = 40·0,6/0,3 = 80 N.</span></li>
+        <li>Yelləncəkdə 30 kq uşaq dayaqdan 1,5 m-də oturub. 45 kq-lıq uşaq hardan oturmalıdır? <span class="ans">d = 30·1,5/45 = 1 m.</span></li>
+        <li>Çəkisiz ling 20 N və 30 N qüvvə ilə tarazlıqdadır. Dayaqdakı reaksiya? <span class="ans">N = 20 + 30 = 50 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İki dayaq üzərində tir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Körpü, taxta, masa üstündəki lövhə, iki nəfərin çiynində daşıdığı boru: bunların hamısı iki dayaq üzərində tirdir. Hər dayaq tirin bir hissəsini saxlayır. Əsas sual: <b>hər dayağa nə qədər yük düşür</b>?</p>
+
+      <h3><span class="st">2</span> Reaksiya qüvvələri</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 195" role="img" aria-label="Tir A və B dayaqlarında, üstündə yük, aşağı ağırlıq qüvvəsi, yuxarı N_A və N_B">
+          <defs><marker id="mo3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="40" y="85" width="220" height="10" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M40 95L30 115L50 115z" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M260 95L250 115L270 115z" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="97" y="55" width="26" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="110" y="75" class="lbl" text-anchor="middle">M</text>
+          <line x1="110" y1="20" x2="110" y2="53" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo3)"/>
+          <text x="120" y="35" class="lbl">Mg</text>
+          <line x1="150" y1="97" x2="150" y2="135" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo3)"/>
+          <text x="158" y="133" class="lbl">m_tir·g</text>
+          <line x1="40" y1="152" x2="40" y2="119" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#mo3)"/>
+          <text x="52" y="146" class="lbl">N_A</text>
+          <line x1="260" y1="152" x2="260" y2="119" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#mo3)"/>
+          <text x="248" y="146" class="lbl" text-anchor="end">N_B</text>
+          <text x="40" y="172" class="lbl" text-anchor="middle">A</text><text x="260" y="172" class="lbl" text-anchor="middle">B</text>
+          <line x1="40" y1="182" x2="110" y2="182" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo3)" marker-end="url(#mo3)"/>
+          <text x="75" y="192" class="lbl" text-anchor="middle">x</text>
+        </svg>
+        <div class="cap">
+          <p>Tirə: yük <span class="m">Mg</span> aşağı (A-dan <span class="m">x</span> məsafədə), tirin öz ağırlığı <span class="m">m_tir·g</span> ortada, dayaqlardan reaksiyalar <span class="m">N_A, N_B</span> yuxarı.</p>
+        </div>
+      </div>
+      <p>İki naməlum var: <span class="m">N_A</span> və <span class="m">N_B</span>. İki tənlik yazırıq.</p>
+      <div class="fm">B-yə nəzərən momentlər (N_B düşür):  N_A·L = m_tir·g·L/2 + M·g·(L − x)
+A-ya nəzərən momentlər (N_A düşür):  N_B·L = m_tir·g·L/2 + M·g·x
+Qüvvələr:  N_A + N_B = (m_tir + M)·g</div>
+      <p>Üçüncü tənlik yoxlamadır: tapdığın <span class="m">N_A</span> və <span class="m">N_B</span> cəmi bütün ağırlıqlara bərabər olmalıdır.</p>
+      <p>Yük A-ya nə qədər yaxındırsa, <span class="m">N_A</span> o qədər çox yük götürür: yük sanki yaxın dayağa «daha çox söykənir».</p>
+
+      <h3><span class="st">3</span> Tir qalxanda</h3>
+      <p>Dayaq tiri yalnız <b>itələyə</b> bilər, dartıb saxlaya bilməz. Ona görə həmişə <span class="m">N ≥ 0</span>. Hesablamada <span class="m">N_A = 0</span> alınırsa, tir A-dan qalxmaq həddindədir. Mənfi alınırsa, tir fırlanıb qalxır, dayaq saxlaya bilmir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çəkisiz tir 4 m, A-dan 1 m məsafədə 60 kq yük.
+  A-ya nəzərən: N_B·4 = 600·1 → N_B = 150 N
+  N_A = 600 − 150 = 450 N
+  (Yük A-ya yaxındır — A-ya çox düşür ✓.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Bircins tirin uzunluğu 6 m, kütləsi 30 kq. A-dan 2 m məsafədə 90 kq yük var. N_A və N_B?
+  A-ya nəzərən: N_B·6 = 300·3 + 900·2 = 900 + 1800 = 2700
+  N_B = 450 N
+  N_A = (30 + 90)·10 − 450 = 1200 − 450 = 750 N</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Bircins tir 5 m, 40 kq. A tirin sol ucundadır, B isə A-dan 4 m məsafədə
+(tirin 1 m-i B-dən o yana çıxıb). Tirin sağ ucuna 40 kq yük asılıb. N_A və N_B?
+  A-ya nəzərən:  N_B·4 = 400·2,5 + 400·5 = 1000 + 2000 = 3000
+  N_B = 750 N
+  N_A = 800 − 750 = 50 N
+  N_A kiçikdir: yük bir qədər də ağır olsa, tir A-dan qalxar.</div>
+      <div class="life"><b>Həyatdan.</b> İki nəfər uzun boruyu çiyinlərində aparır. Yük (boru) bircinsdirsə, hər biri yarısını götürür. Əgər boruya yük asılıb və biri ona yaxındırsa, o, daha ağır yük çəkir. Dalğıc taxtası da belədir: taxtanın arxa dayağına böyük çəkən qüvvə düşür, çünki sən uca keçib dayağın üstündən kənara çıxırsan.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yükün qolunu səhv götürmək. A-ya nəzərən yükün qolu <span class="m">x</span>, B-yə nəzərən <span class="m">L − x</span>.</li>
+        <li>Tirin öz ağırlığını (ortada) unutmaq. Bircins tirin ağırlığı <span class="m">L/2</span> qolu ilə yazılır.</li>
+        <li><span class="m">N_A + N_B</span> yalnız yükə bərabər saymaq. Tirin ağırlığı da saxlanılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bir dayağa nəzərən momentlər → ikinci reaksiya
+N_A + N_B = bütün ağırlıqların cəmi
+Bircins tirin ağırlığı ortada
+Dayaq yalnız itələyir: N ≥ 0</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Çəkisiz tir 2 m, ortasında 80 kq. N_A və N_B? <span class="ans">Hər biri yarıdır: 400 N.</span></li>
+        <li>Bircins tir 4 m, 20 kq, üstündə yük yoxdur. N_A? <span class="ans">Simmetriya: 200/2 = 100 N.</span></li>
+        <li>Çəkisiz tir 10 m, B-dən 2 m məsafədə 50 kq. N_A? <span class="ans">B-yə nəzərən: N_A·10 = 500·2 → 100 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kütlə mərkəzi və divara söykənən nərdivan</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qələmi barmağınla tarazlaya bilirsən: bir nöqtə var, orada qələm «asılı» qalır. Bu nöqtə <b>kütlə mərkəzidir</b>. Cismin bütün ağırlığı sanki bu nöqtəyə tətbiq olunur. Bundan sonra isə nərdivan kimi real məsələyə keçəcəyik.</p>
+
+      <h3><span class="st">2</span> Kütlə mərkəzi</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 120" role="img" aria-label="Ox üzərində üç kütlə və kütlə mərkəzi x_c">
+          <defs><marker id="mo4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="70" x2="245" y2="70" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#mo4)"/>
+          <text x="240" y="90" class="lbl">x</text>
+          <circle cx="50" cy="50" r="14" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="50" y="55" class="lbl" text-anchor="middle">m₁</text>
+          <circle cx="170" cy="55" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/><text x="170" y="59" class="lbl" text-anchor="middle">m₂</text>
+          <line x1="50" y1="64" x2="50" y2="76" stroke="var(--ink)"/><text x="50" y="92" class="lbl" text-anchor="middle">x₁</text>
+          <line x1="170" y1="64" x2="170" y2="76" stroke="var(--ink)"/><text x="170" y="92" class="lbl" text-anchor="middle">x₂</text>
+          <path d="M97 70L89 86L105 86z" fill="var(--accent)"/>
+          <text x="97" y="106" class="lbl" text-anchor="middle">x_c</text>
+        </svg>
+        <div class="cap">
+          <p>Kütlə mərkəzi ağır cismə yaxın olur. Ox üzərində onun koordinatı çəkili ortadır.</p>
+        </div>
+      </div>
+      <div class="fm">x_c = (m₁x₁ + m₂x₂ + …) / (m₁ + m₂ + …)</div>
+      <p>Tarazlıq mənasında: kütlə mərkəzinə nəzərən bütün kütlələrin momentlərinin cəmi sıfırdır. Bircins çubuğun kütlə mərkəzi onun <b>ortasındadır</b>. Mürəkkəb cismi hissələrə böl, hər hissənin kütləsini onun mərkəzinə qoy və yuxarıdakı düsturu tətbiq et.</p>
+      <p>Ox başlanğıcını elə seç ki, hesab asan olsun: məsələn, kürələrdən birinin yerində.</p>
+
+      <h3><span class="st">3</span> Divara söykənən nərdivan</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 195" role="img" aria-label="Nərdivan divara söykənib: N₂ divardan üfüqi, mg ortada, N₁ döşəmədən yuxarı, sürtünmə üfüqi">
+          <defs><marker id="mo5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="40" y1="10" x2="40" y2="165" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="10" y1="165" x2="250" y2="165" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="40" y1="45" x2="170" y2="165" stroke="var(--ink)" stroke-width="5"/>
+          <line x1="40" y1="45" x2="95" y2="45" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#mo5)"/>
+          <text x="100" y="42" class="lbl">N₂</text>
+          <line x1="170" y1="165" x2="170" y2="115" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#mo5)"/>
+          <text x="178" y="125" class="lbl">N₁</text>
+          <line x1="170" y1="165" x2="125" y2="165" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo5)" transform="translate(0 -9)"/>
+          <text x="125" y="142" class="lbl" text-anchor="middle">F_sür</text>
+          <line x1="105" y1="105" x2="105" y2="152" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#mo5)"/>
+          <text x="113" y="132" class="lbl">mg</text>
+          <line x1="40" y1="185" x2="170" y2="185" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo5)" marker-end="url(#mo5)"/>
+          <text x="105" y="193" class="lbl" text-anchor="middle">b</text>
+          <line x1="20" y1="45" x2="20" y2="165" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#mo5)" marker-end="url(#mo5)"/>
+          <text x="6" y="108" class="lbl">h</text>
+        </svg>
+        <div class="cap">
+          <p>Divar <b>hamardır</b>: onun reaksiyası <span class="m">N₂</span> divara perpendikulyar, yəni üfüqidir (sürtünmə yoxdur). Döşəmədə hər iki qüvvə var: <span class="m">N₁</span> yuxarı, <span class="m">F_sür</span> üfüqi.</p>
+        </div>
+      </div>
+      <p>Üç tənlik yazırıq: şaquli qüvvələr, üfüqi qüvvələr və momentlər. Momentlər üçün oxu <b>aşağı uca</b> qoy: <span class="m">N₁</span> və <span class="m">F_sür</span> düşür.</p>
+      <div class="fm">Şaquli:   N₁ = mg
+Üfüqi:    F_sür = N₂
+Moment (aşağı uca nəzərən):  N₂·h = mg·b/2
+→  N₂ = mg·b/(2h)
+Sürüşməmək şərti:  F_sür ≤ μN₁  →  μ ≥ b/(2h)</div>
+      <p>Nərdivan dikləşdikcə (<span class="m">b</span> azalır, <span class="m">h</span> artır), tələb olunan <span class="m">μ</span> azalır. Yatıq nərdivan sürüşməyə meyllidir. Kütlə nəticədən ixtisar olunur.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Çəkisiz çubuğun uclarında 2 kq (x = 0) və 3 kq (x = 1 m).
+  x_c = (2·0 + 3·1)/(2 + 3) = 3/5 = 0,6 m
+  (2 kq-lıq kürədən 0,6 m — ağır kürəyə yaxındır.)</div>
+      <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
+Uzunluğu 1,2 m, kütləsi 3 kq olan bircins çubuğun bir ucuna 1 kq-lıq kürə bərkidilib.
+Kütlə mərkəzi çubuğun boş ucundan hansı məsafədədir?
+  Boş ucdan ölçürük: çubuq 0,6 m-də (ortada), kürə 1,2 m-də
+  x_c = (3·0,6 + 1·1,2)/(3 + 1) = 3/4 = 0,75 m</div>
+      <div class="ex">Nümunə 3 (RFO tipli).
+Uzunluğu 5 m, kütləsi 20 kq olan nərdivan hamar divara söykənib,
+aşağı ucu divardan 3 m aralıdır. Döşəmə ilə sürtünmə var. N₁, N₂, F_sür, μ_min = ?
+  h = √(5² − 3²) = 4 m
+  N₁ = mg = 200 N
+  N₂·4 = 200·1,5 → N₂ = 75 N
+  F_sür = N₂ = 75 N
+  μ ≥ 75/200 = 0,375</div>
+      <div class="life"><b>Həyatdan.</b> Nərdivanı divara çox yatıq söykəməzlər: yuxarı çıxdıqca ağırlıq artır və o, sürüşərək yıxıla bilər. Ustalar «1:4 qaydası»na əməl edirlər: ayaq divardan hündürlüyün dörddə biri qədər aralı olur (<span class="m">b/h = 1/4</span>). Onda <span class="m">μ ≥ 1/8</span>, adi döşəmədə kifayətdir. İnsan nərdivanda yuxarı qalxdıqca ağırlıq nöqtəsi yuxarı çıxır və sürüşmə riski artır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Divar hamar olanda ona sürtünmə yazmaq. Hamar divarın reaksiyası yalnız divara perpendikulyardır.</li>
+        <li>Nərdivanın ağırlığını ucuna qoymaq. Bircins nərdivanın ağırlığı <b>ortasındadır</b>, qolu <span class="m">b/2</span>.</li>
+        <li>Kütlə mərkəzində koordinatları kütləsiz götürüb sadəcə orta hesab etmək: <span class="m">(x₁ + x₂)/2</span> yalnız kütlələr bərabər olanda doğrudur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x_c = Σmx / Σm,  bircins çubuq — ortada
+Nərdivan: N₁ = mg,  F_sür = N₂,  N₂ = mg·b/(2h)
+Sürüşməmək:  μ ≥ b/(2h)
+Moment oxu aşağı uca (iki naməlum düşür)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1 kq (x = 0) və 4 kq (x = 1 m). x_c = ? <span class="ans">4/5 = 0,8 m.</span></li>
+        <li>Nərdivan: b = 1,5 m, h = 2 m, m = 10 kq. N₂ = ? <span class="ans">N₂ = 100·1,5/(2·2) = 37,5 N.</span></li>
+        <li>Eyni nərdivan üçün μ_min = ? <span class="ans">b/(2h) = 1,5/4 = 0,375.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
