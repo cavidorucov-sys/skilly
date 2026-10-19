@@ -392,19 +392,22 @@
    "bolme": "Say nəzəriyyəsi",
    "ad": "Ferma, Eyler, Vilson teoremləri",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif — final (təxmini)"
+   "menbe": "RFO riy: 9-cu sinif — final (təxmini)",
+   "ders": "dersler/ol-ferma-eyler.html"
   },
   {
    "bolme": "Say nəzəriyyəsi",
    "ad": "Dövri və zəncirvari kəsrlər",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-dovri-zencirvari.html"
   },
   {
    "bolme": "Kombinatorika",
    "ad": "Sayma prinsipləri",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-sayma.html"
   },
   {
    "bolme": "Kombinatorika",

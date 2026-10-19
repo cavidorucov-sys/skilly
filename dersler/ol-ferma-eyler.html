@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ferma, Eyler, Vilson teoremləri dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-ferma-eyler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Ferma, Eyler, Vilson</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Ədədlər nəzəriyyəsi</div>
+    <h1>Ferma, Eyler, Vilson teoremləri</h1>
+    <p><span class="m">2¹⁰⁰</span> ədədində 31 rəqəm var — onu yazmaq olmur. Amma onun 7-yə bölünməsindən qalan qalığı bir dəqiqədə tapmaq olar. Üç teorem bunu mümkün edir: <b>Ferma</b> (sadə modul), <b>Eyler</b> (istənilən modul) və <b>Vilson</b> (faktorial). Olimpiadada "qalığı tap", "son rəqəmi tap", "sübut et ki, bölünür" məsələlərinin çoxu bunlarla həll olunur.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ferma</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>φ(n)</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Eyler teoremi</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Vilson</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Müqayisələr və kiçik Ferma teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bu gün bazar ertəsidir. 100 gündən sonra hansı gün olacaq? 100-ü 7-yə bölürük: qalıq 2 — deməli çərşənbə. Bütün 100 günü saymaq lazım deyil, <b>yalnız qalıq</b> önəmlidir.</p>
+      <p>Bəs <span class="m">2¹⁰⁰</span> gündən sonra? Bu ədədi hesablamaq olmur. Ferma teoremi deyir ki, buna ehtiyac da yoxdur.</p>
+
+      <h3><span class="st">2</span> Dil: mod və ≡</h3>
+      <p><span class="m">a mod m</span> — <span class="m">a</span>-nı <span class="m">m</span>-ə böldükdə alınan qalıq (0-dan <span class="m">m − 1</span>-ə qədər). <span class="m">a ≡ b (mod m)</span> yazılışı ("a ilə b m moduluna görə müqayisədir") deməkdir ki, <span class="m">a</span> və <span class="m">b</span> eyni qalığı verir, yəni <span class="m">a − b</span> fərqi <span class="m">m</span>-ə bölünür.</p>
+      <div class="fm">17 ≡ 2 (mod 5),   100 ≡ 2 (mod 7),   −1 ≡ 6 (mod 7)
+Müqayisələri toplamaq, vurmaq, qüvvətə yüksəltmək olar:
+a ≡ b  →  a + c ≡ b + c,  a·c ≡ b·c,  aⁿ ≡ bⁿ</div>
+      <p>Bu o deməkdir ki, böyük ədədi hesablamada istənilən an öz qalığı ilə əvəz edə bilərsən: <span class="m">58¹⁰ ≡ 3¹⁰ (mod 5)</span>, çünki <span class="m">58 ≡ 3</span>.</p>
+
+      <h3><span class="st">3</span> Teorem və isbatın ideyası</h3>
+      <div class="fm">Kiçik Ferma teoremi
+p sadədirsə və a ədədi p-yə bölünmürsə:
+aᵖ⁻¹ ≡ 1 (mod p)
+İstənilən a üçün:  aᵖ ≡ a (mod p)</div>
+      <p><b>İsbatın ideyası</b> (<span class="m">p = 7</span>, <span class="m">a = 3</span> üzərində). 1, 2, 3, 4, 5, 6 ədədlərini 3-ə vuraq: 3, 6, 9, 12, 15, 18. Onların 7-yə görə qalıqları: 3, 6, 2, 5, 1, 4 — yenə 1-dən 6-ya qədər <b>hamısı</b>, sadəcə başqa sıra ilə. Niyə? Əgər <span class="m">i·a ≡ j·a</span> olsaydı, <span class="m">(i − j)·a</span> fərqi 7-yə bölünərdi; <span class="m">a</span> bölünmür, <span class="m">i − j</span> isə 7-dən kiçikdir — mümkün deyil. Deməli qalıqlar təkrarlanmır.</p>
+      <p>İndi hər iki siyahını vuraq: <span class="m">(3·1)(3·2)…(3·6) ≡ 1·2·…·6</span>, yəni <span class="m">3⁶ · 6! ≡ 6! (mod 7)</span>. <span class="m">6!</span> 7-yə bölünmür, onu ixtisar edirik: <span class="m">3⁶ ≡ 1 (mod 7)</span>. Yoxla: <span class="m">3⁶ = 729 = 7·104 + 1</span>. ✓ İstənilən sadə <span class="m">p</span> üçün mühakimə eynidir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 2¹⁰⁰ mod 7 = ?
+   7 sadədir, 2 ona bölünmür → 2⁶ ≡ 1 (mod 7)
+   100 = 6·16 + 4 → 2¹⁰⁰ = (2⁶)¹⁶ · 2⁴ ≡ 1 · 16 ≡ 2
+   Cavab: 2
+
+2) 58¹⁹⁹³ mod 5 = ?
+   58 ≡ 3 (mod 5); Ferma: 3⁴ ≡ 1
+   1993 = 4·498 + 1 → 58¹⁹⁹³ ≡ 3¹ = 3
+   Cavab: 3
+
+3) 9⁹ mod 23 (böyük qalıq üçün kvadratlar üsulu)
+   9² = 81 ≡ 12,  9⁴ ≡ 12² = 144 ≡ 6,  9⁸ ≡ 6² = 36 ≡ 13
+   9⁹ = 9⁸ · 9 ≡ 13 · 9 = 117 ≡ 2
+   Cavab: 2</div>
+      <div class="life"><b>Həyatdan.</b> Bu gün bazar ertəsidir. <span class="m">2¹⁰⁰</span> gündən sonra hansı gün olacaq? Nümunə 1-ə görə <span class="m">2¹⁰⁰ ≡ 2 (mod 7)</span> — həftə 2 gün irəli sürüşür: <b>çərşənbə</b>. Təqvim, saat, növbə — hamısı qalıqlarla işləyir.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. Sübut et ki, istənilən natural n üçün
+n⁷ − n ədədi 42-yə bölünür.
+
+Həll. 42 = 2 · 3 · 7, bu vuruqlar qarşılıqlı sadədir —
+hər birinə bölünməni ayrıca yoxlamaq kifayətdir.
+• 7: Ferma (aᵖ ≡ a şəkli) → n⁷ ≡ n (mod 7). ✓
+• 3: Ferma → n³ ≡ n. Onda n⁷ = n³ · n³ · n ≡ n · n · n = n³ ≡ n. ✓
+• 2: n⁷ və n eyni cütlükdədir (tək ədədin qüvvəti tək,
+  cütün qüvvəti cüt), fərqləri cütdür. ✓
+n⁷ − n ədədi 2-yə, 3-ə və 7-yə bölünür → 42-yə bölünür. ∎</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">aᵖ ≡ 1</span> yazmaq. Düzü: <span class="m">aᵖ⁻¹ ≡ 1</span> (üst <b>p − 1</b>), və ya <span class="m">aᵖ ≡ a</span>.</li>
+        <li>Şərti unutmaq: <span class="m">a</span> ədədi <span class="m">p</span>-yə bölünürsə, <span class="m">aᵖ⁻¹ ≡ 0</span>, 1 yox. Məsələn, <span class="m">14⁶ ≡ 0 (mod 7)</span>.</li>
+        <li>Modul sadə deyilsə Fermanı tətbiq etmək: <span class="m">2⁸ = 256 ≡ 4 (mod 9)</span>, 1 deyil. Mürəkkəb modul üçün Eyler teoremi lazımdır (Dərs 3).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p sadə, p ∤ a  →  aᵖ⁻¹ ≡ 1 (mod p)
+aᴺ mod p: N-i p − 1-ə böl, N = (p − 1)·q + r → aᴺ ≡ aʳ
+Əsas əvvəlcə öz qalığı ilə əvəz olunur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">3¹⁰⁰ mod 7</span> = ? <span class="ans">3⁶ ≡ 1, 100 = 6·16 + 4 → 3⁴ = 81 ≡ 4.</span></li>
+        <li><span class="m">2⁵⁰ mod 11</span> = ? <span class="ans">2¹⁰ ≡ 1, 50 = 10·5 → 1.</span></li>
+        <li><span class="m">21⁶ mod 7</span> nəyə bərabərdir və bu Fermaya zidd deyilmi? <span class="ans">0. Zidd deyil: 21 ədədi 7-yə bölünür, teoremin şərti ödənmir.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Eyler funksiyası φ(n)</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ferma yalnız sadə modulda işləyir. Son rəqəm (mod 10), son iki rəqəm (mod 100) isə mürəkkəb modullardır. Onlar üçün Fermadakı <span class="m">p − 1</span> ədədinin yerinə başqa ədəd lazımdır — <b>φ(n)</b>.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <p><b>φ(n)</b> — 1-dən <span class="m">n</span>-ə qədər olan natural ədədlərdən <span class="m">n</span> ilə <b>qarşılıqlı sadə</b> olanların (ƏBOB = 1) sayı.</p>
+      <div class="fm">φ(12):  1, 5, 7, 11  →  φ(12) = 4
+φ(7):   1, 2, 3, 4, 5, 6  →  φ(7) = 6
+p sadədirsə:  φ(p) = p − 1</div>
+
+      <h3><span class="st">3</span> Düstur və onun ideyası</h3>
+      <div class="fm">φ(pᵏ) = pᵏ − pᵏ⁻¹
+ƏBOB(a, b) = 1 olanda  φ(a·b) = φ(a)·φ(b)
+n = p₁ᵏ¹ · p₂ᵏ² · …  →  φ(n) = n · (1 − 1/p₁) · (1 − 1/p₂) · …</div>
+      <p><b>Niyə <span class="m">pᵏ − pᵏ⁻¹</span>?</b> 1-dən <span class="m">pᵏ</span>-yə qədər <span class="m">pᵏ</span> ilə ortaq böləni olan ədədlər yalnız <span class="m">p</span>-yə bölünənlərdir: <span class="m">p, 2p, 3p, …, pᵏ</span> — onların sayı <span class="m">pᵏ⁻¹</span>. Qalanları qarşılıqlı sadədir. Məsələn, 1…9 arasında 3, 6, 9 atılır: <span class="m">φ(9) = 9 − 3 = 6</span>.</p>
+      <p><b>Hasil qaydası</b> qarşılıqlı sadə vuruqlar üçün doğrudur (isbatı Çin qalıqlar teoremi ilə aparılır). Yoxla: <span class="m">φ(12) = φ(4)·φ(3) = 2·2 = 4</span> ✓. Diqqət: <span class="m">φ(4) ≠ φ(2)·φ(2)</span>, çünki 2 və 2 qarşılıqlı sadə deyil.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) φ(100) = ?
+   100 = 2² · 5²
+   φ(100) = (2² − 2)·(5² − 5) = 2 · 20 = 40
+   Başqa yol: 100 · (1 − 1/2) · (1 − 1/5) = 100 · 1/2 · 4/5 = 40
+
+2) φ(360) = ?
+   360 = 2³ · 3² · 5
+   φ = (8 − 4)·(9 − 3)·(5 − 1) = 4 · 6 · 4 = 96
+
+3) φ(2025) = ?
+   2025 = 3⁴ · 5²
+   φ = (81 − 27)·(25 − 5) = 54 · 20 = 1080</div>
+      <div class="life"><b>Həyatdan.</b> Siferblatda 12-dən başlayıb hər dəfə <span class="m">k</span> saat irəli gedirsən. Hansı <span class="m">k</span>-larda əqrəb 12 rəqəmin <b>hamısında</b> dayanacaq? Yalnız ƏBOB(<span class="m">k</span>, 12) = 1 olanda: <span class="m">k</span> = 1, 5, 7, 11. Belə addımların sayı düz <span class="m">φ(12) = 4</span>-dür. Məsələn, <span class="m">k = 4</span> olanda əqrəb yalnız 4, 8, 12 rəqəmlərində dayanır.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. Sübut et ki, n > 2 olduqda φ(n) cüt ədəddir.
+
+Həll. Əgər ƏBOB(k, n) = 1 olarsa, ƏBOB(n − k, n) = 1 də doğrudur
+(k və n-in ortaq böləni n − k ədədini də bölür, və əksinə).
+Deməli n ilə qarşılıqlı sadə ədədlər cüt-cüt gəlir: k ↔ n − k.
+Cütdə iki ədəd eyni ola bilərmi? k = n − k → k = n/2.
+Onda ƏBOB(n/2, n) = n/2 > 1 (çünki n > 2) — bu k siyahıda yoxdur.
+Deməli bütün ədədlər iki-iki fərqli cütlərə bölünür, sayları cütdür. ∎
+Məsələn, φ(12) = 4:  (1, 11), (5, 7).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">φ(pᵏ) = pᵏ − 1</span> yazmaq. Bu yalnız <span class="m">k = 1</span> üçün doğrudur; <span class="m">φ(8) = 4</span>, 7 deyil.</li>
+        <li>Qarşılıqlı sadə olmayan vuruqlarda hasil qaydasını işlətmək: <span class="m">φ(8) ≠ φ(2)·φ(4) = 2</span>. Əvvəl sadə vuruqlara ayır.</li>
+        <li>Saya <span class="m">n</span>-in özünü də qatmaq. <span class="m">n</span> özü ilə qarşılıqlı sadə deyil (<span class="m">n = 1</span> istisnadır).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">φ(p) = p − 1,   φ(pᵏ) = pᵏ − pᵏ⁻¹
+φ(n) = n · ∏(1 − 1/p)  (p — n-in sadə bölənləri)
+φ(10) = 4,  φ(100) = 40,  φ(12) = 4</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">φ(17)</span> = ? <span class="ans">17 sadədir: 16.</span></li>
+        <li><span class="m">φ(60)</span> = ? <span class="ans">60 = 2² · 3 · 5: 2 · 2 · 4 = 16.</span></li>
+        <li><span class="m">φ(81)</span> = ? <span class="ans">81 = 3⁴: 81 − 27 = 54.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Eyler teoremi: son rəqəmlər və qüvvət qüllələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"<span class="m">7²⁰²⁶</span> ədədinin son rəqəmi", "<span class="m">3²⁰²⁶</span> ədədinin son iki rəqəmi" — olimpiadanın sevimli sualları. Son rəqəm = qalıq mod 10, son iki rəqəm = qalıq mod 100. 10 və 100 sadə deyil, ona görə Fermanın ümumiləşməsi lazımdır.</p>
+
+      <h3><span class="st">2</span> Teorem və isbatın ideyası</h3>
+      <div class="fm">Eyler teoremi
+ƏBOB(a, m) = 1  →  a^φ(m) ≡ 1 (mod m)
+m = p sadə olanda φ(p) = p − 1 — bu, Ferma teoremidir.</div>
+      <p><b>İdeya</b> Fermadakı kimidir, sadəcə 1, 2, …, <span class="m">p − 1</span> əvəzinə <span class="m">m</span> ilə qarşılıqlı sadə olan <span class="m">φ(m)</span> ədəd götürülür. <span class="m">m = 10</span>, <span class="m">a = 3</span>: 1, 3, 7, 9 ədədlərini 3-ə vuraq — 3, 9, 21, 27, qalıqlar 3, 9, 1, 7. Yenə həmin dörd ədəd! Vursaq: <span class="m">3⁴ · (1·3·7·9) ≡ 1·3·7·9</span>, ixtisar edirik: <span class="m">3⁴ ≡ 1 (mod 10)</span>. Yoxla: <span class="m">3⁴ = 81</span> ✓.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 7²⁰²⁶ ədədinin son rəqəmi
+   φ(10) = 4, ƏBOB(7, 10) = 1 → 7⁴ ≡ 1 (mod 10)
+   2026 = 4·506 + 2 → 7²⁰²⁶ ≡ 7² = 49 ≡ 9
+   Cavab: 9
+
+2) 3²⁰²⁶ ədədinin son iki rəqəmi
+   φ(100) = 40 → 3⁴⁰ ≡ 1 (mod 100);  2026 = 40·50 + 26 → 3²⁶
+   3¹⁰ = 59049 ≡ 49,  3²⁰ ≡ 49² = 2401 ≡ 1
+   3²⁶ = 3²⁰ · 3⁶ ≡ 729 ≡ 29
+   Cavab: …29
+   (Burada 3²⁰ ≡ 1 da alındı — φ(m)-dən kiçik üst də ola bilər,
+    amma φ(m) həmişə işləyir.)
+
+3) 13⁸⁶⁷ mod 20
+   φ(20) = 8;  867 = 8·108 + 3 → 13³
+   13² = 169 ≡ 9,  13³ ≡ 9 · 13 = 117 ≡ 17
+   Cavab: 17</div>
+      <div class="life"><b>Həyatdan.</b> İnternetdə bank kartı ilə ödəniş edəndə məlumat RSA üsulu ilə şifrələnir. Onun əsasında məhz Eyler teoremi durur: mesaj böyük bir qüvvətə yüksəldilir və qalıq götürülür, açar isə φ(m) ilə hesablanır. Sənin indi öyrəndiyin hesab hər gün milyonlarla ödənişi qoruyur.</div>
+
+      <h3><span class="st">4</span> Qüvvət qülləsi</h3>
+      <p>Üst özü də qüvvətdirsə (<span class="m">a</span> üstü <span class="m">bᶜ</span>), əvvəlcə üstün qalığını <span class="m">φ(m)</span>-ə görə tapırıq — bunun üçün Eyler teoremini ikinci dəfə işlədirik.</p>
+      <div class="fm">ƏBOB(a, m) = 1,  N ≡ r (mod φ(m))  →  aᴺ ≡ aʳ (mod m)</div>
+      <div class="ex">Olimpiada məsələsi. N = 7⁷ olsun. 7ᴺ ədədinin son rəqəmini tap.
+
+Həll. Son rəqəm = mod 10. φ(10) = 4, 7⁴ ≡ 1 (mod 10).
+Deməli N-in 4-ə bölünməsindən qalan qalıq lazımdır.
+7 ≡ −1 (mod 4) → N = 7⁷ ≡ (−1)⁷ = −1 ≡ 3 (mod 4).
+N = 4k + 3 → 7ᴺ ≡ 7³ = 343 ≡ 3 (mod 10).
+Cavab: 3.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>ƏBOB(<span class="m">a, m</span>) ≠ 1 olanda Eyleri tətbiq etmək. <span class="m">2⁴ = 16 ≡ 6 (mod 10)</span>, 1 deyil. Belə halda modulu vuruqlara ayır və ya qalıqların dövrünü əllə tap.</li>
+        <li>Qüllədə üstü <span class="m">m</span>-ə görə kiçiltmək. Üst <b>φ(m)</b>-ə görə kiçildilir, əsas isə <b>m</b>-ə görə.</li>
+        <li>Qalıq 0 çıxanda <span class="m">a⁰ = 1</span> olduğunu unutmaq: <span class="m">N = φ(m)·q</span> olsa, <span class="m">aᴺ ≡ 1</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ƏBOB(a, m) = 1  →  a^φ(m) ≡ 1 (mod m)
+Son rəqəm: mod 10 (φ = 4); son iki rəqəm: mod 100 (φ = 40)
+Əsas — mod m,  üst — mod φ(m).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">3²⁰²⁷</span> ədədinin son rəqəmi? <span class="ans">2027 = 4·506 + 3 → 3³ = 27 → 7.</span></li>
+        <li><span class="m">5¹⁰⁰ mod 12</span> = ? <span class="ans">φ(12) = 4, 100 = 4·25 → 1. (Əslində 5² = 25 ≡ 1 də kifayət edir.)</span></li>
+        <li><span class="m">2¹⁰⁰⁰ mod 15</span> = ? <span class="ans">φ(15) = 8, 1000 = 8·125 → 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Vilson teoremi: faktorialın qalığı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">96!</span> ədədində 150 rəqəm var. Onun 97-yə bölünməsindən qalan qalığı isə bir sətirdə tapmaq olar. Faktorial və sadə ədəd birlikdə görünəndə — Vilson teoremini xatırla.</p>
+
+      <h3><span class="st">2</span> Teorem və isbatın ideyası</h3>
+      <div class="fm">Vilson teoremi
+p sadədirsə:  (p − 1)! ≡ −1 (mod p)
+yəni (p − 1)! + 1 ədədi p-yə bölünür.</div>
+      <p><b>İdeya</b> (<span class="m">p = 11</span>). Hər <span class="m">x</span> ədədi üçün elə <span class="m">y</span> var ki, <span class="m">x·y ≡ 1</span> ("tərs" ədəd). 2…9 ədədlərini belə cütlərə bölək:</p>
+      <div class="fm">2·6 = 12 ≡ 1,  3·4 = 12 ≡ 1,  5·9 = 45 ≡ 1,  7·8 = 56 ≡ 1  (mod 11)</div>
+      <p>Cütsüz yalnız 1 və 10 qalır — onlar özü-özünün tərsidir (<span class="m">x² ≡ 1</span> yalnız <span class="m">x ≡ ±1</span> üçün). Deməli <span class="m">10! ≡ 1 · (1·1·1·1) · 10 ≡ 10 ≡ −1 (mod 11)</span>. İstənilən sadə <span class="m">p</span> üçün eyni cütləşmə işləyir.</p>
+      <p><b>Mürəkkəb ədəd üçün</b> isə tərsinə: <span class="m">n</span> mürəkkəbdirsə və <span class="m">n ≠ 4</span>, onda <span class="m">(n − 1)!</span> ədədi <span class="m">n</span>-ə tam bölünür (qalıq 0). Məsələn, <span class="m">5! = 120</span> ədədi 6-ya bölünür. (İstisna: <span class="m">3! = 6 ≡ 2 (mod 4)</span>.)</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 16! mod 17 = ?
+   Vilson: 16! ≡ −1 ≡ 16.   Cavab: 16
+
+2) 15! mod 17 = ?
+   16! = 16 · 15! ≡ −1;  16 ≡ −1 → −15! ≡ −1 → 15! ≡ 1
+   Cavab: 1
+
+3) 86! mod 89 = ?
+   88! = 88 · 87 · 86! ≡ (−1)(−2) · 86! = 2 · 86! ≡ −1 ≡ 88
+   2 · 86! ≡ 88 → 86! ≡ 44   (yoxla: 2 · 44 = 88)
+   Cavab: 44</div>
+      <div class="life"><b>Həyatdan.</b> Vilson teoremi sadəliyin dəqiq meyarıdır: <span class="m">n</span> sadədir ⇔ <span class="m">(n − 1)! + 1</span> ədədi <span class="m">n</span>-ə bölünür. Amma kompüter bunu sadəlik yoxlaması üçün işlətmir — <span class="m">(n − 1)!</span> hesablamaq çox uzun çəkir. Proqramçılar bunun əvəzinə Ferma teoreminə əsaslanan sürətli testlərdən istifadə edir.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 97! ədədini 101-ə böldükdə qalığı tap.
+
+Həll. 101 sadədir, Vilson: 100! ≡ −1 (mod 101).
+100! = 100 · 99 · 98 · 97!, burada
+100 ≡ −1,  99 ≡ −2,  98 ≡ −3 → hasilləri (−1)(−2)(−3) = −6.
+Deməli −6 · 97! ≡ −1 → 6 · 97! ≡ 1 (mod 101).
+6-nın tərsini axtarırıq: 6 · 17 = 102 ≡ 1 (mod 101).
+97! ≡ 17.   Cavab: 17.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">(p − 1)! ≡ 1</span> yazmaq. Düzü <span class="m">−1</span>, yəni qalıq <span class="m">p − 1</span>.</li>
+        <li>Qalığı mənfi yazmaq: "qalıq −1". Qalıq 0 ilə <span class="m">p − 1</span> arasındadır: <span class="m">−1 ≡ p − 1</span>.</li>
+        <li>Mürəkkəb modulda Vilsonu tətbiq etmək: <span class="m">9! mod 10 = 0</span>, 9 deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">p sadə: (p − 1)! ≡ −1,  (p − 2)! ≡ 1 (mod p)
+Sonuncu vuruqlar: p − 1 ≡ −1, p − 2 ≡ −2, …
+n mürəkkəb, n ≠ 4: (n − 1)! ≡ 0 (mod n)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">12! mod 13</span> = ? <span class="ans">Vilson: −1 ≡ 12.</span></li>
+        <li><span class="m">11! mod 13</span> = ? <span class="ans">12! = 12 · 11! ≡ −11! ≡ −1 → 11! ≡ 1.</span></li>
+        <li><span class="m">9! mod 10</span> = ? <span class="ans">10 mürəkkəbdir: 9! hasilində 2 və 5 var → qalıq 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

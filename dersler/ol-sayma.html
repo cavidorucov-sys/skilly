@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sayma prinsipləri dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-sayma.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Sayma prinsipləri</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Kombinatorika (sayma üsulları)</div>
+    <h1>Sayma prinsipləri</h1>
+    <p>"Neçə ədəd var ki…", "neçə yolla…", "neçə nəfər…" — olimpiadanın hər turunda belə sual olur. Hamısını tək-tək sadalamaq mümkün deyil, amma beş sadə alət kifayətdir: <b>hasil qaydası</b>, <b>cəm qaydası</b>, <b>tamamlayıcı sayma</b>, <b>daxiletmə-xaricetmə</b> və <b>torda yollar</b>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Cəm və hasil</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tamamlayıcı sayma</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Daxiletmə-xaricetmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Şərtli ədədlər</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Torda yollar</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Cəm və hasil qaydası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kafedə 4 cür sendviç və 3 cür içki var. Sendviç + içki dəsti neçə cürdür? Hər sendviçə 3 içki uyğun gəlir: <span class="m">4 · 3 = 12</span>. Bütün sayma nəzəriyyəsi bu sadə müşahidədən başlayır.</p>
+
+      <h3><span class="st">2</span> İki qayda</h3>
+      <div class="fm">Hasil qaydası ("və"):  birinci seçim a cür, ondan sonra ikinci b cür
+                        → birlikdə a · b cür
+Cəm qaydası ("və ya"):  seçim ya A qrupundan (a cür), ya B-dən (b cür),
+                        qruplar kəsişmir → a + b cür</div>
+      <p><b>Qızıl qayda:</b> şərti ən çox olan yerdən başla. Məsələn, ədədin birinci rəqəmi 0 ola bilməz — onu əvvəl seç.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Rəqəmləri müxtəlif olan neçə üçrəqəmli ədəd var?
+   Birinci rəqəm: 9 seçim (1…9)
+   İkinci: 9 seçim (0 artıq olar, birincini təkrarlamaq olmaz)
+   Üçüncü: 8 seçim
+   9 · 9 · 8 = 648
+
+2) 360 ədədinin neçə natural böləni var?
+   360 = 2³ · 3² · 5. Bölən = 2ᵃ · 3ᵇ · 5ᶜ:
+   a: 0…3 (4 seçim), b: 0…2 (3 seçim), c: 0…1 (2 seçim)
+   4 · 3 · 2 = 24
+
+3) A-dan B-yə 3 yol, B-dən C-yə 2 yol, A-dan C-yə birbaşa 4 yol var.
+   A-dan C-yə neçə yol? B-dən keçən: 3 · 2 = 6, birbaşa: 4
+   Cəm qaydası: 6 + 4 = 10</div>
+      <div class="life"><b>Həyatdan.</b> Telefonun 4 rəqəmli PIN-kodu: hər rəqəmə 10 seçim, <span class="m">10⁴ = 10000</span> kod. Oğru saniyədə bir kod yoxlasa, hamısını 3 saata yoxlayar. Ona görə telefon 5 səhvdən sonra bloklanır — sayma təhlükəsizliyin əsasıdır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 1, 2, 3, 4, 5 rəqəmlərindən təkrarsız bütün beşrəqəmli
+ədədləri yazdılar. Neçə ədəd alındı və onların cəmi nəyə bərabərdir?
+
+Həll. Say: 5 · 4 · 3 · 2 · 1 = 120 ədəd.
+Cəm. Təklik mərtəbəsinə bax: orada hər rəqəm eyni sayda dəfə durur —
+120 / 5 = 24 dəfə. Təklik rəqəmlərinin cəmi: 24 · (1+2+3+4+5) = 360.
+Hər mərtəbədə eyni şəkil: hər mərtəbənin rəqəmləri cəmi 360.
+Ümumi cəm = 360 · (10000 + 1000 + 100 + 10 + 1) = 360 · 11111
+         = 3 999 960.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Birinci rəqəmin 0 ola bilməməsini unutmaq: üçrəqəmli ədədlər <span class="m">10³</span> yox, <span class="m">9 · 10² = 900</span>-dür.</li>
+        <li>"Və ya" olan yerdə vurmaq, "və" olan yerdə toplamaq. Özünə sual ver: seçimlər <b>ardıcıl</b> gedir (vur), yoxsa <b>alternativdir</b> (topla)?</li>
+        <li>Cəm qaydasını kəsişən qruplarda işlətmək — onda bəziləri iki dəfə sayılır (Dərs 3).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">"və" → vur,  "və ya" (kəsişməyən) → topla
+Ən çətin şərtli yerdən başla.
+n = p₁ᵃ · p₂ᵇ · … → bölənlərin sayı (a + 1)(b + 1)…</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Rəqəmləri müxtəlif olan neçə ikirəqəmli ədəd var? <span class="ans">9 · 9 = 81.</span></li>
+        <li>72 ədədinin neçə natural böləni var? <span class="ans">72 = 2³ · 3² → 4 · 3 = 12.</span></li>
+        <li>A-dan B-yə 3 yol, B-dən C-yə 4 yol var. B-dən keçməklə A-dan C-yə neçə yol? <span class="ans">3 · 4 = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tamamlayıcı sayma: "ən azı bir"</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Neçə dördrəqəmli ədəddə ən azı bir 7 var?" Birbaşa saysan: bir 7, iki 7, üç 7, dörd 7, hər biri müxtəlif yerlərdə… çox hal var və asanlıqla səhv etmək olar. Tərsini saymaq isə bir sətirdir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <div class="fm">istədiyimiz = hamısı − istəmədiyimiz
+"ən azı bir X"  =  hamısı − "heç bir X yoxdur"</div>
+      <p>"Heç bir" şərti hər yerə ayrıca qoyulur, ona görə onu hasil qaydası ilə saymaq asandır.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Neçə dördrəqəmli ədəddə ən azı bir 7 var?
+   Hamısı: 9 · 10³ = 9000
+   7-siz: birinci rəqəm 8 seçim (0 və 7 olmaz), qalanlar 9 seçim
+          8 · 9³ = 5832
+   Cavab: 9000 − 5832 = 3168
+
+2) Neçə üçrəqəmli ədədin ən azı bir cüt rəqəmi var?
+   Hamısı 900. Cüt rəqəmsiz = bütün rəqəmləri tək: 5³ = 125
+   Cavab: 900 − 125 = 775
+
+3) Parol 3 simvoldur: 26 hərf və ya 10 rəqəm, ən azı bir rəqəm olmalıdır.
+   Hamısı: 36³ = 46656, rəqəmsiz: 26³ = 17576
+   Cavab: 46656 − 17576 = 29080</div>
+      <div class="life"><b>Həyatdan.</b> Saytlar parola "ən azı bir rəqəm" şərti qoyur. Nümunə 3 göstərir ki, bu şərt 3 simvolluq parollarda variantların üçdə birindən çoxunu (17576 variantı) atır — yəni oğrunun işini <b>asanlaşdırır</b>. Parolu uzun etmək isə qat-qat faydalıdır: hər yeni simvol variantların sayını 36 dəfə artırır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. Neçə dördrəqəmli ədədin yazılışında ən azı iki eyni rəqəm var?
+
+Həll. "Ən azı iki eyni" hallarını (iki, üç, dörd eyni; iki cüt…)
+saymaq çətindir. Tərsi: bütün rəqəmlər müxtəlifdir.
+Hamısı: 9000.
+Hamısı müxtəlif: 9 · 9 · 8 · 7 = 4536.
+Cavab: 9000 − 4536 = 4464.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Heç bir 7 yoxdur" sayanda birinci rəqəmə 9 seçim vermək. Birinci rəqəm nə 0, nə 7 ola bilər — <b>8</b> seçim.</li>
+        <li>"Ən azı bir 0" sayanda 0-sız ədədləri <span class="m">8 · 9ᵏ⁻¹</span> saymaq. 0-sız ədəddə hər yerə 1…9: <span class="m">9ᵏ</span>.</li>
+        <li>"Ən azı bir"i "düz bir" ilə qarışdırmaq. Tamamlayıcı sayma "ən azı bir"i verir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">"Ən azı bir" görəndə — tərsini say.
+k-rəqəmli ədədlərin hamısı: 9 · 10ᵏ⁻¹
+d-siz (d ≠ 0): 8 · 9ᵏ⁻¹;   0-sız: 9ᵏ</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neçə üçrəqəmli ədədin yazılışında ən azı bir 0 var? <span class="ans">900 − 9³ = 900 − 729 = 171.</span></li>
+        <li>Neçə ikirəqəmli ədəddə ən azı bir 5 var? <span class="ans">90 − 8 · 9 = 18.</span></li>
+        <li>A, B, C, D, E hərflərindən 4 hərfli "söz" yazılır (təkrar olar). Neçəsində ən azı bir A var? <span class="ans">5⁴ − 4⁴ = 625 − 256 = 369.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Daxiletmə-xaricetmə prinsipi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sinifdə 18 nəfər futbol, 15 nəfər şahmat oynayır. Deməli 33 nəfər? Yox — həm futbol, həm şahmat oynayanlar <b>iki dəfə</b> sayılıb. Təkrarı çıxmaq lazımdır.</p>
+
+      <h3><span class="st">2</span> Düstur</h3>
+      <div class="fm">|A ∪ B| = |A| + |B| − |A ∩ B|
+|A ∪ B ∪ C| = |A| + |B| + |C|
+            − |A ∩ B| − |A ∩ C| − |B ∩ C|
+            + |A ∩ B ∩ C|</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 150" role="img" aria-label="Üç kəsişən çevrə: A, B, C çoxluqları">
+          <circle cx="100" cy="60" r="48" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="160" cy="60" r="48" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="130" cy="105" r="48" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--vec)" stroke-width="2"/>
+          <text x="70" y="45" text-anchor="middle" class="lbl">A</text>
+          <text x="190" y="45" text-anchor="middle" class="lbl">B</text>
+          <text x="130" y="138" text-anchor="middle" class="lbl">C</text>
+          <text x="130" y="80" text-anchor="middle" class="lbl">+</text>
+        </svg>
+        <div class="cap"><p>Mərkəzi hissə (üçünün kəsişməsi) təklərdə 3 dəfə əlavə olunur, cütlərdə 3 dəfə çıxılır — ona görə sonda onu bir dəfə də <b>əlavə</b> edirik. Hər hissə düz bir dəfə sayılır.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Bölünmə məsələləri</h3>
+      <p><span class="m">[x]</span> — <span class="m">x</span>-in tam hissəsi. 1-dən <span class="m">N</span>-ə qədər <span class="m">a</span>-ya bölünən ədədlərin sayı <span class="m">[N/a]</span>-dır. Həm <span class="m">a</span>-ya, həm <span class="m">b</span>-yə bölünənlər — <b>ƏKOB(a, b)</b>-yə bölünənlərdir.</p>
+      <div class="ex">1) 1…100 arasında 6-ya və ya 9-a bölünənlər:
+   [100/6] = 16,  [100/9] = 11,  ƏKOB(6, 9) = 18: [100/18] = 5
+   16 + 11 − 5 = 22   (54 deyil! ƏKOB 18-dir)
+
+2) 1…1000 arasında 2, 3 və ya 5-ə bölünənlər:
+   təklər:  500 + 333 + 200 = 1033
+   cütlər:  [1000/6] + [1000/10] + [1000/15] = 166 + 100 + 66 = 332
+   üçlü:    [1000/30] = 33
+   1033 − 332 + 33 = 734
+   Heç birinə bölünməyənlər: 1000 − 734 = 266</div>
+      <div class="life"><b>Həyatdan.</b> 30 nəfərlik sinifdə 18 nəfər futbol, 15 nəfər şahmat oynayır, 7 nəfər hər ikisini. Ən azı birini oynayan: <span class="m">18 + 15 − 7 = 26</span>. Heç birini oynamayan: <span class="m">30 − 26 = 4</span> nəfər. Məktəb idman zalı üçün sorğu nəticəsini məhz belə hesablayırlar.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 1-dən 600-ə qədər neçə ədəd 6 ilə qarşılıqlı sadədir?
+(Yəni nə 2-yə, nə 3-ə bölünür.)
+
+Həll. 2-yə bölünən: 300, 3-ə: 200, 6-ya: 100.
+2-yə və ya 3-ə bölünən: 300 + 200 − 100 = 400.
+Qarşılıqlı sadə: 600 − 400 = 200.
+Yoxlama: 600 = 6 · 100, hər altılıqda φ(6) = 2 belə ədəd var
+(…1 və …5 qalıqlı): 2 · 100 = 200. ✓</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Hər ikisinə bölünən"i <span class="m">a · b</span>-yə bölünən saymaq. Düzü ƏKOB: 4 və 6 üçün 12, 24 yox.</li>
+        <li>Üç çoxluqda üçlü kəsişməni əlavə etməyi unutmaq.</li>
+        <li><span class="m">[N/a]</span>-nı yuxarı yuvarlaqlaşdırmaq. Tam hissə həmişə aşağı: <span class="m">[100/6] = 16</span>, 17 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|A ∪ B| = |A| + |B| − |A ∩ B|
+3 çoxluq: təklər − cütlər + üçlü
+a və b-yə bölünənlər: [N / ƏKOB(a, b)]</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1…100 arasında 2-yə və ya 5-ə bölünənlər? <span class="ans">50 + 20 − 10 = 60.</span></li>
+        <li>1…200 arasında 4-ə və ya 6-ya bölünənlər? <span class="ans">50 + 33 − [200/12] = 50 + 33 − 16 = 67.</span></li>
+        <li>40 nəfərdən 25 nəfər çay, 20 nəfər qəhvə sevir, 3 nəfər heç birini. Neçə nəfər hər ikisini sevir? <span class="ans">Ən azı biri: 37. 25 + 20 − x = 37 → x = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Şərtli rəqəmlər və ədədlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada ən çox rast gəlinən sayma sualı: "neçə ədəd var ki, rəqəmləri … şərtini ödəyir". Burada iki şərt bir-birinə mane olur: birinci rəqəm 0 olmamalıdır, son rəqəm isə (cütlük, 5-ə bölünmə) çox vaxt 0 ola bilər. Çıxış yolu — <b>halları ayırmaq</b>.</p>
+
+      <h3><span class="st">2</span> Plan</h3>
+      <div class="fm">1. Şərtli yerləri tap (birinci rəqəm, son rəqəm…).
+2. Şərtlər bir-birinə təsir edirsə — hallara böl
+   (məs. "son rəqəm 0" və "son rəqəm 0 deyil").
+3. Hər halda hasil qaydası, sonda halları topla.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) Rəqəmləri müxtəlif neçə üçrəqəmli cüt ədəd var?
+   Hal 1: son rəqəm 0 → birinci 9, orta 8: 9 · 8 = 72
+   Hal 2: son 2, 4, 6, 8 (4 seçim) → birinci: 0 və son olmaz (8),
+          orta: 8 → 4 · 8 · 8 = 256
+   Cəm: 72 + 256 = 328
+
+2) Rəqəmləri müxtəlif neçə üçrəqəmli ədəd 5-ə bölünür?
+   Son 0: 9 · 8 = 72;   son 5: 8 · 8 = 64.   Cəm: 136
+
+3) Neçə beşrəqəmli palindrom var? (abcba)
+   a: 9 seçim, b: 10, c: 10 → 900
+
+4) Rəqəmlərinin cəmi 9 olan neçə üçrəqəmli ədəd var?
+   a + b + c = 9, a ≥ 1. a = 1 → b + c = 8: 9 cüt (0+8, …, 8+0)
+   a = 2 → 8 cüt, …, a = 9 → 1 cüt
+   9 + 8 + … + 1 = 45</div>
+      <div class="life"><b>Həyatdan.</b> Avtomobil nömrələrində "gözəl nömrə" (məs. 777, 1221) baha satılır. 4 rəqəmli hissədə neçə palindrom var? Burada 0 ilə başlamaq olar: <span class="m">10 · 10 = 100</span> — 10000 nömrədən cəmi 100-ü, yəni 1%. Nadir olduğu üçün baha olur.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 1-dən 999-a qədər bütün ədədləri yazdılar.
+1 rəqəmi neçə dəfə yazılıb?
+
+Həll. Hər ədədi üçrəqəmli kimi yaz: 1 → 001, 25 → 025.
+Əlavə edilən sıfırlar 1-lərin sayını dəyişmir.
+İndi 000-dan 999-a qədər 1000 "söz" var, hər yerə 10 rəqəm bərabər düşür.
+Təkliklər yerində 1 rəqəmi: 1000 / 10 = 100 dəfə.
+Onluqlar və yüzlüklər yerində də 100-ər dəfə.
+Cavab: 3 · 100 = 300.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cüt ədədlərdə son rəqəmə 5 seçim verib birinci rəqəmi həmişə 8 saymaq: son 0 olanda birinci rəqəmə 9 seçim qalır. Hallara böl!</li>
+        <li>Palindromda bütün rəqəmləri seçmək. Yalnız birinci yarı (ortadakı daxil) seçilir, qalanı güzgüdür.</li>
+        <li>Rəqəm cəmi məsələsində <span class="m">b + c = t</span> üçün <span class="m">t &gt; 9</span> olanda <span class="m">t + 1</span> cüt yazmaq. Rəqəm ən çoxu 9-dur: <span class="m">19 − t</span> cüt.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şərtli yerdən başla; şərtlər toqquşursa — hallara böl.
+Müxtəlif rəqəmli cüt: "son 0" + "son 2, 4, 6, 8".
+k-rəqəmli palindrom: 9 · 10^(yarı − 1)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neçə ikirəqəmli palindrom var? <span class="ans">11, 22, …, 99 — 9.</span></li>
+        <li>Neçə üçrəqəmli ədədin bütün rəqəmləri cütdür? <span class="ans">Birinci 4 (2, 4, 6, 8), qalanlar 5: 4 · 5 · 5 = 100.</span></li>
+        <li>Rəqəmləri müxtəlif neçə üçrəqəmli tək ədəd var? <span class="ans">Son 5 seçim, birinci 8, orta 8: 320.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Torda yollar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şəhərin küçələri düzbucaqlı tor kimidir. Evdən məktəbə ən qısa yolla — yalnız sağa və yuxarı (şimala və şərqə) — neçə müxtəlif yolla getmək olar? Bu sual olimpiadada çox sevilir: həm cədvəllə, həm düsturla həll olunur.</p>
+
+      <h3><span class="st">2</span> Cədvəl üsulu</h3>
+      <p>Hər düyünə ora gələn yolların sayını yazaq. Düyünə ya soldan, ya aşağıdan gəlmək olar, ona görə:</p>
+      <div class="fm">düyündəki ədəd = soldakı + aşağıdakı
+sol sütun və alt sətir: hər yerdə 1</div>
+      <div class="fig">
+        <svg viewBox="0 0 220 150" role="img" aria-label="3×2 tor, hər düyündə ora gələn yolların sayı">
+          <g stroke="var(--ink)" stroke-width="1.5">
+            <line x1="30" y1="20" x2="30" y2="120"/><line x1="80" y1="20" x2="80" y2="120"/><line x1="130" y1="20" x2="130" y2="120"/><line x1="180" y1="20" x2="180" y2="120"/>
+            <line x1="30" y1="20" x2="180" y2="20"/><line x1="30" y1="70" x2="180" y2="70"/><line x1="30" y1="120" x2="180" y2="120"/>
+          </g>
+          <g class="lbl" text-anchor="start">
+            <text x="34" y="116">1</text><text x="84" y="116">1</text><text x="134" y="116">1</text><text x="184" y="116">1</text>
+            <text x="34" y="66">1</text><text x="84" y="66">2</text><text x="134" y="66">3</text><text x="184" y="66">4</text>
+            <text x="34" y="16">1</text><text x="84" y="16">3</text><text x="134" y="16">6</text><text x="184" y="16" fill="var(--vec)">10</text>
+          </g>
+          <circle cx="30" cy="120" r="4" fill="var(--ink)"/><circle cx="180" cy="20" r="4" fill="var(--vec)"/>
+          <text x="22" y="140" class="lbl">A</text><text x="196" y="34" class="lbl">B</text>
+        </svg>
+        <div class="cap"><p>3×2 torda A-dan B-yə 10 yol var. Hər ədəd soldakı və aşağıdakı ədədlərin cəmidir: məsələn, <span class="m">6 = 3 + 3</span>, <span class="m">10 = 6 + 4</span>.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Düstur</h3>
+      <p><span class="m">m × n</span> torda hər yol <span class="m">m</span> "sağ" (S) və <span class="m">n</span> "yuxarı" (Y) addımdır, məsələn SYSSY. Yol = <span class="m">m + n</span> yerdən S-lərin yerini seçmək:</p>
+      <div class="fm">yolların sayı = C(m + n, m) = (m + n)! / (m! · n!)
+M nöqtəsindən keçən yollar = (A → M) · (M → B)
+M-dən keçməyən yollar = hamısı − keçənlər</div>
+      <div class="ex">1) 3×2: C(5, 3) = 5!/(3! · 2!) = 120/(6 · 2) = 10 ✓ (cədvəldəki kimi)
+
+2) 4×3 torda M(2; 1) nöqtəsindən keçən yollar:
+   A → M: C(3, 2) = 3,   M → B: 2 sağ + 2 yuxarı, C(4, 2) = 6
+   3 · 6 = 18
+
+3) Eyni torda M çala olsa (keçmək olmaz):
+   hamısı C(7, 4) = 35  →  35 − 18 = 17</div>
+      <div class="life"><b>Həyatdan.</b> Kuryer 4 məhəllə şərqə, 3 məhəllə şimala getməlidir. Ən qısa yolların sayı <span class="m">C(7, 4) = 35</span>-dir. Naviqasiya proqramı tıxac olan küçəni "çala" kimi çıxarır və qalan yollardan ən sürətlisini seçir — bu, nümunə 3-dəki hesabın kompüter variantıdır.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Məsələ. 4×4 torda A(0; 0)-dan B(4; 4)-ə yalnız sağa və yuxarı gedilir,
+amma diaqonaldan yuxarı çıxmaq olmaz (həmişə y ≤ x). Neçə yol var?
+
+Həll. Cədvəl üsulu; diaqonaldan yuxarıdakı düyünlərə 0 yazırıq.
+  y=4:                  14
+  y=3:              5   14
+  y=2:          2   5    9
+  y=1:      1   2   3    4
+  y=0:  1   1   1   1    1
+       x=0  1   2   3    4
+Diaqonal düyünə yalnız aşağıdan gəlmək olar: (2; 2) = 2, (3; 3) = 5.
+Cavab: 14.
+(Bu ədədlər — 1, 2, 5, 14, … — Katalan ədədləridir.)</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tor ölçüsünü düyünlərin sayı ilə qarışdırmaq: 3×2 torda <b>3 sağ, 2 yuxarı</b> addım var (düyünlər 4×3).</li>
+        <li>M-dən keçən yolları <span class="m">(A → M) + (M → B)</span> saymaq. Bu, "və"dir — vurulur.</li>
+        <li>Cədvəldə çala düyününə ədəd yazıb onu sonrakı cəmlərə qatmaq. Çalaya 0 yazılır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Yollar = C(m + n, m);  cədvəldə: sol + aşağı
+M-dən keçən: (A→M)·(M→B);  keçməyən: hamısı − keçən
+C(4, 2) = 6,  C(5, 2) = 10,  C(6, 3) = 20,  C(7, 3) = 35</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2×2 torda A-dan B-yə neçə yol var? <span class="ans">C(4, 2) = 6.</span></li>
+        <li>3×3 torda? <span class="ans">C(6, 3) = 20.</span></li>
+        <li>4×2 torda M(2; 1)-dən keçən yollar? <span class="ans">A→M: C(3, 2) = 3, M→B: 2 sağ + 1 yuxarı, C(3, 2) = 3. 3 · 3 = 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
