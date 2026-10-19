@@ -61,7 +61,7 @@
   const fmt = n => String(Math.round(n * 100) / 100).replace(".", ",");
 
   const levels = [
-    { id: "terefler", ad: "Tərəfləri tanı", izah: "Hipotenuz, qarşı katet, bitişik katet — hamısı α-ya görə.",
+    { id: "terefler", minVariety: 3, ad: "Tərəfləri tanı", izah: "Hipotenuz, qarşı katet, bitişik katet — hamısı α-ya görə.",
       gen() {
         const [a, b] = pick(TRIPLES), at = pick(["A", "B"]), r = roles(at), key = pick(["opp", "adj", "hyp"]);
         const names = ["Hipotenuz", "Qarşı katet", "Bitişik katet"], idx = { hyp: 0, opp: 1, adj: 2 }[key];
@@ -77,7 +77,7 @@
         return { text: `${f} α = ?`, svg: triangle(a, b, at, { CA: String(a), CB: String(b), AB: String(hy) }, null), answer: num / den, show: frac(num, den), placeholder: "məs. 3/5",
           solution: `${f} α = ${f === "sin" ? "qarşı / hipotenuz" : f === "cos" ? "bitişik / hipotenuz" : "qarşı / bitişik"} = ${num}/${den} = ${frac(num, den)}.` };
       } },
-    { id: "xususi", ad: "30°, 45°, 60°", izah: "Cədvəli yadda saxla: kəsr və ya √ ilə yaz (√3/2).",
+    { id: "xususi", minVariety: 12, ad: "30°, 45°, 60°", izah: "Cədvəli yadda saxla: kəsr və ya √ ilə yaz (√3/2).",
       gen() {
         const f = pick(["sin", "cos", "tg"]), d = pick([30, 45, 60]), [s, v] = SPECIAL[f][d];
         if (Math.random() < .35 && !(f === "tg" && d === 45) && !(s === "√2/2")) {
@@ -103,7 +103,7 @@
         return { text: `Hipotenuz ${c}, α = ${d}°. Tap: ${label}.`, answer: v, show: fmt(v),
           solution: `${kind === "opp" ? "qarşı = hipotenuz · sin α" : "bitişik = hipotenuz · cos α"} = ${c} · ${SPECIAL[f][d][0]} ≈ ${fmt(v)}.` };
       } },
-    { id: "cevre", ad: "Vahid çevrə", izah: "90°-dən böyük bucaqlar da. İşarəyə diqqət: II rübdə cos mənfidir.",
+    { id: "cevre", minVariety: 15, ad: "Vahid çevrə", izah: "90°-dən böyük bucaqlar da. İşarəyə diqqət: II rübdə cos mənfidir.",
       gen() {
         const d = pick([0, 30, 45, 60, 90, 120, 135, 150, 180, 120, 135, 150]), f = pick(["sin", "cos"]), [sn, cs] = UNIT[d], v = f === "sin" ? sn : cs;
         return { text: `${f} ${d}° = ?`, answer: v, show: SHOW(v), placeholder: "məs. −1/2",
@@ -139,6 +139,7 @@
       } },
   ];
 
+  window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
     if (!oyunEl || !window.Oyun) return;

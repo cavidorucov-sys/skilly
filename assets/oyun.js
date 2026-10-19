@@ -242,10 +242,45 @@
 
     function report(kind, r) {
       if (!window.Skilly) return;
-      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", yoxla: " — yaddaş yoxlaması" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
+      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", yoxla: " — yaddaş yoxlaması", giris: " — giriş testi" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
     }
 
-    drawMap(); drawTest();
+    // ---- entry test (stage 0): everything right → skip the lessons and the levels, straight to the Boss
+    function drawEntry() {
+      const E = cfg.entryEl; if (!E) return;
+      const n = (cfg.entry && cfg.entry.n) || 8, mins = (cfg.entry && cfg.entry.min) || 10;
+      const e = st.entry;
+      const started = cfg.levels.some(l => st.lv[l.id].tries > 0);
+      E.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Giriş testi"),
+        h("p", {}, `${n} sual, ${mins} dəqiqə. Mövzunu artıq bilirsənsə, burada görünəcək: ${n}/${n} olsa dərsləri və Oyunu keçmədən birbaşa Boss raunduna gedirsən. Az olsa — heç nə itmir, Dərs 1-dən başlayırsan.`),
+        e ? h("p", { class: "oy-fmt" }, `Nəticən: ${e.bal} / ${n}` + (e.bal === n ? " — Boss açıqdır." : " — dərslərdən başla.")) : null,
+        e || started ? (e && e.bal === n ? h("button", { type: "button", class: "btn", on: { click: () => { cfg.goGame && cfg.goGame(); boss(); } } }, "Boss raunduna keç →")
+          : h("button", { type: "button", class: "btn", on: { click: () => cfg.goLesson && cfg.goLesson() } }, "Dərs 1-ə keç →"))
+          : h("div", { class: "oy-row" }, h("button", { type: "button", class: "btn", on: { click: runEntry } }, "Testə başla"),
+              h("button", { type: "button", class: "btn ghost", on: { click: () => { st.entry = { bal: -1, at: Date.now(), skipped: true }; save(); cfg.goLesson && cfg.goLesson(); } } }, "Mövzu yenidir, dərsdən başla"))));
+    }
+    async function runEntry() {
+      const n = (cfg.entry && cfg.entry.n) || 8, mins = (cfg.entry && cfg.entry.min) || 10, E = cfg.entryEl;
+      const ids = cfg.levels.map(l => l.id), pickIds = Array.from({ length: n }, (_, i) => ids[i % ids.length]);
+      const clock = h("div", { class: "oy-label" }), box = h("div");
+      E.replaceChildren(clock, box);
+      const end = Date.now() + mins * 60000; let over = false;
+      const tick = setInterval(() => { const left = Math.max(0, end - Date.now()); clock.textContent = "Qalan vaxt: " + Math.floor(left / 60000) + ":" + String(Math.floor(left / 1000) % 60).padStart(2, "0"); if (!left) { over = true; clearInterval(tick); box.dispatchEvent(new Event("timeup")); } }, 500);
+      let bal = 0;
+      for (let i = 0; i < n && !over; i++) {
+        const q = cfg.levels.find(l => l.id === pickIds[i]).gen();
+        const val = await Promise.race([collect(q, box, "Giriş testi · " + (i + 1) + " / " + n, i + 1 === n), new Promise(r => box.addEventListener("timeup", () => r(null), { once: true }))]);
+        if (val === null) break;
+        if (q.choices ? val === q.correct : close(parse(val), q.answer, q.tol)) bal++;
+      }
+      clearInterval(tick);
+      st.entry = { bal, at: Date.now() };
+      if (bal === n) cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK }));
+      save(); drawMap(); drawEntry();
+      report("giris", { bal, max: n, qeyd: bal === n ? "bütöv: birbaşa Boss" : "dərslərdən başlayır" });
+    }
+
+    drawMap(); drawTest(); drawEntry();
     cfg.refreshTest = drawTest;
     return { state: st, drawTest };
   }

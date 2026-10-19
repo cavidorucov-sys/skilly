@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MÖVZU dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-SLUG.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · MÖVZU</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: BÖLMƏ</div>
+    <h1>MÖVZU</h1>
+    <p>Bir-iki cümlə: bu mövzu nədir və nəyə lazımdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>QISA AD</button>
+    <!-- Dərs 2…5 eyni qayda ilə -->
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. TAM AD</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Həyatdan bir vəziyyət.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Sadə dillə izah.</p>
+      <div class="fm">düstur və ya qayda</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Addım 1 …
+Addım 2 …
+Cavab: …</div>
+      <div class="life"><b>Həyatdan.</b> …</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul><li>…</li></ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">qısa xülasə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sual … <span class="ans">cavab</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
