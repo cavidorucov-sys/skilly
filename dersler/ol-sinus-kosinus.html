@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sinuslar və kosinuslar teoremi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-sinus-kosinus.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Sinuslar və kosinuslar teoremi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Triqonometriya</div>
+    <h1>Sinuslar və kosinuslar teoremi</h1>
+    <p>Düzbucaqlı üçbucaqda <span class="m">sin α = qarşı/hipotenuz</span> kifayət edirdi. Ancaq istənilən üçbucaqda, düz bucaq olmayanda, tərəfləri və bucaqları necə bağlamaq olar? İki teorem: <b>sinuslar teoremi</b> (tərəf / qarşısındakı bucağın sinusu = <span class="m">2R</span>) və <b>kosinuslar teoremi</b> (Pifaqorun ümumiləşməsi). Üçbucağın sahəsi üçün <span class="m">S = ½ab sin C</span> də bu mövzudadır. Bunlarla hər üçbucağı "həll etmək" olur: üç ölçüdən qalanlarını tapırsan.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sinuslar teoremi, R</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kosinuslar teoremi</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sahə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Üçbucağın həlli</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sinuslar teoremi və çevrəxarici çevrənin radiusu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çayın qarşı sahilində ağac var. Sənin sahildə iki nöqtən var, <span class="m">A</span> və <span class="m">B</span>, aralarındakı məsafə ölçülüb. Ağaca baxış bucaqlarını da ölçdün. Burada düz bucaq yoxdur, <span class="m">sin = qarşı/hipotenuz</span> işləmir. Ağaca qədər məsafəni sinuslar teoremi verir.</p>
+
+      <h3><span class="st">2</span> Teorem və isbatı</h3>
+      <div class="fm">a / sin A = b / sin B = c / sin C = 2R
+(a, b, c — tərəflər, A, B, C — qarşısındakı bucaqlar,
+ R — üçbucağın çevrəxarici çevrəsinin radiusu)</div>
+      <p><b>İsbat.</b> Üçbucağın ətrafına çevrə çək, mərkəzi <span class="m">O</span>. <span class="m">B</span> nöqtəsindən diametr çək, o çevrəni <span class="m">A'</span> nöqtəsində kəsir: <span class="m">BA' = 2R</span>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 240 200" role="img" aria-label="ABC üçbucağının çevrəxarici çevrəsi, BA' diametri və düzbucaqlı BCA' üçbucağı">
+          <circle cx="115" cy="100" r="72" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M151 162.4L47.3 124.6L127.5 29.1Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="47.3" y1="124.6" x2="182.7" y2="75.4" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="127.5" y1="29.1" x2="182.7" y2="75.4" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M121.1 36.7L128.8 43.1L135.2 35.5" fill="none" stroke="var(--vec)" stroke-width="1.5"/>
+          <circle cx="115" cy="100" r="2.5" fill="var(--ink)"/>
+          <text x="154" y="178" class="lbl">A</text><text x="28" y="132" class="lbl">B</text><text x="122" y="21" class="lbl">C</text><text x="188" y="76" class="lbl">A'</text>
+          <text x="70" y="70" class="lbl">a</text>
+          <text x="104" y="118" class="lbl" fill="var(--vec)" font-size="12">2R</text>
+          <text x="137" y="151" class="lbl" font-size="12">A</text><text x="161" y="82" class="lbl" font-size="12">A</text>
+        </svg>
+        <div class="cap"><p><span class="m">∠BA'C</span> və <span class="m">∠BAC</span> eyni <span class="m">BC</span> qövsünə söykənən daxilə çəkilmiş bucaqlardır, ona görə bərabərdirlər: ikisi də <span class="m">A</span>. <span class="m">BA'</span> diametrdir, ona görə <span class="m">∠BCA' = 90°</span>.</p></div>
+      </div>
+      <div class="ex">BCA' düzbucaqlı üçbucağında BC qarşı katetdir, BA' hipotenuzdur:
+BC = BA'·sin A'   →   a = 2R·sin A.
+Eyni mühakimə b = 2R sin B və c = 2R sin C verir. ∎
+
+Əgər A obtuzdursa, A' nöqtəsi başqa qövsdə düşür və ∠BA'C = 180° − A olur.
+Amma sin(180° − A) = sin A, ona görə a = 2R sin A yenə doğrudur.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. ABC üçbucağında A = 30°, B = 45°, a = 10. b və R = ?
+
+R = a/(2 sin A) = 10/(2·1/2) = 10.
+b = 2R sin B = 20·(√2/2) = 10√2.   (və ya b = a sin B/sin A = 10·(√2/2)/(1/2) = 10√2)</div>
+      <div class="ex">Nümunə 2. Üçbucağın tərəfi a = 6, çevrəxarici çevrənin radiusu R = 5. A bucağı?
+
+sin A = a/(2R) = 6/10 = 3/5.
+sin 3/5 olan iki bucaq var: kəskin A₁ ≈ 36,87° (cos = 4/5) və obtuz A₂ = 180° − A₁ ≈ 143,13°.
+İkisi də mümkündür (A₂ obtuz olanda digər iki bucağın cəmi 36,87°-dir). Deməli iki fərqli üçbucaq var.
+Sinus bucağı birqiymətli vermir; bu, sinuslar teoreminin əsas tələsidir.</div>
+      <div class="ex">Nümunə 3. Tərəfləri 3, 4, 5 olan üçbucağın çevrəxarici çevrəsinin radiusu?
+
+3² + 4² = 5², deməli üçbucaq düzbucaqlıdır, hipotenuza qarşı bucaq 90°, sin 90° = 1.
+2R = 5/sin 90° = 5, R = 5/2.
+Nəticə: düzbucaqlı üçbucaqda çevrəxarici çevrənin mərkəzi hipotenuzun ortasındadır, R = hipotenuz/2.</div>
+      <div class="life"><b>Həyatdan: çaydan o tərəfdəki ağac.</b> Sahildə <span class="m">A</span> və <span class="m">B</span> nöqtələri arasında <span class="m">AB = 100 m</span>. Ağaca <span class="m">A</span>-dan <span class="m">75°</span>, <span class="m">B</span>-dən <span class="m">45°</span> bucaq altında baxırsan (bucaqlar <span class="m">AB</span> ilə ağaca istiqamət arasındadır). Üçüncü bucaq <span class="m">C = 180° − 75° − 45° = 60°</span>. <span class="m">AC/sin B = AB/sin C</span>: <span class="m">AC = 100·sin 45°/sin 60° = 100·(√2/2)/(√3/2) = 100√6/3 ≈ 81,6 m</span>. Çayı keçmədən məsafə tapıldı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tərəfi qarşısında olmayan bucaqla bölmək: <span class="m">a/sin A</span> (eyni hərf), <span class="m">a/sin B</span> yox.</li>
+        <li><span class="m">sin A = 3/5</span>-dən yalnız kəskin bucağı götürmək. Obtuz bucaq da (<span class="m">180° − A</span>) mümkün ola bilər, şərtə baxıb seç (cəmi 180° olmalıdır).</li>
+        <li><span class="m">a/sin A = R</span> yazmaq (2 unudulur): düz olan <span class="m">2R</span>-dir.</li>
+        <li>Bucaqları dərəcə yerinə radianla hesablayıb kalkulyatoru səhv rejimdə işlətmək.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a/sin A = b/sin B = c/sin C = 2R
+a = 2R sin A,  sin A = a/(2R),  R = a/(2 sin A)
+sin A = sin(180° − A): bucaq iki cür ola bilər</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A = 150°, a = 10. R = ? <span class="ans">sin 150° = 1/2, 2R = 10/(1/2) = 20, R = 10.</span></li>
+        <li>A = 45°, B = 60°, a = 2. b = ? <span class="ans">b = 2·sin 60°/sin 45° = 2·(√3/2)/(√2/2) = 2√3/√2 = √6.</span></li>
+        <li>Hipotenuzu 13 olan düzbucaqlı üçbucağın R-i? <span class="ans">13/2 = 6,5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Kosinuslar teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki tərəf və aralarındakı bucaq məlumdur, üçüncü tərəf lazımdır. Yaxud üç tərəf məlumdur, bucağı tapmaq lazımdır. Bu hallarda sinuslar teoremi kifayət etmir (bir cütlük yoxdur). Düzbucaqlı üçbucaqda <span class="m">c² = a² + b²</span> Pifaqor teoremi var. Kosinuslar teoremi onun istənilən üçbucaq üçün düzəlişli formasıdır.</p>
+
+      <h3><span class="st">2</span> Teorem və isbatı</h3>
+      <div class="fm">c² = a² + b² − 2ab·cos C
+(c — C bucağının qarşısındakı tərəf; a, b — C-ni əmələ gətirən tərəflər)
+cos C = (a² + b² − c²) / (2ab)</div>
+      <p><b>İsbat.</b> <span class="m">C</span> nöqtəsini koordinat başlanğıcına qoy, <span class="m">CA</span> tərəfini üfüqi ox boyunca yerləşdir: <span class="m">A(b; 0)</span>. <span class="m">CB = a</span> və <span class="m">C</span> bucağı olan <span class="m">B</span> nöqtəsinin koordinatları triqonometriyadan: <span class="m">B(a cos C; a sin C)</span>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 240 200" role="img" aria-label="C başlanğıcda, CA üfüqi, B nöqtəsinin hündürlüyü a·sin C">
+          <path d="M40 150L210 150L106 55.8Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="106" y1="55.8" x2="106" y2="150" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M96 150L96 140L106 140" fill="none" stroke="var(--vec)" stroke-width="1.5"/>
+          <path d="M62 150A22 22 0 0 0 52.6 132" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="28" y="166" class="lbl">C</text><text x="214" y="166" class="lbl">A</text><text x="102" y="48" class="lbl">B</text>
+          <text x="66" y="136" class="lbl" font-size="12" fill="var(--accent)">C</text>
+          <text x="58" y="97" class="lbl">a</text><text x="164" y="176" class="lbl">b</text><text x="168" y="96" class="lbl">c</text>
+          <text x="112" y="108" class="lbl" font-size="12" fill="var(--vec)">a sin C</text>
+          <text x="64" y="167" class="lbl" font-size="12" fill="var(--vec)">a cos C</text>
+        </svg>
+        <div class="cap"><p><span class="m">B</span> nöqtəsi <span class="m">CA</span> üzərindəki təsvirindən <span class="m">a cos C</span> məsafədədir, hündürlüyü <span class="m">a sin C</span>-dir. <span class="m">AB</span> məsafəsini düz koordinatlarla yaz.</p></div>
+      </div>
+      <div class="ex">c² = AB² = (a cos C − b)² + (a sin C − 0)²
+   = a² cos²C − 2ab cos C + b² + a² sin²C
+   = a²(cos²C + sin²C) − 2ab cos C + b²
+   = a² + b² − 2ab cos C.   ∎
+
+C = 90° olsa, cos C = 0 və Pifaqor teoremi alınır.
+C obtuzdursa, cos C &lt; 0 və c² &gt; a² + b² (−2ab cos C müsbətdir).
+C kəskindirsə, c² &lt; a² + b².</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. a = 3, b = 5, C = 120°. c = ?
+
+cos 120° = −1/2.
+c² = 9 + 25 − 2·3·5·(−1/2) = 34 + 15 = 49.   c = 7.</div>
+      <div class="ex">Nümunə 2. Tərəfləri 5, 7, 8 olan üçbucağın 7 uzunluqlu tərəfinin qarşısındakı bucağı?
+
+cos = (5² + 8² − 7²)/(2·5·8) = (25 + 64 − 49)/80 = 40/80 = 1/2.   Bucaq 60°.
+(7 sorulan bucağın qarşısındadır, ona görə c = 7; 5 və 8 isə bucağı əmələ gətirən tərəflərdir.)</div>
+      <div class="ex">Nümunə 3. Tərəfləri 2, 3, 4. Üçbucaq kəskin, düz yoxsa obtuzdur? Ən böyük bucağın kosinusu?
+
+Ən böyük bucaq ən böyük tərəfin (4) qarşısındadır.
+cos = (4 + 9 − 16)/(2·2·3) = −3/12 = −1/4.
+Mənfidir: obtuz bucaqdır (≈ 104,5°). Qısa yoxlama: 2² + 3² = 13 &lt; 16 = 4².</div>
+      <div class="life"><b>Həyatdan: dağ aşırı yol.</b> <span class="m">O</span> nöqtəsindən iki kənd görünür: biri <span class="m">3 km</span>, digəri <span class="m">5 km</span> məsafədə, istiqamətləri arasındakı bucaq <span class="m">120°</span>. Kəndlər arası məsafə düz xəttlə: <span class="m">√(9 + 25 + 15) = 7 km</span>. (Bucaq 90° olsaydı <span class="m">√34 ≈ 5,8 km</span> olardı. Genişləndikcə kəndlər uzaqlaşır.)</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">2ab</span> əvəzinə <span class="m">ab</span> yazmaq və ya bucağın kosinusunu 2-yə vurmağı unutmaq. Yoxlama: <span class="m">C = 90°</span> ola bilərmi? Onda Pifaqor çıxmalıdır.</li>
+        <li>Obtuz bucaqda işarəni itirmək: <span class="m">cos 120° = −1/2</span>, minus mənfi ilə müsbət verir: <span class="m">c² = a² + b² + ab</span>.</li>
+        <li>Yanlış tərəfi <span class="m">c</span> seçmək: bucağın qarşısındakı tərəf <b>tək</b>dir, qalan ikisi bucağı əmələ gətirir.</li>
+        <li>Kökü almağı unutmaq: <span class="m">c² = 49</span>-dan <span class="m">c = 7</span> alınır, 49 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">c² = a² + b² − 2ab cos C
+cos C = (a² + b² − c²)/(2ab)
+60°: c² = a² + b² − ab;  120°: c² = a² + b² + ab
+Ən böyük tərəfin qarşısında ən böyük bucaq durur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a = 8, b = 15, C = 60°. c = ? <span class="ans">c² = 64 + 225 − 120 = 169, c = 13.</span></li>
+        <li>Tərəfləri 7, 8, 13 olan üçbucağın ən böyük bucağı? <span class="ans">cos = (49 + 64 − 169)/(2·7·8) = −56/112 = −1/2, bucaq 120°.</span></li>
+        <li>c² &gt; a² + b² olsa, C bucağı necədir? <span class="ans">cos C = (a² + b² − c²)/(2ab) &lt; 0, yəni C obtuzdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Üçbucağın sahəsi: ½ab·sin C</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sahə üçün <span class="m">S = ½ · əsas · hündürlük</span> bilirsən. Amma hündürlük çox vaxt verilmir: iki tərəf və aralarındakı bucaq məlumdur. Yaxud yalnız üç tərəf var. Bu dərsdə hündürlüyü sinus vasitəsilə ifadə edib sahəni və <span class="m">R</span>-i tapırıq.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 240 200" role="img" aria-label="ABC üçbucağı, B-dən AC-yə endirilən hündürlük h = a·sin C">
+          <path d="M40 150L210 150L106 55.8Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="106" y1="55.8" x2="106" y2="150" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M96 150L96 140L106 140" fill="none" stroke="var(--vec)" stroke-width="1.5"/>
+          <path d="M62 150A22 22 0 0 0 52.6 132" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="28" y="166" class="lbl">C</text><text x="214" y="166" class="lbl">A</text><text x="102" y="48" class="lbl">B</text>
+          <text x="66" y="136" class="lbl" font-size="12" fill="var(--accent)">C</text>
+          <text x="58" y="97" class="lbl">a</text><text x="120" y="176" class="lbl">b</text>
+          <text x="112" y="108" class="lbl" fill="var(--vec)">h</text>
+        </svg>
+        <div class="cap"><p>Əsas — <span class="m">CA = b</span>. <span class="m">B</span>-dən endirilən hündürlük <span class="m">h</span>. Düzbucaqlı üçbucaqdan (<span class="m">C</span> bucağı olan): <span class="m">h = a·sin C</span>.</p></div>
+      </div>
+      <div class="ex">S = ½·b·h = ½·b·(a sin C) = ½ab sin C.
+
+sin C = c/(2R) (sinuslar teoremi). Yerinə qoy:
+S = ½ab·c/(2R) = abc/(4R).
+
+Üç tərəf məlumdursa: cos C (kosinuslar teoremindən) → sin C = √(1 − cos²C) → S.</div>
+      <div class="fm">S = ½·a·b·sin C   (C — a və b arasındakı bucaq)
+S = abc/(4R),   R = abc/(4S)</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Tərəfləri 13, 14, 15. S, R = ?
+
+C — 15 uzunluqlu tərəfin qarşısındakı bucaq.
+cos C = (13² + 14² − 15²)/(2·13·14) = (169 + 196 − 225)/364 = 140/364 = 5/13.
+sin C = √(1 − 25/169) = 12/13.
+S = ½·13·14·(12/13) = 84.
+R = abc/(4S) = 13·14·15/(4·84) = 2730/336 = 65/8.</div>
+      <div class="ex">Nümunə 2. Tərəfləri a = 6, b = 8, sahəsi S = 12√3. Aralarındakı bucaq? Üçüncü tərəf?
+
+sin C = 2S/(ab) = 24√3/48 = √3/2.
+Deməli C = 60° və ya C = 120°. İkisi də mümkündür!
+C = 60°:  c² = 36 + 64 − 48 = 52,   c = 2√13.
+C = 120°: c² = 36 + 64 + 48 = 148,  c = 2√37.</div>
+      <div class="ex">Nümunə 3. Tərəfləri 5, 5, 6. S və R = ?
+
+6 uzunluqlu tərəfin qarşısındakı C üçün: cos C = (25 + 25 − 36)/(2·5·5) = 14/50 = 7/25, sin C = 24/25.
+S = ½·5·5·(24/25) = 12.    R = 5·5·6/(4·12) = 150/48 = 25/8.</div>
+      <div class="life"><b>Həyatdan: torpaq sahəsi.</b> Üçbucaq formalı sahənin tərəfləri 13 m, 14 m, 15 m-dir. Hündürlük ölçmək çətindir, amma sahə yuxarıdakı kimi hesablanır: <span class="m">84 m²</span>. Sahənin ətrafına çevrə çəkilsə (məsələn, dairəvi çəpər), onun radiusu <span class="m">65/8 = 8,125 m</span>-dir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yarını unutmaq: <span class="m">S = ½ab sin C</span>. Yoxlama: <span class="m">C = 90°</span>-də <span class="m">S = ½ab</span> olmalıdır.</li>
+        <li>Bucaq iki tərəfin <b>arasında</b> olmalıdır. <span class="m">a</span> və <span class="m">b</span> ilə <span class="m">sin A</span> işlətmək olmaz.</li>
+        <li>Nümunə 2-də <span class="m">sin C = √3/2</span>-dən yalnız <span class="m">60°</span> götürmək. <span class="m">120°</span> də sinusu eyni verir, iki cavab var.</li>
+        <li><span class="m">R = abc/(4S)</span> yerinə <span class="m">abc/(2S)</span> yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">S = ½ab sin C = abc/(4R)
+sin C = 2S/(ab);   R = abc/(4S)
+sin C = sin(180° − C): iki üçbucaq mümkündür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a = 6, b = 8, C = 30°. S = ? <span class="ans">½·6·8·(1/2) = 12.</span></li>
+        <li>Tərəfləri 13, 14, 15 olan üçbucağın R-i? <span class="ans">65/8 (S = 84-dən: 2730/336).</span></li>
+        <li>a = 6, b = 8, S = 12 (sin C = ?) <span class="ans">sin C = 24/48 = 1/2, C = 30° və ya 150°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Üçbucağın həlli və olimpiada məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Hansı hal, hansı teorem</h3>
+      <p>Üçbucağı "həll etmək" — üç məlum ölçüdən qalanlarını tapmaqdır. Hansı teoremin işləməsi verilənlərdən asılıdır:</p>
+      <div class="tbl"><table>
+        <tr><th>Verilənlər</th><th>İlk addım</th></tr>
+        <tr><td>iki bucaq və bir tərəf (BBT, BTB)</td><td>üçüncü bucaq = 180° − cəm; sonra sinuslar teoremi</td></tr>
+        <tr><td>iki tərəf və aralarındakı bucaq (TBT)</td><td>kosinuslar teoremi → üçüncü tərəf</td></tr>
+        <tr><td>üç tərəf (TTT)</td><td>kosinuslar teoremi → bucaq (ən böyükdən başla)</td></tr>
+        <tr><td>iki tərəf və biri qarşısındakı bucaq (TTB)</td><td>sinuslar teoremi, <b>iki həll</b> ola bilər</td></tr>
+      </table></div>
+      <p>Axırıncı halda <span class="m">sin B = b sin A / a</span> alınır. Sinus eyni qalır (<span class="m">B</span> və <span class="m">180° − B</span>), ona görə hər iki variantı yoxla: <span class="m">A + B &lt; 180°</span> şərti ödənərsə, ikisi də üçbucaq verir.</p>
+
+      <h3><span class="st">2</span> Məsələ 1. sin A : sin B : sin C = 3 : 5 : 7. Ən böyük bucaq?</h3>
+      <div class="ex">Sinuslar teoremindən a = 2R sin A, b = 2R sin B, c = 2R sin C:
+a : b : c = sin A : sin B : sin C = 3 : 5 : 7.
+Tərəfləri a = 3k, b = 5k, c = 7k götür (k &gt; 0).
+Ən böyük bucaq ən böyük tərəfin (7k) qarşısındadır:
+cos C = (9k² + 25k² − 49k²)/(2·3k·5k) = −15k²/(30k²) = −1/2.
+Deməli C = 120°.</div>
+
+      <h3><span class="st">3</span> Məsələ 2. Median: tərəfləri 5, 7, 8. 8 uzunluqlu tərəfə çəkilmiş median?</h3>
+      <div class="fig">
+        <svg viewBox="0 0 240 200" role="img" aria-label="ABC üçbucağı, AB tərəfinin ortası M, CM medianı">
+          <path d="M30 150L210 150L153.8 53Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="153.8" y1="53" x2="120" y2="150" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="120" cy="150" r="3" fill="var(--vec)"/>
+          <text x="16" y="164" class="lbl">A</text><text x="212" y="164" class="lbl">B</text><text x="156" y="46" class="lbl">C</text><text x="114" y="168" class="lbl">M</text>
+          <text x="70" y="92" class="lbl">b</text><text x="190" y="96" class="lbl">a</text><text x="116" y="94" class="lbl" fill="var(--vec)">m</text>
+          <text x="60" y="144" class="lbl" font-size="12">c/2</text><text x="150" y="144" class="lbl" font-size="12">c/2</text>
+        </svg>
+        <div class="cap"><p><span class="m">M</span> — <span class="m">AB = c</span> tərəfinin ortası, <span class="m">CM = m</span>. <span class="m">∠AMC = θ</span> olsun, onda <span class="m">∠BMC = 180° − θ</span>.</p></div>
+      </div>
+      <div class="ex">AMC üçbucağında (kosinuslar teoremi):  b² = m² + c²/4 − 2·m·(c/2)·cos θ
+BMC üçbucağında:                      a² = m² + c²/4 − 2·m·(c/2)·cos(180° − θ) = m² + c²/4 + mc cos θ
+Topla (cos θ-lı hədlər ixtisar olur):  a² + b² = 2m² + c²/2
+Buradan  m² = (2a² + 2b² − c²)/4.
+
+c = 8, a = 5, b = 7:  m² = (50 + 98 − 64)/4 = 84/4 = 21,   m = √21 ≈ 4,58.</div>
+
+      <h3><span class="st">4</span> Məsələ 3. ∠A = 2∠B olarsa, a² = b(b + c). b = 4, c = 5 üçün a = ?</h3>
+      <div class="ex">Sinuslar teoremi ilə (A = 2B, C = 180° − 3B):
+a = 2R sin 2B = 4R sin B cos B = 2b cos B           (b = 2R sin B)
+c = 2R sin C = 2R sin 3B = b·sin 3B/sin B = b(3 − 4 sin²B) = b(4cos²B − 1)
+   (sin 3B = 3 sin B − 4 sin³B)
+Onda  b(b + c) = b·b(1 + 4cos²B − 1) = 4b²cos²B = (2b cos B)² = a².   ∎
+
+b = 4, c = 5:  a² = 4·(4 + 5) = 36,  a = 6.
+Yoxlama: tərəfləri 6, 4, 5 üçbucaqda cos B = (36 + 25 − 16)/(2·6·5) = 3/4,
+cos A = (16 + 25 − 36)/(2·4·5) = 1/8, cos 2B = 2·9/16 − 1 = 1/8 = cos A. ✓</div>
+      <div class="life"><b>Həyatdan: dam konstruksiyası.</b> Dam tirinin uzunluğu <span class="m">8 m</span>, yan tirlər <span class="m">5 m</span> və <span class="m">7 m</span>-dir. Təpədən tirin ortasına dayaq dirəyi qoyulur. Uzunluğu median düsturu verir: <span class="m">√21 ≈ 4,58 m</span>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Üç tərəf verildikdə sinuslar teoremi ilə başlamaq: orada bucaqların sinusu naməlumdur. TTT halında kosinuslar teoremi.</li>
+        <li>TTB halında ikinci həlli unutmaq. Bucağın sinusu eyni qalan <span class="m">180° − B</span> bucağını da yoxla.</li>
+        <li>Nisbətdən tərəflərə keçəndə üçbucaq bərabərsizliyini yoxlamamaq: <span class="m">3 : 5 : 7</span> üçün <span class="m">3 + 5 &gt; 7</span> ✓, amma <span class="m">2 : 3 : 6</span> üçbucaq vermir.</li>
+        <li>Median düsturunda <span class="m">/4</span>-ü unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">BBT → sinuslar;  TBT, TTT → kosinuslar;  TTB → sinuslar (iki həll!)
+a : b : c = sin A : sin B : sin C
+m_c² = (2a² + 2b² − c²)/4
+A = 2B ⇒ a² = b(b + c)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tərəfləri 3, 5, 7. Ən böyük bucaq? <span class="ans">cos = (9 + 25 − 49)/30 = −1/2, 120°.</span></li>
+        <li>Tərəfləri 6, 8, 10 olan üçbucaqda 10-a çəkilmiş median? <span class="ans">m² = (72 + 128 − 100)/4 = 25, m = 5 (düzbucaqlıda hipotenuzun yarısı ✓).</span></li>
+        <li>a = 7, b = 5, ∠A = 60°. TTB halında B bucağının sinusu? <span class="ans">sin B = 5·(√3/2)/7 = 5√3/14 ≈ 0,62; B kəskin (≈ 38,2°): b &lt; a olduğu üçün B bucağı A = 60°-dən kiçikdir, obtuz variant yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

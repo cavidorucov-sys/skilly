@@ -35,6 +35,8 @@
     // two terms only when a root is involved (√23 − 4, 2√3 + 1); "7/9+1/4" must be computed, not typed
     return parts.length === 1 || parts.some(x => x.includes("√"));
   }
+  // exact answers (shown as a fraction or a root) need the exact value; rounded decimals are not accepted
+  const tolOf = q => q.tol ?? (/[\/√]/.test(String(q.show)) ? 1e-6 : undefined);
   const close = (x, v, tol) => Math.abs(x - v) <= (tol ?? Math.max(0.005, Math.abs(v) * 0.005));
 
   // small on-screen keys for √, / and − (hard to type on a phone keyboard)
@@ -103,7 +105,7 @@
             const x = parse(v);
             if (!String(v).trim()) { err.textContent = "Əvvəl cavabı yaz."; return; }
             if (isNaN(x) || !okForm(v)) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
-            ok = close(x, q.answer, q.tol);
+            ok = close(x, q.answer, tolOf(q));
           }
           btn.disabled = true; if (input.disabled !== undefined) input.disabled = true; input.querySelectorAll && input.querySelectorAll("button").forEach(b => b.disabled = true);
           if (ok) { fb.className = "oy-fb ok"; fb.textContent = "Düz ✓"; setTimeout(() => resolve(true), 600); return; }
@@ -199,7 +201,7 @@
       for (let i = run.vals.length; i < qs.length; i++) {
         run.vals.push(await collect(qs[i].q, box, "Sınaq · " + (i + 1) + " / " + qs.length, i + 1 === qs.length)); save();
       }
-      const answers = qs.map((x, i) => { const q = x.q, val = run.vals[i]; return { id: x.id, q, val, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) }; });
+      const answers = qs.map((x, i) => { const q = x.q, val = run.vals[i]; return { id: x.id, q, val, ok: q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)) }; });
       delete st.testRun;
       const bal = answers.filter(a => a.ok).length, passed = bal >= cfg.test.pass;
       st.test = { bal, at: Date.now(), passed };
@@ -232,7 +234,7 @@
       for (let i = run.vals.length; i < ids.length; i++) {
         run.vals.push(await collect(genS(L(ids[i]), run.seeds[i]), box, "Yaddaş yoxlaması · " + (i + 1) + " / " + ids.length, i + 1 === ids.length)); save();
       }
-      const res = ids.map((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i]; return { id, q, ok: q.choices ? val === q.correct : close(parse(val), q.answer, q.tol) }; });
+      const res = ids.map((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i]; return { id, q, ok: q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)) }; });
       delete st.reviewRun;
       const bal = res.filter(x => x.ok).length, ok = bal >= r.n - (r.n > 3 ? 1 : 0);
       Skilly.reviewDone(r.id, ok);
@@ -312,7 +314,7 @@
       }
       clearInterval(tick);
       let bal = 0;
-      run.vals.forEach((val, i) => { const q = genS(L(pickIds[i]), run.seeds[i]); if (q.choices ? val === q.correct : close(parse(val), q.answer, q.tol)) bal++; });
+      run.vals.forEach((val, i) => { const q = genS(L(pickIds[i]), run.seeds[i]); if (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q))) bal++; });
       delete st.entryRun;
       st.entry = { bal, at: Date.now() };
       if (bal === n) cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK }));

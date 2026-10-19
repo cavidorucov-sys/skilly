@@ -539,19 +539,22 @@
    "bolme": "Triqonometriya",
    "ad": "Toplama, ikiqat və yarım bucaq düsturları",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-trig-dusturlar.html"
   },
   {
    "bolme": "Triqonometriya",
    "ad": "Cəmin hasilə çevrilməsi; a·sin x ± b·cos x",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-trig-cevirme.html"
   },
   {
    "bolme": "Triqonometriya",
    "ad": "Sinuslar və kosinuslar teoremi",
    "status": "yox",
-   "menbe": "RFO riy: 9-cu sinif"
+   "menbe": "RFO riy: 9-cu sinif",
+   "ders": "dersler/ol-sinus-kosinus.html"
   },
   {
    "bolme": "Həndəsə",

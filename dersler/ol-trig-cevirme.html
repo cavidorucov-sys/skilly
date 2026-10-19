@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cəmin hasilə çevrilməsi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-trig-cevirme.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Cəmin hasilə çevrilməsi; a·sin x ± b·cos x</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Triqonometriya</div>
+    <h1>Cəmin hasilə çevrilməsi; a·sin x ± b·cos x</h1>
+    <p><span class="m">sin 75° + sin 15°</span> kimi ifadədə nə sadələşir? Cəmi hasilə çevirəndə bir sətirdə <span class="m">2 sin 45° cos 30°</span> alınır. Əksinə, hasili cəmə çevirmək toplamanı asanlaşdırır, ixtisar yaradır. Bu mövzunun ikinci yarısında <span class="m">3 sin x + 4 cos x</span> kimi ifadənin ən böyük və ən kiçik qiymətini tapırsan: cavab həmişə <span class="m">√(a² + b²)</span> ilə bağlıdır. Hamısı "Toplama düsturları"ndan çıxır (<span class="m">sin(α ± β)</span>, <span class="m">cos(α ± β)</span>).</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Hasil → cəm</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Cəm → hasil</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>a sin x + b cos x</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada məsələləri</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Hasilin cəmə çevrilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Toplamaq və çıxmaq asandır, vurmaq isə çətin: hasili bir-birinə "yapışdırıb" yığmaq olmur. Triqonometriyada iki sinus, kosinusun hasilini iki hədlli cəmə çevirmək olur. Olimpiadada belə hasillər (<span class="m">sin 10°·sin 50°·sin 70°</span>) bu üsulla tez hesablanır, cəmlər isə ixtisar olur (Dərs 4).</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p>Toplama düsturlarını (sənin keçdiyin) yaz və cüt-cüt topla / çıx:</p>
+      <div class="ex">sin(α + β) = sin α cos β + cos α sin β
+sin(α − β) = sin α cos β − cos α sin β
+Topla:  sin(α + β) + sin(α − β) = 2 sin α cos β
+
+cos(α + β) = cos α cos β − sin α sin β
+cos(α − β) = cos α cos β + sin α sin β
+Topla:  cos(α − β) + cos(α + β) = 2 cos α cos β
+Çıx:    cos(α − β) − cos(α + β) = 2 sin α sin β</div>
+      <div class="fm">2 sin α cos β = sin(α + β) + sin(α − β)
+2 cos α cos β = cos(α − β) + cos(α + β)
+2 sin α sin β = cos(α − β) − cos(α + β)</div>
+      <p>Sağ tərəfdəki bucaqlar <span class="m">α + β</span> və <span class="m">α − β</span>-dir. Sən <span class="m">α</span>, <span class="m">β</span> elə seçirsən (ya da sual elə verilir) ki, bu bucaqlar cədvəldəki bucaqlar olsun: <span class="m">30°, 45°, 60°, 90°…</span></p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. sin 75°·cos 15° = ?
+
+2 sin 75° cos 15° = sin(75° + 15°) + sin(75° − 15°) = sin 90° + sin 60° = 1 + √3/2.
+Deməli sin 75° cos 15° = (2 + √3)/4.
+Yoxlama: sin 75° = cos 15° = (√6 + √2)/4, kvadratı (8 + 2√12)/16 = (2 + √3)/4 ✓.</div>
+      <div class="ex">Nümunə 2. sin 10°·sin 50°·sin 70° = ?
+
+Əvvəl sonuncu ikisini birləşdir:  2 sin 50° sin 70° = cos 20° − cos 120° = cos 20° + 1/2.
+Deməli sin 50° sin 70° = (cos 20° + 1/2)/2 = ½ cos 20° + ¼.
+sin 10°-yə vur:  sin 10°·(½ cos 20° + ¼) = ½ sin 10° cos 20° + ¼ sin 10°.
+2 sin 10° cos 20° = sin 30° + sin(−10°) = 1/2 − sin 10°,  yəni
+½ sin 10° cos 20° = ¼(1/2 − sin 10°) = 1/8 − ¼ sin 10°.
+Cəm: 1/8 − ¼ sin 10° + ¼ sin 10° = 1/8.   Cavab: 1/8.</div>
+      <div class="ex">Nümunə 3. 2 sin 105°·cos 15° və 2 sin 15°·cos 105° = ?
+
+Birinci: α = 105°, β = 15°.  sin(120°) + sin(90°) = √3/2 + 1.
+İkinci: α = 15°, β = 105°.  α &lt; β olduğu üçün α − β = −90° mənfi bucaqdır:
+sin(120°) + sin(−90°) = √3/2 − 1 ≈ −0,134.   (sin(−x) = −sin x)
+Yoxlama: 2·0,259·(−0,259) ≈ −0,134 ✓.</div>
+      <div class="life"><b>Həyatdan: radio.</b> Radiostansiya səsi "daşıyıcı" dalğanın üstünə qoyur: siqnal <span class="m">sin(ω t)·cos(Ω t)</span> hasilidir (ω — yüksək tezlik, Ω — səsin tezliyi). Düstura görə bu, <span class="m">½[sin((ω + Ω)t) + sin((ω − Ω)t)]</span>, yəni <b>iki</b> yaxın tezlikli dalğanın cəmidir. Radio qəbuledici məhz bu iki tezliyi ayırır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əmsalı unutmaq: düsturun sol tərəfində <b>2</b> var. <span class="m">sin α cos β = ½[…]</span>.</li>
+        <li><span class="m">2 sin α sin β</span> üçün işarəni qarışdırmaq: <span class="m">cos(α − β) − cos(α + β)</span> (fərq − cəm, <span class="m">α − β</span> birinci). Yoxlama: <span class="m">α = β</span> olsa, <span class="m">2 sin²α = 1 − cos 2α</span> ✓.</li>
+        <li>Bucaqların sırasını pozmaq: <span class="m">sin(α − β)</span> mənfi bucaq ola bilər, <span class="m">sin(−x) = −sin x</span>, <span class="m">cos(−x) = cos x</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">2 sin α cos β = sin(α + β) + sin(α − β)
+2 cos α cos β = cos(α − β) + cos(α + β)
+2 sin α sin β = cos(α − β) − cos(α + β)
+Hasil → cəm: bucaqlar α ± β.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 cos 75° cos 15° = ? <span class="ans">cos 60° + cos 90° = 1/2 + 0 = 1/2.</span></li>
+        <li>2 sin 105° sin 15° = ? <span class="ans">cos 90° − cos 120° = 0 + 1/2 = 1/2.</span></li>
+        <li>sin x cos 3x-i cəmə çevir. <span class="ans">½[sin 4x + sin(−2x)] = ½(sin 4x − sin 2x).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Cəmin hasilə çevrilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hasil bir ifadədə vuruğun sıfır olub olmadığını göstərir: <span class="m">sin a + sin b = 0</span> tənliyini həll etmək çətindir, <span class="m">2 sin(…) cos(…) = 0</span> isə iki sadə tənlikdir. Cəm → hasil çevirməsi tənlikləri vuruqlara ayırır, kəsrləri ixtisar edir.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <p>Dərs 1-dəki düsturlarda <span class="m">α + β = a</span>, <span class="m">α − β = b</span> yaz. Onda <span class="m">α = (a + b)/2</span>, <span class="m">β = (a − b)/2</span>:</p>
+      <div class="ex">2 sin α cos β = sin(α + β) + sin(α − β)
+  ↓   α + β = a,  α − β = b,  α = (a + b)/2,  β = (a − b)/2
+sin a + sin b = 2 sin((a + b)/2)·cos((a − b)/2)</div>
+      <div class="fm">sin a + sin b = 2 sin((a + b)/2)·cos((a − b)/2)
+sin a − sin b = 2 cos((a + b)/2)·sin((a − b)/2)
+cos a + cos b = 2 cos((a + b)/2)·cos((a − b)/2)
+cos a − cos b = −2 sin((a + b)/2)·sin((a − b)/2)</div>
+      <p>Qayda: <b>yarımcəm</b> və <b>yarımfərq</b> yaz. Hansı funksiyaların olduğunu həmin qaydadan oxuyursan: cəm sinuslar — <i>sin(yarımcəm)·cos(yarımfərq)</i>; fərq sinuslar — <i>cos(yarımcəm)·sin(yarımfərq)</i>; cəm kosinuslar — <i>cos·cos</i>; fərq kosinuslar — <i>mənfi 2 sin·sin</i>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. sin 75° + sin 15°, cos 75° − cos 15° = ?
+
+Yarımcəm: (75° + 15°)/2 = 45°.  Yarımfərq: (75° − 15°)/2 = 30°.
+sin 75° + sin 15° = 2 sin 45° cos 30° = 2·(√2/2)(√3/2) = √6/2.
+cos 75° − cos 15° = −2 sin 45° sin 30° = −2·(√2/2)(1/2) = −√2/2.
+Yoxlama: 0,966 + 0,259 ≈ 1,225 = √6/2 ✓; 0,259 − 0,966 ≈ −0,707 ✓.</div>
+      <div class="ex">Nümunə 2. (sin 3x + sin x)/(cos 3x + cos x) = ?  (cos x ≠ 0, cos 2x ≠ 0)
+
+Surət: sin 3x + sin x = 2 sin 2x cos x   (yarımcəm 2x, yarımfərq x)
+Məxrəc: cos 3x + cos x = 2 cos 2x cos x
+Kəsr = 2 sin 2x cos x / (2 cos 2x cos x) = tg 2x.</div>
+      <div class="ex">Nümunə 3. cos 36° − cos 72° = ?
+
+cos 36° − cos 72° = −2 sin 54° sin(−18°) = 2 sin 54° sin 18°.
+Amma sin 54° = cos 36°, sin 18° = cos 72°, deməli fərq = 2 cos 36° cos 72°.
+cos 36° cos 72° = ? sin 36°-ya vur: sin 36° cos 36° cos 72° = ½ sin 72° cos 72° = ¼ sin 144° = ¼ sin 36°.
+Buradan cos 36° cos 72° = 1/4 və fərq = 2·1/4 = 1/2.</div>
+      <div class="life"><b>Həyatdan: döyünmə (beats).</b> İki kamerton eyni anda çalınır, tezlikləri bir-birinə çox yaxındır: <span class="m">sin(ω₁t) + sin(ω₂t)</span>. Düstura görə bu, <span class="m">2 sin(½(ω₁+ω₂)t)·cos(½(ω₁−ω₂)t)</span>-dir: tez rəqs, amplitudu isə yavaş dəyişir. Səs ürəkdöyüntüsü kimi güclənir və zəifləyir. Piano ustası məhz bu döyünmələrə qulaq asaraq dubl simləri köklər.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yarımcəm və yarımfərqi bölməmək: <span class="m">sin a + sin b = 2 sin(a + b) cos(a − b)</span> yazmaq (yarımlar itib).</li>
+        <li><span class="m">cos a − cos b</span>-də mənfi işarəni unutmaq: <span class="m">−2 sin sin</span>. Yoxlama: <span class="m">a &gt; b</span> kəskin olsa, <span class="m">cos a &lt; cos b</span>, fərq mənfi olmalıdır.</li>
+        <li>Sinus cəmini kosinus cəminin düsturu ilə həll etmək: sin cəmində "sin·cos", kosinus cəmində "cos·cos".</li>
+        <li>Kəsri ixtisar edəndə vuruğun sıfır olmadığını yoxlamamaq (<span class="m">cos x ≠ 0</span>).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">sin a ± sin b: sin·cos, cos·sin
+cos a + cos b = 2 cos·cos;   cos a − cos b = −2 sin·sin
+(hamısında arqumentlər (a + b)/2 və (a − b)/2)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>cos 105° + cos 15° = ? <span class="ans">2 cos 60° cos 45° = 2·(1/2)(√2/2) = √2/2.</span></li>
+        <li>sin 5x − sin 3x-i hasil et. <span class="ans">2 cos 4x sin x.</span></li>
+        <li>sin 120° + sin 60° = ? <span class="ans">2 sin 90° cos 30° = 2·1·(√3/2) = √3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. a·sin x + b·cos x ifadəsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">3 sin x + 4 cos x</span> ifadəsi ən çoxu neçə ola bilər? Hər biri 1-dən böyük deyil, deməli ən çoxu <span class="m">3 + 4 = 7</span>? Yox, çünki <span class="m">sin x = 1</span> olanda <span class="m">cos x = 0</span>. Düzgün cavab <b>5</b>-dir. İkidən iki sinus-kosinusu bir sinusa yığmaq bu cür sualların hamısını həll edir.</p>
+
+      <h3><span class="st">2</span> Fikir: bir sinusa yığmaq</h3>
+      <p><span class="m">a</span> və <span class="m">b</span> ikisi də sıfır deyil. <span class="m">R = √(a² + b²)</span> yaz və ifadəni <span class="m">R</span>-ə bölüb vur:</p>
+      <div class="ex">a sin x + b cos x = R·( (a/R) sin x + (b/R) cos x )
+
+(a/R)² + (b/R)² = (a² + b²)/R² = 1.
+Kvadratları cəmi 1 olan iki ədəd vahid çevrədə nöqtənin koordinatlarıdır.
+Deməli elə φ bucağı var ki:  cos φ = a/R,  sin φ = b/R.
+
+a sin x + b cos x = R( sin x cos φ + cos x sin φ ) = R·sin(x + φ)</div>
+      <div class="fm">a sin x + b cos x = R·sin(x + φ),   R = √(a² + b²)
+cos φ = a/R,  sin φ = b/R
+Qiymətlər: −R ≤ a sin x + b cos x ≤ R   (hər iki uc alınır)</div>
+      <p>Niyə? <span class="m">sin(x + φ)</span> bütün qiymətləri −1-dən 1-ə qədər alır: <span class="m">x + φ = 90°</span> olanda 1, <span class="m">x + φ = −90°</span> olanda −1. Buradan: <b>ən böyük = R, ən kiçik = −R</b>; <span class="m">c</span> əlavə olunubsa, ifadə <span class="m">c − R</span> ilə <span class="m">c + R</span> arasındadır. Tənlik <span class="m">a sin x + b cos x = c</span> yalnız <span class="m">|c| ≤ R</span> olduqda həll olunur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. √3 sin x + cos x = ?
+
+R = √(3 + 1) = 2.  cos φ = √3/2, sin φ = 1/2  →  φ = 30°.
+√3 sin x + cos x = 2 sin(x + 30°).
+Yoxlama x = 0°: sol tərəf 1, sağ 2 sin 30° = 1 ✓.</div>
+      <div class="ex">Nümunə 2. 3 sin x + 4 cos x-in ən böyük və ən kiçik qiyməti, və 2 sin x + 3 cos x + 1 ifadəsinin neçə tam qiyməti var?
+
+a) R = √(9 + 16) = 5. Ən böyük 5, ən kiçik −5.
+   (Ən böyük x = 90° − φ, tg φ = 4/3 olanda: 3·0,6 + 4·0,8 = 5 ✓.)
+b) R = √(4 + 9) = √13 ≈ 3,61. İfadə 1 − √13 ≈ −2,61 ilə 1 + √13 ≈ 4,61 arasındakı
+   bütün qiymətləri alır. Tam ədədlər: −2, −1, 0, 1, 2, 3, 4 — cəmi 7.</div>
+      <div class="ex">Nümunə 3. sin x + √3 cos x = 1 tənliyini həll et.
+
+R = 2. cos φ = 1/2, sin φ = √3/2 → φ = 60°.
+2 sin(x + 60°) = 1  →  sin(x + 60°) = 1/2.
+x + 60° = 30° + 360°k  və ya  x + 60° = 150° + 360°k.
+x = −30° + 360°k  və ya  x = 90° + 360°k.
+Yoxlama x = 90°: 1 + 0 = 1 ✓;  x = −30°: −1/2 + √3·(√3/2) = 1 ✓.
+Əgər tənlik sin x + √3 cos x = 3 olsaydı, 3 &gt; R = 2, həll olmazdı.</div>
+      <div class="life"><b>Həyatdan: dəyişən cərəyan.</b> Dəyişən cərəyan dövrəsində gərginlik <span class="m">U = 3 sin ωt + 4 cos ωt</span> volt-dur (iki komponent, fazaları 90° fərqlidir). Cəm yenə sinusoiddir: <span class="m">U = 5 sin(ωt + φ)</span>. Gərginliyin amplitudu 5 V-dur, 7 V yox. Elektrikçilər bu hesabla fazaları cəmləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ən böyük qiymət kimi <span class="m">|a| + |b|</span> götürmək. Düz cavab <span class="m">√(a² + b²)</span>, həmişə <span class="m">|a| + |b|</span>-dən kiçikdir (<span class="m">3, 4</span> üçün 5 &lt; 7).</li>
+        <li>Əlavə sabit <span class="m">c</span>-ni unutmaq: <span class="m">c + a sin x + b cos x</span> üçün ən böyük <span class="m">c + R</span>, ən kiçik <span class="m">c − R</span>.</li>
+        <li>Əmsallar mənfi olanda <span class="m">R</span> dəyişmir (<span class="m">R = √(a² + b²)</span> həmişə müsbətdir), yalnız <span class="m">φ</span> dəyişir: onu <span class="m">cos φ = a/R</span> və <span class="m">sin φ = b/R</span> ikisinə birdən baxıb seç.</li>
+        <li>Tam qiymətləri sayanda sərhədləri düzgün götürməmək: <span class="m">|c| ≤ R</span>, sərhədlər daxildir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a sin x + b cos x = R sin(x + φ),  R = √(a² + b²)
+ən böyük R, ən kiçik −R
+a sin x + b cos x = c həll olunur ⇔ |c| ≤ R
+c tam olanda ifadənin tam qiymətlərinin sayı: 2·[R] + 1  ([R] — R-in tam hissəsi)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 sin x − 12 cos x ifadəsi hansı aralıqda dəyişir? <span class="ans">R = √(25 + 144) = 13: [−13; 13].</span></li>
+        <li>sin x − cos x-i bir sinusa yığ. <span class="ans">R = √2, cos φ = 1/√2, sin φ = −1/√2: φ = −45°. sin x − cos x = √2 sin(x − 45°).</span></li>
+        <li>3 sin x + 4 cos x = 6 tənliyinin həlli varmı? <span class="ans">Yox: 6 &gt; R = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Klassik olimpiada məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Məsələ 1. cos(2π/7) + cos(4π/7) + cos(6π/7) = ?</h3>
+      <p>Bu cəmə birbaşa baxmaq çətindir, ona görə hasili cəmə çevirib <b>ixtisar</b> (teleskop) yaratmağa çalışırıq. Hər hədd <span class="m">cos(2jπ/7)</span> formasındadır, ona <span class="m">2 sin(π/7)</span> vuraq.</p>
+      <div class="ex">S = cos(2π/7) + cos(4π/7) + cos(6π/7).
+2 sin A cos B = sin(A + B) + sin(A − B),  A = π/7:
+
+2 sin(π/7) cos(2π/7) = sin(3π/7) − sin(π/7)
+2 sin(π/7) cos(4π/7) = sin(5π/7) − sin(3π/7)
+2 sin(π/7) cos(6π/7) = sin(7π/7) − sin(5π/7)
+
+Topla — ortadakılar ixtisar olur:
+2 sin(π/7)·S = sin π − sin(π/7) = −sin(π/7).
+sin(π/7) ≠ 0 olduğundan S = −1/2.</div>
+      <p>Eyni üsul istənilən tək <span class="m">n</span> üçün işləyir: <span class="m">cos(2π/n) + cos(4π/n) + … + cos((n−1)π/n) = −1/2</span>.</p>
+
+      <h3><span class="st">2</span> Məsələ 2. sin²20° + cos²50° + sin 20°·cos 50° = ?</h3>
+      <div class="ex">Kvadratları dərəcə aşağı salma düsturu ilə, hasili cəmə çevirmə ilə yaz:
+sin²20° = (1 − cos 40°)/2
+cos²50° = (1 + cos 100°)/2
+sin 20° cos 50° = ½[sin 70° + sin(−30°)] = ½(sin 70° − 1/2)
+
+Cəm = 1/2 + 1/2 − 1/4 + ½( −cos 40° + cos 100° + sin 70° )
+    = 3/4 + ½( cos 100° − cos 40° + sin 70° ).
+
+cos 100° − cos 40° = −2 sin 70° sin 30° = −sin 70°  (cəm → hasil).
+Mötərizə: −sin 70° + sin 70° = 0.   Cavab: 3/4.</div>
+
+      <h3><span class="st">3</span> Məsələ 3. İki dalğanın cəmi</h3>
+      <p>Eyni tezlikli iki rəqs: <span class="m">a sin x</span> və <span class="m">b sin(x + φ)</span>. Cəmin ən böyük qiymətini (amplitudunu) tap. Sonra <span class="m">a = 3</span>, <span class="m">b = 5</span>, <span class="m">φ = 120°</span> üçün hesabla.</p>
+      <div class="ex">a sin x + b sin(x + φ) = a sin x + b(sin x cos φ + cos x sin φ)
+                     = (a + b cos φ) sin x + (b sin φ) cos x.
+Bu, A sin x + B cos x şəklindədir, A = a + b cos φ, B = b sin φ.
+Amplitud R² = A² + B² = a² + 2ab cos φ + b² cos²φ + b² sin²φ = a² + b² + 2ab cos φ.
+
+a = 3, b = 5, φ = 120°:  R² = 9 + 25 + 2·3·5·(−1/2) = 19,  R = √19.</div>
+      <p>Bu düstur kosinuslar teoremi ilə eynidir: iki vektorun cəminin uzunluğu. Həqiqətən də <span class="m">φ = 90°</span> üçün <span class="m">R = √(a² + b²)</span> (Dərs 3), <span class="m">φ = 0°</span> üçün <span class="m">a + b</span> (dalğalar eyni fazada güclənir), <span class="m">φ = 180°</span> üçün <span class="m">|a − b|</span> (əks fazada zəifləyir).</p>
+      <div class="life"><b>Həyatdan.</b> İki dinamikdən eyni səs dalğası fərqli yollardan nöqtəyə çatır, aralarında faza fərqi <span class="m">φ = 120°</span>-dir, amplitudlar 3 və 5 vahiddir. Birləşmiş səsin amplitudu <span class="m">√19 ≈ 4,36</span>: 8 yox, 2 də yox. Səs mühəndisləri dinamikləri elə yerləşdirir ki, fazalar üst-üstə düşsün.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Teleskopda sonuncu hədləri düzgün yazmamaq: son sinusun arqumenti <span class="m">sin π = 0</span> kimi sadələşməlidir, onu yoxla.</li>
+        <li><span class="m">sin(−30°)</span> əvəzinə <span class="m">sin 30°</span> yazmaq: mənfi bucaq mənfi sinus verir.</li>
+        <li>Cəm → hasil düsturunu hasil → cəm düsturu ilə qarışdırmaq: cəm göründükdə yarımcəm və yarımfərq, hasil göründükdə <span class="m">α ± β</span> bucaqları.</li>
+        <li>Amplitudu <span class="m">a + b</span> hesab etmək. Yalnız <span class="m">φ = 0</span> olduqda belədir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">cos(2π/n) + … (n tək) = −1/2: 2 sin(π/n)-ə vur, ixtisar olur
+a sin x + b sin(x + φ): amplitud √(a² + b² + 2ab cos φ)
+Hasil görəndə cəmə, cəm görəndə hasilə: ixtisar və sıfır axtar.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>cos(2π/5) + cos(4π/5) = ? <span class="ans">2 sin(π/5)·S = sin(3π/5) − sin(π/5) + sin π − sin(3π/5) = −sin(π/5). S = −1/2.</span></li>
+        <li>sin x + sin(x + 60°)-in amplitudu? <span class="ans">a = b = 1, φ = 60°: √(1 + 1 + 1) = √3.</span></li>
+        <li>3 sin x + 4 sin(x + 90°)-in ən böyük qiyməti? <span class="ans">√(9 + 16 + 0) = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
