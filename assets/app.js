@@ -201,7 +201,10 @@ function renderTopics(content, m, key, lead) {
   const c = s => rows.filter(r => r.status === s).length;
   content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")} · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
   const inProgress = rows.filter(r => r.status === "isl").map(r => ({ ...r, kat }));
-  if (inProgress.length) content.append(el("div", { class: "cards" }, ...inProgress.map(topicCard)));
+  // cards: topics in progress; if none yet, the next three to start, so every subject page looks the same
+  const upNext = rows.filter(r => r.status === "yox").slice(0, 3).map(r => ({ ...r, kat }));
+  const shown = inProgress.length ? inProgress : upNext;
+  if (shown.length) content.append(el("h2", { class: "cards-h" }, inProgress.length ? "İşlənir" : "Başlanacaq"), el("div", { class: "cards" }, ...shown.map(topicCard)));
   const tb = el("tbody"); let sec = null, i = 0;
   rows.forEach(r => {
     if (r.bolme !== sec) { sec = r.bolme; tb.append(el("tr", { class: "sec" }, el("td", { colspan: "4" }, sec))); }
