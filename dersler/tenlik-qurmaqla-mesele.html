@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tənlik qurmaqla məsələ həlli dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-tenlik-qurmaqla-mesele.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Tənlik qurmaqla məsələ həlli</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Birdəyişənli xətti tənliklərin tətbiqi ilə məsələ həlli</div>
+    <h1>Tənlik qurmaqla məsələ həlli</h1>
+    <p>Mətnli məsələni tənliyə çevirmək — buraxılışda ən çox xal gətirən bacarıqlardan biridir. Burada ədəd, yaş, rəqəm, hərəkət, iş və qarışıq məsələlərini bir plana salacağıq. Xüsusi diqqət — <b>orta sürət</b> tələsinə: orada çoxları səhv edir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Plan, ədəd, yaş</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rəqəmlər</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hərəkət</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İş və qarışıq</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Tənlik qurmağın planı. Ədəd və yaş məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Ata oğlundan 3 dəfə böyükdür, 12 ildən sonra 2 dəfə böyük olacaq..." Belə məsələni təxminlə həll etmək çətindir. Tənlik isə onu 3 sətirdə bitirir. Bütün sirr — sözləri riyazi dilə düzgün <b>tərcümə etməkdir</b>.</p>
+
+      <h3><span class="st">2</span> Plan</h3>
+      <div class="fm">1. x — nədir? (adətən soruşulan kəmiyyət)
+2. Qalan kəmiyyətləri x ilə yaz.
+3. Şərtdə "bərabərdir" yerini tap → tənlik.
+4. Tənliyi həll et.
+5. Yoxla və soruşulanı yaz (x həmişə cavab deyil!).</div>
+      <p>Tərcümə lüğəti: "<span class="m">a</span>-dan 5 çox" → <span class="m">a + 5</span>; "3 dəfə böyük" → <span class="m">3a</span>; "ardıcıl ədədlər" → <span class="m">x, x + 1, x + 2</span>; "ardıcıl cüt (tək) ədədlər" → <span class="m">x, x + 2, x + 4</span>.</p>
+
+      <h3><span class="st">3</span> Ədəd məsələləri</h3>
+      <div class="ex">Nümunə 1. Üç ardıcıl natural ədədin cəmi 87-dir. Ən böyüyü?
+  x — ən kiçik ədəd. Ədədlər: x, x + 1, x + 2.
+  x + x + 1 + x + 2 = 87  →  3x + 3 = 87  →  3x = 84  →  x = 28
+  Ədədlər: 28, 29, 30.  Yoxla: 28 + 29 + 30 = 87 ✓
+  Cavab: 30  (x yox, soruşulan!)</div>
+      <div class="ex">Nümunə 2. İki ədədin cəmi 64-dür, biri digərindən 3 dəfə böyükdür.
+  Kiçik x, böyük 3x.
+  x + 3x = 64  →  4x = 64  →  x = 16
+  Cavab: 16 və 48.  Yoxla: 16 + 48 = 64, 48 = 3·16 ✓</div>
+
+      <h3><span class="st">4</span> Yaş məsələləri</h3>
+      <p>İki qızıl qayda: <b>hər il hamı 1 yaş böyüyür</b> və <b>yaş fərqi heç vaxt dəyişmir</b>.</p>
+      <div class="ex">Nümunə 3. Ata 40, oğlu 12 yaşındadır. Neçə ildən sonra
+ata oğlundan 2 dəfə böyük olacaq?
+  x ildən sonra: ata 40 + x, oğlu 12 + x.
+  40 + x = 2(12 + x)  →  40 + x = 24 + 2x  →  x = 16
+  Yoxla: 16 ildən sonra ata 56, oğlu 28;  56 = 2·28 ✓
+  Cavab: 16 ildən sonra</div>
+      <div class="ex">Nümunə 4. Ana qızından 24 yaş böyükdür. 4 il əvvəl ana
+qızından 5 dəfə böyük idi. Qız indi neçə yaşındadır?
+  x — qızın indiki yaşı, ana x + 24.
+  4 il əvvəl: qız x − 4, ana x + 20.
+  x + 20 = 5(x − 4)  →  x + 20 = 5x − 20  →  40 = 4x  →  x = 10
+  Yoxla: 4 il əvvəl qız 6, ana 30;  30 = 5·6 ✓
+  Cavab: 10 yaş</div>
+      <div class="life"><b>Həyatdan.</b> Sən 15 yaşındasan, qardaşın 9. Fərq 6 ildir — 10 ildən sonra da, 50 ildən sonra da 6 il olacaq. Amma "neçə dəfə böyük" nisbəti hər il dəyişir: indi 15/9, 10 ildən sonra 25/19. Ona görə yaş məsələsində "dəfə" həmişə konkret bir anda verilir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"x ildən sonra" yalnız bir adama əlavə etmək. İkisi də x il böyüyür.</li>
+        <li>"Ata oğlundan 2 dəfə böyükdür" yazanda vuruğu səhv yerə qoymaq: <span class="m">ata = 2·oğul</span>, "2·ata = oğul" yox.</li>
+        <li>Cavab kimi x-i yazmaq, halbuki ən böyük ədəd və ya başqa kəmiyyət soruşulub.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x → qalanlar x ilə → tənlik → həll → yoxla → soruşulanı yaz.
+Ardıcıl: x, x + 1, x + 2;  ardıcıl cüt/tək: x, x + 2, x + 4.
+Yaş: hamı eyni sayda il böyüyür; fərq sabitdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Dörd ardıcıl cüt ədədin cəmi 100-dür. Ən kiçiyi? <span class="ans">x + x + 2 + x + 4 + x + 6 = 100 → 4x + 12 = 100 → x = 22. Yoxla: 22 + 24 + 26 + 28 = 100 ✓</span></li>
+        <li>Qardaş 7, bacı 15 yaşındadır. Neçə il əvvəl bacı qardaşdan 3 dəfə böyük idi? <span class="ans">15 − x = 3(7 − x) → 15 − x = 21 − 3x → 2x = 6 → x = 3. Yoxla: 12 = 3·4 ✓</span></li>
+        <li>Bir ədəd digərindən 12 çoxdur, cəmləri 50-dir. Kiçik ədəd? <span class="ans">x + x + 12 = 50 → 2x = 38 → x = 19 (böyüyü 31).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Rəqəmlərlə bağlı məsələlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Rəqəmlərin yerini dəyişsək, ədəd 27 artar" — DİM-in sevimli sual tipidir. Burada ədədin özünü yox, onun <b>rəqəmlərini</b> naməlum götürürük.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: mərtəbə yazılışı</h3>
+      <p>47 ədədi "4 onluq və 7 təklik"dir: <span class="m">47 = 10·4 + 7</span>. Ümumi halda onluq rəqəmi <span class="m">a</span>, təklik rəqəmi <span class="m">b</span> olan ədəd:</p>
+      <div class="fm">ab = 10a + b        (a·b deyil!)
+yeri dəyişən: ba = 10b + a
+fərq: ba − ab = 9(b − a)
+cəm:  ab + ba = 11(a + b)
+sağına c yazmaq: 10x + c</div>
+      <p>Şərt: <span class="m">a</span> — 1-dən 9-a qədər (ədəd 0 ilə başlamır), <span class="m">b</span> — 0-dan 9-a qədər.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. İkirəqəmli ədədin rəqəmləri cəmi 11-dir. Rəqəmlərin
+yerini dəyişsək, ədəd 27 artar. Ədədi tap.
+  Onluq rəqəmi x, təklik 11 − x.
+  Ədəd: 10x + (11 − x) = 9x + 11
+  Yeri dəyişən: 10(11 − x) + x = 110 − 9x
+  110 − 9x − (9x + 11) = 27  →  99 − 18x = 27  →  18x = 72  →  x = 4
+  Ədəd: 47.  Yoxla: 74 − 47 = 27 ✓
+  (Qısa yol: 9(b − a) = 27 → b − a = 3, a + b = 11 → a = 4, b = 7.)</div>
+      <div class="ex">Nümunə 2. Onluq rəqəmi təklik rəqəmindən 2 dəfə böyükdür.
+Ədəd öz rəqəmlərinin cəmindən 54 çoxdur.
+  Təklik x, onluq 2x. Ədəd: 20x + x = 21x, cəm: 3x.
+  21x − 3x = 54  →  18x = 54  →  x = 3
+  Ədəd: 63.  Yoxla: 63 − (6 + 3) = 54 ✓</div>
+      <div class="ex">Nümunə 3. İkirəqəmli ədədin sağına 5 yazdıq, ədəd 482 artdı.
+  x — ədəd. Sağına 5 yazmaq: 10x + 5  (53 → 535 = 530 + 5)
+  10x + 5 − x = 482  →  9x = 477  →  x = 53
+  Yoxla: 535 − 53 = 482 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Hiylə: istənilən ikirəqəmli ədəddən onun tərsini çıx — cavab həmişə 9-a bölünür (<span class="m">9(a − b)</span>). Dostuna de: "Ədəd fikirləş, tərsini çıx, nəticəni de" — rəqəmlər fərqini dərhal tapacaqsan: nəticə ÷ 9.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">ab</span>-ni hasil kimi yazmaq. İkirəqəmli ədəd <span class="m">10a + b</span>-dir.</li>
+        <li>Sağına rəqəm yazmağı "+ c" kimi yazmaq. Ədəd 10 dəfə böyüyür: <span class="m">10x + c</span>.</li>
+        <li>Rəqəm üçün 9-dan böyük və ya kəsr cavabı qəbul etmək. Rəqəm 0…9 tam ədəddir — belə kök çıxırsa, tənlikdə səhv var.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ab = 10a + b,  ba = 10b + a
+ba − ab = 9(b − a),  ab + ba = 11(a + b)
+ədəd − rəqəmlər cəmi = 9a
+sağına c yazmaq: 10x + c</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Rəqəmləri cəmi 9 olan ikirəqəmli ədəd rəqəmlərin yeri dəyişəndə 45 azalır. Ədəd? <span class="ans">9(a − b) = 45 → a − b = 5; a + b = 9 → a = 7, b = 2 → 72. Yoxla: 72 − 27 = 45 ✓</span></li>
+        <li>İkirəqəmli ədədlə onun tərsinin cəmi həmişə hansı ədədə bölünür? <span class="ans">11-ə: 10a + b + 10b + a = 11(a + b).</span></li>
+        <li>Təklik rəqəmi onluq rəqəmindən 4 çoxdur, ədəd rəqəmlər cəmindən 4 dəfə böyükdür. Ədəd? <span class="ans">Onluq x, təklik x + 4: 11x + 4 = 4(2x + 4) → 3x = 12 → x = 4 → 48. Yoxla: 4·12 = 48 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Hərəkət məsələləri və orta sürət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Avtobus, qatar, velosiped — hamısı bir düsturla işləyir: <span class="m">s = v·t</span>. Çətinlik düsturda deyil, vəziyyəti düzgün təsəvvür etməkdədir: kim haradan, nə vaxt, hansı istiqamətdə çıxıb.</p>
+
+      <h3><span class="st">2</span> Qarşı-qarşıya və ardınca</h3>
+      <div class="fm">s = v·t,   t = s/v,   v = s/t
+Qarşı-qarşıya: yaxınlaşma sürəti v₁ + v₂
+Ardınca (eyni istiqamət): v₂ − v₁</div>
+      <div class="fig">
+        <svg viewBox="0 0 320 130" role="img" aria-label="Yuxarıda iki maşın bir-birinə doğru, aşağıda iki maşın eyni istiqamətdə hərəkət edir">
+          <line x1="20" y1="35" x2="300" y2="35" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="20" cy="35" r="5" fill="var(--ink)"/><circle cx="300" cy="35" r="5" fill="var(--ink)"/>
+          <text x="20" y="20" text-anchor="middle" class="lbl">A</text><text x="300" y="20" text-anchor="middle" class="lbl">B</text>
+          <path d="M40 35H120" stroke="var(--accent)" stroke-width="4"/><path d="M112 28L124 35L112 42" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M280 35H200" stroke="var(--vec)" stroke-width="4"/><path d="M208 28L196 35L208 42" fill="none" stroke="var(--vec)" stroke-width="3"/>
+          <text x="80" y="58" text-anchor="middle" class="lbl">v₁</text><text x="240" y="58" text-anchor="middle" class="lbl">v₂</text>
+          <line x1="20" y1="100" x2="300" y2="100" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M30 100H90" stroke="var(--vec)" stroke-width="4"/><path d="M82 93L94 100L82 107" fill="none" stroke="var(--vec)" stroke-width="3"/>
+          <path d="M150 100H210" stroke="var(--accent)" stroke-width="4"/><path d="M202 93L214 100L202 107" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <text x="60" y="123" text-anchor="middle" class="lbl">v₂ (tutan)</text><text x="180" y="123" text-anchor="middle" class="lbl">v₁ (qabaqdakı)</text>
+        </svg>
+        <div class="cap"><p>Yuxarıda: aradakı məsafə saatda <span class="m">v₁ + v₂</span> azalır. Aşağıda: arxadakı daha sürətlidir, məsafə saatda <span class="m">v₂ − v₁</span> azalır.</p></div>
+      </div>
+      <div class="ex">Nümunə 1. İki şəhər arası 260 km. Eyni anda qarşı-qarşıya iki maşın
+çıxdı və 2 saat sonra görüşdü. Birincinin sürəti ikincininkindən
+10 km/saat çoxdur. Sürətlər?
+  x — ikincinin sürəti, birincinin x + 10.
+  2x + 2(x + 10) = 260  →  4x + 20 = 260  →  x = 60
+  Cavab: 70 və 60 km/saat.  Yoxla: 140 + 120 = 260 ✓</div>
+      <div class="ex">Nümunə 2. Piyada 5 km/saat ilə çıxdı. 2 saat sonra eyni yerdən
+velosipedçi 15 km/saat ilə onun ardınca çıxdı. Neçə saata çatar?
+  t — velosipedçinin vaxtı; piyada isə t + 2 saat yoldadır.
+  15t = 5(t + 2)  →  10t = 10  →  t = 1
+  Yoxla: velosipedçi 15 km; piyada 3 saatda 15 km ✓</div>
+
+      <h3><span class="st">3</span> Orta sürət tələsi</h3>
+      <p>Maşın A-dan B-yə 60 km/saat, geri 40 km/saat sürətlə getdi. Orta sürət neçədir? Əksəriyyət "50" deyir. <b>Səhvdir!</b></p>
+      <div class="fm">Orta sürət = ÜMUMİ YOL ÷ ÜMUMİ VAXT</div>
+      <div class="ex">A ilə B arası 120 km olsun (60 və 40-a bölünən rahat ədəd).
+  Gediş: 120/60 = 2 saat.  Qayıdış: 120/40 = 3 saat.
+  Ümumi yol 240 km, ümumi vaxt 5 saat.
+  Orta sürət = 240/5 = 48 km/saat   (50 yox!)</div>
+      <p>Niyə 50 deyil? Maşın yavaş hissədə <b>daha çox vaxt</b> keçirir, ona görə orta sürət kiçik sürətə yaxındır. Bərabər iki yol üçün hazır düstur:</p>
+      <div class="fm">v_orta = 2·v₁·v₂/(v₁ + v₂)      (yolun yarıları bərabərdirsə)
+2·60·40/100 = 48 ✓</div>
+      <p>Ədədi orta <span class="m">(v₁ + v₂)/2</span> yalnız <b>vaxtlar bərabər</b> olanda doğrudur.</p>
+      <div class="ex">Nümunə 3. 2 saat 60 km/saat, sonra 3 saat 80 km/saat.
+  Yol: 120 + 240 = 360 km, vaxt: 5 saat → 360/5 = 72 km/saat  (70 yox)
+Nümunə 4. Yolun yarısını 30 km/saat getdi. Qalanını hansı sürətlə
+getməlidir ki, orta sürət 40 km/saat olsun?
+  2·30·x/(30 + x) = 40  →  60x = 1200 + 40x  →  20x = 1200  →  x = 60
+  Yoxla (yarı yol 60 km): 2 saat + 1 saat = 3 saat, 120/3 = 40 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Naviqator "orta sürət 48 km/saat" göstərirsə, o, sürətlərin ortasını yox, getdiyin yolu keçən vaxta bölüb. Tıxacda keçən 10 dəqiqə orta sürəti çox aşağı salır — çünki həmin vaxt da hesaba düşür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Orta sürəti <span class="m">(v₁ + v₂)/2</span> kimi hesablamaq. Düzü: ümumi yol ÷ ümumi vaxt.</li>
+        <li>Ardınca çıxanda başlanğıc fərqi unutmaq: əvvəl çıxanın vaxtı <span class="m">t + t₀</span>-dır.</li>
+        <li>Vahidləri qarışdırmaq: 30 dəqiqə = 0,5 saat, 30 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">s = v·t
+qarşı-qarşıya: v₁ + v₂;  ardınca: v₂ − v₁
+v_orta = ümumi yol / ümumi vaxt
+bərabər yarılar: 2v₁v₂/(v₁ + v₂)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Getmə 80, qayıtma 120 km/saat. Orta sürət? <span class="ans">2·80·120/200 = 96 km/saat (100 yox). Yoxla: 240 km → 3 + 2 = 5 saat, 480/5 = 96 ✓</span></li>
+        <li>1 saat 50 km/saat, 2 saat 80 km/saat. Orta sürət? <span class="ans">(50 + 160)/3 = 70 km/saat.</span></li>
+        <li>450 km aralı iki şəhərdən eyni anda qarşı-qarşıya 40 və 50 km/saat sürətlə iki maşın çıxdı. Neçə saata görüşərlər? <span class="ans">40t + 50t = 450 → t = 5 saat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. İş və qarışıq məsələləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İş məsələsi hərəkətin "qardaşı"dır: yol əvəzinə görülən iş, sürət əvəzinə məhsuldarlıq. Qarışıq məsələsində isə əsas sual birdir: <b>təmiz maddə nə qədərdir</b>?</p>
+
+      <h3><span class="st">2</span> İş məsələləri</h3>
+      <div class="fm">İş = məhsuldarlıq · vaxt
+Bütün iş = 1  →  1 gündə görülən hissə = 1/vaxt
+Birlikdə: hissələr toplanır, vaxtlar yox</div>
+      <div class="ex">Nümunə 1. Usta saatda şagirddən 4 detal çox hazırlayır. Usta 6 saat,
+şagird 5 saat işlədi, birlikdə 167 detal. Hər biri saatda neçə?
+  x — şagird, x + 4 — usta.
+  6(x + 4) + 5x = 167  →  11x + 24 = 167  →  11x = 143  →  x = 13
+  Cavab: şagird 13, usta 17.  Yoxla: 102 + 65 = 167 ✓</div>
+      <div class="ex">Nümunə 2. Birinci işi 6 günə, ikinci 12 günə görür. Birlikdə?
+  1 gündə: 1/6 və 1/12 hissə. x gündə bütün iş (1):
+  x/6 + x/12 = 1  →  12-yə vur: 2x + x = 12  →  x = 4
+  Cavab: 4 gün  (6 + 12 = 18 yox — birlikdə daha TEZ!)</div>
+
+      <h3><span class="st">3</span> Qarışıq və məhlul</h3>
+      <div class="fm">təmiz maddə = məhlulun kütləsi · faiz/100
+Su əlavə edəndə (buxarlananda) duz dəyişmir.
+Qarışdıranda duzlar toplanır.</div>
+      <div class="ex">Nümunə 3. 200 q 30%-li duz məhluluna neçə qram su əlavə edək ki,
+məhlul 20%-li olsun?
+  Duz: 200·0,3 = 60 q  (dəyişmir)
+  60 = 0,2·(200 + x)  →  300 = 200 + x  →  x = 100
+  Yoxla: 60/300 = 0,2 = 20% ✓</div>
+      <div class="ex">Nümunə 4. 10%-li və 30%-li məhlullardan 400 q 25%-li məhlul
+almaq lazımdır. Hər birindən nə qədər?
+  x — 10%-li, 400 − x — 30%-li.
+  0,1x + 0,3(400 − x) = 0,25·400
+  0,1x + 120 − 0,3x = 100  →  0,2x = 20  →  x = 100
+  Cavab: 100 q 10%-li, 300 q 30%-li.  Yoxla: 10 + 90 = 100 q duz ✓</div>
+      <div class="life"><b>Həyatdan.</b> Çay çox şirindir? Su əlavə edirsən — şəkər eyni qalır, amma faizi düşür. 1 stəkana (200 q) 10 q şəkər — 5%. Yarım stəkan su də əlavə et (300 q) — şəkər yenə 10 q, indi təxminən 3,3%.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Birgə işdə vaxtları toplamaq. Toplanan — 1 gündə görülən hissələrdir: <span class="m">1/a + 1/b</span>.</li>
+        <li>Faizləri toplamaq: 10%-li + 30%-li ≠ 40%-li. Qarışığın faizi həmişə ikisinin <b>arasında</b> olur.</li>
+        <li>Su əlavə edəndə duzu da dəyişmək. Dəyişən yalnız ümumi kütlədir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">iş = məhsuldarlıq · vaxt;  birgə: x/a + x/b = 1
+duz = kütlə · p/100
+su əlavə et / buxarlandır → duz sabit
+qarışdır → duzlar toplanır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>500 q 12%-li məhlulda neçə qram duz var? <span class="ans">500·0,12 = 60 q.</span></li>
+        <li>40%-li 50 q məhlula 50 q su əlavə etdik. Yeni faiz? <span class="ans">Duz 20 q, kütlə 100 q → 20%.</span></li>
+        <li>Bir boru hovuzu 10 saata, digəri 15 saata doldurur. Birlikdə? <span class="ans">x/10 + x/15 = 1 → 3x + 2x = 30 → x = 6 saat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

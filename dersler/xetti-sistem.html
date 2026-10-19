@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İkidəyişənli xətti tənliklər sistemi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-xetti-sistem.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · İkidəyişənli xətti tənliklər sistemi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Tənliklər sistemi və tənliklər sisteminin tətbiqi ilə məsələ həlli</div>
+    <h1>İkidəyişənli xətti tənliklər sistemi</h1>
+    <p>İki naməlum — iki tənlik. Məsələn, <span class="m">x + y = 10</span> və <span class="m">x − y = 4</span>. Burada iki həll üsulunu (yerinə qoyma və toplama), sistemin qrafik mənasını və "həll neçədir?" sualını öyrənəcəksən — o cümlədən parametrli suallar.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Yerinə qoyma</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama üsulu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qrafik və həllərin sayı</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sistem və onun həlli. Yerinə qoyma üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>2 dəftər və 1 qələm 5 manatdır. Bir dəftərin qiyməti nədir? Bilmək olmaz — dəftər 2, qələm 1 də ola bilər, dəftər 1,5, qələm 2 də. Naməlum ikidir, şərt birdir. İkinci şərt lazımdır: "1 dəftər və 3 qələm də 5 manatdır". İki şərt — iki tənlik — <b>sistem</b>.</p>
+
+      <h3><span class="st">2</span> Əsas anlayışlar</h3>
+      <p><b>İkidəyişənli xətti tənlik</b>: <span class="m">ax + by = c</span>. Onun həlli — tənliyi doğru bərabərliyə çevirən <span class="m">(x; y)</span> cütüdür. Məsələn, <span class="m">x + y = 5</span> üçün (1; 4), (2; 3), (0; 5)... — sonsuz sayda həll.</p>
+      <p><b>Sistemin həlli</b> — <b>hər iki</b> tənliyi ödəyən cüt. Eyni həllər çoxluğu olan sistemlərə <b>eynigüclü</b> deyilir: tənliyi ədədə vurmaq, bir dəyişəni ifadə edib yerinə qoymaq eynigüclü sistem verir.</p>
+      <div class="fm">⎧ a₁x + b₁y = c₁
+⎩ a₂x + b₂y = c₂</div>
+
+      <h3><span class="st">3</span> Yerinə qoyma üsulu</h3>
+      <div class="fm">1. Bir tənlikdən x-i (və ya y-i) ifadə et.
+2. Onu DİGƏR tənlikdə yerinə qoy.
+3. Birdəyişənli tənliyi həll et.
+4. Tapılanı ifadəyə qoy — ikinci dəyişəni tap.
+5. Hər iki tənlikdə yoxla.</div>
+      <p>Əmsalı 1 (və ya −1) olan dəyişəni seç — kəsr çıxmaz.</p>
+      <div class="ex">Nümunə 1.  ⎧ x + 2y = 7
+           ⎩ 3x − y = 7
+  Birincidən: x = 7 − 2y
+  İkinciyə qoy: 3(7 − 2y) − y = 7  →  21 − 6y − y = 7  →  −7y = −14  →  y = 2
+  x = 7 − 2·2 = 3
+  Yoxla: 3 + 4 = 7 ✓;  9 − 2 = 7 ✓
+  Cavab: (3; 2)</div>
+      <div class="ex">Nümunə 2.  ⎧ y = 2x − 1
+           ⎩ 4x + 3y = 17
+  y artıq ifadə olunub: 4x + 3(2x − 1) = 17  →  10x − 3 = 17  →  x = 2
+  y = 2·2 − 1 = 3
+  Yoxla: 8 + 9 = 17 ✓
+  Cavab: (2; 3)</div>
+      <div class="life"><b>Həyatdan.</b> Dəftər <span class="m">d</span>, qələm <span class="m">q</span> manat: <span class="m">2d + q = 5</span>, <span class="m">d + 3q = 5</span>. Birincidən <span class="m">q = 5 − 2d</span>; ikinciyə: <span class="m">d + 15 − 6d = 5</span> → <span class="m">d = 2</span>, <span class="m">q = 1</span>. Yoxla: 2 + 3 = 5 ✓.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İfadəni eyni tənliyə geri qoymaq: <span class="m">0 = 0</span> alınır və heç nə tapılmır. Həmişə <b>o biri</b> tənliyə qoy.</li>
+        <li>Mötərizə qarşısında mənfi: <span class="m">−(6 − y) = −6 + y</span>, "−6 − y" yox.</li>
+        <li>Yalnız x-i tapıb dayanmaq. Cavab — cütdür: <span class="m">(x; y)</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sistemin həlli — hər iki tənliyi ödəyən (x; y).
+Yerinə qoyma: ifadə et → o biri tənliyə qoy → həll et → geri qoy → yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>⎧ x − y = 1, ⎩ 2x + y = 11. Həll? <span class="ans">x = y + 1 → 2y + 2 + y = 11 → y = 3, x = 4. Yoxla: 8 + 3 = 11 ✓</span></li>
+        <li>(2; −1) cütü <span class="m">3x + 4y = 2</span> tənliyinin həllidirmi? <span class="ans">Bəli: 6 − 4 = 2 ✓</span></li>
+        <li>⎧ y = 3x, ⎩ x + y = 12. Həll? <span class="ans">x + 3x = 12 → x = 3, y = 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Toplama üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Heç bir dəyişənin əmsalı 1 deyilsə (<span class="m">2x + 3y = 13</span>, <span class="m">3x + 2y = 12</span>), yerinə qoyma kəsrlərə aparır. Toplama üsulu belə sistemləri təmiz həll edir.</p>
+
+      <h3><span class="st">2</span> Əsas fikir</h3>
+      <p>Bərabərlikləri tərəf-tərəfə toplamaq (çıxmaq) olar. Əgər y-in əmsalları <b>əks ədədlərdirsə</b>, toplayanda y yox olur. Əmsallar bərabərdirsə — çıxırıq.</p>
+      <div class="fm">1. Tənlikləri elə ədədlərə vur ki,
+   bir dəyişənin əmsalları əks (və ya bərabər) olsun.
+2. Topla (və ya çıx) — bir dəyişən yox olur.
+3. Qalan tənliyi həll et, sonra o birini tap.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ⎧ 3x + 2y = 16
+           ⎩ 5x − 2y = 0
+  y-in əmsalları 2 və −2 — topla: 8x = 16  →  x = 2
+  3·2 + 2y = 16  →  2y = 10  →  y = 5
+  Yoxla: 10 − 10 = 0 ✓.   Cavab: (2; 5)</div>
+      <div class="ex">Nümunə 2.  ⎧ 2x + 3y = 13
+           ⎩ 3x + 2y = 12
+  x-i yox edək: birinci × 3, ikinci × 2:
+    6x + 9y = 39
+    6x + 4y = 24
+  Çıx: 5y = 15  →  y = 3
+  2x + 9 = 13  →  x = 2
+  Yoxla: 6 + 6 = 12 ✓.   Cavab: (2; 3)</div>
+      <div class="ex">Nümunə 3 (fənd). Eyni sistemdə yalnız x + y soruşulur.
+  Sadəcə topla: 5x + 5y = 25  →  x + y = 5
+  Sistemi tam həll etmək lazım deyil!  (2 + 3 = 5 ✓)</div>
+      <div class="life"><b>Həyatdan.</b> 3 böyük və 2 uşaq bileti 26 manat, 1 böyük və 2 uşaq bileti 14 manatdır. Çıx: 2 böyük bilet = 12 manat → böyük 6 manat, uşaq <span class="m">(14 − 6)/2 = 4</span> manat. Kassada fərqə baxmaq — elə toplama üsuludur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tənliyi ədədə vuranda sağ tərəfi vurmağı unutmaq: <span class="m">3·(2x + 3y) = 3·13</span>.</li>
+        <li>Çıxanda işarə səhvi: <span class="m">(5x − 2y) − (3x − 2y) = 2x</span>, y-lər yox olur, "−4y" qalmır.</li>
+        <li>Əmsallar eyni işarəlidirsə toplamaq — dəyişən yox olmur. Eyni işarə → çıx, əks işarə → topla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əks əmsallar → topla;  bərabər əmsallar → çıx.
+Vurursan — bütün tənliyi (sağ tərəf də!).
+x + y soruşulursa — bəlkə sadəcə toplamaq bəs edir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>⎧ x + y = 10, ⎩ x − y = 4. <span class="ans">Topla: 2x = 14 → x = 7, y = 3.</span></li>
+        <li>⎧ 4x + 3y = 10, ⎩ 2x + 3y = 8. x = ? <span class="ans">Çıx: 2x = 2 → x = 1 (y = 2).</span></li>
+        <li>⎧ 5x − 2y = 1, ⎩ 3x + 4y = 37. <span class="ans">Birinci × 2: 10x − 4y = 2; topla: 13x = 39 → x = 3; 9 + 4y = 37 → y = 7. Yoxla: 15 − 14 = 1 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Sistemin qrafik mənası. Həllərin sayının araşdırılması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>DİM tez-tez sistemi həll etməyi yox, "neçə həlli var?" və ya "a-nın hansı qiymətində həlli yoxdur?" soruşur. Bunu qrafiksiz, bir baxışda müəyyən etməyi öyrənəcəyik.</p>
+
+      <h3><span class="st">2</span> Qrafik məna</h3>
+      <p><span class="m">ax + by = c</span> tənliyinin qrafiki <b>düz xətdir</b> (<span class="m">b ≠ 0</span> olanda onu <span class="m">y = kx + m</span> şəklinə salmaq olar). Sistem — iki xətt; həll — onların <b>ortaq nöqtəsi</b>.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 220" role="img" aria-label="y = 2x − 1 və y = −x + 5 xətləri (2; 3) nöqtəsində kəsişir">
+          <line x1="5" y1="185" x2="250" y2="185" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M244 180L252 185L244 190" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="35" y1="215" x2="35" y2="5" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M30 11L35 3L40 11" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="246" y="203" class="lbl">x</text><text x="43" y="14" class="lbl">y</text>
+          <line x1="35" y1="210" x2="135" y2="10" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="10" y1="35" x2="185" y2="210" stroke="var(--vec)" stroke-width="3"/>
+          <line x1="85" y1="110" x2="85" y2="185" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="35" y1="110" x2="85" y2="110" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="85" cy="110" r="5" fill="var(--ink)"/>
+          <text x="95" y="106" class="lbl">(2; 3)</text>
+          <text x="85" y="201" text-anchor="middle" class="lbl">2</text><text x="25" y="114" text-anchor="middle" class="lbl">3</text>
+          <text x="140" y="30" class="lbl">y = 2x − 1</text><text x="150" y="160" class="lbl">y = −x + 5</text>
+        </svg>
+        <div class="cap"><p>⎧ y = 2x − 1, ⎩ y = −x + 5: <span class="m">2x − 1 = −x + 5</span> → <span class="m">x = 2</span>, <span class="m">y = 3</span>. Hesab qrafikdəki kəsişmə nöqtəsi ilə üst-üstə düşür.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Üç hal</h3>
+      <div class="fig">
+        <svg viewBox="0 0 330 120" role="img" aria-label="Üç hal: kəsişən xətlər, paralel xətlər, üst-üstə düşən xətlər">
+          <rect x="5" y="5" width="100" height="90" fill="none" stroke="var(--line)"/>
+          <rect x="115" y="5" width="100" height="90" fill="none" stroke="var(--line)"/>
+          <rect x="225" y="5" width="100" height="90" fill="none" stroke="var(--line)"/>
+          <line x1="12" y1="80" x2="98" y2="15" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="12" y1="20" x2="98" y2="80" stroke="var(--vec)" stroke-width="3"/>
+          <circle cx="53" cy="49" r="4" fill="var(--ink)"/>
+          <line x1="122" y1="70" x2="208" y2="15" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="122" y1="88" x2="208" y2="33" stroke="var(--vec)" stroke-width="3"/>
+          <line x1="232" y1="80" x2="318" y2="15" stroke="var(--accent)" stroke-width="6"/>
+          <line x1="232" y1="80" x2="318" y2="15" stroke="var(--vec)" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="55" y="113" text-anchor="middle" class="lbl">bir həll</text>
+          <text x="165" y="113" text-anchor="middle" class="lbl">həll yoxdur</text>
+          <text x="275" y="113" text-anchor="middle" class="lbl">sonsuz sayda</text>
+        </svg>
+        <div class="cap"><p>Kəsişən xətlər — bir ortaq nöqtə. Paralel xətlər — ortaq nöqtə yoxdur. Üst-üstə düşən xətlər — bütün nöqtələr ortaqdır.</p></div>
+      </div>
+      <div class="fm">a₁/a₂ ≠ b₁/b₂             →  bir həll (kəsişir)
+a₁/a₂ = b₁/b₂ ≠ c₁/c₂     →  həll yoxdur (paralel)
+a₁/a₂ = b₁/b₂ = c₁/c₂     →  sonsuz sayda həll (eyni xətt)</div>
+      <p><span class="m">y = k₁x + m₁</span>, <span class="m">y = k₂x + m₂</span> şəklində: <span class="m">k₁ ≠ k₂</span> — bir həll; <span class="m">k₁ = k₂</span>, <span class="m">m₁ ≠ m₂</span> — paralel; hər ikisi bərabər — eyni xətt.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  ⎧ 2x + 3y = 5
+           ⎩ 4x + 6y = 7
+  2/4 = 3/6 = 1/2,  amma 5/7 ≠ 1/2  →  həll yoxdur.
+  Yoxlama yolu: birinci × 2 → 4x + 6y = 10. Eyni sol tərəf
+  həm 10, həm 7 ola bilməz.</div>
+      <div class="ex">Nümunə 2.  ⎧ x − 2y = 3
+           ⎩ 3x − 6y = 9
+  1/3 = −2/(−6) = 3/9 = 1/3  →  ikinci tənlik birincinin 3 mislidir:
+  sonsuz sayda həll (məs. (3; 0), (5; 1), (1; −1)...)</div>
+      <div class="ex">Nümunə 3 (parametr). a-nın hansı qiymətində
+  ⎧ 2x + ay = 4
+  ⎩ 6x + 9y = 5     sistemin həlli yoxdur?
+  Lazımdır: 2/6 = a/9  →  a = 3.  Yoxla: 4/5 ≠ 1/3 ✓  →  a = 3.
+  (a ≠ 3 olanda isə sistemin yeganə həlli var.)</div>
+      <div class="ex">Nümunə 4.  ⎧ ax + 2y = 6
+           ⎩ 3x + y = b     — sonsuz sayda həll üçün a, b?
+  a/3 = 2/1 = 6/b  →  a = 6,  b = 3</div>
+      <div class="life"><b>Həyatdan.</b> Taksi A: 2 manat oturma + kilometri 0,5 manat; taksi B: 1 manat + kilometri 0,6 manat. Qiymətlər <span class="m">y = 0,5x + 2</span> və <span class="m">y = 0,6x + 1</span> xətləridir. Kəsişmə: <span class="m">0,5x + 2 = 0,6x + 1</span> → <span class="m">x = 10</span> km (hər ikisi 7 manat). Əgər iki taksinin kilometr qiyməti eyni olsaydı (paralel xətlər), qiymətlər heç vaxt bərabərləşməzdi.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a₁/a₂ = b₁/b₂</span> görüb dərhal "həll yoxdur" demək. Əvvəl <span class="m">c₁/c₂</span>-ni də yoxla — bərabərdirsə, sonsuz sayda həll var.</li>
+        <li>"Həll yoxdur" ilə "sonsuz sayda həll"i qarışdırmaq. Paralel — heç bir ortaq nöqtə; üst-üstə — hamısı ortaq.</li>
+        <li>Nisbəti çarpaz yazmaq: <span class="m">a₁/a₂</span> ilə <span class="m">b₁/b₂</span> müqayisə olunur, "a₁/b₂" yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Həll = xətlərin ortaq nöqtəsi.
+a₁/a₂ ≠ b₁/b₂ → 1 həll
+a₁/a₂ = b₁/b₂ ≠ c₁/c₂ → həll yoxdur
+a₁/a₂ = b₁/b₂ = c₁/c₂ → sonsuz</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>⎧ x + y = 3, ⎩ 2x + 2y = 6. Neçə həll? <span class="ans">1/2 = 1/2 = 3/6 — sonsuz sayda.</span></li>
+        <li>⎧ 3x − y = 2, ⎩ 6x − 2y = 1. Neçə həll? <span class="ans">3/6 = −1/(−2) = 1/2, amma 2/1 = 2 — həll yoxdur.</span></li>
+        <li>a-nın hansı qiymətində ⎧ ax + 4y = 1, ⎩ 3x + 2y = 5 sisteminin həlli yoxdur? <span class="ans">a/3 = 4/2 → a = 6; 1/5 ≠ 2 ✓. Cavab: 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Xətti sistemlə məsələ həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bir çox məsələni bir naməlumla da həll etmək olar, amma iki naməlumla tənlik qurmaq daha <b>rahatdır</b>: hər şərt — ayrıca tənlik, heç nəyi "ifadə etmək" lazım deyil.</p>
+
+      <h3><span class="st">2</span> Plan</h3>
+      <div class="fm">1. x — nə?  y — nə?  (yaz!)
+2. Birinci şərt → birinci tənlik.
+3. İkinci şərt → ikinci tənlik.
+4. Sistemi həll et (rahat üsulla).
+5. Şərtlə yoxla.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 2 böyük və 3 uşaq bileti 31 manat, 3 böyük və
+2 uşaq bileti 34 manatdır. Biletlərin qiyməti?
+  x — böyük, y — uşaq:  2x + 3y = 31,  3x + 2y = 34
+  Topla: 5x + 5y = 65  →  x + y = 13
+  Çıx (ikincidən birincini): x − y = 3
+  x = 8,  y = 5.   Yoxla: 16 + 15 = 31 ✓;  24 + 10 = 34 ✓</div>
+      <div class="ex">Nümunə 2. Qayıq axınla 3 saatda 48 km, axına qarşı 4 saatda
+48 km üzür. Qayığın öz sürəti və axının sürəti?
+  x — qayıq, y — axın.  x + y = 48/3 = 16,  x − y = 48/4 = 12
+  Topla: 2x = 28  →  x = 14,  y = 2
+  Cavab: 14 km/saat və 2 km/saat</div>
+      <div class="ex">Nümunə 3. Həyətdə toyuqlar və dovşanlar var: 20 baş, 56 ayaq.
+  x — toyuq, y — dovşan.  x + y = 20,  2x + 4y = 56
+  Birinci × 2: 2x + 2y = 40.  Çıx: 2y = 16  →  y = 8,  x = 12
+  Yoxla: 24 + 32 = 56 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Kafedə 2 çay və 1 şirniyyat 4 manat, 1 çay və 2 şirniyyat 5 manatdır. Topla: 3 çay + 3 şirniyyat = 9 → bir çay + bir şirniyyat = 3 manat. Çıx: şirniyyat − çay = 1. Deməli, çay 1, şirniyyat 2 manatdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>x və y-in nə olduğunu yazmamaq, sonda cavabları dəyişik salmaq.</li>
+        <li>Axın məsələsində axınla sürəti <span class="m">x − y</span> yazmaq. Axınla — çay kömək edir: <span class="m">x + y</span>.</li>
+        <li>Ayaq sayında toyuğa 4, dovşana 2 ayaq yazmaq — yoxlama bunu dərhal göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hər şərt — bir tənlik.
+Axınla: x + y,  axına qarşı: x − y.
+Simmetrik sistemdə (2x + 3y, 3x + 2y) — əvvəl topla və çıx.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>İki ədədin cəmi 30, fərqi 8-dir. Ədədlər? <span class="ans">x + y = 30, x − y = 8 → x = 19, y = 11.</span></li>
+        <li>5 və 10 manatlıq cəmi 12 əskinas 85 manat edir. Neçəsi 10 manatlıqdır? <span class="ans">x + y = 12, 5x + 10y = 85 → x + 2y = 17 → y = 5 (x = 7). Yoxla: 35 + 50 = 85 ✓</span></li>
+        <li>Qayıq axınla 2 saatda 36 km, axına qarşı 3 saatda 36 km üzür. Axının sürəti? <span class="ans">x + y = 18, x − y = 12 → y = 3 km/saat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

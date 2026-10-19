@@ -159,19 +159,22 @@
    "bolme": "Tənliklər",
    "ad": "Tənlik qurmaqla məsələ həlli",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər",
+   "ders": "dersler/tenlik-qurmaqla-mesele.html"
   },
   {
    "bolme": "Tənliklər sistemi",
    "ad": "İkidəyişənli xətti tənliklər sistemi",
    "status": "yox",
-   "menbe": "DİM: Tənliklər sistemi"
+   "menbe": "DİM: Tənliklər sistemi",
+   "ders": "dersler/xetti-sistem.html"
   },
   {
    "bolme": "Tənliklər sistemi",
    "ad": "İkidərəcəli tənliklər sistemi, sistemlə məsələ həlli",
    "status": "yox",
-   "menbe": "DİM: Tənliklər sistemi"
+   "menbe": "DİM: Tənliklər sistemi",
+   "ders": "dersler/ikidereceli-sistem.html"
   },
   {
    "bolme": "Funksiyalar",
