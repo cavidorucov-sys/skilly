@@ -274,3 +274,11 @@ html{scrollbar-gutter:stable}
 }
 .e-note{margin:0;font-size:14px;color:var(--ink-2);background:var(--panel);border-radius:var(--r-sm);padding:8px 12px}
 .topnav .nav-dd .dd a span{display:inline}
+.ccard .meta{margin-top:12px;gap:10px}
+.ccard .meta .open{font-weight:600;color:var(--ink);white-space:nowrap}
+/* nav spans the full width on desktop */
+@media (min-width:981px){
+  .topnav{width:100%}
+  .topnav > a,.topnav > .nav-dd{flex:1 1 0;justify-content:center}
+  .topnav > .nav-dd > a{flex:1;justify-content:center}
+}

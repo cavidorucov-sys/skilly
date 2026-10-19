@@ -146,9 +146,9 @@ function topicCard(t) {
   const a = el(t.ders ? "a" : "div", t.ders ? { class: "ccard fade " + k.cls, href: t.ders } : { class: "ccard fade " + k.cls },
     el("div", { class: "ic" }, icon(topicIcon(t), k.ink)),
     el("div", { class: "t" }, t.ad));
-  const done = t.addim ? t.addim[0] : 0, all = t.addim ? t.addim[1] : 0;
-  const bar = el("div", { class: "bar" }, el("i", { style: `width:${all ? Math.round(done / all * 100) : 0}%` }));
-  a.append(bar, el("div", { class: "meta" }, el("span", {}, k.ad + " · " + t.bolme), el("span", {}, all ? `${done}/${all}` : (t.ders ? "dərs var" : "tezliklə"))));
+  // one short line under the title: why it is next, otherwise the section; a progress bar only when steps are tracked
+  if (t.addim) a.append(el("div", { class: "bar" }, el("i", { style: `width:${Math.round(t.addim[0] / t.addim[1] * 100)}%` })));
+  a.append(el("div", { class: "meta" }, el("span", {}, t.sebeb || t.bolme), t.ders ? el("span", { class: "open" }, "Dərsi aç →") : null));
   return a;
 }
 
@@ -159,7 +159,7 @@ async function pageIndex() {
   // progress cards with tabs
   const groups = {
     isl: topics.filter(t => t.status === "isl"),
-    yox: Object.keys(m).flatMap(s => m[s].filter(t => t.status === "yox").slice(0, 2).map(t => ({ ...t, subj: s, kat: SUBJ_KAT[s] }))),
+    yox: topics.filter(t => t.status === "yox" && t.novbeti).sort((x, y) => x.novbeti - y.novbeti),
     bag: topics.filter(t => t.status === "bag"),
   };
   const cards = el("div", { class: "cards" });
@@ -225,7 +225,8 @@ function renderTopics(content, m, key, lead) {
   content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")} · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
   const inProgress = rows.filter(r => r.status === "isl").map(r => ({ ...r, kat }));
   // cards: topics in progress; if none yet, the next three to start, so every subject page looks the same
-  const upNext = rows.filter(r => r.status === "yox").slice(0, 3).map(r => ({ ...r, kat }));
+  const planned = rows.filter(r => r.status === "yox" && r.novbeti).sort((x, y) => x.novbeti - y.novbeti);
+  const upNext = (planned.length ? planned : rows.filter(r => r.status === "yox")).slice(0, 3).map(r => ({ ...r, kat }));
   const shown = inProgress.length ? inProgress : upNext;
   if (shown.length) content.append(el("h2", { class: "cards-h" }, inProgress.length ? "İşlənir" : "Başlanacaq"), el("div", { class: "cards" }, ...shown.map(topicCard)));
   const tb = el("tbody"); let sec = null, i = 0;
