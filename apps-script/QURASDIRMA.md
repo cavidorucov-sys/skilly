@@ -11,8 +11,9 @@ Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız Fikrətin cihaz�
    - Execute as: **Me**
    - Who has access: **Anyone**
    - Google icazə istəyəcək, ona öz hesabınla icazə ver.
-5. Verilən **Web app URL**-i (`https://script.google.com/macros/s/…/exec`) mənə göndər. Mən onu `data/config.json`-a yazıb saytı yeniləyəcəyəm. Bu URL açarsız işləmir, ona görə saytda açıq durması problem deyil.
-6. Fikrətin telefonunda və kompüterində **bir dəfə** bu ünvanı aç (öz açarını yaz):
+5. Əgər icazə pəncərəsi xəta verərsə (avtomatlaşdırılmış brauzerdə olur): layihəni adi brauzerdə aç, yuxarıda funksiya kimi `setup` seç, **Run** bas, icazə ver. Sonra dərci yenidən et.
+6. Verilən **Web app URL**-i (`https://script.google.com/macros/s/…/exec`) mənə göndər. Mən onu `data/config.json`-a yazıb saytı yeniləyəcəyəm. Bu URL açarsız işləmir, ona görə saytda açıq durması problem deyil.
+7. Fikrətin telefonunda və kompüterində **bir dəfə** bu ünvanı aç (öz açarını yaz):
    `https://cavidorucov-sys.github.io/skilly/temrar.html#key=AÇAR`
    Açar cihazda yadda qalır və ünvan sətrindən silinir. Səhifədə "Google Sheets-ə qoşulub" yazısı görünəcək.
 

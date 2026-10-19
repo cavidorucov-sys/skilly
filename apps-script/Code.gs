@@ -10,6 +10,8 @@ function sheet_() {
   if (!sh) { sh = ss.insertSheet(SHEET); sh.appendRow(COLS); sh.setFrozenRows(1); }
   return sh;
 }
+// Run once from the editor: grants permissions and creates the "Səhvlər" sheet.
+function setup() { sheet_(); }
 function out_(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }
 function keyOk_(k) { return k && k === PropertiesService.getScriptProperties().getProperty("SKILLY_KEY"); }
 
