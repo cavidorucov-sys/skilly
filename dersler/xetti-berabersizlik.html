@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Xətti bərabərsizliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-xetti-berabersizlik.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Xətti bərabərsizliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Bərabərsizliklər</div>
+    <h1>Xətti bərabərsizliklər</h1>
+    <p>Tənliyin cavabı bir ədəddir, bərabərsizliyin cavabı isə bütöv bir <b>aralıqdır</b>: <span class="m">x &gt; 3</span>, <span class="m">−2 &lt; x ≤ 5</span>. Burada aralıqları yazmağı, xətti bərabərsizliyi həll etməyi, ikiqat bərabərsizlikləri və sistemləri öyrənəcəksən. Əsas tələ birdir: <b>mənfi ədədə vuranda və ya bölərkən işarə dönür</b>.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Aralıqlar</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xətti</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sistemlər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Ədədi aralıqlar və bərabərsizliklərin xassələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Liftin yazısı: "ən çox 8 nəfər". Bu, bir ədəd deyil — 0, 1, 2, …, 8 hamısı olar. Yay düşərgəsi: "12 yaşdan böyük, 16 yaşdan kiçik". Belə şərtləri riyaziyyatda bərabərsizliklə yazırıq, cavabı isə <b>aralıqla</b>.</p>
+
+      <h3><span class="st">2</span> Ədədi aralıqlar</h3>
+      <p>Kvadrat mötərizə <b>[ ]</b> — uc daxildir (≤, ≥). Dairəvi mötərizə <b>( )</b> — uc daxil deyil (&lt;, &gt;). Sonsuzluğun (∞) yanında həmişə dairəvi mötərizə olur.</p>
+      <div class="fm">a &lt; x &lt; b   →  (a; b)     interval
+a ≤ x ≤ b   →  [a; b]     parça
+a ≤ x &lt; b   →  [a; b)     yarımaralıq
+x &gt; a       →  (a; +∞)    şüa
+x ≤ b       →  (−∞; b]    şüa</div>
+      <p>Ədəd oxunda daxil olan uc <b>dolu nöqtə</b> ilə, daxil olmayan uc <b>boş dairə</b> ilə çəkilir.</p>
+
+      <h3><span class="st">3</span> Kəsişmə və birləşmə</h3>
+      <p><b>Kəsişmə</b> (∩) — hər iki aralığa düşən ədədlər. <b>Birləşmə</b> (∪) — ən azı birinə düşən ədədlər.</p>
+      <div class="ex">[−2; 3) ∩ (0; 5] = (0; 3)
+  sol uc: böyük olan sol uc → 0 (daxil deyil)
+  sağ uc: kiçik olan sağ uc → 3 (daxil deyil)
+  Tam ədədlər: 1; 2 → cəmi 2
+
+[−2; 3) ∪ (0; 5] = [−2; 5]
+  Tam ədədlər: −2; −1; 0; 1; 2; 3; 4; 5 → cəmi 8</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 110" role="img" aria-label="Ədəd oxunda [−2; 3) və (0; 5] aralıqları, kəsişməsi (0; 3)">
+          <line x1="50" y1="22" x2="200" y2="22" stroke="var(--vec)" stroke-width="4"/>
+          <circle cx="50" cy="22" r="5" fill="var(--vec)"/>
+          <circle cx="200" cy="22" r="5" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="110" y1="46" x2="260" y2="46" stroke="var(--accent)" stroke-width="4"/>
+          <circle cx="110" cy="46" r="5" fill="var(--sheet)" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="260" cy="46" r="5" fill="var(--accent)"/>
+          <line x1="10" y1="78" x2="290" y2="78" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 72L292 78L282 84" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="110" y1="78" x2="200" y2="78" stroke="var(--ink)" stroke-width="7"/>
+          <circle cx="110" cy="78" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/>
+          <circle cx="200" cy="78" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/>
+          <text x="50" y="102" text-anchor="middle" class="lbl">−2</text>
+          <text x="110" y="102" text-anchor="middle" class="lbl">0</text>
+          <text x="200" y="102" text-anchor="middle" class="lbl">3</text>
+          <text x="260" y="102" text-anchor="middle" class="lbl">5</text>
+        </svg>
+        <div class="cap"><p>Yuxarıda <span class="m">[−2; 3)</span>, ortada <span class="m">(0; 5]</span>. Ədəd oxundakı qalın hissə — onların kəsişməsi <span class="m">(0; 3)</span>: hər iki xətt onun üstündən keçir.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> Bərabərsizliklərin xassələri</h3>
+      <div class="fm">a &lt; b olarsa:
+  a + c &lt; b + c        (istənilən c)
+  a·c &lt; b·c            (c &gt; 0)
+  a·c &gt; b·c            (c &lt; 0 — işarə dönür!)</div>
+      <p>Niyə dönür? <span class="m">2 &lt; 5</span>. Hər tərəfi −3-ə vuraq: −6 və −15. Ədəd oxunda −15 daha soldadır, yəni <span class="m">−6 &gt; −15</span>. Mənfiyə vurmaq ədəd oxunu "güzgüdə əks etdirir" — sıra tərsinə çevrilir.</p>
+      <div class="ex">−1 &lt; a &lt; 3. 5 − 2a hansı aralıqdadır?
+  −2-yə vur (işarələr dönür): 2 &gt; −2a &gt; −6,  yəni −6 &lt; −2a &lt; 2
+  5 əlavə et:                 −1 &lt; 5 − 2a &lt; 7
+  Tam qiymətlər: 0; 1; 2; 3; 4; 5; 6 → 7 qiymət</div>
+      <div class="life"><b>Həyatdan.</b> Fikrətin 10 manatı var, bazarda <span class="m">x</span> manat xərcləyəcək: <span class="m">2 ≤ x ≤ 7</span>. Qalan pul: <span class="m">−7 ≤ −x ≤ −2</span> → <span class="m">3 ≤ 10 − x ≤ 8</span>. Çox xərcləyəndə az qalır — mənfiyə vuranda sıra dönür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mötərizəni qarışdırmaq: <span class="m">x ≥ 3</span> üçün <span class="m">(3; +∞)</span> yazmaq. Düzü: <span class="m">[3; +∞)</span>.</li>
+        <li><span class="m">+∞</span>-un yanında kvadrat mötərizə qoymaq. Sonsuzluq ədəd deyil — o, daxil ola bilməz.</li>
+        <li>Mənfi ədədə vurub işarəni saxlamaq.</li>
+        <li>Tam ədədləri sayarkən uc daxil deyilsə onu da saymaq: <span class="m">(0; 3)</span>-də 0 və 3 yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">[ ] — uc daxil (≤, ≥);  ( ) — daxil deyil (&lt;, &gt;, ∞)
+∩ — hər ikisində;  ∪ — ən azı birində
+Mənfiyə vur/böl → işarə dönür.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(−3; 2]</span> aralığında neçə tam ədəd var? <span class="ans">−2; −1; 0; 1; 2 — 5 ədəd (−3 daxil deyil, 2 daxildir).</span></li>
+        <li><span class="m">3 &lt; 4</span>. Hər tərəfi −2-yə vursaq, hansı işarə olar? <span class="ans">−6 &gt; −8. İşarə dönür: &gt;.</span></li>
+        <li><span class="m">[1; 6] ∩ (4; 9)</span> kəsişməsində neçə tam ədəd var? <span class="ans">Kəsişmə (4; 6]: tam ədədlər 5 və 6 — 2 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Birdəyişənli xətti bərabərsizliklərin həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Xətti tənliyi sən yaxşı həll edirsən. Xətti bərabərsizlik də eyni yolla həll olunur — mötərizəni aç, hədləri köçür, əmsala böl. Fərq bircə yerdədir, və imtahan məhz onu yoxlayır.</p>
+
+      <h3><span class="st">2</span> Eynigüclü çevirmələr</h3>
+      <p>Bərabərsizliyin həllər çoxluğunu dəyişməyən çevirmələrə <b>eynigüclü</b> deyilir:</p>
+      <div class="fm">1. Həddi o biri tərəfə keçir — işarəsini dəyiş.
+2. Hər tərəfi müsbət ədədə vur/böl — işarə qalır.
+3. Hər tərəfi mənfi ədədə vur/böl — işarə dönür:
+   &lt;  ↔  &gt;      ≤  ↔  ≥</div>
+      <p>Yoxlama: <span class="m">−x &gt; 3</span>. <span class="m">x = −5</span> götürək: <span class="m">5 &gt; 3</span> ✓. Deməli həllər mənfidir: <span class="m">x &lt; −3</span>. İşarəni dəyişmədən "x &gt; −3" yazsaydıq, səhv olardı.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  3(x − 2) + 4 ≤ 5x + 6
+  Mötərizəni aç:   3x − 2 ≤ 5x + 6
+  Köçür:           3x − 5x ≤ 6 + 2  →  −2x ≤ 8
+  −2-yə böl (dönür): x ≥ −4
+  Cavab: [−4; +∞);  ən kiçik tam həll −4</div>
+      <div class="ex">Nümunə 2.  (x + 1)/2 − (x − 3)/3 &gt; 1
+  Ortaq məxrəc 6 — hər tərəfi 6-ya vur (müsbət, işarə qalır):
+  3(x + 1) − 2(x − 3) &gt; 6
+  3x + 3 − 2x + 6 &gt; 6  →  x + 9 &gt; 6  →  x &gt; −3
+  Cavab: (−3; +∞);  ən kiçik tam həll −2</div>
+      <div class="ex">Nümunə 3.  7 − 4x &gt; 2x − 11
+  Köçür: −4x − 2x &gt; −11 − 7  →  −6x &gt; −18
+  −6-ya böl (dönür): x &lt; 3
+  Cavab: (−∞; 3);  ən böyük tam həll 2</div>
+
+      <h3><span class="st">4</span> Xüsusi hallar: 0·x</h3>
+      <p>Bəzən x-lər tamamilə yox olur. Onda qalan ədədi bərabərsizliyə bax:</p>
+      <div class="ex">2(x + 3) &gt; 2x + 1  →  2x + 6 &gt; 2x + 1  →  0·x &gt; −5
+  6 &gt; 1 həmişə doğrudur → həll: bütün ədədlər (−∞; +∞)
+
+2(x + 3) &lt; 2x + 1  →  0·x &lt; −5
+  6 &lt; 1 heç vaxt doğru deyil → həll yoxdur</div>
+      <div class="life"><b>Həyatdan.</b> Fikrət 5 manata dəftər və hər biri 2 manatlıq qələmlər alır, pulu 20 manatdır: <span class="m">5 + 2x ≤ 20</span> → <span class="m">x ≤ 7,5</span>. Qələm yarım alınmır — ən çox 7 qələm.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mənfi əmsala bölüb işarəni saxlamaq: <span class="m">−2x ≤ 8</span> → "x ≤ −4". Düzü: <span class="m">x ≥ −4</span>.</li>
+        <li>Mötərizə qarşısında minus olanda işarəni yalnız birinci həddə dəyişmək: <span class="m">−2(x − 3) = −2x + 6</span>.</li>
+        <li>"Ən kiçik tam həll" soruşulanda <span class="m">x &gt; −3</span> üçün −3 yazmaq. −3 daxil deyil — cavab −2.</li>
+        <li><span class="m">x ≥ 4,5</span> üçün ən kiçik tam həll 4 yazmaq. 4 &lt; 4,5 — cavab 5.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Aç → köçür → əmsala böl.
+Mənfiyə bölürsən — işarəni çevir.
+0·x qalsa: ədədi bərabərsizlik doğrudursa — bütün ədədlər, deyilsə — həll yoxdur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">4 − 3x ≥ 10</span>. Ən böyük tam həll? <span class="ans">−3x ≥ 6 → x ≤ −2. Cavab: −2.</span></li>
+        <li><span class="m">5x − 7 &lt; 2x + 8</span>. Ən böyük tam həll? <span class="ans">3x &lt; 15 → x &lt; 5. 5 daxil deyil — cavab 4.</span></li>
+        <li><span class="m">3(x − 1) ≥ 3x + 2</span>. Həlli nədir? <span class="ans">3x − 3 ≥ 3x + 2 → 0·x ≥ 5 → yanlışdır. Həll yoxdur.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İkiqat bərabərsizliklər, sistem və heyət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şərt çox vaxt iki tərəfli olur: "çəki 2 kq-dan az olmamalı, 5 kq-dan çox olmamalı". Bu ya ikiqat bərabərsizlikdir (<span class="m">2 ≤ m ≤ 5</span>), ya da iki bərabərsizliyin sistemi. İmtahanda adətən soruşulur: "neçə tam həll var?", "tam həllərin cəmi?".</p>
+
+      <h3><span class="st">2</span> İkiqat bərabərsizlik</h3>
+      <p>Üç hissənin <b>hər birinə</b> eyni əməli tətbiq et. Mənfiyə bölürsənsə — hər iki işarə dönür, sonra sıranı soldan sağa yenidən yaz.</p>
+      <div class="ex">Nümunə 1.  −3 &lt; 2x + 1 ≤ 7
+  1 çıx:   −4 &lt; 2x ≤ 6
+  2-yə böl: −2 &lt; x ≤ 3
+  Tam həllər: −1; 0; 1; 2; 3 → 5 ədəd, cəmi 5</div>
+      <div class="ex">Nümunə 2.  1 ≤ (5 − 3x)/2 &lt; 4
+  2-yə vur:       2 ≤ 5 − 3x &lt; 8
+  5 çıx:         −3 ≤ −3x &lt; 3
+  −3-ə böl (dönür): 1 ≥ x &gt; −1,  yəni −1 &lt; x ≤ 1
+  Tam həllər: 0; 1 → 2 ədəd.  Aralığın uzunluğu: 1 − (−1) = 2</div>
+
+      <h3><span class="st">3</span> Bərabərsizliklər sistemi</h3>
+      <p><b>Sistem</b> — bərabərsizliklərin <b>hamısı</b> ödənməlidir. Hər birini ayrıca həll et, sonra həllərin <b>kəsişməsini</b> götür.</p>
+      <div class="ex">{ 2x − 3 &gt; 1
+{ 10 − x ≥ 4
+  Birinci: 2x &gt; 4  →  x &gt; 2
+  İkinci:  −x ≥ −6  →  x ≤ 6
+  Kəsişmə: (2; 6]
+  Tam həllər: 3; 4; 5; 6 → 4 ədəd</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 100" role="img" aria-label="x &gt; 2 və x ≤ 6 şüaları, kəsişməsi (2; 6]">
+          <line x1="90" y1="22" x2="290" y2="22" stroke="var(--vec)" stroke-width="4"/>
+          <circle cx="90" cy="22" r="5" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <line x1="10" y1="44" x2="210" y2="44" stroke="var(--accent)" stroke-width="4"/>
+          <circle cx="210" cy="44" r="5" fill="var(--accent)"/>
+          <line x1="10" y1="72" x2="290" y2="72" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 66L292 72L282 78" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="72" x2="210" y2="72" stroke="var(--ink)" stroke-width="7"/>
+          <circle cx="90" cy="72" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/>
+          <circle cx="210" cy="72" r="5" fill="var(--ink)"/>
+          <text x="90" y="95" text-anchor="middle" class="lbl">2</text>
+          <text x="210" y="95" text-anchor="middle" class="lbl">6</text>
+        </svg>
+        <div class="cap"><p>Yuxarıda <span class="m">x &gt; 2</span> (sağa gedən şüa), ortada <span class="m">x ≤ 6</span> (sola gedən şüa). Hər ikisinin örtdüyü hissə — <span class="m">(2; 6]</span>.</p></div>
+      </div>
+      <p>Şüalar "üz-üzə" deyilsə və kəsişmirsə (məs. <span class="m">x &gt; 5</span> və <span class="m">x &lt; 1</span>), sistemin <b>həlli yoxdur</b>. Hər iki şüa eyni tərəfə baxırsa (<span class="m">x &gt; 2</span> və <span class="m">x &gt; 5</span>), kəsişmə "daha sərt" şərtdir: <span class="m">x &gt; 5</span>.</p>
+
+      <h3><span class="st">4</span> Bərabərsizliklər heyəti</h3>
+      <p><b>Heyət</b> — bərabərsizliklərdən <b>ən azı biri</b> ödənməlidir. Həllərin <b>birləşməsini</b> götürürük. Heyət kvadrat mötərizə ilə yazılır (sistem — fiqurlu mötərizə ilə).</p>
+      <div class="ex">[ 3x + 2 &lt; −1
+[ x − 4 ≥ −1
+  Birinci: 3x &lt; −3  →  x &lt; −1
+  İkinci:  x ≥ 3
+  Birləşmə: (−∞; −1) ∪ [3; +∞)
+  Həll olmayan tam ədədlər: −1; 0; 1; 2 → 4 ədəd</div>
+      <div class="life"><b>Həyatdan.</b> Velosiped yarışına yaş şərti: 12 yaşdan kiçik deyil <b>və</b> 17 yaşdan böyük deyil — sistem, <span class="m">[12; 17]</span>. Avtobusda pulsuz gediş: 7 yaşdan kiçik <b>və ya</b> 65 yaşdan böyük — heyət, iki şüanın birləşməsi.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İkiqat bərabərsizlikdə yalnız orta hissəni dəyişmək. Əməl hər üç hissəyə tətbiq olunur.</li>
+        <li>Mənfiyə bölüb yalnız bir işarəni çevirmək. İkisi də dönür: <span class="m">1 ≥ x &gt; −1</span>.</li>
+        <li>Sistem ilə heyəti qarışdırmaq: "və" — kəsişmə, "və ya" — birləşmə.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İkiqat: hər üç hissəyə eyni əməl.
+Sistem { — hamısı ödənir → kəsişmə ∩
+Heyət [ — ən azı biri → birləşmə ∪</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">−1 ≤ 3x + 2 &lt; 11</span>. Neçə tam həll? <span class="ans">−3 ≤ 3x &lt; 9 → −1 ≤ x &lt; 3: −1; 0; 1; 2 — 4 həll.</span></li>
+        <li>Sistem: <span class="m">x + 4 &gt; 1</span> və <span class="m">2x ≤ 6</span>. Neçə tam həll? <span class="ans">x &gt; −3 və x ≤ 3: −2; −1; 0; 1; 2; 3 — 6 həll.</span></li>
+        <li>Heyət: <span class="m">x ≤ 0</span> və ya <span class="m">x &gt; 4</span>. Neçə tam ədəd həll deyil? <span class="ans">1; 2; 3; 4 — 4 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Bərabərsizliklərin tətbiqi ilə məsələ həlli</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Büdcə, limit, ən az bal, ən çox yük — gündəlik həyatda "dəqiq bərabər" az olur, "çox olmamalı" və "az olmamalı" isə hər yerdədir. Belə məsələlər bərabərsizliklə həll olunur.</p>
+
+      <h3><span class="st">2</span> Sözdən işarəyə</h3>
+      <div class="fm">"ən azı", "az olmayan", "-dən az deyil"   →  ≥
+"ən çox", "çox olmayan", "keçməsin"      →  ≤
+"-dən çox", "-dən böyük"                 →  &gt;
+"-dən az", "-dən kiçik"                  →  &lt;</div>
+      <p>Cavab tam ədəd olmalıdırsa (adam, kitab, həftə), düzgün tərəfə yuvarlaqlaşdır: <span class="m">x ≤ 21,6</span> → ən çox 21; <span class="m">x ≥ 12,5</span> → ən az 13.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş məsələlər</h3>
+      <div class="ex">1) Taksidə minmə 2 manat, hər km 0,6 manat. 15 manata ən çox neçə km?
+   2 + 0,6x ≤ 15  →  0,6x ≤ 13  →  x ≤ 21,66…
+   Cavab: 21 km
+
+2) 4 testin balları: 78, 85, 90, 72. 5 testin ortası ən azı 82 olsun.
+   5-ci testdə ən azı neçə bal?
+   (325 + x)/5 ≥ 82  →  325 + x ≥ 410  →  x ≥ 85
+   Cavab: 85 bal</div>
+      <div class="ex">3) Tarif A: 5 manat abunə + 2 qəpik/dəq. Tarif B: 7 qəpik/dəq.
+   Ən azı neçə dəqiqədə A ucuzdur?  (hamısını qəpiklə yaz)
+   500 + 2x &lt; 7x  →  500 &lt; 5x  →  x &gt; 100
+   Cavab: 101 dəqiqə</div>
+
+      <h3><span class="st">4</span> Üçbucaq bərabərsizliyi</h3>
+      <p>Üçbucağın hər tərəfi o biri iki tərəfin cəmindən kiçik, fərqindən böyükdür. Bu, ikiqat bərabərsizlikdir:</p>
+      <div class="fm">|a − b| &lt; c &lt; a + b</div>
+      <div class="ex">Tərəflər 5 və 9, üçüncü tərəf tam ədəd. Neçə variant?
+   9 − 5 &lt; x &lt; 9 + 5  →  4 &lt; x &lt; 14
+   x = 5; 6; …; 13  → 9 variant</div>
+      <div class="life"><b>Həyatdan.</b> Liftdə yazılıb: "600 kq". 80 kq-lıq adam 25 kq-lıq qutular aparır: <span class="m">80 + 25x ≤ 600</span> → <span class="m">x ≤ 20,8</span>. Ən çox 20 qutu — 21-ci artıq limiti keçir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yuvarlaqlaşdırmanı səhv tərəfə etmək: <span class="m">x ≥ 12,5</span> üçün 12 yazmaq. 12 həftə azdır — 13 lazımdır.</li>
+        <li>Vahidləri qarışdırmaq: manat və qəpik bir bərabərsizlikdə. Hamısını bir vahidə gətir.</li>
+        <li>"-dən çox" (&gt;) ilə "ən azı" (≥) arasındakı fərqi itirmək: sərhəd ədədi daxil olub-olmadığını dəyişir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x — nə? → şərt → bərabərsizlik → həll et
+Tam cavab lazımdırsa — şərtə uyğun tərəfə yuvarlaqlaşdır.
+Üçbucaq: |a − b| &lt; c &lt; a + b</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>200 manat lazımdır, 50 manat var, hər həftə 12 manat yığılır. Ən azı neçə həftə? <span class="ans">50 + 12x ≥ 200 → x ≥ 12,5 → 13 həftə.</span></li>
+        <li>Lift 600 kq götürür. 80 kq-lıq adam 25 kq-lıq qutulardan ən çox neçəsini götürə bilər? <span class="ans">80 + 25x ≤ 600 → x ≤ 20,8 → 20 qutu.</span></li>
+        <li>Üçbucağın tərəfləri 4 və 10, üçüncü tərəf tam ədəddir. Neçə variant? <span class="ans">6 &lt; x &lt; 14: 7; 8; …; 13 — 7 variant.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

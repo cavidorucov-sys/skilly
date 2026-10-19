@@ -215,19 +215,22 @@
    "bolme": "Bərabərsizliklər",
    "ad": "Xətti bərabərsizliklər",
    "status": "yox",
-   "menbe": "DİM: Bərabərsizliklər"
+   "menbe": "DİM: Bərabərsizliklər",
+   "ders": "dersler/xetti-berabersizlik.html"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Kvadrat və rasional bərabərsizliklər (intervallar üsulu)",
    "status": "yox",
-   "menbe": "DİM: Bərabərsizliklər"
+   "menbe": "DİM: Bərabərsizliklər",
+   "ders": "dersler/intervallar-usulu.html"
   },
   {
    "bolme": "Bərabərsizliklər",
    "ad": "Modullu tənliklər və bərabərsizliklər",
    "status": "yox",
-   "menbe": "DİM: Birdəyişənli tənliklər + Bərabərsizliklər"
+   "menbe": "DİM: Birdəyişənli tənliklər + Bərabərsizliklər",
+   "ders": "dersler/modullu.html"
   },
   {
    "bolme": "Sadə həndəsi fiqurlar",

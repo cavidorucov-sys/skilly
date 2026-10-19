@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Modullu tənliklər və bərabərsizliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-modullu.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Modullu tənliklər və bərabərsizliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Tənliklər, bərabərsizliklər</div>
+    <h1>Modullu tənliklər və bərabərsizliklər</h1>
+    <p>Modul — məsafədir: <span class="m">|x − 3|</span> ədəd oxunda <span class="m">x</span> ilə 3 arasındakı məsafədir. Bu bir fikir modullu məsələlərin çoxunu həll edir: <span class="m">|x − 3| = 5</span> — "3-dən 5 vahid uzaqda olan nöqtələr", <span class="m">|x − 2| ≤ 3</span> — "2-dən ən çox 3 vahid uzaqda olan nöqtələr". Qalanları üçün — modulu açmağın iki halı.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>|f(x)| = a</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>|f| = |g|</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizlik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İki modul</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. |f(x)| = a şəklində tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Naviqator deyir: "dayanacaq 5 km uzaqlıqdadır". Hansı tərəfdə? Bilmirik — irəlidə də ola bilər, geridə də. Məsafə istiqaməti "unudur". Modul da belədir: <span class="m">|x| = 5</span> olarsa, <span class="m">x = 5</span> və ya <span class="m">x = −5</span>.</p>
+
+      <h3><span class="st">2</span> Modul — məsafə</h3>
+      <div class="fm">|a| = a,   a ≥ 0 olanda
+|a| = −a,  a &lt; 0 olanda      (|−7| = 7)
+|x − a| — ədəd oxunda x ilə a arasındakı məsafə</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 80" role="img" aria-label="Ədəd oxu: 3 nöqtəsindən 5 vahid sola −2, 5 vahid sağa 8">
+          <line x1="10" y1="52" x2="290" y2="52" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 46L292 52L282 58" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M150 52Q90 8 30 52" fill="none" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M150 52Q210 8 270 52" fill="none" stroke="var(--vec)" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="90" y="24" text-anchor="middle" class="lbl">5</text>
+          <text x="210" y="24" text-anchor="middle" class="lbl">5</text>
+          <circle cx="150" cy="52" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="30" cy="52" r="6" fill="var(--accent)"/>
+          <circle cx="270" cy="52" r="6" fill="var(--accent)"/>
+          <text x="30" y="74" text-anchor="middle" class="lbl">−2</text>
+          <text x="150" y="74" text-anchor="middle" class="lbl">3</text>
+          <text x="270" y="74" text-anchor="middle" class="lbl">8</text>
+        </svg>
+        <div class="cap"><p><span class="m">|x − 3| = 5</span>: 3 nöqtəsindən 5 vahid uzaqda olan nöqtələr. Sola — <span class="m">−2</span>, sağa — <span class="m">8</span>. İki kök.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Qayda</h3>
+      <div class="fm">|f(x)| = a:
+  a &gt; 0  →  f(x) = a  və ya  f(x) = −a   (iki hal)
+  a = 0  →  f(x) = 0                    (bir hal)
+  a &lt; 0  →  kök yoxdur (modul mənfi olmur)</div>
+      <div class="ex">Nümunə 1.  |2x + 1| = 7
+  2x + 1 = 7   →  x = 3
+  2x + 1 = −7  →  x = −4
+  Köklərin cəmi: −1</div>
+      <div class="ex">Nümunə 2.  |x − 4| + 3 = 1
+  |x − 4| = −2  →  modul mənfi ola bilməz
+  Kök yoxdur (köklərin sayı 0)</div>
+      <div class="ex">Nümunə 3.  ||x| − 2| = 1
+  |x| − 2 = 1   →  |x| = 3  →  x = ±3
+  |x| − 2 = −1  →  |x| = 1  →  x = ±1
+  4 kök: −3; −1; 1; 3</div>
+
+      <h3><span class="st">4</span> Həyatdan</h3>
+      <div class="life"><b>Həyatdan.</b> Fikrət bir ədəd fikirləşdi: o, 12-dən 5 vahid fərqlənir. <span class="m">|x − 12| = 5</span> → <span class="m">x = 17</span> və ya <span class="m">x = 7</span>. "Fərqlənir" sözü modul deməkdir — böyük də ola bilər, kiçik də.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yalnız bir hal yazmaq: <span class="m">|2x + 1| = 7</span> → yalnız <span class="m">x = 3</span>. İkinci hal <span class="m">2x + 1 = −7</span> unudulur.</li>
+        <li><span class="m">|x − 4| = −2</span> üçün "x = 2, x = 6" yazmaq. Modul mənfi ola bilməz — kök yoxdur.</li>
+        <li><span class="m">|x − 4| + 3 = 1</span>-də 3-ü köçürmədən modulu açmaq. Əvvəl modulu tək saxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|x − a| — x ilə a arasındakı məsafə.
+|f| = a &gt; 0  →  f = ±a.   a = 0 → f = 0.   a &lt; 0 → kök yoxdur.
+Əvvəl modulu bir tərəfdə tək saxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">|x + 2| = 6</span>. Köklərin cəmi? <span class="ans">x + 2 = 6 → x = 4; x + 2 = −6 → x = −8. Cəm: −4.</span></li>
+        <li><span class="m">|3x − 6| = 0</span>. Neçə kök? <span class="ans">3x − 6 = 0 → x = 2. Bir kök.</span></li>
+        <li><span class="m">||x| − 3| = 3</span>. Neçə kök? <span class="ans">|x| = 6 və ya |x| = 0: x = −6; 0; 6 — 3 kök.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. |f| = |g| və |f| = g(x) tənlikləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzən hər iki tərəfdə modul olur, bəzən də sağda ədəd yox, <span class="m">x</span>-li ifadə durur. İlk halda iş asandır, ikincidə isə bir tələ var: sağ tərəf mənfi ola bilər, modul isə yox.</p>
+
+      <h3><span class="st">2</span> |f| = |g|</h3>
+      <p>Modulları bərabər olan iki ədəd ya bərabərdir, ya da əks ədədlərdir:</p>
+      <div class="fm">|f(x)| = |g(x)|  ⇔  f(x) = g(x)  və ya  f(x) = −g(x)</div>
+      <div class="ex">Nümunə 1.  |2x − 3| = |x + 6|
+  2x − 3 = x + 6       →  x = 9
+  2x − 3 = −(x + 6)    →  3x = −3  →  x = −1
+  Yoxla: |15| = |15| ✓   |−5| = |5| ✓
+  Köklərin cəmi: 8</div>
+      <div class="ex">Nümunə 2.  |x − 1| = |x + 5|
+  x − 1 = x + 5      →  −1 = 5 — mümkün deyil
+  x − 1 = −(x + 5)   →  2x = −4  →  x = −2
+  Məsafə ilə: 1 və −5 nöqtələrindən eyni uzaqlıqda olan nöqtə — ortası:
+  (1 + (−5))/2 = −2</div>
+
+      <h3><span class="st">3</span> |f| = g(x) — yoxlama vacibdir</h3>
+      <div class="fm">|f(x)| = g(x):
+  1. f = g  və ya  f = −g  — kökləri tap.
+  2. Hər kökdə g(x) ≥ 0 olmalıdır — yoxsa at.</div>
+      <div class="ex">|x − 4| = 2x + 1     (şərt: 2x + 1 ≥ 0)
+  Hal 1: x − 4 = 2x + 1     →  x = −5
+         2·(−5) + 1 = −9 &lt; 0  →  atılır
+  Hal 2: −(x − 4) = 2x + 1  →  −x + 4 = 2x + 1  →  x = 1
+         2·1 + 1 = 3 ≥ 0  ✓   Yoxla: |1 − 4| = 3 ✓
+  Cavab: bir kök, x = 1</div>
+      <div class="life"><b>Həyatdan.</b> Səhər temperatur −5°, günorta 1° idi. Axşam temperatur elə oldu ki, hər ikisindən eyni qədər fərqlənirdi: <span class="m">|t − 1| = |t + 5|</span> → <span class="m">t = −2°</span> — düz ortada.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">|f| = g(x)</span>-də kökü yoxlamamaq. <span class="m">g(x) &lt; 0</span> olan kök kənar kökdür.</li>
+        <li><span class="m">f = −g</span> halında mötərizəni unutmaq: <span class="m">2x − 3 = −x + 6</span> yox, <span class="m">2x − 3 = −x − 6</span>.</li>
+        <li>"Mümkün deyil" halını (<span class="m">−1 = 5</span>) səhv sanıb çaşmaq. Bu, sadəcə həmin halın kökü olmadığını göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|f| = |g|  ⇔  f = g  və ya  f = −g
+|f| = g    →  iki hal + yoxlama g(x) ≥ 0
+|x − a| = |x − b|  →  x = (a + b)/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">|x − 3| = |x + 7|</span>. x = ? <span class="ans">(3 + (−7))/2 = −2.</span></li>
+        <li><span class="m">|x − 2| = |3x + 2|</span>. Köklərin cəmi? <span class="ans">x − 2 = 3x + 2 → x = −2; x − 2 = −3x − 2 → x = 0. Cəm: −2.</span></li>
+        <li><span class="m">|x + 1| = 2x − 4</span>. Neçə kök? <span class="ans">Hal 1: x + 1 = 2x − 4 → x = 5, 2·5 − 4 = 6 ≥ 0 ✓. Hal 2: −x − 1 = 2x − 4 → x = 1, 2·1 − 4 = −2 &lt; 0 — atılır. Bir kök: 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Modullu bərabərsizliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Zavodda detalın uzunluğu 50 mm olmalıdır, icazə verilən xəta 0,2 mm: <span class="m">|x − 50| ≤ 0,2</span>. Termostat temperaturu 22°-dən ən çox 2° fərqlə saxlayır: <span class="m">|t − 22| ≤ 2</span>. "Ən çox bu qədər fərqlənir" — modullu bərabərsizlikdir.</p>
+
+      <h3><span class="st">2</span> |x − a| ≤ b — parça</h3>
+      <p><span class="m">|x − a| ≤ b</span>: <span class="m">x</span> nöqtəsi <span class="m">a</span>-dan ən çox <span class="m">b</span> uzaqdadır. Bu, mərkəzi <span class="m">a</span>, "radiusu" <span class="m">b</span> olan parçadır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 84" role="img" aria-label="|x − 2| ≤ 3: mərkəzi 2 olan [−1; 5] parçası">
+          <line x1="60" y1="52" x2="240" y2="52" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <line x1="10" y1="52" x2="290" y2="52" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 46L292 52L282 58" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M150 30H64M150 30H236" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M70 25L60 30L70 35M230 25L240 30L230 35" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <text x="105" y="22" text-anchor="middle" class="lbl">3</text>
+          <text x="195" y="22" text-anchor="middle" class="lbl">3</text>
+          <line x1="150" y1="44" x2="150" y2="60" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="60" cy="52" r="5.5" fill="var(--accent)"/>
+          <circle cx="240" cy="52" r="5.5" fill="var(--accent)"/>
+          <text x="60" y="78" text-anchor="middle" class="lbl">−1</text>
+          <text x="150" y="78" text-anchor="middle" class="lbl">2</text>
+          <text x="240" y="78" text-anchor="middle" class="lbl">5</text>
+        </svg>
+        <div class="cap"><p><span class="m">|x − 2| ≤ 3</span>: 2-dən hər iki tərəfə 3 vahid. Həll <span class="m">[−1; 5]</span>, tam həllər 7 ədəddir. Tərsinə: <span class="m">[L; R]</span> parçası <span class="m">|x − a| ≤ b</span> şəklində yazılır, burada <span class="m">a = (L + R)/2</span> — orta nöqtə, <span class="m">b = (R − L)/2</span> — yarım uzunluq.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> Qaydalar</h3>
+      <div class="fm">|f| &lt; a  ⇔  −a &lt; f &lt; a           (ikiqat — "və")
+|f| &gt; a  ⇔  f &lt; −a  və ya  f &gt; a   (iki şüa — "və ya")
+a &lt; 0:  |f| &lt; a — həll yoxdur;  |f| &gt; a — bütün ədədlər
+|f| ≤ 0  ⇔  f = 0</div>
+      <div class="ex">Nümunə 1.  |2x + 1| &lt; 5
+  −5 &lt; 2x + 1 &lt; 5  →  −6 &lt; 2x &lt; 4  →  −3 &lt; x &lt; 2
+  Tam həllər: −2; −1; 0; 1 → 4 ədəd</div>
+      <div class="ex">Nümunə 2.  |x − 1| ≥ 4
+  x − 1 ≤ −4  və ya  x − 1 ≥ 4  →  x ≤ −3  və ya  x ≥ 5
+  Həll olmayan tam ədədlər: −2; −1; …; 4 → 7 ədəd</div>
+      <div class="ex">Nümunə 3.  2 ≤ |x| ≤ 4
+  0-dan məsafə 2-dən 4-ə qədər: [−4; −2] ∪ [2; 4]
+  Tam həllər: ±2; ±3; ±4 → 6 ədəd</div>
+      <div class="life"><b>Həyatdan.</b> Termostat: <span class="m">|t − 22| ≤ 2</span> → <span class="m">20 ≤ t ≤ 24</span>. Termometr tam dərəcə göstərirsə — 20, 21, 22, 23, 24: beş qiymət. "2°-dən az fərq" (<span class="m">&lt;</span>) olsaydı — 21, 22, 23: üç qiymət.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">|f| &gt; a</span> üçün ikiqat bərabərsizlik yazmaq (<span class="m">−a &lt; f &lt; a</span>). Bu, <span class="m">|f| &lt; a</span>-nın cavabıdır. "Böyük" — iki şüa.</li>
+        <li>İkiqat bərabərsizlikdə ədədi yalnız orta hissədən çıxarmaq.</li>
+        <li><span class="m">|x| &lt; −1</span> üçün cavab axtarmaq. Modul mənfidən kiçik olmur — həll yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|x − a| ≤ b  →  [a − b; a + b]  (parça, mərkəz a)
+"Kiçik" (&lt;, ≤) → ikiqat: −a &lt; f &lt; a
+"Böyük" (&gt;, ≥) → iki şüa: f &lt; −a və ya f &gt; a</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">|x + 1| &lt; 3</span>. Neçə tam həll? <span class="ans">−4 &lt; x &lt; 2: −3; −2; −1; 0; 1 — 5 həll.</span></li>
+        <li><span class="m">|3x − 2| ≤ 4</span>. Neçə tam həll? <span class="ans">−4 ≤ 3x − 2 ≤ 4 → −2 ≤ 3x ≤ 6 → −2/3 ≤ x ≤ 2: 0; 1; 2 — 3 həll.</span></li>
+        <li><span class="m">|x − 5| &gt; 2</span>. Ən kiçik müsbət tam həll? <span class="ans">x &lt; 3 və ya x &gt; 7. Cavab: 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. İki modul: |x − a| + |x − b|</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yolda iki dayanacaq var. Kafeni harada tiksək, iki dayanacağa qədər yolların cəmi ən az olar? Bu suala <span class="m">|x − a| + |x − b|</span> ifadəsi cavab verir. İmtahanda belə ifadəli tənlik və bərabərsizliklər tez-tez olur.</p>
+
+      <h3><span class="st">2</span> Məsafə ilə bax</h3>
+      <p><span class="m">|x − a| + |x − b|</span> — <span class="m">x</span> nöqtəsindən <span class="m">a</span> və <span class="m">b</span> nöqtələrinə qədər məsafələrin cəmidir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 90" role="img" aria-label="−3 və 1 nöqtələri, x = 3 nöqtəsindən onlara qədər məsafələr 6 və 2">
+          <line x1="10" y1="62" x2="290" y2="62" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 56L292 62L282 68" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="70" y1="62" x2="190" y2="62" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <path d="M70 18H250M70 13V23M250 13V23" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M190 38H250M190 33V43M250 33V43" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="160" y="13" text-anchor="middle" class="lbl">|x + 3| = 6</text>
+          <text x="220" y="33" text-anchor="middle" class="lbl">2</text>
+          <circle cx="70" cy="62" r="5.5" fill="var(--accent)"/>
+          <circle cx="190" cy="62" r="5.5" fill="var(--accent)"/>
+          <circle cx="250" cy="62" r="5.5" fill="var(--vec)"/>
+          <text x="70" y="84" text-anchor="middle" class="lbl">−3</text>
+          <text x="190" y="84" text-anchor="middle" class="lbl">1</text>
+          <text x="250" y="84" text-anchor="middle" class="lbl">x = 3</text>
+        </svg>
+        <div class="cap"><p><span class="m">|x − 1| + |x + 3|</span>, <span class="m">x = 3</span>: məsafələr 2 və 6, cəm 8. Əgər <span class="m">x</span> rənglənmiş parçada (<span class="m">−3</span> ilə <span class="m">1</span> arasında) olsa, məsafələrin cəmi parçanın uzunluğuna — <b>4</b>-ə bərabərdir. Bu, ən kiçik qiymətdir.</p></div>
+      </div>
+      <div class="fm">a &lt; b olarsa:
+  a ≤ x ≤ b  →  |x − a| + |x − b| = b − a  (ən kiçik qiymət)
+  kənarda    →  b − a ədədindən böyükdür</div>
+
+      <h3><span class="st">3</span> İntervallar üzrə açma</h3>
+      <p>Universal üsul: modulların sıfırları ədəd oxunu hissələrə bölür, hər hissədə hər modul ya "+" ilə, ya "−" ilə açılır.</p>
+      <div class="ex">|x − 1| + |x + 3| = 6       sıfırlar: −3 və 1
+  x &lt; −3:      −(x − 1) − (x + 3) = 6  →  −2x − 2 = 6  →  x = −4 ✓ (−4 &lt; −3)
+  −3 ≤ x ≤ 1:  (1 − x) + (x + 3) = 6   →  4 = 6 — kök yoxdur
+  x &gt; 1:       (x − 1) + (x + 3) = 6   →  2x + 2 = 6  →  x = 2 ✓ (2 &gt; 1)
+  Köklər: −4 və 2;  cəmi −2</div>
+      <p>Hər hissədə tapılan kök həmin hissəyə düşməlidir — düşmürsə atılır.</p>
+
+      <h3><span class="st">4</span> Üç hal və bərabərsizlik</h3>
+      <div class="ex">|x − 1| + |x + 3| = c   (ən kiçik qiymət 4)
+  c &gt; 4  →  iki kök (parçadan solda və sağda)
+  c = 4  →  bütün [−3; 1] parçası! Tam köklər: −3; −2; −1; 0; 1 → 5
+  c &lt; 4  →  kök yoxdur
+
+|x − 1| + |x + 3| ≤ 8
+  Sərhədlər (= 8): −2x − 2 = 8 → x = −5;  2x + 2 = 8 → x = 3
+  Həll: [−5; 3] — 9 tam həll.  Yoxla: x = −5: 6 + 2 = 8 ✓</div>
+      <div class="life"><b>Həyatdan.</b> Dayanacaqlar yolun 12-ci və 20-ci kilometrindədir. Kafeni 12 ilə 20 arasında harada tiksən, iki dayanacağa yolların cəmi eynidir — 8 km. Kənara çıxdıqca cəm artır. Ona görə "cəm ən çox 10 km olsun" şərti kafeni <span class="m">[11; 21]</span> aralığına salır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hissədə tapılan kökün həmin hissəyə düşdüyünü yoxlamamaq.</li>
+        <li><span class="m">c = b − a</span> halında "iki kök" yazmaq. Burada bütöv parça kökdür.</li>
+        <li>Modulu açarkən mötərizə qarşısındakı minusu bir həddə tətbiq etmək: <span class="m">−(x + 3) = −x − 3</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|x − a| + |x − b| — iki nöqtəyə məsafələrin cəmi.
+Ən kiçik qiymət |a − b| — a ilə b arasındakı hər nöqtədə.
+Universal üsul: sıfırlar → hissələr → hər hissədə modulu aç → kökü yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">|x + 2| + |x − 5|</span> ifadəsinin ən kiçik qiyməti? <span class="ans">5 − (−2) = 7.</span></li>
+        <li><span class="m">|x| + |x − 2| = 6</span>. Köklərin cəmi? <span class="ans">x &lt; 0: −2x + 2 = 6 → x = −2. x &gt; 2: 2x − 2 = 6 → x = 4. Cəm: 2.</span></li>
+        <li><span class="m">|x − 1| + |x − 4| &lt; 5</span>. Neçə tam həll? <span class="ans">Sərhədlər: 5 − 2x = 5 → x = 0; 2x − 5 = 5 → x = 5. Həll (0; 5): 1; 2; 3; 4 — 4 həll.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="math"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kvadrat və rasional bərabərsizliklər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-intervallar-usulu.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Buraxılış · Kvadrat və rasional bərabərsizliklər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Bərabərsizliklər</div>
+    <h1>Kvadrat və rasional bərabərsizliklər (intervallar üsulu)</h1>
+    <p><span class="m">x² − 2x − 3 &lt; 0</span>, <span class="m">(x + 2)(x − 1)(x − 4) ≥ 0</span>, <span class="m">(x − 3)/(x + 2) ≤ 0</span> — bunların hamısı bir üsulla həll olunur: ifadəni vuruqlara ayır, sıfırlarını ədəd oxunda qeyd et, işarələri yaz. Bu, <b>intervallar üsuludur</b>. Tələlər: məxrəcin sıfırı (həmişə boş nöqtə) və cüt dərəcəli vuruq (işarə dəyişmir).</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Kvadrat</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İntervallar</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Rasional</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Cüt köklər</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kvadrat bərabərsizliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Yuxarı atılan top nə vaxt 15 m-dən yuxarıdadır? Hasarla əhatə olunan sahə nə vaxt 48 m²-dən böyükdür? Belə suallar <span class="m">ax² + bx + c &gt; 0</span> şəklində bərabərsizliyə gətirir — <b>kvadrat bərabərsizliyə</b>.</p>
+
+      <h3><span class="st">2</span> Əsas fikir: parabolaya bax</h3>
+      <p><span class="m">y = ax² + bx + c</span> qrafiki parabola, kökləri isə parabolanın Ox oxunu kəsdiyi nöqtələrdir. Bərabərsizlik soruşur: parabola oxdan <b>yuxarıdadır</b> (&gt; 0) yoxsa <b>aşağıda</b> (&lt; 0)?</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 130" role="img" aria-label="y = x² − 2x − 3 parabolası, −1 və 3 nöqtələrində oxu kəsir; aralarında oxdan aşağıdadır">
+          <line x1="10" y1="70" x2="290" y2="70" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M282 64L292 70L282 76" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="80" y1="70" x2="240" y2="70" stroke="var(--vec)" stroke-width="7" opacity=".55"/>
+          <polyline points="40,10 60,43 80,70 100,91 120,106 140,115 160,118 180,115 200,106 220,91 240,70 260,43 280,10" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="80" cy="70" r="5" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <circle cx="240" cy="70" r="5" fill="var(--sheet)" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="70" y="60" text-anchor="end" class="lbl">−1</text>
+          <text x="250" y="60" class="lbl">3</text>
+          <text x="30" y="58" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <text x="275" y="58" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <text x="160" y="92" text-anchor="middle" class="lbl" font-size="20">−</text>
+        </svg>
+        <div class="cap"><p><span class="m">y = x² − 2x − 3</span>: <span class="m">a = 1 &gt; 0</span>, qollar yuxarı. Köklər <span class="m">−1</span> və <span class="m">3</span>. Aralarında parabola oxdan aşağıdadır (mənfi), kənarlarda — yuxarıda (müsbət). Ona görə <span class="m">x² − 2x − 3 &lt; 0</span> ⇔ <span class="m">−1 &lt; x &lt; 3</span>.</p></div>
+      </div>
+      <div class="fm">a &gt; 0, köklər x₁ &lt; x₂:
+  ax² + bx + c &lt; 0  ⇔  x₁ &lt; x &lt; x₂       (köklər arası)
+  ax² + bx + c &gt; 0  ⇔  x &lt; x₁ və ya x &gt; x₂ (kənarlar)
+a &lt; 0 olarsa — hər tərəfi −1-ə vur, işarəni çevir.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  x² − 2x − 3 &lt; 0
+  Köklər (Viyet: cəm 2, hasil −3): x = −1, x = 3
+  a &gt; 0 → köklər arası: (−1; 3)
+  Tam həllər: 0; 1; 2 → 3 ədəd</div>
+      <div class="ex">Nümunə 2.  −x² + x + 6 ≤ 0
+  −1-ə vur (işarə dönür): x² − x − 6 ≥ 0
+  Köklər: x = −2, x = 3
+  a &gt; 0, "≥ 0" → kənarlar, köklər daxil:
+  Cavab: (−∞; −2] ∪ [3; +∞)</div>
+      <div class="ex">Nümunə 3.  2x² − 7x + 3 &gt; 0
+  D = 49 − 24 = 25,  x = (7 ± 5)/4  →  x₁ = 1/2, x₂ = 3
+  Cavab: (−∞; 1/2) ∪ (3; +∞)</div>
+      <div class="life"><b>Həyatdan.</b> Hasarın uzunluğu 28 m-dir, düzbucaqlı sahənin bir tərəfi <span class="m">x</span>, o biri <span class="m">14 − x</span>. Sahə ən azı 48 m² olsun: <span class="m">x(14 − x) ≥ 48</span> → <span class="m">x² − 14x + 48 ≤ 0</span> → <span class="m">6 ≤ x ≤ 8</span>. Tərəf 6 m-dən 8 m-ə qədər ola bilər.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a &lt; 0</span> olanda "köklər arası" qaydasını olduğu kimi tətbiq etmək. Əvvəl −1-ə vur.</li>
+        <li><span class="m">x² &lt; 9</span> üçün "x &lt; 3" yazmaq. Düzü: <span class="m">−3 &lt; x &lt; 3</span> (−5 də <span class="m">x &lt; 3</span>-dür, amma 25 &gt; 9).</li>
+        <li>"≤", "≥" olanda kökləri daxil etməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kökləri tap → a-nın işarəsinə bax.
+a &gt; 0:  "&lt; 0" — köklər arası,  "&gt; 0" — kənarlar.
+≤, ≥ — köklər daxildir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x² − 9 ≤ 0</span>. Neçə tam həll? <span class="ans">[−3; 3]: −3; …; 3 — 7 həll.</span></li>
+        <li><span class="m">x² + 4x &gt; 0</span>. Ən kiçik müsbət tam həll? <span class="ans">x(x + 4) &gt; 0 → (−∞; −4) ∪ (0; +∞). Cavab: 1.</span></li>
+        <li><span class="m">x² − 5x + 6 &lt; 0</span>. Neçə tam həll? <span class="ans">Köklər 2 və 3, həll (2; 3) — tam ədəd yoxdur. Cavab: 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İntervallar üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üç vuruq olanda parabola artıq kömək etmir. Amma bir sadə fakt var: <span class="m">(x − a)</span> vuruğu <span class="m">a</span>-dan sağda müsbət, solda mənfidir. Hasilin işarəsi vuruqların işarələrindən asılıdır — və o, yalnız sıfırlardan keçəndə dəyişə bilər.</p>
+
+      <h3><span class="st">2</span> Alqoritm</h3>
+      <div class="fm">1. Hər şeyi bir tərəfə keçir: f(x) &gt; 0
+   (və ya &lt;, ≥, ≤ — sağda 0 qalsın).
+2. f(x)-i vuruqlara ayır.
+3. Hər vuruğun sıfırını ədəd oxunda qeyd et
+   (≥, ≤ — dolu nöqtə;  &gt;, &lt; — boş).
+4. Ən sağ intervalda işarəni tap (x çox böyük).
+5. Sola doğru işarələri növbələ: +, −, +, …
+6. Lazım olan işarəli intervalları götür.</div>
+      <p>Bütün vuruqlar <span class="m">(x − a)</span> şəklindədirsə, ən sağda işarə <b>+</b>-dır. <span class="m">(3 − x)</span> kimi vuruq varsa, o, ən sağda mənfidir — işarəni nəzərə al.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">(x + 2)(x − 1)(x − 4) ≥ 0
+  Sıfırlar: −2; 1; 4  (≥ — dolu nöqtələr)
+  Ən sağda (məs. x = 10): (+)(+)(+) = +
+  Soldan sağa: −  +  −  +
+  "≥ 0" → "+" intervallar və nöqtələr:
+  Cavab: [−2; 1] ∪ [4; +∞)</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 80" role="img" aria-label="İşarə sxemi: −2, 1, 4 nöqtələri; işarələr − + − +; həll [−2; 1] və [4; +∞)">
+          <line x1="70" y1="44" x2="150" y2="44" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <line x1="230" y1="44" x2="292" y2="44" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <line x1="6" y1="44" x2="294" y2="44" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M286 38L296 44L286 50" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text x="38" y="30" text-anchor="middle" class="lbl" font-size="20">−</text>
+          <text x="110" y="30" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <text x="190" y="30" text-anchor="middle" class="lbl" font-size="20">−</text>
+          <text x="262" y="30" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <circle cx="70" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="150" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="230" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="70" y="70" text-anchor="middle" class="lbl">−2</text>
+          <text x="150" y="70" text-anchor="middle" class="lbl">1</text>
+          <text x="230" y="70" text-anchor="middle" class="lbl">4</text>
+        </svg>
+        <div class="cap"><p>İşarə sxemi. Nöqtələr miqyasla çəkilmir — yalnız sıra vacibdir. Rənglənmiş hissələr — həll. Nöqtələr dolu, çünki "≥": vuruq sıfır olanda <span class="m">0 ≥ 0</span> doğrudur.</p></div>
+      </div>
+
+      <h3><span class="st">4</span> "x" arxada olan vuruq</h3>
+      <div class="ex">(3 − x)(x + 1) &gt; 0
+  Sıfırlar: −1; 3
+  Ən sağda (x = 10): (3 − 10)(10 + 1) = (−)(+) = −
+  Soldan sağa: −  +  −
+  "&gt; 0" → (−1; 3);  tam həllər 0; 1; 2
+Başqa yol: −1-ə vur: (x − 3)(x + 1) &lt; 0 — eyni cavab.</div>
+      <div class="life"><b>Həyatdan.</b> Svetofor kimi: işarə yalnız "sıfır nöqtələrində" dəyişə bilər. Aralarda hasil eyni işarəni saxlayır — ona görə hər intervaldan bircə nöqtə yoxlamaq kifayətdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ən sağda işarəni yoxlamadan "+" yazmaq, halbuki <span class="m">(3 − x)</span> kimi vuruq var.</li>
+        <li>Nöqtələri ədəd oxunda səhv sırada düzmək (məs. 1/2 ilə 1-i qarışdırmaq).</li>
+        <li>"≥" olanda sıfırları daxil etməyi unutmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sıfırlar → oxda nöqtələr → ən sağda işarə → növbələ.
+(x − a): a-dan sağda +.   (a − x): a-dan sağda −.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x − 1)(x − 3)(x − 5) &lt; 0</span>. Ən böyük tam həll? <span class="ans">İşarələr − + − +: (−∞; 1) ∪ (3; 5). Ən böyük tam həll 4.</span></li>
+        <li><span class="m">x(x + 3)(x − 2) ≤ 0</span>. Ən böyük tam həll? <span class="ans">Sıfırlar −3; 0; 2; işarələr − + − +: (−∞; −3] ∪ [0; 2]. Cavab: 2.</span></li>
+        <li><span class="m">(2 − x)(x + 5) ≥ 0</span>. Neçə tam həll? <span class="ans">Ən sağda −, işarələr − + −: [−5; 2] — 8 həll.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Rasional bərabərsizliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kəsrin işarəsi hasilin işarəsi kimi tapılır: <span class="m">A/B</span> və <span class="m">A·B</span> eyni işarəlidir. Deməli intervallar üsulu kəsrlərə də işləyir. Yeganə fərq: məxrəc sıfır ola bilməz.</p>
+
+      <h3><span class="st">2</span> Qaydalar</h3>
+      <div class="fm">1. Hər şeyi bir tərəfə keçir, ortaq məxrəcə gətir:
+   A(x)/B(x) &gt; 0  (və ya &lt;, ≥, ≤)
+2. Surətin sıfırları: ≥, ≤ olanda dolu, &gt;, &lt; olanda boş.
+3. Məxrəcin sıfırları: HƏMİŞƏ boş nöqtə.
+4. İşarələr — intervallar üsulu ilə.</div>
+      <p><b>Məxrəcə vurmaq olmaz!</b> Onun işarəsi məlum deyil: müsbətdirsə işarə qalır, mənfidirsə dönür. Ona görə hər şeyi sola keçirib kəsri sıfırla müqayisə edirik.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1.  (x − 3)/(x + 2) ≤ 0
+  Surət: x = 3 (dolu).  Məxrəc: x = −2 (boş)
+  Ən sağda: +.  Soldan sağa: +  −  +
+  Cavab: (−2; 3];  tam həllər −1; 0; 1; 2; 3 → 5 ədəd</div>
+      <div class="ex">Nümunə 2.  5/(x − 1) ≥ 2
+  Sola keçir: 5/(x − 1) − 2 ≥ 0
+  Ortaq məxrəc: (5 − 2(x − 1))/(x − 1) ≥ 0  →  (7 − 2x)/(x − 1) ≥ 0
+  Sıfırlar: 7/2 (dolu), 1 (boş)
+  Ən sağda: (−)/(+) = −.  Soldan sağa: −  +  −
+  Cavab: (1; 7/2];  tam həllər 2; 3</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 80" role="img" aria-label="İşarə sxemi: 1 boş nöqtə, 7/2 dolu nöqtə; işarələr − + −; həll (1; 7/2]">
+          <line x1="100" y1="44" x2="200" y2="44" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <line x1="6" y1="44" x2="294" y2="44" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M286 38L296 44L286 50" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text x="53" y="30" text-anchor="middle" class="lbl" font-size="20">−</text>
+          <text x="150" y="30" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <text x="247" y="30" text-anchor="middle" class="lbl" font-size="20">−</text>
+          <circle cx="100" cy="44" r="5.5" fill="var(--sheet)" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="200" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="100" y="70" text-anchor="middle" class="lbl">1</text>
+          <text x="200" y="70" text-anchor="middle" class="lbl">7/2</text>
+        </svg>
+        <div class="cap"><p>Nümunə 2-nin sxemi. 1 — məxrəcin sıfırı, boş dairə. 7/2 — surətin sıfırı, "≥" olduğu üçün dolu. Yoxla: <span class="m">x = 3</span>: <span class="m">5/2 ≥ 2</span> ✓; <span class="m">x = 0</span>: <span class="m">−5 ≥ 2</span> ✗.</p></div>
+      </div>
+      <p>Məxrəcə vurub <span class="m">5 ≥ 2(x − 1)</span> yazsaydıq, <span class="m">x ≤ 3,5</span> alardıq — və <span class="m">x = 0</span> da "həll" olardı. Amma yuxarıda gördük ki, 0 həll deyil. Məxrəcə vurmağın cəzası budur.</p>
+      <div class="ex">Nümunə 3.  (x + 1)(x − 4)/(x − 2) &gt; 0
+  Sıfırlar: −1; 2 (məxrəc, boş); 4
+  Soldan sağa: −  +  −  +
+  Cavab: (−1; 2) ∪ (4; +∞)</div>
+      <div class="life"><b>Həyatdan.</b> 12 km yolu <span class="m">v</span> km/saat sürətlə gedirsən, vaxt <span class="m">12/v</span> saatdır. Yol 3 saatdan az çəksin: <span class="m">12/v &lt; 3</span> → <span class="m">(12 − 3v)/v &lt; 0</span> → <span class="m">v &lt; 0</span> və ya <span class="m">v &gt; 4</span>. Sürət mənfi olmur — cavab: 4 km/saatdan çox.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabərsizliyi məxrəcə vurmaq. Hər şeyi bir tərəfə keçir.</li>
+        <li>Məxrəcin sıfırını "≥" olduğu üçün dolu çəkmək. Orada kəsrin mənası yoxdur — həmişə boş.</li>
+        <li>Ortaq məxrəcə gətirərkən mötərizəni açıb işarəni itirmək: <span class="m">5 − 2(x − 1) = 7 − 2x</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A/B-nin işarəsi = A·B-nin işarəsi.
+Məxrəcə vurma! Hamısını bir tərəfə keçir.
+Məxrəcin sıfırı — həmişə ○.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x + 1)/(x − 3) &lt; 0</span>. Neçə tam həll? <span class="ans">(−1; 3): 0; 1; 2 — 3 həll.</span></li>
+        <li><span class="m">(x − 2)/(x + 4) ≥ 0</span>. x = −4 həlldirmi? <span class="ans">Yox. −4 məxrəci sıfır edir. Həll: (−∞; −4) ∪ [2; +∞).</span></li>
+        <li><span class="m">1/(x − 1) &gt; 1</span>. Neçə tam həll? <span class="ans">(2 − x)/(x − 1) &gt; 0 → (1; 2). Tam həll yoxdur — 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Cüt dərəcəli vuruqlar və xüsusi hallar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İşarələri növbələ" qaydasının bir istisnası var və imtahan onu çox sevir: <span class="m">(x − a)²</span> vuruğu. Kvadrat heç vaxt mənfi olmur, ona görə <span class="m">a</span> nöqtəsindən keçəndə işarə <b>dəyişmir</b>.</p>
+
+      <h3><span class="st">2</span> Cüt dərəcəli vuruq</h3>
+      <div class="fm">(x − a)², (x − a)⁴, … — a nöqtəsində işarə dəyişmir.
+(x − a), (x − a)³, …  — a nöqtəsində işarə dəyişir.</div>
+      <div class="ex">(x − 2)²(x + 1) ≤ 0
+  Sıfırlar: −1; 2 (ikisi də dolu)
+  Ən sağda: +.  2-dən keçəndə işarə qalır: +
+  −1-dən keçəndə dəyişir: −
+  Soldan sağa: −  +  +
+  "≤ 0": (−∞; −1] və x = 2 nöqtəsi!
+  Cavab: (−∞; −1] ∪ {2};  ən böyük tam həll 2</div>
+      <div class="fig">
+        <svg viewBox="0 0 300 80" role="img" aria-label="İşarə sxemi: −1 və 2 dolu nöqtələr; işarələr − + +; həll (−∞; −1] və tək nöqtə 2">
+          <line x1="6" y1="44" x2="100" y2="44" stroke="var(--accent)" stroke-width="8" opacity=".45"/>
+          <line x1="6" y1="44" x2="294" y2="44" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M286 38L296 44L286 50" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text x="53" y="30" text-anchor="middle" class="lbl" font-size="20">−</text>
+          <text x="150" y="30" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <text x="247" y="30" text-anchor="middle" class="lbl" font-size="20">+</text>
+          <circle cx="100" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="200" cy="44" r="9" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <circle cx="200" cy="44" r="5.5" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="100" y="70" text-anchor="middle" class="lbl">−1</text>
+          <text x="200" y="70" text-anchor="middle" class="lbl">2</text>
+        </svg>
+        <div class="cap"><p>2 nöqtəsinin hər iki tərəfində "+" var — işarə dəyişmədi. Amma 2-nin özündə ifadə sıfırdır, "≤ 0" isə sıfıra icazə verir. Ona görə 2 — <b>tək nöqtə</b> kimi həllə daxildir. Bunu unutmaq ən çox yayılmış səhvdir.</p></div>
+      </div>
+
+      <h3><span class="st">3</span> D = 0 və D &lt; 0</h3>
+      <div class="ex">x² − 6x + 9 = (x − 3)²   (D = 0)
+  (x − 3)² &gt; 0  →  x ≠ 3  (3-dən başqa bütün ədədlər)
+  (x − 3)² ≥ 0  →  bütün ədədlər
+  (x − 3)² &lt; 0  →  həll yoxdur
+  (x − 3)² ≤ 0  →  yalnız x = 3
+
+x² + x + 1   (D = 1 − 4 = −3 &lt; 0, a &gt; 0)
+  Həmişə müsbətdir:
+  x² + x + 1 &gt; 0  →  bütün ədədlər
+  x² + x + 1 &lt; 0  →  həll yoxdur</div>
+      <p>Belə vuruq başqa vuruqlarla birlikdə gəlirsə (<span class="m">(x² + x + 1)(x − 5) &lt; 0</span>), onu sadəcə at: o həmişə müsbətdir, işarəyə təsir etmir. Cavab: <span class="m">x &lt; 5</span>.</p>
+
+      <h3><span class="st">4</span> Tətbiq: DMQ və hərəkət</h3>
+      <div class="ex">1) √((x + 1)(4 − x)) ifadəsinin DMQ-su
+   Kök altı ≥ 0: (x + 1)(4 − x) ≥ 0
+   Ən sağda: (+)(−) = −.  Soldan sağa: −  +  −
+   DMQ: [−1; 4] — 6 tam ədəd
+
+2) Top 20 m/s sürətlə yuxarı atılıb: h = 20t − 5t².
+   Neçə saniyə 15 m-dən aşağı olmayan hündürlükdədir?
+   20t − 5t² ≥ 15  →  t² − 4t + 3 ≤ 0  →  1 ≤ t ≤ 3
+   Cavab: 3 − 1 = 2 saniyə</div>
+      <div class="life"><b>Həyatdan.</b> Top 1-ci saniyədə 15 m-ə qalxır, 2-ci saniyədə ən yuxarıda (20 m) olur, 3-cü saniyədə yenə 15 m-dən keçib aşağı enir. 15 m-dən yuxarıda olduğu müddət — köklər arasıdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cüt dərəcəli vuruqda işarəni növbələmək.</li>
+        <li>"≤", "≥" olanda cüt dərəcəli vuruğun tək nöqtəsini itirmək: <span class="m">(x − 2)²(x + 1) ≤ 0</span>-da <span class="m">x = 2</span>.</li>
+        <li>"&gt;" olanda həmin nöqtəni çıxarmağı unutmaq: <span class="m">(x − 3)² &gt; 0</span> — <span class="m">x = 3</span> həll deyil.</li>
+        <li>D &lt; 0 olanda "həll yoxdur" deyib dayanmaq. Bərabərsizliyin işarəsinə bax: bəzən cavab "bütün ədədlər"dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(x − a)² — a-da işarə dəyişmir; ≤, ≥ olanda a tək nöqtə kimi daxildir.
+D &lt; 0, a &gt; 0 — üçhədli həmişə müsbətdir.
+D = 0 — tam kvadrat.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x − 1)²(x − 4) &lt; 0</span>. Ən böyük tam həll? <span class="ans">x &lt; 4 və x ≠ 1. Cavab: 3.</span></li>
+        <li><span class="m">x² + 4x + 4 ≤ 0</span>. Neçə həll? <span class="ans">(x + 2)² ≤ 0 → yalnız x = −2. Bir həll.</span></li>
+        <li><span class="m">√(x² − 4x)</span> ifadəsinin DMQ-suna neçə tam ədəd daxil deyil? <span class="ans">x(x − 4) ≥ 0 → (−∞; 0] ∪ [4; +∞). Daxil olmayanlar: 1; 2; 3 — 3 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
