@@ -306,3 +306,6 @@ a.ag:active,a.attn:active{transform:scale(.995)}
 .attn .ag-tx small{color:var(--err-ink)}
 .home-sec{margin-top:40px}
 @media (max-width:640px){.ag{grid-template-columns:52px 36px 1fr;gap:10px;padding:10px 12px}.ag-go{display:none}.ag-ic{width:36px;height:36px}}
+/* formulas never break inside an equation: one equation per line, scroll sideways if a single one is too wide */
+.fcard .fx{display:grid;gap:2px;overflow-x:auto;scrollbar-width:thin}
+.fcard .fx span{white-space:nowrap}

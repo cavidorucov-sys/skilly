@@ -99,3 +99,6 @@ html{scrollbar-gutter:stable}
 /* inside the portal the lesson uses the full work area; text lines stay readable */
 .in-frame .wrap{max-width:none}
 .in-frame p,.in-frame .life,.in-frame .warnbox,.in-frame .lesson ul{max-width:80ch}
+/* equations never break mid-line: formula boxes keep their own line breaks and scroll sideways on narrow screens */
+.fm{white-space:pre;overflow-x:auto;max-width:100%}
+.m,.eqn{white-space:nowrap}

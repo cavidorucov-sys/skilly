@@ -283,7 +283,7 @@ async function pageFormulas() {
     list.append(el("p", { class: "count" }, s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`));
     [...new Set(f.map(x => x.movzu))].forEach(mz => {
       list.append(el("div", { class: "fsec" }, mz), el("div", { class: "fgrid" }, ...f.filter(x => x.movzu === mz).map(x => el("div", { class: "fcard" },
-        el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, x.fx), el("div", { class: "note" }, x.nevaxt || ""),
+        el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, ...x.fx.split(";").map(f => el("span", {}, f.trim()))), el("div", { class: "note" }, x.nevaxt || ""),
         x.sehv ? el("div", { class: "err" }, "Tipik səhv: " + x.sehv) : null, x.ders ? el("a", { href: x.ders }, "İzahı dərsdə →") : null))));
     });
     if (!f.length) list.append(el("p", { class: "empty" }, "Tapılmadı."));
