@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Eyniliklər və simmetrik çoxhədlilər dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-eynilikler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Eyniliklər, simmetrik çoxhədlilər</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Eynilik çevirmələri; simmetrik çoxhədlilər</div>
+    <h1>Eynilik çevirmələri, simmetrik çoxhədlilər</h1>
+    <p><span class="m">a + b = 5</span>, <span class="m">ab = 3</span> verilib, <span class="m">a³ + b³</span> soruşulur. <span class="m">a</span> və <span class="m">b</span>-ni tapmaq çətindir (köklər irrasionaldır), amma lazım da deyil: cavab eyniliklərlə bir sətirdə çıxır. Bu mövzuda olimpiadanın sevimli "ağıllı hesablama" fəndlərini öyrənəcəksən.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>a + b və ab</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>x + 1/x</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Üç dəyişən</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Ağıllı hesab</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Simmetrik ifadələr: a + b və ab</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><b>Eynilik</b> — dəyişənlərin bütün qiymətlərində doğru olan bərabərlikdir: <span class="m">(a + b)² = a² + 2ab + b²</span>. <b>Eynilik çevirməsi</b> — ifadəni ona eyni olan başqa şəklə salmaq. Olimpiadada ifadəni hesablamaq yox, onu <b>düzgün şəklə salmaq</b> vacibdir.</p>
+
+      <h3><span class="st">2</span> Simmetrik ifadə</h3>
+      <p><span class="m">a</span> ilə <span class="m">b</span>-nin yerini dəyişəndə dəyişməyən ifadə <b>simmetrikdir</b>: <span class="m">a² + b²</span>, <span class="m">a³b + ab³</span>, <span class="m">1/a + 1/b</span>. <span class="m">a − b</span> isə simmetrik deyil (işarəsi dəyişir).</p>
+      <p><b>Teorem</b> (sübutsuz): hər simmetrik çoxhədli iki "əsas" ifadə ilə yazılır:</p>
+      <div class="fm">s = a + b,   p = ab</div>
+      <p>Viyetlə əlaqə: <span class="m">a</span>, <span class="m">b</span> — <span class="m">x² − sx + p = 0</span> tənliyinin kökləridir. Ona görə "köklərin kvadratları cəmi" kimi suallar da buraya aiddir.</p>
+
+      <h3><span class="st">3</span> Əsas düsturlar</h3>
+      <div class="fm">a² + b² = s² − 2p
+(a − b)² = s² − 4p
+a³ + b³ = s³ − 3ps
+a⁴ + b⁴ = (a² + b²)² − 2p²
+1/a + 1/b = s/p
+a/b + b/a = (s² − 2p)/p</div>
+      <p><b>Haradan?</b> <span class="m">(a + b)² = a² + b² + 2ab</span> → birinci. <span class="m">(a + b)³ = a³ + b³ + 3a²b + 3ab² = a³ + b³ + 3ab(a + b)</span> → üçüncü. Dördüncü: <span class="m">(a² + b²)² = a⁴ + b⁴ + 2a²b²</span>.</p>
+      <p><span class="m">a − b</span> verilsə: <span class="m">a² + b² = (a − b)² + 2ab</span>, <span class="m">a³ − b³ = (a − b)³ + 3ab(a − b)</span>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">a + b = 5, ab = 3.
+  a² + b² = 25 − 6 = 19
+  a³ + b³ = 125 − 3 · 3 · 5 = 125 − 45 = 80
+  a⁴ + b⁴ = 19² − 2 · 9 = 361 − 18 = 343
+  (a − b)² = 25 − 12 = 13  →  |a − b| = √13
+  1/a + 1/b = 5/3</div>
+      <div class="ex">Olimpiada məsələsi. a + b = 1, ab = −1. a⁵ + b⁵ = ?
+
+Həll. Tₙ = aⁿ + bⁿ yaz. Eynilik:
+  aⁿ + bⁿ = (a + b)(aⁿ⁻¹ + bⁿ⁻¹) − ab(aⁿ⁻² + bⁿ⁻²),
+yəni Tₙ = s · Tₙ₋₁ − p · Tₙ₋₂ = Tₙ₋₁ + Tₙ₋₂.
+  T₀ = 2, T₁ = 1, T₂ = 1 + 2 = 3, T₃ = 3 + 1 = 4,
+  T₄ = 4 + 3 = 7, T₅ = 7 + 4 = 11.
+Cavab: 11.</div>
+      <div class="life"><b>Həyatdan.</b> Düzbucaqlı sahənin perimetri 34 m, sahəsi 60 m²-dir. Diaqonalın uzunluğu? Tərəfləri tapmağa ehtiyac yoxdur: <span class="m">a + b = 17</span>, <span class="m">ab = 60</span>, <span class="m">d² = a² + b² = 289 − 120 = 169</span>, <span class="m">d = 13</span> m.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a² + b² = (a + b)²</span> yazmaq. <span class="m">2ab</span> unudulub.</li>
+        <li><span class="m">a³ + b³ = s³ − 3p</span> yazmaq. Düzü: <span class="m">s³ − 3ps</span> — <span class="m">3ab(a + b)</span>.</li>
+        <li><span class="m">ab</span> mənfi olanda işarəni itirmək: <span class="m">s² − 2p</span>, <span class="m">p = −5</span> → <span class="m">s² + 10</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">s = a + b,  p = ab
+a² + b² = s² − 2p;  (a − b)² = s² − 4p
+a³ + b³ = s³ − 3ps
+aⁿ + bⁿ = s(aⁿ⁻¹ + bⁿ⁻¹) − p(aⁿ⁻² + bⁿ⁻²)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a + b = 4</span>, <span class="m">ab = 1</span>. <span class="m">a² + b² = ?</span> <span class="ans">16 − 2 = 14.</span></li>
+        <li>Eyni verilənlərlə <span class="m">a³ + b³ = ?</span> <span class="ans">64 − 3 · 1 · 4 = 52.</span></li>
+        <li><span class="m">a + b = 3</span>, <span class="m">ab = −2</span>. <span class="m">1/a + 1/b = ?</span> <span class="ans">3/(−2) = −3/2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. x + 1/x fəndləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p><span class="m">x</span> və <span class="m">1/x</span> — xüsusi cütdür: hasilləri 1-dir. Deməli, Dərs 1-in bütün düsturları burada <span class="m">p = 1</span> ilə işləyir. Olimpiadada "x² − 7x + 1 = 0 isə, x⁴ + 1/x⁴ = ?" tipli məsələlər çox çıxır.</p>
+
+      <h3><span class="st">2</span> Düsturlar</h3>
+      <div class="fm">x + 1/x = t:
+  x² + 1/x² = t² − 2
+  x³ + 1/x³ = t³ − 3t
+  x⁴ + 1/x⁴ = (t² − 2)² − 2
+  (x − 1/x)² = t² − 4
+x − 1/x = u:
+  x² + 1/x² = u² + 2
+  x³ − 1/x³ = u³ + 3u</div>
+      <p><b>Tənlikdən <span class="m">t</span>-yə keçid.</b> <span class="m">x² − 5x + 1 = 0</span>. <span class="m">x = 0</span> kök deyil, ona görə <span class="m">x</span>-ə bölmək olar: <span class="m">x − 5 + 1/x = 0</span> → <span class="m">x + 1/x = 5</span>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) x² − 5x + 1 = 0.  x + 1/x = 5.
+   x² + 1/x² = 25 − 2 = 23
+   x⁴ + 1/x⁴ = 23² − 2 = 527
+   x³ + 1/x³ = 125 − 15 = 110
+
+2) x > 0, x² + 1/x² = 7.  x + 1/x = ?
+   (x + 1/x)² = 7 + 2 = 9, x &gt; 0 → x + 1/x = 3.</div>
+
+      <h3><span class="st">4</span> Qayıdış (simmetrik) tənliklər</h3>
+      <p>Əmsalları iki ucdan eyni olan tənlik: <span class="m">x⁴ − 5x³ + 6x² − 5x + 1 = 0</span>. <span class="m">x²</span>-yə böl və <span class="m">t = x + 1/x</span> qoy:</p>
+      <div class="ex">x² + 1/x² − 5(x + 1/x) + 6 = 0
+(t² − 2) − 5t + 6 = 0  →  t² − 5t + 4 = 0  →  t = 1 və ya t = 4.
+t = 1: x + 1/x = 1 → x² − x + 1 = 0, D = −3 — həqiqi kök yoxdur.
+t = 4: x² − 4x + 1 = 0 → x = 2 ± √3.
+Həqiqi köklərin cəmi: 4.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. x + 1/x = 3. x⁶ + 1/x⁶ = ?
+
+Həll. x³ + 1/x³ = 27 − 9 = 18.
+x⁶ + 1/x⁶ = (x³ + 1/x³)² − 2 = 324 − 2 = 322.</div>
+      <div class="ex">Məsələ 2. x/(x² + x + 1) = 1/4. x²/(x⁴ + x² + 1) = ?
+
+Həll. Tərsinə çevir: (x² + x + 1)/x = 4 → x + 1 + 1/x = 4 →
+x + 1/x = 3. İndi soruşulanın tərsi:
+(x⁴ + x² + 1)/x² = x² + 1 + 1/x² = (9 − 2) + 1 = 8.
+Cavab: 1/8.</div>
+      <div class="life"><b>Həyatdan.</b> Bu fənd "ölçü vahidi dəyişməsi" kimidir: <span class="m">x</span> və <span class="m">1/x</span> bir-birini tarazlayır (məsələn, şəkli <span class="m">x</span> dəfə böyüdüb sonra <span class="m">x</span> dəfə kiçiltmək). Hesabda isə qısaltma verir: dördüncü dərəcəli tənlik iki kvadrat tənliyə çevrilir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">x² + 1/x² = t²</span> yazmaq. Kvadrata yüksəldəndə orta hədd <span class="m">2 · x · 1/x = 2</span> çıxır.</li>
+        <li><span class="m">x − 1/x</span> halında <span class="m">−2</span> yazmaq. Burada orta hədd <span class="m">−2</span>-dir, ona görə <span class="m">x² + 1/x² = u² + 2</span>.</li>
+        <li><span class="m">x + 1/x</span>-i kökdən tapanda işarəni unutmaq: <span class="m">x &gt; 0</span> verilməyibsə, <span class="m">±3</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">x + 1/x = t:  x² + 1/x² = t² − 2;  x³ + 1/x³ = t³ − 3t
+x − 1/x = u:  x² + 1/x² = u² + 2
+ax² + bx + a = 0 → x-ə böl
+qayıdış tənlik → x²-yə böl, t = x + 1/x</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x + 1/x = 4</span>. <span class="m">x² + 1/x² = ?</span> <span class="ans">16 − 2 = 14.</span></li>
+        <li>Eyni şərtlə <span class="m">x³ + 1/x³ = ?</span> <span class="ans">64 − 12 = 52.</span></li>
+        <li><span class="m">x − 1/x = 2</span>. <span class="m">x² + 1/x² = ?</span> <span class="ans">4 + 2 = 6.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Üç dəyişən və a³ + b³ + c³ − 3abc</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Üç dəyişəndə də eyni fikir işləyir: simmetrik ifadəni üç "əsas" ifadə ilə yazırıq. Ən məşhur eynilik — <span class="m">a³ + b³ + c³ − 3abc</span>-nin vuruqlara ayrılması — olimpiadada həm hesabda, həm sübutda çıxır.</p>
+
+      <h3><span class="st">2</span> Əsas simmetrik ifadələr</h3>
+      <div class="fm">σ₁ = a + b + c
+σ₂ = ab + bc + ca
+σ₃ = abc
+a² + b² + c² = σ₁² − 2σ₂
+1/a + 1/b + 1/c = σ₂/σ₃</div>
+      <p>Birincisi <span class="m">(a + b + c)² = a² + b² + c² + 2(ab + bc + ca)</span>-dan çıxır. İkincisi — ortaq məxrəc <span class="m">abc</span>.</p>
+
+      <h3><span class="st">3</span> Məşhur eynilik</h3>
+      <div class="fm">a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca)</div>
+      <p><b>Sübutun eskizi.</b> <span class="m">s = a + b</span> yaz: <span class="m">a³ + b³ = s³ − 3abs</span>. Onda sol tərəf <span class="m">= s³ + c³ − 3ab(s + c)</span>. <span class="m">s³ + c³ = (s + c)(s² − sc + c²)</span>, ona görə <span class="m">(s + c)</span> mötərizə xaricinə çıxır: <span class="m">(s + c)(s² − sc + c² − 3ab)</span>. <span class="m">s = a + b</span>-ni yerinə qoy və aç — ikinci mötərizə <span class="m">a² + b² + c² − ab − bc − ca</span> olur.</p>
+      <div class="fm">a² + b² + c² − ab − bc − ca = ½((a − b)² + (b − c)² + (c − a)²) ≥ 0</div>
+      <p>İki mühüm nəticə:</p>
+      <div class="ex">1) a + b + c = 0  ⇒  a³ + b³ + c³ = 3abc.
+2) a, b, c &gt; 0 və a³ + b³ + c³ = 3abc  ⇒  a = b = c
+   (ikinci mötərizə 0 olmalıdır — kvadratlar cəmi 0).
+Ümumi şəkil: a³ + b³ + c³ = σ₁³ − 3σ₁σ₂ + 3σ₃.</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">a + b + c = 6, ab + bc + ca = 11, abc = 6.
+  a² + b² + c² = 36 − 22 = 14
+  a³ + b³ + c³ = 216 − 3 · 6 · 11 + 3 · 6 = 216 − 198 + 18 = 36
+  1/a + 1/b + 1/c = 11/6
+  (Yoxla: bunlar 1, 2, 3 ədədləridir: 1 + 8 + 27 = 36 ✓)</div>
+      <div class="ex">Olimpiada məsələsi 1. 17³ − 12³ − 5³ = ?
+
+Həll. a = 17, b = −12, c = −5: a + b + c = 0.
+Deməli a³ + b³ + c³ = 3abc = 3 · 17 · (−12) · (−5) = 3060.</div>
+      <div class="ex">Olimpiada məsələsi 2. a + b + c = 0, abc ≠ 0.
+(a² + b² + c²)² / (a⁴ + b⁴ + c⁴) = ?
+
+Həll. σ₁ = 0 → a² + b² + c² = −2σ₂.
+a²b² + b²c² + c²a² = σ₂² − 2abc(a + b + c) = σ₂².
+a⁴ + b⁴ + c⁴ = (a² + b² + c²)² − 2(a²b² + b²c² + c²a²)
+             = 4σ₂² − 2σ₂² = 2σ₂².
+Cavab: 4σ₂² / 2σ₂² = 2.</div>
+      <div class="life"><b>Həyatdan.</b> Düzbucaqlı qutunun (paralelepipedin) bütün tillərinin cəmi <span class="m">4(a + b + c)</span>, tam səthi <span class="m">2(ab + bc + ca)</span>-dır. Bu iki ölçüdən diaqonal çıxır: <span class="m">d² = a² + b² + c² = σ₁² − 2σ₂</span>. Tillər 48 sm, səth 94 sm² olsa: <span class="m">σ₁ = 12</span>, <span class="m">σ₂ = 47</span>, <span class="m">d² = 144 − 94 = 50</span>, <span class="m">d = 5√2</span> sm.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><span class="m">a³ + b³ + c³ = (a + b + c)³</span> yazmaq — çox sayda hədd unudulur.</li>
+        <li><span class="m">a + b + c = 0</span> olanda <span class="m">a³ + b³ + c³ = 0</span> demək. Düzü: <span class="m">3abc</span>.</li>
+        <li><span class="m">a² + b² + c² = σ₁² − σ₂</span> yazmaq: 2 vuruğu itir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a² + b² + c² = σ₁² − 2σ₂;  1/a + 1/b + 1/c = σ₂/σ₃
+a³ + b³ + c³ − 3abc = σ₁ · (a² + b² + c² − σ₂)
+a + b + c = 0 ⇒ a³ + b³ + c³ = 3abc
+a³ + b³ + c³ = σ₁³ − 3σ₁σ₂ + 3σ₃</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a + b + c = 5</span>, <span class="m">ab + bc + ca = 7</span>. <span class="m">a² + b² + c² = ?</span> <span class="ans">25 − 14 = 11.</span></li>
+        <li><span class="m">a + b + c = 0</span>, <span class="m">abc = 4</span>. <span class="m">a³ + b³ + c³ = ?</span> <span class="ans">3 · 4 = 12.</span></li>
+        <li><span class="m">ab + bc + ca = 3</span>, <span class="m">abc = −6</span>. <span class="m">1/a + 1/b + 1/c = ?</span> <span class="ans">3/(−6) = −1/2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Ağıllı hesablamalar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada kalkulyator yoxdur, ədədlər isə qəsdən böyük seçilir: <span class="m">√(2024 · 2025 · 2026 · 2027 + 1)</span>. Birbaşa hesablamaq — tələdir. Eyniliyi görən bir dəqiqədə həll edir.</p>
+
+      <h3><span class="st">2</span> Kvadratlar fərqi və kublar</h3>
+      <div class="fm">a² − b² = (a − b)(a + b)
+a³ + b³ = (a + b)(a² − ab + b²)
+a³ − b³ = (a − b)(a² + ab + b²)</div>
+      <div class="ex">2027² − 2023² = 4 · 4050 = 16200
+1003 · 997 = (1000 + 3)(1000 − 3) = 1000000 − 9 = 999991
+(37³ + 63³)/(37² − 37 · 63 + 63²) = 37 + 63 = 100</div>
+
+      <h3><span class="st">3</span> Zəncirlər və teleskop</h3>
+      <div class="ex">1) (2 + 1)(2² + 1)(2⁴ + 1)(2⁸ + 1) = ?
+   Əvvəlinə (2 − 1) = 1 vuruğunu yaz:
+   (2 − 1)(2 + 1) = 2² − 1;  (2² − 1)(2² + 1) = 2⁴ − 1; …
+   Cavab: 2¹⁶ − 1 = 65535.
+
+2) 1/(1 · 2) + 1/(2 · 3) + … + 1/(99 · 100) = ?
+   1/(k(k + 1)) = 1/k − 1/(k + 1) — qonşu hədlər silinir
+   ("teleskop" kimi qatlanır):
+   1 − 1/2 + 1/2 − 1/3 + … − 1/100 = 1 − 1/100 = 99/100.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. √(2024 · 2025 · 2026 · 2027 + 1) = ?
+
+Həll. n = 2024. Kənar və orta vuruqları cütlə:
+n(n + 3) = n² + 3n = m,  (n + 1)(n + 2) = n² + 3n + 2 = m + 2.
+m(m + 2) + 1 = m² + 2m + 1 = (m + 1)².
+Kök = m + 1 = n² + 3n + 1 = 4096576 + 6072 + 1 = 4102649.</div>
+      <div class="ex">Məsələ 2. Sübut et ki, n &gt; 1 olanda n⁴ + 4 mürəkkəb ədəddir.
+
+Həll (Sofi Jermen eyniliyi). Tam kvadrata tamamla:
+n⁴ + 4 = (n² + 2)² − 4n² = (n² − 2n + 2)(n² + 2n + 2).
+n &gt; 1 olanda n² − 2n + 2 = (n − 1)² + 1 &gt; 1, ikinci vuruq ondan
+da böyükdür — ədəd iki vuruğa ayrılır.
+Məs.: 5⁴ + 4 = 629 = 17 · 37.</div>
+      <div class="life"><b>Həyatdan.</b> Ağızdan hesab: <span class="m">48 · 52 = 50² − 2² = 2496</span>, <span class="m">99² = (100 − 1)² = 9801</span>. Bazarda, imtahanda, olimpiadada eyni fənd işləyir — ədədi "yuvarlaq ədəd ± kiçik" şəklində gör.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Böyük ədədləri birbaşa vurmağa başlamaq. Əvvəl quruluşa bax: kvadratlar fərqi? Ardıcıl ədədlər? Kublar?</li>
+        <li>Teleskop cəmində son həddi səhv yazmaq: <span class="m">1/(99 · 100)</span> → son həd <span class="m">1/100</span>, cavab <span class="m">99/100</span>.</li>
+        <li><span class="m">a³ + b³</span>-də ikinci mötərizəni <span class="m">a² + ab + b²</span> yazmaq. Cəm üçün ortada mənfi işarə: <span class="m">a² − ab + b²</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a² − b² = (a − b)(a + b);  (N + k)(N − k) = N² − k²
+n(n + 1)(n + 2)(n + 3) + 1 = (n² + 3n + 1)²
+(a − 1)(a + 1)(a² + 1)… → zəncir
+1/(k(k + 1)) = 1/k − 1/(k + 1)
+n⁴ + 4 = (n² − 2n + 2)(n² + 2n + 2)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">101 · 99 = ?</span> <span class="ans">100² − 1 = 9999.</span></li>
+        <li><span class="m">2026² − 2025² = ?</span> <span class="ans">1 · 4051 = 4051.</span></li>
+        <li><span class="m">1/(1 · 3) + 1/(3 · 5) + … + 1/(9 · 11) = ?</span> <span class="ans">½ · (1 − 1/11) = ½ · 10/11 = 5/11.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

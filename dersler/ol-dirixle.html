@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dirixle prinsipi dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-dirixle.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Dirixle prinsipi</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Dirixle prinsipi və onun tətbiqləri</div>
+    <h1>Dirixle prinsipi</h1>
+    <p>"Dovşan çoxdursa, qəfəs azdırsa — hansısa qəfəsdə ən azı iki dovşan var." Bu sadə fikir olimpiadada "sübut et ki, mütləq var" və "ən azı neçə götürmək lazımdır" məsələlərinin açarıdır. Hiylə hər dəfə birdir: <b>qəfəsləri düzgün seçmək</b> — rənglər, aylar, qalıqlar, fiqurun hissələri.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Ən pis hal</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ümumi şəkil</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qalıqlar</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Həndəsə</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Dirixle prinsipi və "ən pis hal"</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sinifdə 13 şagird var. Onların ikisinin <b>mütləq</b> eyni ayda doğulduğunu demək olar — heç kimin ad gününü soruşmadan. Çünki ay 12-dir, şagird 13. Kimin olduğunu bilmirik, amma <b>var</b>. Olimpiadada belə "varlıq" sübutları çox çıxır.</p>
+
+      <h3><span class="st">2</span> Prinsip</h3>
+      <div class="fm">n qutuya n + 1 əşya qoyulubsa,
+hansısa qutuda ən azı 2 əşya var.</div>
+      <p><b>Niyə doğrudur?</b> Əksini fərz et: hər qutuda ən çox 1 əşya var. Onda əşyaların sayı ən çox <span class="m">n</span> olardı. Amma <span class="m">n + 1</span> əşya var — ziddiyyət.</p>
+      <p>Alman riyaziyyatçısı Dirixle (Dirichlet) bu fikri sistemli işlətmişdir; ingiliscə "göyərçin yuvaları prinsipi" deyilir.</p>
+
+      <h3><span class="st">3</span> "Ən azı neçə götürməli?" — ən pis hal</h3>
+      <p>Cavab iki hissədən ibarətdir: <b>(1)</b> bir az azı yetmir — bunu göstərən "bədbəxt" seçim qur; <b>(2)</b> bu say isə həmişə yetir — Dirixle ilə.</p>
+      <div class="ex">Qutuda 5 qırmızı, 7 göy, 3 yaşıl kürə var. Gözübağlı götürürük.
+
+a) 2 eyni rəngli kürə üçün: ən pis hal — 3 müxtəlif rəng
+   (hər rəngdən 1). Növbəti kürə təkrarlanır: 3 + 1 = 4.
+b) 5 eyni rəngli: hər rəngdən 4 götürə bilərik, yaşıldan isə
+   cəmi 3 var: 4 + 4 + 3 = 11 — hələ 5 eyni yoxdur. Cavab: 12.
+c) Hər rəngdən ən azı bir: ən pis hal — əvvəlcə qırmızı və
+   göylərin hamısı çıxır: 5 + 7 = 12. Cavab: 13.
+d) Ən azı 2 göy: əvvəlcə göy olmayanların hamısı: 5 + 3 = 8,
+   sonra 2 göy: 8 + 2 = 10.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Sübut et ki, istənilən n nəfərlik qrupda (n ≥ 2) qrup daxilində
+eyni sayda tanışı olan iki nəfər var.
+
+Həll. Hər nəfərin tanışlarının sayı 0, 1, …, n − 1 ola bilər —
+n qiymət, n nəfər; hələ Dirixle işləmir. Amma 0 və n − 1 eyni
+vaxtda ola bilməz: kimsə hamını tanıyırsa (n − 1), heç kimi
+tanımayan (0) yoxdur. Deməli, əslində ən çox n − 1 qiymət
+(qutu) var, nəfər isə n. Dirixleyə görə iki nəfərin tanışlarının
+sayı eynidir.</div>
+      <div class="life"><b>Həyatdan.</b> Qaranlıqda siyirmədən corab götürürsən; orada qara və ağ corablar var. Neçə corab götürsən, mütləq bir cüt alarsan? İki rəng — iki qutu. Üç corab götür — ikisi eyni rəngdə olacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Ən pis hal"ı qurub +1 etməyi unutmaq: cavab pis halın özü deyil, ondan bir artıqdır.</li>
+        <li>Rənglərdə kürə az olanda bunu nəzərə almamaq: yaşıl cəmi 3-dürsə, ondan 4 götürmək olmaz.</li>
+        <li>Prinsiplə "hansı qutuda" olduğunu demək. Dirixle yalnız <b>varlığı</b> göstərir, yerini yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n qutu, n + 1 əşya → bir qutuda ≥ 2
+"ən azı neçə" = ən pis hal + 1
+həmişə iki hissə: azı yetmir (nümunə) + bu say yetir (Dirixle)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Siyirmədə 3 rəngdə çoxlu corab var. Ən azı neçə corab götürmək lazımdır ki, iki eyni rəngli olsun? <span class="ans">3 + 1 = 4.</span></li>
+        <li>Qutuda 4 qırmızı və 6 göy kürə var. Ən azı neçə kürə götürmək lazımdır ki, hər rəngdən biri olsun? <span class="ans">Əvvəl 6 göyün hamısı çıxa bilər: 6 + 1 = 7.</span></li>
+        <li>Sinifdə 25 şagird var. Neçə şagirdin eyni ayda doğulduğuna zəmanət var? <span class="ans">Hər ayda 2 olsa — 24 şagird; 25-ci üçüncü olur. Ən azı 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ümumiləşmiş Dirixle prinsipi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Məktəbdə 100 şagird var. "İkisi eyni ayda doğulub" — zəif cavabdır. Əslində daha çoxu var: ən azı 9 şagird eyni ayda doğulub. Bunu ümumiləşmiş prinsip deyir.</p>
+
+      <h3><span class="st">2</span> Prinsip</h3>
+      <div class="fm">N əşya n qutuda → hansısa qutuda ən azı ⌈N/n⌉ əşya var.
+Hansısa qutuda k əşya olsun deyə: N = n(k − 1) + 1 kifayətdir.</div>
+      <p><span class="m">⌈x⌉</span> — <span class="m">x</span>-i yuxarıya yuvarlaqlaşdırmaq: <span class="m">⌈100/12⌉ = ⌈8,33…⌉ = 9</span>.</p>
+      <p><b>Niyə?</b> Hər qutuda ən çox <span class="m">k − 1</span> əşya olsaydı, cəmi ən çox <span class="m">n(k − 1)</span> olardı. Əşya bundan çoxdursa, hansısa qutu "daşır". Orta qiymət dili ilə: <b>ədədlərin ən böyüyü orta qiymətdən kiçik ola bilməz</b>.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) 100 şagird, 12 ay:  100 = 12 · 8 + 4.
+   Hər ayda 8 olsa — 96; qalan 4 şagird hansısa aya düşür.
+   Ən azı 9 şagird eyni ayda doğulub.  ⌈100/12⌉ = 9.
+   10-a zəmanət yoxdur: 4 ayda 9, 8 ayda 8 şagird ola bilər.
+
+2) Ən azı neçə şagird olmalıdır ki, 4-ü mütləq həftənin eyni
+   günündə doğulsun?  7 · 3 + 1 = 22.
+
+3) Bakıda təxminən 2 000 000 nəfər yaşayır, insanın başında
+   150 000-dən çox tük olmur. Tüklərin sayı 0, 1, …, 150 000 —
+   150 001 qutu. 150 001 · 13 = 1 950 013 &lt; 2 000 000, deməli
+   ən azı 14 nəfərin tüklərinin sayı eynidir.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi</h3>
+      <div class="ex">Sinifdə 30 şagird diktant yazdı. Fikrət 13 səhv etdi,
+qalanların hər biri ondan az səhv etdi. Sübut et ki,
+ən azı 3 şagird eyni sayda səhv edib.
+
+Həll. Fikrətdən başqa 29 şagird var. Onların səhvlərinin sayı
+0, 1, …, 12 — 13 qutu. Hər qutuda ən çox 2 şagird olsaydı,
+ən çox 13 · 2 = 26 şagird olardı. Amma 29 &gt; 26.
+Deməli, hansısa qutuda ən azı 3 şagird var:  ⌈29/13⌉ = 3.</div>
+      <div class="life"><b>Həyatdan.</b> Futbol stadionunda 40 000 tamaşaçı var. İl 366 gündür: <span class="m">⌈40 000/366⌉ = 110</span>. Deməli, stadionda ad günü eyni gündə olan ən azı 110 nəfər var — bəlkə bu gün də kiminsə ad günüdür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Aşağı yuvarlaqlaşdırmaq: <span class="m">100/12 ≈ 8,3</span> → "8" yox, 9.</li>
+        <li><span class="m">N</span> qutuların sayına tam bölünəndə +1 etmək: 24 şagird, 12 ay → hər ayda düz 2 ola bilər, cavab <span class="m">⌈24/12⌉ = 2</span>.</li>
+        <li>Qutuların sayını səhv saymaq: 0-dan 12-yə qədər səhv sayları 13 qiymətdir, 12 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">N əşya, n qutu → bir qutuda ≥ ⌈N/n⌉
+k eyni üçün: n(k − 1) + 1
+ən böyük ≥ orta qiymət
+qutuları say: 0 da bir qiymətdir!</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>50 şagird var. Neçəsinin həftənin eyni günündə doğulduğuna zəmanət var? <span class="ans">⌈50/7⌉ = 8 (7 · 7 = 49 &lt; 50).</span></li>
+        <li>Ən azı neçə şagird olmalıdır ki, 4-ü mütləq eyni ayda doğulsun? <span class="ans">12 · 3 + 1 = 37.</span></li>
+        <li>50 alma 7 qutuya qoyulub. Ən dolu qutuda ən azı neçə alma var? <span class="ans">⌈50/7⌉ = 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qalıqlar və bölünmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Ədədlər nəzəriyyəsində Dirixlenin ən güclü "qutuları" — <b>qalıqlardır</b>. <span class="m">m</span>-ə bölmədə cəmi <span class="m">m</span> qalıq var: 0, 1, …, <span class="m">m − 1</span>. Ədəd çoxdursa, qalıqlar təkrarlanır.</p>
+
+      <h3><span class="st">2</span> Əsas fakt</h3>
+      <div class="fm">İstənilən m + 1 tam ədəddən ikisinin fərqi m-ə bölünür.</div>
+      <p>Qalıqlar qutudur: <span class="m">m + 1</span> ədəd, <span class="m">m</span> qalıq → ikisinin qalığı eynidir, <span class="m">a = mq₁ + r</span>, <span class="m">b = mq₂ + r</span>, onda <span class="m">a − b = m(q₁ − q₂)</span>.</p>
+
+      <h3><span class="st">3</span> 1-dən 2n-ə qədər: qutuları özün qur</h3>
+      <div class="ex">1, 2, …, 2n-dən n + 1 ədəd seçilib.
+
+a) İkisi ardıcıldır. Qutular: {1, 2}, {3, 4}, …, {2n − 1, 2n} — n cüt.
+   n kifayət etmir: 1, 3, 5, …, 2n − 1.
+b) İkisi qarşılıqlı sadədir — çünki ardıcıl ədədlərin ƏBOB-u 1-dir.
+c) Biri digərinə bölünür. Hər ədədi 2ᵏ · (tək) şəklində yaz.
+   Tək hissə: 1, 3, …, 2n − 1 — n qutu. İki ədədin tək hissəsi
+   eynidirsə, kiçiyi böyüyünə bölünür (24 = 8 · 3, 6 = 2 · 3).
+   n kifayət etmir: n + 1, …, 2n.</div>
+      <div class="ex">Cəm üçün: 1, …, 20-dən ən azı neçəsini seçməli ki,
+cəmi 5-ə bölünən iki ədəd olsun?
+  Qalıqlar (mod 5): 0, 1, 2, 3, 4 — hər birində 4 ədəd.
+  Cəm 5-ə bölünür: (1, 4), (2, 3) cütləri və ya ikisi də 0.
+  Pis toplu: qalığı 1 olanların hamısı (4), qalığı 2 olanların
+  hamısı (4) və bir 5-ə bölünən: 9 ədəd. Cavab: 10.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. İstənilən n tam ədəddən a₁, a₂, …, aₙ bir neçə
+ardıcıl olanını seçmək olar ki, cəmi n-ə bölünsün.
+
+Həll. S₁ = a₁, S₂ = a₁ + a₂, …, Sₙ = a₁ + … + aₙ.
+Hansısa Sₖ n-ə bölünürsə — hazırdır. Yoxsa n cəmin qalıqları
+1, …, n − 1 arasındadır: n ədəd, n − 1 qutu. İki cəmin
+qalığı eynidir: Sᵢ və Sⱼ (i &lt; j). Onda
+Sⱼ − Sᵢ = aᵢ₊₁ + … + aⱼ  n-ə bölünür.</div>
+      <div class="ex">Məsələ 2. Sübut et ki, 1, 11, 111, 1111, … ədədləri arasında
+2027-yə bölünən var.
+
+Həll. İlk 2028 ədədi götür: iki ədədin qalığı eynidir.
+Onların fərqi 11…100…0 = 11…1 · 10ᵏ şəklindədir və 2027-yə
+bölünür. 2027 sadə ədəddir və 10-a bölünmür, ona görə
+10ᵏ ilə ortaq böləni yoxdur — deməli, 11…1 özü 2027-yə bölünür.</div>
+      <div class="life"><b>Həyatdan.</b> Kitabxanada 8 kitab satılır, hər birinin qiyməti tam manatdır. Zəmanət var ki, onlardan ikisinin qiyməti arasındakı fərq 7 manata bölünür — 8 qiymət, 7 mümkün qalıq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qalıqları 1-dən <span class="m">m</span>-ə qədər saymaq. Qalıqlar 0-dan <span class="m">m − 1</span>-ə qədərdir.</li>
+        <li>Cəm məsələsində 0 qalıqlıları (və <span class="m">m</span> cüt olanda <span class="m">m/2</span> qalıqlıları) hamısını pis topluya qatmaq. Onlardan ən çox 1 götürmək olar: iki 0 qalıqlının cəmi də bölünür.</li>
+        <li>"Kifayət etmir" hissəsini (nümunəni) yazmamaq — cavabın yarısı odur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">m + 1 ədəd → iki ədədin fərqi m-ə bölünür
+1…2n-dən n + 1 ədəd → ardıcıl / qarşılıqlı sadə / biri digərinə bölünür
+cəmlər S₁, …, Sₙ → ardıcıl blokun cəmi n-ə bölünür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ən azı neçə tam ədəd götürmək lazımdır ki, ikisinin fərqi 10-a bölünsün? <span class="ans">10 qalıq → 11.</span></li>
+        <li>1, …, 50-dən ən azı neçəsini seçmək lazımdır ki, iki ardıcıl ədəd olsun? <span class="ans">25 cüt → 26.</span></li>
+        <li>1, …, 30-dan ən azı neçəsini seçmək lazımdır ki, biri digərinə bölünsün? <span class="ans">15 tək hissə → 16 (16, …, 30 — 15 ədəd yetmir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Həndəsədə və cütlərdə Dirixle</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Həndəsi məsələdə qutular — fiqurun hissələridir. Kvadratı kiçik kvadratlara, üçbucağı kiçik üçbucaqlara bölürük; nöqtə hissədən çoxdursa, ikisi bir hissəyə düşür və aralarındakı məsafə kiçikdir.</p>
+
+      <h3><span class="st">2</span> Kvadrat və üçbucaq</h3>
+      <div class="fig">
+        <svg viewBox="0 0 220 220" role="img" aria-label="Tərəfi 2 olan kvadrat 4 vahid kvadrata bölünüb; 5 nöqtədən ikisi eyni kvadratdadır">
+          <rect x="20" y="20" width="180" height="180" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="110" y1="20" x2="110" y2="200" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <line x1="20" y1="110" x2="200" y2="110" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <rect x="110" y="20" width="90" height="90" fill="var(--accent-soft)" opacity=".6"/>
+          <line x1="110" y1="110" x2="200" y2="20" stroke="var(--vec)" stroke-width="2"/>
+          <circle cx="60" cy="150" r="5" fill="var(--ink)"/><circle cx="160" cy="165" r="5" fill="var(--ink)"/><circle cx="55" cy="60" r="5" fill="var(--ink)"/>
+          <circle cx="135" cy="55" r="5" fill="var(--accent)"/><circle cx="180" cy="90" r="5" fill="var(--accent)"/>
+          <text x="166" y="78" class="lbl">√2</text>
+        </svg>
+        <div class="cap"><p>Tərəfi 2 olan kvadrat 4 vahid kvadrata bölünüb. 5 nöqtə → ikisi bir vahid kvadratdadır. Vahid kvadratda iki nöqtə arasındakı məsafə onun diaqonalından (<span class="m">√2</span>) böyük deyil.</p></div>
+      </div>
+      <div class="fm">kvadrat a, s × s böl, s² + 1 nöqtə → məsafə ≤ (a/s)√2
+bərabərtərəfli üçbucaq a, s² hissə, s² + 1 nöqtə → məsafə ≤ a/s
+parça L, N nöqtə → iki qonşu nöqtə arası ≤ L/(N − 1)</div>
+      <p>Üçbucaqda: tərəfləri <span class="m">s</span> bərabər hissəyə bölüb tərəflərə paralel xətlər çəksək, <span class="m">s²</span> kiçik bərabərtərəfli üçbucaq alınır. Kiçik üçbucaqda iki nöqtənin arası tərəfdən böyük deyil.</p>
+
+      <h3><span class="st">3</span> Olimpiada məsələsi: 51 nöqtə</h3>
+      <div class="ex">Tərəfi 1 olan kvadratın içində 51 nöqtə var. Sübut et ki,
+radiusu 1/7 olan bir dairə ən azı 3 nöqtəni örtür.
+
+Həll. Kvadratı 5 × 5 = 25 kvadratcığa böl (tərəfi 1/5).
+51 nöqtə, 25 qutu: ⌈51/25⌉ = 3 — hansısa kvadratcıqda ≥ 3 nöqtə.
+Tərəfi 1/5 olan kvadratcığa xaricdən çəkilmiş çevrənin radiusu
+diaqonalın yarısıdır: √2/10. Müqayisə: (√2/10)² = 2/100 = 1/50,
+(1/7)² = 1/49; 1/50 &lt; 1/49, deməli √2/10 &lt; 1/7.
+Radiusu 1/7 olan dairə bu kvadratcığı tam örtür.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələsi: 6 nəfər</h3>
+      <div class="ex">Sübut et ki, istənilən 6 nəfər arasında ya bir-birini tanıyan
+3 nəfər, ya da bir-birini tanımayan 3 nəfər var.
+
+Həll. Birini, A-nı götür. Qalan 5 nəfər iki qutuya düşür:
+"A-nın tanışları" və "A-nın tanımadıqları". ⌈5/2⌉ = 3 —
+qutulardan birində ən azı 3 nəfər var; tutaq ki, B, C, D A-nın
+tanışlarıdır (o biri hal eynidir).
+  • B, C, D-dən hansısa ikisi tanışdırsa, onlar A ilə birlikdə
+    bir-birini tanıyan 3 nəfərdir.
+  • Heç ikisi tanış deyilsə, B, C, D özləri bir-birini tanımayan
+    3 nəfərdir.
+(5 nəfər üçün bu doğru deyil — beşbucağın tərəfləri "tanış",
+diaqonalları "tanış deyil" olsun.)</div>
+      <div class="life"><b>Həyatdan.</b> 1 km uzunluğunda küçədə 11 fənər var. Zəmanət var ki, hansısa iki qonşu fənər arasındakı məsafə 100 m-dən çox deyil: 10 aralıq, cəmi 1000 m-dən çox ola bilməz.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kvadratcığın tərəfini məsafə kimi yazmaq. Kvadratcıqda ən uzaq iki nöqtə qarşı künclərdir — diaqonal: tərəf · √2.</li>
+        <li>Hissələrin sayını səhv almaq: üçbucağın tərəflərini 3 hissəyə bölmək 3 yox, 9 kiçik üçbucaq verir.</li>
+        <li>Nöqtələr hissələrin sayına bərabər olanda prinsipi işlətmək. Nöqtə hissədən ən azı 1 çox olmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">fiquru bərabər hissələrə böl: hissələr = qutular
+hissə sayı + 1 nöqtə → ikisi bir hissədə
+kvadratcıqda məsafə ≤ diaqonal, üçbucaqcıqda ≤ tərəf
+6 nəfər → 3 tanış və ya 3 yad</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Tərəfi 3 olan kvadratda 10 nöqtə var. 3 × 3 bölgü ilə hansı məsafə zəmanətlidir? <span class="ans">Kvadratcığın tərəfi 1, diaqonalı √2: iki nöqtənin arası ≤ √2.</span></li>
+        <li>Uzunluğu 1 olan parçada 11 nöqtə var. Hansı məsafə zəmanətlidir? <span class="ans">10 aralıq: iki qonşu nöqtə arası ≤ 1/10.</span></li>
+        <li>Tərəfi 3 olan bərabərtərəfli üçbucaqda 10 nöqtə var. Hansı məsafə zəmanətlidir? <span class="ans">9 kiçik üçbucaq (tərəfi 1), 10 nöqtə → iki nöqtə arası ≤ 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

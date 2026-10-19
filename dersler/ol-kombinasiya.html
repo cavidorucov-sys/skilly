@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="olym"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kombinatorika və ehtimal dərsi</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-ol-kombinasiya.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Olimpiada · Kombinatorika və ehtimal</span><a class="sk-back" href="../index.html">← Bu gün</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Riyaziyyat olimpiadası · RFO: Sayma üsulları; permutasiya, aranjeman, kombinasiya; ehtimal</div>
+    <h1>Permutasiya, aranjeman, kombinasiya; kombinatorik ehtimal</h1>
+    <p>"Neçə üsulla?" — olimpiadanın hər turunda çıxan sual. Burada hər şeyi bir-bir yazmadan saymağı öyrənəcəksən: düzülüşlər (<span class="m">n!</span>), sıralı seçim (<span class="m">A(n, k)</span>), sırasız seçim (<span class="m">C(n, k)</span>), "ulduzlar və çubuqlar" və bunların üstündə qurulan ehtimal.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Permutasiya</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>A(n, k) və C(n, k)</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Rəqəmlər, bölgülər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Ehtimal</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sayma qaydaları və permutasiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Seyfin kodu, turnir cədvəli, dərs cədvəli, nömrə nişanı — hamısında sual eynidir: <b>neçə variant var?</b> Hamısını yazıb saymaq uzun çəkir və səhv salmaq asandır. Kombinatorika saymağı qaydalarla edir.</p>
+
+      <h3><span class="st">2</span> İki əsas qayda</h3>
+      <p><b>Hasil qaydası.</b> Seçim addım-addım gedirsə ("həm bunu, həm onu seçirəm"), hər addımdakı variantların sayı vurulur.</p>
+      <p><b>Cəm qaydası.</b> Hallar bir-birini istisna edirsə ("ya belə, ya elə"), sayları toplanır.</p>
+      <div class="fm">"həm … həm …"  →  vur
+"ya … ya …"    →  topla</div>
+      <div class="ex">3 köynək və 4 şalvar: dəst = köynək VƏ şalvar → 3 · 4 = 12.
+Bakıdan Gəncəyə 3 avtobus və 2 qatar reysi:
+  avtobus YA qatar → 3 + 2 = 5 yol.</div>
+
+      <h3><span class="st">3</span> Permutasiya: n!</h3>
+      <p><span class="m">n</span> müxtəlif əşyanı bir sıraya neçə üsulla düzmək olar? Birinci yerə <span class="m">n</span> seçim, ikinciyə <span class="m">n − 1</span>, … sonuncuya 1. Hasil qaydası:</p>
+      <div class="fm">P(n) = n! = 1 · 2 · 3 · … · n
+0! = 1  (boş sıranı düzməyin bir yolu var)</div>
+      <div class="ex">1! = 1   2! = 2   3! = 6   4! = 24   5! = 120
+6! = 720   7! = 5040   8! = 40320
+Faydalı: n! = n · (n − 1)!,  məs. 8!/6! = 8 · 7 = 56</div>
+
+      <h3><span class="st">4</span> Şərtli düzülüşlər — dörd fənd</h3>
+      <div class="ex">1) BLOK. 5 nəfər sırada, Aysel və Fikrət yanaşı:
+   ikisini bir "blok" say → 4 obyekt → 4! = 24;
+   blokun içində 2 sıra (AF, FA) → 2 · 24 = 48.
+
+2) TƏRSİNƏ SAY. Eyni 5 nəfər, yanaşı DEYİL:
+   hamısı − yanaşı = 120 − 48 = 72.
+
+3) DƏYİRMİ MASA. n nəfər, yalnız qonşuluq vacibdir:
+   bir nəfəri yerində bərkit, qalanları düz → (n − 1)!.
+   6 nəfər → 5! = 120.
+
+4) TƏKRARLANAN HƏRFLƏR. "ANANAS": 6 hərf, A — 3 dəfə, N — 2 dəfə.
+   A-ları və N-ləri nömrələsək (A₁, A₂, A₃, N₁, N₂), 6! = 720 düzülüş olar.
+   Hər həqiqi söz 3! · 2! = 12 dəfə sayılıb (nömrələri qarışdırmaqla).
+   720 / 12 = 60.</div>
+      <div class="fm">Təkrarlı permutasiya:  n! / (k₁! · k₂! · …)</div>
+      <div class="life"><b>Həyatdan.</b> Gündə 5 fərqli dərs var: riyaziyyat, fizika, ədəbiyyat, ingilis dili, tarix. Cədvəl tərtib etməyin 5! = 120 yolu var. Riyaziyyat birinci olmalıdırsa — qalan 4 dərs: 4! = 24.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Blok fəndində blokun içindəki düzülüşü (2!) unutmaq.</li>
+        <li>Dəyirmi masada <span class="m">n!</span> yazmaq. Fırlatma eyni oturuşu verir — cavab <span class="m">(n − 1)!</span>.</li>
+        <li>Təkrarlanan hərflərdə <span class="m">n!</span>-i bölməyi unutmaq: "ALMA" 24 yox, 4!/2! = 12 söz verir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">həm … həm → vur;  ya … ya → topla
+n əşya sırada: n!;  dəyirmi masada: (n − 1)!
+yanaşı → blok;  "yanaşı deyil" → hamısı − yanaşı
+təkrarlar: n! / (k₁! k₂! …)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>6 kitab rəfdə neçə üsulla düzülə bilər? <span class="ans">6! = 720.</span></li>
+        <li>"KOKOS" sözünün hərflərindən neçə düzülüş var? <span class="ans">5 hərf, K — 2, O — 2: 5!/(2! · 2!) = 120/4 = 30.</span></li>
+        <li>7 nəfər dəyirmi masa arxasında neçə müxtəlif üsulla otura bilər? <span class="ans">(7 − 1)! = 6! = 720.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti: Dərs 2 →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Aranjeman və kombinasiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>10 idmançıdan 3-ü medal alır. "Qızıl, gümüş, bürünc" paylamaq bir sualdır — burada sıra vacibdir. "Yığmaya 3 nəfər seçmək" başqa sualdır — sıra vacib deyil. Hər məsələdə ilk sual budur: <b>sıra vacibdirmi?</b></p>
+
+      <h3><span class="st">2</span> Aranjeman: sıralı seçim</h3>
+      <p><span class="m">n</span> əşyadan <span class="m">k</span>-sını seçib sıraya qoymaq. Birinci yerə <span class="m">n</span>, ikinciyə <span class="m">n − 1</span>, … — cəmi <span class="m">k</span> vuruq:</p>
+      <div class="fm">A(n, k) = n · (n − 1) · … · (n − k + 1) = n! / (n − k)!</div>
+      <div class="ex">10 idmançı, 3 medal: A(10, 3) = 10 · 9 · 8 = 720.
+25 şagird, kapitan və müavin: A(25, 2) = 25 · 24 = 600.</div>
+
+      <h3><span class="st">3</span> Kombinasiya: sırasız seçim</h3>
+      <p>Komandada "birinci", "ikinci" yoxdur. <span class="m">A(n, k)</span> hər <span class="m">k</span>-lıq qrupu <span class="m">k!</span> dəfə sayır (qrupun üzvlərini <span class="m">k!</span> üsulla düzmək olar). Ona görə bölürük:</p>
+      <div class="fm">C(n, k) = A(n, k) / k! = n! / (k! · (n − k)!)</div>
+      <div class="ex">10 nəfərdən 3 nəfərlik yığma: C(10, 3) = 720 / 6 = 120.
+20 nəfər hər biri ilə əl sıxır: C(20, 2) = 20 · 19 / 2 = 190.
+Qabarıq n-bucaqlının diaqonalları: C(n, 2) − n = n(n − 3)/2.
+  10-bucaqlı: 10 · 7 / 2 = 35.</div>
+      <p><b>Xassələr</b> (qısa isbatla):</p>
+      <div class="fm">C(n, k) = C(n, n − k)
+C(n, k) = C(n − 1, k − 1) + C(n − 1, k)   (Paskal)
+C(n, 0) + C(n, 1) + … + C(n, n) = 2ⁿ</div>
+      <p>1) <span class="m">k</span> nəfəri seçmək = qalan <span class="m">n − k</span> nəfəri "seçməmək". 2) Fikrət ya qrupdadır (qalan <span class="m">n − 1</span>-dən <span class="m">k − 1</span> seç), ya da yox (<span class="m">n − 1</span>-dən <span class="m">k</span> seç) — cəm qaydası. 3) Hər əşya ya götürülür, ya yox: <span class="m">2 · 2 · … · 2 = 2ⁿ</span> alt çoxluq.</p>
+
+      <h3><span class="st">4</span> Şərtli seçimlər</h3>
+      <div class="ex">5 oğlan və 4 qızdan 3 nəfərlik komanda.
+
+a) Düz 2 qız, 1 oğlan:  C(4, 2) · C(5, 1) = 6 · 5 = 30.
+b) Ən azı bir qız (tərsinə say):
+   hamısı C(9, 3) = 84;  qızsız C(5, 3) = 10;  84 − 10 = 74.
+
+10 nöqtə, onlardan 4-ü bir düz xəttdə (başqa üçlük bir xəttdə deyil).
+Neçə üçbucaq?  C(10, 3) − C(4, 3) = 120 − 4 = 116.</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Çevrə üzərində 10 nöqtə var. Təpələri bu nöqtələrdə olan
+neçə qabarıq çoxbucaqlı var?
+
+Həll. Çevrə üzərindəki istənilən ≥ 3 nöqtə çevrə boyunca
+birləşdiriləndə qabarıq çoxbucaqlı verir və bu çoxbucaqlı
+yalnız öz təpələr çoxluğu ilə müəyyən olunur.
+Deməli, ən azı 3 elementli alt çoxluqları saymaq lazımdır:
+  bütün alt çoxluqlar: 2¹⁰ = 1024
+  0, 1, 2 elementli: C(10,0) + C(10,1) + C(10,2) = 1 + 10 + 45 = 56
+Cavab: 1024 − 56 = 968.</div>
+      <div class="life"><b>Həyatdan.</b> Liqada 16 komanda var. Hər cüt bir dəfə oynasa — C(16, 2) = 120 oyun. Hər cüt iki dəfə (evdə və səfərdə) oynasa — sıra vacib olur: A(16, 2) = 240 oyun.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Komanda seçəndə <span class="m">A</span> işlətmək. Rollar fərqli deyilsə — <span class="m">C</span>.</li>
+        <li>"Ən azı bir" məsələsində "1 qızı seç, qalanlarını kimdən gəldi" yazmaq: <span class="m">4 · C(8, 2) = 112 ≠ 74</span> — eyni komanda bir neçə dəfə sayılır. Tərsinə say.</li>
+        <li>Müstəqil seçimləri toplamaq. Qızlar VƏ oğlanlar seçilirsə — vurulur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">sıra vacib → A(n, k) = n!/(n − k)!
+sıra vacib deyil → C(n, k) = n!/(k!(n − k)!)
+"ən azı bir" → hamısı − heç biri
+alt çoxluqların sayı: 2ⁿ</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>8 nəfərdən 3 nəfərlik komissiya neçə üsulla seçilir? <span class="ans">C(8, 3) = 8 · 7 · 6 / 6 = 56.</span></li>
+        <li>Qabarıq 12-bucaqlının neçə diaqonalı var? <span class="ans">12 · 9 / 2 = 54.</span></li>
+        <li>6 oğlan və 4 qızdan 2 oğlan və 2 qız neçə üsulla seçilir? <span class="ans">C(6, 2) · C(4, 2) = 15 · 6 = 90.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti: Dərs 3 →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Rəqəmlərlə ədədlər, ulduzlar və çubuqlar, şəbəkədə yollar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Olimpiadada "neçə ədəd var ki, …" sualı çox çıxır. Burada tələ birdir: <b>ədəd 0 ilə başlamır</b>. İkinci tip — eyni əşyaları paylamaq (konfet, alma, bal): onları fərqləndirmək olmur, ona görə başqa fənd lazımdır.</p>
+
+      <h3><span class="st">2</span> Rəqəmlərlə ədədlər</h3>
+      <p>Qayda: <b>ən çox şərti olan yeri əvvəl doldur</b> (birinci rəqəm, cütlük üçün sonuncu rəqəm). Şərtlər toqquşursa — hallara böl.</p>
+      <div class="ex">Üçrəqəmli ədədlər:  9 · 10 · 10 = 900  (birinci rəqəm 1–9).
+Rəqəmləri təkrarlanmayan üçrəqəmli: 9 · 9 · 8 = 648.
+
+Rəqəmləri təkrarlanmayan üçrəqəmli CÜT ədədlər:
+  Hal 1: son rəqəm 0 → birinci 9, orta 8: 9 · 8 = 72.
+  Hal 2: son rəqəm 2, 4, 6, 8 (4 seçim) → birinci rəqəm
+         0 və sonuncudan fərqli: 8, orta: 8 → 4 · 8 · 8 = 256.
+  Cəmi: 72 + 256 = 328.</div>
+
+      <h3><span class="st">3</span> Ulduzlar və çubuqlar</h3>
+      <p>10 eyni konfeti 3 uşağa paylayaq, hər biri ən azı bir alsın. 10 konfeti (★) sıraya düz: aralarında 9 boşluq var. 2 "çubuq" qoyub sıranı 3 hissəyə bölürük:</p>
+      <div class="ex">★★★ | ★★ | ★★★★★   →   3 + 2 + 5 = 10</div>
+      <p>Hər paylama = 9 boşluqdan 2-ni seçmək. Bu, <span class="m">x + y + z = 10</span> tənliyinin natural həllərinin sayıdır.</p>
+      <div class="fm">x₁ + … + xₖ = n, hər xᵢ ≥ 1:  C(n − 1, k − 1)
+x₁ + … + xₖ = n, hər xᵢ ≥ 0:  C(n + k − 1, k − 1)</div>
+      <div class="ex">x + y + z = 10, natural: C(9, 2) = 36.
+x + y + z = 10, xᵢ ≥ 0: hər birinə 1 əlavə et → cəm 13, natural:
+  C(12, 2) = 66.</div>
+
+      <h3><span class="st">4</span> Şəbəkədə ən qısa yollar</h3>
+      <div class="fig">
+        <svg viewBox="0 0 260 200" role="img" aria-label="4 × 3 şəbəkə; sol aşağı küncdən sağ yuxarı küncə sağa və yuxarı addımlarla bir yol">
+          <g stroke="var(--accent-soft)" stroke-width="2">
+            <line x1="30" y1="30" x2="230" y2="30"/><line x1="30" y1="80" x2="230" y2="80"/><line x1="30" y1="130" x2="230" y2="130"/><line x1="30" y1="180" x2="230" y2="180"/>
+            <line x1="30" y1="30" x2="30" y2="180"/><line x1="80" y1="30" x2="80" y2="180"/><line x1="130" y1="30" x2="130" y2="180"/><line x1="180" y1="30" x2="180" y2="180"/><line x1="230" y1="30" x2="230" y2="180"/>
+          </g>
+          <path d="M30 180H130V130H180V30H230" fill="none" stroke="var(--vec)" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="30" cy="180" r="6" fill="var(--ink)"/><circle cx="230" cy="30" r="6" fill="var(--ink)"/>
+          <text x="22" y="198" class="lbl">A</text><text x="236" y="24" class="lbl">B</text>
+        </svg>
+        <div class="cap"><p>Bu yol: S S Y S Y Y S (S — sağa, Y — yuxarı). Hər yol 4 "S" və 3 "Y"-dən ibarət 7 hərflik sözdür. "S"-lərin yerini seç: <span class="m">C(7, 3) = 35</span>.</p></div>
+      </div>
+      <div class="fm">a × b şəbəkə:  C(a + b, a) yol</div>
+
+      <h3><span class="st">5</span> Olimpiada məsələsi</h3>
+      <div class="ex">Rəqəmləri soldan sağa ciddi artan neçə dördrəqəmli ədəd var?
+(məs. 1379, 2468)
+
+Həll. 0 belə ədəddə ola bilməz: artan sırada o, birinci
+yerə düşərdi. 1–9 rəqəmlərindən istənilən 4 müxtəlif rəqəm
+seçəndə, onları artan sırada düzməyin düz 1 yolu var.
+Deməli, ədədlər ↔ 4 elementli alt çoxluqlar:
+Cavab: C(9, 4) = 9 · 8 · 7 · 6 / 24 = 126.
+
+(Azalan rəqəmli ədədlərdə 0 da olar — o həmişə sona düşür:
+ C(10, 4) = 210.)</div>
+      <div class="life"><b>Həyatdan.</b> Bakının köhnə məhəllələrində küçələr şəbəkə kimidir. Evdən məktəbə 5 məhəllə şərqə, 3 məhəllə şimala getməlisənsə, ən qısa marşrutların sayı <span class="m">C(8, 3) = 56</span>-dır: təxminən iki ay ərzində hər gün başqa yolla gedə bilərsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Birinci rəqəmin 0 olmadığını unutmaq: rəqəmləri təkrarlanmayan üçrəqəmli ədəd <span class="m">10 · 9 · 8</span> yox, <span class="m">9 · 9 · 8</span>-dir.</li>
+        <li>Cüt ədədlərdə hallara bölməmək: son rəqəm 0 olanda birinci rəqəmə 9 seçim qalır, başqa halda 8.</li>
+        <li>Eyni konfetləri fərqli kimi saymaq (<span class="m">3¹⁰</span>). Eyni əşyalarda yalnız saylar vacibdir — ulduzlar və çubuqlar.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">birinci rəqəm ≠ 0; ən sərt şərtli yerdən başla
+x₁ + … + xₖ = n:  ≥ 1 → C(n − 1, k − 1);  ≥ 0 → C(n + k − 1, k − 1)
+a × b şəbəkə: C(a + b, a)
+artan rəqəmlər: C(9, k);  azalan: C(10, k)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neçə ikirəqəmli ədəd var? <span class="ans">9 · 10 = 90.</span></li>
+        <li><span class="m">x + y + z + t = 8</span> tənliyinin neçə natural həlli var? <span class="ans">C(7, 3) = 35.</span></li>
+        <li>5 × 5 şəbəkədə küncdən qarşı küncə neçə ən qısa yol var? <span class="ans">C(10, 5) = 252.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Kombinatorik ehtimal</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Şans nədir?" sualına riyaziyyat ədədlə cavab verir. Lotereya, oyun, test — hamısında bütün halları sayıb onların neçəsinin "uğurlu" olduğunu tapırıq. Saymağı artıq bilirsən, ehtimal onun üstündə qurulur.</p>
+
+      <h3><span class="st">2</span> Klassik tərif</h3>
+      <p>Təcrübənin <span class="m">n</span> <b>bərabər imkanlı</b> nəticəsi varsa və onlardan <span class="m">m</span>-i bizə uyğundursa (əlverişlidirsə):</p>
+      <div class="fm">P = m / n        0 ≤ P ≤ 1
+P(baş verməz) = 1 − P(baş verər)</div>
+      <p>Cavabı ixtisar olunmuş kəsr kimi yaz: 6/36 yox, 1/6.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">1) İki zər. Cəmin 7 olması:
+   bütün hallar 6 · 6 = 36; əlverişli: (1;6) (2;5) (3;4) (4;3) (5;2) (6;1) = 6.
+   P = 6/36 = 1/6.
+
+2) Qutuda 4 qırmızı, 6 göy kürə. 2 kürə götürülür. İkisi də qırmızı:
+   P = C(4, 2) / C(10, 2) = 6/45 = 2/15.
+
+3) Pul 4 dəfə atılır. Düz 2 gerb:
+   P = C(4, 2) / 2⁴ = 6/16 = 3/8.
+   Ən azı bir gerb (tərsinə): 1 − 1/16 = 15/16.</div>
+
+      <h3><span class="st">4</span> Olimpiada məsələləri</h3>
+      <div class="ex">Məsələ 1. 1, 2, …, 100 ədədlərindən biri seçilir.
+Onun 2 və ya 3 ədədinə bölünməsi ehtimalı?
+
+Həll. 2-yə bölünənlər: 50; 3-ə bölünənlər: 33.
+Hər ikisinə (yəni 6-ya) bölünənlər iki dəfə sayılıb: 16.
+50 + 33 − 16 = 67.   P = 67/100.</div>
+      <div class="ex">Məsələ 2. Üç zər atılır. Xalların cəminin 5 olması ehtimalı?
+
+Həll. Bütün hallar: 6³ = 216.
+x + y + z = 5, hər biri ≥ 1 (6-dan böyük ola bilməz,
+amma cəm 5 olanda heç biri 3-dən böyük deyil):
+ulduzlar və çubuqlar — C(4, 2) = 6.
+P = 6/216 = 1/36.</div>
+      <div class="ex">Məsələ 3. 5 nəfər təsadüfən bir sıraya düzülür.
+Aysel ilə Fikrətin yanaşı olması ehtimalı?
+
+Həll. Bütün hallar 5! = 120; yanaşı: 2 · 4! = 48.
+P = 48/120 = 2/5.  (Ümumi: n nəfərdə 2/n.)</div>
+      <div class="life"><b>Həyatdan.</b> Testdə 4 variantlı 3 sual var, cavabları təsadüfən işarələyirsən. Hamısını düz tapmaq ehtimalı <span class="m">1/4³ = 1/64</span>, heç olmasa birini düz tapmaq — <span class="m">1 − (3/4)³ = 37/64</span>. Ona görə təxminə güvənmək olmaz.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bərabər imkanlı olmayan nəticələri saymaq: iki zərin cəmi 2-dən 12-yə 11 qiymət alır, amma cəm 7-nin ehtimalı 1/11 deyil — nəticələr cütlərdir (36).</li>
+        <li>(3; 4) və (4; 3) cütlərini bir hal saymaq. Zərlər fərqlidir (birinci, ikinci).</li>
+        <li>Kəsri ixtisar etməmək: 6/16 yox, 3/8.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">P = əlverişli / bütün  (hallar bərabər imkanlı)
+"ən azı bir" → 1 − P(heç biri)
+"və ya" → topla, iki dəfə sayılanı çıx
+cavab — ixtisar olunmuş kəsr</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Zər atılır. Cüt xal düşməsi ehtimalı? <span class="ans">3/6 = 1/2.</span></li>
+        <li>Qutuda 3 qırmızı və 2 göy kürə var, 2 kürə götürülür. İkisinin də göy olması ehtimalı? <span class="ans">C(2, 2)/C(5, 2) = 1/10.</span></li>
+        <li>Pul 3 dəfə atılır. Ən azı bir gerb düşməsi ehtimalı? <span class="ans">1 − 1/8 = 7/8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
