@@ -90,11 +90,11 @@
           const len = rnd(k + 2, k + 4), s = randDigits(len).split(""), pos = len - 1 - rnd(0, k - 1);
           const ok = []; for (let d = 0; d <= 9; d++) { s[pos] = String(d); if (modStr(s.join(""), m) === 0) ok.push(d); }
           if (!ok.length) continue;
-          s[pos] = "*"; const shown = s.join(""), tailT = shown.slice(-k);
+          s[pos] = "a"; const shown = s.join(""), tailT = shown.slice(-k);
           const one = ok.length === 1;
-          return { text: `${shown} ədədi ${dat(m)} bölünür (* — bir rəqəmdir). ` + (one ? "* = ?" : "* yerinə yazıla bilən bütün rəqəmlərin cəmini tap."),
+          return { text: h("span", {}, h("span", { class: "ov" }, shown), ` ədədi ${dat(m)} bölünür (a — rəqəmdir). ` + (one ? "a = ?" : "a yerinə yazıla bilən bütün rəqəmlərin cəmini tap.")),
             answer: one ? ok[0] : sum(ok), show: String(one ? ok[0] : sum(ok)), tol: 0.01,
-            solution: `${m} = ${pow} — yalnız son ${k} rəqəm (${tailT}) ${dat(m)} bölünməlidir. Yoxlayanda uyğun rəqəmlər: ${ok.join(", ")}` + (one ? `. Cavab: ${ok[0]}.` : `; cəmi ${ok.join(" + ")} = ${sum(ok)}.`) };
+            solution: h("span", {}, `${m} = ${pow} — yalnız son ${k} rəqəm (`, h("span", { class: "ov" }, tailT), `) ${dat(m)} bölünməlidir. Yoxlayanda uyğun rəqəmlər: ${ok.join(", ")}` + (one ? `. Cavab: ${ok[0]}.` : `; cəmi ${ok.join(" + ")} = ${sum(ok)}.`)) };
         }
       } },
     { id: "reqem", ad: "Gizli rəqəmlər", izah: "36 = 4 · 9, 45 = 5 · 9, 72 = 8 · 9, 99 = 9 · 11 … Bölən qarşılıqlı sadə vuruqlara ayrılır, hər vuruğun əlaməti ayrıca yoxlanır.",
@@ -129,7 +129,7 @@
           const nums = sols.map(x => +x.t).sort((x, y) => x - y);
           const ans = { ab: sols[0].a + sols[0].b, num: nums[0], count: sols.length, max: nums[nums.length - 1], min: nums[0] }[ask];
           const Q = { ab: "a + b = ?", num: "Bu ədədi tap.", count: "Belə neçə ədəd var?", max: "Belə ədədlərin ən böyüyünü tap.", min: "Belə ədədlərin ən kiçiyini tap." }[ask];
-          return { text: `${tmpl} ədədində a və b rəqəmlərdir (eyni ola bilər, ədəd 0 ilə başlamır). Ədəd ${dat(D)} bölünür. ${Q}`, answer: ans, show: String(ans), tol: 0.01,
+          return { text: h("span", {}, h("span", { class: "ov" }, tmpl), ` ədədində a və b rəqəmlərdir (eyni ola bilər, ədəd 0 ilə başlamır). Ədəd ${dat(D)} bölünür. ${Q}`), answer: ans, show: String(ans), tol: 0.01,
             solution: `${D} = ${p} · ${q}, vuruqlar qarşılıqlı sadədir — ədəd hər ikisinə bölünməlidir. ${RULE[p]}; ${RULE[q]}. Hər iki şərti ödəyən ədədlər: ${listNums(nums)} (cəmi ${nums.length}). Cavab: ${ans}.` };
         }
       } },

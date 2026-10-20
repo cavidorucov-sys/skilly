@@ -41,7 +41,7 @@
   const why = n => isPrime(n) ? `${n} sadədir (√${Ab(n)} kiçik heç bir sadə ədədə bölünmür)` : `${n} = ${smallest(n)} · ${n / smallest(n)}`;
 
   const levels = [
-    { id: "elamet", ad: "Bölünmə əlamətləri", izah: "Ədəddə bir rəqəm * ilə gizlədilib. Əlamətlə tap: hansı rəqəmlər yazıla bilər?",
+    { id: "elamet", ad: "Bölünmə əlamətləri", izah: "Ədəddə bir rəqəm a hərfi ilə gizlədilib (ədədin üstündə xətt). Əlamətlə tap: hansı rəqəmlər yazıla bilər?",
       gen() {
         for (;;) {
           const d = pick([3, 9, 4, 6, 12, 15, 18, 45]), len = rnd(3, 5);
@@ -50,16 +50,16 @@
           const ok = [];
           for (let x = pos === 0 ? 1 : 0; x <= 9; x++) { digits[pos] = x; if (+digits.join("") % d === 0) ok.push(x); }
           if (!ok.length || ok.length > 5) continue;
-          const shown = digits.map((x, i) => i === pos ? "*" : x).join("");
+          const shown = digits.map((x, i) => i === pos ? "a" : x).join("");
           const known = digits.reduce((s, x, i) => i === pos ? s : s + x, 0);
           const usesSum = ![4].includes(d);
           const base = `${RULES[d]}.` + (usesSum ? ` Məlum rəqəmlərin cəmi ${known}.` : "") + ` Uyğun rəqəmlər: ${list(ok)}.` + (pos === 0 ? " (Birinci rəqəm 0 ola bilməz.)" : "");
           const kind = ok.length === 1 ? "one" : pick(["sum", "count", "max"]);
-          if (kind === "one") return { text: `${len}-rəqəmli ${shown} ədədi ${D(d)} qalıqsız bölünür. * yerində hansı rəqəm durur?`, answer: ok[0], show: String(ok[0]), tol: 0.01, solution: base };
-          if (kind === "sum") { const s = ok.reduce((a, b) => a + b, 0); return { text: `${len}-rəqəmli ${shown} ədədi ${D(d)} qalıqsız bölünür. * yerinə yazıla bilən bütün rəqəmlərin cəmini tap.`, answer: s, show: String(s), tol: 0.01, solution: base + ` Cəmi: ${s}.` }; }
-          if (kind === "count") return { text: `${len}-rəqəmli ${shown} ədədi ${D(d)} qalıqsız bölünür. * yerinə neçə müxtəlif rəqəm yazmaq olar?`, answer: ok.length, show: String(ok.length), tol: 0.01, solution: base + ` Sayı: ${ok.length}.` };
+          if (kind === "one") return { text: h("span", {}, `${len}-rəqəmli `, h("span", { class: "ov" }, shown), ` ədədi ${D(d)} qalıqsız bölünür. a yerində hansı rəqəm durur?`), answer: ok[0], show: String(ok[0]), tol: 0.01, solution: base };
+          if (kind === "sum") { const s = ok.reduce((a, b) => a + b, 0); return { text: h("span", {}, `${len}-rəqəmli `, h("span", { class: "ov" }, shown), ` ədədi ${D(d)} qalıqsız bölünür. a yerinə yazıla bilən bütün rəqəmlərin cəmini tap.`), answer: s, show: String(s), tol: 0.01, solution: base + ` Cəmi: ${s}.` }; }
+          if (kind === "count") return { text: h("span", {}, `${len}-rəqəmli `, h("span", { class: "ov" }, shown), ` ədədi ${D(d)} qalıqsız bölünür. a yerinə neçə müxtəlif rəqəm yazmaq olar?`), answer: ok.length, show: String(ok.length), tol: 0.01, solution: base + ` Sayı: ${ok.length}.` };
           const m = Math.max(...ok);
-          return { text: `${len}-rəqəmli ${shown} ədədi ${D(d)} qalıqsız bölünür. * yerinə yazıla bilən ən böyük rəqəm hansıdır?`, answer: m, show: String(m), tol: 0.01, solution: base + ` Ən böyüyü: ${m}.` };
+          return { text: h("span", {}, `${len}-rəqəmli `, h("span", { class: "ov" }, shown), ` ədədi ${D(d)} qalıqsız bölünür. a yerinə yazıla bilən ən böyük rəqəm hansıdır?`), answer: m, show: String(m), tol: 0.01, solution: base + ` Ən böyüyü: ${m}.` };
         }
       } },
     { id: "qaliq", ad: "Qalıqlı bölmə", izah: "a = b · q + r, qalıq həmişə böləndən kiçikdir: 0 ≤ r < b.",
