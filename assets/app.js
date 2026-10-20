@@ -103,6 +103,28 @@ function allTopics(m) {
 }
 
 /* ---------- shell ---------- */
+// Google sign-in: results and the error journal then follow Fikrət to every device
+function account() {
+  const box = el("div", { class: "acct" });
+  const draw = email => {
+    if (email) {
+      const out = el("button", { type: "button", class: "acct-btn ghost" }, "Çıx");
+      out.addEventListener("click", async () => { await Skilly.signOut(); location.reload(); });
+      box.replaceChildren(el("span", { class: "acct-on", title: email }, "✓ " + email.split("@")[0]), out);
+    } else {
+      const btn = el("button", { type: "button", class: "acct-btn" }, "Google ilə daxil ol");
+      const err = el("span", { class: "acct-err" });
+      btn.addEventListener("click", async () => {
+        btn.disabled = true; err.textContent = "";
+        try { await Skilly.signIn(); location.reload(); } catch (e) { err.textContent = e.message || "Alınmadı"; btn.disabled = false; }
+      });
+      box.replaceChildren(btn, err);
+    }
+  };
+  if (window.Skilly && Skilly.user) Skilly.user().then(draw);
+  return box;
+}
+
 async function shell(content) {
   const here = location.pathname.split("/").pop() || "index.html";
   const [m, w] = await Promise.all([load("data/movzular.json"), load("data/hefte.json")]).catch(() => [null, null]);
@@ -131,7 +153,7 @@ async function shell(content) {
   setRail(collapsed);
   const rail = el("aside", { class: "rail" },
     el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), toggle),
-    el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : "")),
+    el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : ""), account()),
     ring,
     el("div", { class: "minis" },
       el("div", { class: "mini" }, el("i", {}, String(toExam)), "gün sınağa"),
@@ -427,7 +449,7 @@ async function pageCalendar() {
         el("span", { class: "ic " + k.cls }, icon(iconFor(e.kat, e.is), k.ink)),
         el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, e.saat || e.qeyd || k.ad)),
         e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : null); })
-        : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur. Nəticələr Google Sheets qoşulandan sonra burada görünəcək." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));
+        : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));
   }
   content.append(el("div", { class: "head", style: "margin-top:26px" }, title, el("span", { class: "more" }, prev, " ", next)), grid, day);
   draw();
@@ -588,7 +610,7 @@ async function pageSehv() {
   draw();
   const on = await Skilly.configured();
   sync.className = "sync " + (on ? "on" : "off");
-  sync.textContent = on ? "✓ Google Sheets-ə qoşulub" : "Yalnız bu cihazda saxlanır — Google Sheets qoşulmayıb";
+  sync.textContent = on ? "✓ Buluda qoşulub — bütün cihazlarda eynidir" : "Yalnız bu cihazda saxlanır — soldakı \"Google ilə daxil ol\" düyməsini bas";
   if ((await Skilly.pull()).synced) draw();
 }
 
@@ -648,6 +670,6 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (p === "dusturlar") pageFormulas();
   else if (p === "sinaqlar") pageTests();
   else if (p === "temrar") pageSehv();
-  // closed topics come from Sheets (all devices); redraw once if they differ from this device's copy
+  // closed topics come from the cloud (all devices); redraw once if they differ from this device's copy
   if (window.Skilly && Skilly.pullBag) Skilly.pullBag().then(r => { if (r.changed) location.reload(); });
 });

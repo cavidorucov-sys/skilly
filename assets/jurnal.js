@@ -1,25 +1,32 @@
 // Səhv jurnalı: lesson pages log wrong answers here automatically. Local-first (localStorage), then synced
-// to Google Sheets through the Apps Script in apps-script/Code.gs when data/config.json has an "api" URL
-// and this device has the key (opened once with #key=… in the address).
+// to Firebase (Firestore, project in data/config.json) once Fikrət or his father signs in with Google on this
+// device. Only those two accounts may read or write (Firestore rules); anyone else stays local-only.
 (function () {
   const BASE = new URL("..", document.currentScript.src).href;
-  const LS = "skilly-sehv", QUEUE = "skilly-queue", KEY = "skilly-key";
+  const LS = "skilly-sehv", QUEUE = "skilly-queue";
   const DAY = 864e5;
+  const OK = ["orujov.fikret@gmail.com", "cavid.orucov@gmail.com"];
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const today = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
   const plus = (iso, days) => { const d = new Date(iso + "T12:00:00"); d.setTime(d.getTime() + days * DAY); return d.toISOString().slice(0, 10); };
 
-  // one-time device setup: …/any-page.html#key=XXXX stores the key and removes it from the address bar
-  const m = location.hash.match(/key=([^&]+)/);
-  if (m) { put(KEY, decodeURIComponent(m[1])); history.replaceState(null, "", location.pathname + location.search); }
-
-  let cfg = null;
-  async function api() {
-    if (!cfg) cfg = await fetch(BASE + "data/config.json", { cache: "no-cache" }).then(r => r.json()).catch(() => ({}));
-    const key = get(KEY, "");
-    return cfg.api && key ? { url: cfg.api, key } : null;
+  // Firebase is loaded on first use; resolves once this device's sign-in state is known (null when offline)
+  const FB = "https://www.gstatic.com/firebasejs/10.12.2/";
+  let fbP = null;
+  function fb() {
+    if (!fbP) fbP = (async () => {
+      const c = await fetch(BASE + "data/config.json", { cache: "no-cache" }).then(r => r.json());
+      const [A, U, S] = await Promise.all(["firebase-app.js", "firebase-auth.js", "firebase-firestore.js"].map(f => import(FB + f)));
+      const app = A.initializeApp(c.firebase), auth = U.getAuth(app), db = S.getFirestore(app);
+      await new Promise(r => { const off = U.onAuthStateChanged(auth, () => { off(); r(); }); });
+      return { U, S, auth, db };
+    })().catch(() => null);
+    return fbP;
   }
+  async function api() { const f = await fb(); return f && f.auth.currentUser && OK.includes(f.auth.currentUser.email) ? f : null; }
+  const docId = id => String(id).replace(/\//g, "_");
+  const fromDoc = d => { try { return JSON.parse(d.data().json); } catch (e) { return null; } };
 
   const all = () => get(LS, []);
   function save(list) { put(LS, list); }
@@ -28,15 +35,16 @@
 
   let flushing = false;
   async function flush() {
-    if (flushing) return; const a = await api(); const q = get(QUEUE, []);
-    if (!a || !q.length) return; flushing = true;
+    if (flushing) return; const a = await api(); if (!a) return;
+    // first sign-in on this device: everything recorded here before goes up too
+    if (!get("skilly-fb", 0)) { const q = get(QUEUE, []), ids = new Set(q.map(x => x.id)); [...get(RES, []), ...all()].forEach(x => { if (!ids.has(x.id)) q.push(x); }); put(QUEUE, q); put("skilly-fb", 1); }
+    const q = get(QUEUE, []); if (!q.length) return; flushing = true;
     try {
-      // mistakes and results go in separate calls; each queued item leaves the queue only after its call succeeded
-      for (const [op, part] of [["upsert", q.filter(x => x._t !== "netice")], ["netice", q.filter(x => x._t === "netice")]]) {
-        if (!part.length) continue;
-        const r = await fetch(a.url, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ key: a.key, op, items: part }) });
-        const j = await r.json();
-        if (j.ok) { const sent = new Set(part.map(x => x.id + x.upd)); put(QUEUE, get(QUEUE, []).filter(x => !sent.has(x.id + x.upd))); }
+      for (const x of q) {
+        const col = x._t === "netice" ? "netice" : "sehv";
+        try { await a.S.setDoc(a.S.doc(a.db, col, docId(x.id)), { id: String(x.id), upd: x.upd || 0, json: JSON.stringify(x) }); }
+        catch (e) { if (!(col === "netice" && e.code === "permission-denied")) throw e; } // a result is stored once; a repeat is refused
+        put(QUEUE, get(QUEUE, []).filter(y => !(y.id === x.id && y.upd === x.upd)));
       }
     } catch (e) { /* offline: stays queued */ } finally { flushing = false; }
   }
@@ -84,22 +92,21 @@
       const n = ok ? x.tekrar + 1 : 0;
       return upsert({ ...x, tekrar: n, status: ok && n >= 2 ? "baglandi" : "aciq", novbeti: ok ? (n >= 2 ? "" : plus(today(), 30)) : plus(today(), 7) });
     },
-    // Pull Sheets copy (other devices, father's edits); newer "upd" wins.
+    // Pull the cloud copy (other devices, father's edits); newer "upd" wins.
     async pull() {
       const a = await api(); if (!a) return { synced: false };
       try {
-        const j = await fetch(a.url + "?op=list&key=" + encodeURIComponent(a.key)).then(r => r.json());
-        if (!j.ok) return { synced: false, error: j.error };
-        const list = all(); const byId = new Map(list.map(x => [x.id, x]));
-        j.items.forEach(s => { const l = byId.get(s.id); if (!l || (s.upd || 0) > (l.upd || 0)) byId.set(s.id, s); });
+        const snap = await a.S.getDocs(a.S.collection(a.db, "sehv"));
+        const byId = new Map(all().map(x => [x.id, x]));
+        snap.forEach(d => { const s = fromDoc(d); if (!s) return; const l = byId.get(s.id); if (!l || (s.upd || 0) > (l.upd || 0)) byId.set(s.id, s); });
         save([...byId.values()]); await flush(); return { synced: true };
       } catch (e) { return { synced: false }; }
     },
-    // Closed topics from the results of all devices (this one + Sheets), in time order: a passed final test
+    // Closed topics from the results of all devices (this one + cloud), in time order: a passed final test
     // closes a topic, a failed review reopens it. Rewrites "skilly-bag"; changed = the portal must redraw.
     async pullBag() {
-      const a = await api(); let items = [];
-      if (a) try { const j = await fetch(a.url + "?op=netice&key=" + encodeURIComponent(a.key)).then(r => r.json()); if (j.ok) items = j.items; } catch (e) {}
+      const a = await api(); let items = [], synced = false;
+      if (a) try { (await a.S.getDocs(a.S.collection(a.db, "netice"))).forEach(d => { const x = fromDoc(d); if (x) items.push(x); }); synced = true; } catch (e) {}
       const byId = new Map(); [...get(RES, []), ...items].forEach(x => byId.set(String(x.id), x));
       const state = {};
       [...byId.values()].map(x => [String(x.id).match(/^(.+)-(test|yoxla)@(\d+)$/), x]).filter(([m]) => m)
@@ -112,9 +119,18 @@
       const before = get("skilly-bag", []), bag = new Set(before);
       for (const l in state) state[l] ? bag.add(l) : bag.delete(l);
       const after = [...bag]; put("skilly-bag", after);
-      return { synced: items.length > 0, changed: after.length !== before.length || after.some(x => !before.includes(x)) };
+      return { synced, changed: after.length !== before.length || after.some(x => !before.includes(x)) };
     },
     configured: async () => !!(await api()),
+    // Google sign-in: only Fikrət's and his father's accounts are kept signed in
+    async user() { const a = await api(); return a ? a.auth.currentUser.email : null; },
+    async signIn() {
+      const f = await fb(); if (!f) throw new Error("İnternet yoxdur");
+      const r = await f.U.signInWithPopup(f.auth, new f.U.GoogleAuthProvider());
+      if (!OK.includes(r.user.email)) { await f.U.signOut(f.auth); throw new Error("Bu hesaba icazə yoxdur: " + r.user.email); }
+      await flush(); return r.user.email;
+    },
+    async signOut() { const f = await fb(); if (f) await f.U.signOut(f.auth); },
     // Answer checking shared with the lesson pages (same normalisation and hash recipe).
     norm(v, mode) {
       let s = String(v).trim().replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/\s+/g, "");

@@ -1,3 +1,5 @@
+> **20 okt 2026-dan istifadə olunmur.** Portal Firebase-ə keçdi (layihə `skilly-39ccb`, Google girişi). Bu qovluq köhnə Sheets cədvəlindəki məlumat üçün saxlanır.
+
 # Səhv jurnalını Google Sheets-ə qoşmaq (ata üçün, ~10 dəqiqə)
 
 Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız Fikrətin cihazında saxlanır.
