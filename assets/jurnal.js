@@ -89,12 +89,14 @@
   // test closes a topic, a failed review reopens it. Rewrites "skilly-bag"; returns true when it changed.
   function deriveBag() {
     const state = {};
-    get(RES, []).map(x => [String(x.id).match(/^(.+)-(test|yoxla)@(\d+)$/), x]).filter(([m]) => m)
+    get(RES, []).map(x => [String(x.id).match(/^(.+)-(test|yoxla|acildi|baglandi)@(\d+)$/), x]).filter(([m]) => m)
       .sort((p, q) => p[0][3] - q[0][3])
       .forEach(([m, x]) => {
         const link = "dersler/" + m[1] + ".html", ok = /^keçdi/.test(x.qeyd || "");
         if (m[2] === "test" && ok) state[link] = true;
         if (m[2] === "yoxla" && !ok) state[link] = false;
+        if (m[2] === "acildi") state[link] = false; // a level left open: the topic waits for it
+        if (m[2] === "baglandi") state[link] = true;
       });
     const before = get("skilly-bag", []), bag = new Set(before);
     for (const l in state) state[l] ? bag.add(l) : bag.delete(l);

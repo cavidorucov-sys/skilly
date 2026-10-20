@@ -667,7 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (p === "index") pageIndex();
   else if (p === "ders") pageLesson();
   else if (p === "teqvim") pageCalendar();
-  else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Buraxılış — riyaziyyat", "Hər mövzu giriş testi ilə başlayır: 80% və çox — mövzu bağlanır. Az olarsa: dərs → 20–25 məşq sualı → yekun test (80%). Bir həftə və bir ay sonra təkrar.");
+  else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Buraxılış — riyaziyyat", "Hər mövzu giriş testi ilə başlayır. Oyunda, Boss-da və Sınaqda hər sual düz cavablanmalıdır — səhv olsa, sual qalır. Hamısı düz olanda mövzu bağlanır. Bir həftə və bir ay sonra yaddaş yoxlaması.");
   else if (p === "olimpiada") pageOlympiad();
   else if (p === "fizika") location.replace("olimpiada.html#fizika");
   else if (p === "dusturlar") pageFormulas();
