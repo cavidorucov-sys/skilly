@@ -95,6 +95,25 @@
         save([...byId.values()]); await flush(); return { synced: true };
       } catch (e) { return { synced: false }; }
     },
+    // Closed topics from the results of all devices (this one + Sheets), in time order: a passed final test
+    // closes a topic, a failed review reopens it. Rewrites "skilly-bag"; changed = the portal must redraw.
+    async pullBag() {
+      const a = await api(); let items = [];
+      if (a) try { const j = await fetch(a.url + "?op=netice&key=" + encodeURIComponent(a.key)).then(r => r.json()); if (j.ok) items = j.items; } catch (e) {}
+      const byId = new Map(); [...get(RES, []), ...items].forEach(x => byId.set(String(x.id), x));
+      const state = {};
+      [...byId.values()].map(x => [String(x.id).match(/^(.+)-(test|yoxla)@(\d+)$/), x]).filter(([m]) => m)
+        .sort((p, q) => p[0][3] - q[0][3])
+        .forEach(([m, x]) => {
+          const link = "dersler/" + m[1] + ".html", ok = /^keçdi/.test(x.qeyd || "");
+          if (m[2] === "test" && ok) state[link] = true;
+          if (m[2] === "yoxla" && !ok) state[link] = false;
+        });
+      const before = get("skilly-bag", []), bag = new Set(before);
+      for (const l in state) state[l] ? bag.add(l) : bag.delete(l);
+      const after = [...bag]; put("skilly-bag", after);
+      return { synced: items.length > 0, changed: after.length !== before.length || after.some(x => !before.includes(x)) };
+    },
     configured: async () => !!(await api()),
     // Answer checking shared with the lesson pages (same normalisation and hash recipe).
     norm(v, mode) {

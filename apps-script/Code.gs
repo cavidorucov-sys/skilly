@@ -25,6 +25,11 @@ function keyOk_(k) { return k && k === PropertiesService.getScriptProperties().g
 
 function doGet(e) {
   if (!keyOk_(e.parameter.key)) return out_({ ok: false, error: "key" });
+  if (e.parameter.op === "netice") {
+    // results of every device: the portal derives the closed topics from them
+    const rr = rsheet_().getDataRange().getValues().slice(1), rj = RCOLS.indexOf("json");
+    return out_({ ok: true, items: rr.filter(r => r[rj]).map(r => JSON.parse(r[rj])) });
+  }
   const rows = sheet_().getDataRange().getValues().slice(1);
   const j = COLS.indexOf("json");
   return out_({ ok: true, items: rows.filter(r => r[j]).map(r => JSON.parse(r[j])) });

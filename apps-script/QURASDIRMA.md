@@ -20,3 +20,9 @@ Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız Fikrətin cihaz�
 Cədvəldə **Səhvlər** vərəqi avtomatik yaranır: hər sətir bir səhvdir (tarix, fənn, mənbə, sual, cavab, növ, düzgün yol, vəziyyət, növbəti təkrar). Sətirləri əl ilə dəyişmə, `json` sütunu sayt üçündür. Qeyd əlavə etmək lazımdırsa, sağda yeni sütun aç.
 
 Kodu dəyişəndə: **Deploy → Manage deployments → Edit → Version: New version**. Belə edəndə URL dəyişmir.
+
+## Yeniləmə (20 okt 2026): bağlanmış mövzular Sheets-dən
+
+`Code.gs` dəyişib: portal bağlanmış mövzuları bütün cihazların "Nəticələr" sətirlərindən oxuyur.
+1. Apps Script redaktorunda köhnə kodu silib yeni `Code.gs`-i yapışdır, **Save**.
+2. **Deploy → Manage deployments → ✏️ (Edit) → Version: New version → Deploy.** Ünvan (URL) dəyişmir.

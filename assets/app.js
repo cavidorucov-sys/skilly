@@ -648,4 +648,6 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (p === "dusturlar") pageFormulas();
   else if (p === "sinaqlar") pageTests();
   else if (p === "temrar") pageSehv();
+  // closed topics come from Sheets (all devices); redraw once if they differ from this device's copy
+  if (window.Skilly && Skilly.pullBag) Skilly.pullBag().then(r => { if (r.changed) location.reload(); });
 });
