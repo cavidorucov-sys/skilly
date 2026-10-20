@@ -73,7 +73,8 @@
   });
   // Topic illustration (assets/ill/<page>.webp) under the first "Niyə lazımdır" heading; dropped if the file is missing.
   function illustrate() {
-    const h = [...document.querySelectorAll("article.lesson h3")].find(x => /Niyə lazımdır/i.test(x.textContent));
+    // first "Niyə … lazımdır" heading; lessons without one get the picture under their first heading
+    const hs = [...document.querySelectorAll("article.lesson h3")], h = hs.find(x => /Niyə.*lazımdır/i.test(x.textContent)) || hs[0];
     if (!h) return;
     const fig = document.createElement("figure"); fig.className = "ill";
     const img = new Image(); img.src = "../assets/ill/" + name + ".webp"; img.alt = ""; img.decoding = "async";
