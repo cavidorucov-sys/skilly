@@ -16,7 +16,7 @@
   <header class="intro">
     <div class="eyebrow">Riyaziyyat · Buraxılış · DİM: Nisbət. Tənasüb. Faiz</div>
     <h1>Nisbət, tənasüb, düz və tərs mütənasiblik</h1>
-    <p>Xəritənin miqyası, plovun resepti, işin neçə günə bitəcəyi, qazancın bölünməsi — hamısı bir fikrə söykənir: iki kəmiyyəti <b>bölüb müqayisə etmək</b>. Bu mövzu DİM-in mətnli məsələlərinin təxminən yarısının açarıdır.</p>
+    <p>Xəritənin miqyası, plovun resepti, işin neçə günə bitəcəyi, qazancın bölünməsi — hamısı bir fikrə söykənir: iki kəmiyyəti <b>bölüb müqayisə etmək</b>. Bu mövzu DİM-in mətnli məsələlərinin çoxunun açarıdır.</p>
     <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Boss. Yoxsa dərsləri sıra ilə oxu, nümunələri kağızda özün təkrarla, sonra Oyun və Sınaq.</p>
   </header>
 
@@ -105,7 +105,7 @@ a : c = (a : b) · (b : c).
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p><b>Tənasüb</b> — iki nisbətin bərabərliyi: <span class="m">a : b = c : d</span>. Burada <span class="m">a</span> və <span class="m">d</span> — <b>kənar hədlər</b>, <span class="m">b</span> və <span class="m">c</span> — <b>orta hədlər</b>.</p>
       <div class="fm">Əsas xassə:
-a : b = c : d   ⇔   a · d = b · c
+a : b = c : d   ⇔   a · d = b · c   (b, d ≠ 0)
 (kənar hədlərin hasili = orta hədlərin hasili)</div>
       <div class="fig">
         <svg viewBox="0 0 300 120" role="img" aria-label="a:b=c:d tənasübündə kənar hədlər a və d, orta hədlər b və c">
@@ -121,7 +121,7 @@ a : b = c : d   ⇔   a · d = b · c
           <text x="150" y="16" text-anchor="middle" class="lbl" style="fill:var(--vec)">kənar: a · d</text>
           <text x="150" y="116" text-anchor="middle" class="lbl" style="fill:var(--accent)">orta: b · c</text>
         </svg>
-        <div class="cap"><p>Kəsr yazılışında bu "çarpaz vurma"dır: <span class="m">a/b = c/d → a · d = b · c</span>. Naməlum hədd = məlum cütün hasili ÷ o biri cütün məlum həddi.</p></div>
+        <div class="cap"><p>Kəsr yazılışında bu "çarpaz vurma"dır: <span class="m">a/b = c/d → a · d = b · c</span> (b, d ≠ 0). Naməlum hədd = məlum cütün hasili ÷ o biri cütün məlum həddi.</p></div>
       </div>
 
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
@@ -145,7 +145,7 @@ a : b = c : d   ⇔   a · d = b · c
         <li><span class="m">(x − 2)</span> kimi həddi mötərizəsiz vurmaq: <span class="m">3x − 2</span> yox, <span class="m">3x − 6</span>.</li>
         <li>Cavabı yoxlamamaq. Tapdığın ədədi yerinə qoy — iki nisbət bərabər çıxmalıdır.</li>
       </ul></div>
-      <div class="sum"><b>Yadda saxla</b><div class="ex">a : b = c : d  →  a · d = b · c
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a : b = c : d  →  a · d = b · c  (b, d ≠ 0)
 Kənar: a, d.   Orta: b, c.
 Naməlum = (o biri cütün hasili) : (öz cütündəki ədəd)</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
@@ -189,7 +189,7 @@ x₁ : x₂ = y₂ : y₁   (nisbət çevrilir)</div>
           <path d="M180 15 Q 190 85 280 115" fill="none" stroke="var(--vec)" stroke-width="3"/>
           <text x="225" y="145" text-anchor="middle" class="lbl">y = k/x (tərs)</text>
         </svg>
-        <div class="cap"><p>Düz mütənasibliyin qrafiki — başlanğıcdan keçən <b>düz xətt</b>. Tərs mütənasibliyin qrafiki — <b>hiperbola</b>: x böyüdükcə y kiçilir, amma sıfıra çatmır.</p></div>
+        <div class="cap"><p>Düz mütənasibliyin qrafiki — başlanğıcdan keçən <b>düz xətt</b>. Tərs mütənasibliyin qrafiki — <b>hiperbola</b>: k > 0 və x, y müsbət olduqda x böyüdükcə y kiçilir, amma sıfıra çatmır (k &lt; 0 olduqda hər qolda funksiya artır).</p></div>
       </div>
 
       <h3><span class="st">4</span> Cədvəldən tanımaq</h3>
@@ -201,7 +201,7 @@ x₁ : x₂ = y₂ : y₁   (nisbət çevrilir)</div>
       <div class="life"><b>Həyatdan.</b> Taksi: oturma 1 manat + hər km 0,5 manat. 2 km — 2 manat, 4 km — 3 manat. Məsafə 2 dəfə artdı, pul 2 dəfə artmadı. Hər ikisi artır, amma <b>mütənasib deyil</b> — sabit "oturma haqqı" mütənasibliyi pozur.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
-        <li>"İkisi də artırsa — düz mütənasibdir" demək. Lazımdır ki, <b>eyni dəfə</b> artsın (kvadratın tərəfi 2 dəfə artanda sahəsi 4 dəfə artır — mütənasib deyil).</li>
+        <li>"İkisi də artırsa — düz mütənasibdir" demək. Lazımdır ki, <b>eyni əmsalla</b> artsın (kvadratın tərəfi 2 dəfə artanda sahəsi 4 dəfə artır — mütənasib deyil).</li>
         <li>Tərs mütənasib məsələni düz kimi həll etmək: 9 fəhlə üçün <span class="m">15 · 9 : 6 = 22,5</span> gün — çox fəhlə daha çox işləyir? Məntiqsizdir.</li>
         <li>"Eyni məhsuldarlıq" şərtini unutmaq — o olmasa, heç bir mütənasiblik yoxdur.</li>
       </ul></div>

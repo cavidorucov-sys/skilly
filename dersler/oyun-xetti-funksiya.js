@@ -203,7 +203,7 @@
         const ask = pick(["k", "b", "val", "inv"]);
         if (ask === "k") return { text: T(lead, B("k"), " = ?"), answer: k, show: num(k), tol: 0.01, solution: sk };
         if (ask === "b") return { text: T(lead, B("b"), " = ?"), answer: b, show: S(b), tol: 0.01, solution: sk + sb };
-        let x3; do { x3 = q * rnd(-6, 6); } while (x3 === x1 || x3 === x2 || k * x3 + b === x3);
+        let x3; do { x3 = q * rnd(-6, 6); } while (x3 === x1 || x3 === x2);
         const y3 = k * x3 + b;
         if (ask === "val") return { text: T(lead, `Bu xətt üzərində absisi ${S(x3)} olan nöqtənin `, B("ordinatını (y)"), " tap."), answer: y3, show: num(y3), tol: 0.01,
           solution: sk + sb + ` y = ${ev(k, x3, b)} = ${num(y3)}.` };

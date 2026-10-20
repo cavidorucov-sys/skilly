@@ -113,7 +113,9 @@
             solution: `AO : OM = 2 : 1 → AO = 2 · ${k} = ${2 * k}.` };
         }
         let c, bb; do { c = rnd(5, 20); bb = rnd(4, 20); } while (c === bb);
-        const m = rnd(4, 15), x = rnd(3, 12), d = c - bb;
+        let m, x; const okT = (u, v, w) => u < v + w && v < u + w && w < u + v;
+        do { m = rnd(4, 15); x = rnd(3, 12); } while (!okT(c, x, m) || !okT(bb, x, m));
+        const d = c - bb;
         if (kind === "perimetr") return { text: `ABC üçbucağında AM — mediandır. AB = ${c}, AC = ${bb}. ABM və ACM üçbucaqlarının perimetrlərinin fərqini tap (böyükdən kiçiyi çıx).`,
           svg: figure(P, { polys: [ABC], segs: [["A", "M", "acc"]], names: [...ABC, "M"], ticks: [["B", "M", 1], ["M", "C", 1]] }), answer: Math.abs(d), show: String(Math.abs(d)), tol: 0.01,
           solution: `P(ABM) = AB + BM + AM, P(ACM) = AC + MC + AM. BM = MC, AM ortaqdır — fərq yalnız AB − AC-dən gəlir: |${c} − ${bb}| = ${Math.abs(d)}.` };

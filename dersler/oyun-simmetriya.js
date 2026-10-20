@@ -150,7 +150,7 @@
         if (bad === 0) { const [w1, z1] = s === "Ox" ? [-x, y] : [x, -y]; st[0] = `${s} oxuna nəzərən simmetriya: A₁(${S(w1)}; ${S(z1)}).`; st[1] = `${Math.abs(a)} vahid ${a > 0 ? "sağa" : "sola"} köçürmə: A₂(${S(w1 + a)}; ${S(z1)}).`; st[2] = `Koordinatların cəmi: ${S(w1 + a)} + ${par(z1)} = ${S(w1 + a + z1)}.`; if (w1 + a + z1 === x2 + y2) return this.gen(); }
         if (bad === 1) { st[1] = `${Math.abs(a)} vahid ${a > 0 ? "sağa" : "sola"} köçürmə: A₂(${S(x1)}; ${S(y1 + a)}).`; st[2] = `Koordinatların cəmi: ${S(x1)} + ${par(y1 + a)} = ${S(x1 + y1 + a)}.`; }
         if (bad === 2) { const w = x2 - y2; if (w === x2 + y2) return this.gen(); st[2] = `Koordinatların cəmi: ${S(x2)} + ${par(y2)} = ${S(w)}.`; }
-        const text = h("div", {}, h("p", {}, `${P("A", x, y)} nöqtəsini əvvəl ${s} oxuna nəzərən simmetrik köçür, sonra ${Math.abs(a)} vahid ${a > 0 ? "sağa" : "sola"} sürüşdür. Alınan nöqtənin koordinatlarının cəmi nədir?`),
+        const text = h("div", {}, h("p", {}, `${P("A", x, y)} nöqtəsini əvvəl ${s} oxuna nəzərən simmetrik əks etdir, sonra ${Math.abs(a)} vahid ${a > 0 ? "sağa" : "sola"} sürüşdür. Alınan nöqtənin koordinatlarının cəmi nədir?`),
           h("ol", { class: "oy-steps" }, ...st.map(t => h("li", {}, t))));
         const why = [`1-ci addım: ${s} oxuna nəzərən ${s === "Ox" ? "absis qalır, ordinatın işarəsi dəyişir" : "ordinat qalır, absisin işarəsi dəyişir"}: A₁(${S(x1)}; ${S(y1)}).`,
           `2-ci addım: sağa/sola köçürmə absisi dəyişir, ordinatı yox: A₂(${S(x2)}; ${S(y2)}).`,

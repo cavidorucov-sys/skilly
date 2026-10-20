@@ -88,7 +88,7 @@
         }
         const N = rnd(10, 60), ev = pick(["boyukdeyil", "bolunur", "boyuk"]);
         if (ev === "boyukdeyil") { const M = rnd(N - 6, N + 6);
-          return out(`1-dən ${N}-ə qədər natural ədədlərdən biri təsadüfən seçilir. Hadisə: seçilən ədəd ${M} ədədindən böyük deyil.`.replace(`${N}-ə`, `${N} daxil olmaqla ${N} ədədinədək`).replace(`1-dən ${N} daxil olmaqla ${N} ədədinədək`, `1, 2, …, ${N} ədədlərindən biri seçilir.`).replace(" natural ədədlərdən biri təsadüfən seçilir.", " (təsadüfən)"),
+          return out(`1-dən ${N}-dək natural ədədlərdən biri təsadüfən seçilir. Hadisə: seçilən ədəd ${M} ədədindən böyük deyil.`,
             M >= N ? 0 : 2, M >= N ? `Ən böyük mümkün ədəd ${N}-dir, o da ${M} ədədindən böyük deyil.` : `${M + 1}, …, ${N} ədədləri ${M} ədədindən böyükdür, qalanları yox.`); }
         if (ev === "bolunur") { const k = Math.random() < .5 ? rnd(2, 9) : N + rnd(1, 20);
           return out(`1, 2, …, ${N} ədədlərindən biri təsadüfən seçilir. Hadisə: seçilən ədəd ${k} ədədinə bölünür.`, k > N ? 1 : 2,

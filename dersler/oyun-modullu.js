@@ -169,7 +169,7 @@
         const c = d + rnd(0, 8), op = pick(["<", "≤"]);
         const xs = ints(x => cmp(Math.abs(x - a) + Math.abs(x - b), op, c));
         return fin(`${e} ${op} ${c}.`, intsQ(xs),
-          `${pre} Sərhədlər: ${e} = ${c} → x = ${frac(a + b - c, 2)} və x = ${frac(a + b + c, 2)}. Həll: ${frac(a + b - c, 2)} ${op} x ${op} ${frac(a + b + c, 2)}.` + (c === d && op === "<" ? ` (Cəm heç vaxt ${d} ədədindən kiçik olmur — həll yoxdur.)` : ""));
+          `${pre} ${c === d ? "" : `Sərhədlər: ${e} = ${c} → x = ${frac(a + b - c, 2)} və x = ${frac(a + b + c, 2)}. `}${c === d && op === "<" ? `Cəm heç vaxt ${d} ədədindən kiçik olmur — həll ∅ (boşdur), cavab 0.` : `Həll: ${frac(a + b - c, 2)} ${op} x ${op} ${frac(a + b + c, 2)}.`}`);
       } },
     { id: "sehv", ad: "Səhvi tap", izah: "Həll üç addımdır, birində ilk səhv var. Hansında?",
       gen() {

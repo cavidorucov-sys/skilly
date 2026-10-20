@@ -293,7 +293,7 @@
             `2-ci addım: c² − a² ≠ (c − a)². Düzü: ${c * c} − ${a * a} = ${b * b}.`,
             `3-cü addım: kökü almaq lazımdır: b = √${b * b} = ${b}.`][bad];
         } else {
-          let t, m, n; do { t = rnd(1, 3); m = rnd(1, 4); n = rnd(1, 4); } while (m === n);
+          let t, m, n; do { t = rnd(1, 3); m = rnd(1, 4); n = rnd(1, 4); } while (m === n || (bad === 2 && t * m * n === 2));
           const p = t * m * m, q = t * n * n, hh = t * m * n;
           task = `Düzbucaqlı üçbucaqda hipotenuza çəkilmiş CH hündürlüyü onu AH = ${p} və HB = ${q} parçalarına bölür. CH hündürlüyünü tap.`;
           st = [`CH² = AH · HB`, `CH² = ${p} · ${q} = ${p * q}`, `CH = √${p * q} = ${hh}`];
