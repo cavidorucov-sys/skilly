@@ -143,7 +143,7 @@
       [...bar.children].forEach((b, j) => { b.setAttribute("aria-current", j === i ? "step" : "false"); b.classList.toggle("done", j < i); });
       prev.hidden = i === 0; next.hidden = i === secs.length - 1; pos.textContent = (i + 1) + " / " + secs.length;
       if (lessonNext) lessonNext.hidden = i !== secs.length - 1;
-      try { localStorage.setItem("step:" + key, i); } catch (e) {}
+      try { localStorage.setItem("step:" + key, i); } catch (e) {} if (window.Skilly && Skilly.hal) Skilly.hal("step:" + key);
       if (scroll) art.scrollIntoView({ block: "start", behavior: "smooth" });
       bar.children[i].scrollIntoView({ block: "nearest", inline: "center" });
     }

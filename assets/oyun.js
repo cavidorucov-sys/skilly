@@ -2,7 +2,7 @@
 // A topic file defines levels; each level has a generator that returns a fresh problem with random numbers.
 // Rules: a level is mastered after STREAK correct answers in a row (a mistake resets it); levels open one by
 // one; the boss round asks one problem per level and needs all correct — a mistake sends the player back to
-// that level; the final test opens only after the boss. Progress lives in localStorage; results go to Sheets.
+// that level; the final test opens only after the boss. Progress lives in localStorage and is mirrored to the cloud.
 (function () {
   const STREAK = 5, WAIT_MS = 2500;
   const h = (tag, attrs, ...kids) => {
@@ -12,7 +12,7 @@
     return e;
   };
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
-  const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} if (window.Skilly && Skilly.hal) Skilly.hal(k); };
 
   // Answers: integers, decimals (comma or dot), fractions 3/5, roots 5√3, √3/2, −√2/2.
   function parse(raw) {
