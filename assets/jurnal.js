@@ -173,7 +173,7 @@
     // Everything from the other devices: results (→ closed topics) and progress. changed = the page must redraw.
     async sync() {
       const a = await api(); let changed = false;
-      if (a) try { await pullNetice(a); changed = await pullHal(a); await flush(); } catch (e) {}
+      if (a) try { await pullNetice(a); changed = await pullHal(a); await window.Skilly.pull(); } catch (e) {}
       return { synced: !!a, changed: deriveBag() || changed };
     },
     configured: async () => !!(await api()),

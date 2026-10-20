@@ -187,6 +187,13 @@
           h("button", { type: "button", class: "btn", on: { click: () => { cfg.goGame && cfg.goGame(); if (st.boss.passed && openLv.length) play(openLv[0].id); } } }, "Oyuna keç →")));
         return;
       }
+      const fix = pendingFix();
+      if (fix.length) {
+        testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Sınaq: səhvi düzəlt"),
+          h("p", {}, "Sınaqda " + fix.length + " sual səhv qalıb. İndi Sınaq yalnız " + (fix.length === 1 ? "o sualdır" : "o suallardır") + ": düz həll edəndə mövzu bağlanır. Səhv olsa, sual qalır."),
+          h("button", { type: "button", class: "btn", on: { click: runFix } }, "Başla")));
+        return;
+      }
       const last = st.test;
       const due = window.Skilly ? Skilly.dueReviews(cfg.key) : [];
       if (due.length && last && last.passed) {
@@ -213,7 +220,7 @@
       delete st.testRun;
       // every problem ended right, so the topic closes; "bal" = right at the first attempt (for the record)
       const bal = res.filter(r => !r.wrong).length;
-      st.test = { bal, at: Date.now(), passed: true };
+      st.test = { bal, at: Date.now(), passed: true, v: 2 };
       res.forEach((r, i) => { if (r.wrong) logWrong("yekun sınaq", "test@" + st.test.at + "#" + (i + 1), qs[i].q, r.first); });
       save(); drawMap();
       const missed = qs.filter((x, i) => res[i].wrong).map(x => x.id);
@@ -300,9 +307,30 @@
     // The topic is closed only while everything is done: final test, Boss and every level (father, 20 Oct 2026).
     // A level reopened by the old rules keeps the topic open until it is mastered; then the topic closes by itself.
     const inBag = () => { try { return JSON.parse(localStorage.getItem("skilly-bag") || "[]").includes(cfg.link); } catch (e) { return false; } };
+    // A test taken under the old rule (8/10 passed) left wrong answers uncorrected: those questions, from the error
+    // journal, are the whole test now; the topic closes when they are answered right (father, 20 Oct 2026).
+    function pendingFix() {
+      if (!st.test || !st.test.passed || st.test.v || st.test.fixed || st.test.bal >= cfg.test.n || !window.Skilly) return [];
+      const pre = cfg.key + "-test@" + st.test.at + "#";
+      return Skilly.all().filter(e => String(e.id).startsWith(pre)).map(e => ({ e, k: +String(e.id).slice(pre.length) })).sort((a, b) => a.k - b.k);
+    }
+    function fixQuestion({ e, k }) {
+      const x = parse(e.duz);
+      if (!isNaN(x) && okForm(String(e.duz))) return { text: e.sual, answer: x, show: e.duz, solution: "" };
+      return genS(L(cfg.test.from[k - 1] || cfg.levels[0].id), newSeed()); // not a number: a new problem of the same level
+    }
+    async function runFix() {
+      const list = pendingFix(); if (!list.length) return drawTest();
+      const box = h("div"); testRoot.replaceChildren(box);
+      for (let i = 0; i < list.length; i++) await ask(fixQuestion(list[i]), box, { label: "Düzəliş · " + (i + 1) + " / " + list.length });
+      st.test.fixed = Date.now(); save(); settle();
+      testRoot.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "Səhv düzəldildi — mövzu bağlandı ✓"),
+        h("p", {}, "Bir həftə sonra 3 suallıq yaddaş yoxlaması gələcək.")));
+    }
     function settle() {
       if (!st.test || !st.test.passed) return;
       const open = cfg.levels.filter(l => !st.lv[l.id].done).map(l => l.id);
+      if (pendingFix().length) open.push("sınaq səhvi");
       if (!open.length && st.boss.passed && !inBag()) { report("baglandi", { qeyd: "hamısı düz həll olundu" }); cfg.onPass && cfg.onPass(); }
       if ((open.length || !st.boss.passed) && inBag()) {
         try { localStorage.setItem("skilly-bag", JSON.stringify(JSON.parse(localStorage.getItem("skilly-bag") || "[]").filter(x => x !== cfg.link))); } catch (e) {}
