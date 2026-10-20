@@ -394,3 +394,22 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .sclear:hover{background:var(--bg);color:var(--ink)}
 .sbox + .count{margin-top:8px}
 .sclear[hidden],.mt tr[hidden]{display:none}
+
+/* formulas: folded topics, compact cards, filter */
+.fbar{margin-top:14px}
+.fgrp{border-bottom:1px solid var(--line)}
+.fgrp > summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 4px;cursor:pointer;border-radius:var(--r-sm);transition:background .15s var(--ease)}
+.fgrp > summary::-webkit-details-marker{display:none}
+.fgrp > summary:hover{background:var(--bg)}
+.fgt{font-weight:600;font-size:16px;flex:1;min-width:0}
+.fgn{color:var(--muted);font-size:13px;white-space:nowrap}
+.fgc{display:grid;color:var(--ink-2);transition:transform .15s var(--ease)}
+.fgc svg{width:18px;height:18px}
+.fgrp[open] .fgc{transform:rotate(180deg)}
+.fgrp .fgrid{margin:4px 0 18px}
+.fcard{cursor:pointer;transition:box-shadow .15s var(--ease)}
+.fcard:hover{box-shadow:inset 0 0 0 1px var(--line-strong)}
+.fcard[aria-expanded=true]{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.fmore{display:grid;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid var(--line)}
+.fmore[hidden]{display:none}
+.fgrp .fgrid{align-items:start}

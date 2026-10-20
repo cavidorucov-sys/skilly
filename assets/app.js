@@ -317,22 +317,38 @@ function renderTopics(content, m, key, lead) {
 }
 
 async function pageFormulas() {
+  // short page: topics come folded (heading + count), cards show only name and formula (details on click),
+  // and a filter keeps just the topics Fikrət works with; typing a search opens every matching topic
   const FENN = { riyaziyyat: ["Riyaziyyat", "Axtar: sin, diskriminant, parabola…"], fizika: ["Fizika", "Axtar: təcil, impuls, Om…"] };
+  const FILTER = { all: "Hamısı", week: "Bu həftə", isl: "İşlənir", bag: "Bağlanıb" };
   const h1 = el("h1"), list = el("div"), sb = searchBox("Düstur axtar", "", () => draw()), q = sb.input;
-  await shell(el("div", { style: "margin-top:30px" }, h1, el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."), sb, list));
+  let filter = "all";
+  const fseg = seg(FILTER, k => { filter = k; draw(); }, "all");
+  const { m } = await shell(el("div", { style: "margin-top:30px" }, h1, el("p", { class: "lead" }, "Mövzunu aç, düstura bas — nə vaxt işlədildiyi, tipik səhv və dərsə keçid görünəcək."), sb, el("div", { class: "fbar" }, fseg), list));
   const all = await load("data/dusturlar.json").catch(() => []);
+  const byPage = {}; if (m) for (const k in m) m[k].forEach(t => { if (t.ders && !byPage[t.ders]) byPage[t.ders] = t; });
+  const monday = (() => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); })();
+  const keep = x => { const t = byPage[x.ders]; if (filter === "all") return true; if (!t) return false;
+    return filter === "week" ? t.hefte === monday && !isClosed(t) : filter === "isl" ? t.status === "isl" && !isClosed(t) : isClosed(t); };
   let fenn = "Riyaziyyat";
+  const card = x => { const more = el("div", { class: "fmore", hidden: "" }, el("div", { class: "note" }, x.nevaxt || ""),
+      x.sehv ? el("div", { class: "err" }, "Tipik səhv: " + x.sehv) : null, x.ders ? el("a", { href: x.ders }, "İzahı dərsdə →") : null);
+    const c = el("div", { class: "fcard", role: "button", tabindex: "0", "aria-expanded": "false" },
+      el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, ...x.fx.split(";").map(f => el("span", {}, f.trim()))), more);
+    const flip = e => { if (e.target.closest("a")) return; const open = more.hidden; more.hidden = !open; c.setAttribute("aria-expanded", String(open)); };
+    c.addEventListener("click", flip); c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(e); } });
+    return c; };
   function draw() {
     const s = q.value.trim().toLocaleLowerCase("az"); list.replaceChildren();
-    const inTab = all.filter(x => x.fenn === fenn);
+    const inTab = all.filter(x => x.fenn === fenn && keep(x));
     const f = inTab.filter(x => !s || (x.ad + x.fx + x.movzu + (x.nevaxt || "") + (x.sehv || "")).toLocaleLowerCase("az").includes(s));
-    list.append(el("p", { class: "count" }, s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`));
-    [...new Set(f.map(x => x.movzu))].forEach(mz => {
-      list.append(el("div", { class: "fsec" }, mz), el("div", { class: "fgrid" }, ...f.filter(x => x.movzu === mz).map(x => el("div", { class: "fcard" },
-        el("div", { class: "m" }, x.ad), el("div", { class: "fx" }, ...x.fx.split(";").map(f => el("span", {}, f.trim()))), el("div", { class: "note" }, x.nevaxt || ""),
-        x.sehv ? el("div", { class: "err" }, "Tipik səhv: " + x.sehv) : null, x.ders ? el("a", { href: x.ders }, "İzahı dərsdə →") : null))));
-    });
-    if (!f.length) list.append(el("p", { class: "empty" }, "Tapılmadı."));
+    const topics = [...new Set(f.map(x => x.movzu))];
+    list.append(el("p", { class: "count" }, (s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`) + ` · ${topics.length} mövzu`));
+    topics.forEach(mz => { const xs = f.filter(x => x.movzu === mz), t = byPage[xs[0].ders];
+      list.append(el("details", { class: "fgrp", ...(s ? { open: "" } : {}) },
+        el("summary", {}, el("span", { class: "fgt" }, mz), el("span", { class: "fgn" }, xs.length + " düstur"), t ? stPill(isClosed(t) ? "bag" : t.status) : null, el("span", { class: "fgc" }, icon("ChevronDown"))),
+        el("div", { class: "fgrid" }, ...xs.map(card)))); });
+    if (!f.length) list.append(el("p", { class: "empty" }, filter === "all" || s ? "Tapılmadı." : "Bu seçimdə mövzu yoxdur."));
   }
   onSubject(k => {
     const [name, ph] = FENN[k]; fenn = name;
