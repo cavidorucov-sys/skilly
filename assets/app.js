@@ -70,7 +70,10 @@ function el(tag, attrs, ...kids) {
 async function load(path) {
   const r = await fetch(path, { cache: "no-cache" });
   if (!r.ok) throw new Error(path + " " + r.status);
-  return r.json();
+  const j = await r.json();
+  // topics whose final test was passed (on any device, via the cloud) are closed on every page
+  if (path.endsWith("movzular.json")) { const bag = passedHere(); for (const k in j) j[k].forEach(t => { if (t.ders && bag.includes(t.ders)) t.status = "bag"; }); }
+  return j;
 }
 // statuses are shown by icon and colour; the word stays only as a tooltip and for screen readers
 const ST = { yox: ["Başlanmayıb", "st-yox", "CircleDashed"], isl: ["İşlənir", "st-isl", "Clock"], bag: ["Bağlanıb", "st-bag", "CircleCheck"] };
