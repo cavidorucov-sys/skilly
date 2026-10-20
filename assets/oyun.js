@@ -385,7 +385,7 @@
     (window.Skilly && Skilly.synced ? Skilly.synced : Promise.resolve()).then(settle);
     if (st.entryRun && cfg.entryEl) runEntry();
     // an unfinished test resumes only while the test is open (every level mastered, Boss passed)
-    if (st.testRun && testRoot) { if (st.boss.passed && allDone()) runTest(); else { delete st.testRun; save(); } }
+    if (st.testRun && testRoot) { if (st.boss.passed && allDone() && !pendingFix().length) runTest(); else { delete st.testRun; save(); drawTest(); } }
     cfg.refreshTest = drawTest;
     return { state: st, drawTest };
   }
