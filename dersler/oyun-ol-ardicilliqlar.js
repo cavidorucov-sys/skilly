@@ -67,7 +67,7 @@
         return { text: `a₁ = ${sg(c)}, aₙ₊₁ = aₙ + n. ${a_(k)} = ?`, answer: v[k - 1], show: sg(v[k - 1]), tol: INT,
           solution: `${a_(k)} = a₁ + 1 + 2 + … + ${k - 1} = ${sg(c)} + ${k - 1}·${k}/2 = ${sg(c)} + ${k * (k - 1) / 2} = ${sg(v[k - 1])}.` };
       } },
-    { id: "dovri", ad: "Dövri ardıcıllıqlar", izah: "Əvvəlcə ilk bir neçə həddi yaz, təkrar başlayan yeri tap (dövr T). Sonra aₖ = a_(k mod T).",
+    { id: "dovri", ad: "Dövri ardıcıllıqlar", izah: "Əvvəlcə ilk bir neçə həddi yaz, təkrar başlayan yeri tap (dövr T). Sonra r = (k − 1) mod T + 1 götür: aₖ = aᵣ.",
       gen() {
         const kind = pick(["A", "B", "C", "Csum", "Aprod"]);
         if (kind === "A" || kind === "B" || kind === "Aprod") {

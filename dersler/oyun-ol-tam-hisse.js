@@ -138,7 +138,7 @@
         return fin(`{1/${m}} + {2/${m}} + {3/${m}} + … + {${n}/${m}} = ? (${n} toplanan)`, ans,
           `Hər ${m} ardıcıl toplanan bir blokdur: 1/${m} + 2/${m} + … + (${m - 1})/${m} + 0 = ${rs(R(m - 1, 2))}. Blokların sayı ${qq}. Cəm: ${qq}·${rs(R(m - 1, 2))} = ${rs(ans)}.`);
       } },
-    { id: "hayat", ad: "Həyatdan", izah: "\"Neçə tam\" — tam hissədir. \"Heç olmasa neçə\" — yuxarı yuvarlaqlamadır: ⌈a/b⌉ = [(a − 1)/b] + 1.",
+    { id: "hayat", ad: "Həyatdan", izah: "\"Neçə tam\" — tam hissədir. \"Heç olmasa neçə\" — yuxarı yuvarlaqlamadır (a, b müsbət tam ədədlər olduqda): ⌈a/b⌉ = [(a − 1)/b] + 1.",
       gen() {
         const kind = pick(["bus", "ceil", "rest", "week"]);
         if (kind === "bus") {

@@ -64,7 +64,7 @@
           return fin(`f(x) = sin(2πx/${m1}) + cos(2πx/${m2}). Bu funksiyanın ən kiçik müsbət periodunu tap.`, R(L),
             `sin(2πx/${m1})-in periodu ${m1}, cos(2πx/${m2})-nin periodu ${m2}-dir. Cəmin periodu hər ikisinə bölünməlidir: ƏKOB(${m1}; ${m2}) = ${L}.`);
         }
-        const T = rnd(3, 8), a = rnd(1, T - 1), v = pick([-1, 1]) * rnd(1, 15), k = rnd(30, 400), N = k * T - a;
+        const T = rnd(3, 8); let a = rnd(1, T - 1); while (2 * a === T) a = rnd(1, T - 1); const v = pick([-1, 1]) * rnd(1, 15), k = rnd(30, 400), N = k * T - a;
         return fin(`f tək funksiyadır, periodu ${T}-dir. f(${a}) = ${S(v)}. f(${N}) = ?`, R(-v),
           `${N} = ${k}·${T} − ${a}, period ${T} olduğundan f(${N}) = f(−${a}). Tək funksiya: f(−${a}) = −f(${a}) = ${S(-v)}.`);
       } },

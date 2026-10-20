@@ -126,7 +126,7 @@ x-in lazım olan qüvvətini verən k-nı tap → hesabla</div>
       <h3><span class="st">4</span> Əmsalların cəmi: x = 1, x = 0, x = −1</h3>
       <div class="fm">P(x) = aₙxⁿ + … + a₁x + a₀
 Bütün əmsalların cəmi:   P(1)
-Sərbəst hədd:            P(0)
+Sərbəst hədd:            P(0)      (P — çoxhədli; 1/x-li ifadəyə birbaşa tətbiq olunmur)
 Cüt qüvvətlərdəki cəm:   (P(1) + P(−1)) / 2
 Tək qüvvətlərdəki cəm:   (P(1) − P(−1)) / 2</div>
       <p>Niyə? <span class="m">x = 1</span> olanda hər hədd öz əmsalına çevrilir. <span class="m">x = −1</span> olanda cüt qüvvətlər "+", tək qüvvətlər "−" işarə ilə gəlir; toplayanda tək hədlər silinir.</p>
@@ -174,10 +174,10 @@ Cüt qüvvətlər: (P(1) + P(−1))/2</div></div>
       <div class="fm">aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + aⁿ⁻²b + … + abⁿ⁻² + bⁿ⁻¹)
 n tək:  aⁿ + bⁿ = (a + b)(aⁿ⁻¹ − aⁿ⁻²b + … − abⁿ⁻² + bⁿ⁻¹)
 
-Nəticə (a, b — tam ədədlər):
-• aⁿ − bⁿ həmişə a − b-yə bölünür
-• n tək olanda aⁿ + bⁿ bölünür a + b-yə
-• n cüt olanda aⁿ − bⁿ bölünür a + b-yə</div>
+Nəticə (a, b — tam ədədlər, n natural):
+• aⁿ − bⁿ bölünür a − b-yə (a ≠ b)
+• n tək olanda aⁿ + bⁿ bölünür a + b-yə (a + b ≠ 0)
+• n cüt olanda aⁿ − bⁿ bölünür a + b-yə (a + b ≠ 0)</div>
       <p><b>İsbatın ideyası</b> (Bezu teoremi ilə). <span class="m">P(x) = xⁿ − bⁿ</span> çoxhədlisində <span class="m">P(b) = 0</span>, deməli <span class="m">P(x)</span> bölünür <span class="m">x − b</span>-yə. <span class="m">n</span> tək olanda <span class="m">Q(x) = xⁿ + bⁿ</span> üçün <span class="m">Q(−b) = −bⁿ + bⁿ = 0</span>, deməli bölünür <span class="m">x + b</span>-yə. <span class="m">n</span> cüt olanda <span class="m">xⁿ − bⁿ</span> üçün <span class="m">x = −b</span> də kökdür.</p>
       <p>Qısa yazılış: <span class="m">a mod m</span> — <span class="m">a</span>-nı <span class="m">m</span>-ə böldükdə qalıq; <span class="m">a ≡ b (mod m)</span> — <span class="m">a</span> və <span class="m">b</span> eyni qalıq verir.</p>
 
@@ -212,9 +212,9 @@ Həll. 11ⁿ⁺² = 121·11ⁿ,   12²ⁿ⁺¹ = 12·144ⁿ.
         <li><span class="m">aⁿ − bⁿ</span> bölünür <span class="m">a + b</span>-yə — yalnız cüt <span class="m">n</span> üçün: <span class="m">3³ − 1 = 26</span>, 4-ə bölünmür.</li>
         <li>Əsasları uyğunlaşdırmağı unutmaq: <span class="m">2¹⁰⁰ − 1</span>-də 15-i görmək üçün <span class="m">2¹⁰⁰ = 16²⁵</span> yazmaq lazımdır.</li>
       </ul></div>
-      <div class="sum"><b>Yadda saxla</b><div class="ex">a − b  bölür  aⁿ − bⁿ  (həmişə)
-a + b  bölür  aⁿ + bⁿ  (n tək)
-a + b  bölür  aⁿ − bⁿ  (n cüt)</div></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a − b  bölür  aⁿ − bⁿ  (a ≠ b)
+a + b  bölür  aⁿ + bⁿ  (n tək, a + b ≠ 0)
+a + b  bölür  aⁿ − bⁿ  (n cüt, a + b ≠ 0)</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li><span class="m">7¹⁰⁰ − 3¹⁰⁰</span> ədədi 40-a bölünürmü? <span class="ans">Bəli: 7¹⁰⁰ − 3¹⁰⁰ = 49⁵⁰ − 9⁵⁰, bölünür 49 − 9 = 40-a.</span></li>
         <li><span class="m">2²⁰²⁶ + 1</span> ədədini 5-ə böldükdə qalıq? <span class="ans">2²⁰²⁶ + 1 = 4¹⁰¹³ + 1¹⁰¹³, 1013 tək → bölünür 4 + 1 = 5-ə. Qalıq 0.</span></li>

@@ -43,7 +43,7 @@
       <p>Kəsri əvvəl <b>ixtisar et</b>: <span class="m">m/n</span>, ƏBOB(<span class="m">m, n</span>) = 1. Sonra yalnız məxrəcə bax:</p>
       <div class="fm">n = 2ᵃ · 5ᵇ               →  sonlu, vergüldən sonra max(a, b) rəqəm
 n ilə 10 qarşılıqlı sadə   →  saf dövri: 1/7 = 0,(142857)
-n = 2ᵃ · 5ᵇ · t  (t > 1)    →  qarışıq dövri: dövrə qədər max(a, b) rəqəm,
+n = 2ᵃ · 5ᵇ · t  (ƏBOB(t, 10) = 1, t > 1, a + b > 0)  →  qarışıq dövri (a = b = 0 olsa, saf dövridir): dövrə qədər max(a, b) rəqəm,
                               dövr t-yə görə: 7/12 = 0,58(3)</div>
       <p>Niyə? <span class="m">m/n</span> sonludursa, onu <span class="m">k/10ˢ</span> kimi yazmaq olar, ona görə <span class="m">n</span> ədədi <span class="m">10ˢ = 2ˢ · 5ˢ</span> ədədinin bölənidir — məxrəcdə 2 və 5-dən başqa sadə vuruq ola bilməz.</p>
 
@@ -265,7 +265,7 @@ Cavab: (3, 2), (17, 12), (99, 70).
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Yaxınlaşanı "zəncirin yarısını hesablamaqla" tapmağa çalışıb çaşmaq. Cədvəl düsturu daha etibarlıdır: hər yeni ədəd = element × əvvəlki + ondan əvvəlki.</li>
         <li><span class="m">a₀</span>-ı səhv tapmaq: <span class="m">√29</span> üçün <span class="m">a₀ = 5</span> (çünki <span class="m">5² = 25 &lt; 29 &lt; 36</span>).</li>
-        <li><span class="m">√d</span>-nin ayrılışını <span class="m">d</span>-nin özünün ayrılışı ilə qarışdırmaq. <span class="m">√d</span> irrasionaldır, ayrılışı bitmir.</li>
+        <li><span class="m">√d</span>-nin ayrılışını <span class="m">d</span>-nin özünün ayrılışı ilə qarışdırmaq. <span class="m">d</span> natural və tam kvadrat deyilsə, <span class="m">√d</span> irrasionaldır, ayrılışı bitmir.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">√2 = [1; 2, 2, …],  √3 = [1; 1, 2, 1, 2, …],  √5 = [2; 4, 4, …]
 Pₖ = aₖPₖ₋₁ + Pₖ₋₂,  Qₖ = aₖQₖ₋₁ + Qₖ₋₂

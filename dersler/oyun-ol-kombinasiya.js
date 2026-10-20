@@ -133,16 +133,16 @@
       gen() {
         const kind = pick(["dice", "balls2", "balls1", "coins", "adj", "div"]);
         if (kind === "dice") { const s = rnd(2, 12), f = 6 - Math.abs(s - 7);
-          return { text: `İki zər atılır. Düşən xalların cəminin ${s} olması ehtimalı nədir?`, answer: f / 36, show: frac(f, 36), tol: PR,
+          return { text: `İki ədalətli zər atılır (atışlar müstəqildir). Düşən xalların cəminin ${s} olması ehtimalı nədir?`, answer: f / 36, show: frac(f, 36), tol: PR,
             solution: `Bütün hallar: 6 · 6 = 36. Cəmi ${s} olan cütlər: ${f} (məs. ${Array.from({ length: 6 }, (_, i) => i + 1).filter(a => s - a >= 1 && s - a <= 6).map(a => `(${a}; ${s - a})`).join(", ")}). P = ${f}/36 = ${frac(f, 36)}.` }; }
         if (kind === "balls2") { const R = rnd(2, 8), B = rnd(2, 8), f = C(R, 2), t = C(R + B, 2);
-          return { text: `Qutuda ${R} qırmızı və ${B} göy kürə var. Təsadüfən 2 kürə götürülür. İkisinin də qırmızı olması ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
+          return { text: `Qutuda ${R} qırmızı və ${B} göy kürə var. Eyni ehtimalla, geri qaytarılmadan təsadüfən 2 kürə götürülür. İkisinin də qırmızı olması ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
             solution: `Bütün hallar: C(${R + B}, 2) = ${t}. Əlverişli: C(${R}, 2) = ${f}. P = ${f}/${t} = ${frac(f, t)}.` }; }
         if (kind === "balls1") { const R = rnd(2, 8), B = rnd(2, 8), f = R * B, t = C(R + B, 2);
-          return { text: `Qutuda ${R} qırmızı və ${B} göy kürə var. Təsadüfən 2 kürə götürülür. Kürələrin müxtəlif rəngli olması ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
+          return { text: `Qutuda ${R} qırmızı və ${B} göy kürə var. Eyni ehtimalla, geri qaytarılmadan təsadüfən 2 kürə götürülür. Kürələrin müxtəlif rəngli olması ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
             solution: `Bütün hallar: C(${R + B}, 2) = ${t}. Bir qırmızı və bir göy: ${R} · ${B} = ${f}. P = ${f}/${t} = ${frac(f, t)}.` }; }
         if (kind === "coins") { const n = rnd(3, 6), k = rnd(0, n), f = C(n, k), t = 2 ** n;
-          return { text: `Pul ${n} dəfə atılır. Düz ${k} dəfə "gerb" düşməsi ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
+          return { text: `Ədalətli pul ${n} dəfə müstəqil atılır. Düz ${k} dəfə "gerb" düşməsi ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
             solution: `Bütün nəticələr: 2^${n} = ${t}. "Gerb"in düşdüyü ${k} atışı seç: C(${n}, ${k}) = ${f}. P = ${f}/${t} = ${frac(f, t)}.` }; }
         if (kind === "adj") { const n = rnd(3, 10);
           return { text: `${n} nəfər təsadüfi qaydada bir sıraya düzülür. Aysel ilə Fikrətin yanaşı durması ehtimalı nədir?`, answer: 2 / n, show: frac(2, n), tol: PR,

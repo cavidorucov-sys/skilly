@@ -77,13 +77,13 @@
     { id: "sehv", ad: "Səhvi tap", izah: "ax + b/x ifadəsinin minimumunu AM-GM ilə tapan üç addımlı həll. Hər addımı yoxla: 2 vuruğu, bərabərlik şərti, hesab.",
       gen() {
         const a = rnd(1, 4), x0 = rnd(2, 5), b = a * x0 * x0, m = a * x0, bad = rnd(0, 2);
-        const s1 = bad === 0 ? `AM-GM (x > 0): ${ax(a)} + ${b}/x ≥ √(${ax(a)} · ${b}/x) = √${a * b}.` : `AM-GM (x > 0): ${ax(a)} + ${b}/x ≥ 2√(${ax(a)} · ${b}/x) = 2√${a * b}.`;
+        const s1 = bad === 0 ? `AM-GM (x > 0): ${ax(a)} + ${b}/x ≥ 2 · (${ax(a)} · ${b}/x) = 2 · ${a * b}.` : `AM-GM (x > 0): ${ax(a)} + ${b}/x ≥ 2√(${ax(a)} · ${b}/x) = 2√${a * b}.`;
         const s2 = bad === 1 ? `Bərabərlik: ${ax(a)} = ${b}/x ⇒ x = ${b}/${a} = ${x0 * x0}.` : `Bərabərlik: ${ax(a)} = ${b}/x ⇒ x² = ${b / a} ⇒ x = ${x0}.`;
-        const val = bad === 0 ? m : bad === 2 ? 2 * m + pick([-2, -1, 1, 2]) : 2 * m;
-        const s3 = bad === 0 ? `√${a * b} = ${m}. Minimum ${m}.` : `√${a * b} = ${m}. Minimum 2 · ${m} = ${val}.`;
+        const val = bad === 0 ? 2 * a * b : bad === 2 ? 2 * m + pick([-2, -1, 1, 2]) : 2 * m;
+        const s3 = bad === 0 ? `Minimum 2 · ${a * b} = ${val}.` : `√${a * b} = ${m}. Minimum 2 · ${m} = ${val}.`;
         const text = h("div", {}, h("p", {}, `Fikrət x > 0 olduqda ${ax(a)} + ${b}/x ifadəsinin ən kiçik qiymətini tapır. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, ...[s1, s2, s3].map(st => h("li", {}, st))));
-        const why = [`1-ci addım: AM-GM-də iki toplananın cəmi ≥ 2√(hasil) olur, √(hasil) yox. Düz cavab: ${2 * m}.`,
+        const why = [`1-ci addım: AM-GM-də iki toplananın cəmi ≥ 2√(hasil) olur, 2 · (hasil) yox (Fikrət kök işarəsini unudub; x = ${x0} üçün ifadə ${2 * m}-ə bərabərdir, ${val} ola bilməz). Düz cavab: ${2 * m}.`,
           `2-ci addım: ${ax(a)} = ${b}/x-dən x² = ${b / a}, yəni x = ${x0}. (Fikrət kvadrat kökü almağı unutub.) Düz minimum ${2 * m} (x = ${x0}).`,
           `3-cü addım: 2 · ${m} = ${2 * m}, ${val} deyil.`][bad];
         const ch = ["1-ci addım", "2-ci addım", "3-cü addım"];

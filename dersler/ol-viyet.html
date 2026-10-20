@@ -42,14 +42,14 @@
 
       <h3><span class="st">2</span> Simmetrik ifadə və əsas düsturlar</h3>
       <p><b>Simmetrik ifadə</b> — <span class="m">x₁</span> və <span class="m">x₂</span> yerlərini dəyişəndə dəyişməyən ifadədir. Hər belə ifadəni <span class="m">s = x₁ + x₂</span> və <span class="m">p = x₁x₂</span> ilə yazmaq olar.</p>
-      <div class="fm">s = x₁ + x₂ = −b/a,     p = x₁x₂ = c/a
+      <div class="fm">s = x₁ + x₂ = −b/a,     p = x₁x₂ = c/a     (ax² + bx + c = 0, a ≠ 0)
 
 x₁² + x₂²   = s² − 2p
 x₁³ + x₂³   = s³ − 3ps
 x₁⁴ + x₂⁴   = (s² − 2p)² − 2p²
 (x₁ − x₂)²  = s² − 4p
 1/x₁ + 1/x₂ = s/p
-x₁/x₂ + x₂/x₁ = (s² − 2p)/p</div>
+x₁/x₂ + x₂/x₁ = (s² − 2p)/p     (son iki düstur üçün p ≠ 0)</div>
       <p>Hamısı bir fikirdən çıxır: <span class="m">(x₁ + x₂)² = x₁² + 2x₁x₂ + x₂²</span>.</p>
 
       <h3><span class="st">3</span> Qüvvətlərin cəmi: rekurrent düstur</h3>
@@ -117,10 +117,10 @@ Birdən çox qüvvət: x + 1/x = s → x və 1/x kökdür (p = 1).</div></div>
       <p><span class="m">ax³ + bx² + cx + d = 0</span> tənliyinin kökləri <span class="m">x₁, x₂, x₃</span> olsun. Üç <b>elementar simmetrik ifadə</b>:</p>
       <div class="fm">e₁ = x₁ + x₂ + x₃        = −b/a
 e₂ = x₁x₂ + x₂x₃ + x₃x₁  =  c/a
-e₃ = x₁x₂x₃             = −d/a</div>
+e₃ = x₁x₂x₃             = −d/a      (a ≠ 0)</div>
       <p>Fənd: tənlik <span class="m">a(x − x₁)(x − x₂)(x − x₃)</span> ilə eynidir, mötərizələri açanda <span class="m">x³ − e₁x² + e₂x − e₃</span> alınır. İşarələr növbələşir: <b>− + −</b>.</p>
       <div class="fm">x₁² + x₂² + x₃² = e₁² − 2e₂
-1/x₁ + 1/x₂ + 1/x₃ = e₂/e₃
+1/x₁ + 1/x₂ + 1/x₃ = e₂/e₃     (e₃ ≠ 0)
 x₁³ + x₂³ + x₃³ = e₁³ − 3e₁e₂ + 3e₃
 (x₁ + x₂)(x₂ + x₃)(x₃ + x₁) = e₁e₂ − e₃</div>
       <p>Qüvvətlərin cəmi üçün də rekurrent var. Hər kök <span class="m">x³ = e₁x² − e₂x + e₃</span> ödəyir, ona görə <span class="m">pₖ = x₁ᵏ + x₂ᵏ + x₃ᵏ</span> üçün (k ≥ 4):</p>
@@ -225,7 +225,7 @@ Nümunə 3.  x² − 6x + k = 0 kökləri üçün x₁ = 2x₂. k = ?
     f(−2) = 16 + 4 − 12 = 8,   f(3) = 36 − 6 − 12 = 18.
   Cavab: 8  (k = −2, tənlik x² + 4x + 4 = 0, x₁ = x₂ = −2).</div>
 
-      <div class="life"><b>Həyatdan.</b> Dördbucaqlı sahənin perimetri <span class="m">P</span>, sahəsi <span class="m">S</span> verilib: tərəflər <span class="m">t² − (P/2)t + S = 0</span> kökləridir. Belə sahə mövcuddur ancaq <span class="m">D = (P/2)² − 4S ≥ 0</span> olanda. Ən böyük sahə kvadratdır (<span class="m">D = 0</span>) — olimpiada məsələlərinin çoxu bu fikirdir.</div>
+      <div class="life"><b>Həyatdan.</b> Düzbucaqlı sahənin perimetri <span class="m">P</span>, sahəsi <span class="m">S</span> verilib: tərəflər <span class="m">t² − (P/2)t + S = 0</span> kökləridir. Belə sahə mövcuddur ancaq <span class="m">D = (P/2)² − 4S ≥ 0</span> olanda. Ən böyük sahə kvadratdır (<span class="m">D = 0</span>) — olimpiada məsələlərinin çoxu bu fikirdir.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Parametr tapılandan sonra <span class="m">D ≥ 0</span> yoxlamamaq. Misal: "<span class="m">x₁² + x₂²</span> verilib, <span class="m">k</span> tap" tipli məsələlərdə kvadrat tənlikdən çıxan iki <span class="m">k</span>-nın biri çox vaxt həqiqi kök vermir.</li>
@@ -259,7 +259,7 @@ Ekstremum: icazəli oblastın sərhədlərinə bax.</div></div>
       <p>Yeni köklərin cəmi <span class="m">S</span> və hasili <span class="m">P</span> olarsa, tənlik <span class="m">y² − Sy + P = 0</span>-dır.</p>
       <div class="fm">Yeni kökləri         cəm S                hasil P
 x₁², x₂²              s² − 2p              p²
-1/x₁, 1/x₂            s/p                  1/p
+1/x₁, 1/x₂            s/p                  1/p        (p ≠ 0)
 x₁ + t, x₂ + t        s + 2t               p + ts + t²
 k·x₁, k·x₂            ks                   k²p
 x₁ + 1/x₂, x₂ + 1/x₁  s + s/p              p + 2 + 1/p</div>
