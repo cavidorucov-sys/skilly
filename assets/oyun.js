@@ -179,9 +179,12 @@
     // ---- final test: every problem must end right (a wrong answer keeps it); the topic closes when all are done
     function drawTest() {
       if (!testRoot) return;
-      if (!st.boss.passed) {
-        testRoot.replaceChildren(h("div", { class: "oy-locked" }, h("b", {}, "🔒 Sınaq bağlıdır"), h("p", {}, "Əvvəl Oyunu bitir: bütün səviyyələr və Boss raundu."),
-          h("button", { type: "button", class: "btn", on: { click: () => cfg.goGame && cfg.goGame() } }, "Oyuna keç →")));
+      // the test needs the whole game: every level mastered and the Boss passed
+      const openLv = cfg.levels.filter(l => !st.lv[l.id].done);
+      if (!st.boss.passed || openLv.length) {
+        testRoot.replaceChildren(h("div", { class: "oy-locked" }, h("b", {}, "🔒 Sınaq bağlıdır"),
+          h("p", {}, st.boss.passed ? "Əvvəl açıq səviyyəni bitir: " + openLv.map(l => l.ad).join(", ") + "." : "Əvvəl Oyunu bitir: bütün səviyyələr və Boss raundu."),
+          h("button", { type: "button", class: "btn", on: { click: () => { cfg.goGame && cfg.goGame(); if (st.boss.passed && openLv.length) play(openLv[0].id); } } }, "Oyuna keç →")));
         return;
       }
       const last = st.test;

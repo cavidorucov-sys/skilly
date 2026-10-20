@@ -54,6 +54,7 @@ a{color:inherit}
 .acct-btn.ghost{background:transparent;color:var(--rail-muted);border:1px solid var(--rail-2);padding:3px 10px}
 .acct-btn:disabled{opacity:.6;cursor:wait}
 .who .acct-on{color:var(--rail-ink);font-size:12px}
+.who .acct-view{flex-basis:100%;color:var(--rail-muted);font-size:11px}
 .who .acct-err{color:var(--red-400,#f87171);font-size:12px;flex-basis:100%}
 html.rail-min .acct{display:none}
 .chip{display:inline-block;background:var(--rail-2);color:var(--rail-ink);border-radius:var(--r-lg);padding:3px 12px;font-size:12px;font-weight:600}

@@ -113,7 +113,8 @@ function account() {
     if (email) {
       const out = el("button", { type: "button", class: "acct-btn ghost" }, "Çıx");
       out.addEventListener("click", async () => { await Skilly.signOut(); location.reload(); });
-      box.replaceChildren(el("span", { class: "acct-on", title: email }, "✓ " + email.split("@")[0]), out);
+      box.replaceChildren(el("span", { class: "acct-on", title: email }, "✓ " + email.split("@")[0]), out,
+        Skilly.viewer() ? el("span", { class: "acct-view", title: "Cavablarınız Fikrətin nəticəsi kimi yazılmır" }, "baxış rejimi") : null);
     } else {
       const btn = el("button", { type: "button", class: "acct-btn" }, "Google ilə daxil ol");
       const err = el("span", { class: "acct-err" });

@@ -24,7 +24,13 @@
     })().catch(() => null);
     return fbP;
   }
-  async function api() { const f = await fb(); return f && f.auth.currentUser && OK.includes(f.auth.currentUser.email) ? f : null; }
+  async function api() {
+    const f = await fb(), email = f && f.auth.currentUser && OK.includes(f.auth.currentUser.email) ? f.auth.currentUser.email : "";
+    if (f) put("skilly-user", email); // remembered for the synchronous viewer check below
+    return email ? f : null;
+  }
+  // father's account = view mode: he sees everything, but his answers are not recorded as Fikrət's (20 Oct 2026)
+  const viewer = () => get("skilly-user", "") === OK[1];
   const docId = id => String(id).replace(/\//g, "_");
 
   const all = () => get(LS, []);
@@ -115,17 +121,20 @@
     today, plus, all, flush,
     // New mistake. Same id twice (same question) is ignored, so a page can call this freely.
     sehv(e) {
+      if (viewer()) return null;
       if (all().some(x => x.id === e.id)) return null;
       return upsert({ tarix: today(), menbe: "", movzu: "", sual: "", cavab: "", duz: "", kat: "", yol: "", status: "yeni", novbeti: plus(today(), 7), tekrar: 0, ...e });
     },
     // Finished lesson/test: score, time and per-question detail; one record per attempt (same id = no duplicate).
     netice(r) {
+      if (viewer()) return null;
       const list = get(RES, []); if (list.some(x => x.id === r.id)) return null;
       const item = { tarix: today(), ...r, _t: "netice", upd: Date.now() };
       list.push(item); put(RES, list); enqueue(item); return item;
     },
     // Topic reviews ("yaddaş yoxlaması"): planned when a final test is passed; done inside the lesson page.
     planReview(key, link, title) {
+      if (viewer()) return;
       const list = get("skilly-yoxla", []).filter(r => r.key !== key || r.done);
       list.push({ id: key + "@" + plus(today(), 7), key, link, title, due: plus(today(), 7), n: 3 },
                 { id: key + "@" + plus(today(), 30), key, link, title, due: plus(today(), 30), n: 5 });
@@ -134,6 +143,7 @@
     reviews: () => get("skilly-yoxla", []),
     dueReviews(key) { const t = today(); return get("skilly-yoxla", []).filter(r => !r.done && r.due <= t && (!key || r.key === key)); },
     reviewDone(id, ok) {
+      if (viewer()) return;
       let list = get("skilly-yoxla", []);
       const r = list.find(x => x.id === id); if (!r) return;
       r.done = today(); r.ok = ok;
@@ -148,7 +158,8 @@
       return upsert({ ...x, tekrar: n, status: ok && n >= 2 ? "baglandi" : "aciq", novbeti: ok ? (n >= 2 ? "" : plus(today(), 30)) : plus(today(), 7) });
     },
     // A progress key was just written here (game state, lesson step, reviews): send it to the cloud.
-    hal(key) { if (!isHal(key)) return; const upd = get(HAL_UPD, {}); upd[key] = Date.now(); put(HAL_UPD, upd); enqueue({ id: "hal:" + key, _t: "hal", key, upd: upd[key] }); },
+    viewer,
+    hal(key) { if (!isHal(key) || viewer()) return; const upd = get(HAL_UPD, {}); upd[key] = Date.now(); put(HAL_UPD, upd); enqueue({ id: "hal:" + key, _t: "hal", key, upd: upd[key] }); },
     // Pull the cloud copy of the error journal (other devices, father's edits); newer "upd" wins.
     async pull() {
       const a = await api(); if (!a) return { synced: false };
@@ -174,7 +185,7 @@
       if (!OK.includes(r.user.email)) { await f.U.signOut(f.auth); throw new Error("Bu hesaba icazə yoxdur: " + r.user.email); }
       await flush(); return r.user.email;
     },
-    async signOut() { const f = await fb(); if (f) await f.U.signOut(f.auth); },
+    async signOut() { const f = await fb(); if (f) await f.U.signOut(f.auth); put("skilly-user", ""); },
     // Answer checking shared with the lesson pages (same normalisation and hash recipe).
     norm(v, mode) {
       let s = String(v).trim().replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/\s+/g, "");
