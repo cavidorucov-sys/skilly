@@ -355,7 +355,8 @@
     // after this device has the other devices' progress (a newer copy reloads the page before this runs)
     (window.Skilly && Skilly.synced ? Skilly.synced : Promise.resolve()).then(settle);
     if (st.entryRun && cfg.entryEl) runEntry();
-    if (st.testRun && testRoot) runTest();
+    // an unfinished test resumes only while the test is open (every level mastered, Boss passed)
+    if (st.testRun && testRoot) { if (st.boss.passed && allDone()) runTest(); else { delete st.testRun; save(); } }
     cfg.refreshTest = drawTest;
     return { state: st, drawTest };
   }
