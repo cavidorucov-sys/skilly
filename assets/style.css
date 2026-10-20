@@ -380,3 +380,17 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .gate-more summary{cursor:pointer;font-size:14px;color:var(--ink-2)}
 .gate-more .list{margin-top:10px}
 .gate-start a.row{margin:0;padding:10px 12px}
+
+/* search field: icon left, own clear button right (native one hidden), tokens only */
+.sbox{position:relative;max-width:520px;margin-top:18px}
+.sbox .search{margin:0;padding:12px 44px;-webkit-appearance:none;appearance:none;transition:border-color .15s var(--ease),box-shadow .15s var(--ease)}
+.sbox .search::-webkit-search-cancel-button,.sbox .search::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.sbox .search::placeholder{color:var(--muted)}
+.sbox .search:hover{border-color:var(--ink-2)}
+.sbox .search:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px var(--line)}
+.sicon{position:absolute;left:14px;top:50%;transform:translateY(-50%);display:grid;color:var(--muted);pointer-events:none}
+.sicon svg,.sclear svg{width:18px;height:18px}
+.sclear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:var(--r-sm);background:transparent;color:var(--ink-2);cursor:pointer;transition:background .15s var(--ease),color .15s var(--ease)}
+.sclear:hover{background:var(--bg);color:var(--ink)}
+.sbox + .count{margin-top:8px}
+.sclear[hidden],.mt tr[hidden]{display:none}

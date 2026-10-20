@@ -272,6 +272,19 @@ async function pageOlympiad() {
 }
 const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
 
+// search field in our style: magnifier on the left, our own clear (×) button on the right, live filtering on input
+function searchBox(label, placeholder, onInput) {
+  const input = el("input", { class: "search", type: "search", "aria-label": label, placeholder, autocomplete: "off", spellcheck: "false" });
+  const clear = el("button", { type: "button", class: "sclear", "aria-label": "Təmizlə", hidden: "" }, icon("X"));
+  const sync = () => { clear.hidden = !input.value; onInput(input.value.trim().toLocaleLowerCase("az")); };
+  input.addEventListener("input", sync);
+  input.addEventListener("keydown", e => { if (e.key === "Escape" && input.value) { input.value = ""; sync(); } });
+  clear.addEventListener("click", () => { input.value = ""; sync(); input.focus(); });
+  const box = el("div", { class: "sbox" }, el("span", { class: "sicon" }, icon("Search")), input, clear);
+  box.input = input; box.reset = () => { input.value = ""; clear.hidden = true; };
+  return box;
+}
+
 function renderTopics(content, m, key, lead) {
   content.append(el("p", { class: "lead" }, lead));
   const rows = m[key], kat = SUBJ_KAT[key];
@@ -287,7 +300,7 @@ function renderTopics(content, m, key, lead) {
   const ix = topicIndex(m), tb = el("tbody");
   rows.forEach((r, i) => {
     const k = KAT[kat] || KAT.misc, miss = missingPrereqs(r, ix);
-    tb.append(el("tr", {}, el("td", { class: "n" }, String(i + 1).padStart(2, "0")),
+    tb.append(el("tr", { "data-q": (r.ad + " " + r.bolme).toLocaleLowerCase("az") }, el("td", { class: "n" }, String(i + 1).padStart(2, "0")),
       el("td", {}, el("div", { class: "tname" }, el("span", { class: "tic " + k.cls }, icon(topicIcon({ ...r, kat }), k.ink)),
         el("span", { class: "tcol" }, el("span", {}, r.ad, r.fritl ? el("span", { class: "tag" }, "FRİTL") : null),
           el("small", {}, r.bolme + (miss.length && r.status !== "bag" ? " · əvvəl: " + miss.map(x => x.ad.split(/[:,(]/)[0].trim()).join(", ") : ""))))),
@@ -295,19 +308,24 @@ function renderTopics(content, m, key, lead) {
       el("td", {}, stPill(r.status)),
       el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status === "yox" ? " wait" : ""), href: r.ders }, miss.length && r.status === "yox" ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
   });
+  // live search over the topic list (name and section)
+  const count = el("p", { class: "count" }), none = el("p", { class: "empty", hidden: "" }, "Tapılmadı.");
+  const filter = s => { let n = 0; [...tb.rows].forEach(tr => { const ok = !s || tr.dataset.q.includes(s); tr.hidden = !ok; n += ok; });
+    count.textContent = s ? `${n} / ${rows.length} mövzu` : ""; none.hidden = n > 0; };
+  content.append(searchBox("Mövzu axtar", "Axtar: mövzu və ya bölmə…", filter), count, none);
   content.append(el("div", { class: "tbl" }, el("table", { class: "mt" }, el("thead", {}, el("tr", {}, el("th", {}, "№"), el("th", {}, "Mövzu"), el("th", {}, "Həftə"), el("th", {}, "Vəziyyət"), el("th", {}, ""))), tb)));
 }
 
 async function pageFormulas() {
   const FENN = { riyaziyyat: ["Riyaziyyat", "Axtar: sin, diskriminant, parabola…"], fizika: ["Fizika", "Axtar: təcil, impuls, Om…"] };
-  const h1 = el("h1"), q = el("input", { class: "search", type: "search", "aria-label": "Düstur axtar" }), list = el("div");
-  await shell(el("div", { style: "margin-top:30px" }, h1, el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."), q, list));
+  const h1 = el("h1"), list = el("div"), sb = searchBox("Düstur axtar", "", () => draw()), q = sb.input;
+  await shell(el("div", { style: "margin-top:30px" }, h1, el("p", { class: "lead" }, "Hər düsturun yanında: nə vaxt işlədilir, tipik səhv və izahı olan dərs."), sb, list));
   const all = await load("data/dusturlar.json").catch(() => []);
   let fenn = "Riyaziyyat";
   function draw() {
-    const s = q.value.trim().toLowerCase(); list.replaceChildren();
+    const s = q.value.trim().toLocaleLowerCase("az"); list.replaceChildren();
     const inTab = all.filter(x => x.fenn === fenn);
-    const f = inTab.filter(x => !s || (x.ad + x.fx + x.movzu + (x.nevaxt || "") + (x.sehv || "")).toLowerCase().includes(s));
+    const f = inTab.filter(x => !s || (x.ad + x.fx + x.movzu + (x.nevaxt || "") + (x.sehv || "")).toLocaleLowerCase("az").includes(s));
     list.append(el("p", { class: "count" }, s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`));
     [...new Set(f.map(x => x.movzu))].forEach(mz => {
       list.append(el("div", { class: "fsec" }, mz), el("div", { class: "fgrid" }, ...f.filter(x => x.movzu === mz).map(x => el("div", { class: "fcard" },
@@ -318,9 +336,8 @@ async function pageFormulas() {
   }
   onSubject(k => {
     const [name, ph] = FENN[k]; fenn = name;
-    h1.textContent = name + " düsturları"; document.title = name + " düsturları · Skilly"; q.placeholder = ph; q.value = ""; draw();
+    h1.textContent = name + " düsturları"; document.title = name + " düsturları · Skilly"; q.placeholder = ph; sb.reset(); draw();
   });
-  q.addEventListener("input", draw);
 }
 
 /* ---------- sınaqlar ---------- */
