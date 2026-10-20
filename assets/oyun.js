@@ -64,12 +64,12 @@
 
     function drawMap(active) {
       map.replaceChildren(...cfg.levels.map((l, i) => {
-        const s = st.lv[l.id], open = isOpen(i);
+        const s = st.lv[l.id], open = s.done || isOpen(i); // a mastered level stays open even when an earlier one was reopened
         const dots = h("span", { class: "oy-dots" }, ...Array.from({ length: STREAK }, (_, j) => h("i", { class: j < (s.done ? STREAK : s.streak) ? "on" : "" })));
         return h("button", { type: "button", class: "oy-lv" + (s.done ? " done" : "") + (!open ? " locked" : "") + (active === l.id ? " active" : ""), ...(open ? {} : { "aria-disabled": "true" }),
           on: { click: () => open ? play(l.id) : null } },
           h("span", { class: "oy-no" }, s.done ? "✓" : open ? String(i + 1) : "🔒"), h("span", { class: "oy-name" }, l.ad), dots);
-      }), h("button", { type: "button", class: "oy-lv boss" + (st.boss.passed ? " done" : "") + (!allDone() ? " locked" : "") + (active === "boss" ? " active" : ""),
+      }), h("button", { type: "button", class: "oy-lv boss" + (st.boss.passed ? " done" : "") + (!allDone() && !st.boss.passed ? " locked" : "") + (active === "boss" ? " active" : ""),
         on: { click: () => allDone() ? boss() : null } },
         h("span", { class: "oy-no" }, st.boss.passed ? "✓" : allDone() ? "★" : "🔒"), h("span", { class: "oy-name" }, "Boss raundu"),
         h("span", { class: "oy-sub" }, st.boss.passed ? "keçildi" : cfg.levels.length + " sual, hamısı düz")));

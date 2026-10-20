@@ -108,6 +108,7 @@ html{scrollbar-gutter:stable}
 .tab.locked{opacity:.6}
 .oy-intro{display:grid;gap:8px}
 .oy-intro h2{margin:0}
+.oy-intro>.btn,.oy-done>.btn{justify-self:start} /* a lone button keeps its own width in the grid */
 .oy-fmt{color:var(--ink-2);font-size:14px}
 .oy-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:6px}
 .oy-lv{font:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 10px;align-items:center;padding:12px;border:0;border-radius:var(--r);background:var(--white);box-shadow:inset 0 0 0 1px var(--line-0);color:var(--ink-0);cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
