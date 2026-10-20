@@ -328,7 +328,8 @@
         h("p", {}, "Bir həftə sonra 3 suallıq yaddaş yoxlaması gələcək.")));
     }
     function settle() {
-      if (!st.test || !st.test.passed) return;
+      // only Fikrət's device decides: a change here always goes with a result in the cloud, else sync would undo it
+      if (!st.test || !st.test.passed || (window.Skilly && Skilly.viewer && Skilly.viewer())) return;
       const open = cfg.levels.filter(l => !st.lv[l.id].done).map(l => l.id);
       if (pendingFix().length) open.push("sınaq səhvi");
       if (!open.length && st.boss.passed && !inBag()) { report("baglandi", { qeyd: "hamısı düz həll olundu" }); cfg.onPass && cfg.onPass(); }
