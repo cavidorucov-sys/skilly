@@ -286,7 +286,7 @@ function searchBox(label, placeholder, onInput) {
 }
 
 function renderTopics(content, m, key, lead) {
-  content.append(el("p", { class: "lead" }, lead));
+  // no description here: how a topic is passed is explained on every lesson page ("Necə keçmək")
   const rows = m[key], kat = SUBJ_KAT[key];
   const c = s => rows.filter(r => r.status === s).length;
   content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")} · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
