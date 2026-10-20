@@ -153,7 +153,7 @@
         }
       } },
 
-    { id: "sifir", ad: "Sahənin sıfır nöqtəsi, tarazlıq", izah: "Sahə sıfırdır, harada ki iki yükün sahələri əks yönlü və modulca bərabərdir: q₁/x₁² = q₂/x₂². Eyni işarəli yüklərin arasında, əks işarəlilərdə kənarda (kiçik yükün tərəfində). Bu nöqtədə üçüncü yük tarazlıqda qalar.",
+    { id: "sifir", ad: "Sahənin sıfır nöqtəsi, tarazlıq", izah: "Sahə sıfırdır, harada ki iki yükün sahələri əks yönlü və modulca bərabərdir: q₁/x₁² = q₂/x₂². Eyni işarəli yüklərin arasında, əks işarəlilərdə (modulları fərqli olduqda) kənarda, kiçik yükün tərəfində. Bu nöqtədə üçüncü yük tarazlıqda qalar.",
       gen() {
         const kind = pick(["ara", "ara", "kenar", "uc"]);
         if (kind === "ara") {

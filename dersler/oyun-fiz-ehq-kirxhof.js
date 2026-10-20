@@ -135,14 +135,15 @@ const CK = (() => {
       } },
     { id: "kirxhof", ad: "Kirxhof qaydaları", izah: "Düyün qaydası: düyünə daxil olan cərəyanların cəmi çıxanların cəminə bərabərdir. Kontur qaydası: konturu gəzəndə EHQ-lərin cəbri cəmi = IR-lərin cəbri cəmi. Aşağıdakı sxemdə hər iki elementin müsbət qütbü yuxarıdır; I₁ və I₂ yuxarı, I₃ aşağı axır.",
       gen() {
-        const kind = pick(["I3", "I3", "I1", "U3", "duyun", "P3"]);
+        const kind = pick(["I3", "I3", "I1", "U3", "duyun", "P3", "neg"]);
         if (kind === "duyun") { let a, b, c; do { a = rnd(1, 8); b = rnd(1, 8); c = rnd(1, 6); } while (a + b - c <= 0);
-          return R(a + b - c, "A", { text: `Düyünə üç naqil daxil olur: onlardan ${a} A və ${b} A cərəyan gəlir. Düyündən iki naqil çıxır, birində ${c} A cərəyan var. İkinci çıxan naqildə cərəyan nə qədərdir?`, solution: `Daxil olan cərəyanların cəmi çıxanların cəminə bərabərdir: ${a} + ${b} = ${c} + I → I = ${a + b} − ${c} = ${a + b - c} A.` }); }
+          return R(a + b - c, "A", { text: `Düyünə iki naqil daxil olur: onlarda ${a} A və ${b} A cərəyan var. Düyündən iki naqil çıxır, birində ${c} A cərəyan var. İkinci çıxan naqildə cərəyan nə qədərdir?`, solution: `Daxil olan cərəyanların cəmi çıxanların cəminə bərabərdir: ${a} + ${b} = ${c} + I → I = ${a + b} − ${c} = ${a + b - c} A.` }); }
         let r1, r2, r3, I1, I2, e1, e2, I3;
-        do { r1 = rnd(1, 8); r2 = rnd(1, 8); r3 = rnd(1, 8); I1 = rnd(1, 5); I2 = rnd(1, 5); I3 = I1 + I2; e1 = I1 * r1 + I3 * r3; e2 = I2 * r2 + I3 * r3; } while (e1 > 60 || e2 > 60 || e1 === e2 || (r1 === r2 && I1 === I2));
+        do { r1 = rnd(1, 8); r2 = rnd(1, 8); r3 = rnd(1, 8); I1 = rnd(1, 5); I2 = rnd(1, 5); if (kind === "neg") { I1 = rnd(3, 6); I2 = -rnd(1, 2); } I3 = I1 + I2; e1 = I1 * r1 + I3 * r3; e2 = I2 * r2 + I3 * r3; } while (e1 > 60 || e2 > 60 || e1 <= 0 || e2 <= 0 || e1 === e2 || (r1 === r2 && I1 === I2));
         const svg = svgEl(CK.twoLoop({ e1: "ε₁ = " + e1 + " V", e2: "ε₂ = " + e2 + " V", r1: "R₁ = " + r1 + " Ω", r2: "R₂ = " + r2 + " Ω", r3: "R₃ = " + r3 + " Ω", cls: "oy-svg" }));
         const base = `Sxemdə elementlərin daxili müqaviməti yoxdur: ε₁ = ${e1} V, ε₂ = ${e2} V, R₁ = ${r1} Ω, R₂ = ${r2} Ω, R₃ = ${r3} Ω. Hər iki elementin müsbət qütbü yuxarıdır. `;
         const sol = `Düyün: I₃ = I₁ + I₂. Sol kontur: ε₁ = I₁R₁ + I₃R₃. Sağ kontur: ε₂ = I₂R₂ + I₃R₃. Əvəz edib həll edəndə: I₁ = ${I1} A, I₂ = ${I2} A, I₃ = ${I3} A. Yoxla: ${I1}·${r1} + ${I3}·${r3} = ${e1} ✓, ${I2}·${r2} + ${I3}·${r3} = ${e2} ✓.`;
+        if (kind === "neg") return R(I2, "A", { svg, text: base + "I₁ və I₂ yuxarı, I₃ aşağı istiqamətdə qəbul olunub. Sağ qoldakı (R₂ üzərindən keçən) I₂ cərəyanını işarəsi ilə yaz. Mənfi cavab nəyi göstərir?", solution: sol + ` I₂ = ${I2} A < 0: bu cərəyan seçilmiş (yuxarı) istiqamətin əksinə, yəni aşağı axır; element ε₂ bu halda doldurulur.` });
         if (kind === "I1") return R(I1, "A", { svg, text: base + "Sol qoldakı (R₁ üzərindən keçən) cərəyan nə qədərdir?", solution: sol });
         if (kind === "U3") return R(I3 * r3, "V", { svg, text: base + "Orta qolda R₃ rezistorunun uclarındakı gərginlik nə qədərdir?", solution: sol + ` U₃ = I₃R₃ = ${I3}·${r3} = ${I3 * r3} V.` });
         if (kind === "P3") return R(I3 * I3 * r3, "W", { svg, text: base + "Orta qolda R₃ rezistorunda ayrılan güc nə qədərdir?", solution: sol + ` P₃ = I₃²R₃ = ${I3 * I3}·${r3} = ${I3 * I3 * r3} W.` });

@@ -116,17 +116,17 @@ Vaxt — iki hərəkəti birləşdirir.</div></div>
           <line x1="220" y1="170" x2="220" y2="222" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#a2a)"/>
           <line x1="220" y1="170" x2="252" y2="222" stroke="var(--vec)" stroke-width="3" marker-end="url(#a2v)"/>
           <line x1="252" y1="170" x2="252" y2="222" stroke="var(--muted)" stroke-dasharray="3 3"/>
-          <text class="lbl" x="258" y="166">vₓ = v₀</text><text class="lbl" x="186" y="214">vy = gt</text><text class="lbl" x="262" y="232">v</text>
+          <text class="lbl" x="258" y="166">vₓ = v₀</text><text class="lbl" x="186" y="214">|vy| = gt</text><text class="lbl" x="262" y="232">v</text>
           <path d="M240 170A20 20 0 0 1 230.5 187" fill="none" stroke="var(--ink)"/><text x="244" y="190">β</text>
         </svg>
         <div class="cap">
-          <p>Üfüqi proyeksiya dəyişmir: <span class="m">vₓ = v₀</span>. Şaquli proyeksiya artır: <span class="m">v<sub>y</sub> = g·t</span>. Sürət — bu ikisinin vektor cəmidir.</p>
+          <p>Üfüqi proyeksiya dəyişmir: <span class="m">vₓ = v₀</span>. Şaquli proyeksiyanın modulu artır: <span class="m">|v<sub>y</sub>| = g·t</span> (y oxu yuxarıdırsa <span class="m">v<sub>y</sub> = −g·t</span>, sürət aşağı yönəlib). Sürət — bu ikisinin vektor cəmidir.</p>
         </div>
       </div>
       <div class="fm">v = √(v₀² + (g·t)²)        tg β = g·t / v₀</div>
       <p><span class="m">β</span> — sürətin üfüqlə bucağıdır. Yerə dəyən anda <span class="m">v<sub>y</sub> = √(2gh)</span> — sanki cisim sadəcə düşüb.</p>
       <div class="ex">Nümunə. 20 m hündürlükdən 15 m/s ilə üfüqi atılan daş.
-  t = 2 s,  vy = 20 m/s,  vₓ = 15 m/s
+  t = 2 s,  |vy| = 20 m/s,  vₓ = 15 m/s
   v = √(15² + 20²) = 25 m/s,   tg β = 20/15 = 4/3  (β ≈ 53°)</div>
 
       <h3><span class="st">4</span> Olimpiada üsulu: nisbətlər</h3>
@@ -144,11 +144,11 @@ Hündürlük 4 dəfə artanda vaxt cəmi 2 dəfə artır (kök altında!).</div>
         <li>Yerə dəyən sürəti <span class="m">v₀ + gt</span> kimi toplamaq. Vektorlar perpendikulyardır — Pifaqor.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">t = √(2h/g)       L = v₀·t
-vₓ = v₀,  vy = gt,  v = √(v₀² + g²t²)
+vₓ = v₀,  |vy| = gt,  v = √(v₀² + g²t²)
 tg β = gt/v₀</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>80 m hündürlükdən 10 m/s ilə üfüqi atılan daş nə qədər uzağa düşər? <span class="ans">t = 4 s, L = 40 m.</span></li>
-        <li>Həmin daş yerə hansı sürətlə dəyər? <span class="ans">vy = 40, v = √(100 + 1600) = √1700 = 10√17 ≈ 41 m/s.</span></li>
+        <li>Həmin daş yerə hansı sürətlə dəyər? <span class="ans">|vy| = 40, v = √(100 + 1600) = √1700 = 10√17 ≈ 41 m/s.</span></li>
         <li>5 m hündürlükdən atılan daş 12 m uzağa düşdü. v₀? <span class="ans">t = 1 s, v₀ = 12 m/s.</span></li>
       </ol></details>
     </article>
@@ -159,7 +159,7 @@ tg β = gt/v₀</div></div>
   <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
     <h2>Dərs 3. Üfüqə bucaq altında atılan cisim</h2>
     <article class="lesson">
-      <h3><span class="st">1</span> Başlanğıc sürəti parçala</h3>
+      <h3><span class="st">1</span> Başlanğıc sürəti üfüqi və şaquli komponentlərə ayır</h3>
       <div class="fig">
         <svg viewBox="0 0 270 215" role="img" aria-label="Bucaq altında atılan cismin trayektoriyası, müxtəlif nöqtələrdə sürət vektorları">
           <defs><marker id="a3v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker>
@@ -186,12 +186,13 @@ v₀y = v₀·sin α</div>
 
       <h3><span class="st">2</span> Qalxma vaxtı, uçuş vaxtı, hündürlük</h3>
       <p>Ən yüksək nöqtədə <span class="m">v<sub>y</sub> = 0</span>: <span class="m">v₀y − g·t = 0</span>. Düşmə qalxma qədər çəkir, ona görə uçuş vaxtı iki dəfə böyükdür. Hündürlük — yuxarı atılmış cisimdəki kimi:</p>
-      <div class="fm">t_qalx = v₀ sin α / g        T = 2v₀ sin α / g
+      <div class="fm">(atılma və enmə eyni səviyyədə)
+t_qalx = v₀ sin α / g        T = 2v₀ sin α / g
 H = (v₀ sin α)² / (2g)</div>
 
       <h3><span class="st">3</span> Uçuş məsafəsi</h3>
       <p>Bütün uçuş vaxtında cisim üfüqi üzrə sabit <span class="m">v₀ cos α</span> sürətlə gedir:</p>
-      <div class="fm">L = v₀ cos α · T = 2v₀² sin α cos α / g = v₀²·sin 2α / g</div>
+      <div class="fm">L = v₀ cos α · T = 2v₀² sin α cos α / g = v₀²·sin 2α / g   (enmə səviyyəsi atılma səviyyəsi ilə eynidir)</div>
       <p><span class="m">sin 2α</span> ən böyük qiymətini (1) <span class="m">2α = 90°</span>-də alır. Deməli, ən uzağa <b>45°</b> bucaqla atılan cisim düşür: <span class="m">L_max = v₀²/g</span>. Və <span class="m">sin(180° − 2α) = sin 2α</span> olduğundan, <b>30° və 60°</b>, <b>15° və 75°</b> bucaqlarla atılan cisimlər eyni yerə düşür.</p>
       <div class="tbl"><table>
         <tr><th>α (v₀ = 20 m/s)</th><td>15°</td><td>30°</td><td>45°</td><td>60°</td><td>75°</td></tr>
@@ -273,7 +274,7 @@ v² = v₀² − 2gh   (bucaqdan asılı deyil)
 H/L = tg α/4;   üfüqi atılıb 45°-də dəyirsə L = 2h</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>v₀x = 10, v₀y = 30 m/s. 4 s sonra sürət? <span class="ans">vy = 30 − 40 = −10; v = √(100 + 100) = 10√2 m/s.</span></li>
-        <li>v₀ = 30 m/s ilə hər hansı bucaqla atılan daşın 25 m hündürlükdə sürəti? <span class="ans">v² = 900 − 500 = 400 → 20 m/s.</span></li>
+        <li>v₀ = 30 m/s ilə 25 m hündürlüyə çata bilən bucaqla atılan daşın həmin hündürlükdə sürəti? (Çata bilmək üçün v₀y ≥ √500 ≈ 22,4 m/s lazımdır.) <span class="ans">v² = 900 − 500 = 400 → 20 m/s.</span></li>
         <li>Daşın H-ı L-in yarısıdır. tg α? <span class="ans">tg α = 4·(1/2) = 2.</span></li>
       </ol></details>
     </article>

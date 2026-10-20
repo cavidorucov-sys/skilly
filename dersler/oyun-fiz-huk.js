@@ -115,17 +115,17 @@
             solution = `${L.w[0].toUpperCase() + L.w.slice(1)}. ${L.s > 0 ? "kx − mg = ma → x = m(g + a)/k" : "mg − kx = ma → x = m(g − a)/k"} = ${F(m)}·${F(g + L.s * a)}/${k} = ${F(x)} m.`;
           } else if (kind === "ufuqi") {
             const a = pick([0.5, 1, 2, 2.5, 3, 4, 5, 6]); x = m * a / k;
-            text = `Hamar (sürtünməsiz) masada ${F(m)} kq kütləli taxta tini sərtliyi ${k} N/m olan yayla dartırlar. Tin ${F(a)} m/s² təcillə hərəkət edir. Yay nə qədər uzanıb?`;
-            solution = `Üfüqi istiqamətdə tinə yalnız yay təsir edir: kx = ma → x = ${F(m)}·${F(a)}/${k} = ${F(x)} m.`;
+            text = `Hamar (sürtünməsiz) masada ${F(m)} kq kütləli taxta bloku sərtliyi ${k} N/m olan yayla dartırlar. Blok ${F(a)} m/s² təcillə hərəkət edir. Yay nə qədər uzanıb?`;
+            solution = `Üfüqi istiqamətdə bloka yalnız yay təsir edir: kx = ma → x = ${F(m)}·${F(a)}/${k} = ${F(x)} m.`;
           } else if (kind === "surt") {
             const mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]); x = mu * m * g / k;
-            text = `${F(m)} kq kütləli tini masa üzərində sərtliyi ${k} N/m olan yayla bərabər sürətlə dartırlar. Sürtünmə əmsalı ${F(mu)}. Yay nə qədər uzanıb?`;
+            text = `${F(m)} kq kütləli bloku masa üzərində sərtliyi ${k} N/m olan yayla bərabər sürətlə dartırlar. Sürtünmə əmsalı ${F(mu)}. Yay nə qədər uzanıb?`;
             solution = `Bərabər sürət → qüvvələr tarazdır: kx = μmg = ${F(mu)}·${F(m)}·10 = ${F(mu * m * g)} N → x = ${F(mu * m * g)}/${k} = ${F(x)} m.`;
           } else {
             const m2 = pick([0.5, 1, 1.5, 2, 3, 4]), Fv = pick([2, 3, 4, 5, 6, 8, 10, 12, 15, 20]), a = Fv / (m + m2), T = m * a; x = T / k;
             if (!nice(a, 2)) continue;
-            text = `Hamar masada ${F(m)} kq və ${F(m2)} kq kütləli iki tin sərtliyi ${k} N/m olan yayla birləşdirilib. ${F(m2)} kq-lıq tini ${F(Fv)} N qüvvə ilə dartırlar, ${F(m)} kq-lıq tin arxadan gəlir. Yay nə qədər uzanıb?`;
-            solution = `Hər iki tin eyni təcillə gedir: a = F/(m₁ + m₂) = ${F(Fv)}/${F(m + m2)} = ${F(+a.toFixed(4))} m/s². Arxadakı tini yalnız yay dartır: kx = m·a = ${F(+T.toFixed(4))} N → x = ${F(x)} m.`;
+            text = `Hamar masada ${F(m)} kq və ${F(m2)} kq kütləli iki blok sərtliyi ${k} N/m olan yayla birləşdirilib (yayın uzanması sabitləşib, hər iki blok eyni təcillə gedir). ${F(m2)} kq-lıq bloku ${F(Fv)} N qüvvə ilə dartırlar, ${F(m)} kq-lıq blok arxadan gəlir. Yay nə qədər uzanıb?`;
+            solution = `Hər iki blok eyni təcillə gedir: a = F/(m₁ + m₂) = ${F(Fv)}/${F(m + m2)} = ${F(+a.toFixed(4))} m/s². Arxadakı bloku yalnız yay dartır: kx = m·a = ${F(+T.toFixed(4))} N → x = ${F(x)} m.`;
           }
           if (nice(x, 4) && x > 0 && x <= 0.5) break;
         }

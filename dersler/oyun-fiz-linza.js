@@ -327,7 +327,7 @@
         }
         if (kind === "lupa") {
           const Fs = pick([2.5, 5, 10, 12.5, 1.25]), G = 25 / Fs;
-          return R(G, "", { text: `Lupanın fokus məsafəsi ${F(Fs)} sm-dir. Göz gərginliksiz baxanda (xəyal sonsuzluqda) lupa neçə dəfə böyüdür? Normal gözün ən yaxşı görmə məsafəsi 25 sm-dir.`,
+          return R(G, "", { text: `Lupanın fokus məsafəsi ${F(Fs)} sm-dir. Göz gərginliksiz baxanda (xəyal sonsuzluqda) lupanın bucaq böyütməsi neçə olur? Normal gözün ən yaxşı görmə məsafəsi 25 sm-dir.`,
             solution: `Gərginliksiz baxanda cisim lupanın fokusundadır, böyütmə Γ = 25/F = 25/${F(Fs)} = ${F(G)}.` });
         }
         if (kind === "lupa2") {

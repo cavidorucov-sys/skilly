@@ -137,12 +137,12 @@ const CK = (() => {
         const k = pick([2, 3, 4]);
         return R(Fv * k * k, "µN", { text: `${q} µC yüklü zərrəcik B = ${F(B)} T sahəsinə perpendikulyar ${v} m/s ilə uçanda ona ${F(Fv)} µN qüvvə təsir edir. Sürəti də, sahənin induksiyasını da ${k} dəfə artırsaq qüvvə neçə µN olar?`, solution: `F = qvB: iki vuruğun hər biri ${k} dəfə artır, qüvvə ${k}·${k} = ${k * k} dəfə artır: ${F(Fv)}·${k * k} = ${F(Fv * k * k)} µN.` });
       } },
-    { id: "radius", ad: "Dairəvi hərəkət: r = mv/(qB)", izah: "Zərrəcik B-yə perpendikulyar uçanda Lorens qüvvəsi mərkəzəqaçma qüvvəsidir: qvB = mv²/r → r = mv/(qB), ω = qB/m, T = 2πm/(qB) — dövr sürətdən asılı deyil. Burada m mq-la, q µC-la verilir: 1 mq/1 µC = 1 kq/C.",
+    { id: "radius", ad: "Dairəvi hərəkət: r = mv/(qB)", izah: "Zərrəcik B-yə perpendikulyar uçanda Lorens qüvvəsi mərkəzəyönlü qüvvənin rolunu oynayır: qvB = mv²/r → r = mv/(qB), ω = qB/m, T = 2πm/(qB) — dövr sürətdən asılı deyil. Burada m mq-la, q µC-la verilir: 1 mq/1 µC = 1 kq/C.",
       gen() {
         const kind = pick(["r", "r", "v", "B", "omega", "Tb", "Tv", "ratio", "ratio2"]);
         let m, q, v, B, r;
         if (kind === "r") { do { m = pick([1, 2, 4, 5, 10]); q = pick([1, 2, 4, 5, 10]); v = pick([10, 20, 50, 100, 200, 500]); B = pick(BS); r = m / q * v / B; } while (!nice(r, 3) || r < 0.002 || r > 100);
-          return R(r, "m", { text: `Kütləsi ${m} mq, yükü ${q} µC olan toz zərrəciyi induksiyası ${F(B)} T olan maqnit sahəsinə perpendikulyar ${v} m/s sürətlə daxil olur. Zərrəcik hansı radiuslu çevrə üzrə hərəkət edəcək? Cavabı metrlə yaz.`, solution: `Lorens qüvvəsi mərkəzəqaçma qüvvəsidir: qvB = mv²/r → r = mv/(qB). m/q = ${m} mq/${q} µC = ${F(m / q)} kq/C. r = ${F(m / q)}·${v}/${F(B)} = ${F(r)} m.` }); }
+          return R(r, "m", { text: `Kütləsi ${m} mq, yükü ${q} µC olan toz zərrəciyi induksiyası ${F(B)} T olan maqnit sahəsinə perpendikulyar ${v} m/s sürətlə daxil olur. Zərrəcik hansı radiuslu çevrə üzrə hərəkət edəcək? Cavabı metrlə yaz.`, solution: `Lorens qüvvəsi mərkəzəyönlü qüvvənin rolunu oynayır: qvB = mv²/r → r = mv/(qB). m/q = ${m} mq/${q} µC = ${F(m / q)} kq/C. r = ${F(m / q)}·${v}/${F(B)} = ${F(r)} m.` }); }
         if (kind === "v") { do { m = pick([1, 2, 4, 5, 10]); q = pick([1, 2, 4, 5, 10]); v = pick([10, 20, 50, 100, 200, 500]); B = pick(BS); r = m / q * v / B; } while (!nice(r, 3) || r < 0.002 || r > 100);
           return R(v, "m/s", { text: `Kütləsi ${m} mq, yükü ${q} µC olan zərrəcik B = ${F(B)} T sahəsində sahəyə perpendikulyar uçaraq ${F(r)} m radiuslu çevrə cızır. Zərrəciyin sürəti nə qədərdir?`, solution: `r = mv/(qB) → v = qBr/m = (${q}/${m})·${F(B)}·${F(r)} = ${v} m/s.` }); }
         if (kind === "B") { do { m = pick([1, 2, 4, 5, 10]); q = pick([1, 2, 4, 5, 10]); v = pick([10, 20, 50, 100, 200, 500]); B = pick(BS); r = m / q * v / B; } while (!nice(r, 3) || r < 0.002 || r > 100);
@@ -187,11 +187,11 @@ const CK = (() => {
         } else {
           let m, q, v, B, r; do { m = pick([2, 4, 5, 10]); q = pick([1, 2, 4, 5]); v = pick([20, 50, 100, 200]); B = pick([0.1, 0.2, 0.5, 1, 2]); r = m / q * v / B; } while (!nice(r, 3) || r < 0.01 || r > 100);
           task = `Kütləsi ${m} mq, yükü ${q} µC olan zərrəcik B = ${F(B)} T sahəsinə perpendikulyar ${v} m/s sürətlə daxil olur. Çevrənin radiusu neçə metrdir?`;
-          steps = [`Lorens qüvvəsi mərkəzəqaçma qüvvəsini yaradır: qvB = mv²/r.`, `Buradan r = mv/(qB).`, `m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C: r = ${m}·10⁻⁶·${v}/(${q}·10⁻⁶·${F(B)}) = ${F(r)} m.`];
-          if (bad === 0) { const w = m / q / B; steps = [`Lorens qüvvəsi mərkəzəqaçma qüvvəsini yaradır: qvB = mv/r.`, `Buradan r = m/(qB).`, `m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C: r = ${m}·10⁻⁶/(${q}·10⁻⁶·${F(B)}) = ${F(+w.toFixed(4))} m.`]; }
+          steps = [`Lorens qüvvəsi mərkəzəyönlü qüvvəni yaradır: qvB = mv²/r.`, `Buradan r = mv/(qB).`, `m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C: r = ${m}·10⁻⁶·${v}/(${q}·10⁻⁶·${F(B)}) = ${F(r)} m.`];
+          if (bad === 0) { const w = m / q / B; steps = [`Lorens qüvvəsi mərkəzəyönlü qüvvəni yaradır: qvB = mv/r.`, `Buradan r = m/(qB).`, `m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C: r = ${m}·10⁻⁶/(${q}·10⁻⁶·${F(B)}) = ${F(+w.toFixed(4))} m.`]; }
           if (bad === 1) { const w = q / m * B / v; steps[1] = `Buradan r = qB/(mv).`; steps[2] = `m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C: r = ${q}·10⁻⁶·${F(B)}/(${m}·10⁻⁶·${v}) = ${F(+w.toFixed(5))} m.`; }
           if (bad === 2) steps[2] = `m = ${m}·10⁻³ kq, q = ${q}·10⁻⁶ C: r = ${m}·10⁻³·${v}/(${q}·10⁻⁶·${F(B)}) = ${F(r * 1000)} m.`;
-          why = [`1-ci addım: mərkəzəqaçma qüvvə mv²/r-dir (v kvadratda). Düz: r = mv/(qB) = ${F(r)} m.`, `2-ci addım: qvB = mv²/r-dən r = mv/(qB) alınır, tərsinə yox. Düz cavab: ${F(r)} m.`, `3-cü addım: 1 mq = 10⁻⁶ kq (1 q = 10⁻³ kq). Düz cavab: ${F(r)} m.`][bad];
+          why = [`1-ci addım: mərkəzəyönlü qüvvə mv²/r-dir (v kvadratda). Düz: r = mv/(qB) = ${F(r)} m.`, `2-ci addım: qvB = mv²/r-dən r = mv/(qB) alınır, tərsinə yox. Düz cavab: ${F(r)} m.`, `3-cü addım: 1 mq = 10⁻⁶ kq (1 q = 10⁻³ kq). Düz cavab: ${F(r)} m.`][bad];
         }
         const text = h("div", {}, h("p", {}, task), h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         return { text, choices: names, correct: bad, show: names[bad], solution: why };

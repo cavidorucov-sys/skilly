@@ -122,9 +122,9 @@ t₂ &lt; θ &lt; t₁ — yoxlama!</div></div>
         </svg>
         <div class="cap"><p>Buz qızanda temperatur artır. 0 °C-də <b>ərimə</b> başlayır: istilik verilir, amma temperatur dəyişmir (üfüqi hissə). Hamısı əriyəndən sonra su qızır, 100 °C-də yenidən üfüqi hissə — qaynama. Üfüqi hissənin uzunluğu <span class="m">λm</span> və <span class="m">Lm</span> ilə mütənasibdir.</p></div>
       </div>
-      <div class="fm">Ərimə (0 °C):          Q = λ·m          λ — ərimə istiliyi, J/kq
+      <div class="fm">Ərimə (0 °C):          Q = λ·m          λ — xüsusi ərimə istiliyi, J/kq
 Donma:                  Q = −λ·m         (ayrılır)
-Buxarlanma (100 °C):    Q = L·m          L — buxarlanma istiliyi
+Qaynama (normal təzyiqdə 100 °C):  Q = L·m   L — xüsusi buxarlanma istiliyi
 Kondensasiya:           Q = −L·m</div>
       <p>Buzun <span class="m">λ ≈ 3,3·10⁵ J/kq</span> (biz <span class="m">3,36·10⁵</span> götürürük), suyun <span class="m">L = 2,3·10⁶ J/kq</span>. Buxarlanma istiliyi ərimə istiliyindən təxminən <b>7 dəfə</b> böyükdür: suyu buxara çevirmək üçün buz əritməkdən çox daha çox enerji lazımdır. Ona görə buxardan yanıq qaynar sudan ağırdır: buxar kondensasiya olanda dərinin üstündə əlavə <span class="m">Lm</span> istilik verir.</p>
       <p><b>Metod:</b> qızma yolunu mərhələlərə böl. Hər mərhələni ayrıca yaz: buz qızır (<span class="m">c_buz</span>), əriyir (<span class="m">λ</span>), su qızır (<span class="m">c_su</span>), qaynayır (<span class="m">L</span>). Toplayırsan.</p>
@@ -159,7 +159,7 @@ və sonra suyun 100 °C-ə qədər qızması nə qədər çəkər?
         <li>Əriyəndən sonra yaranan suyu da θ-yə qədər qızdırmağı unutmaq (balans məsələlərində).</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">Ərimə:  Q = λm  (0 °C, t sabit)
-Buxarlanma:  Q = Lm  (100 °C, t sabit)
+Qaynama (normal təzyiqdə 100 °C):  Q = Lm  (t sabit)
 Hər mərhələni ayrı yaz, topla.
 λ_buz ≈ 3,36·10⁵,  L_su = 2,3·10⁶ J/kq</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
@@ -243,7 +243,7 @@ Karno:  η_max = 1 − T₂/T₁ (kelvinlə)</div></div>
     <h2>Dərs 4. Mürəkkəb balans məsələləri</h2>
     <article class="lesson">
       <h3><span class="st">1</span> Niyə lazımdır</h3>
-      <p>Olimpiadada ən çox ağıllı məsələ — “buzu isti suya atırlar, nə baş verir?”-dir. Cavab iki variantdan biri ola bilər: ya buz tamamilə əriyir və son temperatur 0 °C-dən yüksək olur, ya da buzun bir hissəsi əriyir və temperatur 0 °C-də qalır. Əvvəlcədən hansı halın olduğunu <b>yoxlamaq lazımdır</b>, çünki düstur halına görə dəyişir.</p>
+      <p>Olimpiadada ən çox ağıllı məsələ — “buzu isti suya atırlar, nə baş verir?”-dir. Əsas iki variant var (buz çox soyuqdursa üçüncü hal da mümkündür, aşağıya bax): ya buz tamamilə əriyir və son temperatur 0 °C-dən yüksək olur, ya da buzun bir hissəsi əriyir və temperatur 0 °C-də qalır. Əvvəlcədən hansı halın olduğunu <b>yoxlamaq lazımdır</b>, çünki düstur halına görə dəyişir.</p>
 
       <h3><span class="st">2</span> Alqoritm</h3>
       <div class="fig">
@@ -261,7 +261,7 @@ Karno:  η_max = 1 − T₂/T₁ (kelvinlə)</div></div>
           <rect x="152" y="134" width="130" height="48" rx="6" fill="var(--sheet)" stroke="var(--accent)" stroke-width="2"/>
           <text x="217" y="153" class="lbl" text-anchor="middle">Xeyr: θ = 0 °C</text><text x="217" y="170" text-anchor="middle">m_əriyən = Q_su / λ</text>
         </svg>
-        <div class="cap"><p>Əvvəlcə müqayisə et: sudan çıxan istilik buzun bütün kütləsini əritməyə çatırmı? Çatırsa, balans tənliyi ilə <span class="m">θ</span> tapılır, çatmırsa son temperatur 0 °C-dir və əriyən buzun kütləsi hesablanır.</p></div>
+        <div class="cap"><p>Əvvəlcə müqayisə et: sudan çıxan istilik buzun bütün kütləsini əritməyə çatırmı? Çatırsa, balans tənliyi ilə <span class="m">θ</span> tapılır, çatmırsa və buz əvvəlcə 0 °C-dədirsə (ya da qarışıq 0 °C-yə çata bilirsə), son temperatur 0 °C-dir və əriyən buzun kütləsi hesablanır. Buz çox soyuq olanda isə: su 0 °C-yə qədər soyuyanda verdiyi istilik buzu 0 °C-yə qaldırmağa çatmırsa, suyun bir hissəsi donur (donma istiliyi buzu qızdırır); suyun hamısı donsa belə buz 0 °C-yə çatmırsa, son temperatur mənfi olur.</p></div>
       </div>
       <div class="fm">λ/c_su = 336 000/4200 = 80 °C
 Buz 0 °C-də: tam əriyirsə
@@ -291,16 +291,16 @@ kondensasiya olub 100 °C-li suya çevrilir. Neçə kq buxar lazımdır?
   Su alır: 4200·2,3·80 = 772 800 J
   Buxar verir: L·m_b = 2,3·10⁶·m_b   (kondensasiya, temperatur dəyişmir)
   m_b = 772 800/(2,3·10⁶) = 0,336 kq = 336 q</div>
-      <div class="life"><b>Həyatdan.</b> Meyvə şirəsinə buz atanda: 0,3 kq şirə (22 °C) üçün 0,05 kq buz kifayət edir ki, içki təxminən 10 °C olsun: <span class="m">0,3·(22 − θ) = 80·0,05 + 0,05·θ</span> → <span class="m">6,6 − 0,3θ = 4 + 0,05θ</span> → <span class="m">θ ≈ 7,4 °C</span>. Buz çox təsirlidir, çünki əriməsi çox istilik alır.</div>
+      <div class="life"><b>Həyatdan.</b> Meyvə şirəsinə buz atanda: 0,3 kq şirə (22 °C) üçün 0,05 kq buz kifayət edir ki, içki təxminən 7,4 °C olsun: <span class="m">0,3·(22 − θ) = 80·0,05 + 0,05·θ</span> → <span class="m">6,6 − 0,3θ = 4 + 0,05θ</span> → <span class="m">θ ≈ 7,4 °C</span>. Buz çox təsirlidir, çünki əriməsi çox istilik alır.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Yoxlama aparmadan <span class="m">θ</span> hesablamaq. Buz çoxdursa, nəticə mənfi çıxar — bu, “buz tam əriməyib” deməkdir.</li>
-        <li>Buz əridiyi zaman temperaturun 0 °C-dən fərqli ola biləcəyini düşünmək. Ərimə mərhələsində temperatur həmişə 0 °C-dir.</li>
+        <li>Buz əridiyi zaman temperaturun 0 °C-dən fərqli ola biləcəyini düşünmək. Ərimə mərhələsində temperatur 0 °C-dir; amma çox soyuq buzda son temperatur 0 °C-dən aşağı da ola bilər.</li>
         <li>Buxar məsələsində kondensasiyadan sonra alınan suyun soyumasını unutmaq (əgər <span class="m">θ &lt; 100</span> olarsa).</li>
         <li>Əriyən buzun sonra θ-yə qədər qızmasını unutmaq.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl yoxla: Q_su(→0 °C) ≥ λ·m_buz ?
-Hə → balansla θ-nı tap.   Yox → θ = 0 °C, m = Q/λ.
+Hə → balansla θ-nı tap.   Yox → θ = 0 °C, m = Q/λ (buz əvvəlcə 0 °C-dədirsə; çox soyuq buzda su qismən donur, θ < 0 da ola bilər).
 c_su-ya bölsən: λ → 80 °C.
 Buxar: Lm_b + c·m_b(100 − θ) = c·m_su(θ − t)</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>

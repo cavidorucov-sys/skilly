@@ -117,7 +117,7 @@
         return R((H + e) / 2, "m", { text: `Adamın boyu ${F(H)} m, gözləri yerdən ${F(e)} m hündürlükdədir. Güzgü şaquli divardadır. Başının üst nöqtəsinin xəyalını görmək üçün güzgünün yuxarı kənarı yerdən ən azı neçə metr hündürlükdə olmalıdır?`,
           solution: `Göz ilə başın üstünün xəyalını birləşdirən xətt güzgünü gözlə baş arasının ortasında kəsir: (${F(H)} + ${F(e)})/2 = ${F((H + e) / 2)} m.` });
       } },
-    { id: "donme", ad: "Dönən güzgü, iki güzgü", izah: "Güzgü φ dönəndə əks olunmuş şüa 2φ dönür. Bir-biri ilə β bucağı əmələ gətirən iki güzgüdə şüa 2β dönür. İki güzgüdə xəyalların sayı 360°/β − 1.",
+    { id: "donme", ad: "Dönən güzgü, iki güzgü", izah: "Güzgü φ dönəndə əks olunmuş şüa 2φ dönür. Bir-biri ilə β bucağı əmələ gətirən iki güzgüdə şüa 2β dönür. Cisim güzgülər arasındakı bucağın tənböləni üzərindədirsə və 360°/β tam ədəddirsə, xəyalların sayı 360°/β − 1.",
       gen() {
         const kind = pick(["d1", "d1", "d2", "d3", "iki", "iki", "betw", "say"]);
         if (kind === "d1") {
@@ -146,7 +146,7 @@
             solution: `İki əksolunmadan sonra şüa güzgülər arasındakı bucağın 2 mislinə bərabər bucaq qədər dönür: 2·${b} = ${2 * b}°.` });
         }
         const b = pick([90, 60, 45, 40, 36, 30, 72, 120]);
-        return R(360 / b - 1, "", { text: `Aralarındakı bucaq ${b}° olan iki müstəvi güzgünün arasına kiçik cisim qoyulub. Neçə xəyal görünür?`,
+        return R(360 / b - 1, "", { text: `Aralarındakı bucaq ${b}° olan iki müstəvi güzgünün arasına kiçik cisim güzgülər arasındakı bucağın tənböləni üzərində qoyulub. Neçə xəyal görünür?`,
           solution: `Xəyalların sayı 360°/β − 1 = 360/${b} − 1 = ${360 / b} − 1 = ${360 / b - 1}.` });
       } },
     { id: "sinma", ad: "Sınma qanunu, sındırma əmsalı", izah: "n₁ sin α = n₂ sin β. n = c/v, c = 3·10⁸ m/s. Sıxlığı böyük mühitə (n böyük) keçəndə şüa normala yaxınlaşır.",

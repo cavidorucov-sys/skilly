@@ -67,7 +67,7 @@ Vahid:  1 J = 1 N·m</div>
 0° &lt; α &lt; 90°   A &gt; 0
 α = 90°    cos = 0      A = 0      (qüvvə yola perpendikulyar)
 90° &lt; α &lt; 180°  A &lt; 0
-α = 180°   cos = −1     A = −F·s   (qüvvə hərəkətin əksinə)</div>
+α = 180°   cos = −1     A = −F·s   (qüvvə hərəkət istiqamətinin əksinə yönəlib)</div>
       <p>Mənfi iş qüvvənin cismi <b>yavaşıtdığını</b> deməkdir: sürtünmə, hava müqaviməti. Müsbət iş cismi <b>sürətləndirir</b>.</p>
       <p>İş sıfırdırsa: <b>(1)</b> qüvvə var, yerdəyişmə yoxdur (divarı itələyirsən); <b>(2)</b> qüvvə yerdəyişməyə perpendikulyardır (üfüqi gedən çantaya əlin qüvvəsi, normal reaksiya, dairə boyu sabit sürətlə fırlanan cismə mərkəzə yönəlmiş qüvvə).</p>
 
@@ -140,7 +140,7 @@ maili (l uzunluq):  A = −μmg·cos α·l</div>
           <text x="160" y="100" class="lbl" text-anchor="middle">180 J</text>
         </svg>
         <div class="cap">
-          <p>Qüvvə sabit olmayanda iş qrafikin altındakı <b>sahədir</b>. Üçbucaq: <span class="m">½·30·4 = 60 J</span>. Düzbucaqlı: <span class="m">30·6 = 180 J</span>. Cəmi <span class="m">240 J</span>.</p>
+          <p>Qüvvə sabit olmayanda iş F_τ(s) qrafikinin (qüvvənin hərəkət istiqamətindəki komponentinin) altındakı işarəli <b>sahədir</b>. Üçbucaq: <span class="m">½·30·4 = 60 J</span>. Düzbucaqlı: <span class="m">30·6 = 180 J</span>. Cəmi <span class="m">240 J</span>.</p>
         </div>
       </div>
       <p>Qrafikdən iş: hissələrə böl (düzbucaqlı, üçbucaq, trapesiya), sahələri topla. Qüvvə mənfi olarsa (ox altında), sahə mənfidir.</p>
@@ -170,7 +170,7 @@ Ağırlıq qüvvəsinin, sürtünmənin və ümumi işi?
       <div class="sum"><b>Yadda saxla</b><div class="ex">A_ağırlıq = mg(h₁ − h₂) — yoldan asılı deyil
 A_sür = −F_s·s — yola mütənasibdir
 Maili: h = l·sin α,  N = mg·cos α
-F(s) qrafikinin altındakı sahə = iş</div></div>
+F_τ(s) qrafikinin (F_τ — qüvvənin hərəkət istiqamətindəki komponenti) altındakı işarəli sahə = iş</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>5 kq yük 4 m qaldırıldı. Ağırlığın işi? <span class="ans">−5·10·4 = −200 J.</span></li>
         <li>μ = 0,1, m = 20 kq, yol 15 m, üfüqi. A_sür = ? <span class="ans">F_s = 20 N, A = −20·15 = −300 J.</span></li>
@@ -190,8 +190,8 @@ F(s) qrafikinin altındakı sahə = iş</div></div>
       <h3><span class="st">2</span> Gücün təyini</h3>
       <div class="fm">P = A/t       vahid: 1 W = 1 J/s
 1 kW = 1000 W</div>
-      <p>Qüvvə sabit və cisim bərabərsürətlə gedirsə:</p>
-      <div class="fm">P = F·v     (qüvvə sürət istiqamətindədir)
+      <p>Qüvvə sürətlə eyni istiqamətdədirsə (sürətin sabit olması tələb olunmur), ani güc:</p>
+      <div class="fm">P = F·v     (ümumi halda P = F·v·cos α; α — qüvvə ilə sürət arasındakı bucaq)
 A = P·t</div>
       <p>Buradan çıxış: avtomobil maksimal sürətə çatanda dartı qüvvəsi müqavimətə bərabər olur və <span class="m">P = F_müq·v_max</span>. Eyni güc üçün sürət artanda qüvvə azalır. Ona görə maşın dağa qalxanda aşağı pilləyə (kiçik sürət, böyük qüvvə) keçir.</p>
       <p>Sürət km/saat-la verilirsə, m/s-ə çevir: <span class="m">72 km/saat = 20 m/s</span>.</p>
@@ -223,7 +223,7 @@ Maksimal sürəti? km/saat ilə də yaz.
         <li>kW-dan W-a (və əksinə) keçməyi unutmaq.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">P = A/t,  1 W = 1 J/s
-P = F·v (bərabərsürətli hərəkət)
+P = F·v (F sürətlə eyni istiqamətdə; ümumi halda P = Fv·cos α)
 Maksimal sürət:  F_dartı = F_müq
 Qaldırma:  P = mgh/t = mg·v
 1 kW = 1000 W,  72 km/saat = 20 m/s</div></div>

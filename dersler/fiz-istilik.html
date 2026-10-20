@@ -58,7 +58,7 @@
         </svg>
         <div class="cap"><p>Selsi şkalasında 0 buzun əriməsi, 100 suyun qaynaması (normal təzyiqdə) götürülüb, aralıq 100 bərabər hissəyə bölünüb. Kelvin şkalasının bölgüsü Selsi ilə eynidir, yalnız başlanğıc fərqlidir.</p></div>
       </div>
-      <div class="fm">T (K) = t (°C) + 273            t = T − 273
+      <div class="fm">T (K) = t (°C) + 273            t = T − 273     (məktəb hesablamasında yaxınlaşma; dəqiq əlavə 273,15)
 t_F = 1,8·t_C + 32            t_C = (t_F − 32)/1,8
 Δt (°C) = ΔT (K)               (dəyişmə eynidir)</div>
       <p>Kelvin şkalasında <b>0 K</b> — mütləq sıfırdır (təxminən −273 °C). Ondan aşağı temperatur ola bilməz, çünki hissəciklərin hərəkəti dayanır. Buna görə kelvin <b>mütləq</b> temperatur şkalasıdır və mənfi qiymət almır. Fahrenheit şkalasında buz 32°-də əriyir, su 212°-də qaynayır: 100 °C = 180 °F.</p>
@@ -90,7 +90,7 @@ həqiqi temperatur?
         <li>Fahrenheitdən Selsiyə çevirəndə 32-ni çıxmağı unutmaq.</li>
         <li>Sınıq termometr məsələsində sıfır nöqtəsini (buz) götürməyi unutmaq: <span class="m">t = 100·(x − a)/(b − a)</span>, <span class="m">x</span>-i birbaşa 100-ə nisbətdə götürmək yanlışdır.</li>
       </ul></div>
-      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t + 273,  t_F = 1,8·t_C + 32
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T ≈ t + 273 (dəqiq: 273,15),  t_F = 1,8·t_C + 32
 Δt (°C) = ΔT (K)
 0 K — mütləq sıfır;  T ≥ 0
 İstilik isti cisimdən soyuğa keçir.</div></div>
@@ -113,7 +113,8 @@ həqiqi temperatur?
       <h3><span class="st">2</span> İstilik miqdarı</h3>
       <p>Cismin daxili enerjisi dəyişəndə <b>istilik miqdarı</b> <span class="m">Q</span> alınır (və ya verilir). Vahidi joul (J) və ya kilojoul (1 kJ = 1000 J). Cismi qızdırmaq üçün lazım olan istilik üç şeydən asılıdır: maddənin növündən, kütləsindən, temperaturun dəyişməsindən.</p>
       <div class="fm">Q = c·m·Δt          Δt = t₂ − t₁
-c — xüsusi istilik tutumu, J/(kq·°C)</div>
+c — xüsusi istilik tutumu, J/(kq·°C)
+Q > 0 — cisim istilik alır, Q < 0 — verir; "ayrılan istilik" soruşulanda modul verilir</div>
       <div class="fig">
         <svg viewBox="0 0 280 175" role="img" aria-label="Xüsusi istilik tutumunun sütun diaqramı: su 4200, buz 2100, alüminium 900, polad 500, mis 400, qurğuşun 130 J/(kq·°C)">
           <g stroke="var(--ink)" stroke-width="1.5"><line x1="62" y1="8" x2="62" y2="164"/></g>
@@ -124,11 +125,11 @@ c — xüsusi istilik tutumu, J/(kq·°C)</div>
           <rect x="63" y="116" width="18.6" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="128" class="lbl" text-anchor="end">mis</text><text x="87" y="128" class="lbl">400</text>
           <rect x="63" y="142" width="6" height="16" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="58" y="154" class="lbl" text-anchor="end">qurğuşun</text><text x="75" y="154" class="lbl">130</text>
         </svg>
-        <div class="cap"><p>Suyun xüsusi istilik tutumu hər şeydən böyükdür: 1 kq suyu 1 °C qızdırmaq üçün 4200 J lazımdır, 1 kq misi isə cəmi 400 J.</p></div>
+        <div class="cap"><p>Suyun xüsusi istilik tutumu bir çox gündəlik maddəninkindən böyükdür: 1 kq suyu 1 °C qızdırmaq üçün 4200 J lazımdır, 1 kq misi isə cəmi 400 J.</p></div>
       </div>
       <p><b>Xüsusi istilik tutumu</b> — 1 kq maddəni 1 °C qızdırmaq üçün lazım olan istilik miqdarıdır. Soyuyanda cisim eyni <span class="m">Q = cm|Δt|</span> qədər istilik verir. <span class="m">cm</span> hasilinə cismin <b>istilik tutumu</b> deyilir (<span class="m">C = cm</span>, J/°C): bütün cismi 1 °C qızdırmaq üçün lazım olan istilik.</p>
       <p>Elektrik qızdırıcı <span class="m">P</span> gücü ilə <span class="m">t</span> müddətində <span class="m">Pt</span> enerji verir. Bunun hamısı sudan keçmirsə (itki olur), <b>faydalı iş əmsalı</b> η ilə:</p>
-      <div class="fm">c·m·Δt = η·P·t         (η ondalıq, məsələn, 0,8 = 80%)</div>
+      <div class="fm">c·m·Δt = η·P·t         (η onluq kəsr şəklində, məsələn, 0,8 = 80%)</div>
       <p>Vaxtı saniyə ilə, gücü vattla yaz: 1 W = 1 J/s.</p>
 
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>

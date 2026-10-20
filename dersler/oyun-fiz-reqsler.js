@@ -136,7 +136,7 @@
         if (kind === "vmax") {
           let A; do { A = rnd(1, 20); } while (!nice(A / 100 * w, 3));
           return R(A / 100 * w, "m/s", { text: `${F(m)} kq kütləli yük sərtliyi ${F(k)} N/m yaydan amplitudu ${A} sm olmaqla rəqs edir. Maksimal sürəti nə qədərdir?`,
-            solution: `Tarazlıq nöqtəsində enerji tam kinetikdir: kA²/2 = mv²/2 → v = A·√(k/m) = ${F(A / 100)}·√${r} = ${F(A / 100 * w)} m/s.` });
+            solution: `Tarazlıq nöqtəsində (x = 0, yerdəyişmə tarazlıqdan ölçülür) kx²/2 = 0 və enerji tam kinetikdir: kA²/2 = mv²/2 → v = A·√(k/m) = ${F(A / 100)}·√${r} = ${F(A / 100 * w)} m/s.` });
         }
         if (kind === "v") {
           const [A, x, d] = pick([[5, 3, 4], [5, 4, 3], [10, 6, 8], [10, 8, 6], [13, 5, 12], [15, 9, 12], [15, 12, 9], [20, 12, 16]]);

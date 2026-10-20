@@ -54,9 +54,9 @@
     { id: "mutleq", ad: "Orta və mütləq xəta", izah: "Orta x̄ = (x₁ + … + xₙ)/n. Mütləq xəta: Δxᵢ = |xᵢ − x̄|, onların ortası Δx̄. Nisbi xəta ε = Δx̄/x̄·100 %. Cihaz xətası bölgü qiymətinin yarısıdır və təsadüfi xətaya əlavə olunur.",
       gen() {
         const ct = pick([
-          { w: "sarğacın 20 rəqsinin vaxtını t", u: "s", step: 0.1, lo: 200, hi: 600 },
+          { w: "rəqqasın 20 rəqsinin vaxtını t", u: "s", step: 0.1, lo: 200, hi: 600 },
           { w: "fırlanan telefonun bucaq sürətini ω", u: "rad/s", step: 0.01, lo: 150, hi: 900 },
-          { w: "sarğacın uzunluğunu l", u: "sm", step: 0.1, lo: 800, hi: 1050 },
+          { w: "rəqqasın uzunluğunu l", u: "sm", step: 0.1, lo: 800, hi: 1050 },
           { w: "məftilin diametrini d", u: "mm", step: 0.01, lo: 20, hi: 90 },
         ]);
         const n = pick([4, 5]), ds = [];
@@ -138,7 +138,7 @@
       gen() {
         const kind = pick(["sxy", "sxy", "sxy", "b"]);
         const ct = pick([
-          { xn: "l, m", yn: "T², s²", u: "s²/m", kk: [3.8, 3.9, 4, 4.1, 4.2], xs: 0.2, es: 0.02, bs: [0.04, 0.08, 0.12], ctx: "Sarğacın T² və l qiymətləri" },
+          { xn: "l, m", yn: "T², s²", u: "s²/m", kk: [3.8, 3.9, 4, 4.1, 4.2], xs: 0.2, es: 0.02, bs: [0.04, 0.08, 0.12], ctx: "Rəqqasın T² və l qiymətləri" },
           { xn: "x, m", yn: "F, N", u: "N/m", kk: [50, 80, 100, 120, 150, 200, 250], xs: 0.02, es: 0.1, bs: [0.5, 1, 1.5], ctx: "Yayın dartılma qüvvəsi F və uzanması x" },
           { xn: "ω², rad²/s²", yn: "a, m/s²", u: "m", kk: [0.15, 0.18, 0.2, 0.22, 0.25], xs: 2, es: 0.05, bs: [0.05, 0.1, 0.15], ctx: "Fırlanan telefon: ω² və a" },
           { xn: "I, A", yn: "U, V", u: "Ω", kk: [5, 8, 10, 12, 15, 20], xs: 0.1, es: 0.1, bs: [0.5, 1, 2], ctx: "Dövrənin cərəyanı I və gərginliyi U" },
@@ -160,7 +160,7 @@
         return X(k, ct.u, { text, solution: `Σxy = ${xs.map((x, i) => `${F(x)}·${F(ys[i])}`).join(" + ")} = ${F(sxy)}. Σx² = ${xs.map(x => F(r6(x * x))).join(" + ")} = ${F(sxx)}. k = ${F(sxy)}/${F(sxx)} = ${F(k)} ${ct.u}.` });
       } },
 
-    { id: "qrafik", ad: "Qrafikdən maillik və g", izah: "Maillik k = (y₂ − y₁)/(x₂ − x₁): xətt üzərindəki iki uzaq nöqtədən götürülür (ölçmə nöqtələrindən yox). Sarğac: T² = (4π²/g)·l, maillik k = 4π²/g, g = 4π²/k.",
+    { id: "qrafik", ad: "Qrafikdən maillik və g", izah: "Maillik k = (y₂ − y₁)/(x₂ − x₁): xətt üzərindəki iki uzaq nöqtədən götürülür (ölçmə nöqtələrindən yox). Rəqqas: T² = (4π²/g)·l, maillik k = 4π²/g, g = 4π²/k.",
       gen() {
         const kind = pick(["oxu", "oxu", "oxu", "g", "g", "R"]);
         if (kind === "oxu") {
@@ -186,7 +186,7 @@
           const svg = wrap(graph({ xmax: r6(xmax), ymax, gx: 0.2, gy: 1, lx: 0.2, ly: 1, xlab: "l, m", ylab: "T², s²", pts, lines: [{ p: [[0, b], [r6(Math.min(xmax, (ymax - b) / k)), r6(Math.min(k * xmax + b, ymax))]] }],
             marks: [{ x: x1, y: y1, label: `A (${F(x1)}; ${F(y1)})`, dx: 10, dy: 20 }, { x: x2, y: y2, label: `B (${F(x2)}; ${F(y2)})`, dx: -10, dy: -10, anchor: "end" }], alt: "T² – l qrafiki" }));
           const g = Math.round(FOUR_PI2 / k * 100) / 100;
-          return X(g, "m/s²", { svg, tol: g * 0.008, text: `Sarğacın T² – l qrafikinin düz xətti şəkildəki A və B nöqtələrindən keçir (l metrlə, T² s²-lə). T² = (4π²/g)·l olduğunu bilirik, 4π² = 39,5 götür. g neçə m/s²-dir?`,
+          return X(g, "m/s²", { svg, tol: g * 0.008, text: `Rəqqasın T² – l qrafikinin düz xətti şəkildəki A və B nöqtələrindən keçir (l metrlə, T² s²-lə). T² = (4π²/g)·l olduğunu bilirik, 4π² = 39,5 götür. g neçə m/s²-dir?`,
             solution: `Maillik k = (${F(y2)} − ${F(y1)})/(${F(x2)} − ${F(x1)}) = ${F(r6(y2 - y1))}/${F(r6(x2 - x1))} = ${F(k)} s²/m. g = 4π²/k = 39,5/${F(k)} = ${F(g)} m/s².` + (b !== 0 ? ` Xətt başlanğıcdan keçmir (kəsmə ${F(b)} s²): g-ni tək nöqtədən 4π²l/T² ilə tapmaq düzgün olmazdı, yalnız maillikdən.` : "") });
         }
         let k, b, x1, x2, y1, y2;
@@ -205,11 +205,11 @@
         const kind = pick(["ox", "ox", "ox", "ox", "mas", "mas", "Tl"]);
         if (kind === "ox") {
           const E = pick([
-            { law: "T = 2π√(l/g) (sarğac, g sabit)", ok: "T² – l", bad: ["T – l", "T – l²", "l – T"] },
+            { law: "T = 2π√(l/g) (rəqqas, g sabit)", ok: "T² – l", bad: ["T – l", "T – l²", "l – T"] },
             { law: "a = ω²R (R sabit)", ok: "a – ω²", bad: ["a – ω", "a – √ω", "ω – a"] },
             { law: "a = v²/R (v sabit)", ok: "a – 1/R", bad: ["a – R", "a – R²", "a – √R"] },
             { law: "E = kx²/2 (yayın enerjisi)", ok: "E – x²", bad: ["E – x", "E – √x", "x – E"] },
-            { law: "T = 2π√(m/k) (yaylı sarğac)", ok: "T² – m", bad: ["T – m", "T – m²", "T – 1/m"] },
+            { law: "T = 2π√(m/k) (yaylı rəqqas)", ok: "T² – m", bad: ["T – m", "T – m²", "T – 1/m"] },
             { law: "F = kQq/r² (Kulon qanunu)", ok: "F – 1/r²", bad: ["F – r", "F – 1/r", "F – r²"] },
             { law: "I = U/R (R sabit)", ok: "I – U", bad: ["I – U²", "I – 1/U", "U – 1/I"] },
           ]);
@@ -219,7 +219,7 @@
         }
         if (kind === "mas") {
           const t = pick(["T", "a", "ar", "E"]), n = rnd(2, 4);
-          if (t === "T") return X(n, "", { unit: "dəfə", text: `Sarğacın uzunluğu ${n * n} dəfə artırıldı. Period T neçə dəfə artar? (T ~ √l)`, solution: `T ~ √l: √${n * n} = ${n} dəfə.` });
+          if (t === "T") return X(n, "", { unit: "dəfə", text: `Rəqqasın uzunluğu ${n * n} dəfə artırıldı. Period T neçə dəfə artar? (T ~ √l)`, solution: `T ~ √l: √${n * n} = ${n} dəfə.` });
           if (t === "a") return X(n * n, "", { unit: "dəfə", text: `Fırlanma bucaq sürəti ω ${n} dəfə artırıldı (R sabit). Mərkəzəqaçma təcili a neçə dəfə artar? (a = ω²R)`, solution: `a ~ ω²: ${n}² = ${n * n} dəfə.` });
           if (t === "ar") { const m = rnd(2, 3), r = rnd(2, 4); return X(m * m * r, "", { unit: "dəfə", text: `ω ${m} dəfə, R isə ${r} dəfə artırıldı. a = ω²R neçə dəfə artar?`, solution: `a ~ ω²·R: ${m}²·${r} = ${m * m * r} dəfə.` }); }
           return X(n * n, "", { unit: "dəfə", text: `Yayın deformasiyası x ${n} dəfə artırıldı. Elastiklik enerjisi E = kx²/2 neçə dəfə artar?`, solution: `E ~ x²: ${n}² = ${n * n} dəfə.` });
@@ -236,7 +236,7 @@
         if (Math.random() < 0.5) {
           let l, dls, T, dT, el, eT, eg;
           do { l = pick([0.5, 0.8, 1, 1.25]); dls = pick([0.1, 0.2, 0.25, 0.4, 0.5]); T = pick([1.25, 1.6, 2, 2.5]); dT = pick([0.005, 0.01, 0.02]); el = r6(dls / l); eT = r6(dT / T * 100); eg = r6(el + 2 * eT); } while (!nice(el, 3) || !nice(eT, 3) || !nice(eg, 3) || dT >= T / 10);
-          task = `Sarğac üçün l = ${F(l)} m, Δl = ${F(dls)} sm, T = ${F(T)} s, ΔT = ${F(dT)} s ölçülüb. g = 4π²l/T² qiymətinin nisbi xətasını tapırlar.`;
+          task = `Rəqqas üçün l = ${F(l)} m, Δl = ${F(dls)} sm, T = ${F(T)} s, ΔT = ${F(dT)} s ölçülüb. g = 4π²l/T² qiymətinin nisbi xətasını tapırlar.`;
           steps = [`Δl = ${F(dls)} sm = ${F(dls / 100)} m. ε_l = Δl/l·100 % = ${F(dls / 100)}/${F(l)}·100 % = ${F(el)} %.`, `ε_T = ΔT/T·100 % = ${F(dT)}/${F(T)}·100 % = ${F(eT)} %.`, `g ~ l/T², ona görə ε_g = ε_l + 2ε_T = ${F(el)} + 2·${F(eT)} = ${F(eg)} %.`];
           if (bad === 0) steps[0] = `ε_l = Δl/l·100 % = ${F(dls)}/${F(l)}·100 % = ${F(r6(dls / l * 100))} %.`;
           if (bad === 1) steps[1] = `ε_T = ΔT·100 % = ${F(dT)}·100 % = ${F(r6(dT * 100))} %.`;
@@ -273,11 +273,11 @@
         if (kind === "g") {
           let l, T, g;
           do { T = pick([1, 1.2, 1.5, 2, 2.5]); l = rnd(20, 160) * 0.01; g = r6(40 * l / (T * T)); l = r6(l); } while (!nice(g, 2) || g < 9 || g > 11);
-          return X(g, "m/s²", { text: `Sarğacın uzunluğu l = ${F(l)} m, periodu T = ${F(T)} s ölçüldü. g = 4π²l/T² düsturu ilə g-ni tap (4π² = 40 götür).`, solution: `g = 40·l/T² = 40·${F(l)}/${F(r6(T * T))} = ${F(g)} m/s².` });
+          return X(g, "m/s²", { text: `Rəqqasın uzunluğu l = ${F(l)} m, periodu T = ${F(T)} s ölçüldü. g = 4π²l/T² düsturu ilə g-ni tap (4π² = 40 götür).`, solution: `g = 40·l/T² = 40·${F(l)}/${F(r6(T * T))} = ${F(g)} m/s².` });
         }
         if (kind === "kes") {
           const k = 4, r = pick([1, 1.5, 2, 2.5, 3]), b = r6(k * r / 100);
-          return X(r, "sm", { text: `Fikrət T² – L qrafikini çəkdi, burada L ipin uzunluğudur (topun mərkəzinə qədər yox, ipin ucuna qədər). Düz xətt T² oxunu ${F(b)} s²-də kəsir, mailliyi ${k} s²/m-dir. Sarğacın uzunluğu l = L + r olduğunu (r — topun radiusu) nəzərə alıb r-i tap.`,
+          return X(r, "sm", { text: `Fikrət T² – L qrafikini çəkdi, burada L ipin uzunluğudur (topun mərkəzinə qədər yox, ipin ucuna qədər). Düz xətt T² oxunu ${F(b)} s²-də kəsir, mailliyi ${k} s²/m-dir. Rəqqasın uzunluğu l = L + r olduğunu (r — topun radiusu) nəzərə alıb r-i tap.`,
             solution: `T² = k·l = k·(L + r) = k·L + k·r. Deməli xətt T² oxunu b = k·r nöqtəsində kəsir. r = b/k = ${F(b)}/${k} = ${F(r / 100)} m = ${F(r)} sm.` });
         }
         if (kind === "fark") {

@@ -65,7 +65,7 @@
         if (kind === "ht") { const T = v0 / 5, t = pick([0.5, 1, 1.5, 2, 2.5, 3]); if (t > T) return this.gen(); const hh = v0 * t - 5 * t * t;
           return R(hh, "m", { text: `Daş ${v0} m/s sürətlə şaquli yuxarı atılıb. ${F(t)} s-dən sonra atıldığı nöqtədən yuxarıda hansı hündürlükdədir?`, solution: `h = v₀t − gt²/2 = ${v0}·${F(t)} − 5·${F(t * t)} = ${F(v0 * t)} − ${F(5 * t * t)} = ${F(hh)} m.` }); }
         if (kind === "vt") { const t = rnd(1, Math.floor(v0 / 5) + 1), v = v0 - 10 * t;
-          return R(v, "m/s", { text: `Daş ${v0} m/s sürətlə şaquli yuxarı atılıb. Ox yuxarı yönəlib. ${t} s-dən sonra sürətin proyeksiyasını tap.`, solution: `vₓ = v₀ − gt = ${v0} − 10·${t} = ${F(v)} m/s. ${v < 0 ? "Mənfi — daş artıq düşür." : v === 0 ? "Daş ən yuxarı nöqtədədir." : "Müsbət — daş hələ qalxır."}` }); }
+          return R(v, "m/s", { text: `Daş ${v0} m/s sürətlə şaquli yuxarı atılıb. Ox yuxarı yönəlib; daş atıldığı səviyyədən sonra da uçur, aşağıda maneə yoxdur. ${t} s-dən sonra sürətin proyeksiyasını tap.`, solution: `vₓ = v₀ − gt = ${v0} − 10·${t} = ${F(v)} m/s. ${v < 0 ? "Mənfi — daş artıq düşür." : v === 0 ? "Daş ən yuxarı nöqtədədir." : "Müsbət — daş hələ qalxır."}` }); }
         if (kind === "iki") {
           const t1 = pick([0.5, 1, 1.5, 2, 2.5, 3]), t2 = t1 + pick([0.5, 1, 1.5, 2, 2.5, 3, 4]), V0 = 5 * (t1 + t2), hh = 5 * t1 * t2;
           if (!nice(hh, 2) || V0 > 60) return this.gen();

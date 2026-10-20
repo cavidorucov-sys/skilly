@@ -109,7 +109,7 @@
   const comma = (v, d) => v.toFixed(d).replace(".", ",");
 
   const levels = [
-    { id: "oxu", ad: "Şkala və cihaz", izah: "Bölgü qiyməti c = (iki bitişik rəqəmli işarənin fərqi) / (aralarındakı bölgü sayı). Bölgüləri say, xətləri yox. Cihaz xətası Δ = c/2.",
+    { id: "oxu", ad: "Şkala və cihaz", izah: "Bölgü qiyməti c = (iki bitişik rəqəmli işarənin fərqi) / (aralarındakı bölgü sayı). Bölgüləri say, xətləri yox. Başqa məlumat verilməyibsə, analoq şkalada oxuma xətası Δ = c/2.",
       gen() {
         const kind = pick(["cdiv", "read", "read", "dcdiv", "dread", "dread", "err"]);
         if (kind === "cdiv" || kind === "read" || kind === "err") {
@@ -152,7 +152,7 @@
         const kind = pick(["T", "dT", "N", "eps", "omega", "omega"]);
         if (kind === "T") {
           let N, T, t; do { N = pick(NS_); T = r6(rnd(16, 60) * 0.05); t = r6(N * T); } while (!nice(t, 1) || t > 100);
-          return X(T, "s", { text: `Fikrət sarğacın ${N} tam rəqsinin vaxtını ${F(t)} s ölçdü. Bir rəqsin periodu T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
+          return X(T, "s", { text: `Fikrət rəqqasın ${N} tam rəqsinin vaxtını ${F(t)} s ölçdü. Bir rəqsin periodu T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
         }
         if (kind === "dT") {
           const N = pick([10, 20, 25, 40, 50]), dt = pick([0.2, 0.3, 0.4]), dT = r6(dt / N);
@@ -167,7 +167,7 @@
         }
         if (kind === "eps") {
           let N, t, dt, e; do { N = pick([10, 20, 25, 40]); t = pick([10, 12.5, 15, 16, 20, 24, 25, 30, 32, 40, 50, 60]); dt = pick([0.2, 0.3, 0.4]); e = r6(dt / t * 100); } while (!nice(e, 2));
-          return X(e, "%", { text: `Sarğacın ${N} rəqsinin vaxtı t = ${F(t)} s ölçüldü, vaxtın xətası Δt = ${F(dt)} s. Periodun nisbi xətası ε = ΔT/T neçə faizdir?`,
+          return X(e, "%", { text: `Rəqqasın ${N} rəqsinin vaxtı t = ${F(t)} s ölçüldü, vaxtın xətası Δt = ${F(dt)} s. Periodun nisbi xətası ε = ΔT/T neçə faizdir?`,
             solution: `ε = ΔT/T = (Δt/N)/(t/N) = Δt/t = ${F(dt)}/${F(t)} = ${F(e / 100)} = ${F(e)} %. (N ixtisar olunur: nisbi xəta ölçülən vaxtın özünə görə təyin olunur.)` });
         }
         let N, T, t; do { N = pick([4, 5, 8, 10]); T = pick([0.4, 0.5, 0.8, 1, 2, 4]); t = r6(N * T); } while (t < 4 || t > 40);
@@ -203,7 +203,7 @@
           return X(w, "rad/s", { text: `Telefon fırlanan oturacaqda oxdan R = ${R} sm məsafədədir. Akselerometr a = ${F(a)} m/s² göstərir. ω = √(a/R) bucaq sürəti neçə rad/s-dir?`,
             solution: `R = ${R} sm = ${F(R / 100)} m. ω² = a/R = ${F(a)}/${F(R / 100)} = ${w * w}, ω = ${w} rad/s.` });
         }
-        return X(a, "m/s²", { text: `Telefon fırlanan oturacaqda oxdan R = ${R} sm məsafədədir, giroskop ω = ${w} rad/s göstərir. Mərkəzəqaçma təcili a = ω²R neçə m/s²-dir?`,
+        return X(a, "m/s²", { text: `Telefon fırlanan oturacaqda oxdan R = ${R} sm məsafədədir, giroskop ω = ${w} rad/s göstərir. Mərkəzəyönlü təcil a = ω²R neçə m/s²-dir?`,
           solution: `R = ${R} sm = ${F(R / 100)} m. a = ω²R = ${w}²·${F(R / 100)} = ${w * w}·${F(R / 100)} = ${F(a)} m/s².` });
       } },
 
@@ -259,7 +259,7 @@
         if (Math.random() < 0.5) {
           let N, T, t, dt, dT, e;
           do { N = pick([10, 20, 25, 40, 50]); T = pick([1, 1.25, 1.6, 2, 2.5, 4]); t = r6(N * T); dt = pick([0.2, 0.4]); dT = r6(dt / N); e = r6(dT / T * 100); } while (!nice(t, 1) || !nice(dT, 3) || !nice(e, 3) || t > 100);
-          task = `Sarğac ${N} tam rəqsi ${F(t)} s-də edir, saniyəölçənlə ölçmə xətası Δt = ${F(dt)} s-dir. Periodun nisbi xətasını tapırlar.`;
+          task = `Rəqqas ${N} tam rəqsi ${F(t)} s-də edir, saniyəölçənlə ölçmə xətası Δt = ${F(dt)} s-dir. Periodun nisbi xətasını tapırlar.`;
           steps = [`T = t/N = ${F(t)}/${N} = ${F(T)} s.`, `ΔT = Δt/N = ${F(dt)}/${N} = ${F(dT)} s.`, `ε = ΔT/T·100 % = ${F(dT)}/${F(T)}·100 % = ${F(e)} %.`];
           if (bad === 0) steps[0] = `T = N/t = ${N}/${F(t)} = ${F(+(N / t).toFixed(3))} s.`;
           if (bad === 1) steps[1] = `ΔT = Δt·N = ${F(dt)}·${N} = ${F(dt * N)} s.`;
@@ -283,12 +283,12 @@
         return { text, choices: names, correct: bad, show: names[bad], solution: why };
       } },
 
-    { id: "heyat", ad: "Həyatdan", izah: "Sarğac (pendulum-lab) və fırlanan telefon təcrübələrində ölçülənlər: ip uzunluğu, R, rəqs vaxtı, ω.",
+    { id: "heyat", ad: "Həyatdan", izah: "Rəqqas (pendulum-lab) və fırlanan telefon təcrübələrində ölçülənlər: ip uzunluğu, R, rəqs vaxtı, ω.",
       gen() {
         const kind = pick(["l", "R", "N", "a", "T"]);
         if (kind === "l") {
           let L, d, l; do { L = pick([80, 85.5, 90, 92.5, 95.5, 98, 100, 105]); d = pick([2, 3, 4, 5]); l = r6((L + d / 2) / 100); } while (!nice(l, 4));
-          return X(l, "m", { text: `Pendulum-lab layihəsində Fikrət sarğacın ipinin uzunluğunu ${F(L)} sm, topun diametrini ${d} sm ölçdü (ip topun üstündən bərkidilib). Sarğacın uzunluğu l — asılma nöqtəsindən topun mərkəzinə qədər — neçə metrdir?`,
+          return X(l, "m", { text: `Pendulum-lab layihəsində Fikrət rəqqasın ipinin uzunluğunu ${F(L)} sm, topun diametrini ${d} sm ölçdü (ip topun üstündən bərkidilib). Rəqqasın uzunluğu l — asılma nöqtəsindən topun mərkəzinə qədər — neçə metrdir?`,
             solution: `Topun mərkəzi ipin ucundan radius qədər aşağıdadır: l = ${F(L)} + ${d}/2 = ${F(L + d / 2)} sm = ${F(l)} m.` });
         }
         if (kind === "R") {
@@ -307,7 +307,7 @@
             solution: `R = ${F(R / 100)} m. a = ${w}²·${F(R / 100)} = ${F(a)} m/s².` });
         }
         let N, T, t; do { N = pick([10, 20, 25, 30]); T = r6(rnd(18, 50) * 0.05); t = r6(N * T); } while (!nice(t, 1));
-        return X(T, "s", { text: `Pendulum-lab-da sarğac ${N} rəqsi ${F(t)} s-də edir. Period T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
+        return X(T, "s", { text: `Pendulum-lab-da rəqqas ${N} rəqsi ${F(t)} s-də edir. Period T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
       } },
   ];
 

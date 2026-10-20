@@ -46,7 +46,7 @@
         <li><b>Uzununa dalğa:</b> hissəciklər yayılma istiqaməti boyunca rəqs edir (hava və yaydakı sıxılma–seyrəlmə dalğası, səs).</li>
       </ul>
       <div class="fig">
-        <svg viewBox="0 0 280 170" role="img" aria-label="Eninə dalğa: dalğa uzunluğu λ qonşu iki qabarıq arasıdır, amplituda A, yayılma sürəti v">
+        <svg viewBox="0 0 280 170" role="img" aria-label="Eninə dalğa: dalğa uzunluğu λ qonşu iki dalğa təpəsi arasıdır, amplituda A, yayılma sürəti v">
           <defs><marker id="dg1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
           <line x1="14" y1="85" x2="268" y2="85" stroke="var(--muted)" stroke-dasharray="4 3"/>
           <path d="M20 85C35 40 65 40 80 85S125 130 140 85S185 40 200 85S245 130 260 85" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
@@ -58,7 +58,7 @@
           <line x1="40" y1="145" x2="110" y2="145" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#dg1)"/>
           <text x="125" y="149" class="lbl">v</text>
         </svg>
-        <div class="cap"><p>Dalğa uzunluğu <span class="m">λ</span> — eyni fazada rəqs edən qonşu iki nöqtə (məsələn, iki qonşu qabarıq) arasındakı məsafədir. Amplituda <span class="m">A</span> — tarazlıqdan ən böyük uzaqlaşma.</p></div>
+        <div class="cap"><p>Dalğa uzunluğu <span class="m">λ</span> — eyni fazada rəqs edən qonşu iki nöqtə (məsələn, iki qonşu dalğa təpəsi) arasındakı məsafədir. Amplituda <span class="m">A</span> — tarazlıqdan ən böyük uzaqlaşma.</p></div>
       </div>
 
       <h3><span class="st">3</span> Əsas düstur</h3>
@@ -73,11 +73,11 @@ T = 1/ν          ν = v/λ</div>
   v = λν = 3·4 = 12 m/s</div>
       <div class="ex">Nümunə 2 (RFO, rayon mərhələsi tipli).
 Dənizdə lövbərli qayıq 20 s-də 10 dəfə qalxıb enir.
-Qonşu iki qabarıq arasında 6 m var. Dalğanın sürəti?
+Qonşu iki dalğa təpəsi arasında 6 m var. Dalğanın sürəti?
   ν = N/t = 10/20 = 0,5 Hz   (T = 2 s)
   v = λν = 6·0,5 = 3 m/s</div>
       <div class="ex">Nümunə 3 (RFO tipli). Göldə dalğanın sürəti 10 m/s,
-periodu 0,5 s-dir. Suda üzən iki şamandıra arasında 12,5 m var.
+periodu 0,5 s-dir. Suda üzən iki şamandıra dalğanın yayılma istiqaməti boyunca 12,5 m aralıdır.
 Rəqsləri eyni fazadadır, yoxsa əksfazada?
   λ = vT = 10·0,5 = 5 m
   12,5/5 = 2,5 → məsafə 2,5λ = 2λ + λ/2
@@ -87,12 +87,12 @@ Rəqsləri eyni fazadadır, yoxsa əksfazada?
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Dalğa ilə mühitin hissəciklərinin sürətini qarışdırmaq. <span class="m">v</span> dalğanın yayılma sürətidir; yarpaq isə dalğa ilə getmir, yerində rəqs edir.</li>
         <li>Mühit dəyişəndə tezliyin dəyişdiyini düşünmək. Dəyişən <span class="m">v</span> və <span class="m">λ</span>-dır, <span class="m">ν</span> yox.</li>
-        <li>N qabarığın arası N−1 dalğa uzunluğu olduğunu unutmaq: 11 qabarıq arasında 10 dalğa uzunluğu var.</li>
+        <li>N dalğa təpəsinin arası N−1 dalğa uzunluğu olduğunu unutmaq: 11 dalğa təpəsi arasında 10 dalğa uzunluğu var.</li>
         <li>Santimetri metrə çevirməmək, MHz-i Hz-ə çevirməmək (1 MHz = 10⁶ Hz).</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">v = λν = λ/T,   ν = 1/T
 Mühit dəyişəndə ν sabit; v və λ dəyişir.
-Dalğa enerji aparır, maddəni yox.
+Dalğa enerji aparır, maddəni yox. Eyni mühit və tezlikdə dalğanın daşıdığı enerji (intensivlik) A²-na mütənasibdir.
 Eninə (⊥) və uzununa (∥) dalğa.</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>v = 20 m/s, λ = 4 m. ν və T? <span class="ans">ν = 5 Hz, T = 0,2 s.</span></li>
@@ -253,13 +253,13 @@ Ayrı eşitmək üçün maneə ≥ 17 m (0,1 s fərq).</div></div>
     <h2>Dərs 4. Rezonans və dayanan dalğalar</h2>
     <article class="lesson">
       <h3><span class="st">1</span> Niyə lazımdır</h3>
-      <p>Yellənçəyi hər dəfə düzgün anda itələsən, sən az qüvvə ilə onu çox yelləyirsən. Opera müğənnisi bəzən çox yüksək tonla şüşə stəkanı sındırır. Əsgər dəstələri körpüdən “addım ayrılsın” əmri ilə keçir ki, körpü rezonansa düşməsin. Gitarada və fleytada ton rezonansla yaranır.</p>
+      <p>Yelləncəyi hər dəfə düzgün anda itələsən, sən az qüvvə ilə onu çox yelləyirsən. Opera müğənnisi bəzən çox yüksək tonla şüşə stəkanı sındırır. Əsgər dəstələri körpüdən “addım ayrılsın” əmri ilə keçir ki, körpü rezonansa düşməsin. Gitarada və fleytada ton rezonansla yaranır.</p>
 
       <h3><span class="st">2</span> Məcburi rəqs və rezonans</h3>
       <p>Hər rəqs sistemi (rəqqas, sim, körpü, hava sütunu) <b>öz tezliyi</b> ilə sərbəst rəqs edir (məsələn, <span class="m">ν₀ = 1/T₀</span>). Əgər sistemə kənardan <b>dövri qüvvə</b> təsir edirsə, o, qüvvənin tezliyi ilə rəqs edir — bu <b>məcburi rəqs</b>dir.</p>
       <p><b>Rezonans</b> — məcburi qüvvənin tezliyi sistemin öz tezliyinə bərabər (və ya yaxın) olduqda amplitudanın kəskin artmasıdır:</p>
       <div class="fm">ν_qüvvə = ν₀      →      rezonans
-yellənçək: itələmə aralığı = T₀ = 2π√(l/g)</div>
+yelləncək: itələmə aralığı = T₀ = 2π√(l/g)</div>
       <p>Niyə? Qüvvə hər dəfə sistemin hərəkəti ilə <b>eyni istiqamətdə</b> təsir edir və enerji toplanır. Sürtünmə varsa, amplituda sonsuza getmir, amma çox böyük ola bilər. Rezonans həm faydalıdır (musiqi alətləri, radio qəbuledicisinin kontur dövrəsi), həm də təhlükəlidir (körpü, bina, maşın mühərriki titrəyişləri).</p>
 
       <h3><span class="st">3</span> Simdə və boruda dayanan dalğa</h3>
@@ -279,7 +279,7 @@ yellənçək: itələmə aralığı = T₀ = 2π√(l/g)</div>
           <path d="M20 165C50 130 120 130 160 165" fill="none" stroke="var(--accent)" stroke-width="2"/>
           <text x="170" y="168" class="lbl">L = λ/4</text>
         </svg>
-        <div class="cap"><p><b>Yuxarıda:</b> iki ucu bərkidilmiş simdə dayanan dalğa: uclarda düyün (hərəkətsiz nöqtə). Əsas tonda simin uzunluğuna <b>yarım dalğa</b> sığır. <b>Aşağıda:</b> bir ucu qapalı boruda qapalı ucda düyün, açıq ucda qarın (maksimum): borunun uzunluğuna <b>dörddə bir dalğa</b> sığır.</p></div>
+        <div class="cap"><p><b>Yuxarıda:</b> iki ucu bərkidilmiş simdə dayanan dalğa: uclarda düyün (hissəciklərin hərəkətsiz nöqtəsi). Əsas tonda simin uzunluğuna <b>yarım dalğa</b> sığır. <b>Aşağıda:</b> bir ucu qapalı boruda qapalı ucda düyün, açıq ucda qarın (hissəcik yerdəyişməsinin maksimumu; təzyiq üçün yerlər tərsinədir): borunun uzunluğuna <b>dörddə bir dalğa</b> sığır.</p></div>
       </div>
       <div class="fm">Sim və iki ucu açıq boru:  L = n·λ/2  →  ν_n = n·v/(2L),  n = 1, 2, 3 …
 Bir ucu qapalı boru:      L = (2n−1)·λ/4  →  ν₁ = v/(4L), sonra 3ν₁, 5ν₁ …</div>
@@ -304,7 +304,7 @@ Su səviyyəsini aşağı endirirlər. Birinci rezonans üstdən
   1-ci rezonans: L₁ = λ/4 = 12,5 sm ✓
   2-ci rezonans: L₂ = 3λ/4 = 37,5 sm
   (Qonşu rezonanslar arası məsafə λ/2 = 25 sm.)</div>
-      <div class="life"><b>Həyatdan.</b> Yellənçək məsələsi: zəncirin uzunluğu 2,25 m-dirsə, <span class="m">T = 2√2,25 = 3 s</span> (π² ≈ 10), valideyn hər 3 saniyədən bir itələməlidir. Dəqiqədə 20 itələmə. itələmə aralığı 3 s-dən xeyli fərqlənsə, itələmələr bəzən yellənçəyin hərəkətinə qarşı düşür və yellənmə artmır. Düzgün aralıq — rezonansdır.</div>
+      <div class="life"><b>Həyatdan.</b> Yelləncək məsələsi: zəncirin uzunluğu 2,25 m-dirsə, <span class="m">T = 2√2,25 = 3 s</span> (π² ≈ 10), valideyn hər 3 saniyədən bir itələməlidir. Dəqiqədə 20 itələmə. itələmə aralığı 3 s-dən xeyli fərqlənsə, itələmələr bəzən yellənçəyin hərəkətinə qarşı düşür və yellənmə artmır. Düzgün aralıq — rezonansdır.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Rezonansı “ən güclü qüvvə” kimi başa düşmək. Qüvvə kiçik ola bilər, vacib olan <b>tezliyin</b> uyğun olmasıdır.</li>
@@ -315,7 +315,7 @@ Su səviyyəsini aşağı endirirlər. Birinci rezonans üstdən
       <div class="sum"><b>Yadda saxla</b><div class="ex">Rezonans: ν_məcburi = ν₀ → amplituda kəskin artır.
 Sim, açıq boru:  ν_n = n·v/(2L)
 Bir ucu qapalı boru:  ν₁ = v/(4L), 3ν₁, 5ν₁ …
-Yellənçək: itələmə aralığı = T</div></div>
+Yelləncək: itələmə aralığı = T</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>Simin uzunluğu yarıya düşdü. Əsas tonun tezliyi? <span class="ans">2 dəfə artır.</span></li>
         <li>Əsas ton 110 Hz olan simin 3-cü harmonikası? <span class="ans">330 Hz.</span></li>

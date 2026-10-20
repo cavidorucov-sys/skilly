@@ -168,7 +168,7 @@ const CK = (() => {
         return R(days, "gün", { text: `${P} W-lıq elektrik qızdırıcısı gündə ${hrs} saat işləyir. 1 kWh ${tar} qəpikdir. ${bud} qəpiklik pulla bu qızdırıcıdan neçə gün istifadə etmək olar?`,
           solution: `Bir günün enerjisi: ${F(P / 1000)}·${hrs} = ${F(P / 1000 * hrs)} kWh. Bir günün xərci: ${F(P / 1000 * hrs)}·${tar} = ${F(P / 1000 * hrs * tar)} qəpik. Gün sayı: ${bud}/${F(P / 1000 * hrs * tar)} = ${days}.` });
       } },
-    { id: "lampa", ad: "Hansı lampa parlaqdır?", izah: "Lampanın parlaqlığı onun real gücünə görədir. Ardıcıl: cərəyan eynidir, P = I²R — böyük R-li lampa parlaqdır. Paralel: gərginlik eynidir, P = U²/R — kiçik R-li lampa parlaqdır. Lampanın müqaviməti R = U₀²/P₀ (sabit sayırıq).",
+    { id: "lampa", ad: "Hansı lampa parlaqdır?", izah: "Sadə modeldə lampanın parlaqlığını onda ayrılan real elektrik gücü ilə müqayisə edirik. Ardıcıl: cərəyan eynidir, P = I²R — böyük R-li lampa parlaqdır. Paralel: gərginlik eynidir, P = U²/R — kiçik R-li lampa parlaqdır. Lampanın müqaviməti R = U₀²/P₀ (sabit sayırıq).",
       gen() {
         const kind = pick(["ser", "ser", "par", "ned", "rat", "R"]);
         if (kind === "R") {
@@ -186,7 +186,7 @@ const CK = (() => {
           do { [a, b] = pick(pool); Ra = 144 / a; Rb = 144 / b; U = pick([12, 18, 24, 36]); I = U / (Ra + Rb); Pa = I * I * Ra; Pb = I * I * Rb; } while (!nice(Pa, 2) || !nice(Pb, 2) || !nice(Ra, 2) || !nice(Rb, 2));
           const svg = lampsSer(Ra, Rb, U);
           if (kind === "rat") return R(Math.max(Ra, Rb) / Math.min(Ra, Rb), "dəfə", { svg, text: `Müqavimətləri ${F(Ra)} Ω və ${F(Rb)} Ω olan iki lampa ardıcıl qoşulub. Parlaq yanan lampanın gücü zəif yanan lampanın gücündən neçə dəfə böyükdür?`,
-            solution: `Ardıcılda cərəyan eynidir, P = I²R. Güclər müqavimətlərin nisbəti kimidir: ${F(Math.max(Ra, Rb))}/${F(Math.min(Ra, Rb))} = ${F(Math.max(Ra, Rb) / Math.min(Ra, Rb))}. Böyük müqavimətli lampa parlaq yanır.` });
+            solution: `Ardıcılda cərəyan eynidir, P = I²R. Güclər müqavimətlərin nisbəti kimidir: ${F(Math.max(Ra, Rb))}/${F(Math.min(Ra, Rb))} = ${F(Math.max(Ra, Rb) / Math.min(Ra, Rb))}. Böyük müqavimətli lampada daha çox güc ayrılır (daha parlaq sayılır).` });
           return R(Math.max(Pa, Pb), "W", { svg, text: `Müqavimətləri ${F(Ra)} Ω və ${F(Rb)} Ω olan iki lampa ${U} V-luq mənbəyə ardıcıl qoşulub. Parlaq yanan lampanın gücü nə qədərdir?`,
             solution: `I = ${U}/(${F(Ra)} + ${F(Rb)}) = ${F(I)} A. Ardıcılda böyük müqavimətli lampa parlaqdır: P = I²R = ${F(I * I)}·${F(Math.max(Ra, Rb))} = ${F(Math.max(Pa, Pb))} W.` });
         }

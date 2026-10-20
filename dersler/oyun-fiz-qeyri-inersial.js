@@ -130,7 +130,7 @@
         if (kind === "kopru") {
           let m, v, R0, P; do { m = pick([800, 1000, 1200, 1500, 2000]); v = pick([5, 10, 15, 20]); R0 = pick([40, 50, 80, 100, 125, 200]); P = m * (g - v * v / R0); } while (P <= 0 || !nice(v * v / R0, 2));
           return R(P, "N", { text: `${m} kq kütləli avtomobil radiusu ${R0} m olan qabarıq körpünün təpəsindən ${v} m/s sürətlə keçir. Avtomobil körpüyə hansı qüvvə ilə təsir edir?`,
-            solution: `Təpədə mərkəzəqaçma təcili aşağıdır: a = v²/R = ${v * v}/${R0} = ${F(v * v / R0)} m/s². mg − N = ma → P = m(g − v²/R) = ${m}·${F(g - v * v / R0)} = ${F(P)} N.` });
+            solution: `Təpədə mərkəzəyönlü təcili aşağıdır: a = v²/R = ${v * v}/${R0} = ${F(v * v / R0)} m/s². mg − N = ma → P = m(g − v²/R) = ${m}·${F(g - v * v / R0)} = ${F(P)} N.` });
         }
         if (kind === "ceki0") {
           const R0 = pick([10, 40, 90, 160, 250, 360, 490, 640, 1000]), v = Math.sqrt(g * R0);
@@ -140,7 +140,7 @@
         if (kind === "yelleck") {
           let v, R0, n; do { v = pick([2, 3, 4, 5, 6, 8, 10]); R0 = pick([1, 2, 2.5, 4, 5, 8, 10]); n = 1 + v * v / (g * R0); } while (!nice(n, 2) || n > 6);
           return R(n, "", { text: `Uzunluğu ${F(R0)} m olan yelləncək ən aşağı nöqtədən ${v} m/s sürətlə keçir. Uşağın bu andakı əlavə yüklənməsi n neçədir?`,
-            solution: `Aşağıda mərkəzəqaçma təcili yuxarıdır: a = v²/R = ${v * v}/${F(R0)} = ${F(v * v / R0)} m/s². n = (g + a)/g = ${F(g + v * v / R0)}/10 = ${F(n)}.` });
+            solution: `Aşağıda mərkəzəyönlü təcili yuxarıdır: a = v²/R = ${v * v}/${F(R0)} = ${F(v * v / R0)} m/s². n = (g + a)/g = ${F(g + v * v / R0)}/10 = ${F(n)}.` });
         }
         const m = rnd(30, 90);
         const what = pick([

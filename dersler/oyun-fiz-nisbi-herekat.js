@@ -25,11 +25,11 @@
 
   // river: perpendicular aim (boat drifts) or straight crossing (boat aimed upstream)
   function river(mode) {
-    const s = sv("svg", { viewBox: "0 0 300 170", class: "oy-svg", role: "img", "aria-label": "Çay, cərəyan və qayığın sürət vektorları" });
+    const s = sv("svg", { viewBox: "0 0 300 170", class: "oy-svg", role: "img", "aria-label": "Çay, axın və qayığın sürət vektorları" });
     s.append(sv("rect", { x: 0, y: 30, width: 300, height: 110, fill: "var(--accent-soft)", opacity: 0.5 }));
     s.append(sv("line", { x1: 0, y1: 30, x2: 300, y2: 30, stroke: INK, "stroke-width": 2 }));
     s.append(sv("line", { x1: 0, y1: 140, x2: 300, y2: 140, stroke: INK, "stroke-width": 2 }));
-    label(s, 270, 90, "cərəyan →");
+    label(s, 270, 90, "axın →");
     if (mode === "perp") {
       arrow(s, 90, 140, 90, 50, ACC); label(s, 76, 95, "v", "end");
       arrow(s, 90, 140, 190, 140, VEC); label(s, 140, 158, "u");
@@ -83,38 +83,38 @@
         return R((a + b) / 3.6, "m/s", { text: `İki qatar paralel relslərdə bir-birinə doğru gedir: ${a} km/saat və ${b} km/saat sürətlə. Birinci qatardakı sərnişin ikinci qatarın ona nəzərən sürətini m/s ilə nə qədər görür?`,
           solution: `Üz-üzə: ${a} + ${b} = ${a + b} km/saat. m/s-ə: ${a + b}/3,6 = ${F((a + b) / 3.6)} m/s.` });
       } },
-    { id: "cay", ad: "Çayı keçmək", izah: "Qayığın sahilə nəzərən sürəti = suya nəzərən sürət + cərəyanın sürəti (vektor cəmi). Sahilə perpendikulyar yalnız qayığın öz sürətinin perpendikulyar hissəsi təsir edir.",
+    { id: "cay", ad: "Çayı keçmək", izah: "Qayığın sahilə nəzərən sürəti = suya nəzərən sürət + axının sürəti (vektor cəmi). Sahilə perpendikulyar yalnız qayığın öz sürətinin perpendikulyar hissəsi təsir edir.",
       gen() {
         const kind = pick(["vaxt", "surus", "net", "duz", "duzT", "bucaq", "gedgel"]);
         if (kind === "vaxt" || kind === "surus") {
           const v = rnd(2, 8), u = rnd(1, 6), t = rnd(5, 40), d = v * t;
-          const base = `Çayın eni ${d} m, qayığın suya nəzərən sürəti ${v} m/s, cərəyanın sürəti ${u} m/s. Qayığın burnu sahilə perpendikulyar yönəlib.`;
+          const base = `Çayın eni ${d} m, qayığın suya nəzərən sürəti ${v} m/s, axının sürəti ${u} m/s. Qayığın burnu sahilə perpendikulyar yönəlib.`;
           if (kind === "vaxt") return R(t, "s", { svg: river("perp"), text: base + " Qayıq qarşı sahilə neçə saniyəyə çatar?",
-            solution: `Sahilə perpendikulyar istiqamətdə qayığı yalnız onun öz sürəti (${v} m/s) aparır; cərəyan bu istiqamətdə sürət vermir. t = d/v = ${d}/${v} = ${t} s.` });
-          return R(u * t, "m", { svg: river("perp"), text: base + " Qayıq qarşı sahilə çatanda cərəyan onu başlanğıc nöqtənin düz qarşısından neçə metr aşağı aparır?",
-            solution: `t = d/v = ${d}/${v} = ${t} s. Bu müddətdə qayıq cərəyanla ${u} m/s sürətlə sürüşür: s = u·t = ${u}·${t} = ${u * t} m.` });
+            solution: `Sahilə perpendikulyar istiqamətdə qayığı yalnız onun öz sürəti (${v} m/s) aparır; axın bu istiqamətdə sürət vermir. t = d/v = ${d}/${v} = ${t} s.` });
+          return R(u * t, "m", { svg: river("perp"), text: base + " Qayıq qarşı sahilə çatanda axın onu başlanğıc nöqtənin düz qarşısından neçə metr aşağı aparır?",
+            solution: `t = d/v = ${d}/${v} = ${t} s. Bu müddətdə qayıq axınla ${u} m/s sürətlə sürüşür: s = u·t = ${u}·${t} = ${u * t} m.` });
         }
         if (kind === "net") {
           const [a, b, c] = triple(5), swap = Math.random() < .5, v = swap ? a : b, u = swap ? b : a;
-          return R(c, "m/s", { svg: river("perp"), text: `Qayığın suya nəzərən sürəti ${v} m/s-dir və o, cərəyana perpendikulyar üzür. Cərəyanın sürəti ${u} m/s-dir. Qayığın sahilə nəzərən sürəti nə qədərdir?`,
+          return R(c, "m/s", { svg: river("perp"), text: `Qayığın suya nəzərən sürəti ${v} m/s-dir və o, axına perpendikulyar üzür. Axının sürəti ${u} m/s-dir. Qayığın sahilə nəzərən sürəti nə qədərdir?`,
             solution: `Sürətlər perpendikulyardır, Pifaqor: v_nəticə = √(${v}² + ${u}²) = √${v * v + u * u} = ${c} m/s.` });
         }
         if (kind === "duz" || kind === "duzT") {
           const [a, b, c] = triple(4), t = rnd(5, 30), d = b * t, u = a, v = c;
-          const base = `Çayın eni ${d} m, cərəyanın sürəti ${u} m/s, qayığın suya nəzərən sürəti ${v} m/s. Qayıq elə yönəldilib ki, düz qarşı nöqtəyə çatır (cərəyan aparmır).`;
+          const base = `Çayın eni ${d} m, axının sürəti ${u} m/s, qayığın suya nəzərən sürəti ${v} m/s. Qayıq elə yönəldilib ki, düz qarşı nöqtəyə çatır (axın aparmır).`;
           if (kind === "duz") return R(b, "m/s", { svg: river("straight"), text: base + " Qayığın sahilə nəzərən sürəti nə qədərdir?",
-            solution: `Cərəyanın ${u} m/s sürətini kompensasiya etmək üçün qayığın sürətinin bir hissəsi cərəyana qarşı sərf olunur. Qalan: √(${v}² − ${u}²) = √${v * v - u * u} = ${b} m/s.` });
+            solution: `Axının ${u} m/s sürətini kompensasiya etmək üçün qayığın sürətinin bir hissəsi axına qarşı sərf olunur. Qalan: √(${v}² − ${u}²) = √${v * v - u * u} = ${b} m/s.` });
           return R(t, "s", { svg: river("straight"), text: base + " Qayıq qarşı sahilə neçə saniyəyə çatar?",
             solution: `Sahilə perpendikulyar sürət √(${v}² − ${u}²) = ${b} m/s. t = ${d}/${b} = ${t} s.` });
         }
         if (kind === "bucaq") {
           const u = rnd(1, 5);
-          return R(30, "°", { svg: river("straight"), tol: 0.01, text: `Cərəyanın sürəti ${u} m/s, qayığın suya nəzərən sürəti ${2 * u} m/s. Qayıq düz qarşı nöqtəyə çatmaq istəyir. Qayığın burnunu sahilə perpendikulyar istiqamətdən cərəyana qarşı neçə dərəcə döndərmək lazımdır?`,
-            solution: `Cərəyanı kompensasiya etmək üçün v·sin α = u → sin α = ${u}/${2 * u} = 1/2 → α = 30°.` });
+          return R(30, "°", { svg: river("straight"), tol: 0.01, text: `Axının sürəti ${u} m/s, qayığın suya nəzərən sürəti ${2 * u} m/s. Qayıq düz qarşı nöqtəyə çatmaq istəyir. Qayığın burnunu sahilə perpendikulyar istiqamətdən axına qarşı neçə dərəcə döndərmək lazımdır?`,
+            solution: `Axını kompensasiya etmək üçün v·sin α = u → sin α = ${u}/${2 * u} = 1/2 → α = 30°.` });
         }
         let v, u, L, t; do { v = rnd(3, 10); u = rnd(1, v - 1); L = 10 * rnd(1, 30); t = 2 * L * v / (v * v - u * u); } while (!nice(t, 1) || t > 400);
-        return R(t, "s", { text: `Çayda qayığın suya nəzərən sürəti ${v} m/s, cərəyanın sürəti ${u} m/s. Qayıq cərəyanla ${L} m üzür, sonra geri qayıdır (eyni mühərrik rejimi). Bütün yolun vaxtı nə qədərdir?`,
-          solution: `Cərəyanla: sürət ${v} + ${u} = ${v + u} m/s, vaxt ${L}/${v + u} = ${F(L / (v + u))} s. Əks: sürət ${v} − ${u} = ${v - u} m/s, vaxt ${L}/${v - u} = ${F(L / (v - u))} s. Cəmi ${F(t)} s.` });
+        return R(t, "s", { text: `Çayda qayığın suya nəzərən sürəti ${v} m/s, axının sürəti ${u} m/s. Qayıq axınla ${L} m üzür, sonra geri qayıdır (eyni mühərrik rejimi). Bütün yolun vaxtı nə qədərdir?`,
+          solution: `Axınla: sürət ${v} + ${u} = ${v + u} m/s, vaxt ${L}/${v + u} = ${F(L / (v + u))} s. Əks: sürət ${v} − ${u} = ${v - u} m/s, vaxt ${L}/${v - u} = ${F(L / (v - u))} s. Cəmi ${F(t)} s.` });
       } },
     { id: "yagis", ad: "Yağış, külək, hərəkətli sistem", izah: "Hərəkətli cismə nəzərən sürət: v_nisbi = v_cisim − v_sistem (vektor fərqi). Yağış şaquli, avtomobil üfüqi gedirsə — bunlar perpendikulyar vektorlardır.",
       gen() {
@@ -209,16 +209,16 @@
         let task, steps, why;
         if (Math.random() < .5) {
           const [v, u, c] = pick([[4, 3, 5], [8, 6, 10], [12, 5, 13], [3, 4, 5], [5, 12, 13], [6, 8, 10]]), t = rnd(5, 30), d = v * t, s = u * t, L = c * t;
-          task = `Çayın eni ${d} m, qayığın suya nəzərən sürəti ${v} m/s, cərəyanın sürəti ${u} m/s. Qayıq burnu sahilə perpendikulyar üzür. Qayığın qarşı sahiyə qədər getdiyi yol (sahilə nəzərən) nə qədərdir?`;
+          task = `Çayın eni ${d} m, qayığın suya nəzərən sürəti ${v} m/s, axının sürəti ${u} m/s. Qayıq burnu sahilə perpendikulyar üzür. Qayığın qarşı sahiyə qədər getdiyi yol (sahilə nəzərən) nə qədərdir?`;
           const tw = d / c, sw = (v + u) * t, Lw = d + s;
           steps = [`Sahilə perpendikulyar istiqamətdə sürət v-dir: t = d/v = ${d}/${v} = ${t} s.`,
-            `Cərəyan qayığı yana aparır: s = u·t = ${u}·${t} = ${s} m.`,
+            `Axın qayığı yana aparır: s = u·t = ${u}·${t} = ${s} m.`,
             `Yol: L = √(d² + s²) = √(${d}² + ${s}²) = ${L} m.`];
           if (bad === 0) { steps[0] = `Qayığın sahilə nəzərən sürəti c = √(${v}² + ${u}²) = ${c} m/s, t = d/c = ${d}/${c} = ${F(tw)} s.`; steps[1] = `s = u·t = ${u}·${F(tw)} = ${F(u * tw)} m.`; steps[2] = `Yol: L = √(${d}² + ${F(u * tw)}²) = ${F(Math.hypot(d, u * tw))} m.`; }
-          if (bad === 1) { steps[1] = `Qayıq cərəyanla birlikdə sürüşür: s = (v + u)·t = ${v + u}·${t} = ${sw} m.`; steps[2] = `Yol: L = √(${d}² + ${sw}²) = ${F(Math.hypot(d, sw))} m.`; }
+          if (bad === 1) { steps[1] = `Qayıq axınla birlikdə sürüşür: s = (v + u)·t = ${v + u}·${t} = ${sw} m.`; steps[2] = `Yol: L = √(${d}² + ${sw}²) = ${F(Math.hypot(d, sw))} m.`; }
           if (bad === 2) steps[2] = `Yol: L = d + s = ${d} + ${s} = ${Lw} m.`;
           why = [`1-ci addım: sahilə perpendikulyar yerdəyişməni yalnız qayığın öz sürəti (${v} m/s) yaradır; nəticəvi sürətə bölmək olmaz. t = ${t} s. Düz cavab: ${L} m.`,
-            `2-ci addım: yana sürüşməni yalnız cərəyan yaradır: s = u·t = ${s} m. Düz cavab: ${L} m.`,
+            `2-ci addım: yana sürüşməni yalnız axın yaradır: s = u·t = ${s} m. Düz cavab: ${L} m.`,
             `3-cü addım: d və s perpendikulyardır, onlar Pifaqorla birləşir, cəmlənmir. L = √(${d}² + ${s}²) = ${L} m.`][bad];
         } else {
           let v1, v2, t, d; do { v1 = rnd(4, 14); v2 = rnd(2, v1 - 1); t = rnd(3, 40); d = (v1 - v2) * t; } while (v1 === v2);
@@ -256,7 +256,7 @@
         }
         if (kind === "sal") {
           let t1, t2, t; do { t1 = rnd(5, 40); t2 = rnd(t1 + 1, 60); t = 2 * t1 * t2 / (t2 - t1); } while (!nice(t, 1) || t > 500);
-          return R(t, "dəq", { text: `Motorlu qayıq A pristanından B pristanına cərəyanla ${t1} dəqiqəyə, B-dən A-ya cərəyana qarşı ${t2} dəqiqəyə gedir (mühərrik eyni rejimdə). Sal A-dan B-yə yalnız cərəyanla neçə dəqiqəyə çatar?`,
+          return R(t, "dəq", { text: `Motorlu qayıq A pristanından B pristanına axınla ${t1} dəqiqəyə, B-dən A-ya axına qarşı ${t2} dəqiqəyə gedir (mühərrik eyni rejimdə). Sal A-dan B-yə yalnız axınla neçə dəqiqəyə çatar?`,
             solution: `L məsafəsini götürək. v + u = L/${t1}, v − u = L/${t2}. Çıxsaq: 2u = L(1/${t1} − 1/${t2}) = L·${t2 - t1}/${t1 * t2} → u = L·${t2 - t1}/${2 * t1 * t2}. Sal: t = L/u = ${2 * t1 * t2}/${t2 - t1} = ${F(t)} dəq.` });
         }
         let L, v1, v2, t; do { v1 = rnd(10, 30); v2 = rnd(8, 30); t = rnd(3, 12); L = (v1 + v2) * t; } while (false);

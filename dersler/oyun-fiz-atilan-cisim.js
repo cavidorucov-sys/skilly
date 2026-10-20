@@ -75,7 +75,7 @@
         return { text: `Hündürlükdən ${v0} m/s sürətlə üfüqi atılan daş ${L} m uzağa düşdü. Hündürlük nə qədər idi?`, svg: horPic(), answer: hh, show: String(hh), unit: "m", tol: 0.01,
           solution: `t = L/v₀ = ${L}/${v0} = ${k} s. h = gt²/2 = 5·${k * k} = ${hh} m.` };
       } },
-    { id: "ufuqi-v", ad: "Üfüqi atılma: sürət", izah: "vx = v₀ dəyişmir, vy = g·t artır. Sürət: v = √(vx² + vy²); üfüqlə bucaq: tg β = vy/vx.",
+    { id: "ufuqi-v", ad: "Üfüqi atılma: sürət", izah: "vx = v₀ dəyişmir, |vy| = g·t artır. Sürət: v = √(vx² + vy²); üfüqlə bucaq: tg β = vy/vx.",
       gen() {
         const k = rnd(1, 6), hh = 5 * k * k, v0 = rnd(2, 30), kind = pick(["land", "land", "tg", "mid"]);
         if (kind === "land") { const N = v0 * v0 + 100 * k * k;
@@ -87,7 +87,7 @@
         return { text: `Cisim hündür qayadan ${v0} m/s sürətlə üfüqi atıldı. Atıldıqdan ${t} s sonra (hələ havadadır) sürətinin modulu nə qədərdir?`, answer: Math.sqrt(N), show: rt(N), unit: "m/s", placeholder: "məs. 10√5",
           solution: `vx = ${v0} m/s, vy = 10·${t} = ${10 * t} m/s. v = √(${v0 * v0} + ${100 * t * t}) = ${eqr(N)} m/s.` };
       } },
-    { id: "bucaq", ad: "Bucaq altında: T, H, L", izah: "Əvvəl v₀-ı parçala: vx = v₀cos α, vy = v₀sin α. Sonra: qalxma vaxtı vy/g, uçuş T = 2vy/g, H = vy²/(2g), L = vx·T.",
+    { id: "bucaq", ad: "Bucaq altında: T, H, L", izah: "Əvvəl başlanğıc sürəti komponentlərə ayır: vx = v₀cos α, vy = v₀sin α. Sonra: qalxma vaxtı vy/g, uçuş T = 2vy/g, H = vy²/(2g), L = vx·T.",
       gen() {
         const c = throwCase(), ask = pick(["up", "T", "H", "L", "L"]);
         const vx = Q(c.vx[0], 1, c.vx[1]), vy = Q(c.vy[0], 1, c.vy[1]);

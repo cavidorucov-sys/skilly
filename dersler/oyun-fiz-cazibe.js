@@ -72,7 +72,7 @@
         return R(gp * m, "N", { text: `Yerin səthində kütləsi ${m} kq olan cismin çəkisi ${m * g} N-dur. Kütləsi Yerin kütləsinin ${F(a)} misli, radiusu Yerin radiusunun ${F(b)} misli olan planetdə həmin cismin çəkisi nə qədər olar?`,
           solution: `g_p = 10·${F(a)}/${F(b)}² = ${F(gp)} m/s². Çəki P = mg_p = ${m}·${F(gp)} = ${F(gp * m)} N.` });
       } },
-    { id: "v1", ad: "Birinci kosmik sürət", izah: "Dairəvi orbitdə cazibə qüvvəsi mərkəzəqaçma təcil verir: mg_r = mv²/r. Yer səthinə yaxın: v₁ = √(gR) = 8 km/s. Orbit radiusu r = nR olarsa, v = v₁/√n.",
+    { id: "v1", ad: "Birinci kosmik sürət", izah: "Dairəvi orbitdə cazibə qüvvəsi mərkəzəyönlü təcil verir: mg_r = mv²/r. Yer səthinə yaxın: v₁ = √(gR) = 8 km/s. Orbit radiusu r = nR olarsa, v = v₁/√n.",
       gen() {
         const kind = pick(["pl", "pl", "orb", "orb", "rev", "ratio", "a"]);
         if (kind === "pl") {
@@ -98,7 +98,7 @@
         }
         const n = pick([4, 6.25, 16, 25]), r = n * RY, v = 8 / Math.sqrt(n), a = v * v / r * 1000;
         if (!nice(a, 4)) return levels[2].gen();
-        return R(a, "m/s²", { text: `Peyk radiusu ${fmt(r)} km olan dairəvi orbitdə ${F(v)} km/s sürətlə hərəkət edir. Peykin mərkəzəqaçma təcili (mərkəzə doğru) nə qədərdir?`,
+        return R(a, "m/s²", { text: `Peyk radiusu ${fmt(r)} km olan dairəvi orbitdə ${F(v)} km/s sürətlə hərəkət edir. Peykin mərkəzəyönlü təcili (mərkəzə doğru) nə qədərdir?`,
           solution: `a = v²/r = (${F(v * 1000)})²/(${fmt(r * 1000)}) = ${F(a)} m/s². (Bu, orbitdə g_r = g·R²/r² = 10/${F(n * n)} qiymətinə bərabərdir.)` });
       } },
     { id: "period", ad: "Peykin dövr müddəti", izah: "T = 2πr/v. Səthə yaxın T₀ = 84 dəq. Radius r = nR olarsa T = T₀·n√n (r³ ilə T² mütənasibdir). Nisbətlərlə işlə: T₂/T₁ = (r₂/r₁)^(3/2).",

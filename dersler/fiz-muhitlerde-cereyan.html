@@ -187,7 +187,7 @@ qövs       böyük cərəyan, çox yüksək temperatur: qaynaq, projektor</div>
           <p>Katodu közərmə spiralı qızdırır, o, elektronlar "buxarlandırır". Anod mənbənin + qütbünə qoşulubsa, elektronlar ona çəkilir: cərəyan var. Qoşulma tərsinə olsa, soyuq anoddan elektron çıxmır — <b>cərəyan yoxdur</b>.</p>
         </div>
       </div>
-      <p>Beləcə <b>vakuum diodu</b> cərəyanı <b>yalnız bir istiqamətdə</b> keçirir (katoddan anoda elektronlar). Dəyişən cərəyanı sabitə çevirmək üçün bu xassə çox lazım idi (düzləndirici). Volt-amper xarakteristikası: gərginlik artdıqca cərəyan artır, sonra <b>doyma</b> baş verir — katodun buraxdığı bütün elektronlar artıq anoda çatır, gərginliyi artırmaq cərəyanı artırmır.</p>
+      <p>Beləcə <b>vakuum diodu</b> cərəyanı <b>yalnız bir istiqamətdə</b> keçirir (katoddan anoda elektronlar axır; şərti cərəyan əks istiqamətdədir, anoddan katoda). Dəyişən cərəyanı sabitə çevirmək üçün bu xassə çox lazım idi (düzləndirici). Volt-amper xarakteristikası: gərginlik artdıqca cərəyan artır, sonra <b>doyma</b> baş verir — katodun buraxdığı bütün elektronlar artıq anoda çatır, gərginliyi artırmaq cərəyanı artırmır.</p>
       <div class="fig">
         <svg viewBox="0 0 260 190" role="img" aria-label="Vakuum diodunun I–U qrafiki: artır, sonra doyma">
           <defs><marker id="vk2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
@@ -231,7 +231,7 @@ Orta cərəyan?
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">Qaz: əvvəl ionlaşma; qığılcım, tac, parıltılı, qövs
 Vakuum: yük daşıyıcıları = termoelektron emissiyası (qızmış katod)
-Vakuum diodu: yalnız katoddan anoda; I–U-da doyma
+Vakuum diodu: elektronlar yalnız katoddan anoda (şərti cərəyan əks); I–U-da doyma
 Şimşək: I = q/t;   qövs: E = U·I·t</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>Neon reklamda hansı boşalma baş verir? <span class="ans">Parıltılı boşalma (seyrəldilmiş qazda).</span></li>
@@ -254,7 +254,7 @@ Vakuum diodu: yalnız katoddan anoda; I–U-da doyma
       <p>Silisiuma az miqdarda başqa element qatsan, keçiricilik kəskin artır:</p>
       <div class="ex">n-tip: əsas daşıyıcılar elektronlar (donor qatışığı, məs. fosfor)
 p-tip: əsas daşıyıcılar deşiklər (akseptor qatışığı, məs. bor)</div>
-      <p>Bu xassələrdən cihazlar düzəlir: <b>termistor</b> (qızdıqca müqaviməti azalır, temperatur sensorudur), <b>fotorezistor</b> (işıqlandıqca müqaviməti azalır, işıq sensoru, küçə lampasının avtomatı).</p>
+      <p>Bu xassələrdən cihazlar düzəlir: <b>termistor</b> (NTC tipində temperatur artdıqca müqavimət azalır, PTC tipində artır; temperatur sensorudur), <b>fotorezistor</b> (işıqlandıqca müqaviməti azalır, işıq sensoru, küçə lampasının avtomatı).</p>
 
       <h3><span class="st">3</span> p–n keçid və diod</h3>
       <p>p-tip və n-tip kristalın birləşdiyi yerə <b>p–n keçid</b> deyilir. Sərhəddə elektronlarla deşiklər qovuşub yox olur, nazik <b>bağlayıcı təbəqə</b> yaranır, orada daşıyıcı demək olar ki yoxdur. Xarici gərginlik bu təbəqəni ya daraldır, ya genişləndirir.</p>
@@ -347,11 +347,11 @@ Cərəyan: a) diod düz; b) diod əks?
       <div class="sum"><b>Yadda saxla</b><div class="ex">n-tip: elektronlar;  p-tip: deşiklər
 p–n keçid: düz qoşulmada keçirir, əksdə keçirmir
 İdeal diod: düz — tel (R = 0), əks — açıq açar (R = ∞)
-Termistor, fotorezistor: qızdıqca / işıqlandıqca R azalır</div></div>
+NTC termistor, fotorezistor: qızdıqca / işıqlandıqca R azalır (PTC termistorda qızdıqca R artır)</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>10 V mənbə, 5 Ω rezistor və ideal diod ardıcıldır, diod əks qoşulub. Cərəyan? <span class="ans">0, əks qoşulmada diod açıqdır.</span></li>
         <li>20 V mənbəyə iki qol paralel: biri R₂ = 5 Ω, digəri düz diod + R₁ = 10 Ω. Mənbədən cərəyan? <span class="ans">20/5 + 20/10 = 4 + 2 = 6 A.</span></li>
-        <li>Termistoru qızdırdıq, mənbə gərginliyi sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, I = U/R artır.</span></li>
+        <li>NTC termistoru qızdırdıq, mənbə gərginliyi sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, I = U/R artır.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
@@ -365,7 +365,7 @@ Termistor, fotorezistor: qızdıqca / işıqlandıqca R azalır</div></div>
       <p>Közərmə lampaları çox vaxt məhz işə salınan anda yanır. Səbəb: soyuq volfram tel işçi vəziyyətdən on dəfə az müqavimətə malikdir və ilk anda çox böyük cərəyan axır. Termometrlər, yanğın siqnalları, avtomobildə mühərrik temperaturunun ölçülməsi müqavimətin temperaturdan asılılığına əsaslanır.</p>
 
       <h3><span class="st">2</span> Metallar: temperatur artır, R artır</h3>
-      <p>Metalda ion qəfəsi qızdıqca daha güclü rəqs edir və sərbəst elektronların hərəkətinə daha çox mane olur. Müqavimət artır. Bu artım xətti qanunla yazılır:</p>
+      <p>Metalda ion qəfəsi qızdıqca daha güclü rəqs edir və sərbəst elektronların hərəkətinə daha çox mane olur. Müqavimət artır. Bu artım (şərti xətti modelə görə, ancaq dəqiq qanun deyil) belə yazılır:</p>
       <div class="fm">R = R₀(1 + α·Δt)
 Δt = t − t₀  (temperatur dəyişməsi, °C və ya K)
 α — müqavimətin temperatur əmsalı, 1/°C</div>
@@ -393,7 +393,7 @@ nikrom, manqanin α ≈ 0 (praktiki dəyişmir; etalon rezistorlar bundan)</div>
           <p>Metal: düz xətt yuxarı (<span class="m">R₀(1 + αΔt)</span>). Yarımkeçirici və elektrolit: əyri aşağı enir.</p>
         </div>
       </div>
-      <p><b>Yarımkeçiricidə</b> qızdıqca rabitələrdən qopan elektron və deşiklərin sayı çox artır. Daşıyıcı çox olduqca müqavimət azalır, ion qəfəsinin rəqsi isə arxa planda qalır. <b>Elektrolitdə</b> qızdıqca məhlulun özlülüyü azalır, ionların hərəkəti asanlaşır, müqavimət azalır. Odur ki, termistorlar temperaturu çox həssas ölçür.</p>
+      <p><b>Yarımkeçiricidə</b> qızdıqca rabitələrdən qopan elektron və deşiklərin sayı çox artır. Daşıyıcı çox olduqca müqavimət azalır, ion qəfəsinin rəqsi isə arxa planda qalır. <b>Elektrolitdə</b> qızdıqca məhlulun özlülüyü azalır, ionların hərəkəti asanlaşır, müqavimət azalır. Odur ki, NTC termistorlar temperaturu çox həssas ölçür.</p>
       <p>Qısa qaydalar: <b>metal</b> — qızdıqca <b>çətinləşir</b>; <b>yarımkeçirici</b> və <b>elektrolit</b> — qızdıqca <b>asanlaşır</b>.</p>
 
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
@@ -408,7 +408,7 @@ Sobanın temperaturu?
   R/R₀ = 120/100 = 1,2 = 1 + αΔt
   αΔt = 0,2  →  Δt = 0,2/0,004 = 50 °C
   Soba 50 °C-dir (başlanğıc 0 °C idi).</div>
-      <div class="ex">Nümunə 3 (RFO tipli, volfram lampa).
+      <div class="ex">Nümunə 3 (RFO tipli, volfram lampa; şərti xətti model, real dəqiq qanun deyil).
 Lampanın volfram telinin soyuq (20 °C) müqaviməti 10 Ω-dur.
 İşçi temperatur 2020 °C, α = 0,005 1/°C. Lampa 110 V şəbəkədə
 işləyir. İşçi cərəyanı və qoşulan andakı cərəyanı tap.
@@ -416,7 +416,7 @@ işləyir. İşçi cərəyanı və qoşulan andakı cərəyanı tap.
   R = 10·(1 + 0,005·2000) = 10·11 = 110 Ω
   İşçi cərəyan:  I = 110/110 = 1 A
   İlk anda tel soyuq:  I = 110/10 = 11 A  (11 dəfə artıq)</div>
-      <div class="life"><b>Həyatdan.</b> Ona görə lampalar adətən işə salınanda yanır: ilk saniyənin onda birində cərəyan işçi cərəyandan on dəfə çox olur, tel tez qızır, sonra cərəyan düşür. Yanğın siqnalındakı termistor isə otaq qızanda müqavimətini kəskin azaldır, cərəyan artır və cihaz xəbərdarlıq edir.</div>
+      <div class="life"><b>Həyatdan.</b> Ona görə lampalar adətən işə salınanda yanır: ilk saniyənin onda birində cərəyan işçi cərəyandan on dəfə çox olur, tel tez qızır, sonra cərəyan düşür. Yanğın siqnalındakı NTC termistor isə otaq qızanda müqavimətini kəskin azaldır, cərəyan artır və cihaz xəbərdarlıq edir.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li><span class="m">Δt</span> əvəzinə son temperaturu yazmaq. Məsələn, 20 °C-dən 120 °C-yə qızdırılıbsa, <span class="m">Δt = 100</span>, <span class="m">120</span> yox.</li>
@@ -430,7 +430,7 @@ Qızdırılmış volfram lampa: işçi R ≈ 10 R₀, ilk cərəyan çoxdur</div
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>Mis məftilin 20 °C-də müqaviməti 200 Ω (α = 0,004 1/°C). 70 °C-də? <span class="ans">Δt = 50, R = 200·(1 + 0,2) = 240 Ω.</span></li>
         <li>Volfram teli R₀ = 40 Ω (α = 0,005 1/°C), 100 °C artıbsa, müqavimət? <span class="ans">R = 40·(1 + 0,5) = 60 Ω.</span></li>
-        <li>Termistor qızdırılır, gərginlik sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, cərəyan artır.</span></li>
+        <li>NTC termistor qızdırılır, gərginlik sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, cərəyan artır.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
