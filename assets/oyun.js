@@ -346,9 +346,9 @@
       const e = st.entry;
       const started = cfg.levels.some(l => st.lv[l.id].tries > 0);
       E.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Giriş testi"),
-        h("p", {}, `${n} sual, ${mins} dəqiqə. Mövzunu artıq bilirsənsə, burada görünəcək: ${n}/${n} olsa dərsləri və Oyunu keçmədən birbaşa Boss raunduna gedirsən. Az olsa — heç nə itmir, Dərs 1-dən başlayırsan.`),
-        e ? h("p", { class: "oy-fmt" }, `Nəticən: ${e.bal} / ${n}` + (e.bal === n ? " — Boss açıqdır." : " — dərslərdən başla.")) : null,
-        e || started ? (e && e.bal === n ? h("button", { type: "button", class: "btn", on: { click: () => { cfg.goGame && cfg.goGame(); boss(); } } }, "Boss raunduna keç →")
+        h("p", {}, `${n} sual, ${mins} dəqiqə. Mövzunu artıq bilirsənsə, burada görünəcək: ${n}/${n} olsa dərsləri, Oyunu və Boss-u keçmədən birbaşa Sınağa gedirsən. Az olsa — heç nə itmir, Dərs 1-dən başlayırsan.`),
+        e ? h("p", { class: "oy-fmt" }, `Nəticən: ${e.bal} / ${n}` + (e.bal === n ? " — Sınaq açıqdır." : " — dərslərdən başla.")) : null,
+        e || started ? (e && e.bal === n ? h("button", { type: "button", class: "btn", on: { click: () => cfg.goTest && cfg.goTest() } }, "Sınağa keç →")
           : h("button", { type: "button", class: "btn", on: { click: () => cfg.goLesson && cfg.goLesson() } }, "Dərs 1-ə keç →"))
           : h("div", { class: "oy-row" }, h("button", { type: "button", class: "btn", on: { click: runEntry } }, "Testə başla"),
               h("button", { type: "button", class: "btn ghost", on: { click: () => { st.entry = { bal: -1, at: Date.now(), skipped: true }; save(); cfg.goLesson && cfg.goLesson(); } } }, "Mövzu yenidir, dərsdən başla"))));
@@ -375,9 +375,9 @@
         else logWrong("giriş testi", "giris@" + at + "#" + (i + 1), q, val); });
       delete st.entryRun;
       st.entry = { bal, at: Date.now() };
-      if (bal === n) cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK }));
-      save(); drawMap(); drawEntry();
-      report("giris", { bal, max: n, qeyd: bal === n ? "bütöv: birbaşa Boss" : "dərslərdən başlayır" });
+      if (bal === n) { cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK })); st.boss.passed = true; } // 8/8 at the first try is stricter than the Boss
+      save(); drawMap(); drawEntry(); drawTest();
+      report("giris", { bal, max: n, qeyd: bal === n ? "bütöv: birbaşa Sınaq" : "dərslərdən başlayır" });
     }
 
     drawMap(); drawTest(); drawEntry();
