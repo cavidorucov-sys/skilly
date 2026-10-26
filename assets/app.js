@@ -67,12 +67,16 @@ function el(tag, attrs, ...kids) {
   kids.flat().forEach(k => k != null && e.append(k));
   return e;
 }
+// one of the two accounts was signed in on this device at the last check (jurnal.js keeps "skilly-user")
+const signedHere = () => { try { return String(JSON.parse(localStorage.getItem("skilly-user")) || "").includes("@"); } catch (e) { return false; } };
 async function load(path) {
   const r = await fetch(path, { cache: "no-cache" });
   if (!r.ok) throw new Error(path + " " + r.status);
   const j = await r.json();
   // topics whose final test was passed (on any device, via the cloud) are closed on every page
   if (path.endsWith("movzular.json")) { const bag = passedHere(); for (const k in j) j[k].forEach(t => { if (t.ders && bag.includes(t.ders)) t.status = "bag"; }); }
+  // "in progress" is Fikrət's own status: other viewers see it as not started (the lesson stays open: acig)
+  if (path.endsWith("movzular.json") && !signedHere()) for (const k in j) j[k].forEach(t => { if (t.status === "isl") { t.status = "yox"; t.acig = true; } });
   return j;
 }
 // statuses are shown by icon and colour; the word stays only as a tooltip and for screen readers
@@ -95,7 +99,7 @@ function openChain(t, ix) {
   const all = new Map(), stack = missingPrereqs(t, ix);
   while (stack.length) { const x = stack.pop(), id = x.list + ":" + x.ad; if (all.has(id)) continue; all.set(id, x); stack.push(...missingPrereqs(x, ix)); }
   const pos = Object.keys(ix), list = [...all.values()];
-  const now = list.filter(x => x.ders && (x.status === "isl" || !missingPrereqs(x, ix).length))
+  const now = list.filter(x => x.ders && (x.status === "isl" || x.acig || !missingPrereqs(x, ix).length))
     .sort((a, b) => (a.hefte || "").localeCompare(b.hefte || "") || pos.indexOf(a.list + ":" + a.ad) - pos.indexOf(b.list + ":" + b.ad));
   return { total: list.length, now };
 }
@@ -334,7 +338,7 @@ function renderTopics(content, m, key, lead) {
           el("small", {}, r.bolme + (miss.length && r.status !== "bag" ? " · əvvəl: " + miss.map(x => x.ad.split(/[:,(]/)[0].trim()).join(", ") : ""))))),
       el("td", { class: "wk" }, r.hefte ? weekLabel(r.hefte) : ""),
       el("td", {}, stPill(r.status)),
-      el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status === "yox" ? " wait" : ""), href: r.ders }, miss.length && r.status === "yox" ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
+      el("td", { class: "act" }, r.ders ? el("a", { class: "go" + (miss.length && r.status === "yox" && !r.acig ? " wait" : ""), href: r.ders }, miss.length && r.status === "yox" && !r.acig ? "Gözləyir" : "Dərsi aç →") : el("span", { class: "soon" }, "tezliklə"))));
   });
   // live search over the topic list (name and section)
   const count = el("p", { class: "count" }), none = el("p", { class: "empty", hidden: "" }, "Tapılmadı.");
@@ -636,7 +640,7 @@ async function pageLesson() {
   const missRow = x => { const k = KAT[LIST_KAT[x.list]]; return el(x.ders ? "a" : "div", { class: "row", ...(x.ders ? { href: "ders.html?p=" + x.ders.split("/").pop().replace(/\.html$/, "") } : {}) },
     el("span", { class: "ic " + k.cls }, icon(topicIcon({ ...x, kat: LIST_KAT[x.list] }), k.ink)), el("div", { class: "tx sf" }, el("span", {}, k.ad + " · " + x.bolme), el("b", { title: x.ad }, x.ad)),
     stPill(x.status), x.ders ? el("span", { class: "gate-go" }, icon("ArrowRight")) : null); };
-  if (me && miss.length && me.status === "yox" && !isClosed(me)) {
+  if (me && miss.length && me.status === "yox" && !me.acig && !isClosed(me)) {
     // the chain can be long (up to ~17 steps), so the page points straight at the topic to open now
     const ch = openChain(me, ix), first = ch.now[0];
     wrap.replaceChildren(el("div", { class: "gate" }, el("h2", {}, me.ad),
