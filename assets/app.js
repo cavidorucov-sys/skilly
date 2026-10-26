@@ -75,8 +75,9 @@ async function load(path) {
   const j = await r.json();
   // topics whose final test was passed (on any device, via the cloud) are closed on every page
   if (path.endsWith("movzular.json")) { const bag = passedHere(); for (const k in j) j[k].forEach(t => { if (t.ders && bag.includes(t.ders)) t.status = "bag"; }); }
-  // "in progress" is Fikrət's own status: other viewers see it as not started (the lesson stays open: acig)
-  if (path.endsWith("movzular.json") && !signedHere()) for (const k in j) j[k].forEach(t => { if (t.status === "isl") { t.status = "yox"; t.acig = true; } });
+  // statuses and the open-in-order rule are Fikrət's: other viewers see every topic not started and every lesson open
+  // (acig), with the same "close these first" note on top
+  if (path.endsWith("movzular.json") && !signedHere()) for (const k in j) j[k].forEach(t => { if (t.status === "isl") t.status = "yox"; t.acig = true; });
   return j;
 }
 // statuses are shown by icon and colour; the word stays only as a tooltip and for screen readers
