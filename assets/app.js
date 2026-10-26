@@ -166,7 +166,7 @@ async function shell(content) {
       el("div", { class: "mini" }, el("i", {}, String(topics.filter(t => t.ders).length)), "dərs"),
       el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")));
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
-    NAV.map(([href, label, ic]) => {
+    NAV.filter(([href]) => w || href !== "temrar.html").map(([href, label, ic]) => { // review: the two accounts only
       const link = el("a", href === here ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label));
       const sub = NAV_SUB[href];
       if (!sub) return link;
@@ -584,7 +584,8 @@ async function pageSehv() {
   const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Təkrar"),
     el("p", { class: "lead" }, "Həftədə iki dəfə 15 dəqiqə: Çərşənbə axşamı və Bazar. Burada bağlanmış mövzuların yaddaş yoxlaması (7 və 30 gün sonra) və səhv jurnalının sualları növbə ilə gəlir — bir dəfəyə ən çox " + CAP + " sual, ən çox gecikən birinci."),
     sync, body);
-  await shell(content);
+  const { w } = await shell(content);
+  if (!w) { content.replaceChildren(el("h1", {}, "Təkrar"), el("p", { class: "lead" }, "Bu bölmə yalnız hesabla daxil olanda açılır.")); return; }
   function draw() {
     const all = Skilly.all(), t = Skilly.today(), month = t.slice(0, 7);
     const yeni = all.filter(e => e.status === "yeni");
