@@ -131,7 +131,7 @@
         if (bad === 0) { s1 = `Ümumi hədd: ${n}·x${sup(n)}⁻ʲ·${B(c)}ʲ.`; s3 = `Əmsal: ${n}·${pwn(c, j)} = ${n}·${B(c ** j)} = ${S(n * c ** j)}.`; }
         if (bad === 1) { s2 = `x${sup(k)} üçün j = ${k}.`; s3 = `Əmsal: C(${n}, ${k})·${pwn(c, k)} = ${C(n, k)}·${B(c ** k)} = ${S(C(n, k) * c ** k)}.`; }
         if (bad === 2) { const w = right + pick([-1, 1]) * Cn; s3 = `Əmsal: C(${n}, ${j})·${pwn(c, j)} = ${Cn}·${B(c ** j)} = ${S(w)}.`; }
-        const text = h("div", {}, h("p", {}, `Fikrət (x ${c < 0 ? "−" : "+"} ${Math.abs(c)})${sup(n)} açılışında x${sup(k)} həddinin əmsalını tapır. Birinci səhv hansı addımdadır?`),
+        const text = h("div", {}, h("p", {}, `Elvin (x ${c < 0 ? "−" : "+"} ${Math.abs(c)})${sup(n)} açılışında x${sup(k)} həddinin əmsalını tapır. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, h("li", {}, s1), h("li", {}, s2), h("li", {}, s3)));
         const why = [`1-ci addım: həddin əmsalı ${n} yox, C(${n}, j)-dir. Düz cavab: ${S(right)}.`,
           `2-ci addım: x-in üstü ${n} − j-dir, ona görə ${n} − j = ${k} → j = ${j}. Düz cavab: ${S(right)}.`,
@@ -144,7 +144,7 @@
         const kind = pick(["yol", "komanda", "gun"]);
         if (kind === "yol") {
           const m = rnd(2, 7), n = rnd(2, 7), ans = C(m + n, m);
-          return { text: `Şəhərin küçələri dama-dama torudur. Fikrət evdən məktəbə getmək üçün ${m} məhəllə şərqə və ${n} məhəllə şimala getməlidir (yalnız şərqə və şimala hərəkət edir). Neçə müxtəlif ən qısa yol var?`, answer: ans, show: String(ans), tol: 0.01,
+          return { text: `Şəhərin küçələri dama-dama torudur. Elvin evdən məktəbə getmək üçün ${m} məhəllə şərqə və ${n} məhəllə şimala getməlidir (yalnız şərqə və şimala hərəkət edir). Neçə müxtəlif ən qısa yol var?`, answer: ans, show: String(ans), tol: 0.01,
             solution: `Hər yol ${m + n} addımdır; onlardan hansı ${m} addımın şərqə olduğunu seçmək kifayətdir: ${Cw(m + n, m)}.` };
         }
         if (kind === "komanda") {

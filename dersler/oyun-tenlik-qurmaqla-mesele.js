@@ -177,7 +177,7 @@
             solution: `x — əvvəlki qiymət. ${up ? `Artandan sonra qiymət x-in ${k}%-i olur` : `Endirimdən sonra x-in ${k}%-i qalır`}: x·${k}/100 = ${Q} → x = ${Q}·100/${k} = ${x}. (${up ? "Sadəcə " + p + "% çıxmaq" : "Sadəcə " + p + "% əlavə etmək"} səhvdir: faiz yeni qiymətdən yox, əvvəlkindən hesablanıb.)` };
         }
         const a = rnd(2, 5), b = rnd(2, 5), k = rnd(1, 8), x = a * b * k, R = (a - 1) * (b - 1) * k;
-        return { text: `Fikrət pulunun 1/${a} hissəsini kitaba, qalan pulun 1/${b} hissəsini dəftərə xərclədi. Ona ${R} manat qaldı. Əvvəlcə onun neçə manatı var idi?`, answer: x, show: String(x), tol: 0.01, unit: "manat",
+        return { text: `Elvin pulunun 1/${a} hissəsini kitaba, qalan pulun 1/${b} hissəsini dəftərə xərclədi. Ona ${R} manat qaldı. Əvvəlcə onun neçə manatı var idi?`, answer: x, show: String(x), tol: 0.01, unit: "manat",
           solution: `x — ilkin pul. Kitabdan sonra x·${a - 1}/${a} qalır, dəftərdən sonra bunun ${b - 1}/${b} hissəsi: x·${frac((a - 1) * (b - 1), a * b)} = ${R} → x = ${x}. Yoxla: kitab ${x / a}, qalan ${x - x / a}; dəftər ${(x - x / a) / b}, qalan ${R} ✓.` };
       } },
     { id: "sehv", ad: "Səhvi tap", izah: "Həll üç addımdır, birində səhv var. Birinci səhv addım hansıdır?",

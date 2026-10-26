@@ -189,9 +189,9 @@
       gen() {
         const kind = pick(["fikret", "raket", "avtobus", "tepe"]);
         if (kind === "fikret") {
-          const a = pick([0.5, 1, 1.5, 2, 2.5, 3]), up = Math.random() < .5, M = 46 * (g + (up ? a : -a)) / g;
-          return R(a, "m/s²", { text: `Fikrətin kütləsi 46 kq-dır. O, göydələnin liftində tərəzinin üstündə durur. Lift tərpənən kimi tərəzi ${F(M)} kq göstərir. Liftin təcilinin modulu nə qədərdir?`,
-            solution: `Çəki P = ${F(M)}·10 = ${F(M * g)} N, mg = 460 N. ${up ? "P > mg → təcil yuxarıdır (lift yuxarı sürətlənir)" : "P < mg → təcil aşağıdır (lift aşağı sürətlənir)"}: a = |P − mg|/m = ${F(Math.abs(M * g - 460))}/46 = ${F(a)} m/s².` });
+          const m = pick([40, 45, 50, 55]), a = pick([0.5, 1, 1.5, 2, 2.5, 3]), up = Math.random() < .5, M = m * (g + (up ? a : -a)) / g;
+          return R(a, "m/s²", { text: `Elvinin kütləsi ${m} kq-dır. O, göydələnin liftində tərəzinin üstündə durur. Lift tərpənən kimi tərəzi ${F(M)} kq göstərir. Liftin təcilinin modulu nə qədərdir?`,
+            solution: `Çəki P = ${F(M)}·10 = ${F(M * g)} N, mg = ${m * g} N. ${up ? "P > mg → təcil yuxarıdır (lift yuxarı sürətlənir)" : "P < mg → təcil aşağıdır (lift aşağı sürətlənir)"}: a = |P − mg|/m = ${F(Math.abs(M * g - m * g))}/${m} = ${F(a)} m/s².` });
         }
         if (kind === "raket") {
           const m = rnd(60, 85), a = pick([20, 25, 30, 40]);

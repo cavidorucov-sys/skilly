@@ -152,7 +152,7 @@
         const kind = pick(["T", "dT", "N", "eps", "omega", "omega"]);
         if (kind === "T") {
           let N, T, t; do { N = pick(NS_); T = r6(rnd(16, 60) * 0.05); t = r6(N * T); } while (!nice(t, 1) || t > 100);
-          return X(T, "s", { text: `Fikrət rəqqasın ${N} tam rəqsinin vaxtını ${F(t)} s ölçdü. Bir rəqsin periodu T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
+          return X(T, "s", { text: `Elvin rəqqasın ${N} tam rəqsinin vaxtını ${F(t)} s ölçdü. Bir rəqsin periodu T neçə saniyədir?`, solution: `T = t/N = ${F(t)}/${N} = ${F(T)} s.` });
         }
         if (kind === "dT") {
           const N = pick([10, 20, 25, 40, 50]), dt = pick([0.2, 0.3, 0.4]), dT = r6(dt / N);
@@ -288,7 +288,7 @@
         const kind = pick(["l", "R", "N", "a", "T"]);
         if (kind === "l") {
           let L, d, l; do { L = pick([80, 85.5, 90, 92.5, 95.5, 98, 100, 105]); d = pick([2, 3, 4, 5]); l = r6((L + d / 2) / 100); } while (!nice(l, 4));
-          return X(l, "m", { text: `Pendulum-lab layihəsində Fikrət rəqqasın ipinin uzunluğunu ${F(L)} sm, topun diametrini ${d} sm ölçdü (ip topun üstündən bərkidilib). Rəqqasın uzunluğu l — asılma nöqtəsindən topun mərkəzinə qədər — neçə metrdir?`,
+          return X(l, "m", { text: `Laboratoriya işində Elvin rəqqasın ipinin uzunluğunu ${F(L)} sm, topun diametrini ${d} sm ölçdü (ip topun üstündən bərkidilib). Rəqqasın uzunluğu l — asılma nöqtəsindən topun mərkəzinə qədər — neçə metrdir?`,
             solution: `Topun mərkəzi ipin ucundan radius qədər aşağıdadır: l = ${F(L)} + ${d}/2 = ${F(L + d / 2)} sm = ${F(l)} m.` });
         }
         if (kind === "R") {
@@ -298,7 +298,7 @@
         }
         if (kind === "N") {
           const dT = pick([0.01, 0.005, 0.004, 0.002]), N = r6(0.2 / dT);
-          return X(N, "rəqs", { text: `Pendulum-lab layihəsində Fikrət periodu ΔT ≤ ${F(dT)} s dəqiqliklə tapmaq istəyir. Əllə start-stopun xətası Δt = 0,2 s-dir. Ən azı neçə rəqsin vaxtını ölçməlidir?`,
+          return X(N, "rəqs", { text: `Laboratoriya işində Elvin periodu ΔT ≤ ${F(dT)} s dəqiqliklə tapmaq istəyir. Əllə start-stopun xətası Δt = 0,2 s-dir. Ən azı neçə rəqsin vaxtını ölçməlidir?`,
             solution: `ΔT = Δt/N ≤ ${F(dT)} → N ≥ 0,2/${F(dT)} = ${N}.` });
         }
         if (kind === "a") {

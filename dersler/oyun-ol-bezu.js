@@ -137,7 +137,7 @@
           `P(${S(x)}) = ${sum(t)}.`,
           `= ${S(val)}. Cavab: ${S(val)}.`,
         ];
-        const text = h("div", {}, h("p", {}, `Fikrət ${arr(P)} çoxhədlisini x + ${a} ikihədlisinə böldükdə alınan qalığı tapır. Birinci səhv hansı addımdadır?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${arr(P)} çoxhədlisini x + ${a} ikihədlisinə böldükdə alınan qalığı tapır. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: x + ${a} = x − (−${a}), ona görə qalıq = P(−${a}), P(${a}) yox. Düz cavab: ${S(right)}.`,
           `2-ci addım: (−${a})³ = ${S(-(a ** 3))}, ${S(a ** 3)} deyil. Düzü: P(−${a}) = ${sum([-(a ** 3), b * a * a, -c * a, d])} = ${S(right)}.`,

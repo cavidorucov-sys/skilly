@@ -101,7 +101,7 @@
         const why = [`1-ci addım: baş əmsal 1-dirsə, rasional kök sərbəst həddin (${S(Dc)}) bölənidir, ±1 yox. Düz namizədlər: ${dv}.`,
           `2-ci addım: Horner-də ikinci ədəd ${S(Bc)} + ${B(a)} = ${S(v1)}, ${S(w1)} deyil. Düz qismət: ${poly([[1, 2], [v1, 1], [v2, 0]])}, kökləri ${S(b)} və ${S(c)}. Düz cavab: ${S(a + b + c)}.`,
           `3-cü addım: ${S(a)} + ${B(b)} + ${B(c)} = ${S(a + b + c)}, ${S(shown)} deyil.`][bad];
-        const text = h("div", {}, h("p", {}, `Fikrət ${arr(cs)} = 0 tənliyinin köklərinin cəmini tapır. Birinci səhv hansı addımdadır?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${arr(cs)} = 0 tənliyinin köklərinin cəmini tapır. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, ...[s1, s2, s3].map(st => h("li", {}, st))));
         const ch = ["1-ci addım", "2-ci addım", "3-cü addım"];
         return { text, choices: ch, correct: bad, show: ch[bad], solution: why };

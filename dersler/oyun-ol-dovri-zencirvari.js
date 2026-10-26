@@ -149,7 +149,7 @@
         if (bad === 1) steps[1] = `1000x − 10x = 990x = ${a}${b}${c} − ${10 * b + c} = ${100 * a}.`;
         let wrong = frac(N, 900); if (wrong === right) wrong = frac(N + 1, 990);
         if (bad === 2) steps[2] = `x = ${N}/990 = ${g > 1 ? frac(N, 990).replace(/\/\d+$/, "/" + (990 / g + 10)) : wrong}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət x = 0,${a}(${b}${c}) dövri kəsrini adi kəsrə çevirir. Hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin x = 0,${a}(${b}${c}) dövri kəsrini adi kəsrə çevirir. Hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: 100x = ${a}${b},${c}(${b}${c}) olur, dövr vergüldən dərhal başlamır. Lazım olan 1000x = ${a}${b}${c},(${b}${c}).`,
           `2-ci addım: ${a}${b}${c},(${b}${c}) − ${a},(${b}${c}) = ${a}${b}${c} − ${a} = ${N}, dövrü yox, dövrə qədərki hissəni çıxırıq.`,

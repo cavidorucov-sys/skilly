@@ -169,7 +169,7 @@
         const steps = [`q = ${bad === 0 ? `${b_(2)} − ${b_(1)} = ${sg(b2)} − ${b1} = ${sg(qw)}` : `${b_(2)} : ${b_(1)} = ${sg(b2)} : ${b1} = ${sg(q)}`}.`,
           `${S_(n)} = ${b_(1)}·(q${sup(ex === n ? "n" : "n−1")} − 1)/(q − 1) = ${b1}·(${par(qq)}${sup(ex)} − 1)/(${par(qq)} − 1).`,
           bad === 2 ? `${S_(n)} = ${b1}·${par(pw(qq, ex) - 1)}/${par(qq - 1)} = ${sg(val + pick([-1, 1]) * pick([2, 5, 10]) * b1)}.` : `${S_(n)} = ${b1}·${par(pw(qq, ex) - 1)}/${par(qq - 1)} = ${sg(val)}.`];
-        const text = h("div", {}, h("p", {}, `Fikrət ${gp(b1, q, 3)} həndəsi silsiləsinin ilk ${n} həddinin cəmini hesablayır. Hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${gp(b1, q, 3)} həndəsi silsiləsinin ilk ${n} həddinin cəmini hesablayır. Hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: həndəsi silsilədə q = ${b_(2)} : ${b_(1)} (bölmə), fərq yox. Düz: q = ${sg(q)}, cəm ${sg(S)}.`,
           `2-ci addım: düstur ${b_(1)}·(q${sup("n")} − 1)/(q − 1)-dir, qüvvət n-dir, n − 1 yox. Düz cəm ${sg(S)}.`,

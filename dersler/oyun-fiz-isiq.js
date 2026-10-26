@@ -266,8 +266,8 @@
         const kind = pick(["gozgu", "boy", "hovuz", "elmas", "lif", "gunes", "ay", "disk"]);
         if (kind === "gozgu") {
           const v = pick([1, 1.2, 1.5, 2]);
-          return R(2 * v, "m/s", { text: `Fikrət zalda böyük güzgüyə ${F(v)} m/s sürətlə yaxınlaşır. Özü ilə güzgüdəki xəyalı arasındakı məsafə hansı sürətlə azalır?`,
-            solution: `Xəyal Fikrətlə eyni sürətlə güzgüyə yaxınlaşır. Aralarındakı məsafə hər saniyə ${F(v)} + ${F(v)} = ${F(2 * v)} m azalır.` });
+          return R(2 * v, "m/s", { text: `Elvin zalda böyük güzgüyə ${F(v)} m/s sürətlə yaxınlaşır. Özü ilə güzgüdəki xəyalı arasındakı məsafə hansı sürətlə azalır?`,
+            solution: `Xəyal Elvinlə eyni sürətlə güzgüyə yaxınlaşır. Aralarındakı məsafə hər saniyə ${F(v)} + ${F(v)} = ${F(2 * v)} m azalır.` });
         }
         if (kind === "boy") {
           const H = pick([1.5, 1.6, 1.7, 1.8, 1.9]);

@@ -64,7 +64,7 @@
         do { ds.length = 0; for (let i = 0; i < n - 1; i++) ds.push(rnd(-3, 3)); sum = ds.reduce((a, b) => a + b, 0); ds.push(-sum); } while (Math.abs(ds[n - 1]) > 4 || ds.every(d => d === 0) || ds.filter(d => d !== 0).length < 3);
         const M = rnd(ct.lo, ct.hi), d = dec(ct.step), u = ct.step, m0 = r6(M * u), vals = shuffle(ds).map(di => r6((M + di) * u)), list = vals.map(v => Fd(v, d)).join("; ");
         const Dm = r6(ds.reduce((a, b) => a + Math.abs(b), 0) / n * u);
-        const base = `Fikrət ${ct.w} ${n} dəfə ölçdü: ${list} ${ct.u}. `;
+        const base = `Elvin ${ct.w} ${n} dəfə ölçdü: ${list} ${ct.u}. `;
         const sumS = F(r6(vals.reduce((a, b) => a + b, 0)));
         const meanSol = `x̄ = (${vals.map(v => Fd(v, d)).join(" + ")})/${n} = ${sumS}/${n} = ${F(m0)} ${ct.u}.`;
         const devs = vals.map(v => F(r6(Math.abs(v - m0)))).join(" + ");
@@ -267,7 +267,7 @@
           const n = 5, M = rnd(240, 400);
           let d; do { d = Array.from({ length: n - 1 }, () => rnd(-3, 3)); d.push(-d.reduce((a, b) => a + b, 0)); } while (Math.abs(d[n - 1]) > 4 || d.every(v => v === 0));
           const vals = shuffle(d).map(v => r6((M + v) * 0.1)), tm = r6(M * 0.1), T = r6(tm / 20);
-          return X(T, "s", { text: `Pendulum-lab layihəsində Fikrət 20 rəqsin vaxtını 5 dəfə ölçdü: ${vals.map(v => Fd(v, 1)).join("; ")} s. Periodun ədədi ortası T neçə saniyədir?`,
+          return X(T, "s", { text: `Laboratoriya işində Elvin 20 rəqsin vaxtını 5 dəfə ölçdü: ${vals.map(v => Fd(v, 1)).join("; ")} s. Periodun ədədi ortası T neçə saniyədir?`,
             solution: `Orta vaxt t̄ = (${vals.map(v => Fd(v, 1)).join(" + ")})/5 = ${F(tm)} s. T = t̄/20 = ${F(tm)}/20 = ${F(T)} s.` });
         }
         if (kind === "g") {
@@ -277,13 +277,13 @@
         }
         if (kind === "kes") {
           const k = 4, r = pick([1, 1.5, 2, 2.5, 3]), b = r6(k * r / 100);
-          return X(r, "sm", { text: `Fikrət T² – L qrafikini çəkdi, burada L ipin uzunluğudur (topun mərkəzinə qədər yox, ipin ucuna qədər). Düz xətt T² oxunu ${F(b)} s²-də kəsir, mailliyi ${k} s²/m-dir. Rəqqasın uzunluğu l = L + r olduğunu (r — topun radiusu) nəzərə alıb r-i tap.`,
+          return X(r, "sm", { text: `Elvin T² – L qrafikini çəkdi, burada L ipin uzunluğudur (topun mərkəzinə qədər yox, ipin ucuna qədər). Düz xətt T² oxunu ${F(b)} s²-də kəsir, mailliyi ${k} s²/m-dir. Rəqqasın uzunluğu l = L + r olduğunu (r — topun radiusu) nəzərə alıb r-i tap.`,
             solution: `T² = k·l = k·(L + r) = k·L + k·r. Deməli xətt T² oxunu b = k·r nöqtəsində kəsir. r = b/k = ${F(b)}/${k} = ${F(r / 100)} m = ${F(r)} sm.` });
         }
         if (kind === "fark") {
           let Rm, dl, sl;
           do { Rm = r6(rnd(30, 50) * 0.005); dl = pick([0.005, 0.01, 0.015, 0.02]); sl = r6(Rm + dl); } while (!nice(Rm, 3));
-          return X(r6(dl * 100), "sm", { text: `Fikrət a – ω² qrafikinin mailliyini ${F(sl)} m tapdı, xətkeşlə ölçülmüş məsafə isə R = ${F(Rm)} m-dir. a = ω²R olduğundan maillik akselerometrin oxdan həqiqi məsafəsidir. Akselerometr R-in ölçüldüyü nöqtədən oxdan neçə sm artıq uzaqdadır?`,
+          return X(r6(dl * 100), "sm", { text: `Elvin a – ω² qrafikinin mailliyini ${F(sl)} m tapdı, xətkeşlə ölçülmüş məsafə isə R = ${F(Rm)} m-dir. a = ω²R olduğundan maillik akselerometrin oxdan həqiqi məsafəsidir. Akselerometr R-in ölçüldüyü nöqtədən oxdan neçə sm artıq uzaqdadır?`,
             solution: `Maillik = akselerometrin məsafəsi = ${F(sl)} m. Fərq: ${F(sl)} − ${F(Rm)} = ${F(dl)} m = ${F(dl * 100)} sm.` });
         }
         const el = pick([0.1, 0.2, 0.25, 0.4, 0.5]), eT = pick([0.2, 0.25, 0.4, 0.5, 0.8, 1]);

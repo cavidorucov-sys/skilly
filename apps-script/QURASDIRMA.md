@@ -2,7 +2,7 @@
 
 # Səhv jurnalını Google Sheets-ə qoşmaq (ata üçün, ~10 dəqiqə)
 
-Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız Fikrətin cihazında saxlanır.
+Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız şagirdin cihazında saxlanır.
 
 1. Google Drive-da yeni cədvəl yarat: **Skilly**.
 2. **Extensions → Apps Script**. Açılan `Code.gs` faylının içini sil, bu qovluqdakı [Code.gs](Code.gs)-in mətnini yapışdır, saxla.
@@ -15,7 +15,7 @@ Bu qurulmayana qədər jurnal işləyir, amma səhvlər yalnız Fikrətin cihaz�
    - Google icazə istəyəcək, ona öz hesabınla icazə ver.
 5. Əgər icazə pəncərəsi xəta verərsə (avtomatlaşdırılmış brauzerdə olur): layihəni adi brauzerdə aç, yuxarıda funksiya kimi `setup` seç, **Run** bas, icazə ver. Sonra dərci yenidən et.
 6. Verilən **Web app URL**-i (`https://script.google.com/macros/s/…/exec`) mənə göndər. Mən onu `data/config.json`-a yazıb saytı yeniləyəcəyəm. Bu URL açarsız işləmir, ona görə saytda açıq durması problem deyil.
-7. Fikrətin telefonunda və kompüterində **bir dəfə** bu ünvanı aç (öz açarını yaz):
+7. Şagirdin telefonunda və kompüterində **bir dəfə** bu ünvanı aç (öz açarını yaz):
    `https://cavidorucov-sys.github.io/skilly/temrar.html#key=AÇAR`
    Açar cihazda yadda qalır və ünvan sətrindən silinir. Səhifədə "Google Sheets-ə qoşulub" yazısı görünəcək.
 

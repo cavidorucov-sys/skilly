@@ -187,7 +187,7 @@
             solution: `Əlinə çatan ${100 - t}%-dir: ${W * (100 - t) / 100} : ${D((100 - t) / 100)} = ${W} manat.` };
         }
         const n = pick([20, 25, 30, 40, 50, 60]); let p; do { p = rnd(10, 19) * 5; } while (!isNice(n * p / 100, 0));
-        return { text: `Testdə ${n} sual var. Fikrət sualların ${p}%-ni düz həll etdi. Neçə sualı səhv və ya boş qoydu?`, answer: n - n * p / 100, show: String(n - n * p / 100), tol: 0.01,
+        return { text: `Testdə ${n} sual var. Elvin sualların ${p}%-ni düz həll etdi. Neçə sualı səhv və ya boş qoydu?`, answer: n - n * p / 100, show: String(n - n * p / 100), tol: 0.01,
           solution: `Düz: ${n} · ${D(p / 100)} = ${n * p / 100}. Qalan: ${n} − ${n * p / 100} = ${n - n * p / 100} (və ya ${100 - p}% · ${n}).` };
       } },
     { id: "sehv", ad: "Səhvi tap", izah: "Həll üç addımdır, birində səhv var. Birinci səhv addım hansıdır?",

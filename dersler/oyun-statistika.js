@@ -209,7 +209,7 @@
         const kind = pick(["grade", "grade", "floor", "field", "train"]);
         if (kind === "grade") {
           let g, need, T; do { g = Array.from({ length: rnd(4, 7) }, () => rnd(3, 5)); need = rnd(3, 5); T = (sum(g) + need) / (g.length + 1); } while (!isNice(T, 2));
-          return { text: `Fikrətin riyaziyyatdan qiymətləri: ${list(g)}. Növbəti qiyməti neçə olmalıdır ki, ədədi orta ${F(T)} olsun?`, answer: need, show: String(need), tol: 0.01,
+          return { text: `Elvinin riyaziyyatdan qiymətləri: ${list(g)}. Növbəti qiyməti neçə olmalıdır ki, ədədi orta ${F(T)} olsun?`, answer: need, show: String(need), tol: 0.01,
             solution: `${g.length + 1} qiymətin cəmi ${F(T)} · ${g.length + 1} = ${sum(g) + need} olmalıdır. İndiki cəm ${sum(g)}. Lazım olan: ${sum(g) + need} − ${sum(g)} = ${need}.` };
         }
         if (kind === "floor") {

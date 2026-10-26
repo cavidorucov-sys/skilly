@@ -182,7 +182,7 @@
         const t = rnd(0, 3);
         if (t === 0) {
           let s, T, x; do { s = [rnd(60, 95), rnd(60, 95), rnd(60, 95)]; T = rnd(75, 90); x = 4 * T - s[0] - s[1] - s[2]; } while (x < 40 || x > 100);
-          return { text: `Fikrət üç sınaqdan ${s.join(", ")} bal alıb (hər sınaq 100 bal). Dörd sınağın orta balı ${T} olsun deyə 4-cü sınaqdan neçə bal almalıdır?`, answer: x, show: String(x), tol: 0.01,
+          return { text: `Elvin üç sınaqdan ${s.join(", ")} bal alıb (hər sınaq 100 bal). Dörd sınağın orta balı ${T} olsun deyə 4-cü sınaqdan neçə bal almalıdır?`, answer: x, show: String(x), tol: 0.01,
             solution: `Dörd sınağın cəmi 4 · ${T} = ${4 * T} olmalıdır. Artıq var: ${s.join(" + ")} = ${s[0] + s[1] + s[2]}. Lazımdır: ${4 * T} − ${s[0] + s[1] + s[2]} = ${x} bal.` };
         }
         if (t === 1) {

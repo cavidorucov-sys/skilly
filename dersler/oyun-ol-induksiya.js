@@ -188,7 +188,7 @@
             [twoCases, noBaseEnd]];
         }
         const bad = rnd(0, 2), steps = good.slice(); steps[bad] = pick(bads[bad]);
-        const text = h("div", {}, h("p", {}, `Fikrət induksiya ilə P(n) iddiasını sübut edir: ${title}. Hansı hissədə səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin induksiya ilə P(n) iddiasını sübut edir: ${title}. Hansı hissədə səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci hissə (baza) səhvdir: n = 1 üçün iki tərəf bərabər olmalıdır və baza mütləq yoxlanmalıdır. İnduksiyanın hər iki ayağı lazımdır.`,
           `2-ci hissə (addım) səhvdir: P(k)-dan P(k + 1) alınmalıdır — əlavə olunan hədd (k + 1)-ci hədd olmalıdır və nəticə P(k + 1)-ə uyğun gəlməlidir; P(k + 1)-dən başlamaq dairəvi mühakimədir.`,

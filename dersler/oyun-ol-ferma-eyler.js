@@ -113,7 +113,7 @@
         if (bad === 0) steps[0] = `${p} sadədir, ${a} isə ${p} ədədinə bölünmür → ${pw(a, p)} ≡ 1 (mod ${p}).`;
         if (bad === 1) steps[1] = `${N} = ${p - 1}·${q} + ${r2} → ${pw(a, N)} ≡ ${pw(a, r2)} (mod ${p}).`;
         if (bad === 2) steps[2] = `${pw(a, r)} ≡ ${x2} (mod ${p}). Cavab: ${x2}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət ${pw(a, N)} mod ${p} qalığını tapır. Hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${pw(a, N)} mod ${p} qalığını tapır. Hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: Ferma teoremi aᵖ ≡ 1 yox, ${pw(a, p - 1)} ≡ 1 deyir (üst p − 1 = ${p - 1}).`,
           `2-ci addım: ${p - 1}·${q} + ${r2} = ${(p - 1) * q + r2}, ${N} deyil. Düzü: ${N} = ${p - 1}·${q} + ${r}.`,

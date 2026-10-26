@@ -51,7 +51,7 @@
         }
         if (kind === "sıfır") {
           const m = rnd(2, 15), s = rnd(5, 200);
-          const ctx = pick([[`Fikrət kütləsi ${m} kq olan çantanı əlində tutaraq üfüqi dəhlizdə ${s} m bərabər sürətlə getdi. Əlin çantaya təsir qüvvəsinin gördüyü iş nədir?`, "Əl çantanı yuxarı saxlayır (qüvvə şaquli), çanta isə üfüqi gedir: α = 90°, cos 90° = 0. İş 0-dır. Yorulmaq iş demək deyil!"],
+          const ctx = pick([[`Elvin kütləsi ${m} kq olan çantanı əlində tutaraq üfüqi dəhlizdə ${s} m bərabər sürətlə getdi. Əlin çantaya təsir qüvvəsinin gördüyü iş nədir?`, "Əl çantanı yuxarı saxlayır (qüvvə şaquli), çanta isə üfüqi gedir: α = 90°, cos 90° = 0. İş 0-dır. Yorulmaq iş demək deyil!"],
             [`Kütləsi ${m} kq olan top üfüqi döşəmədə ${s} m diyirləndi. Ağırlıq qüvvəsinin işi nədir?`, "Ağırlıq qüvvəsi şaquli aşağı, yerdəyişmə üfüqidir: α = 90°, iş 0-dır."],
             [`Qatar üfüqi relslərdə ${s} m getdi; vaqonların kütləsi ${m} ton. Relslərin normal reaksiya qüvvəsinin işi nədir?`, "Normal reaksiya qüvvəsi səthə perpendikulyardır, yerdəyişmə isə səth boyunca: α = 90°, iş 0-dır."]]);
           return { text: ctx[0], answer: 0, show: "0", unit: "J", tol: 0.01, solution: ctx[1] };
@@ -75,7 +75,7 @@
         const kind = pick(["mərtəbə", "yol", "sürtünmə", "maili", "mailiAğ"]);
         if (kind === "mərtəbə") {
           const m = rnd(35, 80), n = rnd(2, 12), up = Math.random() < .6, A = (up ? -1 : 1) * m * 10 * 3 * (n - 1);
-          return { text: `Kütləsi ${m} kq olan Fikrət ${up ? `1-ci mərtəbədən ${n}-ci mərtəbəyə pilləkənlə qalxdı` : `${n}-ci mərtəbədən 1-ci mərtəbəyə liftlə endi`}. Mərtəbələr arası hündürlük 3 m. Ağırlıq qüvvəsinin işi nədir?`,
+          return { text: `Kütləsi ${m} kq olan Elvin ${up ? `1-ci mərtəbədən ${n}-ci mərtəbəyə pilləkənlə qalxdı` : `${n}-ci mərtəbədən 1-ci mərtəbəyə liftlə endi`}. Mərtəbələr arası hündürlük 3 m. Ağırlıq qüvvəsinin işi nədir?`,
             answer: A, show: D(A), unit: "J", tol: 0.01,
             solution: `Hündürlük fərqi: ${n - 1}·3 = ${3 * (n - 1)} m. ${up ? "Qalxanda ağırlıq qüvvəsi hərəkətin əksinədir — iş mənfidir" : "Enəndə ağırlıq qüvvəsi hərəkət istiqamətindədir — iş müsbətdir"}: A = ${up ? "−" : ""}mgh = ${up ? "−" : ""}${m}·10·${3 * (n - 1)} = ${D(A)} J. Pilləkən və ya lift — fərqi yoxdur.` };
         }
@@ -205,7 +205,7 @@
         const kind = pick(["pillə", "ürək", "maşın", "şəlalə"]);
         if (kind === "pillə") {
           let m, n, t, P; do { m = rnd(40, 80); n = rnd(3, 10); t = rnd(10, 40); P = m * 10 * 3 * (n - 1) / t; } while (!nice(P));
-          return { text: `Kütləsi ${m} kq olan Fikrət 1-ci mərtəbədən ${n}-ci mərtəbəyə ${t} saniyəyə qaçaraq qalxdı. Mərtəbələr arası hündürlük 3 m. Onun orta faydalı gücü nədir?`,
+          return { text: `Kütləsi ${m} kq olan Elvin 1-ci mərtəbədən ${n}-ci mərtəbəyə ${t} saniyəyə qaçaraq qalxdı. Mərtəbələr arası hündürlük 3 m. Onun orta faydalı gücü nədir?`,
             answer: P, show: D(P), unit: "W",
             solution: `h = ${n - 1}·3 = ${3 * (n - 1)} m. A = mgh = ${m}·10·${3 * (n - 1)} = ${m * 30 * (n - 1)} J. P = A/t = ${m * 30 * (n - 1)}/${t} = ${D(P)} W.` };
         }

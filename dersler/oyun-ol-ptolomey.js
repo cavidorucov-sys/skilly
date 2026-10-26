@@ -281,7 +281,7 @@
             solution: `Küncləri çevrə üzərində olan trapesiya daxilə çəkilmiş dördbucaqlıdır, diaqonalları bərabərdir. Ptolomey: d² = ${tr.a} · ${tr.b} + ${tr.c}² = ${tr.a * tr.b} + ${tr.c * tr.c} = ${tr.d * tr.d}, d = ${tr.d} m.` };
         }
         const x = pick(range(50, 130, 2));
-        return { text: `Dairəvi meydançanın kənarında A, B, C, D nöqtələri ardıcıl yerləşir. Fikrət A nöqtəsindən B və D nöqtələrinə baxanda bucaq ${x}°-dir. C nöqtəsindən B və D nöqtələrinə baxanda bucaq neçə dərəcədir?`,
+        return { text: `Dairəvi meydançanın kənarında A, B, C, D nöqtələri ardıcıl yerləşir. Elvin A nöqtəsindən B və D nöqtələrinə baxanda bucaq ${x}°-dir. C nöqtəsindən B və D nöqtələrinə baxanda bucaq neçə dərəcədir?`,
           answer: 180 - x, show: (180 - x) + "°", ...deg,
           solution: `ABCD çevrəyə daxil çəkilmiş dördbucaqlıdır, ∠A və ∠C qarşı bucaqlardır: 180° − ${x}° = ${180 - x}°.` };
       } },

@@ -142,9 +142,9 @@
         const s3 = bad === 1 ? `Hər iki kök müsbətdir. ${b}ˣ = ${r1} → x = ${m1}; ${b}ˣ = ${r2} → x = ${m2}. Cavab: x = ${m1} və x = ${m2}.`
           : bad === 2 ? `t = ${S(-r2)} mənfidir, yararsızdır (${b}ˣ > 0). ${b}ˣ = ${r1} → x = ${r1}. Cavab: x = ${r1}.`
           : `t = ${S(-r2)} mənfidir, yararsızdır (${b}ˣ > 0). ${b}ˣ = ${r1} → x = ${m1}. Cavab: x = ${m1}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət ${orig} tənliyini həll edir. Birinci səhv hansı addımdadır?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${orig} tənliyini həll edir. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, ...[s1, s2, s3].map(st => h("li", {}, st))));
-        const why = [`1-ci addım: ${b * b}ˣ = t² olduğundan tənlik ${eq(mid)} olmalıdır (orta əmsalın işarəsi tənlikdəki kimi). Fikrət işarəni dəyişdi. Düz cavab: x = ${m1}.`,
+        const why = [`1-ci addım: ${b * b}ˣ = t² olduğundan tənlik ${eq(mid)} olmalıdır (orta əmsalın işarəsi tənlikdəki kimi). Elvin işarəni dəyişdi. Düz cavab: x = ${m1}.`,
           `2-ci addım: ${eq(mid)} ⇔ (t − ${r1})(t + ${r2}) = 0, kökləri ${r1} və ${S(-r2)}, ${r2} yox. Düz cavab: x = ${m1}.`,
           `3-cü addım: ${b}ˣ = ${r1} = ${b}${E(m1)} → x = ${m1} (üst), ${r1} deyil. Qüvvətin qiymətini üstlə qarışdırma.`][bad];
         const ch = ["1-ci addım", "2-ci addım", "3-cü addım"];

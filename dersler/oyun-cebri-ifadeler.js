@@ -137,8 +137,8 @@
         }
         if (kind === "yas") {
           const k = rnd(3, 4), t = rnd(2, 9), v = rnd(8, 14), ans = (k + 1) * v + 2 * t;
-          return { text: `Fikrət x yaşındadır, atası ondan ${k} dəfə böyükdür. ${t} il sonra onların yaşlarının cəmi nə qədər olacaq? İfadə qur və x = ${v} üçün hesabla.`, answer: ans, unit: "yaş", show: String(ans), tol: 0.01,
-            solution: `${t} il sonra: Fikrət x + ${t}, atası ${k}x + ${t}. Cəm: (x + ${t}) + (${k}x + ${t}) = ${k + 1}x + ${2 * t}. x = ${v}: ${k + 1}·${v} + ${2 * t} = ${ans}.` };
+          return { text: `Elvin x yaşındadır, atası ondan ${k} dəfə böyükdür. ${t} il sonra onların yaşlarının cəmi nə qədər olacaq? İfadə qur və x = ${v} üçün hesabla.`, answer: ans, unit: "yaş", show: String(ans), tol: 0.01,
+            solution: `${t} il sonra: Elvin x + ${t}, atası ${k}x + ${t}. Cəm: (x + ${t}) + (${k}x + ${t}) = ${k + 1}x + ${2 * t}. x = ${v}: ${k + 1}·${v} + ${2 * t} = ${ans}.` };
         }
         const a = rnd(1, 9), b = rnd(1, 5), v = rnd(b + 1, 12), X = 6, C = 2 * a - 2 * b;
         const text = `Düzbucaqlının uzunluğu (x + ${a}) sm, eni (2x − ${b}) sm-dir. `;

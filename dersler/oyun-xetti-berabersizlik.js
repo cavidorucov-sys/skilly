@@ -191,13 +191,13 @@
         const kind = pick(["taksi", "bal", "tarif", "yigim", "ucbucaq"]);
         if (kind === "taksi") {
           const F = rnd(1, 3), p = pick([4, 5, 6, 8]), M = rnd(F + 5, 25), ans = Math.floor(10 * (M - F) / p);
-          return { text: `Taksidə minmə haqqı ${F} manat, hər kilometr isə 0,${p} manatdır. Fikrətin ${M} manatı var. O, taksi ilə ən çox neçə tam kilometr gedə bilər?`, answer: ans, unit: "km", show: String(ans), tol: 0.01,
+          return { text: `Taksidə minmə haqqı ${F} manat, hər kilometr isə 0,${p} manatdır. Elvinin ${M} manatı var. O, taksi ilə ən çox neçə tam kilometr gedə bilər?`, answer: ans, unit: "km", show: String(ans), tol: 0.01,
             solution: `${F} + 0,${p}x ≤ ${M} → 0,${p}x ≤ ${M - F} → x ≤ ${frac(10 * (M - F), p)}${(10 * (M - F)) % p ? " ≈ " + String(Math.round(100 * (M - F) / p) / 10).replace(".", ",") : ""}. Ən böyük tam x: ${ans}.` };
         }
         if (kind === "bal") {
           let s, T, need, sc;
           do { sc = [rnd(60, 98), rnd(60, 98), rnd(60, 98), rnd(60, 98)]; s = sum(sc); T = rnd(75, 92); need = 5 * T - s; } while (need < 40 || need > 100);
-          return { text: `Fikrət 4 testdən ${sc.join(", ")} bal aldı (hər test 100 ballıqdır). 5 testin orta balı ən azı ${T} olsun deyə 5-ci testdən ən azı neçə bal almalıdır?`, answer: need, show: String(need), tol: 0.01,
+          return { text: `Elvin 4 testdən ${sc.join(", ")} bal aldı (hər test 100 ballıqdır). 5 testin orta balı ən azı ${T} olsun deyə 5-ci testdən ən azı neçə bal almalıdır?`, answer: need, show: String(need), tol: 0.01,
             solution: `(${sc.join(" + ")} + x)/5 ≥ ${T} → ${s} + x ≥ ${5 * T} → x ≥ ${need}. Ən az: ${need} bal.` };
         }
         if (kind === "tarif") {
@@ -207,7 +207,7 @@
         }
         if (kind === "yigim") {
           const N = rnd(8, 30) * 10, H = rnd(1, 9) * 5, w = rnd(6, 15), ans = Math.ceil((N - H) / w);
-          return { text: `Velosiped ${N} manatdır. Fikrətin ${H} manatı var və hər həftə ${w} manat yığır. Ən azı neçə həftədən sonra pulu velosipedə çatacaq?`, answer: ans, show: String(ans), tol: 0.01,
+          return { text: `Velosiped ${N} manatdır. Elvinin ${H} manatı var və hər həftə ${w} manat yığır. Ən azı neçə həftədən sonra pulu velosipedə çatacaq?`, answer: ans, show: String(ans), tol: 0.01,
             solution: `${H} + ${w}x ≥ ${N} → ${w}x ≥ ${N - H} → x ≥ ${frac(N - H, w)}. Ən kiçik tam x: ${ans}.` };
         }
         const a = rnd(3, 15), b = rnd(3, 15), lo = Math.abs(a - b), hi = a + b, xs = ints(x => x > lo && x < hi);

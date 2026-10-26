@@ -162,7 +162,7 @@
         }
         if (kind === "save") {
           const a1 = rnd(1, 10), d = rnd(1, 5), n = rnd(6, 30), S = (2 * a1 + (n - 1) * d) * n / 2;
-          return { text: `Fikrət birinci həftə ${a1} manat yığır, hər növbəti həftə əvvəlkindən ${d} manat çox. Neçə həftəyə cəmi ${S} manat yığmış olacaq?`, answer: n, show: String(n), tol: INT,
+          return { text: `Elvin birinci həftə ${a1} manat yığır, hər növbəti həftə əvvəlkindən ${d} manat çox. Neçə həftəyə cəmi ${S} manat yığmış olacaq?`, answer: n, show: String(n), tol: INT,
             solution: `(2·${a1} + (n − 1)·${d})·n/2 = ${S} → ${d === 1 ? "" : d}n²${2 * a1 - d ? pm(2 * a1 - d) + "n" : ""} − ${2 * S} = 0. Müsbət kök n = ${n}. Yoxla: ${a_(n)} = ${a1 + (n - 1) * d}, (${a1} + ${a1 + (n - 1) * d})·${n}/2 = ${S}.` };
         }
         // a clock strikes the hour: 1 + 2 + … + 12 per half-day
@@ -182,7 +182,7 @@
         if (bad === 2) { let w = S + pick([-1, 1]) * pick([10, 2 * n, n]); steps[2] = `${S_(n)} = ${sg(a1 + an)}·${n}/2 = ${sg(w)}.`; }
         if (bad === 0) { const an2 = a1 + n * d; steps[1] = `${S_(n)} = (${a_(1)} + ${a_(n)})·n/2 = (${sg(a1)} + ${par(an2)})·${n}/2.`; steps[2] = `${S_(n)} = ${sg(a1 + an2)}·${n}/2 = ${sg((a1 + an2) * n / 2)}.`; }
         if (bad === 1) steps[2] = `${S_(n)} = ${sg(a1 + an)}·${n} = ${sg((a1 + an) * n)}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət ${a_(1)} = ${sg(a1)}, d = ${sg(d)} olan ədədi silsilənin ilk ${n} həddinin cəmini hesablayır. Hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin ${a_(1)} = ${sg(a1)}, d = ${sg(d)} olan ədədi silsilənin ilk ${n} həddinin cəmini hesablayır. Hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: ${a_(n)} = ${a_(1)} + (n − 1)d, n·d yox. Düzü: ${a_(n)} = ${sg(an)}, ${S_(n)} = ${sg(S)}.`,
           `2-ci addım: cəm düsturunda 2-yə bölmək unudulub. Düzü: ${S_(n)} = (${sg(a1)} + ${par(an)})·${n}/2 = ${sg(S)}.`,

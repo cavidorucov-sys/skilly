@@ -252,8 +252,8 @@
         }
         if (kind === "duz") {
           let a, b; do { a = pick([2, 3, 4, 5, 6, 8]); b = rnd(1, a - 1); } while (a - b < 1);
-          return R(2 * (a - b), "m", { text: `Fikrət düz güzgüdən ${a} m məsafədə durub. O, güzgüyə doğru ${b} m yeriyir. İndi Fikrətlə onun xəyalı arasındakı məsafə neçə metrdir?`,
-            solution: `Xəyal güzgünün arxasında eyni məsafədədir. İndi Fikrət güzgüdən ${a} − ${b} = ${a - b} m məsafədədir, xəyal da ${a - b} m arxadadır. Aralarında 2·${a - b} = ${2 * (a - b)} m.` });
+          return R(2 * (a - b), "m", { text: `Elvin düz güzgüdən ${a} m məsafədə durub. O, güzgüyə doğru ${b} m yeriyir. İndi Elvinlə onun xəyalı arasındakı məsafə neçə metrdir?`,
+            solution: `Xəyal güzgünün arxasında eyni məsafədədir. İndi Elvin güzgüdən ${a} − ${b} = ${a - b} m məsafədədir, xəyal da ${a - b} m arxadadır. Aralarında 2·${a - b} = ${2 * (a - b)} m.` });
         }
         if (kind === "duzv") {
           const v = pick([1, 2, 3, 4, 5]);
@@ -337,7 +337,7 @@
         }
         if (kind === "eynek") {
           const D = -pick([1, 1.25, 2, 2.5, 4, 5]), a = -1 / D * 100;
-          return R(a, "sm", { text: `Fikrətin dostu ${F(D)} dptr optik qüvvəli eynək taxır. Eynək olmadan o, ən çox neçə santimetr məsafəyə qədər cisimləri aydın görür (uzaq nöqtəsi)?`,
+          return R(a, "sm", { text: `Elvinin dostu ${F(D)} dptr optik qüvvəli eynək taxır. Eynək olmadan o, ən çox neçə santimetr məsafəyə qədər cisimləri aydın görür (uzaq nöqtəsi)?`,
             solution: `Sonsuzluqdakı cismi eynək xəyali olaraq uzaq nöqtədə yaratmalıdır: D = −1/a → a = 1/|D| = 1/${F(-D)} = ${F(a / 100)} m = ${F(a)} sm.` });
         }
         if (kind === "dis") {

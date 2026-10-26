@@ -357,9 +357,9 @@
         }
         if (t === "sehne") {
           const x = pick(range(15, 80, 5));
-          return { text: `Dairəvi meydançanın kənarında səhnə var — onun ucları A və B meydançanın çevrəsi üzərindədir. Böyük AB qövsü üzərində dayanan Fikrət səhnəni ${x}° bucaq altında görür. Meydançanın mərkəzindən səhnə neçə dərəcəlik bucaq altında görünür?`,
+          return { text: `Dairəvi meydançanın kənarında səhnə var — onun ucları A və B meydançanın çevrəsi üzərindədir. Böyük AB qövsü üzərində dayanan Elvin səhnəni ${x}° bucaq altında görür. Meydançanın mərkəzindən səhnə neçə dərəcəlik bucaq altında görünür?`,
             answer: 2 * x, show: 2 * x + "°", ...deg,
-            solution: `Fikrətin bucağı daxilə çəkilmiş bucaqdır, mərkəzdən görünən bucaq — eyni qövsə söykənən mərkəzi bucaq: 2 · ${x}° = ${2 * x}°.` };
+            solution: `Elvinin bucağı daxilə çəkilmiş bucaqdır, mərkəzdən görünən bucaq — eyni qövsə söykənən mərkəzi bucaq: 2 · ${x}° = ${2 * x}°.` };
         }
         const [p, q, c] = triple(60);
         return { text: `Dairəvi gölün radiusu ${p} m. Gölün mərkəzindən ${c} m aralıdakı ağacdan sahilə toxunan düz cığır çəkilib. Ağacdan toxunma nöqtəsinə qədər cığırın uzunluğu neçə metrdir?`,

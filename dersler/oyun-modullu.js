@@ -198,11 +198,11 @@
           const a = rnd(3, 20), both = Math.random() < .5;
           if (both) {
             const b = rnd(1, a - 1);
-            return { text: `Fikrət natural ədəd fikirləşdi. Bu ədəd ilə ${a} ədədinin fərqinin modulu ${b} ədədinə bərabərdir. Fikrətin fikirləşə biləcəyi ədədlərin cəmini tap.`, answer: 2 * a, show: String(2 * a), tol: 0.01,
+            return { text: `Elvin natural ədəd fikirləşdi. Bu ədəd ilə ${a} ədədinin fərqinin modulu ${b} ədədinə bərabərdir. Elvinin fikirləşə biləcəyi ədədlərin cəmini tap.`, answer: 2 * a, show: String(2 * a), tol: 0.01,
               solution: `|x − ${a}| = ${b} → x = ${a + b} və ya x = ${a - b}. İkisi də naturaldır. Cəm: ${a + b} + ${a - b} = ${2 * a}.` };
           }
           const b = rnd(a, a + 12);
-          return { text: `Fikrət natural ədəd fikirləşdi. Bu ədəd ilə ${a} ədədinin fərqinin modulu ${b} ədədinə bərabərdir. Fikrət hansı ədədi fikirləşib?`, answer: a + b, show: String(a + b), tol: 0.01,
+          return { text: `Elvin natural ədəd fikirləşdi. Bu ədəd ilə ${a} ədədinin fərqinin modulu ${b} ədədinə bərabərdir. Elvin hansı ədədi fikirləşib?`, answer: a + b, show: String(a + b), tol: 0.01,
             solution: `|x − ${a}| = ${b} → x = ${a + b} və ya x = ${S(a - b)}. ${S(a - b)} natural deyil. Cavab: ${a + b}.` };
         }
         let a, b, c; do { [a, b] = distinct(2, 10, 60).sort((u, v) => u - v); c = (b - a) + 2 * rnd(1, 8) + (Math.random() < .5 ? 1 : 0); } while (a + b - c < 0);

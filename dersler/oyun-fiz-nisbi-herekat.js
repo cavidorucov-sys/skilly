@@ -241,8 +241,8 @@
         const kind = pick(["eskalator", "ucus", "ucus2", "sal", "qatar"]);
         if (kind === "eskalator") {
           let t1, t2, t; do { t1 = 5 * rnd(2, 24); t2 = 5 * rnd(2, 24); t = t1 * t2 / (t1 + t2); } while (t1 === t2 || !nice(t, 1));
-          return R(t, "s", { text: `Eskalatorda dayanıb qalxanda yuxarı çatmaq ${t1} s çəkir. Dayanmış eskalatorda Fikrət eyni sürətlə yeriyərək ${t2} s-ə qalxır. Eskalator işləyərkən Fikrət yeriyərək neçə saniyəyə qalxar?`,
-            solution: `Uzunluğu L götürək. Eskalatorun sürəti L/${t1}, Fikrətin sürəti L/${t2}. Eyni istiqamətdə sürətlər toplanır: L/t = L/${t1} + L/${t2} → t = ${t1}·${t2}/(${t1} + ${t2}) = ${F(t)} s.` });
+          return R(t, "s", { text: `Eskalatorda dayanıb qalxanda yuxarı çatmaq ${t1} s çəkir. Dayanmış eskalatorda Elvin eyni sürətlə yeriyərək ${t2} s-ə qalxır. Eskalator işləyərkən Elvin yeriyərək neçə saniyəyə qalxar?`,
+            solution: `Uzunluğu L götürək. Eskalatorun sürəti L/${t1}, Elvinin sürəti L/${t2}. Eyni istiqamətdə sürətlər toplanır: L/t = L/${t1} + L/${t2} → t = ${t1}·${t2}/(${t1} + ${t2}) = ${F(t)} s.` });
         }
         if (kind === "ucus") {
           const [a, b, c] = triple(4), swap = Math.random() < .5, v = swap ? b : a, u = swap ? a : b;
@@ -260,8 +260,8 @@
             solution: `L məsafəsini götürək. v + u = L/${t1}, v − u = L/${t2}. Çıxsaq: 2u = L(1/${t1} − 1/${t2}) = L·${t2 - t1}/${t1 * t2} → u = L·${t2 - t1}/${2 * t1 * t2}. Sal: t = L/u = ${2 * t1 * t2}/${t2 - t1} = ${F(t)} dəq.` });
         }
         let L, v1, v2, t; do { v1 = rnd(10, 30); v2 = rnd(8, 30); t = rnd(3, 12); L = (v1 + v2) * t; } while (false);
-        return R(L, "m", { text: `Fikrət qatar pəncərəsindən baxır. Onun qatarı ${v1} m/s sürətlə gedir. Qarşıdan gələn digər qatar ${v2} m/s sürətlə gedir və pəncərənin yanından ${t} s ərzində keçdi. Qarşıdan gələn qatarın uzunluğu nə qədərdir?`,
-          solution: `Fikrətə nəzərən qarşıdan gələn qatarın sürəti ${v1} + ${v2} = ${v1 + v2} m/s. Keçmə vaxtında o, öz uzunluğu qədər yol gedir: L = ${v1 + v2}·${t} = ${L} m.` });
+        return R(L, "m", { text: `Elvin qatar pəncərəsindən baxır. Onun qatarı ${v1} m/s sürətlə gedir. Qarşıdan gələn digər qatar ${v2} m/s sürətlə gedir və pəncərənin yanından ${t} s ərzində keçdi. Qarşıdan gələn qatarın uzunluğu nə qədərdir?`,
+          solution: `Elvinə nəzərən qarşıdan gələn qatarın sürəti ${v1} + ${v2} = ${v1 + v2} m/s. Keçmə vaxtında o, öz uzunluğu qədər yol gedir: L = ${v1 + v2}·${t} = ${L} m.` });
       } },
   ];
 

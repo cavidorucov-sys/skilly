@@ -1,6 +1,6 @@
 # Köməkçi üçün tapşırıq qəlibi (koordinator doldurur)
 
-Sən "Skilly" adlı statik hazırlıq portalı üçün mövzu qurursan. Şagird: Fikrət, 9-cu sinif, Azərbaycan (DİM buraxılışı aprel 2027; RFO riyaziyyat və fizika). Şagirdin gördüyü hər şey Azərbaycan dilindədir.
+Sən "Skilly" adlı statik hazırlıq portalı üçün mövzu qurursan. Şagird: 9-cu sinif, Azərbaycan (DİM buraxılışı aprel 2027; RFO riyaziyyat və fizika). Şagirdin gördüyü hər şey Azərbaycan dilindədir.
 
 Əvvəlcə tam oxu:
 - `D:\Private\dev\fikret\portal\dersler\MUELLIF.md` — qaydalar (dəqiq əməl et);

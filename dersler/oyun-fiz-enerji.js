@@ -237,7 +237,7 @@
         }
         if (kind === "pillekan") {
           let m, n, t, P; do { m = pick([40, 50, 60, 70]); n = pick([2, 3, 4, 5]); t = pick([20, 30, 40, 60]); P = m * g * 3 * n / t; } while (!nice(P, 2));
-          return R(P, "W", { text: `Fikrətin kütləsi ${m} kiloqramdır. O, hər mərtəbəsi 3 m hündürlükdə olan binada ${n} mərtəbə yuxarı qalxır və bu ${t} saniyə çəkir. Fikrətin orta gücü nə qədərdir?`,
+          return R(P, "W", { text: `Elvinin kütləsi ${m} kiloqramdır. O, hər mərtəbəsi 3 m hündürlükdə olan binada ${n} mərtəbə yuxarı qalxır və bu ${t} saniyə çəkir. Elvinin orta gücü nə qədərdir?`,
             solution: `Qalxma hündürlüyü ${n}·3 = ${3 * n} m. A = mgh = ${m}·10·${3 * n} = ${m * g * 3 * n} J. P = A/t = ${m * g * 3 * n}/${t} = ${F(P)} W.` });
         }
         if (kind === "su") {

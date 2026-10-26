@@ -29,11 +29,11 @@
         const n = rnd(4, 8);
         if (kind === "simple") return { text: `${n} kitab rəfdə bir sırada neçə müxtəlif üsulla düzülə bilər?`, answer: F(n), show: String(F(n)), tol: EX,
           solution: `Birinci yerə ${n} kitab, ikinciyə ${n - 1}, … sonuncuya 1. ${n}! = ${F(n)}.` };
-        if (kind === "together") return { text: `${n} nəfər bir sırada şəkil çəkdirir. Aysel və Fikrət mütləq yanaşı durmalıdır. Neçə düzülüş var?`, answer: 2 * F(n - 1), show: String(2 * F(n - 1)), tol: EX,
-          solution: `Aysel və Fikrəti bir "blok" say: ${n - 1} obyekt → ${n - 1}! = ${F(n - 1)}. Blokun içində 2 sıra var (AF, FA). 2 · ${F(n - 1)} = ${2 * F(n - 1)}.` };
-        if (kind === "apart") return { text: `${n} nəfər bir sırada durur. Aysel və Fikrət yanaşı durmamalıdır. Neçə düzülüş var?`, answer: F(n) - 2 * F(n - 1), show: String(F(n) - 2 * F(n - 1)), tol: EX,
+        if (kind === "together") return { text: `${n} nəfər bir sırada şəkil çəkdirir. Aysel və Elvin mütləq yanaşı durmalıdır. Neçə düzülüş var?`, answer: 2 * F(n - 1), show: String(2 * F(n - 1)), tol: EX,
+          solution: `Aysel və Elvini bir "blok" say: ${n - 1} obyekt → ${n - 1}! = ${F(n - 1)}. Blokun içində 2 sıra var (AE, EA). 2 · ${F(n - 1)} = ${2 * F(n - 1)}.` };
+        if (kind === "apart") return { text: `${n} nəfər bir sırada durur. Aysel və Elvin yanaşı durmamalıdır. Neçə düzülüş var?`, answer: F(n) - 2 * F(n - 1), show: String(F(n) - 2 * F(n - 1)), tol: EX,
           solution: `Hamısı: ${n}! = ${F(n)}. Yanaşı olanlar: 2 · ${n - 1}! = ${2 * F(n - 1)}. Fərq: ${F(n)} − ${2 * F(n - 1)} = ${F(n) - 2 * F(n - 1)}.` };
-        if (kind === "ends") return { text: `${n} nəfər bir sırada durur. Aysel birinci, Fikrət isə sonuncu olmalıdır. Neçə düzülüş var?`, answer: F(n - 2), show: String(F(n - 2)), tol: EX,
+        if (kind === "ends") return { text: `${n} nəfər bir sırada durur. Aysel birinci, Elvin isə sonuncu olmalıdır. Neçə düzülüş var?`, answer: F(n - 2), show: String(F(n - 2)), tol: EX,
           solution: `İki yer artıq doludur. Qalan ${n - 2} nəfər ortadakı ${n - 2} yerə düzülür: ${n - 2}! = ${F(n - 2)}.` };
         if (kind === "round") return { text: `${n} nəfər dəyirmi masa arxasında oturur. Yalnız qonşuluq vacibdir (hamını eyni qədər fırlatsaq, düzülüş dəyişmir). Neçə müxtəlif oturuş var?`, answer: F(n - 1), show: String(F(n - 1)), tol: EX,
           solution: `Bir nəfəri yerində "bərkid" (fırlanmanı aradan qaldırırıq). Qalan ${n - 1} nəfər: (${n} − 1)! = ${F(n - 1)}.` };
@@ -145,7 +145,7 @@
           return { text: `Ədalətli pul ${n} dəfə müstəqil atılır. Düz ${k} dəfə "gerb" düşməsi ehtimalı nədir?`, answer: f / t, show: frac(f, t), tol: PR,
             solution: `Bütün nəticələr: 2^${n} = ${t}. "Gerb"in düşdüyü ${k} atışı seç: C(${n}, ${k}) = ${f}. P = ${f}/${t} = ${frac(f, t)}.` }; }
         if (kind === "adj") { const n = rnd(3, 10);
-          return { text: `${n} nəfər təsadüfi qaydada bir sıraya düzülür. Aysel ilə Fikrətin yanaşı durması ehtimalı nədir?`, answer: 2 / n, show: frac(2, n), tol: PR,
+          return { text: `${n} nəfər təsadüfi qaydada bir sıraya düzülür. Aysel ilə Elvinin yanaşı durması ehtimalı nədir?`, answer: 2 / n, show: frac(2, n), tol: PR,
             solution: `Bütün hallar: ${n}!. Yanaşı: 2 · (${n} − 1)!. P = 2 · ${n - 1}! / ${n}! = 2/${n}` + (frac(2, n) !== "2/" + n ? ` = ${frac(2, n)}.` : ".") }; }
         const N = pick([20, 30, 36, 40, 50, 60, 100]), [a, b] = pick([[2, 3], [2, 5], [3, 5], [3, 4], [4, 6], [2, 7]]);
         const l = a * b / gcd(a, b), f = Math.floor(N / a) + Math.floor(N / b) - Math.floor(N / l);
@@ -199,7 +199,7 @@
           return { text: `${n} şagird arasında 3 müxtəlif hədiyyə paylanır; bir şagird bir neçə hədiyyə ala bilər. Neçə üsul var?`, answer: n ** 3, show: String(n ** 3), tol: EX,
             solution: `Hər hədiyyənin sahibi ${n} şagirddən biridir, seçimlər müstəqildir: ${n}³ = ${n ** 3}.` }; }
         const n = rnd(6, 15), k = rnd(2, 4);
-        return { text: `Fikrətin ${n} kitabı var. Səfərə ${k} kitab götürmək istəyir. Neçə üsulla seçə bilər?`, answer: C(n, k), show: String(C(n, k)), tol: EX,
+        return { text: `Elvinin ${n} kitabı var. Səfərə ${k} kitab götürmək istəyir. Neçə üsulla seçə bilər?`, answer: C(n, k), show: String(C(n, k)), tol: EX,
           solution: `Kitabların sırası vacib deyil: C(${n}, ${k}) = ${C(n, k)}.` };
       } },
   ];

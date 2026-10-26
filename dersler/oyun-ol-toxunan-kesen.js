@@ -352,7 +352,7 @@
         if (t === "yol") {
           let a, b; do { a = rnd(2, 16); b = rnd(2, 16); } while (a >= b || Math.sqrt(a * b) % 1);
           const m = Math.sqrt(a * b);
-          return { text: `Dairəvi parkın kənarında dayanan Fikrət A nöqtəsindədir (A parkın daxilində deyil). A-dan düz yol keçir: yol parka A-dan ${a} m məsafədə girir, ${b} m məsafədə çıxır. Eyni A nöqtəsindən parkın sərhədinə toxunan cığır da çəkilib. Cığırın uzunluğu neçə metrdir?`,
+          return { text: `Dairəvi parkın kənarında dayanan Elvin A nöqtəsindədir (A parkın daxilində deyil). A-dan düz yol keçir: yol parka A-dan ${a} m məsafədə girir, ${b} m məsafədə çıxır. Eyni A nöqtəsindən parkın sərhədinə toxunan cığır da çəkilib. Cığırın uzunluğu neçə metrdir?`,
             answer: m, show: m + " m", unit: "m", tol: 0.01,
             solution: `Toxunan və kəsən: cığır² = ${a} · ${b} = ${a * b}, cığır = ${m} m.` };
         }

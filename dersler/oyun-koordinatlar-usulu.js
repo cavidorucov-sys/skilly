@@ -163,7 +163,7 @@
         const kind = pick(["yol", "gorus", "wifi"]);
         if (kind === "yol") {
           const [dx, dy, d] = pick(PYTH), sx = pick([-1, 1]), sy = pick([-1, 1]), x1 = rnd(-4, 4), y1 = rnd(-4, 4), u = pick([100, 200, 500]);
-          return { text: `Şəhər xəritəsində hər vahid ${u} m-dir. Məktəb ${pt("M", x1, y1)}, Fikrətin evi ${pt("E", x1 + sx * dx, y1 + sy * dy)} nöqtəsindədir. Evdən məktəbə düz xətt boyunca məsafə neçə metrdir?`,
+          return { text: `Şəhər xəritəsində hər vahid ${u} m-dir. Məktəb ${pt("M", x1, y1)}, Elvinin evi ${pt("E", x1 + sx * dx, y1 + sy * dy)} nöqtəsindədir. Evdən məktəbə düz xətt boyunca məsafə neçə metrdir?`,
             answer: d * u, show: String(d * u), unit: "m", tol: 0.01,
             solution: `ME = √(${dx}² + ${dy}²) = √${dx * dx + dy * dy} = ${d} vahid. ${d} · ${u} = ${d * u} m.` };
         }
@@ -176,10 +176,10 @@
         }
         const a = rnd(-4, 4), b = rnd(-4, 4), [dx, dy, d] = pick(PYTH.filter(t => t[2] <= 10)), R = d + pick([-2, -1, 1, 2]);
         const x = a + dx * pick([-1, 1]), y = b + dy * pick([-1, 1]);
-        return { text: `Wi-Fi ötürücüsü ${pt("O", a, b)} nöqtəsindədir və ${R} m radiusda siqnal verir (1 vahid = 1 m). Fikrət ${pt("F", x, y)} nöqtəsində oturub. Fikrətdən ötürücüyə qədər məsafə neçə metrdir?`,
-          svg: plane({ circle: [a, b, R], pts: [["O", a, b], ["F", x, y]] }),
+        return { text: `Wi-Fi ötürücüsü ${pt("O", a, b)} nöqtəsindədir və ${R} m radiusda siqnal verir (1 vahid = 1 m). Elvin ${pt("E", x, y)} nöqtəsində oturub. Elvindən ötürücüyə qədər məsafə neçə metrdir?`,
+          svg: plane({ circle: [a, b, R], pts: [["O", a, b], ["E", x, y]] }),
           answer: d, show: String(d), unit: "m", tol: 0.01,
-          solution: `OF = √(${dx}² + ${dy}²) = ${d} m. ${d} ${d <= R ? "≤" : ">"} ${R} — Fikrət siqnal zonasının ${d <= R ? "daxilindədir" : "xaricindədir"}.` };
+          solution: `OE = √(${dx}² + ${dy}²) = ${d} m. ${d} ${d <= R ? "≤" : ">"} ${R} — Elvin siqnal zonasının ${d <= R ? "daxilindədir" : "xaricindədir"}.` };
       } },
     { id: "sehv", ad: "Səhvi tap", izah: "Həll üç addımdır, birində səhv var. Birinci səhv addım hansıdır?",
       gen() {

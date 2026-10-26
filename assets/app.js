@@ -131,7 +131,8 @@ function account() {
 
 async function shell(content) {
   const here = location.pathname.split("/").pop() || "index.html";
-  const [m, w] = await Promise.all([load("data/movzular.json"), load("data/hefte.json")]).catch(() => [null, null]);
+  // the week plan is private: it opens only for the two signed-in accounts (w = null for everyone else)
+  const [m, w] = await Promise.all([load("data/movzular.json"), window.Skilly ? Skilly.gizli("hefte") : null]).catch(() => [null, null]);
   const topics = m ? allTopics(m) : [];
   const closed = topics.filter(t => t.status === "bag").length, total = topics.length || 1;
   const pct = Math.round(closed / total * 100);
@@ -157,7 +158,7 @@ async function shell(content) {
   setRail(collapsed);
   const rail = el("aside", { class: "rail" },
     el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), toggle),
-    el("div", { class: "who" }, el("div", { class: "avatar" }, "F"), el("b", {}, "Fikrət"), el("span", {}, "9-cu sinif · 2026–27"), el("span", { class: "chip" }, w ? w.hefte : ""), account()),
+    el("div", { class: "who" }, el("div", { class: "avatar" }, w ? "F" : "S"), el("b", {}, w ? "Fikrət" : "Skilly"), el("span", {}, "9-cu sinif · 2026–27"), w ? el("span", { class: "chip" }, w.hefte) : null, account()),
     ring,
     el("div", { class: "minis" },
       el("div", { class: "mini" }, el("i", {}, String(toExam)), "gün sınağa"),
@@ -208,7 +209,8 @@ const mins = t => { const [a, b] = span(t).map(x => { const [h, m] = x.split(":"
 async function pageIndex() {
   const content = el("div", { style: "margin-top:30px" });
   const { w, term } = await shell(content);
-  if (!w) { content.append(el("p", { class: "empty" }, "Məlumat yüklənmədi.")); return; }
+  if (!w) { content.append(el("section", { class: "today" }, el("p", { class: "eyebrow" }, "Skilly"), el("h1", {}, "Riyaziyyat və fizika: dərslər, oyunlar, sınaqlar"),
+    el("p", { class: "lead" }, "Mövzular soldakı bölmələrdədir. Şəxsi plan yalnız hesabla daxil olanda görünür."))); return; }
   const today = isoToday(), now = hm(), d = new Date();
   const day = w.gunler.find(g => g.tarix === today) || w.gunler.find(g => g.tarix > today);
   const isToday = day && day.tarix === today;

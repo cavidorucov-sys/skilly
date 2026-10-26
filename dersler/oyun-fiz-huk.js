@@ -206,7 +206,7 @@
         }
         if (kind === "espander") {
           const n = rnd(2, 5), k = pick([100, 150, 200, 250, 300]), s = pick([20, 25, 30, 40, 50]), Fv = n * k * s / 100;
-          return R(Fv, "N", { text: `Fikrət məşqdə espander dartır: espanderdə ${n} eyni yay paralel bərkidilib, hər birinin sərtliyi ${k} N/m. Espanderi ${s} sm dartmaq üçün nə qədər qüvvə lazımdır?`,
+          return R(Fv, "N", { text: `Elvin məşqdə espander dartır: espanderdə ${n} eyni yay paralel bərkidilib, hər birinin sərtliyi ${k} N/m. Espanderi ${s} sm dartmaq üçün nə qədər qüvvə lazımdır?`,
             solution: `Paralel: k = ${n}·${k} = ${n * k} N/m. F = kx = ${n * k}·${F(s / 100)} = ${F(Fv)} N.` });
         }
         if (kind === "bezmen") {

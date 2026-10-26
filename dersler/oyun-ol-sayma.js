@@ -71,7 +71,7 @@
             solution: `${n} = ${f.map(([p, e]) => e > 1 ? p + sup(e) : p).join(" · ")}. Bölən = ${f.map(([p], i) => p + "ᵃᵇᶜ"[i]).join(" · ")} şəklindədir, hər üst üçün seçim sayı: ${f.map(([p, e]) => `${p} üçün 0…${e} → ${e + 1}`).join(", ")}. Hasil: ${f.map(([, e]) => e + 1).join("·")} = ${ans}.` };
         }
         const a = rnd(2, 6), b = rnd(2, 5), c = rnd(1, 5), d = rnd(2, 4), ans = (a * b + c) * d;
-        return { text: `Fikrətin ${a} köynəyi, ${b} şalvarı, ${c} idman kostyumu və ${d} cüt ayaqqabısı var. O, ya köynək + şalvar, ya da idman kostyumu geyinir, üstəlik bir cüt ayaqqabı seçir. Neçə müxtəlif geyim dəsti mümkündür?`,
+        return { text: `Elvinin ${a} köynəyi, ${b} şalvarı, ${c} idman kostyumu və ${d} cüt ayaqqabısı var. O, ya köynək + şalvar, ya da idman kostyumu geyinir, üstəlik bir cüt ayaqqabı seçir. Neçə müxtəlif geyim dəsti mümkündür?`,
           answer: ans, show: String(ans), tol: 0.01,
           solution: `Köynək + şalvar: ${a}·${b} = ${a * b} (hasil qaydası). Ya da kostyum: ${c}. Bu hallar birlikdə olmur → cəm: ${a * b} + ${c} = ${a * b + c}. Ayaqqabı ilə: ${a * b + c}·${d} = ${ans}.` };
       } },
@@ -219,7 +219,7 @@
         if (bad === 0) steps[0] = `${a} ədədinə bölünənlər: [${N}/${a}] = ${A + 1}; ${b} ədədinə bölünənlər: [${N}/${b}] = ${B}.`;
         if (bad === 1) steps[1] = `Hər ikisinə bölünənlər — ${a * b} ədədinə bölünənlər: [${N}/${a * b}] = ${fl(N / (a * b))}.`;
         if (bad === 2) steps[2] = `Cavab: ${A} + ${B} + ${AB} = ${A + B + AB}.`;
-        const text = h("div", {}, h("p", {}, `Sual: 1-dən ${N} ədədinə qədər neçə ədəd ${a} və ya ${b} ədədinə bölünür? Fikrətin həllində hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Sual: 1-dən ${N} ədədinə qədər neçə ədəd ${a} və ya ${b} ədədinə bölünür? Elvinin həllində hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: ${a}·${A} = ${a * A} ≤ ${N}, ${a}·${A + 1} = ${a * (A + 1)} > ${N}. Düzü [${N}/${a}] = ${A} — tam hissə yuxarı yuvarlanmır.`,
           `2-ci addım: ${a} və ${b} ədədlərinin hər ikisinə bölünən ədəd ƏKOB(${a}, ${b}) = ${l} ədədinə bölünür, ${a * b} ədədinə yox. Düzü [${N}/${l}] = ${AB}, cavab ${ans}.`,

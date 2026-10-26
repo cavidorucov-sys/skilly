@@ -189,9 +189,9 @@
           return R(F2 / F1, "", { text: `Ağır qapını açmaq üçün ${M} N·m moment lazımdır. Qapının dəstəyi rezədən ${F(d1)} m aralıdır. Rezəyə ${F(d2)} m yaxın yerdən itələsən, dəstəkdən itələməyə nisbətən neçə dəfə böyük qüvvə lazımdır?`,
             solution: `Dəstəkdən: F₁ = ${M}/${F(d1)} = ${F(F1)} N. Yaxından: F₂ = ${M}/${F(d2)} = ${F(F2)} N. Nisbət: ${F(F2)}/${F(F1)} = ${F(d1)}/${F(d2)} = ${F(F2 / F1)}.` });
         }
-        let M, d1, d2; do { M = pick([60, 69, 70, 75, 80, 90, 92]); d1 = pick([1, 1.2, 1.5, 2]); d2 = M * d1 / 46; } while (!nice(d2, 2) || d2 > 3);
-        return R(d2, "m", { text: `Fikrət (46 kq) atası (${M} kq) ilə yelləncək-taxtada oturur. Atası dayaqdan ${F(d1)} m məsafədədir. Fikrət o biri tərəfdə dayaqdan hansı məsafədə oturmalıdır ki, taxta tarazlıqda olsun?`,
-          solution: `${M}·${F(d1)} = 46·d → d = ${F(M * d1)}/46 = ${F(d2)} m. Yüngül olan uzağa oturur.` });
+        const m = pick([40, 45, 50]); let M, d1, d2; do { M = pick([60, 69, 70, 75, 80, 90, 92]); d1 = pick([1, 1.2, 1.5, 2]); d2 = M * d1 / m; } while (!nice(d2, 2) || d2 > 3);
+        return R(d2, "m", { text: `Elvin (${m} kq) atası (${M} kq) ilə yelləncək-taxtada oturur. Atası dayaqdan ${F(d1)} m məsafədədir. Elvin o biri tərəfdə dayaqdan hansı məsafədə oturmalıdır ki, taxta tarazlıqda olsun?`,
+          solution: `${M}·${F(d1)} = ${m}·d → d = ${F(M * d1)}/${m} = ${F(d2)} m. Yüngül olan uzağa oturur.` });
       } },
   ];
 

@@ -203,7 +203,7 @@
           const a = properFrac(2, 6), c = properFrac(2, 5);
           const k = rnd(1, 5), T = a[1] * c[1] * k, rem1 = T - T * a[0] / a[1], day2 = rem1 * c[0] / c[1], left = rem1 - day2;
           const t = {
-            book: `Fikrət kitabın ${S(a)} hissəsini birinci gün, qalan səhifələrin ${S(c)} hissəsini ikinci gün oxudu. Oxumağa ${left} səhifə qaldı. Kitab neçə səhifədir?`,
+            book: `Elvin kitabın ${S(a)} hissəsini birinci gün, qalan səhifələrin ${S(c)} hissəsini ikinci gün oxudu. Oxumağa ${left} səhifə qaldı. Kitab neçə səhifədir?`,
             money: `Aysel pulunun ${S(a)} hissəsini kitaba, qalan pulun ${S(c)} hissəsini dəftərlərə xərclədi. Onun ${left} manatı qaldı. Ayselin əvvəlcə neçə manatı var idi?`,
             road: `Turist yolun ${S(a)} hissəsini birinci gün, qalan yolun ${S(c)} hissəsini ikinci gün getdi. Getməyə ${left} km qaldı. Bütün yol neçə km-dir?`,
           }[kind];

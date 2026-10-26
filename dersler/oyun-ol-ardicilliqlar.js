@@ -201,7 +201,7 @@
       gen() {
         const kind = pick(["stairs", "lines", "hanoi", "shake", "domino"]);
         if (kind === "stairs") { const n = rnd(4, 14);
-          return { text: `Pilləkəndə ${n} pillə var. Fikrət hər addımda ya 1, ya 2 pillə qalxır. Pilləkənin başına neçə müxtəlif yolla çıxa bilər?`, answer: FIB[n + 1], show: String(FIB[n + 1]), tol: INT,
+          return { text: `Pilləkəndə ${n} pillə var. Elvin hər addımda ya 1, ya 2 pillə qalxır. Pilləkənin başına neçə müxtəlif yolla çıxa bilər?`, answer: FIB[n + 1], show: String(FIB[n + 1]), tol: INT,
             solution: `Yolların sayı yₙ: son addım 1 pillədirsə yₙ₋₁ yol, 2 pillədirsə yₙ₋₂ yol → yₙ = yₙ₋₁ + yₙ₋₂, y₁ = 1, y₂ = 2. Bu, Fibonaççidir: yₙ = F${sub(n + 1)} = ${FIB[n + 1]}.` }; }
         if (kind === "lines") { const n = rnd(5, 25); let r = 1; for (let i = 1; i <= n; i++) r += i; chk(r, 1 + n * (n + 1) / 2);
           return { text: `Müstəvidə heç ikisi paralel olmayan və heç üçü bir nöqtədən keçməyən ${n} düz xətt çəkilib. Müstəvi neçə hissəyə bölünüb?`, answer: r, show: String(r), tol: INT,
@@ -226,7 +226,7 @@
         if (bad === 0) steps[0] = `1/(k(k + 1)) = 1/k + 1/(k + 1).`;
         if (bad === 1) steps[1] = `Cəm = (1 − 1/2) + (1/2 − 1/3) + … + (1/${n} − 1/${n + 1}) = 1 − 1/${n}.`;
         if (bad === 2) steps[2] = `1 − 1/${n + 1} = ${n + 1}/${n + 2}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət 1/(1·2) + 1/(2·3) + … + 1/(${n}·${n + 1}) cəmini hesablayır. Hansı addımda səhv var?`),
+        const text = h("div", {}, h("p", {}, `Elvin 1/(1·2) + 1/(2·3) + … + 1/(${n}·${n + 1}) cəmini hesablayır. Hansı addımda səhv var?`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
         const why = [`1-ci addım: düz ayrılış 1/k − 1/(k + 1) (yoxla: 1/k − 1/(k + 1) = 1/(k(k + 1)) ✓; "+" ilə cəm ixtisar olunmaz). Düz cavab ${n}/${n + 1}.`,
           `2-ci addım: ixtisardan sonra ilk ədəd 1 və sonuncu − 1/${n + 1} qalır: 1 − 1/${n + 1}, 1/${n} yox. Düz cavab ${n}/${n + 1}.`,

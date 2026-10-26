@@ -81,10 +81,10 @@
         const s2 = bad === 1 ? `Bərabərlik: ${ax(a)} = ${b}/x ⇒ x = ${b}/${a} = ${x0 * x0}.` : `Bərabərlik: ${ax(a)} = ${b}/x ⇒ x² = ${b / a} ⇒ x = ${x0}.`;
         const val = bad === 0 ? 2 * a * b : bad === 2 ? 2 * m + pick([-2, -1, 1, 2]) : 2 * m;
         const s3 = bad === 0 ? `Minimum 2 · ${a * b} = ${val}.` : `√${a * b} = ${m}. Minimum 2 · ${m} = ${val}.`;
-        const text = h("div", {}, h("p", {}, `Fikrət x > 0 olduqda ${ax(a)} + ${b}/x ifadəsinin ən kiçik qiymətini tapır. Birinci səhv hansı addımdadır?`),
+        const text = h("div", {}, h("p", {}, `Elvin x > 0 olduqda ${ax(a)} + ${b}/x ifadəsinin ən kiçik qiymətini tapır. Birinci səhv hansı addımdadır?`),
           h("ol", { class: "oy-steps" }, ...[s1, s2, s3].map(st => h("li", {}, st))));
-        const why = [`1-ci addım: AM-GM-də iki toplananın cəmi ≥ 2√(hasil) olur, 2 · (hasil) yox (Fikrət kök işarəsini unudub; x = ${x0} üçün ifadə ${2 * m}-ə bərabərdir, ${val} ola bilməz). Düz cavab: ${2 * m}.`,
-          `2-ci addım: ${ax(a)} = ${b}/x-dən x² = ${b / a}, yəni x = ${x0}. (Fikrət kvadrat kökü almağı unutub.) Düz minimum ${2 * m} (x = ${x0}).`,
+        const why = [`1-ci addım: AM-GM-də iki toplananın cəmi ≥ 2√(hasil) olur, 2 · (hasil) yox (Elvin kök işarəsini unudub; x = ${x0} üçün ifadə ${2 * m}-ə bərabərdir, ${val} ola bilməz). Düz cavab: ${2 * m}.`,
+          `2-ci addım: ${ax(a)} = ${b}/x-dən x² = ${b / a}, yəni x = ${x0}. (Elvin kvadrat kökü almağı unutub.) Düz minimum ${2 * m} (x = ${x0}).`,
           `3-cü addım: 2 · ${m} = ${2 * m}, ${val} deyil.`][bad];
         const ch = ["1-ci addım", "2-ci addım", "3-cü addım"];
         return { text, choices: ch, correct: bad, show: ch[bad], solution: why };

@@ -3,7 +3,7 @@
 // device. Only those two accounts may read or write (Firestore rules); anyone else stays local-only.
 (function () {
   const BASE = new URL("..", document.currentScript.src).href;
-  const LS = "skilly-sehv", QUEUE = "skilly-queue";
+  const LS = "skilly-sehv", QUEUE = "skilly-queue", ACAR = "skilly-acar";
   const DAY = 864e5;
   const OK = ["orujov.fikret@gmail.com", "cavid.orucov@gmail.com"];
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
@@ -179,13 +179,29 @@
     configured: async () => !!(await api()),
     // Google sign-in: only Fikrət's and his father's accounts are kept signed in
     async user() { const a = await api(); return a ? a.auth.currentUser.email : null; },
+    // Private data (week plan, work from before the portal) is published encrypted (tools/sifrele.js). The key is in
+    // Firestore gizli/acar, readable only by the two accounts, and cached on their devices for offline use.
+    async gizli(name) {
+      try {
+        const f = await fb(); let k = get(ACAR, "");
+        if (f) {
+          const a = await api(); if (!a) { put(ACAR, ""); return null; }
+          if (!k) { const d = await a.S.getDoc(a.S.doc(a.db, "gizli", "acar")); k = d.exists() ? d.data().k : ""; put(ACAR, k); }
+        }
+        if (!k) return null;
+        const e = await fetch(BASE + "data/" + name + ".enc.json", { cache: "no-cache" }).then(r => r.json());
+        const b = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+        const key = await crypto.subtle.importKey("raw", b(k), "AES-GCM", false, ["decrypt"]);
+        return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b(e.iv) }, key, b(e.ct))));
+      } catch (e) { put(ACAR, ""); return null; } // a stale cached key is fetched again on the next load
+    },
     async signIn() {
       const f = await fb(); if (!f) throw new Error("İnternet yoxdur");
       const r = await f.U.signInWithPopup(f.auth, new f.U.GoogleAuthProvider());
       if (!OK.includes(r.user.email)) { await f.U.signOut(f.auth); throw new Error("Bu hesaba icazə yoxdur: " + r.user.email); }
       await flush(); return r.user.email;
     },
-    async signOut() { const f = await fb(); if (f) await f.U.signOut(f.auth); put("skilly-user", ""); },
+    async signOut() { const f = await fb(); if (f) await f.U.signOut(f.auth); put("skilly-user", ""); put(ACAR, ""); },
     // Answer checking shared with the lesson pages (same normalisation and hash recipe).
     norm(v, mode) {
       let s = String(v).trim().replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/\s+/g, "");
@@ -197,10 +213,10 @@
       return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("").slice(0, 16);
     },
   };
-  // One-time import of work done before the portal existed (data/kecmis.json): lesson answers go into the
-  // lessons' own storage if this device has none, past mistakes into the journal with their original dates.
+  // One-time import of work done before the portal existed (encrypted data/kecmis.enc.json, signed-in accounts only):
+  // lesson answers go into the lessons' own storage if this device has none, past mistakes into the journal with their original dates.
   window.Skilly.ready = (async () => {
-    let past; try { past = await fetch(BASE + "data/kecmis.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+    const past = await window.Skilly.gizli("kecmis"); if (!past) return;
     (past.neticeler || []).forEach(r => window.Skilly.netice(r)); // by id, so repeating is harmless
     if (get("skilly-kecmis", 0) >= past.versiya) return;
     for (const k in past.lessons) { try { if (!localStorage.getItem(k)) localStorage.setItem(k, JSON.stringify(past.lessons[k])); } catch (e) {} }

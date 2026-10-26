@@ -222,7 +222,7 @@
         const kind = pick(["daraq", "sicr", "toz", "balon"]);
         if (kind === "daraq") {
           const a = rnd(1, 9), p = pick([10, 11]), q = 1.6 * a * 10 ** (p - 10) * 1e-3;   // in mkKl
-          return R(q, "mkKl", { text: `Fikrət plastik daraqla yun şalı sürtdü və daraq yun şaldan ${a}·10${sup(p)} elektron aldı. Şalın yükü neçə mkKl oldu? (e = 1,6·10⁻¹⁹ Kl, 1 mkKl = 10⁻⁶ Kl)`,
+          return R(q, "mkKl", { text: `Elvin plastik daraqla yun şalı sürtdü və daraq yun şaldan ${a}·10${sup(p)} elektron aldı. Şalın yükü neçə mkKl oldu? (e = 1,6·10⁻¹⁹ Kl, 1 mkKl = 10⁻⁶ Kl)`,
             solution: `Şal elektron itirdi, yükü müsbət oldu və modulca daraqın yükünə bərabərdir (yük saxlanır). q = N·e = ${a}·10${sup(p)}·1,6·10⁻¹⁹ = ${F(1.6 * a)}·10${sup(p - 19)} Kl = ${F(q)}·10⁻⁶ Kl = ${F(q)} mkKl.` });
         }
         if (kind === "sicr") {
