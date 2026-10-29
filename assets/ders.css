@@ -227,3 +227,38 @@ sub{font-size:.72em;line-height:0;vertical-align:-.3em}
 .ans-btn:hover{background:var(--line-0)}
 /* no text-width limit anywhere inside the portal (old pages carry their own 65ch rules) */
 .in-frame :is(p,ol,ul,.life,.warnbox,.mist,.sum,.check ol,.e-q){max-width:none}
+
+/* method beside worked examples (.pair) */
+.pair{display:grid;gap:16px;align-items:start}
+@media (min-width:720px){.pair{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.pair-col{display:grid;gap:10px;border-radius:var(--r-lg);padding:14px}
+.usul{background:var(--subj-soft)}
+.nums{background:var(--paper)}
+.pair-col h3{margin:0}
+.usul-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:u}
+.usul-steps li{background:var(--white);border-radius:var(--r);padding:10px 12px;counter-increment:u;font-size:14px;line-height:1.5}
+.usul-steps li::before{content:"0" counter(u) " — ";font-weight:700;color:var(--subj)}
+.usul-steps b{font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips span{background:var(--subj-soft);color:var(--subj);border-radius:var(--r-sm);padding:2px 8px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.why{border-radius:var(--r);background:var(--subj-mid);padding:10px 12px;font-size:14px;line-height:1.5}
+.why b{display:block;color:var(--subj)}
+.wx{background:var(--white);border-radius:var(--r);padding:12px 14px;display:grid;gap:8px}
+.wx-q{margin:0;font-size:15px;max-width:none}
+.wx-steps{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid var(--line-0);display:grid;gap:7px}
+.wx-steps li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:14px;line-height:1.55;font-variant-numeric:tabular-nums}
+.wx-steps i{font-style:normal;font-size:12px;font-weight:700;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--subj-soft);color:var(--subj);margin-top:1px}
+.wx-ans{background:var(--ok-soft);border-radius:var(--r-sm);padding:8px 12px;font-weight:700}
+.wx-ans summary{cursor:pointer;color:var(--ok);font-weight:600}
+.wx-ans[open] summary{margin-bottom:4px}
+.pair .usul .fm{background:var(--white)}
+.pair .ex{background:var(--white);border:0}
+.pair .fig svg{width:100%;flex-basis:auto}
+.pair .tbl{overflow-x:auto}
+.pair-col{grid-template-columns:minmax(0,1fr)}
+.pair .fm{overflow-x:auto}
+.pair .fchip{white-space:normal}
+.pair p,.pair ul,.pair ol{max-width:none;overflow-wrap:anywhere}
+.pair .m{white-space:normal}
+.ex-cavab{display:block}
+.ex .ans-btn{margin-top:4px}

@@ -40,12 +40,15 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Ardıcıllıq — nömrələnmiş ədədlər sırasıdır: <span class="m">a₁, a₂, a₃, …</span> Gündəlik həyatda hər yerdədir: hər ayın sonunda hesabda qalan pul, hər saatın sonunda bakteriyaların sayı, hər pillənin hündürlüyü. Ardıcıllığı vermək üçün ya <b>hər nömrənin düsturu</b> verilir, ya da <b>hər həddin əvvəlkilərdən necə alındığı</b>.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> İki vermə üsulu</h3>
       <div class="fm">1) Ümumi hədd düsturu:  aₙ = n² − 6n + 5
 2) Rekurrent düstur:    a₁ = 1,  aₙ₊₁ = 2aₙ + 1
    (hədd əvvəlki hədd(lər)dən hesablanır; ilk həddlər ayrıca verilir)</div>
       <p>Düsturla istənilən nömrəni dərhal hesablayırsan (<span class="m">a₁₀ = 100 − 60 + 5 = 45</span>). Rekurrentdə isə hədləri bir-bir hesablamaq lazımdır: <span class="m">a₂ = 3</span>, <span class="m">a₃ = 7</span>, <span class="m">a₄ = 15</span>, <span class="m">a₅ = 31</span>. Olimpiadada çox vaxt məqsəd rekurrentdən düstur tapmaqdır: burada <span class="m">aₙ = 2ⁿ − 1</span> (yoxla: 1, 3, 7, 15, 31).</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) aₙ = n² − 6n + 5.  Neçə hədd mənfidir? Ən kiçik hədd?
    n² − 6n + 5 = (n − 1)(n − 5) &lt; 0  ⟺  1 &lt; n &lt; 5  →  n = 2, 3, 4: üç hədd.
@@ -59,6 +62,9 @@
 
 4) aₙ = n(n + 1)/2.  351 neçənci həddir?
    n(n + 1) = 702 → 26·27 = 702, n = 26</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Hanoy qülləsi: <span class="m">n</span> diski bir çubuqdan digərinə köçürməyin minimum gediş sayı <span class="m">Hₙ</span> üçün <span class="m">Hₙ = 2Hₙ₋₁ + 1</span>, <span class="m">H₁ = 1</span> (əvvəl <span class="m">n − 1</span> diski kənara çəkirsən, böyüyü köçürürsən, sonra <span class="m">n − 1</span> diski üstünə qaytarırsan). Nəticə <span class="m">Hₙ = 2ⁿ − 1</span>: 10 disk üçün 1023 gediş. Əl tutma: <span class="m">n</span> nəfər hər cüt bir dəfə əl tutursa, yeni gələn hamı ilə tutur: <span class="m">1 + 2 + … + (n − 1) = n(n − 1)/2</span>. <span class="m">n</span> düz xətt (heç ikisi paralel, heç üçü bir nöqtədə deyil) müstəvini <span class="m">Rₙ = Rₙ₋₁ + n</span>, yəni <span class="m">1 + n(n + 1)/2</span> hissəyə bölür.</div>
 
       <h3><span class="st">4</span> Artan, azalan, məhdud</h3>
@@ -101,11 +107,14 @@ Artan ⟺ aₙ₊₁ − aₙ &gt; 0</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Saat kimi: 12-dən sonra yenidən 1. 100 saat sonra saat neçə olacaq? 100 = 12·8 + 4, yəni 4 saat irəli. Bəzi rekurrent ardıcıllıqlar da bir neçə addımdan sonra özünü təkrarlayır. Onda <span class="m">a₂₀₂₆</span> kimi uzaq həddi tapmaq asanlaşır.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Ardıcıllıq <b>dövridir</b>, əgər elə <span class="m">T</span> varsa ki, <span class="m">aₙ₊ₜ = aₙ</span> bütün <span class="m">n</span> üçün. Ən kiçik belə <span class="m">T</span> — <b>dövr</b>. Rekurrentdə ardıcıl <span class="m">k</span> həddin dəsti (məs. <span class="m">aₙ, aₙ₊₁</span>) təkrar edəndə bütün ardıcıllıq təkrarlanır.</p>
       <div class="fm">Dövr T tapılıbsa:  aₖ = a_r,   r = k-nın T-yə bölünməsində qalıq (qalıq 0-dırsa r = T)
 Cəm: tam dövrlərin cəmi + qalan hədlər</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) a₁ = 2,  aₙ₊₁ = 1/(1 − aₙ).  a₂₀₂₆ = ?
    a₂ = 1/(1 − 2) = −1,  a₃ = 1/(1 + 1) = 1/2,  a₄ = 1/(1 − 1/2) = 2 = a₁ → dövr 3.
@@ -118,6 +127,9 @@ Cəm: tam dövrlərin cəmi + qalan hədlər</div>
 3) a₁ = 2,  aₙ₊₁ = (1 + aₙ)/(1 − aₙ).  a₁₀₀ = ?
    a₂ = 3/(−1) = −3,  a₃ = (−2)/4 = −1/2,  a₄ = (1/2)/(3/2) = 1/3,  a₅ = (4/3)/(2/3) = 2 → dövr 4.
    100 = 4·25 → a₁₀₀ = a₄ = 1/3</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Həftənin günləri dövri ardıcıllıqdır (dövr 7): bu gün çərşənbədirsə, 100 gün sonra hansı gündür? 100 = 7·14 + 2 → çərşənbədən 2 gün irəli, cümə. Fibonaççi ədədlərinin sonuncu rəqəmi də dövri təkrarlanır (dövr 60).</div>
 
       <h3><span class="st">4</span> Dövrü necə tapmaq olar</h3>
@@ -160,6 +172,8 @@ S_N = (tam dövrlər)·(dövr cəmi) + ilk r hədd</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">1/(1·2) + 1/(2·3) + … + 1/(99·100)</span> — 99 kəsri toplamaq üçün ortaq məxrəc çox böyük ədəd olardı. Amma hər kəsri iki kəsrin <b>fərqi</b> kimi yazsaq, qonşu hədlər bir-birini <b>ixtisar edir</b> — teleskop kimi qatlanır.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">1/(k(k + 1)) = 1/k − 1/(k + 1)
 1/(k(k + 2)) = (1/2)·(1/k − 1/(k + 2))
@@ -167,7 +181,8 @@ S_N = (tam dövrlər)·(dövr cəmi) + ilk r hədd</div></div>
 1/(√k + √(k + 1)) = √(k + 1) − √k
 k·k! = (k + 1)! − k!</div>
       <p>Ayrılışı yoxla (məsələn, sağ tərəfi ortaq məxrəcə gətir). Sonra cəmi yaz: <span class="m">(1 − 1/2) + (1/2 − 1/3) + … + (1/n − 1/(n + 1))</span> — ortadakılar ixtisar olur, yalnız birinci və sonuncu qalır: <span class="m">1 − 1/(n + 1)</span>.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 1/(1·2) + 1/(2·3) + … + 1/(99·100) = 1 − 1/100 = 99/100
 
@@ -181,6 +196,9 @@ k·k! = (k + 1)! − k!</div>
 
 5) (1 − 1/4)(1 − 1/9)(1 − 1/16) = (3/4)(8/9)(15/16) = 5/8
    Ümumi: ∏(k = 2…n) (1 − 1/k²) = ∏ (k − 1)(k + 1)/k² = (n + 1)/(2n)  (n = 4: 5/8 ✓)</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Pillələrdə qalxdığın hündürlük = ilk və son mərtəbənin fərqi: aralarındakı mərtəbələri sayıb toplamağa ehtiyac yoxdur. Teleskopik cəmdə də ortadakı bütün "yüksəliş və enişlər" bir-birini silir, yalnız başlanğıc və son qalır.</div>
 
       <h3><span class="st">4</span> Hissə cəmi və ümumi qayda</h3>
@@ -220,12 +238,15 @@ Cəm = ilk qalan hədlər − son qalan hədlər
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">1² + 2² + … + 100²</span> kimi cəmlər olimpiadada tez-tez çıxır, hazır düstur isə 10 saniyəyə cavab verir. Şəkli də var: kvadrat piramidanın hər qatı bir kvadrat düzülüşüdür, piramidanın cəmi dənələr sayını verir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Düsturlar</h3>
       <div class="fm">1 + 2 + … + n = n(n + 1)/2
 1² + 2² + … + n² = n(n + 1)(2n + 1)/6
 1³ + 2³ + … + n³ = (n(n + 1)/2)²</div>
       <p>Sübut ideyası (teleskopik): <span class="m">(k + 1)³ − k³ = 3k² + 3k + 1</span>. Cəmləsək: sol tərəfdə <span class="m">(n + 1)³ − 1</span> qalır, sağda <span class="m">3Σk² + 3Σk + n</span>. Buradan <span class="m">Σk²</span> çıxır. Kublar üçün eyni fikir dördüncü qüvvətlə: <span class="m">(k + 1)⁴ − k⁴ = 4k³ + 6k² + 4k + 1</span>. (Düsturların induksiya ilə sübutunu Riyazi induksiya mövzusunda görəcəksən.)</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 1² + 2² + … + 10² = 10·11·21/6 = 385
 2) 1³ + 2³ + … + 10³ = (55)² = 3025
@@ -234,6 +255,9 @@ Cəm = ilk qalan hədlər − son qalan hədlər
 5) 1·2 + 2·3 + … + 10·11 = Σk² + Σk = 385 + 55 = 440  (düstur n(n + 1)(n + 2)/3 = 10·11·12/3 = 440 ✓)
 6) 1² − 2² + 3² − 4² + … + 9² − 10²:
    cütlər: (2k − 1)² − (2k)² = −(4k − 1) → −(3 + 7 + 11 + 15 + 19) = −55  (= −10·11/2)</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Top piramidası: yuxarıdan aşağı qatlarda 1, 3, 6, 10, … top varsa (üçbucaqlı qatlar), <span class="m">n</span> qatda cəmi <span class="m">n(n + 1)(n + 2)/6</span> top olur. Kvadrat piramida isə <span class="m">1² + 2² + … + n²</span>: 10 qatda 385 top.</div>
 
       <h3><span class="st">4</span> Hissə cəmi və tərs məsələ</h3>
@@ -281,6 +305,8 @@ Hissə: S(b) − S(a − 1)</div></div>
 n :   1  2  3  4  5  6   7   8   9  10  11  12   13   14   15   16    17    18    19    20
 Fₙ:   1  1  2  3  5  8  13  21  34  55  89 144  233  377  610  987  1597  2584  4181  6765</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Əsas eyniliklər</h3>
       <div class="fm">F₁ + F₂ + … + Fₙ = Fₙ₊₂ − 1
 F₁ + F₃ + … + F₂ₙ₋₁ = F₂ₙ         (tək nömrələr)
@@ -288,7 +314,8 @@ F₂ + F₄ + … + F₂ₙ = F₂ₙ₊₁ − 1     (cüt nömrələr)
 F₁² + F₂² + … + Fₙ² = Fₙ·Fₙ₊₁
 Fₙ₋₁·Fₙ₊₁ − Fₙ² = (−1)ⁿ           (Kassini)</div>
       <p>Birinci eyniliyin sübutu: <span class="m">Fₖ = Fₖ₊₂ − Fₖ₊₁</span> yaz, cəmlə, teleskop (Dərs 3). Tək nömrələr üçün: <span class="m">F₁ = F₂</span>, <span class="m">F₃ = F₄ − F₂</span>, <span class="m">F₅ = F₆ − F₄</span>, … cəm <span class="m">F₂ₙ</span> olur.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) F₁ + F₂ + … + F₁₀ = F₁₂ − 1 = 144 − 1 = 143     (yoxla: 1+1+2+3+5+8+13+21+34+55 = 143)
 2) F₁ + F₃ + F₅ + F₇ = F₈ = 21                     (1 + 2 + 5 + 13 = 21 ✓)
@@ -297,6 +324,9 @@ Fₙ₋₁·Fₙ₊₁ − Fₙ² = (−1)ⁿ           (Kassini)</div>
 5) Bölünmə: F₃ = 2, F₆ = 8, F₉ = 34 cütdür; F₄ = 3, F₈ = 21 üçə bölünür; F₅ = 5, F₁₀ = 55 beşə bölünür.
    Qayda: F_n cütdür ⟺ 3 ədədi n-i bölür; 3-ə bölünür ⟺ 4 | n; 5-ə bölünür ⟺ 5 | n.
 6) F₁, …, F₁₀₀-dən neçəsi cütdür? 3, 6, …, 99 → 33 ədəd.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Pilləkəndə <span class="m">n</span> pillə, hər addımda 1 və ya 2 pillə: sonuncu addım ya 1, ya 2 pillədir, deməli yolların sayı <span class="m">yₙ = yₙ₋₁ + yₙ₋₂</span>, <span class="m">y₁ = 1, y₂ = 2</span> → <span class="m">yₙ = Fₙ₊₁</span>. 10 pillə üçün <span class="m">F₁₁ = 89</span> yol. 2×<span class="m">n</span> düzbucaqlını 1×2 dominolarla örtmək də eyni qaydadır: sol kənar ya şaquli bir domino, ya iki üfüqi domino: <span class="m">dₙ = dₙ₋₁ + dₙ₋₂</span>.</div>
 
       <h3><span class="st">5</span> Olimpiada məsələləri</h3>

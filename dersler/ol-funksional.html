@@ -39,6 +39,8 @@
       <p>Sənə funksiyanın düsturunu vermirlər. Yalnız bir <b>qayda</b> verirlər: "iki ədədi toplayanda funksiyanın qiymətləri belə bağlanır". Qaydadan funksiyanı bərpa etmək lazımdır — bu, detektiv işidir. İzləri tapmaq üçün qaydaya sadə ədədlər qoyursan: 0, 1, <span class="m">y = x</span>.</p>
       <div class="life"><b>Həyatdan.</b> Mağazada qiymət cədvəli: 1 kq alma 3 manat. 2 kq-ın qiyməti 1 kq + 1 kq = 6 manat. Hər yeni kq əvvəlkinə 3 manat əlavə edir. Bu da "<span class="m">f(n + 1) = f(n) + 3</span>" funksional tənliyidir.</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">x = 0 və ya y = 0   →  f(0)-ı tap
 x = 1 və ya y = 1   →  f(n + 1)-i f(n) ilə bağla (rekurrent)
@@ -46,7 +48,8 @@ y = x               →  f(2x)-i f(x) ilə bağla
 y = −x              →  f(x) ilə f(−x)-i bağla
 x və y yerini dəyiş →  simmetriya, yeni tənlik</div>
       <p>Qaydanı belə tətbiq et: (1) bir neçə kiçik qiymət hesabla (<span class="m">f(1), f(2), f(3), …</span>); (2) qanunu <b>gör</b>; (3) <b>isbat et</b> (adətən induksiya və ya teleskop cəmi); (4) tapılan funksiyanı tənliyə qoyub <b>yoxla</b>.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
       <div class="ex">Natural ədədlərdə f(x + y) = f(x) + f(y) + 2xy və f(1) = 1. f(n) = ?
   y = 1:  f(x + 1) = f(x) + 1 + 2x.
@@ -57,6 +60,8 @@ x və y yerini dəyiş →  simmetriya, yeni tənlik</div>
 f(1) = 2, f(2) = 5 və f(n + 2) = f(n + 1) − f(n). f(7) = ?
   f(3) = 5 − 2 = 3,  f(4) = 3 − 5 = −2,  f(5) = −2 − 3 = −5,
   f(6) = −5 + 2 = −3,  f(7) = −3 + 5 = 2 = f(1).   Period 6-dır.</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>
       <div class="ex">Məsələ 1. Natural m, n üçün f(m + n) = f(m) + f(n) + mn və f(1) = 1.
@@ -96,13 +101,16 @@ Dövrü rekurrentdə dövrü tap (f(n+2) = f(n+1) − f(n): period 6).</div></di
       <p>Ən məşhur funksional tənlik: <span class="m">f(x + y) = f(x) + f(y)</span> ("cəmin qiyməti qiymətlərin cəmidir"). Düz mütənasib asılılıq belədir: 3 litr 6 manatdırsa, 5 litr = 3 litr + 2 litr. Bu tənliyin natural, tam və rasional ədədlərdə həlli yalnız <span class="m">f(x) = cx</span>-dir.</p>
       <div class="life"><b>Həyatdan.</b> Su sayğacı: 9 litrın qiyməti 21 qəpikdir. 1098 litr = 122 dəfə 9 litr, deməli <span class="m">122 · 21 = 2562</span> qəpik. Qiymət həcmə mütənasibdir — Koşi tənliyinin cavabı.</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">f(x + y) = f(x) + f(y)  ⇒  f(x) = c·x,  c = f(1)    (ℕ, ℤ, ℚ üzərində)
 f(xy) = f(x) + f(y)     ⇒  hasil cəmə çevrilir (loqarifm kimi), f(1) = 0
 f(xy) = f(x)·f(y)       ⇒  f sadə ədədlərdəki qiymətlərdən qurulur</div>
       <p><b>Niyə f(x) = cx?</b> (1) <span class="m">x = y = 0</span> → <span class="m">f(0) = 0</span>. (2) <span class="m">f(n) = n·f(1)</span> — induksiya, <span class="m">n</span> dəfə toplayırıq. (3) <span class="m">y = −x</span> → <span class="m">f(−x) = −f(x)</span>, mənfi tam ədədlər də olur. (4) <span class="m">f(1) = q·f(1/q)</span> → <span class="m">f(1/q) = f(1)/q</span>, sonra <span class="m">f(p/q) = (p/q)·f(1)</span>.</p>
       <p>Diqqət: həqiqi ədədlər üzərində əlavə şərt (artan, kəsilməz, məhdud) lazımdır, əks halda qəribə həllər olur. Məsələdə hansı çoxluq verilib, ona bax.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
       <div class="ex">Natural ədədlərdə f(xy) = f(x)·f(y), f(2) = 3, f(3) = 5. f(72) = ?
   72 = 8 · 9 = 2³ · 3²
@@ -111,6 +119,8 @@ f(xy) = f(x)·f(y)       ⇒  f sadə ədədlərdəki qiymətlərdən qurulur</d
 Müsbət ədədlərdə f(xy) = f(x) + f(y), f(2) = 1, f(3) = 2. f(12) = ?
   12 = 2 · 2 · 3  →  f(12) = 1 + 1 + 2 = 4.
   Həmçinin f(1) = 0 (x = y = 1), f(1/x) = −f(x).</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>
       <div class="ex">Məsələ 2. f: ℚ → ℚ funksiyası bütün rasional x, y üçün f(x + y) = f(x) + f(y)
@@ -147,6 +157,8 @@ f(xy) = f(x)f(y)  ⇒  ədədi sadə vuruqlara ayır, qüvvətləri hesabla.</di
       <p>Bəzən tənlikdə həm <span class="m">f(x)</span>, həm də <span class="m">f(1/x)</span> görünür, məsələn <span class="m">f(x) + 2f(1/x) = x</span>. İki naməlum, bir tənlik kimi görünür. Çıxış yolu: tənlikdə <span class="m">x</span> yerinə <span class="m">1/x</span> qoy — <b>ikinci tənlik</b> alırsan və iki naməlumlu adi sistem həll edirsən.</p>
       <div class="life"><b>Həyatdan.</b> Maşın ayrı-ayrılıqda "A→B" və "B→A" üçün qiymət tapmaq: iki sadə tənlik var, iki naməlum var — sistemdir. Burada naməlumlar <span class="m">f(x)</span> və <span class="m">f(1/x)</span>-dir.</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">f(x) + k·f(1/x) = g(x)
 x → 1/x:   f(1/x) + k·f(x) = g(1/x)
@@ -154,7 +166,8 @@ x → 1/x:   f(1/x) + k·f(x) = g(1/x)
 
 Eyni fikir:  f(x) və f(1 − x);  f(x) və f(−x);  üç üzvlü dövr x → 1/(1 − x) → (x − 1)/x</div>
       <p><b>Dəyişən dəyişmə:</b> <span class="m">f(2x + 1) = …</span> verilibsə, <span class="m">u = 2x + 1</span> götür, <span class="m">x = (u − 1)/2</span> yaz — f-in öz arqumenti ilə düsturu alırsan. <span class="m">f(x − 1/x) = x² + 1/x²</span> üçün kvadratla: <span class="m">(x − 1/x)² = x² + 1/x² − 2</span>, deməli <span class="m">f(u) = u² + 2</span>.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
       <div class="ex">f(2x + 1) = x + 4. f(7) = ?
   2x + 1 = 7  →  x = 3.   f(7) = 3 + 4 = 7.
@@ -168,6 +181,8 @@ f(x) + f(1/(1 − x)) = x, f(2) = ?  (üç üzvlü dövr)
   x₁ = 2,  x₂ = 1/(1 − 2) = −1,  x₃ = 1/(1 + 1) = 1/2,  1/(1 − 1/2) = 2.
   f(2) + f(−1) = 2;  f(−1) + f(1/2) = −1;  f(1/2) + f(2) = 1/2.
   1-ci − 2-ci + 3-cü: 2f(2) = 2 + 1 + 1/2 = 7/2  →  f(2) = 7/4.</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>
       <div class="ex">Məsələ 3. Hər x ≠ 0 üçün f(x) + 2f(1/x) = x. f(x)-i tap, f(2) = ?

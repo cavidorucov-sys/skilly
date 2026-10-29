@@ -39,6 +39,8 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Məktəbdə əlaməti əzbərləyirik: "rəqəmlərin cəmi 9-a bölünürsə, ədəd 9-a bölünür". Olimpiadada isə sual başqa cürdür: <b>qalıq</b> neçədir, 2026 rəqəmli ədəd nəyə bölünür, rəqəmlərin yeri dəyişəndə nə olur. Bunun üçün əlamətin <b>səbəbini</b> bilmək lazımdır — onda yeni əlaməti özün qura bilərsən.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir: onluq yazılış</h3>
       <p>Hər ədəd rəqəmləri ilə yazılır: <span class="m">4725 = 4 · 1000 + 7 · 100 + 2 · 10 + 5</span>. İndi 10-un qüvvətlərinə bax:</p>
       <div class="fm">10 = 9 + 1,  100 = 99 + 1,  1000 = 999 + 1
@@ -50,7 +52,8 @@
       <p><b>11 üçün</b> eyni fikir: <span class="m">10 = 11 − 1</span>, <span class="m">100 = 99 + 1</span>, <span class="m">1000 = 1001 − 1</span>, … Yəni 10-un qüvvətləri 11-ə bölmədə növbə ilə <span class="m">+1, −1, +1, −1</span> qalıq verir.</p>
       <div class="fm">10ᵏ ≡ (−1)ᵏ  (mod 11)
 n ≡ (sağdan tək yerlərdəki rəqəmlər) − (cüt yerlərdəkilər)  (mod 11)</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
       <div class="ex">123456789 ədədini 9-a və 11-ə böləndə qalıqlar?
 
@@ -63,6 +66,8 @@ n ≡ (sağdan tək yerlərdəki rəqəmlər) − (cüt yerlərdəkilər)  (mod 
   Yoxlama: 11 · 11223344 = 123456784,  123456789 − 123456784 = 5 ✓
 
 Fərq mənfi olsa, 0 ≤ r < 11 alınana qədər 11-in uyğun mislini əlavə et: −3 → −3 + 11 = 8, qalıq 8; −20 → −20 + 22 = 2, qalıq 2 (bir dəfə 11 əlavə etmək kifayət deyil).</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> Olimpiada məsələləri</h3>
       <div class="ex">Məsələ 1. Ədədin rəqəmlərinin yerini istədiyimiz kimi dəyişdik.
@@ -194,30 +199,44 @@ abcabc = abc · 1001
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>RFO-nun klassik sualı: "<span class="ov">x67y</span> ədədi 72-yə bölünür, x və y-ni tap". Ədədin üstündəki xətt deyir: x, 6, 7, y — rəqəmlərdir, hasil yox. Məktəbdə bir gizli rəqəm olur, burada iki-üç. Həll üsulu eynidir, sadəcə əlamətləri ağıllı sıra ilə işlətmək lazımdır.</p>
 
-      <h3><span class="st">2</span> Üsul</h3>
-      <div class="fm">1. Böləni QARŞILIQLI SADƏ vuruqlara ayır:
-   36 = 4·9   45 = 5·9   72 = 8·9   88 = 8·11
-   99 = 9·11  225 = 9·25  792 = 8·9·11
-2. Əvvəl "son rəqəmlər" əlaməti (2ⁿ, 5ⁿ) — son rəqəmi bağlayır.
-3. Sonra 9 (rəqəmlər cəmi) və 11 (tək − cüt yerlər).
-4. Bütün halları yaz, hər şərti yoxla, 0 ilə başlayanı at.</div>
-      <p>Niyə qarşılıqlı sadə? 72 = 6 · 12 yazsaq, 6-ya və 12-yə bölünən 12 ədədi 72-yə bölünmür. Vuruqların ortaq böləni olmamalıdır.</p>
+      <div class="pair">
+        <div class="pair-col usul">
+          <h3><span class="st">2</span> Üsul</h3>
+          <ol class="usul-steps">
+            <li><b>Böləni qarşılıqlı sadə vuruqlara ayır</b>
+              <span class="chips"><span>36 = 4·9</span><span>45 = 5·9</span><span>72 = 8·9</span><span>88 = 8·11</span><span>99 = 9·11</span><span>225 = 9·25</span><span>792 = 8·9·11</span></span></li>
+            <li><b>Əvvəl "son rəqəmlər" əlaməti</b> (2ⁿ, 5ⁿ) — son rəqəmi bağlayır.</li>
+            <li><b>Sonra 9 və 11</b> — rəqəmlər cəmi; tək və cüt yerlərin fərqi.</li>
+            <li><b>Bütün halları yaz</b> — hər şərti yoxla, 0 ilə başlayanı at.</li>
+          </ol>
+          <div class="why"><b>Niyə qarşılıqlı sadə?</b> 72 = 6 · 12 yazsaq, 12 ədədi 6-ya da, 12-yə də bölünür, amma 72-yə bölünmür. Vuruqların ortaq böləni olmamalıdır.</div>
+        </div>
 
-      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
-      <div class="ex">Nümunə 1. <span class="ov">13xy45z</span> yeddirəqəmli ədədi 792-yə bölünür. Ədədi tap.
-  792 = 8 · 9 · 11.
-  8-ə: <span class="ov">45z</span> 8-ə bölünür → 456 → z = 6.
-  9-a: 1 + 3 + x + y + 4 + 5 + 6 = 19 + x + y → x + y = 8 və ya 17.
-  11-ə (sağdan): tək yerlər 6 + 4 + x + 1 = 11 + x,
-                cüt yerlər 5 + y + 3 = 8 + y.
-         fərq 3 + x − y → x − y = −3 və ya 8.
-  x + y = 8 və x − y = 8 → x = 8, y = 0. (Qalan birləşmələrdə x, y rəqəm olmur.)
-  Cavab: 1380456 = 792 · 1743.</div>
-      <div class="ex">Nümunə 2. Rəqəmləri yalnız 0 və 1 olan, 225-ə bölünən ən kiçik ədəd?
-  225 = 9 · 25.
-  25-ə: son iki rəqəm 00, 25, 50, 75 — 0/1 ilə yalnız 00.
-  9-a: rəqəmlər cəmi = birlərin sayı → ən azı 9 dənə 1.
-  Ən kiçik: 11111111100.</div>
+        <div class="pair-col nums">
+          <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+          <div class="wx">
+            <p class="wx-q"><b>Nümunə 1.</b> <span class="ov">13xy45z</span> yeddirəqəmli ədədi 792-yə bölünür. Ədədi tap.</p>
+            <ol class="wx-steps">
+              <li><i>1</i><span><b>Ayır:</b> 792 = 8 · 9 · 11.</span></li>
+              <li><i>2</i><span><b>8-ə:</b> <span class="ov">45z</span> 8-ə bölünür → 456 → z = 6.</span></li>
+              <li><i>3</i><span><b>9-a:</b> 1 + 3 + x + y + 4 + 5 + 6 = 19 + x + y → x + y = 8 və ya 17.<br>
+                <b>11-ə</b> (sağdan): tək yerlər 6 + 4 + x + 1 = 11 + x, cüt yerlər 5 + y + 3 = 8 + y; fərq 3 + x − y → x − y = −3 və ya 8.</span></li>
+              <li><i>4</i><span><b>Halları yoxla:</b> x + y = 8 və x − y = 8 → x = 8, y = 0. Qalan birləşmələrdə x, y rəqəm olmur.</span></li>
+            </ol>
+            <details class="wx-ans"><summary>Cavabı göstər</summary>1380456 = 792 · 1743</details>
+          </div>
+          <div class="wx">
+            <p class="wx-q"><b>Nümunə 2.</b> Rəqəmləri yalnız 0 və 1 olan, 225-ə bölünən ən kiçik ədəd?</p>
+            <ol class="wx-steps">
+              <li><i>1</i><span><b>Ayır:</b> 225 = 9 · 25.</span></li>
+              <li><i>2</i><span><b>25-ə:</b> son iki rəqəm 00, 25, 50, 75 — 0 və 1 ilə yalnız 00.</span></li>
+              <li><i>3</i><span><b>9-a:</b> rəqəmlər cəmi = birlərin sayı → ən azı 9 dənə 1.</span></li>
+            </ol>
+            <details class="wx-ans"><summary>Cavabı göstər</summary>11111111100</details>
+          </div>
+        </div>
+      </div>
+
       <div class="life"><b>Həyatdan: qəbz.</b> 72 eyni dəftər alınıb, qəbzdə məbləğin birinci və sonuncu rəqəmi silinib: <span class="m">*67,9*</span> manat. Qəpiklə: <span class="ov">x679y</span> — 72-yə bölünür. 8-ə: <span class="ov">79y</span> → 792, y = 2. 9-a: <span class="m">x + 6 + 7 + 9 + 2 = x + 24</span> → x = 3. Məbləğ 367,92 manat, bir dəftər <span class="m">36792 : 72 = 511</span> qəpik = <b>5,11 manat</b>.</div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>

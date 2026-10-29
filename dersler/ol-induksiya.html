@@ -39,13 +39,16 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">1 + 3 + 5 + 7 = 16 = 4²</span>, <span class="m">1 + 3 + 5 + 7 + 9 = 25 = 5²</span>. Görünür ki, ilk <span class="m">n</span> tək ədədin cəmi <span class="m">n²</span>-dir. Amma bu 100 halda doğrudur deyə, 101-ci halda da doğrudur demək olarmı? Riyaziyyatda "bir neçə halda yoxladım" sübut deyil. İnduksiya bütün natural <span class="m">n</span> üçün sübutu verir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Üç hissə</h3>
       <p><span class="m">P(n)</span> — <span class="m">n</span>-dən asılı bir iddiadır. Onu bütün natural <span class="m">n</span> üçün sübut etmək üçün:</p>
       <div class="fm">1) Baza:  P(1) doğrudur (və ya ilk n₀ üçün P(n₀)).
 2) Addım: P(k) doğrudur (induksiya fərziyyəsi) ⟹ P(k + 1) doğrudur.
 3) Nəticə: P(n) bütün n ≥ 1 (n ≥ n₀) üçün doğrudur.</div>
       <p>Domino bənzətməsi: baza — ilk domino yıxılır; addım — hər <span class="m">k</span>-cı domino <span class="m">(k + 1)</span>-ciyə toxunur. İkisindən biri çatışmasa, sübut qüvvədən düşür.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) Sübut: 1 + 3 + 5 + … + (2n − 1) = n².
    Baza. n = 1: sol 1, sağ 1² = 1 ✓.
@@ -60,6 +63,9 @@
 3) Sübut: 1·1! + 2·2! + … + n·n! = (n + 1)! − 1.
    Baza. n = 1: 1 = 2! − 1 ✓.
    Addım. (k + 1)! − 1 + (k + 1)·(k + 1)! = (k + 1)!·(1 + k + 1) − 1 = (k + 2)! − 1 ✓ ∎</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Pilləkən: birinci pilləyə çıxa bilirsənsə və hər pillədən növbətiyə çıxa bilirsənsə, istənilən pilləyə çıxa bilərsən. Zəncirvari məktub, dominoların yıxılması, "bir addım irəli" — hamısı induksiyadır. Yalnız bir şərt: baza (başlanğıc pillə) mütləq olmalıdır.</div>
 
       <h3><span class="st">4</span> İnduksiya addımını necə quraq</h3>
@@ -102,12 +108,15 @@ P(k + 1)-i əvvəlcədən yaz: n əvəzinə k + 1</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>"<span class="m">7ⁿ − 1</span> ifadəsi 6 ədədinə bölünür" iddiasını 6 halda yoxlamaq olar, amma hər <span class="m">n</span> üçün? Bölünmə məsələləri induksiyanın ən çox işləyən sahəsidir: ifadədən bölünən hissə ayırırsan, qalanı fərziyyəyə gətirirsən.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Bölünməni induksiya ilə sübut edəndə <span class="m">f(k + 1)</span>-i belə yaz:</p>
       <div class="fm">f(k + 1) = c·f(k) + (bölünən ifadə)      — və ya —
 f(k + 1) = f(k) + (bölünən ifadə)</div>
       <p><span class="m">f(k)</span> fərziyyəyə görə <span class="m">m</span> ədədinə bölünür, ikinci toplanan da bölünürsə, cəm də bölünür. "Bölünən ifadə"ni tapmaq üçün <span class="m">f(k + 1)</span>-də <span class="m">f(k)</span>-nın üstündəki hissəni ayır.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 7ⁿ − 1 ifadəsi 6 ədədinə bölünür.
    Baza. n = 1: 7 − 1 = 6 ✓.
@@ -122,6 +131,9 @@ f(k + 1) = f(k) + (bölünən ifadə)</div>
 3) "Ən böyük bölən" tapmaq: f(n) = n(n + 1)(n + 2).
    f(1) = 6, f(2) = 24, f(3) = 60 → EBOB = 6. Cavab 6-dan böyük ola bilməz.
    Sübut: f(k + 1) − f(k) = 3(k + 1)(k + 2), (k + 1)(k + 2) cütdür → fərq 6 ədədinə bölünür; baza f(1) = 6 ✓.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Kassada yalnız 6 manatlıq əskinas olsa, ümumi məbləğ həmişə 6-ya bölünəcək. Hər dəfə əlavə etdiyin məbləğ də 6-ya bölünürsə, bölünmə "ötürülür" — induksiya addımı məhz budur.</div>
 
       <h3><span class="st">4</span> "Ən böyük bölən" üçün plan</h3>
@@ -165,12 +177,15 @@ Sübut. f(k + 1) = 9·3²ᵏ⁺¹ + 2·2ᵏ⁺² = 9f(k) − 7·2ᵏ⁺² ✓. C
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">2ⁿ &gt; n²</span> iddiasına bax: n = 1 üçün <span class="m">2 &gt; 1</span> ✓, n = 2: <span class="m">4 &gt; 4</span> ✗, n = 3: <span class="m">8 &gt; 9</span> ✗, n = 4: <span class="m">16 &gt; 16</span> ✗, n = 5: <span class="m">32 &gt; 25</span> ✓. Bərabərsizlik <span class="m">n ≥ 5</span> üçün həmişə doğrudur; n = 1 üçün də doğrudur, n = 2, 3, 4 üçün yanlışdır. Belə iddialarda <b>baza n₀</b> məsələnin əsas hissəsidir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">Baza:  ilk n₀ üçün yoxla (əl ilə, kiçik n-ləri sına)
 Addım: k ≥ n₀ üçün P(k) ⟹ P(k + 1)
 Nəticə: P(n) bütün n ≥ n₀ üçün</div>
       <p>Bərabərsizliyin addımında adətən "sol tərəf 2 dəfə (və ya <span class="m">(k + 1)</span> dəfə) artır, sağ tərəf daha az artır" ideyası işləyir. Addımın doğru olması üçün <span class="m">k</span>-nın şərti (məs. <span class="m">k ≥ 5</span>) lazım ola bilər — məhz buna görə baza kiçik <span class="m">n</span>-lərdən başlamır.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 2ⁿ &gt; n² bütün n ≥ 5 üçün.
    Baza. n = 5: 32 &gt; 25 ✓.
@@ -185,6 +200,9 @@ Nəticə: P(n) bütün n ≥ n₀ üçün</div>
    Baza. n = 1: 1 + x ≥ 1 + x ✓.
    Addım. (1 + x)ᵏ⁺¹ = (1 + x)ᵏ·(1 + x) ≥ (1 + kx)(1 + x) = 1 + (k + 1)x + kx² ≥ 1 + (k + 1)x.
    (1 + x ≥ 0 olduğuna görə bərabərsizliyi 1 + x-ə vurmaq olar.) ∎</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> İki bakteriya kolonisi: biri hər saat 2 dəfə, digəri hər saat sabit 100 ədəd artır. Əvvəlcə ikincisi çox ola bilər, amma müəyyən saatdan sonra birincisi həmişə qabaqda olacaq. "Hansı saatdan sonra" sualı məhz n₀-dır.</div>
 
       <h3><span class="st">4</span> n₀-ı necə tapmaq olar</h3>
@@ -237,13 +255,16 @@ Addım. aₖ = 2ᵏ − 1 ⟹ aₖ₊₁ = 2(2ᵏ − 1) + 1 = 2ᵏ⁺¹ − 1 �
       <p>Başqa misal: <span class="m">a₁ = 1</span>, <span class="m">aₙ₊₁ = aₙ + 2n + 1</span> → <span class="m">1; 4; 9; 16</span> → <span class="m">aₙ = n²</span>. <span class="m">aₙ₊₁ = (n + 1)aₙ</span>, <span class="m">a₁ = 1</span> → <span class="m">aₙ = n!</span>.</p>
       <p><b>Xətti rekurrent.</b> <span class="m">aₙ₊₁ = 2aₙ + d</span> üçün: <span class="m">aₙ₊₁ + d = 2(aₙ + d)</span>, yəni <span class="m">aₙ + d = (a₁ + d)·2ⁿ⁻¹</span>. Məsələn <span class="m">a₁ = 2</span>, <span class="m">aₙ₊₁ = 2aₙ − 1</span> → <span class="m">aₙ − 1 = 2ⁿ⁻¹</span> → <span class="m">aₙ = 2ⁿ⁻¹ + 1</span>: 2, 3, 5, 9, 17 ✓.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Güclü induksiya</h3>
       <p>Addımda yalnız <span class="m">P(k)</span> deyil, <span class="m">P(n₀), P(n₀ + 1), …, P(k)</span> hamısını fərz etmək olar. Bu, iki əvvəlki həddən asılı ardıcıllıqlarda (<span class="m">aₙ₊₂ = 3aₙ₊₁ − 2aₙ</span>) və bölməyə əsaslanan məsələlərdə lazımdır. İki əvvəlki hədd lazımdırsa, <b>iki baza</b> yoxlanmalıdır.</p>
       <div class="ex">a₁ = 1, a₂ = 3, aₙ₊₂ = 3aₙ₊₁ − 2aₙ.  Sübut: aₙ = 2ⁿ − 1.
 Baza. a₁ = 1, a₂ = 3 ✓ (2¹ − 1, 2² − 1).
 Addım. aₖ = 2ᵏ − 1 və aₖ₊₁ = 2ᵏ⁺¹ − 1 fərz edək:
 aₖ₊₂ = 3(2ᵏ⁺¹ − 1) − 2(2ᵏ − 1) = 6·2ᵏ − 3 − 2·2ᵏ + 2 = 4·2ᵏ − 1 = 2ᵏ⁺² − 1 ✓</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) Şokolad plitəsi: n parçadan ibarət plitəni (hər dəfə bir parçanı düz xətt boyunca sındırmaqla) n ayrı kvadrata ayırmaq üçün tam n − 1 sındırma lazımdır.
    Baza. n = 1: 0 sındırma ✓.
@@ -255,6 +276,9 @@ aₖ₊₂ = 3(2ᵏ⁺¹ − 1) − 2(2ᵏ − 1) = 6·2ᵏ − 3 − 2·2ᵏ + 
    Baza. 8 = 3 + 5, 9 = 3 + 3 + 3, 10 = 5 + 5.
    Addım (güclü). n ≥ 11 üçün n − 3 ≥ 8 məbləği verilir (fərziyyə) → üzərinə 3 əlavə et ✓.
    7 verilə bilməz: 3x + 5y = 7 tənliyinin natural-sıfır həlli yoxdur (y = 0: 7/3; y = 1: 2/3). Deməli ən böyük verilməyən məbləğ 7 = 3·5 − 3 − 5.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Hanoy qülləsi: <span class="m">n</span> diski köçürmək üçün minimum <span class="m">Hₙ</span> gediş; <span class="m">Hₙ = 2Hₙ₋₁ + 1</span>, <span class="m">H₁ = 1</span>. İlk hədlər 1, 3, 7, 15 → <span class="m">Hₙ = 2ⁿ − 1</span>, induksiya ilə sübut: yuxarıdakı birinci nümunə ilə eyni. 64 disk üçün 2⁶⁴ − 1 gediş lazımdır: saniyədə bir gedişlə yüz milyardlarla il çəkər.</div>
 
       <h3><span class="st">5</span> Olimpiada məsələləri və səhv sübutlar</h3>

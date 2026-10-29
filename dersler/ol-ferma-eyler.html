@@ -47,6 +47,8 @@ Müqayisələri toplamaq, vurmaq, qüvvətə yüksəltmək olar:
 a ≡ b  →  a + c ≡ b + c,  a·c ≡ b·c,  aⁿ ≡ bⁿ</div>
       <p>Bu o deməkdir ki, böyük ədədi hesablamada istənilən an öz qalığı ilə əvəz edə bilərsən: <span class="m">58¹⁰ ≡ 3¹⁰ (mod 5)</span>, çünki <span class="m">58 ≡ 3</span>.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Teorem və isbatın ideyası</h3>
       <div class="fm">Kiçik Ferma teoremi
 p sadədirsə və a ədədi p-yə bölünmürsə:
@@ -54,7 +56,8 @@ aᵖ⁻¹ ≡ 1 (mod p)
 İstənilən a üçün:  aᵖ ≡ a (mod p)</div>
       <p><b>İsbatın ideyası</b> (<span class="m">p = 7</span>, <span class="m">a = 3</span> üzərində). 1, 2, 3, 4, 5, 6 ədədlərini 3-ə vuraq: 3, 6, 9, 12, 15, 18. Onların 7-yə görə qalıqları: 3, 6, 2, 5, 1, 4 — yenə 1-dən 6-ya qədər <b>hamısı</b>, sadəcə başqa sıra ilə. Niyə? Əgər <span class="m">i·a ≡ j·a</span> olsaydı, <span class="m">(i − j)·a</span> fərqi 7-yə bölünərdi; <span class="m">a</span> bölünmür, <span class="m">i − j</span> isə 7-dən kiçikdir — mümkün deyil. Deməli qalıqlar təkrarlanmır.</p>
       <p>İndi hər iki siyahını vuraq: <span class="m">(3·1)(3·2)…(3·6) ≡ 1·2·…·6</span>, yəni <span class="m">3⁶ · 6! ≡ 6! (mod 7)</span>. <span class="m">6!</span> 7-yə bölünmür, onu ixtisar edirik: <span class="m">3⁶ ≡ 1 (mod 7)</span>. Yoxla: <span class="m">3⁶ = 729 = 7·104 + 1</span>. ✓ İstənilən sadə <span class="m">p</span> üçün mühakimə eynidir.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 2¹⁰⁰ mod 7 = ?
    7 sadədir, 2 ona bölünmür → 2⁶ ≡ 1 (mod 7)
@@ -70,6 +73,9 @@ aᵖ⁻¹ ≡ 1 (mod p)
    9² = 81 ≡ 12,  9⁴ ≡ 12² = 144 ≡ 6,  9⁸ ≡ 6² = 36 ≡ 13
    9⁹ = 9⁸ · 9 ≡ 13 · 9 = 117 ≡ 2
    Cavab: 2</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Bu gün bazar ertəsidir. <span class="m">2¹⁰⁰</span> gündən sonra hansı gün olacaq? Nümunə 1-ə görə <span class="m">2¹⁰⁰ ≡ 2 (mod 7)</span> — həftə 2 gün irəli sürüşür: <b>çərşənbə</b>. Təqvim, saat, növbə — hamısı qalıqlarla işləyir.</div>
 
       <h3><span class="st">5</span> Olimpiada məsələsi</h3>
@@ -114,13 +120,16 @@ aᴺ mod p: N-i p − 1-ə böl, N = (p − 1)·q + r → aᴺ ≡ aʳ
 φ(7):   1, 2, 3, 4, 5, 6  →  φ(7) = 6
 p sadədirsə:  φ(p) = p − 1</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Düstur və onun ideyası</h3>
       <div class="fm">φ(pᵏ) = pᵏ − pᵏ⁻¹
 ƏBOB(a, b) = 1 olanda  φ(a·b) = φ(a)·φ(b)
 n = p₁ᵏ¹ · p₂ᵏ² · …  →  φ(n) = n · (1 − 1/p₁) · (1 − 1/p₂) · …</div>
       <p><b>Niyə <span class="m">pᵏ − pᵏ⁻¹</span>?</b> 1-dən <span class="m">pᵏ</span>-yə qədər <span class="m">pᵏ</span> ilə 1-dən böyük ortaq böləni olan ədədlər yalnız <span class="m">p</span>-yə bölünənlərdir: <span class="m">p, 2p, 3p, …, pᵏ</span> — onların sayı <span class="m">pᵏ⁻¹</span>. Qalanları qarşılıqlı sadədir. Məsələn, 1…9 arasında 3, 6, 9 atılır: <span class="m">φ(9) = 9 − 3 = 6</span>.</p>
       <p><b>Hasil qaydası</b> qarşılıqlı sadə vuruqlar üçün doğrudur (isbatı Çin qalıqlar teoremi ilə aparılır). Yoxla: <span class="m">φ(12) = φ(4)·φ(3) = 2·2 = 4</span> ✓. Diqqət: <span class="m">φ(4) ≠ φ(2)·φ(2)</span>, çünki 2 və 2 qarşılıqlı sadə deyil.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) φ(100) = ?
    100 = 2² · 5²
@@ -134,6 +143,9 @@ n = p₁ᵏ¹ · p₂ᵏ² · …  →  φ(n) = n · (1 − 1/p₁) · (1 − 1/
 3) φ(2025) = ?
    2025 = 3⁴ · 5²
    φ = (81 − 27)·(25 − 5) = 54 · 20 = 1080</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Siferblatda 12-dən başlayıb hər dəfə <span class="m">k</span> saat irəli gedirsən. Hansı <span class="m">k</span>-larda əqrəb 12 rəqəmin <b>hamısında</b> dayanacaq? Yalnız ƏBOB(<span class="m">k</span>, 12) = 1 olanda: <span class="m">k</span> = 1, 5, 7, 11. Belə addımların sayı düz <span class="m">φ(12) = 4</span>-dür. Məsələn, <span class="m">k = 4</span> olanda əqrəb yalnız 4, 8, 12 rəqəmlərində dayanır.</div>
 
       <h3><span class="st">5</span> Olimpiada məsələsi</h3>
@@ -171,12 +183,15 @@ Məsələn, φ(12) = 4:  (1, 11), (5, 7).</div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>"<span class="m">7²⁰²⁶</span> ədədinin son rəqəmi", "<span class="m">3²⁰²⁶</span> ədədinin son iki rəqəmi" — olimpiadanın sevimli sualları. Son rəqəm = qalıq mod 10, son iki rəqəm = qalıq mod 100. 10 və 100 sadə deyil, ona görə Fermanın ümumiləşməsi lazımdır.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Teorem və isbatın ideyası</h3>
       <div class="fm">Eyler teoremi
 ƏBOB(a, m) = 1  →  a^φ(m) ≡ 1 (mod m)
 m = p sadə olanda φ(p) = p − 1 — bu, Ferma teoremidir.</div>
       <p><b>İdeya</b> Fermadakı kimidir, sadəcə 1, 2, …, <span class="m">p − 1</span> əvəzinə <span class="m">m</span> ilə qarşılıqlı sadə olan <span class="m">φ(m)</span> ədəd götürülür. <span class="m">m = 10</span>, <span class="m">a = 3</span>: 1, 3, 7, 9 ədədlərini 3-ə vuraq — 3, 9, 21, 27, qalıqlar 3, 9, 1, 7. Yenə həmin dörd ədəd! Vursaq: <span class="m">3⁴ · (1·3·7·9) ≡ 1·3·7·9</span>, ixtisar edirik: <span class="m">3⁴ ≡ 1 (mod 10)</span>. Yoxla: <span class="m">3⁴ = 81</span> ✓.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 7²⁰²⁶ ədədinin son rəqəmi
    φ(10) = 4, ƏBOB(7, 10) = 1 → 7⁴ ≡ 1 (mod 10)
@@ -195,6 +210,9 @@ m = p sadə olanda φ(p) = p − 1 — bu, Ferma teoremidir.</div>
    φ(20) = 8;  867 = 8·108 + 3 → 13³
    13² = 169 ≡ 9,  13³ ≡ 9 · 13 = 117 ≡ 17
    Cavab: 17</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> İnternetdə bank kartı ilə ödəniş edəndə məlumat RSA üsulu ilə şifrələnir. Onun əsasında məhz Eyler teoremi durur: mesaj böyük bir qüvvətə yüksəldilir və qalıq götürülür, açar isə φ(m) ilə hesablanır. Sənin indi öyrəndiyin hesab hər gün milyonlarla ödənişi qoruyur.</div>
 
       <h3><span class="st">4</span> Qüvvət qülləsi</h3>
@@ -232,6 +250,8 @@ Son rəqəm: mod 10 (φ = 4); son iki rəqəm: mod 100 (φ = 40)
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">96!</span> ədədində 150 rəqəm var. Onun 97-yə bölünməsindən qalan qalığı isə bir sətirdə tapmaq olar. Faktorial və sadə ədəd birlikdə görünəndə — Vilson teoremini xatırla.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Teorem və isbatın ideyası</h3>
       <div class="fm">Vilson teoremi
 p sadədirsə:  (p − 1)! ≡ −1 (mod p)
@@ -240,7 +260,8 @@ yəni (p − 1)! + 1 ədədi p-yə bölünür.</div>
       <div class="fm">2·6 = 12 ≡ 1,  3·4 = 12 ≡ 1,  5·9 = 45 ≡ 1,  7·8 = 56 ≡ 1  (mod 11)</div>
       <p>Cütsüz yalnız 1 və 10 qalır — onlar özü-özünün tərsidir (<span class="m">x² ≡ 1</span> yalnız <span class="m">x ≡ ±1</span> üçün). Deməli <span class="m">10! ≡ 1 · (1·1·1·1) · 10 ≡ 10 ≡ −1 (mod 11)</span>. İstənilən sadə <span class="m">p</span> üçün eyni cütləşmə işləyir.</p>
       <p><b>Mürəkkəb ədəd üçün</b> isə tərsinə: <span class="m">n</span> mürəkkəbdirsə və <span class="m">n ≠ 4</span>, onda <span class="m">(n − 1)!</span> ədədi <span class="m">n</span>-ə tam bölünür (qalıq 0). Məsələn, <span class="m">5! = 120</span> ədədi 6-ya bölünür. (İstisna: <span class="m">3! = 6 ≡ 2 (mod 4)</span>.)</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 16! mod 17 = ?
    Vilson: 16! ≡ −1 ≡ 16.   Cavab: 16
@@ -253,6 +274,9 @@ yəni (p − 1)! + 1 ədədi p-yə bölünür.</div>
    88! = 88 · 87 · 86! ≡ (−1)(−2) · 86! = 2 · 86! ≡ −1 ≡ 88
    2 · 86! ≡ 88 → 86! ≡ 44   (yoxla: 2 · 44 = 88)
    Cavab: 44</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Vilson teoremi sadəliyin dəqiq meyarıdır: <span class="m">n &gt; 1</span> sadədir ⇔ <span class="m">(n − 1)! + 1</span> ədədi <span class="m">n</span>-ə bölünür. Amma kompüter bunu sadəlik yoxlaması üçün işlətmir — <span class="m">(n − 1)!</span> hesablamaq çox uzun çəkir. Proqramçılar bunun əvəzinə Ferma teoreminə əsaslanan sürətli testlərdən istifadə edir.</div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>

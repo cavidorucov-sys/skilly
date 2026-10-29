@@ -111,6 +111,8 @@ x − a-ya bölmə: qalıq ədəddir; Horner: endir, a-ya vur, topla
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">x¹⁰⁰ − 3x⁵¹ + 2x + 7</span> çoxhədlisini <span class="m">x + 1</span>-ə böləndə Horner cədvəli 101 xanalı olardı. Bezu teoremi deyir: qalığı tapmaq üçün <b>bircə ədəd yerinə qoymaq</b> kifayətdir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Teorem və isbatı</h3>
       <div class="fm">Bezu teoremi
 P(x)-i x − a-ya böldükdə qalıq P(a)-ya bərabərdir.</div>
@@ -120,7 +122,8 @@ P(x)-i x − a-ya böldükdə qalıq P(a)-ya bərabərdir.</div>
 2) kx + m-ə bölmədə qalıq = P(−m/k)   (k ≠ 0)
 3) P tam əmsallıdırsa, P(m) − P(n) bölünür m − n-ə</div>
       <p>3-cü nəticənin səbəbi: <span class="m">mᵏ − nᵏ</span> həmişə <span class="m">m − n</span>-ə bölünür (növbəti mövzuda isbat edəcəyik), <span class="m">P(m) − P(n)</span> isə belə fərqlərin tam əmsallarla cəmidir.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) (x¹⁰⁰ − 3x⁵¹ + 2x + 7) : (x + 1),  qalıq?
    a = −1:  (−1)¹⁰⁰ = 1,  (−1)⁵¹ = −1
@@ -132,6 +135,8 @@ P(x)-i x − a-ya böldükdə qalıq P(a)-ya bərabərdir.</div>
 3) (2x³ − x + 4) : (2x − 1),  qalıq?
    2x − 1 = 0  →  x = 1/2
    P(1/2) = 2 · 1/8 − 1/2 + 4 = 1/4 − 1/2 + 4 = 15/4</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> İki parametr — iki tənlik</h3>
       <div class="ex">x³ + ax² + bx − 6 çoxhədlisi həm x − 1-ə, həm x + 2-yə bölünür. a, b?
@@ -174,13 +179,16 @@ Bölünmə şərti → P(a) = 0 → parametr üçün tənlik</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Olimpiadanın sevimli sualı: "<span class="m">P(x)</span>-i <span class="m">x − 1</span>-ə böldükdə qalıq 3, <span class="m">x − 2</span>-yə böldükdə 5-dir. <span class="m">(x − 1)(x − 2)</span>-yə böldükdə qalıq nədir?" <span class="m">P(x)</span>-in özü məlum deyil — amma cavab tapılır.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Bölən ikinci dərəcəlidir, deməli qalıq birinci dərəcəlidir: <span class="m">R(x) = px + q</span>.</p>
       <div class="fm">P(x) = (x − a)(x − b) · Q(x) + px + q
 x = a:   P(a) = pa + q
 x = b:   P(b) = pb + q
 İki tənlikdən p və q tapılır.</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) P(1) = 3,  P(2) = 5.  (x − 1)(x − 2)-yə bölmədə qalıq?
    p + q = 3,  2p + q = 5  →  p = 2, q = 1
@@ -195,6 +203,9 @@ x = b:   P(b) = pb + q
    P(1) = 1:    p + q = 1
    P(2) = 2¹⁰⁰: 2p + q = 2¹⁰⁰   →  p = 2¹⁰⁰ − 1,  q = 2 − 2¹⁰⁰
    Cavab: R(x) = (2¹⁰⁰ − 1)x + 2 − 2¹⁰⁰</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> <span class="m">R(x) = px + q</span> qalığının qrafiki <span class="m">(a; P(a))</span> və <span class="m">(b; P(b))</span> nöqtələrindən keçən düz xəttdir. Kompüter oyunlarında personajın iki mövqe arasındakı hərəkəti də belə hesablanır: iki məlum nöqtədən düz xətt keçirilir (buna <b>interpolyasiya</b> deyilir).</div>
 
       <h3><span class="st">4</span> Bir neçə kök — bir neçə vuruq</h3>
@@ -234,12 +245,15 @@ Fərqli köklər → bölən onların hasilidir</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Bəzən cavabın <b>şəklini</b> bilirik, amma əmsallarını yox: "<span class="m">x⁴ + 4</span>-ü iki kvadrat üçhədlinin hasili kimi yaz", "<span class="m">(x − 1)²</span>-ə bölünən <span class="m">x³ + ax + b</span>-ni tap". Onda əmsalları hərflərlə yazır və tapırıq.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">İki çoxhədli eynidir  ⇔  eyni dərəcəli hədlərin əmsalları bərabərdir
 1) Naməlum əmsallı şəkil yaz
 2) Mötərizələri aç
 3) x³, x², x, sərbəst hədd üzrə bərabərlik yaz və həll et</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) x³ − 6x² + 11x − 6 = (x − 1)(x² + mx + n).  m, n?
    Sağ tərəf: x³ + (m − 1)x² + (n − m)x − n
@@ -257,6 +271,9 @@ Fərqli köklər → bölən onların hasilidir</div></div>
    P(x) = ax² + bx + c:  P(x + 1) − P(x) = 2ax + (a + b)
    2a = 2 → a = 1;  a + b = 3 → b = 2;  c = P(0) = 1
    P(x) = x² + 2x + 1,  P(5) = 36</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Kimyada reaksiya tənliyini tarazlaşdırmaq — eyni üsuldur. <span class="m">a H₂ + b O₂ → c H₂O</span>: hidrogen üçün <span class="m">2a = 2c</span>, oksigen üçün <span class="m">2b = c</span>. Ən kiçik tam həll <span class="m">a = 2, b = 1, c = 2</span>: <span class="m">2H₂ + O₂ → 2H₂O</span>. Hər element bir "dərəcə" kimidir — sol və sağ tərəfdə sayı eyni olmalıdır.</div>
 
       <h3><span class="st">4</span> Olimpiada məsələləri</h3>

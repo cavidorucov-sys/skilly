@@ -93,9 +93,36 @@
       });
     });
   }
+  // worked examples beside a method: each "Cavab: …" line stays hidden until asked for
+  function hideExAnswers(root) {
+    root.querySelectorAll(".pair .nums .ex").forEach(ex => {
+      for (let n = ex.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType !== 3) continue;
+        const m = /(^|\n)[ \t]*(Cavab:)/.exec(n.data);
+        if (!m) continue;
+        const start = n.splitText(m.index + m[0].length - m[2].length);
+        n.data = n.data.replace(/\s+$/, "");
+        const hid = document.createElement("span"); hid.className = "ex-cavab"; hid.hidden = true;
+        ex.insertBefore(hid, start);
+        // the answer runs to the end of its line, across inline elements
+        let cur = start;
+        while (cur) {
+          const nl = cur.nodeType === 3 ? cur.data.indexOf("\n") : -1;
+          if (nl >= 0) { cur.splitText(nl); hid.append(cur); break; }
+          const nx = cur.nextSibling; hid.append(cur); cur = nx;
+        }
+        const b = document.createElement("button"); b.type = "button"; b.className = "ans-btn"; b.textContent = "Cavabı göstər";
+        b.addEventListener("click", () => { hid.hidden = false; b.remove(); });
+        ex.insertBefore(b, hid);
+        if (hid.nextSibling && hid.nextSibling.nodeType === 3) hid.nextSibling.data = hid.nextSibling.data.replace(/^\n/, "");
+        n = hid;
+      }
+    });
+  }
   document.addEventListener("DOMContentLoaded", () => {
     illustrate();
     hideAnswers(document);
+    hideExAnswers(document);
     // links that leave the lesson open in the portal window, not inside the frame
     document.querySelectorAll('a[href^="../"]').forEach(a => { a.target = "_top"; });
     document.querySelectorAll("article.lesson").forEach((art, li) => stepify(art, name + ":" + li));
@@ -110,6 +137,8 @@
     kids.forEach(k => {
       if (CHECK.some(c => k.classList.contains(c))) { tail.push(k); return; }
       if (k.tagName === "H3") { cur = { title: k.textContent.replace(/^\s*\d+\s*/, "").trim(), nodes: [k] }; steps.push(cur); return; }
+      // a .pair (method beside examples) is one step, titled after its first heading
+      if (k.classList.contains("pair")) { const h = k.querySelector("h3"); cur = { title: h ? h.textContent.replace(/^\s*\d+\s*/, "").trim() + " və nümunələr" : "Üsul", nodes: [k] }; steps.push(cur); return; }
       (cur ? cur.nodes : intro).push(k);
     });
     if (!steps.length) return;

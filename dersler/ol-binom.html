@@ -51,6 +51,8 @@ n = 6:  1   6  15  20  15   6   1</div>
       <div class="fm">(a + b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴
 (a − b)⁴ = a⁴ − 4a³b + 6a²b² − 4ab³ + b⁴</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Niyə belədir: C(n, k)</h3>
       <p><span class="m">(a + b)ⁿ = (a + b)(a + b)…(a + b)</span> — <span class="m">n</span> mötərizə. Mötərizələri açanda hər mötərizədən ya <span class="m">a</span>, ya <span class="m">b</span> götürürük. <span class="m">aⁿ⁻ᵏbᵏ</span> həddi o vaxt alınır ki, <span class="m">n</span> mötərizədən düz <span class="m">k</span> dənəsində <span class="m">b</span> seçək. Belə seçimlərin sayı <b>C(n, k)</b>-dır (dərsliklərdə <span class="m">Cₙᵏ</span> də yazılır):</p>
       <div class="fm">C(n, k) = n! / (k!·(n − k)!) = n·(n − 1)·…·(n − k + 1) / (1·2·…·k)
@@ -58,7 +60,8 @@ n = 6:  1   6  15  20  15   6   1</div>
 Simmetriya: C(n, k) = C(n, n − k)
 Paskal qaydası: C(n + 1, k + 1) = C(n, k) + C(n, k + 1)</div>
       <p>Paskal qaydasının izahı: <span class="m">n + 1</span> nəfərdən <span class="m">k + 1</span> nəfər seçirik. Elvin ya seçilir (qalan <span class="m">n</span> nəfərdən daha <span class="m">k</span> nəfər), ya seçilmir (<span class="m">n</span> nəfərdən <span class="m">k + 1</span> nəfər).</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) (x + 2)⁴ = ?
    Sətir 1, 4, 6, 4, 1:
@@ -68,6 +71,9 @@ Paskal qaydası: C(n + 1, k + 1) = C(n, k) + C(n, k + 1)</div>
 
 3) 11⁴ = (10 + 1)⁴ = 10⁴ + 4·10³ + 6·10² + 4·10 + 1 = 14641
    (11-in qüvvətləri Paskal sətirlərini "rəqəmlərlə" yazır)</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Şəhər küçələri dama-dama torudur. Evdən məktəbə 3 məhəllə şərqə, 2 məhəllə şimala getmək lazımdır. Ən qısa yolların sayı — 5 addımdan hansı 2-sinin şimala olduğunu seçmək: <span class="m">C(5, 2) = 10</span>. Hər kəsişməyə çatan yolların sayı da Paskal qaydası ilə hesablanır: soldan gələnlər + aşağıdan gələnlər.</div>
 
       <h3><span class="st">5</span> Olimpiada məsələsi</h3>
@@ -104,10 +110,13 @@ Sətrin cəmi 2ⁿ;  C(n, k) = C(n, n − k)</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">(2x − 3)¹⁰</span> açılışında 11 hədd var — hamısını yazmaq uzundur. Olimpiadada adətən bir həddi ("<span class="m">x³</span>-ün əmsalı", "sərbəst hədd") və ya bütün əmsalların cəmini soruşurlar. İkisinin də qısa yolu var.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Ümumi hədd</h3>
       <div class="fm">(A + B)ⁿ açılışının ümumi həddi:  C(n, k) · Aⁿ⁻ᵏ · Bᵏ,   k = 0, 1, …, n
 x-in lazım olan qüvvətini verən k-nı tap → hesabla</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) (2x − 3)⁵ açılışında x³-ün əmsalı
    A = 2x, B = −3:  C(5, k)·(2x)⁵⁻ᵏ·(−3)ᵏ
@@ -122,6 +131,8 @@ x-in lazım olan qüvvətini verən k-nı tap → hesabla</div>
 3) (x − 2/x²)⁶ açılışında sərbəst hədd
    C(6, k)·x⁶⁻ᵏ·(−2)ᵏ·x⁻²ᵏ → üst 6 − 3k = 0 → k = 2
    C(6, 2)·(−2)² = 15·4 = 60</div>
+      </div>
+      </div>
 
       <h3><span class="st">4</span> Əmsalların cəmi: x = 1, x = 0, x = −1</h3>
       <div class="fm">P(x) = aₙxⁿ + … + a₁x + a₀
@@ -170,6 +181,8 @@ Cüt qüvvətlər: (P(1) + P(−1))/2</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>"Sübut et ki, <span class="m">2¹⁰⁰ − 1</span> ədədi 15-ə bölünür." Bu ədədi hesablamaq olmur, amma onun bölənlərini bir düsturla görmək olur.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Düsturlar</h3>
       <div class="fm">aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + aⁿ⁻²b + … + abⁿ⁻² + bⁿ⁻¹)
 n tək:  aⁿ + bⁿ = (a + b)(aⁿ⁻¹ − aⁿ⁻²b + … − abⁿ⁻² + bⁿ⁻¹)
@@ -180,7 +193,8 @@ Nəticə (a, b — tam ədədlər, n natural):
 • n cüt olanda aⁿ − bⁿ bölünür a + b-yə (a + b ≠ 0)</div>
       <p><b>İsbatın ideyası</b> (Bezu teoremi ilə). <span class="m">P(x) = xⁿ − bⁿ</span> çoxhədlisində <span class="m">P(b) = 0</span>, deməli <span class="m">P(x)</span> bölünür <span class="m">x − b</span>-yə. <span class="m">n</span> tək olanda <span class="m">Q(x) = xⁿ + bⁿ</span> üçün <span class="m">Q(−b) = −bⁿ + bⁿ = 0</span>, deməli bölünür <span class="m">x + b</span>-yə. <span class="m">n</span> cüt olanda <span class="m">xⁿ − bⁿ</span> üçün <span class="m">x = −b</span> də kökdür.</p>
       <p>Qısa yazılış: <span class="m">a mod m</span> — <span class="m">a</span>-nı <span class="m">m</span>-ə böldükdə qalıq; <span class="m">a ≡ b (mod m)</span> — <span class="m">a</span> və <span class="m">b</span> eyni qalıq verir.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 2¹⁰⁰ − 1 bölünür 3-ə və 15-ə
    2¹⁰⁰ − 1 = 4⁵⁰ − 1⁵⁰  →  bölünür 4 − 1 = 3-ə
@@ -192,6 +206,9 @@ Nəticə (a, b — tam ədədlər, n natural):
 
 4) 3¹⁰⁰ mod 4 = ?
    100 cüt → 3¹⁰⁰ − 1¹⁰⁰ bölünür 3 + 1 = 4-ə → qalıq 1</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Məlum ən böyük sadə ədədlər <span class="m">2ᵖ − 1</span> şəklindədir (Mersenn ədədləri); onların axtarışında bütün dünyadan minlərlə kompüter iştirak edir. Niyə üst <span class="m">p</span> sadə olmalıdır? Aşağıdakı olimpiada məsələsi bunu göstərir.</div>
 
       <h3><span class="st">4</span> Olimpiada məsələləri</h3>
@@ -231,12 +248,15 @@ a + b  bölür  aⁿ − bⁿ  (n cüt, a + b ≠ 0)</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p><span class="m">7¹⁰⁰</span> ədədində 85 rəqəm var. Onu 48-ə böldükdə qalığı tapmaq üçün bircə müşahidə kifayətdir: <span class="m">7² = 49 = 48 + 1</span>.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <div class="fm">(m + 1)ⁿ = mⁿ + C(n,1)mⁿ⁻¹ + … + C(n,n−1)·m + 1  ≡  1   (mod m)
 (m − 1)ⁿ ≡ (−1)ⁿ   (mod m)</div>
       <p>Açılışda sonuncudan başqa bütün hədlərdə <span class="m">m</span> vuruğu var. Deməli qüvvətin əsasını (və ya onun kiçik qüvvətini) <b>m ± 1</b> şəklinə salmaq lazımdır.</p>
       <div class="fm">Plan: bᵉ = m ± 1 tap;  N = e·q + r;  bᴺ = (bᵉ)^q · bʳ ≡ (±1)^q · bʳ</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 7¹⁰⁰ mod 48
    7² = 49 = 48 + 1  →  7¹⁰⁰ = (48 + 1)⁵⁰ ≡ 1.   Cavab: 1
@@ -253,6 +273,9 @@ a + b  bölür  aⁿ − bⁿ  (n cüt, a + b ≠ 0)</div></div>
    (20 + 1)⁵⁰ = 1 + 50·20 + C(50, 2)·20² + …
    üçüncü həddən başlayaraq hamısı 100-ə bölünür
    ≡ 1 + 1000 = 1001 → son iki rəqəm 01</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Bu gün bazar ertəsidir. <span class="m">8¹⁰⁰</span> gündən sonra hansı gün olacaq? <span class="m">8 = 7 + 1</span>, deməli <span class="m">8¹⁰⁰ ≡ 1 (mod 7)</span> — həftə cəmi 1 gün sürüşür: çərşənbə axşamı. Təqvim, saat, növbə cədvəli — hamısı qalıq hesabıdır.</div>
 
       <h3><span class="st">4</span> Olimpiada məsələləri</h3>

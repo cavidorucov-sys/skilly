@@ -39,13 +39,16 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>ƏBOB(1071; 462) tap. Vuruqlara ayırmaq olar, amma 1071-in böləni 17 olduğunu tapmaq vaxt aparır. Ədəd 6 rəqəmli olsa, iş daha da uzanır. Evklid (təxminən 2300 il əvvəl) elə bir yol tapıb ki, heç bir vuruq axtarmadan, yalnız <b>qalıqlı bölmə</b> ilə ƏBOB tapılır. Kompüterlər bu gün də məhz belə hesablayır.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Tutaq ki, <span class="m">a = b · q + r</span> (qalıqlı bölmə, <span class="m">0 ≤ r &lt; b</span>). Onda</p>
       <div class="fm">ƏBOB(a; b) = ƏBOB(b; r)
 xüsusi halda:  ƏBOB(a; b) = ƏBOB(a − b; b)</div>
       <p><b>Niyə (isbatın ideyası).</b> <span class="m">d</span> həm <span class="m">a</span>-nı, həm <span class="m">b</span>-ni bölürsə, <span class="m">r = a − bq</span> fərqini də bölür. Tərsinə: <span class="m">d</span> həm <span class="m">b</span>-ni, həm <span class="m">r</span>-i bölürsə, <span class="m">a = bq + r</span> cəmini də bölür. Deməli <span class="m">(a; b)</span> və <span class="m">(b; r)</span> cütlərinin ortaq bölənləri <b>eyni</b> çoxluqdur — ən böyükləri də eynidir.</p>
       <p>Alqoritm: böyüyü kiçiyə qalıqla böl; sonra böləni qalığa böl; sonra yenə böləni qalığa… Qalıqlar hər dəfə kiçilir, nə vaxtsa 0 olur. <b>Son sıfırdan fərqli qalıq — ƏBOB-dur.</b></p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">Nümunə 1. ƏBOB(1071; 462)
   1071 = 2 · 462 + 147
@@ -71,6 +74,8 @@ Nümunə 2. ƏBOB(3587; 2743)
           <text x="215" y="40" text-anchor="middle" class="lbl">2×2</text>
         </svg>
         <div class="cap"><p>ƏBOB(8; 3) şəkildə: 8 × 3 düzbucaqlıdan ən böyük kvadratları kəsirik. <span class="m">8 = 2 · 3 + 2</span> — iki 3×3; <span class="m">3 = 1 · 2 + 1</span> — bir 2×2; <span class="m">2 = 2 · 1 + 0</span> — iki 1×1. Ən kiçik kvadratın tərəfi 1 = ƏBOB. Qismətlərin cəmi (2 + 1 + 2 = 5) — kvadratların sayıdır.</p></div>
+      </div>
+      </div>
       </div>
 
       <h3><span class="st">4</span> Olimpiada məsələsi</h3>

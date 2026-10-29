@@ -39,6 +39,8 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Telefonun şarj cihazı kiçik güclüdür, ona görə telefon yavaş dolur. Elektrik sobası böyük güclüdür, ona görə otağı tez qızdırır, amma sayğac da sürətlə fırlanır. Güc cihazın nə qədər sürətlə enerji işlətdiyini göstərir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Cərəyanın işi</h3>
       <div class="fig">
         <svg viewBox="0 0 290 165" role="img" aria-label="Lampa, ampermetr və voltmetr: güc P = UI"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><polyline points="60,75 60,40 250,40 250,140 60,140 60,85" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="47" y1="75" x2="73" y2="75" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="53" y1="85" x2="67" y2="85" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="43" y="72" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="80" y="84" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">U</text><circle cx="115" cy="40" r="12" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="115" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">A</text><circle cx="195" cy="40" r="11" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="187.5" y1="32.5" x2="202.5" y2="47.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="187.5" y1="47.5" x2="202.5" y2="32.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><polyline points="160,40 160,100 178,100" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="212,100 230,100 230,40" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="160" cy="40" r="3.2" fill="var(--ink,#17171a)"/><circle cx="230" cy="40" r="3.2" fill="var(--ink,#17171a)"/><circle cx="195" cy="100" r="12" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="195" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">V</text></svg>
@@ -54,7 +56,8 @@
       <div class="fm">P = U·I = I²·R = U²/R</div>
       <p>Hansını götürmək məsələdə nə verildiyindən asılıdır. <span class="m">I</span> və <span class="m">R</span> məlumdursa — <span class="m">I²R</span>. <span class="m">U</span> və <span class="m">R</span> məlumdursa — <span class="m">U²/R</span>. Aralarında ən vacib fərq: <b>ardıcıl</b> birləşmədə cərəyan eynidir, <span class="m">P = I²R</span> işlədirik; <b>paralel</b> birləşmədə gərginlik eynidir, <span class="m">P = U²/R</span> işlədirik.</p>
       <p>Cihazın üzərində yazılan "220 V, 1100 W" <b>nominal</b> dəyərdir: cihaz 220 V-da normal işləyəndə gücü 1100 W-dır. Buradan cərəyan <span class="m">I = P/U = 5 A</span> və müqavimət <span class="m">R = U²/P = 44 Ω</span> tapılır.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">Nümunə 1. Lampa 12 V-luq mənbədən 0,5 A cərəyan çəkir.
 Gücü və 10 dəqiqədə cərəyanın işi?
@@ -74,6 +77,9 @@ gücü nə olar? (Müqavimət dəyişmir.)
   P = U²/R = 110²/48,4 = 12100/48,4 = 250 W
   Qısa yol: gərginlik 2 dəfə azaldı → güc 2² = 4 dəfə azaldı: 1000/4 = 250 W
   (Cavab 500 W deyil — güc gərginliyə düz yox, kvadratına mütənasibdir.)</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Kondisionerin üzərində 2,2 kW yazılıb. Şəbəkə 220 V olduğundan o, <span class="m">2200/220 = 10 A</span> cərəyan çəkir. 16 A-lik sigortası olan xəttə bu kondisionerlə yanaşı 1,5 kW-lıq çaydan qoşsaq, ümumi cərəyan <span class="m">10 + 6,8 = 16,8 A</span> olar və sigorta kəsilər.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
@@ -124,12 +130,15 @@ R sabit olanda  P ∼ U²</div></div>
       <div class="fm">Ardıcıl:  Q₁/Q₂ = R₁/R₂
 Paralel:  Q₁/Q₂ = R₂/R₁</div>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">4</span> Suyun qızdırılması</h3>
       <p>Qızdırıcı suyu qızdıranda onun gördüyü iş (<span class="m">A = Pt</span>) suyun aldığı istilikdən böyük olur: bir hissə qabı və havanı qızdırır. <b>Faydalı iş əmsalı</b> (FİƏ) <span class="m">η</span> faydalı hissənin nisbətidir.</p>
       <div class="fm">Q = c·m·ΔT       (suyun aldığı istilik)
 A = P·t           (qızdırıcının işi)
 η = Q/A    →   P·t·η = c·m·ΔT</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
       <div class="ex">Nümunə 1. Spiralın müqaviməti 24 Ω, cərəyan 5 A, 2 dəqiqə.
   t = 120 s
@@ -148,6 +157,9 @@ a) ardıcıl, b) paralel qoşulub. Hər spiralın istilik nisbəti?
   b) Paralel, gərginlik eynidir: Q₁/Q₂ = 40/10 = 4
      (P₁ = 100²/10 = 1000 W, P₂ = 100²/40 = 250 W)
   Hər iki halda ən çox qızan fərqlidir.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Elektrik ütüsündə spiral nixromdan (ρ = 1,1 Ω·mm²/m) hazırlanır, onu qidalandıran mis kabel isə qızmır: eyni 5 A cərəyanda spiralın müqaviməti kabelin müqavimətindən yüzlərlə dəfə böyükdür, deməli istilik də o qədər çoxdur. Kabelin şnuru qızırsa, bu pis əlamətdir: ya cərəyan həddindən çoxdur, ya kontakt zəifdir.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
@@ -175,6 +187,8 @@ Su:  c·m·ΔT = η·P·t,   c = 4200 J/(kg·°C)</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Evinizə elektrik sayğacı qoyulub. Ay sonunda ödəniş "kilovat-saat" (kWh) ilə hesablanır. Hansı cihazın pulu çox aparır, lampanı LED ilə əvəz etməyə dəyərmi — bunu bu dərsdə hesablayacağıq.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> kWh nədir</h3>
       <div class="fig">
         <svg viewBox="0 0 260 120" role="img" aria-label="Elektrik sayğacı"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="30" y="20" width="200" height="80" rx="8" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="3"/><rect x="55" y="38" width="150" height="30" fill="var(--accent-soft,#f6d5d5)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="130" y="60" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">4 6 7 0 , 5</text><text x="130" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">kWh</text></svg>
@@ -189,7 +203,8 @@ Su:  c·m·ΔT = η·P·t,   c = 4200 J/(kg·°C)</div></div>
       <p>Xərc sadədir:</p>
       <div class="fm">Xərc = E (kWh) · tarif (qəpik/kWh)
 100 qəpik = 1 manat</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">Nümunə 1. 2 kW-lıq elektrik sobası gündə 5 saat, 30 gün işləyir.
 Tarif 10 qəpik/kWh.
@@ -207,6 +222,9 @@ Tarif 8 qəpik. Ödəniş və enerji MJ ilə?
   E = 4670 − 4520 = 150 kWh
   Ödəniş: 150·8 = 1200 qəpik = 12 manat
   E = 150·3,6 = 540 MJ</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Gücü ən çox olan cihaz pulu ən çox aparan cihaz deyil. Elektrik çaydanı 2 kW-dır, amma gündə cəmi 10 dəqiqə işləyir: <span class="m">2·(1/6) = 0,33 kWh</span>. Soyuducu isə 0,1 kW-dır, amma gün boyu işləyir (təxminən 10 saat tam işləmə): 1 kWh. Xərc <b>güc × vaxt</b>-dır.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
@@ -240,6 +258,8 @@ Gücü yox, güc·vaxtı müqayisə et</div></div>
       <div class="fm">R = U₀²/P₀</div>
       <p>Eyni gərginlik üçün yazılmış lampalarda <b>böyük nominal güc → kiçik müqavimət</b>. 100 W-lıq lampa 40 W-lıqdan kiçik müqavimətlidir.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">3</span> Ardıcıl və paralel</h3>
       <div class="fig">
         <svg viewBox="0 0 260 150" role="img" aria-label="İki lampa ardıcıl"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><polyline points="40,75 40,36 220,36 220,120 40,120 40,85" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="36" r="11" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="92.5" y1="28.5" x2="107.5" y2="43.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="92.5" y1="43.5" x2="107.5" y2="28.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><text x="100" y="19" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><circle cx="170" cy="36" r="11" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="162.5" y1="28.5" x2="177.5" y2="43.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="162.5" y1="43.5" x2="177.5" y2="28.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><text x="170" y="19" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><line x1="27" y1="75" x2="53" y2="75" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="33" y1="85" x2="47" y2="85" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="23" y="72" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="60" y="84" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">U</text></svg>
@@ -257,7 +277,8 @@ Gücü yox, güc·vaxtı müqayisə et</div></div>
 Paralel:  P₁/P₂ = R₂/R₁
 Gərginlik U ≠ U₀ olsa:  P = P₀·(U/U₀)²   (tək lampa)</div>
       <p>Paralel qoşulmuş lampalar normal gərginlikdə nominal gücdədir. Ardıcıl qoşulmuş lampalarda gərginlik bölünür, heç biri öz nominalında işləmir. İki lampadan biri çox yüklənə bilər — məsələdə "heç biri yanmasın" şərti görsən, cərəyanı nominal cərəyanlarla məhdudlaşdır.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
       <div class="ex">Nümunə 1 (RFO, rayon mərhələsi tipli).
 "6 V, 3 W" və "6 V, 6 W" lampaları ardıcıl qoşulub. Heç biri
@@ -281,6 +302,9 @@ a) 12 V-a paralel;  b) 24 V-a ardıcıl qoşulur. Nə olur?
      P₁ = 1,5²·12 = 27 W (nominal 12 W-dan 2 dəfədən çox!)
      P₂ = 1,5²·4 = 9 W
      Nominal rejim aşılır; 12 W-lıq lampa sıradan çıxa bilər.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Köhnə yeni il girlandalarında lampalar ardıcıl olurdu. Bir lampa yanıb tel kimi qısa qapananda qalan lampaların hər birinə düşən gərginlik artır, onlar daha parlaq yanır, bir müddətdən sonra yanıb sönürlər. Paralel girlandalarda isə hər lampa öz gərginliyindədir.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>

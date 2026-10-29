@@ -39,6 +39,8 @@
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Bir kağızı yarıya qatlasan, qat sayı 1, 2, 4, 8, 16, … olur. Hər dəfə <b>2 ilə vurulur</b>. 10 qatdan sonra neçə qat var? Hamısını yazmaq lazım deyil: <span class="m">2¹⁰</span>. Belə ardıcıllığı düsturla idarə edəcəyik.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Hər hədd əvvəlkini eyni <span class="m">q</span> ədədinə vurmaqla alınırsa (<span class="m">b₁ ≠ 0</span>, <span class="m">q ≠ 0</span>), bu <b>həndəsi silsilədir</b>, <span class="m">q</span> isə onun <b>məxrəcidir</b>:</p>
       <div class="fm">bₙ₊₁ = bₙ·q,   q = b₂ : b₁ = b₃ : b₂ = …
@@ -46,7 +48,8 @@ bₙ = b₁·qⁿ⁻¹
 bₘ : bₖ = q^(m − k)</div>
       <p><b>q-nun mənası.</b> <span class="m">q &gt; 1</span> — modulça artır; <span class="m">0 &lt; q &lt; 1</span> — modulça azalır (məs. <span class="m">q = 1/2</span>); <span class="m">q &lt; 0</span> — işarə növbələşir (<span class="m">3; −6; 12; −24</span>); <span class="m">q = 1</span> — bütün hədlər eynidir.</p>
       <p>Ədədi silsilədə fərq (<span class="m">+d</span>) idi, burada <b>nisbət</b> (<span class="m">·q</span>). Ona görə <span class="m">q</span>-nu tapanda <b>bölürük</b>, çıxmırıq.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 3; 6; 12; 24; … silsiləsinin 8-ci həddi
    q = 6 : 3 = 2.  b₈ = 3·2⁷ = 3·128 = 384
@@ -61,6 +64,9 @@ bₘ : bₖ = q^(m − k)</div>
 4) b₂ = 6, b₄ = 54, bütün hədlər müsbətdir.  b₅ = ?
    b₄ : b₂ = q² = 9 → q = 3 (müsbət, çünki hədlər müsbətdir; q = −3 işarəni dəyişərdi)
    b₅ = 54·3 = 162</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Bakteriya hər saat 3 dəfə çoxalır, başlanğıcda 4-dür. 5 saatdan sonra <span class="m">4·3⁵ = 972</span>. Belə sürətli artıma "eksponensial artım" deyirlər. Əksinə, qiymət hər il 10% ucuzlaşırsa, qiymətlər <span class="m">q = 0,9</span> məxrəcli silsilədir: 1000; 900; 810; 729; …</div>
 
       <h3><span class="st">4</span> Nömrəni tapmaq və "ilk dəfə aşmaq"</h3>
@@ -100,12 +106,15 @@ Cüt qüvvət ⟹ ±;  tək qüvvət ⟹ yeganə q</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Çox vaxt məsələdə <span class="m">b₁</span> və <span class="m">q</span> ayrıca verilmir. Məsələn: "<span class="m">b₃·b₉ = 144</span>, <span class="m">b₆</span> neçədir?" Hər ikisini tapmadan cavab almaq üçün silsilənin simmetriya xassəsi lazımdır. Bu, Dərs 2 (ədədi silsilə)-dəki xassənin vurma ilə analoqudur.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p><span class="m">bₙ₋₁ = bₙ/q</span> və <span class="m">bₙ₊₁ = bₙ·q</span>. Bunları vursaq <span class="m">q</span> ixtisar olur:</p>
       <div class="fm">bₙ² = bₙ₋₁·bₙ₊₁          (hətta bₙ² = bₙ₋ⱼ·bₙ₊ⱼ)
 m + n = k + l  ⟹  bₘ·bₙ = bₖ·bₗ</div>
       <p>Hədlər müsbətdirsə, <span class="m">bₙ = √(bₙ₋₁·bₙ₊₁)</span> — həndəsi orta. Hədlərin işarəsi növbələşərsə, <span class="m">bₙ² = …</span> bərabərliyi yenə doğrudur, amma <span class="m">bₙ</span>-in özü kvadrat kökdən birqiymətli çıxmır — şərtə bax.</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) Müsbət hədli silsilədə b₃·b₉ = 144.  b₆ = ?
    3 + 9 = 6 + 6 → b₃·b₉ = b₆² = 144 → b₆ = 12
@@ -120,6 +129,9 @@ m + n = k + l  ⟹  bₘ·bₙ = bₖ·bₗ</div>
    (x + 3)² = 6x(x − 1) → x² + 6x + 9 = 6x² − 6x → 5x² − 12x − 9 = 0
    D = 144 + 180 = 324 = 18² → x = (12 ± 18)/10 → x = 3 və ya x = −3/5
    x = 3: 2; 6; 18 (q = 3).  x = −3/5: −8/5; 12/5; −18/5 (q = −3/2). İkisi də yarayır.</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Maşının qiyməti hər il 10% ucuzlaşır: 1000; 900; 810 manat. Ortadakı qiymət qonşularının <i>həndəsi</i> ortasıdır: <span class="m">900² = 810 000 = 1000·810</span>. Ədədi orta isə (1000 + 810)/2 = 905 olardı — düz deyil.</div>
 
       <h3><span class="st">4</span> Üç hədd üçün orta ilə yazılış</h3>
@@ -167,6 +179,8 @@ m + n = k + l ⟹ bₘ·bₙ = bₖ·bₗ
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Zəncirvari məktub: sən 3 nəfərə göndərirsən, onların hər biri 3 nəfərə, və s. 6 dövrədə neçə nəfər məktub alıb? <span class="m">3 + 9 + 27 + 81 + 243 + 729</span>. Bu cəmi düsturla tapacağıq. Qədim rəvayətdə şahmat ixtiracısı birinci xanaya 1, ikinciyə 2, üçüncüyə 4 dən istəyib — yekunda dənlərin sayı kainatdakı bütün buğdadan çox olub.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Düstur və sübut</h3>
       <p><span class="m">Sₙ = b₁ + b₁q + b₁q² + … + b₁qⁿ⁻¹</span>. Hər iki tərəfi <span class="m">q</span>-yə vur və çıx:</p>
       <div class="fm">Sₙ·q = b₁q + b₁q² + … + b₁qⁿ
@@ -174,7 +188,8 @@ Sₙ·q − Sₙ = b₁qⁿ − b₁     (ortadakılar ixtisar olur)
 Sₙ = b₁·(qⁿ − 1)/(q − 1),   q ≠ 1
 q = 1 olsa: Sₙ = n·b₁</div>
       <p>Eyni fikir qısa vurma düsturudur: <span class="m">(q − 1)(1 + q + … + qⁿ⁻¹) = qⁿ − 1</span>. İkinci hal: <span class="m">q &lt; 1</span> olanda <span class="m">Sₙ = b₁(1 − qⁿ)/(1 − q)</span> bərabər düsturdur (surət və məxrəci −1-ə vurmaq).</p>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 3; 6; 12; … ilk 6 hədd:  S₆ = 3·(2⁶ − 1)/(2 − 1) = 3·63 = 189
 
@@ -187,6 +202,9 @@ q = 1 olsa: Sₙ = n·b₁</div>
 4) b₁ = 1, q = 3:  b₃ + b₄ + b₅ + b₆ = ?
    İlk həddi b₃ = 9, say 4:  9·(3⁴ − 1)/(3 − 1) = 9·40 = 360
    Yoxla: 9 + 27 + 81 + 243 = 360 ✓</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Ay ərzində ilk gün 1 manat, hər gün əvvəlki günün iki mislini yığırsan. 10-cu gün 512 manat qoyursan, ilk 10 gündə cəmi <span class="m">1·(2¹⁰ − 1) = 1023</span> manat. Sonuncu gün qoyduğun 512, əvvəlki bütün günlərin cəmindən (511) düz 1 çoxdur.</div>
 
       <h3><span class="st">4</span> Tərs məsələ və hissə cəmi</h3>
@@ -229,12 +247,15 @@ S₂ₙ = Sₙ(1 + qⁿ)</div></div>
       <h3><span class="st">1</span> Niyə lazımdır</h3>
       <p>Zenon paradoksu: Axilles tısbağanı qova-qova gedir. Hər dəfə onun qaldığı yerə çatanda tısbağa bir az irəli getmiş olur. Sonsuz sayda məsafə var — amma onların cəmi <b>sonludur</b>. Bu silsilə mövzusunun ən güclü fikridir: sonsuz sayda müsbət ədədin cəmi sonlu ola bilər.</p>
 
+      <div class="pair">
+      <div class="pair-col usul">
       <h3><span class="st">2</span> Əsas fikir</h3>
       <p>Əgər <span class="m">|q| &lt; 1</span> olarsa, <span class="m">qⁿ</span> n artdıqca sıfıra yaxınlaşır (<span class="m">(1/2)¹⁰ ≈ 0,001</span>). Onda <span class="m">Sₙ = b₁(1 − qⁿ)/(1 − q)</span> düsturunda <span class="m">qⁿ → 0</span> və:</p>
       <div class="fm">S = b₁ / (1 − q),   |q| &lt; 1
 Məs.: 1/2 + 1/4 + 1/8 + … = (1/2)/(1 − 1/2) = 1
 |q| ≥ 1 olsa, cəm sonlu deyil (yoxsa mənası yoxdur).</div>
-
+      </div>
+      <div class="pair-col nums">
       <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
       <div class="ex">1) 12 + 4 + 4/3 + …  b₁ = 12, q = 1/3
    S = 12/(1 − 1/3) = 12 : (2/3) = 18
@@ -247,6 +268,9 @@ Məs.: 1/2 + 1/4 + 1/8 + … = (1/2)/(1 − 1/2) = 1
 
 4) b₁ = 20, S = 25.  q = ?
    1 − q = 20/25 = 4/5 → q = 1/5</div>
+      </div>
+      </div>
+
       <div class="life"><b>Həyatdan.</b> Top 10 m-dən düşür və hər dəfə əvvəlki hündürlüyün 2/3-i qədər sıçrayır. Bütün yol: 10 + 2·(10·2/3 + 10·(2/3)² + …) = <span class="m">10 + 2·(20/3)/(1/3) = 10 + 40 = 50 m</span> (sıçrayışlar yuxarı-aşağı iki dəfə sayılır).</div>
 
       <h3><span class="st">4</span> Dövri onluq kəsr</h3>
