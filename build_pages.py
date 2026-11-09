@@ -3,6 +3,7 @@ PAGE = """<!doctype html>
 <html lang="az"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{title} · Skilly</title>
+<script src="assets/tema.js"></script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/icons.js" defer></script>

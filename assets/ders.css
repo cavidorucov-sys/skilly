@@ -12,16 +12,29 @@
   --f-num:var(--f-body);
   --ease:cubic-bezier(.23,1,.32,1);
   --r-xs:4px; --r-sm:6px; --r:8px; --r-lg:12px;
+  --bar:#17171a; --warn-ink:#791f1f; --alpha:#534ab7;
+  --glass:rgba(255,255,255,.55); --shadow:rgba(23,23,26,.5); --shadow-sm:rgba(23,23,26,.12);
   color-scheme:light;
 }
 :root[data-kat="phys"]{ --subj:#0c447c; --subj-soft:#e6f1fb; --subj-mid:#d6e8f8; }
 :root[data-kat="olym"]{ --subj:#633806; --subj-soft:#faeeda; --subj-mid:#f8e3be; }
+/* dark theme: <html data-theme="dark"> is set by assets/tema.js; same values as the portal's dark tokens */
+:root[data-theme="dark"]{
+  --bg:#141417; --white:#1e1e22; --ink-0:#ecebe6; --ink-2:#b4b2aa; --line-0:#2c2c31; --line-1:#3c3c42;
+  --subj:#cdc8fb; --subj-soft:#221f40; --subj-mid:#2e2a55;
+  --ok:#9fd16f; --ok-soft:#1e2d14; --warn:#f19494; --warn-soft:#3a1c1c; --warn-ink:#f6b9b9; --alpha:#b3acf5;
+  --hyp:#c39bf0; --opp:#f08a7e; --adj:#7fd19a; --vec:#f0a46e;
+  --bar:#0c0c0e; --glass:rgba(255,255,255,.06); --shadow:rgba(0,0,0,.6); --shadow-sm:rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+:root[data-theme="dark"][data-kat="phys"]{ --subj:#acd2f5; --subj-soft:#132a42; --subj-mid:#183553; }
+:root[data-theme="dark"][data-kat="olym"]{ --subj:#f4d194; --subj-soft:#37270b; --subj-mid:#47320f; }
 
 body{margin:0;-webkit-font-smoothing:antialiased}
 .wrap{max-width:820px;gap:24px;padding-block:24px 80px}
 
 /* top bar */
-.sk-bar{position:sticky;top:0;z-index:20;background:var(--ink-0);color:#f6f5f1;display:flex;align-items:center;gap:16px;padding:12px max(16px,calc((100vw - 820px)/2))}
+.sk-bar{position:sticky;top:0;z-index:20;background:var(--bar);color:#f6f5f1;display:flex;align-items:center;gap:16px;padding:12px max(16px,calc((100vw - 820px)/2))}
 .sk-bar a{color:inherit;text-decoration:none}
 .sk-logo{font-weight:700;font-size:20px;letter-spacing:-.02em}
 .sk-sub{color:#888780;font-size:13px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -71,7 +84,7 @@ details.check summary{color:var(--subj)}
 .bub input:checked + .dot{background:var(--ink-0);border-color:var(--ink-0)}
 .meter{background:var(--line-0)}
 .ctl input[type=range]{accent-color:var(--ink-0)}
-.clock,.prog{top:112px;box-shadow:0 10px 30px -22px rgba(23,23,26,.5)}
+.clock,.prog{top:112px;box-shadow:0 10px 30px -22px var(--shadow)}
 @media (max-width:640px){h1{font-size:26px}.lesson{padding:18px}.sk-sub{display:none}}
 
 /* inside the portal frame: the portal provides the top bar */
@@ -135,7 +148,7 @@ html{scrollbar-gutter:stable}
 .oy-steps{margin:6px 0 0;padding-left:22px;display:grid;gap:6px;font-size:16px}
 .oy-svg{width:100%;max-width:300px;height:auto;background:var(--paper);border-radius:var(--r)}
 .oy-lbl{font:600 14px var(--f-num);fill:var(--ink-0)}
-.oy-alpha{font:700 16px var(--f-task);font-style:italic;fill:#534ab7}
+.oy-alpha{font:700 16px var(--f-task);font-style:italic;fill:var(--alpha)}
 .oy-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .oy-in{font:600 20px var(--f-num);width:12ch;padding:8px 12px;border:1px solid var(--line-1);border-radius:var(--r-sm);background:var(--white);color:var(--ink-0);-webkit-text-fill-color:var(--ink-0);opacity:1}
 .oy-in::placeholder,.ans input::placeholder{color:var(--ink-2);-webkit-text-fill-color:var(--ink-2);font-weight:500;opacity:1}
@@ -149,12 +162,12 @@ html{scrollbar-gutter:stable}
 .oy-err:empty,.oy-fb:empty{display:none}
 .oy-fb{border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;justify-items:start}
 .oy-fb.ok{background:var(--ok-soft);color:var(--ok);font-weight:700}
-.oy-fb.no{background:var(--warn-soft);color:#791f1f}
+.oy-fb.no{background:var(--warn-soft);color:var(--warn-ink)}
 .oy-fb p{margin:0;color:var(--ink-0)}
 .oy-done,.oy-locked{background:var(--ok-soft);border-radius:var(--r-lg);padding:18px;display:grid;gap:10px;justify-items:start}
 .oy-done.no,.oy-locked{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line-0)}
 .oy-review{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14px}
-.oy-review li.no{color:#791f1f}
+.oy-review li.no{color:var(--warn-ink)}
 .oy-keys{display:flex;gap:6px}
 .oy-key{font:600 18px var(--f-num);width:40px;height:40px;border:1px solid var(--line-1);border-radius:var(--r-sm);background:var(--paper);color:var(--ink-0);cursor:pointer}
 .oy-key:active{transform:scale(.95)}
@@ -169,8 +182,8 @@ html{scrollbar-gutter:stable}
 /* tabs are navigation, buttons are actions: tabs = segmented control (light track, selected card), buttons stay solid ink */
 .tabs{background:var(--line-0);border-radius:var(--r-lg);padding:4px;gap:2px;width:max-content;max-width:100%}
 .tab{background:transparent;box-shadow:none;border-radius:var(--r);color:var(--ink-2)}
-.tab:hover{background:rgba(255,255,255,.55);color:var(--ink-0)}
-.tab[aria-selected=true]{background:var(--white);color:var(--ink-0);box-shadow:0 1px 3px rgba(23,23,26,.12)}
+.tab:hover{background:var(--glass);color:var(--ink-0)}
+.tab[aria-selected=true]{background:var(--white);color:var(--ink-0);box-shadow:0 1px 3px var(--shadow-sm)}
 .tab[aria-selected=true]:hover{color:var(--ink-0)}
 .tab[aria-selected=true] small{color:var(--subj);opacity:1}
 .stepchip[aria-current=step]{background:var(--subj-soft);color:var(--subj);box-shadow:inset 0 0 0 1.5px var(--subj)}
@@ -183,6 +196,7 @@ html{scrollbar-gutter:stable}
 /* hover feedback on everything clickable */
 .btn{transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease)}
 .btn:hover:not([disabled]){background:#2c2c32}
+:root[data-theme="dark"] .btn:hover:not([disabled]){background:#d6d4cc}
 .btn.ghost:hover:not([disabled]){background:var(--paper);box-shadow:inset 0 0 0 1px var(--ink-2)}
 .stepchip:hover:not([aria-current=step]){background:var(--line-0);color:var(--ink-0)}
 .oy-choices button{transition:background .15s var(--ease),border-color .15s var(--ease)}
@@ -217,7 +231,7 @@ details.check summary:hover{text-decoration:underline}
 .fchip{background:var(--paper);border-radius:var(--r-sm);padding:6px 10px;white-space:nowrap;font-variant-numeric:lining-nums;color:var(--ink-0)}
 .fm.pretty .fchip{background:var(--white)}
 /* topic illustration under "Niyə lazımdır" */
-.ill{margin:4px 0 16px;max-width:640px;aspect-ratio:16/9;border-radius:var(--r-lg,12px);overflow:hidden;background:#F6F5F1}
+.ill{margin:4px 0 16px;max-width:640px;aspect-ratio:16/9;border-radius:var(--r-lg,12px);overflow:hidden;background:var(--bg)}
 .ill img{display:block;width:100%;height:100%;object-fit:cover}
 /* text uses the full card width (father's choice, 20 Oct 2026) */
 .in-frame p,.in-frame .life,.in-frame .warnbox,.in-frame .lesson ul{max-width:none}
@@ -262,3 +276,27 @@ sub{font-size:.72em;line-height:0;vertical-align:-.3em}
 .pair .m{white-space:normal}
 .ex-cavab{display:block}
 .ex .ans-btn{margin-top:4px}
+
+/* dark theme: illustrations were drawn on a light page — dim them a little so they do not glare */
+:root[data-theme="dark"] .ill img{filter:brightness(.88)}
+
+/* dark theme: game and lesson figures set light-theme colours as SVG attributes or inline styles; map them here */
+:root[data-theme="dark"] svg [fill="#17171a" i]{fill:var(--ink-0)} :root[data-theme="dark"] svg [stroke="#17171a" i]{stroke:var(--ink-0)} :root[data-theme="dark"] svg [style*="fill:#17171a" i]{fill:var(--ink-0)!important} :root[data-theme="dark"] svg [style*="stroke:#17171a" i]{stroke:var(--ink-0)!important}
+:root[data-theme="dark"] svg [fill="#a32d2d" i]{fill:#f19494} :root[data-theme="dark"] svg [stroke="#a32d2d" i]{stroke:#f19494} :root[data-theme="dark"] svg [style*="fill:#a32d2d" i]{fill:#f19494!important} :root[data-theme="dark"] svg [style*="stroke:#a32d2d" i]{stroke:#f19494!important}
+:root[data-theme="dark"] svg [fill="#534ab7" i]{fill:#b3acf5} :root[data-theme="dark"] svg [stroke="#534ab7" i]{stroke:#b3acf5} :root[data-theme="dark"] svg [style*="fill:#534ab7" i]{fill:#b3acf5!important} :root[data-theme="dark"] svg [style*="stroke:#534ab7" i]{stroke:#b3acf5!important}
+:root[data-theme="dark"] svg [fill="#eeedfe" i]{fill:var(--subj-mid)} :root[data-theme="dark"] svg [stroke="#eeedfe" i]{stroke:var(--subj-mid)} :root[data-theme="dark"] svg [style*="fill:#eeedfe" i]{fill:var(--subj-mid)!important} :root[data-theme="dark"] svg [style*="stroke:#eeedfe" i]{stroke:var(--subj-mid)!important}
+:root[data-theme="dark"] svg [fill="#5f5e5a" i]{fill:var(--ink-2)} :root[data-theme="dark"] svg [stroke="#5f5e5a" i]{stroke:var(--ink-2)} :root[data-theme="dark"] svg [style*="fill:#5f5e5a" i]{fill:var(--ink-2)!important} :root[data-theme="dark"] svg [style*="stroke:#5f5e5a" i]{stroke:var(--ink-2)!important}
+:root[data-theme="dark"] svg [fill="#6b6b73" i]{fill:#a3a3ab} :root[data-theme="dark"] svg [stroke="#6b6b73" i]{stroke:#a3a3ab} :root[data-theme="dark"] svg [style*="fill:#6b6b73" i]{fill:#a3a3ab!important} :root[data-theme="dark"] svg [style*="stroke:#6b6b73" i]{stroke:#a3a3ab!important}
+:root[data-theme="dark"] svg [fill="#0c447c" i]{fill:#acd2f5} :root[data-theme="dark"] svg [stroke="#0c447c" i]{stroke:#acd2f5} :root[data-theme="dark"] svg [style*="fill:#0c447c" i]{fill:#acd2f5!important} :root[data-theme="dark"] svg [style*="stroke:#0c447c" i]{stroke:#acd2f5!important}
+:root[data-theme="dark"] svg [fill="#e8eef8" i]{fill:#183553} :root[data-theme="dark"] svg [stroke="#e8eef8" i]{stroke:#183553} :root[data-theme="dark"] svg [style*="fill:#e8eef8" i]{fill:#183553!important} :root[data-theme="dark"] svg [style*="stroke:#e8eef8" i]{stroke:#183553!important}
+:root[data-theme="dark"] svg [fill="#d8d4c4" i]{fill:#3c3c42} :root[data-theme="dark"] svg [stroke="#d8d4c4" i]{stroke:#3c3c42} :root[data-theme="dark"] svg [style*="fill:#d8d4c4" i]{fill:#3c3c42!important} :root[data-theme="dark"] svg [style*="stroke:#d8d4c4" i]{stroke:#3c3c42!important}
+:root[data-theme="dark"] svg [fill="#faf9f5" i]{fill:var(--white)} :root[data-theme="dark"] svg [stroke="#faf9f5" i]{stroke:var(--white)} :root[data-theme="dark"] svg [style*="fill:#faf9f5" i]{fill:var(--white)!important} :root[data-theme="dark"] svg [style*="stroke:#faf9f5" i]{stroke:var(--white)!important}
+:root[data-theme="dark"] svg [fill="#efece2" i]{fill:#26262a} :root[data-theme="dark"] svg [stroke="#efece2" i]{stroke:#26262a} :root[data-theme="dark"] svg [style*="fill:#efece2" i]{fill:#26262a!important} :root[data-theme="dark"] svg [style*="stroke:#efece2" i]{stroke:#26262a!important}
+:root[data-theme="dark"] svg [fill="#c2410c" i]{fill:#f59e6b} :root[data-theme="dark"] svg [stroke="#c2410c" i]{stroke:#f59e6b} :root[data-theme="dark"] svg [style*="fill:#c2410c" i]{fill:#f59e6b!important} :root[data-theme="dark"] svg [style*="stroke:#c2410c" i]{stroke:#f59e6b!important}
+:root[data-theme="dark"] svg [fill="#8a8a93" i]{fill:#a3a3ab} :root[data-theme="dark"] svg [stroke="#8a8a93" i]{stroke:#a3a3ab} :root[data-theme="dark"] svg [style*="fill:#8a8a93" i]{fill:#a3a3ab!important} :root[data-theme="dark"] svg [style*="stroke:#8a8a93" i]{stroke:#a3a3ab!important}
+:root[data-theme="dark"] svg [fill="#8a8a92" i]{fill:#a3a3ab} :root[data-theme="dark"] svg [stroke="#8a8a92" i]{stroke:#a3a3ab} :root[data-theme="dark"] svg [style*="fill:#8a8a92" i]{fill:#a3a3ab!important} :root[data-theme="dark"] svg [style*="stroke:#8a8a92" i]{stroke:#a3a3ab!important}
+:root[data-theme="dark"] svg [fill="#2a5db0" i]{fill:#8fb8f0} :root[data-theme="dark"] svg [stroke="#2a5db0" i]{stroke:#8fb8f0} :root[data-theme="dark"] svg [style*="fill:#2a5db0" i]{fill:#8fb8f0!important} :root[data-theme="dark"] svg [style*="stroke:#2a5db0" i]{stroke:#8fb8f0!important}
+:root[data-theme="dark"] svg [fill="#1f4e9c" i]{fill:#8fb8f0} :root[data-theme="dark"] svg [stroke="#1f4e9c" i]{stroke:#8fb8f0} :root[data-theme="dark"] svg [style*="fill:#1f4e9c" i]{fill:#8fb8f0!important} :root[data-theme="dark"] svg [style*="stroke:#1f4e9c" i]{stroke:#8fb8f0!important}
+:root[data-theme="dark"] svg [fill="#0f766e" i]{fill:#5fd3c4} :root[data-theme="dark"] svg [stroke="#0f766e" i]{stroke:#5fd3c4} :root[data-theme="dark"] svg [style*="fill:#0f766e" i]{fill:#5fd3c4!important} :root[data-theme="dark"] svg [style*="stroke:#0f766e" i]{stroke:#5fd3c4!important}
+:root[data-theme="dark"] svg [fill="#ffffff" i]{fill:var(--white)} :root[data-theme="dark"] svg [stroke="#ffffff" i]{stroke:var(--white)} :root[data-theme="dark"] svg [style*="fill:#ffffff" i]{fill:var(--white)!important} :root[data-theme="dark"] svg [style*="stroke:#ffffff" i]{stroke:var(--white)!important}
+:root[data-theme="dark"] svg [fill="#fff" i]{fill:var(--white)} :root[data-theme="dark"] svg [stroke="#fff" i]{stroke:var(--white)} :root[data-theme="dark"] svg [style*="fill:#fff" i]{fill:var(--white)!important} :root[data-theme="dark"] svg [style*="stroke:#fff" i]{stroke:var(--white)!important}

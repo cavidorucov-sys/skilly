@@ -161,8 +161,18 @@ async function shell(content) {
   };
   toggle.addEventListener("click", () => setRail(!collapsed));
   setRail(collapsed);
+  // light / dark theme (assets/tema.js); the open lesson frame follows through the storage event
+  const theme = el("button", { class: "rail-toggle", type: "button" });
+  const showTheme = () => {
+    const dark = window.SkillyTema && SkillyTema.get() === "dark";
+    theme.setAttribute("aria-label", dark ? "İşıqlı rejim" : "Qaranlıq rejim"); theme.title = theme.getAttribute("aria-label");
+    theme.replaceChildren(icon(dark ? "Sun" : "Moon"));
+  };
+  theme.addEventListener("click", () => { if (window.SkillyTema) SkillyTema.toggle(); showTheme(); });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", showTheme);
+  showTheme();
   const rail = el("aside", { class: "rail" },
-    el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), toggle),
+    el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), el("div", { class: "rail-btns" }, theme, toggle)),
     el("div", { class: "who" }, el("div", { class: "avatar" }, w ? "F" : "S"), el("b", {}, w ? "Fikrət" : "Skilly"), el("span", {}, "9-cu sinif · 2026–27"), w ? el("span", { class: "chip" }, w.hefte) : null, account()),
     ring,
     el("div", { class: "minis" },
