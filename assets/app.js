@@ -1,7 +1,7 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
   // daily → study → check yourself → reference
-  ["index.html", "Bu gün", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["olimpiada.html", "Olimpiada", "Trophy"],
+  ["index.html", "Ana səhifə", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["olimpiada.html", "Olimpiada", "Trophy"],
   ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Təkrar", "Repeat"],
   ["dusturlar.html", "Düsturlar", "Sigma"], ["teqvim.html", "Təqvim", "Calendar"],
 ];
