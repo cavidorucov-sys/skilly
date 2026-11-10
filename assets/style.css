@@ -451,3 +451,6 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 /* error journal: the question's figure, drawn with the lesson colours, on its own light card */
 .e-fig{background:#fff;border-radius:var(--r);padding:10px;max-width:420px}
 .e-fig svg{display:block;width:100%;height:auto}
+
+/* calendar: a memory check that was not done */
+.cal-tag.late{background:var(--err-bg);color:var(--err-ink)}

@@ -428,7 +428,7 @@ const iso = (y, m, d) => y + "-" + String(m + 1).padStart(2, "0") + "-" + String
 
 async function pageCalendar() {
   const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Təqvim"),
-    el("p", { class: "lead" }, "Sınaqlar, layihə son tarixləri və bu həftənin dərsləri. Günə toxun — o günün işləri aşağıda açılır."));
+    el("p", { class: "lead" }, "Sınaqlar, bu həftənin dərsləri, mövzuların bağlandığı günlər və yaddaş yoxlamaları. Günə toxun — o günün işləri aşağıda açılır."));
   const { w, term } = await shell(content);
   // date → events: deadlines from terminler.json, lessons from the current week
   const ev = {};
@@ -438,6 +438,30 @@ async function pageCalendar() {
   if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "", qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
   const today = isoToday();
+  // Fikrət's record (the father sees it through the cloud): the day each topic was closed, and every memory check
+  // on its date with its result — a missed one is marked on the grid
+  if (w && mm && window.Skilly) {
+    await Skilly.ready;
+    const byLink = {}; for (const k in mm) mm[k].forEach(t => { if (t.ders) byLink[t.ders] = { ...t, kat: LIST_KAT[k] }; });
+    let res = []; try { res = JSON.parse(localStorage.getItem("skilly-netice") || "[]"); } catch (e) {}
+    const closedOn = {};
+    res.forEach(x => { const m = String(x.id).match(/^(.+)-(test|baglandi)@\d+$/);
+      if (m && x.tarix && (m[2] === "baglandi" || /^keçdi/.test(x.qeyd || ""))) { const l = "dersler/" + m[1] + ".html"; if (!closedOn[l] || x.tarix > closedOn[l]) closedOn[l] = x.tarix; } });
+    for (const l in closedOn) { const t = byLink[l]; if (t && isClosed(t)) add(closedOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "mövzu bağlandı" }); }
+    // a topic counts as started once any of its results exists (entry test, game, test)
+    const started = new Set(res.map(x => (String(x.id).match(/^(.+)-[a-z]+@/) || [])[1]).filter(Boolean).map(k => "dersler/" + k + ".html"));
+    for (const k in ev) ev[k].forEach(e => { const t = e.link && byLink[e.link]; if (t && !/^Bağlandı/.test(e.is)) {
+      e.st = ST[isClosed(t) ? "bag" : started.has(t.ders) || t.status === "isl" ? "isl" : "yox"];
+      if (isClosed(t) && closedOn[t.ders]) e.qeyd = (e.saat ? e.saat + " · " : "") + "bağlanıb " + t2(closedOn[t.ders]); } });
+    Skilly.reviews().forEach(r => {
+      const t = byLink[r.link], late = !r.done && r.due < today;
+      const st = r.done ? (r.ok ? ["Edilib " + t2(r.done), "st-bag", "CircleCheck"] : ["Keçmədi " + t2(r.done), "st-err", "CircleAlert"])
+        : late ? ["Edilməyib", "st-err", "CircleAlert"] : ["Gözləyir", "st-yox", "CircleDashed"];
+      // the check itself runs in the lesson's test tab, so the item opens it there (as on the Təkrar page)
+      add(r.due, { kat: t ? t.kat : "misc", is: "Yaddaş yoxlaması: " + r.title + " (" + r.n + " sual)", st, qeyd: st[0], gecikir: late,
+        link: r.done ? r.link : "ders.html?p=" + r.link.replace(/^dersler\/|\.html$/g, "") + "#sinaq" });
+    });
+  }
   let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
   const title = el("h2", {});
   const prev = el("button", { class: "nav-btn", type: "button", "aria-label": "Əvvəlki ay" }, "←");
@@ -455,8 +479,9 @@ async function pageCalendar() {
       const k = iso(y, mo, d), list = ev[k] || [];
       const b = el("button", { type: "button", class: "cal-c" + (k === today ? " today" : "") + (k === sel ? " sel" : "") + (k < today ? " past" : ""), "aria-label": d + " " + AYLAR[mo] + (list.length ? ", " + list.length + " iş" : "") },
         el("span", { class: "num" }, String(d)),
-        el("span", { class: "evs" }, ...list.filter(e => e.son).map(e => el("span", { class: "cal-tag " + (KAT[e.kat] || KAT.misc).cls }, e.is))),
-        el("span", { class: "dots" }, ...[...new Set(list.filter(e => !e.son).map(e => e.kat))].map(kt => el("i", { class: (KAT[kt] || KAT.misc).cls }))));
+        el("span", { class: "evs" }, ...list.filter(e => e.son).map(e => el("span", { class: "cal-tag " + (KAT[e.kat] || KAT.misc).cls }, e.is)),
+          ...(list.some(e => e.gecikir) ? [el("span", { class: "cal-tag late" }, "Yaddaş yoxlaması edilməyib")] : [])),
+        el("span", { class: "dots" }, ...[...new Set(list.filter(e => !e.son && !e.gecikir).map(e => e.kat))].map(kt => el("i", { class: (KAT[kt] || KAT.misc).cls }))));
       b.addEventListener("click", () => { sel = k; draw(); });
       cells.push(b);
     }
@@ -466,8 +491,8 @@ async function pageCalendar() {
     day.replaceChildren(el("div", { class: "head" }, el("h2", {}, (+dd) + " " + AYLAR[+mm - 1]), sel === today ? el("span", { class: "more" }, "bu gün") : null),
       el("div", { class: "list" }, ...(list.length ? list.map(e => { const k = KAT[e.kat] || KAT.misc; return el(e.link ? "a" : "div", { class: "row", ...(e.link ? { href: e.link, style: "text-decoration:none" } : {}) },
         el("span", { class: "ic " + k.cls }, icon(iconFor(e.kat, e.is), k.ink)),
-        el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, e.saat || e.qeyd || k.ad)),
-        e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : null); })
+        el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, [e.saat || e.qeyd || k.ad, e.st && e.qeyd !== e.st[0] && !/^Bağlandı/.test(e.is) ? e.st[0] : ""].filter(Boolean).join(" · "))),
+        e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : e.st ? stMark(e.st) : null); })
         : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));
   }
   content.append(el("div", { class: "head", style: "margin-top:26px" }, title, el("span", { class: "more" }, prev, " ", next)), grid, day);
