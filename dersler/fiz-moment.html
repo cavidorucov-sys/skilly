@@ -27,6 +27,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tarazlıq, ling</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İki dayaqlı tir</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kütlə mərkəzi, nərdivan</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Tarazlığın növləri</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -385,6 +386,66 @@ Moment oxu aşağı uca (iki naməlum düşür)</div></div>
         <li>1 kq (x = 0) və 4 kq (x = 1 m). x_c = ? <span class="ans">4/5 = 0,8 m.</span></li>
         <li>Nərdivan: b = 1,5 m, h = 2 m, m = 10 kq. N₂ = ? <span class="ans">N₂ = 100·1,5/(2·2) = 37,5 N.</span></li>
         <li>Eyni nərdivan üçün μ_min = ? <span class="ans">b/(2h) = 1,5/4 = 0,375.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Dayanıqlı, dayanıqsız və fərqsiz tarazlıq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Çökəkliyin dibindəki kürəni bir az itələ: geri qayıdır. Təpənin başındakı kürəni bir az itələ: yuvarlanıb gedir. Hər ikisi tarazlıqdadır (qüvvələrin cəmi sıfırdır), amma tarazlığın <b>növü</b> fərqlidir. RFO proqramında bu ayrıca bənddir: «Dayanıqlı və dayanıqsız tarazlıq».</p>
+
+      <h3><span class="st">2</span> Üç növ tarazlıq</h3>
+      <div class="fm">Dayanıqlı:    azca çıxarıb buraxanda geri qayıdır   → potensial enerji ən kiçikdir
+Dayanıqsız:   azca çıxarıb buraxanda daha da uzaqlaşır → potensial enerji ən böyükdür
+Fərqsiz:      yeni vəziyyətdə qalır                   → potensial enerji dəyişmir</div>
+      <p>Qısa qayda: cisim elə vəziyyətə can atır ki, <b>kütlə mərkəzi mümkün qədər aşağı</b> olsun. Kiçik çıxarmada kütlə mərkəzi qalxırsa — tarazlıq dayanıqlıdır, enirsə — dayanıqsızdır, eyni hündürlükdə qalırsa — fərqsizdir.</p>
+      <p><b>Asılı cisim</b> (oxa keçirilmiş çubuq, lövhə): asma nöqtəsi kütlə mərkəzindən <b>yuxarıdadırsa</b> — dayanıqlı; <b>aşağıdadırsa</b> — dayanıqsız; kütlə mərkəzi ilə <b>üst-üstə düşürsə</b> — fərqsiz (çubuğu ortasından keçən oxa taxsan, istənilən vəziyyətdə qalır).</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Dayaq sahəsi olan cisim: nə vaxt aşır</h3>
+      <p>Masa, şkaf, qutu kimi cisim dayaq sahəsinə söykənir. Cismə yalnız ağırlıq və dayağın qüvvələri təsir edirsə: kütlə mərkəzindən çəkilən <b>şaquli xətt dayaq sahəsinin içindən keçirsə</b>, cisim aşmır; kənarından çıxırsa, aşır. Sürüşüb-sürüşməməsi isə ayrıca (sürtünmə ilə) yoxlanılır.</p>
+      <div class="fm">Bircins düzbucaqlı qutu (kütlə mərkəzi ortada), eni a,
+kütlə mərkəzinin oturacaqdan hündürlüyü h. Qutu sürüşmür,
+oturacağı üfüqlə α bucağı əmələ gətirəndə aşır:
+  tg α = (a/2) / h
+Kənardan üfüqi F qüvvəsi ilə (yuxarı kənardan, H hündürlükdə) aşırmaq:
+  F·H ≥ mg·a/2   (alt kənara nəzərən moment)</div>
+      <p>Dayanıqlığı artırmaq üçün iki yol var: kütlə mərkəzini <b>aşağı salmaq</b> (ağır hissəni aşağıya) və dayaq sahəsini <b>genişləndirmək</b>.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Bircins şkafın hündürlüyü 0,9 m, oturacağı 0,3 m × 0,3 m. Şkaf maili müstəvidə dayanır və sürüşmür. Hansı bucaqda aşar?
+  Kütlə mərkəzi ortada: h = 0,45 m, a/2 = 0,15 m
+  tg α = 0,15/0,45 = 1/3  →  α ≈ 18,4°</div>
+      <div class="ex">Nümunə 2. Çəkisi 100 N, tili 0,5 m olan bircins kubu yuxarı kənarından üfüqi qüvvə ilə aşırmaq istəyirik (sürtünmə kub sürüşməyə qoymur). Ən kiçik qüvvə?
+  Alt kənara nəzərən: F·0,5 = 100·0,25
+  F = 50 N</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Bircins çubuq üfüqi oxa taxılıb. Ox çubuğun (a) yuxarı ucundan, (b) ortasından keçir. Tarazlığın növü?
+  (a) asma nöqtəsi kütlə mərkəzindən yuxarıda → dayanıqlı (çubuq şaquli asılı qalır)
+  (b) asma nöqtəsi kütlə mərkəzi ilə üst-üstə → fərqsiz (istənilən vəziyyətdə qalır)</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Yük maşınına yük yığanda ağır qutular aşağıya qoyulur: kütlə mərkəzi aşağı düşür və eyni döngədə, eyni sürətdə maşının aşmağa qarşı dayanıqlığı artır. Yarış avtomobilləri alçaq və enli düzəldilir, «vanka-vstanka» oyuncağının isə dibi ağırdır — onu necə əysən, yenə qalxır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>«Tarazlıq var, deməli dayanıqlıdır» demək. Təpədəki kürədə də qüvvələrin cəmi sıfırdır, amma tarazlıq dayanıqsızdır.</li>
+        <li>Aşma şərtində cismin tam hündürlüyünü götürmək. Lazım olan <b>kütlə mərkəzinin</b> hündürlüyüdür (bircins düzbucaqlı qutuda — hündürlüyün yarısı).</li>
+        <li>Momentləri yazanda dayağın reaksiyasını və sürtünməni unutmaq. Ən rahatı momentləri <b>alt kənara</b> nəzərən yazmaqdır: o kənardan keçən dayaq qüvvələrinin momenti sıfır olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Dayanıqlı: E_p minimum, kütlə mərkəzi qalxır → geri qayıdır
+Dayanıqsız: E_p maksimum;  Fərqsiz: E_p sabit
+Asılı cisim: asma nöqtəsi kütlə mərkəzindən yuxarı → dayanıqlı
+Aşma bucağı: tg α = (a/2)/h</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kərpic hansı üzü üstə qoyulanda daha dayanıqlıdır? <span class="ans">Ən böyük üzü üstə: kütlə mərkəzi ən aşağıda, dayaq sahəsi ən genişdir.</span></li>
+        <li>Eni 0,4 m, hündürlüyü 1,2 m olan bircins qutu hansı bucaqda aşır? <span class="ans">tg α = 0,2/0,6 = 1/3, α ≈ 18,4°.</span></li>
+        <li>Lövhə kütlə mərkəzindən aşağıdakı nöqtədən oxa taxılıb. Tarazlıq hansı növdür? <span class="ans">Dayanıqsız: azca əyiləndə kütlə mərkəzi enir və lövhə çevrilir.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

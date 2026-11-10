@@ -27,6 +27,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tutum</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Birləşmələr</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Ekvipotensial, yük sistemi</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -358,6 +359,68 @@ Lövhələr aralanır (ayrılmış): iş = ΔW</div></div>
         <li>C = 10 mkF, U = 100 V. W = ? <span class="ans">10·10⁻⁶·10⁴/2 = 0,05 J = 50 mJ.</span></li>
         <li>Gərginlik 2 dəfə artdı. Enerji? <span class="ans">4 dəfə artır (U²).</span></li>
         <li>Eyni iki kondensatordan biri U-ya qədər doldurulub, digəri boşdur. Paralel qoşduq. Enerjinin neçə hissəsi qalır? <span class="ans">q saxlanır, C iki dəfə artır, W = q²/2C yarıya düşür: 1/2 qalır, 1/2 istilik.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Ekvipotensial səthlər və yüklər sisteminin enerjisi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Xəritədə eyni hündürlüklü nöqtələri birləşdirən xətlər var: onların boyunca getsən, nə qalxırsan, nə enirsən. Elektrik sahəsində də belə «xətlər» (səthlər) var — <b>ekvipotensial səthlər</b>. İkinci mövzu: bir neçə yükü bir yerə yığmaq üçün nə qədər iş lazımdır. Hər ikisi RFO proqramındadır.</p>
+
+      <h3><span class="st">2</span> Ekvipotensial səthlər</h3>
+      <p>Bütün nöqtələrində potensialı eyni olan səth <b>ekvipotensial səthdir</b>. Onun boyunca yükü aparanda sahə iş görmür:</p>
+      <div class="fm">A = q(φ₁ − φ₂) = 0,   çünki φ₁ = φ₂</div>
+      <ul>
+        <li>Sahə xətləri ekvipotensial səthlərə həmişə <b>perpendikulyardır</b> və potensialın azaldığı tərəfə yönəlir.</li>
+        <li>Nöqtəvi yük üçün ekvipotensial səthlər yükün mərkəzdə olduğu <b>konsentrik sferalardır</b> (φ = kQ/r, r sabit).</li>
+        <li>Bircins sahədə onlar sahəyə perpendikulyar <b>müstəvilərdir</b>; aralarındakı d məsafəsində potensiallar fərqi U = E·d.</li>
+        <li>Statik halda keçiricinin bütün səthi (və içi) eyni potensialdadır.</li>
+      </ul>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Yüklər sisteminin enerjisi</h3>
+      <p>İki nöqtəvi yükün qarşılıqlı təsir enerjisi — onları sonsuzluqdan r məsafəyə gətirmək üçün xarici qüvvənin gördüyü işdir:</p>
+      <div class="fm">W = k·q₁q₂ / r          (k = 9·10⁹ N·m²/Kl²)
+Eyni işarəli yüklər: W > 0 (itələnirlər, gətirmək üçün iş lazımdır)
+Müxtəlif işarəli:    W &lt; 0 (cəzb olunurlar)
+Üç və daha çox yük: hər cüt üçün bir hədd, sonra cəm
+  W = k(q₁q₂/r₁₂ + q₁q₃/r₁₃ + q₂q₃/r₂₃)</div>
+      <p>Yükləri <b>yavaş-yavaş</b> yaxınlaşdıranda (kinetik enerji dəyişmir) xarici qüvvənin işi enerjinin artımına bərabərdir: <span class="m">A_xar = W₂ − W₁</span>.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Bircins sahənin intensivliyi 200 V/m. Sahə boyunca 3 sm aralı iki ekvipotensial müstəvi arasında gərginlik? 2 mkKl yükü birinci müstəvi boyunca 5 sm aparanda, sonra müsbət yükü sahənin istiqamətində bir müstəvidən digərinə keçirəndə sahənin işi?
+  U = E·d = 200·0,03 = 6 V
+  Müstəvi boyunca: A = 0
+  Müstəvidən müstəviyə (sahə boyunca): A = qU = 2·10⁻⁶·6 = 1,2·10⁻⁵ J (əks istiqamətdə −1,2·10⁻⁵ J)</div>
+      <div class="ex">Nümunə 2. +2 mkKl və +3 mkKl yükləri 0,3 m aralıdır. Enerji? Onları yavaş-yavaş 0,1 m-ə qədər yaxınlaşdırmaq üçün xarici qüvvənin işi?
+  W₁ = 9·10⁹·2·10⁻⁶·3·10⁻⁶/0,3 = 0,18 J
+  W₂ = … /0,1 = 0,54 J
+  A_xar = 0,54 − 0,18 = 0,36 J</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Tərəfi 0,1 m olan bərabərtərəfli üçbucağın təpələrində eyni q = 1 mkKl yükləri var. Sistemin enerjisi?
+  Üç cüt, hamısı eyni: W = 3·k·q²/a
+  W = 3·9·10⁹·10⁻¹²/0,1 = 0,27 J</div>
+      </div>
+      </div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ekvipotensial səth boyunca da iş hesablamaq. Potensiallar fərqi sıfırdırsa, sahənin işi sıfırdır.</li>
+        <li>Yüklər sisteminin enerjisində hər yükü iki dəfə saymaq. Hər <b>cüt</b> bir dəfə: üç yükdə üç hədd.</li>
+        <li>İşarəni atmaq. Müxtəlif işarəli yüklərin enerjisi mənfidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ekvipotensial səth: φ sabit, A = 0, sahə xətləri ona perpendikulyar
+Nöqtəvi yük: konsentrik sferalar;  bircins sahə: müstəvilər, U = E·d
+İki yük: W = k·q₁q₂/r;  çox yük: cütlər üzrə cəm
+A_xar = W₂ − W₁ (yavaş yaxınlaşdırma)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>5 mkKl yükü ekvipotensial səth boyunca 2 m aparılır. Sahənin işi? <span class="ans">0.</span></li>
+        <li>+1 mkKl və −1 mkKl yükləri 0,09 m aralıdır. Sistemin enerjisi? <span class="ans">W = −9·10⁹·10⁻¹²/0,09 = −0,1 J.</span></li>
+        <li>Nöqtəvi yükün ekvipotensial səthləri necədir? <span class="ans">Yükün mərkəzdə olduğu konsentrik sferalar.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

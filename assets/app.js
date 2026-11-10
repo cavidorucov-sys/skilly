@@ -429,6 +429,13 @@ async function pageTests() {
       lead.textContent = "Hər bölmənin sonunda vaxt limitli sınaq: FRİTL-də keçilən mövzular üzrə.";
       body.append(sec("Sınaqlar", [row("Atom", "phys", "Mexanika sınağı 1", "24 tapşırıq · 60 dəqiqə · kinematika və dinamika",
         el("a", { class: "go", href: "ders.html?p=fizika-mexanika-1#sq" }, "Aç →"))]));
+      // past RFO physics papers (ARTİ PDFs; 2017–2018 from the old olimpiada.edu.az site via web.archive.org)
+      const MER = { rayon: "Rayon (şəhər)", yarimfinal: "Yarımfinal", final: "Final" };
+      const NOV = { suallar: "suallar", helller: "məsələlər və həllər", eksperiment: "eksperiment: qiymətləndirmə meyarları" };
+      load("data/rfo-fizika-arxiv.json").then(list => body.append(sec("Keçmiş RFO fizika sınaqları", [
+        el("p", { class: "count" }, "9-cu sinif və aşağı yaş qrupu (8–9-cu siniflər). Rayon və yarımfinal üçün cavab açarı dərc olunmayıb; 2019–2024-cü illərin fizika sınaqları ümumiyyətlə dərc olunmayıb."),
+        ...list.map(x => row("FileText", "phys", `${x.il} · ${MER[x.merhele]}`, `${x.qrup === "AYQ" ? "8–9-cu siniflər" : "9-cu sinif"} · ${NOV[x.nov]}`,
+          el("a", { class: "go", href: x.url, target: "_blank", rel: "noopener" }, "PDF →")))]))).catch(() => {});
     }
   });
 }

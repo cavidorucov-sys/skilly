@@ -27,6 +27,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Dönən və iki güzgü</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sınma qanunu</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tam daxili qayıtma</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Kölgə və yarımkölgə</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -441,6 +442,85 @@ düz yuxarıdan:  h′ = h/n</div></div>
         <li>Mühitin həddi bucağının sinusu havaya çıxanda 0,5-dir. n = ? <span class="ans">n = 1/0,5 = 2 (α₀ = 30°).</span></li>
         <li>Suda (n = 4/3) 1,2 m dərinlikdə olan balıq yuxarıdan nə qədər dərində görünür? <span class="ans">1,2/(4/3) = 0,9 m.</span></li>
         <li>n₁ = 1,6 olan mühitdən havaya çıxan şüanın sin α = 0,5-dir. Tam qayıdırmı? <span class="ans">sin α₀ = 1/1,6 = 0,625. 0,5 &lt; 0,625 → qayıtmır, sınır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. İşığın düzxətli yayılması: kölgə və yarımkölgə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Günəş tutulması, divardakı kölgə, deşikdən düşən «ters» şəkil — hamısı bir faktdan çıxır: bircins mühitdə işıq <b>düz xətt</b> boyunca yayılır. Kölgənin ölçüsünü oxşar üçbucaqlarla tapırıq. RFO proqramında: «Tam və yarım kölgə. İşığın bircins mühitdə yayılması».</p>
+
+      <h3><span class="st">2</span> Tam kölgə və yarımkölgə</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Böyük işıq mənbəyi, qeyri-şəffaf disk və ekran: ortada tam kölgə, kənarlarda yarımkölgə">
+          <circle cx="30" cy="75" r="18" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="30" y="112" class="lbl" text-anchor="middle">mənbə</text>
+          <line x1="120" y1="63" x2="120" y2="87" stroke="var(--ink)" stroke-width="5"/>
+          <text x="120" y="112" class="lbl" text-anchor="middle">cisim</text>
+          <line x1="250" y1="10" x2="250" y2="140" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="30" y1="57" x2="250" y2="71.7" stroke="var(--accent)" stroke-width="1.2"/>
+          <line x1="30" y1="93" x2="250" y2="78.3" stroke="var(--accent)" stroke-width="1.2"/>
+          <line x1="30" y1="93" x2="250" y2="19.7" stroke="var(--vec)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="30" y1="57" x2="250" y2="130.3" stroke="var(--vec)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <rect x="246" y="71.7" width="8" height="6.6" fill="#2a2a2e" stroke="var(--ink)" stroke-width="0.6"/>
+          <rect x="246" y="19.7" width="8" height="52" fill="#9a9a9a"/>
+          <rect x="246" y="78.3" width="8" height="52" fill="#9a9a9a"/>
+          <text x="258" y="79" class="lbl">tam</text>
+          <text x="258" y="48" class="lbl">yarım</text>
+        </svg>
+        <div class="cap">
+          <p><b>Tam kölgə</b>yə mənbənin heç bir nöqtəsindən işıq düşmür. <b>Yarımkölgə</b>yə mənbənin yalnız bir hissəsindən işıq düşür. Mənbə nöqtəvidirsə (çox kiçikdirsə), yarımkölgə olmur — kölgənin kənarı kəskindir. Böyük mənbə həmişə yarımkölgə yaradır, tam kölgənin ekranda olub-olmaması isə ölçülərdən və məsafələrdən asılıdır.</p>
+        </div>
+      </div>
+      <p>Ay Günəşlə Yerin arasına düşəndə: Ayın tam kölgəsinə düşən yerdə <b>tam</b> Günəş tutulması, yarımkölgəsində <b>qismən</b> tutulma görünür.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Ölçünü necə tapmaq</h3>
+      <p>Mənbədən çıxıb cismin kənarına toxunan şüaları çək. Ölçülər <b>oxşar üçbucaqlardan</b> çıxır.</p>
+      <div class="fm">Nöqtəvi mənbə, cisim (ölçüsü h) mənbədən d məsafədə,
+ekran mənbədən D məsafədə — kölgənin ölçüsü:
+  H = h·D/d
+Lampa altında adam (lampa L hündürlükdə, adamın boyu h,
+lampanın dibindən s aralı) — kölgənin uzunluğu x:
+  h / L = x / (x + s)</div>
+      <p>Böyük mənbədə iki cüt şüa çəkilir: mənbənin <b>eyni tərəfli</b> kənarlarından keçənlər tam kölgəni, <b>çarpaz</b> kənarlarından keçənlər yarımkölgənin xarici sərhədini verir.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Lampa yerdən 4 m hündürlükdədir. Boyu 1,6 m olan adam lampanın dibindən 3 m aralıda dayanıb. Kölgənin uzunluğu?
+  1,6/4 = x/(x + 3)  →  4x = 1,6x + 4,8
+  x = 2 m</div>
+      <div class="ex">Nümunə 2. Diametri 10 sm olan disk nöqtəvi mənbədən 20 sm aralıdadır, ekran mənbədən 60 sm aralıdır. Kölgənin diametri?
+  H = 10·60/20 = 30 sm</div>
+      <div class="ex">Nümunə 3 (RFO tipli). Diametri 4 sm olan disk şəkilli mənbə, ondan 20 sm aralı diametri 2 sm olan disk (oxları eyni), ekran mənbədən 30 sm aralıdır. Tam kölgənin və yarımkölgənin xarici diametri?
+  Koordinatlar (sm): başlanğıc mənbənin mərkəzində, x — ox boyunca mənbədən məsafə, y — oxdan hündürlük
+  Radiuslarla: mənbə 2 sm, cisim 1 sm
+  Tam kölgə sərhədi (yuxarı → yuxarı): y = 2 − x/20 → x = 30: y = 0,5 sm → tam kölgə diametri 1 sm
+  Yarımkölgə sərhədi (aşağı → yuxarı): y = −2 + 3x/20 → x = 30: y = 2,5 sm → xarici diametr 5 sm
+  (Tam kölgə x = 40 sm-də bitir: ekran 40 sm-dən uzaqda olsa, yalnız yarımkölgə görünərdi.)</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Əməliyyat otağının lampası çoxlu kiçik lampadan ibarətdir: biri kölgələnsə, digərləri işıq salır və həkimin əlinin kəskin kölgəsi yaranmır. Deşikli kamera (camera obscura) da düzxətli yayılmadan işləyir: deşikdən keçən şüalar çarpazlaşır və ekranda tərs xəyal yaranır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Böyük mənbədə də yalnız bir cüt şüa çəkmək. Yarımkölgəni tapmaq üçün çarpaz şüalar da lazımdır.</li>
+        <li>Məsafələri qarışdırmaq: <span class="m">H = h·D/d</span>-də hər iki məsafə <b>mənbədən</b> ölçülür.</li>
+        <li>Kölgənin uzunluğu məsələsində oxşar üçbucağı səhv qurmaq: böyük üçbucağın əsası <span class="m">x + s</span>-dir, <span class="m">x</span> yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bircins mühitdə işıq düz xətt üzrə yayılır
+Nöqtəvi mənbə: yalnız tam kölgə;  böyük mənbə: yarımkölgə (+ ölçülərdən asılı olaraq tam kölgə)
+H = h·D/d   (məsafələr mənbədən)
+Lampa və adam: h/L = x/(x + s)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Nöqtəvi mənbə yarımkölgə yaradırmı? <span class="ans">Xeyr, yalnız kəskin kənarlı tam kölgə.</span></li>
+        <li>Boyu 1,5 m olan uşaq 3 m hündürlükdəki lampanın dibindən 2 m aralıdır. Kölgənin uzunluğu? <span class="ans">1,5/3 = x/(x + 2) → x = 2 m.</span></li>
+        <li>Diametri 5 sm olan disk (şüalara perpendikulyar) nöqtəvi mənbədən 0,5 m, ekran mənbədən 2 m aralıdır. Kölgənin diametri? <span class="ans">5·2/0,5 = 20 sm.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

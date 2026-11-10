@@ -27,6 +27,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Proyeksiya</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Toplama</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Radian, arcsin, arctg</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -330,6 +331,68 @@ Tarazlıq: ΣFₓ = 0, ΣFy = 0.</div></div>
         <li>ABCD kvadratının tərəfi 4. |AB⃗ + AC⃗ + AD⃗|? <span class="ans">AB⃗ + AD⃗ = AC⃗, cəm 2·AC⃗ = 2·4√2 = 8√2.</span></li>
         <li>Top 15 m/s ilə divara perpendikulyar dəyib, 15 m/s ilə geri qayıtdı. |Δv⃗|? <span class="ans">15 − (−15) = 30 m/s.</span></li>
         <li>Halqaya şərqə 9 N, şimala 12 N qüvvə təsir edir. Halqa tarazlıqda qalması üçün üçüncü qüvvə? <span class="ans">√(81 + 144) = 15 N, cənub-qərbə (ilk ikisinin cəminə əks).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Riyazi bacarıq: radian və tərs triqonometrik funksiyalar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Fizikada çox vaxt bucağın özü soruşulur: qüvvə hansı bucaq altında yönəlib, şüa necə sınır, maili müstəvi nə qədər dikdir. Sinusu, tangensi tapırıq — sonra bucağı onlardan geri çıxarmaq lazımdır. Bunun üçün <b>tərs triqonometrik funksiyalar</b> var. RFO proqramının «Riyazi bacarıqlar» hissəsində həm onlar, həm də <b>radian</b> yazılıb.</p>
+
+      <h3><span class="st">2</span> Radian</h3>
+      <div class="fm">1 radian — uzunluğu radiusa bərabər qövsə uyğun mərkəzi bucaq
+Mərkəzi bucağın radianla qiyməti:   φ = l / R
+180° = π rad      1 rad ≈ 57,3°
+Dərəcədən radiana:  φ_rad = φ° · π/180
+Radiandan dərəcəyə: φ° = φ_rad · 180/π</div>
+      <p>Çevrə üzrə hərəkətdə bucaq sürəti <span class="m">ω</span> rad/s ilə ölçülür və <span class="m">v = ωR</span> yalnız radianda doğrudur.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Tərs funksiyalar: bucağı geri tapmaq</h3>
+      <div class="fm">sin α = a   →  α = arcsin a     (−90° ≤ α ≤ 90°,  −1 ≤ a ≤ 1)
+cos α = a   →  α = arccos a     (0° ≤ α ≤ 180°,  −1 ≤ a ≤ 1)
+tg α  = a   →  α = arctg a      (−90° &lt; α &lt; 90°)
+Məsələn: arcsin 0,5 = 30°,  arccos 0 = 90°,  arctg 1 = 45°</div>
+      <p>Fizikada üç tipik yer:</p>
+      <ul>
+        <li>Vektorun istiqaməti (x oxundan saat əqrəbinin əksinə): <span class="m">F_x &gt; 0</span> olanda <span class="m">α = arctg(F_y / F_x)</span>; <span class="m">F_x &lt; 0</span> olanda buna 180° əlavə et; <span class="m">F_x = 0</span> olanda vektor şaquli yönəlib (90° və ya 270°).</li>
+        <li>Sınma bucağı (bucaqlar səthə çəkilmiş <b>normaldan</b> ölçülür): ümumi halda <span class="m">n₁ sin α = n₂ sin β</span>; havadan keçəndə <span class="m">β = arcsin(sin α / n)</span>.</li>
+        <li>Maili müstəvinin bucağı: <span class="m">α = arctg(h / l)</span> (l — üfüqi uzunluq).</li>
+      </ul>
+      <p>Kalkulyatorda bu düymələr <b>sin⁻¹, cos⁻¹, tan⁻¹</b> adlanır. Əvvəl rejimi yoxla: <b>DEG</b> — dərəcə, <b>RAD</b> — radian. RFO-da fizika imtahanında kalkulyatora icazə var.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Qüvvənin proyeksiyaları F_x = 3 N, F_y = 4 N. Modulu və x oxu ilə bucağı?
+  |F| = √(3² + 4²) = 5 N
+  α = arctg(4/3) ≈ 53,1°</div>
+      <div class="ex">Nümunə 2. Şüa havadan şüşəyə (n = 1,5) düşür, düşmə bucağı (normalla) 45°. Sınma bucağı?
+  sin β = sin 45° / 1,5 = 0,707/1,5 ≈ 0,471
+  β = arcsin 0,471 ≈ 28,1°</div>
+      <div class="ex">Nümunə 3. 2,5 rad neçə dərəcədir? 72° neçə radiandır?
+  2,5·180/π ≈ 143,2°
+  72·π/180 = 2π/5 ≈ 1,257 rad</div>
+      </div>
+      </div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kalkulyator RAD rejimində olanda dərəcə gözləmək (və ya əksinə). Cavab qəribə çıxırsa, əvvəl rejimə bax.</li>
+        <li><span class="m">sin⁻¹ x</span>-i <span class="m">1/sin x</span> kimi oxumaq. sin⁻¹ — tərs funksiyadır (arcsin), tərs ədəd yox.</li>
+        <li>arctg ilə tapılan bucağın rübünü yoxlamamaq: <span class="m">F_x &lt; 0</span> olanda vektor II və ya III rübdədir, bucağa 180° əlavə etmək lazım gəlir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">180° = π rad,  1 rad ≈ 57,3°,  φ = l/R
+arcsin, arccos, arctg — sinusdan, kosinusdan, tangensdən bucağı tapır
+α = arctg(F_y/F_x),  β = arcsin(sin α / n)
+Kalkulyatorda: sin⁻¹, cos⁻¹, tan⁻¹; DEG/RAD rejimi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>arcsin(√3/2) = ? <span class="ans">60°.</span></li>
+        <li>π/6 rad neçə dərəcədir? <span class="ans">30°.</span></li>
+        <li>F_x = 5 N, F_y = 5 N. Qüvvə x oxu ilə hansı bucağı əmələ gətirir? <span class="ans">arctg 1 = 45°.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
