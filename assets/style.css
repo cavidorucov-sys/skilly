@@ -213,7 +213,7 @@ td.act{text-align:right;white-space:nowrap}
 .cal-c .dots{display:flex;gap:4px;margin-top:auto}
 .cal-c .dots i{width:8px;height:8px;border-radius:50%}
 .cal-c .dots .k-math{background:var(--math-ink)} .cal-c .dots .k-phys{background:var(--phys-ink)} .cal-c .dots .k-olym{background:var(--olym-ink)} .cal-c .dots .k-proj{background:var(--proj-ink)} .cal-c .dots .k-misc{background:var(--muted)}
-.cal-day{margin-top:30px;max-width:640px}
+.cal-day{margin-top:30px}
 @media (max-width:640px){.cal{gap:4px}.cal-c{min-height:58px;padding:5px}.cal-tag{font-size:0;padding:0;height:6px;border-radius:var(--r-xs)}}
 .list.dl{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px 28px}
 
