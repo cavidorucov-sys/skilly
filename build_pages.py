@@ -9,7 +9,7 @@ PAGE = """<!doctype html>
 <script src="assets/icons.js" defer></script>
 <script src="assets/jurnal.js" defer></script>
 <script src="assets/app.js" defer></script>
-</head><body data-page="{page}"><noscript>Bu səhifə JavaScript tələb edir.</noscript></body></html>
+</head><body data-page="{page}"><script src="assets/ilk.js"></script><noscript>Bu səhifə JavaScript tələb edir.</noscript></body></html>
 """
 pages = {"index": "Bu gün", "teqvim": "Təqvim", "riyaziyyat": "Buraxılış", "olimpiada": "Olimpiada", "fizika": "Fizika",
          "sinaqlar": "Sınaqlar", "temrar": "Təkrar", "dusturlar": "Düsturlar", "ders": "Dərs"}

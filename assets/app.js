@@ -199,6 +199,8 @@ async function shell(content) {
       return box;
     }));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
+  // keep this view for the next visit from this tab (assets/ilk.js shows it while the page loads); not the lesson frame
+  if (here !== "ders.html") addEventListener("pagehide", () => { try { sessionStorage.setItem("skilly-snap:" + document.body.dataset.page, document.querySelector(".app").outerHTML); } catch (e) {} });
   return { m, w, topics, term };
 }
 

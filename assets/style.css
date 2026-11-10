@@ -458,3 +458,9 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 /* agenda: a past item that is still not done stays visible */
 .ag.past.miss{opacity:1}
 .ag.miss .ag-tx small{color:var(--err-ink);font-weight:600}
+
+/* page changes: the old view cross-fades into the new one; the copy shown while a page loads (assets/ilk.js)
+   is replaced without replaying the entry animations */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+.warm .fade{animation:none}
+.warm .ring circle{transition:none}
