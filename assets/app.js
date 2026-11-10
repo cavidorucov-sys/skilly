@@ -177,7 +177,7 @@ async function shell(content) {
   let me = ""; try { me = { "orujov.fikret@gmail.com": "Fikrət", "cavid.orucov@gmail.com": "Cavid" }[JSON.parse(localStorage.getItem("skilly-user") || '""')] || ""; } catch (e) {}
   if (!w) me = "";
   const rail = el("aside", { class: "rail" },
-    el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), el("div", { class: "rail-btns" }, theme, toggle)),
+    el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html", "aria-label": "Skilly" }, el("span", { class: "logo-mark", "aria-hidden": "true" }), el("span", { class: "logo-full" }, "Skilly")), el("div", { class: "rail-btns" }, theme, toggle)),
     el("div", { class: "who" }, el("div", { class: "avatar" }, me ? me[0] : "S"), el("b", {}, me || "Skilly"), el("span", {}, me === "Cavid" ? "Valideyn" : "9-cu sinif · 2026–27"), w ? el("span", { class: "chip" }, w.hefte) : null, account()),
     ring,
     el("div", { class: "minis" },
