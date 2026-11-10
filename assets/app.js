@@ -137,6 +137,8 @@ function account() {
 async function shell(content) {
   const here = location.pathname.split("/").pop() || "index.html";
   // the week plan is private: it opens only for the two signed-in accounts (w = null for everyone else)
+  // the three files are fetched together: each one is a round trip to the server
+  const termP = load("data/terminler.json").catch(() => []);
   const [m, w] = await Promise.all([load("data/movzular.json"), window.Skilly ? Skilly.gizli("hefte") : null]).catch(() => [null, null]);
   const topics = m ? allTopics(m) : [];
   const closed = topics.filter(t => t.status === "bag").length, total = topics.length || 1;
@@ -147,7 +149,7 @@ async function shell(content) {
     <circle cx="110" cy="110" r="100" fill="none" style="stroke:var(--rail-ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>`;
   ring.append(el("div", { class: "v" }, el("div", { class: "big" }, String(closed)), el("div", { class: "lbl" }, `${total} mövzudan bağlanıb`, el("br"), `${total - closed} qalıb · ${pct}%`)));
   requestAnimationFrame(() => requestAnimationFrame(() => { ring.querySelectorAll("circle")[1].style.strokeDashoffset = C * (1 - Math.max(pct, 1) / 100); }));
-  const term = await load("data/terminler.json").catch(() => []);
+  const term = await termP;
   const exam = term.find(t => t.tarix >= isoToday() && t.ad.startsWith("Buraxılış"));
   const toExam = exam ? Math.round((new Date(exam.tarix) - new Date(isoToday())) / 864e5) : "–";
   // collapsible rail; the choice is remembered on this device
