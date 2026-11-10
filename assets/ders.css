@@ -196,7 +196,7 @@ html{scrollbar-gutter:stable}
 /* hover feedback on everything clickable */
 .btn{transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease)}
 .btn:hover:not([disabled]){background:#2c2c32}
-:root[data-theme="dark"] .btn:hover:not([disabled]){background:#d6d4cc}
+:root[data-theme="dark"] .btn:not(.ghost):hover:not([disabled]){background:#d6d4cc}
 .btn.ghost:hover:not([disabled]){background:var(--paper);box-shadow:inset 0 0 0 1px var(--ink-2)}
 .stepchip:hover:not([aria-current=step]){background:var(--line-0);color:var(--ink-0)}
 .oy-choices button{transition:background .15s var(--ease),border-color .15s var(--ease)}
