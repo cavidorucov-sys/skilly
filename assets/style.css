@@ -454,3 +454,7 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 
 /* calendar: a memory check that was not done */
 .cal-tag.late{background:var(--err-bg);color:var(--err-ink)}
+
+/* agenda: a past item that is still not done stays visible */
+.ag.past.miss{opacity:1}
+.ag.miss .ag-tx small{color:var(--err-ink);font-weight:600}

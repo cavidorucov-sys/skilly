@@ -240,13 +240,21 @@ async function pageIndex() {
   if (!day) list.append(el("p", { class: "empty" }, "Bu həftənin planı bitib. Yeni cədvəl bazar axşamı gələcək."));
   else {
     let nextMarked = false;
+    // what is really done: a lesson item when its topic is closed, the review item when nothing is waiting there;
+    // other items (FRİTL, cüdo, esse) are not tracked here, so a past one only says its time is over
+    if (window.Skilly) await Skilly.ready;
+    const left = window.Skilly ? Skilly.dueReviews().reduce((n, r) => n + r.n, 0) + (Skilly.sehvOn ? Skilly.all().filter(e => e.status !== "baglandi").length : 0) : 0;
+    const doneOf = t => /^dersler\//.test(t.link || "") ? passedHere().includes(t.link) : t.link === "temrar.html" ? left === 0 : null;
     day.isler.forEach(t => {
-      const [from, to] = span(t.saat), k = KAT[t.kat] || KAT.misc;
+      const [from, to] = span(t.saat), k = KAT[t.kat] || KAT.misc, done = doneOf(t);
       const state = !isToday ? "" : now >= to ? "past" : now >= from ? "now" : (!nextMarked ? (nextMarked = true, "next") : "");
-      const row = el(t.link ? "a" : "div", { class: "ag " + state, ...(t.link ? { href: t.link } : {}) },
+      const note = done ? (t.link === "temrar.html" ? "edilib ✓" : "bağlanıb ✓")
+        : state === "past" ? (done === false ? "vaxtı keçdi — " + (t.link === "temrar.html" ? "edilməyib" : "bağlanmayıb") : "vaxtı keçdi")
+        : state === "now" ? "indi" : state === "next" ? "növbəti" : k.ad;
+      const row = el(t.link ? "a" : "div", { class: "ag " + state + (state === "past" && done === false ? " miss" : ""), ...(t.link ? { href: t.link } : {}) },
         el("span", { class: "ag-time" }, from, el("small", {}, to)),
         el("span", { class: "ag-ic " + k.cls }, icon(iconFor(t.kat, t.is), k.ink)),
-        el("span", { class: "ag-tx" }, el("b", {}, t.is + (t.link === "temrar.html" && window.Skilly ? ` · ${reviewQueue().nowQ} sual` : "")), el("small", {}, state === "now" ? "indi" : state === "next" ? "növbəti" : state === "past" ? "keçdi" : k.ad)),
+        el("span", { class: "ag-tx" }, el("b", {}, t.is + (t.link === "temrar.html" && window.Skilly ? ` · ${reviewQueue().nowQ} sual` : "")), el("small", {}, note)),
         t.link ? el("span", { class: "ag-go" }, "Aç →") : null);
       list.append(row);
     });
