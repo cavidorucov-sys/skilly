@@ -64,7 +64,7 @@ a{color:inherit}
 /* ---------- rail ---------- */
 .rail{background:var(--rail);color:var(--rail-ink);padding:36px 28px;display:flex;flex-direction:column;align-items:center;gap:26px;position:sticky;top:0;height:100vh}
 @media (max-width:980px){.rail{position:static;height:auto;padding:22px 16px;flex-direction:row;flex-wrap:wrap;justify-content:space-between;gap:16px}}
-.logo{font-weight:700;font-size:26px;letter-spacing:-.02em;text-decoration:none;color:var(--rail-ink);display:inline-flex;align-items:center;gap:10px}
+.logo{font-family:"Sora",var(--font);font-weight:800;font-size:28px;letter-spacing:-.02em;line-height:1;text-decoration:none;color:var(--rail-ink);display:inline-flex;align-items:center;gap:6px}
 /* the stepped-S mark (assets/logo.svg), drawn in the text colour */
 .logo-mark{width:30px;height:30px;flex:none;background:currentColor;-webkit-mask:url(logo.svg) center/contain no-repeat;mask:url(logo.svg) center/contain no-repeat}
 .who{text-align:center;display:grid;gap:4px;justify-items:center}
