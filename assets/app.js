@@ -171,9 +171,12 @@ async function shell(content) {
   theme.addEventListener("click", () => { if (window.SkillyTema) SkillyTema.toggle(); showTheme(); });
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", showTheme);
   showTheme();
+  // the name of whoever is signed in on this device (the sign-in remembers the e-mail)
+  let me = ""; try { me = { "orujov.fikret@gmail.com": "Fikrət", "cavid.orucov@gmail.com": "Cavid" }[JSON.parse(localStorage.getItem("skilly-user") || '""')] || ""; } catch (e) {}
+  if (!w) me = "";
   const rail = el("aside", { class: "rail" },
     el("div", { class: "rail-top" }, el("a", { class: "logo", href: "index.html" }, el("span", { class: "logo-full" }, "Skilly"), el("span", { class: "logo-mini" }, "S")), el("div", { class: "rail-btns" }, theme, toggle)),
-    el("div", { class: "who" }, el("div", { class: "avatar" }, w ? "F" : "S"), el("b", {}, w ? "Fikrət" : "Skilly"), el("span", {}, "9-cu sinif · 2026–27"), w ? el("span", { class: "chip" }, w.hefte) : null, account()),
+    el("div", { class: "who" }, el("div", { class: "avatar" }, me ? me[0] : "S"), el("b", {}, me || "Skilly"), el("span", {}, me === "Cavid" ? "Valideyn" : "9-cu sinif · 2026–27"), w ? el("span", { class: "chip" }, w.hefte) : null, account()),
     ring,
     el("div", { class: "minis" },
       el("div", { class: "mini" }, el("i", {}, String(toExam)), "gün sınağa"),
@@ -193,14 +196,18 @@ async function shell(content) {
         if (!matchMedia("(max-width:980px)").matches) return;
         ev.preventDefault();
         const open = !box.classList.contains("open");
+        box.classList.remove("shut");
         document.querySelectorAll(".nav-dd.open").forEach(x => x.classList.remove("open"));
         if (open) { const r = link.getBoundingClientRect(); dd.style.left = Math.min(r.left, innerWidth - 210) + "px"; dd.style.top = r.bottom + 6 + "px"; box.classList.add("open"); }
       });
+      // a choice closes the menu: most choices only change the #hash on the same page, so nothing reloads and the
+      // menu would stay open under the pointer and keyboard focus; it opens again once the pointer leaves and returns
+      dd.addEventListener("click", ev => { if (!ev.target.closest("a")) return;
+        box.classList.remove("open"); box.classList.add("shut"); if (document.activeElement) document.activeElement.blur(); });
+      box.addEventListener("mouseleave", () => box.classList.remove("shut"));
       return box;
     }));
   document.body.replaceChildren(el("div", { class: "app" }, rail, el("section", { class: "work" }, nav, content)));
-  // keep this view for the next visit from this tab (assets/ilk.js shows it while the page loads); not the lesson frame
-  if (here !== "ders.html") addEventListener("pagehide", () => { try { sessionStorage.setItem("skilly-snap:" + document.body.dataset.page, document.querySelector(".app").outerHTML); } catch (e) {} });
   return { m, w, topics, term };
 }
 

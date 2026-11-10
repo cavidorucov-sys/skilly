@@ -201,17 +201,21 @@
     // Private data (week plan, work from before the portal) is published encrypted (tools/sifrele.js). The key is in
     // Firestore gizli/acar, readable only by the two accounts, and cached on their devices for offline use.
     async gizli(name) {
-      try {
-        const f = await fb(); let k = get(ACAR, "");
-        if (f) {
-          const a = await api(); if (!a) { put(ACAR, ""); return null; }
-          if (!k) { const d = await a.S.getDoc(a.S.doc(a.db, "gizli", "acar")); k = d.exists() ? d.data().k : ""; put(ACAR, k); }
-        }
-        if (!k) return null;
+      const open = async k => {
         const e = await fetch(BASE + "data/" + name + ".enc.json", { cache: "no-cache" }).then(r => r.json());
         const b = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
         const key = await crypto.subtle.importKey("raw", b(k), "AES-GCM", false, ["decrypt"]);
         return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b(e.iv) }, key, b(e.ct))));
+      };
+      try {
+        let k = get(ACAR, "");
+        // with the key cached on this device the page opens at once; sign-in is checked in the background and a
+        // device that is no longer signed in drops the key (the next load shows nothing private)
+        if (k) { fb().then(async f => { if (f && !(await api())) put(ACAR, ""); }).catch(() => {}); return await open(k); }
+        const f = await fb(); if (!f) return null;
+        const a = await api(); if (!a) return null;
+        const d = await a.S.getDoc(a.S.doc(a.db, "gizli", "acar")); k = d.exists() ? d.data().k : ""; put(ACAR, k);
+        return k ? await open(k) : null;
       } catch (e) { put(ACAR, ""); return null; } // a stale cached key is fetched again on the next load
     },
     async signIn() {

@@ -292,6 +292,8 @@ html{scrollbar-gutter:stable}
 .nav-dd .dd a{color:var(--ink);border-radius:var(--r-sm);padding:10px 12px;font-weight:500}
 .nav-dd .dd a:hover{background:var(--bg)}
 .nav-dd:hover .dd,.nav-dd:focus-within .dd{opacity:1;visibility:visible;transform:none}
+.nav-dd.shut .dd{opacity:0;visibility:hidden}
+.nav-dd.shut > a svg:last-child{transform:none}
 .nav-dd:hover > a svg:last-child,.nav-dd:focus-within > a svg:last-child{transform:rotate(180deg)}
 .nav-dd .dd a[aria-current]{background:var(--bg);font-weight:600}
 /* phones and narrow windows: tapping the parent opens the menu as a fixed popover */
@@ -459,8 +461,5 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 .ag.past.miss{opacity:1}
 .ag.miss .ag-tx small{color:var(--err-ink);font-weight:600}
 
-/* page changes: the old view cross-fades into the new one; the copy shown while a page loads (assets/ilk.js)
-   is replaced without replaying the entry animations */
+/* page changes: the old view cross-fades into the new one */
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
-.warm .fade{animation:none}
-.warm .ring circle{transition:none}
