@@ -291,12 +291,14 @@
       });
     }
 
-    // a wrong answer from the entry test, final test or a review goes to the error journal (Səhvlər sheet)
+    // a wrong answer from the final test or a review goes to the error journal
     function logWrong(where, id, q, val) {
       if (!window.Skilly) return;
       Skilly.sehv({ id: cfg.key + "-" + id, fenn: cfg.fenn, movzu: cfg.title, menbe: cfg.title + " — " + where,
         sual: typeof q.text === "string" ? q.text : q.text.textContent,
-        cavab: valText(q, val), duz: q.show, link: cfg.link });
+        cavab: valText(q, val), duz: q.show, link: cfg.link,
+        // enough of the question to ask it again in the journal, checked the same way (the answer is never shown there)
+        q2: { choices: q.choices || null, correct: q.correct ?? null, answer: q.answer ?? null, tol: tolOf(q) ?? null, unit: q.unit || "", svg: q.svg && q.svg.outerHTML ? q.svg.outerHTML : "" } });
     }
 
     function report(kind, r) {
@@ -369,10 +371,9 @@
         run.vals.push(val); save();
       }
       clearInterval(tick);
-      let bal = 0; const at = Date.now();
+      let bal = 0;
       pickIds.forEach((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i];
-        if (val != null && (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)))) bal++;
-        else logWrong("giriş testi", "giris@" + at + "#" + (i + 1), q, val); });
+        if (val != null && (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)))) bal++; }); // entry-test mistakes stay out of the journal (father, 10 Nov 2026)
       delete st.entryRun;
       st.entry = { bal, at: Date.now() };
       if (bal === n) { cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK })); st.boss.passed = true; } // 8/8 at the first try is stricter than the Boss

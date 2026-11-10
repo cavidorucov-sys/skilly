@@ -447,3 +447,7 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 /* theme button beside the rail toggle */
 .rail-btns{display:flex;gap:8px;align-items:center}
 .rail-min .rail-btns{flex-direction:column}
+
+/* error journal: the question's figure, drawn with the lesson colours, on its own light card */
+.e-fig{background:#fff;border-radius:var(--r);padding:10px;max-width:420px}
+.e-fig svg{display:block;width:100%;height:auto}

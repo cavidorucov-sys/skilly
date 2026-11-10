@@ -328,7 +328,7 @@ $("send").addEventListener("click",()=>{
   const solved=T.filter(([n])=>st.s[n]&&st.s[n].ok).length;
   const hard=T.filter(([n])=>{const r=st.s[n];return r&&(r.wrong.length||!r.ok)}).map(([n])=>n);
   show("done",[el("b",{},"Bitdi: "+solved+" / 23 həll olunub."),
-    el("p",{},hard.length?"Çətin olan suallar: "+hard.join(", ")+". Onlar səhv jurnalına düşüb — bir həftə sonra təkrar gələcək.":"Hamısı ilk cəhddə. Əla."),
+    el("p",{},hard.length?"Çətin olan suallar: "+hard.join(", ")+".":"Hamısı ilk cəhddə. Əla."),
     el("p",{},"Nəticə atana avtomatik göndərildi.")]);
   const items={};T.forEach(([n])=>{const r=st.s[n]||{tries:0,wrong:[],ok:false,hint:false};items[n]={ok:!!r.ok,tries:r.tries,wrong:r.wrong.slice(0,10),hint:!!r.hint}});
   if(window.Skilly)Skilly.netice({id:"funk-mesq-1@"+st.startedAt,ders:"Funksiyalar məşqi 1",fenn:"riyaziyyat",bal:solved,max:23,

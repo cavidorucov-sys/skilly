@@ -540,7 +540,7 @@ function finish(){logErrors();clearInterval(tick);clock();$("fs").disabled=true;
   const ok=Q.filter(([n])=>st.res[n]===true).length,bad=Q.filter(([n])=>st.res[n]!==true).map(([n])=>n);
   const secs=Math.floor((st.doneAt-st.startedAt)/1000);
   const r=$("result");r.className="done";r.replaceChildren(el("b",{},"Nəticə: "+ok+" / 24 · vaxt "+fmt(secs)),
-    el("p",{},bad.length?"Səhv və ya boş: "+bad.join(", ")+". Bu suallar səhv jurnalına düşüb — kağızda yenidən həll et, sonra uyğun dərsə qayıt.":"Hamısı düz."),
+    el("p",{},bad.length?"Səhv və ya boş: "+bad.join(", ")+". Bu sualları kağızda yenidən həll et, sonra uyğun dərsə qayıt.":"Hamısı düz."),
     el("p",{},"Nəticə atana avtomatik göndərildi."));r.hidden=false;r.scrollIntoView({block:"nearest"});
   const items={};Q.forEach(([n])=>{items[n]={cavab:String(st.a[n]||""),ok:st.res[n]}});
   if(window.Skilly)Skilly.netice({id:"mex-sinaq-1@"+st.startedAt,ders:"Mexanika sınağı 1",fenn:"fizika",bal:ok,max:24,deq:Math.round(secs/60),

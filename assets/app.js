@@ -254,15 +254,13 @@ async function pageIndex() {
   hero.append(list);
   content.append(hero);
 
-  // 2. needs attention: the error journal
-  if (window.Skilly) {
+  // 2. needs attention: the error journal (only while it is switched on)
+  if (window.Skilly && Skilly.sehvOn) {
     await Skilly.ready;
-    const all = Skilly.all(), yeni = all.filter(e => e.status === "yeni").length;
-    const due = all.filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= today).length;
-    if (yeni || due) content.append(el("a", { class: "attn", href: "temrar.html" },
+    const open = Skilly.all().filter(e => e.status !== "baglandi").length;
+    if (open) content.append(el("a", { class: "attn", href: "temrar.html" },
       el("span", { class: "ag-ic k-misc" }, icon("NotebookPen")),
-      el("span", { class: "ag-tx" }, el("b", {}, "Səhv jurnalı"),
-        el("small", {}, [yeni ? `${yeni} səhv təhlil gözləyir` : "", due ? `${due} təkrar vaxtıdır` : ""].filter(Boolean).join(" · "))),
+      el("span", { class: "ag-tx" }, el("b", {}, "Səhv jurnalı"), el("small", {}, `${open} sual yenidən həll gözləyir`)),
       el("span", { class: "ag-go" }, "Aç →")));
   }
 
@@ -476,13 +474,12 @@ async function pageCalendar() {
   draw();
 }
 
-/* ---------- təkrar: queue for the two weekly windows ---------- */
+/* ---------- təkrar: topic reviews for the two weekly windows (mistakes are offered at once, outside them) ---------- */
 const CAP = 10;
 function reviewQueue() {
   const t = Skilly.today();
   const items = [
     ...Skilly.dueReviews().map(r => ({ type: "movzu", due: r.due, n: r.n, r })),
-    ...Skilly.all().filter(e => e.status === "aciq" && e.novbeti && e.novbeti <= t).map(e => ({ type: "sehv", due: e.novbeti, n: 1, e })),
   ].sort((a, b) => a.due.localeCompare(b.due));
   const now = [], later = []; let used = 0;
   items.forEach(x => { if (used + x.n <= CAP || !now.length) { now.push(x); used += x.n; } else later.push(x); });
@@ -490,10 +487,9 @@ function reviewQueue() {
 }
 
 /* ---------- səhv jurnalı ---------- */
-const KATS = { hesab: "Hesab / diqqət", qayda: "Qaydanı bilmirdim", sert: "Şərti səhv başa düşdüm" };
 const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"] };
 const dmy = iso => iso ? iso.slice(8) + "." + iso.slice(5, 7) : "–";
-const SST = { yeni: ["Təhlil gözləyir", "st-err", "CircleAlert"], aciq: ["Təkrarda", "st-isl", "Repeat"], baglandi: ["Bağlanıb", "st-bag", "CircleCheck"] };
+const SST = { yeni: ["Həll gözləyir", "st-isl", "Repeat"], aciq: ["Həll gözləyir", "st-isl", "Repeat"], baglandi: ["Həll olundu", "st-bag", "CircleCheck"] };
 
 function seg(opts, onPick, initial) {
   let val = initial || "";
@@ -516,117 +512,55 @@ function errBody(e) {
     e.opts ? el("ol", { class: "e-opts", type: "A" }, ...e.opts.map(o => el("li", {}, o))) : null);
 }
 
-function analyseCard(e, redraw) {
-  const err = errMsg();
-  const kat = seg(KATS, () => { err.textContent = ""; }, e.kat);
-  const yol = el("input", { class: "fld", type: "text", placeholder: "Məsələn: əvvəl vahidləri SI-yə çevirməliydim", "aria-label": "Düzgün yol, bir cümlə" });
-  yol.addEventListener("input", () => { err.textContent = ""; });
-  const btn = el("button", { class: "btn", type: "button" }, "Saxla");
-  btn.addEventListener("click", () => {
-    if (!kat.value()) { err.textContent = "Səhvin növünü seç."; return; }
-    if (yol.value.trim().length < 8) { err.textContent = "Düzgün yolu bir cümlə ilə yaz."; yol.focus(); return; }
-    Skilly.update(e.id, { kat: kat.value(), yol: yol.value.trim(), status: "aciq" }); redraw();
-  });
-  return el("div", { class: "e-card fade" }, errHead(e), errBody(e),
-    el("p", { class: "e-ans" }, e.bos ? "Boş qalıb" : "Sənin cavabın: " + (e.cavab || "—") + (e.vahid ? " " + e.vahid : "")),
-    e.qeyd ? el("p", { class: "e-note" }, e.qeyd) : null,
-    e.duz ? el("details", { class: "e-det" }, el("summary", {}, "Düz cavabı göstər"), e.duz) : null,
-    el("div", { class: "e-lbl" }, "Niyə səhv oldu?"), kat,
-    el("div", { class: "e-lbl" }, "Düzgün yol (bir cümlə)"), yol, err, el("div", { class: "e-act" }, btn));
-}
-
 function redoCard(e, redraw) {
-  const out = errMsg(), act = el("div", { class: "e-act" });
-  const done = ok => {
+  // the same question again, checked as in the game; it stays until it is solved right — no answer, no explanation
+  const q = e.q2 || {}, out = errMsg(), act = el("div", { class: "e-act" });
+  let input;
+  if (q.choices) input = seg(Object.fromEntries(q.choices.map((c, i) => [String(i), c])), () => { out.textContent = ""; });
+  else { input = el("input", { class: "fld", type: "text", inputmode: "decimal", autocomplete: "off", "aria-label": "Cavab" }); input.addEventListener("input", () => { out.textContent = ""; }); }
+  const btn = el("button", { class: "btn", type: "button" }, "Yoxla");
+  btn.addEventListener("click", () => {
+    const v = q.choices ? input.value() : input.value.trim();
+    if (v === "" || v == null) { out.className = "fld-err"; out.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
+    const ok = Skilly.yoxla(q, q.choices ? +v : v);
     Skilly.tekrar(e.id, ok);
     out.className = "e-res " + (ok ? "ok" : "no");
-    out.textContent = (ok ? "Düz. " : "Hələ alınmadı, bir həftə sonra yenə gələcək. ") + "Sənin qeydin: " + (e.yol || "—");
-    const nx = el("button", { class: "btn ghost", type: "button" }, "Növbəti");
-    nx.addEventListener("click", redraw); act.replaceChildren(nx);
-  };
-  if (e.chk) {
-    let inp;
-    if (e.opts) inp = seg(Object.fromEntries(e.opts.map((o, i) => ["ABCDE"[i], "ABCDE"[i]])), () => { out.textContent = ""; });
-    else { inp = el("input", { class: "fld", type: "text", inputmode: "decimal", autocomplete: "off", "aria-label": "Cavab" }); inp.addEventListener("input", () => { out.textContent = ""; }); }
-    const btn = el("button", { class: "btn", type: "button" }, "Yoxla");
-    btn.addEventListener("click", async () => {
-      const v = Skilly.norm(e.opts ? inp.value() : inp.value, e.chk.p);
-      if (!v) { out.className = "fld-err"; out.textContent = "Əvvəl cavabı yaz."; return; }
-      done((await Skilly.hash(e.chk.p, e.chk.n, v)) === e.chk.h);
-    });
-    act.append(btn);
-    return el("div", { class: "e-card fade" }, errHead(e), errBody(e), el("div", { class: "e-lbl" }, "Kağızda yenidən həll et, sonra cavabı yaz" + (e.vahid ? " (" + e.vahid + ")" : "")), inp, out, act);
-  }
-  const yes = el("button", { class: "btn", type: "button" }, "Bacardım"), no = el("button", { class: "btn ghost", type: "button" }, "Bacarmadım");
-  yes.addEventListener("click", () => done(true)); no.addEventListener("click", () => done(false));
-  act.append(yes, no);
-  return el("div", { class: "e-card fade" }, errHead(e), errBody(e),
-    el("div", { class: "e-lbl" }, "Kağızda yenidən həll et, sonra düz cavabla yoxla"),
-    e.duz ? el("details", { class: "e-det" }, el("summary", {}, "Düz cavabı göstər"), e.duz) : null, out, act);
-}
-
-function addForm(redraw) {
-  const f = {
-    fenn: el("select", { class: "fld", "aria-label": "Fənn" }, ...Object.entries(FENN).map(([k, [, ad]]) => el("option", { value: k }, ad))),
-    menbe: el("input", { class: "fld", type: "text", placeholder: "Məktəb quizi, 21.10", "aria-label": "Mənbə" }),
-    movzu: el("input", { class: "fld", type: "text", placeholder: "Kvadrat tənliklər", "aria-label": "Mövzu" }),
-    sual: el("textarea", { class: "fld", rows: "2", placeholder: "Sualın qısa mətni", "aria-label": "Sual" }),
-    cavab: el("input", { class: "fld", type: "text", placeholder: "Sənin cavabın", "aria-label": "Sənin cavabın" }),
-    duz: el("input", { class: "fld", type: "text", placeholder: "Düz cavab", "aria-label": "Düz cavab" }),
-    yol: el("input", { class: "fld", type: "text", placeholder: "Bir cümlə", "aria-label": "Düzgün yol" }),
-  };
-  const err = errMsg(), kat = seg(KATS, () => { err.textContent = ""; });
-  Object.values(f).forEach(x => x.addEventListener("input", () => { err.textContent = ""; }));
-  const btn = el("button", { class: "btn", type: "button" }, "Əlavə et");
-  btn.addEventListener("click", () => {
-    const v = k => f[k].value.trim();
-    if (!v("sual")) { err.textContent = "Sualı yaz."; f.sual.focus(); return; }
-    if (!v("duz")) { err.textContent = "Düz cavabı yaz."; f.duz.focus(); return; }
-    if (!kat.value()) { err.textContent = "Səhvin növünü seç."; return; }
-    if (v("yol").length < 8) { err.textContent = "Düzgün yolu bir cümlə ilə yaz."; f.yol.focus(); return; }
-    Skilly.sehv({ id: "el-" + Date.now(), fenn: v("fenn"), menbe: v("menbe") || "Kağız", movzu: v("movzu"), sual: v("sual"), cavab: v("cavab"), duz: v("duz"), kat: kat.value(), yol: v("yol"), status: "aciq" });
-    redraw();
+    out.textContent = ok ? "Düz ✓" : "Düz deyil. Kağızda yenidən həll et və yenə yoxla.";
+    if (ok) { const nx = el("button", { class: "btn ghost", type: "button" }, "Növbəti"); nx.addEventListener("click", redraw); act.replaceChildren(nx); }
   });
-  const row = (label, x) => el("label", { class: "e-row" }, el("span", { class: "e-lbl" }, label), x);
-  return el("div", { class: "e-card" },
-    el("div", { class: "e-grid" }, row("Fənn", f.fenn), row("Mənbə", f.menbe), row("Mövzu", f.movzu)),
-    row("Sual", f.sual), el("div", { class: "e-grid" }, row("Sənin cavabın", f.cavab), row("Düz cavab", f.duz)),
-    el("div", { class: "e-lbl" }, "Niyə səhv oldu?"), kat, row("Düzgün yol", f.yol), err, el("div", { class: "e-act" }, btn));
+  act.append(btn);
+  const fig = el("div", { class: "e-fig" }); if (q.svg) fig.innerHTML = q.svg;
+  return el("div", { class: "e-card fade" }, errHead(e), el("p", { class: "e-q" }, e.sual || "(sual mətni yoxdur)"), q.svg ? fig : null,
+    el("div", { class: "e-lbl" }, "Kağızda yenidən həll et, sonra cavabı yaz" + (q.unit ? " (" + q.unit + ")" : "")), input, out, act);
 }
 
 async function pageSehv() {
+  const jurnal = !!(window.Skilly && Skilly.sehvOn);
   const body = el("div"), sync = el("p", { class: "lead" });
   const content = el("div", { style: "margin-top:30px" }, el("h1", {}, "Təkrar"),
-    el("p", { class: "lead" }, "Həftədə iki dəfə 15 dəqiqə: Çərşənbə axşamı və Bazar. Burada bağlanmış mövzuların yaddaş yoxlaması (7 və 30 gün sonra) və səhv jurnalının sualları növbə ilə gəlir — bir dəfəyə ən çox " + CAP + " sual, ən çox gecikən birinci."),
+    el("p", { class: "lead" }, "Bağlanmış mövzuların yaddaş yoxlaması (7 və 30 gün sonra) — həftədə iki dəfə, Çərşənbə axşamı və Bazar." +
+      (jurnal ? " Səhv cavab verilən suallar da burada dərhal yenidən gəlir: düz həll edənə qədər qalır." : "")),
     sync, body);
   const { w } = await shell(content);
   if (!w) { content.replaceChildren(el("h1", {}, "Təkrar"), el("p", { class: "lead" }, "Bu bölmə yalnız hesabla daxil olanda açılır.")); return; }
   function draw() {
-    const all = Skilly.all(), t = Skilly.today(), month = t.slice(0, 7);
-    const yeni = all.filter(e => e.status === "yeni");
-    const Q = reviewQueue(), due = Q.now.filter(x => x.type === "sehv").map(x => x.e), topics = Q.now.filter(x => x.type === "movzu");
-    const open = all.filter(e => e.status !== "baglandi");
-    const thisMonth = all.filter(e => (e.tarix || "").startsWith(month));
+    const all = jurnal ? Skilly.all() : [], open = all.filter(e => e.status !== "baglandi");
+    const Q = reviewQueue(), topics = Q.now;
     const metric = (label, v) => el("div", { class: "metric" }, el("small", {}, label), el("b", {}, String(v)));
     const sec = (title, kids, more) => el("section", { class: "e-sec" }, el("div", { class: "head" }, el("h2", {}, title), more ? el("span", { class: "more" }, more) : null), ...kids);
     body.replaceChildren(
-      el("div", { class: "metrics" }, metric("Təhlil gözləyir", yeni.length), metric("Bu pəncərədə", Q.nowQ + " sual"), metric("Açıq", open.length), metric("Bu ay", thisMonth.length)),
-      sec("Bu pəncərədə", [
+      el("div", { class: "metrics" }, ...(jurnal ? [metric("Səhv — həll gözləyir", open.length)] : []), metric("Yaddaş yoxlaması", Q.nowQ + " sual")),
+      ...(jurnal ? [sec("Səhvlər — yenidən həll et", open.length ? [el("div", { class: "e-list" }, ...open.map(e => redoCard(e, draw)))] : [el("p", { class: "empty" }, "Həll gözləyən səhv yoxdur.")])] : []),
+      sec("Yaddaş yoxlaması", [
         ...topics.map(x => el("a", { class: "attn rv", href: "ders.html?p=" + x.r.link.replace(/^dersler\/|\.html$/g, "") + "#sinaq" },
           el("span", { class: "ag-ic k-math" }, icon("Repeat")), el("span", { class: "ag-tx" }, el("b", {}, x.r.title + " — yaddaş yoxlaması"), el("small", {}, x.r.n + " sual · tarixi " + dmy(x.r.due))), el("span", { class: "ag-go" }, "Başla →"))),
-        ...(due.length ? [el("div", { class: "e-list" }, ...due.map(e => redoCard(e, draw)))] : []),
-        ...(!Q.now.length ? [el("p", { class: "empty" }, "Bu gün təkrar yoxdur.")] : []),
-        ...(Q.laterQ ? [el("p", { class: Q.laterQ > CAP ? "warnline" : "count" }, `Növbəti pəncərəyə ${Q.laterQ} sual qaldı.` + (Q.laterQ > CAP ? " Növbə böyüyür — yeni mövzuların tempini azaltmaq lazımdır." : ""))] : [])], Q.nowQ ? `~${Q.nowQ} dəq` : ""),
-      sec("Təhlil gözləyir", yeni.length ? [el("div", { class: "e-list" }, ...yeni.map(e => analyseCard(e, draw)))] : [el("p", { class: "empty" }, "Hamısı təhlil olunub.")]),
-      sec("Kağızdakı səhvi əlavə et", [addForm(draw)], "quiz, FRİTL, DİM sınağı"),
-      sec("Bu ay növlər üzrə", [el("div", { class: "metrics" }, ...Object.entries(KATS).map(([k, l]) => metric(l, thisMonth.filter(e => e.kat === k).length)))]),
-      sec("Hamısı", all.length ? [el("div", { class: "tbl" }, el("table", {},
-        el("thead", {}, el("tr", {}, ...["Tarix", "Fənn", "Mənbə", "Növ", "Növbəti təkrar", "Vəziyyət"].map(h => el("th", {}, h)))),
+        ...(!topics.length ? [el("p", { class: "empty" }, "Bu gün yaddaş yoxlaması yoxdur.")] : []),
+        ...(Q.laterQ ? [el("p", { class: Q.laterQ > CAP ? "warnline" : "count" }, `Növbəti pəncərəyə ${Q.laterQ} sual qaldı.` + (Q.laterQ > CAP ? " Növbə böyüyür — yeni mövzuların tempini azaltmaq lazımdır." : ""))] : [])]),
+      ...(jurnal && all.length ? [sec("Hamısı", [el("div", { class: "tbl" }, el("table", {},
+        el("thead", {}, el("tr", {}, ...["Tarix", "Fənn", "Mənbə", "Cəhd", "Vəziyyət"].map(h => el("th", {}, h)))),
         el("tbody", {}, ...all.slice().sort((a, b) => (b.tarix || "").localeCompare(a.tarix || "")).map(e => el("tr", {},
           el("td", {}, dmy(e.tarix)), el("td", {}, (FENN[e.fenn] || [0, e.fenn])[1]), el("td", {}, e.link ? el("a", { href: e.link }, e.menbe) : e.menbe),
-          el("td", {}, KATS[e.kat] || "–"), el("td", {}, dmy(e.novbeti)),
-          el("td", {}, stMark(SST[e.status] || SST.yeni)))))))]
-        : [el("p", { class: "empty" }, "Hələ səhv yoxdur.")]));
+          el("td", {}, String(e.tekrar || 0)), el("td", {}, stMark(SST[e.status] || SST.aciq)))))))])] : []));
   }
   if (Skilly.ready) await Skilly.ready;
   draw();

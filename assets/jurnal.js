@@ -5,6 +5,14 @@
   const BASE = new URL("..", document.currentScript.src).href;
   const LS = "skilly-sehv", QUEUE = "skilly-queue", ACAR = "skilly-acar";
   const DAY = 864e5;
+  // numbers as the games accept them: integers, decimals (comma or dot), fractions 3/5, roots 5√3, √3/2, −√2/2
+  function num(raw) {
+    let s = String(raw).trim().replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/\s+/g, "").replace(/°$/, "");
+    if (!s) return NaN;
+    s = s.replace(/sqrt/gi, "√").replace(/(\d*\.?\d*)√\(?(\d+(?:\.\d+)?)\)?/g, (m, k, n) => "(" + (k || "1") + "*Math.sqrt(" + n + "))");
+    if (!/^[-+*/().\d]*(?:Math\.sqrt\(\d+(?:\.\d+)?\)[-+*/().\d]*)*$/.test(s)) return NaN;
+    try { const v = Function('"use strict";return (' + s + ")")(); return typeof v === "number" && isFinite(v) ? v : NaN; } catch (e) { return NaN; }
+  }
   const OK = ["orujov.fikret@gmail.com", "cavid.orucov@gmail.com"];
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -33,7 +41,10 @@
   const viewer = () => get("skilly-user", "") === OK[1];
   const docId = id => String(id).replace(/\//g, "_");
 
-  const all = () => get(LS, []);
+  // The journal was reset on 10 Nov 2026 (father): entries written before then are ignored on every device and in the cloud copy.
+  const SIFIR = 1794339173499;
+  const fresh = x => (x.upd || 0) >= SIFIR;
+  const all = () => get(LS, []).filter(fresh);
   function save(list) { put(LS, list); }
   function enqueue(item) { const q = get(QUEUE, []).filter(x => x.id !== item.id); q.push(item); put(QUEUE, q); flush(); }
   const RES = "skilly-netice";
@@ -119,11 +130,14 @@
 
   window.Skilly = {
     today, plus, all, flush,
+    // Error journal (father, 10 Nov 2026): a wrong answer is offered again at once, to be solved until it is right;
+    // no analysis is asked and the right answer is never shown. false hides the journal everywhere.
+    sehvOn: true,
     // New mistake. Same id twice (same question) is ignored, so a page can call this freely.
     sehv(e) {
-      if (viewer()) return null;
+      if (!window.Skilly.sehvOn || viewer()) return null;
       if (all().some(x => x.id === e.id)) return null;
-      return upsert({ tarix: today(), menbe: "", movzu: "", sual: "", cavab: "", duz: "", kat: "", yol: "", status: "yeni", novbeti: plus(today(), 7), tekrar: 0, ...e });
+      return upsert({ tarix: today(), menbe: "", movzu: "", sual: "", cavab: "", duz: "", status: "aciq", novbeti: today(), tekrar: 0, ...e });
     },
     // Finished lesson/test: score, time and per-question detail; one record per attempt (same id = no duplicate).
     netice(r) {
@@ -151,11 +165,16 @@
       put("skilly-yoxla", list); window.Skilly.hal("skilly-yoxla");
     },
     update(id, fields) { const x = all().find(x => x.id === id); return x ? upsert({ ...x, ...fields }) : null; },
-    // Redo result: success moves 7 days → 30 days → closed; failure returns to 7 days.
+    // Redo: solved right closes the mistake; a wrong try only counts (the question stays open).
     tekrar(id, ok) {
       const x = all().find(x => x.id === id); if (!x) return null;
-      const n = ok ? x.tekrar + 1 : 0;
-      return upsert({ ...x, tekrar: n, status: ok && n >= 2 ? "baglandi" : "aciq", novbeti: ok ? (n >= 2 ? "" : plus(today(), 30)) : plus(today(), 7) });
+      return upsert({ ...x, tekrar: (x.tekrar || 0) + 1, status: ok ? "baglandi" : "aciq", novbeti: ok ? "" : x.novbeti });
+    },
+    // Redo answers are checked as in the games: a choice by its index, a number with the same tolerance.
+    yoxla(q2, v) {
+      if (q2.choices) return v === q2.correct;
+      const x = num(v); if (isNaN(x) || q2.answer == null) return false;
+      return Math.abs(x - q2.answer) <= (q2.tol ?? Math.max(0.005, Math.abs(q2.answer) * 0.005));
     },
     // A progress key was just written here (game state, lesson step, reviews): send it to the cloud.
     viewer,
@@ -166,7 +185,7 @@
       try {
         const { docs, done } = await pullCol(a, "sehv");
         const byId = new Map(all().map(x => [x.id, x]));
-        docs.forEach(v => { let s; try { s = JSON.parse(v.json); } catch (e) { return; } const l = byId.get(s.id); if (!l || (s.upd || 0) > (l.upd || 0)) byId.set(s.id, s); });
+        docs.forEach(v => { let s; try { s = JSON.parse(v.json); } catch (e) { return; } if (!fresh(s)) return; const l = byId.get(s.id); if (!l || (s.upd || 0) > (l.upd || 0)) byId.set(s.id, s); });
         save([...byId.values()]); done(); await flush(); return { synced: true };
       } catch (e) { return { synced: false }; }
     },
@@ -220,7 +239,7 @@
     (past.neticeler || []).forEach(r => window.Skilly.netice(r)); // by id, so repeating is harmless
     if (get("skilly-kecmis", 0) >= past.versiya) return;
     for (const k in past.lessons) { try { if (!localStorage.getItem(k)) localStorage.setItem(k, JSON.stringify(past.lessons[k])); } catch (e) {} }
-    past.sehvler.forEach(e => window.Skilly.sehv(e));
+    // past mistakes are not imported: the journal starts empty (reset, 10 Nov 2026)
     put("skilly-kecmis", past.versiya);
   })();
   window.addEventListener("online", flush);
