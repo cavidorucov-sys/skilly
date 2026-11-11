@@ -207,20 +207,20 @@ td.act{text-align:right;white-space:nowrap}
 .cal-c:hover{transform:translateY(-2px)}
 .cal-c.blank{background:none;cursor:default}
 .cal-c.past{color:var(--muted)}
-.cal-c .num{font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:grid;place-items:center}
+.cal-c .num{font-size:16px;font-weight:600;width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
 .cal-c.today .num{background:var(--ink);color:var(--panel)}
 .cal-c.sel{box-shadow:inset 0 0 0 2px var(--ink)}
 .cal-c .evs{display:grid;gap:3px;min-width:0}
 .cal-tag{font-size:11px;line-height:1.3;border-radius:var(--r-sm);padding:3px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .cal-c{position:relative}
-.cal-c .cnt{position:absolute;top:6px;right:7px;display:flex;flex-direction:column;align-items:flex-end;gap:1px;font-size:11px;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
+.cal-c .cnt{position:absolute;top:14px;right:13px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:13px;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
 .cal-c .cnt .ok{color:var(--ok-ink)} .cal-c .cnt .no{color:var(--err-ink)} .cal-c .cnt .wait{color:var(--muted)}
-.cal-c .evs{padding-right:22px}
+.cal-c .evs{padding-right:28px}
 .cal-c .dots{display:flex;gap:4px;margin-top:auto}
 .cal-c .dots i{width:8px;height:8px;border-radius:50%}
 .cal-c .dots .k-math{background:var(--math-ink)} .cal-c .dots .k-phys{background:var(--phys-ink)} .cal-c .dots .k-olym{background:var(--olym-ink)} .cal-c .dots .k-proj{background:var(--proj-ink)} .cal-c .dots .k-misc{background:var(--muted)}
 .cal-day{margin-top:30px}
-@media (max-width:640px){.cal{gap:4px}.cal-c{min-height:58px;padding:5px}.cal-tag{font-size:0;padding:0;height:6px;border-radius:var(--r-xs)}.cal-c .cnt{top:3px;right:3px;font-size:9px}.cal-c .evs{padding-right:0}}
+@media (max-width:640px){.cal{gap:4px}.cal-c{min-height:58px;padding:5px}.cal-tag{font-size:0;padding:0;height:6px;border-radius:var(--r-xs)}.cal-c .num{font-size:13px;width:24px;height:24px}.cal-c .cnt{top:5px;right:5px;font-size:10px}.cal-c .evs{padding-right:0}}
 .list.dl{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px 28px}
 
 /* error journal */
