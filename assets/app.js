@@ -327,8 +327,26 @@ async function pageOlympiad() {
   function draw(k) {
     h1.textContent = SUBJ[k][0]; document.title = SUBJ[k][0] + " · Skilly";
     body.replaceChildren(); renderTopics(body, m, SUBJ_KAT_KEY[k], SUBJ[k][1]);
+    if (k === "fizika") body.firstChild.after(rfoBlock(m)); // under the count line, above the topic cards
   }
   onSubject(draw);
+}
+// RFO physics (father, 11 Nov 2026): the guide and the district-round mock, which opens when all its topics are closed
+function rfoBlock(m) {
+  const k = KAT.phys, mock = el("span", { class: "go wait" }, "…");
+  const row = (ic, title, sub, right, href) => el("a", { class: "row", href },
+    el("span", { class: "ic " + k.cls }, icon(ic, k.ink)), el("div", { class: "tx" }, el("b", {}, title), sub), right);
+  const sub = el("span", {}, "20 sual · 150 dəqiqə · səhvə −1/4");
+  load("data/rfo-rayon.json").then(cfg => {
+    const links = cfg.qruplar.flatMap(g => g.movzular.map(x => "dersler/" + x.slug + ".html"));
+    const byLink = {}; m.fizika.forEach(t => { byLink[t.ders] = t; });
+    const open = links.filter(l => !isClosed(byLink[l])).length;
+    sub.textContent = open ? `🔒 ${links.length - open} / ${links.length} mövzu bağlanıb — hamısı bağlananda açılır` : "Açıqdır · 20 sual · 150 dəqiqə · səhvə −1/4";
+    mock.textContent = open ? "Bax →" : "Başla →"; mock.classList.toggle("wait", !!open);
+  }).catch(() => {});
+  return el("section", { class: "e-sec rfo-list" }, el("div", { class: "head" }, el("h2", {}, "RFO fizika 2026-27")), el("div", { class: "list" },
+    row("FileText", "Təlimat: olimpiada necə keçir", el("span", {}, "Mərhələlər, imtahan formatı, strategiya, hazırlıq planı"), el("span", { class: "go" }, "Oxu →"), "ders.html?p=rfo-telimat"),
+    row("ClipboardCheck", "Rayon turu simulyasiyası", sub, mock, "ders.html?p=rfo-rayon")));
 }
 const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
 

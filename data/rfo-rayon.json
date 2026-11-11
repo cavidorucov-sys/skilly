@@ -1,0 +1,32 @@
+{
+ "_": "RFO physics district-round mock (dersler/rfo-rayon.html): its topics and how many questions each group gets. The mock opens only when every topic here is closed. Topics = the 14 district-round topics planned first (tools/plan.py RAYON_FIRST) + the mechanics topics closed before 11 Nov 2026. Group counts follow the 2025/2026 district papers (guide, section 3).",
+ "sual": 20, "deqiqe": 150, "bal": 5, "cerime": 0.25,
+ "qruplar": [
+  { "id": "mex", "ad": "Mexanika", "n": 9, "movzular": [
+   { "slug": "fiz-kinematika", "qisa": "Kinematika" },
+   { "slug": "fiz-serbest-dusme", "qisa": "Sərbəst düşmə" },
+   { "slug": "fiz-nyuton", "qisa": "Nyuton qanunları" },
+   { "slug": "fiz-surtunme-maili", "qisa": "Sürtünmə, maili müstəvi" },
+   { "slug": "fiz-cevre-herekat", "qisa": "Çevrə üzrə hərəkət" },
+   { "slug": "fiz-huk", "qisa": "Huk qanunu" },
+   { "slug": "fiz-cazibe", "qisa": "Cazibə qanunu" },
+   { "slug": "fiz-is-guc", "qisa": "İş və güc" },
+   { "slug": "fiz-enerji", "qisa": "Kinetik və potensial enerji" },
+   { "slug": "fiz-enerji-saxlanma", "qisa": "Enerjinin saxlanması" },
+   { "slug": "fiz-moment", "qisa": "Qüvvə momenti" },
+   { "slug": "fiz-mexanizmler", "qisa": "Sadə mexanizmlər" },
+   { "slug": "fiz-atilan-cisim", "qisa": "Atılan cisim" },
+   { "slug": "fiz-impuls", "qisa": "İmpuls" } ] },
+  { "id": "tez", "ad": "Təzyiq, Arximed", "n": 2, "movzular": [
+   { "slug": "fiz-tezyiq", "qisa": "Təzyiq" },
+   { "slug": "fiz-arximed", "qisa": "Arximed qüvvəsi" } ] },
+  { "id": "ist", "ad": "İstilik", "n": 4, "movzular": [
+   { "slug": "fiz-istilik", "qisa": "İstilik miqdarı" },
+   { "slug": "fiz-istilik-balansi", "qisa": "İstilik balansı" } ] },
+  { "id": "ele", "ad": "Elektrik", "n": 5, "movzular": [
+   { "slug": "fiz-kulon", "qisa": "Kulon qanunu" },
+   { "slug": "fiz-cereyan", "qisa": "Cərəyan, müqavimət" },
+   { "slug": "fiz-om", "qisa": "Om qanunu" },
+   { "slug": "fiz-elektrik-guc", "qisa": "Elektrik işi və gücü" } ] }
+ ]
+}

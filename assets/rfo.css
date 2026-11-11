@@ -1,0 +1,76 @@
+/* RFO physics pages (dersler/rfo-*.html): guide and the district-round mock. Uses the lesson tokens of ders.css. */
+.rfo-sec h2{margin:0;font-size:20px}
+.rfo-sec h3{margin:8px 0 0;font-size:16px}
+.rfo-sec ul,.rfo-sec ol{margin:0;padding-left:22px;display:grid;gap:6px}
+.rfo-sec a,.rfo-gate a{color:var(--subj);font-weight:600}
+.rfo-src{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line-0);vertical-align:top}
+.tbl .n{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.warnbox{background:var(--subj-soft);color:var(--ink);padding:12px 14px;border-left:3px solid var(--subj)}
+
+/* topic chips: one per topic of the mock; status before the attempt, result after it */
+.rz-chips{display:grid;gap:12px}
+.rz-grp{display:grid;gap:6px}
+.rz-grp>b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rz-row{display:flex;flex-wrap:wrap;gap:6px}
+.rz-chip{display:inline-flex;align-items:center;gap:6px;border-radius:var(--r-sm);padding:4px 10px;font-size:13px;font-weight:600;line-height:1.3;
+  background:var(--subj-soft);color:var(--subj);text-decoration:none;border:1px solid transparent;font-variant-numeric:tabular-nums}
+a.rz-chip:hover{border-color:var(--subj)}
+.rz-chip i{font-style:normal;font-size:12px;opacity:.85}
+.rz-chip.open{background:var(--sheet);color:var(--ink);border-color:var(--line-1)}
+.rz-chip.ok{background:var(--ok-soft);color:var(--ok)}
+.rz-chip.part{background:var(--part-soft,#fdf3dc);color:var(--part,#7a5200)}
+.rz-chip.no{background:var(--warn-soft);color:var(--warn-ink)}
+.rz-chip.none{background:var(--paper);color:var(--muted);border-color:var(--line-0)}
+:root[data-theme="dark"]{--part-soft:#3a2d10;--part:#f2cf86}
+.rz-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted)}
+.rz-legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+
+/* gate */
+.rfo-gate{display:grid;gap:10px;padding:18px;border-radius:var(--r-lg);background:var(--sheet);box-shadow:inset 0 0 0 1px var(--line-0)}
+.rfo-gate h2{margin:0;font-size:18px}
+.rfo-gate p{margin:0}
+
+/* exam */
+.rz-top{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 0;border-bottom:1px solid var(--line-0)}
+.rz-clock{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink)}
+.rz-clock.low{color:var(--warn)}
+.rz-stat{font-size:13px;color:var(--muted)}
+.rz-top .btn{margin-left:auto}
+.rz-pal{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.rz-pal button{font:inherit;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;height:36px;border-radius:var(--r-sm);cursor:pointer;
+  border:1px solid var(--line-1);background:var(--sheet);color:var(--ink);position:relative}
+.rz-pal button.an{background:var(--subj-soft);color:var(--subj);border-color:var(--subj-soft)}
+.rz-pal button.cur{outline:2px solid var(--subj);outline-offset:1px}
+.rz-pal button.flag::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.rz-q{display:grid;gap:12px;background:var(--sheet);border-radius:var(--r-lg);padding:18px;box-shadow:inset 0 0 0 1px var(--line-0)}
+.rz-q .oy-label{display:flex;justify-content:space-between;gap:10px}
+.rz-q svg{max-width:min(100%,420px);height:auto}
+.rz-opts{display:grid;gap:8px}
+.rz-opts button{font:inherit;font-size:16px;text-align:left;display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:var(--r-sm);cursor:pointer;
+  border:1px solid var(--line-1);background:var(--sheet);color:var(--ink);font-variant-numeric:tabular-nums}
+.rz-opts button b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;border:1.5px solid var(--line-1);color:var(--muted)}
+.rz-opts button:hover:not([aria-checked=true]){border-color:var(--ink-2)}
+.rz-opts button[aria-checked=true]{border-color:var(--subj);background:var(--subj-soft)}
+.rz-opts button[aria-checked=true] b{background:var(--subj);border-color:var(--subj);color:var(--sheet)}
+.rz-nav{display:flex;flex-wrap:wrap;gap:8px}
+.rz-nav .sp{flex:1}
+.rz-score{display:flex;flex-wrap:wrap;gap:10px}
+.rz-score div{background:var(--sheet);border-radius:var(--r);padding:10px 14px;box-shadow:inset 0 0 0 1px var(--line-0);display:grid}
+.rz-score b{font-size:22px;font-variant-numeric:tabular-nums}
+.rz-score span{font-size:12px;color:var(--muted)}
+.rz-list{margin:0;padding-left:0;list-style:none;display:grid;gap:4px;font-size:14px}
+.rz-list li{display:flex;gap:10px;align-items:baseline}
+.rz-list a{color:var(--subj);font-weight:600}
+.rz-list li>span:first-child{flex:none;width:4.5ch;font-weight:700;font-variant-numeric:tabular-nums}
+.rz-list li.ok>span:first-child{color:var(--ok)}
+.rz-list li.no>span:first-child{color:var(--warn)}
+.rz-list li.bos>span:first-child{color:var(--muted)}
+.rz-hist{font-size:13px;color:var(--muted)}
+@media (max-width:640px){
+  .rz-pal{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .rz-q{padding:14px}
+  .rz-top .btn{margin-left:0}
+}
