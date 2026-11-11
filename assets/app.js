@@ -333,20 +333,26 @@ async function pageOlympiad() {
 }
 // RFO physics (father, 11 Nov 2026): the guide and the district-round mock, which opens when all its topics are closed
 function rfoBlock(m) {
-  const k = KAT.phys, mock = el("span", { class: "go wait" }, "…");
+  const k = KAT.phys;
   const row = (ic, title, sub, right, href) => el("a", { class: "row", href },
     el("span", { class: "ic " + k.cls }, icon(ic, k.ink)), el("div", { class: "tx" }, el("b", {}, title), sub), right);
-  const sub = el("span", {}, "20 sual · 150 dəqiqə · səhvə −1/4");
-  load("data/rfo-rayon.json").then(cfg => {
-    const links = cfg.qruplar.flatMap(g => g.movzular.map(x => "dersler/" + x.slug + ".html"));
-    const byLink = {}; m.fizika.forEach(t => { byLink[t.ders] = t; });
-    const open = links.filter(l => !isClosed(byLink[l])).length;
-    sub.textContent = open ? `🔒 ${links.length - open} / ${links.length} mövzu bağlanıb — hamısı bağlananda açılır` : "Açıqdır · 20 sual · 150 dəqiqə · səhvə −1/4";
-    mock.textContent = open ? "Bax →" : "Başla →"; mock.classList.toggle("wait", !!open);
-  }).catch(() => {});
+  const byLink = {}; m.fizika.forEach(t => { byLink[t.ders] = t; });
+  // one row per stage mock: locked (how many of its topics are closed) or open
+  const mockRow = (sim, title, fmt) => {
+    const go = el("span", { class: "go wait" }, "…"), sub = el("span", {}, fmt);
+    load("data/rfo-" + sim + ".json").then(cfg => {
+      const links = (cfg.qruplar || []).flatMap(g => g.movzular.map(x => "dersler/" + x.slug + ".html")).concat((cfg.movzular || []).map(x => "dersler/" + x.slug + ".html"));
+      const open = links.filter(l => !isClosed(byLink[l])).length;
+      sub.textContent = open ? `🔒 ${links.length - open} / ${links.length} mövzu bağlanıb — hamısı bağlananda açılır` : "Açıqdır · " + fmt;
+      go.textContent = open ? "Bax →" : "Başla →"; go.classList.toggle("wait", !!open);
+    }).catch(() => {});
+    return row("ClipboardCheck", title, sub, go, "ders.html?p=rfo-" + sim);
+  };
   return el("section", { class: "e-sec rfo-list" }, el("div", { class: "head" }, el("h2", {}, "RFO fizika 2026-27")), el("div", { class: "list" },
     row("FileText", "Təlimat: olimpiada necə keçir", el("span", {}, "Mərhələlər, imtahan formatı, strategiya, hazırlıq planı"), el("span", { class: "go" }, "Oxu →"), "ders.html?p=rfo-telimat"),
-    row("ClipboardCheck", "Rayon turu simulyasiyası", sub, mock, "ders.html?p=rfo-rayon")));
+    mockRow("rayon", "Rayon turu simulyasiyası", "20 sual · 150 dəqiqə · səhvə −1/4"),
+    mockRow("yarimfinal", "Yarımfinal simulyasiyası", "20 sual · 120 dəqiqə · 4/5/6 bal · səhvə −1/4"),
+    mockRow("final", "Final simulyasiyası", "3 məsələ · 3 saat · yazılı həll; evdə eksperiment")));
 }
 const SUBJ_KAT_KEY = { riyaziyyat: "olimpiada", fizika: "fizika" };
 

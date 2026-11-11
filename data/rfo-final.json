@@ -1,0 +1,409 @@
+{
+ "_": "RFO physics final mock (dersler/rfo-final.html): 3 written problems of 10 points, 3 hours, new problems in the style of the 2025/2026 finals (lower age group); a new set each attempt (A, B, C, then A again); home experiment practice, 15 points (table 8, graph 4, quantity from the slope 2, conclusion 1). Opens when all physics topics are closed. Solutions and marking live only in layihe/rfo-final-meseleler.md (the site is public). Father, 11 Nov 2026.",
+ "ad": "Final simulyasiyası",
+ "tur": "fizikanın",
+ "deqiqe": 180,
+ "meseleBal": 10,
+ "eksperimentBal": 15,
+ "eksperimentMeyar": [
+  [
+   "Cədvəl: ölçmələr, vahidlər, hesablanmış sütun",
+   8
+  ],
+  [
+   "Qrafik: oxlar, miqyas, nöqtələr, düz xətt",
+   4
+  ],
+  [
+   "Kəmiyyət qrafikin bucaq əmsalından",
+   2
+  ],
+  [
+   "Qısa nəticə",
+   1
+  ]
+ ],
+ "movzular": [
+  {
+   "slug": "fiz-kinematika",
+   "qisa": "Bərabərsürətli və bərabərtəcilli hərəkət"
+  },
+  {
+   "slug": "fiz-serbest-dusme",
+   "qisa": "Sərbəst düşmə"
+  },
+  {
+   "slug": "fiz-nyuton",
+   "qisa": "Nyuton qanunları"
+  },
+  {
+   "slug": "fiz-surtunme-maili",
+   "qisa": "Sürtünmə"
+  },
+  {
+   "slug": "fiz-cevre-herekat",
+   "qisa": "Çevrə üzrə hərəkət"
+  },
+  {
+   "slug": "fiz-huk",
+   "qisa": "Elastiklik"
+  },
+  {
+   "slug": "fiz-cazibe",
+   "qisa": "Ümumdünya cazibə qanunu"
+  },
+  {
+   "slug": "fiz-vektorlar",
+   "qisa": "Vektorlar"
+  },
+  {
+   "slug": "fiz-is-guc",
+   "qisa": "Mexaniki iş və güc"
+  },
+  {
+   "slug": "fiz-enerji",
+   "qisa": "Kinetik və potensial enerji"
+  },
+  {
+   "slug": "fiz-enerji-saxlanma",
+   "qisa": "Enerjinin saxlanması"
+  },
+  {
+   "slug": "fiz-moment",
+   "qisa": "Qüvvə momenti"
+  },
+  {
+   "slug": "fiz-mexanizmler",
+   "qisa": "Sadə mexanizmlər"
+  },
+  {
+   "slug": "fiz-atilan-cisim",
+   "qisa": "Üfüqi və bucaq altında atılan cismin hərəkəti"
+  },
+  {
+   "slug": "fiz-istilik",
+   "qisa": "Temperatur"
+  },
+  {
+   "slug": "fiz-istilik-balansi",
+   "qisa": "İstilik balansı"
+  },
+  {
+   "slug": "fiz-kulon",
+   "qisa": "Elektrik yükü"
+  },
+  {
+   "slug": "fiz-cereyan",
+   "qisa": "Cərəyan"
+  },
+  {
+   "slug": "fiz-om",
+   "qisa": "Om qanunu"
+  },
+  {
+   "slug": "fiz-elektrik-guc",
+   "qisa": "Elektrik işi və gücü"
+  },
+  {
+   "slug": "fiz-tezyiq",
+   "qisa": "Təzyiq"
+  },
+  {
+   "slug": "fiz-arximed",
+   "qisa": "Arximed qüvvəsi"
+  },
+  {
+   "slug": "fiz-impuls",
+   "qisa": "İmpuls və onun saxlanması"
+  },
+  {
+   "slug": "fiz-isiq",
+   "qisa": "İşığın qayıtması və sınması"
+  },
+  {
+   "slug": "fiz-linza",
+   "qisa": "Linzalar və güzgülər"
+  },
+  {
+   "slug": "fiz-nisbi-herekat",
+   "qisa": "Nisbi hərəkət"
+  },
+  {
+   "slug": "fiz-qeyri-inersial",
+   "qisa": "Qeyri-inersial sistemlər"
+  },
+  {
+   "slug": "fiz-olcme",
+   "qisa": "Ölçmə cihazları və ölçmə metodları"
+  },
+  {
+   "slug": "fiz-xetalar",
+   "qisa": "Ölçmələr və xətalar"
+  },
+  {
+   "slug": "fiz-reqsler",
+   "qisa": "Harmonik rəqslər"
+  },
+  {
+   "slug": "fiz-dalgalar",
+   "qisa": "Dalğalar və səs"
+  },
+  {
+   "slug": "fiz-kondensator",
+   "qisa": "Potensial"
+  },
+  {
+   "slug": "fiz-ehq-kirxhof",
+   "qisa": "EHQ"
+  },
+  {
+   "slug": "fiz-maqnit",
+   "qisa": "Maqnit sahəsi"
+  },
+  {
+   "slug": "fiz-muhitlerde-cereyan",
+   "qisa": "Müxtəlif mühitlərdə cərəyan"
+  },
+  {
+   "slug": "fiz-atom",
+   "qisa": "Atomun və nüvənin quruluşu"
+  }
+ ],
+ "desteler": [
+  {
+   "id": "A",
+   "meseleler": [
+    {
+     "ad": "Divara söykənmiş nərdivan",
+     "movzu": "Statika, sürtünmə",
+     "metn": "Uzunluğu L = 5 m, kütləsi m = 10 kq olan bircins nərdivan hamar (sürtünməsiz) şaquli divara söykənib. Döşəmə ilə nərdivan arasında sürtünmə əmsalı μ = 0,4. g = 10 m/s².",
+     "bendler": [
+      {
+       "bal": 4,
+       "metn": "Nərdivan üfüqlə ən azı hansı α bucağı altında dursun ki, sürüşməsin? Ümumi düsturu çıxar və hesabla."
+      },
+      {
+       "bal": 6,
+       "metn": "Nərdivan tg α = 2 bucağı altında qoyulub. Kütləsi M = 60 kq olan adam nərdivanla yuxarı çıxır. Aşağı ucdan nərdivan boyu ən çoxu hansı x məsafəsinə qədər qalxa bilər? Ümumi düsturu çıxar və hesabla."
+      }
+     ]
+    },
+    {
+     "ad": "Mənbədən alınan güc",
+     "movzu": "Sabit cərəyan",
+     "metn": "EHQ-si ε = 12 V, daxili müqaviməti r = 2 Ω olan mənbəyə dəyişən müqavimətli R reostatı qoşulub.",
+     "bendler": [
+      {
+       "bal": 2,
+       "metn": "Reostatda ayrılan P gücünün R-dən asılılıq düsturunu çıxar."
+      },
+      {
+       "bal": 4,
+       "metn": "R = 0,5; 1; 2; 3; 4; 6; 8 Ω üçün P-ni hesabla, cədvələ yaz və P(R) qrafikini qur."
+      },
+      {
+       "bal": 4,
+       "metn": "P-nin ən böyük qiymətini və onun alındığı R-i tap. Bunun həqiqətən ən böyük qiymət olduğunu isbat et."
+      }
+     ]
+    },
+    {
+     "ad": "Linzanın fokus məsafəsi: iki vəziyyət üsulu",
+     "movzu": "Optika",
+     "metn": "Cisim ilə ekran arasındakı məsafə L-dir və dəyişmir. Aralarında yığıcı linzanı hərəkət etdirəndə linzanın iki vəziyyətində ekranda aydın xəyal alınır; bu vəziyyətlər arasındakı məsafə l-dir.",
+     "bendler": [
+      {
+       "bal": 6,
+       "metn": "Linzanın fokus məsafəsinin F = (L² − l²)/(4L) olduğunu isbat et."
+      },
+      {
+       "bal": 2,
+       "metn": "L = 1,0 m, l = 0,6 m olduqda F-i hesabla. Hər iki vəziyyətdə xəyalın böyüməsini tap."
+      },
+      {
+       "bal": 2,
+       "metn": "İsbat et ki, ekranda xəyal yalnız L ≥ 4F olduqda alına bilər."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "meseleler": [
+    {
+     "ad": "Güllə, taxta və yay",
+     "movzu": "İmpuls, enerji",
+     "metn": "Hamar üfüqi masada kütləsi M = 1,99 kq olan taxta brus sərtliyi k = 200 N/m olan yayla divara bərkidilib (yay deformasiya olunmayıb). Kütləsi m = 10 q olan güllə v = 400 m/s sürətlə yay boyunca uçub brusa girir və orada qalır.",
+     "bendler": [
+      {
+       "bal": 3,
+       "metn": "Brusun güllə ilə birlikdə zərbədən dərhal sonrakı sürətini tap."
+      },
+      {
+       "bal": 4,
+       "metn": "Yayın ən böyük sıxılmasını tap (düstur və ədəd)."
+      },
+      {
+       "bal": 3,
+       "metn": "Güllənin kinetik enerjisinin hansı hissəsi zərbədə istiliyə çevrilir? Bu hissə m və M-dən necə asılıdır?"
+      }
+     ]
+    },
+    {
+     "ad": "Buz suda",
+     "movzu": "İstilik balansı",
+     "metn": "Kalorimetrdə 20 °C temperaturlu 0,5 kq su var. Ona −10 °C temperaturlu 0,2 kq buz atırlar. Kalorimetrin istilik tutumunu və ətrafla istilik mübadiləsini nəzərə alma. c_su = 4200 J/(kq·°C), c_buz = 2100 J/(kq·°C), λ = 3,36·10⁵ J/kq.",
+     "bendler": [
+      {
+       "bal": 4,
+       "metn": "Buzun hamısı əriyəcəkmi? Hesabla göstər."
+      },
+      {
+       "bal": 4,
+       "metn": "Son temperaturu və kalorimetrdə qalan buzun kütləsini tap."
+      },
+      {
+       "bal": 2,
+       "metn": "Suyun və buzun temperaturunun ötürülən istilik miqdarından asılılıq qrafikini (sxematik, oxlarda qiymətlərlə) çək."
+      }
+     ]
+    },
+    {
+     "ad": "İki yükün sahəsi",
+     "movzu": "Elektrostatika",
+     "metn": "İki eyni müsbət q nöqtəvi yükü bir-birindən 2a məsafədədir. Onları birləşdirən parçanın ortasından keçən perpendikulyar düz xətt üzərində, ortadan y məsafəsində M nöqtəsi var.",
+     "bendler": [
+      {
+       "bal": 4,
+       "metn": "M nöqtəsində elektrik sahəsinin intensivliyinin istiqamətini göstər və modulu üçün E(y) = 2kqy/(a² + y²)^(3/2) olduğunu çıxar."
+      },
+      {
+       "bal": 4,
+       "metn": "u = y/a = 0; 0,25; 0,5; 0,75; 1; 1,5; 2; 3 üçün E-ni kq/a² vahidlərində hesabla, cədvələ yaz və E(u) qrafikini qur."
+      },
+      {
+       "bal": 2,
+       "metn": "Qrafikdən E-nin ən böyük qiymətinin təxminən hansı y-də olduğunu və bu qiyməti tap. Niyə y = 0-da və çox böyük y-də E kiçikdir?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "meseleler": [
+    {
+     "ad": "Su və yağda üzən brus",
+     "movzu": "Hidrostatika",
+     "metn": "Hündürlüyü H = 10 sm, sıxlığı ρ = 600 kq/m³ olan düzbucaqlı brus suda (ρ_su = 1000 kq/m³) şaquli vəziyyətdə üzür. Sonra suyun üstünə sıxlığı ρ_y = 500 kq/m³ olan, su ilə qarışmayan yağ tökürlər; yağ qatının qalınlığı h-dir.",
+     "bendler": [
+      {
+       "bal": 2,
+       "metn": "Yağ tökülməmişdən əvvəl brusun suya batan hissəsinin hündürlüyünü tap."
+      },
+      {
+       "bal": 5,
+       "metn": "Brusun suya batan hissəsinin hündürlüyü x-in h-dən asılılığını çıxar (brusun üstü hələ yağdan çıxır), 0 ≤ h ≤ 8 sm üçün cədvəl tərtib et və x(h) qrafikini qur."
+      },
+      {
+       "bal": 3,
+       "metn": "Yağ qatının hansı qalınlığında brus tamamilə yağın altında qalır? Bundan sonra yağ əlavə etsək, brusun vəziyyəti dəyişəcəkmi? Əsaslandır."
+      }
+     ]
+    },
+    {
+     "ad": "Rezistorlardan kub",
+     "movzu": "Dövrələr",
+     "metn": "Kubun 12 tilinin hər biri müqaviməti R olan rezistordur.",
+     "bendler": [
+      {
+       "bal": 5,
+       "metn": "Kubun bir-birindən ən uzaq iki təpəsi (cisim diaqonalının ucları) arasındakı müqaviməti tap."
+      },
+      {
+       "bal": 5,
+       "metn": "Bir üzün diaqonalının ucları olan iki təpə arasındakı müqaviməti tap."
+      }
+     ]
+    },
+    {
+     "ad": "Qüllədən atılan daş",
+     "movzu": "Atılan cisim",
+     "metn": "Hündürlüyü H = 20 m olan qüllədən daşı v₀ = 20 m/s sürətlə üfüqlə α bucağı altında yuxarı atırlar. g = 10 m/s², havanın müqavimətini nəzərə alma.",
+     "bendler": [
+      {
+       "bal": 3,
+       "metn": "Uçuş müddəti t və uçuş məsafəsi s üçün düsturları çıxar."
+      },
+      {
+       "bal": 5,
+       "metn": "α = 15°, 20°, 25°, 30°, 35°, 40°, 45°, 50°, 60° üçün s-i hesabla, cədvələ yaz və s(α) qrafikini qur."
+      },
+      {
+       "bal": 2,
+       "metn": "Qrafikdən ən böyük uçuş məsafəsinin alındığı bucağı tap. Niyə bu bucaq 45°-dən kiçikdir?"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "eksperimentler": [
+  {
+   "id": "T1",
+   "ad": "Yayın sərtliyi (Huk qanunu)",
+   "avadanliq": "yay (və ya ofis rezini), yüngül plastik stəkan, ip, su, ölçü stəkanı (1 ml su = 1 q), xətkeş, skoç",
+   "addimlar": [
+    "Stəkanı ip ilə yaydan as, yayın yuxarı ucunu bərkit. Stəkan boş olanda yayın uzunluğunu yaz.",
+    "Stəkana 50 q-dan 400 q-a qədər 8 müxtəlif miqdarda su tök. Hər dəfə yayın uzanmasını x ölç.",
+    "Cədvəl tərtib et: m, F = mg, x.",
+    "F(x) qrafikini qur; düz xəttin bucaq əmsalından yayın sərtliyi k-nı tap.",
+    "Nəticəni bir-iki cümlə ilə yaz: asılılıq xəttidirmi, harada xətti olmaqdan çıxır?"
+   ],
+   "sutunlar": [
+    "№",
+    "m, q",
+    "F, N",
+    "x, sm"
+   ],
+   "setir": 8
+  },
+  {
+   "id": "T2",
+   "ad": "Suyun sındırma əmsalı (görünən dərinlik)",
+   "avadanliq": "hündür şəffaf stəkan, sikkə, xətkeş, karandaş (və ya kağız lent), su",
+   "addimlar": [
+    "Sikkəni stəkanın dibinə qoy, stəkana h hündürlüyündə su tök.",
+    "Yuxarıdan şaquli bax. Stəkanın kənarında karandaşı elə hündürlüyə qoy ki, sikkənin xəyalı ilə eyni səviyyədə görünsün: başını yana tərpədəndə onlar bir-birinə görə sürüşməsin.",
+    "Görünən dərinliyi h′ (su səthindən karandaşa qədər) ölç. 6 müxtəlif h üçün təkrarla.",
+    "Cədvəl tərtib et: h, h′. h′(h) qrafikini qur; bucaq əmsalı 1/n-dir — buradan suyun sındırma əmsalı n-i tap.",
+    "Nəticəni yaz: cavabını 1,33 ilə müqayisə et, fərqin səbəbi nə ola bilər?"
+   ],
+   "sutunlar": [
+    "№",
+    "h, sm",
+    "h′, sm"
+   ],
+   "setir": 6
+  },
+  {
+   "id": "T3",
+   "ad": "Arximed qüvvəsi mətbəx tərəzisində",
+   "avadanliq": "mətbəx tərəzisi (1 q dəqiqlik), su ilə stəkan, ipdən asılmış ağır silindr (məs. içi qumla doldurulmuş flakon), xətkeş",
+   "addimlar": [
+    "Su ilə stəkanı tərəziyə qoy və tərəzini sıfırla.",
+    "Silindri ipdən tutaraq suya 1 sm addımlarla batır (stəkanın dibinə və divarına toxunmasın). Hər dəfə batma dərinliyini h və tərəzinin göstəricisini Δm yaz — 8 nöqtə.",
+    "Cədvəl tərtib et: h, Δm. Δm(h) qrafikini qur.",
+    "Bucaq əmsalı ρ_su·S-dir — silindrin en kəsiyinin sahəsi S-i tap. Diametri xətkeşlə ölçüb S-i hesabla və müqayisə et.",
+    "Nəticəni yaz: suya batırılan silindr tərəzinin göstəricisini niyə artırır?"
+   ],
+   "sutunlar": [
+    "№",
+    "h, sm",
+    "Δm, q"
+   ],
+   "setir": 8
+  }
+ ]
+}

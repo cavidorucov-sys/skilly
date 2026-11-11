@@ -1,11 +1,12 @@
-// RFO physics district-round mock ("rayon simulyasiyası"; father, 11 Nov 2026). Format of the real round: 20 questions,
-// five options A–E, 150 minutes, +5 for a right answer, −1/4 of that for a wrong one, 0 for a blank.
+// RFO physics stage mocks with a test paper (district round, semi-final; father, 11 Nov 2026). The page names its stage in
+// <body data-sim="rayon|yarimfinal">; data/rfo-<stage>.json holds the format (questions, minutes, points, penalty) and topics.
+// District round: 20 questions, five options A–E, 150 minutes, +5 for a right answer, −1/4 of that for a wrong one, 0 blank.
 // The questions come from the lessons' own generators (dersler/oyun-fiz-*.js), so every attempt is new: a number
-// answer becomes five options (the right one + four plausible wrong ones). The topic mix follows data/rfo-rayon.json.
+// answer becomes five options (the right one + four plausible wrong ones). The topic mix follows data/rfo-<stage>.json.
 // The mock stays locked while any of its topics is not closed. An attempt in progress lives in localStorage
-// ("oyun:rfo-rayon", synced like the games) and resumes after a reload; the clock keeps running meanwhile.
+// ("oyun:rfo-<stage>", synced like the games) and resumes after a reload; the clock keeps running meanwhile.
 (function () {
-  const KEY = "oyun:rfo-rayon", LETTERS = "ABCDE";
+  const SIM = document.body.dataset.sim || "rayon", KEY = "oyun:rfo-" + SIM, LETTERS = "ABCDE";
   const { h } = Oyun;
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} if (window.Skilly && Skilly.hal) Skilly.hal(k); };
@@ -76,6 +77,9 @@
   const usable = slug => (GEN[slug] || []).filter(l => l.id !== "sehv"); // "find the mistake" levels have three options, not a number
 
   let CFG, TOPICS, st;
+  // points of question i: one number for every question, or a list by position (semi-final: 4, 5, 6)
+  const pts = i => Array.isArray(CFG.bal) ? CFG.bal[i] : CFG.bal;
+  const maxPts = () => Array.from({ length: CFG.sual }, (_, i) => pts(i)).reduce((a, b) => a + b, 0);
   const T = slug => TOPICS.find(t => t.slug === slug);
   const lessonHref = slug => "../ders.html?p=" + slug;
   const save = () => put(KEY, st);
@@ -109,7 +113,7 @@
     const open = TOPICS.filter(t => !t.closed);
     drawChips("status");
     root.replaceChildren(h("div", { class: "rfo-gate" }, h("h2", {}, "🔒 Simulyasiya hələ bağlıdır"),
-      h("p", {}, "Simulyasiya rayon turunun bütün mövzuları bağlananda açılır. " + TOPICS.length + " mövzudan " + (TOPICS.length - open.length) + "-i bağlanıb, " + open.length + "-i qalıb:"),
+      h("p", {}, "Simulyasiya " + CFG.tur + " bütün mövzuları bağlananda açılır. " + TOPICS.length + " mövzudan " + (TOPICS.length - open.length) + "-i bağlanıb, " + open.length + "-i qalıb:"),
       h("div", { class: "rz-row" }, ...open.map(t => chip(t, "open", "→", true))),
       history()));
   }
@@ -137,7 +141,7 @@
     CFG.qruplar.forEach(g => { const ts = shuffle(TOPICS.filter(t => t.grp === g.id)); for (let i = 0; i < g.n; i++) pickSlugs.push(ts[i % ts.length].slug); });
     await loadAll(pickSlugs);
     const usedLv = {};
-    const qs = pickSlugs.map(slug => {
+    const qs = (CFG.qarisiq ? shuffle(pickSlugs) : pickSlugs).map(slug => {
       const lv = shuffle(usable(slug)), used = usedLv[slug] = usedLv[slug] || [];
       const order = lv.filter(l => !used.includes(l.id)).concat(lv.filter(l => used.includes(l.id)));
       for (const l of order) for (let k = 0; k < 20; k++) {
@@ -182,7 +186,7 @@
         on: { click: () => { R.ans[i] = R.ans[i] === k ? null : k; save(); drawQ(); drawPal(); } } }, h("b", {}, LETTERS[k]), h("span", {}, o))));
       const flagged = R.flag.includes(i);
       box.replaceChildren(h("div", { class: "rz-q" },
-        h("div", { class: "oy-label" }, h("span", {}, "Sual " + (i + 1) + " / " + Q.length), h("span", {}, "5 bal")),
+        h("div", { class: "oy-label" }, h("span", {}, "Sual " + (i + 1) + " / " + Q.length), h("span", {}, num(pts(i)) + " bal")),
         h("div", { class: "oy-text" }, x.q.text), x.q.svg || null, opts,
         h("div", { class: "rz-nav" },
           h("button", { type: "button", class: "btn ghost", ...(i ? {} : { disabled: "" }), on: { click: () => go(i - 1) } }, "← Əvvəlki"),
@@ -214,18 +218,19 @@
       p.n++; p[res]++; res === "duz" ? duz++ : res === "sehv" ? sehv++ : bos++;
       return { slug: x.slug, res };
     });
-    const bal = duz * CFG.bal - sehv * CFG.bal * CFG.cerime;
+    let plus = 0, minus = 0; items.forEach((x, i) => { if (x.res === "duz") plus += pts(i); if (x.res === "sehv") minus += pts(i) * CFG.cerime; });
+    const bal = plus - minus;
     const mm = Math.floor(sec / 60) + " dəq " + (sec % 60) + " san";
-    st.last = { at, bal, duz, sehv, bos, sec, timeUp, per, items };
+    st.last = { at, bal, plus, minus, duz, sehv, bos, sec, timeUp, per, items };
     st.hist = (st.hist || []).concat({ at, bal, duz, sehv, bos, sec });
     delete st.run; save();
     if (window.Skilly) {
-      Skilly.netice({ id: "rfo-rayon-sim@" + at, ders: "RFO fizika — rayon simulyasiyası", fenn: "fizika", bal, max: CFG.sual * CFG.bal, vaxt: sec,
+      Skilly.netice({ id: "rfo-" + SIM + "-sim@" + at, ders: "RFO fizika — " + CFG.ad.toLocaleLowerCase("az"), fenn: "fizika", bal, max: maxPts(), vaxt: sec,
         qeyd: "düz " + duz + ", səhv " + sehv + ", boş " + bos + "; vaxt " + mm + (timeUp ? " (vaxt bitdi)" : "") + "; " +
           Object.entries(per).map(([s, p]) => T(s).qisa + " " + p.duz + "/" + p.n).join(", "),
         movzular: per });
       Q.forEach((x, i) => { if (items[i].res !== "sehv") return; const t = T(x.slug);
-        Skilly.sehv({ id: "rfo-rayon-" + at + "#" + (i + 1), fenn: "fizika", movzu: t.ad, menbe: "RFO rayon simulyasiyası — sual " + (i + 1), link: "dersler/" + x.slug + ".html",
+        Skilly.sehv({ id: "rfo-" + SIM + "-" + at + "#" + (i + 1), fenn: "fizika", movzu: t.ad, menbe: "RFO " + CFG.ad.toLocaleLowerCase("az") + " — sual " + (i + 1), link: "dersler/" + x.slug + ".html",
           sual: typeof x.q.text === "string" ? x.q.text : x.q.text.textContent, cavab: LETTERS[R.ans[i]] + ") " + x.opts[R.ans[i]], duz: LETTERS[x.correct] + ") " + x.opts[x.correct],
           q2: { choices: x.opts.map((o, k) => LETTERS[k] + ") " + o), correct: x.correct, answer: null, tol: null, unit: "", svg: x.q.svg && x.q.svg.outerHTML ? x.q.svg.outerHTML : "" } }); });
     }
@@ -237,11 +242,11 @@
     const mm = Math.floor(L.sec / 60) + ":" + String(L.sec % 60).padStart(2, "0");
     root.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Nəticə" + (L.timeUp ? " — vaxt bitdi" : "")),
       h("div", { class: "rz-score" },
-        h("div", {}, h("b", {}, num(L.bal) + " / " + CFG.sual * CFG.bal), h("span", {}, "bal")),
-        h("div", {}, h("b", {}, String(L.duz)), h("span", {}, "düz · +" + num(L.duz * CFG.bal))),
-        h("div", {}, h("b", {}, String(L.sehv)), h("span", {}, "səhv · −" + num(L.sehv * CFG.bal * CFG.cerime))),
+        h("div", {}, h("b", {}, num(L.bal) + " / " + maxPts()), h("span", {}, "bal")),
+        h("div", {}, h("b", {}, String(L.duz)), h("span", {}, "düz · +" + num(L.plus ?? L.duz * CFG.bal))),
+        h("div", {}, h("b", {}, String(L.sehv)), h("span", {}, "səhv · −" + num(L.minus ?? L.sehv * CFG.bal * CFG.cerime))),
         h("div", {}, h("b", {}, String(L.bos)), h("span", {}, "boş · 0")),
-        h("div", {}, h("b", {}, mm), h("span", {}, "vaxt (150:00-dan)"))),
+        h("div", {}, h("b", {}, mm), h("span", {}, "vaxt (" + CFG.deqiqe + ":00-dan)"))),
       L.sehv ? h("p", {}, "Səhv cavablar səhv jurnalına düşdü (Təkrar). Mövzu çipinə basanda həmin dərs açılır.") : h("p", {}, "Mövzu çipinə basanda həmin dərs açılır."),
       h("ol", { class: "rz-list" }, ...L.items.map((x, i) => { const t = T(x.slug);
         return h("li", { class: x.res === "duz" ? "ok" : x.res === "sehv" ? "no" : "bos" }, h("span", {}, (i + 1) + ". " + (x.res === "duz" ? "✓" : x.res === "sehv" ? "✗" : "–")),
@@ -252,7 +257,7 @@
 
   async function init() {
     try {
-      const [cfg, m] = await Promise.all(["../data/rfo-rayon.json", "../data/movzular.json"].map(p => fetch(p, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(p); return r.json(); })));
+      const [cfg, m] = await Promise.all(["../data/rfo-" + SIM + ".json", "../data/movzular.json"].map(p => fetch(p, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(p); return r.json(); })));
       CFG = cfg;
       const byLink = {}; for (const k in m) m[k].forEach(t => { if (t.ders) byLink[t.ders] = t; });
       const bag = get("skilly-bag", []);

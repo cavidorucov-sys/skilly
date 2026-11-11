@@ -218,6 +218,40 @@
         return k ? await open(k) : null;
       } catch (e) { put(ACAR, ""); return null; } // a stale cached key is fetched again on the next load
     },
+    // Photos of written work (RFO final mock, home experiments; father, 11 Nov 2026). Kept in Firestore itself
+    // (collection "sekil", one page per document) because file storage needs a paid plan: the phone shrinks each
+    // photo to a JPEG under ~900 KB (a document holds up to 1 MiB). Only Fikrət's account adds or removes photos;
+    // both accounts see them. Needs the network: a photo is too big to wait in this browser's queue.
+    sekil: {
+      async add(ref, file) {
+        const a = await api();
+        if (!a) throw new Error("Əvvəl Google ilə daxil ol (Fikrətin hesabı).");
+        if (viewer()) throw new Error("Baxış rejimində şəkil əlavə olunmur.");
+        const img = await createImageBitmap(file, { imageOrientation: "from-image" });
+        let side = 1800, q = 0.8, data = "", w = 0, h = 0;
+        for (let i = 0; i < 8; i++) {
+          const k = Math.min(1, side / Math.max(img.width, img.height)); w = Math.round(img.width * k); h = Math.round(img.height * k);
+          const c = document.createElement("canvas"); c.width = w; c.height = h;
+          const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.drawImage(img, 0, 0, w, h);
+          data = c.toDataURL("image/jpeg", q);
+          if (data.length < 900000) break;
+          if (q > 0.55) q -= 0.1; else side = Math.round(side * 0.8);
+        }
+        if (data.length >= 900000) throw new Error("Şəkil çox böyükdür.");
+        const at = Date.now(), id = docId(ref) + "@" + at;
+        await a.S.setDoc(a.S.doc(a.db, "sekil", id), { id, ref: String(ref), at, w, h, data, t: a.S.serverTimestamp() });
+        return { id, ref, at, w, h, data };
+      },
+      async list(ref) {
+        const a = await api(); if (!a) return null;
+        const snap = await a.S.getDocs(a.S.query(a.S.collection(a.db, "sekil"), a.S.where("ref", "==", String(ref))));
+        const out = []; snap.forEach(d => out.push(d.data())); return out.sort((x, y) => x.at - y.at);
+      },
+      async del(id) {
+        const a = await api(); if (!a || viewer()) return false;
+        await a.S.deleteDoc(a.S.doc(a.db, "sekil", id)); return true;
+      },
+    },
     async signIn() {
       const f = await fb(); if (!f) throw new Error("İnternet yoxdur");
       const r = await f.U.signInWithPopup(f.auth, new f.U.GoogleAuthProvider());

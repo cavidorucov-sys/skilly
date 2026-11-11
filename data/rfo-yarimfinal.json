@@ -1,0 +1,188 @@
+{
+ "_": "RFO physics semi-final mock (dersler/rfo-yarimfinal.html). Format of the 2026 semi-final booklet (lower age group): 20 questions A–E, 120 min, questions 1–7 worth 4 points, 8–13 worth 5, 14–20 worth 6 (100 in all); a wrong answer loses 1/4 of its own value. Topics = the 22 of the district mock + the 8 others that came up in the 2017/2025/2026 semi-finals; group counts follow those 75 questions (mechanics 48%, electricity 24%, pressure 12%, heat 8%, optics/magnetism/oscillations 8%). Father, 11 Nov 2026.",
+ "ad": "Yarımfinal simulyasiyası",
+ "tur": "yarımfinalın",
+ "sual": 20,
+ "deqiqe": 120,
+ "bal": [
+  4,
+  4,
+  4,
+  4,
+  4,
+  4,
+  4,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6
+ ],
+ "cerime": 0.25,
+ "qarisiq": true,
+ "qruplar": [
+  {
+   "id": "mex",
+   "ad": "Mexanika",
+   "n": 10,
+   "movzular": [
+    {
+     "slug": "fiz-kinematika",
+     "qisa": "Kinematika"
+    },
+    {
+     "slug": "fiz-serbest-dusme",
+     "qisa": "Sərbəst düşmə"
+    },
+    {
+     "slug": "fiz-nyuton",
+     "qisa": "Nyuton qanunları"
+    },
+    {
+     "slug": "fiz-surtunme-maili",
+     "qisa": "Sürtünmə, maili müstəvi"
+    },
+    {
+     "slug": "fiz-cevre-herekat",
+     "qisa": "Çevrə üzrə hərəkət"
+    },
+    {
+     "slug": "fiz-huk",
+     "qisa": "Huk qanunu"
+    },
+    {
+     "slug": "fiz-cazibe",
+     "qisa": "Cazibə qanunu"
+    },
+    {
+     "slug": "fiz-is-guc",
+     "qisa": "İş və güc"
+    },
+    {
+     "slug": "fiz-enerji",
+     "qisa": "Kinetik və potensial enerji"
+    },
+    {
+     "slug": "fiz-enerji-saxlanma",
+     "qisa": "Enerjinin saxlanması"
+    },
+    {
+     "slug": "fiz-moment",
+     "qisa": "Qüvvə momenti"
+    },
+    {
+     "slug": "fiz-mexanizmler",
+     "qisa": "Sadə mexanizmlər"
+    },
+    {
+     "slug": "fiz-atilan-cisim",
+     "qisa": "Atılan cisim"
+    },
+    {
+     "slug": "fiz-impuls",
+     "qisa": "İmpuls"
+    },
+    {
+     "slug": "fiz-nisbi-herekat",
+     "qisa": "Nisbi hərəkət"
+    },
+    {
+     "slug": "fiz-qeyri-inersial",
+     "qisa": "Qeyri-inersial sistemlər"
+    }
+   ]
+  },
+  {
+   "id": "tez",
+   "ad": "Təzyiq, Arximed",
+   "n": 2,
+   "movzular": [
+    {
+     "slug": "fiz-tezyiq",
+     "qisa": "Təzyiq"
+    },
+    {
+     "slug": "fiz-arximed",
+     "qisa": "Arximed qüvvəsi"
+    }
+   ]
+  },
+  {
+   "id": "ist",
+   "ad": "İstilik",
+   "n": 2,
+   "movzular": [
+    {
+     "slug": "fiz-istilik",
+     "qisa": "İstilik miqdarı"
+    },
+    {
+     "slug": "fiz-istilik-balansi",
+     "qisa": "İstilik balansı"
+    }
+   ]
+  },
+  {
+   "id": "ele",
+   "ad": "Elektrik",
+   "n": 5,
+   "movzular": [
+    {
+     "slug": "fiz-kulon",
+     "qisa": "Kulon qanunu"
+    },
+    {
+     "slug": "fiz-cereyan",
+     "qisa": "Cərəyan, müqavimət"
+    },
+    {
+     "slug": "fiz-om",
+     "qisa": "Om qanunu"
+    },
+    {
+     "slug": "fiz-elektrik-guc",
+     "qisa": "Elektrik işi və gücü"
+    },
+    {
+     "slug": "fiz-ehq-kirxhof",
+     "qisa": "EHQ, Kirxhof"
+    },
+    {
+     "slug": "fiz-kondensator",
+     "qisa": "Kondensator"
+    },
+    {
+     "slug": "fiz-muhitlerde-cereyan",
+     "qisa": "Mühitlərdə cərəyan"
+    }
+   ]
+  },
+  {
+   "id": "dig",
+   "ad": "Optika, maqnit, rəqslər",
+   "n": 1,
+   "movzular": [
+    {
+     "slug": "fiz-maqnit",
+     "qisa": "Maqnit sahəsi"
+    },
+    {
+     "slug": "fiz-reqsler",
+     "qisa": "Rəqslər"
+    },
+    {
+     "slug": "fiz-linza",
+     "qisa": "Linzalar, güzgülər"
+    }
+   ]
+  }
+ ]
+}
