@@ -213,10 +213,6 @@ td.act{text-align:right;white-space:nowrap}
 .cal-c .evs{display:grid;gap:3px;min-width:0}
 .cal-tag{font-size:11px;line-height:1.3;border-radius:var(--r-sm);padding:3px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .cal-c{position:relative}
-.cal-wk{grid-column:1/-1;font:inherit;font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border:0;border-radius:var(--r-sm);padding:6px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;text-align:left}
-.cal-wk:hover{box-shadow:inset 0 0 0 1.5px var(--line-strong)} .cal-wk.sel{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
-.cnt-in{display:flex;gap:10px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
-.cnt-in .ok{color:var(--ok-ink)} .cnt-in .no{color:var(--err-ink)} .cnt-in .wait{color:var(--muted)}
 .cal-c .cnt{position:absolute;top:14px;right:13px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:13px;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
 .cal-c .cnt .ok{color:var(--ok-ink)} .cal-c .cnt .no{color:var(--err-ink)} .cal-c .cnt .wait{color:var(--muted)}
 .cal-c .evs{padding-right:28px}
