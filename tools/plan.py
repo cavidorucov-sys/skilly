@@ -42,6 +42,19 @@ RAYON_FIRST = {"Kinetik və potensial enerji", "Enerjinin saxlanması",
                "İşığın qayıtması və sınması", "Linzalar və güzgülər, xəyalın qurulması, dispersiya"}
 # physics gets 2 h/week more from 1 December until the district round (father, 11 Nov 2026)
 BOOST = (dt.date(2026, 12, 1), dt.date(2027, 1, 18), CAP["fizika"] + 2.0)  # 2 h/week more than usual
+# Olympiad-math topics that physics problems use: taken in physics hours, each just before the physics topic that
+# needs it (father, 11 Nov 2026). They do not lock the physics topic: if one cannot start yet, physics goes on.
+FIZ_RIYAZI = {"Toplama, ikiqat və yarım bucaq düsturları": "Üfüqi və bucaq altında atılan cismin hərəkəti",
+              "Cəmin hasilə çevrilməsi; a·sin x ± b·cos x": "Üfüqi və bucaq altında atılan cismin hərəkəti",
+              "Sinuslar və kosinuslar teoremi": "Nisbi hərəkət: sürətlərin və təcillərin toplanması",
+              "Bərabərsizliklərin isbatı, orta qiymətlər": "Elektrik işi və gücü, Coul-Lens qanunu",
+              "Ədədi silsilə": "İmpuls və onun saxlanması, toqquşmalar",
+              "Həndəsi silsilə": "İmpuls və onun saxlanması, toqquşmalar",
+              "Ardıcıllıqlar və sonlu cəmlər": "Om qanunu, ardıcıl və paralel birləşmə",
+              "Oxşarlıq və homotetiya": "Linzalar və güzgülər, xəyalın qurulması, dispersiya",
+              "Çevrədə bucaqlar (mərkəzi, daxili)": "Linzalar və güzgülər, xəyalın qurulması, dispersiya",
+              "Üstlü ifadələr, sadə üstlü tənliklər və sistemlər": "Atomun və nüvənin quruluşu"}
+FR_KEYS = {"olimpiada:" + a for a in FIZ_RIYAZI}
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
@@ -89,21 +102,29 @@ for k in d:  # kept (closed) topics: their old week, finished before the re-plan
     for t in d[k]:
         key = k + ":" + t["ad"]
         if key in KEPT: week[key] = min((dt.date.fromisoformat(OLD_WEEK[key]) - start).days // 7, int(w0)); end_at[key] = w0; order[key] = n; n += 1
-queue = {k: [] if k in PAUSED else sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: prio(k, i, d[k][i])) for k in d}
+queue = {k: sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] in FR_KEYS and k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: i) if k in PAUSED else sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: prio(k, i, d[k][i])) for k in d}
 while any(queue.values()):
     moved = False
-    for k in sorted((k for k in d if queue[k]), key=lambda k: clock[k]):
+    for k in sorted((k for k in d if k not in PAUSED and (queue[k] or k == "fizika" and any(queue[p] for p in PAUSED))), key=lambda k: clock[k]):
         best = None
+        # physics: a topic that can start earliest; on a tie, the physics queue order, a FIZ_RIYAZI topic just before
+        # the physics topic it serves, the math topics physics needs after them
+        rank = {}
+        if k == "fizika":
+            pos = {d[k][i]["ad"]: r for r, i in enumerate(queue[k])}
+            rank = {("fizika", i): r for r, i in enumerate(queue[k])}
+            rank.update({("olimpiada", i): pos.get(FIZ_RIYAZI[d["olimpiada"][i]["ad"]], 0) - 0.5 for i in queue["olimpiada"]})
         # physics may spend its own hours closing the math topics it needs (when that lets it start sooner):
         # with strict prerequisite locks, physics would otherwise wait weeks for the 4 h/week math track
-        cands = [(k, i) for i in queue[k]] + ([("riyaziyyat", i) for i in queue["riyaziyyat"] if "riyaziyyat:" + d["riyaziyyat"][i]["ad"] in PHYS_NEED] if k == "fizika" else [])
+        cands = [(k, i) for i in queue[k]] + ([("olimpiada", i) for i in queue["olimpiada"]] if k == "fizika" else []) + ([("riyaziyyat", i) for i in queue["riyaziyyat"] if "riyaziyyat:" + d["riyaziyyat"][i]["ad"] in PHYS_NEED] if k == "fizika" else [])
         for kk, i in cands:
-            t = d[kk][i]; pre = [] if t["status"] == "isl" else [p for p in t.get("on", []) if p.split(":", 1)[0] in d and p.split(":", 1)[0] not in PAUSED]
+            t = d[kk][i]; pre = [] if t["status"] == "isl" else [p for p in t.get("on", []) if p.split(":", 1)[0] in d and (p.split(":", 1)[0] not in PAUSED or p in FR_KEYS)]
             if any(p not in end_at for p in pre): continue
             s0 = max([clock[k]] + [end_at[p] for p in pre])
-            if best is None or s0 < best[0] - 1e-9: best = (s0, kk, i)
+            r = rank.get((kk, i), 10**6)
+            if best is None or s0 < best[0] - 1e-9 or (abs(s0 - best[0]) <= 1e-9 and r < best[3]): best = (s0, kk, i, r)
         if best is None: continue
-        s0, kk, i = best; t = d[kk][i]; key = kk + ":" + t["ad"]
+        s0, kk, i, _ = best; t = d[kk][i]; key = kk + ":" + t["ad"]
         start_at[key] = s0; week[key] = int(s0 + 1e-9); order[key] = n; n += 1
         if kk != k: t["saat"] = "fizika"  # done in physics hours
         else: t.pop("saat", None)

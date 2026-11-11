@@ -474,6 +474,7 @@ async function pageTests() {
 }
 
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+const slot = d => { const x = new Date(d + "T00:00"); while (x.getDay() !== 0 && x.getDay() !== 2) x.setDate(x.getDate() + 1); return iso(x.getFullYear(), x.getMonth(), x.getDate()); };
 const weekEnd = w => { const x = new Date(w + "T00:00"); x.setDate(x.getDate() + 6); return iso(x.getFullYear(), x.getMonth(), x.getDate()); };
 const iso = (y, m, d) => y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
 
@@ -484,9 +485,11 @@ async function pageCalendar() {
   // date → events: deadlines from terminler.json, lessons from the current week
   const ev = {};
   const add = (d, e) => (ev[d] = ev[d] || []).push(e);
+  // a week's new topics belong to the whole week, not to its Monday: they get a strip above the week's row
+  const wk = {}, addWk = (m, e) => (wk[m] = wk[m] || []).push(e);
   term.forEach(t => add(t.tarix, { kat: t.kat, is: t.ad, qeyd: t.qeyd, son: true }));
   const mm = await load("data/movzular.json").catch(() => null);
-  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "", wkEnd: weekEnd(t.hefte), qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
+  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") addWk(t.hefte, { kat: LIST_KAT[k], is: t.ad, link: t.ders, saat: "", wkEnd: weekEnd(t.hefte), qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
   const today = isoToday();
   // Fikrət's record (the father sees it through the cloud): the day each topic was closed, and every memory check
@@ -501,11 +504,17 @@ async function pageCalendar() {
     for (const l in closedOn) { const t = byLink[l]; if (t && isClosed(t)) add(closedOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "mövzu bağlandı" }); }
     // a topic counts as started once any of its results exists (entry test, game, test)
     const started = new Set(res.map(x => (String(x.id).match(/^(.+)-[a-z]+@/) || [])[1]).filter(Boolean).map(k => "dersler/" + k + ".html"));
-    for (const k in ev) ev[k].forEach(e => { const t = e.link && byLink[e.link]; if (t && !/^Bağlandı/.test(e.is)) {
+    for (const k of [...Object.values(ev), ...Object.values(wk)]) k.forEach(e => { const t = e.link && byLink[e.link]; if (t && !/^Bağlandı/.test(e.is)) {
       e.st = ST[isClosed(t) ? "bag" : started.has(t.ders) || t.status === "isl" ? "isl" : "yox"];
       if (isClosed(t) && closedOn[t.ders]) e.qeyd = (e.saat ? e.saat + " · " : "") + "bağlanıb " + t2(closedOn[t.ders]); } });
-    Skilly.reviews().forEach(r => {
-      const t = byLink[r.link], late = !r.done && r.due < today;
+    // checks are done in the Tuesday and Sunday review windows, at most CAP questions each (as on the Təkrar page):
+    // a waiting one goes to the first window on or after its date that still has room, a done one to the day it was
+    // done, a missed one stays on the window it was due in
+    const used = {}, next = d => { const x = new Date(d + "T00:00"); x.setDate(x.getDate() + 1); return slot(iso(x.getFullYear(), x.getMonth(), x.getDate())); };
+    Skilly.reviews().slice().sort((a, b) => a.due.localeCompare(b.due)).forEach(r => {
+      let at = r.done || slot(r.due);
+      if (!r.done && at >= today) { if (at < slot(today)) at = slot(today); while (used[at] && used[at] + r.n > CAP) at = next(at); used[at] = (used[at] || 0) + r.n; }
+      const t = byLink[r.link], late = !r.done && at < today;
       // a failed check reopens the topic; once the topic is closed again it is settled, not open
       const reclosed = r.done && !r.ok && t && isClosed(t) && closedOn[r.link] >= r.done;
       const st = r.done ? (r.ok ? ["Edilib " + t2(r.done), "st-bag", "CircleCheck"]
@@ -513,7 +522,7 @@ async function pageCalendar() {
           : ["Keçmədi " + t2(r.done) + " · mövzu açıqdır", "st-err", "CircleAlert"])
         : late ? ["Edilməyib", "st-err", "CircleAlert"] : ["Gözləyir", "st-yox", "CircleDashed"];
       // the check itself runs in the lesson's test tab, so the item opens it there (as on the Təkrar page)
-      add(r.due, { kat: t ? t.kat : "misc", is: "Yaddaş yoxlaması: " + r.title + " (" + r.n + " sual)", st, qeyd: st[0], gecikir: late,
+      add(at, { kat: t ? t.kat : "misc", is: "Yaddaş yoxlaması: " + r.title + " (" + r.n + " sual)", st, qeyd: st[0], gecikir: late,
         link: r.done ? r.link : "ders.html?p=" + r.link.replace(/^dersler\/|\.html$/g, "") + "#sinaq" });
     });
   }
@@ -521,9 +530,9 @@ async function pageCalendar() {
   // day counter: closed/done, missed, waiting. Only items with a status count (exam dates and FRİTL/cüdo-type items do not);
   // a week's new topic is missed only once its week is over
   const stat = (e, k) => !e.st || e.son ? null : e.st[1] === "st-bag" ? "ok" : e.st[1] === "st-err" ? "no" : (e.wkEnd || k) < today ? "no" : "wait";
-  const counter = (list, k) => { const c = { ok: 0, no: 0, wait: 0 }; list.forEach(e => { const s = stat(e, k); if (s) c[s]++; });
+  const counter = (list, k, cls = "cnt") => { const c = { ok: 0, no: 0, wait: 0 }; list.forEach(e => { const s = stat(e, k); if (s) c[s]++; });
     const parts = [["ok", "✓", "bağlanıb"], ["no", "✗", "edilməyib"], ["wait", "○", "gözləyir"]].filter(([s]) => c[s]);
-    return parts.length ? el("span", { class: "cnt", "aria-label": parts.map(([s, , w]) => c[s] + " " + w).join(", ") }, ...parts.map(([s, m]) => el("b", { class: s }, m + c[s]))) : null; };
+    return parts.length ? el("span", { class: cls, "aria-label": parts.map(([s, , w]) => c[s] + " " + w).join(", ") }, ...parts.map(([s, m]) => el("b", { class: s }, m + c[s]))) : null; };
   const title = el("h2", {});
   const prev = el("button", { class: "nav-btn", type: "button", "aria-label": "Əvvəlki ay" }, "←");
   const next = el("button", { class: "nav-btn", type: "button", "aria-label": "Növbəti ay" }, "→");
@@ -536,7 +545,16 @@ async function pageCalendar() {
     const first = (new Date(y, mo, 1).getDay() + 6) % 7, n = new Date(y, mo + 1, 0).getDate();
     const cells = ["B.e", "Ç.a", "Çər", "C.a", "Cümə", "Şən", "Baz"].map(d => el("div", { class: "cal-h" }, d));
     for (let i = 0; i < first; i++) cells.push(el("div", { class: "cal-c blank" }));
+    const strip = d => { // the week strip before the row that starts at day d (may be in the previous month)
+      const m0 = new Date(y, mo, d), m = iso(m0.getFullYear(), m0.getMonth(), m0.getDate()), list = wk[m];
+      if (!list) return;
+      const s = el("button", { type: "button", class: "cal-wk" + (sel === "w:" + m ? " sel" : "") },
+        el("span", {}, "Həftənin yeni mövzuları: " + list.length), counter(list, m, "cnt-in"));
+      s.addEventListener("click", () => { sel = "w:" + m; draw(); });
+      cells.splice(cells.length - (d < 1 ? first : 0), 0, s); };
+    strip(1 - first);
     for (let d = 1; d <= n; d++) {
+      if (d > 1 && (first + d - 1) % 7 === 0) strip(d);
       const k = iso(y, mo, d), list = ev[k] || [];
       const b = el("button", { type: "button", class: "cal-c" + (k === today ? " today" : "") + (k === sel ? " sel" : "") + (k < today ? " past" : ""), "aria-label": d + " " + AYLAR[mo] + (list.length ? ", " + list.length + " iş" : "") },
         el("span", { class: "num" }, String(d)),
@@ -548,9 +566,11 @@ async function pageCalendar() {
       cells.push(b);
     }
     grid.replaceChildren(...cells);
-    const list = (ev[sel] || []).slice().sort((a, b) => (a.saat || "").localeCompare(b.saat || ""));
-    const [yy, mm, dd] = sel.split("-");
-    day.replaceChildren(el("div", { class: "head" }, el("h2", {}, (+dd) + " " + AYLAR[+mm - 1]), sel === today ? el("span", { class: "more" }, "bu gün") : null),
+    const isWk = sel.startsWith("w:"), key = isWk ? sel.slice(2) : sel;
+    const list = (isWk ? wk[key] || [] : ev[sel] || []).slice().sort((a, b) => (a.saat || "").localeCompare(b.saat || ""));
+    const [yy, mm, dd] = key.split("-"), we = isWk ? weekEnd(key) : "";
+    const head = isWk ? (+dd) + (mm === we.slice(5, 7) ? "" : " " + AYLAR[+mm - 1]) + " – " + (+we.slice(8)) + " " + AYLAR[+we.slice(5, 7) - 1] + ": yeni mövzular" : (+dd) + " " + AYLAR[+mm - 1];
+    day.replaceChildren(el("div", { class: "head" }, el("h2", {}, head), sel === today ? el("span", { class: "more" }, "bu gün") : null),
       el("div", { class: "list" }, ...(list.length ? list.map(e => { const k = KAT[e.kat] || KAT.misc; return el(e.link ? "a" : "div", { class: "row", ...(e.link ? { href: e.link, style: "text-decoration:none" } : {}) },
         el("span", { class: "ic " + k.cls }, icon(iconFor(e.kat, e.is), k.ink)),
         el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, [e.saat || e.qeyd || k.ad, e.st && e.qeyd !== e.st[0] && !/^Bağlandı/.test(e.is) ? e.st[0] : ""].filter(Boolean).join(" · "))),
