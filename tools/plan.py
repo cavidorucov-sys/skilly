@@ -3,20 +3,34 @@
 # Rules (agreed with the father, 20 Oct 2026):
 #  - buraxılış first; every topic starts with the entry test, so review topics take ~1 h, others ~2,5 h; 4 h/week
 #  - olympiad math: number theory, combinatorics and algebra basics before the district round, final-level topics after it; 3,5 h/week
-#  - physics follows the FRİTL order (list order), 6 h/week
+#  - physics follows the FRİTL order (list order), 6 h/week; heat and electricity first, before the RFO district round (11 Nov 2026)
 #  - a topic never starts before its prerequisites (any track); in the same week it comes after them.
 #    Not-started topics are locked in the portal until their prerequisites are closed; topics in progress stay open
 #    (taught at school now) and their prerequisites are pulled to the front (20 Oct 2026).
 import json, sys, os, datetime as dt
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
-start = dt.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else dt.date(2026, 10, 19)
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
+opt = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--") and "=" in a)
+start = dt.date.fromisoformat(args[0]) if args else dt.date(2026, 10, 19)
+# Re-plan from a later week (--from=YYYY-MM-DD) keeping the topics Fikrət has already closed (--keep=file with their
+# lesson links, e.g. read from the results): those keep their week; everything else is scheduled from that week on.
+FROM = dt.date.fromisoformat(opt["from"]) if "from" in opt else start
+KEEP = set(json.load(open(opt["keep"], encoding="utf-8"))) if "keep" in opt else set()
 d = json.load(open("data/movzular.json", encoding="utf-8"))
+OLD_WEEK = {k + ":" + t["ad"]: t.get("hefte") for k in d for t in d[k]}
+KEPT = {k + ":" + t["ad"] for k in d for t in d[k] if t.get("ders") in KEEP}
 CAP = {"riyaziyyat": 4.0, "olimpiada": 3.5, "fizika": 6.0}
 REVIEW = {"Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB", "Adi və onluq kəsrlər, dövri kəsrlər", "Tam və rasional ədədlər, ədəd oxu, modul",
           "Nisbət, tənasüb, düz və tərs mütənasiblik", "Faiz", "Cəbri ifadələr, sadələşdirmə", "Xətti tənliklər", "Bucaqlar, paralel və perpendikulyar düz xətlər",
           "Üçbucaqlar, bərabərlik əlamətləri", "Ölçü vahidləri və statistika: median, moda, diaqramlar", "Koordinat sistemi, funksiya anlayışı",
           "Çoxluqlar, Eyler-Venn diaqramı", "Xətti bərabərsizliklər", "Çoxhədlilər"}
 OLY_CORE = {"Say nəzəriyyəsi", "Kombinatorika"}
+# RFO physics district round (~mid-January, grades 7–9 textbooks): about half of its questions are heat and
+# electricity, so these physics topics come first (father, 11 Nov 2026)
+RAYON_FIRST = {"Temperatur, istidən genişlənmə, istilik miqdarı", "İstilik balansı, faza keçidləri, istilik mühərrikləri",
+               "Elektrik yükü, Kulon qanunu, elektrik sahəsi", "Cərəyan, gərginlik, müqavimət", "Om qanunu, ardıcıl və paralel birləşmə",
+               "Elektrik işi və gücü, Coul-Lens qanunu",
+               "Kinetik və potensial enerji", "Enerjinin saxlanması"}  # the last two: heat balance builds on them
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
@@ -42,14 +56,19 @@ def prio(k, i, t):  # lower = earlier
     urgent = -2 if t["status"] == "isl" else -1 if k + ":" + t["ad"] in ISL_NEED else 0
     if k == "olimpiada": return (urgent, 0 if (t["bolme"] in OLY_CORE or t["ad"] in OLY_CORE_TOPICS or t["status"] == "isl") else 1, i)
     if k == "riyaziyyat": return (urgent, PHYS_NEED.get(k + ":" + t["ad"], 99), i)
-    return (urgent, 0, i)
+    return (urgent, 0 if t["ad"] in RAYON_FIRST else 1, i)
 # continuous time per track (in weeks). A topic starts when its track is free and all its prerequisites are FINISHED
 # (the portal locks a lesson until they are closed). The track that is furthest behind moves next and takes the topic
 # that can start earliest (ties: priority order), so a track never idles while some topic of it could already start.
 week, start_at, end_at, order = {}, {}, {}, {}
-clock = {k: 0.0 for k in d}
-queue = {k: sorted(range(len(d[k])), key=lambda i: prio(k, i, d[k][i])) for k in d}
+w0 = (FROM - start).days / 7
+clock = {k: w0 for k in d}
 n = 0
+for k in d:  # kept (closed) topics: their old week, finished before the re-plan starts
+    for t in d[k]:
+        key = k + ":" + t["ad"]
+        if key in KEPT: week[key] = min((dt.date.fromisoformat(OLD_WEEK[key]) - start).days // 7, int(w0)); end_at[key] = w0; order[key] = n; n += 1
+queue = {k: sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: prio(k, i, d[k][i])) for k in d}
 while any(queue.values()):
     moved = False
     for k in sorted((k for k in d if queue[k]), key=lambda k: clock[k]):
@@ -76,7 +95,7 @@ for k in d:
     # sanity: prerequisites strictly earlier
     for t in d[k]:
         for p in t.get("on", []):
-            if p in week and t["status"] != "isl": assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
+            if p in week and t["status"] != "isl" and k + ":" + t["ad"] not in KEPT: assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
 json.dump(d, open("data/movzular.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 for k in d:
     ws = sorted(set(t["hefte"] for t in d[k]))
