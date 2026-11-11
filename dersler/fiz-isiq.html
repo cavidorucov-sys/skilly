@@ -30,6 +30,8 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sınma qanunu</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tam daxili qayıtma</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Kölgə və yarımkölgə</button>
+    <button class="tab" role="tab" id="tb-d6" aria-controls="d6" type="button"><small>Dərs 6</small>İşığın təbiəti və sürəti</button>
+    <button class="tab" role="tab" id="tb-d7" aria-controls="d7" type="button"><small>Dərs 7</small>Lövhə və prizma</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -523,6 +525,182 @@ Lampa və adam: h/L = x/(x + s)</div></div>
         <li>Nöqtəvi mənbə yarımkölgə yaradırmı? <span class="ans">Xeyr, yalnız kəskin kənarlı tam kölgə.</span></li>
         <li>Boyu 1,5 m olan uşaq 3 m hündürlükdəki lampanın dibindən 2 m aralıdır. Kölgənin uzunluğu? <span class="ans">1,5/3 = x/(x + 2) → x = 2 m.</span></li>
         <li>Diametri 5 sm olan disk (şüalara perpendikulyar) nöqtəvi mənbədən 0,5 m, ekran mənbədən 2 m aralıdır. Kölgənin diametri? <span class="ans">5·2/0,5 = 20 sm.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d6">Növbəti: Dərs 6 →</button>
+  </section>
+
+    <!-- ===== DƏRS 6 ===== -->
+  <section class="panel" role="tabpanel" id="d6" aria-labelledby="tb-d6" hidden>
+    <h2>Dərs 6. İşığın təbiəti və işıq sürətinin təyini</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Gecə gördüyümüz bəzi ulduzlar artıq sönüb: onların işığı bizə yüz illərlə gəlir. İşıq nədir — zərrəciklər seli, yoxsa dalğa? Onun sürətini necə ölçdülər? 9-cu sinif dərsliyində (2.1.1, 2.1.2) bu suallar və Ryomer, Maykelson təcrübələri var; hesablamalar rayon turu üçün tipikdir.</p>
+
+      <h3><span class="st">2</span> İşığın təbiəti haqqında təsəvvürlər</h3>
+      <ul>
+        <li><b>Korpuskulyar baxış</b> («korpuskul» — zərrəcik): İ. Nyuton — işıq mənbədən çıxan və enerji daşıyan zərrəciklər selidir. Düzxətli yayılmanı, qayıtmanı yaxşı izah edir.</li>
+        <li><b>Dalğa baxışı</b>: X. Hüygens — işıq dalğadır. Şüalar bir-birinin içindən mane olmadan keçir, su səthindəki dalğalar kimi.</li>
+        <li>C. Maksvell: işıq <b>elektromaqnit dalğasıdır</b>. H. Hers EM dalğalarını təcrübədə tapdı, onların sürəti işıq sürəti ilə üst-üstə düşdü.</li>
+        <li><b>Müasir baxış</b>: işığın <b>ikili təbiəti</b> var. Difraksiya, interferensiya, dispersiyanı dalğa təbiəti, fotoeffekti (işığın təsiri ilə maddədən elektronların qopması; Günəş batareyalarında elektronlar maddənin daxilində sərbəstləşir — daxili fotoeffekt) zərrəcik təbiəti izah edir.</li>
+      </ul>
+      <p>Görünən işıq: dalğa uzunluğu 380–760 nm, tezliyi təxminən (4–7,9)·10¹⁴ Hz. İşığın təsirləri: görmə, istilik, kimyəvi (fotosintez, fotolent), elektrik (fotoeffekt: fotoelementlər, Günəş batareyaları).</p>
+      <p>Həsən ibn əl-Heysəm (Alxazen, 965–1039) gözün quruluşunu və qaranlıq kameranı (camera obscura) öyrəndi; onu «optikanın atası» adlandırırlar.</p>
+
+      <h3><span class="st">3</span> İşıq sürətinin təyini</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 160" role="img" aria-label="Ryomer üsulu: Günəş mərkəzdə, Yerin orbiti; Yer 1 vəziyyətində Yupiterə yaxın, 2 vəziyyətində uzaqdır; əlavə yol orbitin diametri D-dir">
+          <circle cx="110" cy="80" r="55" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <circle cx="110" cy="80" r="11" fill="var(--vec)"/>
+          <text x="110" y="104" class="lbl" text-anchor="middle">Günəş</text>
+          <circle cx="165" cy="80" r="5" fill="var(--accent)"/>
+          <text x="165" y="70" class="lbl" text-anchor="middle">1</text>
+          <circle cx="55" cy="80" r="5" fill="var(--accent)"/>
+          <text x="55" y="70" class="lbl" text-anchor="middle">2</text>
+          <circle cx="262" cy="80" r="13" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="262" y="110" class="lbl" text-anchor="middle">Yupiter</text>
+          <circle cx="240" cy="64" r="3" fill="var(--ink)"/>
+          <text x="232" y="56" class="lbl" text-anchor="middle">İo</text>
+          <line x1="55" y1="135" x2="165" y2="135" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="55" y1="130" x2="55" y2="140" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="165" y1="130" x2="165" y2="140" stroke="var(--ink)" stroke-width="1"/>
+          <text x="110" y="152" class="lbl" text-anchor="middle">D — Yer orbitinin diametri</text>
+        </svg>
+        <div class="cap"><p><b>Ryomer (1676):</b> sxem sadələşdirilib, yalnız məsafələri göstərir. Yer Yupiterə ən yaxın vəziyyətə yaxın (1) olanda İo peykinin Yupiterin kölgəsindən çıxma anları qeyd olunur. Bir neçə ay sonra, Yer ən uzaq vəziyyətə (2) yaxınlaşanda, çıxış hesablanan vaxtdan təxminən 22 dəq gec görünür: işıq əlavə olaraq təxminən orbitin diametri D qədər yol gedir.</p></div>
+      </div>
+      <div class="fm">Ryomer:     c = D / t
+Maykelson:  güzgülü prizma 1/N dövr dönəndə işıq 2L yolu gedir
+            t = 1/(N·ν)   →   c = 2L / t = 2L·N·ν
+            (N — prizmanın üzlərinin sayı, ν — saniyədə dövrlər sayı)
+İşıq ili — işığın vakuumda bir ildə getdiyi məsafə ≈ 9,46·10¹⁵ m
+Mühitdə:    v = c/n   (n — sındırma əmsalı, Dərs 3)</div>
+      <p><b>Maykelson (1924–1927):</b> Maunt-Vilson dağında fırlanan səkkizüzlü güzgülü prizma, 35,2 km aralı San-Antonio dağında qaytarıcı güzgü. Prizma bir üz qədər — 1/8 dövr — dönəndə qayıdan işıq yenidən okulyara düşür. Bugünkü qiymət: <span class="m">c = 299 792 458 m/s ≈ 3·10⁸ m/s</span>; bu, təbiətdə ən böyük sürətdir.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">4</span> Necə hesablamaq</h3>
+      <ul>
+        <li>Vahidləri birləşdir: km və san, ya m və s. 1 dəq = 60 s.</li>
+        <li>Məsafə və vaxt: <span class="m">s = c·t</span>; işığın getməsi və qayıtması üçün yol <span class="m">2L</span>-dir.</li>
+        <li>İşıq ili məsafədir, vaxt deyil: <span class="m">1 il ≈ 365·24·3600 ≈ 3,15·10⁷ s</span>.</li>
+        <li>Maykelson tipli məsələdə: prizma neçə üzlüdür → bir üzün dönmə vaxtı <span class="m">1/(Nν)</span>.</li>
+      </ul>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1 (Ryomerin hesabı). D ≈ 2,84·10⁸ km (XVII əsrin qiyməti), gecikmə 22 dəq. c?
+  t = 22·60 = 1320 s
+  c = 2,84·10⁸ / 1320 ≈ 2,15·10⁵ km/s = 2,15·10⁸ m/s</div>
+      <div class="ex">Nümunə 2 (Maykelson). L = 35,2 km, 8 üzlü prizma, 528 dövr/s. c?
+  t = 1/(8·528) s
+  c = 2·35 200·8·528 ≈ 2,97·10⁸ m/s</div>
+      <div class="ex">Nümunə 3. Ay işığı Yerə 1,28 s-də çatır. Məsafə?
+  s = 3·10⁵ km/s · 1,28 s ≈ 384 000 km</div>
+      <div class="ex">Nümunə 4. Gliese 667 ulduzu 22,7 işıq ili uzaqdadır. Neçə km?
+  1 işıq ili ≈ 3·10⁵ km/s · 3,154·10⁷ s ≈ 9,46·10¹² km
+  22,7·9,46·10¹² ≈ 2,15·10¹⁴ km</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Günəş işığı Yerə təxminən 8 dəqiqə 20 saniyəyə çatır: Günəşə baxanda onun 8 dəqiqə əvvəlki halını görürük. GPS cihazı peyklərdən gələn radiosiqnalların gecikmə vaxtına görə məsafəni hesablayır. İnternetin optik lifli kabellərində işıq <span class="m">v = c/n</span> sürəti ilə, yəni vakuumdakından təxminən 1,5 dəfə yavaş gedir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>İşıq ilini vaxt vahidi saymaq. O, məsafədir.</li>
+        <li>Maykelson məsələsində yolu <span class="m">L</span> götürmək. İşıq gedib-qayıdır: <span class="m">2L</span>.</li>
+        <li>Ryomer məsələsində gecikməni dəqiqədə qoyub km/s almaq. Əvvəl saniyəyə çevir.</li>
+        <li>Fotoeffekti dalğa təbiəti ilə izah etmək. Fotoeffekt işığın zərrəcik (kvant) təbiətini göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İşığın ikili təbiəti: dalğa (difraksiya, interferensiya) + zərrəcik (fotoeffekt)
+Görünən işıq: 380–760 nm
+Ryomer: c = D/t;  Maykelson: c = 2L/t,  t = 1/(Nν)
+c ≈ 3·10⁸ m/s — ən böyük sürət;  1 işıq ili ≈ 9,46·10¹⁵ m</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Günəş Yerdən 1,5·10⁸ km uzaqdadır. İşıq neçə saniyəyə çatır? <span class="ans">1,5·10⁸ / 3·10⁵ = 500 s ≈ 8,3 dəq.</span></li>
+        <li>Günəşdən Marsa 228·10⁶ km-dir. İşıq neçə saniyəyə çatır? <span class="ans">228·10⁶ / 3·10⁵ = 760 s.</span></li>
+        <li>Günəş batareyası işığın hansı təsirinə əsaslanır və hansı təbiətini təsdiqləyir? <span class="ans">Elektrik təsirinə (fotoeffekt); zərrəcik təbiətini.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d7">Növbəti: Dərs 7 →</button>
+  </section>
+
+    <!-- ===== DƏRS 7 ===== -->
+  <section class="panel" role="tabpanel" id="d7" aria-labelledby="tb-d7" hidden>
+    <h2>Dərs 7. Şüanın paralel üzlü müstəvi lövhədə və üçüzlü prizmada yolu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Pəncərə şüşəsindən keçən şüa əvvəlki istiqamətinə paralel qalır (maili düşəndə yalnız bir az yana sürüşür), prizmadan keçən şüa isə istiqamətini dəyişir. Hər iki halda işıq iki dəfə sınır. 9-cu sinif dərsliyində (2.3.3) şüanın yolunu qurmaq və prizmada <b>meyl bucağını</b> tapmaq var. Bu dərs sınma qanununu (Dərs 3) və tam daxili qayıtmanı (Dərs 4) birləşdirir.</p>
+
+      <h3><span class="st">2</span> Paralel üzlü müstəvi lövhə</h3>
+      <p>Üzləri paralel olan şəffaf lövhədə şüa birinci üzdə <span class="m">α → β</span>, ikinci üzdə <span class="m">β → α</span> sınır. Ona görə lövhədən çıxan şüa düşən şüaya <b>paraleldir</b>, yalnız yana sürüşür.</p>
+      <div class="fm">sin α = n·sin β       (lövhə havadadır)
+Yana sürüşmə:  x = d·sin(α − β) / cos β     d — lövhənin qalınlığı</div>
+
+      <h3><span class="st">3</span> Üçüzlü prizma</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Sındırıcı bucağı 60° olan prizma: şüa sol üzdə sınır, prizmada oturacağa paralel gedir, sağ üzdən çıxanda oturacağa tərəf meyl edir; meyl bucağı δ">
+          <defs><marker id="prz7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <polygon points="150,20 60,175.9 240,175.9" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="79" y1="82.9" x2="131" y2="112.9" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="221" y1="82.9" x2="169" y2="112.9" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="27.7" y1="118.6" x2="105" y2="97.9" stroke="var(--vec)" stroke-width="2.4" marker-end="url(#prz7)"/>
+          <line x1="105" y1="97.9" x2="195" y2="97.9" stroke="var(--vec)" stroke-width="2.4"/>
+          <line x1="195" y1="97.9" x2="272.3" y2="118.6" stroke="var(--vec)" stroke-width="2.4" marker-end="url(#prz7)"/>
+          <line x1="105" y1="97.9" x2="269.2" y2="53.9" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <path d="M140 37.3A20 20 0 0 0 160 37.3" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="150" y="55" class="lbl" text-anchor="middle">φ</text>
+          <path d="M256.3 57.3A110 110 0 0 1 256.3 114.3" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="264" y="90" class="lbl">δ</text>
+          <text x="80" y="98" class="lbl" text-anchor="middle">α₁</text>
+          <text x="150" y="190" class="lbl" text-anchor="middle">oturacaq</text>
+        </svg>
+        <div class="cap"><p>Prizmanın iki sındırıcı yan üzü arasındakı bucaq <b>sındırıcı bucaq</b> (φ) adlanır. Şüa hər iki üzdə sınır və <b>prizmanın oturacağına tərəf</b> meyl edir. Düşən şüa ilə çıxan şüa arasındakı bucaq — <b>meyl bucağı</b> δ. Qısa ştrixli xətlər — üzlərə çəkilmiş normallar, uzun ştrixli xətt — düşən şüanın uzantısı. Prizmadan baxan müşahidəçi cismi şüaların uzantısı üzrə görür: cisim prizmanın <b>təpəsinə</b> tərəf sürüşmüş görünür. Şəkildə n = √2, φ = 60°, α₁ = 45°: şüa prizmada oturacağa paralel gedir, δ = 30°.</p></div>
+      </div>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">4</span> Prizmada addım-addım</h3>
+      <div class="fm">1-ci üz:   sin α₁ = n·sin β₁
+Daxildə:   α₂ = φ − β₁        (2-ci üzə düşmə bucağı)
+2-ci üz:   n·sin α₂ = sin β₂   (sin α₂ &gt; 1/n olarsa — tam daxili qayıtma, şüa çıxmır)
+Meyl:      δ = α₁ + β₂ − φ
+Nazik prizma, kiçik bucaqlar:  δ ≈ (n − 1)·φ</div>
+      <p>Düşmə və sınma bucaqları <b>normaldan</b> ölçülür. Şüa üzə perpendikulyar düşürsə, həmin üzdə sınmır (<span class="m">α₁ = 0 → β₁ = 0</span>).</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Qalınlığı 3 sm olan şüşə lövhəyə (n = √3) şüa 60° bucaq altında düşür. Yana sürüşmə?
+  sin β = sin 60°/√3 = (√3/2)/√3 = 0,5  →  β = 30°
+  x = 3·sin 30°/cos 30° = 3·0,5/0,866 ≈ 1,73 sm</div>
+      <div class="ex">Nümunə 2. Prizma: φ = 60°, n = √2, α₁ = 45°. Meyl bucağı?
+  sin β₁ = sin 45°/√2 = 0,5 → β₁ = 30°
+  α₂ = 60° − 30° = 30°
+  sin β₂ = √2·0,5 ≈ 0,707 → β₂ = 45°
+  δ = 45° + 45° − 60° = 30°</div>
+      <div class="ex">Nümunə 3. Şüa sındırıcı bucağı 30° olan şüşə prizmanın (n = 1,5) birinci üzünə perpendikulyar düşür. δ?
+  β₁ = 0 → α₂ = 30°
+  sin β₂ = 1,5·0,5 = 0,75 → β₂ ≈ 48,6°
+  δ = 0 + 48,6° − 30° ≈ 18,6°</div>
+      <div class="ex">Nümunə 4 (RFO tipli). Eyni prizmada φ = 45° olsa?
+  α₂ = 45°, sin 45° ≈ 0,707 &gt; 1/1,5 ≈ 0,667
+  → ikinci üzdə tam daxili qayıtma, şüa bu üzdən çıxmır</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Durbinlərdə və periskoplarda en kəsiyi bərabəryanlı düzbucaqlı üçbucaq (iti bucaqları 45°) olan şüşə prizmalar güzgü əvəzinə işləyir: şüa katetə uyğun üzə perpendikulyar girir və hipotenuza uyğun üzdə tam daxili qayıdır. Ağ işığın prizmada rənglərə ayrılması (dispersiya) Linzalar mövzusunda keçilib: hər rəng üçün <span class="m">n</span> fərqlidir, ona görə δ da fərqlidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bucağı üzdən ölçmək. Düşmə və sınma bucaqları normaldan ölçülür.</li>
+        <li>İkinci üzdə düşmə bucağını <span class="m">β₁</span> götürmək. Doğrusu: <span class="m">α₂ = φ − β₁</span>.</li>
+        <li>Şüanın prizmanın təpəsinə tərəf meyl etdiyini çəkmək. Havadakı şüşə prizmada şüa <b>oturacağa</b> tərəf meyl edir.</li>
+        <li>İkinci üzdə tam daxili qayıtmanı yoxlamamaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Lövhə: çıxan şüa düşənə paraleldir;  x = d·sin(α − β)/cos β
+Prizma: α₂ = φ − β₁;  δ = α₁ + β₂ − φ;  nazik prizma δ ≈ (n − 1)φ
+Şüa oturacağa tərəf meyl edir; 2-ci üzdə sin α₂ &gt; 1/n — şüa çıxmır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Paralel üzlü lövhədən çıxan şüa düşən şüa ilə hansı bucağı əmələ gətirir? <span class="ans">0° — paraleldir, yalnız yana sürüşür.</span></li>
+        <li>Nazik prizma: φ = 4°, n = 1,5. δ? <span class="ans">(1,5 − 1)·4° = 2°.</span></li>
+        <li>Şüa n = 1,5 olan prizmanın birinci üzünə perpendikulyar düşür, φ = 40°. Şüa ikinci üzdən çıxırmı? <span class="ans">α₂ = 40°, sin 40° ≈ 0,643 &lt; 0,667 — çıxır (β₂ ≈ 74,6°).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

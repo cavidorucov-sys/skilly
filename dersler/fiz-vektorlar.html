@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Toplama</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Radian, arcsin, arctg</button>
+    <button class="tab" role="tab" id="tb-d6" aria-controls="d6" type="button"><small>Dərs 6</small>Skalyar hasil</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -395,6 +396,87 @@ Kalkulyatorda: sin⁻¹, cos⁻¹, tan⁻¹; DEG/RAD rejimi</div></div>
         <li>arcsin(√3/2) = ? <span class="ans">60°.</span></li>
         <li>π/6 rad neçə dərəcədir? <span class="ans">30°.</span></li>
         <li>F_x = 5 N, F_y = 5 N. Qüvvə x oxu ilə hansı bucağı əmələ gətirir? <span class="ans">arctg 1 = 45°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d6">Növbəti: Dərs 6 →</button>
+  </section>
+
+    <!-- ===== DƏRS 6 ===== -->
+  <section class="panel" role="tabpanel" id="d6" aria-labelledby="tb-d6" hidden>
+    <h2>Dərs 6. Vektorların skalyar hasili</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki vektoru vurub <b>ədəd</b> almaq olur. Sabit qüvvənin gördüyü mexaniki iş belə hesablanır: <span class="m">A = F·s·cos α</span> — bu, qüvvə ilə yerdəyişmənin skalyar hasilidir. Skalyar hasil vektorlar arasındakı bucağı tapmağa və vektorların perpendikulyar olub-olmadığını yoxlamağa da imkan verir. 9-cu sinif dərsliyində (1.1.6) bu mövzu var.</p>
+
+      <h3><span class="st">2</span> Tərif</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Ortaq başlanğıcdan çıxan a və b vektorları, aralarındakı α bucağı və b-nin a üzərinə proyeksiyası">
+          <line x1="40" y1="120" x2="260" y2="120" stroke="var(--accent)" stroke-width="2.4"/>
+          <polygon points="260,120 248,114 248,126" fill="var(--accent)"/>
+          <text x="262" y="138" class="lbl">a⃗</text>
+          <line x1="40" y1="120" x2="160" y2="30" stroke="var(--vec)" stroke-width="2.4"/>
+          <polygon points="160,30 145.2,33.6 152.4,43.2" fill="var(--vec)"/>
+          <text x="166" y="30" class="lbl">b⃗</text>
+          <line x1="160" y1="30" x2="160" y2="120" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="40" y1="132" x2="160" y2="132" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="40" y1="128" x2="40" y2="136" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="160" y1="128" x2="160" y2="136" stroke="var(--ink)" stroke-width="1"/>
+          <text x="100" y="147" class="lbl" text-anchor="middle">b·cos α</text>
+          <path d="M 72 120 A 32 32 0 0 0 65.6 100.8" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="76" y="110" class="lbl">α</text>
+        </svg>
+        <div class="cap">
+          <p>Vektorlar <b>ortaq başlanğıcdan</b> çəkilir, α — onların arasındakı bucaqdır (0° ≤ α ≤ 180°). <span class="m">b·cos α</span> — <span class="m">b⃗</span>-nin <span class="m">a⃗</span> istiqamətinə proyeksiyasıdır.</p>
+        </div>
+      </div>
+      <div class="fm">a⃗·b⃗ = a·b·cos α          (nəticə ədəddir — skalyardır)
+Proyeksiyalarla (müstəvidə, düzbucaqlı koordinat sistemində):
+                  a⃗·b⃗ = a_x·b_x + a_y·b_y
+a⃗·a⃗ = a²         a⃗·b⃗ = b⃗·a⃗
+Bucaq:  cos α = a⃗·b⃗ / (a·b)     (a ≠ 0, b ≠ 0)</div>
+      <p>İşarəsi bucaqdan asılıdır: <span class="m">α &lt; 90°</span> — müsbət, <span class="m">α = 90°</span> — sıfır, <span class="m">α &gt; 90°</span> — mənfi. Deməli, sıfırdan fərqli iki vektorun skalyar hasili sıfırdırsa, onlar <b>perpendikulyardır</b>.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Necə hesablamaq</h3>
+      <ul>
+        <li>Modullar və bucaq verilibsə: <span class="m">a·b·cos α</span>.</li>
+        <li>Proyeksiyalar verilibsə: <span class="m">a_x b_x + a_y b_y</span> — bucağı bilmək lazım deyil.</li>
+        <li>Bucağı tapmaq üçün: əvvəl proyeksiyalarla hasili, sonra modulları tap, <span class="m">cos α = a⃗·b⃗/(ab)</span>, sonra <span class="m">α = arccos(…)</span>.</li>
+        <li>Cəmin modulu: <span class="m">|a⃗ + b⃗|² = a² + b² + 2a⃗·b⃗</span> (kosinuslar teoreminin vektor yazılışı).</li>
+      </ul>
+      <p>Fizikada: sabit qüvvənin işi <span class="m">A = F⃗·s⃗</span>; qüvvə yerdəyişməyə perpendikulyardırsa, iş sıfırdır, bucaq 90°-dən böyükdürsə, iş mənfidir.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. a = 3, b = 4, aralarındakı bucaq 60°. a⃗·b⃗?
+  a⃗·b⃗ = 3·4·cos 60° = 12·0,5 = 6</div>
+      <div class="ex">Nümunə 2. a⃗(3; 4), b⃗(4; −3). Vektorlar perpendikulyardırmı?
+  a⃗·b⃗ = 3·4 + 4·(−3) = 12 − 12 = 0  →  bəli, α = 90°</div>
+      <div class="ex">Nümunə 3. Sabit F⃗(6; 8) N qüvvəsinin təsiri ilə cisim s⃗(5; 0) m yerdəyişməsi etdi. İş və qüvvə ilə yerdəyişmə arasındakı bucaq?
+  A = 6·5 + 8·0 = 30 J
+  F = √(6² + 8²) = 10 N,  s = 5 m
+  cos α = 30/(10·5) = 0,6  →  α ≈ 53,1°</div>
+      <div class="ex">Nümunə 4 (RFO tipli). a = 5, b = 3, bucaq 60°. |a⃗ + b⃗|?
+  |a⃗ + b⃗|² = 25 + 9 + 2·5·3·0,5 = 49  →  |a⃗ + b⃗| = 7</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Xizəyi ip ilə üfüqə bucaq altında dartanda işi yalnız qüvvənin hərəkət istiqamətindəki toplananı görür: <span class="m">A = F·s·cos α</span>. Çevrə üzrə bərabərsürətli hərəkətdə mərkəzəyönlü qüvvə sürətə perpendikulyardır — skalyar hasil sıfırdır, ona görə də bu qüvvə iş görmür və sürətin modulu dəyişmir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Skalyar hasilin nəticəsini vektor saymaq. <span class="m">a⃗·b⃗</span> — ədəddir, istiqaməti yoxdur.</li>
+        <li>Bucağı vektorlar «ucu ucuna» düzüləndə ölçmək. Vektorlar ortaq başlanğıcdan çəkilməlidir.</li>
+        <li>Proyeksiyaların işarəsini atmaq: <span class="m">4·(−3)</span> mənfidir, hasil sıfır ola bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a⃗·b⃗ = a·b·cos α = a_x b_x + a_y b_y   (ədəd)
+a, b ≠ 0 və a⃗·b⃗ = 0  →  a⃗ ⊥ b⃗;   α &gt; 90°  →  a⃗·b⃗ &lt; 0
+cos α = a⃗·b⃗/(ab)
+Sabit qüvvənin işi: A = F⃗·s⃗ = F·s·cos α</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>a = 2, b = 5, aralarındakı bucaq 120°. a⃗·b⃗? <span class="ans">2·5·cos 120° = 10·(−0,5) = −5.</span></li>
+        <li>a⃗(1; 2), b⃗(4; −2). Aralarındakı bucaq? <span class="ans">1·4 + 2·(−2) = 0 → 90°.</span></li>
+        <li>50 N qüvvə yerdəyişmə ilə 60° bucaq əmələ gətirir, yerdəyişmə 10 m. İş? <span class="ans">50·10·cos 60° = 250 J.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

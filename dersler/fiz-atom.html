@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İzotoplar və nüvə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>α və β parçalanma</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Yarımparçalanma</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Atomun ölçüsü</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -402,6 +403,89 @@ aktivlik və qalan kütlə də hər T-də yarıya düşür
         <li>N₀ = 2000 nüvə, T = 5 gün. 15 gündən sonra qalan? <span class="ans">n = 3, N = 2000/8 = 250.</span></li>
         <li>Aktivlik 4 saatda 960 Bq-dən 60 Bq-ə düşüb. T = ? <span class="ans">960/60 = 16 = 2⁴ → n = 4, T = 4/4 = 1 saat.</span></li>
         <li>30 gündə nüvələrin 1/32-si qalıb. T = ? <span class="ans">32 = 2⁵ → n = 5, T = 30/5 = 6 gün.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Atomun ölçüsü: nə qədər kiçikdir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mikroskopla sudakı bakteriyanı görmək olur, su molekulunu isə yox. Atom nə qədər kiçikdir, nüvə ondan nə qədər kiçikdir? Bu suallar ölçüləri müqayisə etməyi, nanometrlə və 10-un qüvvətləri ilə işləməyi öyrədir. 7-ci sinif dərsliyində (4.2) atomun ölçüsü var.</p>
+
+      <h3><span class="st">2</span> Atomun və nüvənin ölçüsü</h3>
+      <p>Atomun ölçüsü dedikdə onun <b>diametri</b> nəzərdə tutulur — nüvədən ən uzaqdakı elektronun orbitinin diametri (planetar modeldə). Gözün ayırd etdiyi ən kiçik ölçü təxminən 0,1 mm-dir; atomların təsvirini skanedici tunel mikroskopu (1981-ci ildə ixtira olunub) kimi cihazlarla almaq olur.</p>
+      <div class="fm">1 nm (nanometr) = 10⁻⁹ m       1 mkm (mikrometr) = 10⁻⁶ m
+Hidrogen atomunun diametri ≈ 0,1 nm = 10⁻¹⁰ m
+Nüvənin diametri atomunkundan ≈ 100 000 (10⁵) dəfə kiçikdir
+Kürənin həcmi V = πd³/6  →  həcmlər nisbəti = (diametrlər nisbəti)³</div>
+      <p>Atomun həcminin böyük hissəsi <b>boşluqdur</b>: Rezerford təcrübəsində alfa zərrəciklərinin çoxu folqadan maneəsiz keçir (Dərs 1).</p>
+      <div class="fig">
+        <svg viewBox="0 0 330 110" role="img" aria-label="Ölçülər şkalası, hər bölgü 10 dəfə: hidrogen atomu 10⁻¹⁰ m, virus təxminən 10⁻⁷ m, qırmızı qan hüceyrəsi 7 mkm, nöqtə 1 mm, portağal 10 sm">
+          <defs><marker id="atm5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="15" y1="55" x2="320" y2="55" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#atm5)"/>
+          <g stroke="var(--ink)" stroke-width="1.2">
+            <line x1="20" y1="50" x2="20" y2="60"/><line x1="50" y1="52" x2="50" y2="58"/><line x1="80" y1="52" x2="80" y2="58"/><line x1="110" y1="50" x2="110" y2="60"/>
+            <line x1="140" y1="52" x2="140" y2="58"/><line x1="170" y1="52" x2="170" y2="58"/><line x1="200" y1="50" x2="200" y2="60"/><line x1="230" y1="52" x2="230" y2="58"/>
+            <line x1="260" y1="52" x2="260" y2="58"/><line x1="290" y1="50" x2="290" y2="60"/>
+          </g>
+          <text x="6" y="75" class="lbl">10⁻¹⁰</text>
+          <text x="110" y="75" class="lbl" text-anchor="middle">10⁻⁷</text>
+          <text x="200" y="75" class="lbl" text-anchor="middle">10⁻⁴</text>
+          <text x="290" y="75" class="lbl" text-anchor="middle">10⁻¹ m</text>
+          <g fill="var(--vec)"><circle cx="20" cy="55" r="4"/><circle cx="110" cy="55" r="4"/><circle cx="165.4" cy="55" r="4"/><circle cx="230" cy="55" r="4"/><circle cx="290" cy="55" r="4"/></g>
+          <text x="6" y="38" class="lbl">H atomu</text>
+          <text x="110" y="38" class="lbl" text-anchor="middle">virus</text>
+          <text x="165" y="24" class="lbl" text-anchor="middle">qan hüceyrəsi</text>
+          <text x="230" y="38" class="lbl" text-anchor="middle">nöqtə</text>
+          <text x="290" y="38" class="lbl" text-anchor="middle">portağal</text>
+          <text x="165" y="100" class="lbl" text-anchor="middle">hər kiçik bölgü — 10 dəfə</text>
+        </svg>
+        <div class="cap"><p>Şkala loqarifmikdir: hər bölgüdə ölçü 10 dəfə artır. Hidrogen atomu 0,1 nm, virus ~100 nm, qırmızı qan hüceyrəsi 7 mkm, nöqtə işarəsi 1 mm, portağal 10 sm.</p></div>
+      </div>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">3</span> Necə hesablamaq</h3>
+      <ul>
+        <li>Hər şeyi metrlə və 10-un qüvvəti ilə yaz: 7 mkm = 7·10⁻⁶ m, 0,15 nm = 1,5·10⁻¹⁰ m.</li>
+        <li>«Neçə dəfə böyükdür» — böyüyü kiçiyə böl; eyni əsaslı qüvvətlər bölünəndə qüvvət üstləri çıxılır: <span class="m">10⁻⁶ / 10⁻¹⁰ = 10⁴</span>.</li>
+        <li>«Neçə təbəqə (atom) sığar» — uzunluğu bir atomun diametrinə böl.</li>
+        <li>Həcmlər üçün diametrlər nisbətini kuba yüksəlt; sahələr üçün kvadrata.</li>
+        <li>Böyütmə: hər iki ölçü eyni ədədə vurulur — nisbət dəyişmir.</li>
+      </ul>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">4</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Qırmızı qan hüceyrəsinin diametri 7 mkm-dir. Hidrogen atomundan neçə dəfə böyükdür?
+  7·10⁻⁶ / 10⁻¹⁰ = 7·10⁴ = 70 000 dəfə</div>
+      <div class="ex">Nümunə 2. Qrafen — bir atom qalınlığında karbon təbəqəsidir, karbon atomunun diametri 0,15 nm. Sadələşdirilmiş modeldə hər təbəqənin qalınlığını 0,15 nm qəbul edək. 1,5 m qalınlıq üçün neçə təbəqə lazımdır?
+  1,5 / (1,5·10⁻¹⁰) = 10¹⁰ təbəqə</div>
+      <div class="ex">Nümunə 3. Atomun həcmi nüvənin həcmindən neçə dəfə böyükdür?
+  Diametrlər nisbəti 10⁵ → həcmlər nisbəti (10⁵)³ = 10¹⁵</div>
+      <div class="ex">Nümunə 4. Hidrogen atomunu 100 000 000 (10⁸) dəfə böyütsək, diametri nə qədər olar? Nüvəsi?
+  10⁻¹⁰·10⁸ = 10⁻² m = 1 sm
+  Nüvə 10⁵ dəfə kiçik: 10⁻² / 10⁵ = 10⁻⁷ m = 0,1 mkm — yenə gözlə görünməz</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> 1 mm-lik xəttin üstünə təxminən <span class="m">10⁻³ / 10⁻¹⁰ = 10⁷</span>, yəni on milyon atom düzülər. Kürəşəkilli bakteriyanın diametri hidrogen atomununkundan təxminən 10 000 dəfə böyükdür. Nanotexnologiya məhz 1–100 nm ölçülü obyektlərlə işləyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>nm ilə mkm-i qarışdırmaq: 1 mkm = 1000 nm.</li>
+        <li>Həcmlər nisbətini diametrlər nisbətinə bərabər götürmək. Diametr 10 dəfə böyükdürsə, həcm 1000 dəfə böyükdür.</li>
+        <li>Qüvvətləri bölərkən toplamaq: <span class="m">10⁻⁶/10⁻¹⁰ = 10⁻⁶⁻⁽⁻¹⁰⁾ = 10⁴</span>, 10⁻¹⁶ yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Atomun diametri ~ 10⁻¹⁰ m = 0,1 nm
+Nüvə atomdan ~10⁵ dəfə kiçik; həcmcə ~10¹⁵ dəfə
+1 nm = 10⁻⁹ m,  1 mkm = 10⁻⁶ m
+Həcm ~ d³:  nisbəti kuba yüksəlt</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,1 nm neçə metrdir? <span class="ans">10⁻¹⁰ m.</span></li>
+        <li>Diametri 100 nm olan virus hidrogen atomundan neçə dəfə böyükdür? <span class="ans">10⁻⁷/10⁻¹⁰ = 1000 dəfə.</span></li>
+        <li>Atomun nüvəsini diametri 1 mm olan dənə qədər böyütsək, atomun özü nə boyda olar? <span class="ans">10⁵·1 mm = 100 m — futbol meydançası boyda.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

@@ -28,6 +28,8 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Temperatur</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İstilik miqdarı</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İstidən genişlənmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Broun hərəkəti, diffuziya</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Daxili enerji, istilikvermə</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -258,6 +260,176 @@ Suyun sıxlığı 4 °C-də maksimumdur.</div></div>
         <li>10 m mis naqil (α = 17·10⁻⁶) 40 °C qızdı. Δl? <span class="ans">17·10⁻⁶·10·40 = 0,0068 m = 6,8 mm.</span></li>
         <li>Çubuğun uzunluğu 2 dəfə uzun olsa (eyni Δt), Δl? <span class="ans">2 dəfə böyük olar.</span></li>
         <li>Alüminium halqanın daxili diametri qızdıranda necə dəyişir? <span class="ans">Böyüyür (halqa genişlənir).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti: Dərs 4 →</button>
+  </section>
+
+    <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Molekulların istilik hərəkəti: Broun hərəkəti və diffuziya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Otağın bir küncündə ətir şüşəsini açanda bir azdan qoxu hər yerdə hiss olunur. Çaya atılan qənd qarışdırılmasa da həll olub yayılır. Temperatur nə deməkdir? Hamısının cavabı odur ki, maddənin hissəcikləri dayanmadan hərəkət edir. 8-ci sinif dərsliyində (5.1) istilik hərəkəti, Broun hərəkəti və diffuziya var.</p>
+
+      <h3><span class="st">2</span> İstilik hərəkəti və temperatur</h3>
+      <ul>
+        <li>Bütün maddələr hissəciklərdən — molekul və atomlardan ibarətdir.</li>
+        <li>Hissəciklər <b>fasiləsiz və nizamsız (xaotik)</b> hərəkət edir.</li>
+        <li>Hissəciklər qarşılıqlı təsirdədir: bir-birini cəzb edir və itələyir.</li>
+      </ul>
+      <p>Cismi təşkil edən molekulların xaotik hərəkəti <b>istilik hərəkəti</b> adlanır. Onun intensivliyi temperaturdan asılıdır: <b>temperatur molekulların orta kinetik enerjisinin ölçüsüdür</b>. Qazlarda molekulların orta sürəti otaq temperaturunda saniyədə yüzlərlə metrdir; molekulun kütləsi nə qədər böyükdürsə, eyni temperaturda orta sürəti bir o qədər kiçikdir (helium atomları oksigen molekullarından sürətli hərəkət edir).</p>
+
+      <h3><span class="st">3</span> Broun hərəkəti</h3>
+      <div class="fig">
+        <svg viewBox="0 0 300 160" role="img" aria-label="Broun hissəciyinin trayektoriyası: bərabər zaman fasilələrində qeyd olunmuş vəziyyətləri birləşdirən sınıq xətt">
+          <polyline points="40,110 72,86 60,58 98,70 120,40 112,96 150,104 170,72 160,48 200,60 214,100 186,124 230,132 260,96 248,62" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+          <g fill="var(--ink)">
+            <circle cx="40" cy="110" r="3"/><circle cx="72" cy="86" r="3"/><circle cx="60" cy="58" r="3"/><circle cx="98" cy="70" r="3"/><circle cx="120" cy="40" r="3"/>
+            <circle cx="112" cy="96" r="3"/><circle cx="150" cy="104" r="3"/><circle cx="170" cy="72" r="3"/><circle cx="160" cy="48" r="3"/><circle cx="200" cy="60" r="3"/>
+            <circle cx="214" cy="100" r="3"/><circle cx="186" cy="124" r="3"/><circle cx="230" cy="132" r="3"/><circle cx="260" cy="96" r="3"/><circle cx="248" cy="62" r="3"/>
+          </g>
+          <text x="40" y="128" class="lbl" text-anchor="middle">başlanğıc</text>
+          <text x="150" y="20" class="lbl" text-anchor="middle">nöqtələr — hər 30 s-dən bir vəziyyət</text>
+        </svg>
+        <div class="cap"><p>İngilis botaniki Robert Broun 1827-ci ildə mikroskopla suda çiçək tozcuqlarının dayanmadan, nizamsız «titrədiyini» gördü. Nöqtələr arasındakı düz xətlər həqiqi yol deyil: iki qeyd arasında hissəcik çox sayda dönüş edir.</p></div>
+      </div>
+      <p><b>Broun hərəkəti</b> — maye və ya qazda asılı qalan kiçik yad hissəciklərin (toz, çiçək tozcuğu) nizamsız hərəkətidir. Səbəbi: mühitin molekulları hissəciyə hər tərəfdən zərbələr vurur, amma bu zərbələrin sayı və qüvvəsi müxtəlif tərəflərdən eyni olmur. Hissəcik nə qədər kiçik və temperatur nə qədər yüksəkdirsə, Broun hərəkəti o qədər intensivdir. Broun hərəkəti molekulların mövcudluğunun və onların hərəkətinin birbaşa sübutudur (izahını 1905-ci ildə A. Eynşteyn verib).</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">4</span> Diffuziya</h3>
+      <p><b>Diffuziya</b> — bir maddənin hissəciklərinin istilik hərəkəti nəticəsində öz-özünə başqa maddənin hissəcikləri arasına keçməsidir (qarışmasıdır).</p>
+      <ul>
+        <li>Eyni məsafə və oxşar şəraitdə diffuziya qazlarda sürətli, mayelərdə yavaş, bərk cisimlərdə çox yavaş gedir.</li>
+        <li>Temperatur artanda diffuziya sürətlənir: boya isti suda soyuq sudakından tez yayılır.</li>
+        <li>Molekulların sürəti böyük olsa da, diffuziya yavaş gedir: molekul havada başqa molekullarla saniyədə milyardlarla dəfə toqquşur və sınıq xətt üzrə irəliləyir. Otaqda qoxunun dəqiqələr ərzində yayılmasını əsasən hava axınları sürətləndirir.</li>
+      </ul>
+      <p>Necə düşünmək: «Niyə?» sualında üç səbəbdən birini axtar — molekullar hərəkət edir (diffuziya, buxarlanma), hərəkət temperaturla sürətlənir, molekullar toqquşur (yolun sınıq olması).</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Bir nəfəsdə təxminən 2,5·10²² hava molekulu qəbul edirik. Havanın 21%-i oksigendir. Neçə oksigen molekulu?
+  2,5·10²² · 0,21 = 5,25·10²¹</div>
+      <div class="ex">Nümunə 2. Həcmi sabit olan hermetik qabdakı qaz qızdırılır. Molekulların orta sürəti və qazın təzyiqi necə dəyişir?
+  Temperatur artır → orta kinetik enerji, deməli orta sürət artır
+  Molekullar divara daha tez-tez və daha güclü dəyir → təzyiq artır</div>
+      <div class="ex">Nümunə 3. Helium atomunun orta sürəti ≈ 1350 m/s-dir. Toqquşma olmasaydı, 5 m-lik otağı nə qədər vaxta keçərdi? Bəs niyə belə sürətlə yayılmır?
+  t = 5/1350 ≈ 0,004 s
+  Real yol sınıq xəttdir: hər toqquşmada istiqamət dəyişir, irəliləmə çox yavaşdır
+  (otaqda qoxunu əsasən hava axınları yayır)</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Turşu xiyar duzlu suda diffuziya ilə duzlanır, isti üsulla isə daha tez. Qızılla qurğuşunu uzun müddət sıx yapışdırılmış saxlayanda metallar bir-birinə millimetrin hissələri qədər keçir — bərk cisimlərdə də diffuziya var, sadəcə çox yavaşdır. Ağciyərlərdə oksigen qana diffuziya ilə keçir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Broun hərəkətini molekulların özünün hərəkəti saymaq. Mikroskopda molekullar görünmür; görünən — molekulların zərbəsi altında hərəkət edən iri hissəcikdir.</li>
+        <li>Diffuziyanı yalnız qazlara aid etmək. Mayelərdə və bərk cisimlərdə də gedir, sadəcə yavaş.</li>
+        <li>Temperaturu bir molekulun sürəti kimi başa düşmək. Temperatur <b>orta</b> kinetik enerjinin ölçüsüdür; eyni anda bəzi molekullar sürətli, bəziləri yavaşdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Molekullar fasiləsiz, nizamsız hərəkət edir — istilik hərəkəti
+Temperatur — molekulların orta kinetik enerjisinin ölçüsü
+Broun hərəkəti: molekulların zərbəsi ilə asılı hissəciyin nizamsız hərəkəti
+Diffuziyanın sürəti: qaz &gt; maye &gt; bərk; temperatur artanda sürətlənir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qənd niyə isti çayda soyuq çaydakından tez həll olub yayılır? <span class="ans">Temperatur yüksəkdir — molekullar sürətli hərəkət edir, diffuziya sürətlənir.</span></li>
+        <li>Broun hissəciyi daha kiçik olsa, hərəkəti necə dəyişər? <span class="ans">Daha intensiv olar: zərbələrin qeyri-bərabərliyi kiçik hissəciyə daha çox təsir edir.</span></li>
+        <li>Molekullar yüzlərlə m/s sürətlə hərəkət edir. Bəs qoxu niyə ani yayılmır? <span class="ans">Molekul daim başqa molekullarla toqquşur, onun trayektoriyası sınıq xətdir — irəliləmə yavaşdır (otaqda qoxunu əsasən hava axınları yayır).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Daxili enerji və istilikvermənin növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Əllərini bir-birinə sürtdükdə onlar isinir, nasosla təkəri şişirdəndə nasosun gövdəsi qızır, tavanın sapı yavaş-yavaş isinir, Günəşin istisi boşluqdan keçib Yerə çatır. Bütün bunlar <b>daxili enerjinin</b> dəyişməsidir. 8-ci sinif dərsliyində (5.4, 5.5) daxili enerji, onun dəyişmə üsulları və istilikvermənin üç növü var — rayon turunda keyfiyyət sualları çox vaxt buradan gəlir.</p>
+
+      <h3><span class="st">2</span> Daxili enerji və onu dəyişməyin iki üsulu</h3>
+      <p><b>Daxili enerji</b> — cismi təşkil edən hissəciklərin (molekulların, atomların) xaotik hərəkətinin kinetik enerjisi ilə onların qarşılıqlı təsirinin potensial enerjisinin cəmidir. Temperatur artanda hissəciklər sürətlənir və daxili enerji artır. Daxili enerji maddənin halından da asılıdır: eyni kütləli 0 °C-li suyun daxili enerjisi 0 °C-li buzunkundan böyükdür — əriməyə enerji sərf olunub.</p>
+      <p>Daxili enerji cismin bütövlükdə hərəkətindən və hündürlüyündən asılı deyil: yerdə duran və uçan eyni temperaturlu top eyni daxili enerjiyə malikdir.</p>
+      <div class="fm">Daxili enerjini dəyişməyin iki üsulu:
+1) İş görmə:       sürtünmə, sıxılma, zərbə  (əllərin sürtülməsi, nasos)
+2) İstilikvermə:   iş görülmədən, isti cisimdən soyuq cismə
+                   (qaşıq çaydan isinir)
+Hər iki halda:     ΔU = A + Q
+  A — cismin üzərində xarici qüvvələrin gördüyü iş,  Q — cismin aldığı istilik miqdarı</div>
+
+      <h3><span class="st">3</span> İstilikvermənin üç növü</h3>
+      <div class="fig">
+        <svg viewBox="0 0 330 150" role="img" aria-label="Üç növ: metal çubuqda istilikkeçirmə, qabda suyun dövr etməsi (konveksiya), Günəşdən gələn şüalanma">
+          <rect x="10" y="62" width="80" height="10" fill="var(--muted)"/>
+          <path d="M14 98 q6 -12 0 -20 q10 8 6 20 z" fill="var(--opp)"/>
+          <path d="M8 98 h18" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="22" y1="50" x2="80" y2="50" stroke="var(--opp)" stroke-width="1.5"/>
+          <polygon points="80,50 72,46 72,54" fill="var(--opp)"/>
+          <text x="50" y="142" class="lbl" text-anchor="middle">istilikkeçirmə</text>
+          <path d="M125 40 v60 h60 v-60" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M140 92 v-38 M170 54 v38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M140 54 q15 -12 30 0 M170 92 q-15 10 -30 0" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <polygon points="140,50 136,58 144,58" fill="var(--accent)"/>
+          <polygon points="170,96 166,88 174,88" fill="var(--accent)"/>
+          <path d="M148 124 q4 -8 0 -14 q8 6 4 14 z" fill="var(--opp)"/>
+          <text x="155" y="142" class="lbl" text-anchor="middle">konveksiya</text>
+          <circle cx="235" cy="45" r="14" fill="var(--vec)"/>
+          <path d="M252 55 l40 25 M245 64 l30 40 M256 42 l48 12" stroke="var(--vec)" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <rect x="285" y="80" width="30" height="30" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="270" y="142" class="lbl" text-anchor="middle">şüalanma</text>
+        </svg>
+        <div class="cap"><p>Solda çubuğun qızdırılan ucundan istilik hissəcikdən hissəciyə ötürülür. Ortada aşağıda qızan su yuxarı qalxır, soyuq su aşağı enir. Sağda Günəş enerjisi boşluqdan şüalanma ilə keçir.</p></div>
+      </div>
+      <div class="tbl txt"><table>
+        <tr><th></th><th>İstilikkeçirmə</th><th>Konveksiya</th><th>Şüalanma</th></tr>
+        <tr><td>Necə</td><td>Enerji hissəciklərin qarşılıqlı təsiri ilə (metallarda həm də sərbəst elektronlar vasitəsilə) ötürülür, maddə daşınmır</td><td>Qızmış maye və ya qaz axınları enerji daşıyır (maddə daşınır)</td><td>Enerjini elektromaqnit dalğaları (əsasən infraqırmızı) daşıyır</td></tr>
+        <tr><td>Harada</td><td>Ən çox bərk cisimlərdə; metallarda yaxşı, havada, ağacda, yunda zəif</td><td>Yalnız mayelərdə və qazlarda</td><td>Hər yerdə, <b>vakuumda da</b></td></tr>
+        <tr><td>Nümunə</td><td>Qaşığın sapı isinir</td><td>Batareyanın üstündə isti hava qalxır</td><td>Günəş, ocaq qarşısında üz isinir</td></tr>
+      </table></div>
+      <p>Təbii konveksiyanı yaratmaq üçün maye və ya qaz <b>aşağıdan</b> qızdırılır, yaxud yuxarıdan soyudulur: qızan hissə genişlənir, sıxlığı azalır və Arximed qüvvəsi onu yuxarı qaldırır. Tünd, tutqun səthlər şüalanmanı yaxşı udur və yaxşı şüalandırır; ağ, parlaq səthlər qaytarır.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">4</span> Necə düşünmək</h3>
+      <ul>
+        <li>Arada vakuum varsa — yalnız şüalanma.</li>
+        <li>Maddə axır (maye, qaz) — konveksiya; təbii konveksiya üçün qızdırıcı aşağıda, soyuducu yuxarıda olur.</li>
+        <li>Bərk cisim boyunca, maddə yerində qalır — istilikkeçirmə.</li>
+        <li>Mexaniki enerji «itəndə» (zərbə, sürtünmə) o daxili enerjiyə keçir: daxili enerjinin artımı <span class="m">ΔU = cmΔt</span>; onu itən mexaniki enerjidən tap.</li>
+      </ul>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. 10 q-lıq qurğuşun güllə 200 m/s sürətlə taxtaya girib dayanır. Kinetik enerjinin yarısı güllənin daxili enerjisinə keçir. Güllə neçə dərəcə qızar? c = 130 J/(kq·°C).
+  E_k = 0,01·200²/2 = 200 J,   ΔU = E_k/2 = 100 J
+  Δt = ΔU/(cm) = 100/(130·0,01) ≈ 77 °C</div>
+      <div class="ex">Nümunə 2. Su 50 m hündürlükdən şəlalə ilə düşür. Potensial enerjinin hamısı suyun daxili enerjisinə keçsə, su nə qədər isinər? g = 10 m/s², c = 4200 J/(kq·°C).
+  mgh = cmΔt  →  Δt = gh/c = 10·50/4200 ≈ 0,12 °C  (kütlə ixtisar olunur)</div>
+      <div class="ex">Nümunə 3. Termos niyə istini saxlayır?
+  İki divar arasında hava çəkilib (vakuum) — istilikkeçirmə və konveksiya yoxdur
+  Divarlar güzgü kimi parlaqdır — şüalanma geri qaytarılır
+  Tıxac — yuxarıdan konveksiyanı və buxarlanmanı kəsir</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Gündüz quru dənizdən tez isinir: üstündəki hava qalxır, yerinə dənizdən sərin hava gəlir — dəniz mehi (bu, konveksiyadır). Gecə əksinədir. Qışda pəncərənin iki qat şüşəsi arasındakı hava zəif istilik keçirir. Eyni otaq temperaturunda metal qapı dəstəyi taxtadan soyuq görünür: metal əlin istiliyini daha tez aparır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>«Soyuq keçir» demək. İstilikvermədə həmişə enerji isti cisimdən soyuq cismə keçir.</li>
+        <li>Bərk cisimdə konveksiya yazmaq. Konveksiya üçün maddə axmalıdır.</li>
+        <li>Daxili enerjini yalnız temperaturla eyniləşdirmək. Ərimə zamanı temperatur sabitdir, daxili enerji isə artır.</li>
+        <li>Şüalanma üçün mühit lazım olduğunu düşünmək. Günəşdən gələn enerji vakuumdan keçir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Daxili enerji = hissəciklərin kinetik + qarşılıqlı təsir enerjisi
+Dəyişmə üsulları: iş görmə və istilikvermə;  ΔU = A + Q
+İstilikkeçirmə — maddə daşınmadan (ən yaxşı metallarda)
+Konveksiya — maye/qaz axını; bərk cisimdə olmur
+Şüalanma — vakuumda da; tünd səth yaxşı udur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Günəşin enerjisi Yerə hansı növ istilikvermə ilə çatır? <span class="ans">Şüalanma ilə (aradakı fəza demək olar ki, boşdur).</span></li>
+        <li>Soyuducunun dondurucu kamerası niyə yuxarıda yerləşdirilir? <span class="ans">Soyumuş havanın sıxlığı artır, o aşağı enir və bütün kameranı soyudur — konveksiya.</span></li>
+        <li>2 kq suyu qarışdıranda üzərində 8400 J iş görüldü və istilik itkisi olmadı. Su nə qədər isindi? <span class="ans">Δt = 8400/(4200·2) = 1 °C.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Faza keçidləri</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yanacaq, mühərrik</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb məsələlər</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Turbin, DYM, reaktiv</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -334,6 +335,123 @@ Buxar: Lm_b + c·m_b(100 − θ) = c·m_su(θ − t)</div></div>
         <li>10 °C-li 1 kq suya 0 °C-li 1 kq buz atdılar. Son temperatur? <span class="ans">Su verir: 10 vahid; buz üçün 80 lazım. Çatmır → 0 °C, əriyən 10/80 = 0,125 kq.</span></li>
         <li>90 °C-li 1 kq suya 0 °C-li 0,25 kq buz atdılar. θ? <span class="ans">1·(90 − θ) = 80·0,25 + 0,25θ → 70 = 1,25θ → θ = 56 °C.</span></li>
         <li>1 kq buzu əritmək hansı kütləli suyu 80 °C soyutmağa bərabərdir? <span class="ans">1 kq (λ/c = 80 °C).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Buxar turbini, daxiliyanma mühərriki, reaktiv mühərrik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dərs 3-də istilik mühərrikinin ümumi sxemini (qızdırıcı → işçi cisim → soyuducu) və FİƏ-ni öyrəndik. İndi real mühərriklərin necə qurulduğuna baxırıq: elektrik stansiyasının buxar turbini, avtomobilin dördtaktlı mühərriki, təyyarənin və raketin reaktiv mühərriki. 8-ci sinif dərsliyində (6.8–6.10) bunlar var; rayon turunda «hansı takt», «hansı hissə qızdırıcıdır» tipli suallar olur.</p>
+
+      <h3><span class="st">2</span> Buxar mühərriki və buxar turbini</h3>
+      <p><b>Buxar mühərriki</b> su buxarının daxili enerjisini mexaniki enerjiyə çevirən istilik mühərrikidir. Qızdırıcı — yanacaq yanan soba, işçi cisim — buxar, soyuducu — kondensator. İstilik elektrik stansiyasında: sobada buxar qazanı → buxar qızdırıcısı (yüksək təzyiqli buxarın temperaturu daha da artırılır) → <b>soplo</b> (buxar sürətlənir, daxili enerjisi şırnağın kinetik enerjisinə çevrilir) → <b>buxar turbini</b> (şırnaq diskin çənbərindəki pərləri fırladır) → kondensator → nasos suyu qazana qaytarır.</p>
+      <p>Müasir turbin bir val üzərində onlarca diskdən ibarətdir, saniyədə 50 dövr (dəqiqədə 3000) fırlanır, FİƏ-si 25–40%-dir.</p>
+
+      <h3><span class="st">3</span> Dördtaktlı daxiliyanma mühərriki</h3>
+      <p><b>Daxiliyanma mühərriki</b> yanacağın bilavasitə silindrin içində yandığı istilik mühərrikidir. Hissələri: silindr, porşen, sürgü qolu, dirsəkli val, nazimçarx, daxilolma və xaricetmə klapanları, alışdırıcı şam. Porşenin bir dəfə aşağı və ya yuxarı gedişi <b>takt</b> adlanır.</p>
+      <div class="fig">
+        <svg viewBox="0 0 330 160" role="img" aria-label="Dördtaktlı mühərrikin taktları: sorma (porşen aşağı, daxilolma klapanı açıq), sıxılma (porşen yuxarı, klapanlar bağlı, sonunda şam qığılcım verir), işgörmə (porşen aşağı), xaricetmə (porşen yuxarı, xaricetmə klapanı açıq)">
+          <defs><marker id="mot5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <g fill="none" stroke="var(--ink)" stroke-width="2">
+            <path d="M20 30 v80 M60 30 v80 M20 30 h8 M36 30 h8 M52 30 h8"/>
+            <path d="M100 30 v80 M140 30 v80 M100 30 h8 M116 30 h8 M132 30 h8"/>
+            <path d="M180 30 v80 M220 30 v80 M180 30 h8 M196 30 h8 M212 30 h8"/>
+            <path d="M260 30 v80 M300 30 v80 M260 30 h8 M276 30 h8 M292 30 h8"/>
+          </g>
+          <g stroke="var(--accent)" stroke-width="3">
+            <line x1="28" y1="36" x2="36" y2="36"/><line x1="44" y1="30" x2="52" y2="30"/>
+            <line x1="108" y1="30" x2="116" y2="30"/><line x1="124" y1="30" x2="132" y2="30"/>
+            <line x1="188" y1="30" x2="196" y2="30"/><line x1="204" y1="30" x2="212" y2="30"/>
+            <line x1="268" y1="30" x2="276" y2="30"/><line x1="284" y1="36" x2="292" y2="36"/>
+          </g>
+          <g fill="var(--muted)">
+            <rect x="21" y="86" width="38" height="12"/><rect x="101" y="42" width="38" height="12"/>
+            <rect x="181" y="86" width="38" height="12"/><rect x="261" y="42" width="38" height="12"/>
+          </g>
+          <g stroke="var(--muted)" stroke-width="3">
+            <line x1="40" y1="98" x2="40" y2="122"/><line x1="120" y1="54" x2="120" y2="122"/>
+            <line x1="200" y1="98" x2="200" y2="122"/><line x1="280" y1="54" x2="280" y2="122"/>
+          </g>
+          <g stroke="var(--vec)" stroke-width="2">
+            <line x1="68" y1="56" x2="68" y2="92" marker-end="url(#mot5)"/>
+            <line x1="148" y1="92" x2="148" y2="56" marker-end="url(#mot5)"/>
+            <line x1="228" y1="56" x2="228" y2="92" marker-end="url(#mot5)"/>
+            <line x1="308" y1="92" x2="308" y2="56" marker-end="url(#mot5)"/>
+          </g>
+          <path d="M121 31 l-3 4 h5 l-3 5" fill="none" stroke="var(--opp)" stroke-width="2"/>
+          <text x="40" y="140" class="lbl" text-anchor="middle">I sorma</text>
+          <text x="120" y="140" class="lbl" text-anchor="middle">II sıxılma</text>
+          <text x="200" y="140" class="lbl" text-anchor="middle">III işgörmə</text>
+          <text x="280" y="140" class="lbl" text-anchor="middle">IV xaricetmə</text>
+          <text x="165" y="16" class="lbl" text-anchor="middle">sol klapan — daxilolma, sağ klapan — xaricetmə</text>
+        </svg>
+        <div class="cap"><p>Klapan aşağı düşübsə, açıqdır. Oxlar porşenin hərəkət istiqamətini göstərir. Qığılcım sıxılma taktının sonunda verilir. Faydalı iş yalnız III taktda görülür; qalan taktlarda porşeni nazimçarxın ətalətlə fırlanması hərəkət etdirir.</p></div>
+      </div>
+      <div class="tbl txt"><table>
+        <tr><th>Takt</th><th>Porşen</th><th>Klapanlar</th><th>Nə baş verir</th></tr>
+        <tr><td>I. Sorma</td><td>aşağı</td><td>daxilolma açıq</td><td>Benzin buxarı ilə hava qarışığı silindrə sorulur</td></tr>
+        <tr><td>II. Sıxılma</td><td>yuxarı</td><td>ikisi də bağlı</td><td>Qarışıq sıxılır və qızır; sonda şam qığılcım verir</td></tr>
+        <tr><td>III. İşgörmə</td><td>aşağı</td><td>ikisi də bağlı</td><td>Yanma məhsulları (≈1600–1800 °C) genişlənib porşeni itələyir — faydalı iş</td></tr>
+        <tr><td>IV. Xaricetmə</td><td>yuxarı</td><td>xaricetmə açıq</td><td>Yanma məhsulları atmosferə atılır</td></tr>
+      </table></div>
+      <p>Bir tam dövr 4 taktdır — dirsəkli val 2 dəfə fırlanır. Qızdırıcı — yanan yanacaq qarışığı, işçi cisim — silindrdəki qaz, soyuducu — atmosfer. <b>Dizel mühərrikində</b> şam yoxdur: sormada təmiz hava sorulur, sıxılanda onun temperaturu yüksəlir, sonra silindrə püskürülən yanacaq özü alışır. Benzin mühərrikinin FİƏ-si 20–25%, dizelinki daha böyükdür.</p>
+
+      <h3><span class="st">4</span> Reaktiv mühərrik</h3>
+      <p><b>Reaktiv hərəkət</b> — cisimdən bir hissə ayrılıb bir istiqamətdə hərəkət edəndə cismin özünün əks istiqamətdə hərəkət etməsidir (kalmar, səkkizayaq, ağzı açıq buraxılan şar). Əsas növlər:</p>
+      <ul>
+        <li><b>Qaz (hava) reaktiv mühərriki</b> atmosfer havasından istifadə edir: hava → kompressor (təzyiq 5–10 dəfə artır) → yanma kamerası (yanacaq püskürülür) → turbin (kompressoru fırladır) → soplo. Qazlar 500–800 m/s sürətlə çıxır. Təyyarələrdə işlənir.</li>
+        <li><b>Raket mühərriki</b> ətraf mühitdən istifadə etmir: yanacaqla yanaşı oksidləşdirici də (məsələn, maye oksigen) daşıyır. Ona görə kosmosda, havasız fəzada işləyir.</li>
+      </ul>
+      <p>Dartı qüvvəsi soplodan çıxan qaz şırnağının reaksiya qüvvəsidir (Nyutonun III qanunu, impulsun saxlanması).</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">5</span> Necə hesablamaq</h3>
+      <div class="fm">FİƏ:  η = A_f / Q,   Q = q·m          (Dərs 3)
+Ən böyük FİƏ:  η_max = 1 − T₂/T₁   (T₁ — qızdırıcının, T₂ — soyuducunun temperaturu, kelvinlə)
+Soyuducuya verilən Q₂ olarsa:  η = A/(A + Q₂)
+Dördtaktlı mühərrik: işgörmə taktlarının sayı = val dövrlərinin sayı / 2 (hər silindrdə)
+Reaktiv dartı (sabit sərfdə):  F = (Δm/Δt)·u    u — qazın raketə nəzərən sürəti
+  (soplodan çıxan qazın təzyiqi ilə xarici təzyiqin fərqi nəzərə alınmır)</div>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">6</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Buxar mühərrikində qızdırıcının temperaturu 600 °C, soyuducununku 260 °C-dir. Ən böyük mümkün FİƏ?
+  T₁ = 873 K,  T₂ = 533 K
+  η_max = 1 − 533/873 ≈ 0,39 = 39%</div>
+      <div class="ex">Nümunə 2. Traktorun mühərriki 15 MJ faydalı iş görüb, 1,5 kq dizel yanacağı (q = 42 MJ/kq) yandırıb. FİƏ?
+  Q = 42·1,5 = 63 MJ
+  η = 15/63 ≈ 0,238 ≈ 23,8%</div>
+      <div class="ex">Nümunə 3. Dördsilindrli dördtaktlı mühərrikin valı dəqiqədə 3000 dövr fırlanır. Saniyədə neçə işgörmə taktı olur?
+  3000/60 = 50 dövr/s
+  Hər silindrdə: 50/2 = 25 işgörmə taktı/s
+  4 silindr: 4·25 = 100 işgörmə taktı/s</div>
+      <div class="ex">Nümunə 4 (RFO tipli). Raket mühərriki saniyədə 200 kq qaz atır, qazın raketə nəzərən sürəti 2000 m/s. Təzyiqlər fərqini nəzərə almasaq, dartı qüvvəsi?
+  F = 200·2000 = 4·10⁵ N</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Ən böyük porşenli mühərriklər konteyner gəmilərindədir: kütləsi 2000 tondan çox, FİƏ-si təxminən 50%-dir. Avtomobillərdə adətən 4 və ya 6 silindr olur: taktlar fərqli silindrlərdə növbə ilə baş verir, ona görə val daha müntəzəm fırlanır. Raketin kütləsinin böyük hissəsi yanacaq və oksidləşdiricidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hər taktda faydalı iş görüldüyünü düşünmək. Faydalı iş yalnız III taktda (işgörmə) görülür.</li>
+        <li>Dörd taktı valın dörd dövrü saymaq. Bir dövr = 4 takt = valın 2 dövrü.</li>
+        <li>Raketin «havaya dayanaraq» uçduğunu demək. Raket atılan qazdan itələnir və vakuumda daha yaxşı işləyir.</li>
+        <li>η_max-da Selsi dərəcəsi yazmaq. Temperaturlar kelvinlə olmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Buxar turbini: soba–qazan → soplo (daxili enerji → şırnağın kinetik enerjisi) → turbin → kondensator
+Taktlar: sorma, sıxılma, işgörmə, xaricetmə; faydalı iş yalnız III taktda
+1 dövr = 4 takt = valın 2 dövrü
+Dizel: şam yoxdur, yanacaq sıxılmış isti havada özü alışır
+Reaktiv: qaz-reaktiv havadan istifadə edir, raket oksidləşdiricini özü daşıyır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Hansı taktda hər iki klapan bağlı olur? <span class="ans">II (sıxılma) və III (işgörmə) taktlarda.</span></li>
+        <li>Soyuducuya verilən istilik turbinin gördüyü işdən 3 dəfə çoxdur. FİƏ? <span class="ans">A/(A + 3A) = 1/4 = 25%.</span></li>
+        <li>Niyə təyyarənin qaz-reaktiv mühərriki kosmosda işləyə bilməz, raket isə işləyir? <span class="ans">Qaz-reaktiv mühərrik yanma üçün atmosfer havasının oksigenindən istifadə edir; raket oksidləşdiricini özü daşıyır.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

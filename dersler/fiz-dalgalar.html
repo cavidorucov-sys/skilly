@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Səs</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Əks-səda</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Rezonans</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Səsin xarakteristikaları, EM dalğalar</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -147,9 +148,9 @@ Eninə (⊥) və uzununa (∥) dalğa.</div></div>
       <p>Bərk cisimdə səs daha sürətli, qazda daha ləng gedir: hissəciklər bir-birinə nə qədər yaxındırsa, rəqs o qədər tez ötürülür. Havada temperatur artdıqca səsin sürəti də artır.</p>
       <p><b>Səsin xüsusiyyətləri:</b></p>
       <ul>
-        <li><b>Hündürlük (ton)</b> tezlikdən asılıdır: tezlik böyükdürsə, səs “nazik” (yüksək) olur. Nota “lya” 440 Hz-dir.</li>
-        <li><b>Ucalıq (gur-səslilik)</b> amplitudadan asılıdır: amplituda böyükdürsə, səs gurdur.</li>
-        <li>Eşidilən diapazon: təxminən <b>20 Hz – 20 000 Hz</b>. 20 Hz-dən aşağı — <b>infrasəs</b>, 20 kHz-dən yuxarı — <b>ultrasəs</b>.</li>
+        <li><b>Ucalıq (səs tonu)</b> tezlikdən asılıdır: tezlik böyükdürsə, səs “nazik” (yüksək, uca) olur. Nota “lya” 440 Hz-dir.</li>
+        <li><b>Gurluq</b> amplitudadan asılıdır: amplituda böyükdürsə, səs gurdur.</li>
+        <li>Eşidilən diapazon: təxminən <b>16 Hz – 20 000 Hz</b>. 16 Hz-dən aşağı — <b>infrasəs</b>, 20 kHz-dən yuxarı — <b>ultrasəs</b>.</li>
       </ul>
       </div>
       <div class="pair-col nums">
@@ -179,12 +180,12 @@ ilə gələn. Aralarındakı fərq 0,28 s-dir. Polad boruda səsin sürəti
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Səsin boşluqda da yayıldığını fikirləşmək. Yayılmır; kosmonavtlar səsi radio ilə (radiodalğa vakuumda gedir) eşidir.</li>
         <li>Səsin sürətinin mənbənin tezliyindən asılı olduğunu demək. Sürət mühitdən asılıdır; tezliyi dəyişsən, <span class="m">λ</span> dəyişər.</li>
-        <li>Ucalıq ilə hündürlüyü qarışdırmaq: ucalıq — amplituda, hündürlük (ton) — tezlik.</li>
+        <li>Ucalıqla gurluğu qarışdırmaq: ucalıq (ton) — tezlik, gurluq — amplituda.</li>
         <li>İşığın şimşəkdə “gec gəldiyini” demək: işıq, məsafəyə baxmayaraq, demək olar ki, dərhal gəlir.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">Səs — uzununa dalğa, mühit lazımdır.
 Havada 340 m/s, suda ≈1500 m/s, poladda ≈5100 m/s.
-Hündürlük ~ ν,  ucalıq ~ A.  Eşidilən: 20 Hz – 20 kHz.
+Ucalıq (ton) ~ ν,  gurluq ~ A.  Eşidilən: 16 Hz – 20 kHz.
 s = v·t   (səs yolu)</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
         <li>Ildırım 1700 m aralıda çaxıb. Gurultu nə vaxt gələr? <span class="ans">t = 1700/340 = 5 s.</span></li>
@@ -347,6 +348,117 @@ Yelləncək: itələmə aralığı = T</div></div>
         <li>Simin uzunluğu yarıya düşdü. Əsas tonun tezliyi? <span class="ans">2 dəfə artır.</span></li>
         <li>Əsas ton 110 Hz olan simin 3-cü harmonikası? <span class="ans">330 Hz.</span></li>
         <li>Körpünün öz tezliyi 2 Hz-dir. Hansı addım tezliyi (dəqiqədə) təhlükəlidir? <span class="ans">2·60 = 120 addım/dəq.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Səsin xarakteristikaları, dalğaların xassələri, elektromaqnit dalğaları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Skripka ilə royal eyni notu çalır, amma onları qulaqla ayırırıq. Küncün arxasındakı adamı görmürük, səsini eşidirik. Mobil telefon vakuumda zəngi qəbul edir, amma zəng səsi eşidilmir. 8-ci sinif dərsliyində (4.4–4.6) səsin xarakteristikaları, dalğaların qayıtması, sınması, difraksiyası və elektromaqnit dalğaları şkalası var.</p>
+
+      <h3><span class="st">2</span> Səsin xarakteristikaları</h3>
+      <div class="fig">
+        <svg viewBox="0 0 330 150" role="img" aria-label="Üç ossiloqram: əsas səs; tezliyi iki dəfə böyük — ton ucadır; amplitudu böyük — səs gurdur">
+          <line x1="100" y1="40" x2="320" y2="40" stroke="var(--line)" stroke-width="1"/>
+          <line x1="100" y1="80" x2="320" y2="80" stroke="var(--line)" stroke-width="1"/>
+          <line x1="100" y1="120" x2="320" y2="120" stroke="var(--line)" stroke-width="1"/>
+          <path d="M100 40 q15 -24 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M100 80 q7.5 -24 15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0 t15 0" fill="none" stroke="var(--vec)" stroke-width="2"/>
+          <path d="M100 120 q15 -44 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="var(--opp)" stroke-width="2"/>
+          <text x="10" y="44" class="lbl">əsas səs</text>
+          <text x="10" y="78" class="lbl">ν iki dəfə</text>
+          <text x="10" y="92" class="lbl">böyük: uca</text>
+          <text x="10" y="118" class="lbl">A böyük:</text>
+          <text x="10" y="132" class="lbl">gur</text>
+        </svg>
+        <div class="cap"><p>Mikrofon ossiloqrafa qoşulanda səs dalğası ekranda belə görünür. Yuxarıdan aşağı: əsas səs; tezliyi iki dəfə böyük olan səs (ton ucadır); amplitudu böyük olan səs (daha gurdur).</p></div>
+      </div>
+      <div class="tbl txt"><table>
+        <tr><th>Qavradığımız (fizioloji)</th><th>Asılı olduğu fiziki kəmiyyət</th></tr>
+        <tr><td><b>Ucalıq</b> (səs tonu: alçaq — yüksək)</td><td>Tezlik ν: tezlik artdıqca ton ucalır</td></tr>
+        <tr><td><b>Gurluq</b> (sakit — gur); desibellə (dB) ölçülür</td><td>Amplitud: amplitud artdıqca gurluq artır</td></tr>
+        <tr><td><b>Tembr</b> (səsin «rəngi»)</td><td>Əsas tona qarışan əlavə tonların tərkibi (dalğanın forması)</td></tr>
+      </table></div>
+      <p>İnsan qulağı təxminən <b>16 Hz – 20 000 Hz</b> tezlikli səsləri eşidir. Aşağısı — <b>infrasəs</b> (zəlzələ, vulkan, okean dalğaları; uzağa yayılır), yuxarısı — <b>ultrasəs</b> (yarasa, delfin, tibbdə USM). Gurluğu 70 dB-dən çox olan səslər, xüsusən uzun müddət təsir edəndə, sağlamlığa zərərlidir. Mənbə müşahidəçiyə yaxınlaşanda qəbul olunan tezlik artır, uzaqlaşanda azalır — <b>Dopler effekti</b>: yaxınlaşan maşının siqnalı daha uca eşidilir.</p>
+
+      <h3><span class="st">3</span> Dalğaların xassələri</h3>
+      <ul>
+        <li><b>Qayıtma</b>: dalğa maneədən əks olunur (əks-səda, exolot).</li>
+        <li><b>Sınma</b>: dalğa başqa mühitə keçəndə yayılma sürəti dəyişir. <b>Tezlik dəyişmir</b> (onu mənbə müəyyən edir), dəyişən dalğa uzunluğudur: <span class="m">λ = v/ν</span>.</li>
+        <li><b>Difraksiya</b>: dalğanın maneəni dolanıb onun arxasına keçməsi. Dalğa uzunluğu maneənin (və ya yarığın) ölçüsü ilə müqayisə oluna bilən və ya ondan böyük olduqda yaxşı görünür. Alçaqtezlikli səsin dalğa uzunluğu metrlərlədir — səs küncdən keçir; işığınkı mikrometrdən kiçikdir — kölgə kəskin olur.</li>
+      </ul>
+
+      <h3><span class="st">4</span> Elektromaqnit dalğaları şkalası</h3>
+      <p><b>Elektromaqnit dalğaları</b> — bir-birini yaradan elektrik və maqnit sahələrinin rəqslərinin fəzada yayılmasıdır. Onlar həm mühitdə, həm də <b>vakuumda</b> yayılır; vakuumda sürəti <span class="m">c = 3·10⁸ m/s</span>-dir. Növləri yalnız tezliyə (dalğa uzunluğuna) görə fərqlənir, sərhədlər şərtidir.</p>
+      <div class="fig">
+        <svg viewBox="0 0 330 110" role="img" aria-label="Elektromaqnit dalğaları şkalası: soldan sağa radiodalğalar, mikrodalğalar, infraqırmızı, görünən, ultrabənövşəyi, rentgen, qamma; sağa doğru tezlik artır, dalğa uzunluğu azalır">
+          <defs><marker id="dlg5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <rect x="10" y="30" width="70" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="80" y="30" width="45" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="125" y="30" width="45" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="170" y="30" width="16" height="26" fill="var(--vec)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="186" y="30" width="45" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="231" y="30" width="45" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <rect x="276" y="30" width="44" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="45" y="47" class="lbl" text-anchor="middle">radio</text>
+          <text x="102" y="47" class="lbl" text-anchor="middle">mikro</text>
+          <text x="147" y="47" class="lbl" text-anchor="middle">İQ</text>
+          <text x="178" y="22" class="lbl" text-anchor="middle">görünən</text>
+          <text x="208" y="47" class="lbl" text-anchor="middle">UB</text>
+          <text x="253" y="47" class="lbl" text-anchor="middle">rentgen</text>
+          <text x="298" y="47" class="lbl" text-anchor="middle">qamma</text>
+          <line x1="20" y1="74" x2="310" y2="74" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#dlg5)"/>
+          <text x="165" y="90" class="lbl" text-anchor="middle">tezlik ν artır, dalğa uzunluğu λ azalır</text>
+          <text x="165" y="105" class="lbl" text-anchor="middle">görünən işıq: 380–760 nm</text>
+        </svg>
+        <div class="cap"><p>Tətbiqlər: radiodalğalar — radio, televiziya, mobil rabitə; mikrodalğalar — mikrodalğalı soba, radar; infraqırmızı — istilik şüalanması, gecəgörmə cihazı, pultlar; görünən — görmə; ultrabənövşəyi — pulun həqiqiliyinin yoxlanması, günəş yanığı; rentgen — tibbi diaqnostika; qamma şüalanması — radioaktiv parçalanmada yaranır, şüa terapiyası.</p></div>
+      </div>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">5</span> Necə hesablamaq</h3>
+      <div class="fm">Bütün dalğalar üçün:  v = λ·ν     λ = v/ν
+EM dalğası vakuumda (və havada):  λ = c/ν,  c = 3·10⁸ m/s
+Səs havada ≈ 340 m/s, suda ≈ 1500 m/s
+Mühit dəyişəndə: ν sabit  →  λ₂/λ₁ = v₂/v₁</div>
+      <p>Prefikslər: 1 kHz = 10³ Hz, 1 MHz = 10⁶ Hz, 1 GHz = 10⁹ Hz; 1 nm = 10⁻⁹ m.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">6</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Radiostansiya 500 kHz tezlikdə yayımlayır. Dalğa uzunluğu?
+  λ = (3·10⁸)/(5·10⁵) = 600 m</div>
+      <div class="ex">Nümunə 2. Sualtı dinamik 1000 Hz səs yayır. Suda və havada dalğa uzunluğu?
+  suda: 1500/1000 = 1,5 m
+  havada: 340/1000 = 0,34 m   (tezlik eyni qalır)</div>
+      <div class="ex">Nümunə 3. Niyə parkdakı ağaclar 100 Hz-lik səsə mane olmur, amma 10 kHz-lik səs kölgə verir?
+  λ(100 Hz) = 340/100 = 3,4 m — gövdədən böyükdür, difraksiya güclüdür
+  λ(10 kHz) = 340/10 000 = 3,4 sm — gövdədən çox kiçikdir</div>
+      <div class="ex">Nümunə 4. Mikrodalğalı soba 2,45 GHz tezlikdə işləyir. λ?
+  λ = (3·10⁸)/(2,45·10⁹) ≈ 0,12 m = 12 sm</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Divarın arxasından gələn musiqidə bas (alçaq ton) daha aydın eşidilir: uzun dalğalar maneələri asan dolanır. Limanlarda dalğaqıran tikilir ki, dəniz dalğaları körfəzə zəif keçsin. Rentgen və qamma şüalanma canlı toxuma üçün təhlükəlidir, ona görə rentgen otağının divarları qurğuşunla örtülür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Ucalıqla gurluğu qarışdırmaq. Ucalıq (ton) — tezlik, gurluq — amplitud.</li>
+        <li>Dalğa başqa mühitə keçəndə tezliyin dəyişdiyini düşünmək. Tezlik sabitdir, λ və v dəyişir.</li>
+        <li>Səsin vakuumda yayıldığını yazmaq. Səs üçün mühit lazımdır, EM dalğası üçün yox.</li>
+        <li>Rentgeni «radioaktiv» saymaq. Rentgen şüaları tibbi cihazda elektronların tormozlanması ilə yaranır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tezlik artdıqca ton ucalır;  amplitud artdıqca gurluq artır (dB);  tembr — əlavə tonlar
+Eşidilən: 16 Hz – 20 kHz;  aşağı — infrasəs, yuxarı — ultrasəs
+Sınmada ν sabit, λ = v/ν dəyişir;  difraksiya: λ ≳ maneənin ölçüsü
+EM şkalası: radio → mikro → İQ → görünən → UB → rentgen → qamma (ν artır)
+Vakuumda hamısı c = 3·10⁸ m/s ilə yayılır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Kamertona daha güclü vurdular. Səsin hansı xarakteristikası dəyişir? <span class="ans">Gurluq (amplitud artır); ton (tezlik) dəyişmir.</span></li>
+        <li>Səs havadan suya keçir. Tezlik, sürət və dalğa uzunluğu necə dəyişir? <span class="ans">Tezlik dəyişmir, sürət və dalğa uzunluğu artır.</span></li>
+        <li>FM radiostansiya 100 MHz tezlikdə yayımlayır. Dalğa uzunluğu? <span class="ans">3·10⁸/10⁸ = 3 m.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

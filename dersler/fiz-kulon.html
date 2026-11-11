@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kulon qanunu</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Elektrik sahəsi</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Superpozisiya</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Elektroskop, induksiya</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -352,6 +353,98 @@ Eyni işarəli → arada;  əks işarəli (|q₁| ≠ |q₂|) → kənarda, kiç
         <li>+9 nKl və +9 nKl yükləri 20 sm aralıdadır. Orta nöqtədə E? <span class="ans">Sahələr bərabər və əks yönlüdür: E = 0.</span></li>
         <li>+1 nKl və +4 nKl, aralarında 9 sm. Sıfır nöqtə +1 nKl-dan neçə sm? <span class="ans">x₂/x₁ = 2, 3x₁ = 9, x₁ = 3 sm.</span></li>
         <li>+2 nKl və −2 nKl yükləri 10 sm aralıdadır. Onların arasındakı orta nöqtədə sahə sıfır ola bilərmi? <span class="ans">Yox: orada iki sahə eyni yönlüdür və toplanır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti: Dərs 5 →</button>
+  </section>
+
+    <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Keçiricilər və dielektriklər, elektroskop, induksiya ilə elektriklənmə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Saça sürtülmüş daraq kağız qırıntılarını çəkir, şar divara yapışır, metal kürəyə toxunmadan onu yükləmək olur. Bunları başa düşmək üçün maddələrin yükü necə keçirdiyini bilmək lazımdır. 7-ci sinif dərsliyində (5.3, 5.4, 5.6) elektroskop, keçiricilər və dielektriklər, induksiya ilə elektriklənmə var — rayon turunda keyfiyyət sualları buradan gəlir.</p>
+
+      <h3><span class="st">2</span> Keçiricilər və dielektriklər</h3>
+      <ul>
+        <li><b>Keçiricilər</b> (naqillər) — daxilində sərbəst hərəkət edə bilən yüklü hissəciklər olan maddələr. Bunlara <b>sərbəst yükdaşıyıcılar</b> deyilir. Metallarda bunlar <b>sərbəst elektronlardır</b> — nüvədən uzaq, zəif cəzb olunan xarici elektronlar; duz, turşu məhlullarında — ionlar. Metallar, qrafit, insan bədəni, torpaq, duzlu su keçiricidir.</li>
+        <li><b>Dielektriklər</b> (izolyatorlar) — sərbəst yükdaşıyıcıları (demək olar ki) olmayan maddələr: şüşə, ebonit, plastmas, rezin, ipək, quru hava, distillə edilmiş su.</li>
+      </ul>
+      <p>Keçiricidə yük bütün səthə yayılır. Dielektrikdə yük harada yaranıbsa, orada qalır. Buna görə metal çubuğu əldə tutub sürtəndə (insan torpaqla əlaqədədirsə) yüklənmir: yük bədəndən torpağa axır. Metalı dielektrik dəstəkdən tutmaq lazımdır.</p>
+
+      <h3><span class="st">3</span> Elektroskop</h3>
+      <div class="fig">
+        <svg viewBox="0 0 320 170" role="img" aria-label="Solda elektroskop: metal başlıq, çubuq, iki aralanmış vərəq. Sağda iki toxunan metal kürə, yanında mənfi yüklü çubuq: yaxın kürədə müsbət, uzaq kürədə mənfi yük">
+          <circle cx="70" cy="22" r="10" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="70" y1="32" x2="70" y2="100" stroke="var(--ink)" stroke-width="3"/>
+          <rect x="30" y="50" width="80" height="90" rx="10" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <rect x="58" y="44" width="24" height="10" fill="var(--muted)"/>
+          <line x1="70" y1="100" x2="52" y2="128" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="70" y1="100" x2="88" y2="128" stroke="var(--accent)" stroke-width="3"/>
+          <text x="46" y="122" class="lbl" text-anchor="end" style="font-size:18px">−</text>
+          <text x="94" y="122" class="lbl" style="font-size:18px">−</text>
+          <text x="70" y="160" class="lbl" text-anchor="middle">elektroskop</text>
+          <rect x="140" y="62" width="40" height="12" rx="3" fill="var(--muted)"/>
+          <text x="160" y="54" class="lbl" text-anchor="middle" style="font-size:18px">− − −</text>
+          <circle cx="220" cy="70" r="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="272" cy="70" r="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="200" y="77" class="lbl opp" style="font-size:18px">+ +</text>
+          <text x="276" y="77" class="lbl" style="fill:var(--accent);font-size:18px">− −</text>
+          <line x1="220" y1="96" x2="220" y2="130" stroke="var(--muted)" stroke-width="3"/>
+          <line x1="272" y1="96" x2="272" y2="130" stroke="var(--muted)" stroke-width="3"/>
+          <text x="246" y="160" class="lbl" text-anchor="middle">induksiya</text>
+        </svg>
+        <div class="cap"><p><b>Elektroskop:</b> metal çubuğun aşağı ucunda iki yüngül vərəq var, çubuq şüşə qaba dielektrik tıxacla bərkidilib. Çubuğa yük verəndə vərəqlər eyniadlı yüklənir və bir-birini itələyir. Yük çox olduqca aralanma bucağı böyükdür. <b>Sağda:</b> dielektrik dayaqlar üzərində bir-birinə toxunan iki metal kürəyə mənfi çubuq yaxınlaşdırılıb.</p></div>
+      </div>
+      <p>Elektroskop yükün <b>işarəsini</b> birbaşa göstərmir. İşarəni yoxlamaq üçün onu əvvəlcədən məlum işarəli yüklə yükləyirlər: eyniadlı yüklü cismi başlığa yaxınlaşdırmağa başlayanda vərəqlər daha çox aralanır, əksadlı yüklü cismi yaxınlaşdırmağa başlayanda isə bir-birinə yaxınlaşır.</p>
+
+      <div class="pair">
+      <div class="pair-col usul">
+      <h3><span class="st">4</span> İnduksiya ilə elektriklənmə</h3>
+      <p>Yüklü cismi keçiriciyə <b>toxundurmadan</b> yaxınlaşdırsaq, keçiricinin sərbəst elektronları yerini dəyişir: yaxın tərəfdə əksadlı, uzaq tərəfdə eyniadlı yük toplanır. Keçiricinin ümumi yükü dəyişmir — yük yalnız paylanır.</p>
+      <div class="fm">İki kürə üsulu:
+  neytral, toxunan kürələrə yüklü çubuq yaxınlaşdır → kürələri ayır → çubuğu uzaqlaşdır
+  nəticə: kürələr bərabər modullu, əksadlı yüklərlə yüklənir
+Torpaqlama üsulu:
+  çubuğu yaxınlaşdır → keçiricini torpaqla (barmaqla toxun) →
+  torpaqlamanı kəs → sonra çubuğu uzaqlaşdır
+  nəticə: keçirici çubuğun yükünə əks işarəli yüklənir</div>
+      <p><b>Dielektrikdə</b> sərbəst yük yoxdur, amma yüklü cismin təsiri ilə atom və molekullardakı bağlı müsbət və mənfi yüklər bir-birinə nəzərən azacıq yerini dəyişir (dielektrik qütblənir): yaxın tərəfdə əksadlı yük üstünlük təşkil edir. Buna görə yüklü daraq neytral kağızı da çəkir.</p>
+      </div>
+      <div class="pair-col nums">
+      <h3><span class="st">5</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Nümunə 1. Dielektrik dayaqlar üzərində toxunan, başlanğıcda neytral A və B metal kürələri var. Mənfi çubuq A-ya yaxınlaşdırılır, kürələr ayrılır, sonra çubuq uzaqlaşdırılır. Kürələrin yükü?
+  Elektronlar çubuqdan itələnir → B-yə keçir
+  A: müsbət,  B: mənfi,  modulları bərabər (cəm sıfır qalır)</div>
+      <div class="ex">Nümunə 2. Neytral elektroskopun başlığına müsbət çubuq toxundurmadan yaxınlaşdırılır, başlığa barmaqla toxunulur, barmaq çəkilir, sonra çubuq uzaqlaşdırılır. Elektroskopun yükü?
+  Çubuq torpaqdan elektronları çəkir → barmaq vasitəsilə elektronlar elektroskopa gəlir
+  Barmaq çəkiləndən sonra artıq elektronlar qalır → mənfi
+  Çubuq uzaqlaşdırılanda vərəqlər aralı qalır</div>
+      <div class="ex">Nümunə 3. Elektroskop mənfi yüklüdür. Onun başlığına naməlum yüklü çubuq yaxınlaşdıranda vərəqlər daha çox aralandı. Çubuğun yükü?
+  Çubuq elektronları başlıqdan vərəqlərə itələyib → mənfi</div>
+      <div class="ex">Nümunə 4. Eyni ölçülü metal kürələr: A-nın yükü +12 nKl, B və C neytraldır. A B-yə toxunub ayrılır, sonra B C-yə toxunub ayrılır. Yüklər?
+  A ilə B: (12 + 0)/2 = 6 → A = +6, B = +6
+  B ilə C: (6 + 0)/2 = 3 → B = +3, C = +3 nKl   (cəm 12 nKl qorunur)</div>
+      </div>
+      </div>
+
+      <div class="life"><b>Həyatdan.</b> Benzin daşıyan maşınların arxasında yerə dəyən metal zəncir (və ya keçirici zolaq) olur: sürtünmədən yığılan yük torpağa axır və qığılcım yaranmır. Elektron cihazları təmir edənlər torpaqlanmış bilərzik taxır. Şarı saçına sürtüb divara tutanda divar qütblənir və şar ona yapışır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Vərəqlərın əksadlı yükləndiyini düşünmək. Onlar həmişə eyniadlı yüklənir, ona görə də itələnir.</li>
+        <li>Cəlbetməni yüklənmənin sübutu saymaq. Yüklü cisim neytral cismi də çəkir; yükü yalnız <b>itələmə</b> sübut edir.</li>
+        <li>Torpaqlama üsulunda çubuğu torpaqlamanı kəsməmişdən əvvəl uzaqlaşdırmaq. Onda yük torpağa qayıdır və cisim neytral qalır.</li>
+        <li>Metallarda müsbət yüklərin hərəkət etdiyini yazmaq. Metalda yerini dəyişən elektronlardır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Keçirici — sərbəst yükdaşıyıcılar var (metalda elektronlar); dielektrikdə sərbəst yükdaşıyıcı yoxdur
+Elektroskop: eyniadlı yüklənən vərəqlər itələnir; xarici təsir yoxdursa, yük çox olduqca bucaq böyükdür
+İnduksiya: toxunmadan yaxınlaşdır → yük paylanır, cəm dəyişmir
+Torpaqlama ilə: cisim çubuğa əks işarəli yüklənir
+Eyni kürələr toxunanda: yük bərabər bölünür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Neytral elektroskopa mənfi çubuq toxundurmadan yaxınlaşdırıldı. Vərəqlər necə yüklənir və çubuq uzaqlaşanda nə olur? <span class="ans">Vərəqlər mənfi yüklənib aralanır (başlıq müsbət); çubuq uzaqlaşanda yük yenidən paylanır və vərəqlər bitişir.</span></li>
+        <li>Metal kürəni əldə tutub yun parçaya sürtsək, niyə yüklənmir? <span class="ans">Metal və insan bədəni keçiricidir: insan torpaqla əlaqədədirsə, yük bədəndən torpağa axır.</span></li>
+        <li>Dielektrik dayaq üzərindəki metal kürəyə mənfi çubuq yaxınlaşdırılır, kürə qısa müddət torpaqlanır, torpaqlama kəsilir, sonra çubuq uzaqlaşdırılır. Kürənin yükü? <span class="ans">Müsbət (elektronlar torpağa itələnib).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

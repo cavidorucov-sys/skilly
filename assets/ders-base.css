@@ -90,6 +90,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
 .tbl table{border-collapse:collapse;font-family:var(--f-num);font-size:14px;font-variant-numeric:tabular-nums}
 .tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center;white-space:nowrap}
 .tbl th{background:var(--accent-soft);font-family:var(--f-task);font-style:italic;font-weight:600}
+.tbl.txt th,.tbl.txt td{white-space:normal;text-align:left;vertical-align:top}
 .trirow{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
 .trirow svg{flex:0 1 300px;width:300px;max-width:100%;height:auto;background:var(--sheet);border-radius:6px}
 .trirow .facts{flex:1 1 200px;min-width:0;font-size:14px;gap:6px}
