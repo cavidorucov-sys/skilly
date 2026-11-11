@@ -474,12 +474,15 @@ async function pageTests() {
   });
 }
 
-// the plan file may already hold next week ("novbeti", made before Sunday): from its first day on it is the current
-// week; until then it only adds its days to the calendar (w.butun = the days of both weeks)
+// the plan file holds the current week and the weeks after it ("hefteler", made by tools/hefte.py): the week whose
+// first day has come is the current one; the calendar gets the days of all of them (w.butun)
 function pickWeek(w) {
-  if (!w || !w.novbeti) return w;
-  const { novbeti, ...cur } = w, next = isoToday() >= novbeti.gunler[0].tarix;
-  return { ...(next ? novbeti : cur), butun: [...cur.gunler, ...novbeti.gunler] };
+  if (!w) return w;
+  const { novbeti, hefteler, ...cur } = w, all = [cur, ...(novbeti ? [novbeti] : []), ...(hefteler || [])];
+  if (all.length === 1) return w;
+  const t = isoToday(); let pick = cur;
+  for (const x of all) if (x.gunler[0].tarix <= t) pick = x;
+  return { ...pick, butun: all.flatMap(x => x.gunler) };
 }
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
 const slot = d => { const x = new Date(d + "T00:00"); while (x.getDay() !== 0 && x.getDay() !== 3) x.setDate(x.getDate() + 1); return iso(x.getFullYear(), x.getMonth(), x.getDate()); };

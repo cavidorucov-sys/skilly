@@ -19,11 +19,11 @@ KEEP = set(json.load(open(opt["keep"], encoding="utf-8"))) if "keep" in opt else
 d = json.load(open("data/movzular.json", encoding="utf-8"))
 OLD_WEEK = {k + ":" + t["ad"]: t.get("hefte") for k in d for t in d[k]}
 KEPT = {k + ":" + t["ad"] for k in d for t in d[k] if t.get("ders") in KEEP}
-CAP = {"riyaziyyat": 4.0, "olimpiada": 3.5, "fizika": 6.0}
+# hours at home per week (FRİTL is not counted: father, 11 Nov 2026). Week template: tools/hefte.py
+CAP = {"riyaziyyat": 4.5, "olimpiada": 3.5, "fizika": 9.0}
 # This year Fikrət takes the RFO in physics only (one subject per pupil): the math-olympiad track is paused and its
 # 3.5 h/week go to physics (father, 11 Nov 2026). Paused topics get no week; their lessons stay open.
 PAUSED = {"olimpiada"}
-CAP["fizika"] += CAP["olimpiada"]
 REVIEW = {"Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB", "Adi və onluq kəsrlər, dövri kəsrlər", "Tam və rasional ədədlər, ədəd oxu, modul",
           "Nisbət, tənasüb, düz və tərs mütənasiblik", "Faiz", "Cəbri ifadələr, sadələşdirmə", "Xətti tənliklər", "Bucaqlar, paralel və perpendikulyar düz xətlər",
           "Üçbucaqlar, bərabərlik əlamətləri", "Ölçü vahidləri və statistika: median, moda, diaqramlar", "Koordinat sistemi, funksiya anlayışı",
@@ -41,7 +41,8 @@ RAYON_FIRST = {"Kinetik və potensial enerji", "Enerjinin saxlanması",
                # the 9th-grade textbook (2026) teaches geometric optics in its first half, before the round
                "İşığın qayıtması və sınması", "Linzalar və güzgülər, xəyalın qurulması, dispersiya"}
 # physics gets 2 h/week more from 1 December until the district round (father, 11 Nov 2026)
-BOOST = (dt.date(2026, 12, 1), dt.date(2027, 1, 18), CAP["fizika"] + 2.0)  # 2 h/week more than usual
+# (replaced on 11 Nov 2026 by 9 h/week at home all along: no extra December hours)
+BOOST = (dt.date(2026, 12, 1), dt.date(2026, 12, 1), CAP["fizika"])
 # Olympiad-math topics that physics problems use: taken in physics hours, each just before the physics topic that
 # needs it (father, 11 Nov 2026). They do not lock the physics topic: if one cannot start yet, physics goes on.
 FIZ_RIYAZI = {"Toplama, ikiqat və yarım bucaq düsturları": "Üfüqi və bucaq altında atılan cismin hərəkəti",
@@ -58,7 +59,7 @@ FR_KEYS = {"olimpiada:" + a for a in FIZ_RIYAZI}
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
-    h = {"riyaziyyat": 2.5, "olimpiada": 3.5, "fizika": 4.0}[k]
+    h = {"riyaziyyat": 2.0, "olimpiada": 2.0, "fizika": 2.0}[k]  # Fikrət closes a topic in at most 2 h (father, 11 Nov 2026)
     if k == "riyaziyyat" and t["ad"] in REVIEW: h = 1.0
     if t["status"] == "isl": h /= 2
     return h
