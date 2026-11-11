@@ -474,6 +474,7 @@ async function pageTests() {
 }
 
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+const weekEnd = w => { const x = new Date(w + "T00:00"); x.setDate(x.getDate() + 6); return iso(x.getFullYear(), x.getMonth(), x.getDate()); };
 const iso = (y, m, d) => y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
 
 async function pageCalendar() {
@@ -485,7 +486,7 @@ async function pageCalendar() {
   const add = (d, e) => (ev[d] = ev[d] || []).push(e);
   term.forEach(t => add(t.tarix, { kat: t.kat, is: t.ad, qeyd: t.qeyd, son: true }));
   const mm = await load("data/movzular.json").catch(() => null);
-  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "", qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
+  if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") add(t.hefte, { kat: LIST_KAT[k], is: "Yeni mövzu: " + t.ad, link: t.ders, saat: "", wkEnd: weekEnd(t.hefte), qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
   const today = isoToday();
   // Fikrət's record (the father sees it through the cloud): the day each topic was closed, and every memory check
@@ -517,6 +518,12 @@ async function pageCalendar() {
     });
   }
   let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
+  // day counter: closed/done, missed, waiting. Only items with a status count (exam dates and FRİTL/cüdo-type items do not);
+  // a week's new topic is missed only once its week is over
+  const stat = (e, k) => !e.st || e.son ? null : e.st[1] === "st-bag" ? "ok" : e.st[1] === "st-err" ? "no" : (e.wkEnd || k) < today ? "no" : "wait";
+  const counter = (list, k) => { const c = { ok: 0, no: 0, wait: 0 }; list.forEach(e => { const s = stat(e, k); if (s) c[s]++; });
+    const parts = [["ok", "✓", "bağlanıb"], ["no", "✗", "edilməyib"], ["wait", "○", "gözləyir"]].filter(([s]) => c[s]);
+    return parts.length ? el("span", { class: "cnt", "aria-label": parts.map(([s, , w]) => c[s] + " " + w).join(", ") }, ...parts.map(([s, m]) => el("b", { class: s }, m + c[s]))) : null; };
   const title = el("h2", {});
   const prev = el("button", { class: "nav-btn", type: "button", "aria-label": "Əvvəlki ay" }, "←");
   const next = el("button", { class: "nav-btn", type: "button", "aria-label": "Növbəti ay" }, "→");
@@ -533,6 +540,7 @@ async function pageCalendar() {
       const k = iso(y, mo, d), list = ev[k] || [];
       const b = el("button", { type: "button", class: "cal-c" + (k === today ? " today" : "") + (k === sel ? " sel" : "") + (k < today ? " past" : ""), "aria-label": d + " " + AYLAR[mo] + (list.length ? ", " + list.length + " iş" : "") },
         el("span", { class: "num" }, String(d)),
+        counter(list, k),
         el("span", { class: "evs" }, ...list.filter(e => e.son).map(e => el("span", { class: "cal-tag " + (KAT[e.kat] || KAT.misc).cls }, e.is)),
           ...(list.some(e => e.gecikir) ? [el("span", { class: "cal-tag late" }, "Yaddaş yoxlaması edilməyib")] : [])),
         el("span", { class: "dots" }, ...[...new Set(list.filter(e => !e.son && !e.gecikir).map(e => e.kat))].map(kt => el("i", { class: (KAT[kt] || KAT.misc).cls }))));
