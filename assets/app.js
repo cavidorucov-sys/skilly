@@ -491,6 +491,9 @@ async function pageCalendar() {
   const mm = await load("data/movzular.json").catch(() => null);
   if (mm) for (const k in mm) mm[k].forEach(t => { if (t.hefte && t.status !== "bag") addWk(t.hefte, { kat: LIST_KAT[k], is: t.ad, link: t.ders, saat: "", wkEnd: weekEnd(t.hefte), qeyd: t.saat === "fizika" ? "fizika saatında — fizikaya lazımdır" : undefined }); });
   (w ? w.gunler : []).forEach(g => g.isler.forEach(t => add(g.tarix, { kat: t.kat, is: t.is, saat: t.saat, link: t.link })));
+  // a topic the week plan already puts on a day is shown on that day only, not again in the week strip
+  if (w) { const onDay = new Set(w.gunler.flatMap(g => g.isler.map(t => t.link)).filter(Boolean));
+    for (const m in wk) { wk[m] = wk[m].filter(e => !onDay.has(e.link)); if (!wk[m].length) delete wk[m]; } }
   const today = isoToday();
   // Fikrət's record (the father sees it through the cloud): the day each topic was closed, and every memory check
   // on its date with its result — a missed one is marked on the grid
