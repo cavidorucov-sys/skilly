@@ -505,7 +505,11 @@ async function pageCalendar() {
       if (isClosed(t) && closedOn[t.ders]) e.qeyd = (e.saat ? e.saat + " · " : "") + "bağlanıb " + t2(closedOn[t.ders]); } });
     Skilly.reviews().forEach(r => {
       const t = byLink[r.link], late = !r.done && r.due < today;
-      const st = r.done ? (r.ok ? ["Edilib " + t2(r.done), "st-bag", "CircleCheck"] : ["Keçmədi " + t2(r.done), "st-err", "CircleAlert"])
+      // a failed check reopens the topic; once the topic is closed again it is settled, not open
+      const reclosed = r.done && !r.ok && t && isClosed(t) && closedOn[r.link] >= r.done;
+      const st = r.done ? (r.ok ? ["Edilib " + t2(r.done), "st-bag", "CircleCheck"]
+          : reclosed ? ["Keçmədi " + t2(r.done) + " · mövzu yenidən bağlandı " + t2(closedOn[r.link]), "st-bag", "CircleCheck"]
+          : ["Keçmədi " + t2(r.done) + " · mövzu açıqdır", "st-err", "CircleAlert"])
         : late ? ["Edilməyib", "st-err", "CircleAlert"] : ["Gözləyir", "st-yox", "CircleDashed"];
       // the check itself runs in the lesson's test tab, so the item opens it there (as on the Təkrar page)
       add(r.due, { kat: t ? t.kat : "misc", is: "Yaddaş yoxlaması: " + r.title + " (" + r.n + " sual)", st, qeyd: st[0], gecikir: late,
