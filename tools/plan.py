@@ -25,12 +25,17 @@ REVIEW = {"Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/�
           "Üçbucaqlar, bərabərlik əlamətləri", "Ölçü vahidləri və statistika: median, moda, diaqramlar", "Koordinat sistemi, funksiya anlayışı",
           "Çoxluqlar, Eyler-Venn diaqramı", "Xətti bərabərsizliklər", "Çoxhədlilər"}
 OLY_CORE = {"Say nəzəriyyəsi", "Kombinatorika"}
-# RFO physics district round (~mid-January, grades 7–9 textbooks): about half of its questions are heat and
-# electricity, so these physics topics come first (father, 11 Nov 2026)
-RAYON_FIRST = {"Temperatur, istidən genişlənmə, istilik miqdarı", "İstilik balansı, faza keçidləri, istilik mühərrikləri",
+# RFO physics district round (~mid-January; grades 7–9 school physics: mechanics, heat, electricity, pressure).
+# These topics come first so that all of them are closed by early January and the round's mock exam can open
+# (it stays locked until they are); the other physics topics wait until after the round (father, 11 Nov 2026).
+RAYON_FIRST = {"Kinetik və potensial enerji", "Enerjinin saxlanması",
+               "Temperatur, istidən genişlənmə, istilik miqdarı", "İstilik balansı, faza keçidləri, istilik mühərrikləri",
                "Elektrik yükü, Kulon qanunu, elektrik sahəsi", "Cərəyan, gərginlik, müqavimət", "Om qanunu, ardıcıl və paralel birləşmə",
-               "Elektrik işi və gücü, Coul-Lens qanunu",
-               "Kinetik və potensial enerji", "Enerjinin saxlanması"}  # the last two: heat balance builds on them
+               "Elektrik işi və gücü, Coul-Lens qanunu", "Qüvvə momenti, tarazlıq", "Sadə mexanizmlər: ling, bloklar, FİƏ",
+               "Təzyiq, hidrostatik təzyiq, Paskal qanunu", "Arximed qüvvəsi; kəsilməzlik teoremi",
+               "Üfüqi və bucaq altında atılan cismin hərəkəti", "İmpuls və onun saxlanması, toqquşmalar"}
+# physics gets 8 h/week instead of 6 from 1 December until the district round (father, 11 Nov 2026)
+BOOST = (dt.date(2026, 12, 1), dt.date(2027, 1, 18), 8.0)
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
@@ -60,6 +65,16 @@ def prio(k, i, t):  # lower = earlier
 # continuous time per track (in weeks). A topic starts when its track is free and all its prerequisites are FINISHED
 # (the portal locks a lesson until they are closed). The track that is furthest behind moves next and takes the topic
 # that can start earliest (ties: priority order), so a track never idles while some topic of it could already start.
+def cap(k, w):  # hours per week of track k in week w (weeks from start)
+    if k == "fizika" and BOOST[0] <= start + dt.timedelta(weeks=int(w)) < BOOST[1]: return BOOST[2]
+    return CAP[k]
+def finish(k, s0, h):  # time (in weeks) when h hours of track k, begun at s0, are done
+    t = s0
+    while h > 1e-9:
+        c = cap(k, t); left = (int(t + 1e-9) + 1 - t) * c
+        if h <= left: return t + h / c
+        h -= left; t = int(t + 1e-9) + 1
+    return t
 week, start_at, end_at, order = {}, {}, {}, {}
 w0 = (FROM - start).days / 7
 clock = {k: w0 for k in d}
@@ -86,7 +101,7 @@ while any(queue.values()):
         start_at[key] = s0; week[key] = int(s0 + 1e-9); order[key] = n; n += 1
         if kk != k: t["saat"] = "fizika"  # done in physics hours
         else: t.pop("saat", None)
-        end_at[key] = clock[k] = s0 + hours(kk, t) / CAP[k]; queue[kk].remove(i); moved = True
+        end_at[key] = clock[k] = finish(k, s0, hours(kk, t)); queue[kk].remove(i); moved = True
         break
     assert moved, "cycle or missing prerequisite"
 for k in d:
