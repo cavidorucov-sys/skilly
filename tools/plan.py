@@ -20,6 +20,10 @@ d = json.load(open("data/movzular.json", encoding="utf-8"))
 OLD_WEEK = {k + ":" + t["ad"]: t.get("hefte") for k in d for t in d[k]}
 KEPT = {k + ":" + t["ad"] for k in d for t in d[k] if t.get("ders") in KEEP}
 CAP = {"riyaziyyat": 4.0, "olimpiada": 3.5, "fizika": 6.0}
+# This year Fikrət takes the RFO in physics only (one subject per pupil): the math-olympiad track is paused and its
+# 3.5 h/week go to physics (father, 11 Nov 2026). Paused topics get no week; their lessons stay open.
+PAUSED = {"olimpiada"}
+CAP["fizika"] += CAP["olimpiada"]
 REVIEW = {"Natural ədədlər: bölünmə əlamətləri, sadə vuruqlar, ƏBOB/ƏKOB", "Adi və onluq kəsrlər, dövri kəsrlər", "Tam və rasional ədədlər, ədəd oxu, modul",
           "Nisbət, tənasüb, düz və tərs mütənasiblik", "Faiz", "Cəbri ifadələr, sadələşdirmə", "Xətti tənliklər", "Bucaqlar, paralel və perpendikulyar düz xətlər",
           "Üçbucaqlar, bərabərlik əlamətləri", "Ölçü vahidləri və statistika: median, moda, diaqramlar", "Koordinat sistemi, funksiya anlayışı",
@@ -33,9 +37,11 @@ RAYON_FIRST = {"Kinetik və potensial enerji", "Enerjinin saxlanması",
                "Elektrik yükü, Kulon qanunu, elektrik sahəsi", "Cərəyan, gərginlik, müqavimət", "Om qanunu, ardıcıl və paralel birləşmə",
                "Elektrik işi və gücü, Coul-Lens qanunu", "Qüvvə momenti, tarazlıq", "Sadə mexanizmlər: ling, bloklar, FİƏ",
                "Təzyiq, hidrostatik təzyiq, Paskal qanunu", "Arximed qüvvəsi; kəsilməzlik teoremi",
-               "Üfüqi və bucaq altında atılan cismin hərəkəti", "İmpuls və onun saxlanması, toqquşmalar"}
-# physics gets 8 h/week instead of 6 from 1 December until the district round (father, 11 Nov 2026)
-BOOST = (dt.date(2026, 12, 1), dt.date(2027, 1, 18), 8.0)
+               "Üfüqi və bucaq altında atılan cismin hərəkəti", "İmpuls və onun saxlanması, toqquşmalar",
+               # the 9th-grade textbook (2026) teaches geometric optics in its first half, before the round
+               "İşığın qayıtması və sınması", "Linzalar və güzgülər, xəyalın qurulması, dispersiya"}
+# physics gets 2 h/week more from 1 December until the district round (father, 11 Nov 2026)
+BOOST = (dt.date(2026, 12, 1), dt.date(2027, 1, 18), CAP["fizika"] + 2.0)  # 2 h/week more than usual
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
@@ -83,7 +89,7 @@ for k in d:  # kept (closed) topics: their old week, finished before the re-plan
     for t in d[k]:
         key = k + ":" + t["ad"]
         if key in KEPT: week[key] = min((dt.date.fromisoformat(OLD_WEEK[key]) - start).days // 7, int(w0)); end_at[key] = w0; order[key] = n; n += 1
-queue = {k: sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: prio(k, i, d[k][i])) for k in d}
+queue = {k: [] if k in PAUSED else sorted((i for i in range(len(d[k])) if k + ":" + d[k][i]["ad"] not in KEPT), key=lambda i: prio(k, i, d[k][i])) for k in d}
 while any(queue.values()):
     moved = False
     for k in sorted((k for k in d if queue[k]), key=lambda k: clock[k]):
@@ -92,7 +98,7 @@ while any(queue.values()):
         # with strict prerequisite locks, physics would otherwise wait weeks for the 4 h/week math track
         cands = [(k, i) for i in queue[k]] + ([("riyaziyyat", i) for i in queue["riyaziyyat"] if "riyaziyyat:" + d["riyaziyyat"][i]["ad"] in PHYS_NEED] if k == "fizika" else [])
         for kk, i in cands:
-            t = d[kk][i]; pre = [] if t["status"] == "isl" else [p for p in t.get("on", []) if p.split(":", 1)[0] in d]
+            t = d[kk][i]; pre = [] if t["status"] == "isl" else [p for p in t.get("on", []) if p.split(":", 1)[0] in d and p.split(":", 1)[0] not in PAUSED]
             if any(p not in end_at for p in pre): continue
             s0 = max([clock[k]] + [end_at[p] for p in pre])
             if best is None or s0 < best[0] - 1e-9: best = (s0, kk, i)
@@ -105,14 +111,18 @@ while any(queue.values()):
         break
     assert moved, "cycle or missing prerequisite"
 for k in d:
-    for t in d[k]: t["hefte"] = str(start + dt.timedelta(weeks=week[k + ":" + t["ad"]]))
-    d[k].sort(key=lambda t: order[k + ":" + t["ad"]])
+    for t in d[k]:
+        key = k + ":" + t["ad"]
+        if key in week: t["hefte"] = str(start + dt.timedelta(weeks=week[key]))
+        else: t.pop("hefte", None)  # paused track
+    d[k].sort(key=lambda t: order.get(k + ":" + t["ad"], 10**6))
     # sanity: prerequisites strictly earlier
     for t in d[k]:
         for p in t.get("on", []):
-            if p in week and t["status"] != "isl" and k + ":" + t["ad"] not in KEPT: assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
+            if p in week and k + ":" + t["ad"] in week and t["status"] != "isl" and k + ":" + t["ad"] not in KEPT: assert week[p] <= week[k + ":" + t["ad"]], (t["ad"], p)
 json.dump(d, open("data/movzular.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 for k in d:
-    ws = sorted(set(t["hefte"] for t in d[k]))
+    ws = sorted(set(t["hefte"] for t in d[k] if "hefte" in t))
+    if not ws: print(f"{k:11s} dayandırılıb"); continue
     print(f"{k:11s} {len(d[k])} mövzu · {ws[0]} → {ws[-1]} · saat {sum(hours(k, t) for t in d[k]):.1f}")
-    if k == "olimpiada": print("            rayon turuna qədər (2027-01-11):", sum(1 for t in d[k] if t['hefte'] <= '2027-01-11'), "mövzu")
+    if k == "olimpiada": print("            rayon turuna qədər (2027-01-11):", sum(1 for t in d[k] if t.get('hefte', '~') <= '2027-01-11'), "mövzu")
