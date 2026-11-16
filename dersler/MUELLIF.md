@@ -35,3 +35,14 @@ node tools/oyun-test.js dersler/oyun-<slug>.js 300
 ```
 Hamısı `ok` olmalıdır. `data/movzular.json`-a toxunma — onu koordinator yeniləyir.
 Vektor işarəsi: birləşdirici ox simvolu (U+20D7) yaza bilərsən — ders.js onu avtomatik hərfin üstündə ox kimi çəkir. Dərsin son h3-ü "Özünü yoxla" adlanırsa, ayrıca ikinci "Özünü yoxla" addımı yaranmır.
+
+## İmtahan formatı (ata, 15 noy 2026) — hər mövzuda üç hissə
+Nümunə: `faiz` (riyaziyyat) və `fiz-om` (fizika). Köhnə sınaqla bağlanmış mövzu imtahan formatlı sınaq keçilənə qədər "qismən bağlanıb" sayılır.
+1. **Dərs tabı "İmtahanda necə gəlir"**: tab düyməsi `id="tb-imt" aria-controls="imt"` (`<small>İmtahan</small>Necə gəlir`, Oyundan əvvəl), panel `id="imt"`; son dərsin `.next` düyməsi `data-go="imt"`. İçində `article.lesson`: 1) forma (riyaziyyat: qapalı/kodlaşdırılan/yazılı; fizika: RFO/lisey A–E, şəkil, çoxaddım, iki mövzu); 2–4) 2–3 həll olunmuş nümunə real formada — `.imt-q` (`.imt-tag`, şərt, `.fig` SVG, `ol.imt-opts` A–E), sonra `details.imt-sol` (həll `.ex`, "Cavab: X) …", **hər səhv variantın hansı səhvdən gəldiyi**); riyaziyyatda biri yazılıdır (addım-addım, bal meyarı); son h3 "Tələlər — özünü yoxla" + `.mist` + `.sum` + `details.check`.
+2. **`oyun-<slug>.js`**: `window.__levels = levels;`-dən əvvəl `const IMT = { fenn, vaxt, suallar: [...] }`, `levels.push(Oyun.imtLevel(IMT)); window.__imtahan = IMT;`; `Oyun.mount({... levels, imtahan: IMT, ...})`.
+   - riyaziyyat: 6 × `{ tip: "qapali" }` + 3 × `{ tip: "kod" }` + 1 × `{ tip: "yazili" }` (sıra belə); fizika: 10 × `qapali`, ən azı 2-də `birlesik: "<əvvəlki mövzunun slug-ı>"` (yalnız planda əvvəl gələn mövzu).
+   - qapalı: `gen: () => Oyun.again(() => { …; const o = Oyun.ae(right, [w1, w2, w3, w4], fmt); return o && { text, svg?, ...o, show: o.choices[o.correct], solution }; })`. Səhv variantlar **tipik səhvlərin nəticəsidir** (faizləri toplamaq, səhv baza, 1/R-i çevirməmək…), təsadüfi ədəd yox; həlldə tələ adı çəkilir. Hamısı "gözəl" ədəd olmalıdır (yoxsa `null` → yenidən).
+   - kod/yazılı: ədədi `{ text, answer, show, tol: 1e-6, unit, solution }` (dəqiq cavab; 0.01 tolerans 9,009-u da qəbul edir); yazılıda həll addımlı (şagird şəkli yükləyir, son cavabı yazır).
+   - fizikada şəkil (SVG: sxem, qrafik, ling, üst-üstə cisimlər…) mümkün qədər hər sualda; şərtdə idealizasiyalar açıq (ideal ampermetr, bircins naqil, g = 10 m/s²).
+   - ədəddən sonra şəkilçi riskli olanda "… ədədinə" kimi qur.
+3. Yoxlama: `node tools/oyun-test.js dersler/oyun-<slug>.js 300` (imtahan hissəsini də yoxlayır; `--sample` nümunələri çap edir), sonra Codex.

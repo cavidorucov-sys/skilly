@@ -242,6 +242,158 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (−a² read as a², a modulus opened without looking at the sign, |a − b| = a + b, ...).
+  // The 15 Nov mock had |a² − 9| + |a² − 16| for 3 < a < 4 and "2a² − 25" was chosen: question 2 drills exactly that.
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  // exact fractions [p, q]
+  const fadd = (x, y) => red(x[0] * y[1] + y[0] * x[1], x[1] * y[1]);
+  const fmul = (x, y) => red(x[0] * y[0], x[1] * y[1]);
+  const fdiv = (x, y) => red(x[0] * y[1], x[1] * y[0]);
+  const fneg = x => [-x[0], x[1]];
+  const FF = x => F(x[0], x[1]);
+  // linear expression: coefs over vars (in order) + constant → "2a² − 13", "−2a", "0"
+  const lin = (vars, coefs, c0 = 0) => {
+    let s = "";
+    const add = (k, body) => { if (!k) return; const a = Math.abs(k), t = (a === 1 && body ? "" : String(a)) + body; s += s ? (k < 0 ? " − " : " + ") + t : (k < 0 ? "−" : "") + t; };
+    vars.forEach((v, i) => add(coefs[i], v)); add(c0, "");
+    return s || "0";
+  };
+  const uniq = (right, cands) => { const seen = new Set([right]), out = []; for (const c of cands) if (!seen.has(c)) { seen.add(c); out.push(c); } return out; };
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. signs, powers and a modulus in one expression
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 6), b = rnd(2, 4), c = -rnd(1, 9), d = rnd(1, 9), sq = Math.random() < .5; // sq: (−a)² instead of −a²
+      const A = sq ? a * a : -a * a, B = b ** 3, M = d - c;
+      const R = A + B + M, w = [-A + B + M, A - B + M, A + B - M, A + B + Math.abs(c) - d];
+      const t1 = sq ? `(−${a})²` : `−${a}²`;
+      return mc(ae(R, w), { text: `${t1} − (−${b})³ + |${N(c)} − ${d}| ifadəsinin qiymətini tapın.`,
+        solution: `${t1} = ${N(A)} (${sq ? "mötərizə var — mənfi ədəd kvadrata yüksəlir" : "əvvəl qüvvət, minus sonra"}); (−${b})³ = ${N(-B)}, deməli −(−${b})³ = ${B}; ${N(c)} − ${d} = ${N(c - d)}, |${N(c - d)}| = ${M}. Cəm: ${N(A)} + ${B} + ${M} = ${N(R)}. Tələlər: ${t1} = ${N(-A)} yazmaq (${N(-A + B + M)}); −(−${b})³ = −${B} yazmaq (${N(A - B + M)}); modulu atmaq — |${N(c - d)}| = ${N(c - d)} (${N(A + B - M)}); |${N(c)} − ${d}| = ${Math.abs(c)} − ${d} yazmaq (${N(A + B + Math.abs(c) - d)}).` });
+    }) },
+    // 2. opening moduli on an interval (the 15 Nov mistake): |v − P| + |v − Q|
+    { tip: "qapali", gen: () => again(() => {
+      let v, P, Q, cond, sp, pv, qv, tvs, sqr;
+      if (Math.random() < .6) {
+        const n = rnd(1, 6), m = n + rnd(1, 2); v = "a²"; sqr = true; P = n * n; Q = m * m; pv = `a² − ${P}`; qv = `a² − ${Q}`;
+        const r = n >= 2 ? pick([0, 1, 1, 1, 2]) : pick([1, 1, 2]);
+        [cond, sp, tvs] = [[`0 < a < ${n}`, [-1, -1], [n - .5, n / 2]], [`${n} < a < ${m}`, [1, -1], [(n + m) / 2, n + .5, m - .5]], [`a > ${m}`, [1, 1], [m + 1, m + 2]]][r];
+      } else {
+        const p = rnd(-9, 4), q = rnd(Math.max(p + 2, 1), p + 10); v = "x"; sqr = false; P = p; Q = q; pv = xm(p); qv = xm(q);
+        const r = pick([0, 1, 1, 1, 2]);
+        [cond, sp, tvs] = [[`x < ${N(p)}`, [-1, -1], [p - 1, p - 2]], [`${N(p)} < x < ${N(q)}`, [1, -1], [...Array.from({ length: q - p - 1 }, (_, j) => p + 1 + j), p + .5]], [`x > ${N(q)}`, [1, 1], [q + 1, q + 2]]][r];
+      }
+      const E = (t1, t2) => lin([v], [t1 + t2], -t1 * P - t2 * Q), Ev = (t1, t2) => V => t1 * (V - P) + t2 * (V - Q);
+      const R = E(sp[0], sp[1]), allPos = lin([v], [2], Math.abs(P) + Math.abs(Q));
+      const val = { [E(1, 1)]: Ev(1, 1), [E(-1, -1)]: Ev(-1, -1), [E(1, -1)]: Ev(1, -1), [E(-1, 1)]: Ev(-1, 1), [allPos]: V => 2 * V + Math.abs(P) + Math.abs(Q) };
+      const w = uniq(R, [E(1, 1), E(-1, -1), E(1, -1), E(-1, 1), allPos]).slice(0, 4);
+      if (w.length < 4) return null;
+      // a check value that tells the right option from every wrong one
+      const t = tvs.find(z => { const V = sqr ? z * z : z, r0 = Ev(sp[0], sp[1])(V); return w.every(x => Math.abs(val[x](V) - r0) > 1e-9); });
+      if (t == null) return null;
+      const T = sqr ? t * t : t, rv = Ev(sp[0], sp[1])(T), tv = sqr ? `${N(t)} (a² = ${N(T)})` : N(t);
+      const why = { [E(1, 1)]: "hər iki modulu işarəyə baxmadan olduğu kimi açmaq", [E(-1, -1)]: "hər iki modulun işarəsini dəyişmək", [E(1, -1)]: `|${pv}| = ${pv}, |${qv}| = −(${qv}) götürmək`, [E(-1, 1)]: `|${pv}| = −(${pv}), |${qv}| = ${qv} götürmək`, [allPos]: "modul içindəki minusu plyusa çevirmək" };
+      const o = (s, e) => s > 0 ? `|${e}| = ${e}` : `|${e}| = −(${e})`;
+      return mc(ae(R, w, x => x), { text: `${cond} olduqda |${pv}| + |${qv}| ifadəsini sadələşdirin.`,
+        solution: `Hər modulun içinin işarəsini yoxla: ${cond} olduqda ${pv} ${sp[0] > 0 ? "> 0" : "< 0"}, ${qv} ${sp[1] > 0 ? "> 0" : "< 0"}. Deməli ${o(sp[0], pv)}, ${o(sp[1], qv)}. Cəm: ${R}. Yoxlama: ${sqr ? "a" : "x"} = ${tv} olduqda ifadənin qiyməti ${N(rv)} olur — bu qiyməti yalnız düz variant verir (bir ədədlə yoxlama səhv variantları atmağa kömək edir, sadələşdirməni əvəz etmir). Tələlər: ${w.map(x => `${x} — ${why[x]}`).join("; ")}.` });
+    }) },
+    // 3. number line with a fractional step: only 0 and 1 are labelled
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 4), count = 12, m = rnd(k + 1, count - k), L = -m / k;
+      const i = rnd(0, m - 2); if ((i - m) % k === 0) return null; // A is negative and not an integer
+      const s = i - m, R = F(s, k), w = [N(s), F(-s, k), F(s, k + 1), F(s - 1, k)];
+      return mc(ae(R, w, x => x), { text: "Ədəd oxunda A nöqtəsinin koordinatını tapın.", svg: numberLine(L, 1 / k, count, { A: s / k }),
+        solution: `0 ilə 1 arasında ${k} bölgü var — bir bölgü 1/${k}. A nöqtəsi 0-dan ${-s} bölgü soldadır: ${R}. Tələlər: bölgünü 1 vahid saymaq (${N(s)}); işarəni unutmaq (${F(-s, k)}); bölgüləri yox, xətləri saymaq — bölgü 1/${k + 1} (${F(s, k + 1)}); 0-ın xəttini də bölgü kimi saymaq (${F(s - 1, k)}).` });
+    }) },
+    // 4. operations with rational numbers: (f1 − (f2)) : (f3), f2 and f3 negative
+    { tip: "qapali", gen: () => again(() => {
+      const fr = () => { const q = rnd(2, 6); let p; do p = rnd(1, 2 * q - 1); while (gcd(p, q) !== 1); return [p, q]; };
+      const f1 = Math.random() < .5 ? fr() : fneg(fr()), f2 = fneg(fr()), f3 = fneg(fr());
+      const diff = fadd(f1, fneg(f2)), sum = fadd(f1, f2);
+      if (!diff[0] || !sum[0]) return null;
+      const R = fdiv(diff, f3), naive = red(f1[0] - f2[0], f1[1] + f2[1]); // numerators and denominators added
+      const w = [fmul(diff, f3), fdiv(sum, f3), fneg(R), fdiv(naive, f3)];
+      if ([R, ...w].some(x => x[1] > 60 || Math.abs(x[0]) > 99)) return null;
+      return mc(ae(FF(R), w.map(FF), x => x), { text: `(${FF(f1)} − (${FF(f2)})) : (${FF(f3)}) ifadəsinin qiymətini tapın.`,
+        solution: `Mənfi ədədi çıxmaq — onu toplamaqdır: ${FF(f1)} + ${FF(fneg(f2))} = ${FF(diff)}. Bölmək — tərsinə vurmaqdır: ${FF(diff)} · (${F(f3[1], f3[0])}) = ${FF(R)}. Tələlər: tərsinə çevirmədən vurmaq (${FF(w[0])}); "− (−)" işarəsini mənfi saxlamaq (${FF(w[1])}); mənfiyə bölüb işarəni itirmək (${FF(w[2])}); surətləri surətlərlə, məxrəcləri məxrəclərlə toplamaq (${FF(w[3])}).` });
+    }) },
+    // 5. |kx − a| = b: sum of the roots
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 4), a = nz(-12, 12), b = rnd(1, 12);
+      const R = F(2 * a, k), w = [F(a + b, k), N(2 * a), "0", F(-2 * a, k)];
+      const e = `${k}x ${a > 0 ? "−" : "+"} ${Math.abs(a)}`;
+      return mc(ae(R, w, x => x), { text: `|${e}| = ${b} tənliyinin köklərinin cəmini tapın.`,
+        solution: `${e} = ${b} → x = ${F(a + b, k)}; ${e} = −${b} → x = ${F(a - b, k)}. Cəm: ${F(2 * a, k)}. Tələlər: yalnız bir kök götürmək (${F(a + b, k)}); ${k} ədədinə bölməyi unutmaq (${N(2 * a)}); kökləri qarşılıqlı əks saymaq — x = ${F(a + b, k)} və x = ${F(-a - b, k)} (0); ${N(-a)} ədədini o biri tərəfə keçirəndə işarəni dəyişməmək (${F(-2 * a, k)}).` });
+    }) },
+    // 6. simplify |L1| ± |L2| ± |L3| under a sign condition on a and b
+    { tip: "qapali", gen: () => again(() => {
+      const FORMS = [["a", [1, 0]], ["b", [0, 1]], ["a − b", [1, -1]], ["b − a", [-1, 1]], ["a + b", [1, 1]]];
+      const CONDS = [["a < 0 < b", [-1, 1, -1, 1, 0]], ["a < b < 0", [-1, -1, -1, 1, -1]], ["b < a < 0", [-1, -1, 1, -1, -1]], ["0 < a < b", [1, 1, -1, 1, 1]]];
+      const [cond, sg] = pick(CONDS);
+      const idx = [0, 1, 2, 3, 4].filter(i => sg[i]).sort(() => Math.random() - .5).slice(0, 3);
+      if (idx.includes(2) && idx.includes(3)) return null;
+      if (idx.filter(i => sg[i] < 0).length < 2) return null;
+      const eps = [1, pick([1, -1]), pick([1, -1])];
+      const sum = f => { const c = [0, 0]; idx.forEach((i, t) => { const s = f(i, t); c[0] += eps[t] * s * FORMS[i][1][0]; c[1] += eps[t] * s * FORMS[i][1][1]; }); return c; };
+      const ex = c => lin(["a", "b"], c);
+      const R = ex(sum(i => sg[i])), asIs = ex(sum(() => 1));
+      const flips = idx.filter(i => sg[i] < 0).map(j => [ex(sum(i => i === j ? 1 : sg[i])), `|${FORMS[j][0]}| = ${FORMS[j][0]} götürmək`]);
+      const allPos = ex([0, 1].map(j => idx.reduce((acc, i, t) => acc + eps[t] * (FORMS[i][0].includes("−") ? Math.abs(FORMS[i][1][j]) : sg[i] * FORMS[i][1][j]), 0)));
+      const cands = [[asIs, "bütün modulları olduğu kimi açmaq"], ...flips, [allPos, "modulun içindəki minusu plyusa çevirmək (" + (idx.filter(i => FORMS[i][0].includes("−")).map(i => `|${FORMS[i][0]}| = ${FORMS[i][0].replace("−", "+")}`)[0] || "|a| = a") + ")"], [ex(sum(i => -sg[i])), "hər modulun işarəsini tərsinə götürmək"]];
+      const why = {}; for (const [x, r] of cands) if (!(x in why)) why[x] = r;
+      const w = uniq(R, cands.map(c => c[0])); if (w.length < 4) return null;
+      const body = idx.map((i, t) => (t ? (eps[t] > 0 ? " + " : " − ") : "") + `|${FORMS[i][0]}|`).join("");
+      const opened = idx.map(i => sg[i] > 0 ? `|${FORMS[i][0]}| = ${FORMS[i][0]}` : `|${FORMS[i][0]}| = ${FORMS[i][0].length === 1 ? "−" + FORMS[i][0] : "−(" + FORMS[i][0] + ")"}`).join(", ");
+      return mc(ae(R, w.slice(0, 4), x => x), { text: `${cond} olarsa, ${body} ifadəsini sadələşdirin.`,
+        solution: `${cond} olduqda: ${opened}. Yerinə qoyub sadələşdir: ${R}. Tələlər: ${w.slice(0, 4).map(x => `${x} — ${why[x]}`).join("; ")}.` });
+    }) },
+    // 7. coded: integer solutions of |kx − a| < b (or ≤ b): how many / their sum
+    { tip: "kod", gen: () => again(() => {
+      const k = pick([1, 1, 2]), a = rnd(-8, 8), b = rnd(2, 7), strict = Math.random() < .5, askSum = Math.random() < .4;
+      if (k === 2 && !a) return null;
+      const sol = []; for (let x = -40; x <= 40; x++) { const v = Math.abs(k * x - a); if (strict ? v < b : v <= b) sol.push(x); }
+      if (sol.length < 2) return null;
+      if (askSum && sol.reduce((s, x) => s + x, 0) < 0) return null; // coded answers stay non-negative
+      const ans = askSum ? sol.reduce((s, x) => s + x, 0) : sol.length, e = k === 1 ? xm(a) : `2x ${a > 0 ? "−" : "+"} ${Math.abs(a)}`;
+      const r = strict ? "<" : "≤", lo = k === 1 ? `${N(a - b)} ${r} x ${r} ${N(a + b)}` : `${F(a - b, 2)} ${r} x ${r} ${F(a + b, 2)}`;
+      return { text: `|${e}| ${r} ${b} bərabərsizliyinin tam həllərinin ${askSum ? "cəmini" : "sayını"} tapın.`, answer: ans, show: N(ans), tol: 1e-9,
+        solution: `−${b} ${r} ${e} ${r} ${b}, yəni ${lo}. Tam həllər: ${sol.length > 6 ? N(sol[0]) + "; " + N(sol[1]) + "; …; " + N(sol[sol.length - 1]) : sol.map(N).join("; ")} — ${sol.length} ədəd${askSum ? `, cəmi ${N(ans)}` : ""}. ${strict ? "Ciddi bərabərsizlik — uclar daxil deyil." : "≤ — uclar da daxildir."}` };
+    }) },
+    // 8. coded: the point dividing AB in a given ratio
+    { tip: "kod", gen: () => again(() => {
+      const [m, n] = pick([[1, 2], [2, 1], [1, 3], [3, 1], [2, 3], [3, 2], [3, 4], [1, 4]]), t = rnd(1, 3), a = rnd(-15, 10);
+      const d = (m + n) * t * pick([1, -1]), b = a + d, c = a + d * m / (m + n), ac = Math.abs(d) * m / (m + n);
+      if (a >= 0 && b >= 0) return null;
+      if (c < 0) return null; // coded answers stay non-negative
+      return { text: `Ədəd oxunda A(${N(a)}) və B(${N(b)}) nöqtələri verilib. AB parçası üzərindəki C nöqtəsi üçün AC : CB = ${m} : ${n}. C nöqtəsinin koordinatını tapın.`,
+        answer: c, show: N(c), tol: 1e-9,
+        solution: `AB = |${N(b)} − ${P(a)}| = ${Math.abs(d)}. AB ${m + n} bərabər hissədir, hər hissə ${Math.abs(d) / (m + n)}; AC = ${m} hissə = ${ac}. C nöqtəsi A-dan B-yə doğru (${d > 0 ? "sağa" : "sola"}) gedir: ${N(a)} ${d > 0 ? "+" : "−"} ${ac} = ${N(c)}. Tələ: A-dan yox, B-dən saymaq (${N(b - d * m / (m + n))}).` };
+    }) },
+    // 9. coded: |x − p| + |x − q| — least value / number of integer x where it is reached / their sum
+    { tip: "kod", gen: () => again(() => {
+      const p = rnd(-9, 3), q = p + rnd(2, 9), kind = rnd(0, 2), e = `|${xm(p)}| + |${xm(q)}|`;
+      const L = q - p, cnt = L + 1, sum = (p + q) * cnt / 2;
+      if (kind === 2 && sum < 0) return null; // coded answers stay non-negative
+      const base = `${N(p)} ≤ x ≤ ${N(q)} olanda ${e} = ${p ? "(" + xm(p) + ")" : "x"} + (${N(q)} − x) = ${L} — bu, ${N(p)} ilə ${N(q)} arasındakı məsafədir; x bu parçadan kənarda olanda cəm ${L} ədədindən böyükdür.`;
+      if (kind === 0) return { text: `${e} ifadəsinin ən kiçik qiymətini tapın.`, answer: L, show: N(L), tol: 1e-9, solution: `${base} Ən kiçik qiymət: ${L}.` };
+      if (kind === 1) return { text: `x-in neçə tam qiymətində ${e} = ${L} olar?`, answer: cnt, show: N(cnt), tol: 1e-9,
+        solution: `${base} Deməli ${N(p)} ≤ x ≤ ${N(q)}: ${ints(p, q)} — ${cnt} tam ədəd (uclar da daxil). Tələ: "modul tənliyinin iki kökü olur" deyib 2 yazmaq.` };
+      return { text: `${e} = ${L} tənliyinin bütün tam həllərinin cəmini tapın.`, answer: sum, show: N(sum), tol: 1e-9,
+        solution: `${base} Tam həllər: ${ints(p, q)} (${cnt} ədəd). Cəm: (${N(p)} + ${P(q)}) · ${cnt} : 2 = ${N(sum)}.` };
+    }) },
+    // 10. written: |x − p| + |x − q| = s (s > q − p) — case analysis on three intervals, product of the roots
+    { tip: "yazili", gen: () => again(() => {
+      const p = rnd(-8, 3), q = p + rnd(1, 7), s = q - p + 2 * rnd(1, 4);
+      const x1 = (p + q - s) / 2, x2 = (p + q + s) / 2, R = x1 * x2;
+      if (!R) return null;
+      return { text: `|${xm(p)}| + |${xm(q)}| = ${s} tənliyini həll edin. Cavabda köklərin hasilini yazın.`, answer: R, show: N(R), tol: 1e-9,
+        solution: `Modulların içi ${N(p)} və ${N(q)} nöqtələrində sıfır olur — bu nöqtələr oxu üç hissəyə bölür. 1) x < ${N(p)}: (${N(p)} − x) + (${N(q)} − x) = ${s} → ${lin(["x"], [-2], p + q)} = ${s} → x = ${N(x1)} (${N(x1)} < ${N(p)} ✓). 2) ${N(p)} ≤ x ≤ ${N(q)}: (${xm(p)}) + (${N(q)} − x) = ${q - p} ≠ ${s} — kök yoxdur. 3) x > ${N(q)}: (${xm(p)}) + (${xm(q)}) = ${s} → ${lin(["x"], [2], -(p + q))} = ${s} → x = ${N(x2)} (${N(x2)} > ${N(q)} ✓). Köklər ${N(x1)} və ${N(x2)}, hasil ${N(x1)} · ${P(x2)} = ${N(R)}.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -251,7 +403,7 @@
     game = Oyun.mount({
       key: "tam-rasional-modul", title: "Tam və rasional ədədlər, modul", fenn: "riyaziyyat", link: "dersler/tam-rasional-modul.html",
       format: "Cavab yazmaq: tam −7, kəsr −5/6, onluq 2,5 (vergül də, nöqtə də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["isareler", "isareler", "kesrler", "kesrler", "oxda", "muqayise", "modul", "modul", "heyat", "sehv"] },
       goTest: () => SkillyTab("sinaq"),

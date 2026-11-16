@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>a² − b²</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kublar</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tez hesab</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -250,6 +251,89 @@ a² + b² = (a + b)² − 2ab.
         <li><span class="m">102²</span>. <span class="ans">10000 + 400 + 4 = 10404.</span></li>
         <li><span class="m">38·42</span>. <span class="ans">40² − 2² = 1600 − 4 = 1596.</span></li>
         <li><span class="m">67² − 33²</span>. <span class="ans">(67 − 33)(67 + 33) = 34·100 = 3400.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: müxtəsər vurma düsturları</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Müxtəsər vurma düsturları buraxılışda həm ayrıca sual kimi, həm də başqa sualların içində (kəsri ixtisar, tənlik, ən kiçik qiymət) gəlir. Forma üçdür:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar <b>tipik səhvlərin cavablarıdır</b>: ortadakı <span class="m">2ab</span>-ni atmaq, <span class="m">(a − b)² = a² − b²</span> yazmaq, kubda işarəni səhv qoymaq. Sənin səhv cavabın da variantlarda olacaq.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan: yalnız ədəd, onluq kəsr vergüllə (0,44).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həllsiz yalnız cavab yazılsa, bal verilmir. <b>Boş qoyma</b>: düz başlanmış, amma bitməmiş həll meyarlara görə qismən qiymətləndirilə bilər; boş vərəq isə həmişə sıfırdır.</li>
+      </ul>
+      <p>Bu mövzunun sualları çox vaxt <b>qısa həllidir</b>: <span class="m">a</span> və <span class="m">b</span>-ni tapmaq lazım deyil, ifadəni verilənlərlə (<span class="m">a − b</span>, <span class="m">ab</span>) yazmaq kifayətdir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">8x³ − 27</span> ifadəsini vuruqlara ayırın.</p>
+        <ol class="imt-opts"><li>(2x − 3)(4x² − 6x + 9)</li><li>(2x − 3)³</li><li>(2x − 3)(4x² + 6x + 9)</li><li>(2x + 3)(4x² − 6x + 9)</li><li>(2x − 3)(4x² + 12x + 9)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">8x³ = (2x)³,  27 = 3³
+a³ − b³ = (a − b)(a² + ab + b²),  a = 2x, b = 3
+(2x − 3)((2x)² + 2x·3 + 3²) = (2x − 3)(4x² + 6x + 9)
+Yoxlama, x = 2:  64 − 27 = 37;  1·(16 + 12 + 9) = 37 ✓
+Cavab: C) (2x − 3)(4x² + 6x + 9)</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A)</b> — ikinci mötərizədə işarə səhvi: fərqdə <span class="m">+ab</span> olur, <span class="m">−ab</span> cəmin düsturundadır. Yoxlama: <span class="m">x = 2</span> → <span class="m">1·13 = 13 ≠ 37</span>.</li>
+        <li><b>B) (2x − 3)³</b> — <span class="m">a³ − b³</span>-ü <span class="m">(a − b)³</span> ilə qarışdırmaq. Kubların fərqi fərqin kubu deyil.</li>
+        <li><b>D)</b> — kubların <b>cəmi</b> düsturunu götürmək: bu <span class="m">8x³ + 27</span>-dir.</li>
+        <li><b>E)</b> — ikinci mötərizəni tam kvadrat kimi yazmaq (<span class="m">2ab = 12x</span>). Orada <span class="m">ab</span> var, <span class="m">2ab</span> yox: "natamam kvadrat".</li>
+      </ul>
+      <p>Variantlar oxşar olanda ən tez yol — <b>bir ədəd qoyub yoxlamaq</b> (<span class="m">x = 1</span> və ya <span class="m">x = 2</span>).</p></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">a + 1/a = 4</span> olarsa, <span class="m">a² + 1/a²</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">(a + 1/a)² = a² + 2·a·(1/a) + 1/a² = a² + 1/a² + 2
+16 = a² + 1/a² + 2
+a² + 1/a² = 14
+Cavab: 14</div>
+      <p><span class="m">a</span>-nı tapmağa çalışma (<span class="m">a = 2 ± √3</span>, uzun yoldur). Tələ: ortadakı <span class="m">2·a·(1/a) = 2</span>-ni unudub <b>16</b> yazmaq. Kodlaşdırmada yalnız <b>14</b> yazılır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı: a³ − b³</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">a − b = 3</span> və <span class="m">ab = 10</span> olarsa, <span class="m">a³ − b³</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) a³ − b³ = (a − b)(a² + ab + b²).
+2) a² + b² = (a − b)² + 2ab = 9 + 20 = 29.
+3) a² + ab + b² = 29 + 10 = 39.
+4) a³ − b³ = 3 · 39 = 117.
+Cavab: 117.</div>
+      <div class="ex">Qısa yol (bir sətir):
+(a − b)³ = a³ − b³ − 3ab(a − b)  ⇒  a³ − b³ = (a − b)³ + 3ab(a − b)
+a³ − b³ = 27 + 3·10·3 = 27 + 90 = 117.
+Yoxlama: a = 5, b = 2 → 125 − 8 = 117 ✓</div>
+      <p>Yoxlayan bunlara baxır: <b>düsturu düz yazmaq</b> (1-ci addım), <b><span class="m">a² + b²</span>-ni verilənlərlə ifadə etmək</b> (2-ci addım), <b>hesablama və cavab</b>. Bitməmiş, amma düz başlanmış həll qismən qiymətləndirilə bilər — boş qoymaq isə mütləq sıfırdır. Tələlər: <span class="m">a² + ab + b²</span> əvəzinə <span class="m">a² − ab + b²</span> yazmaq (cəmin düsturu), <span class="m">a² + b² = 9</span> saymaq (<span class="m">2ab</span>-ni unutmaq).</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Ortadakı 2ab.</b> <span class="m">(a ± b)² ≠ a² ± b²</span>. <span class="m">98² ≠ 10000 − 4</span>.</li>
+        <li><b>Əmsalı da kvadrata yüksəlt.</b> <span class="m">(3x)² = 9x²</span>, <span class="m">3x²</span> yox.</li>
+        <li><b>Kublarda işarə.</b> <span class="m">a³ − b³ = (a − b)(a² <b>+</b> ab + b²)</span>, <span class="m">a³ + b³ = (a + b)(a² <b>−</b> ab + b²)</span>. İkinci mötərizədə <span class="m">2ab</span> yoxdur.</li>
+        <li><b>Mötərizə qarşısında minus.</b> <span class="m">−(x² − 9) = −x² + 9</span>: işarə hər həddə keçir.</li>
+        <li><b>Yarıda dayanmaq.</b> <span class="m">x + y</span>-ni tapıb cavab yazmaq, halbuki <span class="m">x</span> soruşulur.</li>
+        <li><b>Yazılı sualı boş qoymaq.</b> Düsturu yaz, verilənləri yerinə qoy — düz başlanğıc qismən qiymətləndirilə bilər, boş vərəq yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">a² + b² = (a ± b)² ∓ 2ab
+a³ − b³ = (a − b)³ + 3ab(a − b)
+a³ + b³ = (a + b)³ − 3ab(a + b)
+(a + 1/a)² = a² + 1/a² + 2
+Oxşar variantlar: x = 1 qoyub yoxla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x³ + 64</span> ifadəsini vuruqlara ayır. <span class="ans">(x + 4)(x² − 4x + 16).</span></li>
+        <li><span class="m">a − b = 2</span>, <span class="m">ab = 15</span>. <span class="m">a³ − b³</span> = ? <span class="ans">2³ + 3·15·2 = 8 + 90 = 98 (yoxla: 5³ − 3³ = 98).</span></li>
+        <li><span class="m">x² + y² − 4x + 6y + 13 = 0</span>. <span class="m">x + y</span> = ? <span class="ans">(x − 2)² + (y + 3)² = 0 → x = 2, y = −3, x + y = −1.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

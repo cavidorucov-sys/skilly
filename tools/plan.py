@@ -15,7 +15,11 @@ start = dt.date.fromisoformat(args[0]) if args else dt.date(2026, 10, 19)
 # Re-plan from a later week (--from=YYYY-MM-DD) keeping the topics Fikrət has already closed (--keep=file with their
 # lesson links, e.g. read from the results): those keep their week; everything else is scheduled from that week on.
 FROM = dt.date.fromisoformat(opt["from"]) if "from" in opt else start
-KEEP = set(json.load(open(opt["keep"], encoding="utf-8"))) if "keep" in opt else set()
+# The file is a list of links, or {"tam": [...], "qismen": [...]}: a topic closed by the old final test only is "partly
+# closed" until its exam-format test (father, 15 Nov 2026). Both keep their week here; the 1 h exam-format test of a
+# partly closed topic is put into the days by tools/hefte.py.
+def closed_links(x): return set(x) if isinstance(x, list) else set(x.get("tam", [])) | set(x.get("qismen", []))
+KEEP = closed_links(json.load(open(opt["keep"], encoding="utf-8"))) if "keep" in opt else set()
 d = json.load(open("data/movzular.json", encoding="utf-8"))
 OLD_WEEK = {k + ":" + t["ad"]: t.get("hefte") for k in d for t in d[k]}
 KEPT = {k + ":" + t["ad"] for k in d for t in d[k] if t.get("ders") in KEEP}

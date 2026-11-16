@@ -104,9 +104,11 @@
   }
   // Closed topics from all results (this device's list now includes the cloud's), in time order: a passed final
   // test closes a topic, a failed review reopens it. Rewrites "skilly-bag"; returns true when it changed.
+  // "skilly-tam": topics whose exam-format test ("imtahan") was passed too. A topic closed by the old final test only is
+  // "partly closed" until then (father, 15 Nov 2026); fully closed = in both lists.
   function deriveBag() {
-    const state = {};
-    get(RES, []).map(x => [String(x.id).match(/^(.+)-(test|yoxla|acildi|baglandi)@(\d+)$/), x]).filter(([m]) => m)
+    const state = {}, tam = new Set();
+    get(RES, []).map(x => [String(x.id).match(/^(.+)-(test|yoxla|acildi|baglandi|imtahan)@(\d+)$/), x]).filter(([m]) => m)
       .sort((p, q) => p[0][3] - q[0][3])
       .forEach(([m, x]) => {
         const link = "dersler/" + m[1] + ".html", ok = /^keçdi/.test(x.qeyd || "");
@@ -114,11 +116,14 @@
         if (m[2] === "yoxla" && !ok) state[link] = false;
         if (m[2] === "acildi") state[link] = false; // a level left open: the topic waits for it
         if (m[2] === "baglandi") state[link] = true;
+        if (m[2] === "imtahan" && ok) tam.add(link);
       });
+    const same = (a, b) => a.length === b.length && a.every(x => b.includes(x));
     const before = get("skilly-bag", []), bag = new Set(before);
     for (const l in state) state[l] ? bag.add(l) : bag.delete(l);
     const after = [...bag]; put("skilly-bag", after);
-    return after.length !== before.length || after.some(x => !before.includes(x));
+    const tBefore = get("skilly-tam", []), tAfter = [...new Set([...tBefore, ...tam])]; put("skilly-tam", tAfter);
+    return !same(after, before) || !same(tAfter, tBefore);
   }
 
   function upsert(item) {

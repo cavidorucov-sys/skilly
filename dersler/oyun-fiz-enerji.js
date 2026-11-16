@@ -251,6 +251,183 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a figure, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 1, 2, 5, 7 and 8 also use an earlier topic
+  // (v–t graph, free fall, Hooke's law, friction on an incline, power and efficiency).
+  const { ae, again } = Oyun;
+  const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const f4 = x => F(+x.toFixed(4));
+  // string SVG kit (theme colours through CSS variables, as in the lessons)
+  const C = { INK: "var(--ink,#17171a)", ACC: "var(--accent,#a32d2d)", MUT: "var(--muted,#6b6b73)", SOFT: "var(--accent-soft,#e8eef8)", PAP: "var(--paper,#fff)" };
+  const r1 = n => +(+n).toFixed(1);
+  const pts = p => p.map(q => r1(q[0]) + "," + r1(q[1])).join(" ");
+  const Ln = (x1, y1, x2, y2, c = C.INK, w = 2, ex = "") => `<line x1="${r1(x1)}" y1="${r1(y1)}" x2="${r1(x2)}" y2="${r1(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+  const Dsh = (x1, y1, x2, y2) => Ln(x1, y1, x2, y2, C.MUT, 1.2, ` stroke-dasharray="4 3"`);
+  const Ax = (x1, y1, x2, y2) => Ln(x1, y1, x2, y2, C.INK, 1.5, ` marker-end="url(#en-ar)"`);
+  const Dim = (x1, y1, x2, y2) => Ln(x1, y1, x2, y2, C.MUT, 1.3, ` marker-start="url(#en-ar)" marker-end="url(#en-ar)"`);
+  const Tx = (x, y, s, a = "middle", c = C.INK, sz = 13) => `<text x="${r1(x)}" y="${r1(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+  const Pg = (p, fill, c = C.INK, w = 2) => `<polygon points="${pts(p)}" fill="${fill}" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"/>`;
+  const Pl = (p, c = C.INK, w = 2, ex = "") => `<polyline points="${pts(p)}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"${ex}/>`;
+  const Rc = (x, y, w, hh, fill = C.PAP, c = C.INK, ex = "") => `<rect x="${r1(x)}" y="${r1(y)}" width="${r1(w)}" height="${r1(hh)}" fill="${fill}" stroke="${c}" stroke-width="2"${ex}/>`;
+  const Ci = (x, y, r, fill = C.ACC, c = C.INK) => `<circle cx="${r1(x)}" cy="${r1(y)}" r="${r}" fill="${fill}" stroke="${c}" stroke-width="1.5"/>`;
+  const Gnd = (x1, x2, y, up) => { let s = Ln(x1, y, x2, y); for (let x = x1 + 6; x <= x2; x += 11) s += up ? Ln(x, y, x - 7, y - 7, C.MUT, 1) : Ln(x, y, x - 7, y + 7, C.MUT, 1); return s; };
+  const zig = (x1, y1, x2, y2, n = 8, amp = 6) => { const L = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / L, uy = (y2 - y1) / L, p = [[x1, y1]], a = 0.12 * L, st = (L - 2 * a) / n;
+    p.push([x1 + ux * a, y1 + uy * a]); for (let i = 0; i < n; i++) { const d = a + st * (i + 0.5), sg = i % 2 ? -1 : 1; p.push([x1 + ux * d - uy * amp * sg, y1 + uy * d + ux * amp * sg]); }
+    p.push([x2 - ux * a, y2 - uy * a], [x2, y2]); return Pl(p, C.INK, 1.8); };
+  const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+  const S = (w, hh, inner, aria) => svgEl(`<svg viewBox="0 0 ${w} ${hh}" class="oy-svg" role="img" aria-label="${aria}"><defs><marker id="en-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>${inner}</svg>`);
+
+  // v–t graph: from v0 at t = 0 linearly to vT at t = T, then constant
+  function figVT(v0, vT, T) { const x0 = 44, y0 = 160, tm = T * 1.5, X = t => x0 + t * 190 / tm, Y = v => y0 - v * 125 / vT;
+    let s = Ax(x0, y0, 250, y0) + Ax(x0, y0, x0, 14) + Tx(250, 178, "t, s", "end") + Tx(x0 + 6, 16, "v, m/s", "start") + Tx(x0 - 6, y0 + 15, "0", "end");
+    s += Dsh(x0, Y(v0), X(0) + 1, Y(v0)) + Dsh(x0, Y(vT), X(T), Y(vT)) + Dsh(X(T), Y(vT), X(T), y0);
+    s += Pl([[X(0), Y(v0)], [X(T), Y(vT)], [X(tm), Y(vT)]], C.ACC, 2.5) + Tx(x0 - 6, Y(v0) + 4, v0, "end") + Tx(x0 - 6, Y(vT) + 4, vT, "end") + Tx(X(T), y0 + 16, T);
+    return S(260, 190, s, "Sürətin zamandan asılılıq qrafiki"); }
+  // free fall: start at height H, position after t seconds
+  function figFall(H, t) { const yT = 25, yG = 185, y1 = yT + 5 * t * t / H * (yG - yT);
+    const s = Gnd(20, 200, yG) + Dsh(90, yT, 90, y1) + `<circle cx="90" cy="${yT}" r="7" fill="none" stroke="${C.INK}" stroke-width="1.5" stroke-dasharray="3 2"/>` + Ci(90, y1, 7)
+      + Tx(102, yT + 5, "t = 0", "start", C.MUT, 11) + Tx(78, y1 + 4, F(t) + " s sonra", "end", C.MUT, 11) + Dim(160, yT, 160, yG) + Tx(166, (yT + yG) / 2 + 4, H + " m", "start");
+    return S(230, 205, s, "Kürəcik H hündürlükdən sərbəst düşür"); }
+  // n cubes side by side → one column
+  function figBricks(n) { const c = Math.min(24, Math.floor(130 / n)), yG = 165, xr = 14 + n * (c + 4), xs = xr + 52;
+    let s = "";
+    for (let i = 0; i < n; i++) s += Rc(14 + i * (c + 4), yG - c, c, c, C.SOFT);
+    s += Ln(xr + 6, yG - c / 2, xr + 40, yG - c / 2, C.ACC, 2.5, ` marker-end="url(#en-ar)"`);
+    for (let j = 0; j < n; j++) s += Rc(xs, yG - (j + 1) * c, c, c, C.SOFT);
+    s += Dim(xs + c + 8, yG - c, xs + c + 8, yG) + Tx(xs + c + 14, yG - c / 2 + 4, "a", "start") + Gnd(6, xs + c + 30, yG);
+    return S(xs + c + 34, yG + 14, s, n + " kub yan-yana, sonra bir sütunda"); }
+  // chain on a table, 1/k of it hanging
+  function figChain(k) { const on = 150 * (1 - 1 / k), hang = 150 / k;
+    const s = Rc(20, 60, 160, 10, C.SOFT) + Ln(32, 70, 32, 190) + Ln(168, 70, 168, 190)
+      + Pl([[180 - on, 56], [181, 56], [185, 59], [185, 58 + hang]], C.ACC, 4, ` stroke-dasharray="6 2"`)
+      + Dim(204, 58, 204, 58 + hang) + Tx(210, 62 + hang / 2, "L/" + k, "start");
+    return S(250, 200, s, "Zəncir stolun üstündə, bir hissəsi kənardan sallanır"); }
+  // load hanging on a spring, stretch x0
+  function figSpring() { const s = Gnd(40, 140, 18, true) + zig(90, 18, 90, 105) + Rc(72, 105, 36, 28, C.SOFT) + Tx(90, 124, "m")
+      + Dsh(60, 80, 150, 80) + Dim(140, 80, 140, 105) + Tx(146, 97, "x₀", "start");
+    return S(200, 150, s, "Yaya asılmış yük yayı x₀ uzadır"); }
+  // F–s graph: constant F1 up to s1, then linearly down to 0 at s2
+  function figFs(F1, s1, s2) { const x0 = 46, y0 = 138, sx = (260 - x0 - 24) / s2, sy = (y0 - 30) / F1;
+    let s = Pg([[x0, y0], [x0, y0 - F1 * sy], [x0 + s1 * sx, y0 - F1 * sy], [x0 + s2 * sx, y0]], C.SOFT, C.ACC, 2.5)
+      + Ax(x0, y0, 252, y0) + Ax(x0, y0, x0, 12) + Dsh(x0 + s1 * sx, y0 - F1 * sy, x0 + s1 * sx, y0)
+      + Tx(x0 - 6, y0 - F1 * sy + 4, F1, "end") + Tx(x0 + s1 * sx, y0 + 16, s1) + Tx(x0 + s2 * sx, y0 + 16, s2) + Tx(x0 - 6, y0 + 15, "0", "end")
+      + Tx(x0 + 6, 16, "F, N", "start") + Tx(252, y0 - 8, "s, m", "end");
+    return S(260, 165, s, "Qüvvənin yoldan asılılıq qrafiki"); }
+  // incline with height h and base b, a small block at the top
+  function figIncline(h, b) { const sc = Math.min(165 / b, 95 / h), w = b * sc, ht = h * sc, x0 = 76, y0 = 128, L = Math.hypot(w, ht), nx = ht / L, ny = -w / L;
+    const px = x0 + 0.13 * w + nx * 8, py = y0 - ht + 0.13 * ht + ny * 8, deg = Math.atan2(ht, w) * 180 / Math.PI;
+    const s = Pg([[x0, y0 - ht], [x0, y0], [x0 + w, y0]], C.SOFT) + Rc(px - 11, py - 7, 22, 14, C.ACC, C.INK, ` transform="rotate(${r1(deg)} ${r1(px)} ${r1(py)})"`)
+      + Dim(x0 - 12, y0 - ht, x0 - 12, y0) + Tx(x0 - 18, y0 - ht / 2 + 4, "h = " + F(h) + " m", "end") + Dim(x0, y0 + 12, x0 + w, y0 + 12) + Tx(x0 + w / 2, y0 + 28, "b = " + F(b) + " m")
+      + Tx(x0 + w / 2 + nx * 16, y0 - ht / 2 + ny * 16 + 4, "μ", "middle", C.ACC);
+    return S(260, 165, s, "Maili müstəvi: hündürlük h, əsas b"); }
+  // pump lifting water from a pool to a tank
+  function figPump() { const s = Rc(14, 160, 80, 24, C.SOFT) + Tx(54, 177, "su", "middle", C.MUT, 11) + Pl([[60, 166], [60, 150], [100, 150]], C.INK, 3)
+      + Rc(100, 136, 36, 26, C.PAP) + Tx(118, 153, "nasos", "middle", C.INK, 10) + Pl([[136, 149], [150, 149], [150, 30], [170, 30]], C.INK, 3)
+      + Rc(160, 34, 60, 30, C.SOFT) + Tx(190, 54, "çən", "middle", C.MUT, 11) + Dsh(94, 160, 236, 160) + Dsh(220, 34, 236, 34)
+      + Dim(232, 34, 232, 160) + Tx(226, 102, "h", "end");
+    return S(250, 194, s, "Nasos suyu h hündürlükdəki çənə vurur"); }
+  // smooth curved ends, a rough horizontal strip of length s in the middle
+  function figTrack() { const s = `<path d="M30 40Q30 150 90 150L180 150Q240 150 240 40" fill="none" stroke="${C.INK}" stroke-width="2.5"/>` + Ln(90, 150, 180, 150, C.ACC, 5)
+      + Gnd(84, 186, 154) + Ci(38, 46, 7) + Dim(14, 40, 14, 150) + Tx(20, 100, "h", "start") + Tx(135, 178, "s") + Tx(135, 140, "μ", "middle", C.ACC)
+      + Dsh(205, 82, 268, 82) + Dim(262, 82, 262, 150) + Tx(256, 120, "h′", "end");
+    return S(280, 185, s, "Nov: əyri hissələr hamar, üfüqi hissədə sürtünmə var"); }
+  // compressed spring pushes a block onto a smooth ramp
+  function figLaunch() { const s = Ln(18, 98, 18, 150, C.INK, 4) + Gnd(18, 150, 150) + `<path d="M150 150Q240 150 262 46" fill="none" stroke="${C.INK}" stroke-width="2"/>`
+      + zig(18, 139, 68, 139, 7, 5) + Rc(68, 128, 24, 22, C.SOFT) + Tx(80, 144, "m", "middle", C.INK, 11) + Tx(43, 124, "k")
+      + Dsh(96, 104, 96, 150) + Dim(68, 112, 96, 112) + Tx(82, 106, "x") + Dsh(205, 74, 276, 74) + Dim(272, 74, 272, 150) + Tx(266, 118, "h", "end");
+    return S(285, 165, s, "Sıxılmış yay cismi hamar yoxuşa itələyir"); }
+
+  const TRI = [[4, 3, 5], [3, 4, 5], [8, 6, 10], [6, 8, 10], [2, 1.5, 2.5], [1.6, 1.2, 2], [12, 5, 13], [2.4, 1.8, 3], [1.2, 0.9, 1.5], [4, 3, 5]];
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. v–t graph → work of the net force (work–energy theorem)
+    { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+      const m = pick([1, 2, 4, 5, 10]), v0 = rnd(1, 6), vT = v0 + rnd(2, 8), T = pick([2, 4, 5]);
+      const right = m * (vT * vT - v0 * v0) / 2, w = [m * (vT - v0) ** 2 / 2, m * vT * vT / 2, m * (vT * vT - v0 * v0), m * (vT - v0) * vT];
+      if (![right, ...w].every(x => ok2(x, 1))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figVT(v0, vT, T), text: `Kütləsi ${m} kq olan cismin sürətinin zamandan asılılıq qrafiki şəkildədir. 0–${T} s aralığında cismə təsir edən qüvvələrin əvəzləyicisi nə qədər iş görür?`,
+        solution: `Qrafikdən: başlanğıcda v₀ = ${v0} m/s, ${T} s anında v = ${vT} m/s. İş–enerji teoremi: A = mv²/2 − mv₀²/2 = ${m}·(${vT * vT} − ${v0 * v0})/2 = ${F(right)} J. Tələlər: (v − v₀)² yazmaq (${f4(w[0])} J), başlanğıc kinetik enerjini unutmaq (${f4(w[1])} J), 1/2-ni itirmək (${f4(w[2])} J), yolu s = v·t ilə hesablamaq (${f4(w[3])} J).` });
+    }) },
+    // 2. free fall: potential energy t seconds after the release
+    { tip: "qapali", birlesik: "fiz-serbest-dusme", gen: () => again(() => {
+      const m = pick([0.2, 0.5, 1, 2, 4]), t = pick([1.5, 2.5, 3]), H = pick([50, 60, 80, 100, 120]), d = 5 * t * t;
+      if (H <= 10 * t * t) return null;
+      const right = m * g * (H - d), w = [m * g * d, m * g * H, m * g * (H - 10 * t), m * g * (H - 10 * t * t)];
+      if (![right, ...w].every(x => ok2(x, 2))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figFall(H, t), text: `Kütləsi ${F(m)} kq olan kiçik kürəcik ${H} m hündürlükdən başlanğıc sürətsiz buraxılır. Hava müqaviməti nəzərə alınmır, g = 10 m/s². Düşməyə başladıqdan ${F(t)} s sonra kürəciyin yerə nəzərən potensial enerjisi nə qədərdir?`,
+        solution: `${F(t)} s-də düşdüyü yol: d = gt²/2 = 5·${F(t * t)} = ${F(d)} m. Yerdən hündürlük h = ${H} − ${F(d)} = ${F(H - d)} m. Ep = mgh = ${F(m)}·10·${F(H - d)} = ${F(right)} J. Tələlər: mg·d — bu, həmin andakı kinetik enerjidir (${f4(w[0])} J); hündürlüyü dəyişməmiş saymaq (${f4(w[1])} J); sürətin qiymətini (v = gt) yol kimi götürmək (${f4(w[2])} J); d = gt² yazmaq, 1/2-ni itirmək (${f4(w[3])} J).` });
+    }) },
+    // 3. cubes side by side → one column: minimal work
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([3, 4, 5, 6]), a = pick([5, 10, 20, 30]), m = pick([1, 2, 3, 4, 5]), mga = m * g * a / 100;
+      const right = mga * n * (n - 1) / 2, w = [mga * n * n / 2, mga * (n - 1), mga * n * (n + 1) / 2, mga * n * n];
+      if (![right, ...w].every(x => ok2(x, 2))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figBricks(n), text: `Yerdə yan-yana ${n} eyni kub qutu durur (şəkil). Hər qutunun kütləsi ${m} kq, tilinin uzunluğu ${a} sm-dir. Qutuları bir-birinin üstünə qoyub sütun düzəldirlər. Görülən minimal iş nə qədərdir? (g = 10 m/s²)`,
+        solution: `a = ${F(a / 100)} m. Altdakı qutu yerində qalır, qalanlar a, 2a, …, ${n - 1}a qədər qalxır: cəmi ${n * (n - 1) / 2}a = ${F(n * (n - 1) / 2 * a / 100)} m. A = mg·${F(n * (n - 1) / 2 * a / 100)} = ${F(right)} J. (Başqa yol: Ep-lərin fərqi, kütlə mərkəzi əvvəl a/2-də, sonra na/2-də.) Tələlər: başlanğıcda Ep = 0 saymaq (${f4(w[0])} J), hər qutunu yalnız bir a qaldırmaq (${f4(w[1])} J), altdakını da qaldırılmış saymaq (${f4(w[2])} J), sütunun tam hündürlüyünü götürmək (${f4(w[3])} J).` });
+    }) },
+    // 4. chain hanging from a table: work to pull it up
+    { tip: "qapali", gen: () => again(() => {
+      const L = pick([1, 1.2, 1.5, 2, 2.4, 3]), M = pick([1, 2, 3, 4, 6]), k = pick([2, 3, 4, 5]), right = M * g * L / (2 * k * k);
+      const w = [M * g * L / k, M / k * g * L / k, M * g * L / (2 * k), right / 10];
+      if (![right, ...w].every(x => ok2(x, 3))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figChain(k), text: `Uzunluğu L = ${F(L)} m, kütləsi ${M} kq olan bircins nazik zəncir hamar stolun üstündədir; onun 1/${k} hissəsi stolun kənarından şaquli sallanır (şəkil). Zənciri tamamilə stolun üstünə çəkmək üçün minimal iş nə qədərdir? (g = 10 m/s²)`,
+        solution: `Sallanan hissənin kütləsi ${M}/${k} = ${f4(M / k)} kq, uzunluğu ${F(L)}/${k} = ${f4(L / k)} m. Onun kütlə mərkəzi stoldan ${f4(L / k / 2)} m aşağıdadır və stolun səviyyəsinə qalxır; stoldakı hissənin Ep-si dəyişmir. A = ${f4(M / k)}·10·${f4(L / k / 2)} = ${F(right)} J. Tələlər: bütün zənciri L/${k} qaldırmaq (${f4(w[0])} J), mərkəz əvəzinə sallanan hissənin tam uzunluğunu götürmək (${f4(w[1])} J), bütün zənciri L/${2 * k} qaldırmaq (${f4(w[2])} J), g-ni unutmaq (${f4(w[3])} J).` });
+    }) },
+    // 5. spring: k from a hanging load (Hooke), then the work to stretch it further
+    { tip: "qapali", birlesik: "fiz-huk", gen: () => again(() => {
+      const m = pick([0.2, 0.4, 0.5, 1, 2]), x0 = pick([1, 2, 4, 5, 8, 10]), k = 100 * m * g / x0, x1 = rnd(2, 6), x2 = x1 + rnd(2, 8);
+      if (!nice(k, 0)) return null;
+      const a1 = x1 / 100, a2 = x2 / 100, right = k * (a2 * a2 - a1 * a1) / 2, w = [k * (a2 - a1) ** 2 / 2, k * a2 * a2 / 2, k * (a2 * a2 - a1 * a1), k * a2 * (a2 - a1)];
+      if (![right, ...w].every(x => ok2(x, 3))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figSpring(), text: `Yaya asılmış ${F(m)} kq kütləli yük tarazlıqda yayı x₀ = ${x0} sm uzadır (şəkil). Sonra yükü götürürlər və yayı ${x1} sm uzanmış vəziyyətdən ${x2} sm uzanmış vəziyyətə gətirirlər. Bunun üçün görülən minimal iş nə qədərdir? (Yay idealdır, g = 10 m/s².)`,
+        solution: `Huk qanunu: kx₀ = mg → k = ${F(m)}·10/${F(x0 / 100)} = ${k} N/m. A = ΔEp = k(x₂² − x₁²)/2 = ${k}·(${F(a2 * a2)} − ${F(a1 * a1)})/2 = ${F(right)} J. Tələlər: k(x₂ − x₁)²/2 yazmaq (${f4(w[0])} J), yalnız kx₂²/2 götürmək (${f4(w[1])} J), 1/2-ni itirmək (${f4(w[2])} J), son qüvvəni yola vurmaq kx₂·(x₂ − x₁) (${f4(w[3])} J).` });
+    }) },
+    // 6. F–s graph on a rough floor: kinetic energy at the end
+    { tip: "qapali", gen: () => again(() => {
+      const F1 = pick([4, 6, 8, 10, 12, 20]), s1 = pick([2, 3, 4, 6]), s2 = s1 + rnd(2, 6), m = pick([0.5, 1, 2]), mu = pick([0.1, 0.2, 0.25, 0.4, 0.5]);
+      if (s2 > 12 || F1 <= mu * m * g) return null;
+      const area = F1 * s1 + F1 * (s2 - s1) / 2, fr = mu * m * g * s2, right = area - fr, w = [area, F1 * s2 - fr, area + fr, F1 * s2 / 2 - fr];
+      if (![right, ...w].every(x => ok2(x, 2))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figFs(F1, s1, s2), text: `Kütləsi ${F(m)} kq olan cisim kobud üfüqi səthdə dayanır. Ona üfüqi qüvvə təsir etməyə başlayır; qüvvənin yoldan asılılığı qrafikdə verilib. Sürtünmə əmsalı ${F(mu)}, g = 10 m/s². ${s2} m yolun sonunda cismin kinetik enerjisi nə qədərdir?`,
+        solution: `Qüvvənin işi — qrafikin altındakı sahə: ${F1}·${s1} + ${F1}·${s2 - s1}/2 = ${F(area)} J. Sürtünmənin işi: −μmg·s = −${F(mu)}·${F(m)}·10·${s2} = −${F(fr)} J. İş–enerji teoremi: Ek = ${F(area)} − ${F(fr)} = ${F(right)} J. Tələlər: sürtünməni unutmaq (${f4(w[0])} J), sahəni düzbucaqlı kimi hesablamaq (${f4(w[1])} J), sürtünmənin işini toplamaq (${f4(w[2])} J), bütün fiquru üçbucaq saymaq (${f4(w[3])} J).` });
+    }) },
+    // 7. sliding down a rough incline: kinetic energy at the bottom (friction work = μmg·b)
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+      const [b, h, L] = pick(TRI), m = pick([1, 2, 4, 5]), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]), fr = mu * m * g * b;
+      const right = m * g * h - fr, w = [m * g * h, m * g * (h - mu * L), m * g * h + fr, fr];
+      if (![right, ...w].every(x => ok2(x, 2))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figIncline(h, b), text: `Hündürlüyü ${F(h)} m, əsasının uzunluğu ${F(b)} m olan maili müstəvinin başından kütləsi ${m} kq olan kiçik cisim başlanğıc sürətsiz sürüşür (şəkil). Cisimlə müstəvi arasında sürtünmə əmsalı ${F(mu)}, g = 10 m/s². Müstəvinin dibində cismin kinetik enerjisi nə qədərdir?`,
+        solution: `Müstəvinin uzunluğu L = √(h² + b²) = ${F(L)} m, cos α = b/L. Sürtünmə qüvvəsi μmg·cos α, işi −μmg·cos α·L = −μmg·b = −${F(fr)} J. Ek = mgh − μmgb = ${F(m * g * h)} − ${F(fr)} = ${F(right)} J. Tələlər: sürtünməni unutmaq (${f4(w[0])} J), cos α-nı unudub μmg·L yazmaq (${f4(w[1])} J), sürtünmənin işini toplamaq (${f4(w[2])} J), sürtünmə işinin modulunu cavab yazmaq (${f4(w[3])} J).` });
+    }) },
+    // 8. pump: power from the potential energy of the water and the efficiency
+    { tip: "qapali", birlesik: "fiz-is-guc", gen: () => again(() => {
+      const V = pick([1, 2, 3, 5, 6, 10, 12, 15]), h = pick([5, 10, 12, 15, 20, 30]), t = pick([1, 2, 5, 10]), eta = pick([0.5, 0.6, 0.75, 0.8]);
+      const A = 1000 * V * g * h, right = A / (eta * 60 * t) / 1000, w = [A * eta / (60 * t) / 1000, A / (60 * t) / 1000, A / (eta * t) / 1000, A / 1000 / (eta * 60 * t) / 1000];
+      if (![right, ...w].every(x => ok2(x, 3))) return null;
+      return mc(ae(right, w, U_("kW")), { svg: figPump(), text: `Nasos ${V} m³ suyu ${t} dəqiqə ərzində h = ${h} m hündürlükdəki çənə vurur (şəkil). Nasosun faydalı iş əmsalı ${Math.round(eta * 100)} faizdir. Nasosun sərf etdiyi güc nə qədərdir? (Suyun sıxlığı 1000 kq/m³, g = 10 m/s²; suyun kinetik enerjisini nəzərə alma.)`,
+        solution: `Suyun kütləsi m = ρV = ${1000 * V} kq. Faydalı iş A = mgh = ${1000 * V}·10·${h} = ${F(A)} J. t = ${t}·60 = ${60 * t} s, faydalı güc ${F(A)}/${60 * t} = ${f4(A / (60 * t))} W. FİƏ: P_sərf = P_faydalı/η = ${f4(A / (60 * t))}/${F(eta)} = ${f4(right * 1000)} W = ${F(right)} kW. Tələlər: FİƏ-yə bölmək əvəzinə vurmaq (${f4(w[0])} kW), FİƏ-ni unutmaq (${f4(w[1])} kW), dəqiqəni saniyəyə çevirməmək (${f4(w[2])} kW), kütlə əvəzinə həcmi götürmək (${f4(w[3])} kW).` });
+    }) },
+    // 9. smooth track with a rough horizontal strip: the height on the other side
+    { tip: "qapali", gen: () => again(() => {
+      const h = pick([0.5, 0.8, 1, 1.2, 1.5, 2, 2.5, 3]), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4]), s = pick([0.5, 1, 1.5, 2, 2.5, 3, 4]), m = pick([0.1, 0.2, 0.5]);
+      const right = h - mu * s, w = [h, mu * s, h * (1 - mu), h - 2 * mu * s];
+      if (![right, ...w].every(x => ok2(x, 3))) return null;
+      return mc(ae(right, w, U_("m")), { svg: figTrack(), text: `Kütləsi ${F(m)} kq olan kiçik cisim novun sol hissəsində h = ${F(h)} m hündürlükdən başlanğıc sürətsiz buraxılır (şəkil). Novun üfüqi hissəsinin uzunluğu s = ${F(s)} m, orada sürtünmə əmsalı ${F(mu)}; əyri hissələr hamardır. Cisim novun sağ hissəsində ən çox hansı hündürlüyə qalxar?`,
+        solution: `Başlanğıcda və ən yüksək nöqtədə cisim dayanır (Ek = 0). Ağırlığın işi mg(h − h′), sürtünmənin işi −μmg·s: mg(h − h′) − μmgs = 0 → h′ = h − μs = ${F(h)} − ${f4(mu * s)} = ${F(right)} m. Kütlə ixtisar olur. Tələlər: sürtünməni unutmaq (${f4(w[0])} m), itən hissəni cavab yazmaq (μs = ${f4(w[1])} m), hündürlüyün μ hissəsi itir saymaq (${f4(w[2])} m), kobud hissəni iki dəfə saymaq (${f4(w[3])} m).` });
+    }) },
+    // 10. compressed spring launches a block up a smooth ramp
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([100, 200, 250, 400, 500, 800, 1000]), xs = pick([2, 4, 5, 6, 8, 10]), m = pick([0.05, 0.1, 0.2, 0.25, 0.4, 0.5]), x = xs / 100;
+      const right = k * x * x / (2 * m * g), w = [k * x * x / (m * g), k * x / (m * g), k * x * x / (2 * m), k * x / (2 * m * g)];
+      if (right < 0.05 || right > 5 || ![right, ...w].every(v => ok2(v, 3))) return null;
+      return mc(ae(right, w, U_("m")), { svg: figLaunch(), text: `Hamar üfüqi səthdə sərtliyi ${k} N/m olan yay ${xs} sm sıxılıb; ona kütləsi ${F(m)} kq olan kiçik cisim söykənib (şəkil). Yayı buraxırlar, cisim hamar yoxuşa qalxır. Cisim hansı hündürlüyə qalxar? (Yay idealdır, sürtünmə yoxdur, g = 10 m/s².)`,
+        solution: `x = ${F(x)} m. Yayın enerjisi kx²/2 = ${k}·${F(x * x)}/2 = ${f4(k * x * x / 2)} J. Ən yüksək nöqtədə cisim dayanır, bu enerjinin hamısı mgh-a keçir: h = kx²/(2mg) = ${f4(k * x * x / 2)}/(${F(m)}·10) = ${F(right)} m. Tələlər: 1/2-ni itirmək (${f4(w[0])} m), yayın enerjisini kx yazmaq (${f4(w[1])} m), g-ni unutmaq (${f4(w[2])} m), x-i kvadrata yüksəltməmək (${f4(w[3])} m).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -260,7 +437,7 @@
     game = Oyun.mount({
       key: "fiz-enerji", title: "Kinetik və potensial enerji", fenn: "fizika", link: "dersler/fiz-enerji.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: J, W, m, m/s, N). Onluq kəsr vergül və ya nöqtə ilə: 0,25. Mənfi cavabda − işarəsini yaz. g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["ek", "ek", "ep", "ep", "is", "teorem", "teorem", "surtunme", "surtunme", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

@@ -74,14 +74,15 @@ async function load(path) {
   if (!r.ok) throw new Error(path + " " + r.status);
   const j = await r.json();
   // topics whose final test was passed (on any device, via the cloud) are closed on every page
-  if (path.endsWith("movzular.json")) { const bag = passedHere(); for (const k in j) j[k].forEach(t => { if (t.ders && bag.includes(t.ders)) t.status = "bag"; }); }
+  // closed by the old final test only = "qis" (partly closed) until the exam-format test is passed (father, 15 Nov 2026)
+  if (path.endsWith("movzular.json")) { const bag = passedHere(); for (const k in j) j[k].forEach(t => { if (t.ders && t.imt) IMT_LINKS.add(t.ders); }); for (const k in j) j[k].forEach(t => { if (t.ders && bag.includes(t.ders)) t.status = fullDone(t.ders) ? "bag" : "qis"; }); }
   // statuses and the open-in-order rule are Fikrət's: other viewers see every topic not started and every lesson open
   // (acig), with the same "close these first" note on top
   if (path.endsWith("movzular.json") && !signedHere()) for (const k in j) j[k].forEach(t => { if (t.status === "isl") t.status = "yox"; t.acig = true; });
   return j;
 }
 // statuses are shown by icon and colour; the word stays only as a tooltip and for screen readers
-const ST = { yox: ["Başlanmayıb", "st-yox", "CircleDashed"], isl: ["İşlənir", "st-isl", "Clock"], bag: ["Bağlanıb", "st-bag", "CircleCheck"] };
+const ST = { yox: ["Başlanmayıb", "st-yox", "CircleDashed"], isl: ["İşlənir", "st-isl", "Clock"], qis: ["Qismən bağlanıb — imtahan formatlı sınaq qalıb", "st-qis", "CircleHalf"], bag: ["Bağlanıb", "st-bag", "CircleCheck"] };
 const stMark = ([txt, cls, ic]) => el("span", { class: "sti " + cls, title: txt, "aria-label": txt, role: "img" }, icon(ic));
 const stPill = s => stMark(ST[s] || ST.yox);
 const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
@@ -91,6 +92,13 @@ const fmtH = h => String(h).replace(".", ",");
 
 // topics whose final test was passed on this device count as closed (until the data file catches up)
 const passedHere = () => { try { return JSON.parse(localStorage.getItem("skilly-bag") || "[]"); } catch (e) { return []; } };
+// ... and those whose exam-format test was passed too: only these are fully closed (jurnal.js deriveBag)
+const fullHere = () => { try { return JSON.parse(localStorage.getItem("skilly-tam") || "[]"); } catch (e) { return []; } };
+// a topic counts as partly closed only once its exam-format part is on the site ("imt": true in movzular.json;
+// father, 16 Nov 2026); a closed topic without it stays closed
+const IMT_LINKS = new Set();
+const fullDone = link => !IMT_LINKS.has(link) || fullHere().includes(link);
+const statusOf = t => t.ders && passedHere().includes(t.ders) ? (fullDone(t.ders) ? "bag" : "qis") : t.status;
 const LIST_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
 function topicIndex(m) { const ix = {}; for (const k in m) m[k].forEach(t => { ix[k + ":" + t.ad] = { ...t, list: k }; }); return ix; }
 const isClosed = t => t && (t.status === "bag" || (t.ders && passedHere().includes(t.ders)));
@@ -106,8 +114,7 @@ function openChain(t, ix) {
 }
 const weekLabel = iso => { const d = new Date(iso + "T12:00"); return d.getDate() + " " + AY[d.getMonth()].slice(0, 3); };
 function allTopics(m) {
-  const bag = passedHere();
-  return Object.entries(m).flatMap(([subj, rows]) => rows.map(r => ({ ...r, subj, kat: SUBJ_KAT[subj], status: r.ders && bag.includes(r.ders) ? "bag" : r.status })));
+  return Object.entries(m).flatMap(([subj, rows]) => rows.map(r => ({ ...r, subj, kat: SUBJ_KAT[subj], status: statusOf(r) })));
 }
 
 /* ---------- shell ---------- */
@@ -142,13 +149,13 @@ async function shell(content) {
   const [m, w0] = await Promise.all([load("data/movzular.json"), window.Skilly ? Skilly.gizli("hefte") : null]).catch(() => [null, null]);
   const w = pickWeek(w0);
   const topics = m ? allTopics(m) : [];
-  const closed = topics.filter(t => t.status === "bag").length, total = topics.length || 1;
+  const closed = topics.filter(t => t.status === "bag").length, part = topics.filter(t => t.status === "qis").length, total = topics.length || 1;
   const pct = Math.round(closed / total * 100);
   const C = 2 * Math.PI * 100;
   const ring = el("div", { class: "ring" });
   ring.innerHTML = `<svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="100" fill="none" style="stroke:var(--rail-2)" stroke-width="2"/>
     <circle cx="110" cy="110" r="100" fill="none" style="stroke:var(--rail-ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>`;
-  ring.append(el("div", { class: "v" }, el("div", { class: "big" }, String(closed)), el("div", { class: "lbl" }, `${total} mövzudan bağlanıb`, el("br"), `${total - closed} qalıb · ${pct}%`)));
+  ring.append(el("div", { class: "v" }, el("div", { class: "big" }, String(closed)), el("div", { class: "lbl" }, `${total} mövzudan bağlanıb`, el("br"), part ? `qismən ${part} · ` : "", `${total - closed - part} qalıb · ${pct}%`)));
   requestAnimationFrame(() => requestAnimationFrame(() => { ring.querySelectorAll("circle")[1].style.strokeDashoffset = C * (1 - Math.max(pct, 1) / 100); }));
   const term = await termP;
   const exam = term.find(t => t.tarix >= isoToday() && t.ad.startsWith("Buraxılış"));
@@ -256,11 +263,11 @@ async function pageIndex() {
     // other items (FRİTL, cüdo, esse) are not tracked here, so a past one only says its time is over
     if (window.Skilly) await Skilly.ready;
     const left = window.Skilly ? Skilly.dueReviews().reduce((n, r) => n + r.n, 0) + (Skilly.sehvOn ? Skilly.all().filter(e => e.status !== "baglandi").length : 0) : 0;
-    const doneOf = t => /^dersler\//.test(t.link || "") ? passedHere().includes(t.link) : t.link === "temrar.html" ? left === 0 : null;
+    const doneOf = t => /^dersler\//.test(t.link || "") ? (passedHere().includes(t.link) ? (fullDone(t.link) ? true : "qis") : false) : t.link === "temrar.html" ? left === 0 : null;
     day.isler.forEach(t => {
       const [from, to] = span(t.saat), k = KAT[t.kat] || KAT.misc, done = doneOf(t);
       const state = !isToday ? "" : now >= to ? "past" : now >= from ? "now" : (!nextMarked ? (nextMarked = true, "next") : "");
-      const note = done ? (t.link === "temrar.html" ? "edilib ✓" : "bağlanıb ✓")
+      const note = done === "qis" ? "qismən bağlanıb — imtahan formatlı sınaq qalıb" : done ? (t.link === "temrar.html" ? "edilib ✓" : "bağlanıb ✓")
         : state === "past" ? (done === false ? "vaxtı keçdi — " + (t.link === "temrar.html" ? "edilməyib" : "bağlanmayıb") : "vaxtı keçdi")
         : state === "now" ? "indi" : state === "next" ? "növbəti" : k.ad;
       const row = el(t.link ? "a" : "div", { class: "ag " + state + (state === "past" && done === false ? " miss" : ""), ...(t.link ? { href: t.link } : {}) },
@@ -374,7 +381,7 @@ function renderTopics(content, m, key, lead) {
   // no description here: how a topic is passed is explained on every lesson page ("Necə keçmək")
   const rows = m[key], kat = SUBJ_KAT[key];
   const c = s => rows.filter(r => r.status === s).length;
-  content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")} · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
+  content.append(el("p", { class: "lead" }, `${rows.length} mövzu · bağlanıb ${c("bag")}` + (c("qis") ? ` · qismən bağlanıb ${c("qis")}` : "") + ` · işlənir ${c("isl")} · başlanmayıb ${c("yox")}`));
   const inProgress = rows.filter(r => r.status === "isl").map(r => ({ ...r, kat }));
   // cards: topics in progress; if none yet, the next three to start, so every subject page looks the same
   const planned = rows.filter(r => r.status === "yox" && r.novbeti).sort((x, y) => x.novbeti - y.novbeti);
@@ -431,7 +438,7 @@ async function pageFormulas() {
     list.append(el("p", { class: "count" }, (s ? `${f.length} / ${inTab.length} düstur` : `${inTab.length} düstur`) + ` · ${topics.length} mövzu`));
     topics.forEach(mz => { const xs = f.filter(x => x.movzu === mz), t = byPage[xs[0].ders];
       list.append(el("details", { class: "fgrp", ...(s ? { open: "" } : {}) },
-        el("summary", {}, el("span", { class: "fgt" }, mz), el("span", { class: "fgn" }, xs.length + " düstur"), t ? stPill(isClosed(t) ? "bag" : t.status) : null, el("span", { class: "fgc" }, icon("ChevronDown"))),
+        el("summary", {}, el("span", { class: "fgt" }, mz), el("span", { class: "fgn" }, xs.length + " düstur"), t ? stPill(isClosed(t) ? (fullDone(t.ders) ? "bag" : "qis") : t.status) : null, el("span", { class: "fgc" }, icon("ChevronDown"))),
         el("div", { class: "fgrid" }, ...xs.map(card)))); });
     if (!f.length) list.append(el("p", { class: "empty" }, filter === "all" || s ? "Tapılmadı." : "Bu seçimdə mövzu yoxdur."));
   }
@@ -484,6 +491,7 @@ function pickWeek(w) {
   for (const x of all) if (x.gunler[0].tarix <= t) pick = x;
   return { ...pick, butun: all.flatMap(x => x.gunler) };
 }
+const CLOSED_EV = /^(Qismən b|B)ağlandı/;
 const AYLAR = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
 const slot = d => { const x = new Date(d + "T00:00"); while (x.getDay() !== 0 && x.getDay() !== 3) x.setDate(x.getDate() + 1); return iso(x.getFullYear(), x.getMonth(), x.getDate()); };
 const iso = (y, m, d) => y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
@@ -506,15 +514,21 @@ async function pageCalendar() {
     await Skilly.ready;
     const byLink = {}; for (const k in mm) mm[k].forEach(t => { if (t.ders) byLink[t.ders] = { ...t, kat: LIST_KAT[k] }; });
     let res = []; try { res = JSON.parse(localStorage.getItem("skilly-netice") || "[]"); } catch (e) {}
-    const closedOn = {};
-    res.forEach(x => { const m = String(x.id).match(/^(.+)-(test|baglandi)@\d+$/);
-      if (m && x.tarix && (m[2] === "baglandi" || /^keçdi/.test(x.qeyd || ""))) { const l = "dersler/" + m[1] + ".html"; if (!closedOn[l] || x.tarix > closedOn[l]) closedOn[l] = x.tarix; } });
-    for (const l in closedOn) { const t = byLink[l]; if (t && isClosed(t)) add(closedOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "mövzu bağlandı" }); }
+    // closedOn: the old final test (or the topic closing again); fullOn: the exam-format test — only then is it fully closed
+    const closedOn = {}, fullOn = {};
+    res.forEach(x => { const m = String(x.id).match(/^(.+)-(test|baglandi|imtahan)@\d+$/);
+      if (m && x.tarix && (m[2] === "baglandi" || /^keçdi/.test(x.qeyd || ""))) { const l = "dersler/" + m[1] + ".html", o = m[2] === "imtahan" ? fullOn : closedOn; if (!o[l] || x.tarix > o[l]) o[l] = x.tarix; } });
+    const full = t => isClosed(t) && fullDone(t.ders);
+    for (const l in closedOn) { const t = byLink[l]; if (!t || !isClosed(t) || (full(t) && fullOn[l] && fullOn[l] <= closedOn[l])) continue;
+      if (!IMT_LINKS.has(l)) add(closedOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "mövzu bağlandı" });
+      else add(closedOn[l], { kat: t.kat, is: "Qismən bağlandı: " + t.ad, link: l, st: ST.qis, qeyd: full(t) ? "köhnə sınaq; imtahan formatlı sınaq " + t2(fullOn[l] || closedOn[l]) : "köhnə sınaq keçildi — imtahan formatlı sınaq qalıb" }); }
+    for (const l in fullOn) { const t = byLink[l]; if (t && full(t)) add(fullOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "imtahan formatlı sınaq keçildi — mövzu tam bağlandı" }); }
     // a topic counts as started once any of its results exists (entry test, game, test)
     const started = new Set(res.map(x => (String(x.id).match(/^(.+)-[a-z]+@/) || [])[1]).filter(Boolean).map(k => "dersler/" + k + ".html"));
-    for (const k in ev) ev[k].forEach(e => { const t = e.link && byLink[e.link]; if (t && !/^Bağlandı/.test(e.is)) {
-      e.st = ST[isClosed(t) ? "bag" : started.has(t.ders) || t.status === "isl" ? "isl" : "yox"];
-      if (isClosed(t) && closedOn[t.ders]) e.qeyd = (e.saat ? e.saat + " · " : "") + "bağlanıb " + t2(closedOn[t.ders]); } });
+    for (const k in ev) ev[k].forEach(e => { const t = e.link && byLink[e.link]; if (t && !CLOSED_EV.test(e.is)) {
+      e.st = ST[full(t) ? "bag" : isClosed(t) ? "qis" : started.has(t.ders) || t.status === "isl" ? "isl" : "yox"];
+      if (full(t) && (fullOn[t.ders] || closedOn[t.ders])) e.qeyd = (e.saat ? e.saat + " · " : "") + "bağlanıb " + t2(fullOn[t.ders] || closedOn[t.ders]);
+      else if (isClosed(t) && closedOn[t.ders]) e.qeyd = (e.saat ? e.saat + " · " : "") + "qismən bağlanıb " + t2(closedOn[t.ders]); } });
     // checks are done in the Wednesday and Sunday review windows (Tuesday and Friday are FRİTL days), at most CAP questions each (as on the Təkrar page):
     // a waiting one goes to the first window on or after its date that still has room, a done one to the day it was
     // done, a missed one stays on the window it was due in
@@ -537,9 +551,10 @@ async function pageCalendar() {
   let y = +today.slice(0, 4), mo = +today.slice(5, 7) - 1, sel = today;
   // day counter: closed/done, missed, waiting. Only items with a status count (exam dates and FRİTL/cüdo-type items do not);
   // a week's new topic is missed only once its week is over
-  const stat = (e, k) => !e.st || e.son ? null : e.st[1] === "st-bag" ? "ok" : e.st[1] === "st-err" ? "no" : k < today ? "no" : "wait";
-  const counter = (list, k) => { const c = { ok: 0, no: 0, wait: 0 }; list.forEach(e => { const s = stat(e, k); if (s) c[s]++; });
-    const parts = [["ok", "✓", "bağlanıb"], ["no", "✗", "edilməyib"], ["wait", "○", "gözləyir"]].filter(([s]) => c[s]);
+  // a partly closed topic (old test passed, exam-format test not yet) counts on its own: ◐
+  const stat = (e, k) => !e.st || e.son ? null : e.st[1] === "st-bag" ? "ok" : e.st[1] === "st-qis" ? "qis" : e.st[1] === "st-err" ? "no" : k < today ? "no" : "wait";
+  const counter = (list, k) => { const c = { ok: 0, qis: 0, no: 0, wait: 0 }; list.forEach(e => { const s = stat(e, k); if (s) c[s]++; });
+    const parts = [["ok", "✓", "bağlanıb"], ["qis", "◐", "qismən bağlanıb"], ["no", "✗", "edilməyib"], ["wait", "○", "gözləyir"]].filter(([s]) => c[s]);
     return parts.length ? el("span", { class: "cnt", "aria-label": parts.map(([s, , w]) => c[s] + " " + w).join(", ") }, ...parts.map(([s, m]) => el("b", { class: s }, m + c[s]))) : null; };
   const title = el("h2", {});
   const prev = el("button", { class: "nav-btn", type: "button", "aria-label": "Əvvəlki ay" }, "←");
@@ -570,7 +585,7 @@ async function pageCalendar() {
     day.replaceChildren(el("div", { class: "head" }, el("h2", {}, (+dd) + " " + AYLAR[+mm - 1]), sel === today ? el("span", { class: "more" }, "bu gün") : null),
       el("div", { class: "list" }, ...(list.length ? list.map(e => { const k = KAT[e.kat] || KAT.misc; return el(e.link ? "a" : "div", { class: "row", ...(e.link ? { href: e.link, style: "text-decoration:none" } : {}) },
         el("span", { class: "ic " + k.cls }, icon(iconFor(e.kat, e.is), k.ink)),
-        el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, [e.saat || e.qeyd || k.ad, e.st && e.qeyd !== e.st[0] && !/^Bağlandı/.test(e.is) ? e.st[0] : ""].filter(Boolean).join(" · "))),
+        el("div", { class: "tx" }, el("b", {}, e.is), el("span", {}, [e.saat || e.qeyd || k.ad, e.st && e.qeyd !== e.st[0] && !CLOSED_EV.test(e.is) ? e.st[0] : ""].filter(Boolean).join(" · "))),
         e.son ? el("span", { class: "badge " + k.cls }, "son tarix") : e.st ? stMark(e.st) : null); })
         : [el("p", { class: "empty" }, sel < today ? "Bu gün üçün qeyd yoxdur." : "Plan yoxdur — həftənin cədvəli hər bazar yenilənir.")])));
   }

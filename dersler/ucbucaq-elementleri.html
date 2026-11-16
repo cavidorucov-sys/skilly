@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Hündürlük, bucaqlar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizlik</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tərəf və bucaq</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -84,7 +85,7 @@ mütənasib hissələrə bölür:
   BD : DC = 6 : 9 = 2 : 3, BC = 10 → bir hissə 2
   BD = 4, DC = 6
   Cavab: 4</div>
-      <div class="ex">Nümunə 3.  AM — median. P(ABM) = 30, P(ACM) = 26, AB = 12. AC = ?
+      <div class="ex">Nümunə 3.  AM — median. P(ABM) = 25, P(ACM) = 21, AB = 12. AC = ?
   BM = MC, AM ortaq → P(ABM) − P(ACM) = AB − AC
   12 − AC = 4  →  AC = 8
   Cavab: 8</div>
@@ -273,6 +274,112 @@ Kor və ya düz bucağın qarşısında — ən böyük tərəf</div></div>
         <li>AB = 4, BC = 6, AC = 5. Ən kiçik bucaq? <span class="ans">Ən kiçik tərəf AB, qarşısında ∠C.</span></li>
         <li>∠A = 30°, ∠B = 100°. Ən böyük tərəf? <span class="ans">∠B ən böyükdür, qarşısında AC.</span></li>
         <li>∠A = ∠B = 70°. Hansı tərəflər bərabərdir? <span class="ans">Bərabər bucaqların qarşısındakılar: BC = AC.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: üçbucağın elementləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Median, tənbölən, hündürlük və üçbucaq bərabərsizliyi buraxılış imtahanında hər il var və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: tənböləni median sanmaq, 2 : 1-i tərsinə götürmək, 2-yə bölməyi və ya kökü unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: <span class="m">°</span> işarəsi, vahid yazılmır; onluq kəsr vergüllə (19,2).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Yalnız cavab yazılsa, bal az olur və ya heç olmur: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Bu mövzuda imtahan tez-tez <b>düzbucaqlı üçbucaqda hipotenuza çəkilən hündürlüyü</b> soruşur. Onun üçün üç bərabərlik lazımdır (C — düz bucaq, CH — hündürlük):</p>
+      <div class="fm">CH² = AH · HB
+AC² = AH · AB,   BC² = HB · AB
+CH = AC · BC / AB   (sahədən)</div>
+      <p>Haradan gəlir: <span class="m">∠ACH = 90° − ∠A = ∠B</span>, ona görə ACH, CBH və ABC üçbucaqları oxşardır. Oxşar üçbucaqlarda uyğun tərəflərin nisbəti bərabərdir: <span class="m">AH/CH = CH/HB</span>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 200" role="img" aria-label="ABC üçbucağı, AB = 8, AC = 12, BC = 15; A-dan BC-yə AD tənböləni">
+          <polygon points="107.3,68 30,170 270,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="107.3" y1="68" x2="126" y2="170" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M95.2 83.9A20 20 0 0 0 110.9 87.7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M111.6 91.6A24 24 0 0 0 127.6 80.7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="100" y="58" class="lbl">A</text><text x="14" y="184" class="lbl">B</text><text x="274" y="184" class="lbl">C</text><text x="131" y="163" class="lbl">D</text>
+          <text x="54" y="114" class="lbl">8</text><text x="196" y="112" class="lbl">12</text><text x="150" y="196" class="lbl" text-anchor="middle">BC = 15</text>
+        </svg></div>
+        <p>ABC üçbucağında AB = 8, AC = 12, BC = 15. AD — A bucağının tənbölənidir (D ∈ BC). BD parçasının uzunluğunu tapın.</p>
+        <ol class="imt-opts"><li>7,5</li><li>6</li><li>10</li><li>3</li><li>9</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Tənbölənin xassəsi: BD : DC = AB : AC = 8 : 12 = 2 : 3
+BC = 15 → 2 + 3 = 5 hissə, bir hissə 15 : 5 = 3
+BD = 2 · 3 = 6
+Cavab: B) 6</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 7,5</b> — tənböləni median sanmaq: <span class="m">15 : 2</span>. Tənbölən <b>bucağı</b> yarıya bölür, qarşı tərəfi yox.</li>
+        <li><b>C) 10</b> — nisbəti bütün BC-yə tətbiq etmək: <span class="m">BD : BC = 8 : 12</span>, <span class="m">15 · 2/3</span>. Nisbət BD ilə DC arasındadır.</li>
+        <li><b>D) 3</b> — bir hissəni cavab yazmaq, 2-yə vurmağı unutmaq.</li>
+        <li><b>E) 9</b> — tərəfləri qarışdırmaq: bu DC-dir. B-yə yaxın parça (BD) B-dən çıxan tərəfə (AB) uyğundur.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 260 205" role="img" aria-label="ABC üçbucağı, AD tənböləni, BD = 4, DC = 6">
+          <polygon points="51.3,31.2 70,180 220,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="51.3" y1="31.2" x2="130" y2="180" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M54.1 53.0A22 22 0 0 0 61.6 50.6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M63.5 54.2A26 26 0 0 0 70.8 48.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="38" y="26" class="lbl">A</text><text x="56" y="197" class="lbl">B</text><text x="224" y="197" class="lbl">C</text><text x="125" y="198" class="lbl">D</text>
+          <text x="96" y="197" class="lbl">4</text><text x="172" y="197" class="lbl">6</text><text x="146" y="100" class="lbl">?</text>
+        </svg></div>
+        <p>ABC üçbucağında AD — A bucağının tənbölənidir (D ∈ BC), BD = 4, DC = 6. Üçbucağın perimetri 35-dir. AC tərəfinin uzunluğunu tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">AB : AC = BD : DC = 4 : 6 = 2 : 3
+BC = 4 + 6 = 10,  AB + AC = 35 − 10 = 25
+2 + 3 = 5 hissə, bir hissə 25 : 5 = 5
+AB = 10,  AC = 15   (yoxla: 10 + 15 + 10 = 35 ✓)
+Cavab: 15</div>
+      <p>Kodlaşdırmada yalnız <b>15</b> yazılır. Tələlər: perimetrdən BC-ni çıxmağı unutmaq (<span class="m">35 : 5 · 3 = 21</span>), nisbəti tərs götürmək (AB-ni tapmaq — 10).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 200" role="img" aria-label="Düzbucaqlı ABC üçbucağı, C düz bucaq, CH hündürlüyü hipotenuzu AH = 3 və HB = 12 hissələrinə bölür">
+          <polygon points="30,170 270,170 78,74" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="78" y1="74" x2="78" y2="170" stroke="var(--accent)" stroke-width="2"/>
+          <path d="M78 160L88 160L88 170" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <path d="M74 82L82 86L86 78" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+          <text x="16" y="184" class="lbl">A</text><text x="274" y="184" class="lbl">B</text><text x="72" y="64" class="lbl">C</text><text x="73" y="190" class="lbl">H</text>
+          <text x="48" y="190" class="lbl">3</text><text x="168" y="190" class="lbl">12</text><text x="128" y="156" class="lbl">S = ?</text>
+        </svg></div>
+        <p>ABC üçbucağında ∠C = 90°. C təpəsindən hipotenuza CH hündürlüyü çəkilib, AH = 3 sm, HB = 12 sm. ABC üçbucağının sahəsini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) ∠ACH = 90° − ∠A = ∠B (ACH üçbucağında ∠H = 90°).
+   Deməli ACH və CBH üçbucaqları oxşardır (iki bucağa görə).
+2) Oxşarlıqdan: AH/CH = CH/HB  ⇒  CH² = AH · HB = 3 · 12 = 36.
+3) CH = √36 = 6 sm.
+4) AB = 3 + 12 = 15 sm,  S = AB · CH : 2 = 15 · 6 : 2 = 45.
+Cavab: 45 sm².</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>oxşarlığın əsaslandırılması</b> (1-ci addım), <b>CH² = AH · HB və CH</b> (2–3-cü addımlar), <b>sahə və cavab</b>. Yalnız "CH = 6" və ya "45" yazmaq bu balların çoxunu itirir. 15 noyabr sınağında belə sual var idi: AH = 4, HB = 9, CH = ? Cavab <span class="m">√(4 · 9) = 6</span> — amma bal yalnız 1–2-ci addımlar yazılanda tam verilir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Tənböləni median sanmaq.</b> Tənbölən qarşı tərəfi həmişə yarıya bölmür — qonşu tərəflərə mütənasib bölür: <span class="m">BD : DC = AB : AC</span>.</li>
+        <li><b>Parçaları qarışdırmaq.</b> BD (B-yə yaxın) AB-yə uyğundur. Cavabı tapanda soruşulan parçanı yenidən oxu: BD, yoxsa DC?</li>
+        <li><b>2 : 1-i tərsinə götürmək.</b> Medianın böyük hissəsi (2) təpəyə yaxındır: <span class="m">AO = 2/3 · AM</span>.</li>
+        <li><b>Bucaq düsturlarını qarışdırmaq.</b> A və B tənbölənləri O-da kəsişirsə, <span class="m">∠AOB = 90° + ∠C/2</span>; itibucaqlı üçbucaqda AH və BK hündürlükləri O-da kəsişirsə, <span class="m">∠AOB = 180° − ∠C</span>; hündürlük ilə tənbölən arasında <span class="m">|∠B − ∠C| : 2</span> — 2-yə bölməyi unutma.</li>
+        <li><b>Hipotenuza çəkilən hündürlük</b> ümumi halda hipotenuzun yarısı deyil (yarısı — medianın uzunluğudur): <span class="m">CH = √(AH · HB)</span>. Kökü almağı unutma.</li>
+        <li><b>Üçbucaq bərabərsizliyi ciddidir:</b> <span class="m">|a − b| &lt; c &lt; a + b</span> — sərhədlər sayılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">tənbölən:   BD : DC = AB : AC
+medianlar:  AO : OM = 2 : 1 (təpədən)
+hündürlük + tənbölən (A-dan):  |∠B − ∠C| : 2
+düzbucaqlıda:  CH² = AH · HB,  AC² = AH · AB</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>AD — tənbölən, AB = 6, AC = 10, BC = 12. DC = ? <span class="ans">BD : DC = 6 : 10 = 3 : 5, bir hissə 12 : 8 = 1,5. DC = 5 · 1,5 = 7,5.</span></li>
+        <li>∠C = 90°, CH — hündürlük, AH = 2, HB = 8. CH = ? <span class="ans">CH² = 2 · 8 = 16, CH = 4 (5 yox — bu, hipotenuzun yarısıdır).</span></li>
+        <li>∠B = 72°, ∠C = 40°. A-dan çəkilmiş hündürlük ilə tənbölən arasındakı bucaq? <span class="ans">(72° − 40°) : 2 = 16°.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

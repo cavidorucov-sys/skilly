@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tərs teorem</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Diaqonal, hündürlük</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Proyeksiyalar</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -339,6 +340,120 @@ Hamısı Pifaqordan çıxır.</div></div>
         <li>AH = 2, HB = 8. CH? <span class="ans">√16 = 4.</span></li>
         <li>AB = 20, AH = 5. AC? <span class="ans">√(20 · 5) = √100 = 10.</span></li>
         <li>Katetlər 15 və 20. Hipotenuza çəkilmiş hündürlük? <span class="ans">AB = 25, CH = 15 · 20 / 25 = 12.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: Pifaqor teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Pifaqor teoremi buraxılış imtahanında demək olar ki, hər il var. Çox vaxt adı çəkilmir: sual romb, trapesiya, çevrənin vətəri, koordinat müstəvisi haqqında olur, Pifaqor isə həllin içindədir. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: diaqonalı yarıya bölməmək, katet üçün kvadratları toplamaq, kök almamaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: vahid yazılmır; onluq kəsr vergüllə (4,8).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmasa, düz cavab da bal gətirmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>düz bucaq haradadır və hipotenuz hansı tərəfdir?</b> Fiqurda düzbucaqlı üçbucaq çox vaxt özün çəkdiyin hündürlük və ya diaqonalla yaranır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Rombun diaqonalları: 16 və 12. Rombun perimetrini tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 190" role="img" aria-label="ABCD rombu, AC və BD diaqonalları O nöqtəsində perpendikulyar kəsişir">
+            <polygon points="54,95 150,23 246,95 150,167" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="54" y1="95" x2="246" y2="95" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="150" y1="23" x2="150" y2="167" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <path d="M150 85H160V95" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <line x1="54" y1="95" x2="150" y2="23" stroke="var(--vec)" stroke-width="3"/>
+            <text x="38" y="100" class="lbl">A</text><text x="144" y="16" class="lbl">B</text><text x="252" y="100" class="lbl">C</text><text x="144" y="184" class="lbl">D</text><text x="134" y="112" class="lbl">O</text>
+            <text x="98" y="110" class="lbl" style="font-size:12px">8</text><text x="154" y="62" class="lbl" style="font-size:12px">6</text><text x="88" y="50" class="lbl">?</text>
+          </svg>
+        </div>
+        <ol class="imt-opts"><li>56</li><li>40</li><li>96</li><li>10</li><li>80</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Rombun diaqonalları kəsişmə nöqtəsində yarıya bölünür
+və perpendikulyardır: AO = 16 : 2 = 8, BO = 12 : 2 = 6.
+AOB düzbucaqlı üçbucaqdır: AB² = 8² + 6² = 100, AB = 10.
+P = 4 · 10 = 40
+Cavab: B) 40</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 56</b> — yarımdiaqonalları toplamaq: tərəf <span class="m">8 + 6 = 14</span>, <span class="m">4 · 14</span>. Tərəf hipotenuzdur, katetlərin cəmi deyil.</li>
+        <li><b>C) 96</b> — perimetr əvəzinə sahəni tapmaq: <span class="m">16 · 12 : 2</span>.</li>
+        <li><b>D) 10</b> — tərəfi tapıb dayanmaq: sual perimetri soruşur.</li>
+        <li><b>E) 80</b> — diaqonalları yarıya bölməmək: <span class="m">√(16² + 12²) = 20</span>, <span class="m">4 · 20</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>ABC üçbucağında <span class="m">∠C = 90°</span>, <span class="m">AC = 12</span>, <span class="m">BC = 9</span>. C təpəsindən hipotenuza çəkilmiş CH hündürlüyünü tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 260 180" role="img" aria-label="ABC düzbucaqlı üçbucağı, C düz bucaq, CH hipotenuza çəkilmiş hündürlük">
+            <polygon points="40,160 220,160 40,25" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="40" y1="160" x2="104.8" y2="73.6" stroke="var(--vec)" stroke-width="2.5"/>
+            <path d="M40 148H52V160" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <path d="M98.4 68.8L93.6 75.2L100 80" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <text x="26" y="176" class="lbl">C</text><text x="224" y="176" class="lbl">A</text><text x="26" y="22" class="lbl">B</text><text x="108" y="66" class="lbl">H</text>
+            <text x="124" y="176" class="lbl" style="font-size:12px">12</text><text x="22" y="96" class="lbl" style="font-size:12px">9</text><text x="60" y="122" class="lbl" style="font-size:12px">?</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">AB² = 12² + 9² = 144 + 81 = 225, AB = 15
+Sahəni iki cür yaz: AC · BC / 2 = AB · CH / 2
+CH = 12 · 9 : 15 = 108 : 15 = 7,2
+Cavab: 7,2</div>
+      <p>Kodlaşdırmada yalnız <b>7,2</b> yazılır — vahid yox. Tələ: <span class="m">CH</span>-ni <span class="m">√(12 · 9)</span> kimi tapmaq — <span class="m">CH² = AH · HB</span> düsturunda hipotenuzun <b>parçaları</b> vurulur, katetlər yox. Başqa tələ: AB-ni <span class="m">12 + 9 = 21</span> götürmək.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>ABC üçbucağında <span class="m">AB = 13</span>, <span class="m">BC = 15</span>, <span class="m">AC = 14</span>. Üçbucağın sahəsini tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 260 195" role="img" aria-label="ABC üçbucağı, B təpəsindən AC tərəfinə BH hündürlüyü">
+            <polygon points="40,170 208,170 100,26" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="100" y1="26" x2="100" y2="170" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <path d="M100 158H112V170" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <text x="26" y="186" class="lbl">A</text><text x="212" y="186" class="lbl">C</text><text x="94" y="18" class="lbl">B</text><text x="94" y="188" class="lbl">H</text>
+            <text x="52" y="94" class="lbl" style="font-size:12px">13</text><text x="160" y="94" class="lbl" style="font-size:12px">15</text>
+            <text x="64" y="164" class="lbl" style="font-size:12px">x</text><text x="138" y="164" class="lbl" style="font-size:12px">14 − x</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) B-dən AC-yə BH hündürlüyünü çəkək. AH = x, HC = 14 − x.
+2) ABH və CBH düzbucaqlı üçbucaqlarından:
+   BH² = 13² − x²   və   BH² = 15² − (14 − x)²
+   13² − x² = 15² − (14 − x)²
+3) 169 − x² = 225 − 196 + 28x − x²
+   169 = 29 + 28x  ⇒  x = 5
+4) BH² = 169 − 25 = 144, BH = 12.
+5) S = AC · BH / 2 = 14 · 12 / 2 = 84.
+Cavab: 84.</div>
+      <p>Yoxlayan bal verir: <b>hündürlüyün çəkilməsi və x ilə işarə</b> (1-ci addım), <b>iki Pifaqor ifadəsinin bərabərləşdirilməsi</b> (2-ci addım), <b>tənliyin həlli</b> (3-cü addım), <b>hündürlük və sahə</b> (4–5-ci addımlar). Həllsiz yalnız "84" yazmaq bal gətirmir. Tələ: hündürlüyü AC-nin ortasına çəkmək (<span class="m">x = 7</span>) — bu yalnız bərabəryanlı üçbucaqda doğrudur.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Yarıya bölməmək.</b> Rombun diaqonalları, bərabəryanlı üçbucağın oturacağı, vətər (mərkəzdən çəkilən perpendikulyarla) yarıya bölünür. Bərabəryanlı trapesiyada hündürlük böyük oturacaqdan <span class="m">(a − b)/2</span> kəsir.</li>
+        <li><b>Katet üçün kvadratları toplamaq.</b> Katet hipotenuzdan kiçikdir: <span class="m">a² = c² − b²</span>.</li>
+        <li><b>Uzunluqları çıxmaq və ya toplamaq.</b> <span class="m">√(c² − a²) ≠ c − a</span> və <span class="m">√(a² + b²) ≠ a + b</span>.</li>
+        <li><b>Kök almamaq.</b> <span class="m">AB² = 52</span> tapıldı — cavab <span class="m">√52 = 2√13</span>-dür, 52 yox.</li>
+        <li><b>Başqa proyeksiya.</b> <span class="m">AC² = AB · AH</span>: katetə <b>bitişik</b> parça götürülür.</li>
+        <li><b>Sual nəyi soruşur?</b> Tərəfi tapıb dayanma: perimetr, sahə, vətərin tam uzunluğu soruşula bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">romb:        tərəf² = (d₁/2)² + (d₂/2)²
+bərabəryanlı trapesiya (a, b — oturacaqlar):
+             h² = yan² − ((a − b)/2)²
+vətər:       d² = R² − (vətər/2)²
+nöqtələr:    AB² = (x₂ − x₁)² + (y₂ − y₁)²
+3 tərəf:     iki Pifaqoru bərabərləşdir → x → h</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Rombun diaqonalları 10 və 24. Tərəfi? <span class="ans">Yarılar 5 və 12: √(25 + 144) = 13 (26 yox).</span></li>
+        <li>A(−1; 2) və B(5; −6) nöqtələri arasındakı məsafə? <span class="ans">Fərqlər 6 və −8: √(36 + 64) = 10.</span></li>
+        <li>Radiusu 10 olan çevrədə mərkəzdən 6 məsafədə vətər çəkilib. Vətərin uzunluğu? <span class="ans">Yarısı √(100 − 36) = 8, vətər 16 (8 yox).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

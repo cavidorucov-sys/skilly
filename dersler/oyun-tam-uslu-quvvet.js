@@ -229,6 +229,130 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes: a ≥ 10 or a < 1 left in the standard form, wrong sign of n, only zeros counted,
+  // exponents multiplied instead of added, a negative exponent read as a negative number, x⁰ = 0, ...
+  // (15 Nov trial: the standard-form question was wrong — hence three questions on 1 ≤ a < 10.)
+  const { ae, again } = Oyun;
+  const same = x => x;
+  const p10 = (a, n) => a + "·10" + sup(n);                            // a·10ⁿ as written, a is a string
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. value: negative exponent of a fraction and a zero exponent
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 5), q = rnd(2, 6), n = pick([2, 2, 3]), b = rnd(2, 9), s = pick([1, -1]);
+      if (p === q || gcd(p, q) !== 1 || (n === 3 && (p > 4 || q > 5))) return null;
+      const P = p ** n, Q = q ** n, sg = s > 0 ? "+" : "−", inv = p === 1 ? String(q) : `(${q}/${p})`;
+      const R = frac(Q + s * P, P);
+      const w = [frac(P + s * Q, Q), frac(Q, P), frac(Q + s * b * P, P), frac(-Q + s * P, P)];
+      return mc(ae(R, w, same), { text: `İfadənin qiymətini tapın: (${p}/${q})${sup(-n)} ${sg} ${pw(b, 0)}`,
+        solution: `(${p}/${q})${sup(-n)} = ${inv}${sup(n)} = ${frac(Q, P)}, ${pw(b, 0)} = 1. ${frac(Q, P)} ${sg} 1 = ${R}. Tələlər: kəsri çevirməmək (${w[0]}), ${pw(b, 0)} = 0 (${w[1]}) və ya ${pw(b, 0)} = ${b} (${w[2]}) yazmaq, mənfi üstü mənfi ədəd saymaq (${w[3]}).` });
+    }) },
+    // 2. simplify with the properties (same base, a variable)
+    { tip: "qapali", gen: () => again(() => {
+      const v = pick(["x", "a", "b", "y"]), p = rnd(-7, 7), r = rnd(-4, 4), s = pick([-3, -2, 2, 3]), t = rnd(-7, 7);
+      if (!p || !r || !t || p === 1 || r === 1 || [p, r, t].filter(z => z < 0).length < 2) return null;
+      const k = p + r * s - t, w = [p + r + s - t, p + r * s + t, p * r * s - t, Math.abs(p) + Math.abs(r * s) - Math.abs(t)];
+      if (![k, ...w].every(z => z && Math.abs(z) <= 20)) return null;
+      const f = z => z === 1 ? v : pw(v, z);
+      return mc(ae(k, w, f), { text: `İfadəni sadələşdirin (${v} ≠ 0): ${pw(v, p)} · (${pw(v, r)})${sup(s)} : ${pw(v, t)}`,
+        solution: `(${pw(v, r)})${sup(s)} = ${pw(v, r * s)} (qüvvətin qüvvətində üstlər vurulur). Üst: ${S(p)} + ${ex(r * s)} − ${ex(t)} = ${S(k)}, cavab ${f(k)}. Tələlər: qüvvətin qüvvətində üstləri toplamaq (${f(w[0])}), bölmədə üstləri toplamaq (${f(w[1])}), vurmada üstləri vurmaq (${f(w[2])}), mənfi üstləri müsbət saymaq (${f(w[3])}).` });
+    }) },
+    // 3. write a number in the standard form (the 15 Nov trap)
+    { tip: "qapali", gen: () => again(() => {
+      const M = norm(rnd(11, 999), 0)[0], L = String(M).length; if (L < 2 || String(M).includes("0")) return null;   // no inner zeros: “count the zeros” stays exact
+      const small = Math.random() < .6, n = small ? rnd(-8, -3) : rnd(4, 9), E = n - (L - 1), m = mant(M), d = String(M);
+      const zeros = small ? n + 1 : n - (L - 1);                       // "count the zeros only"
+      const R = std(M, E), w = [p10(d, E), p10(m, -n), p10(m, zeros), p10("0," + d, n + 1)];
+      return mc(ae(R, w, same), { text: `${plain(M, E)} ədədinin standart şəkli hansıdır?`,
+        solution: `Vergülü elə sürüşdürürük ki, ondan əvvəl bir sıfırdan fərqli rəqəm qalsın: a = ${m} (1 ≤ a < 10). Vergül ${Math.abs(n)} yer ${small ? "sağa" : "sola"} getdi, ədəd ${small ? "1-dən kiçikdir → n mənfidir" : "10-dan böyükdür → n müsbətdir"}: ${R}. Tələlər: ${w[0]} və ${w[3]} — eyni ədəddir, amma standart şəkil deyil (a ≥ 10 və a < 1); ${w[1]} — üstün işarəsi səhvdir; ${w[2]} — yalnız sıfırları saymaq.` });
+    }) },
+    // 4. product or quotient in the standard form: the result must be brought back to 1 ≤ a < 10
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(-9, 9), n = rnd(-9, 9); if (!m || !n) return null;
+      if (Math.random() < .55) {
+        const T = [12, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 75, 80, 90], A = pick(T), B = pick(T), P = A * B;   // a·10
+        if (P < 1000 || m * n === m + n || Math.abs(m * n + 1) > 15) return null;                     // a·b ≥ 10
+        const e = m + n, a = mant(P), raw = plain(P, -2, false), R = std(P, e - 2);
+        const w = [p10(raw, e), p10(a, e), p10(a, e - 1), p10(a, m * n + 1)];
+        return mc(ae(R, w, same), { text: `(${p10(mant(A), m)}) · (${p10(mant(B), n)}) hasilinin standart şəkli hansıdır?`,
+          solution: `${mant(A)} · ${mant(B)} = ${raw}, 10${sup(m)} · 10${sup(n)} = 10${sup(e)}. ${raw} ≥ 10, ona görə ${raw} = ${a}·10, üst 1 artır: ${R}. Tələlər: ${w[0]} — a ≥ 10 qalıb, standart şəkil deyil; ${w[1]} — a düzəlib, üst dəyişməyib; ${w[2]} — üst səhv tərəfə dəyişib; ${w[3]} — üstlər vurulub.` });
+      }
+      const b = rnd(2, 9), r = rnd(1, 9), A = r * b; if (A < 10) return null;   // a = A/10, a : b = 0,r
+      const e = m - n, R = p10(String(r), e - 1), w = [p10("0," + r, e), p10(String(r), e), p10(String(r), e + 1), p10(String(r), m + n - 1)];
+      return mc(ae(R, w, same), { text: `(${p10(mant(A), m)}) : (${p10(String(b), n)}) qismətinin standart şəkli hansıdır?`,
+        solution: `${mant(A)} : ${b} = 0,${r}, 10${sup(m)} : 10${sup(n)} = 10${sup(e)}. 0,${r} < 1, ona görə 0,${r} = ${r}·10⁻¹, üst 1 azalır: ${R}. Tələlər: ${w[0]} — a < 1 qalıb, standart şəkil deyil; ${w[1]} — a düzəlib, üst dəyişməyib; ${w[2]} — üst səhv tərəfə dəyişib; ${w[3]} — bölmədə üstlər toplanıb.` });
+    }) },
+    // 5. different bases → one base, then the value
+    { tip: "qapali", gen: () => again(() => {
+      const two = Math.random() < .6, a = two ? 2 : 3, B = two ? [[4, 2], [8, 3], [16, 4]] : [[9, 2], [27, 3], [3, 1]];
+      const o = pick([[0, 1, 2], [1, 0, 2], [0, 2, 1], [2, 1, 0]]), [t1, t2, t3] = o.map(i => B[i]);
+      const m = pick([-3, -2, -1, 2, 3]), n = pick([-3, -2, -1, 2, 3]), r = pick([-3, -2, -1, 2, 3]);
+      const k = t1[1] * m + t2[1] * n - t3[1] * r, lo = two ? -5 : -4, cap = two ? 7 : 5;
+      if (k < lo || k > -1) return null;
+      const add = (e, x) => e > 1 ? e + x : x;                         // (2²)ᵐ read as 2²⁺ᵐ
+      const kA = add(t1[1], m) + add(t2[1], n) - add(t3[1], r), kS = t1[1] * m + t2[1] * n + t3[1] * r;
+      if (Math.abs(kA) > cap || Math.abs(kS) > cap) return null;
+      const R = valS(a, k), w = [valS(a, -k), S(-(a ** -k)), valS(a, kA), valS(a, kS)];
+      const conv = [t1, t2, t3].filter(t => t[1] > 1).map(t => `${t[0]} = ${pw(a, t[1])}`).join(", ");
+      return mc(ae(R, w, same), { text: `İfadənin qiymətini tapın: ${pw(t1[0], m)} · ${pw(t2[0], n)} : ${pw(t3[0], r)}`,
+        solution: `Hamısını ${a === 2 ? "2-nin" : "3-ün"} qüvvəti kimi yazırıq: ${conv}. Üst: ${S(t1[1] * m)} + ${ex(t2[1] * n)} − ${ex(t3[1] * r)} = ${S(k)}. ${pw(a, k)} = ${R}. Tələlər: mənfi üstü atmaq (${w[0]}) və ya mənfi ədəd saymaq (${w[1]}), (${pw(a, 2)})ᵐ yazılışında üstləri toplamaq (${w[2]}), bölmədə üstü toplamaq (${w[3]}).` });
+    }, 4000) },
+    // 6. compare small numbers written in different ways
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(-8, -3), a10 = rnd(4, 17) * 5, b10 = a10 + rnd(1, 4) * 5, c10 = rnd(4, 19) * 5, K = rnd(11, a10 - 1), dd = rnd(1, 9);
+      if (b10 > 95 || K % 10 === 0 || b10 === 10 * dd) return null;
+      const R = std(a10, n - 1), w = [std(b10, n - 2), std(c10, n - 4), p10(String(K), n - 1), p10("0,0" + dd, n + 1)];
+      return mc(ae(R, w, same), { text: "Ədədlərdən hansı ən böyükdür?",
+        solution: `Hamısını standart şəklə salırıq: ${w[2]} = ${std(K, n - 1)}, ${w[3]} = ${std(dd, n - 1)}. 1-dən kiçik ədədlərdə 10-un üstü böyük olan (məs. 10${sup(n)} > 10${sup(n - 1)}) böyükdür; üstlər bərabərdirsə, a-lar müqayisə olunur. Ən böyük: ${R}. Tələlər: yalnız a-lara baxmaq (${w[2]} yazılışında a = ${K} kimi görünür; ${w[0]} variantında ${mant(b10)} > ${mant(a10)}), mənfi üstün modulu böyük olanı böyük saymaq (${w[1]}), a-ya baxmadan 10-un üstü ən böyük olanı seçmək (${w[3]}).` });
+    }) },
+    // 7. coded: the order (n) of a number that is not written in the standard form
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["duzelt", "duzelt", "cem", "hasil"]);
+      if (kind === "duzelt") {
+        const M = norm(rnd(11, 99), 0)[0], L = String(M).length, n = rnd(1, 12), sh = pick([-3, -2, -1, 1, 2, 3]), m = n - sh;   // coded answers stay positive
+        if (!n || !m) return null;
+        const E = n - (L - 1), shown = plain(M, E - m);
+        return { text: `${p10(shown, m)} ədədinin tərtibini tapın (standart şəkildə a·10ⁿ yazılışında n).`, answer: n, show: S(n), tol: 1e-6,
+          solution: `${shown} = ${p10(mant(M), sh)} (1 ≤ a < 10 olsun). 10${sup(sh)} · 10${sup(m)} = 10${sup(n)}: ${std(M, E)}, tərtib ${S(n)}. Tələ: görünən üstü (${S(m)}) yazmaq.` };
+      }
+      if (kind === "cem") {
+        const a = rnd(2, 9), b = rnd(2, 9), p = rnd(1, 11); if (a + b < 10) return null;
+        return { text: `${p10(String(a), p)} + ${p10(String(b), p)} ədədinin tərtibini tapın (standart şəkildə a·10ⁿ yazılışında n).`, answer: p + 1, show: S(p + 1), tol: 1e-6,
+          solution: `Üstlər eynidir: (${a} + ${b})·10${sup(p)} = ${p10(String(a + b), p)} = ${std(a + b, p)}. ${a + b} ≥ 10, üst 1 artır: tərtib ${S(p + 1)}. Tələ: ${S(p)} yazmaq.` };
+      }
+      const a = rnd(2, 9), b = rnd(2, 9), p = rnd(-9, 9), q = rnd(-9, 9); if (a * b < 10 || !p || !q || p + q + 1 < 1) return null;
+      return { text: `(${p10(String(a), p)}) · (${p10(String(b), q)}) hasilinin tərtibini tapın (standart şəkildə a·10ⁿ yazılışında n).`, answer: p + q + 1, show: S(p + q + 1), tol: 1e-6,
+        solution: `${a} · ${b} = ${a * b}, 10${sup(p)} · 10${sup(q)} = 10${sup(p + q)}. ${p10(String(a * b), p + q)} = ${std(a * b, p + q)}: tərtib ${S(p + q + 1)}. Tələ: ${a * b} ≥ 10 olduğunu unudub ${S(p + q)} yazmaq.` };
+    }) },
+    // 8. coded: simplify, then the value at x = 1/a
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([2, 3, 5, 10]), p = rnd(-6, 6), q = rnd(-6, 6), r = rnd(-3, 3), s = pick([-3, -2, 2, 3]);
+      if (!p || !q || !r || p === q || [p, q, r].includes(1)) return null;
+      const k = p + q - r * s, lo = { 2: -9, 3: -6, 5: -4, 10: -3 }[a];
+      if (k > -2 || k < lo) return null;
+      const V = a ** -k;
+      return { text: `x = 1/${a} olduqda ${pw("x", p)} · ${pw("x", q)} : (${pw("x", r)})${sup(s)} ifadəsinin qiymətini tapın.`, answer: V, show: String(V), tol: 1e-6,
+        solution: `Əvvəl sadələşdiririk: (${pw("x", r)})${sup(s)} = ${pw("x", r * s)}; üst ${S(p)} + ${ex(q)} − ${ex(r * s)} = ${S(k)}, ifadə = ${pw("x", k)}. x = 1/${a}: (1/${a})${sup(k)} = ${pw(a, -k)} = ${V}.` };
+    }) },
+    // 9. coded: screen width and pixel size (units + standard form)
+    { tip: "kod", gen: () => again(() => {
+      const D = pick([20, 25, 40, 50]), N = rnd(40, 256) * 10, W = N * D;   // pixel D·10⁻⁵ m, screen W·10⁻³ sm
+      return { text: `Monitorun bir pikselinin eni ${p10(mant(D), -4)} m-dir. Ekranın eni ${plain(W, -3)} sm-dir. Piksellər yan-yana, aralarında boşluq olmadan düzülüb. Ekranın bir sətrində neçə piksel var?`,
+        answer: N, show: String(N), tol: 1e-6,
+        solution: `Vahidləri eyniləşdiririk: ${plain(W, -3)} sm = ${plain(W, -5)} m = ${std(W, -5)} m. Piksellərin sayı: ${std(W, -5)} : (${p10(mant(D), -4)}) = ${N}. Tələ: santimetri metrə çevirməmək (${group(String(N * 100))} alınır).` };
+    }) },
+    // 10. written: a signal from a space probe (several steps with the standard form)
+    { tip: "yazili", gen: () => again(() => {
+      const T = rnd(3, 300), DM = 18 * T, oD = order(DM, 6); if (String(norm(DM, 0)[0]).length > 3) return null;              // distance 18T·10⁶ km = (3·10⁵ km/s)·(60T s)
+      return { text: `Kosmik zond Yerdən ${std(DM, 6)} km uzaqlıqdadır. Radiosiqnal 3·10⁵ km/s sürətlə yayılır. Zonddan göndərilən siqnal Yerə neçə dəqiqəyə çatır? Həlli addım-addım yaz, hesablamaları standart şəkildə apar.`,
+        answer: T, show: String(T), tol: 1e-6, unit: "dəq",
+        solution: `1) t = s : v = ${std(DM, 6)} : (3·10⁵). 2) ${mant(DM)} : 3 = ${plain(6 * T, 6 - oD)}, 10${sup(oD)} : 10⁵ = 10${sup(oD - 5)}; t = ${std(60 * T, 0)} s = ${group(String(60 * T))} s. 3) ${group(String(60 * T))} : 60 = ${T} dəq.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -238,7 +362,7 @@
     game = Oyun.mount({
       key: "tam-uslu-quvvet", title: "Tam üstlü qüvvət, ədədin standart şəkli", fenn: "riyaziyyat", link: "dersler/tam-uslu-quvvet.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 1/8, onluq 0,035 (vergül və ya nöqtə). Standart şəkil soruşulanda yalnız a və ya n-i yaz.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["menfi", "xasse", "xasse", "uslu", "standart", "standart", "std-emel", "std-emel", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

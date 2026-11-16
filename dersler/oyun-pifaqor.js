@@ -194,7 +194,7 @@
         const eq = (lab) => iso(1, Math.sqrt(3), lab);
         if (kind === "eh") { const a = rnd(2, 16);
           return { text: `Bərabərtərəfli üçbucağın tərəfi ${a}. Onun hündürlüyünü tap.`, svg: eq({ AB: String(a), BH: "?" }), answer: a * Math.sqrt(3) / 2, show: rtF(3 * a * a, 2),
-            solution: `Hündürlük tərəfi yarıya bölür: h² = ${a}² − (${frac(a, 2)})² = ${a * a} − ${frac(a * a, 4)} = ${frac(3 * a * a, 4)} → h = ${eqs(a + "√3/2", rtF(3 * a * a, 2))}.` }; }
+            solution: `Hündürlük tərəfi yarıya bölür: h² = ${a}² − ${pf(frac(a, 2))}² = ${a * a} − ${frac(a * a, 4)} = ${frac(3 * a * a, 4)} → h = ${eqs(a + "√3/2", rtF(3 * a * a, 2))}.` }; }
         if (kind === "ea") {
           if (Math.random() < .6) { const k = rnd(1, 10);
             return { text: `Bərabərtərəfli üçbucağın hündürlüyü ${k === 1 ? "" : k}√3-dür. Onun tərəfini tap.`, svg: eq({ AB: "?", BH: (k === 1 ? "" : k) + "√3" }), answer: 2 * k, show: String(2 * k), tol: 0.01,
@@ -308,6 +308,163 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (not halving a diagonal/base, adding squares for a leg, subtracting sides, no root, ...).
+  const { ae, again, num } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const id = x => String(x);
+  const ex = (P, o) => figure(P, { rot: [0], ...o });
+  const isoF = (half, hh, lab) => ex({ A: [-half, 0], B: [0, hh], C: [half, 0], H: [0, 0] }, { poly: ["A", "B", "C"], names: ["A", "B", "C", "H"], segs: [["B", "H", "dash"]], right: [["H", "C", "B"]], lab, aria: "Bərabəryanlı ABC üçbucağı və BH hündürlüyü" });
+  const projF = (p, q, lab, place) => { const c = p + q, b = Math.sqrt(p * c), a = Math.sqrt(q * c), t = b * b / (c * c);
+    return ex({ C: [0, 0], A: [b, 0], B: [0, a], H: [b * (1 - t), a * t] }, { poly: ["A", "B", "C"], names: ["A", "B", "C", "H"], segs: [["C", "H", "acc"]], right: [["C", "A", "B"], ["H", "C", "B"]], place, lab, aria: "Düzbucaqlı üçbucaq və hipotenuza çəkilmiş CH hündürlüyü" }); };
+  const pf = t => t.includes("/") ? `(${t})` : t;
+  const sgn = x => num(x), par = x => x < 0 ? `(${num(x)})` : num(x);
+  // coordinate plane with two points A and B
+  function grid(A, B) {
+    const W = 280, H = 200, xs = [A[0], B[0], 0], ys = [A[1], B[1], 0];
+    const x0 = Math.min(...xs) - 1, x1 = Math.max(...xs) + 1, y0 = Math.min(...ys) - 1, y1 = Math.max(...ys) + 1;
+    const s = Math.min(250 / (x1 - x0), 170 / (y1 - y0), 24), ox = (W - s * (x1 - x0)) / 2, oy = (H - s * (y1 - y0)) / 2;
+    const X = x => ox + s * (x - x0), Y = y => H - oy - s * (y - y0);
+    const g = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": "Koordinat müstəvisində A və B nöqtələri" });
+    for (let x = x0; x <= x1; x++) g.append(sv("line", { x1: X(x), y1: Y(y0), x2: X(x), y2: Y(y1), stroke: "#dcdbe8", "stroke-width": 1 }));
+    for (let y = y0; y <= y1; y++) g.append(sv("line", { x1: X(x0), y1: Y(y), x2: X(x1), y2: Y(y), stroke: "#dcdbe8", "stroke-width": 1 }));
+    g.append(sv("line", { x1: X(x0), y1: Y(0), x2: X(x1), y2: Y(0), stroke: INK, "stroke-width": 1.5 }));
+    g.append(sv("line", { x1: X(0), y1: Y(y0), x2: X(0), y2: Y(y1), stroke: INK, "stroke-width": 1.5 }));
+    g.append(sv("line", { x1: X(A[0]), y1: Y(A[1]), x2: X(B[0]), y2: Y(B[1]), stroke: ACC, "stroke-width": 2, "stroke-dasharray": "5 4" }));
+    // point labels above the point; the axis names and "0" go only where no point label is (boxes estimated: 7.5 px per letter)
+    const boxes = [];
+    for (const [n, P] of [["A", A], ["B", B]]) {
+      g.append(sv("circle", { cx: X(P[0]), cy: Y(P[1]), r: 4, fill: ACC }));
+      const right = X(P[0]) < W - 70, s0 = `${n}(${sgn(P[0])}; ${sgn(P[1])})`, wd = 7.5 * s0.length, x = X(P[0]) + (right ? 8 : -8), y = Y(P[1]) - 7;
+      boxes.push([right ? x : x - wd, y - 12, right ? x + wd : x, y + 3]);
+      g.append(sv("text", { x, y, "text-anchor": right ? "start" : "end", class: "oy-lbl", style: "font-size:13px" }, s0));
+    }
+    const free = (x, y, wd) => !boxes.some(b => x - wd < b[2] && x > b[0] && y - 11 < b[3] && y + 2 > b[1]);   // text anchored at its right end
+    const put = (cands, t, fs) => { const c = cands.find(([x, y]) => free(x, y, 8)); if (c) g.append(sv("text", { x: c[0], y: c[1], "text-anchor": "end", class: "oy-lbl", style: "font-size:" + fs + "px" }, t)); };
+    put([[X(x1) - 4, Y(0) + 14], [X(x1) - 4, Y(0) - 5]], "x", 12);
+    put([[X(0) - 6, Y(y1) + 12], [X(0) + 14, Y(y1) + 12]], "y", 12);
+    put([[X(0) - 4, Y(0) + 13]], "0", 11);
+    return g;
+  }
+  // circle with centre O, chord AB, OH ⟂ AB; lab: { R, AB, OH } texts
+  function chordF(R, p, q, lab) {
+    const W = 280, H = 200, cx = 140, cy = 88, r = 78, k = r / R, yH = cy + q * k, hx = p * k;
+    const g = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": "Çevrə, AB vətəri və mərkəzdən vətərə OH perpendikulyarı" });
+    g.append(sv("circle", { cx, cy, r, fill: "#eeedfe", stroke: INK, "stroke-width": 2 }));
+    g.append(sv("line", { x1: cx - hx, y1: yH, x2: cx + hx, y2: yH, stroke: INK, "stroke-width": 2 }));
+    g.append(sv("line", { x1: cx, y1: cy, x2: cx, y2: yH, stroke: INK, "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
+    g.append(sv("line", { x1: cx, y1: cy, x2: cx + hx, y2: yH, stroke: ACC, "stroke-width": 2 }));
+    g.append(sv("path", { d: `M${cx + 8} ${yH}V${yH - 8}H${cx}`, fill: "none", stroke: INK, "stroke-width": 1.3 }));
+    g.append(sv("circle", { cx, cy, r: 2.5, fill: INK }));
+    const t = (x, y, s, st) => g.append(sv("text", { x, y, "text-anchor": "middle", class: "oy-lbl", style: st || "" }, s));
+    const nm = "fill:#5f5e5a;font-style:italic";
+    t(cx - 10, cy - 6, "O", nm); t(cx - hx - 10, yH + 14, "A", nm); t(cx + hx + 10, yH + 14, "B", nm); t(cx + 7, yH + 16, "H", nm);
+    if (lab.R) t(cx + hx / 2 + 10, (cy + yH) / 2 - 4, lab.R, "fill:" + ACC);
+    if (lab.AB) t(cx, Math.min(yH + 34, 192), "AB = " + lab.AB);
+    if (lab.OH) t(cx - 16, (cy + yH) / 2 + 5, lab.OH);
+    return g;
+  }
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. isosceles triangle: the height halves the base
+    { tip: "qapali", gen: () => again(() => {
+      let b, half;
+      if (Math.random() < .5) { const t = triple(40); half = t[1]; b = t[2]; } else { b = rnd(5, 15); half = rnd(2, Math.floor((b - 1) / 2)); if (b > 4 * half) return null; }
+      const base = 2 * half, N = b * b - half * half, n1 = b * b - base * base; if (n1 <= 0) return null;
+      const right = rt(N), w = [rt(n1), rt(b * b + half * half), String(b - half), String(N)];
+      return mc(ae(right, w, id), { text: `ABC üçbucağında AB = BC = ${b}, AC = ${base}. B təpəsindən AC tərəfinə çəkilmiş BH hündürlüyünü tapın.`,
+        svg: isoF(half, Math.sqrt(N), { AB: String(b), BC: String(b), BH: "?" }),
+        solution: `Bərabəryanlı üçbucaqda oturacağa çəkilmiş hündürlük həm də mediandır: AH = ${base} : 2 = ${half}. BH² = AB² − AH² = ${b * b} − ${half * half} = ${N}, BH = ${eqs("√" + N, right)}. Tələlər: oturacağı yarıya bölməmək (√(${b}² − ${base}²) = ${rt(n1)}), kvadratları toplamaq (${rt(b * b + half * half)}), tərəfləri çıxmaq (${b} − ${half} = ${b - half}), kök almamaq (${N}).` });
+    }) },
+    // 2. rhombus: diagonals are halved and perpendicular
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = triple(30), d1 = 2 * p, d2 = 2 * q, R = 4 * c;
+      const w = [8 * c, c, 4 * (p + q), 2 * p * q];
+      return mc(ae(R, w), { text: `Rombun diaqonalları: ${d1} və ${d2}. Rombun perimetrini tapın.`,
+        svg: ex({ A: [-p, 0], B: [0, q], C: [p, 0], D: [0, -q], O: [0, 0] }, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D", "O"], segs: [["A", "C", "dash"], ["B", "D", "dash"]], right: [["O", "C", "B"]], lab: { AB: "?" }, aria: "ABCD rombu və AC, BD diaqonalları" }),
+        solution: `Rombun diaqonalları kəsişmə nöqtəsində yarıya bölünür və perpendikulyardır: AO = ${p}, BO = ${q}. AB² = ${p}² + ${q}² = ${c * c}, AB = ${c}. P = 4 · ${c} = ${R}. Tələlər: diaqonalları yarıya bölməmək (4 · √(${d1}² + ${d2}²) = ${8 * c}), tərəfi cavab yazmaq (${c}), yarımdiaqonalları toplamaq (4 · (${p} + ${q}) = ${4 * (p + q)}), sahəni tapmaq (${d1} · ${d2} : 2 = ${2 * p * q}).` });
+    }) },
+    // 3. isosceles trapezoid: the height cuts off (a − b)/2
+    { tip: "qapali", gen: () => again(() => {
+      const [x, hh, L] = triple(30), b = rnd(4, 14), a = b + 2 * x;
+      if (5 * b < a) return null;   // the short base must stay readable in the figure
+      const m = b + x, R = m * hh;
+      const w = [m * L, 2 * m * hh, m * (L - x), hh];
+      return mc(ae(R, w), { text: `Bərabəryanlı trapesiyanın oturacaqları: ${a} və ${b}; yan tərəfi: ${L}. Trapesiyanın sahəsini tapın.`,
+        svg: ex({ A: [0, 0], D: [a, 0], B: [x, hh], C: [x + b, hh], H: [x, 0] }, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D", "H"], segs: [["B", "H", "dash"]], right: [["H", "D", "B"]], place: { H: ["D", "in"] }, lab: { AB: String(L), BC: String(b), AD: String(a) }, aria: "ABCD bərabəryanlı trapesiyası və BH hündürlüyü" }),
+        solution: `BH hündürlüyü böyük oturacaqdan AH = (${a} − ${b}) : 2 = ${x} kəsir. BH² = ${L}² − ${x}² = ${hh * hh}, BH = ${hh}. S = (${a} + ${b}) : 2 · ${hh} = ${m} · ${hh} = ${R}. Tələlər: yan tərəfi hündürlük götürmək (${m} · ${L} = ${m * L}), 2-yə bölməmək (${2 * m * hh}), uzunluqları çıxmaq (BH = ${L} − ${x}: ${m * (L - x)}), yalnız hündürlüyü yazmaq (${hh}).` });
+    }) },
+    // 4. right triangle with the height to the hypotenuse: AC² = AB · AH
+    { tip: "qapali", gen: () => again(() => {
+      let t, m, n; do { t = rnd(1, 4); m = rnd(1, 4); n = rnd(1, 5); } while (m === n || t * m * n > 24 || Math.max(m, n) > 2 * Math.min(m, n));
+      const p = t * m * m, q = t * n * n, c = p + q, right = rt(c * p);
+      const w = [rt(c * q), String(t * m * n), String(c), String(c * p)];
+      return mc(ae(right, w, id), { text: `ABC üçbucağında ∠C = 90°, CH — hipotenuza çəkilmiş hündürlükdür. AH = ${p}, HB = ${q}. AC katetini tapın.`,
+        svg: projF(p, q, { AH: String(p), HB: String(q), AC: "?" }, { H: ["C", "in"] }),
+        solution: `AB = AH + HB = ${p + q}. Katetin kvadratı hipotenuzla öz proyeksiyasının hasilidir: AC² = AB · AH = ${c} · ${p} = ${c * p}, AC = ${eqs("√" + c * p, right)}. Tələlər: başqa proyeksiyanı götürmək (√(${c} · ${q}) = ${rt(c * q)} — bu BC-dir), hündürlüyü tapmaq (CH = √(${p} · ${q}) = ${t * m * n}), hipotenuzu yazmaq (${c}), kök almamaq (${c * p}).` });
+    }) },
+    // 5. distance between two points of the coordinate plane
+    { tip: "qapali", gen: () => again(() => {
+      const x1 = rnd(-5, 4), y1 = rnd(-4, 4), dx = rnd(1, 7) * pick([-1, 1]), dy = rnd(1, 6) * pick([-1, 1]), x2 = x1 + dx, y2 = y1 + dy;
+      if (Math.abs(dx) === Math.abs(dy) || x2 < -6 || x2 > 7 || y2 < -5 || y2 > 6 || (x1 === 0 && y1 === 0) || (x2 === 0 && y2 === 0)) return null;
+      if (x1 * x2 >= 0 && y1 * y2 >= 0) return null;   // at least one coordinate changes sign: the trap with the signs is real
+      const N = dx * dx + dy * dy, sx = x1 + x2, sy = y1 + y2, right = rt(N);
+      const w = [String(Math.abs(dx) + Math.abs(dy)), rt(sx * sx + sy * sy), String(N), rt(Math.abs(dx * dx - dy * dy))];
+      if (sx * sx + sy * sy === 0) return null;
+      return mc(ae(right, w, id), { text: `A(${sgn(x1)}; ${sgn(y1)}) və B(${sgn(x2)}; ${sgn(y2)}) nöqtələri arasındakı məsafəni tapın.`,
+        svg: grid([x1, y1], [x2, y2]),
+        solution: `AB² = (x₂ − x₁)² + (y₂ − y₁)² = ${par(dx)}² + ${par(dy)}² = ${dx * dx} + ${dy * dy} = ${N}, AB = ${eqs("√" + N, right)}. Tələlər: koordinatları toplamaq (√(${par(sx)}² + ${par(sy)}²) = ${rt(sx * sx + sy * sy)}), fərqlərin modullarını toplamaq (${Math.abs(dx)} + ${Math.abs(dy)} = ${Math.abs(dx) + Math.abs(dy)}), kök almamaq (${N}), kvadratları çıxmaq (${rt(Math.abs(dx * dx - dy * dy))}).` });
+    }) },
+    // 6. equilateral triangle: perimeter → side → height
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 16), P = 3 * a, right = rtF(3 * a * a, 2);
+      const w = [rt(3 * a * a), rtF(5 * a * a, 2), frac(a, 2), rtF(3 * P * P, 2)];
+      return mc(ae(right, w, id), { text: `Bərabərtərəfli üçbucağın perimetri ${P} ədədinə bərabərdir. Onun hündürlüyünü tapın.`,
+        svg: isoF(1, Math.sqrt(3), { BH: "?" }),
+        solution: `Tərəf: ${P} : 3 = ${a}. Hündürlük tərəfi yarıya bölür: h² = ${a}² − ${pf(frac(a, 2))}² = ${frac(3 * a * a, 4)}, h = ${a}√3/2 = ${right}. Tələlər: 2-yə bölməmək (${rt(3 * a * a)}), kvadratları toplamaq (√(${a}² + ${pf(frac(a, 2))}²) = ${rtF(5 * a * a, 2)}), tərəfləri çıxmaq (${a} − ${frac(a, 2)} = ${frac(a, 2)}), perimetri tərəf götürmək (${rtF(3 * P * P, 2)}).` });
+    }) },
+    // 7. coded: height to the hypotenuse (or a projection) from the legs — a finite decimal
+    { tip: "kod", gen: () => again(() => {
+      let [a, b, c] = triple(45); const askH = Math.random() < .6; if (Math.max(a, b) > 2.5 * Math.min(a, b)) return null;
+      const v = askH ? a * b / c : b * b / c; if (Math.abs(v * 100 - Math.round(v * 100)) > 1e-9 || Number.isInteger(v)) return null;
+      return { text: `ABC üçbucağında ∠C = 90°, AC = ${b}, BC = ${a}, CH — hipotenuza çəkilmiş hündürlükdür. ${askH ? "CH hündürlüyünü" : "AH parçasını"} tapın.`,
+        svg: projF(b * b / c, a * a / c, askH ? { AC: String(b), BC: String(a), CH: "?" } : { AC: String(b), BC: String(a), AH: "?" }),
+        answer: v, show: fmt(v), tol: 1e-6,
+        solution: `AB = √(${b}² + ${a}²) = √${c * c} = ${c}. ` + (askH ? `Sahəni iki cür yaz: AC · BC / 2 = AB · CH / 2 → CH = ${b} · ${a} : ${c} = ${fmt(v)}.` : `AC² = AB · AH → AH = ${b * b} : ${c} = ${fmt(v)}.`) + ` Kodlaşdırmada onluq kəsr vergüllə yazılır: ${fmt(v)}.` };
+    }) },
+    // 8. coded: rectangle — diagonal and perimeter → area, or diagonal and area → perimeter (through (a + b)² = a² + b² + 2ab)
+    { tip: "kod", gen: () => again(() => {
+      const [a, b, c] = triple(60), P = 2 * (a + b), S = a * b, askS = Math.random() < .5;
+      const svg = ex({ A: [0, 0], B: [0, b], C: [a, b], D: [a, 0] }, { poly: ["A", "B", "C", "D"], segs: [["A", "C", "acc"]], right: [["D", "A", "C"]], lab: { AC: String(c) }, aria: "ABCD düzbucaqlısı və AC diaqonalı" });
+      return askS ? { text: `Düzbucaqlının perimetri ${P}, diaqonalı isə ${c} ədədinə bərabərdir. Düzbucaqlının sahəsini tapın.`, svg,
+          answer: S, show: String(S), tol: 1e-6,
+          solution: `Tərəflər a və b: a + b = ${P} : 2 = ${a + b}, a² + b² = ${c}² = ${c * c}. (a + b)² = a² + b² + 2ab → ${(a + b) ** 2} = ${c * c} + 2ab → 2ab = ${2 * S}, S = ab = ${S}. (Tərəflər: ${a} və ${b}.)` }
+        : { text: `Düzbucaqlının sahəsi ${S}, diaqonalı isə ${c} ədədinə bərabərdir. Düzbucaqlının perimetrini tapın.`, svg,
+          answer: P, show: String(P), tol: 1e-6,
+          solution: `Tərəflər a və b: ab = ${S}, a² + b² = ${c}² = ${c * c}. (a + b)² = a² + b² + 2ab = ${c * c} + ${2 * S} = ${(a + b) ** 2} → a + b = ${a + b}, P = 2 · ${a + b} = ${P}. (Tərəflər: ${a} və ${b}.) Tələ: a + b-ni perimetr yazmaq (${a + b}).` };
+    }) },
+    // 9. coded: chord of a circle — radius, half-chord and distance from the centre
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, R] = triple(30), askD = Math.random() < .5;
+      return askD ? { text: `Radiusu ${R} olan çevrədə uzunluğu ${2 * p} olan AB vətəri çəkilib. Çevrənin mərkəzindən bu vətərə qədər məsafəni tapın.`,
+          svg: chordF(R, p, q, { R: String(R), AB: String(2 * p), OH: "?" }), answer: q, show: String(q), tol: 1e-6,
+          solution: `Mərkəzdən vətərə çəkilmiş OH perpendikulyarı vətəri yarıya bölür: AH = ${2 * p} : 2 = ${p}. OB = ${R} radiusdur. OH² = ${R}² − ${p}² = ${q * q}, OH = ${q}. Tələ: vətəri yarıya bölməmək.` }
+        : { text: `Radiusu ${R} olan çevrənin mərkəzindən AB vətərinə qədər məsafə ${q} ədədinə bərabərdir. AB vətərinin uzunluğunu tapın.`,
+          svg: chordF(R, p, q, { R: String(R), AB: "?", OH: String(q) }), answer: 2 * p, show: String(2 * p), tol: 1e-6,
+          solution: `Mərkəzdən vətərə çəkilmiş OH perpendikulyardır, OB = ${R} radiusdur. HB² = ${R}² − ${q}² = ${p * p}, HB = ${p}. Perpendikulyar vətəri yarıya bölür: AB = 2 · ${p} = ${2 * p}. Tələ: ${p} yazmaq (vətərin yarısı).` };
+    }) },
+    // 10. written: triangle by three sides — the height through x² from both sides, then the area
+    { tip: "yazili", gen: () => again(() => {
+      const d = pick(SHARED), [[p1, m1], [p2, m2]] = shuffle(BYLEG[d]).slice(0, 2), AC = p1 + p2, S = AC * d / 2;
+      return { text: `ABC üçbucağında AB = ${m1}, BC = ${m2}, AC = ${AC}. Üçbucağın sahəsini tapın. Həlli addım-addım yazın.`,
+        svg: ex({ A: [0, 0], C: [AC, 0], B: [p1, d], H: [p1, 0] }, { poly: ["A", "B", "C"], names: ["A", "B", "C", "H"], segs: [["B", "H", "dash"]], right: [["H", "C", "B"]], place: { H: ["C", "in"] }, lab: { AB: String(m1), BC: String(m2), AC: String(AC) }, aria: "ABC üçbucağı və BH hündürlüyü" }),
+        answer: S, show: fmt(S), tol: 1e-6,
+        solution: `1) BH ⟂ AC çəkək, AH = x, HC = ${AC} − x. 2) ABH və CBH üçbucaqlarından: BH² = ${m1}² − x² = ${m2}² − (${AC} − x)². 3) ${m1 * m1} − x² = ${m2 * m2} − ${AC * AC} + ${2 * AC}x − x² → ${2 * AC}x = ${m1 * m1 - m2 * m2 + AC * AC} → x = ${p1}. 4) BH² = ${m1 * m1} − ${p1 * p1} = ${d * d}, BH = ${d}. 5) S = ${AC} · ${d} : 2 = ${fmt(S)}.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -317,7 +474,7 @@
     game = Oyun.mount({
       key: "pifaqor", title: "Pifaqor teoremi", fenn: "riyaziyyat", link: "dersler/pifaqor.html",
       format: "Cavab — ədəd: tərəf, hündürlük, sahə. Kök: 2√13, 5√3/2; kəsr: 18/5 (onluq 3,6 də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["hipotenuz", "hipotenuz", "ters", "diaqonal", "hundurluk", "hundurluk", "proyeksiya", "proyeksiya", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"),

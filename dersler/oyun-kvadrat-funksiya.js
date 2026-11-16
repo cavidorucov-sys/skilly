@@ -278,6 +278,111 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (x₀ = b/(2a), c taken for y₀, (x + m)² for vertex m, x₀ instead of y₀, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const id = s => s;
+  const sg = v => v > 0 ? "> 0" : "< 0";
+  const R = v => `[${S(v)}; +∞)`, L = v => `(−∞; ${S(v)}]`;
+  const lead = "Şəkildə y = ax² + bx + c funksiyasının qrafiki verilib (işarələnmiş nöqtələr tor düyünlərindədir). ";
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. vertex coordinates from y = ax² + bx + c
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, -1, 2, -2, 3, -3]), m = nz(-5, 5), n = rnd(-9, 9), { b, c } = fromV(a, m, n);
+      const w = [P(-m, yv(a, b, c, -m)), P(2 * m, yv(a, b, c, 2 * m)), P(m, a * m + b * m + c), P(m, c)];
+      return mc(ae(P(m, n), w, id), { text: `y = ${Q(a, b, c)} parabolasının təpəsinin koordinatlarını tapın.`,
+        solution: `${x0txt(a, b)}; y₀ = ${step(a, b, c, m)}. Təpə ${P(m, n)}. Tələlər: x₀ = b/(2a) (minus unudulur) → ${P(-m, yv(a, b, c, -m))}; x₀ = −b/a (2 unudulur) → ${P(2 * m, yv(a, b, c, 2 * m))}; x₀² əvəzinə x₀ → ${P(m, a * m + b * m + c)}; y₀ = c sanmaq → ${P(m, c)}.` });
+    }) },
+    // 2. graph → signs of a, b, c
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, -1, 0.5, -0.5]), m = nz(-3, 3), n = a > 0 ? -rnd(1, 4) : rnd(1, 4), { b, c } = fromV(a, m, n);
+      if (!Number.isInteger(c) || Math.abs(c) < 1 || Math.abs(c) > 5 || Math.sign(c) === Math.sign(n)) return null;
+      const f = (A, B, C) => `a ${sg(A)}, b ${sg(B)}, c ${sg(C)}`;
+      const svg = svgEl({ x: [-6, 6], y: [-6, 6], f: x => a * (x - m) * (x - m) + n, pts: [[m, n], [0, c]] }, "Parabolanın qrafiki: təpə və Oy oxu ilə kəsişmə nöqtəsi işarələnib");
+      return mc(ae(f(a, b, c), [f(a, -b, c), f(-a, b, c), f(a, b, -c), f(-a, -b, c)], id), { text: lead + "a, b və c əmsallarının işarələri hansıdır?", svg,
+        solution: `Qollar ${a > 0 ? "yuxarı → a > 0" : "aşağı → a < 0"}. Təpə Oy-dan ${m > 0 ? "sağdadır: x₀ > 0" : "soldadır: x₀ < 0"}; b = −2a·x₀ → b ${sg(b)}. c — Oy oxu ilə kəsişmə nöqtəsinin ordinatı: (0; ${S(c)}) → c ${sg(c)}. Tələlər: minusu unudub b = 2a·x₀ yazmaq (b ${sg(-b)}); c-ni təpənin ordinatının işarəsi ilə qarışdırmaq (c ${sg(-c)}); qolların istiqamətini səhv oxumaq (a ${sg(-a)}); a-nı səhv oxuyub b-ni ondan çıxarmaq (a ${sg(-a)}, b ${sg(-b)}).` });
+    }) },
+    // 3. graph → formula
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([-1, 2, -2]), m = nz(-3, 3), n = rnd(-5, 5), { b, c } = fromV(a, m, n);
+      if (n + a < -5 || n + a > 5) return null;
+      const pts = [[m, n], [m - 1, n + a], [m + 1, n + a]]; if (Math.abs(c) <= 6 && Math.abs(m) !== 1) pts.push([0, c]);
+      const svg = svgEl({ x: [-6, 6], y: [-6, 6], f: x => a * (x - m) * (x - m) + n, pts }, "Parabolanın qrafiki: təpə və bir neçə nöqtə işarələnib");
+      const F = (A, B, C) => "y = " + Q(A, B, C);
+      return mc(ae(F(a, b, c), [F(a, -b, c), F(a, b, n), F(-a, -b, -a * m * m + n), F(a, b, m * m + n)], id), { text: lead + "Bu, hansı funksiyanın qrafikidir?", svg,
+        solution: `Təpə ${P(m, n)}. Təpədən 1 sağa: ${P(m + 1, n + a)} — ${a > 0 ? "qalxır" : "enir"} ${Math.abs(a)} → a = ${S(a)}. y = ${VF(a, m, n)} = ${Q(a, b, c)}. Tələlər: təpə ${P(m, n)} üçün ${sq(-m)} yazmaq (b-nin işarəsi dəyişir); c = y₀ = ${S(n)} sanmaq; a-nın işarəsini səhv götürmək; mötərizəni açanda ${m * m} ədədini a-ya vurmamaq (c = ${S(m * m + n)}).` });
+    }) },
+    // 4. range of values
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, -1, 2, -2, 3, -3]), m = nz(-5, 5), n = rnd(-9, 9), { b, c } = fromV(a, m, n), I = a > 0 ? R : L;
+      return mc(ae(I(n), [(a > 0 ? L : R)(n), I(m), I(c), I(yv(a, b, c, -m))], id), { text: `y = ${Q(a, b, c)} funksiyasının qiymətlər çoxluğunu tapın.`,
+        solution: `a = ${S(a)} ${a > 0 ? "> 0 → təpə ən aşağı nöqtədir" : "< 0 → təpə ən yuxarı nöqtədir"}. ${x0txt(a, b)}; y₀ = ${step(a, b, c, m)}. E(y) = ${I(n)}. Tələlər: qiymətlər çoxluğunun istiqamətini tərsinə götürmək (${(a > 0 ? L : R)(n)}); y₀ əvəzinə x₀ (${I(m)}); c-ni götürmək (${I(c)}); x₀-ı işarə səhvi ilə tapmaq (${I(yv(a, b, c, -m))}).` });
+    }) },
+    // 5. parameter: the parabola touches Ox
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, 1, 2, 3]), r = rnd(1, 6), c = a * r * r, k = 2 * a * r;
+      return mc(ae(`−${k}; ${k}`, [`−${a * r}; ${a * r}`, String(k), String(k * k), "belə k yoxdur"], id), {
+        text: `k-nın hansı qiymətlərində y = ${a === 1 ? "" : a}x² + kx + ${c} parabolası Ox oxuna toxunur?`,
+        solution: `Toxunur → D = 0: k² − 4·${a}·${c} = 0 → k² = ${k * k} → k = ±${k}. Tələlər: 4-ü unutmaq (k² = ${a * c} → ±${a * r}); yalnız müsbət kökü götürmək (${k}); k-nın özü əvəzinə k² = ${k * k} bərabərliyindəki ədədi cavab yazmaq; D = k² + 4ac yazıb "belə k yoxdur" demək.` });
+    }) },
+    // 6. increasing / decreasing interval
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, -1, 2, -2]), m = nz(-5, 5), n = rnd(-9, 9), { b, c } = fromV(a, m, n), inc = Math.random() < .5;
+      const right = (a > 0) === inc ? R : L, other = right === R ? L : R;
+      return mc(ae(right(m), [other(m), right(-m), right(n), right(2 * m)], id), { text: `y = ${Q(a, b, c)} funksiyasının ${inc ? "artdığı" : "azaldığı"} ən geniş aralığı tapın.`,
+        solution: `${x0txt(a, b)}. a ${sg(a)} → qollar ${a > 0 ? "yuxarı: x₀-dan solda azalır, sağda artır" : "aşağı: x₀-dan solda artır, sağda azalır"}. ${inc ? "Artma" : "Azalma"} aralığı ${right(m)}. Tələlər: a-nın işarəsini nəzərə almamaq (${other(m)}); x₀ = b/(2a) (${right(-m)}); x₀ əvəzinə y₀ (${right(n)}); x₀ = −b/a (${right(2 * m)}).` });
+    }) },
+    // 7. coded: read the graph, find b, abc or a far value f(k)
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([1, -1, 2, -2]), m = nz(-3, 3), n = rnd(-5, 5), { b, c } = fromV(a, m, n);
+      if (n + a < -5 || n + a > 5) return null;
+      const pts = [[m, n], [m - 1, n + a], [m + 1, n + a]]; if (Math.abs(c) <= 6 && Math.abs(m) !== 1) pts.push([0, c]);
+      const svg = svgEl({ x: [-6, 6], y: [-6, 6], f: x => a * (x - m) * (x - m) + n, pts }, "Parabolanın qrafiki: təpə və bir neçə nöqtə işarələnib");
+      const rd = `Təpə ${P(m, n)}; təpədən 1 sağa ${P(m + 1, n + a)} → a = ${S(a)}. y = ${VF(a, m, n)} = ${Q(a, b, c)}.`;
+      const ask = pick(["b", "abc", "fk"]), lf = lead.replace("y = ax²", "y = f(x) = ax²");
+      if (ask === "b") return b < 0 ? null : { text: lf + "b ədədini tapın.", svg, answer: b, show: S(b), tol: 1e-6, solution: rd + ` b = −2a·x₀ = −2·${par(a)}·${par(m)} = ${S(b)}. Tələ: minusu unudub b = 2a·x₀ = ${S(-b)} yazmaq.` };
+      if (ask === "abc") { if (!c || a * b * c < 0) return null; return { text: lf + "a·b·c hasilini tapın.", svg, answer: a * b * c, show: S(a * b * c), tol: 1e-6, solution: rd + ` a·b·c = ${par(a)}·${par(b)}·${par(c)} = ${S(a * b * c)}.` }; }
+      const k = m + pick([-1, 1]) * rnd(5, 6), v = yv(a, b, c, k); if (v < 0) return null;
+      return { text: lf + `f(${S(k)}) ədədini tapın.`, svg, answer: v, show: S(v), tol: 1e-6, solution: rd + ` f(${S(k)}) = ${S(a)}·${par(k - m)}²${n ? (n < 0 ? " − " : " + ") + Math.abs(n) : ""} = ${S(v)}.` };
+    }) },
+    // 8. coded: parabola and line
+    { tip: "kod", gen: () => again(() => {
+      const r1 = rnd(-4, 5), r2 = rnd(-4, 5); if (r1 >= r2) return null;
+      const k = nz(-4, 4), l = rnd(-6, 6), b = k - (r1 + r2), c = l + r1 * r2;
+      if (Math.abs(b) > 9 || Math.abs(c) > 15) return null;
+      const ys = pick([0, 1, 1]), y1 = k * r1 + l, y2 = k * r2 + l, ans = ys ? y1 + y2 : r1 + r2;
+      if (ans < 0 || (ys && ans === r1 + r2)) return null;
+      return { text: `y = ${Q(1, b, c)} parabolası ilə y = ${Q(0, k, l)} düz xətti iki nöqtədə kəsişir. Kəsişmə nöqtələrinin ${ys ? "ordinatlarının" : "absislərinin"} cəmini tapın.`,
+        answer: ans, show: S(ans), tol: 1e-6,
+        solution: `${Q(1, b, c)} = ${Q(0, k, l)} → ${Q(1, b - k, c - l)} = 0 → x₁ = ${S(r1)}, x₂ = ${S(r2)} (Viyet: cəm ${S(r1 + r2)}).` + (ys ? ` Ordinatlar düz xətdən: y₁ = ${S(y1)}, y₂ = ${S(y2)}, cəm ${S(ans)}. Tələ: absislərin cəmini (${S(r1 + r2)}) yazmaq.` : ` Cavab ${S(ans)}. Tələ: parabolanın öz b-sini götürüb x₁ + x₂ = ${S(-b)} yazmaq.`) };
+    }) },
+    // 9. coded: word problem (ball, fence by a wall)
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["hmax", "land", "wall"]);
+      if (kind === "hmax") { const v = 5 * rnd(2, 8), h0 = 5 * rnd(1, 8), t0 = v / 10, hm = h0 + v * v / 20;
+        return { text: `Top ${h0} m hündürlükdən şaquli yuxarı atılıb. Onun hündürlüyü h = −5t² + ${v}t + ${h0} qanunu ilə dəyişir (h — metrlə, t — saniyə ilə; hava müqaviməti nəzərə alınmır). Top ən çox neçə metr hündürlüyə qalxır?`,
+          answer: hm, show: num(hm), tol: 1e-6, unit: "m", solution: `t₀ = −${v}/(2·(−5)) = ${num(t0)} s. h(${num(t0)}) = −5·${num(t0 * t0)} + ${v}·${num(t0)} + ${h0} = ${num(hm)} m. Tələ: vaxtı (${num(t0)}) cavab yazmaq və ya başlanğıc hündürlüyü unutmaq (${num(hm - h0)}).` }; }
+      if (kind === "land") { const k = rnd(1, 3), t2 = rnd(k + 1, 6), v = 5 * (t2 - k), h0 = 5 * k * t2;
+        return { text: `Top ${h0} m hündürlükdən şaquli yuxarı atılıb: h = −5t² + ${v}t + ${h0} (h — metrlə, t — saniyə ilə; hava müqaviməti nəzərə alınmır). Top neçə saniyədən sonra yerə düşür?`,
+          answer: t2, show: String(t2), tol: 1e-6, unit: "s", solution: `h = 0: −5t² + ${v}t + ${h0} = 0 → t² − ${t2 - k}t − ${k * t2} = 0 → t = ${t2} və t = −${k} (vaxt mənfi olmur). Cavab: ${t2} s. Tələ: ən yüksək nöqtənin vaxtını (${num((t2 - k) / 2)}) yazmaq.` }; }
+      const Lw = 4 * rnd(3, 15), x = Lw / 4, Sm = x * (Lw - 2 * x);
+      return { text: `Uzunluğu ${Lw} m olan torla düzbucaqlı formalı sahə hasarlanır; sahənin bir tərəfi divardır (ora tor çəkilmir). Sahənin ən böyük qiyməti neçə kvadrat metrdir?`,
+        answer: Sm, show: String(Sm), tol: 1e-6, unit: "m²", solution: `Divara perpendikulyar tərəflər x, paralel tərəf ${Lw} − 2x. S = x(${Lw} − 2x) = −2x² + ${Lw}x. x₀ = −${Lw}/(2·(−2)) = ${x} m, S = ${x}·${Lw - 2 * x} = ${Sm} m². Tələ: dörd tərəfə tor çəkmək (kvadrat, ${(Lw / 4) ** 2} m²).` };
+    }) },
+    // 10. written: zeros and the Oy point → extreme value
+    { tip: "yazili", gen: () => again(() => {
+      const a = nz(-3, 3), p = nz(-6, 6), q = nz(-6, 6); if (p >= q || (p + q) % 2) return null;
+      const c = a * p * q, m = (p + q) / 2, n = a * (m - p) * (m - q); if (Math.abs(c) > 40 || m === n) return null;
+      const word = a > 0 ? "ən kiçik" : "ən böyük";
+      return { text: `y = ax² + bx + c parabolası Ox oxunu ${P(p, 0)} və ${P(q, 0)} nöqtələrində, Oy oxunu ${P(0, c)} nöqtəsində kəsir. Funksiyanın ${word} qiymətini tapın.`,
+        answer: n, show: S(n), tol: 1e-6,
+        solution: `1) Köklər ${S(p)} və ${S(q)} → y = a${lin(p)}${lin(q)}. 2) (0; ${S(c)}): a·${par(-p)}·${par(-q)} = ${S(c)} → ${S(p * q)}a = ${S(c)} → a = ${S(a)} ${sg(a)}, ona görə ${word} qiymət təpədədir. 3) x₀ = (${S(p)} + ${par(q)})/2 = ${S(m)}. 4) y₀ = ${S(a)}·(${S(m)} − ${par(p)})·(${S(m)} − ${par(q)}) = ${S(n)}. Cavab: ${S(n)}. Tələ: təpənin absisini (x₀ = ${S(m)}) cavab yazmaq.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -287,7 +392,7 @@
     game = Oyun.mount({
       key: "kvadrat-funksiya", title: "Kvadrat funksiya, parabola", fenn: "riyaziyyat", link: "dersler/kvadrat-funksiya.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2, onluq 2,5 (və ya 2.5). Nöqtə soruşulmur — yalnız sualdakı ədədi (x₀, y₀, qiymət) yaz.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["tepe", "tepe", "minmax", "minmax", "kesisme", "kesisme", "qrafik", "emsal", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

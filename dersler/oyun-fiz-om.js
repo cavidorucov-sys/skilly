@@ -278,6 +278,140 @@ const CK = (() => {
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a circuit or graph, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 5, 7 and 10 also use "Cərəyan, gərginlik,
+  // müqavimət" (R = ρl/S, q = I·t).
+  const { ae, again } = Oyun;
+  const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  const fr = (p, q) => { const g = gcd(p, q); return q / g === 1 ? String(p / g) : p / g + "/" + q / g; };
+  const S = (w, h, inner, aria) => svgEl(CK.svg(w, h, inner, "oy-svg", aria));
+  const T = CK.text, Ln = CK.line;
+  // circuits with plain labels (values are in the text, as in the RFO papers)
+  const fig1 = (A) => svgEl(CK.net({ ser: ["R₃"], br: [["R₁"], ["R₂"]], U: "U", cls: "oy-svg", aria: "R₃ ardıcıl, R₁ və R₂ paralel; ampermetr əsas xətdə",
+    extra: A ? CK.meter(85, 164, "A") : "" }));
+  const figV = () => { // R1, R2, R3 in series, a voltmeter across R2
+    const yT = 36, x = 140; return svgEl(CK.net({ ser: ["R₁", "R₂", "R₃"], U: "U", cls: "oy-svg", aria: "Ardıcıl R₁, R₂, R₃; voltmetr R₂-yə paralel",
+      extra: CK.wire([[x - 22, yT], [x - 22, 80], [x - 12, 80]]) + CK.wire([[x + 12, 80], [x + 22, 80], [x + 22, yT]]) + CK.dot(x - 22, yT) + CK.dot(x + 22, yT) + CK.meter(x, 80, "V") })); };
+  const figPar = () => svgEl(CK.net({ br: [["R₁"], ["R₂"]], U: "U", cls: "oy-svg", aria: "R₁ və R₂ paralel; ampermetr əsas xətdə", extra: CK.meter(80, 164, "A") }));
+  const figK = () => { const x = 200, PAP = CK.PAP; // switch K on the R3 branch
+    return svgEl(CK.net({ ser: ["R₁"], br: [["R₂"], ["R₃"]], U: "U", cls: "oy-svg", aria: "R₁ ardıcıl; R₂ və R₃ paralel, R₃ qolunda K açarı",
+      extra: Ln(x, 50, x, 72, PAP, 5) + CK.dot(x, 50) + CK.dot(x, 72) + Ln(x, 72, x + 3, 51) + T(x + 12, 66, "K", "start") + CK.meter(85, 164, "A") })); };
+  const figBridge = () => svgEl(CK.net({ br: [["R₁", "R₂"], ["R₃", "R₄"]], U: "U", cls: "oy-svg", aria: "İki qol: R₁–R₂ və R₃–R₄; voltmetr qolların orta nöqtələri arasında",
+    extra: CK.wire([[120, 100], [143, 100]]) + CK.wire([[167, 100], [190, 100]]) + CK.dot(120, 100) + CK.dot(190, 100) + CK.meter(155, 100, "V") }));
+  function figRing(alpha) { const cx = 130, cy = 112, r = 60, a1 = Math.PI, a2 = Math.PI - 2 * Math.PI * alpha;
+    const P = a => [cx + r * Math.cos(a), cy - r * Math.sin(a)], [ax, ay] = P(a1), [bx, by] = P(a2), lead = 34;
+    return S(260, 215, `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${CK.INK}" stroke-width="2.5"/>` + Ln(ax, ay, ax - lead, ay) + CK.dot(ax, ay) + T(ax - lead - 4, ay + 5, "A", "end")
+      + Ln(bx, by, bx + lead * Math.cos(a2), by - lead * Math.sin(a2)) + CK.dot(bx, by) + T(bx + (lead + 12) * Math.cos(a2), Math.max(14, by - (lead + 12) * Math.sin(a2) + 5), "B"), "Naqildən halqa; A və B nöqtələri"); }
+  // I–U graph: two lines through the origin, each through a marked grid point
+  function figGraph(p1, p2) { const X = u => 40 + u * 15, Y = i => 160 - i * 22;
+    let s = Ln(40, 160, 235, 160) + Ln(40, 160, 40, 15) + T(240, 176, "U, V") + T(34, 16, "I, A", "end");
+    for (let u = 2; u <= 12; u += 2) s += Ln(X(u), 160, X(u), 22, CK.MUT, 0.6) + T(X(u), 176, u, "middle", CK.MUT, 11);
+    for (let i = 1; i <= 6; i++) s += Ln(40, Y(i), 220, Y(i), CK.MUT, 0.6) + T(32, Y(i) + 4, i, "end", CK.MUT, 11);
+    [[p1, CK.ACC, "1"], [p2, CK.VEC, "2"]].forEach(([[u, i], c, n]) => { const k = Math.min(12 / u, 6.5 / i); s += Ln(40, 160, X(u * k), Y(i * k), c, 2.5) + `<circle cx="${X(u)}" cy="${Y(i)}" r="3.5" fill="${c}"/>` + T(X(u * k) + 4, Y(i * k) - 4, n, "start", c); });
+    return S(260, 190, s, "Cərəyan şiddətinin gərginlikdən asılılıq qrafiki: 1 və 2 rezistorları"); }
+
+  // a wire cut into n parts, the parts joined side by side
+  function figCut(n) { let s = Ln(20, 40, 240, 40, CK.INK, 4) + T(130, 24, "R");
+    for (let k = 1; k < n; k++) { const x = 20 + 220 * k / n; s += Ln(x - 4, 31, x + 4, 49, CK.ACC, 2); }
+    s += CK.arrow(130, 58, 130, 84) + T(140, 76, "kəsib, paralel", "start", CK.MUT, 11);
+    const y0 = 100, gap = Math.min(18, 80 / n);
+    for (let k = 0; k < n; k++) s += Ln(90, y0 + k * gap, 170, y0 + k * gap, CK.INK, 3);
+    s += Ln(90, y0, 90, y0 + (n - 1) * gap) + Ln(170, y0, 170, y0 + (n - 1) * gap) + CK.dot(90, y0) + CK.dot(170, y0) + Ln(60, y0, 90, y0) + Ln(170, y0, 200, y0);
+    return S(260, y0 + (n - 1) * gap + 20, s, "Naqil " + n + " bərabər hissəyə kəsilib, hissələr paralel birləşdirilib"); }
+  // ammeter with a shunt in parallel
+  function figShunt() { const yT = 50, yB = 120;
+    const s = Ln(20, 85, 70, 85) + Ln(70, yT, 70, yB) + Ln(70, yT, 190, yT) + Ln(70, yB, 190, yB) + Ln(190, yT, 190, yB) + Ln(190, 85, 240, 85)
+      + CK.dot(70, 85) + CK.dot(190, 85) + CK.meter(130, yT, "A") + CK.res(130, yB, "h", "") + T(130, yB + 25, "R_ş") + T(148, yT - 12, "r_A", "start")
+      + CK.arrow(24, 75, 56, 75) + T(40, 68, "I") ;
+    return S(260, 160, s, "Ampermetr və ona paralel şunt R_ş"); }
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. ammeter in a mixed circuit
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2, r12] = pick(PAIRS.filter(p => p[1] <= 60)), r3 = pick(RS), I = pick([0.5, 1, 1.5, 2, 2.5, 3, 4]), U = I * (r3 + r12);
+      if (!nice(U, 1)) return null;
+      const w = [U / (r1 + r2 + r3), U / r12, U / r3, U * (1 / r1 + 1 / r2 + 1 / r3)]; if (!w.every(x => ok2(x))) return null;
+      return mc(ae(I, w, U_("A")), { svg: fig1(true), text: `Sxemdə R₁ = ${r1} Ω, R₂ = ${r2} Ω, R₃ = ${r3} Ω, mənbənin gərginliyi U = ${F(U)} V. Ampermetr nəyi göstərir? (Ampermetr idealdır.)`,
+        solution: `R₁ və R₂ paraleldir: R₁₂ = ${r1}·${r2}/(${r1}+${r2}) = ${F(r12)} Ω. Ümumi müqavimət R = R₃ + R₁₂ = ${F(r3 + r12)} Ω. I = U/R = ${F(U)}/${F(r3 + r12)} = ${F(I)} A. Tələlər: hamısını ardıcıl saymaq (${F(+(U / (r1 + r2 + r3)).toFixed(2))} A), R₃-ü unutmaq (${F(+(U / r12).toFixed(2))} A).` });
+    }) },
+    // 2. voltmeter across one of three series resistors
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(RS), b = pick(RS), c = pick(RS), U = pick(UU), sum = a + b + c, U2 = U * b / sum;
+      if (a === b && b === c) return null;
+      const w = [U / 3, U / sum, U - U2, U * b / (a + c)]; if (![U2, ...w].every(x => ok2(x))) return null;
+      return mc(ae(U2, w, U_("V")), { svg: figV(), text: `Sxemdə R₁ = ${a} Ω, R₂ = ${b} Ω, R₃ = ${c} Ω, U = ${U} V. İdeal voltmetr nəyi göstərir?`,
+        solution: `Ardıcıl dövrədə cərəyan hər yerdə eynidir: I = U/(R₁+R₂+R₃) = ${U}/${sum} = ${F(+(U / sum).toFixed(4))} A. Voltmetr R₂-dədir: U₂ = I·R₂ = ${F(U2)} V. Tələlər: gərginliyi bərabər bölmək (U/3), cərəyanı cavab yazmaq.` });
+    }) },
+    // 3. current division between parallel branches
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = pick(PAIRS.filter(p => p[0] !== p[1] && p[1] <= 60)), I = rnd(1, 12), I1 = I * r2 / (r1 + r2);
+      const w = [I * r1 / (r1 + r2), I / 2, I * r1 / r2, I]; if (![I1, ...w].every(x => ok2(x))) return null;
+      return mc(ae(I1, w, U_("A")), { svg: figPar(), text: `Ampermetr ${I} A göstərir. R₁ = ${r1} Ω, R₂ = ${r2} Ω. R₁ rezistorundan keçən cərəyan şiddəti nə qədərdir?`,
+        solution: `Paralel qollarda gərginlik eynidir: I₁R₁ = I₂R₂, I₁ + I₂ = ${I}. I₁ = I·R₂/(R₁+R₂) = ${I}·${r2}/${r1 + r2} = ${F(I1)} A. Kiçik müqavimətdən böyük cərəyan keçir. Tələ: R₁-i surətə yazmaq (${F(+(I * r1 / (r1 + r2)).toFixed(4))} A).` });
+    }) },
+    // 4. opening a switch: how the ammeter reading changes
+    { tip: "qapali", gen: () => again(() => {
+      const [r2, r3, r23] = pick(PAIRS.filter(p => p[1] <= 60)), r1 = pick(RS), Ro = r1 + r2, Rc = r1 + r23;
+      if (!Number.isInteger(Rc)) return null;
+      const K = fr(Ro, Rc), K2 = fr(r2 + r3, r3); if (K === "1") return null;
+      const o = ae(K + " dəfə azalar", [K + " dəfə artar", "dəyişməz", "2 dəfə azalar", K2 + " dəfə azalar"], x => x);
+      return mc(o, { svg: figK(), text: `Sxemdə R₁ = ${r1} Ω, R₂ = ${r2} Ω, R₃ = ${r3} Ω. K açarı qapalıdır. Açarı açsaq, ampermetrin göstərişi necə dəyişər?`,
+        solution: `Qapalı: R = R₁ + R₂R₃/(R₂+R₃) = ${r1} + ${F(r23)} = ${Rc} Ω. Açıq: R₃ qolu kəsilir, R = R₁ + R₂ = ${Ro} Ω. Gərginlik eynidir, I = U/R: I_q/I_a = ${Ro}/${Rc} = ${K}. Müqavimət artır, cərəyan ${K} dəfə azalır. Tələ: R₁-i unutmaq (${K2}).` });
+    }) },
+    // 5. a wire cut into n equal parts, the parts joined in parallel (R = ρl/S)
+    { tip: "qapali", birlesik: "fiz-cereyan", gen: () => again(() => {
+      const n = rnd(2, 6), Rr = n * n * pick([1, 2, 3, 4, 5, 6, 8, 10, 12, 20]), right = Rr / n / n;
+      const o = ae(right, [Rr / n, Rr * n, Rr, Rr * n * n], U_("Ω"));
+      return mc(o, { svg: figCut(n), text: `Müqaviməti ${Rr} Ω olan bircins naqil (en kəsiyi hər yerdə eyni) ${n} bərabər hissəyə kəsildi və hissələr paralel birləşdirildi. Alınan birləşmənin müqaviməti nə qədərdir?`,
+        solution: `Hər hissə ${n} dəfə qısadır: R₀ = ${Rr}/${n} = ${F(Rr / n)} Ω (R = ρl/S). ${n} eyni rezistor paralel: R = R₀/${n} = ${F(right)} Ω, yəni ${Rr}/${n}² . Tələ: müqaviməti yalnız ${n} dəfə azaltmaq (${F(Rr / n)} Ω).` });
+    }) },
+    // 6. two resistors from an I–U graph, then joined in parallel
+    { tip: "qapali", minVariety: 8, gen: () => again(() => {
+      const pts = [[2, 4], [2, 2], [4, 2], [6, 2], [6, 3], [12, 6], [12, 4], [12, 3], [10, 2], [8, 4], [9, 3], [4, 4], [6, 4], [8, 2], [12, 2]];
+      const p1 = pick(pts), p2 = pick(pts), R1 = p1[0] / p1[1], R2 = p2[0] / p2[1]; if (R1 === R2) return null;
+      const r = R1 * R2 / (R1 + R2), w = [R1 + R2, 1 / R1 + 1 / R2, (R1 + R2) / 2, Math.abs(R1 - R2)]; if (![r, ...w].every(x => ok2(x))) return null;
+      return mc(ae(r, w, U_("Ω")), { svg: figGraph(p1, p2), text: `Qrafikdə 1 və 2 rezistorlarından keçən cərəyanın gərginlikdən asılılığı verilib. Bu rezistorları paralel birləşdirsək, ümumi müqavimət nə qədər olar?`,
+        solution: `Qrafikdən: R₁ = ${p1[0]}/${p1[1]} = ${F(R1)} Ω, R₂ = ${p2[0]}/${p2[1]} = ${F(R2)} Ω. Paralel: R = R₁R₂/(R₁+R₂) = ${F(r)} Ω. Tələ: 1/R₁ + 1/R₂ = ${F(+(1 / R1 + 1 / R2).toFixed(4))} tapıb tərsinə çevirməyi unutmaq.` });
+    }) },
+    // 7. charge through one branch in t seconds (q = I·t)
+    { tip: "qapali", birlesik: "fiz-cereyan", gen: () => again(() => {
+      const [r2, r3, r23] = pick(PAIRS.filter(p => p[0] !== p[1] && p[1] <= 60)), r1 = pick(RS), I = pick([0.5, 1, 1.5, 2, 3, 4]), U = I * (r1 + r23), t = pick([10, 20, 30, 60]);
+      const I2 = I * r3 / (r2 + r3), q = I2 * t; if (!nice(U, 1)) return null;
+      const w = [I * t, U * t / r2, I2, I * t / 2]; if (![q, ...w].every(x => ok2(x))) return null;
+      return mc(ae(q, w, U_("Kl")), { svg: fig1(false), text: `Sxemdə R₁ = ${r2} Ω, R₂ = ${r3} Ω, R₃ = ${r1} Ω, U = ${F(U)} V. R₁ rezistorundan ${t} s ərzində nə qədər yük keçir?`,
+        solution: `R₁₂ = ${r2}·${r3}/${r2 + r3} = ${F(r23)} Ω; I = U/(R₃ + R₁₂) = ${F(U)}/${F(r1 + r23)} = ${F(I)} A. R₁-dən: I₁ = I·R₂/(R₁+R₂) = ${F(I2)} A. q = I₁·t = ${F(I2)}·${t} = ${F(q)} Kl. Tələlər: ümumi cərəyanla hesablamaq (${F(I * t)} Kl), cərəyanı cavab yazmaq.` });
+    }) },
+    // 8. voltmeter between the midpoints of two branches (unbalanced bridge)
+    { tip: "qapali", gen: () => again(() => {
+      const r1 = pick(RS), r2 = pick(RS), r3 = pick(RS), r4 = pick(RS), U = pick(UU);
+      const f1 = U * r2 / (r1 + r2), f2 = U * r4 / (r3 + r4), V = Math.abs(f1 - f2); if (V < 0.01) return null;
+      if (![V, f1, f2].every(x => ok2(x))) return null;
+      const o = ae(V, [f1, f1 + f2, U / 2, 0], U_("V")); // f1: one branch only; 0: the bridge taken as balanced
+      return mc(o, { svg: figBridge(), text: `Sxemdə R₁ = ${r1} Ω, R₂ = ${r2} Ω, R₃ = ${r3} Ω, R₄ = ${r4} Ω, U = ${U} V. İdeal voltmetr nəyi göstərir?`,
+        solution: `Hər qolda gərginlik müqavimətlərə mütənasib bölünür. Aşağı ucun potensialı 0 olsun: sol orta nöqtə φ₁ = U·R₂/(R₁+R₂) = ${F(+f1.toFixed(4))} V, sağ φ₂ = U·R₄/(R₃+R₄) = ${F(+f2.toFixed(4))} V. Voltmetr fərqi göstərir: ${F(+V.toFixed(4))} V. Körpü ancaq R₁/R₂ = R₃/R₄ olanda balansdadır (0).` });
+    }) },
+    // 9. shunt for an ammeter
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([2, 3, 4, 5, 10, 20, 25, 50, 100]), sh = pick([0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]), rA = sh * (n - 1), IA = pick([0.01, 0.05, 0.1, 0.5, 1, 2]);
+      if (!nice(rA, 3)) return null;
+      const o = ae(sh, [rA / n, rA * (n - 1), rA * n, rA / (n + 1)], U_("Ω"));
+      return mc(o, { svg: figShunt(), text: `Ampermetrin daxili müqaviməti ${F(+rA.toFixed(4))} Ω-dur, ən çox ${F(IA)} A ölçür. Onunla ${F(+(IA * n).toFixed(4))} A-ə qədər cərəyan ölçmək üçün ampermetrə paralel hansı müqavimətli şunt qoşulmalıdır?`,
+        solution: `Ampermetrdən ən çox ${F(IA)} A, şuntdan qalan ${F(+(IA * (n - 1)).toFixed(4))} A keçməlidir. Gərginlik eynidir: ${F(IA)}·r_A = ${F(+(IA * (n - 1)).toFixed(4))}·R_ş, R_ş = r_A/(n − 1) = ${F(+rA.toFixed(4))}/${n - 1} = ${F(sh)} Ω (n = ${n}). Tələ: r_A/n.` });
+    }) },
+    // 10. ring of wire: resistance between two points (R ∝ l)
+    { tip: "qapali", birlesik: "fiz-cereyan", minVariety: 10, gen: () => again(() => {
+      const [p, q] = pick([[1, 2], [1, 3], [1, 4], [1, 6], [1, 5], [2, 5]]), al = p / q, Rr = pick([36, 72, 100, 144, 180, 200, 300, 360]);
+      const right = Rr * al * (1 - al); if (!nice(right, 2)) return null;
+      const cand = [Rr * al, Rr * (1 - al), Rr / 4, Rr / 2, Rr, 2 * Rr].filter(x => F(x) !== F(right)).filter((x, i, a) => a.findIndex(y => F(y) === F(x)) === i).slice(0, 4);
+      return mc(ae(right, cand, U_("Ω")), { svg: figRing(al), text: `Müqaviməti ${Rr} Ω olan bircins naqildən (en kəsiyi hər yerdə eyni) halqa düzəldilib. A və B nöqtələri halqanı ${p === 1 && q === 2 ? "iki bərabər hissəyə bölür (diametrin ucları)" : `${p}/${q} və ${q - p}/${q} hissələrə bölür`}. A və B arasında müqavimət nə qədərdir?`,
+        solution: `R ∝ l: qövslərin müqaviməti ${F(Rr * al)} Ω və ${F(Rr * (1 - al))} Ω. Onlar A və B arasında paraleldir: R = ${F(Rr * al)}·${F(Rr * (1 - al))}/${Rr} = ${F(right)} Ω. Tələ: yalnız qısa qövsü götürmək (${F(Rr * al)} Ω).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -287,7 +421,7 @@ const CK = (() => {
     game = Oyun.mount({
       key: "fiz-om", title: "Om qanunu, ardıcıl və paralel birləşmə", fenn: "fizika", link: "dersler/fiz-om.html",
       format: "Cavab ədəddir (SI: A, V, Ω). Onluq kəsr vergül və ya nöqtə ilə: 0,25.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["om", "om", "mqv", "ardicil", "paralel", "paralel", "qarisiq", "qarisiq", "bolgu", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

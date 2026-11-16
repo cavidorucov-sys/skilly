@@ -149,6 +149,137 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes. BSİ-2 (15 Nov), q. 66: "(x − 1)(x + 2)(x + 3) çoxhədlisinin qüvvətini tapın" —
+  // Fikrət chose 1 instead of 3: DİM says "qüvvət" for the degree, and the degree of a product is the SUM of the degrees.
+  const { ae, again, num } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const NS = "http://www.w3.org/2000/svg";
+  const sv = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  const lin = (a, b) => pa([b, a]);                                         // ax + b
+  const fr = v => Number.isInteger(v) ? S(v) : (v < 0 ? "−" : "") + "1/2"; // x values: integers or ±1/2
+  // square picture (side x) with a frame of width a on every side
+  function frame(a, u) {
+    const g = sv("svg", { viewBox: "0 0 260 200", class: "oy-svg", role: "img", "aria-label": `Tərəfi x ${u} olan kvadrat, ətrafında eni ${a} ${u} olan haşiyə` });
+    g.append(sv("rect", { x: 50, y: 15, width: 170, height: 170, style: "fill:var(--accent-soft);stroke:var(--ink);stroke-width:2" }));
+    g.append(sv("rect", { x: 80, y: 45, width: 110, height: 110, style: "fill:var(--sheet);stroke:var(--ink);stroke-width:2" }));
+    g.append(sv("line", { x1: 80, y1: 140, x2: 190, y2: 140, style: "stroke:var(--ink);stroke-width:1;stroke-dasharray:3 3" }));
+    g.append(sv("text", { x: 135, y: 136, "text-anchor": "middle", class: "oy-lbl" }, `x ${u}`));
+    g.append(sv("line", { x1: 50, y1: 100, x2: 80, y2: 100, style: "stroke:var(--accent);stroke-width:2" }));
+    g.append(sv("text", { x: 44, y: 104, "text-anchor": "end", class: "oy-lbl" }, `${a} ${u}`));
+    return g;
+  }
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. degree ("qüvvət") of a product: the degrees of the factors add up (BSİ-2, q. 66)
+    { tip: "qapali", gen: () => again(() => {
+      if (Math.random() < .4) { // only linear factors, as in BSİ-2: (x − 1)(x + 2)(x + 3)
+        const k = pick([3, 3, 4]), fs = Array.from({ length: k }, () => [nz(-7, 7), pick([1, 1, 1, 2, 3])]);
+        const E = fs.reduce((r, f) => mul(r, f), [1]), T = E.filter(Boolean).length, L = E[k];
+        const word = pick(["qüvvətini", "qüvvətini", "dərəcəsini"]);
+        const w4 = L === 1 ? k - 1 : L, t4 = L === 1 ? `vurma işarələrinin sayı (${k - 1})` : `baş əmsal (${L})`;
+        return mc(ae(k, [1, T, 2 ** k, w4]), { text: `${fs.map(f => "(" + pa(f) + ")").join("")} çoxhədlisinin ${word} tapın.`,
+          solution: `“Qüvvət” — çoxhədlinin dərəcəsidir. ${k} birinci dərəcəli vuruq: baş hədlər ${fs.map(f => mono(f[1], 1)).join("·")} = ${mono(L, k)}, dərəcə 1${" + 1".repeat(k - 1)} = ${k}. (Açılmış şəkil: ${pa(E)}.) ` +
+            `Tələlər: “hər vuruq birinci dərəcəlidir” (1), hədlərin sayı (${T}), açanda alınan hasillərin sayı (2${sup(k)} = ${2 ** k}), ${t4}.` });
+      }
+      const k = pick([2, 3, 3]), ds = Array.from({ length: k }, () => k === 2 ? rnd(2, 4) : rnd(1, 2));
+      const cs = ds.map(d => d === 1 ? pick([1, 1, 2, 3]) : 1);
+      const fs = ds.map((d, i) => "(" + poly([[cs[i], xp(d)], [nz(-7, 7), ""]]) + ")");
+      const Sm = ds.reduce((s, d) => s + d, 0), M = Math.max(...ds), Pr = ds.reduce((s, d) => s * d, 1), C = cs.reduce((s, c) => s * c, 1);
+      const word = pick(["qüvvətini", "qüvvətini", "dərəcəsini"]);
+      return mc(ae(Sm, [M, Pr, k, 1]), { text: `${fs.join("")} çoxhədlisinin ${word} tapın.`,
+        solution: `“Qüvvət” — çoxhədlinin dərəcəsidir. Açanda ən böyük hədd vuruqların baş hədlərinin hasilidir: ${ds.map((d, i) => mono(cs[i], d)).join("·")} = ${mono(C, Sm)}, çünki üstlər toplanır: ${ds.join(" + ")} = ${Sm}. ` +
+          `Tələlər: ən böyük vuruğun dərəcəsi (${M}), dərəcələri vurmaq (${Pr}), vuruqların sayı (${k}), “hər vuruq birinci dərəcəlidir” (1).` });
+    }) },
+    // 2. subtraction: every sign of the subtrahend changes
+    { tip: "qapali", gen: () => again(() => {
+      const a = [nz(-9, 9), nz(-9, 9), nz(-5, 5)], b = [nz(-9, 9), nz(-9, 9), nz(-5, 5)];
+      const r = add(a, b, -1); if (r.filter(Boolean).length < 2) return null;
+      const w = [[a[0] + b[0], a[1] + b[1], a[2] - b[2]], [a[0] + b[0], a[1] - b[1], a[2] - b[2]], add(a, b, 1), add(b, a, -1)];
+      return mc(ae(pa(r), w.map(pa)), { text: `(${pa(a)}) − (${pa(b)}) ifadəsini sadələşdirin.`,
+        solution: `Mötərizənin qarşısında “−” var: ikinci çoxhədlinin HƏR həddinin işarəsi dəyişir: ${poly([...a.map((k, i) => [k, xp(i)]).reverse(), ...b.map((k, i) => [-k, xp(i)]).reverse()])} = ${pa(r)}. ` +
+          `Tələlər: işarəni yalnız birinci həddə dəyişmək (${pa(w[0])}), sərbəst həddin işarəsini dəyişməmək (${pa(w[1])}), toplamaq (${pa(w[2])}), tərs çıxmaq (${pa(w[3])}).` });
+    }) },
+    // 3. (ax + b)(cx + d): four products, the middle ones are added
+    { tip: "qapali", gen: () => again(() => {
+      let a = pick([1, 2, 3]), c = pick([2, 3, 4, 5]); if (pick([0, 1])) [a, c] = [c, a];
+      const b = nz(-7, 7), d = nz(-7, 7), mid = a * d + b * c; if (!mid || b + d === mid) return null;
+      const r = [b * d, mid, a * c];
+      const w = [[b * d, 0, a * c], [b * d, b + d, a * c], [-b * d, mid, a * c], [b * d, a * d - b * c, a * c]];
+      return mc(ae(pa(r), w.map(pa)), { text: `(${lin(a, b)})(${lin(c, d)}) hasilini çoxhədli şəklində yazın.`,
+        solution: `Dörd hasil: ${mono(a * c, 2)}, ${mono(a * d, 1)}, ${mono(b * c, 1)}, ${S(b * d)}. Orta hədlər: ${S(a * d)}x ${b * c < 0 ? "−" : "+"} ${Math.abs(b * c)}x = ${mono(mid, 1)}. Cavab: ${pa(r)}. ` +
+          `Tələlər: orta hədləri itirmək (${pa(w[0])}), (x + m)(x + n) = x² + (m + n)x + mn düsturunu baş əmsal 1 olmayanda işlətmək (${pa(w[1])}), ${P(b)}·${P(d)} hasilinin işarəsi (${pa(w[2])}), orta hasillərdən birinin işarəsi (${pa(w[3])}).` });
+    }) },
+    // 4. simplify first, then substitute
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(1, 9), b = rnd(1, 9), c = rnd(1, 9), v = pick([-3, -2, -1, 2, 3]); if (a === b) return null;
+      const L = b - a + c, R = L * v - a * b; if (!L) return null;
+      if (R !== (v - a) * (v + b) - v * (v - c)) return null;
+      const w = [(b - a - c) * v - a * b, c * v - a * b, L * v + a * b, (a - b + c) * v - a * b];
+      return mc(ae(R, w), { text: `(x − ${a})(x + ${b}) − x(x − ${c}) ifadəsinin x = ${S(v)} olduqda qiymətini tapın.`,
+        solution: `(x − ${a})(x + ${b}) = ${pa([-a * b, b - a, 1])}; x(x − ${c}) = x² − ${c}x. Çıxanda işarələr dəyişir: ${pa([-a * b, b - a, 1])} − x² + ${c}x = ${pa([-a * b, L])}. x = ${S(v)}: ${S(L)}·${P(v)} − ${a * b} = ${S(R)}. ` +
+          `Tələlər: “− x(x − ${c})” açanda ${c}x-in işarəsini dəyişməmək (${S(w[0])}), orta hədləri itirmək (${S(w[1])}), −${a}·${b} hasilinin işarəsi (${S(w[2])}), orta həddin işarəsi (${S(w[3])}).` });
+    }) },
+    // 5. division by a negative monomial
+    { tip: "qapali", gen: () => again(() => {
+      const m = -rnd(2, 6), n = rnd(1, 3), q = [1, nz(-6, 6), nz(-5, 5)], r = mul(Array(n).fill(0).concat([m]), q);
+      const w = [pa([0, q[1], q[2]]), pa(q.map(k => -k)), poly(q.map((k, i) => [k, xp(i + n)]).reverse()), pa([-1, q[1], q[2]])];
+      return mc(ae(pa(q), w), { text: `(${pa(r)}) : (${mono(m, n)}) qismətini tapın (x ≠ 0).`,
+        solution: `Hər hədd ayrıca bölünür, əmsallar bölünür, üstlər çıxılır: ${r.map((k, i) => k ? `${br(mono(k, i))} : (${mono(m, n)}) = ${mono(k / m, i - n)}` : null).filter(Boolean).reverse().join("; ")}. Cavab: ${pa(q)}. ` +
+          `Tələlər: ${mono(m, n)} : (${mono(m, n)}) = 0 yazmaq (${w[0]}), bölənin “−” işarəsini unutmaq (${w[1]}), üstləri çıxmamaq (${w[2]}), (−) : (−) = − yazmaq (${w[3]}).` });
+    }) },
+    // 6. area of a frame around a square picture (with a figure)
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(1, 6), [what, u] = pick([["şəklin", "sm"], ["güzgünün", "sm"], ["hovuzun", "m"], ["xalçanın", "sm"]]);
+      const R = [4 * a * a, 4 * a], w = [[4 * a * a, 4 * a, 1], [a * a, 2 * a], [0, 4 * a], [4 * a * a]];
+      const [what2, gen2] = { "şəklin": ["haşiyə", "Haşiyənin"], "güzgünün": ["çərçivə", "Çərçivənin"], "hovuzun": ["cığır", "Cığırın"], "xalçanın": ["kənar zolaq", "Kənar zolağın"] }[what];
+      return mc(ae(pa(R), w.map(pa)), { svg: frame(a, u),
+        text: `Tərəfi x ${u} olan kvadrat ${what} ətrafında hər tərəfdən eni ${a} ${u} olan ${what2} var (şəklə bax). ${gen2} sahəsini ifadə edən çoxhədlini tapın.`,
+        solution: `Böyük kvadratın tərəfi x + ${2 * a} (en hər iki tərəfdən: 2·${a}). Sahə fərqi: (x + ${2 * a})² − x² = x² + ${4 * a}x + ${4 * a * a} − x² = ${pa(R)}. ` +
+          `Tələlər: bütün sahəni yazmaq (${pa(w[0])}), eni bir dəfə əlavə etmək: (x + ${a})² − x² (${pa(w[1])}), künclərdəki ${a}×${a} kvadratları unutmaq (${pa(w[2])}), (x + ${2 * a})² = x² + ${4 * a * a} yazmaq (${pa(w[3])}).` });
+    }) },
+    // 7. coded: one coefficient of a product (only the products that give this power)
+    { tip: "kod", gen: () => again(() => {
+      const p = nz(-4, 4), q = nz(-7, 7), t = pick([1, 1, 2, 3]), r = nz(-6, 6), s = nz(-6, 6);
+      const A = [q, p], B = [s, r, t], R = mul(A, B), k = pick([1, 2]);
+      if (!R[k]) return null;
+      const how = k === 2 ? `${mono(p, 1)}·${br(mono(r, 1))} + ${P(q)}·${br(mono(t, 2))} = ${mono(p * r, 2)} ${q * t < 0 ? "−" : "+"} ${mono(Math.abs(q * t), 2)}` : `${mono(p, 1)}·${P(s)} + ${P(q)}·${br(mono(r, 1))} = ${mono(p * s, 1)} ${q * r < 0 ? "−" : "+"} ${mono(Math.abs(q * r), 1)}`;
+      return { text: `(${pa(A)})(${pa(B)}) hasilinin standart şəklində “${xp(k)}” həddinin əmsalını tapın.`, answer: R[k], show: S(R[k]), tol: 1e-6,
+        solution: `Bütün hasili açmaq lazım deyil — yalnız ${xp(k)} verən hasilləri götür: ${how}. Əmsal: ${S(R[k])}. (Tam hasil: ${pa(R)}.)` };
+    }) },
+    // 8. coded: the sum of the coefficients = the value at x = 1
+    { tip: "kod", gen: () => again(() => {
+      const A = [nz(-6, 6), nz(-6, 6), 1], B = [nz(-7, 7), pick([1, 2, 3])], R = mul(A, B), ans = val(R, 1);
+      if (!ans) return null;
+      return { text: `(${pa(A)})(${pa(B)}) hasilini standart şəklə saldıqda alınan çoxhədlinin əmsallarının cəmini tapın (sərbəst hədd də daxildir).`, answer: ans, show: S(ans), tol: 1e-6,
+        solution: `Əmsalların cəmi = x = 1 olanda çoxhədlinin qiyməti: (${S(val(A, 1))})·(${S(val(B, 1))}) = ${S(ans)}. Açıb yoxla: ${pa(R)} → ${R.slice().reverse().map(S).join(" + ").replace(/\+ −/g, "− ")} = ${S(ans)}. Tələ: işarəsiz cəmləmək.` };
+    }) },
+    // 9. coded: a parameter from a given coefficient
+    { tip: "kod", gen: () => again(() => {
+      const a = nz(-8, 8), c = nz(-9, 9), d = nz(-6, 6), R = mul([c, a, 1], [d, 1]);
+      if (pick([0, 1])) {
+        const K = R[2]; if (!K) return null;
+        return { text: `(x² + ax ${c < 0 ? "−" : "+"} ${Math.abs(c)})(${lin(1, d)}) hasilinin standart şəklində x²-nin əmsalı ${S(K)} ədədinə bərabərdir. a-nı tapın.`, answer: a, show: S(a), tol: 1e-6,
+          solution: `x² iki hasildən gəlir: x²·${P(d)} və ax·x. Əmsal: ${S(d)} + a = ${S(K)}, a = ${S(a)}. Tələ: yalnız ax·x hasilini görmək (a = ${S(K)}).` };
+      }
+      const K = R[1];
+      return { text: `(x² + ax ${c < 0 ? "−" : "+"} ${Math.abs(c)})(${lin(1, d)}) hasilinin standart şəklində x-in əmsalı ${S(K)} ədədinə bərabərdir. a-nı tapın.`, answer: a, show: S(a), tol: 1e-6,
+        solution: `x iki hasildən gəlir: ax·${P(d)} və ${S(c)}·x. Əmsal: ${d === 1 ? "" : d === -1 ? "−" : S(d)}a ${c < 0 ? "−" : "+"} ${Math.abs(c)} = ${S(K)}, ${d === 1 ? "" : d === -1 ? "−" : S(d)}a = ${S(K - c)}, a = ${S(a)}.` };
+    }) },
+    // 10. written: simplify (x² cancels), then substitute
+    { tip: "yazili", gen: () => again(() => {
+      const a = rnd(1, 9), b = rnd(1, 9), c = rnd(1, 9), d = rnd(1, 9), v = pick([-3, -2, -1, 2, 3, 0.5, -0.5]);
+      const L = 2 * b - a - 2 * d + 2 * c, K = 2 * c * d - a * b, R = L * v + K; if (!L) return null;
+      if (Math.abs(R - ((2 * v - a) * (v + b) - 2 * (v - c) * (v + d))) > 1e-9) return null;
+      const F = [-a * b, 2 * b - a, 2], G = [-2 * c * d, 2 * (d - c), 2];
+      return { text: `İfadəni sadələşdirin və x = ${fr(v)} olduqda qiymətini tapın: (2x − ${a})(x + ${b}) − 2(x − ${c})(x + ${d}). Həlli addım-addım yazın.`, answer: R, show: num(R), tol: 1e-6,
+        solution: `1) (2x − ${a})(x + ${b}) = 2x² + ${2 * b}x − ${a}x − ${a * b} = ${pa(F)}. 2) 2(x − ${c})(x + ${d}) = 2(${pa([-c * d, d - c, 1])}) = ${pa(G)}. ` +
+          `3) Çıxanda bütün işarələr dəyişir: ${pa(F)} ${poly([[-2, "x²"], [-G[1], "x"], [-G[0], ""]]).replace(/^−/, "− ").replace(/^(?=\d|x)/, "+ ")} = ${pa([K, L])}. 4) x = ${fr(v)}: ${S(L)}·${v < 0 ? "(" + fr(v) + ")" : fr(v)} ${K < 0 ? "−" : "+"} ${Math.abs(K)} = ${num(R)}.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -158,7 +289,7 @@
     game = Oyun.mount({
       key: "coxhedliler", title: "Çoxhədlilər", fenn: "riyaziyyat", link: "dersler/coxhedliler.html",
       format: "Cavab ədəddir: əmsal işarəsi ilə (−3x²-nin əmsalı −3), dərəcə — tam ədəd. Hədd yoxdursa, onun əmsalı 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["standart", "standart", "topla", "topla", "vur1", "vur2", "vur2", "bol", "bol", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

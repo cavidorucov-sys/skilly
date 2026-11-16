@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama, çıxma</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Vurma</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Bölmə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -253,6 +254,89 @@ Yoxlama: qisməti bölənə vur.</div></div>
         <li><span class="m">(10x³ − 5x²) : 5x²</span>. <span class="ans">2x − 1.</span></li>
         <li><span class="m">(−6x⁴ + 9x²) : (−3x²)</span>. <span class="ans">2x² − 3.</span></li>
         <li><span class="m">(8x⁵ + 4x³) : 4x³</span>, sonra <span class="m">x = 2</span>. <span class="ans">2x² + 1; x = 2: 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: çoxhədlilər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Çoxhədlilər buraxılışda üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəni bir həddə dəyişmək, orta hədləri itirmək, dərəcələri toplamaq əvəzinə ən böyüyünü götürmək. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: əmsal işarəsi ilə (<span class="m">−9</span>), onluq kəsr vergüllə (<span class="m">−0,5</span>).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Yalnız cavab yazılsa, bal az olur və ya heç olmur: yoxlayan hər hasili və hər işarəni görməlidir.</li>
+      </ul>
+      <p><b>Söz tələsi.</b> DİM tapşırıqlarında dərəcə çox vaxt <b>"qüvvət"</b> adlanır: "çoxhədlisinin qüvvətini tapın" = "dərəcəsini tapın". Hasilin dərəcəsi vuruqların dərəcələrinin <b>cəmidir</b>: <span class="m">x·x·x = x³</span>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(x − 1)(x² + 2)(x² − 3)</span> çoxhədlisinin qüvvətini tapın.</p>
+        <ol class="imt-opts"><li>2</li><li>4</li><li>5</li><li>3</li><li>1</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">"Qüvvət" — dərəcədir.
+Açanda ən böyük hədd: x · x² · x² = x⁵
+(üstlər toplanır: 1 + 2 + 2 = 5)
+Cavab: C) 5</div>
+      <p>Mötərizələri açmaq lazım deyil: yalnız hər vuruğun ən böyük həddi lazımdır. Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 2</b> — ən böyük vuruğun dərəcəsini götürmək (<span class="m">x²</span>). Vuruqlar vurulur, dərəcələr toplanır.</li>
+        <li><b>B) 4</b> — dərəcələri vurmaq: <span class="m">1 · 2 · 2</span>. Üstlər vurmada toplanır, vurulmur.</li>
+        <li><b>D) 3</b> — vuruqların sayını yazmaq. Yalnız bütün vuruqlar birinci dərəcəli olanda say dərəcəyə bərabərdir.</li>
+        <li><b>E) 1</b> — "hər mötərizədə <span class="m">x</span> var, deməli birinci dərəcə". Hasilin dərəcəsi vuruqların dərəcələrinin cəmidir: 1 + 2 + 2 = 5.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">(2x − 3)(x² + 4x − 5)</span> hasilinin standart şəklində <span class="m">x²</span>-nin əmsalını tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">x² iki hasildən gəlir:
+  2x · 4x  = 8x²
+  (−3) · x² = −3x²
+8x² − 3x² = 5x²
+Cavab: 5</div>
+      <p>Bütün hasili açmaq lazım deyil — yalnız <span class="m">x²</span> verən hasilləri tap (tam hasil: <span class="m">2x³ + 5x² − 22x + 15</span>). Kodlaşdırmada yalnız <b>5</b> yazılır. Tələlər: yalnız bir hasili görmək (<span class="m">8</span>), <span class="m">−3</span>-ün işarəsini itirmək (<span class="m">8 + 3 = 11</span>).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>İfadəni sadələşdirin və <span class="m">x = −1/2</span> olduqda qiymətini tapın: <span class="m">(2x − 3)(x + 4) − 2(x − 1)(x + 5)</span>.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) (2x − 3)(x + 4) = 2x² + 8x − 3x − 12
+                  = 2x² + 5x − 12
+2) 2(x − 1)(x + 5) = 2(x² + 5x − x − 5)
+                  = 2x² + 8x − 10
+3) Çıxanda ikinci çoxhədlinin bütün işarələri dəyişir:
+   2x² + 5x − 12 − 2x² − 8x + 10 = −3x − 2
+4) x = −1/2:  −3 · (−1/2) − 2 = 1,5 − 2 = −0,5
+5) Yoxlama (birbaşa): (−4) · 3,5 − 2 · (−1,5) · 4,5
+   = −14 + 13,5 = −0,5 ✓
+Cavab: −0,5</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>birinci hasil</b>, <b>ikinci hasil</b> (2-yə vurmağı unutma), <b>çıxmada işarələr</b> və <b>qiymət</b>. Əvvəl sadələşdir, sonra qoy: <span class="m">x²</span> silinir və hesab asanlaşır. Yalnız "−0,5" yazmaq balların çoxunu itirir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>"Qüvvət" = dərəcə.</b> Hasilin dərəcəsi — vuruqların dərəcələrinin cəmi: <span class="m">(x − 1)(x + 2)(x + 3)</span> — 3-cü dərəcə (1 yox).</li>
+        <li><b>Əvvəl standart şəkil, sonra dərəcə.</b> <span class="m">(x² + 1)(x − 2) − x³</span>-də <span class="m">x³</span> silinir: dərəcə 2-dir, 3 yox.</li>
+        <li><b>Çıxma.</b> <span class="m">−(x² − 4x + 1) = −x² + 4x − 1</span>: bütün hədlərin, sərbəst həddin də işarəsi dəyişir.</li>
+        <li><b>Orta hədlər.</b> <span class="m">(2x − 5)(4x + 2)</span>-də dörd hasil var; <span class="m">x² + (m + n)x + mn</span> qısa yolu yalnız <span class="m">(x + m)(x + n)</span> üçündür.</li>
+        <li><b>Bölmə.</b> <span class="m">−2x² : (−2x²) = 1</span> (0 yox); mənfi birhədliyə bölərkən bütün işarələr dəyişir.</li>
+        <li><b>Haşiyə/cığır.</b> Eni <span class="m">a</span> olan haşiyə böyük kvadratın tərəfini <span class="m">2a</span> artırır; künclərdəki <span class="m">a × a</span> kvadratları unutma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">qüvvət = dərəcə
+hasilin dərəcəsi = dərəcələrin cəmi
+əmsalların cəmi = x = 1 olanda qiymət
+bir əmsal lazımdır → yalnız onu verən hasillər
+çıxma: hər həddin işarəsi dəyişir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x − 1)(x + 2)(x + 3)</span> çoxhədlisinin qüvvəti? <span class="ans">Üç birinci dərəcəli vuruq: 1 + 1 + 1 = 3 (1 yox).</span></li>
+        <li><span class="m">(x² + 1)(x − 2) − x³</span> çoxhədlisinin dərəcəsi? <span class="ans">x³ − 2x² + x − 2 − x³ = −2x² + x − 2: dərəcə 2.</span></li>
+        <li><span class="m">(x² − 2x + 3)(x + 1)</span> hasilinin əmsallarının cəmi? <span class="ans">x = 1: (1 − 2 + 3)·(1 + 1) = 2 · 2 = 4.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

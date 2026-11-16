@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Oxlarla kəsişmə</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Qrafikdən əmsallar</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Həyatdan</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -340,6 +341,89 @@ Top: h = −5t² + vt + h₀, t₀ = v/10.</div></div>
         <li><span class="m">h = −5t² + 30t</span>. Top neçə saniyədən sonra ən yuxarıdadır? <span class="ans">t₀ = −30/(−10) = 3 s.</span></li>
         <li>Həmin top ən çox neçə metr qalxır? <span class="ans">h(3) = −45 + 90 = 45 m.</span></li>
         <li>Perimetri 24 m olan düzbucaqlının ən böyük sahəsi? <span class="ans">S = x(12 − x), x₀ = 6 → 6·6 = 36 m².</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: kvadrat funksiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Kvadrat funksiya buraxılış imtahanında hər il var. Çox vaxt <b>qrafiklə</b> verilir: parabolanın şəkli verilir, sən əmsalları, düsturu və ya qiymətləri tapırsan. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: <span class="m">x₀ = b/(2a)</span> (minus unudulub), <span class="m">c</span>-ni təpənin ordinatı sanmaq, təpə <span class="m">(2; 3)</span> üçün <span class="m">(x + 2)²</span> yazmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: nöqtə yox, vahid yox; onluq kəsr vergüllə (<span class="m">2,5</span>).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmasa, düz cavab da <b>0 bal</b> alır: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>soruşulan x-dir, yoxsa y?</b> "Hansı x-də", "simmetriya oxu", "artma aralığı" — <span class="m">x₀</span>-la bağlıdır; "ən kiçik/ən böyük qiymət", "qiymətlər çoxluğu", "ən çox hündürlük" — <span class="m">y₀</span>-la.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E), qrafikli</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı · qrafik</span>
+        <p>Şəkildə <span class="m">y = ax² + bx + c</span> funksiyasının qrafiki verilib (işarələnmiş nöqtələr tor düyünlərindədir). Bu, hansı funksiyanın qrafikidir?</p>
+        <div class="fig"><svg viewBox="0 0 186 208" role="img" aria-label="Qollar yuxarı olan parabola; təpə (1; −3), (0; −1) və (2; −1) nöqtələrindən keçir"><line x1="16" y1="16" x2="16" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="38" y1="16" x2="38" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="60" y1="16" x2="60" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="82" y1="16" x2="82" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="104" y1="16" x2="104" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="126" y1="16" x2="126" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="148" y1="16" x2="148" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="170" y1="16" x2="170" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="192" x2="170" y2="192" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="170" x2="170" y2="170" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="148" x2="170" y2="148" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="126" x2="170" y2="126" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="104" x2="170" y2="104" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="82" x2="170" y2="82" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="60" x2="170" y2="60" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="38" x2="170" y2="38" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="16" x2="170" y2="16" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="104" x2="180" y2="104" stroke="var(--ink)" stroke-width="1.5"/><path d="M173 100L180 104L173 108" fill="none" stroke="var(--ink)" stroke-width="1.5"/><line x1="82" y1="192" x2="82" y2="6" stroke="var(--ink)" stroke-width="1.5"/><path d="M78 13L82 6L86 13" fill="none" stroke="var(--ink)" stroke-width="1.5"/><text x="178" y="97" text-anchor="end" class="lbl">x</text><text x="89" y="15" class="lbl">y</text><text x="78" y="116" text-anchor="end">O</text><line x1="16" y1="101" x2="16" y2="107" stroke="var(--ink)"/><text x="16" y="117" text-anchor="middle">−3</text><line x1="38" y1="101" x2="38" y2="107" stroke="var(--ink)"/><text x="38" y="117" text-anchor="middle">−2</text><line x1="60" y1="101" x2="60" y2="107" stroke="var(--ink)"/><text x="60" y="117" text-anchor="middle">−1</text><line x1="104" y1="101" x2="104" y2="107" stroke="var(--ink)"/><text x="104" y="117" text-anchor="middle">1</text><line x1="126" y1="101" x2="126" y2="107" stroke="var(--ink)"/><text x="126" y="117" text-anchor="middle">2</text><line x1="148" y1="101" x2="148" y2="107" stroke="var(--ink)"/><text x="148" y="117" text-anchor="middle">3</text><line x1="79" y1="192" x2="85" y2="192" stroke="var(--ink)"/><text x="77" y="196" text-anchor="end">−4</text><line x1="79" y1="170" x2="85" y2="170" stroke="var(--ink)"/><text x="77" y="174" text-anchor="end">−3</text><line x1="79" y1="148" x2="85" y2="148" stroke="var(--ink)"/><text x="77" y="152" text-anchor="end">−2</text><line x1="79" y1="126" x2="85" y2="126" stroke="var(--ink)"/><text x="77" y="130" text-anchor="end">−1</text><line x1="79" y1="82" x2="85" y2="82" stroke="var(--ink)"/><text x="77" y="86" text-anchor="end">1</text><line x1="79" y1="60" x2="85" y2="60" stroke="var(--ink)"/><text x="77" y="64" text-anchor="end">2</text><line x1="79" y1="38" x2="85" y2="38" stroke="var(--ink)"/><text x="77" y="42" text-anchor="end">3</text><defs><clipPath id="kfimt1"><rect x="16" y="16" width="154" height="176"/></clipPath></defs><g clip-path="url(#kfimt1)"><path d="M55 -48.2L55.5 -43.6L56 -39.1L56.6 -34.7L57.1 -30.2L57.6 -25.9L58.1 -21.6L58.6 -17.3L59.1 -13.1L59.6 -8.9L60.1 -4.8L60.7 -0.8L61.2 3.3L61.7 7.2L62.2 11.2L62.7 15L63.2 18.9L63.7 22.6L64.3 26.4L64.8 30.1L65.3 33.7L65.8 37.3L66.3 40.8L66.8 44.3L67.3 47.8L67.8 51.2L68.4 54.5L68.9 57.8L69.4 61.1L69.9 64.3L70.4 67.4L70.9 70.6L71.4 73.6L72 76.6L72.5 79.6L73 82.5L73.5 85.4L74 88.2L74.5 91L75 93.7L75.5 96.4L76.1 99L76.6 101.6L77.1 104.2L77.6 106.6L78.1 109.1L78.6 111.5L79.1 113.8L79.7 116.1L80.2 118.4L80.7 120.6L81.2 122.7L81.7 124.8L82.2 126.9L82.7 128.9L83.2 130.8L83.8 132.8L84.3 134.6L84.8 136.4L85.3 138.2L85.8 139.9L86.3 141.6L86.8 143.2L87.4 144.8L87.9 146.3L88.4 147.8L88.9 149.3L89.4 150.6L89.9 152L90.4 153.3L90.9 154.5L91.5 155.7L92 156.9L92.5 157.9L93 159L93.5 160L94 161L94.5 161.9L95.1 162.7L95.6 163.5L96.1 164.3L96.6 165L97.1 165.7L97.6 166.3L98.1 166.9L98.6 167.4L99.2 167.9L99.7 168.3L100.2 168.7L100.7 169L101.2 169.3L101.7 169.5L102.2 169.7L102.8 169.9L103.3 170L103.8 170L104.3 170L104.8 169.9L105.3 169.8L105.8 169.7L106.3 169.5L106.9 169.3L107.4 169L107.9 168.6L108.4 168.2L108.9 167.8L109.4 167.3L109.9 166.8L110.5 166.2L111 165.6L111.5 164.9L112 164.2L112.5 163.4L113 162.6L113.5 161.7L114 160.8L114.6 159.9L115.1 158.9L115.6 157.8L116.1 156.7L116.6 155.5L117.1 154.3L117.6 153.1L118.2 151.8L118.7 150.4L119.2 149.1L119.7 147.6L120.2 146.1L120.7 144.6L121.2 143L121.7 141.4L122.3 139.7L122.8 138L123.3 136.2L123.8 134.4L124.3 132.5L124.8 130.6L125.3 128.6L125.9 126.6L126.4 124.5L126.9 122.4L127.4 120.3L127.9 118L128.4 115.8L128.9 113.5L129.4 111.1L130 108.7L130.5 106.3L131 103.8L131.5 101.3L132 98.7L132.5 96L133 93.3L133.6 90.6L134.1 87.8L134.6 85L135.1 82.1L135.6 79.2L136.1 76.2L136.6 73.2L137.1 70.1L137.7 67L138.2 63.8L138.7 60.6L139.2 57.4L139.7 54.1L140.2 50.7L140.7 47.3L141.3 43.8L141.8 40.3L142.3 36.8L142.8 33.2L143.3 29.5L143.8 25.9L144.3 22.1L144.8 18.3L145.4 14.5L145.9 10.6L146.4 6.7L146.9 2.7L147.4 -1.3L147.9 -5.4L148.4 -9.5L149 -13.7L149.5 -17.9L150 -22.2L150.5 -26.5L151 -30.9L151.5 -35.3L152 -39.7L152.5 -44.3L153.1 -48.8" fill="none" stroke="var(--accent)" stroke-width="2.5"/></g><circle cx="104" cy="170" r="4.5" fill="var(--vec)"/><circle cx="82" cy="126" r="4.5" fill="var(--vec)"/><circle cx="126" cy="126" r="4.5" fill="var(--vec)"/></svg></div>
+        <ol class="imt-opts"><li>y = 2x² + 4x − 1</li><li>y = 2x² − 4x − 3</li><li>y = 2x² − 4x − 1</li><li>y = −2x² + 4x − 5</li><li>y = 2x² − 4x − 2</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Təpə (1; −3), qollar yuxarı → a > 0
+Təpədən 1 sağa: (2; −1) — 2 qalxır → a = 2
+y = 2(x − 1)² − 3 = 2(x² − 2x + 1) − 3 = 2x² − 4x − 1
+Yoxlama: Oy oxu ilə kəsişmə nöqtəsi (0; −1) → c = −1 ✓
+Cavab: C) y = 2x² − 4x − 1</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 2x² + 4x − 1</b> — təpə <span class="m">(1; −3)</span> üçün <span class="m">(x + 1)²</span> yazmaq: <span class="m">b</span>-nin işarəsi dəyişir. Bu parabolanın təpəsi <span class="m">x = −1</span> düz xəttində olardı.</li>
+        <li><b>B) 2x² − 4x − 3</b> — <span class="m">c</span>-ni təpənin ordinatı (<span class="m">−3</span>) sanmaq. <span class="m">c</span> — Oy oxu ilə kəsişmə nöqtəsinin ordinatıdır: <span class="m">(0; −1)</span>.</li>
+        <li><b>D) −2x² + 4x − 5</b> — <span class="m">a</span>-nın işarəsini səhv götürmək: təpə eyni, amma qollar aşağı.</li>
+        <li><b>E) 2x² − 4x − 2</b> — mötərizəni açanda <span class="m">a</span>-nı sonuncu həddə vurmamaq: <span class="m">2x² − 4x + 1 − 3</span>.</li>
+      </ul>
+      <p>Qısa yol: əvvəl <b>c</b>-yə bax (şəkildə <span class="m">−1</span>) — B, D, E dərhal düşür. Sonra təpəyə: A üçün <span class="m">x₀ = −4/4 = −1</span>, şəkildə isə <span class="m">1</span> — A da düşür.</p></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">y = x² − 3x + 1</span> parabolası ilə <span class="m">y = 2x − 3</span> düz xətti iki nöqtədə kəsişir. Kəsişmə nöqtələrinin ordinatlarının cəmini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">x² − 3x + 1 = 2x − 3
+x² − 5x + 4 = 0  →  x₁ = 1, x₂ = 4
+Ordinatlar düz xətdən: y₁ = 2·1 − 3 = −1,  y₂ = 2·4 − 3 = 5
+Cəm: −1 + 5 = 4
+Cavab: 4</div>
+      <p>Kodlaşdırmada yalnız <b>4</b> yazılır — nöqtə yox. Tələ: absislərin cəmini (<span class="m">5</span>) yazmaq — sual <b>ordinatları</b> soruşur. Ordinatı düz xəttin düsturundan tapmaq daha asandır (paraboladan da eyni alınır: <span class="m">1 − 3 + 1 = −1</span>).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">y = ax² + bx + c</span> parabolası Ox oxunu <span class="m">(−1; 0)</span> və <span class="m">(5; 0)</span> nöqtələrində, Oy oxunu <span class="m">(0; 10)</span> nöqtəsində kəsir. Funksiyanın ən böyük qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Köklər −1 və 5, ona görə  y = a(x + 1)(x − 5).
+2) (0; 10) qrafikin üzərindədir:
+   a·(0 + 1)·(0 − 5) = 10  →  −5a = 10  →  a = −2.
+   a &lt; 0 → qollar aşağı, ən böyük qiymət təpədədir.
+3) x₀ = (−1 + 5)/2 = 2.
+4) y₀ = −2·(2 + 1)·(2 − 5) = −2·3·(−3) = 18.
+5) Yoxlama: y = −2x² + 8x + 10,  y(2) = −8 + 16 + 10 = 18 ✓
+Cavab: 18.</div>
+      <p>Yoxlayan bu addımlara bal verir: <b>funksiyanın köklərlə yazılışı</b> (1-ci addım), <b>a-nın tapılması</b> (2-ci addım), <b>təpənin absisi</b> (3-cü addım), <b>hesablama və cavab</b>. Həll olmadan yalnız "18" yazmaq 0 bal deməkdir. Tələ: təpənin absisini (<span class="m">2</span>) cavab yazmaq — "ən böyük qiymət" <span class="m">y</span>-dir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Minus unudulur.</b> <span class="m">x₀ = −b/(2a)</span>; <span class="m">b/(2a)</span> və <span class="m">−b/a</span> ilə alınan cavablar çox vaxt variantlarda olur.</li>
+        <li><b>c ≠ y₀.</b> <span class="m">c</span> — Oy oxu ilə kəsişmə nöqtəsinin ordinatıdır; təpə Oy üstündə deyilsə, onlar fərqlidir.</li>
+        <li><b>Təpə formasında işarə.</b> Təpə <span class="m">(m; n)</span> → <span class="m">y = a(x − m)² + n</span>; <span class="m">m = 2</span> üçün <span class="m">(x − 2)²</span>.</li>
+        <li><b>x₀ yoxsa y₀.</b> "Ən kiçik qiymət", "qiymətlər çoxluğu" — <span class="m">y₀</span>; "hansı x-də", "artma aralığı" — <span class="m">x₀</span>.</li>
+        <li><b>b-nin işarəsi qrafikdən.</b> <span class="m">b = −2a·x₀</span>: <span class="m">a</span> və <span class="m">x₀</span> eyni işarəlidirsə, <span class="m">b &lt; 0</span>.</li>
+        <li><b>Toxunma.</b> <span class="m">D = 0</span> → çox vaxt iki qiymət alınır: <span class="m">k = ±…</span>; yalnız müsbəti yazma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">təpə:        x₀ = −b/(2a),  y₀ = y(x₀)
+qiymətlər:   a &gt; 0 → [y₀; +∞),  a &lt; 0 → (−∞; y₀]
+artma:       a &gt; 0 → [x₀; +∞),  a &lt; 0 → (−∞; x₀]
+qrafikdən:   c = Oy ilə kəsişmənin y-i,  b = −2a·x₀</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">y = 3x² − 12x + 1</span> parabolasının təpəsinin absisi? <span class="ans">x₀ = 12/6 = 2 (−2 yox: minus unudulmur).</span></li>
+        <li><span class="m">y = −x² + 4x</span> funksiyasının qiymətlər çoxluğu? <span class="ans">x₀ = 2, y₀ = −4 + 8 = 4 → (−∞; 4].</span></li>
+        <li>Qrafikdə qollar aşağıdır, təpə Oy oxundan soldadır. <span class="m">b</span>-nin işarəsi? <span class="ans">a &lt; 0, x₀ &lt; 0 → b = −2a·x₀ &lt; 0.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

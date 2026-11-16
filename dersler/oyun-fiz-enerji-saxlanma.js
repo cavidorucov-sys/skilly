@@ -212,6 +212,174 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, each with a picture, several steps;
+  // the wrong options are the answers of typical mistakes. Joined topics: 2, 3 — "Çevrə üzrə hərəkət" (T − mg = mv²/L);
+  // 5 — "Sürtünmə, maili müstəvi"; 7 — "Huk qanunu" (k from an F–x graph); 10 — "İş və güc" (P = A/t, FİƏ).
+  const { ae, again } = Oyun;
+  const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const F4 = x => F(+(+x).toFixed(4));
+  const U_ = u => x => F4(x) + " " + u;
+  const uniq = (right, pool, n = 4) => pool.filter(x => ok2(x) && F4(x) !== F4(right))
+    .filter((x, i, a) => a.findIndex(y => F4(y) === F4(x)) === i).slice(0, n);
+  // small SVG kit (DOM nodes, so it works in the game and in tools/oyun-test.js)
+  const C = { ink: "var(--ink,#17171a)", acc: "var(--accent,#a32d2d)", mut: "var(--muted,#6b6b73)", vec: "var(--vec,#0c447c)", pap: "var(--paper,#fff)", soft: "var(--accent-soft,#e8eef8)" };
+  const r1 = v => +(+v).toFixed(1);
+  const Sv = (W, H, aria, kids) => { const s = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": aria }); kids.flat(3).forEach(k => k && s.append(k)); return s; };
+  const L_ = (x1, y1, x2, y2, c = C.ink, w = 2, dash) => sv("line", Object.assign({ x1: r1(x1), y1: r1(y1), x2: r1(x2), y2: r1(y2), stroke: c, "stroke-width": w, "stroke-linecap": "round" }, dash ? { "stroke-dasharray": dash } : {}));
+  const T_ = (x, y, s, a = "middle", c = C.ink, sz = 13) => sv("text", { x: r1(x), y: r1(y), "text-anchor": a, "font-size": sz, "font-weight": 700, fill: c }, s);
+  const P_ = (d, c = C.ink, w = 2, fill = "none") => sv("path", { d, stroke: c, "stroke-width": w, fill, "stroke-linejoin": "round" });
+  const head = (x, y, ang, c) => { const a = 0.45, s = 9; return P_(`M${r1(x)} ${r1(y)}L${r1(x - s * Math.cos(ang - a))} ${r1(y - s * Math.sin(ang - a))}L${r1(x - s * Math.cos(ang + a))} ${r1(y - s * Math.sin(ang + a))}Z`, c, 1, c); };
+  const Ar = (x1, y1, x2, y2, c = C.acc, w = 2.5) => [L_(x1, y1, x2, y2, c, w), head(x2, y2, Math.atan2(y2 - y1, x2 - x1), c)];
+  // two-headed dimension line with a label
+  const Dim = (x1, y1, x2, y2, lab, lx, ly, a = "start") => { const ang = Math.atan2(y2 - y1, x2 - x1); return [L_(x1, y1, x2, y2, C.vec, 1.5), head(x2, y2, ang, C.vec), head(x1, y1, ang + Math.PI, C.vec), lab ? T_(lx, ly, lab, a, C.vec) : null]; };
+  const ground = (x1, x2, y) => [L_(x1, y, x2, y, C.ink, 2), ...Array.from({ length: Math.floor((x2 - x1) / 14) }, (_, i) => L_(x1 + 8 + i * 14, y + 2, x1 + i * 14, y + 9, C.mut, 1))];
+  const spring = (x, yBot, yTop, n = 6, w = 11) => { const st = (yBot - yTop - 10) / n; let d = `M${x} ${yBot}L${x} ${r1(yBot - 5)}`; for (let i = 0; i < n; i++) d += `L${r1(x + (i % 2 ? -w : w))} ${r1(yBot - 5 - st * (i + 0.5))}`; d += `L${x} ${r1(yTop + 5)}L${x} ${yTop}`; return P_(d, C.ink, 1.8); };
+  const ball = (x, y, r = 8) => sv("circle", { cx: r1(x), cy: r1(y), r, fill: C.acc });
+  const box = (x, y, w, h, lab) => [sv("rect", { x: r1(x), y: r1(y), width: w, height: h, fill: C.pap, stroke: C.ink, "stroke-width": 2 }), lab ? T_(x + w / 2, y + h / 2 + 5, lab) : null];
+
+  // 1. a stone thrown from a balcony in some direction
+  function figBalcony(dir, H) { const yG = 170, yB = 50, sx = 92, sy = yB - 9;
+    const ang = { yuxari: -Math.PI / 2, ufuqi: 0, bucaq: -Math.PI / 4, asagi: Math.PI / 2 }[dir];
+    const ex = sx + 34 * Math.cos(ang), ey = sy + 34 * Math.sin(ang);
+    return Sv(260, 190, "Bina, H hündürlükdə balkon, daş v₀ sürətlə atılır", [ground(10, 250, yG), box(20, yB, 50, yG - yB), L_(70, yB, 104, yB, C.ink, 3),
+      ball(sx, sy, 7), Ar(sx, sy, ex, ey), T_(ex + (dir === "ufuqi" ? 4 : 8), ey + (dir === "ufuqi" ? -6 : dir === "asagi" ? 0 : 10), "v₀", "start", C.acc),
+      Dim(170, yB, 170, yG, "H = " + F(H) + " m", 178, (yB + yG) / 2 + 5)]); }
+  // 2. pendulum released at angle α
+  function figPend(deg, lab) { const px = 130, py = 16, len = 110, a = deg * Math.PI / 180, bx = px + len * Math.sin(a), by = py + len * Math.cos(a);
+    return Sv(260, 150, "Rəqqas: ip şaquliyə α bucağı qədər meyl etdirilib", [L_(px - 45, py, px + 45, py, C.ink, 3), L_(px, py, px, py + len + 12, C.mut, 1.2, "4 3"),
+      L_(px, py, bx, by, C.ink, 2), ball(bx, by, 9), sv("circle", { cx: px, cy: py + len, r: 9, fill: "none", stroke: C.mut, "stroke-dasharray": "3 3" }),
+      P_(`M${px} ${py + 32}A32 32 0 0 0 ${r1(px + 32 * Math.sin(a))} ${r1(py + 32 * Math.cos(a))}`, C.ink, 1.2), T_(px + 6, py + 52, lab, "start"),
+      T_((px + bx) / 2 + 12, (py + by) / 2 + 4, "L", "start")]); }
+  // 3. smooth slide into a vertical loop
+  function figLoop() { const yG = 175, cx = 195, R = 42, cy = yG - R, top = 30;
+    return Sv(260, 190, "Hamar nov: h hündürlükdən buraxılır, radiusu R olan şaquli döngə", [ground(10, 250, yG),
+      P_(`M40 ${top}C50 ${top + 120} 110 ${yG} ${cx} ${yG}`, C.ink, 2.5), sv("circle", { cx, cy, r: R, fill: "none", stroke: C.ink, "stroke-width": 2.5 }),
+      ball(41, top - 7, 7), L_(cx, cy, cx + R * 0.7071, cy - R * 0.7071, C.vec, 1.5), T_(cx + 8, cy + 6, "R", "start", C.vec),
+      sv("circle", { cx, cy: cy - R, r: 3.5, fill: C.acc }), Dim(18, top, 18, yG, "h", 24, (top + yG) / 2)]); }
+  // 4. a body above a vertical spring; on the right the spring is compressed by x
+  function figDrop() { const yG = 170, x = 60, yTop = 92;
+    return Sv(260, 190, "Yayın boş ucundan H hündürlükdə cisim; sağda yay x qədər sıxılıb", [ground(10, 250, yG), spring(x, yG, yTop), box(x - 18, 20, 36, 26, "m"),
+      Dim(100, 46, 100, yTop, "H", 106, 74), spring(180, yG, 120), box(162, 94, 36, 26, "m"),
+      L_(130, yTop, 220, yTop, C.mut, 1.2, "4 3"), Dim(228, yTop, 228, 120, "x", 234, 111)]); }
+  // 6. vertical spring gun
+  function figGun() { const yG = 170, x = 70, yFree = 92, yC = 125;
+    return Sv(260, 190, "Şaquli yay x qədər sıxılıb, üstündə kürə; H yayın boş ucundan ölçülür", [ground(10, 250, yG), spring(x, yG, yC), L_(x - 16, yC, x + 16, yC, C.ink, 3), ball(x, yC - 9, 9),
+      L_(30, yFree, 230, yFree, C.mut, 1.2, "4 3"), T_(236, yFree - 5, "boş uc", "end", C.mut, 11), Dim(110, yFree, 110, yC, "x", 116, 114),
+      sv("circle", { cx: 170, cy: 28, r: 9, fill: "none", stroke: C.acc, "stroke-dasharray": "3 3" }), Dim(170, 38, 170, yFree, "H = ?", 176, 70), Ar(x, yC - 24, x, yC - 54)]); }
+  // 5 and 9. incline with its height and length
+  function figIncline(labH, labL, extra) { const x0 = 30, yG = 160, x1 = 210, yT = 52;
+    return Sv(290, 185, "Maili müstəvi: hündürlük və uzunluq", [ground(10, 280, yG), P_(`M${x0} ${yG}L${x1} ${yG}L${x1} ${yT}Z`, C.ink, 2, C.soft),
+      Dim(x1 + 16, yT, x1 + 16, yG, labH, x1 + 22, (yT + yG) / 2 + 5), T_((x0 + x1) / 2 - 14, (yT + yG) / 2 - 10, labL, "end", C.vec), extra ? extra(x0, yG, x1, yT) : []]); }
+  // 7. F–x graph of a spring: a straight line through the origin and a marked point
+  function figFx(x1, F1) { const X = s => 40 + s * 18, Fm = F1 * 10 / x1, Y = f => 160 - f / Fm * 135;
+    const k = []; for (let s = 1; s <= 10; s++) k.push(L_(X(s), 160, X(s), 25, C.mut, 0.5), T_(X(s), 176, String(s), "middle", C.mut, 11));
+    return Sv(260, 190, "Yayın elastiklik qüvvəsinin deformasiyadan asılılıq qrafiki", [k, L_(40, 160, 235, 160), L_(40, 160, 40, 15), T_(250, 150, "x, sm", "end", C.ink, 12), T_(46, 16, "F, N", "start", C.ink, 12),
+      L_(40, 160, X(10), Y(Fm), C.acc, 2.5), L_(40, Y(F1), X(x1), Y(F1), C.vec, 1.2, "4 3"), L_(X(x1), Y(F1), X(x1), 160, C.vec, 1.2, "4 3"),
+      sv("circle", { cx: r1(X(x1)), cy: r1(Y(F1)), r: 3.5, fill: C.acc }), T_(34, Y(F1) + 4, F(F1), "end", C.vec, 12)]); }
+  // 8. load above sand
+  function figSand() { const yS = 140;
+    return Sv(260, 190, "Yük H hündürlükdən qumun üstünə düşür və qumda d qədər batır", [sv("rect", { x: 20, y: yS, width: 220, height: 40, fill: C.soft, stroke: C.ink, "stroke-width": 1.5 }), T_(28, 174, "qum", "start", C.mut, 12),
+      box(70, 20, 30, 22, "m"), Dim(120, 42, 120, yS, "H", 126, 95), box(160, yS + 10, 30, 22, ""),
+      Dim(205, yS, 205, yS + 32, "d", 212, yS + 22), Ar(85, 52, 85, 82, C.mut, 1.5)]); }
+  // 10. dam and turbine
+  function figDam() { const yT = 50, yB = 160;
+    return Sv(260, 190, "Bənd: su v₀ sürətlə axır, h qədər aşağıdakı turbinə düşür", [ground(10, 250, 175), sv("rect", { x: 10, y: yT - 14, width: 76, height: 14, fill: C.soft, stroke: "none" }),
+      P_(`M86 ${yT}L100 ${yT}L130 ${yB + 15}L86 ${yB + 15}Z`, C.ink, 2, C.pap), P_(`M100 ${yT - 6}C122 ${yT} 138 ${yT + 50} 152 ${yB - 26}`, C.vec, 3),
+      Ar(20, yT - 26, 60, yT - 26, C.acc), T_(40, yT - 32, "v₀", "middle", C.acc), sv("circle", { cx: 160, cy: yB - 12, r: 14, fill: C.pap, stroke: C.ink, "stroke-width": 2 }), T_(160, yB - 7, "T", "middle"),
+      L_(104, yT - 7, 232, yT - 7, C.mut, 1.2, "4 3"), Dim(222, yT - 7, 222, yB - 12, "h", 228, (yT + yB) / 2)]); }
+
+  const DIRS = { yuxari: "şaquli yuxarı", ufuqi: "üfüqi istiqamətdə", bucaq: "üfüqə 45° bucaq altında yuxarı", asagi: "şaquli aşağı" };
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. kinetic energy on reaching the ground: does not depend on the direction of the throw
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([0.1, 0.2, 0.4, 0.5, 1, 2]), v0 = pick([2, 4, 5, 6, 8, 10]), H = pick([5, 10, 12, 15, 20, 25, 30, 40]), dir = pick(Object.keys(DIRS));
+      const Ek0 = m * v0 * v0 / 2, Ep = m * g * H, right = Ek0 + Ep, w = [Ep, Ep - Ek0, 2 * Ek0 + Ep, Ek0];
+      if (![right, ...w].every(x => ok2(x))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figBalcony(dir, H), text: `Kütləsi ${F(m)} kq olan daşı yerdən ${H} m hündürlükdəki balkondan ${DIRS[dir]} ${v0} m/s sürətlə atırlar. Daş yerə çatanda onun kinetik enerjisi nə qədərdir? Havanın müqaviməti nəzərə alınmır, g = 10 m/s².`,
+        solution: `Yalnız ağırlıq iş görür, mexaniki enerji saxlanır (sıfır səviyyəsi — yer): Ek = mv₀²/2 + mgH = ${F4(Ek0)} + ${F4(Ep)} = ${F4(right)} J. Atılma istiqaməti cavabı dəyişmir. Tələlər: v₀-ı unutmaq (${F4(Ep)} J), «yuxarı atılıb, deməli çıxmaq lazımdır» (${F4(Ep - Ek0)} J), mv₀²/2-də 1/2-ni unutmaq (${F4(2 * Ek0 + Ep)} J), hündürlüyü unutmaq (${F4(Ek0)} J).` });
+    }) },
+    // 2. pendulum: string tension at the lowest point (energy + circular motion)
+    { tip: "qapali", birlesik: "fiz-cevre-herekat", gen: () => again(() => {
+      const m = pick([0.1, 0.2, 0.5, 1, 2]), c = pick([0.5, 0.6, 0.8]), L = pick([0.5, 0.8, 1, 1.2, 1.6, 2]), mg = m * g, right = mg * (3 - 2 * c);
+      const w = uniq(right, [mg, mg * (2 - c), 2 * mg * (1 - c), 3 * mg, mg * (3 - c)]); if (w.length < 4 || !ok2(right)) return null;
+      const deg = Math.acos(c) * 180 / Math.PI, ang = c === 0.5 ? "60°" : `α bucağı qədər (cos α = ${F(c)})`, v2 = 2 * g * L * (1 - c);
+      return mc(ae(right, w, U_("N")), { svg: figPend(deg, c === 0.5 ? "60°" : "α"), text: `Kütləsi ${F(m)} kq olan kiçik kürə uzunluğu ${F(L)} m olan yüngül, uzanmayan ipdən asılıb. İpi şaquliyə ${ang} meyl etdirib kürəni başlanğıc sürətsiz buraxırlar. Kürə ən aşağı nöqtədən keçəndə ipin dartılma qüvvəsi nə qədərdir? Havanın müqaviməti yoxdur, g = 10 m/s².`,
+        solution: `Hündürlük fərqi h = L(1 − cos α) = ${F(L)}·${F4(1 - c)} = ${F4(L * (1 - c))} m; enerji: v² = 2gh = ${F4(v2)} m²/s². Ən aşağı nöqtədə T − mg = mv²/L → T = ${F4(mg)} + ${F(m)}·${F4(v2)}/${F(L)} = ${F4(right)} N, yəni T = mg(3 − 2cos α); L ixtisar olur. Tələlər: T = mg (${F4(mg)} N), h = L götürmək (${F4(3 * mg)} N), mg-ni unutmaq (${F4(2 * mg * (1 - c))} N), v² = gh yazmaq (${F4(mg * (2 - c))} N).` });
+    }) },
+    // 3. loop: normal force at the top point
+    { tip: "qapali", birlesik: "fiz-cevre-herekat", gen: () => again(() => {
+      const m = pick([0.1, 0.2, 0.5, 1, 2]), R0 = pick([0.4, 0.5, 0.8, 1, 2]), k = pick([3.5, 4, 4.5, 5]), hh = k * R0, mg = m * g, right = mg * (2 * k - 5);
+      const w = [mg * (2 * k - 4), mg * (2 * k - 3), mg * (2 * k - 1), mg * (k - 3)];
+      if (![right, ...w].every(x => ok2(x)) || !nice(hh, 2)) return null;
+      const v2 = 2 * g * (hh - 2 * R0);
+      return mc(ae(right, w, U_("N")), { svg: figLoop(), text: `Kütləsi ${F(m)} kq olan kiçik şayba hamar novun h = ${F(hh)} m hündürlüyündən başlanğıc sürətsiz buraxılır və radiusu R = ${F(R0)} m olan şaquli dairəvi döngəyə daxil olur (h döngənin ən aşağı nöqtəsindən ölçülür). Döngənin ən yuxarı nöqtəsində novun şaybaya göstərdiyi normal reaksiya qüvvəsi nə qədərdir? Sürtünmə yoxdur, g = 10 m/s².`,
+        solution: `Yuxarı nöqtə dibdən 2R = ${F4(2 * R0)} m hündürlükdədir: v² = 2g(h − 2R) = 20·${F4(hh - 2 * R0)} = ${F4(v2)} m²/s². Yuxarıda həm N, həm mg mərkəzə (aşağı) yönəlib: N + mg = mv²/R → N = ${F(m)}·${F4(v2)}/${F(R0)} − ${F4(mg)} = ${F4(right)} N. Tələlər: mg-ni nəzərə almamaq (${F4(mg * (2 * k - 4))} N), mg-ni toplamaq (${F4(mg * (2 * k - 3))} N), yuxarı nöqtənin hündürlüyünü unutmaq (${F4(mg * (2 * k - 1))} N), v²-da 2-ni unutmaq (${F4(mg * (k - 3))} N).` });
+    }) },
+    // 4. a body falls onto a spring: find the stiffness from the maximal compression
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([0.5, 1, 2, 4, 5]), H = pick([0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1]), x = pick([0.05, 0.1, 0.2, 0.25]), mg = m * g;
+      const right = 2 * mg * (H + x) / (x * x), w = [2 * mg * H / (x * x), mg * (H + x) / (x * x), mg / x, 2 * mg * (H + x) / x];
+      if (!nice(right, 0) || ![right, ...w].every(y => ok2(y))) return null;
+      return mc(ae(right, w, U_("N/m")), { svg: figDrop(), text: `Kütləsi ${F(m)} kq olan cisim yüngül şaquli yayın yuxarı ucundan H = ${F(H)} m hündürlükdən başlanğıc sürətsiz buraxılır. Cisim yayın üstünə düşür; yayın maksimal sıxılması ${F4(x * 100)} sm olur. Yayın sərtliyi nə qədərdir? Havanın müqaviməti və enerji itkisi yoxdur, g = 10 m/s².`,
+        solution: `Ən aşağı nöqtədə cisim anlıq dayanır. Cisim H + x = ${F4(H + x)} m enib: mg(H + x) = kx²/2 → k = 2mg(H + x)/x² = 2·${F4(mg)}·${F4(H + x)}/${F4(x * x)} = ${F4(right)} N/m. Tələlər: x-i enmə yoluna qatmamaq (${F4(w[0])} N/m), 1/2-ni unutmaq (${F4(w[1])} N/m), tarazlıqdakı kimi mg = kx yazmaq (${F4(w[2])} N/m), x-i kvadrata yüksəltməmək (${F4(w[3])} N/m).` });
+    }) },
+    // 5. sliding down a rough incline (friction on an incline)
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+      const a = pick([0.5, 1, 1.5, 2, 3, 4]), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]), m = pick([0.5, 1, 2, 4, 5]), mg = m * g, hh = 3 * a, Ll = 5 * a, b = 4 * a;
+      const right = mg * (hh - mu * b), w = [mg * hh, mg * (hh - mu * Ll), mg * (hh - mu * hh), mu * mg * b];
+      if (![right, ...w].every(x => ok2(x))) return null;
+      return mc(ae(right, w, U_("J")), { svg: figIncline("h = " + F(hh) + " m", "L = " + F(Ll) + " m"), text: `Kütləsi ${F(m)} kq olan kiçik cisim maili müstəvinin ən yuxarı nöqtəsindən başlanğıc sürətsiz sürüşür. Müstəvinin hündürlüyü ${F(hh)} m, uzunluğu ${F(Ll)} m-dir. Cisimlə müstəvi arasında sürtünmə əmsalı μ = ${F(mu)}. Müstəvinin aşağı ucunda cismin kinetik enerjisi nə qədərdir? g = 10 m/s².`,
+        solution: `Müstəvinin üfüqi proyeksiyası √(L² − h²) = ${F(b)} m, cos α = ${F(b)}/${F(Ll)} = 0,8. Sürtünmə qüvvəsi μmg·cos α; istilik onun işinin moduludur: Q = μmg·cos α·L = μmg·${F(b)} = ${F4(mu * mg * b)} J. Ek = mgh − Q = ${F4(mg * hh)} − ${F4(mu * mg * b)} = ${F4(right)} J. Tələlər: sürtünməni unutmaq (${F4(mg * hh)} J), sürtünmə qüvvəsini μmg yazmaq (${F4(w[1])} J), cos α əvəzinə sin α (${F4(w[2])} J), istiliyi cavab yazmaq (${F4(mu * mg * b)} J).` });
+    }) },
+    // 6. vertical spring gun: height above the free end of the spring
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([100, 200, 400, 500, 800, 1000]), x = pick([0.05, 0.1, 0.2]), m = pick([0.05, 0.1, 0.2, 0.25, 0.5]), E = k * x * x / 2, h0 = E / (m * g);
+      const right = h0 - x, w = [h0, 2 * h0 - x, h0 + x, 2 * h0];
+      if (![right, ...w].every(y => ok2(y)) || right < 0.2 || right > 20) return null;
+      return mc(ae(right, w, U_("m")), { svg: figGun(), text: `Yüngül şaquli yayın üstündə kütləsi ${F(m)} kq olan kürə durur. Yayın sərtliyi ${k} N/m-dir. Yayı kürə ilə birlikdə deformasiya olunmamış vəziyyətdən ${F4(x * 100)} sm sıxıb buraxırlar; kürə şaquli yuxarı atılır. Kürə yayın boş (deformasiya olunmamış) ucundan ən çox nə qədər yuxarı qalxar? Havanın müqaviməti yoxdur, g = 10 m/s².`,
+        solution: `Sıfır səviyyəsi — sıxılmış vəziyyət. kx²/2 = mg(x + H) → x + H = ${F4(E)}/${F4(m * g)} = ${F4(h0)} m, H = ${F4(h0)} − ${F4(x)} = ${F4(right)} m. Tələlər: hündürlüyü sıxılmış vəziyyətdən saymaq (${F4(h0)} m), 1/2-ni unutmaq (${F4(w[1])} m), x-i çıxmaq əvəzinə toplamaq (${F4(w[2])} m).` });
+    }) },
+    // 7. stiffness from an F–x graph (Hooke's law), then spring energy → height on a smooth hill
+    { tip: "qapali", birlesik: "fiz-huk", gen: () => again(() => {
+      const x1 = pick([2, 4, 5]), k = pick([100, 200, 250, 400, 500, 1000]), F1 = k * x1 / 100, x0 = pick([2, 4, 5, 6, 8, 10]), m = pick([0.02, 0.05, 0.1, 0.2, 0.5]);
+      const right = k * (x0 / 100) ** 2 / (2 * m * g), w = [2 * right, 10 * right, 100 * right, right / 2];
+      if (!nice(F1, 0) || ![right, ...w].every(y => ok2(y)) || right < 0.05 || right > 20) return null;
+      return mc(ae(right, w, U_("m")), { svg: figFx(x1, F1), text: `Qrafikdə yayın elastiklik qüvvəsinin deformasiyadan asılılığı verilib. Bu yayı ${x0} sm sıxıb kütləsi ${F(m)} kq olan kürəni hamar üfüqi səth boyunca atırlar, sonra kürə hamar təpəyə qalxır. Kürə ən çox hansı hündürlüyə qalxar? Yay yüngüldür, sürtünmə və havanın müqaviməti yoxdur, g = 10 m/s².`,
+        solution: `Qrafikdən k = F/x = ${F(F1)} N / ${F(x1 / 100)} m = ${k} N/m. kx₀²/2 = mgh → h = kx₀²/(2mg) = ${k}·${F4((x0 / 100) ** 2)}/(2·${F4(m * g)}) = ${F4(right)} m. Tələlər: enerjini F·x kimi (1/2-siz) götürmək (${F4(2 * right)} m), g-ni unutmaq (${F4(10 * right)} m), santimetri metrə çevirməmək (${F4(100 * right)} m), 1/2-ni iki dəfə yazmaq (${F4(right / 2)} m).` });
+    }) },
+    // 8. a load falls into sand: average resistance force
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([0.2, 0.5, 1, 2, 5]), H = pick([0.5, 1, 1.5, 2, 3, 5]), d = pick([2, 4, 5, 10, 20]) / 100, mg = m * g;
+      const right = mg * (H + d) / d, w = [mg * H / d, mg, mg * H / d - mg, mg * (H + d * 100) / (d * 100)];
+      if (![right, ...w].every(x => ok2(x))) return null;
+      return mc(ae(right, w, U_("N")), { svg: figSand(), text: `Kütləsi ${F(m)} kq olan kiçik yük qumun səthindən ${F(H)} m hündürlükdən başlanğıc sürətsiz düşür və qumda ${F4(d * 100)} sm batıb dayanır. Qumun yükə göstərdiyi orta müqavimət qüvvəsi (batma yolu üzrə orta) nə qədərdir? Havanın müqaviməti yoxdur, g = 10 m/s².`,
+        solution: `Əvvəl və sonda sürət 0-dır. Ağırlıq bütün H + d = ${F4(H + d)} m yolda iş görür, qum isə yalnız d = ${F4(d)} m-də: mg(H + d) − F·d = 0 → F = ${F4(mg)}·${F4(H + d)}/${F4(d)} = ${F4(right)} N. Tələlər: ağırlığın qumdakı işini unutmaq (${F4(w[0])} N), ağırlığın qumdakı işini mənfi götürmək: mgH − mgd = Fd (${F4(w[2])} N), d-ni santimetrlə yazmaq (${F4(w[3])} N), "yük dayandı, deməli F = mg" (${F4(mg)} N).` });
+    }) },
+    // 9. a skier on a slope: the average resistance force from the energy loss
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([40, 50, 60, 80]), hh = pick([5, 8, 10, 12, 15, 20]), v0 = pick([2, 4, 5, 6]), v = pick([4, 5, 6, 8, 10, 12]), Ll = pick([20, 25, 40, 50, 80, 100, 125, 200]);
+      const Q = m * g * hh + m * v0 * v0 / 2 - m * v * v / 2, right = Q / Ll, w = [(m * g * hh - m * v * v / 2) / Ll, Q / hh, (m * g * hh + m * v0 * v0 / 2 + m * v * v / 2) / Ll, Q];
+      if (v <= v0 || Ll < 2 * hh || ![Q, right, ...w].every(x => ok2(x, 1))) return null;
+      const arrows = (x0, yG, x1, yT) => { const ux = (x1 - x0), uy = (yT - yG), n = Math.hypot(ux, uy), dx = -ux / n, dy = -uy / n;
+        return [Ar(x1 - 30, yT + 4 - 18, x1 - 30 + 34 * dx, yT + 4 - 18 + 34 * dy), T_(x1 - 26 + 34 * dx, yT - 22 + 34 * dy, "v₀", "start", C.acc),
+          Ar(x0 + 46, yG - 26, x0 + 46 + 30 * dx, yG - 26 + 30 * dy), T_(x0 + 40, yG - 34, "v", "end", C.acc)]; };
+      return mc(ae(right, w, U_("N")), { svg: figIncline("h = " + hh + " m", "L = " + Ll + " m", arrows),
+        text: `Xizəkçi (xizəklə birlikdə kütləsi ${m} kq) uzunluğu ${Ll} m, hündürlüyü ${hh} m olan yamacın başından ${v0} m/s sürətlə enməyə başlayır. Yamacın aşağısında onun sürəti ${v} m/s olur. Yamac boyu xizəkçiyə təsir edən orta müqavimət qüvvəsi (sürtünmə və hava birlikdə, hərəkətə əks yönəlib, yamac boyunca yol üzrə orta) nə qədərdir? g = 10 m/s².`,
+        solution: `Mexaniki enerjinin itkisi müqavimətin işinin moduluna bərabərdir: Q = mgh + mv₀²/2 − mv²/2 = ${m * g * hh} + ${F4(m * v0 * v0 / 2)} − ${F4(m * v * v / 2)} = ${F4(Q)} J. Müqavimət bütün L yolunda təsir edir: F = Q/L = ${F4(Q)}/${Ll} = ${F4(right)} N. Tələlər: başlanğıc sürəti unutmaq (${F4(w[0])} N), L əvəzinə h-a bölmək (${F4(w[1])} N), son Ek-ni toplamaq (${F4(w[2])} N), istiliyi (${F4(Q)} J) qüvvə kimi yazmaq.` });
+    }) },
+    // 10. hydro power station: P = η·(m/t)·(gh + v₀²/2) (work and power, efficiency)
+    { tip: "qapali", birlesik: "fiz-is-guc", gen: () => again(() => {
+      const V = pick([2, 5, 10, 20, 50]), hh = pick([10, 20, 25, 40, 50, 80]), v0 = pick([2, 4, 5, 6, 10]), eta = pick([0.5, 0.6, 0.75, 0.8, 0.9]), mt = 1000 * V, e = g * hh + v0 * v0 / 2;
+      const kW = x => x / 1000, right = kW(eta * mt * e), w = [kW(eta * mt * g * hh), kW(mt * e), kW(eta * mt * (g * hh + v0 * v0)), kW(mt * e / eta)];
+      if (![right, ...w].every(x => ok2(x, 1))) return null;
+      return mc(ae(right, w, U_("kW")), { svg: figDam(), text: `Çayın suyu bəndin üstündən ${v0} m/s sürətlə axır və ${hh} m aşağıdakı turbinə düşür. Hər saniyədə turbindən ${V} m³ su keçir (suyun sıxlığı 1000 kq/m³). Stansiya suyun turbinə çatdığı andakı mexaniki enerjisinin ${F(eta * 100)}%-ni elektrik enerjisinə çevirir (FİƏ = ${F(eta * 100)}%). Potensial enerjinin sıfır səviyyəsi turbinin səviyyəsidir. Stansiyanın elektrik gücü nə qədərdir? Suyun turbindən çıxış sürətini və havanın müqavimətini nəzərə alma, g = 10 m/s².`,
+        solution: `Hər saniyədə m = ρV = ${mt} kq su keçir. 1 kq suyun turbinə çatanda enerjisi: gh + v₀²/2 = ${g * hh} + ${F4(v0 * v0 / 2)} = ${F4(e)} J. Saniyədə ${mt}·${F4(e)} = ${F4(mt * e)} J; P = η·${F4(mt * e)} W = ${F4(right)} kW. Tələlər: suyun başlanğıc kinetik enerjisini unutmaq (${F4(w[0])} kW), FİƏ-ni unutmaq (${F4(w[1])} kW), v₀²/2-də 1/2-ni unutmaq (${F4(w[2])} kW), FİƏ-yə bölmək (${F4(w[3])} kW).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -221,7 +389,7 @@
     game = Oyun.mount({
       key: "fiz-enerji-saxlanma", title: "Enerjinin saxlanması", fenn: "fizika", link: "dersler/fiz-enerji-saxlanma.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: m/s, m, J, N). Onluq kəsr vergül və ya nöqtə ilə: 0,25. g = 10 m/s², havanın müqaviməti yoxdur (başqa halda məsələdə yazılır).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["dusme", "dusme", "sarkac", "surusme", "surusme", "yay", "yay", "itki", "itki", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

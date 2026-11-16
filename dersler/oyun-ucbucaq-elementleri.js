@@ -302,6 +302,184 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (bisector = median, 2 : 1 reversed, forgetting / 2 or √, adjacent side instead of
+  // the opposite one, ...). On 15 Nov points were lost on a bisector question and on the altitude in a right triangle.
+  const { ae, again, num } = Oyun;
+  const ok1 = x => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10) - x * 10) < 1e-7; // "nice": at most one decimal
+  const dg = x => num(x) + "°";
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  // √n in the simplest form: 2√3, √7, 6
+  const rt = n => { let k = 1; for (let d = Math.floor(Math.sqrt(n)); d > 1; d--) if (n % (d * d) === 0) { k = d; break; } const m = n / (k * k); return m === 1 ? String(k) : (k === 1 ? "" : k) + "√" + m; };
+  // first 4 distinct candidates different from the right one (null when there are fewer)
+  const four = (right, cands, key = String) => { const seen = new Set([key(right)]), out = []; for (const c of cands) { if (c == null || seen.has(key(c))) continue; seen.add(key(c)); out.push(c); } return out.length >= 4 ? out.slice(0, 4) : null; };
+  const incenter = P => { const L = (p, q) => Math.hypot(P[p][0] - P[q][0], P[p][1] - P[q][1]), a = L("B", "C"), b = L("A", "C"), c = L("A", "B"), s = a + b + c; return [0, 1].map(i => (a * P.A[i] + b * P.B[i] + c * P.C[i]) / s); };
+  const bisFoot = (P, al) => { const dir = [Math.cos(rad(al / 2)), Math.sin(rad(al / 2))], B = P.B, C = P.C; const t = (B[0] * (C[1] - B[1]) - B[1] * (C[0] - B[0])) / (dir[0] * (C[1] - B[1]) - dir[1] * (C[0] - B[0])); return [dir[0] * t, dir[1] * t]; };
+  // right triangle ABC (∠C = 90°) with the altitude CH: AH = p, HB = q
+  const rightFig = (p, q, lab) => { const h0 = Math.sqrt(p * q); return figure({ A: [0, 0], B: [p + q, 0], H: [p, 0], C: [p, h0] },
+    { polys: [ABC], segs: [["C", "H", "acc"]], names: [...ABC, "H"], place: { H: [[p < q ? "A" : "B", "C"], -1] }, right: [["C", "A", "B"], ["H", "B", "C"]], lab, aria: "Düzbucaqlı ABC üçbucağı, C-dən hipotenuza CH hündürlüyü" }); };
+  // pairs p ≠ q with p·q = h² (the altitude to the hypotenuse is then a whole number)
+  const hpq = () => { const h0 = rnd(2, 12), d = range(1, h0 - 1).filter(x => (h0 * h0) % x === 0 && h0 * h0 / x <= 40); if (!d.length) return null; const p0 = pick(d), q0 = h0 * h0 / p0; return Math.random() < .5 ? [p0, q0, h0] : [q0, p0, h0]; };
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. bisector theorem: BD : DC = AB : AC (the 15 Nov bisector question)
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(2, 7), n = rnd(2, 7); if (m === n || gcd(m, n) !== 1 || Math.max(m, n) > 2.5 * Math.min(m, n)) return null;
+      const t = rnd(1, 4), s = rnd(1, 6), c = m * t, b = n * t, a = (m + n) * s; if (!valid(a, b, c)) return null;
+      const askBD = Math.random() < .5, R = askBD ? m * s : n * s, other = askBD ? n * s : m * s, near = askBD ? c : b, far = askBD ? b : c;
+      const w = [other, a / 2, a * near / far, s]; if (![R, ...w].every(ok1)) return null;
+      const P = triS(a, b, c); P.D = [a * c / (b + c), 0];
+      return mc(ae(R, w), { text: `ABC üçbucağında AB = ${c}, AC = ${b}, BC = ${a}. AD — A bucağının tənbölənidir (D ∈ BC). ${askBD ? "BD" : "DC"} parçasının uzunluğunu tapın.`,
+        svg: figure(P, { polys: [ABC], segs: [["A", "D", "acc"]], names: [...ABC, "D"], place: { D: [["A"], 1] }, arcs: [["A", "B", "D", "", 18], ["A", "D", "C", "", 22]], lab: { AB: String(c), AC: String(b), BC: String(a) } }),
+        solution: `BD : DC = AB : AC = ${c} : ${b} = ${m} : ${n}. BC ${m + n} hissəyə bölünür: bir hissə ${a} : ${m + n} = ${s}. ${askBD ? "BD" : "DC"} = ${askBD ? m : n} · ${s} = ${R}. Tələlər: o biri parçanı tapmaq (${other}), tənböləni median sanıb BC-ni yarıya bölmək (${num(a / 2)}), nisbəti bütün BC-yə tətbiq etmək (${a} · ${near}/${far} = ${num(a * near / far)}), bir hissəni cavab yazmaq (${s}).` });
+    }) },
+    // 2. medians: the intersection point divides each median 2 : 1 from the vertex
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 12), [V, M] = pick([["A", "M"], ["B", "N"]]);
+      const seg = { VO: `${V}O`, OM: `O${M}`, VM: `${V}${M}` }, ratio = { VO: 2, OM: 1, VM: 3 };
+      const keys = ["VO", "OM", "VM"], g = pick(keys); let ask; do ask = pick(keys); while (ask === g);
+      const val = r => k * ratio[g] * r[ask] / r[g], G = k * ratio[g], R = val(ratio);
+      const third = keys.find(x => x !== g && x !== ask);
+      // [value, trap] — only the 4 traps that really are among the options are named in the solution
+      const cands = [[val({ VO: 1, OM: 1, VM: 2 }), "O-nu medianın ortası sanmaq, 1 : 1"], [val({ VO: 1, OM: 2, VM: 3 }), "nisbəti tərsinə götürmək (təpəyə yaxın hissəni kiçik saymaq)"],
+        [k * ratio[third], `başqa parçanı (${seg[third]}) cavab yazmaq`], [G * ratio[ask], `verilən ${G} ədədini bir hissə sanmaq`],
+        [G * ratio[g] / ratio[ask], `kəsri çevirmək: ${ratio[ask]}/${ratio[g]} əvəzinə ${ratio[g]}/${ratio[ask]} ilə vurmaq`], [G, "verilən parçanı cavab yazmaq"], [G * ratio[ask] / 3, `verilən parçanı bütün median sanmaq`]].filter(x => ok1(x[0]));
+      const wl = four([R], cands, x => num(x[0])); if (!wl) return null; const w = wl.map(x => x[0]);
+      const [a0, b0] = ang3(40, 100, 5), P = tri(a0, b0);
+      P.M = [(P.B[0] + P.C[0]) / 2, (P.B[1] + P.C[1]) / 2]; P.N = [(P.A[0] + P.C[0]) / 2, (P.A[1] + P.C[1]) / 2]; P.O = [(P.A[0] + P.B[0] + P.C[0]) / 3, (P.A[1] + P.B[1] + P.C[1]) / 3];
+      return mc(ae(R, w), { text: `ABC üçbucağının AM və BN medianları O nöqtəsində kəsişir. ${seg[g]} = ${G}. ${seg[ask]} parçasının uzunluğunu tapın.`,
+        svg: figure(P, { polys: [ABC], segs: [["A", "M", "acc"], ["B", "N", "acc"]], names: [...ABC, "M", "N", "O"], place: { O: [["A", "B"], -1] }, ticks: [["B", "M", 1], ["M", "C", 1], ["A", "N", 2], ["N", "C", 2]] }),
+        solution: `Medianlar kəsişmə nöqtəsində təpədən başlayaraq 2 : 1 nisbətində bölünür: ${seg.VO} : ${seg.OM} : ${seg.VM} = 2 : 1 : 3. Bir hissə ${G} : ${ratio[g]} = ${k}, ${seg[ask]} = ${ratio[ask]} · ${k} = ${R}. Tələlər: ` + wl.map(x => `${x[1]} (${num(x[0])})`).join("; ") + "." });
+    }) },
+    // 3. angles: altitude and bisector from one vertex (|∠B − ∠C|/2) or two bisectors (90° + ∠C/2)
+    { tip: "qapali", gen: () => again(() => {
+      if (Math.random() < .5) {
+        const b = pick(range(30, 84, 2)), c = pick(range(30, 84, 2)), A = 180 - b - c; if (b === c || A < 30 || A > 110) return null;
+        const R = Math.abs(b - c) / 2, big = b > c ? "B" : "C", bv = Math.max(b, c);
+        const w = [Math.abs(b - c), A / 2, 90 - bv, 90 - R]; if (![R, ...w].every(ok1)) return null;
+        const Q = tri(A, b); Q.H = footOn(Q, "A", "B", "C"); Q.D = bisFoot(Q, A);
+        return mc(ae(R, w, dg), { text: `ABC üçbucağında ∠B = ${b}°, ∠C = ${c}°. A təpəsindən AH hündürlüyü və AD tənböləni çəkilib. ∠HAD neçə dərəcədir?`,
+          svg: figure(Q, { polys: [ABC], segs: [["A", "H", "acc"], ["A", "D", "acc"]], names: [...ABC, "H", "D"], place: { H: [["A", b > c ? "C" : "B"], -1], D: [["A", b > c ? "B" : "C"], -1] }, right: [["H", "C", "A"]], arcs: [["A", "H", "D", "?", 34]] }),
+          solution: `∠A = 180° − ${b}° − ${c}° = ${A}°, ∠BAD = ∠CAD = ${num(A / 2)}°. A${big}H düzbucaqlıdır: ∠${big}AH = 90° − ${bv}° = ${90 - bv}°. ∠HAD = ${num(A / 2)}° − ${90 - bv}° = ${num(R)}° (= |∠B − ∠C| : 2). Tələlər: 2-yə bölməyi unutmaq (${Math.abs(b - c)}°), ∠BAD-ı (${num(A / 2)}°) və ya ∠${big}AH-ı (${90 - bv}°) cavab yazmaq, ADH üçbucağının o biri iti bucağını (${num(90 - R)}°) götürmək.` });
+      }
+      const g = pick(range(28, 88, 4)), R = 90 + g / 2, w = [90 - g / 2, 180 - g, g, 90 + g];
+      const al = (180 - g) / 2 + pick(range(-16, 16, 2)), be = 180 - g - al; if (al < 25 || be < 25) return null;
+      const P = tri(al, be); P.O = incenter(P);
+      return mc(ae(R, w, dg), { text: `ABC üçbucağında ∠C = ${g}°. A və B bucaqlarının tənbölənləri O nöqtəsində kəsişir. ∠AOB neçə dərəcədir?`,
+        svg: figure(P, { polys: [ABC], segs: [["A", "O", "acc"], ["B", "O", "acc"]], names: [...ABC, "O"], place: { O: [["A"], -1] }, arcs: [[...ARC.C, g + "°"], ["O", "A", "B", "?", 14]] }),
+        solution: `∠A + ∠B = 180° − ${g}° = ${180 - g}°. AOB üçbucağında ∠OAB + ∠OBA = ${180 - g}° : 2 = ${num((180 - g) / 2)}°. ∠AOB = 180° − ${num((180 - g) / 2)}° = ${num(R)}° (= 90° + ∠C/2). Tələlər: ∠OAB + ∠OBA = ${num((180 - g) / 2)}°-ni cavab yazmaq (= 90° − ∠C/2), hündürlüklərin düsturu 180° − ∠C (${180 - g}°), yarıya bölməyi unudub 180° − (∠A + ∠B) = ${g}° almaq, 90° + ∠C yazmaq (${90 + g}°).` });
+    }) },
+    // 4. right triangle: the altitude to the hypotenuse, CH² = AH · HB, AC² = AH · AB (the 15 Nov written question)
+    { tip: "qapali", gen: () => again(() => {
+      const r = hpq(); if (!r) return null; const [p, q, h0] = r, c = p + q;
+      if (Math.random() < .6) {
+        const w = [String(p * q), num(c / 2), rt(p * c), rt(q * c)];
+        return mc(ae(String(h0), w, x => x), { text: `ABC üçbucağında ∠C = 90°, CH — hipotenuza çəkilmiş hündürlükdür. AH = ${p}, HB = ${q}. CH hündürlüyünün uzunluğunu tapın.`,
+          svg: rightFig(p, q, { AH: String(p), HB: String(q) }),
+          solution: `∠ACH = ∠B (hər ikisi 90° − ∠A), ona görə ACH və CBH oxşardır: AH/CH = CH/HB, CH² = AH · HB = ${p} · ${q} = ${p * q}, CH = √${p * q} = ${h0}. Tələlər: kökü almamaq (${p * q}), CH-ı median sanıb hipotenuzun yarısını yazmaq (${num(c / 2)}), katetləri tapmaq (AC = ${rt(p * c)}, BC = ${rt(q * c)}).` });
+      }
+      const R = rt(p * c), w = [String(h0), rt(q * c), String(p * c), String(c)];
+      return mc(ae(R, w, x => x), { text: `ABC üçbucağında ∠C = 90°, CH — hipotenuza çəkilmiş hündürlükdür. AH = ${p}, HB = ${q}. AC katetinin uzunluğunu tapın.`,
+        svg: rightFig(p, q, { AH: String(p), HB: String(q) }),
+        solution: `ACH və ABC oxşardır (∠A ortaq, hər ikisində düz bucaq): AC² = AH · AB = ${p} · ${c} = ${p * c}, AC = ${R}. Tələlər: hündürlüyü tapmaq (CH = √(${p} · ${q}) = ${h0}), o biri proyeksiyanı götürmək (BC = ${rt(q * c)}), kökü almamaq (${p * c}), hipotenuzu cavab yazmaq (${c}).` });
+    }) },
+    // 5. sides and angles: order the sides by the angles opposite them
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b, c] = ang3(20, 130, 5); if (new Set([a, b, c]).size < 3) return null;
+      const An = { A: a, B: b, C: c }, OPP = { A: "BC", B: "AC", C: "AB" }, ADJ = { A: "AB", B: "BC", C: "AC" };
+      const ord = (val, map) => ABC.slice().sort((x, y) => val[x] - val[y]).map(v => map[v]).join(" < ");
+      const rev = (val, map) => ABC.slice().sort((x, y) => val[y] - val[x]).map(v => map[v]).join(" < ");
+      const R = ord(An, OPP), cWrong = 180 - a + b;
+      const wl = four([R], [[rev(An, OPP), "sıranı tərsinə yazmaq"], [ord(An, ADJ), "bucağın qarşısındakı yox, ona bitişik tərəfi götürmək (∠A → AB, ∠B → BC, ∠C → AC)"],
+        cWrong < 180 && cWrong !== a && cWrong !== b ? [ord({ A: a, B: b, C: cWrong }, OPP), `∠C-ni 180° − ∠A + ∠B = ${cWrong}° kimi səhv hesablamaq`] : null, [rev(An, ADJ), "bitişik tərəfi götürüb sıranı da tərsinə yazmaq"], [ord({ A: a, B: b, C: 0 }, OPP), "∠C-ni hesablamayıb ən kiçik bucaq saymaq"]], x => x[0]);
+      if (!wl) return null; const w = wl.map(x => x[0]);
+      const s = ABC.slice().sort((x, y) => An[x] - An[y]);
+      return mc(ae(R, w, x => x), { text: `ABC üçbucağında ∠A = ${a}°, ∠B = ${b}°. Üçbucağın tərəflərini artan sıra ilə düzün.`,
+        solution: `∠C = 180° − ${a}° − ${b}° = ${c}°. Bucaqlar: ∠${s[0]} < ∠${s[1]} < ∠${s[2]}. Kiçik bucağın qarşısında kiçik tərəf durur: ${R}. Tələlər: ` + wl.map(x => `${x[1]} (${x[0]})`).join("; ") + "." });
+    }) },
+    // 6. triangle inequality: integer third side, isosceles triangle
+    { tip: "qapali", gen: () => again(() => {
+      if (Math.random() < .55) {
+        const a = rnd(3, 20), b = rnd(3, 20); if (a === b) return null;
+        const lo = Math.abs(a - b), hi = a + b, R = hi - lo - 1;
+        return mc(ae(R, [hi - lo + 1, hi - lo - 2, hi - 1, hi - lo]), { text: `Üçbucağın iki tərəfinin uzunluqları: ${a} və ${b}. Üçüncü tərəfin uzunluğu tam ədəddir. Üçüncü tərəf neçə müxtəlif qiymət ala bilər?`,
+          solution: `${lo} < c < ${hi} (bərabərsizliklər ciddidir). Tam qiymətlər ${lo + 1}, …, ${hi - 1}: ${hi - 1} − ${lo + 1} + 1 = ${R}. Tələlər: hər iki sərhədi (${lo} və ${hi}) də saymaq (${hi - lo + 1}), "+1"-i unutmaq (${hi - lo - 2}), aşağı sərhədi unudub 1-dən saymaq (${hi - 1}).` });
+      }
+      const p = rnd(2, 12), q = rnd(2 * p + 1, 30); const [x, y] = Math.random() < .5 ? [p, q] : [q, p];
+      return mc(ae(2 * q + p, [2 * p + q, p + q, 3 * q, 2 * q]), { text: `Bərabəryanlı üçbucağın iki tərəfinin uzunluqları: ${x} və ${y}. Üçbucağın perimetrini tapın.`,
+        solution: `Yan tərəflər ${p} olsaydı: ${p} + ${p} = ${2 * p} < ${q} — üçbucaq alınmır. Deməli yan tərəflər ${q}, oturacaq ${p}: P = ${q} + ${q} + ${p} = ${2 * q + p}. Tələ: bərabərsizliyi yoxlamadan kiçik ədədi yan tərəf götürmək (${2 * p + q}).` });
+    }) },
+    // 7. coded: bisector theorem + perimeter
+    { tip: "kod", gen: () => again(() => {
+      const m = rnd(2, 7), n = rnd(2, 7); if (m === n || gcd(m, n) !== 1 || Math.max(m, n) > 2.5 * Math.min(m, n)) return null;
+      const t = rnd(1, 5), s = rnd(1, 5), c = m * t, b = n * t, a = (m + n) * s; if (!valid(a, b, c) || s === t) return null;
+      const Pm = a + b + c, askAB = Math.random() < .5, R = askAB ? c : b;
+      const P = triS(a, b, c); P.D = [a * c / (b + c), 0];
+      return { text: `ABC üçbucağında AD — A bucağının tənbölənidir (D ∈ BC), BD = ${m * s}, DC = ${n * s}. Üçbucağın perimetri: P = ${Pm}. ${askAB ? "AB" : "AC"} tərəfinin uzunluğunu tapın.`,
+        svg: figure(P, { polys: [ABC], segs: [["A", "D", "acc"]], names: [...ABC, "D"], place: { D: [["A"], 1] }, arcs: [["A", "B", "D", "", 18], ["A", "D", "C", "", 22]] }),
+        answer: R, show: String(R), tol: 0.01,
+        solution: `AB : AC = BD : DC = ${m * s} : ${n * s} = ${m} : ${n}. AB + AC = ${Pm} − ${a} = ${b + c}, ${m + n} hissə: bir hissə ${t}. ${askAB ? "AB" : "AC"} = ${askAB ? m : n} · ${t} = ${R}.` };
+    }) },
+    // 8. coded: angles with bisectors and altitudes
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["aob", "adb", "hh"]);
+      if (kind === "aob") {
+        const g = pick(range(20, 150, 2)), X = 90 + g / 2;
+        return { text: `ABC üçbucağının A və B bucaqlarının tənbölənləri O nöqtəsində kəsişir, ∠AOB = ${num(X)}°. C bucağı neçə dərəcədir?`,
+          answer: g, show: String(g), tol: 0.01, unit: "°",
+          solution: `∠AOB = 180° − (∠A + ∠B)/2 = 90° + ∠C/2. ${num(X)}° − 90° = ${num(g / 2)}°, ∠C = 2 · ${num(g / 2)}° = ${g}°.` };
+      }
+      if (kind === "adb") {
+        const al = pick(range(30, 120, 2)), be = pick(range(30, 120, 2)); if (al + be > 160) return null;
+        const adb = 180 - be - al / 2, askC = Math.random() < .5, R = askC ? 180 - adb : adb;
+        return { text: `ABC üçbucağında ∠A = ${al}°, ∠B = ${be}°. AD — A bucağının tənbölənidir (D ∈ BC). ∠${askC ? "ADC" : "ADB"} neçə dərəcədir?`,
+          answer: R, show: String(R), tol: 0.01, unit: "°",
+          solution: `∠BAD = ${al}° : 2 = ${al / 2}°. ABD üçbucağında ∠ADB = 180° − ${be}° − ${al / 2}° = ${adb}°.` + (askC ? ` ∠ADC qonşu bucaqdır: 180° − ${adb}° = ${R}°.` : "") };
+      }
+      const [al, be, ga] = ang3(36, 84, 2), R = 180 - ga;
+      return { text: `ABC itibucaqlı üçbucağında ∠A = ${al}°, ∠B = ${be}°. AH və BK hündürlükləri O nöqtəsində kəsişir. ∠AOB neçə dərəcədir?`,
+        answer: R, show: String(R), tol: 0.01, unit: "°",
+        solution: `∠C = 180° − ${al}° − ${be}° = ${ga}°. CHOK dördbucaqlısında ∠H = ∠K = 90°, ona görə ∠HOK = 360° − 180° − ${ga}° = ${R}°. ∠AOB = ∠HOK (qarşılıqlı bucaqlar) = ${R}°.` };
+    }) },
+    // 9. coded: altitude to the hypotenuse from the legs; sum of the possible integer third sides
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["h", "h", "proj", "cem"]);
+      if (kind === "cem") {
+        const a = rnd(2, 12), b = rnd(2, 12); if (a === b) return null;
+        const lo = Math.abs(a - b), hi = a + b, R = (lo + 1 + hi - 1) * (hi - lo - 1) / 2;
+        return { text: `Üçbucağın iki tərəfinin uzunluqları: ${a} və ${b}; üçüncü tərəfin uzunluğu tam ədəddir. Üçüncü tərəfin ala biləcəyi bütün qiymətlərin cəmini tapın.`,
+          answer: R, show: String(R), tol: 0.01,
+          solution: `${lo} < c < ${hi}, tam qiymətlər ${lo + 1}, …, ${hi - 1} (${hi - lo - 1} ədəd). Cəm = (${lo + 1} + ${hi - 1}) · ${hi - lo - 1} : 2 = ${R}.` };
+      }
+      const [x, y, z] = pick([[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 15, 17], [7, 24, 25], [9, 12, 15], [12, 16, 20], [15, 20, 25]]);
+      const k = pick([1, 1, 2, 3]), a = x * k, b = y * k, c = z * k;
+      if (kind === "h") { const R = a * b / c; if (!ok1(R)) return null;
+        return { text: `Düzbucaqlı üçbucağın katetlərinin uzunluqları: ${a} və ${b}. Hipotenuza çəkilmiş hündürlüyün uzunluğunu tapın.`,
+          answer: R, show: num(R), tol: 0.01,
+          solution: `Hipotenuz √(${a}² + ${b}²) = ${c}. Sahəni iki cür yazırıq: ${a} · ${b} : 2 = ${c} · h : 2, h = ${a} · ${b} : ${c} = ${num(R)}.` }; }
+      const R = a * a / c; if (!ok1(R)) return null;
+      return { text: `ABC üçbucağında ∠C = 90°, AC = ${a}, AB = ${c}. CH — hipotenuza çəkilmiş hündürlükdür. AH parçasının uzunluğunu tapın.`,
+        svg: rightFig(R, c - R, { AC: String(a), AB: String(c) }),
+        answer: R, show: num(R), tol: 0.01,
+        solution: `ACH ∼ ABC (∠A ortaq): AC² = AH · AB, AH = ${a}² : ${c} = ${a * a} : ${c} = ${num(R)}.` };
+    }) },
+    // 10. written: right triangle, the altitude to the hypotenuse (the 15 Nov written question: √(4 · 9) = 6)
+    { tip: "yazili", gen: () => again(() => {
+      const r = hpq(); if (!r) return null; const [p, q, h0] = r, c = p + q;
+      const base = `1) ∠ACH = 90° − ∠A = ∠B, ona görə ACH və CBH üçbucaqları oxşardır (iki bucağa görə). 2) AH/CH = CH/HB ⇒ CH² = AH · HB = ${p} · ${q} = ${p * q}. 3) CH = √${p * q} = ${h0}.`;
+      if (Math.random() < .6) { const S2 = c * h0 / 2; if (!ok1(S2)) return null;
+        return { text: `ABC üçbucağında ∠C = 90°. C təpəsindən hipotenuza CH hündürlüyü çəkilib, AH = ${p} sm, HB = ${q} sm. ABC üçbucağının sahəsini tapın.`,
+          svg: rightFig(p, q, { AH: String(p), HB: String(q) }), answer: S2, show: num(S2), tol: 0.01, unit: "sm²",
+          solution: `${base} 4) AB = ${p} + ${q} = ${c}, S = AB · CH : 2 = ${c} · ${h0} : 2 = ${num(S2)} sm².` }; }
+      const R = rt(p * c), v = Math.sqrt(p * c);
+      return { text: `ABC üçbucağında ∠C = 90°. C təpəsindən hipotenuza CH hündürlüyü çəkilib, AH = ${p} sm, HB = ${q} sm. AC katetinin uzunluğunu tapın.`,
+        svg: rightFig(p, q, { AH: String(p), HB: String(q) }), answer: v, show: R, unit: "sm",
+        solution: `${base} 4) ACH üçbucağında Pifaqor teoremi: AC² = AH² + CH² = ${p * p} + ${p * q} = ${p * c}, AC = ${R} sm (yoxla: AC² = AH · AB = ${p} · ${c}).` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -311,7 +489,7 @@
     game = Oyun.mount({
       key: "ucbucaq-elementleri", title: "Üçbucağın elementləri, tərəf-bucaq münasibətləri", fenn: "riyaziyyat", link: "dersler/ucbucaq-elementleri.html",
       format: "Cavab — ədəd: uzunluq, bucaq (° yazmaq lazım deyil), say. Kəsr: 27/4. Seçim sualında variantı seç.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["median", "median", "tenbolen", "hundurluk", "hundurluk", "berabersizlik", "berabersizlik", "munasibet", "munasibet", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

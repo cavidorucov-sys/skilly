@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kinetik enerji</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Potensial enerji</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İş–enerji teoremi</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -345,6 +346,131 @@ Sürüşmə:  v² = 2g(h − μb)</div></div>
         <li>Avtomobil 20 m/s-dən μ = 0,5 yolda tormozlayır. s = ? <span class="ans">400/(2·0,5·10) = 40 m.</span></li>
         <li>3 kq cisim hamar sürüşkənin 5 m hündürlüyündən sürüşür. Dibdə sürət? <span class="ans">mgh = mv²/2 → v = √(2·10·5) = 10 m/s (kütlə ixtisar olur).</span></li>
         <li>Cisim hamar yoxuşdan düşüb μ = 0,2 olan üfüqi yolda dayanır, yoxuşun hündürlüyü 1 m. Üfüqi yolda gedilən məsafə? <span class="ans">mgh = μmg·s → s = h/μ = 1/0,2 = 5 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: iş və enerji</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "Ek = mv²/2-yə bir ədəd qoy" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — maili müstəvi, nov, yay, zəncir, kub qutular və ya qrafik (<span class="m">v–t</span>, <span class="m">F–s</span>). Ədədlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl yol, hündürlük və ya sərtlik tapılır, sonra enerji, sonra iş–enerji teoremi.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: 1/2-ni itirmək, <span class="m">(v − v₀)²</span> yazmaq, sürtünməni unutmaq, maili müstəvidə <span class="m">μmg·L</span> yazmaq, bircins cismin ucunun hündürlüyünü götürmək.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: sərbəst düşmə, Huk qanunu (<span class="m">kx = mg</span>), sürət qrafiki, güc və FİƏ enerji ilə bir sualda.</li>
+      </ul>
+      <p>Şərtdəki sözlərə bax: "hamar" — sürtünmə yoxdur; "başlanğıc sürətsiz" — <span class="m">Ek₁ = 0</span>; "minimal iş" — cisim yavaş qaldırılır; sürtünmə yoxdursa və başlanğıcda və sonda Ek eynidirsə, minimal iş <span class="m">ΔEp</span>-yə bərabərdir; "hava müqaviməti nəzərə alınmır", <span class="m">g = 10 m/s²</span>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — iki mövzu: sərbəst düşmə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 230 205" role="img" aria-label="Kürəcik 100 m hündürlükdən sərbəst düşür; 3 s sonrakı vəziyyəti göstərilib"><defs><marker id="en-imt" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="20" y1="185" x2="200" y2="185" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M26 185l-7 7M37 185l-7 7M48 185l-7 7M59 185l-7 7M70 185l-7 7M81 185l-7 7M92 185l-7 7M103 185l-7 7M114 185l-7 7M125 185l-7 7M136 185l-7 7M147 185l-7 7M158 185l-7 7M169 185l-7 7M180 185l-7 7M191 185l-7 7" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="90" y1="25" x2="90" y2="97" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <circle cx="90" cy="25" r="7" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <circle cx="90" cy="97" r="7" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="102" y="30" class="lbl" style="fill:var(--muted)" font-size="11">t = 0</text>
+          <text x="78" y="101" class="lbl" style="fill:var(--muted)" font-size="11" text-anchor="end">3 s sonra</text>
+          <line x1="160" y1="25" x2="160" y2="185" stroke="var(--muted)" stroke-width="1.3" marker-start="url(#en-imt)" marker-end="url(#en-imt)"/>
+          <text x="166" y="109" class="lbl">100 m</text>
+        </svg></div>
+        <p>Kütləsi 2 kq olan kiçik kürəcik 100 m hündürlükdən başlanğıc sürətsiz buraxılır. Hava müqaviməti nəzərə alınmır, g = 10 m/s². Düşməyə başladıqdan 3 s sonra kürəciyin yerə nəzərən potensial enerjisi nə qədərdir?</p>
+        <ol class="imt-opts"><li>2000 J</li><li>1100 J</li><li>900 J</li><li>200 J</li><li>1400 J</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">3 s-də düşdüyü yol:  d = gt²/2 = 10·9/2 = 45 m
+Yerdən hündürlük:  h = 100 − 45 = 55 m
+Ep = mgh = 2·10·55 = 1100 J
+Yoxlama: Ek = mg·d = 900 J, Ep + Ek = 2000 J = mgH  ✓
+Cavab: B) 1100 J</div>
+      <ul>
+        <li><b>A) 2000 J</b> — hündürlüyü dəyişməmiş saymaq: bu, başlanğıcdakı <span class="m">Ep</span>-dir.</li>
+        <li><b>C) 900 J</b> — <span class="m">mg·d</span> hesablamaq: bu, həmin andakı <b>kinetik</b> enerjidir, sual isə potensial enerjini soruşur.</li>
+        <li><b>D) 200 J</b> — yolu <span class="m">d = gt²</span> = 90 m yazmaq (1/2 itib).</li>
+        <li><b>E) 1400 J</b> — sürətin qiymətini (<span class="m">v = gt = 30</span>) yol kimi götürmək: <span class="m">h = 100 − 30</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kobud maili müstəvi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 260 165" role="img" aria-label="Maili müstəvi: hündürlük 3 m, əsas 4 m; yuxarıda kiçik cisim"><defs><marker id="en-imt2" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <polygon points="76,33 76,128 202.7,128" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="86.3" y="32" width="22" height="14" fill="var(--accent)" stroke="var(--ink)" stroke-width="2" transform="rotate(36.9 97.3 39)"/>
+          <line x1="64" y1="33" x2="64" y2="128" stroke="var(--muted)" stroke-width="1.3" marker-start="url(#en-imt2)" marker-end="url(#en-imt2)"/>
+          <text x="58" y="85" class="lbl" text-anchor="end">h = 3 m</text>
+          <line x1="76" y1="140" x2="202.7" y2="140" stroke="var(--muted)" stroke-width="1.3" marker-start="url(#en-imt2)" marker-end="url(#en-imt2)"/>
+          <text x="139" y="156" class="lbl" text-anchor="middle">b = 4 m</text>
+          <text x="149" y="72" class="lbl" text-anchor="middle" style="fill:var(--accent)">μ</text>
+        </svg></div>
+        <p>Hündürlüyü 3 m, əsasının uzunluğu 4 m olan maili müstəvinin başından kütləsi 2 kq olan kiçik cisim başlanğıc sürətsiz sürüşür. Cisimlə müstəvi arasında sürtünmə əmsalı 0,25, g = 10 m/s². Müstəvinin dibində cismin kinetik enerjisi nə qədərdir?</p>
+        <ol class="imt-opts"><li>60 J</li><li>35 J</li><li>80 J</li><li>40 J</li><li>20 J</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Müstəvinin uzunluğu:  L = √(3² + 4²) = 5 m,  cos α = b/L = 4/5
+Sürtünmənin işi:  −μmg·cos α·L = −μmg·b = −0,25·2·10·4 = −20 J
+Ağırlığın işi:  mgh = 2·10·3 = 60 J
+İş–enerji teoremi:  Ek = 60 − 20 = 40 J
+Cavab: D) 40 J</div>
+      <ul>
+        <li><b>A) 60 J</b> — sürtünməni unutmaq (müstəvini hamar saymaq).</li>
+        <li><b>B) 35 J</b> — <span class="m">cos α</span>-nı unudub sürtünmənin işini <span class="m">−μmg·L = −25 J</span> yazmaq: <span class="m">Ek = 60 − 25 = 35 J</span>.</li>
+        <li><b>C) 80 J</b> — sürtünmənin işini toplamaq (işarə səhvi).</li>
+        <li><b>E) 20 J</b> — aralıq nəticəni — sürtünmə işinin modulunu (<span class="m">μmgb</span>) cavab yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nov və kobud zolaq</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 280 185" role="img" aria-label="Nov: əyri hissələr hamar, ortadakı üfüqi hissədə sürtünmə var; kiçik cisim sol tərəfdə h hündürlükdədir"><defs><marker id="en-imt3" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M30 40Q30 150 90 150L180 150Q240 150 240 40" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="90" y1="150" x2="180" y2="150" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M90 154l-7 7M101 154l-7 7M112 154l-7 7M123 154l-7 7M134 154l-7 7M145 154l-7 7M156 154l-7 7M167 154l-7 7M178 154l-7 7" stroke="var(--muted)" stroke-width="1"/>
+          <circle cx="38" cy="46" r="7" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="14" y1="40" x2="14" y2="150" stroke="var(--muted)" stroke-width="1.3" marker-start="url(#en-imt3)" marker-end="url(#en-imt3)"/>
+          <text x="20" y="100" class="lbl">h</text>
+          <text x="135" y="178" class="lbl" text-anchor="middle">s</text>
+          <text x="135" y="140" class="lbl" text-anchor="middle" style="fill:var(--accent)">μ</text>
+          <line x1="205" y1="82" x2="268" y2="82" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="262" y1="82" x2="262" y2="150" stroke="var(--muted)" stroke-width="1.3" marker-start="url(#en-imt3)" marker-end="url(#en-imt3)"/>
+          <text x="256" y="120" class="lbl" text-anchor="end">h′</text>
+        </svg></div>
+        <p>Kiçik cisim novun sol hissəsində h = 1,2 m hündürlükdən başlanğıc sürətsiz buraxılır. Novun üfüqi hissəsinin uzunluğu s = 1,5 m, orada sürtünmə əmsalı 0,2; əyri hissələr hamardır. Cisim novun sağ hissəsində ən çox hansı hündürlüyə qalxar?</p>
+        <ol class="imt-opts"><li>1,2 m</li><li>0,96 m</li><li>0,9 m</li><li>0,3 m</li><li>0,6 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Başlanğıcda və sağda ən yüksək nöqtədə cisim dayanır: Ek = 0.
+Bütün qüvvələrin işi 0-dır:  mg(h − h′) − μmg·s = 0
+h′ = h − μs = 1,2 − 0,2·1,5 = 1,2 − 0,3 = 0,9 m
+(Kütlə ixtisar olur; dayaq qüvvəsi iş görmür.)
+Cavab: C) 0,9 m</div>
+      <ul>
+        <li><b>A) 1,2 m</b> — sürtünməni unutmaq.</li>
+        <li><b>B) 0,96 m</b> — "hündürlüyün μ hissəsi itir": <span class="m">h(1 − μ)</span>. İtki zolağın uzunluğundan asılıdır, hündürlükdən yox.</li>
+        <li><b>D) 0,3 m</b> — itən hündürlüyü (<span class="m">μs</span>) cavab yazmaq.</li>
+        <li><b>E) 0,6 m</b> — kobud zolağı iki dəfə saymaq; cisim sağa çatana qədər onu bir dəfə keçir.</li>
+      </ul>
+      <p>Davamı: cisim geri-irəli gedib axırda kobud zolaqda dayanacaq. Kobud zolaqda keçdiyi ümumi yol <span class="m">h/μ = 6 m</span>, yəni zolağı düz 4 dəfə keçir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>1/2-ni itirmək.</b> <span class="m">Ek = mv²/2</span>, <span class="m">Ep = kx²/2</span>, <span class="m">d = gt²/2</span>. Variantlarda çox vaxt iki dəfə böyük cavab da olur.</li>
+        <li><b>ΔEk ≠ m(v − v₀)²/2.</b> Düzü: <span class="m">m(v² − v₀²)/2</span>. Yayda da: <span class="m">k(x₂² − x₁²)/2</span>.</li>
+        <li><b>Hansı enerji soruşulur?</b> Düşən cisimdə <span class="m">mg·d</span> — kinetik enerjidir; potensial enerji qalan hündürlüklə hesablanır.</li>
+        <li><b>Maili müstəvidə sürtünmənin işi</b> <span class="m">−μmg·b</span>-dir (<span class="m">b</span> — əsas), <span class="m">−μmg·L</span> yox.</li>
+        <li><b>Bircins cisim</b> (zəncir, çubuq, qutular): kütlə mərkəzinin hündürlüyü götürülür; başlanğıcdakı <span class="m">Ep</span>-ni unutma.</li>
+        <li><b>Vahidlər:</b> sm → m, dəqiqə → s, km/saat → m/s, həcm → kütlə (<span class="m">m = ρV</span>); FİƏ-də sərf olunan güc faydalıdan <b>böyükdür</b>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A_cəmi = Ek₂ − Ek₁          (iş–enerji teoremi)
+Ek = mv²/2,   Ep = mgh,   Ep_yay = kx²/2
+Sürtünmə: −μmg·s;  maili müstəvidə −μmg·b
+Minimal iş = ΔEp (sürtünmə yoxdursa; kütlə mərkəzi ilə)
+P = A/t,   η = P_faydalı/P_sərf</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>2 kq cismin sürəti 3 m/s-dən 7 m/s-ə qədər artdı. Əvəzləyici qüvvənin işi? <span class="ans">A = 2·(49 − 9)/2 = 40 J (16 J yox: (7 − 3)² səhvdir).</span></li>
+        <li>Yaya asılmış 0,5 kq yük yayı 5 sm uzadır. Yükü götürürlər. Deformasiya olunmamış yayı 10 sm sıxmaq üçün minimal iş? <span class="ans">k = 5/0,05 = 100 N/m; A = 100·0,01/2 = 0,5 J.</span></li>
+        <li>Hamar sürüşkənin 2 m hündürlüyündən başlanğıc sürətsiz sürüşən kiçik cisim μ = 0,4 olan üfüqi yolda neçə metr gedib dayanar? <span class="ans">mgh = μmg·s → s = h/μ = 2/0,4 = 5 m.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

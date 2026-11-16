@@ -213,6 +213,99 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sum of percents, wrong base, multiplying instead of dividing, ...).
+  const { ae, again } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && isNice(x, dp);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. number by its percent, then another percent of it
+    { tip: "qapali", gen: () => again(() => {
+      const p = pick([10, 15, 20, 25, 30, 40, 60, 75]), q = pick([5, 12, 15, 25, 35, 45, 70, 80, 120]); const X = rnd(2, 40) * 20;
+      const A = p * X / 100, R = q * X / 100; if (p === q || !nice(A, 0) || !nice(R)) return null;
+      const w = [A * q / 100, X, A * 100 / q, A * p / q]; if (!w.every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `Ədədin ${p}%-i ${A} ədədinə bərabərdir. Bu ədədin ${q}%-ni tapın.`,
+        solution: `Ədəd: ${A} : ${D(p / 100)} = ${X}. Onun ${q}%-i: ${X} · ${D(q / 100)} = ${D(R)}. Tələlər: ${A} ədədinin ${q}%-ni götürmək (${D(A * q / 100)}), ədədin özünü cavab yazmaq (${X}).` });
+    }) },
+    // 2. successive changes
+    { tip: "qapali", gen: () => again(() => {
+      const P = rnd(2, 30) * 50, p = pick([10, 20, 25, 30, 40, 50]), q = pick([10, 20, 25, 30, 40, 50]); if (p === q) return null;
+      const R = +(P * (1 + p / 100) * (1 - q / 100)).toFixed(6);
+      const w = [P * (1 + (p - q) / 100), P * (1 - p / 100) * (1 + q / 100), P * (1 + p / 100) * (1 + q / 100), P * (1 + p / 100) - q];
+      if (![R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `Malın qiyməti ${P} manat idi. Əvvəl qiymət ${p}% artırıldı, sonra yeni qiymət ${q}% endirildi. Malın son qiyməti neçə manatdır?`,
+        solution: `${P} · ${D(1 + p / 100)} = ${D(P * (1 + p / 100))}; ${D(P * (1 + p / 100))} · ${D(1 - q / 100)} = ${D(R)} manat. Tələ: faizləri toplamaq (${p} − ${q} = ${S(p - q)}%) — ikinci faiz yeni qiymətdən götürülür.` });
+    }) },
+    // 3. "how many percent more / less": the base is the number we compare with
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([25, 60, 100, 150, 300, 400]), B = rnd(2, 12) * 20, A = B * (1 + k / 100);
+      if (pick([0, 1])) {
+        const w = [100 * k / (100 + k), 100 * A / B, A - B, 100 * B / A]; if (!w.every(x => nice(x, 1))) return null;
+        return mc(ae(k, w), { text: `${A} ədədi ${B} ədədindən neçə faiz çoxdur?`,
+          solution: `Fərq ${A} − ${B} = ${A - B}, onu müqayisə olunan ədədə (${B}) bölürük: ${A - B} : ${B} = ${D(k / 100)} → ${k}%. Tələ: fərqi ${A} ədədinə bölmək (${D(100 * k / (100 + k))}%).` });
+      }
+      const r = 100 * k / (100 + k), w = [k, 100 * B / A, A - B, 100 * A / B]; if (!nice(r, 1) || !w.every(x => nice(x, 1))) return null;
+      return mc(ae(r, w), { text: `${B} ədədi ${A} ədədindən neçə faiz azdır?`,
+        solution: `Fərq ${A - B}, onu müqayisə olunan ədədə (${A}) bölürük: ${A - B} : ${A} = ${D(r / 100)} → ${D(r)}%. Tələ: fərqi ${B} ədədinə bölmək (${k}%) və ya iki ədədin nisbətini (${D(100 * B / A)}%) cavab yazmaq.` });
+    }) },
+    // 4. pie chart
+    { tip: "qapali", gen: () => again(() => {
+      const [title, unit, names] = pick(TOPICS), parts = split(4), N = rnd(2, 12) * 20;
+      let i = rnd(0, 3), j = rnd(0, 3); if (j === i || parts[i] === parts[j]) return null;
+      if (parts[i] < parts[j]) [i, j] = [j, i];
+      const d = parts[i] - parts[j], R = N * d / 100;
+      const w = [d, N * parts[i] / 100, N * (parts[i] + parts[j]) / 100, d * 3.6]; if (![R, ...w].every(x => nice(x, 0))) return null;
+      const items = names.slice(0, 4).map((n, k) => ({ name: n, label: n + " — " + parts[k] + "%" }));
+      return mc(ae(R, w), { text: `Diaqramda “${title}” göstərilib, cəmi ${N} ${unit}. “${names[i]}” payı “${names[j]}” payından neçə ${unit} çoxdur?`,
+        svg: pie(items, parts, title), solution: `${parts[i]}% − ${parts[j]}% = ${d}%. ${N} · ${D(d / 100)} = ${R}. Tələ: faizlərin fərqini (${d}) cavab yazmaq.` });
+    }) },
+    // 5. bank: compound interest for 2 years
+    { tip: "qapali", gen: () => again(() => {
+      const S0 = rnd(2, 20) * 500, r = pick([5, 10, 20]), R = +(S0 * (1 + r / 100) ** 2).toFixed(6);
+      const w = [S0 * (1 + 2 * r / 100), R - S0, S0 * (1 + r / 100), S0 * (1 + r / 100) ** 3]; if (![R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `Bank əmanətə illik ${r}% gəlir verir və hər ilin sonunda gəlir əmanətə əlavə olunur. ${S0} manat 2 il saxlanılsa, sonda əmanət neçə manat olar?`,
+        solution: `Hər il · ${D(1 + r / 100)}: ${S0} · ${D(1 + r / 100)}² = ${S0} · ${D((1 + r / 100) ** 2)} = ${D(R)} manat. Tələ: sadə faiz (${S0} · ${D(1 + 2 * r / 100)}) və ya yalnız gəliri (${D(R - S0)}) yazmaq.` });
+    }) },
+    // 6. back from a discounted price
+    { tip: "qapali", gen: () => again(() => {
+      const X = rnd(3, 40) * 20, p = pick([10, 20, 25, 40, 50]), A = X * (1 - p / 100);
+      const w = [A * (1 + p / 100), A + p, A * (1 - p / 100), A * 100 / p]; if (![X, A, ...w].every(x => nice(x))) return null;
+      return mc(ae(X, w), { text: `Endirimdən sonra malın qiyməti ${p}% azalaraq ${D(A)} manat oldu. Malın ilkin qiyməti neçə manat idi?`,
+        solution: `Yeni qiymət ilkinin ${100 - p}%-idir: ${D(A)} : ${D(1 - p / 100)} = ${X} manat. Tələ: yeni qiymətə ${p}% əlavə etmək (${D(A * (1 + p / 100))}) — faiz ilkin qiymətdən götürülüb, yeni qiymətdən yox.` });
+    }) },
+    // 7. coded: original price from the final one
+    { tip: "kod", gen: () => again(() => {
+      const P = rnd(4, 40) * 50, p = pick([10, 20, 25, 50]), q = pick([10, 20, 25, 40]), F = +(P * (1 + p / 100) * (1 - q / 100)).toFixed(6);
+      if (!nice(F)) return null;
+      return { text: `Malın qiyməti əvvəl ${p}% artırıldı, sonra yeni qiymət ${q}% endirildi və mal ${D(F)} manata satıldı. Malın ilkin qiyməti neçə manat idi?`,
+        answer: P, show: String(P), tol: 1e-6, unit: "manat", solution: `İlkin qiymət x: x · ${D(1 + p / 100)} · ${D(1 - q / 100)} = ${D(F)}, yəni x · ${D((1 + p / 100) * (1 - q / 100))} = ${D(F)}, x = ${P}.` };
+    }) },
+    // 8. coded: percent of a percent
+    { tip: "kod", gen: () => again(() => {
+      const p = pick([20, 25, 40, 50, 60, 75, 80, 120, 150]), q = pick([20, 25, 40, 50, 60, 75, 80, 120]), R = p * q / 100;
+      if (!nice(R, 1)) return null;
+      return { text: `x ədədi y ədədinin ${p}%-ni, y isə z ədədinin ${q}%-ni təşkil edir. x ədədi z-in neçə faizidir?`,
+        answer: R, show: D(R), tol: 1e-6, unit: "%", solution: `x = ${D(p / 100)} · y = ${D(p / 100)} · ${D(q / 100)} · z = ${D(R / 100)} · z → ${D(R)}%. Faizlər toplanmır, vurulur.` };
+    }) },
+    // 9. coded: mixing two solutions
+    { tip: "kod", gen: () => again(() => {
+      const m1 = rnd(1, 8), m2 = rnd(1, 8), a = rnd(1, 9) * 5, b = rnd(1, 9) * 5; if (a === b || m1 === m2) return null; // equal masses: the plain mean is right
+      const R = (m1 * a + m2 * b) / (m1 + m2); if (!nice(R, 1)) return null;
+      return { text: `${m1} kq ${a}%-li və ${m2} kq ${b}%-li duz məhlulları qarışdırıldı. Alınan məhlulun qatılığı neçə faizdir?`,
+        answer: R, show: D(R), tol: 1e-6, unit: "%", solution: `Duz: ${m1} · ${D(a / 100)} + ${m2} · ${D(b / 100)} = ${D((m1 * a + m2 * b) / 100)} kq; məhlul ${m1 + m2} kq; ${D((m1 * a + m2 * b) / 100)} : ${m1 + m2} = ${D(R / 100)} → ${D(R)}%. Tələ: faizlərin adi ortası (${D((a + b) / 2)}).` };
+    }) },
+    // 10. written: water to dilute a solution (the 15 Nov written question had this form)
+    { tip: "yazili", gen: () => again(() => {
+      const m = rnd(5, 30) * 20, p = pick([10, 12, 15, 18, 20, 24, 25, 30]), q = pick([5, 6, 8, 10, 12, 15, 20]); if (q >= p) return null;
+      const salt = +(m * p / 100).toFixed(6), x0 = salt * 100 / q - m; if (!nice(salt) || !nice(x0, 0)) return null; const x = Math.round(x0);
+      return { text: `${m} q ${p}%-li duz məhlulu var. Məhlula neçə qram su əlavə etmək lazımdır ki, onun qatılığı ${q}% olsun?`,
+        answer: x, show: String(x), tol: 1e-6, unit: "q",
+        solution: `1) Duz: ${m} · ${D(p / 100)} = ${D(salt)} q (su əlavə edəndə dəyişmir). 2) ${D(q / 100)} · (${m} + x) = ${D(salt)}. 3) ${m} + x = ${D(salt * 100 / q)}, x = ${x} q.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -222,7 +315,7 @@
     game = Oyun.mount({
       key: "faiz", title: "Faiz", fenn: "riyaziyyat", link: "dersler/faiz.html",
       format: "Cavab ədəddir, % işarəsini yazma: 25 (yəni 25%), onluq 12,5 (və ya 12.5), kəsr 3/20. Azalma soruşulanda mənfi: −4.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["faizi", "faizi", "nisbet-faiz", "nisbet-faiz", "ardicil", "ardicil", "qarisiq", "diaqram", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

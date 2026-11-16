@@ -64,7 +64,8 @@
    "on": [
     "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
    ],
-   "hefte": "2026-10-26"
+   "hefte": "2026-10-26",
+   "imt": true
   },
   {
    "bolme": "Rasional ifadələr",
@@ -142,7 +143,8 @@
    "on": [
     "riyaziyyat:Cəbri ifadələr, sadələşdirmə"
    ],
-   "hefte": "2026-11-09"
+   "hefte": "2026-11-09",
+   "imt": true
   },
   {
    "bolme": "Rasional ifadələr",
@@ -153,7 +155,8 @@
    "on": [
     "riyaziyyat:Çoxhədlilər"
    ],
-   "hefte": "2026-11-09"
+   "hefte": "2026-11-09",
+   "imt": true
   },
   {
    "bolme": "Rasional ifadələr",
@@ -214,7 +217,8 @@
     "riyaziyyat:Xətti funksiya",
     "riyaziyyat:Kvadrat tənlik, diskriminant"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "Üçbucaqlar",
@@ -225,7 +229,8 @@
    "on": [
     "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "Üçbucaqlar",
@@ -237,7 +242,8 @@
     "riyaziyyat:Kvadrat kök, hesabi kökün xassələri",
     "riyaziyyat:Üçbucağın elementləri, tərəf-bucaq münasibətləri"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "Tənliklər",
@@ -261,7 +267,8 @@
    "on": [
     "riyaziyyat:Tam və rasional ədədlər, ədəd oxu, modul"
    ],
-   "hefte": "2026-11-23"
+   "hefte": "2026-11-23",
+   "imt": true
   },
   {
    "bolme": "Nisbət, tənasüb, faiz",
@@ -273,7 +280,8 @@
     "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik",
     "riyaziyyat:Adi və onluq kəsrlər, dövri kəsrlər"
    ],
-   "hefte": "2026-11-30"
+   "hefte": "2026-11-30",
+   "imt": true
   },
   {
    "bolme": "Statistika, çoxluqlar, ehtimal",
@@ -1153,7 +1161,8 @@
     "fizika:Mexaniki iş və güc",
     "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "İş, güc, enerji",
@@ -1165,7 +1174,8 @@
     "fizika:Kinetik və potensial enerji",
     "fizika:Sürtünmə, maili müstəvi"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "Statika",
@@ -1280,7 +1290,8 @@
     "riyaziyyat:Xətti tənliklər"
    ],
    "hefte": "2026-12-07",
-   "ders": "dersler/fiz-om.html"
+   "ders": "dersler/fiz-om.html",
+   "imt": true
   },
   {
    "bolme": "Elektrik dövrələri",

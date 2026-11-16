@@ -301,3 +301,18 @@ sub{font-size:.72em;line-height:0;vertical-align:-.3em}
 :root[data-theme="dark"] svg [fill="#0f766e" i]{fill:#5fd3c4} :root[data-theme="dark"] svg [stroke="#0f766e" i]{stroke:#5fd3c4} :root[data-theme="dark"] svg [style*="fill:#0f766e" i]{fill:#5fd3c4!important} :root[data-theme="dark"] svg [style*="stroke:#0f766e" i]{stroke:#5fd3c4!important}
 :root[data-theme="dark"] svg [fill="#ffffff" i]{fill:var(--white)} :root[data-theme="dark"] svg [stroke="#ffffff" i]{stroke:var(--white)} :root[data-theme="dark"] svg [style*="fill:#ffffff" i]{fill:var(--white)!important} :root[data-theme="dark"] svg [style*="stroke:#ffffff" i]{stroke:var(--white)!important}
 :root[data-theme="dark"] svg [fill="#fff" i]{fill:var(--white)} :root[data-theme="dark"] svg [stroke="#fff" i]{stroke:var(--white)} :root[data-theme="dark"] svg [style*="fill:#fff" i]{fill:var(--white)!important} :root[data-theme="dark"] svg [style*="stroke:#fff" i]{stroke:var(--white)!important}
+
+/* ---- exam format (15 Nov 2026): "İmtahanda necə gəlir" worked examples and the exam-format test */
+.oy-imt{margin-top:22px}
+.oy-photos{display:grid;gap:8px;justify-items:start}
+.oy-thumbs{display:flex;flex-wrap:wrap;gap:10px}
+.oy-thumb{margin:0;display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.oy-thumb img{width:120px;height:160px;object-fit:cover;border-radius:var(--r-sm);box-shadow:inset 0 0 0 1px var(--line-1)}
+.imt-q{border:1px solid var(--line-1);border-radius:var(--r-lg);padding:14px 18px;margin:12px 0;background:var(--white)}
+.imt-q .imt-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.imt-q p{margin:0 0 8px}
+ol.imt-opts{list-style:upper-alpha;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:4px 22px;padding-left:24px;margin:8px 0 0}
+ol.imt-opts li.ok{font-weight:700}
+.imt-q svg{max-width:100%;height:auto;display:block;margin:8px 0}
+details.imt-sol{margin:4px 0 14px}
+details.imt-sol>summary{cursor:pointer;font-weight:600;color:var(--accent);padding:4px 0}

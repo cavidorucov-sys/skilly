@@ -44,6 +44,59 @@
     return h("div", { class: "oy-keys" }, ...["√", "/", "−"].map(k => h("button", { type: "button", class: "oy-key", "aria-label": "Daxil et: " + k,
       on: { click: () => { const a = input.selectionStart ?? input.value.length, b = input.selectionEnd ?? a; input.value = input.value.slice(0, a) + k + input.value.slice(b); input.focus(); input.setSelectionRange(a + 1, a + 1); input.dispatchEvent(new Event("input")); } } }, k)));
   }
+  // ---- exam-format questions (father, 15 Nov 2026): A–E options built from typical mistakes, not from random numbers.
+  // ae(right, [4 wrong], fmt?) → { choices: ["A) …", …], correct } in a random order; null when two options would
+  // look the same (the generator then draws new numbers: again(make)). Numbers are written the Azerbaijani way: num().
+  const AE = "ABCDE";
+  const num = (x, dp = 4) => { if (typeof x !== "number") return String(x); const r = Math.round(x * 10 ** dp) / 10 ** dp; return (r < 0 ? "−" : "") + String(Math.abs(r)).replace(".", ","); };
+  function ae(right, wrong, fmt) {
+    const f = fmt || (x => num(x));
+    const all = [right, ...wrong].map(f);
+    if (all.length !== 5 || new Set(all.map(x => String(x).replace(/\s+/g, ""))).size !== 5) return null;
+    const idx = [0, 1, 2, 3, 4];
+    for (let i = 4; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+    return { choices: idx.map((k, i) => AE[i] + ") " + all[k]), correct: idx.indexOf(0) };
+  }
+  function again(make, n = 400) { for (let i = 0; i < n; i++) { const q = make(); if (q) return q; } throw new Error("again: no valid problem after " + n + " tries"); }
+  // the game level made of the exam-format questions: one of them at random each time (Boss comes after it)
+  const imtLevel = (imt, extra) => ({ id: "imtahan", ad: "İmtahan səviyyəsi", imt: true,
+    izah: "Sual imtahandakı kimidir: variantlar tipik səhvlərdən qurulub. Kağızda həll et, sonra seç və ya yaz.",
+    gen: () => { const s = imt.suallar[Math.floor(Math.random() * imt.suallar.length)]; return s.gen(); }, ...(extra || {}) });
+  const TIP = { qapali: "Qapalı (A–E)", kod: "Kodlaşdırılan", yazili: "Yazılı" };
+
+  // photos of written work (Skilly.sekil, Firestore): Fikrət adds and removes, the father only looks (as in rfo-final.js)
+  function photoBox(ref, onChange) {
+    const viewer = window.Skilly && Skilly.viewer && Skilly.viewer();
+    const msg = h("p", { class: "oy-fmt", "aria-live": "polite" }), grid = h("div", { class: "oy-thumbs" });
+    let list = [], busy = false;
+    const draw = () => {
+      grid.replaceChildren(...list.map((p, i) => h("figure", { class: "oy-thumb" },
+        h("a", { href: p.data, target: "_blank", rel: "noopener", title: "Böyüt" }, h("img", { src: p.data, alt: "Səhifə " + (i + 1) })),
+        h("figcaption", {}, "Səhifə " + (i + 1) + " ", viewer ? null : h("button", { type: "button", class: "btn ghost", "aria-label": "Səhifə " + (i + 1) + " şəklini sil",
+          on: { click: async () => { if (!confirm("Səhifə " + (i + 1) + " şəkli silinsin?")) return; await Skilly.sekil.del(p.id); list.splice(i, 1); draw(); onChange && onChange(list.length); } } }, "Sil")))));
+      if (!busy) msg.textContent = list.length ? list.length + " şəkil Skilly-də saxlanıb." : "Hələ şəkil yoxdur.";
+    };
+    const input = h("input", { type: "file", accept: "image/*", multiple: "", hidden: "" });
+    input.addEventListener("change", async () => {
+      const files = [...input.files]; input.value = ""; busy = true;
+      for (let i = 0; i < files.length; i++) {
+        msg.textContent = "Yüklənir: " + (i + 1) + " / " + files.length + "...";
+        try { list.push(await Skilly.sekil.add(ref, files[i])); } catch (e) { busy = false; draw(); msg.textContent = "Alınmadı: " + (e.message || e); return; }
+        draw();
+      }
+      busy = false; draw(); onChange && onChange(list.length);
+    });
+    const add = h("button", { type: "button", class: "btn ghost", on: { click: () => input.click() } }, "📷 Həllin şəklini əlavə et");
+    const box = h("div", { class: "oy-photos" }, viewer ? null : add, input, msg, grid);
+    box.count = () => list.length;
+    msg.textContent = "Yüklənir...";
+    (window.Skilly && Skilly.sekil ? Skilly.sekil.list(ref) : Promise.resolve(null)).then(r => {
+      if (r === null) { add.disabled = true; msg.textContent = "Şəkli Skilly-də saxlamaq üçün əvvəl soldakı “Google ilə daxil ol” düyməsi ilə öz hesabına daxil ol."; box.noAccount = true; return; }
+      list = r; draw(); onChange && onChange(list.length);
+    }).catch(() => { msg.textContent = "Şəkillər yüklənmədi (internet?)."; });
+    return box;
+  }
+
   function mount(cfg) {
     const KEY = "oyun:" + cfg.key;
     const st = get(KEY, { lv: {}, boss: { passed: false, tries: 0 }, test: null, log: [] });
@@ -179,8 +232,12 @@
     // ---- final test: every problem must end right (a wrong answer keeps it); the topic closes when all are done
     function drawTest() {
       if (!testRoot) return;
+      if (imtBusy) { testRoot.replaceChildren(imtRoot); return; } // an exam-format test is running: keep it on screen
+      drawTestOld(); drawImt(); testRoot.append(imtRoot);
+    }
+    function drawTestOld() {
       // the test needs the whole game: every level mastered and the Boss passed
-      const openLv = cfg.levels.filter(l => !st.lv[l.id].done);
+      const openLv = cfg.levels.filter(l => !l.imt && !st.lv[l.id].done);
       if (!st.boss.passed || openLv.length) {
         testRoot.replaceChildren(h("div", { class: "oy-locked" }, h("b", {}, "🔒 Sınaq bağlıdır"),
           h("p", {}, st.boss.passed ? "Əvvəl açıq səviyyəni bitir: " + openLv.map(l => l.ad).join(", ") + "." : "Əvvəl Oyunu bitir: bütün səviyyələr və Boss raundu."),
@@ -264,7 +321,7 @@
     }
 
     // test question: takes an answer without saying whether it is right
-    function collect(q, box, label, isLast) {
+    function collect(q, box, label, isLast, opt = {}) {
       return new Promise(resolve => {
         const err = h("div", { class: "oy-err", "aria-live": "polite" });
         let input, getVal, pick = -1;
@@ -279,13 +336,14 @@
           getVal = () => input.value;
         }
         const btn = h("button", { type: "button", class: "btn", on: { click: () => go() } }, isLast ? "Bitir" : "Növbəti →");
-        box.replaceChildren(h("div", { class: "oy-q" }, h("div", { class: "oy-label" }, label), h("div", { class: "oy-text" }, q.text), q.svg || null,
+        box.replaceChildren(h("div", { class: "oy-q" }, h("div", { class: "oy-label" }, label), h("div", { class: "oy-text" }, q.text), q.svg || null, opt.extra || null,
           h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, q.choices ? null : keys(input), btn), err));
         if (!q.choices) input.focus({ preventScroll: true });
         function go() {
           const v = getVal();
           if (q.choices ? v < 0 : !String(v).trim()) { err.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
           if (!q.choices && (isNaN(parse(v)) || !okForm(v))) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
+          const g = opt.guard && opt.guard(); if (g) { err.textContent = g; return; }
           resolve(v);
         }
       });
@@ -303,7 +361,7 @@
 
     function report(kind, r) {
       if (!window.Skilly) return;
-      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", yoxla: " — yaddaş yoxlaması", giris: " — giriş testi", acildi: " — mövzu açıldı", baglandi: " — mövzu bağlandı" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
+      Skilly.netice({ id: cfg.key + "-" + kind + "@" + Date.now(), ders: cfg.title + ({ test: " — yekun sınaq", imtahan: " — imtahan formatlı sınaq", yoxla: " — yaddaş yoxlaması", giris: " — giriş testi", acildi: " — mövzu açıldı", baglandi: " — mövzu bağlandı" }[kind] || " — oyun (mənimsəmə)"), fenn: cfg.fenn, ...r });
     }
 
     // The topic is closed only while everything is done: final test, Boss and every level (father, 20 Oct 2026).
@@ -332,7 +390,8 @@
     function settle() {
       // only Fikrət's device decides: a change here always goes with a result in the cloud, else sync would undo it
       if (!st.test || !st.test.passed || (window.Skilly && Skilly.viewer && Skilly.viewer())) return;
-      const open = cfg.levels.filter(l => !st.lv[l.id].done).map(l => l.id);
+      // the exam level came later (15 Nov 2026): a topic closed before it is "partly closed", not reopened
+      const open = cfg.levels.filter(l => !l.imt && !st.lv[l.id].done).map(l => l.id);
       if (pendingFix().length) open.push("sınaq səhvi");
       if (!open.length && st.boss.passed && !inBag()) { report("baglandi", { qeyd: "hamısı düz həll olundu" }); cfg.onPass && cfg.onPass(); }
       if ((open.length || !st.boss.passed) && inBag()) {
@@ -381,7 +440,98 @@
       report("giris", { bal, max: n, qeyd: bal === n ? "bütöv: birbaşa Sınaq" : "dərslərdən başlayır" });
     }
 
+    // ---- exam-format test (father, 15 Nov 2026): a topic closed by the old final test is only "partly closed" until
+    // this one is passed. Math: 6 closed (A–E) + 3 coded + 1 written (solution on paper, its photo uploaded, the final
+    // answer typed and checked); physics: 10 A–E as in the RFO. Answers are checked only at the end, as in the exam;
+    // then every wrong one is solved again until right (no answer shown). All right → the topic is fully closed.
+    const IMT = cfg.imtahan;
+    const imtRoot = h("div", { class: "oy-imt" });
+    let imtBusy = false;
+    const imtLv = cfg.levels.find(l => l.imt);
+    const imtOpen = () => inBag() && (!imtLv || st.lv[imtLv.id].done);
+    const mmss = ms => { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+    const imtQs = run => IMT.suallar.map((s, i) => ({ ...genS({ gen: s.gen }, run.seeds[i]), tip: s.tip }));
+    const right = (q, v) => v != null && (q.choices ? v === q.correct : close(parse(v), q.answer, tolOf(q)));
+    const fmtLine = () => { const c = t => IMT.suallar.filter(s => s.tip === t).length;
+      return IMT.suallar.length + " sual: " + [["qapali", "qapalı (A–E)"], ["kod", "kodlaşdırılan"], ["yazili", "yazılı"]].filter(([t]) => c(t)).map(([t, w]) => c(t) + " " + w).join(" + ") + (IMT.vaxt ? " · tövsiyə olunan vaxt " + IMT.vaxt + " dəqiqə" : ""); };
+    function drawImt() {
+      if (!IMT) { imtRoot.replaceChildren(); return; }
+      const head = h("h2", {}, "İmtahan formatlı sınaq");
+      if (st.imt && st.imt.passed) {
+        imtRoot.replaceChildren(h("div", { class: "oy-intro" }, head, h("p", { class: "oy-fmt" }, "Keçildi ✓ — ilk cəhddə düz: " + st.imt.bal + " / " + IMT.suallar.length + " · vaxt " + mmss(st.imt.ms || 0) + ". Mövzu tam bağlanıb."),
+          st.imt.ref ? photoBox(st.imt.ref) : null));
+        return;
+      }
+      if (!inBag()) { imtRoot.replaceChildren(h("div", { class: "oy-intro" }, head, h("p", {}, "🔒 Yekun sınaqdan sonra açılır. Mövzu bu sınaqla tam bağlanır."))); return; }
+      if (!imtOpen()) {
+        imtRoot.replaceChildren(h("div", { class: "oy-intro" }, head,
+          h("p", {}, "Mövzu qismən bağlanıb: köhnə sınaq keçilib. Tam bağlanması üçün imtahan formatlı sınaq qalıb. Əvvəl dərsdəki “İmtahanda necə gəlir” bölməsini oxu və Oyunda “İmtahan səviyyəsi”ni keç."),
+          h("button", { type: "button", class: "btn", on: { click: () => { cfg.goGame && cfg.goGame(); play(imtLv.id); } } }, "İmtahan səviyyəsinə keç →")));
+        return;
+      }
+      const r = st.imtRun;
+      imtRoot.replaceChildren(h("div", { class: "oy-intro" }, head,
+        h("p", {}, "Mövzu qismən bağlanıb. " + fmtLine() + ". Sual imtahandakı kimidir; cavablar yalnız sonda yoxlanır." + (IMT.suallar.some(s => s.tip === "yazili") ? " Yazılı sualda həlli kağızda tam yaz, şəklini yüklə və son cavabı daxil et." : "") + " Sonra səhv olan suallar yenidən gəlir — düzünü tapana qədər. Hamısı düz olanda mövzu tam bağlanır."),
+        h("button", { type: "button", class: "btn", on: { click: runImt } }, r ? "Davam et" : "Başla")));
+    }
+    async function runImt() {
+      if (!IMT || imtBusy) return;
+      if (!st.imtRun) { st.imtRun = { seeds: IMT.suallar.map(newSeed), vals: [], t0: Date.now(), wrong: [] }; save(); }
+      const run = st.imtRun, qs = imtQs(run), ref = cfg.key + "-imtahan@" + run.t0;
+      imtBusy = true; testRoot.replaceChildren(imtRoot);
+      const clock = h("div", { class: "oy-label" }), box = h("div");
+      imtRoot.replaceChildren(clock, box);
+      const tick = setInterval(() => { clock.textContent = "Keçən vaxt: " + mmss(Date.now() - run.t0) + (IMT.vaxt ? " · tövsiyə " + IMT.vaxt + " dəq" : ""); }, 500);
+      try {
+        // 1) every answer is taken without saying whether it is right
+        for (let i = run.vals.length; i < qs.length; i++) {
+          const q = qs[i], label = "İmtahan · " + (i + 1) + " / " + qs.length + " · " + TIP[q.tip];
+          let extra = null, guard = null;
+          if (q.tip === "yazili") {
+            extra = h("div", {}, h("p", { class: "oy-fmt" }, "Həlli kağızda addım-addım yaz (imtahanda yalnız cavab bal gətirmir). Şəklini yüklə, sonra son cavabı yaz."), photoBox(ref + "#" + (i + 1)));
+            guard = () => { const pb = extra.querySelector(".oy-photos"); if (!pb) return ""; const viewer = window.Skilly && Skilly.viewer && Skilly.viewer();
+              return viewer || pb.count() > 0 ? "" : pb.noAccount ? "Əvvəl Google ilə daxil ol və həllin şəklini yüklə." : "Əvvəl həllin şəklini yüklə."; };
+          }
+          run.vals.push(await collect(q, box, label, i + 1 === qs.length, { extra, guard })); save();
+        }
+        if (run.ms == null) {
+          run.ms = Date.now() - run.t0;
+          run.wrong = qs.map((q, i) => right(q, run.vals[i]) ? -1 : i).filter(i => i >= 0);
+          run.bal = qs.length - run.wrong.length;
+          run.wrong.forEach(i => logWrong("imtahan formatlı sınaq", "imtahan@" + run.t0 + "#" + (i + 1), qs[i], run.vals[i]));
+          save();
+        }
+        clearInterval(tick); clock.textContent = "";
+        // 2) the result as in the exam, then the wrong ones again until right
+        if (run.wrong.length && !run.fixStarted) {
+          await new Promise(res => box.replaceChildren(h("div", { class: "oy-done no" }, h("b", {}, "Nəticə: " + run.bal + " / " + qs.length + " · vaxt " + mmss(run.ms)),
+            h("ol", { class: "oy-review" }, ...qs.map((q, i) => h("li", { class: run.wrong.includes(i) ? "no" : "ok" }, (run.wrong.includes(i) ? "✗ " : "✓ ") + TIP[q.tip] + ": " + (typeof q.text === "string" ? q.text : q.text.textContent)))),
+            h("p", {}, "İndi səhv olan " + run.wrong.length + " sual yenidən gəlir. Kağızda yenidən həll et; səhv olsa, sual qalır."),
+            h("button", { type: "button", class: "btn", on: { click: () => { run.fixStarted = true; save(); res(); } } }, "Səhvləri düzəlt →"))));
+        }
+        run.fixed = run.fixed || [];
+        for (const i of run.wrong) {
+          if (run.fixed.includes(i)) continue;
+          await ask(qs[i], box, { label: "Düzəliş · " + TIP[qs[i].tip] + " · sual " + (i + 1) });
+          run.fixed.push(i); save();
+        }
+        // 3) all right: the topic is fully closed
+        delete st.imtRun;
+        const yi = qs.findIndex(q => q.tip === "yazili");
+        st.imt = { passed: true, at: Date.now(), bal: run.bal, ms: run.ms, ref: yi >= 0 ? ref + "#" + (yi + 1) : null };
+        try { const t = JSON.parse(localStorage.getItem("skilly-tam") || "[]"); if (!t.includes(cfg.link)) { t.push(cfg.link); localStorage.setItem("skilly-tam", JSON.stringify(t)); } } catch (e) {}
+        save();
+        const missed = run.wrong.map(i => (i + 1) + " (" + { qapali: "qapalı", kod: "kodlaşdırılan", yazili: "yazılı" }[qs[i].tip] + ")");
+        report("imtahan", { bal: run.bal, max: qs.length, qeyd: "keçdi; ilk cəhddə " + run.bal + "/" + qs.length + "; vaxt " + mmss(run.ms) + (missed.length ? "; səhv: " + missed.join(", ") : "") + (st.imt.ref ? "; yazılı həllin şəkli Skilly-də (" + st.imt.ref + ")" : ""), ...(st.imt.ref ? { sekil: st.imt.ref } : {}) });
+        box.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "İmtahan formatlı sınaq bitdi — mövzu tam bağlandı ✓"),
+          h("p", {}, "İlk cəhddə düz: " + run.bal + " / " + qs.length + " · vaxt " + mmss(run.ms) + "."),
+          h("button", { type: "button", class: "btn ghost", on: { click: () => { imtBusy = false; drawTest(); } } }, "Bağla")));
+      } finally { clearInterval(tick); }
+      imtBusy = false;
+    }
+
     drawMap(); drawTest(); drawEntry();
+    if (st.imtRun && IMT && imtOpen()) runImt();
     // after this device has the other devices' progress (a newer copy reloads the page before this runs)
     (window.Skilly && Skilly.synced ? Skilly.synced : Promise.resolve()).then(settle);
     if (st.entryRun && cfg.entryEl) runEntry();
@@ -391,5 +541,5 @@
     return { state: st, drawTest };
   }
 
-  window.Oyun = { mount, parse, h, okForm };
+  window.Oyun = { mount, parse, h, okForm, ae, again, num, imtLevel };
 })();

@@ -28,6 +28,7 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Saxlanma qanunu</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rəqqas, sürüşkə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yay, itkilər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -280,6 +281,131 @@ Mühitdə dayanma:  F = mg(H + d)/d</div></div>
         <li>Üfüqi yay (k = 200 N/m) 10 sm sıxılıb, 0,1 kq kürəni atır. Sürət? <span class="ans">kx²/2 = 1 J, mv²/2 = 1 → v² = 20, v ≈ 4,5 m/s.</span></li>
         <li>3 kq cisim sürüşkənin 4 m hündürlüyündən enib dibdə 6 m/s sürətlə çıxır. İstiliyə çevrilən enerji? <span class="ans">Q = 3·10·4 − 3·36/2 = 120 − 54 = 66 J.</span></li>
         <li>Top 5 m-dən düşüb 3,2 m hündürlüyə sıçradı. Enerjinin neçə faizi itib? <span class="ans">(5 − 3,2)/5 = 0,36 = 36%.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: enerjinin saxlanması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "Bir düstura qoy" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — rəqqas, döngə, yay, maili müstəvi və ya qrafik (məsələn, yayın <span class="m">F(x)</span> qrafiki). Rəqəmlərin bir hissəsi şəkildə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl enerjidən sürət və ya hündürlük, sonra onunla qüvvə (dartılma, reaksiya, müqavimət) və ya güc.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: 1/2-ni unutmaq, hündürlüyü səhv səviyyədən saymaq, yayın sıxılmasını enmə yoluna qatmamaq, sürtünməni <span class="m">μmg</span> yazmaq.</li>
+        <li>Tez-tez <b>iki mövzu birləşir</b>: enerji + çevrə üzrə hərəkət (<span class="m">T − mg = mv²/L</span>), enerji + sürtünmə və maili müstəvi, enerji + Huk qanunu, enerji + güc və FİƏ.</li>
+      </ul>
+      <p>Şərtdəki sözlərə diqqət et: <b>hamar</b> — sürtünmə yoxdur; <b>yüngül yay, yüngül ip</b> — onların kütləsi yoxdur; <b>uzanmayan ip</b> — ipin uzunluğu dəyişmir; <b>g = 10 m/s²</b>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — rəqqasın ipi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 260 150" role="img" aria-label="Rəqqas: ip şaquliyə α bucağı qədər meyl etdirilib">
+          <line x1="85" y1="16" x2="175" y2="16" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="130" y1="16" x2="130" y2="138" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="130" y1="16" x2="218" y2="82" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="218" cy="82" r="9" fill="var(--accent)"/>
+          <circle cx="130" cy="126" r="9" fill="none" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <path d="M130 48A32 32 0 0 0 155.6 35.2" fill="none" stroke="var(--ink)"/>
+          <text x="136" y="66" class="lbl">α</text>
+          <text x="182" y="46" class="lbl">L</text>
+        </svg></div>
+        <p>Kütləsi 0,5 kq olan kiçik kürə uzunluğu 1,6 m olan yüngül, uzanmayan ipdən asılıb. İpi şaquliyə α bucağı qədər (cos α = 0,6) meyl etdirib kürəni başlanğıc sürətsiz buraxırlar. Kürə ən aşağı nöqtədən keçəndə ipin dartılma qüvvəsi nə qədərdir? Havanın müqaviməti yoxdur, g = 10 m/s².</p>
+        <ol class="imt-opts"><li>7 N</li><li>15 N</li><li>5 N</li><li>9 N</li><li>4 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Enerji:  h = L(1 − cos α) = 1,6·0,4 = 0,64 m
+        v² = 2gh = 20·0,64 = 12,8 m²/s²
+Çevrə üzrə hərəkət (ən aşağı nöqtə):  T − mg = mv²/L
+        T = 5 + 0,5·12,8/1,6 = 5 + 4 = 9 N
+Ümumi düstur: T = mg(3 − 2cos α) — L ixtisar olur
+Cavab: D) 9 N</div>
+      <ul>
+        <li><b>C) 5 N</b> — "ip kürəni saxlayır, deməli T = mg": mərkəzəyönlü təcili unutmaq.</li>
+        <li><b>B) 15 N</b> — hündürlük kimi ipin uzunluğunu götürmək (<span class="m">h = L</span>), onda <span class="m">T = 3mg</span>. Bu yalnız α = 90°-də doğrudur.</li>
+        <li><b>A) 7 N</b> — enerjidə 1/2-ni itirmək: <span class="m">v² = gh</span>.</li>
+        <li><b>E) 4 N</b> — yalnız <span class="m">mv²/L</span>-i yazıb <span class="m">mg</span>-ni unutmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — cisim yayın üstünə düşür</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 260 180" role="img" aria-label="Solda yayın üstündə H hündürlükdə cisim, sağda yay x qədər sıxılıb">
+          <defs><marker id="ix2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <line x1="10" y1="160" x2="250" y2="160" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M60 160L60 150L48 142L72 128L48 114L72 100L48 86L60 80L60 75" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="42" y="15" width="36" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="60" y="33" class="lbl" text-anchor="middle">m</text>
+          <line x1="95" y1="42" x2="95" y2="74" stroke="var(--muted)" stroke-width="1.5" marker-start="url(#ix2)" marker-end="url(#ix2)"/>
+          <text x="101" y="62" class="lbl">H</text>
+          <path d="M180 160L180 152L168 146L192 136L168 126L192 116L168 106L180 102L180 100" fill="none" stroke="var(--ink)" stroke-width="1.8"/>
+          <rect x="162" y="74" width="36" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+          <text x="180" y="92" class="lbl" text-anchor="middle">m</text>
+          <line x1="120" y1="75" x2="215" y2="75" stroke="var(--muted)" stroke-dasharray="4 3"/>
+          <line x1="225" y1="75" x2="225" y2="100" stroke="var(--vec)" stroke-width="1.5" marker-start="url(#ix2)" marker-end="url(#ix2)"/>
+          <text x="231" y="92" class="lbl">x</text>
+        </svg></div>
+        <p>Kütləsi 2 kq olan cisim yüngül şaquli yayın yuxarı ucundan H = 0,3 m hündürlükdən başlanğıc sürətsiz buraxılır. Cisim yayın üstünə düşür; yayın maksimal sıxılması 10 sm olur. Yayın sərtliyi nə qədərdir? Havanın müqaviməti və enerji itkisi yoxdur, g = 10 m/s².</p>
+        <ol class="imt-opts"><li>1200 N/m</li><li>200 N/m</li><li>1600 N/m</li><li>800 N/m</li><li>160 N/m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Ən aşağı nöqtədə cisim anlıq dayanır (v = 0).
+Cisim H + x = 0,3 + 0,1 = 0,4 m enib:
+        mg(H + x) = kx²/2
+        k = 2mg(H + x)/x² = 2·20·0,4/0,01 = 1600 N/m
+Cavab: C) 1600 N/m</div>
+      <ul>
+        <li><b>A) 1200 N/m</b> — enmə yolunu yalnız <span class="m">H</span> götürmək: yay sıxılarkən cisim daha <span class="m">x</span> qədər enir.</li>
+        <li><b>D) 800 N/m</b> — yayın enerjisində 1/2-ni unutmaq: <span class="m">mg(H + x) = kx²</span>.</li>
+        <li><b>B) 200 N/m</b> — tarazlıqdakı kimi <span class="m">mg = kx</span> yazmaq. Ən aşağı nöqtə tarazlıq nöqtəsi deyil: orada yay cismi yuxarı itələyir, <span class="m">kx > mg</span>.</li>
+        <li><b>E) 160 N/m</b> — <span class="m">x</span>-i kvadrata yüksəltməmək.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: kobud maili müstəvi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 290 185" role="img" aria-label="Maili müstəvi: hündürlüyü 3 m, uzunluğu 5 m">
+          <defs><marker id="ix3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+          <path d="M30 160L210 160L210 52Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="10" y1="160" x2="280" y2="160" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="182" y="50" width="20" height="14" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2" transform="rotate(-31 192 57)"/>
+          <line x1="226" y1="52" x2="226" y2="160" stroke="var(--vec)" stroke-width="1.5" marker-start="url(#ix3)" marker-end="url(#ix3)"/>
+          <text x="232" y="111" class="lbl">h = 3 m</text>
+          <text x="106" y="96" class="lbl" text-anchor="end">L = 5 m</text>
+        </svg></div>
+        <p>Kütləsi 2 kq olan kiçik cisim maili müstəvinin ən yuxarı nöqtəsindən başlanğıc sürətsiz sürüşür. Müstəvinin hündürlüyü 3 m, uzunluğu 5 m-dir. Cisimlə müstəvi arasında sürtünmə əmsalı 0,25-dir. Müstəvinin aşağı ucunda cismin kinetik enerjisi nə qədərdir? g = 10 m/s².</p>
+        <ol class="imt-opts"><li>45 J</li><li>20 J</li><li>60 J</li><li>40 J</li><li>35 J</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Həndəsə:  üfüqi proyeksiya √(5² − 3²) = 4 m,  cos α = 4/5 = 0,8
+Maili müstəvi:  N = mg·cos α,  F_sürt = μmg·cos α = 0,25·20·0,8 = 4 N
+İstilik = sürtünmənin işinin modulu:  Q = F_sürt·L = 4·5 = 20 J
+Enerji:  mgh = Ek + Q  →  Ek = 2·10·3 − 20 = 60 − 20 = 40 J
+Cavab: D) 40 J</div>
+      <ul>
+        <li><b>C) 60 J</b> — sürtünməni unutmaq: sürtünmə olanda mexaniki enerji azalır (bir hissəsi istiliyə keçir); tam enerji isə saxlanır.</li>
+        <li><b>E) 35 J</b> — sürtünmə qüvvəsini <span class="m">μmg</span> yazmaq. Maili müstəvidə normal təzyiq qüvvəsi <span class="m">mg·cos α</span>-dır.</li>
+        <li><b>A) 45 J</b> — <span class="m">cos α</span> əvəzinə <span class="m">sin α = 0,6</span> götürmək.</li>
+        <li><b>B) 20 J</b> — istiliyi (sürtünmənin işinin modulunu) cavab kimi yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>1/2-ni itirmək:</b> <span class="m">mv²/2</span> və <span class="m">kx²/2</span>. Variantlarda adətən 2 dəfə böyük (və ya kiçik) cavab olur.</li>
+        <li><b>Hündürlüyü səhv səviyyədən saymaq:</b> rəqqasda <span class="m">L(1 − cos α)</span>, döngənin yuxarısı <span class="m">2R</span>, şaquli yayda hündürlük sıxılmış vəziyyətdən. Bir hesabda bir sıfır səviyyəsi.</li>
+        <li><b>Yayın üstünə düşmə:</b> enmə yolu <span class="m">H + x</span>; ən aşağı nöqtədə <span class="m">kx ≠ mg</span>.</li>
+        <li><b>Dairəvi hərəkətdə qüvvə:</b> ən aşağıda <span class="m">T = mg + mv²/R</span>, döngənin yuxarısında <span class="m">N + mg = mv²/R</span>. <span class="m">mg</span>-ni unutmaq və ya işarəsini səhv yazmaq ən çox gələn tələdir.</li>
+        <li><b>Sürtünmə:</b> maili müstəvidə <span class="m">μmg·cos α</span>; mexaniki enerjinin itkisi = sürtünmənin işinin modulu = istilik. Mühitdə (qum) ağırlıq <span class="m">H + d</span> yolunda, müqavimət yalnız <span class="m">d</span>-də iş görür.</li>
+        <li><b>Vahidlər:</b> sm → m, q → kq, kW → W. Çevrilməmiş vahidin cavabı da variantlarda olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Saxlanma:   mv₁²/2 + mgh₁ + kx₁²/2 = mv₂²/2 + mgh₂ + kx₂²/2
+Sürtünmə ilə:  E₁ = E₂ + Q,   Q = F_sürt·yol
+Rəqqas:  T_aşağı = mg(3 − 2cos α);   döngə yuxarıda:  N = mv²/R − mg
+Yaya düşmə:  mg(H + x) = kx²/2;   güc:  P = η·(m/t)·(gh + v₀²/2)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,1 kq şayba hamar novun 3 m hündürlüyündən buraxılır, döngənin radiusu 1 m. Döngənin yuxarısında normal reaksiya qüvvəsi? <span class="ans">v² = 2g(h − 2R) = 20 m²/s²; N = mv²/R − mg = 2 − 1 = 1 N.</span></li>
+        <li>Yük 5 m hündürlükdən qumun üstünə düşüb qumda 5 sm batır. Qumun orta müqavimət qüvvəsi yükün ağırlığından neçə dəfə böyükdür? <span class="ans">F/mg = (H + d)/d = 5,05/0,05 = 101 dəfə (100 yox — ağırlıq qumda da iş görür).</span></li>
+        <li>1 kq cisim hündürlüyü 5 m, uzunluğu 13 m olan maili müstəvinin ən yuxarı nöqtəsindən başlanğıc sürətsiz sürüşür, μ = 0,25. Aşağıda kinetik enerji? <span class="ans">Proyeksiya 12 m; Q = μmg·12 = 30 J; Ek = 50 − 30 = 20 J.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

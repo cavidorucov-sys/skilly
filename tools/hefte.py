@@ -7,7 +7,14 @@
 import json, sys, os, datetime as dt
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
 FROM = dt.date.fromisoformat(sys.argv[1])
-CLOSED = set(json.load(open(sys.argv[2], encoding="utf-8")))
+# CLOSED.json: {"tam": [links], "qismen": [links]} — "tam" = exam-format test passed (fully closed), "qismen" = closed
+# by the old final test only (father, 15 Nov 2026). A plain list (the old form) means "qismen": every topic closed
+# before 15 Nov 2026 was closed by the old test. A partly closed topic gets one 1-hour item for its exam-format test,
+# first in its track's queue.
+_c = json.load(open(sys.argv[2], encoding="utf-8"))
+TAM, QISMEN = (set(), set(_c)) if isinstance(_c, list) else (set(_c.get("tam", [])), set(_c.get("qismen", [])) - set(_c.get("tam", [])))
+CLOSED = TAM | QISMEN
+H_IMT = 1.0  # the exam-format part of a partly closed topic: "İmtahanda necə gəlir", the exam level and the 10-question test
 mm = json.load(open("data/movzular.json", encoding="utf-8"))
 term = json.load(open("data/terminler.json", encoding="utf-8"))
 GUN = ["Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə", "Bazar"]
@@ -39,6 +46,11 @@ for k in ("riyaziyyat", "fizika", "olimpiada"):
         tr = "phys" if k == "fizika" or t.get("saat") == "fizika" else "math"
         label = t["ad"] + (" (fizika saatında)" if k != "fizika" and tr == "phys" else "")
         queue[tr].append({"hefte": t["hefte"], "n": i, "ad": label, "link": t["ders"], "left": (H / 2 if t["status"] == "isl" else H) * 60, "began": False})
+for k in ("riyaziyyat", "fizika", "olimpiada"):
+    for i, t in enumerate(mm[k]):
+        if t.get("ders") in QISMEN and t.get("imt"):  # only topics whose exam-format part is on the site
+            tr = "phys" if k == "fizika" or t.get("saat") == "fizika" else "math"
+            queue[tr].append({"hefte": "0000", "n": i, "ad": "İmtahan formatlı sınaq: " + t["ad"], "link": t["ders"], "left": H_IMT * 60, "began": False})
 for q in queue.values(): q.sort(key=lambda x: (x["hefte"], x["n"]))
 last = max(x["hefte"] for q in queue.values() for x in q)
 UNTIL = dt.date.fromisoformat(sys.argv[3]) if len(sys.argv) > 3 else dt.date.fromisoformat(last)

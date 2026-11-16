@@ -28,6 +28,7 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İşarələr və əməllər</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ədəd oxu</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Modul</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -266,6 +267,116 @@ a &lt; 0 olarsa |a| = −a
         <li>|−8| − |3 − 10| = ? <span class="ans">8 − 7 = 1.</span></li>
         <li>|x + 4| = 6 tənliyinin köklərinin cəmi? <span class="ans">x + 4 = 6 → x = 2; x + 4 = −6 → x = −10. Cəm: −8.</span></li>
         <li>|x − 2| &lt; 4 bərabərsizliyinin neçə tam həlli var? <span class="ans">−2 &lt; x &lt; 6: −1; 0; …; 5 — 7 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: tam və rasional ədədlər, modul</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bu mövzu buraxılış imtahanında hər il var — ayrıca sual kimi də, başqa sualın içində də. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: modulu işarəyə baxmadan açmaq, <span class="m">−3²</span> ilə <span class="m">(−3)²</span>-ni qarışdırmaq, mənfiyə bölüb işarəni itirmək. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün kodlaşdırırsan — yalnız ədəd (tam və ya onluq kəsr), vahid yazılmır. Cavab vərəqində necə yazılacağını imtahan təlimatından əvvəlcədən öyrən.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll göstərilmədən yazılan cavaba, hətta düz olsa da, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Ən çox gələn tiplər: işarəli ifadənin qiyməti; ədəd oxunda nöqtə; kəsrlərlə əməllər; <b>verilmiş aralıqda modulu açıb ifadəni sadələşdirmək</b>; <span class="m">|x − a| = b</span> tənliyi və <span class="m">|x − a| ≤ b</span> bərabərsizliyi; <span class="m">|x − p| + |x − q|</span>. Hər modulda əvvəl soruş: <b>içindəki ifadə müsbətdir, yoxsa mənfi?</b> Tələlərin çoxu buradadır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>2 &lt; <span class="m">a</span> &lt; 3 olduqda |<span class="m">a</span>² − 4| + |<span class="m">a</span>² − 9| ifadəsini sadələşdirin.</p>
+        <ol class="imt-opts"><li>2a² − 13</li><li>−5</li><li>5</li><li>13 − 2a²</li><li>2a² + 13</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">2 &lt; a &lt; 3  ⇒  4 &lt; a² &lt; 9
+a² − 4 &gt; 0  ⇒  |a² − 4| = a² − 4
+a² − 9 &lt; 0  ⇒  |a² − 9| = −(a² − 9) = 9 − a²
+Cəm: (a² − 4) + (9 − a²) = 5
+Yoxlama: a = 2,5 → a² = 6,25:  2,25 + 2,75 = 5 ✓
+Cavab: C) 5</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 2a² − 13</b> — hər iki modulu işarəyə baxmadan olduğu kimi açmaq: <span class="m">(a² − 4) + (a² − 9)</span>. Ən çox seçilən səhv cavab budur. <span class="m">a² − 9</span> bu aralıqda mənfidir — modul onun işarəsini dəyişir.</li>
+        <li><b>B) −5</b> — işarələri tərsinə qoymaq: <span class="m">(4 − a²) + (a² − 9)</span>.</li>
+        <li><b>D) 13 − 2a²</b> — hər iki modulu mənfi saymaq: <span class="m">(4 − a²) + (9 − a²)</span>.</li>
+        <li><b>E) 2a² + 13</b> — "modul bütün minusları plyus edir": <span class="m">(a² + 4) + (a² + 9)</span>. Modul yalnız <b>bütün ifadənin</b> işarəsini dəyişir, içindəki hər minusu yox.</li>
+      </ul>
+      <p><b>Qapalıda qızıl qayda:</b> aralıqdan bir ədəd götür (burada <span class="m">a = 2,5</span>) və həm şərtə, həm variantlara qoy. A variantı: <span class="m">2 · 6,25 − 13 = −0,5</span> — modulların cəmi mənfi ola bilməz, deməli A düz deyil.</p></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">x</span>-in neçə tam qiymətində |<span class="m">x</span> + 3| + |<span class="m">x</span> − 5| = 8 olar?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="fig">
+        <svg viewBox="0 0 320 70" role="img" aria-label="Ədəd oxunda −3 ilə 5 arasındakı parça, uzunluğu 8">
+          <line x1="8" y1="40" x2="308" y2="40" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M312 40l-9 -5v10z" fill="var(--ink)"/>
+          <line x1="70" y1="40" x2="246" y2="40" stroke="var(--accent)" stroke-width="5"/>
+          <circle cx="70" cy="40" r="5" fill="var(--accent)"/><circle cx="246" cy="40" r="5" fill="var(--accent)"/>
+          <circle cx="202" cy="40" r="4" fill="var(--vec)"/>
+          <text x="202" y="30" text-anchor="middle" class="lbl" font-size="12">x</text>
+          <g font-size="12" text-anchor="middle" fill="var(--ink)"><text x="70" y="62">−3</text><text x="136" y="62">0</text><text x="246" y="62">5</text></g>
+          <text x="120" y="22" text-anchor="middle" class="lbl" font-size="12">uzunluq 8</text>
+        </svg>
+        <div class="cap"><p>|x + 3| — x ilə −3 arasındakı məsafə, |x − 5| — x ilə 5 arasındakı məsafə.</p><p>x parçanın içindədirsə, iki məsafənin cəmi parçanın uzunluğudur: 8.</p></div>
+      </div>
+      <div class="ex">5 − (−3) = 8 — iki nöqtə arasındakı məsafə.
+x parçadan kənardadırsa, cəm 8-dən böyükdür.
+Deməli −3 ≤ x ≤ 5: −3; −2; …; 5.
+Say: 5 − (−3) + 1 = 9.
+Cavab: 9</div>
+      <p>Tələlər: "modul tənliyinin iki kökü olur" deyib <b>2</b> yazmaq; parçanın uzunluğunu (<b>8</b>) tam ədədlərin sayı ilə qarışdırmaq — uclar da sayılır; ucları atmaq (<b>7</b>) — burada bərabərlikdir, uclar da həlldir.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>|<span class="m">x</span> − 1| + |<span class="m">x</span> + 2| = 7 tənliyini həll edin.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="fig">
+        <svg viewBox="0 0 320 64" role="img" aria-label="−2 və 1 nöqtələri ədəd oxunu üç hissəyə bölür">
+          <line x1="8" y1="36" x2="308" y2="36" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M312 36l-9 -5v10z" fill="var(--ink)"/>
+          <line x1="120" y1="28" x2="120" y2="44" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="200" y1="28" x2="200" y2="44" stroke="var(--accent)" stroke-width="2.5"/>
+          <g font-size="12" text-anchor="middle" fill="var(--ink)"><text x="120" y="58">−2</text><text x="200" y="58">1</text></g>
+          <g font-size="12" text-anchor="middle" class="lbl"><text x="62" y="20">1) x &lt; −2</text><text x="160" y="20">2) −2 ≤ x ≤ 1</text><text x="256" y="20">3) x &gt; 1</text></g>
+        </svg>
+      </div>
+      <div class="ex">Modulların içi x = 1 və x = −2 nöqtələrində sıfır olur.
+Bu nöqtələr oxu üç hissəyə bölür.
+
+1) x &lt; −2:  |x − 1| = 1 − x,  |x + 2| = −x − 2
+   (1 − x) + (−x − 2) = 7  ⇒  −2x − 1 = 7  ⇒  x = −4
+   −4 &lt; −2 ✓ — kökdür.
+2) −2 ≤ x ≤ 1:  (1 − x) + (x + 2) = 3
+   3 ≠ 7 — bu hissədə kök yoxdur.
+3) x &gt; 1:  (x − 1) + (x + 2) = 7  ⇒  2x + 1 = 7  ⇒  x = 3
+   3 &gt; 1 ✓ — kökdür.
+Cavab: x = −4 və x = 3.</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>sıfır nöqtələri və üç hissə</b>, <b>hər hissədə modulun düz açılması</b>, <b>tapılan kökün həmin hissəyə düşdüyünün yoxlanması</b>, <b>cavab</b>. Yoxlamanı atma: başqa ədədlərlə tapılan "kök" öz hissəsinə düşməyə bilər — onda o kök deyil.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Modulu işarəyə baxmadan açmaq.</b> 3 &lt; a &lt; 4 olduqda <span class="m">a² − 16 &lt; 0</span>, ona görə <span class="m">|a² − 16| = 16 − a²</span>, <span class="m">a² − 16</span> yox. Hər modul üçün əvvəl içinin işarəsini yaz.</li>
+        <li><b>"Modul minusları plyus edir".</b> <span class="m">|a − b| = a + b</span> ümumi qayda deyil. Modul yalnız içindəki ifadə mənfi olanda <b>bütün ifadənin</b> işarəsini dəyişir: <span class="m">a &lt; b</span> olduqda <span class="m">|a − b| = b − a</span>.</li>
+        <li><b>Qüvvət və minus.</b> <span class="m">−3² = −9</span>, <span class="m">(−3)² = 9</span>, <span class="m">−(−2)³ = 8</span>.</li>
+        <li><b>Modul tənliyində bir kök.</b> <span class="m">|2x − 3| = 5</span>: iki hal var — <span class="m">2x − 3 = 5</span> və <span class="m">2x − 3 = −5</span>. <span class="m">|x| = −4</span> isə kök yoxdur.</li>
+        <li><b>&lt; və ≤.</b> <span class="m">|x − 1| ≤ 3</span> — 7 tam həll, <span class="m">|x − 1| &lt; 3</span> — 5 tam həll.</li>
+        <li><b>Ədəd oxunda bölgü.</b> Əvvəl bir bölgünün qiymətini tap: 0 ilə 1 arasında 3 bölgü varsa, bölgü 1/3-dir, 1 yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|A| = A,   əgər A ≥ 0
+|A| = −A,  əgər A &lt; 0   (bütün A-nın işarəsi dəyişir)
+aralıq verilibsə:  hər modulun içinin işarəsini yaz, sonra aç
+yoxlama:  aralıqdan bir ədəd qoy
+|x − p| + |x − q|:  p ≤ x ≤ q olanda = q − p (ən kiçik qiymət)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>1 &lt; a &lt; 2 olduqda |a − 1| + |a − 2| = ? <span class="ans">(a − 1) + (2 − a) = 1. Yoxla: a = 1,5 → 0,5 + 0,5 = 1.</span></li>
+        <li>a &lt; 0 &lt; b olarsa, |a| + |b| − |a − b| = ? <span class="ans">a − b &lt; 0, ona görə |a − b| = b − a. (−a) + b − (b − a) = 0.</span></li>
+        <li>|x + 1| + |x − 4| = 9 tənliyinin kökləri? <span class="ans">x &lt; −1: −2x + 3 = 9 → x = −3 ✓; −1 ≤ x ≤ 4: cəm 5 ≠ 9; x &gt; 4: 2x − 3 = 9 → x = 6 ✓. Köklər −3 və 6.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

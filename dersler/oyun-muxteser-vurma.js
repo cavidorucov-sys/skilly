@@ -155,6 +155,100 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (no 2ab in the middle, (a − b)² = a² − b², wrong sign in a³ ± b³, ...).
+  // The 15 Nov mock exam had a written a³ − b³ question left blank: #4, #5 and #10 train the short ways.
+  const { ae, again, num } = Oyun;
+  const id = x => x;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const mono = (c, v) => (c === 1 ? "" : c) + v;                                   // 1·x → x, 3·x → 3x
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. (Ax ± By)² as a polynomial
+    { tip: "qapali", gen: () => again(() => {
+      const A = rnd(1, 5), B = rnd(1, 7), s = pick([1, -1]); if (A === B || A * B === 1) return null;
+      const useY = Math.random() < .6, v = useY ? "y" : "", vv = useY ? "y²" : "";
+      const ax = mono(A, "x"), by = useY ? mono(B, "y") : String(B);
+      const T = (a, m, c) => poly([[a, "x²"], [m, useY ? "xy" : "x"], [c, vv]]);
+      const R = T(A * A, 2 * s * A * B, B * B);
+      const w = [T(A * A, 0, s * B * B), T(A * A, s * A * B, B * B), T(A * A, -2 * s * A * B, B * B), T(A, 2 * s * A * B, B)];
+      return mc(ae(R, w, id), { text: `(${ax} ${sg(s)} ${by})² ifadəsini çoxhədli şəklində yazın.`,
+        solution: `(a ${sg(s)} b)² = a² ${sg(s)} 2ab + b²: ${A === 1 ? "x" : `(${ax})`}² ${sg(s)} 2·${ax}·${by} + ${B === 1 && useY ? "y" : `(${by})`}² = ${R}. Tələlər: ${s < 0 ? `(a − b)²-ni kvadratlar fərqi a² − b² saymaq` : "ortadakı 2ab-ni atmaq"} (${w[0]}), 2-ni unutmaq (${w[1]}), əmsalları kvadrata yüksəltməmək (${w[3]}).` });
+    }) },
+    // 2. quick square of a number near a round one
+    { tip: "qapali", gen: () => again(() => {
+      const B = pick([100, 100, 1000, 200, 50]), d = rnd(1, B >= 100 ? 9 : 4), s = pick([1, -1]), N = B + s * d;
+      const R = N * N, w = s < 0
+        ? [B * B - d * d, B * B - 2 * B * d - d * d, B * B - B * d + d * d, B * B - 2 * B * d]
+        : [B * B + d * d, B * B + B * d + d * d, B * B + 2 * B * d, B * B - 2 * B * d + d * d];
+      return mc(ae(R, w, big), { text: `Hesablayın: ${N}².`,
+        solution: `${N}² = (${B} ${sg(s)} ${d})² = ${big(B * B)} ${sg(s)} ${big(2 * B * d)} + ${d * d} = ${big(R)}. Tələlər: ${s < 0 ? `${B}² − ${d}² (${big(w[0])}) — (a − b)² kvadratlar fərqi deyil` : `${B}² + ${d}² (${big(w[0])}) — ortadakı 2ab unudulub`}; 2-siz orta hədd (${big(s < 0 ? w[2] : w[1])}).` });
+    }) },
+    // 3. difference of squares: x − y and x² − y² given, find x
+    { tip: "qapali", gen: () => again(() => {
+      const y = rnd(2, 20), d = rnd(1, 8), x = y + d, sm = x + y, Q = x * x - y * y;
+      return mc(ae(x, [sm, y, 2 * x, 2 * y]), { text: `x − y = ${d} və x² − y² = ${Q} olarsa, x ədədini tapın.`,
+        solution: `x² − y² = (x − y)(x + y) → x + y = ${Q} : ${d} = ${sm}. Sistemi topla: 2x = ${sm} + ${d} = ${2 * x}, x = ${x}. Tələlər: x + y-ni cavab yazmaq (${sm}), y-ni tapmaq (${y}), 2-yə bölməyi unutmaq (${2 * x}).` });
+    }) },
+    // 4. factor a sum / difference of cubes
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(1, 3), b = rnd(1, 5), s = pick([1, -1]); if (k === b) return null;
+      const A = mono(k, "x"), sq = (m, c) => `${poly([[k * k, "x²"], [m, "x"], [c, ""]])}`;
+      const f = (sign, m, c) => `(${A} ${sg(sign)} ${b})(${sq(m, c)})`;
+      const R = f(s, -s * k * b, b * b);
+      const w = [f(s, s * k * b, b * b), f(s, -s * 2 * k * b, b * b), `(${A} ${sg(s)} ${b})³`, f(-s, s * k * b, b * b)];
+      return mc(ae(R, w, id), { text: `${poly([[k ** 3, "x³"], [s * b ** 3, ""]])} ifadəsini vuruqlara ayırın.`,
+        solution: `${k === 1 ? "" : `${k ** 3}x³ = (${A})³, `}${b ** 3} = ${b}³. a³ ${sg(s)} b³ = (a ${sg(s)} b)(a² ${sg(-s)} ab + b²): ${R}. Tələlər: ikinci mötərizədə işarəni səhv qoymaq (${w[0]}), tam kvadrat yazmaq — 2ab ilə (${w[1]}), (a ${sg(s)} b)³ yazmaq, kubların ${s > 0 ? "fərqi" : "cəmi"} düsturunu götürmək (${w[3]}). Yoxlama: x = 1 qoy, iki tərəf bərabər olmalıdır.` });
+    }) },
+    // 5. a + b, ab given → a³ + b³ (short way, no a and b)
+    { tip: "qapali", gen: () => again(() => {
+      const x = nz(-6, 6), y = nz(-6, 6), s = x + y, p = x * y; if (!s || x === y) return null;
+      const R = s ** 3 - 3 * p * s, w = [s ** 3 + 3 * p * s, s ** 3, s ** 3 - p * s, s ** 3 - 2 * p * s];
+      return mc(ae(R, w), { text: `a + b = ${S(s)} və ab = ${S(p)} olarsa, a³ + b³ ifadəsinin qiymətini tapın.`,
+        solution: `a³ + b³ = (a + b)(a² − ab + b²), a² + b² = (a + b)² − 2ab, deməli a² − ab + b² = (a + b)² − 3ab = ${s * s} ${sg(-p)} ${Math.abs(3 * p)} = ${s * s - 3 * p}. a³ + b³ = ${S(s)}·${P(s * s - 3 * p)} = ${S(R)}. Tələlər: 3ab-ni toplamaq (${S(w[0])}), yalnız (a + b)³-u yazmaq (${S(w[1])}), a² − ab + b²-ni (a + b)² − ab saymaq (${S(w[2])}).` });
+    }) },
+    // 6. simplify (kx ± a)² − (kx − a)(kx + a)
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(1, 4), a = rnd(1, 6), s = pick([1, -1]); if (k === a) return null;
+      const kx = mono(k, "x"), L = (c2, c1, c0) => poly([[c2, "x²"], [c1, "x"], [c0, ""]]);
+      const R = L(0, 2 * s * k * a, 2 * a * a), w = [L(0, 2 * s * k * a, 0), L(0, s * k * a, 2 * a * a), L(0, 0, 2 * a * a), L(2 * k * k, 2 * s * k * a, 0)];
+      return mc(ae(R, w, id), { text: `İfadəni sadələşdirin: (${kx} ${sg(s)} ${a})² − (${kx} − ${a})(${kx} + ${a}).`,
+        solution: `(${kx} ${sg(s)} ${a})² = ${L(k * k, 2 * s * k * a, a * a)}; (${kx} − ${a})(${kx} + ${a}) = ${L(k * k, 0, -a * a)}. Fərq: ${L(k * k, 2 * s * k * a, a * a)} − ${k * k === 1 ? "x²" : k * k + "x²"} + ${a * a} = ${R}. Tələlər: mötərizə qarşısındakı minusu sərbəst həddə tətbiq etməmək (${w[0]}), kvadratda 2-ni unutmaq (${w[1]}), orta həddi atmaq (${w[2]}), minusu ümumiyyətlə unutmaq (${w[3]}).` });
+    }) },
+    // 7. coded: (a² − 2ab + b²) : (a² − b²) with numbers → (a − b)/(a + b)
+    { tip: "kod", gen: () => again(() => {
+      const T = pick([20, 25, 40, 50, 50, 100]), a = rnd(Math.floor(T / 2) + 1, T - 1), b = T - a, r = (a - b) / T;
+      if (Math.abs(Math.round(r * 100) - r * 100) > 1e-9 || a === b) return null;
+      return { text: `Hesablayın: (${a}² − 2·${a}·${b} + ${b}²) : (${a}² − ${b}²).`, answer: r, show: num(r), tol: 1e-6,
+        solution: `Surət (${a} − ${b})², məxrəc (${a} − ${b})(${a} + ${b}). İxtisar: (${a} − ${b}) : (${a} + ${b}) = ${a - b} : ${T} = ${num(r)}.` };
+    }) },
+    // 8. coded: x² + y² − 2mx − 2ny + (m² + n²) = 0 → x = m, y = n
+    { tip: "kod", gen: () => again(() => {
+      const m = nz(-6, 6), n = nz(-6, 6), sum = Math.random() < .5, ans = sum ? m + n : m * n; if (!ans) return null;
+      return { text: `x² + y² ${sg(-m)} ${2 * Math.abs(m)}x ${sg(-n)} ${2 * Math.abs(n)}y + ${m * m + n * n} = 0 olarsa, ${sum ? "x + y" : "x·y"} ifadəsinin qiymətini tapın.`,
+        answer: ans, show: S(ans), tol: 1e-6,
+        solution: `${m * m + n * n} = ${m * m} + ${n * n}: (x² ${sg(-m)} ${2 * Math.abs(m)}x + ${m * m}) + (y² ${sg(-n)} ${2 * Math.abs(n)}y + ${n * n}) = (x ${sg(-m)} ${Math.abs(m)})² + (y ${sg(-n)} ${Math.abs(n)})² = 0. İki kvadratın cəmi 0 → hər biri 0: x = ${S(m)}, y = ${S(n)}. ${sum ? "x + y" : "x·y"} = ${S(ans)}.` };
+    }) },
+    // 9. coded: a ± 1/a = t → a² + 1/a²
+    { tip: "kod", gen: () => again(() => {
+      const minus = Math.random() < .4, t = minus ? nz(-7, 7) : rnd(3, 15), ans = minus ? t * t + 2 : t * t - 2;
+      return { text: `a ${minus ? "−" : "+"} 1/a = ${S(t)} olarsa, a² + 1/a² ifadəsinin qiymətini tapın.`, answer: ans, show: String(ans), tol: 1e-6,
+        solution: `Hər tərəfi kvadrata yüksəlt: (a ${minus ? "−" : "+"} 1/a)² = a² ${minus ? "−" : "+"} 2·a·(1/a) + 1/a² = a² + 1/a² ${minus ? "−" : "+"} 2. Deməli a² + 1/a² = ${t * t} ${minus ? "+" : "−"} 2 = ${ans}. Tələ: 2-ni unutmaq (${t * t}).` };
+    }) },
+    // 10. written: a³ − b³ without finding a and b (the 15 Nov written question had this form)
+    { tip: "yazili", gen: () => again(() => {
+      const a = rnd(2, 9), b = nz(-6, 7); if (a <= b) return null;
+      const d = a - b, p = a * b, q = a * a + b * b, R = a ** 3 - b ** 3, viaQ = Math.random() < .4;
+      if (viaQ) return { text: `a − b = ${d} və a² + b² = ${q} olarsa, a³ − b³ ifadəsinin qiymətini tapın. Həlli addım-addım yazın.`,
+        answer: R, show: S(R), tol: 1e-6,
+        solution: `1) (a − b)² = a² + b² − 2ab → ${d * d} = ${q} − 2ab → ab = ${S(p)}. 2) a³ − b³ = (a − b)(a² + ab + b²). 3) a² + ab + b² = ${q} ${sg(p)} ${Math.abs(p)} = ${q + p}. 4) a³ − b³ = ${d}·${P(q + p)} = ${S(R)}.` };
+      return { text: `a − b = ${d} və ab = ${S(p)} olarsa, a³ − b³ ifadəsinin qiymətini tapın. Həlli addım-addım yazın.`,
+        answer: R, show: S(R), tol: 1e-6,
+        solution: `1) a³ − b³ = (a − b)(a² + ab + b²). 2) a² + b² = (a − b)² + 2ab = ${d * d} ${sg(p)} ${Math.abs(2 * p)} = ${q}. 3) a² + ab + b² = ${q} ${sg(p)} ${Math.abs(p)} = ${q + p}. 4) a³ − b³ = ${d}·${P(q + p)} = ${S(R)}. (Qısa yol: (a − b)³ + 3ab(a − b) = ${d ** 3} ${sg(p)} ${Math.abs(3 * p * d)} = ${S(R)}.)` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -163,8 +257,8 @@
     let game = null;
     game = Oyun.mount({
       key: "muxteser-vurma", title: "Müxtəsər vurma düsturları", fenn: "riyaziyyat", link: "dersler/muxteser-vurma.html",
-      format: "Cavab ədəddir: 10609 (boşluqla 10 609 da olar), mənfi −36. Əmsal işarəsi ilə yazılır (−6x-in əmsalı −6).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      format: "Cavab ədəddir: 10609 (boşluqla 10 609 da olar), mənfi −36, onluq kəsr vergüllə 0,48. Əmsal işarəsi ilə yazılır (−6x-in əmsalı −6).",
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["kvadrat", "kvadrat", "ferq", "kub", "kub", "tez", "tez", "tamkv", "tamkv", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

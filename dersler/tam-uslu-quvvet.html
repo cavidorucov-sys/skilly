@@ -28,6 +28,7 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Mənfi üst</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xassələr</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Standart şəkil</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -197,6 +198,84 @@ böyük ədəd → n &gt; 0,  kiçik ədəd (&lt; 1) → n &lt; 0
         <li>0,0071 ədədini standart şəkildə yaz. <span class="ans">7,1·10⁻³ (vergül 3 yer sağa).</span></li>
         <li><span class="m">(2·10⁻⁴)·(6·10⁹)</span> — standart şəkildə? <span class="ans">12·10⁵ = 1,2·10⁶.</span></li>
         <li>480 000 000 ədədinin tərtibi neçədir? <span class="ans">4,8·10⁸ → tərtib 8.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: tam üstlü qüvvət, standart şəkil</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bu mövzu buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>. Standart şəkil sualında bəzi variantlar <b>eyni ədədi</b> başqa cür yazır, amma yalnız birində <span class="m">1 ≤ a &lt; 10</span> şərti ödənir. Ona görə "ədəd düzdür" hələ "cavab düzdür" demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan: yalnız ədəd, vahid yazılmır. Bu mövzuda kodlaşdırılan cavab adətən natural ədəddir (tərtib, say, qiymət).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Yalnız cavab yazılsa, bal az olur və ya heç olmur: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda iki şeyi yoxla: <b>mənfi üst ədədi tərsinə çevirir</b> (mənfi etmir), və cavab standart şəkildədirsə — <b>a 1 ilə 10 arasındadırmı</b> (1 daxil, 10 yox).</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(2,5·10⁻³) · (6·10⁷)</span> hasilinin standart şəkli hansıdır?</p>
+        <ol class="imt-opts"><li>15·10⁴</li><li>1,5·10⁴</li><li>1,5·10⁵</li><li>1,5·10³</li><li>1,5·10⁻²⁰</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">a-lar ayrıca:        2,5 · 6 = 15
+10-un qüvvətləri:    10⁻³ · 10⁷ = 10⁴
+Hasil:               15·10⁴  — amma 15 ≥ 10, bu standart şəkil deyil
+15 = 1,5·10, ona görə üst 1 artır: 1,5·10⁵
+Cavab: C) 1,5·10⁵</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 15·10⁴</b> — ədəd düzdür, amma <span class="m">a = 15 ≥ 10</span>: standart şəkil deyil. Ən çox düşülən tələ budur.</li>
+        <li><b>B) 1,5·10⁴</b> — a-nı düzəltmək, üstü isə dəyişməmək. 15-i 10-a böldünsə, 10-un qüvvətini 10-a vurmalısan.</li>
+        <li><b>D) 1,5·10³</b> — üstü səhv tərəfə dəyişmək: a kiçildi, deməli üst <b>artmalıdır</b>.</li>
+        <li><b>E) 1,5·10⁻²⁰</b> — üstləri vurmaq: <span class="m">(−3)·7 = −21</span>, sonra +1. Vurmada üstlər toplanır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">0,036·10⁷</span> ədədinin tərtibini tapın (standart şəkildə <span class="m">a·10ⁿ</span> yazılışında <span class="m">n</span>).</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">0,036 = 3,6·10⁻²          (vergül 2 yer sağa, ədəd 1-dən kiçik → üst mənfi)
+3,6·10⁻² · 10⁷ = 3,6·10⁵
+Cavab: 5</div>
+      <p>Kodlaşdırmada yalnız <b>5</b> yazılır. Tələlər: görünən üstü yazmaq (<b>7</b>) — 0,036 standart şəkil deyil; üstü səhv tərəfə dəyişmək (<b>9</b>); yalnız sıfırları saymaq (0,036-da vergüldən sonra bir sıfır var → <b>6</b>).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Kosmik zond Yerdən <span class="m">2,7·10⁸</span> km uzaqlıqdadır. Radiosiqnal <span class="m">3·10⁵</span> km/s sürətlə yayılır. Zonddan göndərilən siqnal Yerə neçə dəqiqəyə çatır?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Vaxt = yol : sürət:  t = 2,7·10⁸ : (3·10⁵)
+2) a-lar ayrıca:  2,7 : 3 = 0,9
+   10-lar ayrıca:  10⁸ : 10⁵ = 10³
+   t = 0,9·10³ = 9·10² s = 900 s
+3) Dəqiqəyə çeviririk:  900 : 60 = 15
+Cavab: 15 dəqiqə.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>düstur</b> (vaxt = yol : sürət), <b>standart şəkildə bölmə</b> (a-lar və 10-un qüvvətləri ayrıca, sonra <span class="m">0,9</span>-u düzəltmək), <b>vahidin çevrilməsi və cavab</b>. Yalnız "15" yazmaq bu balların çoxunu itirir. Saniyəni dəqiqəyə çevirməyi unudub "900" yazmaq da tipik səhvdir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>a ≥ 10 və ya a &lt; 1 saxlamaq.</b> <span class="m">34·10⁻⁵</span> və <span class="m">0,34·10⁻³</span> ədəd kimi düzdür, amma standart şəkil deyil. Standart: <span class="m">3,4·10⁻⁴</span>.</li>
+        <li><b>a-nı düzəldib üstü unutmaq.</b> a 10 dəfə kiçildisə, üst 1 artır; a 10 dəfə böyüdüsə, üst 1 azalır.</li>
+        <li><b>Kiçik ədəddə üstün işarəsi.</b> <span class="m">0,00034 = 3,4·10⁻⁴</span>, <span class="m">3,4·10⁴</span> yox. 1-dən kiçik ədəddə n həmişə mənfidir.</li>
+        <li><b>Yalnız sıfırları saymaq.</b> 0,00034-də vergüldən sonra 3 sıfır var, amma vergül 4 yer sürüşür: n = −4. 52 000 000-da 6 sıfır var, n isə 7-dir.</li>
+        <li><b>Mənfi üst — mənfi ədəd deyil.</b> <span class="m">2⁻³ = 1/8</span>, <span class="m">−8</span> yox. <span class="m">7⁰ = 1</span>, 0 yox.</li>
+        <li><b>Vurmada üstləri vurmaq.</b> <span class="m">10⁻³ · 10⁷ = 10⁴</span>; üstlər yalnız <span class="m">(aᵐ)ⁿ</span>-də vurulur.</li>
+        <li><b>Müqayisədə yalnız a-ya baxmaq.</b> <span class="m">9·10⁻⁶ &lt; 2·10⁻⁵</span>: əvvəl üstlər müqayisə olunur (−5 &gt; −6).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">standart şəkil:  a·10ⁿ,  1 ≤ a &lt; 10
+əməldən sonra:   a ≥ 10 → a : 10, n + 1
+                 a &lt; 1  → a · 10, n − 1
+a⁻ⁿ = 1/aⁿ,   a⁰ = 1</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0,000 52 ədədinin standart şəkli: <span class="m">52·10⁻⁵</span>, <span class="m">5,2·10⁻⁴</span>, yoxsa <span class="m">5,2·10⁻³</span>? <span class="ans">5,2·10⁻⁴ (vergül 4 yer sağa). 52·10⁻⁵ — a ≥ 10; 5,2·10⁻³ — yalnız sıfırlar sayılıb.</span></li>
+        <li><span class="m">(8·10⁻⁴) : (4·10³)</span> nəticəsini standart şəkildə yaz. <span class="ans">8 : 4 = 2, 10⁻⁴ : 10³ = 10⁻⁷ → 2·10⁻⁷.</span></li>
+        <li><span class="m">(3·10⁻²)²</span> nəticəsini standart şəkildə yaz. <span class="ans">3² = 9, (10⁻²)² = 10⁻⁴ → 9·10⁻⁴.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
