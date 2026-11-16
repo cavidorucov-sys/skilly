@@ -1334,7 +1334,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər"
    ],
    "hefte": "2026-12-14",
-   "ders": "dersler/fiz-arximed.html"
+   "ders": "dersler/fiz-arximed.html",
+   "imt": true
   },
   {
    "bolme": "Həndəsi optika",
