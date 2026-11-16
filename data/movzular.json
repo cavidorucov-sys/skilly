@@ -1421,7 +1421,8 @@
     "fizika:Enerjinin saxlanması"
    ],
    "hefte": "2026-12-21",
-   "ders": "dersler/fiz-reqsler.html"
+   "ders": "dersler/fiz-reqsler.html",
+   "imt": true
   },
   {
    "bolme": "Rəqslər və dalğalar",
