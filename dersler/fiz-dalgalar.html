@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Əks-səda</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Rezonans</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Səsin xarakteristikaları, EM dalğalar</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -459,6 +460,95 @@ Vakuumda hamısı c = 3·10⁸ m/s ilə yayılır</div></div>
         <li>Kamertona daha güclü vurdular. Səsin hansı xarakteristikası dəyişir? <span class="ans">Gurluq (amplitud artır); ton (tezlik) dəyişmir.</span></li>
         <li>Səs havadan suya keçir. Tezlik, sürət və dalğa uzunluğu necə dəyişir? <span class="ans">Tezlik dəyişmir, sürət və dalğa uzunluğu artır.</span></li>
         <li>FM radiostansiya 100 MHz tezlikdə yayımlayır. Dalğa uzunluğu? <span class="ans">3·10⁸/10⁸ = 3 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: Dalğalar və səs</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "λ = vT-ni tətbiq et" tipli düz sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — dalğanın profili, gəmi və dib, divar və avtomobil, ossiloqram, rezonans borusu. Rəqəmlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl vaxtdan yolu tap, sonra "gedib-qayıtma"nı nəzərə al, sonra istənilən fərqi və ya dalğa uzunluğunu hesabla.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: yarıya bölməyi unutmaq, təpələrin sayını intervalların sayı ilə qarışdırmaq, v = λ/ν yazmaq, vahidi çevirməmək.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: rəqqasın periodu (<span class="m">T = 2π√(l/g)</span>) və ya yaylı rəqqas dalğanın mənbəyi olur, sonra əks-səda və ya <span class="m">λ = vT</span> gəlir.</li>
+      </ul>
+      <p>Şərtdə səsin sürəti verilir (adətən havada 340 m/s); əks-sədada səs obyektə gedib qayıdır, yəni yol 2s-dir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — dalğanın profili</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 124" role="img" aria-label="Eninə dalğanın profili: 4 ardıcıl təpə, birinci və axırıncı təpə arası 9 m"><defs><marker id="dg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="26" y1="62" x2="272" y2="62" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#dg-ar)"/><line x1="40" y1="12" x2="40" y2="104" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><text x="32" y="18" text-anchor="end" font-size="13" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">y</text><text x="280" y="67" text-anchor="start" font-size="13" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">x</text><path d="M40 30L42 30.5L44 32L46 34.5L48 37.9L50 42L52 46.8L54 52.1L56 57.7L58 63.4L60 69.1L62 74.6L64 79.6L66 84.1L68 87.9L70 90.8L72 92.8L74 93.9L76 93.9L78 92.8L80 90.8L82 87.9L84 84.1L86 79.6L88 74.6L90 69.1L92 63.4L94 57.7L96 52.1L98 46.8L100 42L102 37.9L104 34.5L106 32L108 30.5L110 30L112 30.5L114 32L116 34.5L118 37.9L120 42L122 46.8L124 52.1L126 57.7L128 63.4L130 69.1L132 74.6L134 79.6L136 84.1L138 87.9L140 90.8L142 92.8L144 93.9L146 93.9L148 92.8L150 90.8L152 87.9L154 84.1L156 79.6L158 74.6L160 69.1L162 63.4L164 57.7L166 52.1L168 46.8L170 42L172 37.9L174 34.5L176 32L178 30.5L180 30L182 30.5L184 32L186 34.5L188 37.9L190 42L192 46.8L194 52.1L196 57.7L198 63.4L200 69.1L202 74.6L204 79.6L206 84.1L208 87.9L210 90.8L212 92.8L214 93.9L216 93.9L218 92.8L220 90.8L222 87.9L224 84.1L226 79.6L228 74.6L230 69.1L232 63.4L234 57.7L236 52.1L238 46.8L240 42L242 37.9L244 34.5L246 32L248 30.5L250 30" fill="none" stroke="var(--accent,#a32d2d)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="40" cy="30" r="3.5" fill="var(--accent,#a32d2d)" stroke="var(--accent,#a32d2d)" stroke-width="1"/><circle cx="110" cy="30" r="3.5" fill="var(--accent,#a32d2d)" stroke="var(--accent,#a32d2d)" stroke-width="1"/><circle cx="180" cy="30" r="3.5" fill="var(--accent,#a32d2d)" stroke="var(--accent,#a32d2d)" stroke-width="1"/><circle cx="250" cy="30" r="3.5" fill="var(--accent,#a32d2d)" stroke="var(--accent,#a32d2d)" stroke-width="1"/><line x1="250" y1="30" x2="250" y2="100" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><text x="32" y="78" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">0</text><line x1="40" y1="96" x2="250" y2="96" stroke="var(--muted,#6b6b73)" stroke-width="1.4" stroke-linecap="round" marker-start="url(#dg-ar)" marker-end="url(#dg-ar)"/><text x="145" y="114" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">9 m</text></svg></div>
+        <p>Şəkildə ip boyunca yayılan eninə dalğanın bir andakı profili verilib: 4 ardıcıl dalğa təpəsi var, birinci və axırıncı təpə arasındakı məsafə 9 m-dir. Dalğanın tezliyi 10 Hz-dir. Dalğanın yayılma sürəti nə qədərdir?</p>
+        <ol class="imt-opts"><li>22,5 m/s</li><li>90 m/s</li><li>30 m/s</li><li>0,3 m/s</li><li>15 m/s</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">4 təpə arasında 3 dalğa uzunluğu var:  λ = 9/3 = 3 m
+v = λν = 3·10 = 30 m/s
+Cavab: C) 30 m/s</div>
+      <ul>
+        <li><b>A) 22,5 m/s</b> — 9 m-i 4-ə bölmək (təpələrin sayı ≠ intervalların sayı): λ = 2,25 m.</li>
+        <li><b>B) 90 m/s</b> — bütün 9 m-i dalğa uzunluğu saymaq.</li>
+        <li><b>D) 0,3 m/s</b> — v = λ/ν yazmaq.</li>
+        <li><b>E) 15 m/s</b> — qonşu təpə ilə çökəklik arasını λ saymaq (bu yalnız λ/2-dir).</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki əks-səda</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil, çoxaddım</span>
+        <div class="fig"><svg viewBox="0 0 300 208" role="img" aria-label="Gəmi dibə ultrasəs siqnalı göndərir; balıq dəstəsindən əks-səda 0,4 s, dibdən 1 s sonra qayıdır"><defs><marker id="dg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="10" y="46" width="280" height="150" fill="var(--vec,#0c447c)" fill-opacity=".12"/><line x1="10" y1="46" x2="290" y2="46" stroke="var(--vec,#0c447c)" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="196" x2="290" y2="196" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="196" x2="10" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="26" y1="196" x2="20" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="36" y1="196" x2="30" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="46" y1="196" x2="40" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="56" y1="196" x2="50" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="66" y1="196" x2="60" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="76" y1="196" x2="70" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="86" y1="196" x2="80" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="96" y1="196" x2="90" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="106" y1="196" x2="100" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="116" y1="196" x2="110" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="126" y1="196" x2="120" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="136" y1="196" x2="130" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="146" y1="196" x2="140" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="156" y1="196" x2="150" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="166" y1="196" x2="160" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="176" y1="196" x2="170" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="186" y1="196" x2="180" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="196" y1="196" x2="190" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="206" y1="196" x2="200" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="216" y1="196" x2="210" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="226" y1="196" x2="220" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="236" y1="196" x2="230" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="246" y1="196" x2="240" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="256" y1="196" x2="250" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="266" y1="196" x2="260" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="276" y1="196" x2="270" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="286" y1="196" x2="280" y2="204" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><path d="M38 30L104 30L94 46L48 46z" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="58" y="17" width="22" height="13" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="71" y1="50" x2="71" y2="191" stroke="var(--accent,#a32d2d)" stroke-width="2" stroke-linecap="round" marker-end="url(#dg-ar)"/><ellipse cx="71" cy="106" rx="14" ry="7" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><path d="M84 106L94 99L94 113z" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="64" cy="104.5" r="1.4" fill="var(--ink,#17171a)" stroke="var(--ink,#17171a)" stroke-width="1"/><line x1="36" y1="115" x2="36" y2="195" stroke="var(--muted,#6b6b73)" stroke-width="1.4" stroke-linecap="round" marker-start="url(#dg-ar)" marker-end="url(#dg-ar)"/><text x="30" y="156" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">?</text><text x="108" y="104" text-anchor="start" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">balıqdan əks-səda:</text><text x="108" y="120" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t₁ = 0,4 s</text><text x="170" y="172" text-anchor="start" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">dibdən əks-səda:</text><text x="170" y="189" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t₂ = 1 s</text></svg></div>
+        <p>Gəmi dibə ultrasəs siqnalı göndərir. Siqnaldan 0,4 s sonra balıq dəstəsindən, 1 s sonra dibdən əks-səda qayıdır (şəkil). Balıq dəstəsi dibdən neçə metr yuxarıdadır? (Suda səsin sürəti 1500 m/s.)</p>
+        <ol class="imt-opts"><li>300 m</li><li>450 m</li><li>750 m</li><li>900 m</li><li>1050 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Hər əks-sədada səs gedib qayıdır, dərinlik vt/2-dir.
+Balığa qədər:  1500·0,4/2 = 300 m
+Dibə qədər:    1500·1/2 = 750 m
+Fərq:  750 − 300 = 450 m
+Cavab: B) 450 m</div>
+      <ul>
+        <li><b>A) 300 m</b> — balığın dərinliyini yazmaq. <b>C) 750 m</b> — dibin dərinliyini yazmaq.</li>
+        <li><b>D) 900 m</b> — yarıya bölməyi unutmaq: 1500·(1 − 0,4).</li>
+        <li><b>E) 1050 m</b> — vaxtları toplamaq: 750·(0,4 + 1).</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: rəqqas və əks-səda</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 300 174" role="img" aria-label="Rəqqasın uzunluğu 25 sm; saatdan s məsafədə divar var, «tıq» səsinin əks-sədası qayıdır"><defs><marker id="dg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="30" y1="14" x2="90" y2="14" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="60" y1="14" x2="60" y2="104" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="60" cy="112" r="9" fill="var(--accent,#a32d2d)" stroke="var(--ink,#17171a)" stroke-width="2"/><path d="M30 100Q60 128 90 100" fill="none" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3"/><text x="68" y="62" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">l = 25 sm</text><rect x="262" y="36" width="12" height="100" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="104" y1="76" x2="252" y2="76" stroke="var(--accent,#a32d2d)" stroke-width="2" stroke-linecap="round" marker-end="url(#dg-ar)"/><text x="178" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">tıq</text><line x1="252" y1="98" x2="104" y2="98" stroke="var(--vec,#0c447c)" stroke-width="2" stroke-linecap="round" marker-end="url(#dg-ar)"/><text x="178" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">əks-səda</text><line x1="60" y1="148" x2="268" y2="148" stroke="var(--muted,#6b6b73)" stroke-width="1.4" stroke-linecap="round" marker-start="url(#dg-ar)" marker-end="url(#dg-ar)"/><text x="164" y="166" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">s = ?</text><line x1="262" y1="52" x2="274" y2="44" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="64" x2="274" y2="56" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="76" x2="274" y2="68" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="88" x2="274" y2="80" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="100" x2="274" y2="92" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="112" x2="274" y2="104" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="124" x2="274" y2="116" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/><line x1="262" y1="136" x2="274" y2="128" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <p>Rəqqaslı saat hər periodda bir dəfə «tıq» səsi verir. Saatın rəqqası uzunluğu 25 sm olan riyazi rəqqas kimi rəqs edir (kiçik bucaqlı rəqslər; şəkil; π² ≈ 10, g = 10 m/s²). Saatdan s məsafədə şaquli divar var; saatın yanında dayanan adam hər «tıq»ın əks-sədasını elə növbəti «tıq» ilə eyni anda eşidir. s nə qədərdir? (Səsin sürəti 340 m/s.)</p>
+        <ol class="imt-opts"><li>85 m</li><li>340 m</li><li>170 m</li><li>680 m</li><li>1700 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">l = 25 sm = 0,25 m
+T = 2π√(l/g) = 2√l = 2√0,25 = 1 s   (π² ≈ 10, g = 10)
+Əks-səda T = 1 s sonra qayıdır: 2s = vT = 340 m
+s = 170 m
+Cavab: C) 170 m</div>
+      <ul>
+        <li><b>A) 85 m</b> — «tıq»ı yarım periodda bir dəfə saymaq (vaxt T/2).</li>
+        <li><b>B) 340 m</b> — yarıya bölməyi unutmaq: səs gedib qayıdır.</li>
+        <li><b>D) 680 m</b> — yolu 2-yə vurmaq.</li>
+        <li><b>E) 1700 m</b> — l-i santimetrlə qoyub T = 2√25 = 10 s tapmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Gedib-qayıtma.</b> Əks-sədada səsin yolu məsafənin iki mislidir: s = vt/2.</li>
+        <li><b>Təpələrin sayı.</b> N təpə arasında N − 1 dalğa uzunluğu var; dalğa uzunluğu iki qonşu təpə arasıdır.</li>
+        <li><b>Mühit dəyişəndə</b> tezlik sabit qalır, v və λ dəyişir (λ = v/ν).</li>
+        <li><b>Hərəkət edən mənbə və ya cisim.</b> Avtomobilin yolunu da ayrıca yaz: səsin yolu və avtomobilin yolu eyni vaxtda keçilir.</li>
+        <li><b>Rezonans borusunda</b> ardıcıl iki rezonansın fərqi λ/2-dir; ağızdakı düzəliş çıxılır.</li>
+        <li><b>Vahidlər:</b> sm, ms-i SI-yə çevir; variantlarda səhv vahidlə alınan cavab da olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v = λν = λ/T;   mühit dəyişəndə ν sabit, λ ~ v
+Əks-səda:  s = vt/2
+Rezonans:  ardıcıl iki L-in fərqi = λ/2
+Rəqqas:  T = 2π√(l/g),   yaylı rəqqas: T = 2π√(m/k)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>İpdə 6 ardıcıl təpə arasındakı məsafə 15 m-dir. Dalğa uzunluğu? <span class="ans">6 təpə arasında 5 dalğa uzunluğu var: λ = 15/5 = 3 m.</span></li>
+        <li>Əks-səda 3 s-ə qayıdır (v = 340 m/s). Maneəyə qədər məsafə? <span class="ans">s = vt/2 = 340·3/2 = 510 m.</span></li>
+        <li>Səs havadan suya keçir. Tezlik 500 Hz, havada λ = 0,68 m, suda sürət 1500 m/s. Suda λ? <span class="ans">Tezlik dəyişmir: λ = 1500/500 = 3 m.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

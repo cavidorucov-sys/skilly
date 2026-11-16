@@ -1433,7 +1433,8 @@
     "fizika:Harmonik rəqslər; riyazi və yaylı rəqqas"
    ],
    "hefte": "2026-12-21",
-   "ders": "dersler/fiz-dalgalar.html"
+   "ders": "dersler/fiz-dalgalar.html",
+   "imt": true
   },
   {
    "bolme": "Elektrostatika",
