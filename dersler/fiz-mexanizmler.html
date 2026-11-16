@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bloklar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qızıl qayda</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>FİƏ</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -315,7 +316,7 @@ A_tam = A_faydalı + A_itki</div>
           <text class="lbl" x="196" y="40">itki</text>
           <text x="10" y="70">tam iş = insanın gördüyü iş (100%)</text>
         </svg>
-        <div class="cap"><p>Real mexanizmdə itki sıfır olmur, ona görə <b>η İtki sıfır ola bilməz, ona görə <b>η &lt; 100%</b>.lt; 100%</b> (ideal itkisiz modeldə η = 100%). Cavabın 100%-dən çox çıxdısa — faydalı və tam işi səhv yerə qoymusan.</p></div>
+        <div class="cap"><p>Real mexanizmdə itki sıfır olmur, ona görə <b>η &lt; 100%</b> (ideal itkisiz modeldə η = 100%). Cavabın 100%-dən çox çıxdısa — faydalı və tam işi səhv yerə qoymusan.</p></div>
       </div>
       <div class="fm">maili müstəvi:   η = mgh / (F·l)
 tərpənən blok:   η = mg / (2F)
@@ -361,6 +362,106 @@ Ardıcıl mexanizmlər: η = η₁·η₂</div></div>
         <li>Polispastda 4 ip parçası, yük 100 kq, qüvvə 312,5 N. FİƏ? <span class="ans">η = 1000/(4·312,5) = 1000/1250 = 80%.</span></li>
         <li>Maili müstəvinin FİƏ-si 60%, faydalı iş 300 J. İnsan nə qədər iş gördü? <span class="ans">A_t = 300/0,6 = 500 J.</span></li>
         <li>Sürtünməsiz tərpənən blokla 18 kq yük qaldırılır, FİƏ 90%. Blokun kütləsi? <span class="ans">0,9 = 18/(18 + m_b) → 18 + m_b = 20 → m_b = 2 kq.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: ling, bloklar, FİƏ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "Bir düstura qoy" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — ling, sapdan asılmış çubuq, polispast, maili müstəvi. Bəzi rəqəmlər yalnız şəkildədir: bölgülərin sayı, ip parçalarının sayı.</li>
+        <li><b>Bir neçə addım</b> — əvvəl naməlum yük (momentlər), sonra sapın gərilməsi (qüvvələrin cəmi); əvvəl ip parçalarını say, sonra qüvvə, sonra güc.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: g-ni unutmaq, çubuğun öz ağırlıq qüvvəsini unutmaq, sərbəst ucu da saymaq, FİƏ-yə bölmək əvəzinə vurmaq, metri santimetrə çevirməmək.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: ling + Huk qanunu (yay), maili müstəvi + sürtünmə, polispast + güc (<span class="m">N = A/t</span>).</li>
+      </ul>
+      <p>Şərtdəki idealizasiyalara diqqət et: "yüngül ip/blok" — ağırlıq qüvvəsi nəzərə alınmır; "sürtünmə yoxdur" və hissələr yüngüldür — FİƏ 100% (ağır blok verilibsə, onu qaldırmaq da itkidir); "bircins çubuq" — ağırlıq qüvvəsi ortasına tətbiq olunur. Hər yerdə <span class="m">g = 10 m/s²</span>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — polispastda ip parçalarını say</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 220 200" role="img" aria-label="Polispast: yuxarıda tərpənməz, aşağıda tərpənən bloklar; ipin sərbəst ucu aşağı çəkilir"><defs><marker id="fm-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"></path></marker></defs><line x1="20" y1="8" x2="200" y2="8" stroke="var(--muted)" stroke-width="5" stroke-linecap="round"></line><line x1="81.5" y1="8" x2="81.5" y2="24" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="50" y1="24" x2="113" y2="24" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"></line><line x1="77" y1="24" x2="77" y2="44" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="113" y1="24" x2="113" y2="44" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="59" y1="136" x2="95" y2="136" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"></line><line x1="59" y1="118" x2="59" y2="136" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="95" y1="118" x2="95" y2="136" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="50" y1="24" x2="50" y2="118" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="68" y1="44" x2="68" y2="118" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="86" y1="44" x2="86" y2="118" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="104" y1="44" x2="104" y2="118" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="122" y1="44" x2="122" y2="150" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="122" y1="150" x2="122" y2="182" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#fm-ar)"></line><text x="130" y="180" text-anchor="start" class="oy-lbl">F</text><circle cx="77" cy="44" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></circle><circle cx="77" cy="44" r="2.5" fill="var(--ink)"></circle><circle cx="113" cy="44" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></circle><circle cx="113" cy="44" r="2.5" fill="var(--ink)"></circle><circle cx="59" cy="118" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></circle><circle cx="59" cy="118" r="2.5" fill="var(--ink)"></circle><circle cx="95" cy="118" r="9" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></circle><circle cx="95" cy="118" r="2.5" fill="var(--ink)"></circle><line x1="77" y1="136" x2="77" y2="146" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><rect x="52" y="146" width="50" height="26" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></rect><text x="77" y="164" text-anchor="middle" class="oy-lbl">55 kq</text></svg></div>
+        <p>Şəkildəki polispastla kütləsi 55 kq olan yük bərabər sürətlə qaldırılır. Aşağı (tərpənən) blokların kütləsi cəmi 5 kq. İp və yuxarı bloklar yüngüldür, sürtünmə yoxdur. İpin sərbəst ucuna hansı F qüvvəsi tətbiq olunur?</p>
+        <ol class="imt-opts"><li>120 N</li><li>137,5 N</li><li>150 N</li><li>200 N</li><li>110 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Tərpənən hissə: yük + aşağı bloklar. Onu xəyalən üfüqi xətlə kəs
+və saxlayan ip parçalarını say: n = 4.
+Sərbəst uc yuxarı blokdan AŞAĞI gedir — tərpənən hissəni saxlamır.
+4F = (55 + 5)·10 = 600 N   →   F = 150 N
+Cavab: C) 150 N</div>
+      <ul>
+        <li><b>A) 120 N</b> — sərbəst ucu da saymaq: 600/5.</li>
+        <li><b>D) 200 N</b> — bir parçanı az saymaq: 600/3.</li>
+        <li><b>B) 137,5 N</b> — aşağı blokların ağırlıq qüvvəsini unutmaq: 550/4. <b>E) 110 N</b> — hər iki səhv birlikdə: 550/5.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — özünü qaldıran adam</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil · iki addım</span>
+        <div class="fig"><svg viewBox="0 0 240 175" role="img" aria-label="Tavandakı tərpənməz blokdan aşırılmış ip: bir ucu taxtaya bağlıdır, o biri ucunu taxtada duran adam çəkir"><defs><marker id="fm-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"></path></marker></defs><line x1="60" y1="8" x2="200" y2="8" stroke="var(--muted)" stroke-width="5" stroke-linecap="round"></line><line x1="120" y1="8" x2="120" y2="34" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="104" y1="34" x2="104" y2="150" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><line x1="136" y1="34" x2="136" y2="112" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><circle cx="120" cy="34" r="16" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></circle><circle cx="120" cy="34" r="2.5" fill="var(--ink)"></circle><rect x="88" y="150" width="90" height="8" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"></rect><circle cx="156" cy="96" r="8" fill="none" stroke="var(--ink)" stroke-width="2"></circle><line x1="156" y1="104" x2="156" y2="130" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"></line><line x1="156" y1="130" x2="148" y2="150" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"></line><line x1="156" y1="130" x2="164" y2="150" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"></line><line x1="156" y1="112" x2="136" y2="112" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"></line><text x="172" y="100" text-anchor="start" class="oy-lbl">m</text><text x="133" y="172" text-anchor="middle" class="oy-lbl">M</text></svg></div>
+        <p>Kütləsi 70 kq olan adam kütləsi 10 kq olan taxtanın üstündə durub. Tavandakı tərpənməz blokdan aşırılmış ipin bir ucu taxtaya bağlanıb, o biri ucunu adam şaquli aşağı çəkir və özünü taxta ilə birlikdə bərabər sürətlə qaldırır. Taxta üfüqi qalır (onu yüngül şaquli istiqamətləndiricilər fırlanmağa qoymur). Adam taxtaya hansı qüvvə ilə basır? İp və blok yüngüldür, sürtünmə yoxdur.</p>
+        <ol class="imt-opts"><li>400 N</li><li>300 N</li><li>700 N</li><li>600 N</li><li>800 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1) Sistem "adam + taxta". Onu yuxarı İKİ ip parçası çəkir:
+   biri adamın əlində, biri taxtada; hər birində gərilmə T.
+   2T = (70 + 10)·10 = 800 N   →   T = 400 N
+2) Yalnız adam: yuxarı T (ip əli çəkir) və N (taxta), aşağı mg.
+   N = mg − T = 700 − 400 = 300 N
+   Nyutonun III qanunu: adam taxtaya da 300 N ilə basır.
+Cavab: B) 300 N</div>
+      <ul>
+        <li><b>A) 400 N</b> — cavab olaraq ipin gərilməsini yazmaq (birinci addımda dayanmaq).</li>
+        <li><b>C) 700 N</b> — ipi nəzərə almamaq: N = mg.</li>
+        <li><b>D) 600 N</b> — "ip yalnız taxtanı saxlayır", T = Mg = 100 N götürmək.</li>
+        <li><b>E) 800 N</b> — sistemin bütün ağırlıq qüvvəsi.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: ling və yay</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 300 170" role="img" aria-label="Bərabər bölgülü bircins çubuq dayaq üzərində; sol ucu yay ilə yerə bərkidilib, sağ ucundan yük asılıb"><defs><marker id="fm-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"></path></marker></defs><rect x="30" y="56" width="240" height="8" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"></rect><line x1="70" y1="50" x2="70" y2="64" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"></line><line x1="110" y1="50" x2="110" y2="64" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"></line><line x1="150" y1="50" x2="150" y2="64" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"></line><line x1="190" y1="50" x2="190" y2="64" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"></line><line x1="230" y1="50" x2="230" y2="64" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"></line><path d="M110 64L100 86L120 86Z" fill="none" stroke="var(--ink)" stroke-width="2"></path><path d="M30 64L30 72L38 76L22 82L38 88L22 94L38 100L22 106L38 112L22 118L30 122L30 140" fill="none" stroke="var(--ink)" stroke-width="1.8"></path><line x1="10" y1="140" x2="290" y2="140" stroke="var(--muted)" stroke-width="4" stroke-linecap="round"></line><text x="46" y="112" text-anchor="start" class="oy-lbl">k</text><line x1="270" y1="64" x2="270" y2="88" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"></line><rect x="247" y="88" width="46" height="24" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"></rect><text x="270" y="105" text-anchor="middle" class="oy-lbl">2 kq</text></svg></div>
+        <p>Kütləsi 6 kq olan bircins çubuq bərabər bölgülərə ayrılıb və dayaq üzərində üfüqi vəziyyətdə tarazlıqdadır (şəkil). Çubuğun sol ucu sərtliyi 400 N/m olan şaquli yay ilə yerə bərkidilib, sağ ucundan 2 kq kütləli yük asılıb. Yayın uzanması nə qədərdir?</p>
+        <ol class="imt-opts"><li>20 sm</li><li>10 sm</li><li>0,175 sm</li><li>32,5 sm</li><li>17,5 sm</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Şəkildən: çubuq 6 bölgü, dayaq sol ucdan 2 bölgüdə.
+Qolları bölgü ilə ölçmək olar — nisbət vacibdir.
+Dayağa nəzərən momentlər:
+  yay (sol uc, aşağı çəkir):   kx · 2
+  çubuğun ağırlıq qüvvəsi (ortada):     60 · (3 − 2) = 60
+  yük (sağ uc):                20 · (6 − 2) = 80
+kx · 2 = 60 + 80   →   kx = 70 N
+Huk qanunu: x = 70/400 = 0,175 m = 17,5 sm
+Cavab: E) 17,5 sm</div>
+      <ul>
+        <li><b>B) 10 sm</b> — çubuğun öz ağırlıq qüvvəsini unutmaq.</li>
+        <li><b>D) 32,5 sm</b> — ağırlıq qüvvəsinin qolunu dayaqdan yox, çubuğun ucundan (3 bölgü) götürmək.</li>
+        <li><b>A) 20 sm</b> — lingi nəzərə almamaq: kx = (6 + 2)·10.</li>
+        <li><b>C) 0,175 sm</b> — metri santimetrə çevirməmək.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Çubuğun öz ağırlıq qüvvəsi.</b> "Bircins çubuq, kütləsi M" yazılıbsa, Mg ortaya tətbiq olunur; qolu dayaqdan ortaya qədərdir, ucdan yox.</li>
+        <li><b>İki addımlı suallar.</b> Sapın gərilməsi və ya dayağın reaksiyası soruşulursa, momentlərdən sonra qüvvələrin cəmini də yaz: <span class="m">T = (m₁ + m₂ + M)g</span>.</li>
+        <li><b>İp parçalarını say</b> — yalnız tərpənən hissəni saxlayanları. Tərpənməz blokdan aşağı gedən sərbəst uc sayılmır.</li>
+        <li><b>Blokların ağırlıq qüvvəsi</b> verilibsə, yükə əlavə et; Arximed sistemində hər blokun ağırlıq qüvvəsi öz pilləsində gəlir.</li>
+        <li><b>FİƏ:</b> real qüvvə idealdan böyükdür — FİƏ-yə <b>bölünür</b>. Ardıcıl mexanizmlər: <span class="m">η = η₁·η₂</span>.</li>
+        <li><b>Maili müstəvidə sürtünmə</b> <span class="m">μmg·cos α</span>-dır, <span class="m">μmg</span> yox.</li>
+        <li><b>Vahidlər:</b> sm ↔ m; variantlarda çevrilməmiş cavab da olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ling:          F₁·l₁ = F₂·l₂  (çubuğun ağırlıq qüvvəsi — ortada)
+Polispast:     n·F = (m + m_bloklar)·g,   s = n·h
+Qızıl qayda:   F·s = mgh  (ideal)
+FİƏ:           η = mgh/(F·s),   ardıcıl: η = η₁·η₂
+Güc:           N = F·s/t = F·v</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Bircins çubuğun uzunluğu 1 m, kütləsi 4 kq. Sol ucundan 0,2 m məsafədə sapdan asılıb, sol ucunda mₓ yükü var, çubuq üfüqidir. mₓ və sapın gərilməsi? <span class="ans">mₓ·0,2 = 4·0,3 → mₓ = 6 kq; T = (6 + 4)·10 = 100 N.</span></li>
+        <li>Polispastda tərpənən hissəni 3 ip parçası saxlayır, yük 90 kq, ipin ucu 330 N qüvvə ilə 20 s-də 6 m çəkilir. Mühərrikin orta gücü? <span class="ans">N = F·s/t = 330·6/20 = 99 W (yük 2 m qalxır; faydalı güc 900·2/20 = 90 W).</span></li>
+        <li>Maili müstəvi (η₁ = 75%) və onun başındakı tərpənməz blok (η₂ = 80%). İdeal qüvvə 120 N olardı. Real qüvvə? <span class="ans">F = 120/(0,75·0,8) = 120/0,6 = 200 N.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

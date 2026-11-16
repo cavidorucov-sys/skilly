@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Coul-Lens</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>kWh və xərc</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Lampalar</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -325,6 +326,100 @@ Tək lampa:  P = P₀(U/U₀)²</div></div>
         <li>Eyni gərginlik üçün 25 W və 100 W lampa ardıcıl. Hansı parlaq? <span class="ans">25 W-lıq: onun müqaviməti 4 dəfə böyükdür, güc də 4 dəfə çoxdur.</span></li>
         <li>Eyni lampalar paralel. Hansı parlaq? <span class="ans">100 W-lıq (hər ikisi öz gərginliyindədir).</span></li>
         <li>"100 V, 50 W" lampa 50 V-a qoşulub. Gücü? <span class="ans">50·(1/2)² = 12,5 W.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: elektrik işi, gücü və Coul–Lens qanunu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. P = UI düsturunda qiymətləri birbaşa yerinə qoymaqla həll olunan suallar az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — sxem (lampalar, rezistorlar, açar), qrafik (temperatur–zaman, cərəyan–gərginlik), sayğacın göstərişi. Rəqəmlərin bir hissəsi yalnız şəkildə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl müqavimət (lampada <span class="m">R = U₀²/P₀</span>), sonra cərəyan, sonra güc və ya istilik.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: nominal gücü real güc kimi yazmaq, dəqiqəni saniyəyə çevirməmək, faydalı iş əmsalına bölmək əvəzinə vurmaq. Ən çox edilən səhvin cavabı mütləq variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: Coul–Lens + suyun qızması (<span class="m">Q = cmΔT</span>), güc + qarışıq sxem (Om qanunu), güc + mexaniki iş (<span class="m">P = Fv</span>), istilik + naqilin müqaviməti (<span class="m">R = ρl/S</span>).</li>
+      </ul>
+      <p>Şərtdə idealizasiyalara bax: "lampanın müqaviməti sabitdir", "mənbənin daxili müqaviməti yoxdur", "istilik itkisi yoxdur". Onlar hansı düsturu işlətməyə icazə verdiyini deyir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — ardıcıl lampalar</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sxem</span>
+        <div class="fig"><svg viewBox="0 0 300 150" role="img" aria-label="Ardıcıl iki lampa: L₁ 12 V, 36 W, L₂ 12 V, 12 W; mənbə 16 V"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><polyline points="40,70 40,40 260,40 260,120 40,120 40,80" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="110" cy="40" r="11" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="102.5" y1="32.5" x2="117.5" y2="47.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="102.5" y1="47.5" x2="117.5" y2="32.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><circle cx="200" cy="40" r="11" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="192.5" y1="32.5" x2="207.5" y2="47.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><line x1="192.5" y1="47.5" x2="207.5" y2="32.5" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round"/><text x="110" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">12 V, 36 W</text><text x="200" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">12 V, 12 W</text><text x="110" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">L₁</text><text x="200" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">L₂</text><line x1="27" y1="70" x2="53" y2="70" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="33" y1="80" x2="47" y2="80" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="23" y="67" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="60" y="79" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">16 V</text></svg></div>
+        <p>Lampalarda nominal qiymətlər yazılıb: L₁ — "12 V, 36 W", L₂ — "12 V, 12 W". Lampalar 16 V-luq mənbəyə ardıcıl qoşulub. Lampaların müqavimətini sabit sayaraq L₁-də ayrılan gücü tap. (Mənbənin daxili müqaviməti yoxdur.)</p>
+        <ol class="imt-opts"><li>36 W</li><li>64 W</li><li>4 W</li><li>16 W</li><li>12 W</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Şəkildən: L₁ "12 V, 36 W", L₂ "12 V, 12 W", U = 16 V
+R₁ = U₀²/P₀ = 144/36 = 4 Ω;   R₂ = 144/12 = 12 Ω
+Ardıcıl:  I = U/(R₁+R₂) = 16/16 = 1 A
+P₁ = I²R₁ = 1²·4 = 4 W
+Cavab: C) 4 W</div>
+      <ul>
+        <li><b>A) 36 W</b> — nominal gücü yazmaq: lampa 12 V-da deyil, ardıcıl dövrədədir.</li>
+        <li><b>B) 64 W</b> — lampanı mənbəyə tək qoşulmuş saymaq: U²/R₁ = 256/4.</li>
+        <li><b>D) 16 W</b> — gərginliyi yarı bölmək: 8²/4. Ardıcılda gərginlik müqavimətə mütənasib bölünür, yarı yox.</li>
+        <li><b>E) 12 W</b> — L₂-nin gücü: 1²·12. Ardıcılda böyük müqavimətli (nominal gücü kiçik) lampa daha çox güc ayırır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki spiral</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · çoxaddımlı</span>
+        <div class="fig"><svg viewBox="0 0 345 125" role="img" aria-label="Spirallar: yalnız R₁ — 10 dəq, ardıcıl R₁ və R₂ — 25 dəq, paralel — ?"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="20" y1="60" x2="90" y2="60" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><circle cx="90" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><rect x="37" y="53" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="55" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><text x="55" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t₁ = 10 dəq</text><line x1="115" y1="60" x2="235" y2="60" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="115" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><circle cx="235" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><rect x="130" y="53" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="148" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><rect x="184" y="53" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="202" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><text x="175" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">ardıcıl: 25 dəq</text><line x1="250" y1="60" x2="262" y2="60" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="318" y1="60" x2="330" y2="60" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="250" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><circle cx="330" cy="60" r="3.5" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="262" y1="45" x2="262" y2="80" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="318" y1="45" x2="318" y2="80" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="262" y1="45" x2="318" y2="45" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="262" y1="80" x2="318" y2="80" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="262" cy="60" r="3.2" fill="var(--ink,#17171a)"/><circle cx="318" cy="60" r="3.2" fill="var(--ink,#17171a)"/><rect x="272" y="38" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="290" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><rect x="272" y="73" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="290" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><text x="290" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">paralel: ?</text></svg></div>
+        <p>Elektrik çaydanının iki spiralı var. Hər təcrübədə eyni kütləli su eyni başlanğıc temperaturdan qaynama temperaturunadək qızdırılır. Yalnız birinci spiral qoşulanda su 10 dəqiqəyə qaynayır, iki spiral ardıcıl qoşulanda — 25 dəqiqəyə. Spiralları paralel qoşsaq, eyni su neçə dəqiqəyə qaynayar? (Gərginlik hər dəfə eynidir, spiralların müqaviməti sabitdir, istilik itkisi yoxdur.)</p>
+        <ol class="imt-opts"><li>15 dəq</li><li>6,25 dəq</li><li>12,5 dəq</li><li>6 dəq</li><li>5 dəq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Şəkildən: t₁ = 10 dəq, ardıcıl 25 dəq
+Q eynidir:  Q = U²t/R  →  t ∼ R
+Ardıcıl:  t₁ + t₂ = 25  →  t₂ = 15 dəq
+Paralel:  t = t₁t₂/(t₁+t₂) = 10·15/25 = 6 dəq
+Cavab: D) 6 dəq</div>
+      <ul>
+        <li><b>A) 15 dəq</b> — ikinci spiralın vaxtını tapıb dayanmaq (bu, yalnız birinci addımdır).</li>
+        <li><b>B) 6,25 dəq</b> və <b>E) 5 dəq</b> — spiralları eyni saymaq: eyni spirallar üçün paralel vaxt ardıcılın 1/4-ü (25/4) və tək spiralın yarısıdır (10/2). Burada spirallar fərqlidir.</li>
+        <li><b>C) 12,5 dəq</b> — "orta" vaxt 25/2.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: qrafik və suyun qızması</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 280 195" role="img" aria-label="Suyun temperaturunun zamandan asılılığı: 20 °C-dən 80 °C-yə 5 dəqiqəyə"><defs><marker id="ck-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="45" y1="170" x2="265" y2="170" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="45" y1="170" x2="45" y2="20" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><text x="270" y="186" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, dəq</text><text x="40" y="16" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">T, °C</text><line x1="78.3" y1="170" x2="78.3" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="78.3" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="111.7" y1="170" x2="111.7" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="111.7" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="145" y1="170" x2="145" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="145" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="178.3" y1="170" x2="178.3" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="178.3" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="211.7" y1="170" x2="211.7" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="211.7" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="45" y1="156" x2="255" y2="156" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="160" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">10</text><line x1="45" y1="142" x2="255" y2="142" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="146" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">20</text><line x1="45" y1="128" x2="255" y2="128" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="132" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">30</text><line x1="45" y1="114" x2="255" y2="114" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="118" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">40</text><line x1="45" y1="100" x2="255" y2="100" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="104" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">50</text><line x1="45" y1="86" x2="255" y2="86" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="90" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">60</text><line x1="45" y1="72" x2="255" y2="72" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="76" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">70</text><line x1="45" y1="58" x2="255" y2="58" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="62" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">80</text><line x1="45" y1="44" x2="255" y2="44" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="48" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">90</text><line x1="45" y1="30" x2="255" y2="30" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="39" y="34" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">100</text><text x="39" y="174" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="45" y1="142" x2="211.7" y2="58" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round"/><circle cx="45" cy="142" r="3.5" fill="var(--accent,#a32d2d)"/><circle cx="211.7" cy="58" r="3.5" fill="var(--accent,#a32d2d)"/><line x1="211.7" y1="58" x2="211.7" y2="170" stroke="var(--accent,#a32d2d)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="45" y1="58" x2="211.7" y2="58" stroke="var(--accent,#a32d2d)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/></svg></div>
+        <p>Elektrik çaydanındakı 1,5 kq suyun temperaturunun zamandan asılılıq qrafiki şəkildədir. Çaydanın faydalı iş əmsalı 84%-dir. Çaydanın gücü nə qədərdir? (c = 4200 J/(kg·°C))</p>
+        <ol class="imt-opts"><li>2000 W</li><li>1260 W</li><li>1500 W</li><li>90000 W</li><li>1058,4 W</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qrafikdən: 5 dəqiqədə 20 °C → 80 °C
+ΔT = 60 °C,   t = 5 dəq = 300 s
+Q = cmΔT = 4200·1,5·60 = 378000 J
+η = Q/(P·t)  →  P = Q/(η·t) = 378000/(0,84·300) = 1500 W
+Cavab: C) 1500 W</div>
+      <ul>
+        <li><b>A) 2000 W</b> — ΔT əvəzinə son temperaturu (80 °C) götürmək.</li>
+        <li><b>B) 1260 W</b> — faydalı iş əmsalını unutmaq: 378000/300.</li>
+        <li><b>D) 90000 W</b> — dəqiqəni saniyəyə çevirməmək: 378000/(0,84·5).</li>
+        <li><b>E) 1058,4 W</b> — η-ya bölmək əvəzinə vurmaq. Çaydan suya verdiyindən <b>çox</b> enerji sərf edir, ona görə güc Q/t-dən böyük olmalıdır.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Nominal güc ≠ real güc.</b> "12 V, 36 W" yalnız lampanın müqavimətini verir: <span class="m">R = U₀²/P₀</span>. Real güc dövrədəki cərəyan və ya gərginlikdən tapılır.</li>
+        <li><b>Hansı düstur?</b> Ardıcılda cərəyan eynidir — <span class="m">P = I²R</span> (böyük R çox qızır). Paraleldə gərginlik eynidir — <span class="m">P = U²/R</span> (kiçik R çox qızır).</li>
+        <li><b>Cərəyan 2 dəfə azalır → güc 4 dəfə azalır</b> (<span class="m">I²</span>), 2 dəfə yox.</li>
+        <li><b>Faydalı iş əmsalı:</b> qızdırıcı suya verdiyindən çox enerji sərf edir: <span class="m">P·t = Q/η</span>. η-ya vurmaq cavabı kiçildir.</li>
+        <li><b>Vahidlər:</b> dəqiqə → saniyə (J üçün) və ya saat (kWh üçün); kW → W. Variantlarda səhv vahidlə alınan cavab da olur.</li>
+        <li><b>Mühərrik:</b> alınan güc <span class="m">UI</span>, sarğıda istilik <span class="m">I²r</span>, faydalı mexaniki güc <span class="m">UI − I²r</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">A = UIt,   P = UI = I²R = U²/R
+Coul–Lens:  Q = I²Rt
+Lampa:  R = U₀²/P₀ (sabit), nominal cərəyan I₀ = P₀/U₀
+Ardıcıl: P ∼ R;   paralel: P ∼ 1/R
+Qızdırıcı:  η·P·t = cmΔT
+1 kWh = 3,6 MJ</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"6 V, 6 W" lampası 3 V-a qoşulub. Gücü? <span class="ans">R = 36/6 = 6 Ω; P = 3²/6 = 1,5 W (gərginlik 2 dəfə azaldı → güc 4 dəfə).</span></li>
+        <li>4 Ω və 12 Ω ardıcıl qoşulub. Hansında çox istilik ayrılır və neçə dəfə? <span class="ans">12 Ω-da, 3 dəfə (cərəyan eynidir, Q ∼ R).</span></li>
+        <li>1 kWh neçə coul? 500 W-lıq cihaz 1 kWh-ı neçə saata sərf edər? <span class="ans">3 600 000 J; t = 1/0,5 = 2 saat.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

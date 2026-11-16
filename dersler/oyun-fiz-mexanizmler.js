@@ -11,13 +11,14 @@
   const sv = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
 
   // A horizontal rod with supports, hanging loads, force arrows and distance marks. Positions in the problem's own units.
-  function rodSvg({ from, to, supports = [], loads = [], forces = [], dims = [], centre = null, aria }) {
+  function rodSvg({ from, to, supports = [], loads = [], forces = [], dims = [], centre = null, names = [], aria }) {
     const X = c => 30 + (c - from) / (to - from) * 240;
     const g = sv("svg", { viewBox: "0 0 300 160", class: "oy-svg", role: "img", "aria-label": aria });
     const defs = sv("defs", {}), mk = sv("marker", { id: "fm-ar", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" });
     mk.append(sv("path", { d: "M0 0L10 5L0 10z", fill: "var(--vec)" })); defs.append(mk); g.append(defs);
     g.append(sv("rect", { x: X(from), y: 64, width: X(to) - X(from), height: 7, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 1.5 }));
     for (const p of supports) g.append(sv("path", { d: `M${X(p)} 71L${X(p) - 10} 93L${X(p) + 10} 93Z`, fill: "none", stroke: "var(--ink)", "stroke-width": 2 }));
+    for (const N of names) g.append(sv("text", { x: X(N.at), y: 108, "text-anchor": "middle", class: "oy-lbl" }, N.lab));
     for (const L of loads) {
       g.append(sv("line", { x1: X(L.at), y1: 71, x2: X(L.at), y2: 92, stroke: "var(--ink)", "stroke-width": 1.5 }));
       g.append(sv("rect", { x: X(L.at) - 17, y: 92, width: 34, height: 22, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 }));
@@ -253,6 +254,218 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, each with a figure (lever, rod,
+  // pulley system, inclined plane), several steps; the wrong options are the answers of typical mistakes.
+  // Questions 6, 7 and 8 also use earlier topics: friction on an incline, power, Hooke's law.
+  const { ae, again } = Oyun;
+  const ok = (x, k = 10) => isFinite(x) && x > 0 && nice(x, k);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => D(x) + " " + u;
+  function fig(w, hh, aria) {
+    const g = sv("svg", { viewBox: `0 0 ${w} ${hh}`, class: "oy-svg", role: "img", "aria-label": aria });
+    const defs = sv("defs", {}), mk = sv("marker", { id: "fm-ar", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" });
+    mk.append(sv("path", { d: "M0 0L10 5L0 10z", fill: "var(--vec)" })); defs.append(mk); g.append(defs); return g;
+  }
+  const ln = (g, x1, y1, x2, y2, c = "var(--ink)", w = 1.8) => g.append(sv("line", { x1, y1, x2, y2, stroke: c, "stroke-width": w, "stroke-linecap": "round" }));
+  const arr = (g, x1, y1, x2, y2) => g.append(sv("line", { x1, y1, x2, y2, stroke: "var(--vec)", "stroke-width": 2.5, "marker-end": "url(#fm-ar)" }));
+  const tx = (g, x, y, t, a = "middle") => g.append(sv("text", { x, y, "text-anchor": a, class: "oy-lbl" }, t));
+  const wheel = (g, cx, cy, r) => { g.append(sv("circle", { cx, cy, r, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 })); g.append(sv("circle", { cx, cy, r: 2.5, fill: "var(--ink)" })); };
+  const box = (g, cx, y, lab, w = 44, hh = 24) => { g.append(sv("rect", { x: cx - w / 2, y, width: w, height: hh, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 })); tx(g, cx, y + hh / 2 + 5, lab); };
+  const ceil = (g, x1, x2, y = 8) => ln(g, x1, y, x2, y, "var(--muted)", 5);
+
+  // block and tackle: n rope segments between the upper (fixed) and lower (moving) pulleys, the free end goes down
+  function figTackle(n, lab) {
+    const r = 9, x0 = 50, st = 2 * r, yT = 44, yB = 118, yBar = yB + 18, xs = i => x0 + i * st;
+    const up = i => (n - 1 - i) % 2 === 0, g = fig(220, 200, "Polispast: yuxarıda tərpənməz, aşağıda tərpənən bloklar; ipin sərbəst ucu aşağı çəkilir");
+    const top = [], bot = [];
+    for (let i = 0; i < n; i++) (up(i) ? top : bot).push(xs(i) + r);
+    const xEnd = xs(n), tl = Math.min(xs(0), ...top), tr = Math.max(...top);
+    ceil(g, 20, 200); ln(g, (tl + tr) / 2, 8, (tl + tr) / 2, 24); ln(g, tl, 24, tr, 24, "var(--ink)", 3);
+    top.forEach(c => ln(g, c, 24, c, yT));
+    const bl = Math.min(...bot, n % 2 ? xs(0) : Infinity), br = Math.max(...bot);
+    ln(g, bl, yBar, br, yBar, "var(--ink)", 3); bot.forEach(c => ln(g, c, yB, c, yBar));
+    for (let i = 0; i < n; i++) ln(g, xs(i), i === 0 ? (n % 2 ? yBar : 24) : yT, xs(i), i === 0 ? (n % 2 ? yT : yB) : yB);
+    ln(g, xEnd, yT, xEnd, 150); arr(g, xEnd, 150, xEnd, 182); tx(g, xEnd + 8, 180, "F", "start");
+    top.forEach(c => wheel(g, c, yT, r)); bot.forEach(c => wheel(g, c, yB, r));
+    const cx = (bl + br) / 2; ln(g, cx, yBar, cx, yBar + 10); box(g, cx, yBar + 10, lab, 50, 26);
+    return g;
+  }
+  // Archimedes system: k moving pulleys, each on its own rope; the last rope is pulled up
+  function figArch(k, lab) {
+    const r = 15, yLow = 30 + 50 * k, cx = i => 50 + r * i, cy = i => yLow - 50 * i;
+    const g = fig(cx(k - 1) + r + 60, yLow + r + 44, "Hər blokun öz ipi olan tərpənən bloklar sistemi; sonuncu ipin ucu yuxarı çəkilir");
+    ceil(g, 20, cx(k - 1) + 2);
+    for (let i = 0; i < k; i++) {
+      ln(g, cx(i) - r, 8, cx(i) - r, cy(i));
+      if (i < k - 1) ln(g, cx(i) + r, cy(i), cx(i) + r, cy(i + 1));
+      else { ln(g, cx(i) + r, cy(i), cx(i) + r, 44); arr(g, cx(i) + r, 44, cx(i) + r, 14); tx(g, cx(i) + r + 8, 26, "F", "start"); }
+    }
+    for (let i = 0; i < k; i++) wheel(g, cx(i), cy(i), r);
+    ln(g, cx(0), cy(0), cx(0), cy(0) + r + 8); box(g, cx(0), cy(0) + r + 8, lab, 50, 26);
+    return g;
+  }
+  // a man on a platform pulls himself up: rope over a fixed pulley, one end on the platform, the other in his hands
+  function figMan() {
+    const g = fig(240, 175, "Tavandakı tərpənməz blokdan aşırılmış ip: bir ucu taxtaya bağlıdır, o biri ucunu taxtada duran adam çəkir");
+    ceil(g, 60, 200); ln(g, 120, 8, 120, 34); ln(g, 104, 34, 104, 150); ln(g, 136, 34, 136, 112); wheel(g, 120, 34, 16);
+    g.append(sv("rect", { x: 88, y: 150, width: 90, height: 8, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    g.append(sv("circle", { cx: 156, cy: 96, r: 8, fill: "none", stroke: "var(--ink)", "stroke-width": 2 }));
+    ln(g, 156, 104, 156, 130, "var(--ink)", 2.5); ln(g, 156, 130, 148, 150, "var(--ink)", 2.5); ln(g, 156, 130, 164, 150, "var(--ink)", 2.5); ln(g, 156, 112, 136, 112, "var(--ink)", 2.5);
+    tx(g, 172, 100, "m", "start"); tx(g, 133, 172, "M");
+    return g;
+  }
+  // inclined plane (h, l marked); with a pulley at the top the rope goes over it and is pulled down
+  function figIncline(pulley) {
+    const g = fig(260, 175, pulley ? "Maili müstəvi; ip müstəviyə paralel gedir, başdakı tərpənməz blokdan aşırılıb və şaquli aşağı çəkilir" : "Maili müstəvi: uzunluq l, hündürlük h; yük müstəvi boyunca F qüvvəsi ilə çəkilir");
+    g.append(sv("path", { d: "M20 150L220 150L220 70Z", fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    const grp = sv("g", { transform: "rotate(-21.8 120 110)" });
+    grp.append(sv("rect", { x: 105, y: 88, width: 30, height: 22, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 }));
+    if (!pulley) grp.append(sv("line", { x1: 135, y1: 99, x2: 182, y2: 99, stroke: "var(--vec)", "stroke-width": 2.5, "marker-end": "url(#fm-ar)" }));
+    g.append(grp);
+    tx(g, 210, 122, "h", "end"); tx(g, 66, 122, "l");
+    if (pulley) { ln(g, 220, 70, 224, 58); ln(g, 130, 94, 217, 59); ln(g, 233, 56, 233, 120); arr(g, 233, 120, 233, 150); tx(g, 240, 146, "F", "start"); wheel(g, 224, 56, 9); }
+    else tx(g, 176, 74, "F");
+    return g;
+  }
+  // inclined plane drawn as a 3-4-5 triangle (Q6: h/l = 0,6)
+  function figIncline345() {
+    const g = fig(240, 170, "Maili müstəvi: uzunluq l, hündürlük h; yük müstəvi boyunca F qüvvəsi ilə çəkilir");
+    g.append(sv("path", { d: "M40 150L200 150L200 30Z", fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    const grp = sv("g", { transform: "rotate(-36.87 120 90)" });
+    grp.append(sv("rect", { x: 105, y: 68, width: 30, height: 22, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 }));
+    grp.append(sv("line", { x1: 135, y1: 79, x2: 182, y2: 79, stroke: "var(--vec)", "stroke-width": 2.5, "marker-end": "url(#fm-ar)" }));
+    g.append(grp);
+    tx(g, 192, 100, "h", "end"); tx(g, 78, 108, "l"); tx(g, 172, 44, "F", "start");
+    return g;
+  }
+  // uniform rod with equal divisions on a support; a spring ties the left end to the floor, a load hangs at the right end
+  function figSpring(N, p, lab) {
+    const X = i => 30 + i * 240 / N, g = fig(300, 170, "Bərabər bölgülü bircins çubuq dayaq üzərində; sol ucu yay ilə yerə bərkidilib, sağ ucundan yük asılıb");
+    g.append(sv("rect", { x: 30, y: 56, width: 240, height: 8, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 1.5 }));
+    for (let i = 1; i < N; i++) ln(g, X(i), 50, X(i), 64, "var(--ink)", 1.5);
+    g.append(sv("path", { d: `M${X(p)} 64L${X(p) - 10} 86L${X(p) + 10} 86Z`, fill: "none", stroke: "var(--ink)", "stroke-width": 2 }));
+    let d = `M30 64L30 72`; for (let j = 0; j < 8; j++) d += `L${j % 2 ? 22 : 38} ${76 + j * 6}`; d += `L30 122L30 140`;
+    g.append(sv("path", { d, fill: "none", stroke: "var(--ink)", "stroke-width": 1.8 }));
+    ln(g, 10, 140, 290, 140, "var(--muted)", 4); tx(g, 46, 112, "k", "start");
+    ln(g, 270, 64, 270, 88); box(g, 270, 88, lab, 46, 24);
+    return g;
+  }
+
+  // Q9: incline efficiency η1, pulley efficiency η2 — every option a "nice" number
+  const SERIES = [];
+  for (const m of [10, 20, 30, 40, 50, 60, 80, 100, 120, 150, 200]) for (const hh of [0.5, 0.6, 0.8, 1, 1.2, 1.5, 2]) for (const l of [2, 2.5, 3, 4, 5, 6])
+    for (const e1 of [50, 60, 75, 80, 90]) for (const e2 of [80, 90, 95]) {
+      if (l <= 1.5 * hh) continue;
+      const P = m * 10 * hh / l, r = P * 1e4 / (e1 * e2), w = [P, P * 100 / e1, P * 100 / e2, P * e1 * e2 / 1e4];
+      if ([r, ...w].every(x => ok(x))) SERIES.push([m, hh, l, e1, e2, r, w]);
+    }
+
+  // Q3: plank on two supports, child on the overhang — all options with at most two decimals
+  const TIP = [];
+  for (const L of [2, 3, 4, 5, 6]) for (let d4 = 1; d4 < 2 * L; d4++) for (let M = 10; M <= 80; M += 10) for (let m = 30; m <= 80; m += 10) {
+    const d = d4 / 4, b = L / 2 + d, x = M * d / m, w = [m * d / M, M * (L / 2) / m, L - b, M * d / (M + m)];
+    if (b < L && x < L - b && [x, ...w].every(v => ok(v, 100))) TIP.push([L, d, M, m, x, w]);
+  }
+
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. light lever: two loads on one arm, a force on the other
+    { tip: "qapali", gen: () => again(() => {
+      const l1 = 5 * rnd(4, 16), l2 = 5 * rnd(1, l1 / 5 - 1), l3 = 5 * rnd(4, 24), m1 = rnd(1, 12), m2 = rnd(1, 12);
+      if ((l1 - l2) / (l1 + l3 + 16) * 240 < 42 || l2 / (l1 + l3 + 16) * 240 < 30) return null;
+      const right = 10 * (m1 * l1 + m2 * l2) / l3, w = [(m1 * l1 + m2 * l2) / l3, 10 * (m1 + m2) * l1 / l3, 10 * m1 * l1 / l3, 10 * (m1 + m2)];
+      if (![right, ...w].every(x => ok(x))) return null;
+      return mc(ae(right, w, U_("N")), { svg: rodSvg({ from: -l1 - 8, to: l3 + 8, supports: [0], loads: [{ at: -l1, lab: m1 + " kq" }, { at: -l2, lab: m2 + " kq" }], forces: [{ at: l3, dir: "down", lab: "F" }], dims: [[-l1, 0, l1 + " sm"], [-l2, 0, l2 + " sm"], [0, l3, l3 + " sm"]], aria: "Ling: sol qolda iki yük, sağ qolda aşağı yönəlmiş F qüvvəsi" }),
+        text: `Yüngül lingin sol qolunda dayaqdan ${l1} sm məsafədə ${m1} kq, ${l2} sm məsafədə ${m2} kq kütləli yük asılıb. Sağ qolda, dayaqdan ${l3} sm məsafədə lingə şaquli aşağı hansı F qüvvəsi tətbiq etmək lazımdır ki, ling üfüqi vəziyyətdə tarazlıqda qalsın? g = 10 m/s².`,
+        solution: `Dayağa nəzərən momentlər: F·${l3} = ${m1 * 10}·${l1} + ${m2 * 10}·${l2} = ${10 * (m1 * l1 + m2 * l2)} → F = ${D(right)} N (qolları metrə çevirmək lazım deyil — nisbət vacibdir). Tələlər: g-ni unutmaq — kütləni qüvvə kimi yazmaq (${D(w[0])}); hər iki yükü uzaq nöqtədə saymaq (${D(w[1])}); yaxın yükü unutmaq (${D(w[2])}); qolları nəzərə almamaq, F = (m₁ + m₂)g (${D(w[3])}).` });
+    }) },
+    // 2. heavy rod hung on a thread: first the unknown load, then the tension
+    { tip: "qapali", gen: () => again(() => {
+      const N = pick([4, 5, 6, 8, 10]), k = rnd(1, Math.ceil(N / 2) - 1), u = pick([0.1, 0.2, 0.25]), M = rnd(1, 10), m2 = rnd(1, 10);
+      const L = N * u, a = k * u, mx = (M * (N / 2 - k) + m2 * (N - k)) / k, T = 10 * (mx + M + m2);
+      const mx1 = m2 * (N - k) / k, w = [10 * (mx1 + M + m2), 10 * (mx + m2), 10 * (M + m2), 10 * mx];
+      if (!ok(mx) || ![T, ...w].every(x => ok(x))) return null;
+      return mc(ae(T, w, U_("N")), { svg: rodSvg({ from: 0, to: L, loads: [{ at: 0, lab: "mₓ" }, { at: L, lab: m2 + " kq" }], forces: [{ at: a, dir: "up", lab: "T" }], centre: { at: L / 2, lab: "Mg" }, dims: [[0, a, D(a) + " m"], [0, L, D(L) + " m"]], aria: "Sapdan asılmış bircins çubuq: sol ucda naməlum yük, sağ ucda məlum yük" }),
+        text: `Uzunluğu ${D(L)} m, kütləsi ${M} kq olan bircins çubuğun sol ucundan mₓ kütləli yük, sağ ucundan ${m2} kq kütləli yük asılıb. Çubuq sol ucundan ${D(a)} m məsafədə bağlanmış şaquli sapdan asılaraq üfüqi vəziyyətdə tarazlıqdadır. Sapın gərilmə qüvvəsi T nədir? Saplar yüngüldür, g = 10 m/s².`,
+        solution: `1) Sapın bağlandığı nöqtəyə nəzərən momentlər. Çubuğun ağırlıq qüvvəsi ortaya — sapdan ${D(L / 2 - a)} m məsafəyə tətbiq olunur: mₓg·${D(a)} = ${M * 10}·${D(L / 2 - a)} + ${m2 * 10}·${D(L - a)} → mₓ = ${D(mx)} kq. 2) Şaquli qüvvələr: T = (mₓ + M + m)g = (${D(mx)} + ${M} + ${m2})·10 = ${D(T)} N. Tələlər: momentlərdə çubuğun ağırlıq qüvvəsini unutmaq (${D(w[0])}); T-də çubuğun ağırlıq qüvvəsini unutmaq (${D(w[1])}); mₓ-i unutmaq (${D(w[2])}); cavab olaraq mₓg yazmaq (${D(w[3])}).` });
+    }) },
+    // 3. plank resting on two supports, a child walks onto the overhanging part: when does it tip?
+    { tip: "qapali", gen: () => again(() => {
+      const [L, d, M, m, x, w] = pick(TIP), b = L / 2 + d;
+      return mc(ae(x, w, U_("m")), { svg: rodSvg({ from: 0, to: L, supports: [0, b], names: [{ at: 0, lab: "A" }, { at: b, lab: "B" }], forces: [{ at: (b + L) / 2, dir: "down", lab: "mg" }], centre: { at: L / 2, lab: "Mg" }, dims: [[0, b, D(b) + " m"], [0, L, D(L) + " m"]], aria: "İki dayaq üzərində taxta: A sol ucda, B ortadan sağda; uşaq B-dən sağa gedir" }),
+        text: `Uzunluğu ${D(L)} m, kütləsi ${M} kq olan bircins taxta iki dayaq üzərində üfüqi uzanıb: A dayağı taxtanın sol ucundadır, B dayağı sol ucdan ${D(b)} m məsafədədir. Kütləsi ${m} kq olan uşaq taxtanın üstü ilə B-dən sağa, sərbəst uca doğru gedir. Uşaq B dayağından ən çox hansı məsafəyə gedə bilər ki, taxta aşmasın? g = 10 m/s².`,
+        solution: `Aşma anında A dayağı taxtaya təsir etmir (N_A = 0), taxta B ətrafında fırlanmağa başlayır. Taxtanın ağırlıq qüvvəsi ortaya — B-dən ${D(b)} − ${D(L / 2)} = ${D(d)} m sola tətbiq olunur. B-yə nəzərən: mg·x = Mg·${D(d)} → x = ${M}·${D(d)}/${m} = ${D(x)} m (sərbəst ucun B-dən məsafəsi ${D(L - b)} m — uşaq oraya çatmamış taxta aşır). Tələlər: kütlələrin nisbətini tərs yazmaq (${D(w[0])}); ağırlıq qüvvəsinin qolunu B-dən yox, sol ucdan götürmək (${D(w[1])}); "taxta dayaqdadır, aşmaz" — sona qədər (${D(w[2])}); kütlələri toplamaq (${D(w[3])}).` });
+    }) },
+    // 4. block and tackle: count the rope segments in the figure, the lower pulleys have weight
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(3, 6), m = 5 * rnd(4, 40), mb = pick([1, 2, 4, 5, 6, 8, 10]), P = (m + mb) * 10, right = P / n;
+      const w = [P / (n + 1), P / (n - 1), m * 10 / n, m * 10 / (n + 1)];
+      if (![right, ...w].every(x => ok(x))) return null;
+      return mc(ae(right, w, U_("N")), { svg: figTackle(n, m + " kq"),
+        text: `Şəkildəki polispastla kütləsi ${m} kq olan yük bərabər sürətlə qaldırılır. Aşağı (tərpənən) blokların kütləsi cəmi ${mb} kq. İp və yuxarı bloklar yüngüldür, sürtünmə yoxdur. İpin sərbəst ucuna hansı F qüvvəsi tətbiq olunur? g = 10 m/s².`,
+        solution: `Tərpənən hissəni (yük + aşağı bloklar) xəyalən kəs və onu saxlayan ip parçalarını say: ${n}. Sərbəst uc yuxarı blokdan aşağı gedir — tərpənən hissəni saxlamır, sayılmır. ${n}F = (${m} + ${mb})·10 = ${P} N → F = ${D(right)} N. Tələlər: sərbəst ucu da saymaq (${D(w[0])}); bir parçanı az saymaq (${D(w[1])}); blokların ağırlıq qüvvəsini unutmaq (${D(w[2])}); hər iki səhv birlikdə (${D(w[3])}).` });
+    }) },
+    // 5. a man on a platform lifts himself over a fixed pulley
+    { tip: "qapali", gen: () => again(() => {
+      const m = 10 * rnd(4, 9), M = 5 * rnd(1, Math.floor((m - 5) / 5)), right = (m - M) * 5, T = (m + M) * 5;
+      const w = [T, m * 10, (m - M) * 10, (m + M) * 10];
+      if (![right, ...w].every(x => ok(x))) return null;
+      return mc(ae(right, w, U_("N")), { svg: figMan(),
+        text: `Kütləsi ${m} kq olan adam kütləsi ${M} kq olan taxtanın üstündə durub. Tavandakı tərpənməz blokdan aşırılmış ipin bir ucu taxtaya bağlanıb, o biri ucunu adam şaquli aşağı çəkir və özünü taxta ilə birlikdə bərabər sürətlə qaldırır. Taxta üfüqi qalır (onu yüngül şaquli istiqamətləndiricilər fırlanmağa qoymur). Adam taxtaya hansı qüvvə ilə basır? İp və blok yüngüldür, sürtünmə yoxdur, g = 10 m/s².`,
+        solution: `1) "Adam + taxta" sistemini yuxarı İKİ ip parçası çəkir (biri adamın əlində, biri taxtada), hər biri T: 2T = (${m} + ${M})·10 → T = ${T} N. 2) Adama: yuxarı T (ip əlini çəkir) və N (taxta), aşağı mg: N = ${m * 10} − ${T} = ${right} N. Nyutonun III qanunu: adam taxtaya da ${right} N ilə basır. Tələlər: cavab olaraq T yazmaq (${T}); ipi nəzərə almamaq, N = mg (${m * 10}); ipin gərilməsini taxtanın ağırlıq qüvvəsinə bərabər saymaq, N = mg − Mg (${(m - M) * 10}); sistemin bütün ağırlıq qüvvəsi (${(m + M) * 10}).` });
+    }) },
+    // 6. inclined plane with friction (3-4-5 triangle): force along the plane or work done
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+      const u = pick([0.2, 0.4, 0.5, 0.6, 1, 1.2]), hh = 3 * u, dd = 4 * u, l = 5 * u, m = 5 * rnd(2, 30), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]);
+      const P = m * 10, F = P * (0.6 + 0.8 * mu), wF = [P * 0.6, P * (0.6 + mu), P * (0.8 + 0.6 * mu), P * 0.8 * mu], askA = Math.random() < .35;
+      const right = askA ? F * l : F, w = askA ? wF.map(x => x * l) : wF;
+      if (![right, ...w].every(x => ok(x))) return null;
+      const base = `Kütləsi ${m} kq olan yük uzunluğu ${D(l)} m, hündürlüyü ${D(hh)} m olan maili müstəvi boyunca müstəviyə paralel F qüvvəsi ilə bərabər sürətlə yuxarı çəkilir. Yük ilə müstəvi arasında sürtünmə əmsalı μ = ${D(mu)}. g = 10 m/s².`;
+      const s1 = `Üfüqi tərəf: √(${D(l)}² − ${D(hh)}²) = ${D(dd)} m; sin α = h/l = 0,6, cos α = 0,8. Sürtünmə: F_s = μmg·cos α = ${D(mu)}·${P}·0,8 = ${D(P * 0.8 * mu)} N. F = mg·sin α + F_s = ${D(P * 0.6)} + ${D(P * 0.8 * mu)} = ${D(F)} N.`;
+      return mc(ae(right, w, U_(askA ? "J" : "N")), { svg: figIncline345(),
+        text: base + (askA ? ` Yük müstəvinin aşağısından yuxarısına qədər çəkiləndə F qüvvəsi nə qədər iş görür?` : ` F qüvvəsi nə qədərdir?`),
+        solution: s1 + (askA ? ` A = F·l = ${D(F)}·${D(l)} = ${D(right)} J.` : "") + ` Tələlər (${askA ? "işdə" : "qüvvədə"}): sürtünməni unutmaq — qızıl qayda (${D(w[0])}); təzyiq qüvvəsini mg götürmək, cos α-nı unutmaq (${D(w[1])}); sin və cos-u qarışdırmaq (${D(w[2])}); ${askA ? "yalnız sürtünməyə qarşı görülən iş" : "yalnız sürtünmə qüvvəsi"} (${D(w[3])}).` });
+    }) },
+    // 7. block and tackle driven by a motor: power = F · rope speed
+    { tip: "qapali", birlesik: "fiz-is-guc", gen: () => again(() => {
+      const n = rnd(2, 6), F = 10 * rnd(5, 60), eta = pick([0.6, 0.75, 0.8, 0.9]), m = eta * n * F / 10, hh = pick([2, 3, 4, 5, 6, 8, 10, 12]), t = pick([5, 10, 20, 30, 40, 60]);
+      if (!Number.isInteger(Math.round(m * 1e6) / 1e6) || m < 10) return null;
+      const right = F * n * hh / t, w = [F * hh / t, m * 10 * hh / t, F * n * hh, F * hh / (n * t)];
+      if (![right, ...w].every(x => ok(x))) return null;
+      return mc(ae(right, w, U_("W")), { svg: figTackle(n, Math.round(m) + " kq"),
+        text: `Şəkildəki polispastla kütləsi ${Math.round(m)} kq olan yük ${t} s ərzində bərabər sürətlə ${hh} m hündürlüyə qaldırılır. Mühərrik ipin sərbəst ucunu ${F} N qüvvə ilə çəkir. Mühərrikin ipə verdiyi güc nədir? g = 10 m/s².`,
+        solution: `Tərpənən hissəni ${n} ip parçası saxlayır, ona görə ipin ucu ${n}h = ${n}·${hh} = ${n * hh} m çəkilir. Mühərrikin işi: A = F·s = ${F}·${n * hh} = ${F * n * hh} J. Güc: N = A/t = ${F * n * hh}/${t} = ${D(right)} W. (Faydalı güc mgh/t = ${D(w[1])} W, FİƏ = ${D(eta * 100)}%.) Tələlər: ipin yolunu h götürmək (${D(w[0])}); faydalı gücü yazmaq (${D(w[1])}); işi vaxta bölməmək (${D(w[2])}); yolu n-ə bölmək (${D(w[3])}).` });
+    }) },
+    // 8. heavy rod on a support, held by a spring at one end (Hooke's law)
+    { tip: "qapali", birlesik: "fiz-huk", minVariety: 40, gen: () => again(() => {
+      const N = pick([4, 5, 6, 8, 10]), p = rnd(1, Math.ceil(N / 2) - 1), M = rnd(1, 10), m2 = rnd(1, 8), k = pick([100, 200, 250, 400, 500, 800, 1000]);
+      const x = 1000 * (M * (N / 2 - p) + m2 * (N - p)) / (k * p);
+      const w = [1000 * m2 * (N - p) / (k * p), 1000 * (M * N / 2 + m2 * (N - p)) / (k * p), 1000 * (M + m2) / k, x / 100];
+      if (!ok(x) || x > 60 || !w.slice(0, 3).every(v => ok(v)) || !ok(w[3], 1000)) return null;
+      return mc(ae(x, w, U_("sm")), { svg: figSpring(N, p, m2 + " kq"),
+        text: `Kütləsi ${M} kq olan bircins çubuq bərabər bölgülərə ayrılıb və dayaq üzərində üfüqi vəziyyətdə tarazlıqdadır (şəkil). Çubuğun sol ucu sərtliyi ${k} N/m olan şaquli yay ilə yerə bərkidilib, sağ ucundan ${m2} kq kütləli yük asılıb. Yayın uzanması nə qədərdir? g = 10 m/s².`,
+        solution: `Şəkildən: çubuq ${N} bölgüdür, dayaq sol ucdan ${p} bölgü aralıdadır. Dayağa nəzərən (qollar bölgü ilə): yay sol ucu aşağı çəkir, qolu ${p}; çubuğun ağırlıq qüvvəsi ortadadır, qolu ${D(N / 2)} − ${p} = ${D(N / 2 - p)}; yük — qolu ${N - p}. k·x·${p} = ${M * 10}·${D(N / 2 - p)} + ${m2 * 10}·${N - p} → kx = ${D(k * x / 100)} N → x = ${D(k * x / 100)}/${k} = ${D(x / 100)} m = ${D(x)} sm. Tələlər: çubuğun ağırlıq qüvvəsini unutmaq (${D(w[0])}); ağırlıq qüvvəsinin qolunu dayaqdan yox, ucdan saymaq (${D(w[1])}); lingi nəzərə almamaq, kx = (M + m)g (${D(w[2])}); metri santimetrə çevirməmək (${D(w[3])}).` });
+    }) },
+    // 9. two mechanisms in series: inclined plane (η1) and a fixed pulley at its top (η2)
+    { tip: "qapali", gen: () => again(() => {
+      const [m, hh, l, e1, e2, r, w] = pick(SERIES);
+      return mc(ae(r, w, U_("N")), { svg: figIncline(true),
+        text: `Kütləsi ${m} kq olan yük uzunluğu ${D(l)} m, hündürlüyü ${D(hh)} m olan maili müstəvi boyunca bərabər sürətlə yuxarı çəkilir. İp müstəviyə paralel gedir, müstəvinin başındakı tərpənməz blokdan aşırılıb və insan onu şaquli aşağı çəkir. Maili müstəvinin FİƏ-si ${e1}%, blokun FİƏ-si ${e2}%. İnsan ipi hansı qüvvə ilə çəkir? g = 10 m/s².`,
+        solution: `Ardıcıl mexanizmlərdə FİƏ-lər vurulur: η = ${D(e1 / 100)}·${D(e2 / 100)} = ${D(e1 * e2 / 1e4)}. Tərpənməz blokda ipin ucu da l = ${D(l)} m gedir. η·F·l = mgh → F = ${m * 10}·${D(hh)}/(${D(e1 * e2 / 1e4)}·${D(l)}) = ${D(r)} N. Tələlər: itkiləri unutmaq — ideal qüvvə (${D(w[0])}); yalnız müstəvinin FİƏ-si (${D(w[1])}); yalnız blokun FİƏ-si (${D(w[2])}); FİƏ-yə bölmək əvəzinə vurmaq (${D(w[3])}).` });
+    }) },
+    // 10. Archimedes system with heavy moving pulleys
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3]), K = 2 ** k, mb = pick([1, 2, 4, 5]), m = 10 * rnd(2, 30), right = 10 * (m + (K - 1) * mb) / K;
+      const w = [10 * m / K, 10 * (m + k * mb) / K, 10 * (m + mb) / K, 10 * (m + k * mb) / 2];
+      if (![right, ...w].every(x => ok(x))) return null;
+      const T = [10 * (m + mb) / 2]; for (let i = 1; i < k; i++) T.push((T[i - 1] + 10 * mb) / 2);
+      return mc(ae(right, w, U_("N")), { svg: figArch(k, m + " kq"),
+        text: `Kütləsi ${m} kq olan yük şəkildəki sistemlə bərabər sürətlə qaldırılır: ${k} tərpənən blok, hər blokun öz ipi var. Hər tərpənən blokun kütləsi ${mb} kq. İplər yüngüldür, sürtünmə yoxdur. İpin sərbəst ucuna hansı F qüvvəsi tətbiq olunur? g = 10 m/s².`,
+        solution: `Aşağıdan yuxarı get. 1-ci blok (yük + blok): 2T₁ = (${m} + ${mb})·10 → T₁ = ${D(T[0])} N.` + T.slice(1).map((v, i) => ` ${["2-ci", "3-cü"][i]} blok (T${["₁", "₂"][i]} + öz ağırlıq qüvvəsi): 2T${["₂", "₃"][i]} = ${D(T[i])} + ${mb * 10} → T${["₂", "₃"][i]} = ${D(v)} N.`).join("") + ` F = ${D(right)} N. Tələlər: blokların ağırlıq qüvvəsini unutmaq, mg/${K} (${D(w[0])}); bütün blokları yükə qatıb ${K}-ə bölmək (${D(w[1])}); yalnız aşağı bloku nəzərə almaq (${D(w[2])}); bir tərpənən blok kimi hesablamaq (${D(w[3])}).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -262,7 +475,7 @@
     game = Oyun.mount({
       key: "fiz-mexanizmler", title: "Sadə mexanizmlər", fenn: "fizika", link: "dersler/fiz-mexanizmler.html",
       format: "Cavab ədəddir, vahidi sahənin yanında yazılıb (N, kq, m, sm, J, %). Onluq kəsr vergül və ya nöqtə ilə: 12,5. g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["ling", "ling", "cubuq", "blok", "blok", "maili", "fie", "fie", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
