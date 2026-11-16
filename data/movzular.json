@@ -1326,7 +1326,8 @@
     "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
    ],
    "hefte": "2026-12-07",
-   "ders": "dersler/fiz-tezyiq.html"
+   "ders": "dersler/fiz-tezyiq.html",
+   "imt": true
   },
   {
    "bolme": "Hidrostatika",

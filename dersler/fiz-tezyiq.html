@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Hidrostatik, atmosfer</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Rabitəli qablar</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Paskal, press</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -405,6 +406,106 @@ Diametr verilibsə:  S₂/S₁ = (d₂/d₁)²</div></div>
         <li>S₁ = 2 sm², S₂ = 100 sm², F₁ = 30 N. F₂ = ? <span class="ans">30·100/2 = 1500 N.</span></li>
         <li>Pressin sahələri 50 dəfə fərqlənir. Kiçik porşen 20 sm düşəndə böyük porşen nə qədər qalxar? <span class="ans">20/50 = 0,4 sm.</span></li>
         <li>Diametrləri 2 sm və 10 sm olan porşenli press neçə dəfə qüvvə qazandırır? <span class="ans">(10/2)² = 25 dəfə.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: təzyiq və hidrostatika</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "p = ρgh-a rəqəmləri qoy" tipli sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — U-boru, porşenli silindr, hidravlik press, qrafik, divar. Rəqəmlər çox vaxt mətndə olur, şəkil isə hansı səviyyənin hansı olduğunu göstərir.</li>
+        <li><b>Bir neçə addım</b> — əvvəl sərhəd səviyyəsində təzyiqləri bərabərləşdir, sonra hündürlüyü tap, sonra səviyyənin nə qədər dəyişdiyini hesabla.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: atmosferi unutmaq, sıxlığı nəzərə almamaq, səviyyənin dəyişməsini 2-yə bölməmək, hündürlük fərqini unutmaq. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: porşenin çəkisi (Nyuton), əl qolu ilə press (moment), yükün qaldırılması (iş).</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar açıq yazılır: g = 10 m/s², porşenlərin kütləsi nəzərə alınmır, maye qarışmır, qolların en kəsiyi eynidir. Bunları oxumadan başlama.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — U-boruda yağ</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 185" role="img" aria-label="U-şəkilli boru: sol qolda kerosin sütunu, sağ qolda su; ilkin səviyyə qırıq xətlə göstərilib"><defs><marker id="tzq-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M101 108 H139 V138 Q139 147 150 147 H170 Q181 147 181 138 V54 H219 V156 Q219 171 204 171 H116 Q101 171 101 156 Z" fill="var(--accent-soft,#e6ecf7)" stroke="none"/><path d="M101 40 H139 V108 H101 Z" fill="var(--vec,#b4561b)" fill-opacity=".3" stroke="none"/><path d="M100 20 V156 Q100 172 116 172 H204 Q220 172 220 156 V20" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M140 20 V138 Q140 148 150 148 H170 Q180 148 180 138 V20" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="6" y1="81" x2="245" y2="81" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="6" y="95" text-anchor="start" font-size="11" font-weight="700" fill="var(--muted,#5b6578)" font-family="inherit">ilkin səviyyə</text><line x1="88" y1="40" x2="88" y2="108" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><line x1="88" y1="40" x2="100" y2="40" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="88" y1="108" x2="100" y2="108" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="82" y="66" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">h</text><line x1="160" y1="81" x2="160" y2="108" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><line x1="140" y1="108" x2="165" y2="108" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="167" y="99" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">x</text><line x1="235" y1="54" x2="235" y2="81" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><line x1="220" y1="54" x2="242" y2="54" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="243" y="73" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">x</text><text x="120" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">kerosin</text><text x="200" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">su</text></svg></div>
+        <p>U-şəkilli borunun qollarının en kəsiyi eynidir, boruda su var. Sol qola 20 sm hündürlüyündə kerosin (ρ = 800 kq/m³) tökdülər (maye qarışmır, borudan daşmır). Sağ qolda suyun səviyyəsi ilkin səviyyədən neçə sm yuxarı qalxır?</p>
+        <ol class="imt-opts"><li>2 sm</li><li>4 sm</li><li>8 sm</li><li>10 sm</li><li>16 sm</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Kerosin–su sərhədində təzyiqlər bərabərdir:
+ρ_su·h_su = ρ_k·h_k  →  h_su = 800·20/1000 = 16 sm
+(sağ qolda suyun səthi sərhəddən 16 sm yuxarıdadır)
+Sərhəd x aşağı düşüb, sağ səth x qalxıb: 2x = 16
+x = 8 sm
+Cavab: C) 8 sm</div>
+      <ul>
+        <li><b>E) 16 sm</b> — 2-yə bölməyi unutmaq: 16 sm iki səviyyənin <b>fərqidir</b>, qalxma onun yarısıdır.</li>
+        <li><b>D) 10 sm</b> — "kerosin yarısı qədər": sıxlıqlar nəzərə alınmayıb, 20/2.</li>
+        <li><b>B) 4 sm</b> — sərbəst səthlər arasındakı fərqi (20 − 16) suyun qalxması ilə qarışdırmaq.</li>
+        <li><b>A) 2 sm</b> — həmin fərqi də yarıya bölmək: (20 − 16)/2.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki mövzu: press və tarazlıq</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 270 175" role="img" aria-label="Hidravlik press: kiçik porşen böyük porşenə nisbətən h hündürlükdə yuxarıdadır; kiçik porşenin üstündə m₁, böyüyünün üstündə m₂ yükü"><defs><marker id="tzq-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M41 50 H79 V134 H141 V100 H249 V159 H41 Z" fill="var(--accent-soft,#e6ecf7)" stroke="none"/><path d="M40 30 V160 H250 V80" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M80 30 V135 H140 V80" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="41" y="44" width="38" height="6" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><rect x="141" y="94" width="108" height="6" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><rect x="46" y="22" width="28" height="22" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><text x="60" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">m₁</text><rect x="165" y="60" width="60" height="34" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><text x="195" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">m₂ = ?</text><line x1="80" y1="50" x2="124" y2="50" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="112" y1="100" x2="141" y2="100" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="118" y1="50" x2="118" y2="100" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><text x="112" y="80" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">h</text><text x="60" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">S₁</text><text x="195" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">S₂</text></svg></div>
+        <p>Hidravlik pressin kiçik porşeninin sahəsi 20 sm², böyüyünün sahəsi 100 sm²-dir. Kiçik porşen böyük porşenə nisbətən h = 0,5 m yuxarıdadır, qabda ρ = 800 kq/m³ olan maye var. Kiçik porşenin üstünə 3 kq yük qoyulub. Porşenlərin tarazlıqda qalması üçün böyük porşenin üstünə neçə kq yük qoymaq lazımdır? (Porşenlərin kütləsi nəzərə alınmır, g = 10 m/s².)</p>
+        <ol class="imt-opts"><li>7 kq</li><li>11 kq</li><li>15 kq</li><li>15,8 kq</li><li>19 kq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Böyük porşenin səviyyəsində təzyiq:
+p_izafi = F₁/S₁ + ρgh  (atmosfer hər iki porşenin üstündə eynidir, sönür;
+kiçik porşen yuxarıdadır, altından 0,5 m maye sütunu əlavə olunur)
+F₂ = p_izafi·S₂ = m₂g  →  m₂ = S₂(m₁/S₁ + ρh)
+m₁/S₁ = 3/0,002 = 1500 kq/m²;  ρh = 800·0,5 = 400 kq/m²
+m₂ = 0,01·(1500 + 400) = 19 kq
+Cavab: E) 19 kq</div>
+      <ul>
+        <li><b>C) 15 kq</b> — hündürlük fərqini unutmaq: yalnız 3·(100/20).</li>
+        <li><b>B) 11 kq</b> — hündürlük fərqini çıxmaq: 15 − 4. Kiçik porşen yuxarıdadır, mayenin sütunu təzyiqi <b>artırır</b>.</li>
+        <li><b>A) 7 kq</b> — 3 + 4: sahələrin nisbətini yalnız maye hissəsinə tətbiq etmək, yükə yox.</li>
+        <li><b>D) 15,8 kq</b> — maye sütununun hissəsini S₂ əvəzinə kiçik porşenin sahəsi ilə hesablamaq: 15 + 800·0,5·0,002.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: əl qolu + press</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 300 175" role="img" aria-label="Hidravlik press: əl qolun ucuna F qüvvəsi ilə basır, qol porşenin çubuğunu itələyir; l₁ və l₂ dayaqdan olan məsafələr; böyük porşenin üstündə yük"><defs><marker id="tzq-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M72.3 100 H100.3 V149 H196 V100 H284 V164 H72.3 Z" fill="var(--accent-soft,#e6ecf7)" stroke="none"/><path d="M71.3 85 V165 H285 V85" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M101.3 85 V150 H195 V85" fill="none" stroke="var(--ink,#1c2433)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="72.3" y="94" width="28" height="6" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><rect x="196" y="94" width="88" height="6" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><rect x="215" y="66" width="50" height="28" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><text x="240" y="85" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">m = ?</text><line x1="17" y1="8" x2="17" y2="70" stroke="var(--ink,#1c2433)" stroke-width="4" stroke-linecap="round"/><line x1="25" y1="26" x2="278" y2="26" stroke="var(--ink,#1c2433)" stroke-width="5" stroke-linecap="round"/><circle cx="25" cy="26" r="4" fill="var(--sheet,#fff)" stroke="var(--ink,#1c2433)" stroke-width="2"/><line x1="86.3" y1="28" x2="86.3" y2="94" stroke="var(--ink,#1c2433)" stroke-width="3" stroke-linecap="round"/><line x1="270" y1="2" x2="270" y2="22" stroke="var(--vec,#b4561b)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#tzq-ar)"/><text x="278" y="14" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">F</text><line x1="25" y1="40" x2="86.3" y2="40" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><text x="55.6" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">l₁</text><line x1="270" y1="29" x2="270" y2="66" stroke="var(--muted,#5b6578)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="25" y1="62" x2="270" y2="62" stroke="var(--muted,#5b6578)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#tzq-ar)" marker-end="url(#tzq-ar)"/><text x="62" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">l₂</text><text x="86.3" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">S₁</text><text x="240" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">S₂</text></svg></div>
+        <p>Əl qolun ucuna F = 20 N qüvvə ilə basır. Qol dayaqdan l₂ məsafədə basılır, porşenin çubuğu dayaqdan l₁ məsafədədir, l₂ = 4·l₁. Porşenlərin sahələri S₁ = 10 sm² və S₂ = 200 sm²-dir. Sistem tarazlıqdadır. Böyük porşenin üstündəki yükün kütləsi neçə kq-dır? (Qolun və porşenlərin kütləsi nəzərə alınmır, g = 10 m/s².)</p>
+        <ol class="imt-opts"><li>0,4 kq</li><li>8 kq</li><li>10 kq</li><li>40 kq</li><li>160 kq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qolun momentləri dayağa nisbətən: F·l₂ = F₁·l₁
+F₁ = 20·4 = 80 N  (porşenə)
+Press: F₂ = F₁·S₂/S₁ = 80·20 = 1600 N
+m = F₂/g = 1600/10 = 160 kq
+Cavab: E) 160 kq</div>
+      <ul>
+        <li><b>D) 40 kq</b> — qolu unutmaq: 20·20/10.</li>
+        <li><b>C) 10 kq</b> — qolun nisbətini tərsinə yazmaq: F₁ = 20/4 = 5 N. Əl uzun qola basır, qüvvə <b>artır</b>.</li>
+        <li><b>B) 8 kq</b> — pressi unutmaq: yalnız qol, F₂ = 80 N.</li>
+        <li><b>A) 0,4 kq</b> — sahələrin nisbətini tərsinə yazmaq: 80/20 = 4 N.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Atmosfer təzyiqi.</b> Açıq qabda dərinlikdə ümumi təzyiq <span class="m">p₀ + ρgh</span>-dır; "hidrostatik təzyiq" soruşulanda isə yalnız <span class="m">ρgh</span>. Divarın iki tərəfində hava varsa, <span class="m">p₀</span> sönür.</li>
+        <li><b>Sərhəd səviyyəsi.</b> İki maye olanda təzyiqləri <b>eyni səviyyədə</b> bərabərləşdir; ən aşağı mayenin sərhədini seç.</li>
+        <li><b>Səviyyə dəyişməsi.</b> Bir qolda x aşağı, o birində x yuxarı — fərq <span class="m">2x</span>-dir; ρgh-da fərq götürülür.</li>
+        <li><b>Hündürlük fərqi.</b> Porşenlərin səviyyəsi eyni deyilsə, mayenin <span class="m">ρgh</span> sütunu əlavə olunur; hansı porşen yuxarıdadırsa, ona görə işarə seç.</li>
+        <li><b>Press.</b> Eyni səviyyədə <span class="m">F₂ = F₁·S₂/S₁</span>; yolda isə əksinə: <span class="m">l₂ = l₁·S₁/S₂</span>. İşdə qazanc yoxdur.</li>
+        <li><b>Qabın forması.</b> Dibə təzyiq <span class="m">ρgh</span>-dır, qüvvə <span class="m">ρgh·S_dib</span> — mayenin çəkisi ilə eyni olmaya bilər. Şaquli divarda isə orta təzyiq <span class="m">ρgH/2</span>.</li>
+        <li><b>Vahidlər:</b> sm² və sm-i m²-ə, m-ə çevir; kPa və Pa-nı qarışdırma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təzyiq:         p = F/S
+Maye:           p = ρgh,   açıq qabda p₀ + ρgh
+Sərhəd:         ρ₁h₁ = ρ₂h₂  (eyni səviyyədə təzyiqlər bərabərdir)
+Press:          F₁/S₁ = F₂/S₂,   S₁l₁ = S₂l₂,   A₁ = A₂
+                (F₁/S₁ = F₂/S₂ yalnız porşenlər eyni səviyyədə olanda;
+                 fərqli səviyyədə təzyiqlərin fərqi ρgh-dır)
+Şaquli divar:   F = (ρgH/2)·H·b</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>U-boruda su var. Sol qola 10 sm kerosin (ρ = 800 kq/m³) tökülüb. Sağ qolda suyun səthi kerosin–su sərhədindən neçə sm yuxarıdadır? <span class="ans">h_su = 800·10/1000 = 8 sm.</span></li>
+        <li>Porşenin kütləsi 5 kq, sahəsi 50 sm², üstündə p₀ = 100 kPa. Porşenin altındakı mayenin üst təzyiqi? <span class="ans">p = 100 kPa + 5·10/0,005 Pa = 100 + 10 = 110 kPa.</span></li>
+        <li>Hidravlik pressin porşenlərinin sahələri 10 sm² və 200 sm²-dir. Böyük porşen 2 sm qalxdı. Kiçik porşen neçə sm düşdü? <span class="ans">S₁l₁ = S₂l₂ → l₁ = 200·2/10 = 40 sm.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
