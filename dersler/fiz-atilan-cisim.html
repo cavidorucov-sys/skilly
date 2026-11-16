@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Üfüqi atılma</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bucaq altında</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Olimpiada</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -285,6 +286,127 @@ H/L = tg α/4;   üfüqi atılıb 45°-də dəyirsə L = 2h</div></div>
         <li>v₀x = 10, v₀y = 30 m/s. 4 s sonra sürət? <span class="ans">vy = 30 − 40 = −10; v = √(100 + 100) = 10√2 m/s.</span></li>
         <li>v₀ = 30 m/s ilə 25 m hündürlüyə çata bilən bucaqla atılan daşın həmin hündürlükdə sürəti? (Çata bilmək üçün v₀y ≥ √500 ≈ 22,4 m/s lazımdır.) <span class="ans">v² = 900 − 500 = 400 → 20 m/s.</span></li>
         <li>Daşın H-ı L-in yarısıdır. tg α? <span class="ans">tg α = 4·(1/2) = 2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: atılan cisim</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. L = v₀t düsturunun birbaşa tətbiqi ilə həll olunan suallar az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — trayektoriya, qüllə, masa, maili səth və ya <b>qrafik</b> (məsələn, <span class="m">v<sub>y</sub>(t)</span>). Rəqəmlərin bir hissəsi şəkildən oxunur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl sürəti proyeksiyalara ayır, sonra şaquli hərəkətdən vaxtı tap, sonra üfüqi yolu hesabla.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: qalxma vaxtını uçuş vaxtı saymaq, <span class="m">L = v₀·T</span> yazmaq, <span class="m">t = √(2h/g)</span>-də kökü və ya 2-ni unutmaq, sin ilə cos-u qarışdırmaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: əvvəl zərbə (impuls), sürtünmə və ya enerjinin saxlanması, sonra atılma; ən yüksək nöqtədə isə çevrə üzrə hərəkət (<span class="m">a = v²/R</span>).</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: <span class="m">g = 10 m/s²</span>, hava müqaviməti yoxdur, cismin ölçüləri nəzərə alınmır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qrafikdən uçuş məsafəsi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 260 200" role="img" aria-label="Sürətin şaquli proyeksiyasının zamandan asılılıq qrafiki: 20 m/s-dən 4 saniyədə −20 m/s-ə qədər düz xətt">
+          <line x1="46" y1="188" x2="46" y2="12" stroke="var(--ink)" stroke-width="1.5"/><line x1="46" y1="100" x2="248" y2="100" stroke="var(--ink)" stroke-width="1.5"/>
+          <g stroke="var(--muted)" stroke-width=".6" stroke-dasharray="2 3"><line x1="91" y1="30" x2="91" y2="170"/><line x1="136" y1="30" x2="136" y2="170"/><line x1="181" y1="30" x2="181" y2="170"/><line x1="226" y1="30" x2="226" y2="170"/><line x1="46" y1="30" x2="226" y2="30"/><line x1="46" y1="170" x2="226" y2="170"/></g>
+          <line x1="46" y1="30" x2="226" y2="170" stroke="var(--accent)" stroke-width="2.5"/>
+          <g font-size="11" text-anchor="middle"><text x="91" y="114">1</text><text x="136" y="114">2</text><text x="181" y="94">3</text><text x="226" y="94">4</text></g>
+          <g font-size="11" text-anchor="end"><text x="40" y="34">20</text><text x="40" y="174">−20</text></g>
+          <text class="lbl" x="248" y="92" text-anchor="end">t, s</text><text class="lbl" x="52" y="16">vy, m/s</text>
+        </svg></div>
+        <p>Qrafikdə yerdən bucaq altında atılıb yenə yerə düşən cismin sürətinin şaquli proyeksiyasının zamandan asılılığı verilib. Sürətin üfüqi proyeksiyası <span class="m">vₓ = 15 m/s</span>. Cismin uçuş məsafəsi nə qədərdir? (Hava müqaviməti yoxdur.)</p>
+        <ol class="imt-opts"><li>30 m</li><li>100 m</li><li>60 m</li><li>80 m</li><li>20 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qrafikdən: v₀y = 20 m/s;  vy = −20 m/s olanda (t = 4 s) cisim yerə düşür
+Uçuş vaxtı T = 4 s  (qalxma 2 s + enmə 2 s)
+Üfüqi hərəkət bərabərsürətlidir:  L = vₓ·T = 15·4 = 60 m
+Cavab: C) 60 m</div>
+      <ul>
+        <li><b>A) 30 m</b> — qalxma vaxtını (2 s) uçuş vaxtı saymaq.</li>
+        <li><b>B) 100 m</b> — tam sürətlə vurmaq: <span class="m">v₀ = √(15² + 20²) = 25</span>, 25·4. Üfüqi yolu yalnız <span class="m">vₓ</span> gedir.</li>
+        <li><b>D) 80 m</b> — <span class="m">v<sub>y</sub></span> ilə vurmaq: 20·4.</li>
+        <li><b>E) 20 m</b> — qrafikin altındakı birinci üçbucağın sahəsi: bu, ən böyük hündürlükdür (<span class="m">H = 20·2/2</span>), uçuş məsafəsi yox.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki mövzu: zərbə və üfüqi atılma</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 260 205" role="img" aria-label="Plastilin kürəcik masanın kənarındakı brusa dəyir, brus masadan üfüqi uçur">
+          <defs><marker id="im-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <rect x="10" y="100" width="110" height="8" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="20" y1="108" x2="20" y2="180" stroke="var(--ink)" stroke-width="3"/><line x1="110" y1="108" x2="110" y2="180" stroke="var(--ink)" stroke-width="3"/>
+          <line x1="6" y1="180" x2="254" y2="180" stroke="var(--ink)" stroke-width="1.5"/>
+          <rect x="96" y="80" width="24" height="20" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="40" cy="90" r="6" fill="var(--accent)"/>
+          <line x1="48" y1="90" x2="84" y2="90" stroke="var(--vec)" stroke-width="2.5" marker-end="url(#im-v)"/>
+          <path d="M120 90Q170 90 220 180" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="130" y1="100" x2="130" y2="180" stroke="var(--accent)" stroke-dasharray="3 3"/>
+          <line x1="120" y1="192" x2="220" y2="192" stroke="var(--accent)" stroke-width="1.5"/>
+          <text class="lbl" x="40" y="76" text-anchor="middle">m</text><text class="lbl" x="66" y="82" text-anchor="middle">u</text><text class="lbl" x="108" y="74" text-anchor="middle">M</text>
+          <text class="lbl" x="138" y="145">h</text><text class="lbl" x="170" y="204" text-anchor="middle">L</text>
+        </svg></div>
+        <p>Kütləsi <span class="m">m = 100 q</span> olan plastilin kürəcik <span class="m">u = 12 m/s</span> sürətlə üfüqi uçaraq hündürlüyü <span class="m">h = 0,8 m</span> olan masanın lap kənarında duran <span class="m">M = 300 q</span> kütləli brusa dəyir və ona yapışır. Brus masadan üfüqi uçur. (Kürəcik və brus maddi nöqtə sayılır.) Brus döşəmədə masanın kənarından üfüqi istiqamətdə nə qədər məsafəyə düşər? (Toqquşma ani baş verir, hava müqaviməti yoxdur, <span class="m">g = 10 m/s²</span>.)</p>
+        <ol class="imt-opts"><li>4,8 m</li><li>1,6 m</li><li>1,2 m</li><li>2,4 m</li><li>0,48 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1) Zərbə qeyri-elastikdir — impuls saxlanır:
+   m·u = (m + M)·V  →  V = 0,1·12 / 0,4 = 3 m/s
+2) Düşmə vaxtı:  t = √(2h/g) = √(1,6/10) = 0,4 s
+3) L = V·t = 3·0,4 = 1,2 m
+Cavab: C) 1,2 m</div>
+      <ul>
+        <li><b>A) 4,8 m</b> — zərbəni unutmaq, kürəciyin sürəti ilə hesablamaq: 12·0,4.</li>
+        <li><b>B) 1,6 m</b> — <span class="m">m·u = M·V</span> yazmaq (kürəciyin kütləsini unutmaq): V = 4 m/s.</li>
+        <li><b>D) 2,4 m</b> — zərbədə kinetik enerjini saxlamaq: <span class="m">mu²/2 = (m+M)V²/2</span> → V = 6 m/s. Yapışanda kinetik enerjinin bir hissəsi istiliyə keçir — kinetik enerji saxlanmır (ümumi enerji saxlanır).</li>
+        <li><b>E) 0,48 m</b> — kökü unutmaq: <span class="m">t = 2h/g = 0,16 s</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — maili səthə düşən daş</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 260 200" role="img" aria-label="Maili səthin yuxarısından üfüqi atılan daş səthə düşür">
+          <defs><marker id="im-v2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--vec)"/></marker></defs>
+          <polygon points="30,30 230,180 30,180" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M30 26Q115 26 200 157.5" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="30" y1="26" x2="70" y2="26" stroke="var(--vec)" stroke-width="3" marker-end="url(#im-v2)"/>
+          <circle cx="200" cy="157.5" r="3.5" fill="var(--accent)"/>
+          <path d="M204 180A26 26 0 0 1 209.2 164.4" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text class="lbl" x="54" y="18" text-anchor="middle">v₀</text><text class="lbl" x="190" y="174" text-anchor="middle">α</text><text class="lbl" x="134" y="94">s</text>
+        </svg></div>
+        <p>Üfüqlə <span class="m">α</span> bucağı əmələ gətirən maili səthin (<span class="m">tg α = 3/4</span>) yuxarı nöqtəsindən daş <span class="m">v₀ = 20 m/s</span> sürətlə üfüqi atıldı və həmin səthə düşdü. Atılma və düşmə nöqtələri arasındakı məsafə <span class="m">s</span> nə qədərdir? (<span class="m">g = 10 m/s²</span>, hava müqaviməti yoxdur.)</p>
+        <ol class="imt-opts"><li>60 m</li><li>37,5 m</li><li>100 m</li><li>75 m</li><li>45 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Düşmə nöqtəsi səthin üzərindədir:  y/x = tg α
+   (g·t²/2) / (v₀·t) = tg α  →  t = 2v₀·tg α / g = 2·20·0,75/10 = 3 s
+x = v₀t = 60 m,   y = gt²/2 = 45 m
+tg α = 3/4 → cos α = 0,8:   s = x / cos α = 60 / 0,8 = 75 m   (√(60² + 45²) = 75 ✓)
+Cavab: D) 75 m</div>
+      <ul>
+        <li><b>A) 60 m</b> — yalnız üfüqi yerdəyişməni yazmaq; sual səth boyunca məsafədir.</li>
+        <li><b>B) 37,5 m</b> — <span class="m">y = gt²/2</span>-də 2-ni unutmaq: t = 1,5 s.</li>
+        <li><b>C) 100 m</b> — cos əvəzinə sin-ə bölmək: 60/0,6.</li>
+        <li><b>E) 45 m</b> — şaquli düşməni yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Üfüqi səthə düşəndə vaxt şaquli hərəkətdən tapılır.</b> Onda üfüqi sürət düşmə vaxtına təsir etmir; maili səthdə isə vaxt üfüqi sürətdən asılıdır (<span class="m">t = 2v₀·tg α/g</span>).</li>
+        <li><b><span class="m">t = √(2h/g)</span>:</b> kökü unutmaq (<span class="m">t = 2h/g</span>) — bu səhvin cavabı variantlarda olur.</li>
+        <li><b>Qalxma vaxtı ≠ uçuş vaxtı.</b> Yerdən atılıb yerə düşəndə <span class="m">T = 2v₀y/g</span>.</li>
+        <li><b>Üfüqi yolu <span class="m">vₓ</span> gedir:</b> <span class="m">L = vₓ·T</span>, <span class="m">v₀·T</span> yox.</li>
+        <li><b>Ən yüksək nöqtədə</b> <span class="m">v = vₓ ≠ 0</span>; orada əyrilik radiusu <span class="m">R = vₓ²/g</span>.</li>
+        <li><b>Tam qeyri-elastik zərbədə (yapışmada) impuls saxlanır, kinetik enerji yox.</b> Uçuşda isə enerji saxlanır: yerə dəyən sürət <span class="m">√(v₀² + 2gh)</span> bucaqdan asılı deyil.</li>
+        <li><b>Maili səthə düşmə:</b> şərt <span class="m">y/x = tg α</span>; səth boyunca məsafə <span class="m">x/cos α</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Üfüqi atılma:   t = √(2h/g),   L = v₀t,   v = √(v₀² + (gt)²)
+Bucaq altında:   T = 2v₀sin α/g,   H = (v₀sin α)²/(2g),   L = v₀²sin 2α/g
+Ən yüksək nöqtə: v = v₀cos α,   R = v²/g
+Zərbə: m·u = (m + M)·V;   uçuş: v² = v₀² + 2gh</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>45 m hündürlükdən üfüqi atılan daş yerə 50 m/s sürətlə dəydi. v₀ = ? <span class="ans">vy = √(2·10·45) = 30 m/s; v₀ = √(50² − 30²) = 40 m/s.</span></li>
+        <li>15° bucaq altında atılan daş 20 m uzağa düşür. Eyni sürətlə 45°-də və 75°-də? <span class="ans">sin 30° = 1/2 → v₀²/g = 40 m. 45°-də 40 m, 75°-də yenə 20 m (tamamlayıcı bucaqlar).</span></li>
+        <li>v₀ = 20 m/s, sin α = 0,6. Ən yüksək nöqtədə əyrilik radiusu? <span class="ans">vₓ = 20·0,8 = 16 m/s; R = 16²/10 = 25,6 m.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
