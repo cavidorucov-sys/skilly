@@ -15,7 +15,7 @@
   const FOUR_PI2 = 39.5;
 
   // ---------- figure: scatter plot with grid, fitted line(s) and marked points (SVG string, also used for the lesson pictures) ----------
-  const PAL = { ink: "#17171a", acc: "#534ab7", red: "#a32d2d", mut: "#6b6b73", grid: "#d8d4c4", cls: "oy-lbl" };
+  const PAL = { ink: "#17171a", acc: "#534ab7", red: "#a32d2d", mut: "#6b6b73", grid: "#d8d4c4", soft: "#e4e1f6", bg: "#ffffff", cls: "oy-lbl" };
   const wrap = s => { const d = document.createElement("div"); d.innerHTML = s; return d; };
   // g: {xmax, ymax, gx, gy (grid steps), lx, ly (label steps), xlab, ylab, pts:[[x,y]], lines:[{p:[[x0,y0],[x1,y1]], color?, dash?}], marks:[{x, y, label?, dx?, dy?, anchor?}], alt}
   function graph(g, pal = PAL) {
@@ -292,6 +292,222 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a figure, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 4, 5, 7, 9 and 10 also use an earlier topic
+  // (centripetal motion, Hooke's law, Ohm's law, measuring instruments).
+  const { ae, again } = Oyun;
+  const key = v => F(r6(v));
+  const fmtU = u => x => F(r6(x)) + " " + u;
+  // right answer + candidate mistakes [value, name]: four distinct "nice" wrong options are drawn at random
+  function mk(right, cands, fmt, dp = 2) {
+    const seen = new Set([key(right)]), u = [];
+    for (const c of shuffle(cands)) { const v = c[0]; if (!isFinite(v) || v <= 0 || !nice(v, dp) || seen.has(key(v))) continue; seen.add(key(v)); u.push(c); }
+    if (u.length < 4) return null;
+    const used = u.slice(0, 4), o = ae(right, used.map(c => c[0]), fmt);
+    return o && { o: { ...o, show: o.choices[o.correct] }, tr: " Tələlər: " + used.map(c => `${c[1]} (${fmt(c[0])})`).join("; ") + "." };
+  }
+  const fin = (r, rest, sol) => r && { ...rest, ...r.o, solution: sol + r.tr };
+
+  // FIG-BEGIN (figure builders return SVG strings; the lesson page reuses them)
+  const ln = (x1, y1, x2, y2, c = PAL.ink, w = 1.8, d = "") => `<line x1="${r6(x1)}" y1="${r6(y1)}" x2="${r6(x2)}" y2="${r6(y2)}" stroke="${c}" stroke-width="${w}"${d ? ` stroke-dasharray="${d}"` : ""} stroke-linecap="round"/>`;
+  const tx = (x, y, s, a = "middle", c = "", fs = 12) => `<text x="${r6(x)}" y="${r6(y)}" text-anchor="${a}" class="${PAL.cls}" style="font-size:${fs}px${c ? ";fill:" + c : ""}">${s}</text>`;
+  const ci = (x, y, r, f = "none", c = PAL.ink, w = 1.8) => `<circle cx="${r6(x)}" cy="${r6(y)}" r="${r}" fill="${f}" stroke="${c}" stroke-width="${w}"/>`;
+  const rc = (x, y, w, h, f = "none", c = PAL.ink, sw = 1.8) => `<rect x="${r6(x)}" y="${r6(y)}" width="${r6(w)}" height="${r6(h)}" fill="${f}" stroke="${c}" stroke-width="${sw}"/>`;
+  const head = (x, y, dx, dy, c = PAL.acc) => { const L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L; return `<polygon points="${r6(x + 8 * ux)},${r6(y + 8 * uy)} ${r6(x - 4 * uy)},${r6(y + 4 * ux)} ${r6(x + 4 * uy)},${r6(y - 4 * ux)}" fill="${c}"/>`; };
+  const sv = (w, h, s, alt) => `<svg viewBox="0 0 ${w} ${h}" class="oy-svg" role="img" aria-label="${alt}">${s}</svg>`;
+  // F–x (or similar) graph geometry of graph(): used to put labels next to the lines
+  const GM = { L: 58, T: 26, PW: 256, PH: 178 };
+  const gX = (x, xmax) => GM.L + GM.PW * x / xmax, gY = (y, ymax) => GM.T + GM.PH * (1 - y / ymax);
+  const addTo = (svg, extra) => svg.replace(/<\/svg>$/, extra + "</svg>");
+  // five repeated measurements on a time axis, dashed line at the mean
+  function figStrip(vs, m, c) {
+    const W = 330, H = 118, L = 24, Rr = 24, lo = r6(m - 0.4), hi = r6(m + 0.4), X = v => L + (W - L - Rr) * (v - lo) / (hi - lo), y0 = 78;
+    let s = ln(L, y0, W - Rr, y0);
+    for (let i = 0; i <= 8; i++) { const v = r6(lo + 0.1 * i); s += ln(X(v), y0, X(v), y0 + 6) + tx(X(v), y0 + 21, F(v), "middle", "", 11); }
+    s += ln(X(m), 26, X(m), y0, PAL.acc, 2, "6 4") + tx(X(m), 18, "x̄", "middle", PAL.acc, 13);
+    const cnt = {};
+    vs.forEach(v => { const k = key(v); cnt[k] = (cnt[k] || 0) + 1; s += ci(X(v), y0 - 9 - (cnt[k] - 1) * 13, 5, PAL.ink, PAL.ink); });
+    return sv(W, H, s + tx(W - Rr, H - 2, "t, s", "end", "", 12) + tx(L, H - 2, `bölgü ${F(c)} s`, "start", PAL.mut, 11), "Beş ölçmə nöqtəsi vaxt oxunda və onların ortasını göstərən qırıq xətt");
+  }
+  // difference of two weighings: bar m₂ made of m₁ and m
+  function figDiff(m1, m2, c) {
+    const W = 330, H = 118, x0 = 20, x1 = 310, X = v => x0 + (x1 - x0) * v / m2;
+    return sv(W, H, ln(x0, 28, x1, 28, PAL.mut, 1.4) + ln(x0, 22, x0, 34, PAL.mut, 1.4) + ln(x1, 22, x1, 34, PAL.mut, 1.4) + tx((x0 + x1) / 2, 20, `m₂ = ${m2} q (qab + su)`)
+      + rc(x0, 42, X(m1) - x0, 34, PAL.soft) + rc(X(m1), 42, x1 - X(m1), 34) + tx((x0 + X(m1)) / 2, 64, `m₁ = ${m1} q`) + tx((X(m1) + x1) / 2, 64, "su: m = ?")
+      + tx((x0 + x1) / 2, 104, `tərəzinin bölgüsü ${c} q`, "middle", PAL.mut, 12), "Tərəzidə qabın və qab ilə suyun kütlələri: m₂ iki hissədən ibarətdir");
+  }
+  // pendulum with the length l and the time of n oscillations
+  function figPend(l, dl, t, dt, n) {
+    const bob = (x, y, f) => ci(x, y, 11, f, PAL.ink, 1.8);
+    return sv(330, 196, rc(70, 10, 110, 8, PAL.soft) + ln(125, 18, 125, 150) + bob(125, 161, PAL.soft) + ln(125, 18, 175, 152, PAL.mut, 1.2, "5 4") + bob(175, 152, "none")
+      + ln(100, 18, 100, 161, PAL.mut, 1.2) + ln(95, 18, 105, 18, PAL.mut, 1.2) + ln(95, 161, 105, 161, PAL.mut, 1.2) + tx(92, 94, "l", "end", PAL.acc, 14)
+      + tx(205, 70, `l = (${Fd(l, 3)} ± ${Fd(dl, 3)}) m`, "start") + tx(205, 94, `${n} rəqs:`, "start") + tx(205, 112, `t = (${Fd(t, 1)} ± ${Fd(dt, 1)}) s`, "start"),
+      "Riyazi rəqqas: dayaqdan topun mərkəzinədək uzunluq l və bir neçə rəqsin vaxtı t");
+  }
+  // turntable seen from above: radius R, angular speed ω
+  function figTurn(w, dw, R, dR) {
+    const cx = 92, cy = 98;
+    return sv(330, 196, ci(cx, cy, 70, PAL.soft, PAL.ink, 2) + ln(cx, cy, cx + 70, cy, PAL.red, 2.4) + ci(cx, cy, 3, PAL.ink, PAL.ink) + rc(cx + 62, cy - 8, 16, 16, PAL.bg, PAL.ink, 1.8) + tx(cx + 38, cy + 17, "R", "middle", PAL.red, 14)
+      + `<path d="M ${cx - 34} ${cy - 40} A 52 52 0 0 1 ${cx + 34} ${cy - 40}" fill="none" stroke="${PAL.acc}" stroke-width="2.2"/>` + head(cx + 34, cy - 40, 0.6, 0.8) + tx(cx, cy - 60, "ω", "middle", PAL.acc, 14)
+      + tx(190, 84, `ω = (${Fd(w, 2)} ± ${Fd(dw, 2)}) rad/s`, "start") + tx(190, 112, `R = (${Fd(R, 3)} ± ${Fd(dR, 3)}) m`, "start"),
+      "Fırlanan oturacaq yuxarıdan: ω bucaq sürəti və oxdan məsafə R");
+  }
+  // circuit: battery, ammeter in series, resistor with a voltmeter in parallel
+  function figCirc(U, dU, I, dI) {
+    const x0 = 36, x1 = 196, y0 = 40, y1 = 140;
+    return sv(330, 176, ln(x0, y0, 80, y0) + ln(116, y0, x1, y0) + ln(x1, y0, x1, 70) + ln(x1, 110, x1, y1) + ln(x1, y1, x0, y1) + ln(x0, y1, x0, 112) + ln(x0, 68, x0, y0)
+      + ln(x0 - 14, 112, x0 + 14, 112) + ln(x0 - 8, 68, x0 + 8, 68, PAL.ink, 3) + tx(x0 - 20, 96, "U", "end", "", 13)
+      + ci(98, y0, 18, PAL.bg) + tx(98, y0 + 5, "A", "middle", "", 14) + rc(x1 - 10, 70, 20, 40, PAL.bg) + tx(x1 + 18, 95, "R", "start", "", 14)
+      + ln(x1, 70, 262, 70) + ln(262, 70, 262, 77) + ln(262, 109, 262, 110) + ln(262, 110, x1, 110) + ci(x1, 70, 3, PAL.ink) + ci(x1, 110, 3, PAL.ink) + ci(262, 93, 16, PAL.bg) + tx(262, 98, "V", "middle", "", 14)
+      + tx(20, 164, `U = (${Fd(U, 1)} ± ${Fd(dU, 1)}) V`, "start") + tx(190, 164, `I = (${Fd(I, 2)} ± ${Fd(dI, 2)}) A`, "start"),
+      "Sxem: ampermetr rezistorla ardıcıl, voltmetr rezistora paralel; U və I ölçülüb");
+  }
+  // cylinder: diameter d, height h, mass m
+  function figCyl(d, h, m) {
+    return sv(330, 190, `<path d="M 60 50 L 60 130 A 45 14 0 0 0 150 130 L 150 50" fill="${PAL.soft}" stroke="${PAL.ink}" stroke-width="1.8"/><ellipse cx="105" cy="50" rx="45" ry="14" fill="${PAL.bg}" stroke="${PAL.ink}" stroke-width="1.8"/>`
+      + ln(60, 28, 150, 28, PAL.red, 1.6) + ln(60, 22, 60, 34, PAL.red, 1.6) + ln(150, 22, 150, 34, PAL.red, 1.6) + tx(105, 20, "d", "middle", PAL.red, 14)
+      + ln(172, 50, 172, 130, PAL.red, 1.6) + ln(166, 50, 178, 50, PAL.red, 1.6) + ln(166, 130, 178, 130, PAL.red, 1.6) + tx(186, 94, "h", "start", PAL.red, 14)
+      + tx(214, 68, `d = ${Fd(d, 1)} mm`, "start") + tx(214, 84, "kumpas, bölgü 0,1 mm", "start", PAL.mut, 11) + tx(214, 108, `h = ${h} mm`, "start") + tx(214, 124, "xətkeş, bölgü 1 mm", "start", PAL.mut, 11)
+      + tx(214, 148, `m = ${m} q`, "start") + tx(214, 164, "tərəzi, bölgü 1 q", "start", PAL.mut, 11),
+      "Silindr: diametr d, hündürlük h və kütlə m ölçülüb");
+  }
+  // F–x graph with the best-fit line and the two extreme lines
+  function figLines(kmin, k, kmax, xmax, ymax, gy) {
+    const g = graph({ xmax, ymax, gx: 0.1, gy, lx: 0.1, ly: gy, xlab: "x, m", ylab: "F, N",
+      lines: [{ p: [[0, 0], [xmax, r6(kmax * xmax)]], color: PAL.red, dash: 1 }, { p: [[0, 0], [xmax, r6(k * xmax)]] }, { p: [[0, 0], [xmax, r6(kmin * xmax)]], color: PAL.red, dash: 1 }], alt: "F – x qrafiki: üç düz xətt başlanğıcdan keçir" });
+    return addTo(g, tx(gX(xmax, xmax) - 6, gY(kmax * xmax, ymax) - 8, `k_max = ${kmax}`, "end", PAL.red, 12) + tx(gX(xmax, xmax) - 6, gY(kmin * xmax, ymax) + 42, `k_min = ${kmin}`, "end", PAL.red, 12));
+  }
+  // FIG-END
+
+  // gen 5: every (xs, es, k, deviations) combination whose distractors are all "nice" is listed up front, so the generator never fails
+  const HOOKE_OK = (() => {
+    const out = [], idx = [1, 2, 3, 4];
+    for (const xs of [0.02, 0.05, 0.1]) for (const es of [0.1, 0.2, 0.5]) for (const k of [50, 80, 100, 120, 150, 200])
+      for (let a = -2; a <= 2; a++) for (let b = -2; b <= 2; b++) for (let c = -2; c <= 2; c++) for (let d = -2; d <= 2; d++) {
+        const mm = [a, b, c, d];
+        if (mm.every(v => v === 0) || mm.reduce((s, v, i) => s + v * idx[i], 0) !== 0) continue;
+        const x = idx.map(i => r6(i * xs)), y = x.map((v, i) => r6(k * v + mm[i] * es));
+        if (y.some(v => v <= 0)) continue;
+        const sxy = r6(x.reduce((s, v, i) => s + v * y[i], 0)), sxx = r6(x.reduce((s, v) => s + v * v, 0)), sx = r6(x.reduce((s, v) => s + v, 0)), sy = r6(y.reduce((s, v) => s + v, 0));
+        if (r6(sxy / sxx) !== k) continue;
+        const c5 = [sy / sx, y[3] / x[3], (y[3] - y[0]) / (x[3] - x[0]), sxy / sx, sxy / (sx * sx)], ok = new Set([key(k)]);
+        c5.forEach(v => { if (isFinite(v) && v > 0 && nice(v, 2)) ok.add(key(v)); });
+        if (ok.size >= 5) out.push([xs, es, k, mm]);
+      }
+    return out;
+  })();
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. repeated measurements: total error = random + instrument
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([24.6, 28.6, 31.2, 36.4, 40.2, 44.8]), c = pick([0.1, 0.2]);
+      const d = Array.from({ length: 5 }, () => rnd(-3, 3)), sa = d.reduce((a, v) => a + Math.abs(v), 0);
+      if (d.reduce((a, v) => a + v, 0) !== 0 || sa < 4 || new Set(d).size < 3) return null;
+      const vs = d.map(v => r6(m + v * 0.1)), dev = r6(sa * 0.1 / 5), half = r6(c / 2), right = r6(dev + half), mx = r6(Math.max(...d.map(Math.abs)) * 0.1);
+      const r = mk(right, [[dev, "cihaz xətasını əlavə etməmək"], [r6(sa * 0.1 + half), "sapmaların cəmini n-ə bölməmək"], [r6(dev + c), "cihaz xətası kimi bölgünün özünü götürmək"],
+        [r6(mx + half), "orta sapma əvəzinə ən böyük sapmanı götürmək"], [r6(sa * 0.1 / 4 + half), "n əvəzinə n − 1-ə bölmək"]], fmtU("s"), 3);
+      return fin(r, { svg: wrap(figStrip(vs, m, c)), text: `Rəqqasın 20 rəqsinin vaxtı 5 dəfə ölçülüb (şəkildə nöqtələr): ${vs.map(v => Fd(v, 1)).join("; ")} s. Saniyəölçənin bölgüsü ${F(c)} s, cihaz xətası bölgünün yarısıdır. Təsadüfi xəta mütləq sapmaların ortasıdır. Nəticənin cəmi xətası (təsadüfi xəta + cihaz xətası) neçədir?` },
+        `x̄ = (${vs.map(v => Fd(v, 1)).join(" + ")})/5 = ${Fd(m, 1)} s (şəkildəki qırıq xətt). Mütləq sapmalar: ${d.map(v => F(r6(Math.abs(v) * 0.1))).join("; ")} s, Δx̄ = ${F(r6(sa * 0.1))}/5 = ${F(dev)} s. Cihaz xətası ${F(c)}/2 = ${F(half)} s. Cəmi: ${F(dev)} + ${F(half)} = ${F(right)} s.`);
+    }) },
+    // 2. difference of two measurements: absolute errors add up
+    { tip: "qapali", gen: () => again(() => {
+      const c = pick([1, 2]), m = pick([40, 50, 80, 100, 125, 200]), m1 = pick([20, 25, 40, 50, 100]), m2 = m1 + m, right = r6(c / m * 100);
+      const r = mk(right, [[c / 2 / m * 100, "yalnız bir ölçmənin xətasını götürmək"], [c / m2 * 100, "nisbi xətanı fərqə yox, m₂-yə görə hesablamaq"], [c / m1 * 100, "nisbi xətanı fərqə yox, m₁-ə görə hesablamaq"],
+        [c, "mütləq xətanı faiz kimi yazmaq"], [c / (m1 + m2) * 100, "kütlələrin cəminə bölmək"], [2 * c / m * 100, "hər çəkmədə xəta kimi bölgünün özünü götürmək"], [c / 2 / m2 * 100, "yalnız bir xətanı m₂-yə bölmək"]], fmtU("%"), 2);
+      return fin(r, { svg: wrap(figDiff(m1, m2, c)), text: `Boş qabın kütləsi m₁ = ${m1} q, su ilə dolu qabın kütləsi m₂ = ${m2} q (şəkildə). Tərəzinin bölgüsü ${c} q, cihaz xətası bölgünün yarısıdır. Suyun kütləsi m = m₂ − m₁ olarsa, onun nisbi xətası neçə faizdir?` },
+        `Hər çəkmənin xətası ${F(c / 2)} q. Fərqdə mütləq xətalar toplanır: Δm = ${F(c / 2)} + ${F(c / 2)} = ${c} q. m = ${m2} − ${m1} = ${m} q. ε = Δm/m·100 % = ${c}/${m}·100 % = ${F(right)} %.`);
+    }) },
+    // 3. g = 4π²l/T², T from n oscillations: ε_g = ε_l + 2ε_T
+    { tip: "qapali", gen: () => again(() => {
+      const [l, dl] = pick([[1, 0.002], [1, 0.005], [1, 0.01], [0.5, 0.005], [0.5, 0.01], [0.8, 0.004], [0.8, 0.008], [1.2, 0.006]]), t = pick([40, 50]), dt = pick([0.1, 0.2, 0.3, 0.4, 0.5]), n = 20;
+      const el = r6(dl / l * 100), et = r6(dt / t * 100), right = r6(el + 2 * et);
+      if (!nice(el, 2) || !nice(et, 2)) return null;
+      const r = mk(right, [[el + et, "T²-nin üstünü (kvadratı) unutmaq"], [2 * el + et, "kvadratı l-ə aid etmək"], [el + 2 * n * et, "Δt-ni 20-yə bölməmək (ΔT = Δt götürmək)"],
+        [Math.abs(el - 2 * et), "nisbi xətaları çıxmaq"], [2 * (el + et), "kvadratı hər iki kəmiyyətə aid etmək"]], fmtU("%"), 2);
+      return fin(r, { svg: wrap(figPend(l, dl, t, dt, n)), text: `Riyazi rəqqasın uzunluğu (dayaq nöqtəsindən topun mərkəzinədək) l = (${Fd(l, 3)} ± ${Fd(dl, 3)}) m, 20 rəqsin vaxtı t = (${Fd(t, 1)} ± ${Fd(dt, 1)}) s ölçülüb (şəkildə). g = 4π²l/T² düsturu ilə tapılan g-nin nisbi xətası neçə faizdir? (T bir rəqsin periodudur.)` },
+        `ε_l = ${Fd(dl, 3)}/${Fd(l, 3)} = ${F(el)} %. ε_t = ${Fd(dt, 1)}/${Fd(t, 1)} = ${F(et)} %. T = t/20: t də, Δt də 20 dəfə bölünür, ona görə ε_T = ε_t = ${F(et)} %. g ~ l/T², ona görə ε_g = ε_l + 2ε_T = ${F(el)} + 2·${F(et)} = ${F(right)} %.`);
+    }) },
+    // 4. a = ω²R: absolute error of the acceleration (centripetal motion)
+    { tip: "qapali", birlesik: "fiz-cevre-herekat", gen: () => again(() => {
+      const w = pick([2, 3, 4, 5]), dw = pick([0.02, 0.04, 0.05, 0.1]), R = pick([0.2, 0.25, 0.4, 0.5]), dR = pick([0.002, 0.005, 0.01]);
+      const ew = r6(dw / w * 100), eR = r6(dR / R * 100), a = r6(w * w * R), e = r6(2 * ew + eR), right = r6(a * e / 100);
+      if (!nice(ew, 2) || !nice(eR, 2) || !nice(a, 2) || !nice(right, 3)) return null;
+      const r = mk(right, [[a * (ew + eR) / 100, "ω-nın üstünü (kvadratı) unutmaq"], [a * (ew + 2 * eR) / 100, "kvadratı R-ə aid etmək"], [a * 2 * ew / 100, "R-in xətasını nəzərə almamaq"],
+        [a * Math.abs(2 * ew - eR) / 100, "nisbi xətaları çıxmaq"], [a * 2 * (ew + eR) / 100, "kvadratı hər iki kəmiyyətə aid etmək"]], fmtU("m/s²"), 3);
+      return fin(r, { svg: wrap(figTurn(w, dw, R, dR)), text: `Fırlanan oturacaqda bucaq sürəti ω = (${Fd(w, 2)} ± ${Fd(dw, 2)}) rad/s, oxdan məsafə R = (${Fd(R, 3)} ± ${Fd(dR, 3)}) m (şəkildə). Mərkəzəqaçma təcilinin (a = ω²R) mütləq xətası Δa neçədir?` },
+        `ε_ω = ${F(dw)}/${F(w)} = ${F(ew)} %, ε_R = ${F(dR)}/${F(R)} = ${F(eR)} %. a = ${F(w)}²·${F(R)} = ${F(a)} m/s². ε_a = 2ε_ω + ε_R = 2·${F(ew)} + ${F(eR)} = ${F(e)} %. Δa = ${F(a)}·${F(e)}/100 = ${F(right)} m/s².`);
+    }) },
+    // 5. least squares through the origin on a force–extension graph (Hooke's law)
+    { tip: "qapali", birlesik: "fiz-huk", gen: () => again(() => {
+      const [xs, es, k, mm] = pick(HOOKE_OK), n = 4, idx = [1, 2, 3, 4];
+      const x = idx.map(i => r6(i * xs)), y = x.map((v, j) => r6(k * v + mm[j] * es));
+      if (y.some(v => v <= 0)) return null;
+      const sxy = r6(x.reduce((a, v, i) => a + v * y[i], 0)), sxx = r6(x.reduce((a, v) => a + v * v, 0)), sx = r6(x.reduce((a, v) => a + v, 0)), sy = r6(y.reduce((a, v) => a + v, 0));
+      if (r6(sxy / sxx) !== k) return null;
+      const r = mk(k, [[sy / sx, "ΣF/Σx götürmək (hər cərgəni ayrıca toplamaq)"], [y[n - 1] / x[n - 1], "yalnız axırıncı nöqtəni götürmək"], [(y[n - 1] - y[0]) / (x[n - 1] - x[0]), "yalnız iki kənar nöqtənin mailliyini götürmək"],
+        [sxy / sx, "məxrəcdə Σx² əvəzinə Σx götürmək"], [sxy / (sx * sx), "məxrəcdə Σx² əvəzinə (Σx)² götürmək"]], fmtU("N/m"), 2);
+      const st = [0.5, 1, 2, 2.5, 5, 10, 20].find(s => (y[n - 1] + es) / s <= 6), ym = Math.ceil((y[n - 1] + es) / st) * st;
+      const svg = wrap(graph({ xmax: r6(5 * xs), ymax: ym, gx: xs, gy: st, lx: xs, ly: st, xlab: "x, m", ylab: "F, N", pts: x.map((v, i) => [v, y[i]]), alt: "Yayın F – x ölçmə nöqtələri" }));
+      return fin(r, { svg, text: `Yayın dartılma qüvvəsi F uzanma x-dən asılı ölçülüb (şəkildə nöqtələr). x, m: ${x.map(F).join("; ")}. F, N: ${y.map(F).join("; ")}. Düz xətt başlanğıcdan keçir (F = kx). Ən kiçik kvadratlar üsulu ilə yayın sərtliyi k = Σ(Fx)/Σx² neçədir?` },
+        `Σ(Fx) = ${x.map((v, i) => `${F(v)}·${F(y[i])}`).join(" + ")} = ${F(sxy)}. Σx² = ${x.map(v => F(r6(v * v))).join(" + ")} = ${F(sxx)}. k = ${F(sxy)}/${F(sxx)} = ${F(k)} N/m.`);
+    }) },
+    // 6. slope of a T²–l graph read in centimetres → g
+    { tip: "qapali", gen: () => again(() => {
+      const km = pick([2.5, 4, 5]), x1 = pick([20, 40]), x2 = pick([80, 100]), ks = r6(km / 100);
+      const yy = x => r6(km * x / 100), y1 = yy(x1), y2 = yy(x2), g = r6(39.5 / km);
+      if (!nice(y1, 2) || !nice(y2, 2) || !nice(g, 3)) return null;
+      const r = mk(g, [[39.5 * km, "g = 4π²·k yazmaq (maillik tərs düşür)"], [km, "mailliyi g-yə bərabər tutmaq"], [39.5 / ks, "sm-i m-ə çevirməmək"], [39.5 * ks, "həm tərs düstur, həm də sm-i çevirməmək"], [ks, "mailliyi sm-lə g sanmaq"]], fmtU("m/s²"), 3);
+      const ymax = Math.ceil(yy(120) + 0.2), pts = [20, 40, 60, 80, 100].map(x => [x, r6(Math.max(0.05, yy(x) + pick([-0.1, 0, 0.1])))]);
+      const svg = wrap(graph({ xmax: 120, ymax, gx: 20, gy: 1, lx: 20, ly: 1, xlab: "l, sm", ylab: "T², s²", pts, lines: [{ p: [[0, 0], [120, yy(120)]] }],
+        marks: [{ x: x1, y: y1, label: `A (${x1}; ${F(y1)})`, dx: 10, dy: 20 }, { x: x2, y: y2, label: `B (${x2}; ${F(y2)})`, dx: -10, dy: -10, anchor: "end" }], alt: "T² – l qrafiki, l santimetrlə" }));
+      return fin(r, { svg, text: `Rəqqasın T² – l qrafikinin düz xətti başlanğıcdan keçir, şəkildəki A və B nöqtələrindən də keçir (l santimetrlə, T² s²-lə). T² = (4π²/g)·l, 4π² = 39,5. g neçə m/s²-dir?` },
+        `A (${x1}; ${F(y1)}) və B (${x2}; ${F(y2)}): k = (${F(y2)} − ${F(y1)})/(${x2} − ${x1}) = ${F(r6(y2 - y1))}/${x2 - x1} = ${F(ks)} s²/sm = ${F(km)} s²/m (1 m = 100 sm). g = 4π²/k = 39,5/${F(km)} = ${F(g)} m/s².`);
+    }) },
+    // 7. extreme lines on an F–x graph, then the error of E = kx²/2 (Hooke's law)
+    { tip: "qapali", birlesik: "fiz-huk", gen: () => again(() => {
+      const [k, dk] = pick([[40, 2], [50, 1], [50, 2], [80, 2], [80, 4], [100, 2], [100, 4], [100, 5], [120, 3], [120, 6], [150, 3], [150, 6]]), [x0, dx] = pick([[0.2, 0.002], [0.2, 0.004], [0.2, 0.01], [0.4, 0.004], [0.4, 0.008], [0.1, 0.001], [0.1, 0.002]]);
+      const ek = r6(dk / k * 100), ex = r6(dx / x0 * 100), right = r6(ek + 2 * ex), kmax = k + dk, kmin = k - dk;
+      if (!nice(ek, 2) || !nice(ex, 2)) return null;
+      const r = mk(right, [[ek + ex, "x²-nin üstünü (kvadratı) unutmaq"], [2 * ek + 2 * ex, "Δk-nı yarıya bölməmək"], [2 * ek + ex, "Δk-nı yarıya bölməmək və üstü unutmaq"], [Math.abs(ek - 2 * ex), "nisbi xətaları çıxmaq"], [ek + 4 * ex, "üstü 2 əvəzinə 4 götürmək"]], fmtU("%"), 2);
+      const st = [5, 10, 20, 25, 50].find(s => kmax * 0.5 / s <= 6), ymax = Math.ceil(kmax * 0.5 / st) * st;
+      return fin(r, { svg: wrap(figLines(kmin, k, kmax, 0.5, ymax, st)), text: `Yayın F – x qrafikində iki ifrat xətt çəkilib (şəkildə qırmızı): k_max = ${kmax} N/m, k_min = ${kmin} N/m. Uzanma x = (${Fd(x0, 3)} ± ${Fd(dx, 3)}) m ölçülüb. k = (k_max + k_min)/2, Δk = (k_max − k_min)/2 götür. Yayın potensial enerjisi E = kx²/2-nin nisbi xətası neçə faizdir?` },
+        `k = (${kmax} + ${kmin})/2 = ${k} N/m, Δk = (${kmax} − ${kmin})/2 = ${dk} N/m, ε_k = ${dk}/${k} = ${F(ek)} %. ε_x = ${F(dx)}/${F(x0)} = ${F(ex)} %. E ~ kx²: ε_E = ε_k + 2ε_x = ${F(ek)} + 2·${F(ex)} = ${F(right)} %.`);
+    }) },
+    // 8. intercept of a T²–L graph: radius of the ball
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 4, 5]), r0 = pick([1, 1.5, 2, 2.5, 3, 4]), b = r6(k * r0 / 100);
+      if (!nice(b, 3)) return null;
+      const yy = x => r6(k * x + b), y1 = yy(0.4), y2 = yy(1);
+      if (!nice(y1, 3) || !nice(y2, 3)) return null;
+      const r = mk(r0, [[r0 / 100, "metri sm-ə çevirməmək"], [b * k * 100, "bölmə əvəzinə vurmaq (b·k)"], [k / b, "nisbəti tərs yazmaq (k/b)"], [b * 100, "kəsməni birbaşa radius sanmaq"], [2 * r0, "radiusun yerinə diametri götürmək"]], fmtU("sm"), 3);
+      const ymax = Math.ceil(yy(1.2) + 0.2), pts = [0.2, 0.4, 0.6, 0.8, 1].map(x => [x, r6(Math.max(0.05, yy(x) + pick([-0.05, 0, 0.05])))]);
+      const svg = wrap(graph({ xmax: 1.2, ymax, gx: 0.2, gy: 1, lx: 0.2, ly: 1, xlab: "L, m", ylab: "T², s²", pts, lines: [{ p: [[0, b], [1.2, yy(1.2)]] }],
+        marks: [{ x: 0, y: b, noGuide: true }, { x: 0.4, y: y1, label: `A (0,4; ${F(y1)})`, dx: 10, dy: 20 }, { x: 1, y: y2, label: `B (1; ${F(y2)})`, dx: -10, dy: -10, anchor: "end" }], alt: "T² – L qrafiki, ordinat oxunda kəsmə b" }));
+      return fin(r, { svg, text: `Rəqqasın ipinin uzunluğu L ölçülüb, topun radiusu r isə L-ə daxil edilməyib: T² = (4π²/g)·(L + r). T² – L qrafikinin düz xətti şəkildəki A və B nöqtələrindən keçir və ordinat oxunu b = ${F(b)} s²-də kəsir. Topun radiusu neçə santimetrdir?` },
+        `k = (${F(y2)} − ${F(y1)})/(1 − 0,4) = ${F(r6(y2 - y1))}/0,6 = ${F(k)} s²/m. T² = k(L + r) = kL + kr, deməli b = kr. r = b/k = ${F(b)}/${F(k)} = ${F(r6(b / k))} m = ${F(r0)} sm.`);
+    }) },
+    // 9. R = U/I from a voltmeter and an ammeter (Ohm's law)
+    { tip: "qapali", birlesik: "fiz-om", gen: () => again(() => {
+      const U = pick([5, 10, 12, 20, 24]), dU = pick([0.1, 0.2, 0.5]), I = pick([0.5, 1, 2, 2.5, 4]), dI = pick([0.01, 0.02, 0.05]);
+      const eU = r6(dU / U * 100), eI = r6(dI / I * 100), R = r6(U / I), e = r6(eU + eI), right = r6(R * e / 100);
+      if (!nice(eU, 2) || !nice(eI, 2) || !nice(R, 2) || !nice(right, 3)) return null;
+      const r = mk(right, [[R * Math.abs(eU - eI) / 100, "nisbi xətaları çıxmaq"], [dU + dI, "mütləq xətaları toplamaq (vahidləri qarışdırmaq)"], [R * eU / 100, "ampermetrin xətasını nəzərə almamaq"], [R * eI / 100, "voltmetrin xətasını nəzərə almamaq"], [e, "faizi mütləq xəta kimi yazmaq"]], fmtU("Ω"), 3);
+      return fin(r, { svg: wrap(figCirc(U, dU, I, dI)), text: `Rezistorun müqaviməti R = U/I düsturu ilə tapılır. Voltmetr U = (${Fd(U, 1)} ± ${Fd(dU, 1)}) V, ampermetr I = (${Fd(I, 2)} ± ${Fd(dI, 2)}) A göstərir (şəkildə; cihazlar idealdır). R-in mütləq xətası ΔR neçə Ω-dur?` },
+        `R = ${F(U)}/${F(I)} = ${F(R)} Ω. ε_U = ${F(dU)}/${F(U)} = ${F(eU)} %, ε_I = ${F(dI)}/${F(I)} = ${F(eI)} %. Nisbətdə nisbi xətalar toplanır: ε_R = ${F(eU)} + ${F(eI)} = ${F(e)} %. ΔR = ${F(R)}·${F(e)}/100 = ${F(right)} Ω.`);
+    }) },
+    // 10. density of a cylinder: instrument errors of three devices, ε_ρ = ε_m + 2ε_d + ε_h (measuring instruments)
+    { tip: "qapali", birlesik: "fiz-olcme", gen: () => again(() => {
+      const d = pick([10, 20, 25]), h = pick([50, 100, 125, 200]), m = pick([100, 200, 250]);
+      const ed = r6(0.05 / d * 100), eh = r6(0.5 / h * 100), em = r6(0.5 / m * 100), right = r6(em + 2 * ed + eh);
+      if (![ed, eh, em, right].every(v => nice(v, 2))) return null;
+      const r = mk(right, [[em + ed + eh, "d²-nin üstünü (kvadratı) unutmaq"], [Math.abs(em - 2 * ed - eh), "m/V nisbətində xətaları çıxmaq"], [em + 2 * ed, "hündürlüyün xətasını atmaq"], [em + 4 * ed + eh, "cihaz xətası kimi bölgünün özünü götürmək (d üçün)"],
+        [2 * em + 2 * ed + eh, "üstü kütləyə də aid etmək"]], fmtU("%"), 2);
+      return fin(r, { svg: wrap(figCyl(d, h, m)), text: `Silindrik cismin sıxlığı ρ = 4m/(πd²h) düsturu ilə tapılır. Ölçmələr (şəkildə): d = ${Fd(d, 1)} mm (kumpas, bölgü 0,1 mm), h = ${h} mm (xətkeş, bölgü 1 mm), m = ${m} q (tərəzi, bölgü 1 q). Hər cihazın xətası bölgünün yarısıdır. Sıxlığın nisbi xətası neçə faizdir? (π dəqiq götürülür.)` },
+        `Δd = 0,1/2 = 0,05 mm, Δh = 1/2 = 0,5 mm, Δm = 1/2 = 0,5 q. ε_d = 0,05/${Fd(d, 1)} = ${F(ed)} %, ε_h = 0,5/${h} = ${F(eh)} %, ε_m = 0,5/${m} = ${F(em)} %. ρ ~ m/(d²h): ε_ρ = ε_m + 2ε_d + ε_h = ${F(em)} + 2·${F(ed)} + ${F(eh)} = ${F(right)} %.`);
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -301,7 +517,7 @@
     game = Oyun.mount({
       key: "fiz-xetalar", title: "Ölçmələr və xətalar", fenn: "fizika", link: "dersler/fiz-xetalar.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (%, s, m, sm, s²/m, N/m, Ω, m/s²). Onluq kəsr vergül və ya nöqtə ilə: 0,25. 4π² = 39,5 (yalnız qeyd olunanda).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["mutleq", "mutleq", "nisbi", "nisbi", "reqres", "qrafik", "qrafik", "eksen", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

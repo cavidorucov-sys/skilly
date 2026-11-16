@@ -1405,7 +1405,8 @@
     "riyaziyyat:Ölçü vahidləri və statistika: median, moda, diaqramlar"
    ],
    "hefte": "2026-12-21",
-   "ders": "dersler/fiz-xetalar.html"
+   "ders": "dersler/fiz-xetalar.html",
+   "imt": true
   },
   {
    "bolme": "Rəqslər və dalğalar",
