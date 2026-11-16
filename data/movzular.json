@@ -1240,7 +1240,8 @@
     "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
    ],
    "hefte": "2026-11-30",
-   "ders": "dersler/fiz-istilik.html"
+   "ders": "dersler/fiz-istilik.html",
+   "imt": true
   },
   {
    "bolme": "Molekulyar və istilik fizikası",

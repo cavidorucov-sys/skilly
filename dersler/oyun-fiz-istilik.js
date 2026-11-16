@@ -187,6 +187,159 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, each with a graph or a picture and
+  // several steps; the wrong options are the answers of typical mistakes. Questions 2 and 8 also use "İş və güc"
+  // (Q = P·τ), 6 uses "Enerjinin saxlanması" (mgh + mv²/2), 7 uses "Enerji" (mv²/2).
+  const { ae, again } = Oyun;
+  const ok = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  const fr = (p, q) => { const g = gcd(p, q); return q / g === 1 ? String(p / g) : p / g + "/" + q / g; };
+  // @fig-start — SVG helpers (string based)
+  const INK = "var(--ink,#17171a)", ACC = "var(--accent,#a32d2d)", MUT = "var(--muted,#6b6b73)", PAP = "var(--paper,#fff)", VEC = "var(--vec,#0c447c)";
+  const f1 = n => +(+n).toFixed(1);
+  const Ln = (x1, y1, x2, y2, c = INK, w = 2, ex = "") => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+  const Tx = (x, y, s, a = "middle", c = INK, sz = 13) => `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+  const Ar = (x1, y1, x2, y2, c = ACC, w = 2.5) => Ln(x1, y1, x2, y2, c, w, ` marker-end="url(#ti-ar)"`);
+  const Ar2 = (x1, y1, x2, y2, c = INK, w = 1.5) => Ln(x1, y1, x2, y2, c, w, ` marker-start="url(#ti-ar)" marker-end="url(#ti-ar)"`);
+  const Dash = (x1, y1, x2, y2) => Ln(x1, y1, x2, y2, MUT, 1.2, ` stroke-dasharray="4 3"`);
+  const Rc = (x, y, w, h, fill = PAP, c = INK, sw = 2) => `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${fill}" stroke="${c}" stroke-width="${sw}"/>`;
+  const hatch = (x1, y, x2, down = true) => { let s = Ln(x1, y, x2, y, INK, 2); for (let x = x1 + 6; x <= x2; x += 10) s += Ln(x, y, x - 7, y + (down ? 8 : -8), MUT, 1.2); return s; };
+  const vhatch = (x, y1, y2, left = true) => { let s = Ln(x, y1, x, y2, INK, 2); for (let y = y1 + 6; y <= y2; y += 10) s += Ln(x, y, x + (left ? -8 : 8), y - 7, MUT, 1.2); return s; };
+  const svgStr = (w, h, inner, aria) => `<svg viewBox="0 0 ${w} ${h}" class="oy-svg" role="img" aria-label="${aria}"><defs><marker id="ti-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>${inner}</svg>`;
+  // graph: origin (0; 0), lines [{ p: [[x, y], [x, y]], c, n }], marks [[x, y]] with dashed projections and their values on the axes
+  function graphStr(o) {
+    const L = 46, R = 262, Tp = 22, B = 172, xMax = o.xMax, yMax = o.yMax;
+    const X = x => L + (R - L - 18) * x / xMax, Y = y => B - (B - Tp - 12) * y / yMax;
+    let s = Ar(L, B, R, B, INK, 1.6) + Ar(L, B, L, Tp - 8, INK, 1.6) + Tx(R, B + 30, o.xLab, "end", INK, 12) + Tx(L + 6, Tp - 6, o.yLab, "start", INK, 12) + Tx(L - 6, B + 15, "0", "end", MUT, 11);
+    (o.marks || []).forEach(([x, y]) => {
+      if (y) s += Dash(L, Y(y), X(x), Y(y)) + Tx(L - 6, Y(y) + 4, F(y), "end", MUT, 11);
+      if (x) s += Dash(X(x), B, X(x), Y(y)) + Tx(X(x), B + 15, F(x), "middle", MUT, 11);
+    });
+    (o.lines || []).forEach(l => { const [[a, b], [c, d]] = l.p; s += Ln(X(a), Y(b), X(c), Y(d), l.c || ACC, 2.5); if (l.n) s += Tx(X(c) + 6, Y(d) + 4, l.n, "start", l.c || ACC); });
+    (o.marks || []).forEach(([x, y]) => { s += `<circle cx="${f1(X(x))}" cy="${f1(Y(y))}" r="3.5" fill="${INK}"/>`; });
+    return svgStr(280, 210, s, o.aria);
+  }
+  const ringStr = () => svgStr(310, 150, `<circle cx="80" cy="72" r="44" fill="none" stroke="${MUT}" stroke-width="12"/>` + Ar2(43, 72, 117, 72) + Tx(80, 65, "d")
+    + Tx(80, 140, "halqa", "middle", MUT, 12) + Rc(160, 30, 80, 84, PAP) + Ar2(252, 30, 252, 114) + Tx(258, 77, "d + δ", "start", INK, 12) + Tx(200, 140, "val (yan görünüş)", "middle", MUT, 12),
+    "Halqa (daxili diametri d) və diametri d + δ olan val");
+  const ballStr = () => svgStr(260, 200, hatch(30, 180, 230) + `<circle cx="90" cy="34" r="10" fill="${ACC}"/>` + Ar(90, 50, 90, 96, VEC) + Tx(98, 82, "v₀", "start", VEC)
+    + Ar2(170, 34, 170, 178) + Dash(100, 34, 170, 34) + Tx(178, 112, "h", "start"), "Kürəcik h hündürlükdən v₀ sürətlə şaquli aşağı atılır");
+  const bulletStr = () => svgStr(290, 150, Rc(132, 20, 24, 110, MUT, INK, 2) + `<ellipse cx="50" cy="75" rx="12" ry="5" fill="${ACC}"/>` + Ar(66, 75, 122, 75, VEC) + Tx(92, 66, "v₁", "middle", VEC)
+    + `<ellipse cx="190" cy="75" rx="12" ry="5" fill="${ACC}"/>` + Ar(206, 75, 236, 75, VEC) + Tx(222, 66, "v₂", "middle", VEC) + Tx(144, 145, "lövhə", "middle", MUT, 12), "Güllə v₁ sürətlə lövhəyə girir, v₂ sürətlə çıxır");
+  const potStr = () => svgStr(280, 190, `<path d="M70 95L70 150L210 150L210 95" fill="${VEC}" fill-opacity=".18" stroke="none"/>` + `<path d="M70 50L70 150L210 150L210 50" fill="none" stroke="${INK}" stroke-width="3"/>`
+    + Ln(70, 95, 210, 95, VEC, 1.5) + Tx(140, 128, "su, m₂", "middle", VEC) + Tx(222, 70, "qab, m₁", "start", INK, 12) + Rc(55, 154, 170, 14, ACC, INK, 1.5) + Tx(140, 186, "qızdırıcı, P", "middle", ACC, 12),
+    "Alüminium qabda su; qab qızdırıcının üstündədir");
+  function rodsStr(l1, l2, n1, n2) { const W = 200, g = 18, w1 = (W - g) * l1 / (l1 + l2), w2 = W - g - w1, xa = 40, xb = xa + w1, xc = xb + g;
+    const cl = x => Math.min(Math.max(x, xa + 45), xa + W - 45);
+    return svgStr(280, 150, vhatch(xa, 30, 120, true) + vhatch(xa + W, 30, 120, false) + Rc(xa, 68, w1, 16, MUT) + Rc(xc, 68, w2, 16, PAP) + Tx(cl(xa + w1 / 2), 106, n1 + ", l₁", "middle", INK, 12) + Tx(cl(xc + w2 / 2), 140, n2 + ", l₂", "middle", INK, 12) + Ln(cl(xc + w2 / 2), 128, xc + w2 / 2, 88, MUT, 1)
+      + Ln(cl(xa + w1 / 2), 95, xa + w1 / 2, 84, MUT, 1)
+      + Ln(xb, 62, xb, 44, MUT, 1) + Ln(xc, 62, xc, 44, MUT, 1) + Ar2(xb, 50, xc, 50, INK, 1.2) + Tx((xb + xc) / 2, 40, "δ"), "Divarlar arasında iki çubuq, uclarının arasında δ boşluq"); }
+  const cubeStr = () => svgStr(260, 170, `<path d="M60 70L130 70L130 140L60 140Z" fill="${PAP}" stroke="${INK}" stroke-width="2"/><path d="M60 70L90 45L160 45L130 70Z" fill="${PAP}" stroke="${INK}" stroke-width="2"/><path d="M130 70L160 45L160 115L130 140Z" fill="${PAP}" stroke="${INK}" stroke-width="2"/>`
+    + Ar2(60, 154, 130, 154) + Tx(95, 168, "a") + Ar(225, 95, 172, 95) + Tx(232, 100, "Q", "start"), "Tili a olan kub; ona Q istilik verilir");
+  // @fig-end
+  const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. a scale X given by a graph against Celsius; the answer in kelvins
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([10, 20, 25, 30, 40]), s = pick([50, 80, 120, 150, 200, 250]), b = a + s, real = 5 * rnd(1, 19), x = a + s * real / 100;
+      if (!nice(x, 1)) return null;
+      const T = real + 273, w = [real, x - a + 273, x * 100 / s + 273, (x - a) * s / 100 + 273]; if (![T, ...w].every(v => ok(v, 1))) return null;
+      return mc(ae(T, w, U_("K")), { svg: svgEl(graphStr({ xMax: 120, yMax: b * 1.2, xLab: "t_C, °C", yLab: "t_X, °X", lines: [{ p: [[0, a], [115, a + s * 1.15]] }], marks: [[0, a], [100, b]], aria: "X şkalasının Selsi şkalasından asılılıq qrafiki" })),
+        text: `Qrafikdə X termometrinin göstərişinin (t_X) Selsi temperaturundan (t_C) asılılığı verilib. X termometri ${F(x)}° göstərəndə temperatur Kelvin şkalasında nə qədərdir? (T = t_C + 273 götür.)`,
+        solution: `Qrafikdən: 0 °C ↔ ${a}°X, 100 °C ↔ ${b}°X, yəni 100 °C = ${s} bölgü. t_C = 100·(${F(x)} − ${a})/${s} = ${real} °C. T = ${real} + 273 = ${T} K. Tələlər: 273-ü əlavə etməmək (${real}), şkala fərqini nəzərə almamaq (${F(x - a + 273)}), sıfırın sürüşməsini unutmaq (${F(x * 100 / s + 273)}), nisbəti tərsinə götürmək (${F((x - a) * s / 100 + 273)}).` });
+    }) },
+    // 2. specific heat from a heating graph t(τ) and the heater power (Q = P·τ)
+    { tip: "qapali", birlesik: "fiz-is-guc", gen: () => again(() => {
+      const c = pick([400, 900, 1200, 1800, 2100, 2400, 4200]), m = pick([0.5, 2, 3, 4, 5]), k = pick([2, 4, 5, 10]), t0 = pick([10, 15, 20]), r1 = rnd(1, 3), r2 = r1 + rnd(2, 5);
+      const t1 = t0 + k * r1, t2 = t0 + k * r2, P = c * m * k / 60; if (t2 > 100 || !Number.isInteger(P) || P < 100 || P > 3000) return null;
+      const w = [c / 60, c * r2 / (r2 - r1), c * (t2 - t1) / t2, c * m]; if (![c, ...w].every(v => ok(v, 1))) return null;
+      return mc(ae(c, w, U_("J/(kq·°C)")), { svg: svgEl(graphStr({ xMax: r2 * 1.3, yMax: Math.max(t2 * 1.25, 20), xLab: "τ, dəq", yLab: "t, °C", lines: [{ p: [[0, t0], [r2 * 1.2, t0 + k * r2 * 1.2]] }], marks: [[r1, t1], [r2, t2]], aria: "Cismin temperaturunun zamandan asılılıq qrafiki" })),
+        text: `Gücü ${P} W olan qızdırıcı ${F(m)} kq kütləli cismi qızdırır. Qrafikdə cismin temperaturunun zamandan asılılığı verilib. Qızdırıcının bütün istiliyi cismə verilir. Cismin maddəsinin xüsusi istilik tutumu nə qədərdir?`,
+        solution: `Qrafikdən: τ₁ = ${r1} dəq və τ₂ = ${r2} dəq anları arasında Δτ = ${r2 - r1} dəq = ${60 * (r2 - r1)} s, Δt = ${t2} − ${t1} = ${t2 - t1} °C. Q = P·Δτ = ${P}·${60 * (r2 - r1)} = ${P * 60 * (r2 - r1)} J. c = Q/(mΔt) = ${P * 60 * (r2 - r1)}/(${F(m)}·${t2 - t1}) = ${c} J/(kq·°C). Tələlər: dəqiqəni saniyəyə çevirməmək (${F(c / 60)}), vaxt kimi τ₂ = ${r2} dəq götürmək (${F(c * r2 / (r2 - r1))}), Δt yerinə son temperaturu yazmaq (${F(c * (t2 - t1) / t2)}), kütləni unutmaq (${F(c * m)}).` });
+    }) },
+    // 3. two bodies on one t(Q) graph, masses given: the ratio of specific heats
+    { tip: "qapali", gen: () => again(() => {
+      const m1 = rnd(1, 4), m2 = rnd(1, 4), t0 = pick([10, 20]), Q = pick([6, 8, 10, 12, 15, 20]), d1 = pick([10, 20, 30, 40, 50]), d2 = pick([10, 20, 30, 40, 50]);
+      if (m1 === m2 || Math.abs(d1 - d2) < 20) return null;
+      const t1 = t0 + d1, t2 = t0 + d2, right = fr(m2 * d2, m1 * d1);
+      const w = [fr(d2, d1), fr(m1 * d1, m2 * d2), fr(m2 * t2, m1 * t1), fr(m1 * d2, m2 * d1)];
+      if (right === "1") return null;
+      return mc(ae(right, w, x => x), { svg: svgEl(graphStr({ xMax: Q * 1.3, yMax: Math.max(t1, t2) * 1.25, xLab: "Q, kJ", yLab: "t, °C", lines: [{ p: [[0, t0], [Q * 1.15, t0 + d1 * 1.15]], c: ACC, n: "1" }, { p: [[0, t0], [Q * 1.15, t0 + d2 * 1.15]], c: VEC, n: "2" }], marks: [[Q, t1], [Q, t2], [0, t0]], aria: "İki cismin temperaturunun aldığı istilik miqdarından asılılıq qrafiki" })),
+        text: `Qrafikdə 1 və 2 cisimlərinin temperaturunun aldıqları istilik miqdarından asılılığı verilib. Cisimlərin kütlələri m₁ = ${m1} kq, m₂ = ${m2} kq-dır. Xüsusi istilik tutumlarının nisbəti c₁/c₂ nə qədərdir?`,
+        solution: `Eyni Q = ${Q} kJ-da: Δt₁ = ${t1} − ${t0} = ${d1} °C, Δt₂ = ${t2} − ${t0} = ${d2} °C. c = Q/(mΔt), deməli c₁/c₂ = m₂Δt₂/(m₁Δt₁) = ${m2}·${d2}/(${m1}·${d1}) = ${right}. Tələlər: kütlələri unutmaq (${fr(d2, d1)}), nisbəti tərsinə yazmaq (${fr(m1 * d1, m2 * d2)}), Δt yerinə son temperaturları götürmək (${fr(m2 * t2, m1 * t1)}), kütlələri yanlış tərəfə yazmaq (${fr(m1 * d2, m2 * d1)}).` });
+    }) },
+    // 4. linear expansion coefficient from a Δl(t) graph
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([9, 12, 17, 19, 24]), l0 = pick([0.5, 2, 4, 5, 10]), t1 = pick([10, 20, 25, 30]), d = pick([40, 50, 60, 80, 100, 120, 150, 200]), t2 = t1 + d, dl = k * l0 * d / 1000;
+      if (!ok(dl, 2)) return null;
+      const A = v => F(+v.toFixed(4)) + "·10⁻⁶ °C⁻¹", w = [F(k) + "·10⁻³ °C⁻¹", A(10 * k), A(k * d / t2), A(k * l0)];
+      if (![k * d / t2, k * l0].every(v => ok(v, 1))) return null;
+      return mc(ae(A(k), w, x => x), { svg: svgEl(graphStr({ xMax: t2 * 1.25, yMax: dl * 1.3, xLab: "t, °C", yLab: "Δl, mm", lines: [{ p: [[t1, 0], [t2 * 1.15, dl * (t2 * 1.15 - t1) / d]] }], marks: [[t1, 0], [t2, dl]], aria: "Çubuğun uzanmasının temperaturdan asılılıq qrafiki" })),
+        text: `Uzunluğu ${F(l0)} m olan metal çubuq qızdırılır. Qrafikdə onun uzanmasının (Δl) temperaturdan asılılığı verilib. Metalın xətti genişlənmə əmsalı nə qədərdir?`,
+        solution: `Qrafikdən: ${t1} °C-dən ${t2} °C-yə qədər Δt = ${d} °C, Δl = ${F(dl)} mm = ${F(dl / 1000)} m. α = Δl/(l₀Δt) = ${F(dl / 1000)}/(${F(l0)}·${d}) = ${k}·10⁻⁶ °C⁻¹. Tələlər: millimetri metrə çevirməmək (${k}·10⁻³), 1 m = 100 mm götürmək (${10 * k}·10⁻⁶), Δt yerinə ${t2} °C yazmaq (${F(k * d / t2)}·10⁻⁶), l₀-a bölməyi unutmaq (${F(k * l0)}·10⁻⁶).` });
+    }) },
+    // 5. a ring heated to slide onto a shaft (the hole expands too)
+    { tip: "qapali", gen: () => again(() => {
+      const M = pick(ALF.filter(x => x.n !== "şüşə" && x.n !== "beton")), a = M.a, d = pick([5, 8, 10, 20, 25, 40]), dt = pick([100, 125, 150, 200, 250, 300]), t0 = pick([15, 20, 25]), del = dt * a * d / 1e5;
+      if (!ok(del, 3)) return null;
+      const T = t0 + dt, w = [dt, t0 - dt, t0 + 2 * dt, t0 + dt / 10]; if (!nice(dt / 10, 1)) return null;
+      const nm = M.n[0].toUpperCase() + M.n.slice(1);
+      return mc(ae(T, w, U_("°C")), { svg: svgEl(ringStr()),
+        text: `${nm} halqanın (α = ${a}·10⁻⁶ °C⁻¹) daxili diametri ${t0} °C-də d = ${d} sm-dir. Halqanı diametri ondan δ = ${F(del)} mm böyük olan vala keçirmək lazımdır. Halqanı ən azı hansı temperatura qədər qızdırmaq lazımdır? Valın temperaturu dəyişmir.`,
+        solution: `Deşik də genişlənir: Δd = α·d·Δt. Δd = δ = ${F(del)} mm = ${F(del / 10)} sm. Δt = δ/(αd) = ${F(del / 10)}/(${a}·10⁻⁶·${d}) = ${dt} °C. t = ${t0} + ${dt} = ${T} °C. Tələlər: başlanğıc temperaturu əlavə etməmək (${dt}), deşiyin kiçildiyini düşünüb soyutmaq (${F(t0 - dt)}), diametr yerinə radiusa bölmək (${t0 + 2 * dt}), sm-i mm ilə qarışdırmaq (${F(t0 + dt / 10)}).` });
+    }) },
+    // 6. a ball thrown down hits the ground: part of its mechanical energy heats it (energy conservation)
+    { tip: "qapali", birlesik: "fiz-enerji-saxlanma", gen: () => again(() => {
+      const M = pick([{ n: "qurğuşun", c: 125 }, { n: "mis", c: 400 }, { n: "polad", c: 500 }]), h0 = pick([10, 20, 25, 30, 40, 50, 60, 80]), v = pick([10, 20, 30, 40]), eta = pick([0.4, 0.5, 0.6, 0.8]);
+      const E = 10 * h0 + v * v / 2, right = eta * E / M.c;
+      const w = [eta * 10 * h0 / M.c, E / M.c, eta * (10 * h0 + v * v) / M.c, eta * v * v / 2 / M.c]; if (![right, ...w].every(x => ok(x, 2))) return null;
+      return mc(ae(right, w, U_("°C")), { svg: svgEl(ballStr()),
+        text: `${M.n[0].toUpperCase() + M.n.slice(1)} kürəcik h = ${h0} m hündürlükdən v₀ = ${v} m/s sürətlə şaquli aşağı atılır, yerə dəyib dayanır. Mexaniki enerjinin ${Math.round(eta * 100)}%-i kürəciyin daxili enerjisinə keçir. Kürəciyin temperaturu neçə dərəcə artar? Hava müqaviməti nəzərə alınmır, g = 10 m/s², c = ${M.c} J/(kq·°C).`,
+        solution: `1 kq üçün mexaniki enerji: gh + v₀²/2 = ${10 * h0} + ${v * v / 2} = ${E} J/kq. η(gh + v₀²/2)·m = cmΔt, kütlə ixtisar olunur: Δt = ${F(eta)}·${E}/${M.c} = ${F(right)} °C. Tələlər: başlanğıc sürəti unutmaq (${F(eta * 10 * h0 / M.c)}), η-nı unutmaq (${F(E / M.c)}), v₀²/2-də 2-yə bölməmək (${F(eta * (10 * h0 + v * v) / M.c)}), hündürlüyü unutmaq (${F(eta * v * v / 2 / M.c)}).` });
+    }) },
+    // 7. a bullet goes through a board: part of the lost kinetic energy heats it
+    { tip: "qapali", birlesik: "fiz-enerji", gen: () => again(() => {
+      const M = pick([{ n: "qurğuşun", c: 125 }, { n: "mis", c: 400 }, { n: "polad", c: 500 }]), v1 = pick([200, 300, 400, 500, 600]), v2 = pick([100, 200, 300, 400]), eta = pick([0.3, 0.4, 0.5, 0.6, 0.8]);
+      if (v2 >= v1) return null;
+      const dE = (v1 * v1 - v2 * v2) / 2, right = eta * dE / M.c; if (right > 300) return null;
+      const w = [eta * (v1 - v2) ** 2 / 2 / M.c, eta * v1 * v1 / 2 / M.c, 2 * right, dE / M.c]; if (![right, ...w].every(x => ok(x, 1))) return null;
+      return mc(ae(right, w, U_("°C")), { svg: svgEl(bulletStr()),
+        text: `${M.n[0].toUpperCase() + M.n.slice(1)} güllə v₁ = ${v1} m/s sürətlə taxta lövhəyə girir və onu deşib v₂ = ${v2} m/s sürətlə çıxır. İtirilən kinetik enerjinin ${Math.round(eta * 100)}%-i güllənin daxili enerjisinə keçir. Güllənin temperaturu neçə dərəcə artar? c = ${M.c} J/(kq·°C).`,
+        solution: `İtirilən kinetik enerji: m(v₁² − v₂²)/2, 1 kq üçün (${v1 * v1} − ${v2 * v2})/2 = ${dE} J. η·m(v₁² − v₂²)/2 = cmΔt → Δt = ${F(eta)}·${dE}/${M.c} = ${F(right)} °C. Tələlər: sürətlər fərqini kvadrata yüksəltmək (${F(eta * (v1 - v2) ** 2 / 2 / M.c)}), çıxış sürətini unutmaq (${F(eta * v1 * v1 / 2 / M.c)}), 2-yə bölməmək (${F(2 * right)}), η-nı unutmaq (${F(dE / M.c)}).` });
+    }) },
+    // 8. water in an aluminium pot heated to boiling: time (Q = P·τ), the pot takes heat too
+    { tip: "qapali", birlesik: "fiz-is-guc", gen: () => again(() => {
+      const m1 = pick([0.2, 0.3, 0.4, 0.5, 0.6, 1]), m2 = pick([0.5, 1, 1.5, 2, 3]), t1 = pick([10, 15, 20, 25, 30]), P = pick([500, 600, 800, 1000, 1200, 1500, 2000]), dt = 100 - t1;
+      const Qw = 4200 * m2 * dt, Qp = 900 * m1 * dt, tau = (Qw + Qp) / P / 60;
+      const w = [Qw / P / 60, Qp / P / 60, tau * 100 / dt, tau * 60]; if (![tau, ...w].every(x => ok(x, 1))) return null;
+      return mc(ae(tau, w, U_("dəq")), { svg: svgEl(potStr()),
+        text: `Kütləsi m₁ = ${F(m1)} kq olan alüminium qabda m₂ = ${F(m2)} kq su var, onların temperaturu ${t1} °C-dir. Gücü ${P} W olan qızdırıcı qabı və suyu birlikdə qaynama temperaturuna (100 °C) qədər qızdırır. İstilik itkisi yoxdur. Bu neçə dəqiqə çəkər? c_al = 900 J/(kq·°C), c_su = 4200 J/(kq·°C).`,
+        solution: `Δt = 100 − ${t1} = ${dt} °C. Su: ${F(Qw)} J, qab: 900·${F(m1)}·${dt} = ${F(Qp)} J, cəmi Q = ${F(Qw + Qp)} J. Pτ = Q → τ = ${F(Qw + Qp)}/${P} = ${F(tau * 60)} s = ${F(tau)} dəq. Tələlər: qabı unutmaq (${F(Qw / P / 60)}), suyu unutmaq (${F(Qp / P / 60)}), Δt yerinə 100 °C götürmək (${F(tau * 100 / dt)}), saniyəni dəqiqəyə çevirməmək (${F(tau * 60)}).` });
+    }) },
+    // 9. two rods between walls: heating closes the gap (both rods expand)
+    { tip: "qapali", gen: () => again(() => {
+      const M2 = pick(ALF.filter(x => x.a === 17 || x.a === 24)), l1 = pick([0.5, 1, 1.5, 2, 2.5, 3]), l2 = pick([0.5, 1, 1.5, 2, 2.5, 3]), t0 = pick([10, 15, 20, 25]), dt = pick([20, 25, 30, 40, 50, 60, 75, 80, 100]);
+      const sum = 12 * l1 + M2.a * l2, del = dt * sum / 1000; if (!ok(del, 2) || del > 2) return null;
+      const T = t0 + dt, w = [dt, t0 + del * 1000 / (12 * l1), t0 + del * 1000 / (M2.a * l2), t0 + 10 * dt]; if (![T, ...w].every(x => ok(x, 1))) return null;
+      return mc(ae(T, w, U_("°C")), { svg: svgEl(rodsStr(l1, l2, "polad", M2.n)),
+        text: `Divarlar arasında polad (α₁ = 12·10⁻⁶ °C⁻¹, l₁ = ${F(l1)} m) və ${M2.n} (α₂ = ${M2.a}·10⁻⁶ °C⁻¹, l₂ = ${F(l2)} m) çubuqlar bərkidilib. ${t0} °C-də çubuqların sərbəst ucları arasında δ = ${F(del)} mm boşluq var. Çubuqları birlikdə hansı temperatura qədər qızdırmaq lazımdır ki, boşluq bağlansın? Divarlar arasındakı məsafə dəyişmir.`,
+        solution: `İki çubuq da uzanır: α₁l₁Δt + α₂l₂Δt = δ. Δt = δ/(α₁l₁ + α₂l₂) = ${F(del / 1000)}/((${12 * l1} + ${F(M2.a * l2)})·10⁻⁶) = ${dt} °C. t = ${t0} + ${dt} = ${T} °C. Tələlər: başlanğıc temperaturu əlavə etməmək (${dt}), yalnız bir çubuğun uzanmasını götürmək (${F(w[1])} və ya ${F(w[2])}), 1 m = 100 mm götürmək, Δt 10 dəfə böyük çıxır (${F(w[3])}).` });
+    }) },
+    // 10. heat Q given to a metal cube: Δt from Q = cmΔt, then the volume change (β = 3α)
+    { tip: "qapali", gen: () => again(() => {
+      const M = pick([{ n: "alüminium", c: 900, r: 2700, a: 24 }, { n: "polad", c: 500, r: 7800, a: 12 }, { n: "mis", c: 400, r: 8900, a: 17 }]), a = pick([5, 10, 20]), dt = pick([20, 40, 50, 80, 100]);
+      const m = M.r * (a / 100) ** 3, Q = M.c * m * dt / 1000, dV = 3 * M.a * 1e-6 * a ** 3 * dt; if (!nice(m, 4) || !ok(Q, 2)) return null;
+      const w = [dV / 3, 2 * dV / 3, 3 * M.a * 1e-6 * a * dt, dV / 1000]; if (![dV, ...w].every(x => ok(x, 5))) return null;
+      return mc(ae(dV, w, x => F(+x.toFixed(6)) + " sm³"), { svg: svgEl(cubeStr()),
+        text: `Tili a = ${a} sm olan ${M.n} kuba ${F(Q)} kJ istilik verilir. Kubun həcmi neçə sm³ artar? Bütün istilik kubun qızmasına gedir. ρ = ${M.r} kq/m³, c = ${M.c} J/(kq·°C), α = ${M.a}·10⁻⁶ °C⁻¹.`,
+        solution: `m = ρa³ = ${M.r}·${F(a / 100)}³ = ${F(m)} kq. Δt = Q/(cm) = ${F(Q * 1000)}/(${M.c}·${F(m)}) = ${dt} °C. Həcm üçün β = 3α: ΔV = 3α·V₀·Δt = 3·${M.a}·10⁻⁶·${a ** 3}·${dt} = ${F(dV)} sm³. Tələlər: β = α götürmək (${F(dV / 3)}), sahə əmsalı 2α-nı götürmək (${F(2 * dV / 3)}), həcm yerinə tili götürmək (${F(+(3 * M.a * 1e-6 * a * dt).toFixed(6))}), kJ-u J-a çevirməmək (${F(+(dV / 1000).toFixed(6))}).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -196,7 +349,7 @@
     game = Oyun.mount({
       key: "fiz-istilik", title: "Temperatur, istidən genişlənmə, istilik miqdarı", fenn: "fizika", link: "dersler/fiz-istilik.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: J, kJ, kq, °C, K, mm). Onluq kəsr vergül və ya nöqtə ilə: 0,5. T(K) = t(°C) + 273. c və α məsələdə verilir.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["skala", "skala", "miqdar", "miqdar", "tersine", "guc", "guc", "genislenme", "genislenme", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

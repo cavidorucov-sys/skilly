@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İstidən genişlənmə</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Broun hərəkəti, diffuziya</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Daxili enerji, istilikvermə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -430,6 +431,99 @@ Konveksiya — maye/qaz axını; bərk cisimdə olmur
         <li>Günəşin enerjisi Yerə hansı növ istilikvermə ilə çatır? <span class="ans">Şüalanma ilə (aradakı fəza demək olar ki, boşdur).</span></li>
         <li>Soyuducunun dondurucu kamerası niyə yuxarıda yerləşdirilir? <span class="ans">Soyumuş havanın sıxlığı artır, o aşağı enir və bütün kameranı soyudur — konveksiya.</span></li>
         <li>2 kq suyu qarışdıranda üzərində 8400 J iş görüldü və istilik itkisi olmadı. Su nə qədər isindi? <span class="ans">Δt = 8400/(4200·2) = 1 °C.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: temperatur, genişlənmə, istilik miqdarı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. Bu mövzuda "Q = cmΔt düsturuna bir əvəzləmə" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Qrafik və ya şəkil var</b> — temperaturun zamandan və ya istilik miqdarından asılılığı, uzanmanın temperaturdan asılılığı, halqa və val, divarlar arasında çubuqlar. Lazım olan ədədləri qrafikdən özün oxuyursan.</li>
+        <li><b>Bir neçə addım</b> — əvvəl qrafikdən Δτ və Δt, sonra istilik miqdarı, sonra axtarılan kəmiyyət.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: dəqiqəni saniyəyə çevirməmək, Δt yerinə son temperaturu yazmaq, 273-ü unutmaq, millimetri metrə çevirməmək. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: qızdırıcının gücü (<span class="m">Q = P·τ</span>), kinetik və potensial enerji (<span class="m">mv²/2</span>, <span class="m">mgh</span>) istiliyə çevrilir.</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: "istilik itkisi yoxdur", "bütün istilik cismə verilir", "hava müqaviməti nəzərə alınmır". Onları oxu: tənliyi məhz bunlar qurmağa imkan verir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — iki mövzu: qrafik və qızdırıcının gücü</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="Cismin temperaturunun zamandan asılılıq qrafiki"><defs><marker id="ti-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="46" y1="172" x2="262" y2="172" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ti-ar)"/><line x1="46" y1="172" x2="46" y2="14" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ti-ar)"/><text x="262" y="202" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">τ, dəq</text><text x="52" y="16" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, °C</text><text x="40" y="187" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="46" y1="105.8" x2="96.8" y2="105.8" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="40" y="109.8" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">30</text><line x1="96.8" y1="172" x2="96.8" y2="105.8" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="96.8" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="46" y1="61.6" x2="198.3" y2="61.6" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="40" y="65.6" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">50</text><line x1="198.3" y1="172" x2="198.3" y2="61.6" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="198.3" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="46" y1="127.8" x2="228.8" y2="48.4" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round"/><circle cx="96.8" cy="105.8" r="3.5" fill="var(--ink,#17171a)"/><circle cx="198.3" cy="61.6" r="3.5" fill="var(--ink,#17171a)"/></svg></div>
+        <p>Gücü 350 W olan qızdırıcı 2 kq kütləli cismi qızdırır. Qrafikdə cismin temperaturunun zamandan asılılığı verilib. Qızdırıcının bütün istiliyi cismə verilir. Cismin maddəsinin xüsusi istilik tutumu nə qədərdir?</p>
+        <ol class="imt-opts"><li>3150 J/(kq·°C)</li><li>35 J/(kq·°C)</li><li>4200 J/(kq·°C)</li><li>2100 J/(kq·°C)</li><li>840 J/(kq·°C)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qrafikdən: τ₁ = 2 dəq-də 30 °C, τ₂ = 6 dəq-də 50 °C
+Δτ = 6 − 2 = 4 dəq = 240 s,   Δt = 50 − 30 = 20 °C
+Q = P·Δτ = 350·240 = 84 000 J
+c = Q/(mΔt) = 84 000/(2·20) = 2100 J/(kq·°C)
+Cavab: D) 2100 J/(kq·°C)</div>
+      <ul>
+        <li><b>A) 3150</b> — vaxt kimi τ₂ = 6 dəq götürmək (fərq lazımdır, Δτ = 4 dəq).</li>
+        <li><b>B) 35</b> — dəqiqəni saniyəyə çevirməmək: 2100/60.</li>
+        <li><b>C) 4200</b> — kütləni unutmaq (2 dəfə çox). Suyun c-si ilə üst-üstə düşür — tələ budur.</li>
+        <li><b>E) 840</b> — Δt yerinə son temperaturu (50 °C) yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — halqa vala keçirilir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 310 150" role="img" aria-label="Halqa (daxili diametri d) və diametri d + δ olan val"><defs><marker id="ti-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><circle cx="80" cy="72" r="44" fill="none" stroke="var(--muted,#6b6b73)" stroke-width="12"/><line x1="43" y1="72" x2="117" y2="72" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#ti-ar)" marker-end="url(#ti-ar)"/><text x="80" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d</text><text x="80" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">halqa</text><rect x="160" y="30" width="80" height="84" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="252" y1="30" x2="252" y2="114" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-start="url(#ti-ar)" marker-end="url(#ti-ar)"/><text x="258" y="77" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d + δ</text><text x="200" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">val (yan görünüş)</text></svg></div>
+        <p>Polad halqanın (α = 12·10⁻⁶ °C⁻¹) daxili diametri 20 °C-də d = 10 sm-dir. Halqanı diametri ondan δ = 0,24 mm böyük olan vala keçirmək lazımdır. Halqanı ən azı hansı temperatura qədər qızdırmaq lazımdır? Valın temperaturu dəyişmir.</p>
+        <ol class="imt-opts"><li>200 °C</li><li>420 °C</li><li>220 °C</li><li>40 °C</li><li>−180 °C</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Deşik də genişlənir, sanki yerində polad disk var: Δd = α·d·Δt
+Δd = δ = 0,24 mm = 0,024 sm
+Δt = δ/(α·d) = 0,024/(12·10⁻⁶·10) = 200 °C
+t = 20 + 200 = 220 °C
+Cavab: C) 220 °C</div>
+      <ul>
+        <li><b>A) 200 °C</b> — Δt-ni tapıb başlanğıc temperaturu əlavə etməmək.</li>
+        <li><b>B) 420 °C</b> — diametr fərqini radiusa bölmək: Δt 2 dəfə böyük alınır.</li>
+        <li><b>D) 40 °C</b> — sm ilə mm-i qarışdırmaq: Δt 10 dəfə kiçik alınır.</li>
+        <li><b>E) −180 °C</b> — "qızdıranda deşik kiçilir, deməli soyutmaq lazımdır" düşünmək.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki cisim bir qrafikdə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 280 210" role="img" aria-label="İki cismin temperaturunun aldığı istilik miqdarından asılılıq qrafiki"><defs><marker id="ti-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="46" y1="172" x2="262" y2="172" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ti-ar)"/><line x1="46" y1="172" x2="46" y2="14" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ti-ar)"/><text x="262" y="202" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">Q, kJ</text><text x="52" y="16" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, °C</text><text x="40" y="187" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="46" y1="61.6" x2="198.3" y2="61.6" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="40" y="65.6" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">50</text><line x1="198.3" y1="172" x2="198.3" y2="61.6" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="198.3" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">12</text><line x1="46" y1="83.7" x2="198.3" y2="83.7" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="40" y="87.7" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">40</text><line x1="198.3" y1="172" x2="198.3" y2="83.7" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="198.3" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">12</text><line x1="46" y1="127.8" x2="46" y2="127.8" stroke="var(--muted,#6b6b73)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/><text x="40" y="131.8" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">20</text><line x1="46" y1="127.8" x2="221.2" y2="51.7" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round"/><text x="227.2" y="55.7" text-anchor="start" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">1</text><line x1="46" y1="127.8" x2="221.2" y2="77.1" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linecap="round"/><text x="227.2" y="81.1" text-anchor="start" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">2</text><circle cx="198.3" cy="61.6" r="3.5" fill="var(--ink,#17171a)"/><circle cx="198.3" cy="83.7" r="3.5" fill="var(--ink,#17171a)"/><circle cx="46" cy="127.8" r="3.5" fill="var(--ink,#17171a)"/></svg></div>
+        <p>Qrafikdə 1 və 2 cisimlərinin temperaturunun aldıqları istilik miqdarından asılılığı verilib. Cisimlərin kütlələri m₁ = 2 kq, m₂ = 1 kq-dır. Xüsusi istilik tutumlarının nisbəti c₁/c₂ nə qədərdir?</p>
+        <ol class="imt-opts"><li>2/3</li><li>3</li><li>1/3</li><li>4/3</li><li>2/5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Eyni Q = 12 kJ-da:  Δt₁ = 50 − 20 = 30 °C,  Δt₂ = 40 − 20 = 20 °C
+c = Q/(mΔt)  →  c₁/c₂ = m₂Δt₂/(m₁Δt₁)
+c₁/c₂ = 1·20/(2·30) = 1/3
+Cavab: C) 1/3</div>
+      <ul>
+        <li><b>A) 2/3</b> — kütlələri unutmaq: yalnız Δt₂/Δt₁.</li>
+        <li><b>B) 3</b> — nisbəti tərsinə yazmaq (c₂/c₁ tapmaq).</li>
+        <li><b>D) 4/3</b> — kütlələri yanlış tərəfə yazmaq: m₁Δt₂/(m₂Δt₁).</li>
+        <li><b>E) 2/5</b> — Δt yerinə qrafikdəki son temperaturları (40 və 50) götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Δt ≠ t.</b> Qrafikdən həmişə fərqi oxu: Δt = t₂ − t₁, Δτ = τ₂ − τ₁. Qrafik çox vaxt sıfırdan başlamır.</li>
+        <li><b>Vahidlər:</b> dəqiqə → saniyə (·60), mm → m (1 m = 1000 mm), sm → m, kJ → J, q → kq. Çevrilməmiş vahidin cavabı da variantlarda olur.</li>
+        <li><b>Kelvin:</b> T = t + 273, amma temperaturun <i>dəyişməsi</i> kelvində və Selsidə eynidir.</li>
+        <li><b>Deşik qızdıranda böyüyür</b>, kiçilmir. Halqanı vala keçirmək üçün halqanı qızdırırlar.</li>
+        <li><b>Həcm üçün β ≈ 3α</b>, sahə üçün ≈ 2α. Kubun həcmi a³-dir.</li>
+        <li><b>Enerji istiliyə keçəndə</b> yalnız şərtdə deyilən hissəni (η) götür; kütlə çox vaxt ixtisar olunur.</li>
+        <li><b>Qab da qızır:</b> qabın kütləsi və c-si verilibsə, onun aldığı istiliyi də topla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Q = c·m·Δt,   qızdırıcıdan Q = P·τ (τ saniyə ilə)
+T = t + 273,   ΔT = Δt
+Δl = α·l₀·Δt,   deşik də genişlənir,   ΔV = 3α·V₀·Δt
+Enerji → istilik:  η·(mgh + mv²/2) = cmΔt</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Temperatur 20 °C-dən 50 °C-yə qalxdı. Kelvin şkalasında neçə kelvin artdı? <span class="ans">30 K (hər iki qiymətə 273 əlavə olunur, fərq dəyişmir).</span></li>
+        <li>Mis güllə (c = 400 J/(kq·°C)) lövhəyə 400 m/s sürətlə girib onu deşir və 200 m/s sürətlə çıxır. İtirilən kinetik enerjinin 50%-i güllənin daxili enerjisinə keçir. Güllə neçə dərəcə qızar? <span class="ans">1 kq üçün (400² − 200²)/2 = 60 000 J; Δt = 0,5·60 000/400 = 75 °C.</span></li>
+        <li>Qızdırıcı 2 kq suyu (c = 4200 J/(kq·°C)) 5 dəqiqədə 10 °C qızdırır, itki yoxdur. Qızdırıcının gücü nə qədərdir? <span class="ans">Q = 4200·2·10 = 84 000 J; P = 84 000/300 = 280 W.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
