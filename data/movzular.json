@@ -1360,6 +1360,7 @@
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.1 Kinematika",
    "ders": "dersler/fiz-nisbi-herekat.html",
+   "imt": true,
    "on": [
     "fizika:Vektorlar: proyeksiya və toplanma",
     "fizika:Bərabərsürətli və bərabərtəcilli hərəkət, qrafiklər"
@@ -1372,6 +1373,7 @@
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.3 Dinamika",
    "ders": "dersler/fiz-qeyri-inersial.html",
+   "imt": true,
    "on": [
     "fizika:Nyuton qanunları, bağlı cisimlər",
     "fizika:Nisbi hərəkət: sürətlərin və təcillərin toplanması"

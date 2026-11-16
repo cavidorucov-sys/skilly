@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Çayı keçmək</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yağış və külək</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Görüş, nisbi təcil</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -354,6 +355,98 @@ Düşən və yuxarı atılan daş: t = H/v₀</div></div>
         <li>Velosipedçilər 120 m aralı, 4 m/s və 6 m/s ilə üz-üzə gedir. Görüş vaxtı? <span class="ans">120/10 = 12 s.</span></li>
         <li>Qatar 100 m, dirəyin yanından 5 s-yə keçir. Sürəti? <span class="ans">100/5 = 20 m/s.</span></li>
         <li>İki araba sükunətdən 24 m aralıdan 1 m/s² və 2 m/s² təcillə üz-üzə başlayır. t? <span class="ans">d = (a₁ + a₂)t²/2 → t² = 2·24/3 = 16, t = 4 s. (Məsafə 24 m götürüldü.)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: nisbi hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "İki sürəti topla" tipli sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — çay və vektorlar, qatarlar, <span class="m">x(t)</span> və <span class="m">v(t)</span> qrafiki. Rəqəmlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl hansı çərçivəyə keçəcəyini seç, sonra nisbi sürəti (vektor kimi!) tap, sonra vaxtı və ya yolu.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: sürətləri toplamaq əvəzinə çıxmaq, perpendikulyar sürət vektorlarının modullarını adi cəm kimi toplamaq, yalnız bir qatarın uzunluğunu götürmək, nisbi təcili sıfır əvəzinə <span class="m">g</span> saymaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: nisbi hərəkət və sərbəst düşmə, atılan cisim və ya qrafikdən sürət oxumaq.</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar açıq yazılır: havanın müqaviməti yoxdur, <span class="m">g</span> = 10 m/s², axının sürəti bütün enində eynidir, qayığın sürəti suya nəzərən verilir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — çayı iki yolla keçmək</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 280 172" role="img" aria-label="Çay: axının sürəti u, qayığın suya nəzərən sürəti v, qayıq düz qarşı nöqtəyə çatır"><defs><marker id="nh-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="0" y="34" width="280" height="106" fill="var(--accent-soft,#f3dede)" opacity="0.5"/><line x1="0" y1="34" x2="280" y2="34" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="140" x2="280" y2="140" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="160" y1="140" x2="160" y2="64" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#nh-ar)"/><line x1="160" y1="140" x2="98" y2="62" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#nh-ar)"/><line x1="98" y1="62" x2="158" y2="62" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#nh-ar)"/><text x="112" y="108" text-anchor="end" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v = 5 m/s</text><text x="128" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">u = 3 m/s</text><line x1="262" y1="34" x2="262" y2="140" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><line x1="257" y1="34" x2="267" y2="34" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><line x1="257" y1="140" x2="267" y2="140" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><text x="254" y="92" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d = 120 m</text><line x1="190" y1="124" x2="240" y2="124" stroke="var(--muted,#6b6b73)" stroke-width="2" stroke-linecap="round" marker-end="url(#nh-ar)"/><text x="215" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">axın</text></svg></div>
+        <p>Çayın eni 120 m, axının sürəti 3 m/s, qayığın suya nəzərən sürəti 5 m/s. Qayıq qarşı sahilə iki yolla keçir: 1) burnu sahilə perpendikulyar yönəldərək; 2) axına qarşı elə bucaq altında üzərək ki, düz qarşı nöqtəyə çatsın. İkinci yolun vaxtı birincinin vaxtından neçə saniyə çoxdur?</p>
+        <ol class="imt-opts"><li>54 s</li><li>24 s</li><li>6 s</li><li>36 s</li><li>30 s</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1) Perpendikulyar:  t₁ = d/v = 120/5 = 24 s
+2) Düz qarşıya:  sahilə perpendikulyar sürət √(5² − 3²) = 4 m/s
+   t₂ = 120/4 = 30 s
+Fərq:  30 − 24 = 6 s
+Cavab: C) 6 s</div>
+      <ul>
+        <li><b>A) 54 s</b> — vaxtları toplamaq (24 + 30).</li>
+        <li><b>B) 24 s</b> və <b>E) 30 s</b> — fərqin əvəzinə t₁ və ya t₂-nin özünü yazmaq.</li>
+        <li><b>D) 36 s</b> — "axına qarşı sürət 5 − 3 = 2 m/s": 120/2 − 24 = 36. Sürətlər burada Pifaqorla əlaqəlidir, çıxılmır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — qatar qatarı ötür</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil · çoxaddımlı</span>
+        <div class="fig"><svg viewBox="0 0 320 178" role="img" aria-label="Sürətli qatar (uzunluğu L₁) yük qatarını (uzunluğu L₂) ötür"><defs><marker id="nh-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="120" y1="54" x2="120" y2="132" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/><rect x="120" y="52" width="130" height="18" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><rect x="76.7" y="112" width="43.3" height="18" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="185" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">L₂ = 300 m</text><text x="98.3" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">L₁ = 100 m</text><line x1="256" y1="61" x2="288" y2="61" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#nh-ar)"/><text x="272" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">v₂ = 10 m/s</text><line x1="126" y1="121" x2="158" y2="121" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#nh-ar)"/><text x="142" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v₁ = ?</text><text x="160" y="172" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">ötmə vaxtı t = 20 s</text></svg></div>
+        <p>Uzunluğu 100 m olan sürətli qatar uzunluğu 300 m olan yük qatarını ötür; yük qatarı 10 m/s sürətlə gedir. Sürətli qatarın başı yük qatarının quyruğuna çatandan öz quyruğu yük qatarının başını keçənədək 20 s keçir. Sürətli qatarın sürəti nə qədərdir?</p>
+        <ol class="imt-opts"><li>20 m/s</li><li>15 m/s</li><li>25 m/s</li><li>30 m/s</li><li>10 m/s</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Yük qatarını durğun sayaq.
+Nisbi yol:   L₁ + L₂ = 100 + 300 = 400 m
+Nisbi sürət: v₁ − v₂ = 400/20 = 20 m/s
+v₁ = v₂ + 20 = 10 + 20 = 30 m/s
+Cavab: D) 30 m/s</div>
+      <ul>
+        <li><b>A) 20 m/s</b> — nisbi sürəti cavab yazmaq (v₂-ni əlavə etməyi unutmaq).</li>
+        <li><b>B) 15 m/s</b> və <b>C) 25 m/s</b> — yalnız bir uzunluğu götürmək: 10 + 100/20 və 10 + 300/20.</li>
+        <li><b>E) 10 m/s</b> — v₂-ni nisbi sürətdən çıxmaq: 20 − 10.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: sərbəst düşmə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 280 196" role="img" aria-label="Eyni nöqtədən τ fərqi ilə buraxılan iki daş; aralarındakı məsafə d"><defs><marker id="nh-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="60" y1="22" x2="140" y2="22" stroke="var(--ink,#17171a)" stroke-width="4" stroke-linecap="round"/><line x1="100" y1="22" x2="100" y2="160" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="100" cy="132" r="8" fill="var(--accent,#a32d2d)"/><circle cx="100" cy="72" r="8" fill="var(--vec,#0c447c)"/><text x="86" y="136" text-anchor="end" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">1-ci daş</text><text x="86" y="76" text-anchor="end" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">2-ci daş</text><line x1="146" y1="72" x2="146" y2="132" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><line x1="141" y1="72" x2="151" y2="72" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><line x1="141" y1="132" x2="151" y2="132" stroke="var(--muted,#6b6b73)" stroke-width="1.5" stroke-linecap="round"/><text x="154" y="106" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d = ?</text><text x="140" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1-ci daş sükunətdən, 2-ci τ = 2 s sonra</text><text x="140" y="192" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2-ci daş buraxıldıqdan t = 3 s sonra</text></svg></div>
+        <p>Yüksək balkondan daş sükunətdən buraxıldı, 2 s sonra eyni nöqtədən ikinci daş da sükunətdən buraxıldı. İkinci daş buraxıldıqdan 3 s sonra daşlar arasındakı məsafə nə qədərdir? Daşlar hələ yerə düşməyib, havanın müqaviməti yoxdur, <span class="m">g</span> = 10 m/s².</p>
+        <ol class="imt-opts"><li>60 m</li><li>80 m</li><li>20 m</li><li>100 m</li><li>50 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">İkinci daş buraxılanda birinci daş 2 s düşüb:
+  yol gτ²/2 = 5·4 = 20 m,  sürət gτ = 20 m/s
+İki daşın da təcili g → nisbi təcil 0:
+  birinci daş ikinciyə nəzərən 20 m/s sabit sürətlə uzaqlaşır
+d = 20 + 20·3 = 80 m
+Cavab: B) 80 m</div>
+      <ul>
+        <li><b>A) 60 m</b> — başlanğıc məsafəni (20 m) unutmaq: 20·3.</li>
+        <li><b>C) 20 m</b> — nisbi sürəti unutmaq, yalnız başlanğıc məsafə.</li>
+        <li><b>D) 100 m</b> — sürəti 5 s-ə vurmaq (başlanğıc məsafə də unudulur): 20·(2 + 3).</li>
+        <li><b>E) 50 m</b> — nisbi sürətin yarısını götürmək: 20 + 10·3.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>"Kimə nəzərən?"</b> sualını atlamaq. Sürət həmişə seçilmiş cismə nəzərən verilir; nisbi sürət <span class="m">v₂ − v₁</span> vektor fərqidir.</li>
+        <li><b>Perpendikulyar sürət vektorlarının modullarını toplamaq.</b> Çay, yağış, külək məsələlərində komponentlər perpendikulyardır: Pifaqor, modulların cəmi yox.</li>
+        <li><b>Düz qarşıya çatmaq</b> üçün axını kompensasiya etmək lazımdır: perpendikulyar sürət <span class="m">√(v² − u²)</span>, <span class="m">v − u</span> yox.</li>
+        <li><b>Qatarların ötməsi və keçməsi:</b> nisbi yol <span class="m">L₁ + L₂</span>; durğun dirəyin yanından keçəndə yalnız qatarın özünün uzunluğu.</li>
+        <li><b>Nisbi təcil 0 ≠ nisbi sürət 0.</b> İki daş yalnız <span class="m">g</span> təcili ilə hərəkət edəndə bir-birinə nəzərən bərabərsürətli hərəkət edir; başlanğıc nisbi sürəti unutma.</li>
+        <li><b>Vahidlər:</b> km/saat → m/s üçün 3,6-ya böl; variantlarda səhv vahidlə alınan cavab da olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v_nisbi = v₂ − v₁ (vektor);  üz-üzə: v₁ + v₂,  ötmə: |v₁ − v₂|
+Çay:  perpendikulyar üzəndə v ⟂ u → √(v² + u²);  düz qarşıya → √(v² − u²)
+Qatarlar:  t = (L₁ + L₂)/v_nisbi
+Yalnız g ilə hərəkət edən iki cisim:  a_nisbi = 0, v_nisbi = const</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qayıq suya nəzərən 6 m/s ilə, burnu sahilə perpendikulyar üzür; axın 8 m/s-dir. Sahilə nəzərən sürət? <span class="ans">√(36 + 64) = 10 m/s.</span></li>
+        <li>İki qatar (hər biri 100 m) 20 m/s və 30 m/s ilə üz-üzə gedir. Bir-birinin yanından keçmə vaxtı? <span class="ans">(100 + 100)/(20 + 30) = 4 s.</span></li>
+        <li>Eyni hündürlükdən eyni anda biri sükunətdən, o biri 4 m/s ilə aşağı atılır. Havanın müqaviməti yoxdur, hər iki daş hələ havadadır. 3 s sonra aralarındakı məsafə? <span class="ans">Nisbi təcil 0, nisbi sürət 4 m/s: d = 4·3 = 12 m.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
