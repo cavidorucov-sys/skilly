@@ -1446,7 +1446,8 @@
     "fizika:Kinetik və potensial enerji"
    ],
    "hefte": "2026-12-28",
-   "ders": "dersler/fiz-kondensator.html"
+   "ders": "dersler/fiz-kondensator.html",
+   "imt": true
   },
   {
    "bolme": "Elektrik dövrələri",

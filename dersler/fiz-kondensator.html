@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Birləşmələr</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Ekvipotensial, yük sistemi</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -423,6 +424,104 @@ A_xar = W₂ − W₁ (yavaş yaxınlaşdırma)</div></div>
         <li>5 mkKl yükü ekvipotensial səth boyunca 2 m aparılır. Sahənin işi? <span class="ans">0.</span></li>
         <li>+1 mkKl və −1 mkKl yükləri 0,09 m aralıdır. Sistemin enerjisi? <span class="ans">W = −9·10⁹·10⁻¹²/0,09 = −0,1 J.</span></li>
         <li>Nöqtəvi yükün ekvipotensial səthləri necədir? <span class="ans">Yükün mərkəzdə olduğu konsentrik sferalar.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: potensial, tutum, kondensatorlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "Kondensatorun tutumu nəyə bərabərdir" kimi bir düstur sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — kondensatorların birləşmə sxemi, lövhələr arasında dielektrik, nöqtəvi yüklər, <span class="m">q–U</span> qrafiki. Tutumlar və gərginlik bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl ekvivalent tutum, sonra ümumi yük, sonra lazım olan kondensator (yük, gərginlik, enerji).</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: ardıcıl və paralel düsturunu qarışdırmaq, <span class="m">½</span>-ni unutmaq, "mənbəyə qoşulu"nu "mənbədən ayrılıb" ilə dəyişmək, yükləri toplayanda işarəni nəzərə almamaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: sabit cərəyan dövrəsində kondensator (Om qanunu), yüklü kürəcik lövhələr arasında (Nyuton qanunları), boşalan kondensator suyu qızdırır (istilik).</li>
+      </ul>
+      <p>İlk sual həmişə eynidir: <b>kondensator mənbəyə qoşuludur (U sabit), yoxsa ayrılıb (q sabit)?</b> Cavab səhv olarsa, sonrakı bütün addımlar səhv olur.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qarışıq sxemdə bir kondensatorun yükü</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sxem</span>
+        <div class="fig"><svg viewBox="0 0 300 126" role="img" aria-label="Kondensatorların birləşməsi, A və B uclarıdır"><line x1="8" y1="55" x2="30" y2="55" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="30" y1="55" x2="61" y2="55" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="69" y1="55" x2="100" y2="55" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="61" y1="42" x2="61" y2="68" stroke="var(--ink,#17171a)" stroke-width="3"></line><line x1="69" y1="42" x2="69" y2="68" stroke="var(--ink,#17171a)" stroke-width="3"></line><text x="65" y="36" text-anchor="middle" class="oy-lbl">C₁ = 6 mkF</text><line x1="100" y1="55" x2="120" y2="55" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="120" y1="34" x2="120" y2="82" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="250" y1="34" x2="250" y2="82" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="250" y1="55" x2="292" y2="55" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="120" y1="34" x2="181" y2="34" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="189" y1="34" x2="250" y2="34" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="181" y1="21" x2="181" y2="47" stroke="var(--ink,#17171a)" stroke-width="3"></line><line x1="189" y1="21" x2="189" y2="47" stroke="var(--ink,#17171a)" stroke-width="3"></line><text x="185" y="15" text-anchor="middle" class="oy-lbl">C₂ = 5 mkF</text><line x1="120" y1="82" x2="181" y2="82" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="189" y1="82" x2="250" y2="82" stroke="var(--ink,#17171a)" stroke-width="1.8"></line><line x1="181" y1="69" x2="181" y2="95" stroke="var(--ink,#17171a)" stroke-width="3"></line><line x1="189" y1="69" x2="189" y2="95" stroke="var(--ink,#17171a)" stroke-width="3"></line><text x="185" y="63" text-anchor="middle" class="oy-lbl">C₃ = 7 mkF</text><circle cx="120" cy="55" r="3" fill="var(--ink,#17171a)"></circle><circle cx="250" cy="55" r="3" fill="var(--ink,#17171a)"></circle><circle cx="8" cy="55" r="4" fill="var(--ink,#17171a)"></circle><circle cx="292" cy="55" r="4" fill="var(--ink,#17171a)"></circle><text x="8" y="14" class="oy-lbl">A</text><text x="286" y="14" class="oy-lbl">B</text><text x="150" y="121" text-anchor="middle" class="oy-lbl">A–B: U = 120 V</text></svg></div>
+        <p>Şəkildəki sxemin A və B uclarına U = 120 V gərginlik verilib. Başlanğıcda kondensatorlar yüksüz idi. C₂ kondensatorunun lövhələrindəki yük neçə mkKl-dur?</p>
+        <ol class="imt-opts"><li>240 mkKl</li><li>200 mkKl</li><li>480 mkKl</li><li>600 mkKl</li><li>400 mkKl</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">C₂ və C₃ paraleldir:  5 + 7 = 12 mkF
+Bu qrup C₁ ilə ardıcıldır:  C = 6·12/(6+12) = 4 mkF
+Ardıcıl hissələrdə yük eynidir:  q = CU = 4·120 = 480 mkKl
+Qrupda gərginlik eynidir:  U₂₃ = q/12 = 480/12 = 40 V
+q₂ = C₂U₂₃ = 5·40 = 200 mkKl
+Cavab: B) 200 mkKl</div>
+      <ul>
+        <li><b>C) 480</b> — bütün yükü C₂-yə yazmaq: paralel qolda yük bölünür, 480 mkKl isə qrupda cəmidir.</li>
+        <li><b>D) 600</b> — C₂-yə tam U = 120 V vermək: o, yalnız qrupun gərginliyini (40 V) alır.</li>
+        <li><b>A) 240</b> — yükü bərabər bölmək: paralel qolda yük tutumlara mütənasib bölünür, qollar fərqlidir.</li>
+        <li><b>E) 400</b> — C₁-in gərginliyini (480/6 = 80 V) C₂-yə tətbiq etmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — mənbədən ayrılmış kondensatorun lövhələrini çəkirik</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil, çoxaddım</span>
+        <div class="fig"><svg viewBox="0 0 290 190" role="img" aria-label="Mənbədən ayrılmış yastı kondensator, aşağı lövhə d məsafəsindən 3d məsafəsinə çəkilir"><defs><marker id="kd-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="60" y1="40" x2="200" y2="40" stroke="var(--ink,#17171a)" stroke-width="4" stroke-linecap="round"/><line x1="60" y1="90" x2="200" y2="90" stroke="var(--ink,#17171a)" stroke-width="4" stroke-linecap="round"/><line x1="60" y1="150" x2="200" y2="150" stroke="var(--muted,#6b6b73)" stroke-width="4" stroke-linecap="round" stroke-dasharray="7 5"/><text x="52" y="46" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+q</text><text x="52" y="96" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">−q</text><text x="130" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">S</text><line x1="130" y1="98" x2="130" y2="144" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#kd-ar)"/><text x="142" y="126" text-anchor="start" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">F</text><line x1="228" y1="40" x2="228" y2="90" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#kd-ar)" marker-start="url(#kd-ar)"/><text x="236" y="69" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d</text><line x1="262" y1="40" x2="262" y2="150" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#kd-ar)" marker-start="url(#kd-ar)"/><text x="268" y="98" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">3d</text><text x="130" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">mənbədən ayrılıb (şəkil miqyassızdır)</text></svg></div>
+        <p>Havalı yastı kondensatorun hər lövhəsinin sahəsi 200 sm², lövhələr arasındakı məsafə 2 mm-dir. Kondensator 200 V-luq mənbəyə qoşulub doldurulur, sonra mənbədən ayrılır. Lövhələr çox yavaş aralanır (kinetik enerji yaranmır; sürtünmə, kənar effektlər və lövhələrin ağırlığı nəzərə alınmır). Məsafəni 3 dəfə artırmaq üçün xarici qüvvə neçə mkJ iş görməlidir? (ε₀ = 8,85·10⁻¹² F/m, 1 mkJ = 10⁻⁶ J)</p>
+        <ol class="imt-opts"><li>1,18 mkJ</li><li>1,77 mkJ</li><li>7,08 mkJ</li><li>3,54 mkJ</li><li>5,31 mkJ</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">C₀ = ε₀S/d = 8,85·10⁻¹²·0,02/0,002 = 88,5 pF
+W₀ = C₀U²/2 = 88,5·10⁻¹²·200²/2 = 1,77 mkJ
+Mənbədən ayrılıb → q sabit. d 3 dəfə artır → C 3 dəfə azalır
+W = q²/2C → W 3 dəfə artır:  W = 3·1,77 = 5,31 mkJ
+İş enerjinin artımına bərabərdir:  A = W − W₀ = 2·1,77 = 3,54 mkJ
+Cavab: D) 3,54 mkJ</div>
+      <ul>
+        <li><b>E) 5,31</b> — son enerjini (W = 3W₀) cavab yazmaq: iş artımdır, son enerji deyil.</li>
+        <li><b>C) 7,08</b> — <span class="m">½</span>-ni unutmaq (W₀ = CU² götürmək).</li>
+        <li><b>A) 1,18</b> — U-nu sabit saxlamaq (mənbə qoşulu qalıb kimi): onda W azalır, W₀ − W₀/3 = 1,18.</li>
+        <li><b>B) 1,77</b> — W₀-ı cavab yazmaq (və ya <span class="m">½</span>-ni iki dəfə tətbiq etmək: 2·W₀/2).</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: sabit cərəyan və kondensator</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 260 180" role="img" aria-label="Mənbə, R₁ və R₂ ardıcıl; kondensator R₂-yə paralel"><defs><marker id="kd-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="40" y1="36" x2="210" y2="36" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="164" x2="210" y2="164" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="36" x2="40" y2="95" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="105" x2="40" y2="164" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="150" y1="36" x2="150" y2="164" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="210" y1="36" x2="210" y2="96" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="210" y1="104" x2="210" y2="164" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="95" x2="53" y2="95" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="33" y1="105" x2="47" y2="105" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="61" y="93" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="21" y="104" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">U</text><rect x="72" y="29" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="90" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><rect x="143" y="84" width="14" height="32" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="138" y="104" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><line x1="197" y1="96" x2="223" y2="96" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="197" y1="104" x2="223" y2="104" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="231" y="104" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">C</text><circle cx="150" cy="36" r="3.2" fill="var(--ink,#17171a)"/><circle cx="150" cy="164" r="3.2" fill="var(--ink,#17171a)"/></svg></div>
+        <p>Sxemdə ideal mənbənin gərginliyi U = 60 V, R₁ = 20 Ω, R₂ = 40 Ω, C = 5 mkF. Kondensator əvvəlcə yüksüz idi, indi sabit rejim qurulub (dövrədə cərəyan dəyişmir). Kondensatorun yükü neçə mkKl-dur?</p>
+        <ol class="imt-opts"><li>200 mkKl</li><li>300 mkKl</li><li>100 mkKl</li><li>600 mkKl</li><li>150 mkKl</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sabit cərəyanda kondensatordan cərəyan keçmir:
+onun qolu qırıqdır, R₁ və R₂ ardıcıl qalır.
+I = U/(R₁+R₂) = 60/60 = 1 A
+Kondensator R₂-yə paraleldir:  U_C = IR₂ = 1·40 = 40 V
+q = CU_C = 5·40 = 200 mkKl
+Cavab: A) 200 mkKl</div>
+      <ul>
+        <li><b>B) 300</b> — kondensatora mənbənin gərginliyini vermək (q = CU): dövrədə rezistorlar var, gərginlik bölünür.</li>
+        <li><b>C) 100</b> — səhv rezistoru götürmək (R₁-də 20 V): kondensator R₂-yə paraleldir.</li>
+        <li><b>E) 150</b> — gərginliyi yarı bölmək (U/2 = 30 V).</li>
+        <li><b>D) 600</b> — müqavimətlərin nisbətini götürmək (R₂/R₁ = 2, q = C·U·2).</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Rezistorlardakı qaydanın əksi.</b> Kondensatorlarda paralel: <span class="m">C = C₁ + C₂</span>; ardıcıl: <span class="m">1/C = 1/C₁ + 1/C₂</span> (ən kiçikdən də kiçik).</li>
+        <li><b>Ardıcıl — yük eyni, paralel — gərginlik eyni.</b> Qarışıq sxemdə əvvəl ümumi yükü tap, sonra paralel qrupa gərginliklə bölüş.</li>
+        <li><b>Mənbəyə qoşulu — U sabit; ayrılıb — q sabit.</b> Lövhələri çəkəndə iki halda enerji əks istiqamətdə dəyişir.</li>
+        <li><b>Enerji:</b> <span class="m">W = CU²/2</span> — həm ½, həm kvadrat. Mənbədən ayrılmış kondensatorun lövhələrini yavaş çəkəndə xarici qüvvənin işi enerjinin artımıdır, son enerji deyil.</li>
+        <li><b>Yüklü kondensatorları birləşdirəndə</b> yüklər cəbri toplanır (əks işarəli lövhələrdə çıxılır), gərginliklər yox. Elektrik sahəsinin enerjisi azalır: bir hissəsi istiliyə və şüalanmaya çevrilir (ümumi enerji saxlanır).</li>
+        <li><b>Sabit cərəyan dövrəsində</b> kondensatordan cərəyan keçmir; onun gərginliyi paralel olduğu hissənin gərginliyidir.</li>
+        <li><b>Vahidlər:</b> mkF, nF, pF; sm² və mm-i SI-yə çevir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Paralel:   C = C₁ + C₂,   U eyni,   q bölünür ~ C
+Ardıcıl:   1/C = 1/C₁ + 1/C₂,   q eyni,   U bölünür ~ 1/C
+Enerji:    W = CU²/2 = qU/2 = q²/2C
+U sabit (mənbəyə qoşulu):   q ~ C,   W ~ C
+q sabit (ayrılıb):          U ~ 1/C,   W ~ 1/C
+Birləşdirmə:  q = q₁ ± q₂,   U = q/(C₁ + C₂)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>4 mkF və 12 mkF kondensatorlar ardıcıl birləşib, U = 64 V. Hər birinin yükü? <span class="ans">C = 4·12/16 = 3 mkF, q = 3·64 = 192 mkKl — ardıcıl olduğu üçün hər ikisində eynidir.</span></li>
+        <li>10 mkF kondensator 100 V-a qədər doldurulub və mənbədən ayrılıb. Lövhələri 2 dəfə uzaqlaşdırsaq, enerji nə olar? <span class="ans">W₀ = 10·10⁻⁶·100²/2 = 50 mJ. q sabit, C 2 dəfə azalır → W 2 dəfə artır: 100 mJ.</span></li>
+        <li>U = 12 V, R₁ = 2 Ω, R₂ = 4 Ω ardıcıldır, C = 3 mkF kondensator R₂-yə paraleldir. Yük? <span class="ans">I = 12/6 = 2 A, U₂ = 2·4 = 8 V, q = 3·8 = 24 mkKl.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
