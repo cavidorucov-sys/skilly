@@ -1216,7 +1216,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər",
     "fizika:Enerjinin saxlanması"
    ],
-   "hefte": "2026-11-23"
+   "hefte": "2026-11-23",
+   "imt": true
   },
   {
    "bolme": "Kinematika",

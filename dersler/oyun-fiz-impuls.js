@@ -250,6 +250,189 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, each with a figure (F–t graph, wall,
+  // cannon, carts, pendulum, x–t graph), several steps; the wrong options are the answers of typical mistakes.
+  // Joined topics: 2 fiz-vektorlar, 5 and 6 fiz-enerji-saxlanma, 7 fiz-surtunme-maili, 8 fiz-huk, 9 fiz-serbest-dusme, 10 fiz-kinematika.
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  const fr2 = (p, q) => { const d = gcd(p, q); return q / d === 1 ? String(p / d) : p / d + "/" + q / d; };
+  const okn = (xs, d) => xs.every(x => isFinite(x) && x > 0 && nice(x, d));
+  const IK = "var(--ink,#17171a)", AC = "var(--accent,#a32d2d)", VC = "var(--vec,#0c447c)", MU = "var(--muted,#6b6b73)", SF = "var(--accent-soft,#e8eef8)", PP = "var(--paper,#fff)";
+  const r1 = v => +(+v).toFixed(1);
+  const Sx = (W, H, aria) => sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": aria });
+  const ln = (el, x1, y1, x2, y2, c = IK, w = 2, dash) => el.append(sv("line", Object.assign({ x1: r1(x1), y1: r1(y1), x2: r1(x2), y2: r1(y2), stroke: c, "stroke-width": w, "stroke-linecap": "round" }, dash ? { "stroke-dasharray": dash } : {})));
+  const tx = (el, x, y, s, a = "middle", c = IK, sz = 13) => el.append(sv("text", { x: r1(x), y: r1(y), "text-anchor": a, "font-size": sz, "font-weight": 700, fill: c }, s));
+  const ar = (el, x1, y1, x2, y2, c = AC, w = 2.5) => { const L = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / L, uy = (y2 - y1) / L;
+    ln(el, x1, y1, x2 - 6 * ux, y2 - 6 * uy, c, w);
+    el.append(sv("polygon", { points: [[x2, y2], [x2 - 10 * ux + 5 * uy, y2 - 10 * uy - 5 * ux], [x2 - 10 * ux - 5 * uy, y2 - 10 * uy + 5 * ux]].map(p => r1(p[0]) + "," + r1(p[1])).join(" "), fill: c })); };
+  const bx = (el, x, y, w, h, s, fill = SF, dash) => { el.append(sv("rect", Object.assign({ x: r1(x), y: r1(y), width: w, height: h, fill, stroke: IK, "stroke-width": 2 }, dash ? { "stroke-dasharray": dash } : {}))); if (s) tx(el, x + w / 2, y + h / 2 + 5, s); };
+  const hatch = (el, x1, x2, y, up) => { ln(el, x1, y, x2, y); for (let x = x1 + 6; x < x2; x += 12) ln(el, x, y + (up ? -1 : 1), x - 7, y + (up ? -9 : 9), MU, 1.2); };
+  const wheels = (el, x, w, y) => { [x + 10, x + w - 10].forEach(c => el.append(sv("circle", { cx: r1(c), cy: r1(y), r: 5, fill: PP, stroke: IK, "stroke-width": 2 }))); };
+  const pl = (el, pts, c = AC, w = 2.5, dash) => el.append(sv("polyline", Object.assign({ points: pts.map(p => r1(p[0]) + "," + r1(p[1])).join(" "), fill: "none", stroke: c, "stroke-width": w, "stroke-linejoin": "round" }, dash ? { "stroke-dasharray": dash } : {})));
+
+  // 1. F–t graph: 0 → F0 (t1), F0 until t2, → 0 at t3
+  function figFt(F0, t1, t2, t3) { const el = Sx(280, 185, "Qüvvənin zamandan asılılıq qrafiki: trapesiya"), X = t => 40 + t * 32, Y = f => 150 - f / F0 * 100;
+    for (let t = 1; t <= 7; t++) { ln(el, X(t), 150, X(t), 40, MU, 0.6, "3 3"); tx(el, X(t), 168, String(t), "middle", MU, 11); }
+    ln(el, 40, Y(F0), X(t2), Y(F0), MU, 1, "4 3"); tx(el, 34, Y(F0) + 4, "F₀", "end");
+    ar(el, 40, 150, 272, 150, IK, 1.5); ar(el, 40, 150, 40, 20, IK, 1.5); tx(el, 270, 182, "t, s", "end"); tx(el, 46, 18, "F, N", "start");
+    pl(el, [[X(0), Y(0)], [X(t1), Y(F0)], [X(t2), Y(F0)], [X(t3), Y(0)]]); return el; }
+  // 2. a ball hits a wall at angle α to the normal and bounces off
+  function figWall(c) { const el = Sx(260, 180, "Top divara perpendikulyarla α bucağı altında dəyir və əks olunur"), s = Math.sqrt(1 - c * c), L = 105, px = 200, py = 90;
+    ln(el, px, 15, px, 165, IK, 3); for (let y = 21; y < 165; y += 12) ln(el, px + 2, y, px + 10, y - 7, MU, 1.2);
+    ln(el, px, py, px - 120, py, MU, 1.2, "4 3");
+    ar(el, px - L * c, py - L * s, px - 3 * c, py - 3 * s); ar(el, px, py, px - L * c, py + L * s, VC);
+    tx(el, px - L * c - 4, py - L * s + 16, "v", "end", AC); tx(el, px - L * c - 4, py + L * s - 6, "v", "end", VC);
+    tx(el, px - 34, py - 8, "α", "middle"); tx(el, px - 34, py + 18, "α", "middle"); return el; }
+  // 3. cannon on a platform on rails, the shell flies at angle α above the horizon
+  function figCannon(c) { const el = Sx(270, 165, "Relslər üzərində platforma, topdan mərmi üfüqlə α bucağı altında atılır"), s = Math.sqrt(1 - c * c), bx0 = 115, by0 = 100, L = 55;
+    hatch(el, 10, 260, 145); bx(el, 50, 110, 120, 24, "M"); wheels(el, 50, 120, 140);
+    ln(el, bx0, by0 + 10, bx0 + L * c, by0 + 10 - L * s, IK, 7);
+    ln(el, bx0 + L * c, by0 + 10 - L * s, bx0 + L * c + 70, by0 + 10 - L * s, MU, 1.2, "4 3");
+    ar(el, bx0 + L * c + 4 * c, by0 + 6 - L * s - 4 * s, bx0 + (L + 60) * c, by0 + 10 - (L + 60) * s); tx(el, bx0 + (L + 60) * c + 4, by0 + 6 - (L + 60) * s, "v", "start", AC);
+    tx(el, bx0 + L * c + 30, by0 + 4 - L * s - 2, "α", "middle"); ar(el, 46, 124, 12, 124, VC); tx(el, 24, 116, "V", "middle", VC); return el; }
+  // 5. ballistic pendulum: a bullet into a box on a string, the box rises by h
+  function figBallistic() { const el = Sx(280, 165, "Ballistik rəqqas: güllə ipdən asılmış yeşiyə dəyir, yeşik h hündürlüyə qalxır"), ox = 140, L = 100, th = 1.0;
+    hatch(el, 100, 180, 12, true); ln(el, ox, 12, ox, 12 + L); bx(el, ox - 20, 12 + L, 40, 30, "M");
+    const qx = ox + L * Math.sin(th), qy = 12 + L * Math.cos(th); ln(el, ox, 12, qx, qy, MU, 1.5, "4 3"); bx(el, qx - 20, qy, 40, 30, "", "none", "4 3");
+    ln(el, ox + 20, 12 + L + 30, 262, 12 + L + 30, MU, 1, "3 3"); ln(el, qx + 20, qy + 30, 262, qy + 30, MU, 1, "3 3");
+    ar(el, 256, 12 + L + 30, 256, qy + 31, IK, 1.5); ar(el, 256, qy + 30, 256, 12 + L + 29, IK, 1.5); tx(el, 262, (qy + 30 + 12 + L + 30) / 2 + 5, "h", "start");
+    bx(el, 30, 12 + L + 12, 12, 6, "", IK); ar(el, 46, 12 + L + 15, 112, 12 + L + 15); tx(el, 36, 12 + L + 6, "m", "middle"); tx(el, 80, 12 + L + 6, "v ?", "middle", AC); return el; }
+  // 6. two balls on strings; ball 1 is lifted by h and released
+  function figPend() { const el = Sx(260, 160, "İki kürə iplərdən asılıb; birinci kürə h hündürlüyə qaldırılıb buraxılır"), a = 150, b = 174, L = 115, th = 0.85, y0 = 12 + L;
+    hatch(el, 60, 230, 12, true); ln(el, a, 12, a, y0, MU, 1, "4 3"); ln(el, b, 12, b, y0);
+    const qx = a - L * Math.sin(th), qy = 12 + L * Math.cos(th); ln(el, a, 12, qx, qy);
+    el.append(sv("circle", { cx: r1(qx), cy: r1(qy), r: 12, fill: SF, stroke: IK, "stroke-width": 2 })); tx(el, qx, qy + 5, "m₁", "middle", IK, 11);
+    el.append(sv("circle", { cx: a, cy: y0, r: 12, fill: "none", stroke: MU, "stroke-width": 1.2, "stroke-dasharray": "3 3" }));
+    el.append(sv("circle", { cx: b, cy: y0, r: 12, fill: SF, stroke: IK, "stroke-width": 2 })); tx(el, b, y0 + 5, "m₂", "middle", IK, 11);
+    ln(el, 20, qy, qx - 12, qy, MU, 1, "3 3"); ln(el, 20, y0, a - 12, y0, MU, 1, "3 3");
+    ar(el, 30, y0, 30, qy + 1, IK, 1.5); ar(el, 30, qy, 30, y0 - 1, IK, 1.5); tx(el, 36, (qy + y0) / 2 + 5, "h", "start"); return el; }
+  // 7. a bullet into a block on a rough floor; the block slides s
+  function figSlide() { const el = Sx(270, 165, "Güllə kobud səthdə dayanan bruskaya dəyir, bruska s yolu gedib dayanır"), y = 120;
+    hatch(el, 10, 260, y); bx(el, 110, y - 34, 50, 34, "M"); bx(el, 210, y - 34, 50, 34, "", "none", "4 3");
+    bx(el, 30, y - 20, 12, 6, "", IK); ar(el, 46, y - 17, 104, y - 17); tx(el, 36, y - 26, "m", "middle"); tx(el, 76, y - 26, "v", "middle", AC);
+    tx(el, 185, y - 12, "μ", "middle", MU); ar(el, 110, y + 26, 210, y + 26, IK, 1.5); ar(el, 210, y + 26, 110, y + 26, IK, 1.5); tx(el, 160, y + 42, "s ?", "middle"); return el; }
+  // 8. a cart runs into a cart with a spring buffer
+  function figBuffer() { const el = Sx(270, 130, "Birinci araba yaylı buferli dayanan ikinci arabaya çatır"), y = 110;
+    hatch(el, 10, 260, y + 5); bx(el, 20, 64, 56, 36, "m₁"); wheels(el, 20, 56, 105); bx(el, 186, 64, 64, 36, "m₂"); wheels(el, 186, 64, 105);
+    const pts = [[140, 82]]; for (let k = 1; k <= 8; k++) pts.push([140 + k * 5, 82 + (k % 2 ? -8 : 8)]); pts.push([186, 82]); pl(el, pts, IK, 1.8); tx(el, 160, 64, "k", "middle");
+    ar(el, 80, 50, 124, 50); tx(el, 102, 42, "v", "middle", AC); return el; }
+  // 9. a shell explodes at the top point (height H); both parts fly horizontally
+  function figBlast() { const el = Sx(270, 190, "Mərmi ən yüksək nöqtədə iki hissəyə partlayır, hissələr üfüqi uçur"), cx = 130, top = 40, y = 170, D1 = 85, D2 = 50;
+    hatch(el, 10, 260, y); ln(el, cx, y, cx, top + 6, MU, 1.2, "4 3"); el.append(sv("circle", { cx, cy: top, r: 4, fill: IK }));
+    el.append(sv("path", { d: `M${cx} ${top} Q ${cx + D1 / 2} ${top} ${cx + D1} ${y}`, fill: "none", stroke: MU, "stroke-width": 1.2, "stroke-dasharray": "4 3" }));
+    el.append(sv("path", { d: `M${cx} ${top} Q ${cx - D2 / 2} ${top} ${cx - D2} ${y}`, fill: "none", stroke: MU, "stroke-width": 1.2, "stroke-dasharray": "4 3" }));
+    ar(el, cx + 5, top, cx + 50, top); tx(el, cx + 28, top - 8, "m₁, v₁", "middle", AC); ar(el, cx - 5, top, cx - 42, top, VC); tx(el, cx - 26, top - 8, "m₂", "middle", VC);
+    ar(el, 245, y, 245, top + 1, IK, 1.5); ar(el, 245, top, 245, y - 1, IK, 1.5); ln(el, cx + 6, top, 250, top, MU, 1, "3 3"); tx(el, 252, (top + y) / 2, "H", "start");
+    ar(el, cx - D2 + 2, y + 12, cx + D1 - 2, y + 12, IK, 1.2); ar(el, cx + D1 - 2, y + 12, cx - D2 + 2, y + 12, IK, 1.2); tx(el, cx + D1 + 6, y + 16, "d ?", "start"); return el; }
+  // 10. x–t graph: body 1 runs into body 2 (standing) at t1, then they move together
+  function figXt(t1, x0, tE, xE) { const el = Sx(280, 195, "Koordinatın zamandan asılılıq qrafiki: 1 və 2 cisimləri toqquşub yapışır"), X = t => 40 + t * 24, Y = x => 165 - x * 8;
+    for (let t = 1; t <= 9; t++) { ln(el, X(t), 165, X(t), 30, MU, 0.6, "3 3"); tx(el, X(t), 180, String(t), "middle", MU, 11); }
+    for (let x = 2; x <= 16; x += 2) { ln(el, 40, Y(x), 262, Y(x), MU, 0.6, "3 3"); tx(el, 34, Y(x) + 4, String(x), "end", MU, 11); }
+    ar(el, 40, 165, 272, 165, IK, 1.5); ar(el, 40, 165, 40, 18, IK, 1.5); tx(el, 272, 194, "t, s", "end"); tx(el, 46, 16, "x, m", "start");
+    pl(el, [[X(0), Y(0)], [X(t1), Y(x0)]], AC); pl(el, [[X(0), Y(x0)], [X(t1), Y(x0)]], VC); pl(el, [[X(t1), Y(x0)], [X(tE), Y(xE)]], IK);
+    tx(el, X(t1 / 2) + 6, Y(x0 / 2) + 14, "1", "start", AC); tx(el, X(t1 / 2), Y(x0) - 6, "2", "middle", VC); tx(el, X(tE) - 4, Y(xE) - 8, "1+2", "end", IK); return el; }
+
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. F–t graph: impulse = area → speed
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([2, 3, 4, 5]), F0 = pick([2, 3, 4, 5, 6, 8, 10, 12]), t1 = pick([1, 2]), t2 = t1 + pick([1, 2, 3]), t3 = t2 + pick([1, 2]);
+      if (t3 > 6) return null;
+      const S = F0 * (t3 + t2 - t1) / 2, v = S / m, w = [F0 * t3 / m, F0 * (t2 - t1) / m, F0 * t3 / (2 * m), S];
+      if (!okn([v, ...w], 2)) return null;
+      return mc(ae(v, w, U_("m/s")), { svg: figFt(F0, t1, t2, t3), text: `Hamar üfüqi səthdə dayanan ${m} kq kütləli cismə üfüqi qüvvə təsir edir. Qüvvənin zamandan asılılıq qrafiki şəkildədir, F₀ = ${F0} N. t = ${t3} s anında cismin sürəti nə qədərdir?`,
+        solution: `Qüvvənin impulsu qrafikin altındakı sahədir (trapesiya): F₀·(${t3} + ${t2 - t1})/2 = ${F0}·${t3 + t2 - t1}/2 = ${F(S)} N·s. Bu, F_orta·Δt = Δp = mv − 0 → v = ${F(S)}/${m} = ${F(v)} m/s. Tələlər: bütün müddətdə F₀ götürmək (${F(w[0])} m/s), yalnız sabit hissəni saymaq (${F(w[1])} m/s), orta qüvvəni F₀/2 götürmək (${F(w[2])} m/s), impulsu sürət kimi yazmaq (${F(S)}).` });
+    }) },
+    // 2. oblique bounce from a wall: only the normal component turns (vectors)
+    { tip: "qapali", birlesik: "fiz-vektorlar", gen: () => again(() => {
+      const c = pick([0.6, 0.8]), s = c === 0.6 ? 0.8 : 0.6, m = pick([0.1, 0.2, 0.4, 0.5]), v = pick([5, 10, 15, 20]), dt = pick([0.01, 0.02, 0.05, 0.1]);
+      const f = 2 * m * v * c / dt, w = [2 * m * v / dt, m * v * c / dt, 2 * m * v * s / dt];
+      if (!okn([f, ...w], 1)) return null;
+      return mc(ae(f, [...w, 0], U_("N")), { svg: figWall(c), text: `Kütləsi ${F(m)} kq olan top ${v} m/s sürətlə hamar divara dəyir və eyni modullu sürətlə əks olunur. Sürət divarın perpendikulyarı ilə α bucağı əmələ gətirir, cos α = ${F(c)}. Hərəkət üfüqi müstəvidə baş verir, ağırlıq qüvvəsinin impulsu nəzərə alınmır. Zərbə ${F(dt)} s davam edir. Divarın topa orta təsir qüvvəsi nə qədərdir?`,
+        solution: `Sürəti iki toplanana ayır: divar boyu toplanan dəyişmir, perpendikulyar toplanan v·cos α = ${F(v * c)} m/s işarəsini dəyişir. Δp = 2mv·cos α = 2·${F(m)}·${v}·${F(c)} = ${F(2 * m * v * c)} kq·m/s. F = Δp/Δt = ${F(2 * m * v * c)}/${F(dt)} = ${F(f)} N. Tələlər: bucağı nəzərə almamaq (${F(w[0])} N), 2-ni unutmaq (${F(w[1])} N), sin α götürmək (${F(w[2])} N), "sürətin modulu dəyişmədi, deməli Δp = 0".` });
+    }) },
+    // 3. cannon on a platform fires at an angle: only the horizontal momentum is conserved
+    { tip: "qapali", gen: () => again(() => {
+      const [m, M] = pick([[2, 200], [4, 400], [5, 500], [10, 1000], [4, 100], [1, 100], [2, 50], [5, 125], [8, 200], [10, 250], [20, 500]]);
+      const c = pick([0.6, 0.8]), s = c === 0.6 ? 0.8 : 0.6, v = pick([100, 150, 200, 250, 300, 400, 500]);
+      const V = m * v * c / M, w = [m * v / M, m * v * s / M, v * Math.sqrt(m / M), v * c];
+      if (!okn([V, ...w], 3) || V > 20) return null;
+      return mc(ae(V, w, U_("m/s")), { svg: figCannon(c), text: `Hamar relslər üzərində dayanan platformaya top bərkidilib; platformanın topla birlikdə kütləsi (mərmisiz) ${M} kq-dır. Topdan kütləsi ${m} kq olan mərmi üfüqlə α bucağı altında, Yerə nəzərən ${v} m/s sürətlə atılır, cos α = ${F(c)}. Platforma hansı sürətlə geri gedir?`,
+        solution: `Atəş zamanı relslər platformanı şaquli istiqamətdə saxlayır, ona görə yalnız impulsun üfüqi toplananı saxlanır: 0 = m·v·cos α − M·V → V = ${m}·${v}·${F(c)}/${M} = ${F(V)} m/s. Tələlər: tam impulsu saxlamaq (${F(w[0])} m/s), sin α götürmək (${F(w[1])} m/s), mərmi ilə platformanın kinetik enerjilərini bərabər saymaq (${F(w[2])} m/s), mərminin üfüqi sürətini cavab yazmaq (${F(w[3])} m/s).` });
+    }) },
+    // 4. head-on inelastic collision: heat
+    { tip: "qapali", gen: () => again(() => {
+      const m1 = rnd(1, 6), m2 = rnd(1, 6), v1 = rnd(1, 6), v2 = rnd(1, 6), Ms = m1 + m2;
+      if (m1 * v1 === m2 * v2 || v1 === v2) return null;
+      const V = (m1 * v1 - m2 * v2) / Ms, E0 = (m1 * v1 * v1 + m2 * v2 * v2) / 2, E1 = Ms * V * V / 2, Q = E0 - E1;
+      const w = [m1 * m2 * (v1 - v2) ** 2 / (2 * Ms), E0, E1, m1 * (v1 * v1 - V * V) / 2];
+      if (!okn([Q, ...w], 2)) return null;
+      return mc(ae(Q, w, U_("J")), { svg: col(m1, v1, m2, -v2), text: `Hamar üfüqi relsdə ${m1} kq-lıq araba sağa ${v1} m/s, ${m2} kq-lıq araba sola ${v2} m/s sürətlə bir-birinə doğru gəlir. Toqquşmadan sonra arabalar yapışıb birlikdə hərəkət edir. Toqquşmada nə qədər mexaniki enerji istiliyə çevrilir?`,
+        solution: `Sağ müsbət: ${m1}·${v1} − ${m2}·${v2} = ${Ms}·V → V = ${F(V)} m/s. Əvvəl: Ek = ${m1}·${v1 * v1}/2 + ${m2}·${v2 * v2}/2 = ${F(E0)} J. Sonra: ${Ms}·${F(V * V)}/2 = ${F(E1)} J. Q = ${F(E0)} − ${F(E1)} = ${F(Q)} J. Tələlər: sürətlərə işarə verməmək (${F(w[0])} J), ilkin enerjini cavab yazmaq (${F(E0)} J), son enerjini yazmaq (${F(E1)} J), yalnız birinci arabanın enerji dəyişməsini götürmək (${F(w[3])} J).` });
+    }) },
+    // 5. ballistic pendulum (+ energy conservation)
+    { tip: "qapali", birlesik: "fiz-enerji-saxlanma", gen: () => again(() => {
+      const mg = pick([5, 10, 20, 25, 50]), k = pick([16, 25, 64, 100, 400]), h = pick([0.05, 0.2, 0.45, 0.8, 1.25]), M = mg * (k - 1) / 1000, V = Math.sqrt(2 * g * h), v = k * V;
+      if (!nice(M, 3) || v < 50 || v > 1000) return null;
+      const w = [Math.sqrt(k) * V, V, (k - 1) * V, k * 2 * g * h];
+      if (!okn([v, ...w], 2)) return null;
+      return mc(ae(v, w, U_("m/s")), { svg: figBallistic(), text: `Uzun yüngül ipdən asılmış, kütləsi ${F(M)} kq olan qum yeşiyinə ${mg} q kütləli güllə üfüqi dəyib ilişir. Yeşik (güllə ilə birlikdə) ilkin vəziyyətindən ${F(h)} m hündürlüyə qalxır. Güllənin sürəti nə qədər idi? Hava müqavimətini nəzərə alma.`,
+        solution: `1) Qalxma (enerji saxlanır): (m + M)V²/2 = (m + M)gh → V = √(2gh) = √${F(2 * g * h)} = ${F(V)} m/s. 2) Toqquşma (impuls saxlanır): mv = (m + M)V → v = (${F(mg / 1000)} + ${F(M)})·${F(V)}/${F(mg / 1000)} = ${k}·${F(V)} = ${F(v)} m/s. Tələlər: bütün prosesə enerji saxlanmasını yazmaq — toqquşmada enerji itir (${F(w[0])} m/s), V-ni cavab yazmaq (${F(V)} m/s), m + M əvəzinə M (${F(w[2])} m/s), kökü almamaq (${F(w[3])} m/s).` });
+    }) },
+    // 6. pendulum ball → elastic hit → the second ball rises (+ energy conservation)
+    { tip: "qapali", birlesik: "fiz-enerji-saxlanma", gen: () => again(() => {
+      const m1 = rnd(1, 6), m2 = rnd(1, 6), h = pick([5, 10, 20, 30, 40, 45, 60, 80, 90]);
+      if (m1 === m2) return null;
+      const q = 2 * m1 / (m1 + m2), H = h * q * q, w = [h, h * q, h * (m1 / (m1 + m2)) ** 2, h * m1 / m2];
+      if (!okn([H, ...w], 2)) return null;
+      return mc(ae(H, w, U_("sm")), { svg: figPend(), text: `Eyni uzunluqlu iki yüngül ipdən asılmış kürələr bir-birinə toxunur: m₁ = ${m1 * 100} q, m₂ = ${m2 * 100} q. İplər kifayət qədər uzundur və hərəkət boyu gərilidir. Birinci kürəni ${h} sm hündürlüyə qaldırıb buraxırlar; o, dayanan ikinci kürəyə mərkəzi elastik zərbə ilə dəyir. İkinci kürə hansı hündürlüyə qalxar? Hava müqavimətini nəzərə alma.`,
+        solution: `1) m₁gh = m₁v²/2 → v = √(2gh). 2) Elastik zərbə, m₂ dayanır: v₂' = 2m₁v/(m₁ + m₂) = ${fr2(2 * m1, m1 + m2)}·v. 3) Qalxma: H = v₂'²/(2g) = h·(${fr2(2 * m1, m1 + m2)})² = ${h}·${fr2((2 * m1) ** 2, (m1 + m2) ** 2)} = ${F(H)} sm. Tələlər: hündürlükləri əsassız bərabər saymaq, H = h (${F(w[0])} sm; bu yalnız m₁ = m₂-də doğrudur), kvadrata yüksəltməmək (${F(w[1])} sm), yapışma düsturunu yazmaq (${F(w[2])} sm), "enerji tam keçir" saymaq: m₁gh = m₂gH → H = h·m₁/m₂ (${F(w[3])} sm).` });
+    }) },
+    // 7. bullet into a block on a rough floor → sliding distance (+ friction)
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+      const T = pick([1, 2, 4, 5]), mg = pick([10, 20, 25, 50]), m = mg / 1000, M = +(T - m).toFixed(3), v = pick([200, 300, 400, 500, 600, 800]), mu = pick([0.1, 0.2, 0.25, 0.4, 0.5]);
+      const V = m * v / T, s = V * V / (2 * mu * g); if (!nice(V, 2) || s > 20) return null;
+      const w = [V * V / (mu * g), s * T / m, V * V / (2 * g), mu * V * V / (2 * g)];
+      if (!okn([s, ...w], 3)) return null;
+      return mc(ae(s, w, U_("m")), { svg: figSlide(), text: `Üfüqi səthdə dayanan ${F(M)} kq kütləli taxta bruskaya ${mg} q kütləli güllə ${v} m/s sürətlə üfüqi dəyib ilişir. Bruska ilə səth arasında sürtünmə əmsalı μ = ${F(mu)}. Zərbə çox qısadır. Bruska (güllə ilə birlikdə) dayanana qədər nə qədər yol gedər?`,
+        solution: `1) Zərbə qısadır, impuls saxlanır: mv = (m + M)V → V = ${F(m)}·${v}/${T} = ${F(V)} m/s. 2) Sürtünmə: a = μg = ${F(mu * g)} m/s², s = V²/(2μg) = ${F(V * V)}/${F(2 * mu * g)} = ${F(s)} m. Tələlər: 2-ni unutmaq (${F(w[0])} m), güllənin enerjisinin hamısını sürtünməyə vermək — zərbədə enerji itir (${F(w[1])} m), μ-ni unutmaq (${F(w[2])} m), μ-yə bölmək əvəzinə vurmaq (${F(w[3])} m).` });
+    }) },
+    // 8. spring buffer: from the maximal compression to the spring constant (+ Hooke's law, spring energy kx²/2)
+    { tip: "qapali", birlesik: "fiz-huk", gen: () => again(() => {
+      const m1 = pick([1, 2, 3, 4, 6]), m2 = pick([1, 2, 3, 4, 6]), v = rnd(1, 6), x = pick([0.05, 0.1, 0.2, 0.25, 0.4, 0.5]);
+      const Ms = m1 + m2, V = m1 * v / Ms, E = m1 * m2 * v * v / (2 * Ms), k = 2 * E / (x * x);
+      const w = [m1 * v * v / (x * x), Ms * V * V / (x * x), 2 * E / x, E / (x * x)];
+      if (!okn([V, E], 3) || !okn([k, ...w], 1) || k < 20 || k > 20000) return null;
+      return mc(ae(k, w, U_("N/m")), { svg: figBuffer(), text: `Hamar üfüqi relsdə ${m1} kq-lıq araba ${v} m/s sürətlə gəlib dayanan ${m2} kq-lıq arabaya çatır. İkinci arabanın qabağına yüngül yay bərkidilib; toqquşma zamanı yay ən çox ${F(x * 100)} sm sıxılır. Yayın sərtliyi nə qədərdir? Sürtünmə yoxdur.`,
+        solution: `1) Yay ən çox sıxılanda arabaların sürəti eynidir (impuls saxlanır): V = m₁v/(m₁ + m₂) = ${m1}·${v}/${Ms} = ${F(V)} m/s. 2) Enerji: m₁v²/2 = (m₁ + m₂)V²/2 + kx²/2 → kx²/2 = ${F(m1 * v * v / 2)} − ${F(Ms * V * V / 2)} = ${F(E)} J. 3) x = ${F(x)} m: k = 2·${F(E)}/${F(x * x)} = ${F(k)} N/m. Tələlər: bütün kinetik enerjini yaya vermək (${F(w[0])} N/m), son enerjini yaya vermək (${F(w[1])} N/m), x-i kvadrata yüksəltməmək (${F(w[2])} N/m), yayın enerjisini kx² yazmaq (${F(w[3])} N/m).` });
+    }) },
+    // 9. explosion at the top point → distance between landing points (+ free fall)
+    { tip: "qapali", birlesik: "fiz-serbest-dusme", gen: () => again(() => {
+      const H = pick([5, 20, 45, 80, 125]), t = Math.sqrt(2 * H / g), m1 = rnd(1, 6), m2 = rnd(1, 6), v1 = pick([5, 10, 15, 20, 30, 40]);
+      if (m1 === m2) return null;
+      const v2 = m1 * v1 / m2, d = (v1 + v2) * t, w = [v1 * t, v2 * t, 2 * v1 * t, Math.abs(v1 - v2) * t];
+      if (!okn([v2, d, ...w], 2) || d > 1000) return null;
+      return mc(ae(d, w, U_("m")), { svg: figBlast(), text: `Şaquli yuxarı atılan mərmi ən yüksək nöqtədə, yerdən ${H} m hündürlükdə iki hissəyə partlayır. Kütləsi ${m1} kq olan hissə üfüqi istiqamətdə ${v1} m/s sürətlə uçur, ${m2} kq-lıq hissə də üfüqi uçur. Hissələrin yerə düşdüyü nöqtələr arasındakı məsafə nə qədərdir? Şəkil miqyassızdır. Hava müqavimətini nəzərə alma, g = 10 m/s².`,
+        solution: `1) Ən yüksək nöqtədə sürət 0: 0 = m₁v₁ − m₂v₂ → v₂ = ${m1}·${v1}/${m2} = ${F(v2)} m/s, əks tərəfə. 2) Hər iki hissə üfüqi atılır, düşmə vaxtı eynidir: t = √(2H/g) = ${F(t)} s. 3) d = (v₁ + v₂)·t = ${F(v1 + v2)}·${F(t)} = ${F(d)} m. Tələlər: yalnız bir hissənin uçuşu (${F(w[0])} m və ya ${F(w[1])} m), sürətləri bərabər saymaq (${F(w[2])} m), hissələri eyni tərəfə göndərmək (${F(w[3])} m).` });
+    }) },
+    // 10. x–t graph before and after the collision → the second mass (+ kinematics)
+    { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+      const xtOpts = []; // yalnız qrafikdə dəqiq oxunan (cüt tam x) kombinasiyalar
+      for (const t1 of [2, 3, 4]) for (const v1 of [1, 2, 3, 4]) for (const V of [0.5, 1, 1.5, 2]) for (const tE of [6, 7, 8, 9]) {
+        const x0 = v1 * t1, xE = x0 + V * (tE - t1);
+        if (V < v1 && x0 % 2 === 0 && x0 <= 12 && xE % 2 === 0 && xE <= 16) xtOpts.push([t1, v1, V, tE, x0, xE]);
+      }
+      const [t1, v1, V, tE, x0, xE] = pick(xtOpts), m1 = rnd(1, 5);
+      const Va = xE / tE, m2 = m1 * (v1 - V) / V, w = [m1 * v1 / V, m1 * V / (v1 - V), m1 * (v1 + V) / V, m1 * (v1 - Va) / Va];
+      if (!okn([m2, ...w], 2)) return null;
+      return mc(ae(m2, w, U_("kq")), { svg: figXt(t1, x0, tE, xE), text: `Hamar üfüqi səthdə iki cisim bir düz xətt boyunca hərəkət edir. Qrafikdə onların koordinatının zamandan asılılığı verilib: 1-ci cisim dayanan 2-ci cismə çatır, onlar yapışır və sonra birlikdə hərəkət edir (1+2). 1-ci cismin kütləsi ${m1} kq-dır. 2-ci cismin kütləsi nə qədərdir?`,
+        solution: `Qrafikdən sürətlər (meyl): v₁ = ${x0}/${t1} = ${F(v1)} m/s, birlikdə V = (${F(xE)} − ${x0})/(${tE} − ${t1}) = ${F(V)} m/s. İmpuls: m₁v₁ = (m₁ + m₂)V → m₂ = m₁(v₁ − V)/V = ${m1}·${F(v1 - V)}/${F(V)} = ${F(m2)} kq. Tələlər: sonra yalnız m₂ hərəkət edir saymaq (${F(w[0])} kq), nisbəti tərsinə yazmaq (${F(w[1])} kq), v₁ + V yazmaq (${F(w[2])} kq), birgə sürəti meyl yerinə x/t = ${F(xE)}/${tE} kimi oxumaq (${F(w[3])} kq).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -259,7 +442,7 @@
     game = Oyun.mount({
       key: "fiz-impuls", title: "İmpuls və onun saxlanması, toqquşmalar", fenn: "fizika", link: "dersler/fiz-impuls.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: kq·m/s, m/s, N, J). Onluq kəsr vergül və ya nöqtə ilə: 0,25. Mənfi cavabda − işarəsini yaz. g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["impuls", "impuls", "saxlanma", "saxlanma", "qeyri", "qeyri", "elastik", "itki", "itki", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
