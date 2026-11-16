@@ -1273,7 +1273,8 @@
     "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
    ],
    "hefte": "2026-11-30",
-   "ders": "dersler/fiz-kulon.html"
+   "ders": "dersler/fiz-kulon.html",
+   "imt": true
   },
   {
    "bolme": "Elektrik dövrələri",
