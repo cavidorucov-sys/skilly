@@ -28,6 +28,7 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Bölünmə, qalıq</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Sadə vuruqlar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>ƏBOB, ƏKOB</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -205,6 +206,86 @@ Nümunə 2. Şagirdləri 4-4 və ya 6-6 qruplara böləndə hər dəfə 1 nəfə
         <li>ƏBOB(84; 126) = ? <span class="ans">42. 84 = 2² · 3 · 7, 126 = 2 · 3² · 7 → 2 · 3 · 7 = 42.</span></li>
         <li>ƏKOB(84; 126) = ? <span class="ans">252. 2² · 3² · 7 = 252. Yoxlama: 42 · 252 = 10584 = 84 · 126.</span></li>
         <li>Ölçüləri 24 sm × 36 sm olan kağızı qalıqsız ən böyük bərabər kvadratlara kəsirlər. Neçə kvadrat alınar? <span class="ans">6. Kvadratın tərəfi ƏBOB(24; 36) = 12 sm; 2 · 3 = 6 kvadrat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: natural ədədlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Natural ədədlər buraxılışda hər il var və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: qalığı azaltmamaq, ƏKOB əvəzinə ƏBOB tapmaq, "+1"-i unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Natural ədədlərdə cavab rəqəmlərlə yazılır (məs. 28 və ya 5886), vahid yazılmır. "Ən böyük ədədi tap" tipli suallarda cavab bütöv ədəddir, ayrı-ayrı rəqəmlər yox.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Bu mövzuda sual tipləri: gizlədilmiş rəqəm (bölünmə əlaməti), qalıqla hesablama, bölənlərin sayı, ƏBOB/ƏKOB-lu mətnli məsələ, "ən çox" və "ən az" siqnalları, aralıqda misilləri saymaq. ƏBOB/ƏKOB-lu mətnli məsələlərdə əvvəl soruş: <b>bu, ƏBOB sualıdır, yoxsa ƏKOB?</b> ("bərabər paylamaq, ən çox" → ƏBOB; "yenidən birlikdə, ən az" → ƏKOB.)</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">n</span> natural ədədi 7-yə bölünəndə qalıq 4 alınır. <span class="m">3n + 5</span> ifadəsi 7-yə bölünəndə qalıq neçə olar?</p>
+        <ol class="imt-opts"><li>2</li><li>5</li><li>3</li><li>9</li><li>17</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qalıqla hesabla: 3 · 4 + 5 = 17
+17 = 7 · 2 + 3  →  qalıq 3
+Yoxlama: n = 11 (11 = 7 + 4) → 3n + 5 = 38 = 7 · 5 + 3 ✓
+Cavab: C) 3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 2</b> — 3-ə vurmağı unutmaq: <span class="m">4 + 5 = 9</span>, <span class="m">9 = 7 + 2</span>.</li>
+        <li><b>B) 5</b> — "+5"-i unutmaq: <span class="m">3 · 4 = 12 = 7 + 5</span>.</li>
+        <li><b>D) 9</b> — həm vurmağı unutmaq, həm də qalığı azaltmamaq: <span class="m">4 + 5</span>.</li>
+        <li><b>E) 17</b> — hesablayıb qalığı azaltmamaq. Qalıq <b>həmişə böləndən kiçikdir</b>: 7-yə bölmədə qalıq 0–6 arasındadır, 17 ola bilməz.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>105-dən 300-ə qədər (105 və 300 də daxil) natural ədədlərdən neçəsi 7-yə qalıqsız bölünür?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">105 = 7 · 15 — başlanğıc özü 7-yə bölünür, onu da say.
+300-ə qədər ən böyük misil: 7 · 42 = 294 (7 · 43 = 301 > 300).
+Misillər: 7 · 15, 7 · 16, …, 7 · 42 — vuruqlar 15-dən 42-yə qədər.
+Say: 42 − 15 + 1 = 28
+Cavab: 28</div>
+      <p>Kodlaşdırmada yalnız <b>28</b> yazılır. Tələlər: <span class="m">42 − 15 = 27</span> — başlanğıc daxil olduğu halda onu saymamaq ("sonuncu − birinci" bir vuruq az verir); "daxil" sözünü oxumamaq da eyni cavabı (27) verir.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Uzunluğu 180 sm, eni 252 sm olan düzbucaqlı döşəmə eyni ölçülü kvadrat plitələrlə qalıqsız örtülür (plitələr kəsilmir). Plitənin tərəfi mümkün qədər böyük olarsa, neçə plitə lazım olar?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Plitənin tərəfi həm 180-in, həm 252-nin böləni olmalıdır (qalıqsız örtülür),
+   ən böyüyü isə lazımdır → ƏBOB.
+   180 = 2² · 3² · 5,   252 = 2² · 3² · 7
+   ƏBOB = 2² · 3² = 36 sm.
+2) Uzunluq boyu: 180 : 36 = 5 plitə.
+   En boyu:      252 : 36 = 7 plitə.
+3) Plitələrin sayı: 5 · 7 = 35.
+Cavab: 35 plitə.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>ƏBOB-un seçilməsi və tapılması</b> (1-ci addım), <b>hər istiqamətdə plitə sayı</b> (2-ci addım), <b>hasil və cavab</b>. Həll yazılmadan yalnız "35" yazmaq bal vermir. Tələ: ƏKOB götürmək (kvadratın tərəfi 1260 sm olardı — döşəmədən böyük).</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Qalığı azaltmamaq.</b> Hesabladığın ədəd böləndən böyükdürsə və ya ona bərabərdirsə, bölməyə davam et: 17-ni 7-yə böl, qalıq 3.</li>
+        <li><b>Aralıqda saymaq.</b> "A-dan B-yə qədər, hər ikisi daxil" olanda say = sonuncu vuruq − birinci vuruq + 1. "Daxil" sözünə bax.</li>
+        <li><b>ƏBOB ilə ƏKOB-u qarışdırmaq.</b> "Ən çox hədiyyə, bərabər bölmək" — ƏBOB; "yenidən birlikdə, ən az" — ƏKOB. ƏBOB ədədlərdən böyük ola bilməz, ƏKOB onlardan kiçik ola bilməz.</li>
+        <li><b>"Artıq qalır"</b> məsələsində ƏKOB tapıb qalığı əlavə etməyi unutmaq: say = ƏKOB-un misli + qalıq.</li>
+        <li><b>Bölənlərin sayı:</b> üstləri vurmaq yox, hər üstə 1 əlavə edib vurmaq. 1 və ədədin özü də bölənlərdir.</li>
+        <li><b>Gizlədilmiş rəqəm:</b> birinci yerdəki rəqəm 0 ola bilməz; 4-ə bölünmədə son <b>iki</b> rəqəmə bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k·n + c-nin qalığı: qalıqla hesabla, sonra böləndən kiçik et
+aralıqda misillər (ucları daxil): sonuncu vuruq − birinci vuruq + 1
+ƏBOB · ƏKOB = a · b;   a = p^x · q^y → bölənlərin sayı (x+1)(y+1)
+kodlaşdırmada: yalnız ədəd, vahid yox</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>n-i 9-a böləndə qalıq 5. 2n + 7-ni 9-a böləndə qalıq? <span class="ans">8. 2 · 5 + 7 = 17 = 9 + 8. (17 yazmaq tələdir.)</span></li>
+        <li>50-dən 100-ə qədər (50 və 100 də daxil) neçə ədəd 5-ə bölünür? <span class="ans">11. 5 · 10, …, 5 · 20 — vuruqlar 10-dan 20-yə qədər: 20 − 10 + 1 = 11 (10 yazmaq tələdir).</span></li>
+        <li>Biri 24 olan iki ədədin ƏBOB-u 12, ƏKOB-u 72-dir. İkinci ədəd? <span class="ans">36. b = 12 · 72 : 24 = 36. (ƏKOB-u 24-ə bölüb 3 yazmaq — ƏBOB-u unutmaqdır.)</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

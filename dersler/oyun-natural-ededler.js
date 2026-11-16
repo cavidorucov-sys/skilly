@@ -213,6 +213,110 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (remainder not reduced, ƏKOB instead of ƏBOB, forgotten "+1", wrong endpoint, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const ov = s => h("span", { class: "ov" }, s);
+  const coprime = (a, b) => gcd(a, b) === 1;
+  const prod = a => a.reduce((s, x) => s * x, 1);
+  const sumA = a => a.reduce((s, x) => s + x, 0);
+  const RULE36 = "36-ya bölünmə = 4-ə və 9-a: son iki rəqəm 4-ə, rəqəmlərin cəmi 9-a bölünür";
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: a hidden digit, sum of all digits that fit
+    { tip: "qapali", gen: () => again(() => {
+      const d = pick([3, 6, 12, 15]), len = rnd(3, 5), p = rnd(0, len - 1);
+      const digits = Array.from({ length: len }, (_, i) => i === 0 ? rnd(1, 9) : rnd(0, 9));
+      const okd = [];
+      for (let x = p === 0 ? 1 : 0; x <= 9; x++) { digits[p] = x; if (+digits.join("") % d === 0) okd.push(x); }
+      if (okd.length < 2 || okd.length > 5) return null;
+      const known = digits.reduce((s, x, i) => i === p ? s : s + x, 0), R = sumA(okd), mx = Math.max(...okd);
+      const w = [okd.length, mx, known, known + okd[0]];
+      const shown = digits.map((x, i) => i === p ? "a" : x).join("");
+      return mc(ae(R, w), { text: h("span", {}, `${len}-rəqəmli `, ov(shown), ` ədədi ${D(d)} qalıqsız bölünür. a rəqəminin ala biləcəyi bütün qiymətlərin cəmi neçədir?`),
+        solution: `${RULES[d]}. Məlum rəqəmlərin cəmi ${known}. Uyğun rəqəmlər: ${list(okd)}; cəmi ${R}.${p === 0 ? " (Birinci rəqəm 0 ola bilməz.)" : ""} Tələlər: qiymətlərin sayını (${okd.length}), ən böyüyünü (${mx}), məlum rəqəmlərin cəmini (${known}) və ya rəqəmlər cəmini (${known + okd[0]}) cavab yazmaq.` });
+    }) },
+    // 2. closed: remainder arithmetic
+    { tip: "qapali", gen: () => again(() => {
+      const b = pick([5, 6, 7, 8, 9, 11, 12]), r = rnd(2, b - 1), k = pick([2, 3, 4, 5, 7]), c = rnd(2, 15), v = k * r + c, R = v % b;
+      if (R < 1 || v < b || k % b === 0) return null;
+      const w = [v, (r + c) % b, (k * r) % b, r + c];
+      return mc(ae(R, w), { text: `n natural ədədi ${D(b)} bölünəndə qalıq ${r} alınır. ${k}n + ${c} ifadəsi ${D(b)} bölünəndə qalıq neçə olar?`,
+        solution: `Qalıqla hesabla: ${k} · ${r} + ${c} = ${v}; ${v} = ${b} · ${Math.floor(v / b)} + ${R}, qalıq ${R}. Yoxlama: n = ${b + r} → ${k}n + ${c} = ${k * (b + r) + c} = ${b} · ${Math.floor((k * (b + r) + c) / b)} + ${R}. Tələlər: ${v} yazmaq (qalıq böləndən kiçik olmalıdır), ${k} ilə vurmağı və ya ${c} əlavə etməyi unutmaq.` });
+    }) },
+    // 3. closed: number of divisors
+    { tip: "qapali", gen: () => again(() => {
+      const ps = shuffle([2, 3, 5, 7]).slice(0, pick([2, 3])), N = prod(ps.map(p => p ** rnd(1, 4)));
+      if (N > 1500) return null;
+      const f = factor(N), es = f.map(x => x[1]), R = prod(es.map(e => e + 1));
+      const w = [prod(es), sumA(es), R - 2, sumA(es.map(e => e + 1))];
+      return mc(ae(R, w), { text: `${N} ədədinin neçə natural böləni var (1 və ədədin özü də daxil)?`,
+        solution: `${N} = ${fstr(f)}. Bölənlərin sayı = ${es.map(e => `(${e} + 1)`).join(" · ")} = ${R}. Tələlər: üstləri vurmaq (${prod(es)}) və ya toplamaq (${sumA(es)}), (üst + 1)-ləri toplamaq (${sumA(es.map(e => e + 1))}), 1-i və ədədin özünü çıxmaq (${R - 2}).` });
+    }) },
+    // 4. closed: ƏBOB word problem (the "ən çox" signal)
+    { tip: "qapali", gen: () => again(() => {
+      const G = rnd(3, 15), m = rnd(2, 9), n = rnd(2, 9); if (m === n || !coprime(m, n)) return null;
+      const a = G * m, b = G * n, L = lcm(a, b), [x, y] = pick([["qələm", "dəftər"], ["alma", "armud"], ["konfet", "şokolad"]]);
+      const w = [L, m, m + n, Math.min(a, b)];
+      return mc(ae(G, w), { text: `${a} ${x} və ${b} ${y} var. Hamısı elə hədiyyələrə bölünür ki, hər hədiyyədə eyni sayda ${x} və eyni sayda ${y} olsun, heç nə qalmasın. Ən çox neçə hədiyyə düzəltmək olar?`,
+        solution: `Hədiyyələrin sayı ${a} və ${b} ədədlərinin bölənidir, ən çoxu — ƏBOB(${a}; ${b}) = ${G}. Tələlər: ƏKOB götürmək (${L}), hər hədiyyədəki ${x} sayını (${m}) və ya bir hədiyyədəki əşyaların ümumi sayını (${m + n}) cavab yazmaq.` });
+    }) },
+    // 5. closed: "r nəfər artıq" → ƏKOB·t + r inside a range
+    { tip: "qapali", gen: () => again(() => {
+      const [x, y] = pick([[4, 6], [6, 8], [4, 10], [6, 9], [8, 12], [10, 15], [6, 10], [9, 12]]), L = lcm(x, y), r = rnd(1, 3), t = rnd(2, 8), N = L * t + r;
+      const lo = N - rnd(2, Math.floor(L / 2)), hi = N + rnd(2, Math.floor(L / 2));
+      if (2 * r % x === 0 && 2 * r % y === 0) return null;
+      const w = [L * t, N - L, N + L, N - 2 * r];
+      return mc(ae(N, w), { text: `Şagirdləri ${x}-${x} və ya ${y}-${y} qruplara böləndə hər dəfə ${r} nəfər artıq qalır. Şagirdlərin sayı ${lo} ilə ${hi} arasındadır. Neçə şagird var?`,
+        solution: `Say − ${r} həm ${D(x)}, həm ${D(y)} bölünür → ƏKOB(${x}; ${y}) = ${Gn(L)} misli. Say = ${L}k + ${r}: aralıqda yalnız ${N} (= ${L} · ${t} + ${r}). Tələlər: ${r} artıq qalanı unutmaq (${L * t}), qonşu misilləri götürmək (${N - L}, ${N + L} — aralıqdan kənardır), artıq qalanı əlavə etmək əvəzinə çıxmaq (${N - 2 * r}).` });
+    }) },
+    // 6. closed: ƏBOB · ƏKOB = a · b, backwards
+    { tip: "qapali", gen: () => again(() => {
+      const G = rnd(2, 12), m = rnd(2, 9), n = rnd(2, 9); if (m === n || !coprime(m, n)) return null;
+      const a = G * m, b = G * n, L = G * m * n;
+      const w = [L / a, G + L - a, G * L, L - a];
+      return mc(ae(b, w), { text: `Biri ${a} olan iki natural ədədin ƏBOB-u ${G}, ƏKOB-u ${L} olur. İkinci ədədi tapın.`,
+        solution: `ƏBOB · ƏKOB = a · b → b = ${G} · ${L} : ${a} = ${b}. Yoxlama: ƏBOB(${a}; ${b}) = ${G}, ƏKOB = ${L}. Tələlər: ƏBOB-u unudub ƏKOB-u ${a} ədədinə bölmək (${L / a}), ƏBOB · ƏKOB hasilini (${G * L}) ${a} ədədinə bölməyi unutmaq, cəm düsturunu (ƏBOB + ƏKOB = a + b) tətbiq etmək (${G + L - a}), ƏKOB-dan ${a} çıxmaq (${L - a}).` });
+    }) },
+    // 7. coded: two hidden digits, the largest number
+    { tip: "kod", gen: () => again(() => {
+      const d = pick([12, 15, 18, 36, 45]), len = rnd(4, 5), digits = Array.from({ length: len }, (_, i) => i === 0 ? rnd(1, 9) : rnd(0, 9));
+      const idx = shuffle(Array.from({ length: len - 1 }, (_, i) => i + 1)).slice(0, 2).sort((p, q) => p - q), vals = [];
+      for (let a = 0; a <= 9; a++) for (let b = 0; b <= 9; b++) { digits[idx[0]] = a; digits[idx[1]] = b; const v = +digits.join(""); if (v % d === 0) vals.push(v); }
+      if (vals.length < 3 || vals.length > 9) return null;
+      const shown = digits.map((x, i) => i === idx[0] ? "a" : i === idx[1] ? "b" : x).join(""), mx = Math.max(...vals);
+      return { text: h("span", {}, `${len}-rəqəmli `, ov(shown), ` ədədi ${D(d)} qalıqsız bölünür (a və b eyni rəqəm də ola bilər). Belə ədədlərin ən böyüyünü tapın.`),
+        answer: mx, show: String(mx), tol: 1e-6, unit: "", solution: `${RULES[d] || RULE36}. Uyğun ədədlər: ${list(vals)}. Ən böyüyü: ${mx}.` };
+    }) },
+    // 8. coded: multiples in a closed range (the endpoint trap)
+    { tip: "kod", gen: () => again(() => {
+      const d = pick([6, 7, 8, 9, 11, 12, 13]), t = rnd(3, 20), A = d * t, B = A + rnd(40, 300), fl = Math.floor(B / d), R = fl - t + 1;
+      return { text: `${Ab(A)} ${D(B)} qədər (${A} və ${B} də daxil) natural ədədlərdən neçəsi ${D(d)} qalıqsız bölünür?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "", solution: `${A} = ${d} · ${t}, ${B} ədədinə qədər ən böyük misil ${d} · ${fl} = ${d * fl}. Misillər: ${d} · ${t}, …, ${d} · ${fl} — vuruqlar ${Ab(t)} ${D(fl)} qədər: ${fl} − ${t} + 1 = ${R}. Tələ: başlanğıcı daxil etməyib ${fl} − ${t} = ${R - 1} yazmaq.` };
+    }) },
+    // 9. coded: divisors divisible by a given prime
+    { tip: "kod", gen: () => again(() => {
+      const ps = shuffle([2, 3, 5, 7]).slice(0, 3), N = prod(ps.map(p => p ** rnd(1, 3)));
+      if (N > 3000) return null;
+      const f = factor(N), i = rnd(0, 2), p = f[i][0], R = f[i][1] * prod(f.filter((_, j) => j !== i).map(x => x[1] + 1));
+      let brute = 0; for (let q = 1; q <= N; q++) if (N % q === 0 && q % p === 0) brute++;
+      if (brute !== R) throw new Error("natural-ededler imt 9: " + N + " " + p + " " + brute + " " + R);
+      const total = prod(f.map(x => x[1] + 1));
+      return { text: `${N} ədədinin ${D(p)} bölünən natural bölənlərinin sayını tapın.`,
+        answer: R, show: String(R), tol: 1e-6, unit: "", solution: `${N} = ${fstr(f)}. ${D(p)} bölünən bölən ${p} vuruğunu ən azı 1 dəfə saxlamalıdır: ${p} üçün ${f[i][1]} seçim (üst ${f[i][1] > 1 ? "1, …, " + f[i][1] : "1"}), qalan vuruqlar üçün ${f.filter((_, j) => j !== i).map(x => `${x[1] + 1}`).join(" · ")}. Say = ${R}. (Tələ: bütün bölənlərin sayını — ${total} — yazmaq.)` };
+    }) },
+    // 10. written: the largest square tiles (ƏBOB) and their number
+    { tip: "yazili", gen: () => again(() => {
+      const G = rnd(6, 40), m = rnd(2, 9), n = rnd(2, 9); if (m === n || !coprime(m, n)) return null;
+      const a = G * m, b = G * n, R = m * n, fa = factor(a), fb = factor(b);
+      return { text: `Uzunluğu ${a} sm, eni ${b} sm olan düzbucaqlı döşəmə eyni ölçülü kvadrat plitələrlə qalıqsız örtülür (plitələr kəsilmir). Plitənin tərəfi mümkün qədər böyük olarsa, neçə plitə lazım olar?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "plitə",
+        solution: `1) Plitənin tərəfi ${a} və ${b} ədədlərinin ortaq böləni olmalıdır, ən böyüyü — ƏBOB: ${a} = ${fstr(fa)}, ${b} = ${fstr(fb)}, ƏBOB = ${G} sm. 2) Uzunluq boyu ${a} : ${G} = ${m}, en boyu ${b} : ${G} = ${n} plitə. 3) ${m} · ${n} = ${R}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -222,7 +326,7 @@
     game = Oyun.mount({
       key: "natural-ededler", title: "Natural ədədlər", fenn: "riyaziyyat", link: "dersler/natural-ededler.html",
       format: "Cavab — natural ədəd (məs. 12). Seçimli suallarda variantı seç.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["elamet", "elamet", "qaliq", "qaliq", "sade", "vuruq", "ebob", "ebob", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
