@@ -1190,7 +1190,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər",
     "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg"
    ],
-   "hefte": "2026-11-16"
+   "hefte": "2026-11-16",
+   "imt": true
   },
   {
    "bolme": "Statika",
@@ -1255,7 +1256,8 @@
     "riyaziyyat:Faiz"
    ],
    "hefte": "2026-11-30",
-   "ders": "dersler/fiz-istilik-balansi.html"
+   "ders": "dersler/fiz-istilik-balansi.html",
+   "imt": true
   },
   {
    "bolme": "Elektrostatika",

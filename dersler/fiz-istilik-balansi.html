@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yanacaq, mühərrik</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb məsələlər</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Turbin, DYM, reaktiv</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -452,6 +453,99 @@ Reaktiv: qaz-reaktiv havadan istifadə edir, raket oksidləşdiricini özü daş
         <li>Hansı taktda hər iki klapan bağlı olur? <span class="ans">II (sıxılma) və III (işgörmə) taktlarda.</span></li>
         <li>Soyuducuya verilən istilik turbinin gördüyü işdən 3 dəfə çoxdur. FİƏ? <span class="ans">A/(A + 3A) = 1/4 = 25%.</span></li>
         <li>Niyə təyyarənin qaz-reaktiv mühərriki kosmosda işləyə bilməz, raket isə işləyir? <span class="ans">Qaz-reaktiv mühərrik yanma üçün atmosfer havasının oksigenindən istifadə edir; raket oksidləşdiricini özü daşıyır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: istilik balansı, faza keçidləri, mühərriklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "Q = λm düsturuna bir sual" az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — çox vaxt <b>temperaturun zamandan (və ya istilikdən) asılılıq qrafiki</b>: maili hissə — qızma, üfüqi hissə — ərimə və ya qaynama. Rəqəmləri qrafikdən oxumaq lazımdır. Bəzən qab və buz parçaları, mühərrikin sxemi.</li>
+        <li><b>Bir neçə addım</b> — əvvəl "buzun hamısı əriyirmi?" yoxlaması, sonra balans; və ya əvvəl FİƏ, sonra temperatur.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: buzun qızmasını unutmaq, nisbəti tərsinə çevirmək, FİƏ-ni Selsi ilə hesablamaq, ½-i unutmaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: kinetik enerji istiliyə çevrilir (<span class="m">Mv²/2 → cmΔt</span>), qızdırıcının gücü (<span class="m">ηPt = Q</span>), istidən genişlənmə (<span class="m">Δl = αl₀Δt</span>).</li>
+      </ul>
+      <p>Qrafik oxumağın açarı: qızdırıcının gücü sabitdirsə, <b>istilik vaxta mütənasibdir</b>. Ona görə iki hissənin vaxtlarının nisbəti onların istiliklərinin nisbətidir — gücü bilmək lazım deyil.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qrafikdən istilik tutumu</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 290 200" class="oy-svg" role="img" aria-label="Temperaturun zamandan asılılığı: 20 °C-dən 80 °C-yə 2 dəqiqədə, sonra 2-ci dəqiqədən 10-cu dəqiqəyə qədər 80 °C-də üfüqi hissə"><defs><marker id="ib-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="83.8" y1="170" x2="83.8" y2="22" stroke="var(--muted,#6b6b73)" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="3 3"/><text x="83.8" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">2</text><line x1="227.2" y1="170" x2="227.2" y2="22" stroke="var(--muted,#6b6b73)" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="3 3"/><text x="227.2" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">10</text><line x1="48" y1="143.6" x2="272" y2="143.6" stroke="var(--muted,#6b6b73)" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="3 3"/><text x="42" y="147.6" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">20</text><line x1="48" y1="64.3" x2="272" y2="64.3" stroke="var(--muted,#6b6b73)" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="3 3"/><text x="42" y="68.3" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">80</text><line x1="48" y1="170" x2="284" y2="170" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ib-ar)"/><line x1="48" y1="170" x2="48" y2="8" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ib-ar)"/><text x="54" y="16" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, °C</text><text x="284" y="196" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">τ, dəq</text><polyline points="48,143.6 83.8,64.3 227.2,64.3 263,27.3" fill="none" stroke="var(--accent,#a32d2d)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><text x="155.5" y="56.9" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">ərimə</text></svg></div>
+        <p>Kristal maddəni sabit güclü qızdırıcı ilə qızdırırlar. Qrafikdə maddənin temperaturunun zamandan asılılığı verilib. Maddənin xüsusi ərimə istiliyi λ = 120 kJ/kq. Bərk halda maddənin xüsusi istilik tutumu nə qədərdir? (Qızdırıcının verdiyi bütün istiliyi maddə alır.)</p>
+        <ol class="imt-opts"><li>400 J/(kq·°C)</li><li>8000 J/(kq·°C)</li><li>500 J/(kq·°C)</li><li>375 J/(kq·°C)</li><li>30 000 J/(kq·°C)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qrafikdən: qızma 20 → 80 °C, 2 dəq;  ərimə (üfüqi hissə) 10 − 2 = 8 dəq
+Güc sabitdir:  P·2 = c·m·60,   P·8 = λ·m
+Bölək:  c = λ·2/(8·60) = 120 000·2/480 = 500 J/(kq·°C)
+Cavab: C) 500 J/(kq·°C)</div>
+      <ul>
+        <li><b>B) 8000</b> — nisbəti tərsinə çevirmək: λ·8/(2·60).</li>
+        <li><b>E) 30 000</b> — Δt-ni unutmaq: λ·2/8.</li>
+        <li><b>D) 375</b> — Δt əvəzinə ərimə temperaturu 80 °C götürmək.</li>
+        <li><b>A) 400</b> — ərimənin vaxtı əvəzinə qrafikdəki 10 dəqiqəni götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — buzun hamısı əriyirmi?</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil, çoxaddım</span>
+        <div class="fig"><svg viewBox="0 0 280 200" class="oy-svg" role="img" aria-label="Suyun içinə buz parçaları atılıb"><defs><marker id="ib-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="62" y="80" width="156" height="100" fill="var(--vec,#0c447c)" fill-opacity="0.12"/><line x1="62" y1="80" x2="218" y2="80" stroke="var(--vec,#0c447c)" stroke-width="1.5" stroke-linecap="round"/><polyline points="60,50 60,182 220,182 220,50" fill="none" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="90" y="68" width="22" height="22" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6" transform="rotate(-8 101 79)"/><rect x="118" y="70" width="22" height="22" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6" transform="rotate(6 129 81)"/><rect x="150" y="67" width="22" height="22" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="1.6" transform="rotate(-4 161 78)"/><text x="140" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">buz: 1 kq, −20 °C</text><text x="140" y="140" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">su: 1 kq, 40 °C</text></svg></div>
+        <p>40 °C-li 1 kq suya −20 °C-li 1 kq buz atdılar. İstilik itkisi yoxdur, qabın istilik tutumu nəzərə alınmır. c_su = 4200, c_buz = 2100 J/(kq·°C), λ = 3,36·10⁵ J/kq. İstilik tarazlığı yarandıqda qabda neçə kq buz qalar?</p>
+        <ol class="imt-opts"><li>0,5 kq</li><li>0,625 kq</li><li>0</li><li>0,375 kq</li><li>0,75 kq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Su 0 °C-yə qədər soyuyanda verə bilər:  4200·1·40 = 168 000 J
+Buzu −20 → 0 °C:  2100·1·20 = 42 000 J
+Əriməyə qalır:  168 000 − 42 000 = 126 000 J
+Hamısını əritmək üçün:  336 000 J — çatmır, son temperatur 0 °C
+Əriyən:  126 000/336 000 = 0,375 kq;   qalan:  1 − 0,375 = 0,625 kq
+Cavab: B) 0,625 kq</div>
+      <ul>
+        <li><b>A) 0,5 kq</b> — buzun 0 °C-yə qədər qızmasını unutmaq: 1 − 168 000/336 000.</li>
+        <li><b>D) 0,375 kq</b> — əriyən buzu yazmaq; sual qalan buzu soruşur.</li>
+        <li><b>C) 0</b> — yoxlamadan "buzun hamısı əriyir" demək.</li>
+        <li><b>E) 0,75 kq</b> — buz üçün c_su = 4200 götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: çəkic zərbələri</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 280 214" class="oy-svg" role="img" aria-label="Çəkic zindan üzərindəki metal parçasına zərbə endirir"><defs><marker id="ib-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M80 150 L200 150 L180 168 L180 186 L100 186 L100 168 Z" fill="var(--muted,#6b6b73)" fill-opacity="0.35" stroke="var(--ink,#17171a)" stroke-width="2"/><rect x="122" y="136" width="36" height="14" fill="var(--accent,#a32d2d)" stroke="var(--accent,#a32d2d)" stroke-width="1"/><text x="140" y="205" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">polad, 0,3 kq</text><rect x="112" y="30" width="56" height="30" fill="var(--muted,#6b6b73)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="168" y1="45" x2="240" y2="30" stroke="var(--ink,#17171a)" stroke-width="5" stroke-linecap="round"/><line x1="140" y1="68" x2="140" y2="126" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ib-ar)"/><text x="132" y="100" text-anchor="end" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v</text><text x="140" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">M = 2 kq</text><text x="214" y="82" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">25 zərbə</text></svg></div>
+        <p>Kütləsi 2 kq olan çəkic zindan üzərindəki 0,3 kq kütləli polad parçasına (c = 500 J/(kq·°C)) 25 dəfə vurur. Hər zərbədən əvvəl çəkicin sürəti 6 m/s-dir, zərbədən sonra çəkic dayanır. Zərbələr müddətində parçanın ətrafa istilik verməsi nəzərə alınmır. Çəkicin kinetik enerjisinin 60%-i parçanın qızmasına gedir. Parçanın temperaturu neçə dərəcə artar?</p>
+        <ol class="imt-opts"><li>6 °C</li><li>0,144 °C</li><li>7,2 °C</li><li>3,6 °C</li><li>0,54 °C</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Bir zərbədə:  E = Mv²/2 = 2·36/2 = 36 J
+25 zərbədə parçaya:  Q = 0,6·25·36 = 540 J
+Δt = Q/(cm) = 540/(500·0,3) = 3,6 °C
+Cavab: D) 3,6 °C</div>
+      <ul>
+        <li><b>A) 6 °C</b> — 60%-i unutmaq (bütün enerjini parçaya vermək).</li>
+        <li><b>C) 7,2 °C</b> — kinetik enerjini <span class="m">Mv²</span> yazmaq (½ yoxdur).</li>
+        <li><b>B) 0,144 °C</b> — yalnız bir zərbəni saymaq.</li>
+        <li><b>E) 0,54 °C</b> — parçanın yerinə çəkicin kütləsini (2 kq) götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Buz suya düşəndə yoxlamamaq.</b> Əvvəl müqayisə et: sudan çıxa biləcək istilik buzu 0 °C-yə qədər qızdırıb əritməyə çatırmı? Qaydanı yalnız <span class="m">Q_buzun_qızması &lt; Q_su &lt; Q_buzun_qızması + λm</span> olanda işlət: onda buzun bir hissəsi əriyir, son temperatur 0 °C-dir. Q_su = Q_buzun_qızması olarsa, buz tam 0 °C-yə çatır, heç nə əriməyir və donmur. Q_su &lt; Q_buzun_qızması olarsa, su donmağa başlayır və son temperatur 0 °C-dən aşağı ola bilər (bu, ayrıca həll tələb edir). Q_su ≥ Q_buzun_qızması + λm olarsa, buz tam əriyir.</li>
+        <li><b>Buzun qızmasını unutmaq.</b> −t °C-li buz əvvəl 0 °C-yə qədər qızır (<span class="m">c_buz = 2100</span>, 4200 yox).</li>
+        <li><b>Qrafikdə nisbəti tərsinə çevirmək.</b> Sabit güclə istilik vaxta mütənasibdir: hansı vaxtın hansı istiliyə uyğun olduğunu yaz.</li>
+        <li><b>FİƏ-ni Selsi ilə hesablamaq.</b> Karno düsturunda <span class="m">T = t + 273</span>; cavab °C ilə soruşulursa, sonda 273-ü çıx.</li>
+        <li><b>FİƏ-ni unutmaq və ya ona vurmaq.</b> Faydalı istilik = η·(verilən); verilən = faydalı/η.</li>
+        <li><b>Q₂-ni A ilə qarışdırmaq.</b> <span class="m">Q₂ = Q₁ − A</span>, burada <span class="m">Q₁ = A/η</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Balans:     verilən = alınan,   c₁m₁(t₁ − θ) = c₂m₂(θ − t₂)
+Faza:       Q = λm (ərimə),   Q = Lm (qaynama);  temperatur dəyişmir
+Buz + su:   əvvəl yoxla:  c_su·m_su·t_su  və  c_buz·m·|t_buz| + λm
+Qrafik:     sabit güc → Q ~ vaxt (hissələrin vaxtlarını müqayisə et)
+Mühərrik:   η = A/Q₁,   Q₂ = Q₁ − A,   ideal: η = 1 − T₂/T₁ (kelvin)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>0 °C-li 1 kq buzu 20 °C-li 2 kq suya atdılar. Buzun hamısı əriyərmi? (λ = 3,36·10⁵ J/kq) <span class="ans">Su 0 °C-yə qədər 4200·2·20 = 168 000 J verə bilər, əritmək üçün 336 000 J lazımdır — yox. 0,5 kq əriyir, son temperatur 0 °C.</span></li>
+        <li>İdeal mühərrikin qızdırıcısı 327 °C, soyuducusu 27 °C-dir. Ən böyük FİƏ? <span class="ans">T₁ = 600 K, T₂ = 300 K: η = 1 − 300/600 = 50%. (Selsi ilə 1 − 27/327 ≈ 92% — səhvdir.)</span></li>
+        <li>Sabit güclü qızdırıcı 0 °C-li buzu 16 dəqiqəyə əridir. Alınan su 0 °C-dən 100 °C-yə neçə dəqiqəyə qızar? <span class="ans">λm = 336 000m ↔ 16 dəq, c·m·100 = 420 000m ↔ x. x = 16·420 000/336 000 = 20 dəq.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
