@@ -1199,6 +1199,7 @@
    "status": "yox",
    "menbe": "RFO fiz (aşağı): 1.2 Statika",
    "ders": "dersler/fiz-mexanizmler.html",
+   "imt": true,
    "on": [
     "fizika:Qüvvə momenti, tarazlıq",
     "riyaziyyat:Nisbət, tənasüb, düz və tərs mütənasiblik"
@@ -1310,7 +1311,8 @@
     "fizika:Mexaniki iş və güc"
    ],
    "hefte": "2026-12-07",
-   "ders": "dersler/fiz-elektrik-guc.html"
+   "ders": "dersler/fiz-elektrik-guc.html",
+   "imt": true
   },
   {
    "bolme": "Hidrostatika",
