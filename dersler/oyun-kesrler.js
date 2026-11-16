@@ -274,6 +274,120 @@
   // "24-dür", "15-dir", "30-dur", "40-dır" — copula after a numeral
   function sfxDir(n) { const w = sfx(n, "i"), v = w.slice(-1); return n + "-d" + v + "r"; }
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (no inversion, wrong order of operations, wrong denominator 9/90, ...).
+  const { ae, again } = Oyun;
+  const FR = [[1, 2], [1, 3], [2, 3], [1, 4], [3, 4], [1, 5], [2, 5], [3, 5], [4, 5], [1, 6], [5, 6], [1, 8], [3, 8], [5, 8], [1, 9], [2, 9], [4, 9], [1, 10], [3, 10], [7, 10]];
+  const okF = (r, m = 40) => r[0] > 0 && r[1] <= m && r[0] <= 150;           // a "nice" positive fraction
+  const okI = x => Math.abs(x - Math.round(x)) < 1e-9 && x > 0;               // a positive whole number
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  // decimal expansion of p/q by long division: {pre, per} (digits before the period, the period)
+  const expand = (p, q) => { const seen = new Map(); let r = p % q, digs = "", i = 0; while (r && !seen.has(r)) { seen.set(r, i++); r *= 10; digs += Math.floor(r / q); r %= q; } if (!r) return { pre: digs, per: "" }; const s = seen.get(r); return { pre: digs.slice(0, s), per: digs.slice(s) }; };
+  const addS = (x, y) => x[1] === y[1] ? `${S(x)} + ${S(y)} = ${S(add(x, y))}` : addSteps(x, y, "+");
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. order of operations and division of fractions: a/b + c/d : e/f
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(FR), c = pick(FR), e = pick(FR); if (c[0] === e[0] && c[1] === e[1]) return null;
+      const q = div(c, e), right = add(a, q);
+      const w = [mul(add(a, c), [e[1], e[0]]), add(a, mul(c, e)), add(a, mul([c[1], c[0]], e)), mul(add(a, c), e)];
+      if (![right, ...w].every(r => okF(r))) return null;
+      return mc(ae(right, w, S), { text: `${S(a)} + ${S(c)} : ${S(e)} ifadəsinin qiymətini tapın.`,
+        solution: `Əvvəl bölmə: ${divSteps(c, e)}. Sonra toplama: ${addS(a, q)}. Tələlər: əməllər sırasını pozub əvvəl toplamaq (${S(w[0])}); bölmədə tərsinə çevirməmək (${S(w[1])}); birinci kəsri çevirmək (${S(w[2])}); həm sıranı pozmaq, həm çevirməmək (${S(w[3])}).` });
+    }, 3000) },
+    // 2. division of mixed numbers
+    { tip: "qapali", gen: () => again(() => {
+      const mixed = () => { const d = rnd(2, 6), m = rnd(1, d - 1), w = rnd(1, 4), r = R(m, d); return { w, f: r, v: R(w * r[1] + r[0], r[1]) }; };
+      const x = mixed(), y = mixed(), right = div(x.v, y.v);
+      const w = [add(R(x.w, y.w), div(x.f, y.f)), mul(x.v, y.v), div(y.v, x.v), div(R(x.w + x.f[0], x.f[1]), R(y.w + y.f[0], y.f[1]))];
+      if (![right, ...w].every(r => okF(r))) return null;
+      return mc(ae(right, w, MX), { text: `${MX(x.v)} : ${MX(y.v)} ifadəsinin qiymətini tapın.`,
+        solution: `Əvvəl düzgün olmayan kəsrə çevir: ${MX(x.v)} = ${S(x.v)}, ${MX(y.v)} = ${S(y.v)}. ${divSteps(x.v, y.v)}. Tələlər: tam və kəsr hissələrini ayrıca bölmək (${MX(w[0])}); bölmə əvəzinə vurmaq (${MX(w[1])}); birinci kəsri çevirmək (${MX(w[2])}); çevirmədə tam hissəni məxrəcə vurmamaq, yəni (tam + surət)/məxrəc yazmaq (${MX(w[3])}).` });
+    }, 3000) },
+    // 3. periodic -> common fraction
+    { tip: "qapali", gen: () => again(() => {
+      const I = pick([0, 0, 0, 1, 2]), k = pick([1, 1, 2]), m = pick([1, 1, 2]);
+      const P = Array.from({ length: k }, () => rnd(0, 9)).join(""), Q = Array.from({ length: m }, () => rnd(0, 9)).join("");
+      if (/^[09]+$/.test(Q) || (m === 2 && Q[0] === Q[1]) || P[k - 1] === Q[m - 1] || P[0] === "0") return null;
+      const all = +(String(I) + P + Q), head = +(String(I) + P), den = (10 ** m - 1) * 10 ** k, right = R(all - head, den);
+      const w = [R(all, den), R(all - head, 10 ** m - 1), R(all - head, 10 ** (k + m) - 1), R(all, 10 ** (k + m))];
+      if (![right, ...w].every(r => r[1] <= 200 && r[0] <= 400)) return null;
+      const shown = `${I},${P}(${Q})`;
+      return mc(ae(right, w, S), { text: `${shown} dövri kəsrini adi kəsrə çevirin.`,
+        solution: `${shown} = (${all} − ${head})/${den} = ${all - head}/${den}` + (right[1] !== den ? ` = ${S(right)}` : "") + `. Məxrəc: dövrdə ${m} rəqəm → ${"9".repeat(m)}, dövrdən əvvəl ${k} rəqəm → ${"0".repeat(k)}. Tələlər: surətdə dövrə qədər hissəni çıxmamaq (${S(w[0])}); məxrəcdə sıfırları yazmamaq (${S(w[1])}); məxrəci ${"9".repeat(k + m)} götürmək (${S(w[2])}); dövrü görməyib sonlu kəsr saymaq (${S(w[3])}).` });
+    }, 3000) },
+    // 4. "the rest": what is left after two steps, the second one is a part of the rest
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(FR), c = pick(FR); if (a[0] / a[1] + c[0] / c[1] >= 1) return null;
+      const T = a[1] * c[1] * rnd(1, 6), left = Math.round(T * (1 - a[0] / a[1]) * (1 - c[0] / c[1]) * 1e6) / 1e6;
+      const first = T * a[0] / a[1], rest = T - first, second = rest * c[0] / c[1];
+      const w = [T * (1 - a[0] / a[1] - c[0] / c[1]), first + second, second, rest].map(v => Math.round(v * 1e6) / 1e6);
+      if (![left, ...w].every(okI)) return null;
+      const story = pick([
+        { t: `Kitab ${T} səhifədir. Elvin kitabın ${S(a)} hissəsini birinci gün, qalan səhifələrin ${S(c)} hissəsini ikinci gün oxudu. Oxumağa neçə səhifə qaldı?`, u: "səhifə" },
+        { t: `Aysel ${T} manat pulunun ${S(a)} hissəsini kitaba, qalan pulun ${S(c)} hissəsini dəftərlərə xərclədi. Onun neçə manatı qaldı?`, u: "manat" },
+        { t: `Yolun uzunluğu ${T} km-dir. Turist yolun ${S(a)} hissəsini birinci gün, qalan yolun ${S(c)} hissəsini ikinci gün getdi. Getməyə neçə km qaldı?`, u: "km" }]);
+      return mc(ae(left, w), { text: story.t,
+        solution: `Birinci addımdan sonra qalır: ${T} − ${first} = ${rest}. İkinci addımda qalanın ${S(c)} hissəsi: ${rest} · ${S(c)} = ${second}. Qalır: ${rest} − ${second} = ${left} ${story.u}. Tələlər: ikinci hissəni bütövdən götürmək (${w[0]}); iki addımda götürülənlərin cəmini cavab yazmaq (${w[1]}); yalnız ikinci addımda götürülən miqdarı yazmaq (${w[2]}); birinci addımdan sonra dayanmaq (${w[3]}).` });
+    }, 3000) },
+    // 5. comparison with a periodic fraction (more digits is not bigger)
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 8), Lr = rnd(3, 5), A = String(a), Ld = rnd(3, 5);
+      const right = "0," + A.repeat(Lr - 1) + (a + 1), decoy = "0," + A.repeat(Ld - 1) + (a - 1);
+      const lens = shuffle([1, 2, 3, 4, 5, 6]).slice(0, 3).sort((p, q) => p - q), w = [decoy, ...lens.map(L => "0," + A.repeat(L))];
+      return mc(ae(right, w, x => x), { text: `Aşağıdakı ədədlərdən hansı 0,(${a}) ədədindən böyükdür?`,
+        solution: `0,(${a}) = 0,${A.repeat(6)}… . Rəqəm-rəqəm müqayisə et, ilk fərqli rəqəmə bax: ${right} ədədində ${Or(Lr)} rəqəm ${a + 1}, 0,(${a}) ədədində isə ${a} — deməli, ${right} böyükdür. Yalnız ${a} rəqəmindən ibarət sonlu kəsrlər (${lens.map(L => "0," + A.repeat(L)).join("; ")}) 0,(${a}) ədədinin "kəsilmişidir", ondan kiçikdir. ${decoy} ədədində ${Or(Ld)} rəqəm ${a - 1} < ${a}. Rəqəmin çox olması böyük demək deyil.` });
+    }) },
+    // 6. number from the difference of its parts: a/b of x exceeds c/d of x by D
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(FR), b = pick(FR); if (val(a) <= val(b)) return null;
+      const d = sub(a, b), sum = add(a, b), naive = a[1] > b[1] && a[0] > b[0] ? R(a[0] - b[0], a[1] - b[1]) : null; if (!naive) return null;
+      const rs = [div(d, a), div(d, b), div(d, sum), div(d, naive)], x = [d[1], ...rs.map(r => r[1])].reduce(lcm) * rnd(1, 3), Dv = x * d[0] / d[1];
+      const w = rs.map(r => x * r[0] / r[1]);
+      if (!okI(Dv) || x > 600 || !w.every(okI) || w.some(v => v > 3000)) return null;
+      return mc(ae(x, w), { text: `Ədədin ${S(a)} hissəsi onun ${S(b)} hissəsindən ${Dv} çoxdur. Bu ədədi tapın.`,
+        solution: `Fərq: ${S(a)} − ${S(b)} = ${S(d)}. Deməli, ədədin ${S(d)} hissəsi ${sfxDir(Dv)}; hissəsinə görə ədəd — bölmə: ${Dv} : ${S(d)} = ${Dv} · ${d[1]}/${d[0]} = ${x}. Tələlər: yalnız birinci hissəyə bölmək (${w[0]}); yalnız ikinci hissəyə bölmək (${w[1]}); hissələri toplamaq (${w[2]}); surətləri və məxrəcləri ayrıca çıxmaq (${w[3]}).` });
+    }, 4000) },
+    // 7. coded: n-th digit after the comma
+    { tip: "kod", gen: () => again(() => {
+      const q = pick([7, 7, 13, 11, 14, 35, 12, 15, 27, 37, 21, 22, 33]), p = rnd(1, q - 1); if (gcd(p, q) !== 1 || finite(q)) return null;
+      const { pre, per } = expand(p, q), k = pre.length, m = per.length, n = pick([2026, rnd(25, 99), rnd(100, 300), rnd(25, 99)]);
+      if (n <= k + m) return null;
+      const pos = (n - k - 1) % m + 1, t = (n - k - pos) / m, d = +per[pos - 1]; if (d < 1) return null;
+      return { text: `${p}/${q} kəsrinin onluq yazılışında vergüldən sonra ${Or(n)} rəqəm neçədir?`, answer: d, show: String(d), tol: 1e-6,
+        solution: `${p}/${q} = 0,${pre}(${per}): dövrdən əvvəl ${k} rəqəm, dövrdə ${m} rəqəm. ` + (k ? `${n} − ${k} = ${n - k}; ` : "") + `${n - k} = ${m} · ${t} + ${pos}, deməli, bu dövrün ${Or(pos)} rəqəmidir: ${d}.` + (k ? " Tələ: dövrdən əvvəlki rəqəmləri çıxmadan saymaq." : "") };
+    }, 3000) },
+    // 8. coded: pipes working together (one may drain)
+    { tip: "kod", gen: () => again(() => {
+      const A = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60], a = pick(A), b = pick(A), three = Math.random() < .5, c = three ? pick(A) : 0;
+      if (a === b || (three && c <= Math.max(a, b))) return null;
+      const per = add([1, a], [1, b]), tot = three ? sub(per, [1, c]) : per; if (tot[0] !== 1) return null; const T = tot[1]; if (T < 2 || T > 60) return null;
+      return { text: `Boş hovuzu birinci boru ${a} saata, ikinci boru ${b} saata doldurur` + (three ? `, üçüncü boru isə dolu hovuzu ${c} saata boşaldır. Üç boru birlikdə açılsa` : `. İki boru birlikdə açılsa`) + `, hovuz neçə saata dolar? (Hər boru sabit sürətlə işləyir.)`,
+        answer: T, show: String(T), tol: 1e-6, unit: "saat",
+        solution: `1 saatda: 1/${a} + 1/${b}` + (three ? ` − 1/${c}` : "") + ` = ` + (three ? `${S(per)} − 1/${c} = ` : "") + `${S(tot)} hovuz. Vaxt = 1 : ${S(tot)} = ${T} saat. Tələ: vaxtları toplamaq` + (three ? " və ya boşaldan borunun hissəsini də əlavə etmək." : ".") };
+    }, 4000) },
+    // 9. coded: periodic + decimal / common fraction, divided by a fraction
+    { tip: "kod", gen: () => again(() => {
+      const per = Math.random() < .5, a = rnd(1, 8), b = rnd(1, 8); if (per && a === b) return null;
+      const P = per ? R(10 * a + b - a, 90) : R(a, 9), Ps = per ? `0,${a}(${b})` : `0,(${a})`;
+      const F = pick([[1, 4], [1, 2], [3, 4], [1, 5], [2, 5], [3, 5], [1, 8], [3, 8], [1, 3], [2, 3], [1, 6], [1, 10], [7, 10]]);
+      const s = add(P, F), t = rnd(2, 12), G = R(s[0], s[1] * t); if (G[0] > 40 || G[1] > 80) return null;
+      const dc = x => finite(x[1]) && Math.random() < .5 ? dec(x) : S(x);
+      return { text: `(${Ps} + ${dc(F)}) : ${dc(G)} ifadəsinin qiymətini tapın.`, answer: t, show: String(t), tol: 1e-6,
+        solution: `${Ps} = ${S(P)}` + (per ? ` (məxrəc 90: dövrdə 1 rəqəm, ondan əvvəl 1 rəqəm)` : ` (dövrdə 1 rəqəm → 9)`) + `. Adi kəsrlərə gətir: ${addSteps(P, F, "+")}. Bölmə: ${S(s)} : ${S(G)} = ${S(s)} · ${G[1]}/${G[0]} = ${t}.` };
+    }, 6000) },
+    // 10. written: three days, the second one is a part of the rest
+    { tip: "yazili", gen: () => again(() => {
+      const a = pick(FR), c = pick(FR); if (a[0] / a[1] + c[0] / c[1] >= 1) return null;
+      const r1 = sub([1, 1], a), r2 = mul(r1, sub([1, 1], c)), x = r2[1] * rnd(1, 5), T = x * r2[0] / r2[1]; if (!okI(x) || !okI(T) || x > 900) return null;
+      const f1 = mul([x, 1], a), f2 = sub([x, 1], f1), f3 = mul(f2, c), f4 = sub(f2, f3);
+      return { text: `Turist yolun ${S(a)} hissəsini birinci gün, qalan yolun ${S(c)} hissəsini ikinci gün getdi. Üçüncü gün qalan ${T} km-i getdi və yol bitdi. Bütün yol neçə kilometrdir?`,
+        answer: x, show: String(x), tol: 1e-6, unit: "km",
+        solution: `1) Birinci gündən sonra qalır: 1 − ${S(a)} = ${S(r1)} yol. 2) İkinci gün turist qalanın ${S(c)} hissəsini getdi: qalır ${S(r1)} · (1 − ${S(c)}) = ${S(r1)} · ${S(sub([1, 1], c))} = ${S(r2)} yol. 3) Bu ${S(r2)} hissə ${T} km-dir: x · ${S(r2)} = ${T}, x = ${T} : ${S(r2)} = ${x} km. 4) Yoxlama: birinci gün ${S(f1)} km, qalır ${S(f2)} km; ikinci gün ${S(f3)} km, qalır ${S(f4)} = ${T} km ✓. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }, 4000) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -283,7 +397,7 @@
     game = Oyun.mount({
       key: "kesrler", title: "Kəsrlər", fenn: "riyaziyyat", link: "dersler/kesrler.html",
       format: "Cavab yazmaq: kəsr 7/12 (ixtisar etməsən də qəbul olunur), qarışıq ədədi düzgün olmayan kəsr kimi yaz (2⅓ → 7/3), onluq 0,35 və ya 0.35. Dövri kəsri onluqla yazma — adi kəsr yaz.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["emel", "emel", "muqayise", "onluq", "onluq", "dovri", "dovri", "hisse", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
