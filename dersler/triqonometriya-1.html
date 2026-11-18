@@ -129,6 +129,7 @@ svg text.hyp{fill:var(--hyp)} svg text.opp{fill:var(--opp)} svg text.adj{fill:va
     <button class="tab" role="tab" id="tb-t3" aria-controls="t3" type="button"><small>Dərs 3</small>30°, 45°, 60°</button>
     <button class="tab" role="tab" id="tb-t4" aria-controls="t4" type="button"><small>Dərs 4</small>Vahid çevrə</button>
     <button class="tab" role="tab" id="tb-t5" aria-controls="t5" type="button"><small>Dərs 5</small>sin² + cos² = 1</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -459,6 +460,95 @@ Kök alanda: ± → düzgününü rüb seçir</div>
         </ol>
       </details>
     </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: triqonometriya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> İmtahanda üç forma</h3>
+      <p>Triqonometriya buraxılış imtahanında üç formada gələ bilər:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: sin ilə cos-u qarışdırmaq, nisbəti tərsinə yazmaq, II rübdə işarəni unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: vahid (sm, °) yazılmır; onluq kəsr vergüllə.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl iki şey soruş: <b>bucaq iti, yoxsa 90°-dən böyükdür</b> (işarə bundan asılıdır) və <b>hansı tərəf α-ya görə qarşı, bitişik, hipotenuzdur</b>.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Şəkildə <span class="m">∠C = 90°</span>, <span class="m">AC = 8</span>, <span class="m">BC = 6</span>. <span class="m">cos A</span> neçəyə bərabərdir?</p>
+        <svg viewBox="0 0 240 180" role="img" aria-label="Düzbucaqlı ABC üçbucağı: C düz bucaqdır, AC = 8, BC = 6">
+          <polygon points="40,150 200,150 40,30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M52 150V138H40" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <text x="26" y="166" class="lbl">C</text><text x="204" y="166" class="lbl">A</text><text x="26" y="30" class="lbl">B</text>
+          <text x="116" y="168" class="lbl">8</text><text x="20" y="94" class="lbl">6</text>
+        </svg>
+        <ol class="imt-opts"><li>3/5</li><li>4/5</li><li>3/4</li><li>4/3</li><li>5/4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Hipotenuz: AB = √(8² + 6²) = √100 = 10
+A bucağına bitişik katet: AC = 8
+cos A = bitişik / hipotenuz = 8/10 = 4/5
+Cavab: B) 4/5</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 3/5</b> — <span class="m">sin A</span>: qarşı katet (BC = 6) bölünüb hipotenuza (10). cos bitişik katetlə yazılır.</li>
+        <li><b>C) 3/4</b> — <span class="m">tg A = 6/8</span>: hipotenuz heç istifadə olunmayıb.</li>
+        <li><b>D) 4/3</b> — <span class="m">8/6</span>: iki kateti bir-birinə bölmək (<span class="m">ctg A</span>), hipotenuzu hesablamamaq.</li>
+        <li><b>E) 5/4</b> — <span class="m">10/8</span>: cos düzgün tapılıb, amma nisbət tərsinə yazılıb (hipotenuz / bitişik). Kəsr 1-dən böyük ola bilməz: cos və sin iti bucaqda 1-dən kiçikdir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">α</span> bucağı 90°-dən böyük, 180°-dən kiçikdir və <span class="m">sin α = 5/13</span>. <span class="m">13 · (1 − cos α)</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">sin²α + cos²α = 1  →  cos²α = 1 − 25/169 = 144/169
+cos α = ±12/13
+α II rübdədir (90°-dən böyük) → cos mənfidir: cos α = −12/13
+13 · (1 − cos α) = 13 · (1 + 12/13) = 13 + 12 = 25
+Cavab: 25</div>
+      <p>Kök alanda iki cavab çıxır: <b>+12/13</b> və <b>−12/13</b>. Hansının düz olduğunu bucağın rübü deyir. Tələ: + götürsən <span class="m">13 · (1 − 12/13) = 1</span> alınar — bu da səliqəli ədəddir, amma səhvdir. Kodlaşdırmada yalnız <b>25</b> yazılır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Düzbucaqlı üçbucağın iti bucaqlarından biri <span class="m">α</span>-dır, <span class="m">tg α = 3/4</span>. Üçbucağın perimetri: 84 sm. Hipotenuzun uzunluğunu (sm) tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) tg α = qarşı / bitişik = 3/4.
+   Deməli katetlər 3x və 4x olsun (x > 0).
+2) Pifaqor: hipotenuz = √((3x)² + (4x)²) = √(25x²) = 5x.
+3) Perimetr: 3x + 4x + 5x = 12x = 84  ⇒  x = 7.
+4) Hipotenuz = 5 · 7 = 35 sm.
+5) Yoxlama: katetlər 21 və 28, 21 + 28 + 35 = 84 ✓
+Cavab: 35 sm.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>katetlərin 3x və 4x kimi yazılması</b> (1-ci addım), <b>hipotenuzun Pifaqorla tapılması və perimetr tənliyi</b> (2–3-cü addımlar), <b>hesablama və cavab</b>. Həll yazılmadan yalnız "35" yazılsa, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>sin ilə cos-u qarışdırmaq.</b> sin = qarşı / hipotenuz, cos = bitişik / hipotenuz. Hansı katet "qarşı"dır — bucaqdan asılıdır, şəklə bax.</li>
+        <li><b>Nisbəti tərsinə yazmaq.</b> tg = qarşı / bitişik. Sin və cos iti bucaqda 1-dən kiçikdir; 1-dən böyük kəsr alırsansa, yenidən bax.</li>
+        <li><b>30° ilə 60°-ni dəyişmək.</b> <span class="m">sin 30° = 1/2</span>, <span class="m">sin 60° = √3/2</span>; <span class="m">tg 30° = √3/3</span>, <span class="m">tg 60° = √3</span>. Kvadratda: <span class="m">tg²30° = 1/3</span>, <span class="m">tg²60° = 3</span>.</li>
+        <li><b>Kvadratı unutmaq.</b> <span class="m">sin²α</span> — <span class="m">sin α</span>-nın kvadratıdır, <span class="m">sin α · 2</span> deyil.</li>
+        <li><b>II rübdə işarə.</b> 90°-dən böyük, 180°-dən kiçik bucaqda <span class="m">sin &gt; 0</span>, <span class="m">cos &lt; 0</span>, <span class="m">tg &lt; 0</span>. Kökdən çıxan "±"-dan düzgününü rüb seçir.</li>
+        <li><b>Ox üstündəki bucaqlar.</b> <span class="m">cos 180° = −1</span> (1 deyil, 0 da deyil); <span class="m">sin 180° = 0</span>; <span class="m">cos 90° = 0</span>.</li>
+        <li><b>(sin α + cos α)².</b> Açılışda ortada <span class="m">2 sin α cos α</span> var; <span class="m">sin²α + cos²α = 1</span> ilə birlikdə hasil tapılır.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır: sm və ° işarəsi yazılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">sin = qarşı / hipotenuz     cos = bitişik / hipotenuz     tg = qarşı / bitişik
+sin 30° = 1/2   sin 45° = √2/2   sin 60° = √3/2
+tg 30° = √3/3   tg 45° = 1       tg 60° = √3
+II rübdə: sin müsbət, cos mənfi, tg mənfi
+sin²α + cos²α = 1      tg α = sin α / cos α
+(sin α + cos α)² = 1 + 2 sin α cos α</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">sin α = 12/13</span>, α iti bucaqdır. <span class="m">tg α</span> = ? <span class="ans">cos²α = 1 − 144/169 = 25/169, cos α = 5/13 (iti bucaq). tg α = 12/5.</span></li>
+        <li><span class="m">cos 120° + sin 150°</span> = ? <span class="ans">−1/2 + 1/2 = 0. cos 120° II rübdə mənfidir (cos 60°-nin əksi), sin 150° = sin 30° = 1/2.</span></li>
+        <li><span class="m">sin α + cos α = 1,4</span>, α iti bucaqdır. <span class="m">sin α · cos α</span> = ? <span class="ans">Kvadrata yüksəldirik: 1 + 2 sin α cos α = 1,96, deməli sin α cos α = 0,96 : 2 = 0,48.</span></li>
+      </ol></details>
+    </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
   </section>
 
@@ -504,10 +594,10 @@ function uc(){const a=+$("ua").value,r=a*Math.PI/180,c=Math.cos(r),s=Math.sin(r)
   $("ucf").replaceChildren(...[["Nöqtə: ("+f2(c)+"; "+f2(s)+") — "+q,""],["cos α = x = "+f2(c),"c"],["sin α = y = "+f2(s),"s"],["tg α = y / x = "+t,""],["sin²α + cos²α = "+f2(s*s+c*c),""]].map(([x,k])=>el("div",{class:k},x)))}
 $("ua").addEventListener("input",uc);uc();
 /* Tablar */
-const TABS=["t1","t2","t3","t4","t5","oyun","sinaq"];
+const TABS=["t1","t2","t3","t4","t5","imt","oyun","sinaq"];
 function tab(id,focus){if(!TABS.includes(id))id="t1";TABS.forEach(t=>{const on=t===id;$(t).hidden=!on;const b=$("tb-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});try{localStorage.setItem("trig-tab",id)}catch(e){}if(focus)$("tb-"+id).focus();window.scrollTo({top:0})}
 TABS.forEach(t=>$("tb-"+t).addEventListener("click",()=>tab(t)));
-document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%5],true);if(e.key==="ArrowLeft")tab(TABS[(i+4)%5],true)});
+document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.findIndex(t=>!$(t).hidden);if(e.key==="ArrowRight")tab(TABS[(i+1)%TABS.length],true);if(e.key==="ArrowLeft")tab(TABS[(i+TABS.length-1)%TABS.length],true)});
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.go)));
 {let t=(location.hash||"").slice(1);if(!TABS.includes(t)){try{t=localStorage.getItem("trig-tab")}catch(e){}}tab(t||"t1")}
 </script>

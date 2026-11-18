@@ -139,6 +139,145 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sin/cos swapped, sign in the II quarter, a reciprocal, squares forgotten, ...).
+  const { ae, again } = Oyun;
+  const isNice = (x, dp = 2) => isFinite(x) && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const dec = x => { const r = Math.round(x * 1e4) / 1e4; return (r < 0 ? "−" : "") + String(Math.abs(r)).replace(".", ","); };
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const neg = s => "−" + s;
+  // exact value n·√r / d of sin, cos, tg at 30°, 45°, 60°; rad(c, m) = c · (that value) written as a reduced expression
+  const VAL = { sin: { 30: { n: 1, d: 2, r: 1 }, 45: { n: 1, d: 2, r: 2 }, 60: { n: 1, d: 2, r: 3 } },
+    cos: { 30: { n: 1, d: 2, r: 3 }, 45: { n: 1, d: 2, r: 2 }, 60: { n: 1, d: 2, r: 1 } },
+    tg: { 30: { n: 1, d: 3, r: 3 }, 45: { n: 1, d: 1, r: 1 }, 60: { n: 1, d: 1, r: 3 } } };
+  const rad = (c, m) => { const g = gcd(c * m.n, m.d), nu = c * m.n / g, de = m.d / g;
+    if (m.r === 1) return de === 1 ? String(nu) : nu + "/" + de;
+    const t = (nu === 1 ? "" : nu) + "√" + m.r; return de === 1 ? t : t + "/" + de; };
+  const inv = m => m.r === 1 ? { n: m.d, d: m.n, r: 1 } : { n: m.d, d: m.n * m.r, r: m.r };
+  const SQ = { sin: { 30: [.25, "1/4"], 45: [.5, "1/2"], 60: [.75, "3/4"] }, cos: { 30: [.75, "3/4"], 45: [.5, "1/2"], 60: [.25, "1/4"] }, tg: { 30: [1 / 3, "1/3"], 45: [1, "1"], 60: [3, "3"] } };
+  const REDUCED = TRIPLES.map(([p, q, c]) => { const g = gcd(gcd(p, q), c); return [p / g, q / g, c / g]; }).filter((t, i, a) => a.findIndex(u => u.join() === t.join()) === i);
+
+  // ladder against a wall: the angle with the ground, the ladder length; the asked segment is red and dashed
+  function ladder(c, d, ask) {
+    const g = sv("svg", { viewBox: "0 0 260 190", class: "oy-svg", role: "img", "aria-label": "Divara söykənmiş nərdivan" });
+    const r = d * Math.PI / 180, L = 150, wx = 220, gy = 165, fx = wx - L * Math.cos(r), ty = gy - L * Math.sin(r);
+    g.append(sv("line", { x1: 10, y1: gy, x2: 245, y2: gy, stroke: "#17171a", "stroke-width": 2 }));
+    g.append(sv("line", { x1: wx, y1: gy, x2: wx, y2: 14, stroke: "#17171a", "stroke-width": 4 }));
+    g.append(sv("line", { x1: fx, y1: gy, x2: wx, y2: ty, stroke: "#534ab7", "stroke-width": 3.5, "stroke-linecap": "round" }));
+    if (ask === "h") {
+      g.append(sv("line", { x1: wx - 8, y1: gy, x2: wx - 8, y2: ty, stroke: "#a32d2d", "stroke-width": 2.5, "stroke-dasharray": "5 4" }));
+      g.append(sv("text", { x: wx - 14, y: (gy + ty) / 2 + 4, "text-anchor": "end", class: "oy-lbl" }, "?"));
+    } else {
+      g.append(sv("line", { x1: fx, y1: gy + 8, x2: wx, y2: gy + 8, stroke: "#a32d2d", "stroke-width": 2.5, "stroke-dasharray": "5 4" }));
+      g.append(sv("text", { x: (fx + wx) / 2, y: gy + 22, "text-anchor": "middle", class: "oy-lbl" }, "?"));
+    }
+    const mx = (fx + wx) / 2, my = (gy + ty) / 2;
+    g.append(sv("text", { x: mx - 20 * Math.sin(r), y: my - 20 * Math.cos(r) + 4, "text-anchor": "middle", class: "oy-lbl" }, c + " m"));
+    g.append(sv("path", { d: `M${fx + 30} ${gy}A30 30 0 0 0 ${fx + 30 * Math.cos(r)} ${gy - 30 * Math.sin(r)}`, fill: "none", stroke: "#534ab7", "stroke-width": 2 }));
+    g.append(sv("text", { x: fx + 52 * Math.cos(r / 2) - 4, y: gy - 52 * Math.sin(r / 2) * .6 + 4, "text-anchor": "middle", class: "oy-alpha" }, d + "°"));
+    return g;
+  }
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. ratios of a right triangle from the two legs (the hypotenuse is not given)
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), k = pick([1, 1, 2]), a = p * k, b = q * k, hy = c * k, at = pick(["A", "B"]), r = roles(at);
+      const len = { CA: a, CB: b }, opp = len[r.opp], adj = len[r.adj], f = pick(["sin", "cos", "tg"]);
+      const F = (x, y) => frac(x, y);
+      const R = { sin: [F(opp, hy), [F(adj, hy), F(opp, adj), F(hy, opp), F(adj, opp)], "qarşı / hipotenuz", "bitişik / hipotenuz (cos), qarşı / bitişik (tg), nisbəti tərsinə yazmaq"],
+        cos: [F(adj, hy), [F(opp, hy), F(opp, adj), F(hy, adj), F(adj, opp)], "bitişik / hipotenuz", "qarşı / hipotenuz (sin), qarşı / bitişik (tg), nisbəti tərsinə yazmaq"],
+        tg: [F(opp, adj), [F(adj, opp), F(opp, hy), F(adj, hy), F(hy, adj)], "qarşı / bitişik", "nisbəti tərsinə yazmaq (ctg), hipotenuza bölmək (sin, cos)"] }[f];
+      return mc(ae(R[0], R[1], x => x), { text: `Şəkildəki düzbucaqlı üçbucağın katetləri: ${a} və ${b}. α bucağı üçün ${f} α neçəyə bərabərdir?`,
+        svg: triangle(a, b, at, { CA: String(a), CB: String(b), AB: "" }, null),
+        solution: `Hipotenuz Pifaqordan: √(${a}² + ${b}²) = ${hy}. ${f} α = ${R[2]} = ${R[0]}. Tələlər: ${R[3]}.` });
+    }) },
+    // 2. special angles inside squares: m·sin²x + n·tg²y − k·cos²z
+    { tip: "qapali", gen: () => again(() => {
+      const A = [30, 45, 60], x = pick(A), y = pick([30, 60]), z = pick(A), m = rnd(2, 8), n = 3 * rnd(1, 3), k = rnd(2, 8), y2 = 90 - y;
+      const s = a => SQ.sin[a][0], t = a => SQ.tg[a][0], c = a => SQ.cos[a][0];
+      const val = (sx, ty, cz, sg = -1) => m * sx + n * ty + sg * k * cz;
+      const right = val(s(x), t(y), c(z));
+      const w = [val(c(x), t(y), s(z)), val(s(x), t(y2), c(z)), val(s(x), t(y), c(z), 1), val(c(x), t(y2), s(z))];
+      if (![right, ...w].every(v => isNice(v, 2))) return null;
+      return mc(ae(right, w, dec), { text: `Hesablayın: ${m} sin²${x}° + ${n} tg²${y}° − ${k} cos²${z}°`,
+        solution: `sin²${x}° = ${SQ.sin[x][1]}, tg²${y}° = ${SQ.tg[y][1]}, cos²${z}° = ${SQ.cos[z][1]}. ${m} · ${SQ.sin[x][1]} + ${n} · ${SQ.tg[y][1]} − ${k} · ${SQ.cos[z][1]} = ${dec(right)}. Tələlər: sin ilə cos-u qarışdırmaq, tg 30° ilə tg 60°-ni dəyişmək, mənfi işarəni itirmək.` });
+    }) },
+    // 3. obtuse angle: the sign of cos decides the sign of tg
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), [sp, cq] = Math.random() < .5 ? [p, q] : [q, p];
+      const right = neg(frac(sp, cq)), w = [frac(sp, cq), neg(frac(cq, sp)), frac(cq, sp), frac(sp, c - sp)];
+      return mc(ae(right, w, x => x), { text: `α bucağı 90°-dən böyük, 180°-dən kiçikdir və sin α = ${sp}/${c}. tg α = ?`,
+        solution: `cos²α = 1 − (${sp}/${c})² = (${cq}/${c})². α II rübdədir, orada cos mənfidir: cos α = −${cq}/${c}. tg α = sin α : cos α = −${frac(sp, cq)}. Tələlər: cos-un işarəsini unutmaq (${frac(sp, cq)}), tərsinə bölmək, cos = 1 − sin yazmaq (${frac(sp, c - sp)}).` });
+    }) },
+    // 4. a ladder: height or the distance from the wall (30°, 45°, 60°)
+    { tip: "qapali", gen: () => again(() => {
+      const d = pick([30, 60]), c = pick([4, 6, 8, 10, 12, 14, 16, 18, 20]), ask = pick(["h", "x"]), f = ask === "h" ? "sin" : "cos", o = ask === "h" ? "cos" : "sin";
+      const right = rad(c, VAL[f][d]), w = [rad(c, VAL[o][d]), rad(c, inv(VAL[f][d])), rad(c, VAL.tg[d]), rad(c, inv(VAL[o][d]))];
+      return mc(ae(right, w, x => x + " m"), { text: `Uzunluğu ${c} m olan nərdivan şəkildəki kimi divara söykənib və yerlə ${d}° bucaq əmələ gətirir. ${ask === "h" ? "Nərdivanın yuxarı ucu yerdən neçə metr hündürlükdədir" : "Nərdivanın aşağı ucu divardan neçə metr məsafədədir"}?`,
+        svg: ladder(c, d, ask),
+        solution: `${ask === "h" ? "Hündürlük = nərdivan · sin" : "Məsafə = nərdivan · cos"} ${d}° = ${c} · ${SPECIAL[f][d][0]} = ${right} m. Tələlər: sin ilə cos-u qarışdırmaq (${w[0]} m), vurmaq əvəzinə bölmək (${w[1]} m), tg götürmək (${w[2]} m).` });
+    }) },
+    // 5. unit circle: signs in the II quarter and the axis angle 180°
+    { tip: "qapali", gen: () => again(() => {
+      const ks = [rnd(2, 9), rnd(2, 9), rnd(2, 9)], sgn = [1, pick([1, -1]), pick([1, -1])];
+      const T = [{ t: "cos 120°", v: -.5 }, { t: "sin 150°", v: .5 }, { t: "cos 180°", v: -1 }];
+      const order = [0, 1, 2].sort(() => Math.random() - .5);
+      const calc = (v120, v180) => order.reduce((s, i, pos) => s + sgn[pos] * ks[pos] * (i === 0 ? v120 : i === 2 ? v180 : .5), 0);
+      const right = calc(-.5, -1), w = [calc(.5, -1), calc(-.5, 1), calc(-.5, 0), calc(.5, 1)];
+      if (![right, ...w].every(v => isNice(v, 1))) return null;
+      const txt = order.map((i, pos) => (pos === 0 ? "" : sgn[pos] < 0 ? " − " : " + ") + ks[pos] + " " + T[i].t).join("");
+      return mc(ae(right, w, dec), { text: `Hesablayın: ${txt}`,
+        solution: `Vahid çevrədə: cos 120° = −1/2 (II rübdə cos mənfidir), sin 150° = 1/2, cos 180° = −1. Yerinə qoyuruq: ${dec(right)}. Tələlər: cos 120° = +1/2 yazmaq, cos 180° = 1 və ya 0 yazmaq.` });
+    }) },
+    // 6. (sin α + cos α)² gives the product sin α · cos α
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), right = frac(p * q, c * c);
+      const w = [frac((p + q) ** 2, c * c), frac(2 * p * q, c * c), frac((p + q) ** 2 + c * c, 2 * c * c), frac(p + q - c, 2 * c)];
+      return mc(ae(right, w, x => x), { text: `α iti bucaqdır və sin α + cos α = ${frac(p + q, c)}. sin α · cos α = ?`,
+        solution: `Hər iki tərəfi kvadrata yüksəldirik: sin²α + 2 sin α cos α + cos²α = ${frac((p + q) ** 2, c * c)}. sin²α + cos²α = 1, ona görə 2 sin α cos α = ${frac((p + q) ** 2 - c * c, c * c)}, sin α cos α = ${right}. Tələlər: 2-yə bölməyi unutmaq (${w[1]}), kvadratı cavab yazmaq (${w[0]}), 1-i çıxmaq əvəzinə toplamaq (${w[2]}).` });
+    }) },
+    // 7. coded: tg given, a combination of sin and cos
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), [sp, cq] = Math.random() < .5 ? [p, q] : [q, p], m1 = rnd(1, 3), m2 = rnd(1, 3), R = m1 * sp + m2 * cq;
+      return { text: `α iti bucaqdır və tg α = ${sp}/${cq}. ${m1 * c} sin α + ${m2 * c} cos α ifadəsinin qiymətini tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `tg α = ${sp}/${cq}: qarşı katet ${sp}, bitişik katet ${cq}, hipotenuz √(${sp}² + ${cq}²) = ${c}. sin α = ${sp}/${c}, cos α = ${cq}/${c}. ${m1 * c} · ${sp}/${c} + ${m2 * c} · ${cq}/${c} = ${m1 * sp} + ${m2 * cq} = ${R}.` };
+    }) },
+    // 8. coded: a side of a right triangle with 30°, 45° or 60° (an exact answer: the roots cancel)
+    { tip: "kod", gen: () => again(() => {
+      const a = rnd(2, 15), S3 = a * Math.sqrt(3), form = pick([1, 2, 3, 4]);
+      const F = [
+        null,
+        { adj: a, opp: S3, lab: { CB: a + "√3" }, hl: "AB", ans: 2 * a, q: `α = 60°, α-nın qarşısındakı katetin uzunluğu ${a}√3 santimetrdir. Hipotenuzun uzunluğu neçə santimetrdir?`,
+          sol: `sin 60° = qarşı : hipotenuz = √3/2. Deməli hipotenuz = ${a}√3 : (√3/2) = ${a}√3 · 2/√3 = ${2 * a} sm.` },
+        { adj: S3, opp: a, lab: { CA: a + "√3" }, hl: "CB", ans: a, q: `α = 30°, α-ya bitişik katetin uzunluğu ${a}√3 santimetrdir. α-nın qarşısındakı katetin uzunluğu neçə santimetrdir?`,
+          sol: `tg 30° = qarşı : bitişik = √3/3. Qarşı katet = ${a}√3 · √3/3 = ${a} · 3/3 = ${a} sm.` },
+        { adj: a, opp: a, lab: { AB: a + "√2" }, hl: "CA", ans: a, q: `α = 45°, hipotenuzun uzunluğu ${a}√2 santimetrdir. α-ya bitişik katetin uzunluğu neçə santimetrdir?`,
+          sol: `cos 45° = bitişik : hipotenuz = √2/2. Bitişik katet = ${a}√2 · √2/2 = ${a} · 2/2 = ${a} sm.` },
+        { adj: S3, opp: a, lab: { CA: a + "√3" }, hl: "AB", ans: 2 * a, q: `α = 30°, α-ya bitişik katetin uzunluğu ${a}√3 santimetrdir. Hipotenuzun uzunluğu neçə santimetrdir?`,
+          sol: `cos 30° = bitişik : hipotenuz = √3/2. Hipotenuz = ${a}√3 : (√3/2) = ${a}√3 · 2/√3 = ${2 * a} sm.` },
+      ][form];
+      const labels = { CA: "", CB: "", AB: "", ...F.lab, [F.hl]: "?" };
+      return { text: F.q, svg: triangle(F.adj, F.opp, "A", labels, F.hl), answer: F.ans, show: String(F.ans), tol: 1e-6, unit: "sm", solution: F.sol };
+    }) },
+    // 9. coded: obtuse alpha, the sign of cos
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), [sp, cq] = Math.random() < .5 ? [p, q] : [q, p], kk = rnd(1, 3), R = kk * (c + cq);
+      return { text: `α bucağı 90°-dən böyük, 180°-dən kiçikdir və sin α = ${sp}/${c}. ${kk * c} · (1 − cos α) ifadəsinin qiymətini tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `cos²α = 1 − ${sp}²/${c}² = ${cq}²/${c}². II rübdə cos mənfidir: cos α = −${cq}/${c}. ${kk * c} · (1 + ${cq}/${c}) = ${kk * c} + ${kk * cq} = ${R}. Tələ: cos-u müsbət götürsən ${kk * (c - cq)} alınar.` };
+    }) },
+    // 10. written: tg and the perimeter give the hypotenuse
+    { tip: "yazili", gen: () => again(() => {
+      const [p, q, c] = pick(REDUCED), [sp, cq] = Math.random() < .5 ? [p, q] : [q, p], k = rnd(2, 9), L = (p + q + c) * k, ans = c * k;
+      return { text: `Düzbucaqlı üçbucağın iti bucaqlarından biri α-dır, tg α = ${sp}/${cq}. Üçbucağın perimetri: ${L} sm. Hipotenuzun uzunluğunu (sm) tapın.`,
+        svg: triangle(cq, sp, "A", { CA: "", CB: "", AB: "" }, null), answer: ans, show: String(ans), tol: 1e-6, unit: "sm",
+        solution: `1) tg α = qarşı : bitişik = ${sp}/${cq}, deməli katetlər ${sp}x və ${cq}x olsun. 2) Pifaqor: hipotenuz = √((${sp}x)² + (${cq}x)²) = ${c}x. 3) Perimetr: ${sp}x + ${cq}x + ${c}x = ${p + q + c}x = ${L}, x = ${k}. 4) Hipotenuz = ${c} · ${k} = ${ans} sm. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -148,7 +287,7 @@
     game = Oyun.mount({
       key: "triqonometriya-1", title: "Triqonometriya", fenn: "riyaziyyat", link: "dersler/triqonometriya-1.html",
       format: "Cavab yazmaq: kəsr 3/5, kök 5√3 və ya √3/2, mənfi −1/2, onluq 8.66 (vergül də olar).",
-      levels, oyunEl, testEl,
+      levels, imtahan: IMT, oyunEl, testEl,
       test: { n: 10, pass: 8, from: ["nisbet", "xususi", "xususi", "teref", "teref", "teref", "cevre", "cevre", "eynilik", "eynilik"] },
       goTest: () => document.getElementById("tb-sinaq").click(),
       goGame: () => document.getElementById("tb-oyun").click(),
