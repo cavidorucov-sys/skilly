@@ -65,13 +65,30 @@
   const TIP = { qapali: "Qapalı (A–E)", kod: "Kodlaşdırılan", yazili: "Yazılı" };
 
   // photos of written work (Skilly.sekil, Firestore): Fikrət adds and removes, the father only looks (as in rfo-final.js)
+  // full-size view of the solution photos: arrows / swipe-free buttons between pages, Esc or a click outside closes it
+  function lightbox(list, start) {
+    let i = start;
+    const img = h("img", { alt: "" }), cap = h("span", {});
+    const prev = h("button", { type: "button", class: "btn ghost", "aria-label": "Əvvəlki səhifə", on: { click: () => go(-1) } }, "←");
+    const next = h("button", { type: "button", class: "btn ghost", "aria-label": "Növbəti səhifə", on: { click: () => go(1) } }, "→");
+    const close = h("button", { type: "button", class: "btn ghost", "aria-label": "Bağla", on: { click: () => dlg.close() } }, "✕");
+    const dlg = h("dialog", { class: "oy-lightbox", "aria-label": "Həllin şəkli" },
+      h("div", { class: "oy-lb-bar" }, prev, cap, next, close), h("div", { class: "oy-lb-img" }, img));
+    const show = () => { img.src = list[i].data; img.alt = "Səhifə " + (i + 1); cap.textContent = "Səhifə " + (i + 1) + " / " + list.length; prev.disabled = i === 0; next.disabled = i === list.length - 1; };
+    const go = d => { const j = i + d; if (j >= 0 && j < list.length) { i = j; show(); } };
+    dlg.addEventListener("click", e => { if (e.target === dlg || e.target.classList.contains("oy-lb-img")) dlg.close(); });
+    dlg.addEventListener("keydown", e => { if (e.key === "ArrowLeft") go(-1); if (e.key === "ArrowRight") go(1); });
+    dlg.addEventListener("close", () => dlg.remove());
+    document.body.append(dlg); show(); dlg.showModal(); close.focus();
+  }
   function photoBox(ref, onChange) {
     const viewer = window.Skilly && Skilly.viewer && Skilly.viewer();
     const msg = h("p", { class: "oy-fmt", "aria-live": "polite" }), grid = h("div", { class: "oy-thumbs" });
     let list = [], busy = false;
     const draw = () => {
       grid.replaceChildren(...list.map((p, i) => h("figure", { class: "oy-thumb" },
-        h("a", { href: p.data, target: "_blank", rel: "noopener", title: "Böyüt" }, h("img", { src: p.data, alt: "Səhifə " + (i + 1) })),
+        // a data: URL cannot open in a new tab (the browser blocks it): the page is shown in a lightbox (father, 18 Nov 2026)
+        h("button", { type: "button", class: "oy-thumb-open", title: "Böyüt", "aria-label": "Səhifə " + (i + 1) + " şəklini böyüt", on: { click: () => lightbox(list, i) } }, h("img", { src: p.data, alt: "Səhifə " + (i + 1) })),
         h("figcaption", {}, "Səhifə " + (i + 1) + " ", viewer ? null : h("button", { type: "button", class: "btn ghost", "aria-label": "Səhifə " + (i + 1) + " şəklini sil",
           on: { click: async () => { if (!confirm("Səhifə " + (i + 1) + " şəkli silinsin?")) return; await Skilly.sekil.del(p.id); list.splice(i, 1); draw(); onChange && onChange(list.length); } } }, "Sil")))));
       if (!busy) msg.textContent = list.length ? list.length + " şəkil Skilly-də saxlanıb." : "Hələ şəkil yoxdur.";
