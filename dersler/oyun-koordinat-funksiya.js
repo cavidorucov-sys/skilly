@@ -289,6 +289,105 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the answers
+  // of typical mistakes (forgotten denominator, round bracket for a root, x and y swapped, solving for x and stopping, ...).
+  const { ae, again } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const shuf = a => { const r = a.slice(); for (let i = r.length - 1; i > 0; i--) { const j = rnd(0, i); [r[i], r[j]] = [r[j], r[i]]; } return r; };
+  const iv = (p, q) => `[${S(p)}; ${S(q)}]`;                                   // closed interval
+  const dn = c => c === 0 ? "x" : "(" + lin(c) + ")";                           // denominator x − c
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: domain of √(x − a)/(x − b)
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(-6, 3), b = a + rnd(1, 5), A = S(a), B = S(b);
+      const R = `[${A}; ${B}) ∪ (${B}; +∞)`;
+      const w = [`[${A}; +∞)`, `(${A}; ${B}) ∪ (${B}; +∞)`, `[${A}; ${B})`, `(−∞; ${B}) ∪ (${B}; +∞)`];
+      return mc(ae(R, w, x => x), { text: `y = √(${lin(a)})/${dn(b)} funksiyasının təyin oblastını tapın.`,
+        solution: `Kök altı mənfi ola bilməz: ${lin(a)} ≥ 0 → x ≥ ${A} (${A} daxildir — kvadrat mötərizə). Məxrəc sıfır ola bilməz: x ≠ ${B}; ${B} > ${A}, ona görə ${B} şərtin içindədir və çıxılır. Cavab: ${R}. Tələlər: məxrəci unutmaq (${w[0]}), kök altında ciddi bərabərsizlik (${w[1]}), ≠ şərtini "<" kimi oxumaq (${w[2]}), kökü unutmaq (${w[3]}).` });
+    }) },
+    // 2. closed: the increasing interval read from a broken-line graph (x-values, not y-values; not the decreasing one)
+    { tip: "qapali", gen: () => again(() => {
+      const pts = randPL({ ok: p => { const m = mono(p); return m.filter(t => t.d === 1).length === 1 && m.some(t => t.d === -1); } });
+      const m = mono(pts), up = m.find(t => t.d === 1), dec = m.filter(t => t.d === -1).sort((p, q) => (q.b - q.a) - (p.b - p.a))[0];
+      const xa = pts[0][0], xb = pts[pts.length - 1][0], ya = vAt(pts, up.a), yb = vAt(pts, up.b);
+      const R = iv(up.a, up.b), w0 = iv(dec.a, dec.b), w1 = iv(ya, yb);
+      const rest = [...new Set([iv(xa, up.b), iv(up.a, xb), iv(xa, xb)])].filter(x => x !== R && x !== w0 && x !== w1);
+      if (rest.length < 2) return null;
+      const w = [w0, w1, ...shuf(rest).slice(0, 2)];
+      return mc(ae(R, w, x => x), { text: GR + " Funksiyanın artdığı ən geniş aralığı tapın.", svg: plSvg(pts),
+        solution: `Qrafik soldan sağa x = ${S(up.a)} nöqtəsindən x = ${S(up.b)} nöqtəsinə qədər qalxır: ən geniş artma aralığı ${R}. Aralıq x-lərlə yazılır. Tələlər: azalma aralığını götürmək (${w0}), y-lərlə yazmaq (${w1}), qrafikin başlanğıcından və ya sonuna qədər götürmək.` });
+    }) },
+    // 3. closed: f(kx + m) = ax + b, find f(t): solve kx + m = t, do not substitute t for x
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3, 4, -2, -3]), m = rnd(-6, 6), x0 = rnd(-4, 6), t = k * x0 + m, a = pick([2, 3, 4, 5, -2, -3]), b = rnd(-8, 9), R = a * x0 + b;
+      const w = [a * t + b, a * (t - m) + b, a * (t + m) / k + b, x0];
+      if (![R, ...w].every(Number.isInteger) || (k === a && m === b)) return null;
+      return mc(ae(R, w, x => S(x)), { text: `f(${poly([[k, "x"], [m, ""]])}) = ${poly([[a, "x"], [b, ""]])} olarsa, f(${S(t)}) = ?`,
+        solution: `f-in daxilindəki ifadəni tələb olunan arqumentə bərabərləşdiririk: ${poly([[k, "x"], [m, ""]])} = ${S(t)} → x = ${S(x0)}. Onda f(${S(t)}) = ${S(a)}·(${S(x0)})${tail(b)} = ${S(R)}. Tələlər: t ədədini birbaşa x-in yerinə yazmaq (${S(w[0])}), x = t − m götürüb k-ya bölməyi unutmaq (${S(w[1])}), m-in işarəsini səhv almaq (${S(w[2])}), x tapıb dayanmaq (${S(x0)}).` });
+    }) },
+    // 4. closed: the other end of a segment from its midpoint: B = 2M − A
+    { tip: "qapali", gen: () => again(() => {
+      const A = [rnd(-8, 8), rnd(-8, 8)], M = [rnd(-5, 5), rnd(-5, 5)], B = [2 * M[0] - A[0], 2 * M[1] - A[1]];
+      if (A[0] === M[0] && A[1] === M[1]) return null;
+      const w = [[M[0] - A[0], M[1] - A[1]], [A[0] + M[0], A[1] + M[1]], [-B[0], -B[1]], [B[1], B[0]]];
+      return mc(ae(B, w, q => P(q[0], q[1])), { text: `M${P(M[0], M[1])} nöqtəsi AB parçasının orta nöqtəsidir. A${P(A[0], A[1])} olarsa, B nöqtəsinin koordinatları hansıdır?`,
+        solution: `M orta nöqtədir: ${S(M[0])} = (${S(A[0])} + x)/2, ${S(M[1])} = (${S(A[1])} + y)/2. Buradan x = 2·(${S(M[0])}) − (${S(A[0])}) = ${S(B[0])}, y = 2·(${S(M[1])}) − (${S(A[1])}) = ${S(B[1])}. B${P(B[0], B[1])}. Tələlər: AM vektorunun koordinatlarını B nöqtəsinin koordinatları sanmaq (${P(w[0][0], w[0][1])}), A ilə M-i toplamaq (${P(w[1][0], w[1][1])}), işarəni dəyişmək (${P(w[2][0], w[2][1])}), absis və ordinatı dəyişmək (${P(w[3][0], w[3][1])}).` });
+    }) },
+    // 5. closed: integer solutions of f(x) > 0 read from a graph
+    { tip: "qapali", gen: () => again(() => {
+      const pts = randPL({ ok: p => { const z = solveC(p, 0); return z.length >= 1 && z.every(Number.isInteger); } });
+      const xa = pts[0][0], xb = pts[pts.length - 1][0]; const pos = [], neg = [], zer = [];
+      for (let x = xa; x <= xb; x++) { const v = vAt(pts, x); (Math.abs(v) < 1e-9 ? zer : v > 0 ? pos : neg).push(x); }
+      if (!pos.length || !neg.length) return null;
+      const R = pos.length, w = [R + zer.length, neg.length, neg.length + zer.length, xb - xa + 1];
+      return mc(ae(R, w, x => String(x)), { text: GR + " f(x) > 0 bərabərsizliyinin neçə tam həlli var? (Yalnız funksiyanın təyin oblastındakı tam x-lərə bax.)", svg: plSvg(pts),
+        solution: `f(x) > 0 — qrafikin Ox-dan yuxarıda olduğu x-lər. Tam x-lər: ${pos.map(S).join("; ")} — cəmi ${R}. Tələlər: sıfırları da saymaq, yəni f(x) ≥ 0 (${w[0]}), Ox-dan aşağı hissəni saymaq (${w[1]}), aşağı hissə və sıfırları saymaq (${w[2]}), bütün tam x-ləri saymaq (${w[3]}).` });
+    }) },
+    // 6. closed: range of y = ±(x − a)² + c or ±|x − a| + c
+    { tip: "qapali", gen: () => again(() => {
+      const up = pick([1, -1]), sq = pick([true, false]), a = pick([-1, 1]) * rnd(1, 6), c = pick([-1, 1]) * rnd(1, 8);
+      const set = v => up > 0 ? `[${S(v)}; +∞)` : `(−∞; ${S(v)}]`, flip = v => up > 0 ? `(−∞; ${S(v)}]` : `[${S(v)}; +∞)`;
+      const body = sq ? `(${lin(a)})²` : `|${lin(a)}|`, R = set(c);
+      return mc(ae(R, [flip(c), set(0), set(-c), set(a)], x => x), { text: `y = ${up > 0 ? "" : "−"}${body}${tail(c)} funksiyasının qiymətlər çoxluğunu tapın.`,
+        solution: `${sq ? "Kvadrat" : "Modul"} ≥ 0, x = ${S(a)} olanda 0 olur. ${up > 0 ? "Ona görə y ≥" : "Mənfi işarə ilə y ≤"} ${S(c)}: E(f) = ${R}. Tələlər: istiqaməti dəyişmək (${flip(c)}), c sabitini nəzərə almamaq (${set(0)}), işarəni səhv oxumaq (${set(-c)}), təpənin absisini cavab yazmaq (${set(a)}).` });
+    }) },
+    // 7. coded: integers in the domain of √(a − x)/(x − c) + √(x − b)
+    { tip: "kod", gen: () => again(() => {
+      const b = rnd(-6, 1), a = b + rnd(3, 11), c = Math.random() < .8 ? rnd(b, a) : pick([a + 1 + rnd(0, 2), b - 1 - rnd(0, 2)]), inn = c >= b && c <= a, n = a - b + 1 - (inn ? 1 : 0);
+      return { text: `y = √(${S(a)} − x)/${dn(c)} + √(${lin(b)}) funksiyasının təyin oblastına neçə tam ədəd daxildir?`,
+        answer: n, show: String(n), tol: 1e-6,
+        solution: `${S(a)} − x ≥ 0 → x ≤ ${S(a)}; ${lin(b)} ≥ 0 → x ≥ ${S(b)}; məxrəc: x ≠ ${S(c)}. Birgə şərt: x ∈ ${seg(b, a)}, orada ${a - b + 1} tam ədəd var.` + (inn ? ` ${S(c)} bu parçanın içindədir və çıxılır: ${a - b + 1} − 1 = ${n}.` : ` ${S(c)} parçadan kənardadır, heç nə çıxmır: ${n}.`) };
+    }) },
+    // 8. coded: distance to Ox + distance to the origin
+    { tip: "kod", gen: () => again(() => {
+      const T = pick([[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 15, 17], [9, 12, 15], [12, 16, 20], [7, 24, 25], [20, 21, 29]]), sw = Math.random() < .5;
+      const a = pick([-1, 1]) * T[sw ? 1 : 0], b = pick([-1, 1]) * T[sw ? 0 : 1], v = Math.abs(b) + T[2];
+      return { text: `A${P(a, b)} nöqtəsindən Ox oxuna və koordinat başlanğıcına qədər məsafələrin cəmini tapın.`,
+        answer: v, show: String(v), tol: 1e-6,
+        solution: `Ox oxuna məsafə ordinatın modulu: |${S(b)}| = ${Math.abs(b)} (absis yox). Başlanğıca məsafə: √((${S(a)})² + (${S(b)})²) = √${a * a + b * b} = ${T[2]}. Cəm: ${Math.abs(b)} + ${T[2]} = ${v}.` };
+    }) },
+    // 9. coded: parameter from a function value: f(x) = (x + p)/(x − q), f(t) = v
+    { tip: "kod", gen: () => again(() => {
+      const p = rnd(1, 9), q = rnd(-5, 5), d = pick([-1, 1]) * rnd(1, 6); if ((q + p) % d) return null;
+      const t = q + d, v = (q + p) / d + 1; if (!v) return null;
+      return { text: `f(x) = (x + p)/${dn(q)} funksiyası üçün f(${S(t)}) = ${S(v)} olarsa, p = ?`,
+        answer: p, show: String(p), tol: 1e-6,
+        solution: `x = ${S(t)} yazırıq: (${S(t)} + p)/(${S(t)}${tail(-q)}) = ${S(v)}, yəni (${S(t)} + p)/${S(d)} = ${S(v)}. Buradan ${S(t)} + p = ${S(v * d)} və p = ${S(v * d)} − (${S(t)}) = ${p}.` };
+    }) },
+    // 10. written: line through two points → k, b → area of the triangle with the axes
+    { tip: "yazili", gen: () => again(() => {
+      const k = pick([-4, -3, -2, -1, 1, 2, 3, 4]), r = pick([-1, 1]) * rnd(1, 6), b = -k * r, x1 = rnd(-4, 5), x2 = rnd(-4, 5);
+      if (x1 === x2 || [x1, x2].some(x => x === r || x === 0)) return null;
+      const y1 = k * x1 + b, y2 = k * x2 + b, area = Math.abs(k) * r * r / 2; if (!nice(area, 1)) return null;
+      return { text: `y = kx + b düz xətti A${P(x1, y1)} və B${P(x2, y2)} nöqtələrindən keçir. Bu düz xəttin və koordinat oxlarının əmələ gətirdiyi üçbucağın sahəsini tapın.`,
+        answer: area, show: D(area), tol: 1e-6, unit: "kv. vahid",
+        solution: `1) k = (${S(y2)} − (${S(y1)}))/(${S(x2)} − (${S(x1)})) = (${S(y2 - y1)})/(${S(x2 - x1)}) = ${S(k)}. 2) ${S(y1)} = ${S(k)}·(${S(x1)}) + b → b = ${S(b)}. 3) Oy ilə kəsişmə: (0; ${S(b)}). Ox ilə: y = 0 → ${poly([[k, "x"], [b, ""]])} = 0 → x = ${S(r)}. 4) Üçbucaq düzbucaqlıdır (təpəsi başlanğıcdadır), katetləri ${Math.abs(b)} və ${Math.abs(r)}: S = ½·${Math.abs(b)}·${Math.abs(r)} = ${D(area)}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -298,7 +397,7 @@
     game = Oyun.mount({
       key: "koordinat-funksiya", title: "Koordinat sistemi, funksiya anlayışı", fenn: "riyaziyyat", link: "dersler/koordinat-funksiya.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 3/4, onluq 8,5. Rüb soruşulursa — onun nömrəsi (1, 2, 3, 4).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["noqte", "qiymet", "qiymet", "qrafik", "qrafik", "oblast", "oblast", "xasse", "xasse", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
