@@ -303,6 +303,102 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes (sign of k lost, k inverted, b mixed up, slopes added, ½ forgotten, inequality flipped, ...).
+  const { ae, again } = Oyun;
+  const isNice = (x, dp = 2) => isFinite(x) && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const eq = (k, b) => "y = " + L(k, b);
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: the formula from a graph (Oy crossing gives b, a lattice point gives k)
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([-4, -2, -0.5, 0.5, 2, 4]), b = nz(-4, 4), q = Number.isInteger(k) ? 1 : 2;
+      const xs = []; for (let x = -6; x <= 6; x++) if (x !== 0 && x % q === 0 && Math.abs(k * x + b) <= 6) xs.push(x);
+      if (!xs.length || !isNice(1 / k)) return null;
+      const x2 = pick(xs), y2 = k * x2 + b;
+      const svg = svgEl({ x: [-6, 6], y: [-6, 6], f: [{ f: x => k * x + b }], pts: [{ x: 0, y: b }, { x: x2, y: y2 }] }, "Xətti funksiyanın qrafiki, iki nöqtə işarələnib");
+      return mc(ae(eq(k, b), [eq(-k, b), eq(k, -b), eq(1 / k, b), eq(b, k)], s => s), { svg,
+        text: "Şəkildə xətti funksiyanın qrafiki verilib (işarələnmiş nöqtələr tor düyünlərindədir). Funksiyanın düsturunu tapın.",
+        solution: `Xətt Oy oxunu (0; ${S(b)}) nöqtəsində kəsir → b = ${S(b)}. İkinci nöqtə ${P(x2, y2)}: k = (${S(y2)} − ${par(b)})/(${S(x2)} − 0) = ${num(y2 - b)}/${par(x2)} = ${num(k)}. Düstur: ${eq(k, b)}. Tələlər: ${eq(-k, b)} — artma/azalmanı səhv oxumaq (k-nın işarəsi); ${eq(k, -b)} — b-nin işarəsi; ${eq(1 / k, b)} — k-nı tərs yazmaq (Δx/Δy); ${eq(b, k)} — k və b-nin yerini dəyişmək.` });
+    }) },
+    // 2. closed: intersection point of two lines
+    { tip: "qapali", gen: () => again(() => {
+      const k1 = nz(-4, 4), k2 = nz(-4, 4), x0 = nz(-5, 5), y0 = rnd(-8, 8);
+      if (k1 === k2 || k1 + k2 === 0 || x0 === y0) return null;
+      const b1 = y0 - k1 * x0, b2 = y0 - k2 * x0; if (Math.abs(b1) > 12 || Math.abs(b2) > 12) return null;
+      const xs = (b2 - b1) / (k1 + k2), w = [[y0, x0], [-x0, -k1 * x0 + b1], [x0, k1 * x0 + b2], [xs, k1 * xs + b1]];
+      if (![[x0, y0], ...w].every(p => isNice(p[0]) && isNice(p[1]))) return null;
+      return mc(ae([x0, y0], w, p => P(p[0], p[1])), { text: `${eq(k1, b1)} və ${eq(k2, b2)} düz xətlərinin kəsişmə nöqtəsinin koordinatlarını tapın.`,
+        solution: `${L(k1, b1)} = ${L(k2, b2)} → ${kx(k1 - k2)} = ${S(b2 - b1)} → x = ${S(x0)}; y = ${ev(k1, x0, b1)} = ${S(y0)}. Cavab: ${P(x0, y0)}. Tələlər: ${P(y0, x0)} — koordinatların yerini dəyişmək; ${P(-x0, -k1 * x0 + b1)} — tənliyi həll edəndə işarə səhvi (x = ${S(-x0)}); ${P(x0, k1 * x0 + b2)} — y-i tapanda b-ni o biri xəttdən götürmək; ${P(xs, k1 * xs + b1)} — k-ları çıxmaq əvəzinə toplamaq.` });
+    }) },
+    // 3. closed: area of the triangle cut off by the axes (forgetting ½, mixing k with the intercept, ...)
+    { tip: "qapali", gen: () => again(() => {
+      const k = nz(-5, 5), b = nz(-9, 9), p = Math.abs(b / k), q = Math.abs(b);
+      const R = p * q / 2, w = [p * q, q * Math.abs(k) / 2, q * q * Math.abs(k) / 2, p + q];
+      if (![R, p, ...w].every(x => isNice(x, 1))) return null;
+      return mc(ae(R, w), { text: `${eq(k, b)} düz xətti koordinat oxları ilə üçbucaq əmələ gətirir. Bu üçbucağın sahəsi neçə kvadrat vahiddir?`,
+        solution: `Oy oxu ilə: (0; ${S(b)}). Ox oxu ilə: y = 0 → x = ${frac(-b, k)}, nöqtə (${frac(-b, k)}; 0). Katetlər ${num(q)} və ${num(p)}: S = ½ · ${num(q)} · ${num(p)} = ${num(R)}. Tələlər: ${num(p * q)} — ½-i unutmaq; ${num(q * Math.abs(k) / 2)} — k-nı Ox-la kəsişmənin uzunluğu saymaq; ${num(q * q * Math.abs(k) / 2)} — x-i tapanda b-ni k-ya bölmək əvəzinə vurmaq; ${num(p + q)} — sahə əvəzinə katetlərin cəmi.` });
+    }) },
+    // 4. closed: word problem, k and b from two data points
+    { tip: "qapali", gen: () => again(() => {
+      const b = pick([100, 150, 200, 250, 300]), k = pick([40, 50, 60, 70, 80, 90, 100, 120]), d1 = rnd(2, 6), d2 = rnd(8, 14), d3 = rnd(15, 25);
+      const F1 = b + k * d1, F2 = b + k * d2, R = b + k * d3, w = [F1 / d1 * d3, k * d3, F1 + k * d3, F2 / d2 * d3];
+      if (![R, ...w].every(x => isNice(x, 0))) return null;
+      return mc(ae(R, w, c => num(c / 100)), { text: `Taksi ${d1} km yol üçün ${AZN(F1)} manat, ${d2} km yol üçün ${AZN(F2)} manat alır. Ödəniş yolun uzunluğundan xətti asılıdır: y = kx + b. ${d3} km yol üçün neçə manat ödəmək lazımdır?`,
+        solution: `k = (${AZN(F2)} − ${AZN(F1)})/(${d2} − ${d1}) = ${AZN(F2 - F1)}/${d2 - d1} = ${AZN(k)} manat/km. ${AZN(F1)} = ${AZN(k)}·${d1} + b → b = ${AZN(b)}. y = ${AZN(k)}·${d3} + ${AZN(b)} = ${AZN(R)} manat. Tələlər: ${AZN(F1 / d1 * d3)} — qiyməti yola mütənasib saymaq (b-ni unutmaq); ${AZN(k * d3)} — yalnız km haqqı (b yoxdur); ${AZN(F1 + k * d3)} — ilk ödənişi b əvəzinə götürmək.` });
+    }) },
+    // 5. closed: f(x) > 0 (or < 0) from a graph
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([-2, -1, -0.5, 0.5, 1, 2]), r = nz(-4, 4), b = -k * r; if (!Number.isInteger(b) || b === 0 || Math.abs(b) > 5) return null;
+      const pos = pick([true, false]), s = (pos === (k > 0)) ? ">" : "<", t = s === ">" ? "<" : ">";
+      const svg = svgEl({ x: [-6, 6], y: [-6, 6], f: [{ f: x => k * x + b }], pts: [{ x: r, y: 0 }, { x: 0, y: b }] }, "Xətti funksiyanın qrafiki, oxlarla kəsişmə nöqtələri işarələnib");
+      const f = (c, v) => "x " + c + " " + num(v);
+      return mc(ae(f(s, r), [f(t, r), f(s, b), f(t, b), f(s, -r)], x => x), { svg,
+        text: `Şəkildə y = f(x) funksiyasının qrafiki verilib. f(x) ${pos ? ">" : "<"} 0 bərabərsizliyinin həllini tapın.`,
+        solution: `Qrafik Ox oxunu (${S(r)}; 0) nöqtəsində kəsir: f(${S(r)}) = 0. f(x) ${pos ? ">" : "<"} 0 — qrafikin Ox oxunun ${pos ? "yuxarısında" : "aşağısında"} olduğu x-lər. Xətt ${k > 0 ? "artandır (sağa getdikcə qalxır)" : "azalandır (sağa getdikcə enir)"}, ona görə bu x-lər ${S(r)}-dən ${s === ">" ? "sağdadır" : "soldadır"}: ${f(s, r)}. Tələlər: ${f(t, r)} — sağ-sol tərəfi səhv seçmək; ${f(s, b)} və ${f(t, b)} — Oy-la kəsişməni (b = ${S(b)}) Ox-la kəsişmə saymaq; ${f(s, -r)} — kəsişmənin işarəsini səhv oxumaq.` });
+    }) },
+    // 6. closed: parameter, increasing/decreasing (dividing by a negative number)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([2, 3, 4, 5]), c = nz(-9, 9), d = nz(-9, 9), dec = pick([true, false]); if (!isNice(c / a, 1)) return null;
+      const s = dec ? ">" : "<", t = dec ? "<" : ">", f = (z, v) => "m " + z + " " + num(v);
+      const coef = `${num(c)} − ${a}m`, r = c / a;
+      return mc(ae(f(s, r), [f(t, r), f(s, -r), f(t, -r), f(s, c)], x => x), { text: `y = (${coef})x ${d < 0 ? "−" : "+"} ${Math.abs(d)} funksiyası ${dec ? "azalandır" : "artandır"}. m hansı qiymətləri alır?`,
+        solution: `${dec ? "Azalan" : "Artan"} → k ${dec ? "<" : ">"} 0: ${coef} ${dec ? "<" : ">"} 0 → −${a}m ${dec ? "<" : ">"} ${S(-c)}. Mənfi ədədə bölürük, bərabərsizliyin işarəsi dəyişir: ${f(s, r)}. Tələlər: ${f(t, r)} — mənfi ədədə bölərkən işarəni dəyişməmək; ${f(s, -r)} və ${f(t, -r)} — sabit ${S(c)} ədədini o biri tərəfə keçirəndə işarə səhvi; ${f(s, c)} — ${a} ədədinə bölməyi unutmaq.` });
+    }) },
+    // 7. coded: triangle between two lines and the Oy axis
+    { tip: "kod", gen: () => again(() => {
+      const k1 = nz(-4, 4), k2 = nz(-4, 4), x0 = nz(-5, 5), y0 = rnd(-8, 8); if (k1 === k2) return null;
+      const b1 = y0 - k1 * x0, b2 = y0 - k2 * x0, R = Math.abs(b1 - b2) * Math.abs(x0) / 2; if (!isNice(R, 1) || Math.abs(b1) > 12 || Math.abs(b2) > 12) return null;
+      return { text: `${eq(k1, b1)} və ${eq(k2, b2)} düz xətləri və Oy oxu üçbucaq əmələ gətirir. Bu üçbucağın sahəsi neçə kvadrat vahiddir?`,
+        answer: R, show: num(R), tol: 1e-6, unit: "kv. vahid", solution: `Xətlər (${S(x0)}; ${S(y0)}) nöqtəsində kəsişir: ${L(k1, b1)} = ${L(k2, b2)} → x = ${S(x0)}. Oy oxunda təpələr (0; ${S(b1)}) və (0; ${S(b2)}): oturacaq |${S(b1)} − ${par(b2)}| = ${Math.abs(b1 - b2)}. Hündürlük — kəsişmənin Oy-dan məsafəsi |x| = ${Math.abs(x0)}. S = ½ · ${Math.abs(b1 - b2)} · ${Math.abs(x0)} = ${num(R)}.` };
+    }) },
+    // 8. coded: two values of f give k and b; then solve f(x) = y
+    { tip: "kod", gen: () => again(() => {
+      const k = nz(-5, 5), b = rnd(-9, 9), x1 = rnd(-5, 5), x2 = rnd(-5, 5), x3 = rnd(1, 9); if (x1 === x2 || x3 === x1 || x3 === x2) return null;
+      const y1 = k * x1 + b, y2 = k * x2 + b, y3 = k * x3 + b;
+      return { text: `f(x) = kx + b xətti funksiyadır, f(${S(x1)}) = ${S(y1)} və f(${S(x2)}) = ${S(y2)}. f(x) = ${S(y3)} olduqda x neçədir?`,
+        answer: x3, show: String(x3), tol: 1e-6, solution: `k = (${S(y2)} − ${par(y1)})/(${S(x2)} − ${par(x1)}) = ${S(y2 - y1)}/${par(x2 - x1)} = ${S(k)}. ${S(y1)} = ${S(k)}·${par(x1)} + b → b = ${S(b)}. f(x) = ${L(k, b)} = ${S(y3)} → ${kx(k)} = ${S(y3 - b)} → x = ${S(x3)}.` };
+    }) },
+    // 9. coded: length of the segment between the two axis crossings (general form of the line)
+    { tip: "kod", gen: () => again(() => {
+      const [a, c, d] = pick([[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 15, 17], [9, 12, 15], [12, 16, 20]]), sw = pick([0, 1]);
+      const p = (sw ? c : a) * pick([-1, 1]), q = (sw ? a : c) * pick([-1, 1]);
+      let A = q, Bc = p, C = p * q; const g = gcd(gcd(Math.abs(A), Math.abs(Bc)), Math.abs(C)); A /= g; Bc /= g; C /= g; if (A < 0) { A = -A; Bc = -Bc; C = -C; }
+      return { text: `${A === 1 ? "" : A}x ${Bc < 0 ? "−" : "+"} ${Math.abs(Bc) === 1 ? "" : Math.abs(Bc)}y = ${S(C)} düz xətti Ox oxunu A, Oy oxunu B nöqtəsində kəsir. AB parçasının uzunluğunu tapın.`,
+        answer: d, show: String(d), tol: 1e-6, solution: `y = 0 → x = ${S(p)}: A(${S(p)}; 0). x = 0 → y = ${S(q)}: B(0; ${S(q)}). OAB düzbucaqlı üçbucağında katetlər ${Math.abs(p)} və ${Math.abs(q)} uzunluğundadır: AB = √(${p * p} + ${q * q}) = ${d}.` };
+    }) },
+    // 10. written: line through two points, triangle with the axes (the written solution is graded by steps)
+    { tip: "yazili", gen: () => again(() => {
+      const k = nz(-4, 4), b = nz(-8, 8), x1 = rnd(-4, 4), x2 = rnd(-4, 4); if (x1 === x2 || x1 === 0 || x2 === 0) return null;
+      const y1 = k * x1 + b, y2 = k * x2 + b, xi = -b / k, R = Math.abs(b * xi) / 2; if (!isNice(xi, 1) || !isNice(R, 1) || Math.abs(y1) > 15 || Math.abs(y2) > 15) return null;
+      return { text: `Düz xətt A${P(x1, y1)} və B${P(x2, y2)} nöqtələrindən keçir. Bu düz xətt və koordinat oxları ilə əmələ gələn üçbucağın sahəsini tapın.`,
+        answer: R, show: num(R), tol: 1e-6, unit: "kv. vahid",
+        solution: `1) k = (${S(y2)} − ${par(y1)})/(${S(x2)} − ${par(x1)}) = ${S(y2 - y1)}/${par(x2 - x1)} = ${S(k)}. 2) ${S(y1)} = ${S(k)}·${par(x1)} + b → b = ${S(b)}, düstur ${eq(k, b)}. 3) Oy ilə kəsişmə: (0; ${S(b)}). Ox ilə: ${L(k, b)} = 0 → x = ${num(xi)}. 4) Katetlər ${Math.abs(b)} və ${num(Math.abs(xi))}: S = ½ · ${Math.abs(b)} · ${num(Math.abs(xi))} = ${num(R)}. Bal meyarı: k və b (1–2-ci addım), oxlarla kəsişmə (3), sahə (4). Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -312,7 +408,7 @@
     game = Oyun.mount({
       key: "xetti-funksiya", title: "Xətti funksiya", fenn: "riyaziyyat", link: "dersler/xetti-funksiya.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2, onluq 2,5 (və ya 2.5). Nöqtə soruşulmur — yalnız sualdakı koordinatı (x və ya y) yaz.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["kb", "oxlar", "xy", "xy", "tap", "tap", "paralel", "paralel", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>k və b-ni tap</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İki düz xətt</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Həyatdan</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -344,6 +345,91 @@ Sualın sonu deyir: x-i yazırsan, yoxsa y-i.</div></div>
         <li>Usta çağırmaq 10 AZN, hər saat iş 15 AZN. 4 saat iş neçəyədir? <span class="ans">y = 15x + 10 = 15·4 + 10 = 70 AZN.</span></li>
         <li>Həmin usta 55 AZN aldı. Neçə saat işləyib? <span class="ans">15x + 10 = 55 → x = 3 saat.</span></li>
         <li>Çəndə 50 l benzin var, maşın hər 100 km-ə 8 l yandırır. 300 km-dən sonra nə qalar? <span class="ans">Hər km 0,08 l: V = 50 − 0,08x = 50 − 24 = 26 l.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: xətti funksiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Xətti funksiya buraxılış imtahanında hər il var və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: <span class="m">k</span>-nın işarəsi, <span class="m">k</span>-nın tərsi, <span class="m">k</span> və <span class="m">b</span>-nin yeri, absis–ordinat qarışıqlığı. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil. Çox vaxt şəkil verilir: qrafikdən düstur, qrafikdən bərabərsizlik.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız müsbət ədəd: vahid yazılmır; onluq kəsri portal həm vergüllə, həm nöqtə ilə qəbul edir.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>nə verilib, nə axtarılır?</b> Düz xətt iki ədədlə təyin olunur — <span class="m">k</span> və <span class="m">b</span>. Çox məsələ bu ikisini tapmağa gətirir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 240 240" role="img" aria-label="Xətti funksiyanın qrafiki: Oy oxunu (0; 3) nöqtəsində kəsir, (2; −1) nöqtəsindən keçir"><line x1="16" y1="16" x2="16" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="42" y1="16" x2="42" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="68" y1="16" x2="68" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="94" y1="16" x2="94" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="120" y1="16" x2="120" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="146" y1="16" x2="146" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="172" y1="16" x2="172" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="198" y1="16" x2="198" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="224" y1="16" x2="224" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="224" x2="224" y2="224" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="198" x2="224" y2="198" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="172" x2="224" y2="172" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="146" x2="224" y2="146" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="120" x2="224" y2="120" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="94" x2="224" y2="94" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="68" x2="224" y2="68" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="42" x2="224" y2="42" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="16" x2="224" y2="16" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/><line x1="16" y1="146" x2="234" y2="146" stroke="var(--ink)" stroke-width="1.5"/><path d="M227 142L234 146L227 150" fill="none" stroke="var(--ink)" stroke-width="1.5"/><line x1="120" y1="224" x2="120" y2="6" stroke="var(--ink)" stroke-width="1.5"/><path d="M116 13L120 6L124 13" fill="none" stroke="var(--ink)" stroke-width="1.5"/><text x="232" y="139" text-anchor="end" class="lbl">x</text><text x="127" y="15" class="lbl">y</text><text x="116" y="158" text-anchor="end">O</text><line x1="16" y1="143" x2="16" y2="149" stroke="var(--ink)"/><text x="16" y="159" text-anchor="middle">−4</text><line x1="42" y1="143" x2="42" y2="149" stroke="var(--ink)"/><text x="42" y="159" text-anchor="middle">−3</text><line x1="68" y1="143" x2="68" y2="149" stroke="var(--ink)"/><text x="68" y="159" text-anchor="middle">−2</text><line x1="94" y1="143" x2="94" y2="149" stroke="var(--ink)"/><text x="94" y="159" text-anchor="middle">−1</text><line x1="146" y1="143" x2="146" y2="149" stroke="var(--ink)"/><text x="146" y="159" text-anchor="middle">1</text><line x1="172" y1="143" x2="172" y2="149" stroke="var(--ink)"/><text x="172" y="159" text-anchor="middle">2</text><line x1="198" y1="143" x2="198" y2="149" stroke="var(--ink)"/><text x="198" y="159" text-anchor="middle">3</text><line x1="117" y1="224" x2="123" y2="224" stroke="var(--ink)"/><text x="115" y="228" text-anchor="end">−3</text><line x1="117" y1="198" x2="123" y2="198" stroke="var(--ink)"/><text x="115" y="202" text-anchor="end">−2</text><line x1="117" y1="172" x2="123" y2="172" stroke="var(--ink)"/><text x="115" y="176" text-anchor="end">−1</text><line x1="117" y1="120" x2="123" y2="120" stroke="var(--ink)"/><text x="115" y="124" text-anchor="end">1</text><line x1="117" y1="94" x2="123" y2="94" stroke="var(--ink)"/><text x="115" y="98" text-anchor="end">2</text><line x1="117" y1="68" x2="123" y2="68" stroke="var(--ink)"/><text x="115" y="72" text-anchor="end">3</text><line x1="117" y1="42" x2="123" y2="42" stroke="var(--ink)"/><text x="115" y="46" text-anchor="end">4</text><defs><clipPath id="xg1x789113"><rect x="16" y="16" width="208" height="208"/></clipPath></defs><g clip-path="url(#xg1x789113)"><path d="M55.5 -61L56.6 -58.9L57.6 -56.8L58.6 -54.7L59.7 -52.6L60.7 -50.6L61.8 -48.5L62.8 -46.4L63.8 -44.3L64.9 -42.2L65.9 -40.2L67 -38.1L68 -36L69 -33.9L70.1 -31.8L71.1 -29.8L72.2 -27.7L73.2 -25.6L74.2 -23.5L75.3 -21.4L76.3 -19.4L77.4 -17.3L78.4 -15.2L79.4 -13.1L80.5 -11L81.5 -9L82.6 -6.9L83.6 -4.8L84.6 -2.7L85.7 -0.6L86.7 1.4L87.8 3.5L88.8 5.6L89.8 7.7L90.9 9.8L91.9 11.8L93 13.9L94 16L95 18.1L96.1 20.2L97.1 22.2L98.2 24.3L99.2 26.4L100.2 28.5L101.3 30.6L102.3 32.6L103.4 34.7L104.4 36.8L105.4 38.9L106.5 41L107.5 43L108.6 45.1L109.6 47.2L110.6 49.3L111.7 51.4L112.7 53.4L113.8 55.5L114.8 57.6L115.8 59.7L116.9 61.8L117.9 63.8L119 65.9L120 68L121 70.1L122.1 72.2L123.1 74.2L124.2 76.3L125.2 78.4L126.2 80.5L127.3 82.6L128.3 84.6L129.4 86.7L130.4 88.8L131.4 90.9L132.5 93L133.5 95L134.6 97.1L135.6 99.2L136.6 101.3L137.7 103.4L138.7 105.4L139.8 107.5L140.8 109.6L141.8 111.7L142.9 113.8L143.9 115.8L145 117.9L146 120L147 122.1L148.1 124.2L149.1 126.2L150.2 128.3L151.2 130.4L152.2 132.5L153.3 134.6L154.3 136.6L155.4 138.7L156.4 140.8L157.4 142.9L158.5 145L159.5 147L160.6 149.1L161.6 151.2L162.6 153.3L163.7 155.4L164.7 157.4L165.8 159.5L166.8 161.6L167.8 163.7L168.9 165.8L169.9 167.8L171 169.9L172 172L173 174.1L174.1 176.2L175.1 178.2L176.2 180.3L177.2 182.4L178.2 184.5L179.3 186.6L180.3 188.6L181.4 190.7L182.4 192.8L183.4 194.9L184.5 197L185.5 199L186.6 201.1L187.6 203.2L188.6 205.3L189.7 207.4L190.7 209.4L191.8 211.5L192.8 213.6L193.8 215.7L194.9 217.8L195.9 219.8L197 221.9L198 224L199 226.1L200.1 228.2L201.1 230.2L202.2 232.3L203.2 234.4L204.2 236.5L205.3 238.6L206.3 240.6L207.4 242.7L208.4 244.8L209.4 246.9L210.5 249L211.5 251L212.6 253.1L213.6 255.2L214.6 257.3L215.7 259.4L216.7 261.4L217.8 263.5L218.8 265.6L219.8 267.7L220.9 269.8L221.9 271.8L223 273.9L224 276" fill="none" stroke="var(--accent)" stroke-width="2.5"/></g><circle cx="120" cy="68" r="4.5" fill="var(--vec)" stroke="var(--vec)" stroke-width="2"/><circle cx="172" cy="172" r="4.5" fill="var(--vec)" stroke="var(--vec)" stroke-width="2"/></svg></div>
+        <p>Şəkildə xətti funksiyanın qrafiki verilib (işarələnmiş nöqtələr tor düyünlərindədir). Funksiyanın düsturunu tapın.</p>
+        <ol class="imt-opts"><li>y = 2x + 3</li><li>y = −2x − 3</li><li>y = −2x + 3</li><li>y = −0,5x + 3</li><li>y = 3x − 2</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Xətt Oy oxunu (0; 3) nöqtəsində kəsir  ⇒  b = 3
+İkinci nöqtə (2; −1):
+k = (−1 − 3)/(2 − 0) = −4/2 = −2
+Düstur: y = −2x + 3
+Cavab: C) y = −2x + 3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) y = 2x + 3</b> — xətt sağa getdikcə enir, amma <span class="m">k</span> müsbət yazılıb: <b>k-nın işarəsi</b>.</li>
+        <li><b>B) y = −2x − 3</b> — <span class="m">b</span> Oy ilə kəsişmənin ordinatıdır (+3), amma işarəsi səhv yazılıb: <b>b-nin işarəsi</b>.</li>
+        <li><b>D) y = −0,5x + 3</b> — <span class="m">k</span> tərs kəsr kimi: <span class="m">Δx/Δy = 2/(−4)</span>. Yuxarıda <b>y</b>-lərin fərqi durur.</li>
+        <li><b>E) y = 3x − 2</b> — <span class="m">k</span> və <span class="m">b</span>-nin yerini dəyişmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">y = 2x + 1</span> və <span class="m">y = −x + 7</span> düz xətləri və Oy oxu üçbucaq əmələ gətirir. Bu üçbucağın sahəsi neçə kvadrat vahiddir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Kəsişmə: 2x + 1 = −x + 7  ⇒  3x = 6  ⇒  x = 2, y = 5
+Oy oxunda təpələr: (0; 1) və (0; 7)
+Oturacaq (Oy üzərində): 7 − 1 = 6
+Hündürlük: kəsişmənin Oy-dan məsafəsi = |x| = 2
+S = ½ · 6 · 2 = 6
+Cavab: 6</div>
+      <p>Kodlaşdırmada yalnız <b>6</b> yazılır. Tələ: <b>½-i unutmaq</b> (12 alınır). İkinci tələ: hündürlük kimi <span class="m">y = 5</span>-i götürmək — Oy üzərindəki oturacağa perpendikulyar məsafə <b>absisdir</b>, ordinat yox.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Düz xətt <span class="m">A(1; 4)</span> və <span class="m">B(2; 2)</span> nöqtələrindən keçir. Bu düz xətt və koordinat oxları ilə əmələ gələn üçbucağın sahəsini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) k = (y₂ − y₁)/(x₂ − x₁) = (2 − 4)/(2 − 1) = −2.
+2) A nöqtəsi: 4 = −2 · 1 + b  ⇒  b = 6.
+   Düstur: y = −2x + 6.
+3) Oy ilə kəsişmə: x = 0, y = 6 → (0; 6).
+   Ox ilə kəsişmə: y = 0, −2x + 6 = 0  ⇒  x = 3 → (3; 0).
+4) Katetlər 6 və 3:  S = ½ · 6 · 3 = 9.
+5) Yoxlama: B(2; 2): −2 · 2 + 6 = 2 ✓
+Cavab: 9 kv. vahid.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>k və b</b> (1–2-ci addım), <b>oxlarla kəsişmə nöqtələri</b> (3-cü addım), <b>sahə və cavab</b>. Həll yazılmadan yalnız "9" yazılsa, bal verilmir; həll yazılsa da, bu üç hissənin hər biri ayrıca qiymətləndirilir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b><span class="m">k</span>-nın işarəsi və tərsi.</b> Qrafik sağa getdikcə enirsə, <span class="m">k</span> &lt; 0. <span class="m">k = Δy/Δx</span> — <span class="m">y</span>-lərin fərqi yuxarıda.</li>
+        <li><b>Absis–ordinat.</b> "Absisi tap" — <span class="m">x</span>, "ordinatı tap" — <span class="m">y</span>. Oy oxunda <span class="m">x = 0</span>, Ox oxunda <span class="m">y = 0</span>.</li>
+        <li><b>Qrafikdən bərabərsizlik.</b> <span class="m">f(x) &gt; 0</span> — qrafikin Ox-dan <b>yuxarı</b> olduğu x-lər. Artan xətt üçün bu, kəsişmənin sağıdır, azalan üçün solu. Oy-la kəsişməni (<span class="m">b</span>) Ox-la kəsişmə ilə qarışdırma.</li>
+        <li><b>Parametr və bərabərsizlik.</b> Azalan funksiya: <span class="m">k &lt; 0</span>. <span class="m">5 − 2m &lt; 0</span> → <span class="m">−2m &lt; −5</span> → <span class="m">m &gt; 2,5</span>: mənfi ədədə bölərkən işarə dəyişir.</li>
+        <li><b>Üçbucağın sahəsi.</b> <span class="m">½</span>-i unutma; katetlər oxlarla kəsişmə nöqtələrinə qədər məsafələrdir (<span class="m">|b|</span> və <span class="m">|b/k|</span>), <span class="m">k</span> deyil.</li>
+        <li><b>Məsələdə</b> sabit hissəni (<span class="m">b</span>: minik haqqı, başlanğıc) unutma: qiyməti yola mütənasib saymaq səhvdir. İki məlumatdan əvvəl <span class="m">k</span>-nı, sonra <span class="m">b</span>-ni tap.</li>
+        <li><b>Kodlaşdırmada</b> vahid yazılmır; sahə, uzunluq, say — müsbət ədəddir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k = (y₂ − y₁)/(x₂ − x₁)       — y-lər yuxarıda
+b: nöqtəni y = kx + b-yə qoy
+Oy ilə: x = 0 → (0; b).   Ox ilə: y = 0 → x = −b/k
+Üçbucaq: S = ½ · |b| · |b/k|
+mənfi ədədə bölürsən → işarə dəyişir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">y = 2x − 6</span> düz xətti və koordinat oxları ilə əmələ gələn üçbucağın sahəsi? <span class="ans">Oy ilə (0; −6), Ox ilə (3; 0). S = ½ · 6 · 3 = 9 (½-i unutsan 18 alınır).</span></li>
+        <li><span class="m">y = (5 − 2m)x + 1</span> funksiyası artandır. <span class="m">m</span> hansı qiymətləri alır? <span class="ans">5 − 2m &gt; 0 → −2m &gt; −5 → m &lt; 2,5 (mənfi ədədə böləndə işarə dəyişir).</span></li>
+        <li>Qrafik <span class="m">(0; −2)</span> və <span class="m">(4; 0)</span> nöqtələrindən keçir. <span class="m">f(x) &gt; 0</span> bərabərsizliyinin həlli? <span class="ans">k = 2/4 = 0,5 &gt; 0 — artandır; Ox ilə kəsişmə x = 4. f(x) &gt; 0 ⇔ x &gt; 4 (x &gt; −2 yox: −2 ordinatdır).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
