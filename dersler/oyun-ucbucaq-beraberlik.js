@@ -331,6 +331,131 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (ratio on 360°, adjacent angle instead of the exterior one, SSA, triangle inequality, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const dg = x => x + "°";
+  const sinD = d => Math.sin(rad(d)), cosD = d => Math.cos(rad(d));
+  // two triangles ABC and T2, the second a rotated / mirrored copy shifted to the right (true shape, so the marks stay honest)
+  const pairPoints = T2 => {
+    const MAP = { A: T2[0], B: T2[1], C: T2[2] }, [a, b] = angles3(35), P = tri(a, b);
+    const ph = rad(rnd(0, 11) * 30), mir = Math.random() < .5 ? -1 : 1;
+    const cx = (P.A[0] + P.B[0] + P.C[0]) / 3, cy = (P.A[1] + P.B[1] + P.C[1]) / 3;
+    for (const k of ABC) { const x = (P[k][0] - cx) * mir, y = P[k][1] - cy; P[MAP[k]] = [2.0 + x * Math.cos(ph) - y * Math.sin(ph), x * Math.sin(ph) + y * Math.cos(ph)]; }
+    for (const k of ABC) P[k] = [P[k][0] - cx, P[k][1] - cy];
+    return { P, MAP };
+  };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. angles in a ratio: difference of the largest and the smallest
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(1, 7), m = rnd(1, 7), n = rnd(1, 7), S = k + m + n;
+      if (180 % S || k === m || m === n || k === n) return null;
+      const u = 180 / S, mx = Math.max(k, m, n), mn = Math.min(k, m, n), R = (mx - mn) * u;
+      const w = [(mx - mn) * 360 / S, (mx - mn) * 60, mx * u, (mx + mn) * u];
+      return mc(ae(R, w, dg), { text: `Üçbucağın daxili bucaqları ${k} : ${m} : ${n} nisbətindədir. Ən böyük bucaqla ən kiçik bucağın fərqi neçə dərəcədir?`,
+        solution: `Daxili bucaqların cəmi 180°: bir hissə 180° : ${S} = ${u}°. Ən böyük bucaq ${mx} · ${u}° = ${mx * u}°, ən kiçik ${mn} · ${u}° = ${mn * u}°, fərq ${R}°. Tələlər: 180° əvəzinə 360°-ni bölmək (${(mx - mn) * 360 / S}°), 180°-ni 3-ə bölmək (${(mx - mn) * 60}°), fərq əvəzinə ən böyük bucağı yazmaq (${mx * u}°) və ya iki bucağı toplamaq (${(mx + mn) * u}°).` });
+    }) },
+    // 2. bisector and the exterior angle of the small triangle
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(30, 80), c = rnd(30, 80), be = 180 - a - c;
+      if ((a + c) % 2 || be < 30 || a === c) return null;
+      const h = be / 2, R = a + h, w = [c + h, a + be, h, a + c];
+      const T = tri(a, c), P = { A: T.A, C: T.B, B: T.C };
+      const AB = Math.hypot(P.B[0] - P.A[0], P.B[1] - P.A[1]), BC = Math.hypot(P.B[0] - P.C[0], P.B[1] - P.C[1]), t = AB / (AB + BC);
+      P.D = [P.A[0] + (P.C[0] - P.A[0]) * t, P.A[1] + (P.C[1] - P.A[1]) * t];
+      return mc(ae(R, w, dg), { text: `ABC üçbucağında ∠A = ${a}°, ∠C = ${c}°. BD — ∠B-nin tənböləni, D nöqtəsi AC tərəfindədir. ∠BDC neçə dərəcədir?`,
+        svg: figure(P, { polys: [ABC], segs: [["B", "D", "acc"]], names: ["A", "B", "C", "D"], arcs: [["A", "B", "C", a + "°"], ["C", "A", "B", c + "°"], ["B", "A", "D", "", 16], ["B", "D", "C", "", 20], ["D", "B", "C", "?", 14]], aria: "ABC üçbucağı, BD tənböləni AC tərəfini D nöqtəsində kəsir" }),
+        solution: `∠B = 180° − ${a}° − ${c}° = ${be}°, tənbölən onu hər biri ${h}° olan iki bucağa bölür. ∠BDC — △ABD-nin D təpəsindəki xarici bucağıdır: ∠A + ∠ABD = ${a}° + ${h}° = ${R}°. Tələlər: qonşu ∠ADB-ni yazmaq (${c + h}°), ∠B-ni yarılamamaq (${a + be}°), yalnız ∠ABD-ni yazmaq (${h}°), ∠A + ∠C (${a + c}°).` });
+    }) },
+    // 3. which extra condition completes a congruence criterion (TBT); the wrong ones: SSA, letter order, no new information
+    { tip: "qapali", gen: () => again(() => {
+      const T2 = pick(["KLM", "DEF", "MNP", "PQR"]), { P, MAP } = pairPoints(T2);
+      const [v, x, y] = pick([["A", "B", "C"], ["B", "C", "A"], ["C", "A", "B"]]);
+      const sn = (p, q) => [p, q].sort().join(""), sn2 = (p, q) => [MAP[p], MAP[q]].sort((s, t) => T2.indexOf(s) - T2.indexOf(t)).join("");
+      const eq = (p, q) => `${sn(p, q)} = ${sn2(p, q)}`;
+      const R = eq(v, y), w = [eq(x, y), `${sn(v, y)} = ${sn2(x, y)}`, `∠${y} = ∠${MAP[v]}`, `∠${x} + ∠${y} = ∠${MAP[x]} + ∠${MAP[y]}`];
+      return mc(ae(R, w, s => s), { text: `ABC və ${T2} üçbucaqlarında ${eq(v, x)} və ∠${v} = ∠${MAP[v]} (şəkildə bərabər elementlər eyni işarə ilə göstərilib). Aşağıdakı şərtlərdən hansı əlavə edilərsə, △ABC ≅ △${T2} həmişə doğru olar?`,
+        svg: figure(P, { polys: [ABC, T2.split("")], names: [...ABC, ...T2.split("")], ticks: [[v, x, 1], [MAP[v], MAP[x], 1]], arcs: [[...ARC[v], "", 13, 1], [...ARC[v].map(k => MAP[k]), "", 13, 1]], rot: [0, 180], noflip: true, aria: "ABC və " + T2 + " üçbucaqları, bir tərəf və bir bucaq işarələnib" }),
+        solution: `${eq(v, y)} əlavə olunsa, ${eq(v, x)}, ${eq(v, y)} və aralarındakı ∠${v} = ∠${MAP[v]} olur — TBT əlaməti. Tələlər: ${eq(x, y)} (iki tərəf və arasında OLMAYAN bucaq — konqruyentlik vermir), ${sn(v, y)} = ${sn2(x, y)} (hərflərin sırası: ${sn(v, y)} tərəfinə ${sn2(v, y)} uyğundur), ∠${y} = ∠${MAP[v]} (uyğunsuz bucaqlar), ∠${x} + ∠${y} = ∠${MAP[x]} + ∠${MAP[y]} (bu, ∠${v} = ∠${MAP[v]} bərabərliyinin başqa yazılışıdır, yeni məlumat vermir).` });
+    }) },
+    // 4. isosceles triangle with two given sides: the triangle inequality picks the perimeter
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 9), b = rnd(2 * a, 4 * a); if (b === a) return null;
+      const R = a + 2 * b, w = [2 * a + b, a + b, 3 * b, 2 * (a + b)];
+      return mc(ae(R, w), { text: `Bərabəryanlı üçbucağın iki tərəfinin uzunluğu ${a} sm və ${b} sm-dir. Bu üçbucağın perimetrini (sm-lə) tapın.`,
+        solution: `Yan tərəflər bərabərdir; iki variant var. (${a}; ${a}; ${b}): ${a} + ${a} = ${2 * a} ≤ ${b} — üçbucaq qurulmur (iki tərəfin cəmi üçüncüdən böyük olmalıdır). (${a}; ${b}; ${b}): ${a} + ${b} > ${b}, olar. P = ${a} + ${b} + ${b} = ${R}. Tələlər: mümkün olmayan ${2 * a + b}, tərəflərin cəmi ${a + b}, bərabərtərəfli saymaq (3 · ${b} = ${3 * b}), hər iki tərəfi ikiqat götürmək (${2 * (a + b)}).` });
+    }) },
+    // 5. isosceles triangle, bisector of the base angle: the angle ADC
+    { tip: "qapali", gen: () => again(() => {
+      const v = 4 * rnd(10, 31), al = (180 - v) / 2, h = al / 2, R = 180 - al - h;
+      const w = [al + h, v + al, h, 90];
+      const s = sinD(v / 2), c = cosD(v / 2), tt = 1 / (1 + 2 * s);
+      const P = { B: [0, c], A: [-s, 0], C: [s, 0] }; P.D = [P.B[0] + (P.C[0] - P.B[0]) * tt, P.B[1] + (P.C[1] - P.B[1]) * tt];
+      return mc(ae(R, w, dg), { text: `ABC bərabəryanlı üçbucağında AB = BC, ∠B = ${v}°. AD — ∠A-nın tənböləni, D nöqtəsi BC tərəfindədir. ∠ADC neçə dərəcədir?`,
+        svg: figure(P, { polys: [ABC], segs: [["A", "D", "acc"]], names: ["A", "B", "C", "D"], ticks: [["A", "B", 1], ["B", "C", 1]], arcs: [["B", "A", "C", v + "°", 16], ["A", "B", "D", "", 16], ["A", "D", "C", "", 20], ["D", "A", "C", "?", 14]], rot: [0, 180], aria: "AB = BC olan ABC üçbucağı, AD tənböləni BC tərəfini D nöqtəsində kəsir" }),
+        solution: `Oturacaq bucaqları: ∠A = ∠C = (180° − ${v}°) : 2 = ${al}°. AD tənböləndir: ∠DAC = ${al}° : 2 = ${h}°. △ADC-də ∠ADC = 180° − ${h}° − ${al}° = ${R}°. Tələlər: qonşu ∠ADB-ni yazmaq (${al + h}°), tənböləni nəzərə almamaq (${v + al}°), ∠DAC-ı yazmaq (${h}°), ∠ADC-ni 90° saymaq.` });
+    }) },
+    // 6. crossing segments: BTB, then the corresponding angle
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(25, 55), o = rnd(40, 100), R = 180 - a - o; if (a + o > 110) return null; // keeps the figure wide enough for the labels
+      const OC = sinD(a) / sinD(a + o), C = [-OC * cosD(o), -OC * sinD(o)];
+      const P = { O: [0, 0], A: [-1, 0], B: [1, 0], C, D: [-C[0], -C[1]] };
+      const w = [a, o, 180 - o, a + o];
+      return mc(ae(R, w, dg), { text: `AB və CD parçaları O nöqtəsində kəsişir, AO = OB və ∠OAC = ∠OBD = ${a}°. ∠AOC = ${o}° olarsa, ∠ODB neçə dərəcədir?`,
+        svg: figure(P, { polys: [["A", "O", "C"], ["B", "O", "D"]], segs: [["A", "B"], ["C", "D"]], names: ["A", "B", "C", "D", "O"], place: { O: [["A", "C"], -1] }, ticks: [["A", "O", 1], ["O", "B", 1]], arcs: [["A", "O", "C", a + "°", 16], ["B", "O", "D", a + "°", 16], ["O", "A", "C", o + "°", 12], ["D", "B", "O", "?", 16]], rot: [0, 180], aria: "AB və CD parçaları O nöqtəsində kəsişir" }),
+        solution: `△AOC və △BOD-də: AO = OB, ∠OAC = ∠OBD, ∠AOC = ∠BOD (qarşılıqlı bucaqlar) — BTB əlaməti, △AOC ≅ △BOD (A↔B, O↔O, C↔D). Uyğun bucaqlar: ∠ODB = ∠OCA = 180° − ${a}° − ${o}° = ${R}°. Tələlər: ∠OAC-ı yazmaq (${a}°), ∠AOC-ı yazmaq (${o}°), qonşu bucaq 180° − ${o}° = ${180 - o}°, iki bucağı toplamaq (${a + o}°).` });
+    }) },
+    // 7. coded: apex angle and base angle differ by d
+    { tip: "kod", gen: () => again(() => {
+      const less = Math.random() < .5, d = 3 * rnd(2, 20), x = less ? (180 + d) / 3 : (180 - d) / 3, v = less ? x - d : x + d;
+      if (x !== Math.round(x) || v <= 0 || v === x) return null;
+      return { text: `Bərabəryanlı üçbucağın təpə bucağı oturacaq bucağından ${d}° ${less ? "kiçikdir" : "böyükdür"}. Üçbucağın təpə bucağı neçə dərəcədir?`,
+        answer: v, show: String(v), tol: 1e-6, unit: "°",
+        solution: `Oturacaq bucağı x olsun, təpə bucağı x ${less ? "−" : "+"} ${d}°. İki oturacaq bucağı bərabərdir: 2x + (x ${less ? "−" : "+"} ${d}°) = 180° → 3x = ${less ? 180 + d : 180 - d}° → x = ${x}°. Təpə bucağı ${x}° ${less ? "−" : "+"} ${d}° = ${v}°. Tələ: x-i tapıb dayanmaq — sual təpə bucağını soruşur.` };
+    }) },
+    // 8. coded: the median splits the perimeter (right triangles with whole sides make the figure real)
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, r] = pick([[3, 4, 5], [5, 12, 13], [8, 15, 17], [3, 4, 5], [6, 8, 10]]), k = rnd(1, 3), sw = Math.random() < .5;
+      const m = (sw ? q : p) * k, h = (sw ? p : q) * k, a = r * k, P1 = a + m + h, P = 2 * a + 2 * m;
+      if (a > 60) return null;
+      const Pt = { B: [0, h], A: [-m, 0], C: [m, 0], D: [0, 0] };
+      return { text: `ABC bərabəryanlı üçbucağında AB = BC, BD — oturacağa çəkilmiş mediandır. △ABD-nin perimetri ${P1} sm, △ABC-nin perimetri ${P} sm-dir. BD neçə sm-dir?`,
+        svg: figure(Pt, { polys: [ABC], segs: [["B", "D", "acc"]], names: ["A", "B", "C", "D"], ticks: [["A", "B", 1], ["B", "C", 1]], right: [["D", "C", "B"]], lab: { BD: "?" }, rot: [0, 180], aria: "AB = BC olan ABC üçbucağı, BD oturacağa çəkilmiş median" }),
+        answer: h, show: String(h), tol: 1e-6, unit: "sm",
+        solution: `AB = BC və AD = DC (median). P(ABC) = 2(AB + AD) = ${P}, deməli AB + AD = ${P / 2}. P(ABD) = AB + AD + BD = ${P1}, buradan BD = ${P1} − ${P / 2} = ${h} sm. Tələ: perimetrləri çıxmaq (${P1} − ${P}) — onlar fərqli hissələrdir.` };
+    }) },
+    // 9. coded: exterior angles in a ratio
+    { tip: "kod", gen: () => again(() => {
+      const k = rnd(1, 9), m = rnd(1, 9), n = rnd(1, 9), S = k + m + n, mx = Math.max(k, m, n), mn = Math.min(k, m, n);
+      if (360 % S || k === m && m === n || 2 * mx >= S) return null;
+      const u = 360 / S, big = Math.random() < .5, R = big ? 180 - mn * u : 180 - mx * u;
+      return { text: `Üçbucağın hər təpəsindən bir xarici bucaq götürülüb və bu xarici bucaqlar ${k} : ${m} : ${n} nisbətindədir. Üçbucağın ən ${big ? "böyük" : "kiçik"} daxili bucağı neçə dərəcədir?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "°",
+        solution: `Xarici bucaqların cəmi 360°: bir hissə = 360° : ${S} = ${u}°. Xarici bucaqlar ${k * u}°, ${m * u}°, ${n * u}°. Daxili bucaq = 180° − qonşu xarici bucaq; ən ${big ? "böyük daxili bucaq ən kiçik" : "kiçik daxili bucaq ən böyük"} xarici bucağa qonşudur: 180° − ${(big ? mn : mx) * u}° = ${R}°. Tələ: 180°-ni bölmək — xarici bucaqların cəmi 180° yox, 360°-dir.` };
+    }) },
+    // 10. written: AD = CE in an isosceles triangle, the angle between the crossing cevians
+    { tip: "yazili", gen: () => again(() => {
+      const v = 2 * rnd(22, 55), al = (180 - v) / 2, p = rnd(8, al - 14), x = al - p, R = 180 - 2 * x;
+      const s = sinD(v / 2), c = cosD(v / 2), BE = sinD(p) / sinD(v + p), CE = 1 - BE;
+      const A = [-s, 0], B = [0, c], C = [s, 0], E = [B[0] + (C[0] - B[0]) * BE, B[1] + (C[1] - B[1]) * BE], D = [A[0] + (B[0] - A[0]) * CE, A[1] + (B[1] - A[1]) * CE];
+      // O = AE ∩ CD
+      const d1 = [E[0] - A[0], E[1] - A[1]], d2 = [D[0] - C[0], D[1] - C[1]], den = d1[0] * d2[1] - d1[1] * d2[0];
+      const tt = ((C[0] - A[0]) * d2[1] - (C[1] - A[1]) * d2[0]) / den, O = [A[0] + d1[0] * tt, A[1] + d1[1] * tt];
+      if (!(CE > .15 && BE > .15) || !isFinite(tt)) return null;
+      return { text: `ABC üçbucağında AB = BC, ∠ABC = ${v}°. AB tərəfində D, BC tərəfində E nöqtəsi elə götürülüb ki, AD = CE. AE və CD parçaları O nöqtəsində kəsişir. ∠BAE = ${p}° olarsa, ∠AOC neçə dərəcədir? Həlli əsaslandıraraq yazın.`,
+        svg: figure({ A, B, C, D, E, O }, { polys: [ABC], segs: [["A", "E", "acc"], ["C", "D", "acc"]], names: ["A", "B", "C", "D", "E", "O"], place: { O: [["D", "A"], 1] }, ticks: [["A", "B", 1], ["B", "C", 1], ["A", "D", 2], ["C", "E", 2]], arcs: [["B", "A", "C", v + "°", 14], ["A", "B", "E", "", 20], ["O", "A", "C", "?", 12]], rot: [0, 180], aria: "AB = BC olan ABC üçbucağı, AD = CE, AE və CD parçaları O nöqtəsində kəsişir" }),
+        answer: R, show: String(R), tol: 1e-6, unit: "°",
+        solution: `1) AB = BC, deməli ∠BAC = ∠BCA = (180° − ${v}°) : 2 = ${al}°. 2) △ADC və △CEA-da: AD = CE (şərt), AC — ortaq tərəf, ∠DAC = ∠ECA = ${al}° → TBT, △ADC ≅ △CEA (A↔C, D↔E, C↔A). 3) Uyğun bucaqlar: ∠ACD = ∠CAE. ∠CAE = ∠BAC − ∠BAE = ${al}° − ${p}° = ${x}°, deməli ∠ACD = ${x}°. 4) △AOC-də ∠OAC = ∠OCA = ${x}°, ∠AOC = 180° − 2 · ${x}° = ${R}°. Cavab: ${R}°. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  // labels of a figure must not sit on top of each other (the generator then draws new numbers)
+  const clash = g => { const t = [...(g.children || [])].filter(e => e.tagName && e.tagName.toLowerCase() === "text").map(e => [+e.getAttribute("x"), +e.getAttribute("y"), String(e.textContent).length]);
+    return t.some((p, i) => t.slice(i + 1).some(q => Math.abs(p[0] - q[0]) < 4.5 * (p[2] + q[2]) / 2 + 5 && Math.abs(p[1] - q[1]) < 13)); };
+  IMT.suallar.forEach(sq => { const g0 = sq.gen; sq.gen = () => again(() => { const q = g0(); return q.svg && clash(q.svg) ? null : q; }); });
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -340,7 +465,7 @@
     game = Oyun.mount({
       key: "ucbucaq-beraberlik", title: "Üçbucaqlar: konqruyentlik əlamətləri", fenn: "riyaziyyat", link: "dersler/ucbucaq-beraberlik.html",
       format: "Cavab — ədəd: bucaq dərəcə ilə (° yazmaq lazım deyil), tərəf, perimetr. Əlamət sualında variantı seç.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["cem", "cem", "xarici", "xarici", "elamet", "uygun", "uygun", "beraberyanli", "beraberyanli", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

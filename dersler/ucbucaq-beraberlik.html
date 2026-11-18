@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xarici bucaq</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Konqruyentlik</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Bərabəryanlı</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -277,6 +278,114 @@ Bərabərtərəfli: hamısı 60°</div></div>
         <li>Oturacaq bucağı 65°. Təpə bucağı? <span class="ans">180° − 130° = 50°.</span></li>
         <li>AB = BC, BD — median, AC = 18. AD = ? ∠BDC = ? <span class="ans">AD = 9; median həm də hündürlükdür: ∠BDC = 90°.</span></li>
         <li>Üçbucağın iki bucağı 50° və 80°. O bərabəryanlıdırmı? <span class="ans">Üçüncü bucaq 50° — iki bucaq bərabərdir, deməli bərabəryanlıdır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: üçbucaqlar və konqruyentlik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Üçbucaq və konqruyentlik həndəsə məsələlərinin əsasında dayanır və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: xarici bucağın yerinə ona qonşu bucağı yazmaq, tənböləni nəzərə almamaq, iki tərəf və arasında olmayan bucağı konqruyentlik saymaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: <span class="m">°</span> işarəsi, vahid yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: hansı bucaqlar bərabərdir və niyə, hansı üçbucaqlar konqruyentdir və hansı əlamətlə. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər şəkilli sualda əvvəl şərtdəki bərabərlikləri şəkildə işarələ (eyni cizgi, eyni qövs), sonra üç sual ver: <b>bərabəryanlı üçbucaq varmı? konqruyent üçbucaqlar varmı? xarici bucaq varmı?</b> Çox vaxt bunlardan birini görən kimi məsələ açılır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>ABC üçbucağında <span class="m">∠A = 50°</span>, <span class="m">∠C = 70°</span>. BD — <span class="m">∠B</span>-nin tənböləni, D nöqtəsi AC tərəfindədir. <span class="m">∠BDC</span> neçə dərəcədir?</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 220" role="img" aria-label="ABC üçbucağı, ∠A = 50°, ∠C = 70°; BD — ∠B-nin tənböləni, D nöqtəsi AC tərəfindədir">
+            <polygon points="40,190 158.6,48.7 210,190" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="158.6" y1="48.7" x2="133.7" y2="190" stroke="var(--vec)" stroke-width="2"/>
+            <path d="M66 190A26 26 0 0 0 56.7 170.1" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M188 190A22 22 0 0 1 202.5 169.3" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M144.4 65.5A22 22 0 0 0 154.7 70.4" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M153.7 76.3A28 28 0 0 0 168.1 75" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M136.4 174.2A16 16 0 0 1 149.7 190" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <text x="64" y="178" class="lbl">50°</text><text x="166" y="170" class="lbl">70°</text><text x="153" y="172" class="lbl">?</text>
+            <text x="24" y="208" class="lbl">A</text><text x="154" y="40" class="lbl">B</text><text x="212" y="208" class="lbl">C</text><text x="129" y="208" class="lbl">D</text>
+          </svg>
+        </div>
+        <ol class="imt-opts"><li>100°</li><li>80°</li><li>120°</li><li>30°</li><li>110°</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">∠B = 180° − 50° − 70° = 60°
+Tənbölən ∠B-ni yarı bölür: ∠ABD = 30°
+∠BDC — △ABD-nin D təpəsindəki xarici bucağıdır:
+∠BDC = ∠A + ∠ABD = 50° + 30° = 80°
+Cavab: B) 80°</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 100°</b> — xarici bucaq əvəzinə ona qonşu olan <span class="m">∠ADB</span>-ni yazmaq: <span class="m">70° + 30°</span> (bu, ∠C + ∠CBD-dir). Qonşu bucaqların cəmi 180°-dir: <span class="m">100° + 80° = 180°</span>.</li>
+        <li><b>C) 120°</b> — şərtdəki iki bucağı toplamaq: <span class="m">50° + 70°</span>. ∠A və ∠C bir üçbucağın bucaqlarıdır, ∠BDC ilə birbaşa əlaqəsi yoxdur.</li>
+        <li><b>D) 30°</b> — yalnız <span class="m">∠ABD</span>-ni yazmaq: tənbölənin yaratdığı bucağı cavab saymaq.</li>
+        <li><b>E) 110°</b> — tənböləni nəzərə almamaq: xarici bucağa <span class="m">∠A + ∠B = 50° + 60°</span> yazmaq. Xarici bucaq <span class="m">△ABD</span>-yə aiddir, ora ∠B-nin yalnız yarısı daxildir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Üçbucağın hər təpəsindən bir xarici bucaq götürülüb və bu xarici bucaqlar <span class="m">2 : 3 : 4</span> nisbətindədir. Üçbucağın ən böyük daxili bucağı neçə dərəcədir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Xarici bucaqların cəmi 360°:  2x + 3x + 4x = 360°
+9x = 360°  →  x = 40°
+Xarici bucaqlar: 80°, 120°, 160°
+Daxili bucaq = 180° − qonşu xarici bucaq:
+100°, 60°, 20°
+Cavab: 100</div>
+      <p>Ən böyük daxili bucaq ən <b>kiçik</b> xarici bucağa qonşudur: <span class="m">180° − 80° = 100°</span>. Kodlaşdırmada yalnız <b>100</b> yazılır — dərəcə işarəsi yazılmır. Tələlər: nisbəti daxili bucaqlara aid saymaq (<span class="m">180° : 9 · 4 = 80°</span>) və ən böyük xarici bucağı cavab yazmaq (160°) — sual daxili bucağı soruşur.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>ABC üçbucağında <span class="m">AB = BC</span>, <span class="m">∠ABC = 50°</span>. AB tərəfində D, BC tərəfində E nöqtəsi elə götürülüb ki, <span class="m">AD = CE</span>. AE və CD parçaları O nöqtəsində kəsişir. <span class="m">∠BAE = 30°</span> olarsa, <span class="m">∠AOC</span> neçə dərəcədir? Həlli əsaslandıraraq yazın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 220" role="img" aria-label="AB = BC olan ABC üçbucağı; D AB üzərində, E BC üzərindədir, AD = CE; AE və CD parçaları O nöqtəsində kəsişir">
+            <polygon points="78.2,190 150,35.9 221.8,190" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="78.2" y1="190" x2="186.5" y2="114.2" stroke="var(--vec)" stroke-width="2"/>
+            <line x1="221.8" y1="190" x2="113.5" y2="114.2" stroke="var(--vec)" stroke-width="2"/>
+            <line x1="137.6" y1="74.3" x2="128.6" y2="70.1" stroke="var(--accent)" stroke-width="2"/><line x1="162.4" y1="74.3" x2="171.4" y2="70.1" stroke="var(--accent)" stroke-width="2"/><line x1="99.1" y1="156.9" x2="90" y2="152.7" stroke="var(--accent)" stroke-width="2"/><line x1="101.6" y1="151.5" x2="92.6" y2="147.2" stroke="var(--accent)" stroke-width="2"/><line x1="210" y1="152.7" x2="200.9" y2="156.9" stroke="var(--accent)" stroke-width="2"/><line x1="207.4" y1="147.2" x2="198.4" y2="151.5" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M140.7 55.9A22 22 0 0 0 159.3 55.9" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M92.5 159.2A34 34 0 0 1 106 170.5" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M138.5 147.7A14 14 0 0 0 161.5 147.7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <text x="150" y="90" text-anchor="middle" class="lbl">50°</text><text x="106" y="152" class="lbl">30°</text><text x="150" y="170" text-anchor="middle" class="lbl">?</text><text x="143" y="130" class="lbl">O</text>
+            <text x="62" y="208" class="lbl">A</text><text x="145" y="28" class="lbl">B</text><text x="226" y="208" class="lbl">C</text><text x="94" y="112" class="lbl">D</text><text x="194" y="112" class="lbl">E</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) AB = BC  ⇒  ∠BAC = ∠BCA = (180° − 50°) : 2 = 65°.
+2) △ADC və △CEA-da:
+     AD = CE (şərt),
+     AC — ortaq tərəf,
+     ∠DAC = ∠ECA = 65°.
+   TBT əlamətinə görə △ADC ≅ △CEA
+   (A↔C, D↔E, C↔A).
+3) Uyğun bucaqlar bərabərdir: ∠ACD = ∠CAE.
+   ∠CAE = ∠BAC − ∠BAE = 65° − 30° = 35°  ⇒  ∠ACD = 35°.
+4) △AOC-də ∠OAC = ∠OCA = 35°,
+   ∠AOC = 180° − 2 · 35° = 110°.
+Cavab: 110°.</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>oturacaq bucaqları</b> (1-ci addım), <b>konqruyentlik əlaməti və uyğunluğun düzgün yazılışı</b> (2-ci addım), <b>uyğun bucaqların bərabərliyi</b> (3-cü addım), <b>son hesab və cavab</b> (4-cü addım). Yalnız "110" yazmaq bu balların çoxunu itirir. Konqruyentliyi yazanda hərflərin sırası uyğunluğu göstərməlidir: <span class="m">△ADC ≅ △CEA</span> — D ilə E uyğundur.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Xarici bucaq və qonşu bucaq.</b> Xarici bucaq ona qonşu OLMAYAN iki daxili bucağın cəmidir. Qonşu bucaqla cəmi isə 180°-dir. Hər iki bucağın qiyməti variantlarda verilə bilər.</li>
+        <li><b>Bucağın yarısını götürməyi unutmaq.</b> Tənbölən bucağı iki bərabər hissəyə bölür; tənbölənin yaratdığı üçbucaqda bucaq yarıdır, bütöv yox.</li>
+        <li><b>İki tərəf və istənilən bucaq.</b> TBT-də bucaq məhz həmin iki tərəfin arasında olmalıdır. Üç bucağın bərabərliyi isə ümumiyyətlə konqruyentlik vermir.</li>
+        <li><b>Hərflərin sırası.</b> <span class="m">△ABC ≅ △KLM</span> yazılışında AB tərəfinə KL uyğundur, LM yox.</li>
+        <li><b>Bərabəryanlı üçbucaqda iki tərəf verilibsə</b> iki variant var; birində üçbucaq qurulmaya bilər: iki kiçik tərəfin cəmi böyük tərəfdən çox olmalıdır.</li>
+        <li><b>Oturacağa çəkilmiş median</b> həm tənbölən, həm hündürlükdür. Yan tərəfə çəkilmiş median üçün bu doğru deyil.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır, <span class="m">°</span> işarəsi yazılmır. <b>Yazılıda</b> həll yazılmadan yalnız cavab — bal verilmir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">xarici bucaq = qonşu olmayan iki daxili bucağın cəmi
+üç xarici bucağın cəmi = 360°
+TBT: bucaq iki tərəfin ARASINDA
+konqruyentlik yazılışında hərflərin sırası uyğunluqdur
+oturacağa median = tənbölən = hündürlük</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Üçbucağın hər təpəsindəki xarici bucaqların cəmi neçədir? <span class="ans">360°: hər təpədə 180° − daxili bucaq, cəmi 3 · 180° − 180° = 360°.</span></li>
+        <li>AB = KL, ∠B = ∠L, AC = KM olarsa, △ABC ≅ △KLM demək olarmı? <span class="ans">Yox: ∠B, AB və AC tərəflərinin arasında deyil.</span></li>
+        <li>Bərabəryanlı üçbucağın iki tərəfi 5 və 12-dir. Perimetri? <span class="ans">(5; 5; 12) qurulmur, çünki 5 + 5 &lt; 12. Deməli tərəflər 5, 12, 12: perimetr 29.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
