@@ -34,6 +34,7 @@
     if (o.mg !== false) { arrow(s, C[0], C[1], C[0], C[1] + 46, "var(--vec)"); s.append(sv("text", { x: f1(C[0] + 6), y: f1(C[1] + 52), class: "oy-lbl" }, "mg")); }
     if (o.N !== false) { arrow(s, C[0], C[1], C[0] + n[0] * 44, C[1] + n[1] * 44, "var(--accent)"); s.append(sv("text", { x: f1(C[0] + n[0] * 50 - 14), y: f1(C[1] + n[1] * 50), class: "oy-lbl" }, "N")); }
     if (o.f) { const d = o.f; arrow(s, C[0], C[1], C[0] + u[0] * 40 * d, C[1] + u[1] * 40 * d, "var(--ink)"); s.append(sv("text", { x: f1(C[0] + u[0] * 46 * d - 6), y: f1(C[1] + u[1] * 46 * d + (d > 0 ? -2 : 14)), class: "oy-lbl" }, "f")); }
+    if (o.L) { const q = [ox + Lh * 0.9 * ca - sa * 10, oy - Lh * 0.9 * sa - ca * 10]; s.append(sv("text", { x: f1(q[0]), y: f1(q[1]), "text-anchor": "end", class: "oy-lbl" }, "L = ?")); }
     if (o.F) { arrow(s, C[0], C[1], C[0] + u[0] * 46, C[1] + u[1] * 46, "var(--vec)"); s.append(sv("text", { x: f1(C[0] + u[0] * 52 - 4), y: f1(C[1] + u[1] * 52 - 6), class: "oy-lbl" }, "F")); }
     return s;
   }
@@ -169,6 +170,163 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a picture, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 2 and 6 also use "Kinematika", 7 "Sərbəst düşmə",
+  // 4 and 8 "Nyuton qanunları". Idealisations (weightless inextensible rope, frictionless pulley, g = 10 m/s²) are stated in each text.
+  const { ae, again } = Oyun;
+  const okN = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => (F(+x.toFixed(4)) + " " + u).trim();
+  const T2 = (s, x, y, t, anchor) => s.append(sv("text", Object.assign({ x: f1(x), y: f1(y), class: "oy-lbl" }, anchor ? { "text-anchor": anchor } : {}), t));
+  const L2 = (s, x1, y1, x2, y2, color, w, dash) => s.append(sv("line", Object.assign({ x1: f1(x1), y1: f1(y1), x2: f1(x2), y2: f1(y2), stroke: color || "var(--ink)", "stroke-width": w || 2 }, dash ? { "stroke-dasharray": dash } : {})));
+  const box = (s, x, y, w, h2, t) => { s.append(sv("rect", { x: f1(x), y: f1(y), width: w, height: h2, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 })); if (t) T2(s, x + w / 2, y + h2 / 2 + 5, t, "middle"); };
+  const base = (w, h2, aria) => sv("svg", { viewBox: `0 0 ${w} ${h2}`, class: "oy-svg", role: "img", "aria-label": aria });
+  const arcA = (s, cx, cy, r, c, sn, dirLeft) => s.append(sv("path", { d: dirLeft ? `M${f1(cx - r)} ${f1(cy)} A${r} ${r} 0 0 1 ${f1(cx - r * c)} ${f1(cy - r * sn)}` : `M${f1(cx + r)} ${f1(cy)} A${r} ${r} 0 0 0 ${f1(cx + r * c)} ${f1(cy - r * sn)}`, fill: "none", stroke: "var(--accent)", "stroke-width": 2 }));
+
+  // block pulled by a force F at angle α above the horizontal
+  function pullPic(ang) {
+    const s = base(300, 150, "Üfüqi səthdə cisim; qüvvə üfüqlə bucaq altında yuxarı yönəlib"), a = ang * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a), x0 = 150, y0 = 100;
+    L2(s, 8, 120, 292, 120, "var(--ink)", 1.8); box(s, 70, 80, 80, 40, "m");
+    L2(s, x0, y0, x0 + 96, y0, "var(--muted)", 1.2, "4 3"); arrow(s, x0, y0, x0 + 84 * c, y0 - 84 * sn, "var(--vec)"); T2(s, x0 + 84 * c + 5, y0 - 84 * sn - 3, "F");
+    arcA(s, x0, y0, 40, c, sn, false); T2(s, x0 + 8, y0 + 17, "α = " + ang + "°"); return s;
+  }
+  // block on a table joined over a pulley to a hanging block
+  function tablePic() {
+    const s = base(300, 190, "Masada m₁ cismi; ip makaradan keçib şaquli asılmış m₂ cisminə bağlanıb");
+    s.append(sv("rect", { x: 10, y: 70, width: 226, height: 100, fill: "var(--paper)", stroke: "var(--ink)", "stroke-width": 2 }));
+    box(s, 100, 37, 56, 33, "m₁"); L2(s, 156, 54, 244, 54, "var(--ink)", 1.6);
+    s.append(sv("circle", { cx: 244, cy: 62, r: 8, fill: "var(--paper)", stroke: "var(--ink)", "stroke-width": 2 }));
+    L2(s, 252, 62, 252, 128, "var(--ink)", 1.6); box(s, 236, 128, 32, 36, "m₂"); return s;
+  }
+  // m₁ on a board m₂; force F pulls the lower body
+  function stackPic() {
+    const s = base(300, 150, "Hamar döşəmədə m₂ lövhəsi, üstündə m₁ cismi; F qüvvəsi alt lövhəyə tətbiq olunub");
+    L2(s, 8, 120, 292, 120, "var(--ink)", 1.8); box(s, 80, 86, 130, 34, "m₂"); box(s, 115, 48, 60, 38, "m₁");
+    arrow(s, 210, 103, 268, 103, "var(--vec)"); T2(s, 240, 94, "F"); T2(s, 181, 80, "μ", "start"); return s;
+  }
+  // v–t graph: straight line from v0 down to 0 at time T
+  function vtPic(v0, T) {
+    const s = base(300, 190, "Sürətin vaxtdan asılılıq qrafiki: v₀ qiymətindən 0-a qədər xətti azalma");
+    L2(s, 50, 160, 285, 160, "var(--ink)", 1.8); L2(s, 50, 160, 50, 22, "var(--ink)", 1.8);
+    L2(s, 50, 40, 220, 40, "var(--muted)", 1, "4 3"); L2(s, 220, 40, 220, 160, "var(--muted)", 1, "4 3");
+    L2(s, 50, 40, 220, 160, "var(--accent)", 3); s.append(sv("circle", { cx: 50, cy: 40, r: 3.5, fill: "var(--accent)" })); s.append(sv("circle", { cx: 220, cy: 160, r: 3.5, fill: "var(--accent)" }));
+    T2(s, 44, 45, String(v0), "end"); T2(s, 220, 178, String(T), "middle"); T2(s, 44, 174, "0", "end"); T2(s, 58, 18, "v, m/s"); T2(s, 252, 178, "t, s"); return s;
+  }
+  // free fall (1) and a smooth incline (2) from the same height h
+  function twoPic(ang) {
+    const s = base(300, 190, "Eyni h hündürlükdən: 1 şaquli düşür, 2 hamar maili müstəvi boyu sürüşür"), a = ang * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a), xe = 130 + 110 / Math.tan(a);
+    L2(s, 8, 160, 292, 160, "var(--ink)", 1.8);
+    s.append(sv("polygon", { points: `130,50 130,160 ${f1(xe)},160`, fill: "var(--paper)", stroke: "var(--ink)", "stroke-width": 2 }));
+    s.append(sv("circle", { cx: 45, cy: 56, r: 6, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 })); arrow(s, 45, 68, 45, 150, "var(--vec)"); T2(s, 56, 62, "1");
+    s.append(sv("circle", { cx: f1(130 + 16 * c + 7 * sn), cy: f1(50 + 16 * sn - 7 * c), r: 6, fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 })); T2(s, 130 + 16 * c + 7 * sn + 8, 50 + 16 * sn - 7 * c - 8, "2");
+    L2(s, 45, 50, 122, 50, "var(--muted)", 1, "4 3"); arrow(s, 113, 105, 113, 52, "var(--ink)"); arrow(s, 113, 105, 113, 158, "var(--ink)"); T2(s, 100, 108, "h", "end");
+    arcA(s, xe, 160, 38, c, sn, true); T2(s, xe - 46, 181, "α = " + ang + "°", "middle"); return s;
+  }
+  // incline with m₁; rope along the slope, over a pulley at the top, to the hanging m₂
+  function pulleyIncPic(deg) {
+    const a = deg * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a), Lh = deg > 50 ? 150 : 190, ox = 14, oy = 182, Ax = ox + Lh * ca, Ay = oy - Lh * sa;
+    const s = base(300, 200, "Maili müstəvi: m₁ cismi, ip makaradan keçib şaquli asılmış m₂ cisminə bağlanıb");
+    s.append(sv("polygon", { points: `${ox},${oy} ${f1(Ax)},${oy} ${f1(Ax)},${f1(Ay)}`, fill: "var(--paper)", stroke: "var(--ink)", "stroke-width": 2 }));
+    arcA(s, ox, oy, 46, ca, sa, false); T2(s, ox + 52, oy - 6, "α = " + deg + "°");
+    const sd = Lh * 0.45, P0 = [ox + sd * ca, oy - sd * sa], u = [ca, -sa], n = [-sa, -ca], pt = (du, dn) => [P0[0] + u[0] * du + n[0] * dn, P0[1] + u[1] * du + n[1] * dn];
+    s.append(sv("polygon", { points: [pt(-22, 0), pt(22, 0), pt(22, 30), pt(-22, 30)].map(p => f1(p[0]) + "," + f1(p[1])).join(" "), fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    const C = pt(0, 15); T2(s, C[0] - 8, C[1] + 5, "m₁");
+    const dn = 16, du = (Ax + 10 - P0[0] - n[0] * dn) / u[0], Q = pt(du, dn), px = Ax + 10, r = 9;     // the rope runs parallel to the slope and reaches x = px at the top of the pulley
+    L2(s, pt(22, dn)[0], pt(22, dn)[1], px, Q[1], "var(--ink)", 1.6);
+    L2(s, px, Q[1] + r, Ax, Ay, "var(--ink)", 2);
+    s.append(sv("circle", { cx: f1(px), cy: f1(Q[1] + r), r, fill: "var(--paper)", stroke: "var(--ink)", "stroke-width": 2 }));
+    L2(s, px + r, Q[1] + r, px + r, Q[1] + r + 50, "var(--ink)", 1.6); box(s, px + r - 16, Q[1] + r + 50, 32, 36, "m₂"); return s;
+  }
+  // friction force f against the applied horizontal force F: grows as f = F, then drops to the kinetic value
+  function fFPic(fmax, fk) {
+    const s = base(300, 190, "Sürtünmə qüvvəsinin tətbiq olunan qüvvədən asılılıq qrafiki"), k = 90 / fmax, yk = 150 - fk * k, xm = 50 + fmax * k;
+    L2(s, 50, 150, 285, 150, "var(--ink)", 1.8); L2(s, 50, 150, 50, 24, "var(--ink)", 1.8);
+    L2(s, 50, 60, xm, 60, "var(--muted)", 1, "4 3"); L2(s, xm, 60, xm, 150, "var(--muted)", 1, "4 3"); L2(s, 50, yk, xm, yk, "var(--muted)", 1, "4 3");
+    s.append(sv("polyline", { points: `50,150 ${f1(xm)},60 ${f1(xm)},${f1(yk)} 262,${f1(yk)}`, fill: "none", stroke: "var(--accent)", "stroke-width": 3 }));
+    T2(s, 44, 64, String(fmax), "end"); T2(s, 44, yk + 5, String(fk), "end"); T2(s, xm, 168, String(fmax), "middle"); T2(s, 44, 164, "0", "end"); T2(s, 58, 20, "f, N"); T2(s, 250, 170, "F, N"); return s;
+  }
+
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. pulled at an angle: N shrinks, friction shrinks
+    { tip: "qapali", gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], m = pick([2, 4, 5, 10]), Fv = pick([10, 20, 25, 30, 40, 50]), mu = pick([0.2, 0.25, 0.5]), N = m * g - Fv * sn, a = (Fv * cs - mu * N) / m;
+      if (N <= 0 || !okN(a)) return null;
+      const w = [(Fv * cs - mu * m * g) / m, (Fv - mu * N) / m, (Fv * cs - mu * (m * g + Fv * sn)) / m, Fv * cs / m]; if (!w.every(x => okN(x))) return null;
+      return mc(ae(a, w, U_("m/s²")), { svg: pullPic(ang), text: `${m} kq kütləli cisim üfüqi səthdə durur. Sürtünmə əmsalı μ = ${F(mu)} (sükunət və sürüşmə üçün eynidir). Cismi üfüqlə ${ang}° bucaq altında yuxarı yönəlmiş ${Fv} N qüvvə ilə dartırlar (${lbl(ang)}, g = 10 m/s²). Cismin təcili nə qədərdir?`,
+        solution: `Şaquli: N = mg − F·sin ${ang}° = ${m * g} − ${F(Fv * sn)} = ${F(N)} N. Üfüqi: ma = F·cos ${ang}° − μN = ${F(Fv * cs)} − ${F(mu * N)} = ${F(m * a)} → a = ${F(a)} m/s². Tələlər: N = mg yazmaq (${F(+w[0].toFixed(4))}), F-in hamısını üfüqi saymaq (${F(+w[1].toFixed(4))}), qüvvənin şaquli toplananını N-ə əlavə etmək (${F(+w[2].toFixed(4))}), sürtünməni unutmaq (${F(+w[3].toFixed(4))}).` });
+    }) },
+    // 2. slide down a rough incline from rest for t seconds: length of the incline (+ kinematics)
+    { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], mu = pick([0.1, 0.125, 0.2, 0.25, 0.3, 0.4, 0.5]), t = pick([2, 3, 4, 5, 6, 8, 10]), aD = g * (sn - mu * cs); if (aD <= 0 || !nice(aD, 2)) return null;
+      const L = aD * t * t / 2, w = [g * sn * t * t / 2, g * (sn - mu) * t * t / 2, g * (sn + mu * cs) * t * t / 2, aD * t * t]; if (![L, ...w].every(x => okN(x))) return null;
+      return mc(ae(L, w, U_("m")), { svg: inclinePic(ang, { L: true }), text: `Cisim maili müstəvinin yuxarısından sükunətdən sürüşməyə başlayır və müstəvinin aşağı ucuna ${t} s-yə çatır. Müstəvinin bucağı ${ang}°, μ = ${F(mu)} (sükunət və sürüşmə üçün eynidir; ${lbl(ang)}, g = 10 m/s²). Müstəvinin uzunluğu L nə qədərdir?`,
+        solution: `Təcil: a = g(sin α − μ cos α) = 10·(${F(sn)} − ${F(mu * cs)}) = ${F(aD)} m/s². Kinematika: L = at²/2 = ${F(aD)}·${t * t}/2 = ${F(L)} m. Tələlər: sürtünməni unutmaq (${F(+w[0].toFixed(4))} m), μ·cos α əvəzinə μ yazmaq (${F(+w[1].toFixed(4))} m), sürtünməni aşağıya yönəltmək (${F(+w[2].toFixed(4))} m), düsturda 1/2-ni unutmaq (${F(+w[3].toFixed(4))} m).` });
+    }) },
+    // 3. a block placed on an incline: does it stay (f = mg sin α) or slide (f = μ_k N)?
+    { tip: "qapali", gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], stays = Math.random() < .55, m = pick([1, 2, 3, 4, 5, 10]), muk = pick([0.2, 0.25, 0.3, 0.4]);
+      const mus = stays ? pick(ang === 37 ? [0.8, 0.9, 1] : [1.5, 2]) : pick(ang === 37 ? [0.5, 0.6] : [1, 1.2]);
+      const right = stays ? m * g * sn : muk * m * g * cs, w = stays ? [mus * m * g * cs, muk * m * g * cs, m * g * cs, m * g * sn - muk * m * g * cs] : [m * g * sn, mus * m * g * cs, muk * m * g, m * g * sn - muk * m * g * cs];
+      if (![right, ...w].every(x => okN(x))) return null;
+      return mc(ae(right, w, U_("N")), { svg: inclinePic(ang, { f: 1 }), text: `${m} kq kütləli cismi bucağı ${ang}° olan maili müstəvinin üzərinə qoyub buraxdılar. Cisimlə müstəvi arasında sükunət sürtünmə əmsalı μ_s = ${F(mus)}, sürüşmə sürtünmə əmsalı μ_k = ${F(muk)} (${lbl(ang)}, g = 10 m/s²). Cismə təsir edən sürtünmə qüvvəsi nə qədərdir?`,
+        solution: `Əvvəlcə hal: ${nice(sn / cs, 2) ? "tg " + ang + "° = " + F(sn / cs) : "tg " + ang + "° ≈ " + F(+(sn / cs).toFixed(2))}, μ_s = ${F(mus)}. ` + (stays ? `tg α < μ_s → cisim durur, sürtünmə ağırlığın toplananını tarazlayır: f = mg·sin α = ${m * g}·${F(sn)} = ${F(right)} N. Tələlər: μ_s·N (${F(+w[0].toFixed(4))} N) yalnız maksimal mümkün qiymətdir; μ_k·N (${F(+w[1].toFixed(4))} N), mg·cos α (${F(+w[2].toFixed(4))} N) və qüvvələrin fərqi (${F(+w[3].toFixed(4))} N) də düz deyil.` : `tg α > μ_s → cisim sürüşür, sürüşmə sürtünməsi: f = μ_k·mg·cos α = ${F(muk)}·${m * g}·${F(cs)} = ${F(right)} N. Tələlər: durur hesab edib mg·sin α (${F(+w[0].toFixed(4))} N), μ_s götürmək (${F(+w[1].toFixed(4))} N), N = mg yazmaq (${F(+w[2].toFixed(4))} N), qüvvələrin fərqi (${F(+w[3].toFixed(4))} N).`) });
+    }) },
+    // 4. rough table + hanging block over a pulley: acceleration (+ Newton's laws)
+    { tip: "qapali", birlesik: "fiz-nyuton", gen: () => again(() => {
+      const m1 = pick([1, 2, 3, 4, 5, 6, 8, 10]), m2 = pick([1, 2, 3, 4, 5, 6, 8, 10]), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]), a = (m2 * g - mu * m1 * g) / (m1 + m2);
+      if (!okN(a)) return null;
+      const w = [m2 * g / (m1 + m2), (m2 * g - mu * m1 * g) / m1, (m2 * g - mu * m2 * g) / (m1 + m2), (m2 * g + mu * m1 * g) / (m1 + m2)]; if (!w.every(x => okN(x))) return null;
+      return mc(ae(a, w, U_("m/s²")), { svg: tablePic(), text: `Üfüqi masa üzərindəki m₁ = ${m1} kq kütləli cisim ip vasitəsilə şaquli asılmış m₂ = ${m2} kq kütləli cisimlə bağlıdır. Cisim ilə masa arasında sürtünmə əmsalı μ = ${F(mu)} (sükunət və sürüşmə üçün eynidir). İp çəkisiz və uzanmazdır, gərgindir, makara çəkisizdir və sürtünməsizdir. Cisimləri sükunətdən buraxırlar (g = 10 m/s²). Cisimlərin təcili nə qədərdir?`,
+        solution: `Cisimlər ip ilə bağlıdır, təcil eynidir. Bütün sistem üçün: (m₁ + m₂)a = m₂g − μm₁g = ${m2 * g} − ${F(mu * m1 * g)} = ${F(m2 * g - mu * m1 * g)} N → a = ${F(m2 * g - mu * m1 * g)}/${m1 + m2} = ${F(a)} m/s². Tələlər: sürtünməni unutmaq (${F(+w[0].toFixed(4))}), yalnız m₁-ə bölmək (${F(+w[1].toFixed(4))}), sürtünməni asılan cismə aid etmək (${F(+w[2].toFixed(4))}), sürtünməni də hərəkət etdirən qüvvəyə əlavə etmək (${F(+w[3].toFixed(4))}).` });
+    }) },
+    // 5. stacked bodies: the largest force that keeps the top body from slipping
+    { tip: "qapali", gen: () => again(() => {
+      const m1 = pick([1, 2, 3, 4]), m2 = pick([2, 3, 4, 5, 6]), mu = pick([0.1, 0.2, 0.25, 0.3, 0.4, 0.5]); if (m2 <= m1) return null;
+      const Fv = mu * g * (m1 + m2), w = [mu * g * m1, mu * g * m2, g * (m1 + m2), mu * g * (m2 - m1)]; if (![Fv, ...w].every(x => okN(x))) return null;
+      return mc(ae(Fv, w, U_("N")), { svg: stackPic(), text: `Hamar döşəmədə m₂ = ${m2} kq kütləli lövhə, onun üstündə m₁ = ${m1} kq kütləli cisim durur. Cisimlə lövhə arasında sürtünmə əmsalı μ = ${F(mu)} (sükunət və sürüşmə əmsalları eynidir, g = 10 m/s²). Lövhəyə üfüqi F qüvvə tətbiq edirlər. Cismin lövhə üzərində sürüşmədən hərəkət etməsi üçün F-in ən böyük qiyməti nə qədərdir?`,
+        solution: `Üst cismi hərəkətə gətirən yalnız sürtünmədir: m₁a = f ≤ μm₁g → a ≤ μg = ${F(mu * g)} m/s². Sürüşmə həddində iki cisim birlikdə bu təcillə gedir: F = (m₁ + m₂)a = ${m1 + m2}·${F(mu * g)} = ${F(Fv)} N. Tələlər: yalnız üst cismi götürmək (${F(+w[0].toFixed(4))}), yalnız lövhəni götürmək (${F(+w[1].toFixed(4))}), μ-ni yazmamaq (${F(+w[2].toFixed(4))}), kütlələrin cəmi əvəzinə fərqini götürmək (${F(+w[3].toFixed(4))}).` });
+    }) },
+    // 6. v–t graph of a sliding block: friction coefficient (+ kinematics)
+    { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+      const v0 = pick([4, 5, 6, 8, 10, 12, 15, 20]), T = pick([2, 3, 4, 5, 6, 8, 10]), a = v0 / T, mu = a / g; if (!nice(mu, 3) || mu > 1.2) return null;
+      const w = [a, v0 / g, v0 * T / (2 * g), a / (2 * g)]; if (![mu, ...w].every(x => okN(x, 3))) return null;
+      return mc(ae(mu, w, x => F(+x.toFixed(4))), { svg: vtPic(v0, T), text: `Üfüqi səthdə sürüşən cismin sürətinin vaxtdan asılılıq qrafiki verilib. Cismi yalnız sürtünmə qüvvəsi yavaşıdır (g = 10 m/s²). Cisimlə səth arasındakı sürtünmə əmsalı nə qədərdir?`,
+        solution: `Qrafikdən təcilin modulu (xəttin mailliyi): a = v₀/T = ${v0}/${T} = ${F(a)} m/s². Yalnız sürtünmə yavaşıdır: ma = μmg → μ = a/g = ${F(a)}/10 = ${F(mu)}. Tələlər: təcili əmsal kimi yazmaq (${F(+w[0].toFixed(4))}), vaxtı unutmaq (${F(+w[1].toFixed(4))}), yolu götürmək (${F(+w[2].toFixed(4))}), təcildə 2-yə bölmək (${F(+w[3].toFixed(4))}).` });
+    }) },
+    // 7. free fall vs. a smooth incline from the same height: time on the incline (+ free fall)
+    { tip: "qapali", birlesik: "fiz-serbest-dusme", minVariety: 8, gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], k = pick([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8]), tf = +(k * sn).toFixed(4), h0 = +(g * tf * tf / 2).toFixed(4); if (!nice(h0, 2) || !nice(tf, 2)) return null;
+      const w = [tf, tf * sn, tf / cs, (tf / sn) ** 2]; if (![k, ...w].every(x => okN(x))) return null;
+      return mc(ae(k, w, U_("s")), { svg: twoPic(ang), text: `Eyni h = ${F(h0)} m hündürlükdən iki cisim eyni anda sükunətdən buraxılır: 1-ci sərbəst düşür, 2-ci bucağı ${ang}° olan hamar maili müstəvi boyu sürüşür (${lbl(ang)}, havanın müqaviməti yoxdur, g = 10 m/s²). 2-ci cisim yerə neçə saniyəyə çatar?`,
+        solution: `Sərbəst düşmə: h = gt²/2 → t₁ = √(2h/g) = √(${F(2 * h0)}/10) = ${F(tf)} s. Maili müstəvidə a = g·sin α = ${F(g * sn)} m/s², yol L = h/sin α = ${F(+(h0 / sn).toFixed(4))} m: t₂ = √(2L/a) = ${F(k)} s (= t₁/sin α). Tələlər: sürətlər eyni olsa da vaxtlar eyni deyil (${F(+w[0].toFixed(4))} s), sin α-ya vurmaq (${F(+w[1].toFixed(4))} s), cos α-ya bölmək (${F(+w[2].toFixed(4))} s), kökü almamaq (${F(+w[3].toFixed(4))} s).` });
+    }) },
+    // 8. incline + hanging block over a pulley, with friction: tension (+ Newton's laws)
+    { tip: "qapali", birlesik: "fiz-nyuton", gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], mu = pick([0.1, 0.2, 0.25, 0.5]), m1 = pick([2, 3, 4, 5, 6, 10]), m2 = pick([2, 3, 4, 5, 6, 8, 10]), M = m1 + m2, a = (m2 * g - m1 * g * sn - mu * m1 * g * cs) / M, T = m2 * (g - a);
+      if (a <= 0 || !nice(a, 2) || !okN(T)) return null;
+      const T0 = m2 * (g - (m2 * g - m1 * g * sn) / M), T1 = m2 * (g - (m2 * g - m1 * g * sn + mu * m1 * g * cs) / M), T3 = m2 * (g - (m2 * g - m1 * g * sn - mu * m1 * g * sn) / M), w = [m2 * g, T0, T1, T3]; if (!w.every(x => okN(x))) return null;
+      return mc(ae(T, w, U_("N")), { svg: pulleyIncPic(ang), text: `Bucağı ${ang}° olan maili müstəvi üzərindəki m₁ = ${m1} kq kütləli cisim iplə, makaradan keçməklə, şaquli asılmış m₂ = ${m2} kq kütləli cisimlə bağlıdır. Müstəvi ilə cisim arasında sürtünmə əmsalı μ = ${F(mu)} (sükunət və sürüşmə üçün eynidir). İp çəkisiz və uzanmazdır, gərgindir, makara çəkisizdir və sürtünməsizdir. Sistemi sükunətdən buraxırlar (${lbl(ang)}, g = 10 m/s²). İpin gərilmə qüvvəsi nə qədərdir?`,
+        solution: `m₂ aşağı düşür, m₁ müstəvi boyu yuxarı çıxır. Bütün sistem: (m₁ + m₂)a = m₂g − m₁g·sin α − μm₁g·cos α = ${m2 * g} − ${F(m1 * g * sn)} − ${F(mu * m1 * g * cs)} = ${F(M * a)} N → a = ${F(a)} m/s². Asılan cisim: m₂g − T = m₂a → T = m₂(g − a) = ${m2}·${F(g - a)} = ${F(T)} N. Tələlər: T = m₂g yazmaq (${F(m2 * g)} N — bu yalnız a = 0 olanda doğrudur), sürtünməni unutmaq (${F(+T0.toFixed(4))} N), sürtünməni əks istiqamətdə götürmək (${F(+T1.toFixed(4))} N), sürtünməni μ·mg·sin α yazmaq (${F(+T3.toFixed(4))} N).` });
+    }) },
+    // 9. pulled up an incline with a given acceleration
+    { tip: "qapali", gen: () => again(() => {
+      const ang = pick([37, 53]), { s: sn, c: cs } = TR[ang], mu = pick([0.1, 0.2, 0.25, 0.5]), m = pick([2, 4, 5, 10]), a = pick([0.5, 1, 2, 3]), Fv = m * (a + g * sn + mu * g * cs);
+      const w = [m * (a + g * sn - mu * g * cs), m * (a + g * sn), m * (a + g * sn + mu * g), m * (g * sn + mu * g * cs)]; if (![Fv, ...w].every(x => okN(x))) return null;
+      return mc(ae(Fv, w, U_("N")), { svg: inclinePic(ang, { f: -1, F: true }), text: `${m} kq kütləli cismi bucağı ${ang}° olan maili müstəvi boyu yuxarı, ${F(a)} m/s² təcillə dartırlar. Dartma qüvvəsi müstəvi boyu yönəlib, sürtünmə əmsalı μ = ${F(mu)} (${lbl(ang)}, g = 10 m/s²). Dartma qüvvəsi F nə qədərdir?`,
+        solution: `Müstəvi boyu yuxarı: F; aşağı: mg·sin α və sürtünmə f = μmg·cos α (cisim yuxarı gedir, sürtünmə aşağıdır). ma = F − mg·sin α − μmg·cos α → F = m(a + g·sin α + μg·cos α) = ${m}·(${F(a)} + ${F(g * sn)} + ${F(mu * g * cs)}) = ${F(Fv)} N. Tələlər: sürtünməni yuxarı götürmək (${F(+w[0].toFixed(4))} N), sürtünməni unutmaq (${F(+w[1].toFixed(4))} N), N = mg yazmaq (${F(+w[2].toFixed(4))} N), təcili unutmaq (${F(+w[3].toFixed(4))} N).` });
+    }) },
+    // 10. f–F graph: acceleration after the body starts to slide
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([2, 4, 5, 10]), mus = pick([0.4, 0.5, 0.6, 0.8]), muk = pick([0.2, 0.25, 0.3, 0.4]), fmax = mus * m * g, fk = muk * m * g; if (muk >= mus || !Number.isInteger(fmax) || !Number.isInteger(fk)) return null;
+      const Fv = fmax + pick([5, 10, 15, 20]), a = (Fv - fk) / m;
+      const w = [(Fv - fmax) / m, Fv / m, (Fv + fk) / m, (fmax - fk) / m]; if (![a, ...w].every(x => okN(x))) return null;
+      return mc(ae(a, w, U_("m/s²")), { svg: fFPic(fmax, fk), text: `${m} kq kütləli cismi üfüqi masa üzərində üfüqi F qüvvə ilə itələyirlər. Qrafikdə sürtünmə qüvvəsinin F-dən asılılığı verilib. F = ${Fv} N olanda cismin təcili nə qədərdir? (g = 10 m/s²)`,
+        solution: `Qrafikdən: F = ${fmax} N-a qədər cisim durur (sükunət sürtünməsi F-ə bərabərdir), sonra tərpənir və sürtünmə sürüşmə qiymətinə düşür: f = ${fk} N. ${Fv} N > ${fmax} N → cisim sürüşür: ma = F − f = ${Fv} − ${fk} = ${Fv - fk} N → a = ${F(a)} m/s². Tələlər: maksimal sükunət sürtünməsini çıxmaq (${F(+w[0].toFixed(4))}), sürtünməni unutmaq (${F(+w[1].toFixed(4))}), sürtünməni əlavə etmək (${F(+w[2].toFixed(4))}), yalnız sürtünmələrin fərqini götürmək (${F(+w[3].toFixed(4))}).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -178,7 +336,7 @@
     game = Oyun.mount({
       key: "fiz-surtunme-maili", title: "Sürtünmə, maili müstəvi", fenn: "fizika", link: "dersler/fiz-surtunme-maili.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: N, m/s², m/s, m, s). Sürtünmə əmsalı vahidsizdir: 0,25. Bəzi suallarda cavab 5√3 kimi yazılır. g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["surtunme", "surtunme", "ufuqi", "ufuqi", "maili0", "maili", "maili", "durur", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Üfüqi hərəkət</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hamar müstəvi</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sürtünmə ilə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -330,6 +331,102 @@ Yoxlama:  α = 0° → çəkən 0;  α = 90° → sərbəst düşmə</div></div>
         <li>37° müstəvidə μ = 0,5. Cisim sürüşəndə təcil? <span class="ans">a = 10·(0,6 − 0,5·0,8) = 2 m/s². (tg 37° = 0,75 &gt; 0,5 — sürüşür.)</span></li>
         <li>Cisim 37° müstəvi boyu sabit sürətlə sürüşür. μ = ? <span class="ans">μ = tg 37° = 0,75.</span></li>
         <li>2 kq cismi 53° müstəvi boyu yuxarı sabit sürətlə dartmaq üçün qüvvə (μ = 0,5)? <span class="ans">F = 20·(0,8 + 0,5·0,6) = 20·1,1 = 22 N.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: sürtünmə və maili müstəvi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "μN nə qədərdir" kimi bir düstur sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — maili müstəvi, makara, bucaq altında qüvvə, <span class="m">v–t</span> və ya <span class="m">f–F</span> qrafiki. Qüvvələri özün çəkib başlamaq düzgün addımdır.</li>
+        <li><b>Bir neçə addım</b> — əvvəl <span class="m">N</span>, sonra <span class="m">f</span>, sonra təcil, bəzən də yol və ya vaxt.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: <span class="m">N = mg</span> yazmaq, sürtünməni unutmaq, sürtünməni səhv istiqamətdə götürmək, durur halında <span class="m">μN</span> götürmək. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: ipli sistem (Nyuton qanunları), yol və vaxt (kinematika), sərbəst düşmə ilə müqayisə.</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: ip çəkisiz və uzanmazdır, makara çəkisizdir və sürtünməsizdir, <span class="m">g = 10 m/s²</span>. Bucaqlar <span class="m">sin 37° = 0,6; cos 37° = 0,8</span> kimi verilir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — bucaq altında dartma</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 150" role="img" aria-label="Üfüqi səthdə cisim; qüvvə üfüqlə bucaq altında yuxarı yönəlib"><line x1="8" y1="120" x2="292" y2="120" stroke="var(--ink)" stroke-width="1.8"></line><rect x="70" y="80" width="80" height="40" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"></rect><text x="110" y="105" class="lbl" text-anchor="middle">m</text><line x1="150" y1="100" x2="246" y2="100" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3"></line><line x1="150" y1="100" x2="209.9" y2="54.9" stroke="var(--vec)" stroke-width="2.8"></line><polygon points="217.1,49.4 212.9,58.9 206.9,50.9" fill="var(--vec)"></polygon><text x="222.1" y="46.4" class="lbl">F</text><path d="M190 100 A40 40 0 0 0 181.9 75.9" fill="none" stroke="var(--accent)" stroke-width="2"></path><text x="158" y="117" class="lbl">α = 37°</text></svg></div>
+        <p>5 kq kütləli cisim üfüqi səthdə durur. Sürtünmə əmsalı μ = 0,25 (sükunət və sürüşmə üçün eynidir). Cismi üfüqlə 37° bucaq altında yuxarı yönəlmiş 50 N qüvvə ilə dartırlar (sin 37° = 0,6, cos 37° = 0,8, g = 10 m/s²). Cismin təcili nə qədərdir?</p>
+        <ol class="imt-opts"><li>4 m/s²</li><li>5,5 m/s²</li><li>7 m/s²</li><li>8 m/s²</li><li>9 m/s²</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Şaquli:  N = mg − F·sin 37° = 50 − 50·0,6 = 20 N
+Sürtünmə:  f = μN = 0,25·20 = 5 N
+Üfüqi:  ma = F·cos 37° − f = 40 − 5 = 35 N
+a = 35/5 = 7 m/s²
+Cavab: C) 7 m/s²</div>
+      <ul>
+        <li><b>B) 5,5</b> — <span class="m">N = mg</span> yazmaq: f = 12,5 N, a = (40 − 12,5)/5. Qüvvənin şaquli toplananı cismi yüngülləşdirir, N kiçilir.</li>
+        <li><b>D) 8</b> — sürtünməni unutmaq: 40/5.</li>
+        <li><b>E) 9</b> — F-in hamısını üfüqi saymaq: (50 − 5)/5.</li>
+        <li><b>A) 4</b> — qüvvənin şaquli toplananını N-ə əlavə etmək: N = 50 + 30 = 80 N, f = 20 N, a = (40 − 20)/5.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki mövzu: ip, makara, sürtünmə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 300 190" role="img" aria-label="Masada m₁ cismi; ip makaradan keçib şaquli asılmış m₂ cisminə bağlanıb"><rect x="10" y="70" width="226" height="100" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"></rect><rect x="100" y="37" width="56" height="33" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"></rect><text x="128" y="58.5" class="lbl" text-anchor="middle">m₁</text><line x1="156" y1="54" x2="244" y2="54" stroke="var(--ink)" stroke-width="1.6"></line><circle cx="244" cy="62" r="8" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"></circle><line x1="252" y1="62" x2="252" y2="128" stroke="var(--ink)" stroke-width="1.6"></line><rect x="236" y="128" width="32" height="36" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"></rect><text x="252" y="151" class="lbl" text-anchor="middle">m₂</text></svg></div>
+        <p>Üfüqi masa üzərindəki m₁ = 4 kq kütləli cisim ip vasitəsilə şaquli asılmış m₂ = 6 kq kütləli cisimlə bağlıdır. Cisim ilə masa arasında sürtünmə əmsalı μ = 0,25 (sükunət və sürüşmə üçün eynidir). İp çəkisiz və uzanmazdır, gərgindir, makara çəkisizdir və sürtünməsizdir. Cisimləri sükunətdən buraxırlar (g = 10 m/s²). Cisimlərin təcili nə qədərdir?</p>
+        <ol class="imt-opts"><li>4,5 m/s²</li><li>5 m/s²</li><li>6 m/s²</li><li>7 m/s²</li><li>12,5 m/s²</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">İp uzanmır — iki cismin təcili eynidir. Bütün sistem:
+(m₁ + m₂)a = m₂g − μm₁g
+10a = 60 − 0,25·40 = 50
+a = 5 m/s²
+Yoxla: T = m₂(g − a) = 6·5 = 30 N;  m₁: T − f = 30 − 10 = 20 = 4·5 ✓
+Cavab: B) 5 m/s²</div>
+      <ul>
+        <li><b>C) 6</b> — sürtünməni unutmaq: 60/10.</li>
+        <li><b>A) 4,5</b> — sürtünməni asılan cismə aid etmək: (60 − 0,25·60)/10. Sürtünmə masa üzərindəki cisimdədir.</li>
+        <li><b>D) 7</b> — sürtünməni hərəkəti dəstəkləyən qüvvəyə əlavə etmək: (60 + 10)/10.</li>
+        <li><b>E) 12,5</b> — yalnız m₁-ə bölmək: 50/4. Hərəkət edən kütlə iki cismin cəmidir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — durur, yoxsa sürüşür?</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · maili müstəvi</span>
+        <div class="fig"><svg viewBox="0 0 300 200" role="img" aria-label="Maili müstəvi"><polygon points="24,182 195.7,182 195.7,52.6" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"></polygon><path d="M70 182 A46 46 0 0 0 60.7 154.3" fill="none" stroke="var(--accent)" stroke-width="2"></path><text x="76" y="176" class="lbl">α = 37°</text><polygon points="100.9,124.1 136,97.6 118,73.6 82.8,100.1" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"></polygon><line x1="109.4" y1="98.9" x2="109.4" y2="135.9" stroke="var(--vec)" stroke-width="2.8"></line><polygon points="109.4,144.9 104.4,135.9 114.4,135.9" fill="var(--vec)"></polygon><text x="115.4" y="150.9" class="lbl">mg</text><line x1="109.4" y1="98.9" x2="88.3" y2="70.9" stroke="var(--accent)" stroke-width="2.8"></line><polygon points="82.9,63.7 92.3,67.9 84.4,73.9" fill="var(--accent)"></polygon><text x="65.3" y="58.9" class="lbl">N</text><line x1="109.4" y1="98.9" x2="134.2" y2="80.2" stroke="var(--ink)" stroke-width="2.8"></line><polygon points="141.4,74.8 137.2,84.2 131.2,76.2" fill="var(--ink)"></polygon><text x="140.1" y="69.2" class="lbl">f</text></svg></div>
+        <p>4 kq kütləli cismi bucağı 37° olan maili müstəvinin üzərinə qoyub buraxdılar. Cisimlə müstəvi arasında sükunət sürtünmə əmsalı μ_s = 0,9, sürüşmə sürtünmə əmsalı μ_k = 0,25 (sin 37° = 0,6, cos 37° = 0,8, g = 10 m/s²). Cismə təsir edən sürtünmə qüvvəsi nə qədərdir?</p>
+        <ol class="imt-opts"><li>8 N</li><li>16 N</li><li>24 N</li><li>28,8 N</li><li>32 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Əvvəlcə hal:  tg 37° = 0,6/0,8 = 0,75 < μ_s = 0,9  →  cisim durur
+Durur → müstəvi boyu qüvvələr tarazdır:
+f = mg·sin 37° = 40·0,6 = 24 N
+Cavab: C) 24 N</div>
+      <ul>
+        <li><b>D) 28,8</b> — <span class="m">μ_s·N = 0,9·32</span>. Bu, sükunət sürtünməsinin ən böyük mümkün qiymətidir; cisim onun hamısını işlətmir.</li>
+        <li><b>A) 8</b> — <span class="m">μ_k·N = 0,25·32</span>: sürüşmə sürtünməsi yalnız cisim sürüşəndə olur.</li>
+        <li><b>B) 16</b> — qüvvələrin fərqi: 24 − 8.</li>
+        <li><b>E) 32</b> — <span class="m">mg·cos α</span>: bu, N-dir, sürtünmə deyil.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>N həmişə mg deyil.</b> Maili müstəvidə <span class="m">N = mg·cos α</span>; yuxarı bucaq altında dartanda <span class="m">N = mg − F·sin α</span>.</li>
+        <li><b>Sükunət sürtünməsi həmişə μ_s·N-ə bərabər deyil: 0 ≤ f ≤ μ_s·N.</b> Cisim durursa, <span class="m">f</span> tarazlıq şərtindən tapılır (maili müstəvidə <span class="m">mg·sin α</span>); <span class="m">μ_s·N</span> yalnız yuxarı sərhəddir.</li>
+        <li><b>Sürtünmə təmas səthində nisbi sürüşməyə (və ya sürüşmə meylinə) qarşı yönəlir.</b> Cisim müstəvi boyu yuxarı sürüşəndə sürtünmə aşağıdır, aşağı sürüşəndə yuxarıdır. Üst-üstə cisimlərdə alt lövhə üst cismi öz hərəkəti istiqamətində aparır — orada sürtünmə üst cismin hərəkəti ilə eyni yönlüdür.</li>
+        <li><b>İplə bağlı sistemdə</b> təcil eynidir. Asılan cisim aşağı təcillə düşürsə, ipin qüvvəsi <span class="m">T = m₂g</span> deyil, <span class="m">T = m₂(g − a)</span>-dır (yuxarı təcillə qalxsaydı, <span class="m">T = m₂(g + a)</span> olardı). <span class="m">T = m₂g</span> yalnız <span class="m">a = 0</span> olanda doğrudur.</li>
+        <li><b>Qrafiki oxu.</b> <span class="m">v–t</span> qrafikində təcil xəttin mailliyidir (yol deyil). <span class="m">f–F</span> qrafikində cisim tərpənənə qədər <span class="m">f = F</span>-dir, sonra sürtünmə sürüşmə qiymətinə düşür.</li>
+        <li><b>Sərbəst düşmə ilə müqayisə.</b> Eyni hündürlükdən hamar müstəvidə son sürət eynidir, amma vaxt <span class="m">1/sin α</span> dəfə böyükdür.</li>
+        <li><b>Vahidlər:</b> sm, km/saat, qram kimi verilənləri əvvəlcə SI-yə çevir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Müstəvidə:   N = mg·cos α,   f_max = μ·mg·cos α
+Durur:   f = mg·sin α   (tg α ≤ μ_s)
+Aşağı sürüşür:   a = g(sin α − μ cos α)
+Xarici qüvvəsiz yuxarı sürüşür (yavaşıyır):   |a| = g(sin α + μ cos α), aşağıya yönəlir
+Bucaq altında dartma:   N = mg − F·sin α,   ma = F·cos α − μN
+İplə sistem:   (m₁ + m₂)a = hərəkət istiqamətində qüvvələrin cəbri cəmi;   m₂ aşağı düşürsə T = m₂(g − a)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>3 kq cisim 30° maili müstəvidə durur (sin 30° = 0,5; μ_s = 0,8). Sürtünmə qüvvəsi? <span class="ans">f = mg·sin α = 30·0,5 = 15 N (μ_sN deyil).</span></li>
+        <li>Cisim 10 m/s sürətlə üfüqi səthdə sürüşüb 5 s-də dayanır. Sürtünmə əmsalı? <span class="ans">a = 10/5 = 2 m/s², μ = a/g = 0,2.</span></li>
+        <li>2 kq cismi üfüqi səthdə üfüqlə 53° bucaq altında yuxarı 20 N qüvvə ilə dartırlar (sin 53° = 0,8). Dayaq reaksiyası N? <span class="ans">N = mg − F·sin 53° = 20 − 16 = 4 N.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
