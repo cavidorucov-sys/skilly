@@ -194,6 +194,99 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (units not converted, direct instead of inverse, "n + a" forgotten, sum instead of difference, ...).
+  const { ae, again } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const th = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. ratio of two quantities in different units (the units must be made equal first)
+    { tip: "qapali", gen: () => again(() => {
+      const [big, small, U] = pick([["m", "sm", 100], ["kq", "q", 1000], ["saat", "dəqiqə", 60], ["km", "m", 1000]]);
+      const bigFirst = pick([true, false]), nb = rnd(2, 9), ns = rnd(5, 60);
+      const f = bigFirst ? nb : ns, s = bigFirst ? ns : nb, cf = bigFirst ? U : 1, cs = bigFirst ? 1 : U;
+      const n1 = f * cf, d1 = s * cs; if (n1 === d1 || [f, s, f * cs, s * cf, n1, d1].some(v => v > 9999)) return null;
+      const right = frac(n1, d1), w = [frac(f, s), frac(s, f), frac(f * cs, s * cf), frac(d1, n1)];
+      const u1 = bigFirst ? big : small, u2 = bigFirst ? small : big;
+      return mc(ae(right, w, x => x), { text: `${f} ${u1} : ${s} ${u2} nisbətinin qiymətini kəsr kimi yazın (ixtisar olunmuş şəkildə).`,
+        solution: `Vahidləri eyniləşdir: 1 ${big} = ${U} ${small}. Hər iki kəmiyyəti ${small} vahidində yazsaq: ${n1} : ${d1} = ${right}. Tələlər: vahidləri eyniləşdirmədən bölmək (${frac(f, s)}), onu da tərsinə yazmaq (${frac(s, f)}), çevirməni tərsinə aparmaq (${frac(f * cs, s * cf)}), düzgün nisbəti tərsinə yazmaq (${frac(d1, n1)}).` });
+    }) },
+    // 2. proportion with a shifted unknown: (x ± s) : a = b : c
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 12), c = rnd(2, 12), b = rnd(2, 30), s = rnd(2, 9), sg = pick([1, -1]); if (a === c || (a * b) % c) return null;
+      const T = a * b / c, x = T - sg * s, P = b * c / a; if (x < 1) return null;
+      const w = [T, T + sg * s, P - sg * s, P]; if (![x, ...w].every(v => nice(v))) return null;
+      const ex = `(x ${sg > 0 ? "+" : "−"} ${s})`;
+      return mc(ae(x, w), { text: `${ex} : ${a} = ${b} : ${c} tənasübündən x-i tapın.`,
+        solution: `Kənar hədlərin hasili = orta hədlərin hasili: ${ex} · ${c} = ${a} · ${b}, buradan ${ex} = ${T}, x = ${T} ${sg > 0 ? "−" : "+"} ${s} = ${x}. Tələlər: ${s} ədədini ${sg > 0 ? "çıxmağı" : "əlavə etməyi"} unutmaq (${T}), işarəni səhv aparmaq (${D(T + sg * s)}), hədləri səhv cütləmək (${D(P - sg * s)}), hədləri səhv cütləyib ${s} ədədini də unutmaq (${D(P)}).` });
+    }) },
+    // 3. map scale: centimetres on the map -> kilometres on the ground
+    { tip: "qapali", gen: () => again(() => {
+      const M = pick([200000, 250000, 500000, 1000000]), sm = rnd(2, 16) / 2, R = sm * M / 1e5;
+      const w = [R * 10, R / 10, R * 100, sm * M]; if (![R, ...w].every(v => nice(v, 3))) return null;
+      const f = v => (Number.isInteger(v) ? th(v) : D(v)) + " km";
+      return mc(ae(R, w, f), { text: `Xəritənin miqyası 1 : ${th(M)} kimi verilib. Xəritədə iki şəhər arasındakı məsafə ${D(sm)} sm-dir. Yerdə bu məsafə neçə kilometrdir?`,
+        solution: `Xəritədə 1 sm yerdə ${th(M)} sm = ${D(M / 1e5)} km deməkdir (1 km = 100 000 sm). ${D(sm)} · ${D(M / 1e5)} = ${D(R)} km. Tələlər: sm-i km-ə çevirməyi unutmaq (${th(sm * M)}), onluq vergülü səhv yerə qoymaq (${D(R * 10)}, ${D(R / 10)}, ${D(R * 100)}).` });
+    }) },
+    // 4. inverse proportion, more workers join: the new count is n + a
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(4, 20), t = rnd(6, 30), a = rnd(2, 10), x = n * t / (n + a); if (!nice(x, 0) || x === t) return null;
+      const w = [n * t / a, t * (n + a) / n, t - a, n * t]; if (![x, ...w].every(v => nice(v))) return null;
+      return mc(ae(x, w), { text: `${n} fəhlə bir işi ${t} günə görür. İş başlamazdan əvvəl ona daha ${a} fəhlə qoşuldu. Bütün fəhlələr gündə eyni müddət işləyir və məhsuldarlıqları eynidir. İş neçə günə bitər?`,
+        solution: `Fəhlə çox olduqca gün azalır — tərs mütənasiblik, hasil saxlanır: ${n} · ${t} = ${n + a} · x, x = ${n * t} : ${n + a} = ${x}. Tələlər: yalnız əlavə ${a} fəhləni götürmək (${D(n * t / a)}), düz mütənasib hesab (${D(t * (n + a) / n)}), fərqlə düşünmək: ${t} − ${a} = ${t - a}, bir hasili cavab yazmaq (${n * t}).` });
+    }) },
+    // 5. dividing a number in inverse proportion: the smallest share goes to the biggest number
+    { tip: "qapali", gen: () => again(() => {
+      const r = distinct(3, 2, 6).sort((a, b) => a - b), L = r.reduce(lcm, 1);
+      let parts = r.map(v => L / v); const g = parts.reduce(gcd); parts = parts.map(v => v / g);
+      const Sg = parts.reduce((a, b) => a + b, 0), k = rnd(2, 12), N = Sg * k, R = parts[2] * k;
+      const dir = N * r[0] / r.reduce((a, b) => a + b, 0), w = [dir, parts[0] * k, parts[1] * k, k]; if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `${N} ədədini ${r.join(", ")} ədədlərinə tərs mütənasib hissələrə böldülər. Ən kiçik hissəni tapın.`,
+        solution: `Tərs mütənasib: ${r.map(v => "1/" + v).join(" : ")} = ${parts.join(" : ")}. Cəmi ${Sg} hissə, 1 hissə = ${N} : ${Sg} = ${k}. Ən kiçik hissə ən böyük ədədə (${r[2]}) düşür: ${parts[2]} · ${k} = ${R}. Tələlər: düz bölmək (${D(dir)}), ən böyük (${parts[0] * k}) və ya ortanı (${parts[1] * k}) seçmək, bir hissəni (${k}) cavab yazmaq.` });
+    }) },
+    // 6. ratio and difference of two numbers (a difference is divided by q − p, not p + q)
+    { tip: "qapali", gen: () => again(() => {
+      const [p0, q0] = coprime(1, 9), p = Math.min(p0, q0), q = Math.max(p0, q0), k = rnd(2, 15), d = (q - p) * k, R = q * k;
+      const w = [p * k, d * q / (p + q), k, d * q / p]; if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `İki müsbət ədədin nisbəti ${p} : ${q} olub, fərqi ${d} ədədinə bərabərdir. Böyük ədədi tapın.`,
+        solution: `Ədədlər ${p}k və ${q}k, fərq (${q} − ${p})k = ${d}, k = ${k}. Böyük ədəd ${q} · ${k} = ${R}. Tələlər: kiçik ədədi cavab yazmaq (${p * k}), fərqi cəm kimi bölmək (${D(d * q / (p + q))}), bir hissəni (${k}) yazmaq, fərqi kiçik ədəd saymaq (${D(d * q / p)}).` });
+    }) },
+    // 7. coded: chain of ratios a : b, b : c with a given sum
+    { tip: "kod", gen: () => again(() => {
+      const [p1, q1] = coprime(1, 7), [p2, q2] = coprime(2, 7), B = lcm(q1, p2), g0 = [p1 * B / q1, B, q2 * B / p2];
+      const g = g0.reduce(gcd), pa = g0.map(v => v / g), Sg = pa[0] + pa[1] + pa[2]; if (Sg > 80) return null;
+      const k = rnd(2, 12), N = Sg * k, ask = pick([0, 2]), nm = ["a", "b", "c"][ask], ans = pa[ask] * k;
+      return { text: `a : b = ${p1} : ${q1}, b : c = ${p2} : ${q2} və a + b + c = ${N} olarsa, ${nm} ədədini tapın.`, answer: ans, show: String(ans), tol: 1e-6,
+        solution: `b ədədini ortaq edirik: b = ${B} hissə. a : b : c = ${g0.join(" : ")}${g > 1 ? " = " + pa.join(" : ") : ""}. Cəmi ${Sg} hissə, 1 hissə = ${N} : ${Sg} = ${k}. ${nm} = ${pa[ask]} · ${k} = ${ans}.` };
+    }) },
+    // 8. coded: compound proportion (workers and hours per day)
+    { tip: "kod", gen: () => again(() => {
+      const n = rnd(4, 20), h = rnd(4, 8), t = rnd(6, 30), m = rnd(3, 24), h2 = rnd(3, 10), W = n * h * t, x = W / (m * h2);
+      if (!Number.isInteger(x) || x === t || x < 2 || (n === m && h === h2)) return null;
+      return { text: `${n} fəhlə gündə ${h} saat işləyərək bir işi ${t} günə görür. Bütün fəhlələrin məhsuldarlığı eynidirsə, ${m} fəhlə gündə ${h2} saat işləsə, həmin işi neçə günə görər?`,
+        answer: x, show: String(x), tol: 1e-6, unit: "gün",
+        solution: `Sabit iş həcmində gün sayı fəhlə sayı ilə gündəlik saatların hasilinə tərs mütənasibdir; işin həcmi saxlanır: ${n} · ${h} · ${t} = ${W} adam-saat. ${W} : (${m} · ${h2}) = ${W} : ${m * h2} = ${x} gün.` };
+    }) },
+    // 9. coded: ratio x : y and a linear condition
+    { tip: "kod", gen: () => again(() => {
+      const [p, q] = coprime(1, 9), a = rnd(2, 5), b = rnd(2, 5), k = rnd(2, 12), N = (a * p + b * q) * k, ans = p * k; if (a === b) return null;
+      return { text: `x : y = ${p} : ${q} və ${a}x + ${b}y = ${N} olarsa, x-i tapın.`, answer: ans, show: String(ans), tol: 1e-6,
+        solution: `x = ${p}k, y = ${q}k. ${a} · ${p}k + ${b} · ${q}k = ${a * p + b * q}k = ${N}, k = ${k}. x = ${p} · ${k} = ${ans}. Tələ: ${a}x + ${b}y ifadəsini hissələrin cəmi sanıb ${N} ədədini ${p + q} hissəyə bölmək.` };
+    }) },
+    // 10. written: a ratio that changes after some boys leave
+    { tip: "yazili", gen: () => again(() => {
+      const [p, q] = coprime(2, 9), [r, s] = coprime(1, 9); if (p * s <= r * q) return null;
+      const k = rnd(3, 15), d0 = k * (p * s - r * q); if (d0 % s) return null; const d = d0 / s; if (d < 1 || d >= p * k) return null;
+      const T = (p + q) * k; if (T > 45) return null;
+      return { text: `Sinifdə oğlanların qızlara nisbəti ${p} : ${q} idi. ${d} oğlan başqa sinfə keçdikdən sonra bu nisbət ${r} : ${s} oldu. Sinifdə əvvəlcə neçə şagird var idi?`,
+        answer: T, show: String(T), tol: 1e-6, unit: "şagird",
+        solution: `1) Oğlanlar ${p}k, qızlar ${q}k olsun. 2) ${d} oğlan getdikdən sonra: (${p}k − ${d}) : ${q}k = ${r} : ${s}, yəni ${s} · (${p}k − ${d}) = ${r} · ${q}k. 3) ${s * p}k − ${s * d} = ${r * q}k, buradan ${s * p - r * q}k = ${s * d}, k = ${k}. 4) Şagirdlər: (${p} + ${q}) · ${k} = ${T}. Yoxlama: ${p * k - d} : ${q * k} = ${r} : ${s}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -203,7 +296,7 @@
     game = Oyun.mount({
       key: "nisbet-tenasub", title: "Nisbət, tənasüb, mütənasiblik", fenn: "riyaziyyat", link: "dersler/nisbet-tenasub.html",
       format: "Cavab ədəddir: tam 12, onluq 2,5 (və ya 2.5), kəsr 3/4. Nisbət soruşulanda onun qiymətini kəsr kimi yaz: 2 : 5 → 2/5.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["nisbet", "tenasub", "tenasub", "tani", "duz-ters", "duz-ters", "bolme", "bolme", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

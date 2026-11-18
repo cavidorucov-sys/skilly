@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tənasüb</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düz və tərs</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Hissələrə bölmə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -40,7 +41,7 @@
     <h2>Dərs 1. Nisbət</h2>
     <article class="lesson">
       <h3><span class="st">1</span> Niyə lazımdır</h3>
-      <p>Çay dəmləyəndə 1 qaşıq çaya 2 stəkan su götürürsən. Qonaq çoxdursa — 3 qaşığa 6 stəkan. Ədədlər dəyişdi, amma dad eynidir: su həmişə çaydan <b>2 dəfə</b> çoxdur. Bu "neçə dəfə" — nisbətdir.</p>
+      <p>Çay dəmləyəndə 1 qaşıq çaya 2 stəkan su götürürsən. Qonaq çoxdursa — 3 qaşığa 6 stəkan. Ədədlər dəyişdi, amma dad eynidir: hər 1 qaşıq çaya həmişə <b>2 stəkan</b> su düşür. Bu "neçə dəfə" — nisbətdir.</p>
 
       <div class="pair">
       <div class="pair-col usul">
@@ -71,14 +72,14 @@ Hər iki həddi eyni ədədə vurmaq (bölmək) olar:
       <p>Miqyas <span class="m">1 : 200 000</span> deməkdir: xəritədə 1 sm yerdə 200 000 sm-dir. 200 000 sm = 2000 m = 2 km.</p>
       <div class="fig">
         <svg viewBox="0 0 300 110" role="img" aria-label="Xəritə miqyası: 1 sm xəritədə 2 km yerdə">
-          <line x1="20" y1="40" x2="245" y2="40" stroke="var(--accent)" stroke-width="4"/>
+          <line x1="20" y1="40" x2="222.5" y2="40" stroke="var(--accent)" stroke-width="4"/>
           <line x1="20" y1="32" x2="20" y2="48" stroke="var(--ink)" stroke-width="2"/>
           <line x1="65" y1="32" x2="65" y2="48" stroke="var(--ink)" stroke-width="2"/>
-          <line x1="245" y1="32" x2="245" y2="48" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="222.5" y1="32" x2="222.5" y2="48" stroke="var(--ink)" stroke-width="2"/>
           <text x="42" y="25" text-anchor="middle" class="lbl">1 sm</text>
-          <text x="245" y="25" text-anchor="middle" class="lbl">4,5 sm</text>
+          <text x="222.5" y="25" text-anchor="middle" class="lbl">4,5 sm</text>
           <text x="42" y="68" text-anchor="middle" class="lbl" style="fill:var(--vec)">2 km</text>
-          <text x="245" y="68" text-anchor="middle" class="lbl" style="fill:var(--vec)">9 km</text>
+          <text x="222.5" y="68" text-anchor="middle" class="lbl" style="fill:var(--vec)">9 km</text>
           <text x="150" y="98" text-anchor="middle" class="lbl">miqyas 1 : 200 000</text>
         </svg>
         <div class="cap"><p>Xəritədə 4,5 sm olan məsafə yerdə <span class="m">4,5 · 2 = 9</span> km-dir. Tərsinə: yerdə 9 km → xəritədə <span class="m">9 : 2 = 4,5</span> sm.</p></div>
@@ -200,7 +201,7 @@ x₁ : x₂ = y₂ : y₁   (nisbət çevrilir)</div>
           <line x1="20" y1="125" x2="120" y2="25" stroke="var(--accent)" stroke-width="3"/>
           <text x="75" y="145" text-anchor="middle" class="lbl">y = kx (düz)</text>
           <line x1="165" y1="125" x2="285" y2="125" stroke="var(--ink)" stroke-width="1.5"/><line x1="170" y1="130" x2="170" y2="10" stroke="var(--ink)" stroke-width="1.5"/>
-          <path d="M180 15 Q 190 85 280 115" fill="none" stroke="var(--vec)" stroke-width="3"/>
+          <path d="M180 25.0 L 182 41.7 L 185 58.3 L 190 75.0 L 195 85.0 L 200 91.7 L 210 100.0 L 220 105.0 L 230 108.3 L 250 112.5 L 270 115.0 L 280 115.9" fill="none" stroke="var(--vec)" stroke-width="3"/>
           <text x="225" y="145" text-anchor="middle" class="lbl">y = k/x (tərs)</text>
         </svg>
         <div class="cap"><p>Düz mütənasibliyin qrafiki — başlanğıcdan keçən <b>düz xətt</b>. Tərs mütənasibliyin qrafiki — <b>hiperbola</b>: k > 0 və x, y müsbət olduqda x böyüdükcə y kiçilir, amma sıfıra çatmır (k &lt; 0 olduqda hər qolda funksiya artır).</p></div>
@@ -281,6 +282,87 @@ Yoxlama: hissələrin cəmi = N.</div></div>
         <li>90-ı 1 : 2 : 3 nisbətində böl. <span class="ans">6 hissə, 1 hissə = 15. Hissələr: 15, 30, 45.</span></li>
         <li>60-ı 2 və 3 ədədlərinə tərs mütənasib hissələrə böl. <span class="ans">1/2 : 1/3 = 3 : 2; 5 hissə, 1 hissə = 12. Hissələr: 36 və 24.</span></li>
         <li>Sinifdə oğlanların qızlara nisbəti 4 : 5, cəmi 36 şagird. Oğlan neçədir? <span class="ans">9 hissə, 1 hissə = 4. Oğlanlar: 4 · 4 = 16.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: nisbət və mütənasiblik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Nisbət, tənasüb və mütənasiblik buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: düz əvəzinə tərs mütənasib hesablamaq, vahidləri eyniləşdirməmək, "daha 5 fəhlə" sözündə 10 + 5 əvəzinə yalnız 5 götürmək. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd yazılır: vahid yoxdur, soruşulan şeyin özü (nisbət yox, ədəd) yazılır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>bu düz, yoxsa tərs mütənasibdir?</b> Sonra: <b>vahidlər eynidirmi?</b> Və: <b>"daha", "fərqi", "cəmi" sözləri nəyi dəyişir?</b></p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>10 fəhlə bir işi 12 günə görür. İş başlamazdan əvvəl ona daha 5 fəhlə qoşuldu. Bütün fəhlələr gündə eyni müddət işləyir və məhsuldarlıqları eynidir. İş neçə günə bitər?</p>
+        <ol class="imt-opts"><li>7</li><li>8</li><li>18</li><li>24</li><li>120</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Fəhlə çoxdur, gün azalır — tərs mütənasiblik, hasil saxlanır.
+Fəhlələr: 10 + 5 = 15
+10 · 12 = 15 · x  ⇒  x = 120 : 15 = 8
+Cavab: B) 8</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 7</b> — fərqlə düşünmək: "5 fəhlə artdı, 5 gün azalır": <span class="m">12 − 5</span>. Mütənasiblik fərqlə yox, vurma-bölmə ilə işləyir.</li>
+        <li><b>C) 18</b> — düz mütənasib hesab: <span class="m">12 · 15 : 10</span>. Fəhlə artanda gün də artmaz.</li>
+        <li><b>D) 24</b> — yalnız əlavə fəhlələri götürmək: <span class="m">120 : 5</span>. Əvvəlki 10 fəhlə də işləyir, cəmi 15.</li>
+        <li><b>E) 120</b> — hasili cavab yazmaq: <span class="m">10 · 12</span> (adam-günlərin sayı). Hələ 15-ə bölmək lazımdır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">x : y = 2 : 3</span> və <span class="m">3x + 2y = 60</span> olarsa, <span class="m">x</span>-i tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">x = 2k,  y = 3k
+3 · 2k + 2 · 3k = 6k + 6k = 12k = 60
+k = 5
+x = 2 · 5 = 10
+Cavab: 10</div>
+      <p>Kodlaşdırmada yalnız <b>10</b> yazılır. Tələlər: <span class="m">3x + 2y</span> ifadəsini "hissələrin cəmi" sanıb 60-ı 5 hissəyə bölmək (12), bir hissəni cavab yazmaq (<span class="m">k = 5</span>), <span class="m">y</span>-i tapmaq (15). Sual <span class="m">x</span> soruşur — axırda yenidən oxu.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Sinifdə oğlanların qızlara nisbəti 3 : 4 idi. 3 oğlan başqa sinfə keçdikdən sonra bu nisbət 2 : 3 oldu. Sinifdə əvvəlcə neçə şagird var idi?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Oğlanlar 3k, qızlar 4k olsun (k — bir hissə).
+2) 3 oğlan getdikdən sonra oğlanlar: (3k − 3), qızlar 4k dəyişməyib:
+   (3k − 3) : 4k = 2 : 3
+   3 · (3k − 3) = 2 · 4k      (kənar hədlərin hasili = orta hədlərin hasili)
+3) 9k − 9 = 8k  ⇒  k = 9.
+4) Şagirdlər: (3 + 4) · 9 = 63.
+5) Yoxlama: oğlanlar 27 − 3 = 24, qızlar 36; 24 : 36 = 2 : 3 ✓
+Cavab: 63 şagird.</div>
+      <p>Bu, tövsiyə olunan həll planıdır: <b>ədədləri k ilə yazmaq</b> (1-ci addım), <b>tənlik</b> (2-ci addım), <b>həll, cavab və yoxlama</b>. Həll yazılmadan yalnız "63" yazsan, bal verilmir. Tələ: 3 oğlanı həm oğlanlardan, həm qızlardan çıxmaq; yalnız oğlanlar dəyişir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Vahidlər.</b> "40 sm : 2 m" — əvvəl hər ikisini sm-ə çevir: 40 : 200. Çevirmədən 40 : 2 = 20 səhvdir.</li>
+        <li><b>Düz, yoxsa tərs.</b> İş həcmi sabitdirsə, fəhlə (boru) sayı artanda vaxt <b>azalır</b> — hasil saxlanır. Vahidin qiyməti sabitdirsə, mal artanda pul da <b>artır</b>; sürət sabitdirsə, vaxt artanda yol da artır — nisbət saxlanır.</li>
+        <li><b>"Daha ... əlavə oldu".</b> Yeni say = əvvəlki + əlavə (10 + 5 = 15), yalnız əlavə deyil.</li>
+        <li><b>Fərqlə düşünmək.</b> "5 artdı, 5 azalır" — mütənasiblikdə belə olmur; vur və böl.</li>
+        <li><b>Cəm və fərq.</b> İki müsbət ədədin nisbəti <span class="m">p : q</span> (p &lt; q), cəmi S → hissə <span class="m">S : (p + q)</span>; fərqi d → hissə <span class="m">d : (q − p)</span>. Qarışdırma.</li>
+        <li><b>Tənasübdə</b> <span class="m">(x + 4)</span> bir hədddir: əvvəl bütün ifadənin qiymətini tap, sonra 4-ü çıx.</li>
+        <li><b>Kodlaşdırmada</b> vahid və nisbət yazılmır, yalnız soruşulan ədəd.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">düz:    a / b = c / d  (nisbət saxlanır)
+tərs:   a · b = c · d  (hasil saxlanır)
+"daha n":  yeni say = əvvəlki + n
+hissələr: cəm  → S : (p + q),  fərq → d : (q − p)   (p < q)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>40 sm : 2 m nisbətinin qiyməti? <span class="ans">2 m = 200 sm; 40 : 200 = 1/5 (20 yox).</span></li>
+        <li>12 fəhlə bir işi 10 günə görür. İş başlamazdan əvvəl 4 fəhlə getdi. Qalanlar eyni məhsuldarlıqla işləyir. İş neçə günə bitər? <span class="ans">Qalan 8 fəhlə: 12 · 10 = 8 · x, x = 15 gün (4-ə bölmək səhvdir).</span></li>
+        <li>İki müsbət ədədin cəmi 56, nisbəti 3 : 5. Böyük ədəd? <span class="ans">8 hissə, 1 hissə = 7; böyük ədəd 5 · 7 = 35.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
