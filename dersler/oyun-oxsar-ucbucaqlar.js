@@ -47,12 +47,13 @@
       g.append(sv("path", { d: "M" + pts.join("L"), fill: "none", stroke: ACC, "stroke-width": 2 }));
       if (t) { const tm = (t1 + t2) / 2; g.append(sv("text", { x: V[0] + (R + 14) * Math.cos(tm), y: V[1] + (R + 14) * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:var(--accent);font-size:12px" }, t)); }
     }
-    for (const [p, q, t] of o.lab || []) {
+    for (const [p, q, t, ofs] of o.lab || []) {
       const m = [(Q[p][0] + Q[q][0]) / 2, (Q[p][1] + Q[q][1]) / 2], d = [Q[q][0] - Q[p][0], Q[q][1] - Q[p][1]], L = Math.hypot(...d) || 1;
       let n = [-d[1] / L, d[0] / L];
       const c = cenOf(owner(p, q)), out = [m[0] - c[0], m[1] - c[1]];
       if (n[0] * out[0] + n[1] * out[1] < 0) n = [-n[0], -n[1]];
-      g.append(sv("text", { x: m[0] + n[0] * 13, y: m[1] + n[1] * 13 + 5, "text-anchor": "middle", class: "oy-lbl" }, t));
+      const off = ofs || (o.farShort && L < 40 ? 28 : 13); // opt-in: a short side puts its length farther out, away from the point letters
+      g.append(sv("text", { x: m[0] + n[0] * off, y: m[1] + n[1] * off + 5, "text-anchor": "middle", class: "oy-lbl" }, t));
     }
     for (const k of o.names || Object.keys(P)) {
       const c = cenOf((o.nameIn || {})[k] || owner(k)); let d = [Q[k][0] - c[0], Q[k][1] - c[1]], L = Math.hypot(...d);
@@ -229,6 +230,103 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (k instead of k², inverted k, BM/MA instead of BM/BA, missing root, ...).
+  const { ae, again, num } = Oyun;
+  const D = x => num(x);
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const shuf = a => a.slice().sort(() => Math.random() - .5);
+  const r6 = x => Math.round(x * 1e6) / 1e6;
+  // triangle ABC with MN ∥ AC (M ∈ AB, N ∈ BC, BM : MA = m : n); the trapezoid AMNC is shaded
+  function parFig(m, n, lab, P0, W) {
+    const P = P0 || { A: [0, 0], C: [6, 0], B: [rnd(15, 40) / 10, 4.2] }, f = m / (m + n);
+    const at = X => [P.B[0] + (P[X][0] - P.B[0]) * f, P.B[1] + (P[X][1] - P.B[1]) * f];
+    return figure({ ...P, M: at("A"), N: at("C") }, { polys: [["A", "M", "N", "C"]], segs: [["M", "B"], ["B", "N"], ["M", "N", "acc"]], lab, farShort: true, W });
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: perimeters give k; the corresponding side (the letters decide which one)
+    { tip: "qapali", gen: () => again(() => {
+      const [x1, x2, x3] = shuf(pick(SHAPES)), [u, v] = pick(PAIRS.filter(p => p[0] !== p[1])), AB = x1 * u, BC = x2 * u, AC = x3 * u, P1 = AB + BC + AC, P2 = (x1 + x2 + x3) * v;
+      const R = x1 * v, w = [AB * u / v, BC * v / u, AB + P2 - P1, AB * v * v / (u * u)];
+      if (![R, ...w].every(x => nice(x, 1))) return null;
+      return mc(ae(R, w), { text: `ΔABC ~ ΔKLM, AB = ${AB}, BC = ${BC}, AC = ${AC}. ΔKLM-in perimetri ${P2} olsun. KL tərəfini tapın.`,
+        solution: `P(ABC) = ${P1}. Perimetrlərin nisbəti k-dır: k = ${P2}/${P1} = ${frac(v, u)}. KL ↔ AB (hərflərin sırası): KL = ${AB} · ${frac(v, u)} = ${D(R)}. Tələlər: k-nı tərsinə götürmək (${D(w[0])}), KL-i BC-yə uyğun saymaq (${D(w[1])}), perimetrlərin fərqini tərəfə əlavə etmək (${D(w[2])}), k² ilə vurmaq (${D(w[3])}).` });
+    }) },
+    // 2. closed: area ratio is k²
+    { tip: "qapali", gen: () => again(() => {
+      const [u, v] = pick(PAIRS.filter(p => p[0] !== p[1])), a = rnd(1, 4), s = rnd(1, 6), S1 = s * u * u, R = s * v * v, k = v / u;
+      const w = [S1 * k, S1 / k, S1 / (k * k), S1 + a * (v - u)];
+      if (![R, ...w].every(x => nice(x, 1))) return null;
+      return mc(ae(R, w), { text: `ΔABC ~ ΔKLM, AB = ${a * u}, KL = ${a * v}. ΔABC-nin sahəsi ${S1} olsun. ΔKLM-in sahəsini tapın.`,
+        solution: `k = KL/AB = ${frac(v, u)}. Sahələrin nisbəti k²-dir: ${S1} · ${frac(v * v, u * u)} = ${D(R)}. Tələlər: sahəni k ilə vurmaq (${D(w[0])}), k-nı tərsinə götürüb kvadrata yüksəltməmək (${D(w[1])}), k-nı tərsinə götürmək, yəni (1/k)² ilə vurmaq (${D(w[2])}), tərəfin artımını sahəyə əlavə etmək (${D(w[3])}).` });
+    }) },
+    // 3. closed: MN ∥ AC, the area of the trapezoid AMNC
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(1, 5), n = rnd(1, 5), t = rnd(1, 3), s = rnd(1, 6), T = m + n; if (m === n) return null;
+      const S = s * T * T, R = s * (T * T - m * m), w = [s * m * m, s * n * T, s * (T * T - n * n), s * m * T];
+      return mc(ae(R, w), { text: `ΔABC-də M ∈ AB, N ∈ BC və MN ∥ AC. BM = ${m * t}, MA = ${n * t}, ΔABC-nin sahəsi ${S} olsun. AMNC trapesiyasının sahəsini tapın.`,
+        svg: parFig(m, n, [["B", "M", String(m * t)], ["M", "A", String(n * t)]]),
+        solution: `ΔMBN ~ ΔABC, k = BM/BA = ${m * t}/${T * t} = ${frac(m, T)}. S(MBN) = ${S} · ${frac(m * m, T * T)} = ${s * m * m}. Trapesiya = ${S} − ${s * m * m} = ${R}. Tələlər: kiçik üçbucağın sahəsini cavab yazmaq (${s * m * m}), k-nı kvadrata yüksəltməmək: ${S} − ${S} · ${frac(m, T)} (${s * n * T}), k = MA/BA götürmək (${S} − ${s * n * n} = ${s * (T * T - n * n)}), kiçik üçbucağın sahəsini k ilə tapıb cavab yazmaq (${s * m * T}).` });
+    }) },
+    // 4. closed: ∠ACD = ∠ABC gives ΔACD ~ ΔABC, AC² = AD · AB
+    { tip: "qapali", gen: () => again(() => {
+      const [m, n] = pick([[1, 2], [1, 3], [2, 3], [1, 4], [3, 4], [2, 5]]), k = rnd(1, 4), a = m * m * k, c = n * n * k, d = c - a, R = m * n * k; if (c > 40) return null;
+      const w = [c, a * c, a * d, d];
+      const al = rnd(56, 74) * Math.PI / 180, b = Math.sqrt(a * c), P = { A: [0, 0], B: [c, 0], C: [b * Math.cos(al), b * Math.sin(al)], D: [a, 0] };
+      return mc(ae(R, w), { text: `ΔABC-də D nöqtəsi AB tərəfi üzərindədir və ∠ACD = ∠ABC. AD = ${a}, DB = ${d}. AC tərəfini tapın.`,
+        svg: figure(P, { polys: [["A", "B", "C"]], segs: [["C", "D", "acc"]], arcs: [["C", "A", "D", "α", 16], ["B", "A", "C", "α", 18]], lab: [["A", "D", String(a)], ["D", "B", String(d)]], farShort: true }),
+        solution: `∠A ortaqdır, ∠ACD = ∠ABC → ΔACD ~ ΔABC (AC ↔ AB, AD ↔ AC). AC/AB = AD/AC → AC² = AD · AB. AB = ${a} + ${d} = ${c}, AC² = ${a} · ${c} = ${a * c}, AC = ${R}. Tələlər: AB-ni cavab yazmaq (${c}), kökü unutmaq (${a * c}), yanlış düsturla AC² = AD · DB yazıb kökü unutmaq (${a * d}), DB-ni götürmək (${d}).` });
+    }) },
+    // 5. closed: shadows, the ratio height : shadow is the same
+    { tip: "qapali", gen: () => again(() => {
+      const h0 = pick([1.2, 1.5, 1.6, 1.8, 2, 2.5]), s = pick([2, 3, 4, 5]), t = rnd(3, 9), S = s * t, R = r6(h0 * t);
+      const w = [s * S / h0, h0 + S - s, h0 * S, S / s], f = x => D(x) + " m";
+      if (![R, ...w].every(x => nice(x, 1))) return null;
+      return mc(ae(R, w, f), { text: `Yer üfüqidir, dirək və ağac yerə şaquli dayanıb. Günəş şüalarını paralel sayın. Hündürlüyü ${D(h0)} m olan dirəyin kölgəsi ${s} m-dir. Eyni anda ağacın kölgəsi ${S} m-dir. Ağacın hündürlüyü neçə metrdir?`,
+        solution: `Günəş şüaları paraleldir, düzbucaqlı üçbucaqlar oxşardır: H/${S} = ${D(h0)}/${s}. H = ${D(h0)} · ${S}/${s} = ${D(R)} m. Tələlər: nisbəti tərsinə yazmaq (${D(w[0])}), kölgələrin fərqini hündürlüyə əlavə etmək (${D(w[1])}), hündürlüyü kölgəyə vurmaq (${D(w[2])}), yalnız kölgələrin nisbətini yazmaq (${D(w[3])}).` });
+    }) },
+    // 6. closed: altitude to the hypotenuse, CH² = AH · HB
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(1, 3), a = rnd(1, 4), b = rnd(1, 5); if (a === b) return null;
+      const p = k * a * a, q = k * b * b, R = k * a * b, w = [p * q, (p + q) / 2, p + q, Math.abs(q - p)];
+      if (![R, ...w].every(x => nice(x, 1))) return null;
+      return mc(ae(R, w), { text: `ΔABC-də ∠C = 90°, CH — hipotenuza çəkilmiş hündürlükdür. AH = ${p}, HB = ${q}. CH-ı tapın.`,
+        svg: figure({ A: [0, 0], B: [p + q, 0], C: [p, Math.sqrt(p * q)], H: [p, 0] }, { polys: [["A", "B", "C"]], segs: [["C", "H", "acc"]], right: [["C", "A", "B"], ["H", "B", "C"]], lab: [["A", "H", String(p)], ["H", "B", String(q)]], farShort: true, nameIn: { H: ["A", "B", "C"] } }),
+        solution: `ΔACH ~ ΔCBH → CH² = AH · HB = ${p} · ${q} = ${p * q}, CH = ${R}. Tələlər: kökü unutmaq (${D(p * q)}), ədədi ortanı götürmək (${D((p + q) / 2)}), hipotenuzu AB = ${p + q} cavab yazmaq, parçaların fərqini götürmək (${D(Math.abs(q - p))}).` });
+    }) },
+    // 7. coded: ratio of segments gives k, perimeters
+    { tip: "kod", gen: () => again(() => {
+      const m = rnd(1, 5), n = rnd(1, 5), t = rnd(1, 4), r = rnd(Math.ceil(2.2 * t), 4 * t), p = m * r, R = (m + n) * r; if (m === n) return null; // P(MBN) = m·r > 2·BM = 2·m·t: the triangle exists
+      return { text: `ΔABC-də M ∈ AB, N ∈ BC və MN ∥ AC. BM = ${m * t}, MA = ${n * t}. ΔMBN-in perimetri ${p} olsun. ΔABC-nin perimetrini tapın.`,
+        svg: parFig(m, n, [["B", "M", String(m * t)], ["M", "A", String(n * t)]]),
+        answer: R, show: String(R), tol: 1e-6, solution: `ΔMBN ~ ΔABC, k = BM/BA = ${m * t}/${(m + n) * t} = ${frac(m, m + n)} (MA-ya yox, bütün AB-yə bölünür). Perimetrlərin nisbəti k-dır: P(ABC) = ${p} : ${frac(m, m + n)} = ${R}.` };
+    }) },
+    // 8. coded: areas give k, perimeters
+    { tip: "kod", gen: () => again(() => {
+      const [u, v] = pick(PAIRS.filter(p => p[0] !== p[1])), [P0, S0] = pick([[12, 6], [30, 30], [16, 12], [24, 24], [40, 60], [18, 12], [42, 84]]), S1 = S0 * u * u, S2 = S0 * v * v, P1 = P0 * u, R = P0 * v; // sides (3,4,5), (5,12,13), (5,5,6), (6,8,10), (8,15,17), (5,5,8), (13,14,15)
+      return { text: `İki oxşar üçbucağın sahələri ${S1} və ${S2} olsun. Sahəsi ${S1} olan üçbucağın perimetri ${P1} olsun. Digər üçbucağın perimetrini tapın.`,
+        answer: R, show: String(R), tol: 1e-6, solution: `k² = ${S2}/${S1}${frac(S2, S1) === S2 + "/" + S1 ? "" : " = " + frac(S2, S1)} → k = ${frac(v, u)}. Perimetr uzunluq olduğuna görə k ilə vurulur: ${P1} · ${frac(v, u)} = ${R}. (k² ilə vursaydın səhv olardı.)` };
+    }) },
+    // 9. coded: lamp post, the shadow of the boy and the distance to the post
+    { tip: "kod", gen: () => again(() => {
+      const h0 = pick([1.5, 1.6, 1.8, 2]), x = rnd(1, 4), t = rnd(2, 5), d = x * t, R = r6(h0 * (1 + t));
+      return { text: `Boyu ${D(h0)} m olan oğlan fənər dirəyindən ${d} m aralıda dayanıb. Onun kölgəsinin uzunluğu ${x} m-dir (kölgə dirəkdən uzağa düşür). Yer üfüqidir; oğlan və fənər dirəyi yerə şaquli dayanıb, fənər dirəyin zirvəsində nöqtəvi işıq mənbəyidir. Fənər neçə metr hündürlükdədir?`,
+        answer: R, show: D(R), tol: 1e-6, unit: "m", solution: `Kölgənin ucundan dirəyin dibinə qədər ${x} + ${d} = ${x + d} m. Oxşar düzbucaqlı üçbucaqlar: H/${x + d} = ${D(h0)}/${x} → H = ${D(h0)} · ${x + d}/${x} = ${D(R)} m. Tələ: ${d} m-i kölgəyə əlavə etməyi unutmaq.` };
+    }) },
+    // 10. written: perimeter of the trapezoid AMNC (k, MN, NC, sum)
+    { tip: "yazili", gen: () => again(() => {
+      const T = pick([3, 4, 5]), m = rnd(1, T - 1), n = T - m, [a, b, c] = shuf(pick(SHAPES)), AM = n * a, MN = m * c, NC = n * b, AC = T * c, R = AM + MN + NC + AC;
+      const [A, C, B] = triXY(T * b, T * a, T * c);
+      return { text: `ΔABC-də BC = ${T * b}, AC = ${AC}. M ∈ AB, N ∈ BC və MN ∥ AC; BM = ${m * a}, MA = ${n * a}. AMNC trapesiyasının perimetrini tapın. Həlli ətraflı yazın.`,
+        svg: parFig(m, n, [["B", "M", String(m * a)], ["M", "A", String(n * a)], ["B", "C", String(T * b), 30], ["A", "C", String(AC)]], { A, B, C }, 340),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `1) ΔMBN ~ ΔABC (∠B ortaqdır, ∠BMN = ∠BAC — uyğun bucaqlar). 2) BA = ${m * a} + ${n * a} = ${T * a}, k = BM/BA = ${frac(m, T)}. 3) MN = ${AC} · ${frac(m, T)} = ${MN}; BN = ${T * b} · ${frac(m, T)} = ${m * b}, NC = ${T * b} − ${m * b} = ${NC}. 4) P(AMNC) = AM + MN + NC + AC = ${AM} + ${MN} + ${NC} + ${AC} = ${R}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -238,7 +336,7 @@
     game = Oyun.mount({
       key: "oxsar-ucbucaqlar", title: "Oxşar üçbucaqlar", fenn: "riyaziyyat", link: "dersler/oxsar-ucbucaqlar.html",
       format: "Cavab ədəddir: tam 12, onluq 4,5, kəsr 2/3, kök 2√6.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["teref", "teref", "elamet", "sahe", "sahe", "paralel", "paralel", "duzbucaqli", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
