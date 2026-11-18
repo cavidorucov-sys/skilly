@@ -53,7 +53,7 @@
         const RR = R + 4 * j, pts = Array.from({ length: 13 }, (_, i) => { const t = t1 + (t2 - t1) * i / 12; return (V[0] + RR * Math.cos(t)).toFixed(1) + " " + (V[1] + RR * Math.sin(t)).toFixed(1); });
         g.append(sv("path", { d: "M" + pts.join("L"), fill: "none", stroke: ACC, "stroke-width": 2 }));
       }
-      if (t) { const tm = (t1 + t2) / 2, d = noArc ? R : R + 4 * ((cnt || 1) - 1) + 15 + Math.max(0, 50 - Math.abs(t2 - t1) * 180 / Math.PI) * .5; g.append(sv("text", { x: V[0] + d * Math.cos(tm), y: V[1] + d * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:12px" }, t)); }
+      if (t) { const tm = (t1 + t2) / 2, d = noArc ? R : R + 4 * ((cnt || 1) - 1) + 15 + Math.max(0, 50 - Math.abs(t2 - t1) * 180 / Math.PI) * .5; g.append(sv("text", { x: V[0] + d * Math.cos(tm), y: V[1] + d * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:12px" + (o.halo ? ";paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round" : "") }, t)); }
     }
     for (const k of o.names || []) {
       let d = [Q[k][0] - cen[0], Q[k][1] - cen[1]];
@@ -72,7 +72,7 @@
   // ---- a ∥ b cut by c: angles 1–4 at a, 5–8 at b; ∠2 = th (between c going "up" and a going "right")
   // 1 upper-left, 2 upper-right, 3 lower-left, 4 lower-right (same at b)
   const angV = (n, th) => [2, 3, 6, 7].includes(n) ? th : 180 - th;
-  function parFig(th, hl) {
+  function parFig(th, hl, aria) {
     const H = 1.4, c = Math.cos(rad(th)), s = Math.sin(rad(th)), k = .6, bx = -H * c / s;
     const xl = Math.min(0, bx) - 1.4, xr = Math.max(0, bx) + 1.4;
     const P = { T: [0, 0], B: [bx, -H], a0: [xl, 0], a: [xr, 0], b0: [xl, -H], b: [xr, -H], c: [1.0 * c, 1.0 * s], c0: [bx - 1.0 * c, -H - 1.0 * s],
@@ -80,7 +80,7 @@
     const POS = { 1: ["T", "Tl", "Tu"], 2: ["T", "Tu", "Tr"], 3: ["T", "Tl", "Td"], 4: ["T", "Td", "Tr"], 5: ["B", "Bl", "Bu"], 6: ["B", "Bu", "Br"], 7: ["B", "Bl", "Bd"], 8: ["B", "Bd", "Br"] };
     const arcs = [];
     for (let n = 1; n <= 8; n++) { arcs.push([...POS[n], String(n), 21, 1, true]); if (hl.includes(n)) arcs.push([...POS[n], "", 9]); }
-    return figure(P, { segs: [["a0", "a"], ["b0", "b"], ["c0", "c"]], names: ["a", "b", "c"], center: ["T", "B"], arcs, aria: "a və b paralel düz xətləri c kəsəni ilə; bucaqlar 1-dən 8-ə qədər nömrələnib" });
+    return figure(P, { segs: [["a0", "a"], ["b0", "b"], ["c0", "c"]], names: ["a", "b", "c"], center: ["T", "B"], arcs, aria: aria || "a və b paralel düz xətləri c kəsəni ilə; bucaqlar 1-dən 8-ə qədər nömrələnib" });
   }
   const PAIRS = [[1, 4, "q"], [2, 3, "q"], [5, 8, "q"], [6, 7, "q"], [1, 2, "k"], [1, 3, "k"], [2, 4, "k"], [3, 4, "k"], [5, 6, "k"], [5, 7, "k"], [6, 8, "k"], [7, 8, "k"],
     [1, 5, "u"], [2, 6, "u"], [3, 7, "u"], [4, 8, "u"], [3, 6, "dc"], [4, 5, "dc"], [1, 8, "xc"], [2, 7, "xc"], [3, 5, "db"], [4, 6, "db"], [1, 7, "xb"], [2, 8, "xb"]];
@@ -204,6 +204,7 @@
           const eq = TYPE[t][1], vi = angV(i, th), vj = angV(j, th);
           const eqn = eq ? `${lx(p, q)} = ${lx(r, s)}` : `(${lx(p, q)}) + (${lx(r, s)}) = 180`;
           const cx = c => c === 1 ? "" : c === -1 ? "−" : S(c);
+  const solveX = (c, rhs, x) => (c === 1 ? "" : `${cx(c)}x = ${S(rhs)} → `) + `x = ${x}`;
           const solve = eq ? `${cx(p - r)}x = ${S(s - q)} → x = ${x}` : `${cx(p + r)}x = ${S(180 - q - s)} → x = ${x}`;
           if (kind === "elamet") return { text: `a və b düz xətlərini c kəsəni kəsir. ∠${i} = (${lx(p, q)})°, ∠${j} = (${lx(r, s)})°. x-in hansı qiymətində a ∥ b olar?`, svg: parFig(th, [i, j]), answer: x, show: String(x), tol: 0.01,
             solution: `∠${i} və ∠${j} ${TYPE[t][0]} bucaqlardır. Paralellik əlaməti: onlar ${eq ? "bərabər olmalıdır" : "180°-yə tamamlamalıdır"}. ${eqn} → ${solve}.` };
@@ -318,6 +319,112 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (half instead of whole, 180° − α instead of the bisector, wrong relation, ...).
+  const { ae, again, num } = Oyun;
+  const half = x => Number.isFinite(x) && x > 0 && Math.abs(x * 2 - Math.round(x * 2)) < 1e-9; // whole or .5
+  const dg = x => num(x) + "°";
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const D = x => num(x);
+  const cx = c => c === 1 ? "" : c === -1 ? "−" : S(c);
+  const solveX = (c, rhs, x) => (c === 1 ? "" : `${cx(c)}x = ${S(rhs)} → `) + `x = ${x}`;
+  // random "∠i = (px+q)°, ∠j = (rx+s)°" on the a ∥ b figure
+  function algPair() {
+    let x, p, q, r, s, i, j, t, th;
+    do {
+      th = pick(PARTH); [i, j, t] = pick(CROSS); x = rnd(4, 30); p = rnd(1, 5); r = rnd(1, 5);
+      q = angV(i, th) - p * x; s = angV(j, th) - r * x;
+    } while (p === r || Math.abs(q) > 120 || Math.abs(s) > 120 || (q === 0 && s === 0));
+    return { x, p, q, r, s, i, j, t, th, vi: angV(i, th), eq: TYPE[t][1] };
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. adjacent angles: one is k times the other → the larger
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3, 4, 5, 8, 9, 11, 14, 17]), u = 180 / (k + 1), R = k * u;
+      const w = [u, 90 * k / (k + 1), 180 / k, (180 + k) / 2]; if (![R, ...w].every(half)) return null;
+      return mc(ae(R, w, dg), { text: `Qonşu bucaqlardan biri digərindən ${k} dəfə böyükdür. Böyük bucaq neçə dərəcədir?`,
+        solution: `Qonşu bucaqların cəmi 180°: x + ${k}x = 180°, ${k + 1}x = 180°, x = ${D(u)}°. Böyük bucaq ${k} · ${D(u)}° = ${R}°. Tələlər: kiçik bucağı yazmaq (${D(u)}°); cəmi 90° saymaq (${D(90 * k / (k + 1))}°); ${k}x = 180° yazmaq (${D(180 / k)}°); “${k} dəfə” əvəzinə “${k}° çox” oxumaq (${D((180 + k) / 2)}°).` });
+    }) },
+    // 2. bisector + extension of a side (figure)
+    { tip: "qapali", gen: () => again(() => {
+      const al = pick(range(30, 86, 2)), R = 180 - al / 2;
+      const P = { O: [0, 0], A: [1, 0], D: [-1, 0], B: [Math.cos(rad(al)), Math.sin(rad(al))], C: [Math.cos(rad(al / 2)), Math.sin(rad(al / 2))] };
+      const w = [al / 2, 180 - al, 180 - 2 * al, 90 - al / 2]; if (![R, ...w].every(half)) return null;
+      return mc(ae(R, w, dg), { text: `Şəkildə ∠AOB = ${al}°, OC — bu bucağın tənbölənidir, A, O, D nöqtələri bir düz xətt üzərindədir. ∠COD neçə dərəcədir?`,
+        svg: figure(P, { segs: [["D", "A"], ["O", "B"], ["O", "C", "acc"]], names: ["A", "B", "C", "D", "O"], place: { O: [["B"], -1] }, halo: true, arcs: [["O", "A", "B", al + "°", 16], ["O", "C", "D", "?", 30]] }),
+        solution: `Tənbölən: ∠AOC = ${al}° : 2 = ${al / 2}°. ∠AOC və ∠COD qonşu bucaqlardır: ∠COD = 180° − ${al / 2}° = ${R}°. Tələlər: yalnız yarısını yazmaq (${al / 2}°); tənböləni nəzərə almadan 180° − ${al}° = ${180 - al}°; yarıya bölmək əvəzinə ikiqat etmək: 180° − 2 · ${al}° = ${180 - 2 * al}°; ∠BOD bucağını yarıya bölmək (${90 - al / 2}°).` });
+    }) },
+    // 3. a ∥ b, expressions with x → an angle (figure)
+    { tip: "qapali", gen: () => again(() => {
+      const { x, p, q, r, s, i, j, t, th, vi, eq } = algPair();
+      const wx = eq ? (180 - q - s) / (p + r) : (s - q) / (p - r); if (!Number.isInteger(wx) || wx <= 0) return null;
+      const w = [x, 180 - vi, p * wx + q, p * x]; if (![vi, ...w].every(Number.isInteger) || !w.every(v => v > 0 && v < 360)) return null;
+      const eqn = eq ? `${lx(p, q)} = ${lx(r, s)}` : `(${lx(p, q)}) + (${lx(r, s)}) = 180`;
+      return mc(ae(vi, w, dg), { text: `a ∥ b, c — kəsəndir. ∠${i} = (${lx(p, q)})°, ∠${j} = (${lx(r, s)})°. ∠${i} neçə dərəcədir?`, svg: parFig(th, [i, j]),
+        solution: `∠${i} və ∠${j} ${TYPE[t][0]} bucaqlardır: ${eq ? "bərabərdir" : "cəmi 180°-dir"}. ${eqn} → ${eq ? solveX(p - r, s - q, x) : solveX(p + r, 180 - q - s, x)}. ∠${i} = ${p === 1 ? "" : p + " · "}${x}${q ? (q < 0 ? " − " + (-q) : " + " + q) : ""} = ${vi}°. Tələlər: x-i cavab yazmaq (${x}); ${eq ? "bərabərlik əvəzinə cəmi 180° tənliyi" : "cəmi 180° əvəzinə bərabərlik tənliyi"} qurmaq (${p * wx + q}°); 180° − ${vi}° = ${180 - vi}°; sabit ədədi unutmaq (${p * x}°).` });
+    }) },
+    // 4. zigzag between parallel lines (figure)
+    { tip: "qapali", gen: () => again(() => {
+      const al = pick(range(20, 75, 5)), be = pick(range(20, 75, 5)); if (al === be) return null; const R = al + be;
+      const w = [180 - R, Math.abs(al - be), 360 - R, 180 - Math.abs(al - be)];
+      return mc(ae(R, w, dg), { text: `a ∥ b. M nöqtəsi a və b düz xətləri arasındadır, A ∈ a, B ∈ b. AM ilə a arasındakı bucaq ${al}°, BM ilə b arasındakı bucaq ${be}°-dir (şəkildəki kimi). ∠AMB neçə dərəcədir?`,
+        svg: zigFig(al, be, al + "°", be + "°", "?"),
+        solution: `M-dən a-ya paralel düz xətt çəkirik: daxili çarpaz bucaqlara görə ∠AMB iki hissəyə bölünür — ${al}° və ${be}°. ∠AMB = ${al}° + ${be}° = ${R}°. Tələlər: 180° − (${al}° + ${be}°) = ${180 - R}°; fərq ${Math.abs(al - be)}°; 360°-yə tamamlayan bucaq: 360° − ${R}° = ${360 - R}°; 180° − fərq = ${180 - Math.abs(al - be)}°.` });
+    }) },
+    // 5. clock
+    { tip: "qapali", gen: () => again(() => {
+      const hh = rnd(1, 11), mm = 2 * rnd(1, 29), nrm = v => { v = Math.abs(v) % 360; return v > 180 ? 360 - v : v; };
+      const raw = Math.abs(30 * hh + mm / 2 - 6 * mm), R = nrm(raw), w = [nrm(30 * hh - 6 * mm), nrm(30 * hh + mm - 6 * mm), 360 - R, nrm(30 * hh + mm / 2 - 5 * mm)];
+      if (R === 0 || ![R, ...w].every(half)) return null;
+      return mc(ae(R, w, dg), { text: `Saat ${hh}:${String(mm).padStart(2, "0")} göstərir. Saat və dəqiqə əqrəbləri arasındakı kiçik bucaq neçə dərəcədir?`,
+        solution: `12-dən ölçürük. Dəqiqə əqrəbi: ${mm} · 6° = ${6 * mm}°. Saat əqrəbi: ${hh} · 30° + ${mm} · 0,5° = ${D(30 * hh + mm / 2)}°. Fərq ${D(raw)}°${raw > 180 ? `, kiçik bucaq 360° − ${D(raw)}° = ${R}°` : ""}. Tələlər: saat əqrəbinin dəqiqələrdə də hərəkət etdiyini unutmaq (${D(w[0])}°); onun dəqiqədə 1° döndüyünü yazmaq (${D(w[1])}°); 360°-dən çıxıb böyük bucağı yazmaq (${D(360 - R)}°); dəqiqə əqrəbini dəqiqədə 5° saymaq (${D(w[3])}°).` });
+    }) },
+    // 6. angles with parallel / perpendicular sides, difference given
+    { tip: "qapali", gen: () => again(() => {
+      const d = pick(range(20, 140, 20)), par = pick(["paralel", "perpendikulyar"]), parD = par === "paralel" ? "paraleldir" : "perpendikulyardır", R = (180 - d) / 2;
+      const w = [(180 + d) / 2, 180 - d, d, d / 2]; if (![R, ...w].every(half)) return null;
+      return mc(ae(R, w, dg), { text: `İki bucağın uyğun tərəfləri ${parD}. Bu bucaqlar bərabər deyil, biri digərindən ${d}° böyükdür. Kiçik bucaq neçə dərəcədir?`,
+        solution: `Uyğun tərəfləri ${par} olan bucaqlar ya bərabərdir, ya da cəmi 180°. Bərabər deyillər → x + (x + ${d}°) = 180°, 2x = ${180 - d}°, x = ${D(R)}°. Tələlər: böyük bucağı yazmaq (${D((180 + d) / 2)}°); 180° − ${d}° = ${180 - d}°; fərqin özünü (${d}°) və ya yarısını (${D(d / 2)}°) yazmaq.` });
+    }) },
+    // 7. coded: a ∥ b as a condition → x (figure)
+    { tip: "kod", gen: () => again(() => {
+      const { x, p, q, r, s, i, j, t, th, eq } = algPair();
+      const eqn = eq ? `${lx(p, q)} = ${lx(r, s)}` : `(${lx(p, q)}) + (${lx(r, s)}) = 180`;
+      return { text: `a və b düz xətlərini c kəsəni kəsir. ∠${i} = (${lx(p, q)})°, ∠${j} = (${lx(r, s)})°. x-in hansı qiymətində a ∥ b olar?`, svg: parFig(th, [i, j], "a və b düz xətlərini c kəsəni kəsir; bucaqlar 1-dən 8-ə qədər nömrələnib"),
+        answer: x, show: String(x), tol: 1e-6,
+        solution: `∠${i} və ∠${j} ${TYPE[t][0]} bucaqlardır. a ∥ b olması üçün ${eq ? "bu bucaqlar bərabər olmalıdır" : "bu bucaqların cəmi 180° olmalıdır"}: ${eqn} → ${eq ? solveX(p - r, s - q, x) : solveX(p + r, 180 - q - s, x)}.` };
+    }) },
+    // 8. coded: bisector of one of two adjacent angles (figure)
+    { tip: "kod", gen: () => again(() => {
+      const d = pick(range(4, 96, 4)), aoc = (180 + d) / 2, cob = (180 - d) / 2, moc = aoc / 2, R = moc + cob; if (!Number.isInteger(R)) return null;
+      const m = cob + aoc / 2, P = { O: [0, 0], A: [-1, 0], B: [1, 0], C: [Math.cos(rad(cob)), Math.sin(rad(cob))], M: [Math.cos(rad(m)), Math.sin(rad(m))] };
+      return { text: `∠AOC və ∠COB qonşu bucaqlardır, ∠AOC ∠COB-dən ${d}° böyükdür. OM — ∠AOC-nin tənbölənidir. ∠MOB neçə dərəcədir?`,
+        svg: figure(P, { segs: [["A", "B"], ["O", "C"], ["O", "M", "acc"]], names: ["A", "B", "C", "M", "O"], place: { O: [["C"], -1] }, arcs: [["O", "M", "B", "?", 30]] }),
+        answer: R, show: String(R), tol: 1e-6, unit: "°",
+        solution: `∠COB = x olsun: x + (x + ${d}°) = 180° → x = ${cob}°, ∠AOC = ${aoc}°. Tənbölən: ∠MOC = ${aoc}° : 2 = ${moc}°. ∠MOB = ∠MOC + ∠COB = ${moc}° + ${cob}° = ${R}°.` };
+    }) },
+    // 9. coded: zigzag with expressions → x (figure)
+    { tip: "kod", gen: () => again(() => {
+      const x = rnd(3, 20), p = rnd(1, 3), r = rnd(1, 3), q = pick(range(0, 30, 5)), s = pick(range(0, 30, 5)), al = p * x + q, be = r * x + s;
+      if (al < 20 || al > 75 || be < 20 || be > 75 || al === be) return null;
+      return { text: `a ∥ b. M nöqtəsi a və b arasındadır, A ∈ a, B ∈ b. AM ilə a arasındakı bucaq α = (${lx(p, q)})°, BM ilə b arasındakı bucaq β = (${lx(r, s)})°, ∠AMB = ${al + be}° (şəkildəki kimi). x-i tapın.`,
+        svg: zigFig(al, be, "α", "β", (al + be) + "°"),
+        answer: x, show: String(x), tol: 1e-6,
+        solution: `M-dən a-ya paralel düz xətt çəkirik: ∠AMB = (${lx(p, q)})° + (${lx(r, s)})° = ${al + be}°. ${cx(p + r)}x${q + s ? " + " + (q + s) : ""} = ${al + be} → ${cx(p + r)}x = ${al + be - q - s} → x = ${x}.` };
+    }) },
+    // 10. written: x from alternate interior angles, then the bisector of ∠4 with a
+    { tip: "yazili", gen: () => again(() => {
+      const th = pick(PARTH.filter(v => v % 2 === 0)), x = rnd(5, 25), p = rnd(1, 5), r = rnd(1, 5); if (p === r) return null;
+      const q = th - p * x, s = th - r * x; if (Math.abs(q) > 60 || Math.abs(s) > 60 || (q === 0 && s === 0)) return null;
+      const a4 = 180 - th, R = a4 / 2;
+      return { text: `a ∥ b, c — kəsəndir. ∠3 = (${lx(p, q)})°, ∠6 = (${lx(r, s)})°. ∠4-ün tənböləni a düz xətti ilə neçə dərəcə bucaq əmələ gətirir? Həlli kağızda addım-addım yazın.`,
+        svg: parFig(th, [3, 4, 6]), answer: R, show: String(R), tol: 1e-6, unit: "°",
+        solution: `1) ∠3 və ∠6 daxili çarpaz bucaqlardır, a ∥ b olduğuna görə bərabərdir: ${lx(p, q)} = ${lx(r, s)}. 2) ${solveX(p - r, s - q, x)}; ∠3 = ${th}°. 3) ∠3 və ∠4 qonşu bucaqlardır: ∠4 = 180° − ${th}° = ${a4}°. 4) Tənbölən ∠4-ü yarıya bölür: ${a4}° : 2 = ${R}°. Cavab: ${R}°. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: tənlik, x, ∠4 və tənbölən addımları imtahanda ayrıca qiymətləndirilir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -327,7 +434,7 @@
     game = Oyun.mount({
       key: "bucaqlar-paralel", title: "Bucaqlar, paralel və perpendikulyar düz xətlər", fenn: "riyaziyyat", link: "dersler/bucaqlar-paralel.html",
       format: "Cavab — bucağın dərəcə ölçüsü (° yazmaq lazım deyil): 65. x soruşulursa — x-in qiyməti.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["qonsu", "qonsu", "tenbolen", "paralel", "paralel", "tenlik", "tenlik", "cem", "cem", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

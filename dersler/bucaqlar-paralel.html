@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Qonşu, qarşılıqlı</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Paralel və kəsən</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -312,6 +313,117 @@ Saat: dəqiqə əqrəbi 6°/dəq, saat əqrəbi 0,5°/dəq</div></div>
         <li>a ∥ b, ∠AMB = 100°, AM ilə a arasında 30°. BM ilə b arasında? <span class="ans">100° − 30° = 70°.</span></li>
         <li>Saat 3:00. Əqrəblər arasındakı bucaq? <span class="ans">3 · 30° = 90°.</span></li>
         <li>Saat 9:30. Əqrəblər arasındakı kiçik bucaq? <span class="ans">Dəqiqə: 30 · 6° = 180°. Saat: 9 · 30° + 30 · 0,5° = 285°. Fərq 105°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: bucaqlar və paralel düz xətlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bucaqlar buraxılış imtahanında hər il var — bəzən ayrıca sual, bəzən böyük həndəsə məsələsinin ilk addımı. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: yarısını yazmaq, <span class="m">180° − α</span> yazmaq, bərabərlik əvəzinə "cəmi 180°" saymaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: <span class="m">°</span> işarəsi yazılmır. Bucaq cavabı müsbət ədəd olur. <span class="m">x</span> soruşulursa — <span class="m">x</span>-in qiyməti.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan hansı bucaqların hansı qaydaya görə bərabər olduğunu görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl şəkildən oxu: <b>bu iki bucaq bir-birinə nəyidir?</b> (qonşu, qarşılıqlı, uyğun, çarpaz, birtərəfli). Bu söz bərabərlik, yoxsa "cəmi 180°" olduğunu deyir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">a ∥ b</span>, <span class="m">c</span> — kəsəndir. ∠3 = (3<span class="m">x</span> + 15)°, ∠6 = (2<span class="m">x</span> + 30)°. ∠3 neçə dərəcədir?</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="a və b paralel düz xətləri c kəsəni ilə kəsişir; a ilə kəsənin kəsişməsində aşağı-solda 3 nömrəli, b ilə kəsənin kəsişməsində yuxarı-sağda 6 nömrəli bucaq işarələnib">
+            <line x1="20" y1="60" x2="280" y2="60" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="20" y1="150" x2="280" y2="150" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="92" y1="195" x2="196" y2="15" stroke="var(--vec)" stroke-width="2"/>
+            <path d="M158 60 A12 12 0 0 0 164 70" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M130 150 A12 12 0 0 0 124 140" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <text x="144" y="80">3</text><text x="136" y="140">6</text>
+            <text x="266" y="52" class="lbl">a</text><text x="266" y="142" class="lbl">b</text><text x="202" y="22" class="lbl">c</text>
+          </svg>
+        </div>
+        <ol class="imt-opts"><li>15°</li><li>45°</li><li>60°</li><li>96°</li><li>120°</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">∠3 və ∠6 — daxili çarpaz bucaqlar, a ∥ b → bərabərdir
+3x + 15 = 2x + 30  →  x = 15
+∠3 = 3 · 15 + 15 = 60°
+Cavab: C) 60°</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 15°</b> — <span class="m">x</span>-i tapıb onu bucaq kimi yazmaq. Sual bucağı soruşur.</li>
+        <li><b>B) 45°</b> — sabit ədədi unutmaq: <span class="m">3 · 15</span>, "+ 15" düşüb.</li>
+        <li><b>D) 96°</b> — bərabərlik əvəzinə "cəmi 180°" tənliyi: <span class="m">5x + 45 = 180</span>, <span class="m">x = 27</span>, <span class="m">3 · 27 + 15</span>. Çarpaz bucaqlar bərabərdir; cəmi 180° olan birtərəfli bucaqlardır.</li>
+        <li><b>E) 120°</b> — <span class="m">180° − 60°</span>: ∠3-ün qonşusunu yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">a ∥ b</span>. <span class="m">M</span> nöqtəsi <span class="m">a</span> və <span class="m">b</span> arasındadır, <span class="m">A ∈ a</span>, <span class="m">B ∈ b</span>. <span class="m">AM</span> ilə <span class="m">a</span> arasındakı bucaq (2<span class="m">x</span> + 5)°, <span class="m">BM</span> ilə <span class="m">b</span> arasındakı bucaq (<span class="m">x</span> + 20)°, ∠AMB = 55° (şəkildəki kimi). <span class="m">x</span>-i tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="a və b paralel düz xətləri arasında M nöqtəsi; A nöqtəsi a üzərində, B nöqtəsi b üzərində; AM ilə a arasında (2x+5) dərəcə, BM ilə b arasında (x+20) dərəcə, AMB bucağı 55 dərəcə">
+            <line x1="20" y1="40" x2="280" y2="40" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="20" y1="160" x2="280" y2="160" stroke="var(--ink)" stroke-width="2"/>
+            <polyline points="91,40 220,100 116,160" fill="none" stroke="var(--vec)" stroke-width="2"/>
+            <path d="M111 40 A20 20 0 0 1 109 48" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M136 160 A20 20 0 0 0 133 150" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <text x="150" y="56">(2x + 5)°</text><text x="165" y="150">(x + 20)°</text><text x="170" y="104">55°</text>
+            <text x="78" y="34" class="lbl">A</text><text x="104" y="176" class="lbl">B</text><text x="226" y="104" class="lbl">M</text>
+            <text x="266" y="32" class="lbl">a</text><text x="266" y="152" class="lbl">b</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">M-dən a-ya paralel düz xətt çəkirik — o, b-yə də paraleldir.
+Daxili çarpaz bucaqlara görə ∠AMB iki hissəyə bölünür:
+  (2x + 5) + (x + 20) = 55
+  3x + 25 = 55  →  3x = 30
+Cavab: 10</div>
+      <p>Kodlaşdırmada yalnız <b>10</b> yazılır. Tələlər: hissələri toplamaq əvəzinə <span class="m">180° − 55°</span> ilə işləmək; <span class="m">x</span> əvəzinə bucağı (<span class="m">2 · 10 + 5 = 25</span>) cavab yazmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">a ∥ b</span>, <span class="m">c</span> — kəsəndir. ∠3 = (2<span class="m">x</span> + 10)°, ∠6 = (3<span class="m">x</span> − 20)°. ∠4-ün tənböləni <span class="m">a</span> düz xətti ilə neçə dərəcə bucaq əmələ gətirir?</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="a və b paralel düz xətləri c kəsəni ilə kəsişir; 3 və 6 daxili çarpaz bucaqlardır, 4 nömrəli bucaq a ilə kəsənin kəsişməsində aşağı-sağdadır">
+            <line x1="20" y1="60" x2="280" y2="60" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="20" y1="150" x2="280" y2="150" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="121" y1="195" x2="186" y2="15" stroke="var(--vec)" stroke-width="2"/>
+            <text x="147" y="80">3</text><text x="182" y="80">4</text><text x="150" y="140">6</text>
+            <text x="266" y="52" class="lbl">a</text><text x="266" y="142" class="lbl">b</text><text x="192" y="22" class="lbl">c</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) ∠3 və ∠6 — daxili çarpaz bucaqlar, a ∥ b olduğuna görə bərabərdir:
+   2x + 10 = 3x − 20
+2) x = 30,   ∠3 = 2 · 30 + 10 = 70°
+3) ∠3 və ∠4 qonşu bucaqlardır:
+   ∠4 = 180° − 70° = 110°
+4) Tənbölən ∠4-ü yarıya bölür, onun bir tərəfi a-dır:
+   110° : 2 = 55°
+Cavab: 55°</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>bərabərliyin əsaslandırılması</b> (1-ci addım), <b>x və ∠3</b> (2-ci), <b>∠4</b> (3-cü), <b>tənbölən və cavab</b> (4-cü). Həll yazılmadan yalnız "55" yazmaq bal vermir. Tələ: tənböləni ∠3-dən götürmək (<span class="m">70° : 2 = 35°</span>) — məsələ ∠4-ü soruşur.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Səhv əlaqə.</b> Qarşılıqlı bucaqlar həmişə bərabərdir. Qonşu bucaqların cəmi həmişə 180°-dir. Uyğun və çarpaz bucaqlar yalnız paralel düz xətlərdə bərabərdir, birtərəfli bucaqların cəmi isə yalnız paralel düz xətlərdə 180°-dir. Bu ikisini qarışdırmaq ən çox səhvi verir.</li>
+        <li><b>x-i bucaq kimi yazmaq.</b> Tənliyi həll edib dayanmaq olmaz: sual bucağı, yoxsa <span class="m">x</span>-i soruşur — bir daha oxu.</li>
+        <li><b>Tənbölən.</b> Bucağı yarıya bölür, ikiqat etmir; həm də <b>hansı</b> bucağı böldüyünə bax. Qonşu bucaqla işlədikdə: əvvəl tənbölənin bucağı, sonra <span class="m">180°</span>-dən çıxılır.</li>
+        <li><b>Sınıq xətt.</b> Paralel düz xətlər arasında, şəkildəki yerləşmədə, M-dən çəkilən paralel ∠AMB-ni iki hissəyə bölür və hissələr toplanır; <span class="m">180° − (α + β)</span> yazmaq səhvdir.</li>
+        <li><b>Saat.</b> Saat əqrəbi də hərəkət edir (dəqiqədə 0,5°). "Kiçik bucaq" soruşulursa, cavab 180°-dən böyük olmur.</li>
+        <li><b>Kodlaşdırmada</b> <span class="m">°</span> işarəsi yazılmır, cavab müsbət ədəddir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">çarpaz, uyğun (a ∥ b), qarşılıqlı:  bərabərdir → ifadə = ifadə
+birtərəfli (a ∥ b), qonşu:          cəmi 180° → ifadə + ifadə = 180
+tənbölən:                    bucaq : 2
+sınıq xətt (a ∥ b, şəkildəki kimi): hissələr toplanır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">a ∥ b</span>, daxili birtərəfli bucaqlar (<span class="m">x</span> + 40)° və (2<span class="m">x</span> + 50)°. <span class="m">x</span> neçədir? <span class="ans">Birtərəflidir → cəmi 180°: 3x + 90 = 180, x = 30 (bərabərlik yox).</span></li>
+        <li>∠AOB = 64°, OC — tənbölən, OD şüası OA-nın uzantısıdır. ∠COD? <span class="ans">∠AOC = 32°, qonşudur: 180° − 32° = 148° (32° yox, 116° yox).</span></li>
+        <li>Saat 2:20-də əqrəblər arasındakı kiçik bucaq? <span class="ans">Dəqiqə: 20 · 6° = 120°. Saat: 2 · 30° + 20 · 0,5° = 70°. Fərq 50°.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
