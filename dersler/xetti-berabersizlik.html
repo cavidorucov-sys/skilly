@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xətti</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sistemlər</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -270,7 +271,7 @@ Heyət [ — ən azı biri → birləşmə ∪</div></div>
    (325 + x)/5 ≥ 82  →  325 + x ≥ 410  →  x ≥ 85
    Cavab: 85 bal</div>
       <div class="ex">3) Tarif A: 5 manat abunə + 2 qəpik/dəq. Tarif B: 7 qəpik/dəq.
-   Ən azı neçə dəqiqədə A ucuzdur?  (hamısını qəpiklə yaz)
+   Ən azı neçə tam dəqiqə danışanda A ucuzdur?  (hamısını qəpiklə yaz)
    500 + 2x &lt; 7x  →  500 &lt; 5x  →  x &gt; 100
    Cavab: 101 dəqiqə</div>
 
@@ -294,6 +295,96 @@ Tam cavab lazımdırsa — şərtə uyğun tərəfə yuvarlaqlaşdır.
         <li>200 manat lazımdır, 50 manat var, hər həftə 12 manat yığılır. Ən azı neçə həftə? <span class="ans">50 + 12x ≥ 200 → x ≥ 12,5 → 13 həftə.</span></li>
         <li>Lift 600 kq götürür. 80 kq-lıq adam 25 kq-lıq qutulardan ən çox neçəsini götürə bilər? <span class="ans">80 + 25x ≤ 600 → x ≤ 20,8 → 20 qutu.</span></li>
         <li>Üçbucağın tərəfləri 4 və 10, üçüncü tərəf tam ədəddir. Neçə variant? <span class="ans">6 &lt; x &lt; 14: 7; 8; …; 13 — 7 variant.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: xətti bərabərsizliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bərabərsizliklər buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəni çevirməmək, mötərizəni səhv seçmək, uc nöqtəni saymaq və ya atmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil. Cavab çox vaxt aralıq (<span class="m">(−∞; 5]</span>) və ya tam həllərin sayı olur.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd yazılır, vahid yazılmır. Burada çox vaxt sayı soruşurlar: neçə tam, neçə natural həll var, tam həllərin cəmi nədir.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>nə soruşulur — aralıq, say, ən kiçik/ən böyük tam ədəd?</b> Eyni bərabərsizlikdən üç fərqli cavab çıxır, tələlər də buradadır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">−2x + 7 ≥ x − 8</span> bərabərsizliyinin həllini göstərin.</p>
+        <ol class="imt-opts"><li>[5; +∞)</li><li>(−∞; 5]</li><li>(−∞; 5)</li><li>(−∞; −5]</li><li>[−15; +∞)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">x-li hədləri sola, ədədləri sağa keçiririk:
+−2x − x ≥ −8 − 7
+−3x ≥ −15
+Mənfi ədədə (−3) bölürük — işarə dönür: x ≤ 5
+Cavab: B) (−∞; 5]</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) [5; +∞)</b> — mənfi ədədə bölərkən işarəni çevirməmək: <span class="m">x ≥ 5</span>.</li>
+        <li><b>C) (−∞; 5)</b> — mötərizəni səhv seçmək: bərabərlik işarəsi var (≥), deməli 5 daxildir və mötərizə kvadratdır.</li>
+        <li><b>D) (−∞; −5]</b> — bölmədə işarə səhvi: <span class="m">−15 : (−3)</span> nəticəsini mənfi yazmaq.</li>
+        <li><b>E) [−15; +∞)</b> — əmsala bölməyi unutmaq: <span class="m">−3x ≥ −15</span>-dən birbaşa <span class="m">x ≥ −15</span> yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">x − 5 ≥ −3x + 9</span> və <span class="m">(x + 4)/3 − (x + 7)/4 ≤ 0</span> bərabərsizliklər sisteminin neçə natural həlli var?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">1) x − 5 ≥ −3x + 9  →  4x ≥ 14  →  x ≥ 7/2
+2) (x + 4)/3 − (x + 7)/4 ≤ 0  → hər tərəfi 12-yə vururuq:
+   4(x + 4) − 3(x + 7) ≤ 0  →  x − 5 ≤ 0  →  x ≤ 5
+3) Sistem — hər ikisi ödənməlidir: 7/2 ≤ x ≤ 5
+   Tam ədədlər: 4; 5. Hər ikisi natural.
+Cavab: 2</div>
+      <p>Kodlaşdırmada yalnız <b>2</b> yazılır. Tələlər: <b>7/2-ni həll saymaq</b> — 7/2 tam ədəd deyil, ən kiçik tam həll 4-dür (3 həll deyil: <span class="m">3 &lt; 7/2</span>); <b>əmsala bölməyi unutmaq</b> — <span class="m">4x ≥ 14</span>-dən <span class="m">x ≥ 14</span> yazsan, sistem <span class="m">14 ≤ x ≤ 5</span> olar, yəni həll yox və cavab 0 çıxar; <b>sistemi "və ya" kimi oxumaq</b> — onda natural həllər sonsuz olardı. Natural ədəd 1-dən başlayır: 0 və mənfi ədədlər sayılmır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">(x − 2)/6 − (x + 7)/3 &lt; −3</span> və <span class="m">−x + 1 &lt; −2x + 9</span> bərabərsizliklər sistemini həll edin. Sistemin tam həllərinin cəmini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Birinci bərabərsizlik. Hər tərəfi 6-ya vururuq:
+   (x − 2) − 2(x + 7) &lt; −18
+   x − 2 − 2x − 14 &lt; −18      (qarşısında mənfi işarəsi olan mötərizədə hər iki hədd işarəsini dəyişir)
+   −x − 16 &lt; −18  →  −x &lt; −2
+   −1-ə bölürük — işarə dönür:  x &gt; 2
+2) İkinci bərabərsizlik:
+   −x + 2x &lt; 9 − 1  →  x &lt; 8
+3) Sistemin həlli (kəsişmə): 2 &lt; x &lt; 8
+4) Tam həllər: 3; 4; 5; 6; 7.
+   Cəmi: 3 + 4 + 5 + 6 + 7 = 25
+Cavab: 25</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>hər bərabərsizliyin düzgün həlli</b> (1–2-ci addım, işarənin dönməsi daxil), <b>kəsişmə</b> (3-cü addım) və <b>tam həllərin düzgün seçilməsi və cəmi</b> (4-cü addım). Bunlar həlldə görünmürsə, yalnız "25" yazmaq bal gətirmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>İşarə dəyişmir.</b> Mənfi ədədə vuranda və ya böləndə <span class="m">&gt;</span> ↔ <span class="m">&lt;</span>, <span class="m">≥</span> ↔ <span class="m">≤</span>. İkiqat bərabərsizlikdə <b>hər iki işarə</b> dönür.</li>
+        <li><b>Mötərizə.</b> Bərabərlik işarəsi (≤, ≥) olanda uc daxildir — kvadrat mötərizə; ciddi işarədə (&lt;, &gt;) — dairəvi. <span class="m">∞</span> yanında həmişə dairəvi.</li>
+        <li><b>Əmsala bölməyi unutmaq.</b> <span class="m">3x &gt; 12</span> → <span class="m">x &gt; 4</span>, 12 yox.</li>
+        <li><b>Sistem — kəsişmə.</b> "Və" hər ikisi ödənməli deməkdir. Birləşmə (heyət) — "və ya".</li>
+        <li><b>Say.</b> Uclar tam ədəddirsə: ikisi də daxildirsə tam ədədlərin sayı böyük uc − kiçik uc + 1; ikisi də daxil deyilsə böyük uc − kiçik uc − 1. Uc tam ədəd deyilsə (məs. 0,5 və 3,5) — ədədləri tək-tək say.</li>
+        <li><b>Natural ədəd</b> 1-dən başlayır: 0 natural deyil, mənfilər də.</li>
+        <li><b>Kvadrat kök.</b> <span class="m">√(a − bx)</span> mənalıdır, yəni <span class="m">a − bx ≥ 0</span> (sıfır ola bilər, uc daxildir).</li>
+        <li><b>Yuvarlaqlaşdırma.</b> "Ən çox" — aşağı tam hissə, "ən azı" — yuxarı tam hissə. <span class="m">x ≤ 20,95</span> → ən çox 20 (21 yox).</li>
+        <li><b>Üçbucaq.</b> Üçüncü tərəf <span class="m">|a − b| &lt; x &lt; a + b</span> — hər iki uc daxil deyil.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır, vahid yazılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">mənfiyə vur/böl:   işarə dönür (ikiqatda hər ikisi)
+≤, ≥ → kvadrat mötərizə;  &lt;, &gt; və ∞ → dairəvi
+sistem = kəsişmə;  heyət = birləşmə
+tam həllərin sayı = böyük uc − kiçik uc + 1 (uclar tam ədəd və daxildirsə)
+"ən çox" ↓ aşağı;  "ən azı" ↑ yuxarı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">−3x ≥ 12</span> bərabərsizliyinin həlli? <span class="ans">−3-ə bölürük, işarə dönür: x ≤ −4 → (−∞; −4].</span></li>
+        <li><span class="m">(−2; 5]</span> aralığında neçə tam ədəd var? <span class="ans">−1; 0; 1; …; 5 → 7 (−2 daxil deyil, 5 daxildir).</span></li>
+        <li><span class="m">√(5 − 2x)</span> ifadəsi neçə natural x üçün mənalıdır? <span class="ans">5 − 2x ≥ 0 → x ≤ 5/2 → natural: 1; 2 → 2 ədəd.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
