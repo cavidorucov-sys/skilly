@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kəsr əmsallar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Neçə kök? Parametr</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -300,6 +301,93 @@ Cavab sualın dediyi kəmiyyətdir.</div></div>
         <li>İki ədədin cəmi 50-dir, biri o birindən 8 çoxdur. Kiçik ədəd? <span class="ans">x + (x + 8) = 50 → 2x = 42 → x = 21. Ədədlər 21 və 29.</span></li>
         <li>Qələm 2 manat, dəftər 3 manatdır. Cəmi 10 əşya alındı, 24 manat ödənildi. Neçə qələm alınıb? <span class="ans">Qələm x, dəftər 10 − x: 2x + 3(10 − x) = 24 → 30 − x = 24 → x = 6. Yoxla: 12 + 12 = 24 ✓</span></li>
         <li>Ardıcıl dörd cüt ədədin cəmi 76-dır. Ən kiçiyi? <span class="ans">x + (x + 2) + (x + 4) + (x + 6) = 76 → 4x + 12 = 76 → x = 16. Ədədlər 16, 18, 20, 22.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: xətti tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Xətti tənlik buraxılış imtahanında hər il var və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: mötərizəni səhv açmaq, sağ tərəfi ortaq məxrəcə vurmamaq, ədədi köçürəndə işarəni dəyişməmək. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: tam və ya onluq kəsr (vergüllə). Cavab sahəsində mənfi işarə olmaya bilər, ona görə bu məşqlərdə cavablar müsbət seçilib.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: tənliyi qur, həll et, cavabı yoxla. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər tənlikdə əvvəl soruş: <b>mötərizənin qarşısında mənfi var?</b> və <b>kəsr varsa, sağ tərəfi də ortaq məxrəcə vurdum?</b> Səhvlərin çoxu bu iki yerdədir. Parametrli tənlikdə isə: <b>x-in əmsalı sıfır olanda sağ tərəf nəyə bərabərdir?</b></p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(x + 5)/2 − (x − 3)/3 = 3</span> tənliyini həll edin.</p>
+        <ol class="imt-opts"><li>−18</li><li>−3</li><li>1</li><li>9</li><li>39</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Ortaq məxrəc 6, hər iki tərəfi 6-ya vururuq:
+3(x + 5) − 2(x − 3) = 18
+3x + 15 − 2x + 6 = 18
+x + 21 = 18  →  x = −3
+Yoxla: 2/2 − (−6)/3 = 1 + 2 = 3 ✓
+Cavab: B) −3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) −18</b> — sağ tərəfdəki 3 ədədini 6-ya vurmamaq: <span class="m">x + 21 = 3</span>. Hər iki tərəf vurulur, "3" də.</li>
+        <li><b>C) 1</b> — vuruqları çarpaz qoymaq: <span class="m">2(x + 5) − 3(x − 3) = 18</span>. 6 : 2 = 3 birinci kəsrin vuruğudur, 6 : 3 = 2 — ikincinin.</li>
+        <li><b>D) 9</b> — mənfi mötərizədə yalnız x-in işarəsini dəyişmək: <span class="m">−2(x − 3) = −2x − 6</span> yazmaq, halbuki <span class="m">−2x + 6</span>. Onda <span class="m">x + 9 = 18</span>.</li>
+        <li><b>E) 39</b> — <span class="m">x + 21 = 18</span> tənliyində 21-i köçürəndə işarəni dəyişməmək: <span class="m">x = 18 + 21</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">a</span>-nın hansı qiymətində <span class="m">a(x − 2) = 3x + 4a − 18</span> tənliyinin sonsuz sayda kökü var?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Mötərizəni aç:  ax − 2a = 3x + 4a − 18
+x-li hədlər sola, qalanlar sağa:
+ax − 3x = 4a + 2a − 18
+(a − 3)x = 6a − 18 = 6(a − 3)
+Sonsuz sayda kök: x-in əmsalı da, sağ tərəf də 0:
+a − 3 = 0  →  a = 3
+Yoxla: a = 3 olanda 0·x = 6·0 = 0 ✓
+Cavab: 3</div>
+      <p>Yalnız əmsalı sıfra bərabər tutub dayanmaq olmaz: <b>sağ tərəfi də yoxla</b>. Sağ tərəf sıfırdırsa — sonsuz sayda kök, sıfır deyilsə — kök yoxdur. Digər <span class="m">a</span> qiymətlərində tənliyin bir kökü var: <span class="m">x = 6</span>. Kodlaşdırmada cavab <b>3</b> yazılır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Şagird kitabı üç gündə oxudu. Birinci gün kitabın 1/4 hissəsini, ikinci gün qalan səhifələrin 1/3 hissəsini, üçüncü gün isə qalan 90 səhifəni oxudu. Kitab neçə səhifədir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Kitab x səhifə olsun.
+   Birinci gün: x/4. Qaldı: x − x/4 = 3x/4.
+2) İkinci gün qalanın 1/3 hissəsi oxundu:
+   (3x/4) · 1/3 = x/4. Qaldı: 3x/4 − x/4 = x/2.
+3) Üçüncü gün qalan 90 səhifə oxundu:
+   x/2 = 90  →  x = 180.
+4) Yoxlama: birinci gün 45, qaldı 135; ikinci gün 45,
+   qaldı 90 ✓
+Cavab: 180 səhifə.</div>
+      <p>Bal meyarı konkret tapşırığa görə dəyişir; adətən bunlara baxılır: <b>tənliyin qurulması</b> (naməlumun seçilməsi, hər günün payı), <b>həll</b> və <b>cavab + yoxlama</b>. Həll yazılmadan yalnız "180" yazılsa, bal verilmir. Tipik səhv: ikinci gün "1/3" hissəni bütün kitabdan götürmək — o, <b>qalandan</b> götürülür.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Mənfi mötərizə.</b> <span class="m">−2(x − 3) = −2x + 6</span>. Mötərizədəki <b>hər</b> həddin işarəsi dəyişir, yalnız birincinin yox.</li>
+        <li><b>Ortaq məxrəc.</b> Sağ tərəfdəki ədədi də (və kəsrsiz hədləri də) ortaq məxrəcə vur. Vuruqları çarpaz qoyma: ortaq məxrəci məxrəcə böl.</li>
+        <li><b>Ədədi köçürəndə</b> işarə dəyişir: <span class="m">x + 21 = 18</span> → <span class="m">x = 18 − 21</span>, "18 + 21" yox.</li>
+        <li><b>Parametr.</b> Əmsal 0 olanda sağ tərəfə bax: ≠ 0 — kök yoxdur; = 0 — sonsuz sayda kök. <span class="m">(a² − 4)x = a + 2</span> kimi tənliklərdə iki "xüsusi" qiymətdən (<span class="m">a = 2</span> və <span class="m">a = −2</span>) biri bir hala, o biri o birinə düşür; hər iki qiymətə həmişə yoxlama apar.</li>
+        <li><b>İfadənin qiyməti.</b> Soruşulan kökün özü deyil, onunla qurulmuş ifadə ola bilər: kökü tapandan sonra ifadəyə qoy.</li>
+        <li><b>Kodlaşdırmada</b> cavab mənfi olmayan ədəddir (bu məşqlərdə müsbət); mətnli məsələdə sualın nəyi soruşduğuna bax (məs. "oğul indi neçə yaşındadır", "ata" yox).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">mötərizə:  mənfi qarşısında hər işarə dəyişir
+kəsr:      hər iki tərəfi ortaq məxrəcə vur (sağ tərəfi də)
+köçürmə:   işarə dəyişir
+parametr:  əmsal = 0 → sağ tərəfə bax (0 — sonsuz, ≠ 0 — yox)
+məsələ:    naməlum → tənlik → həll → yoxla → sualın cavabı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2(x − 3) − (x − 4) = 5</span>. x = ? <span class="ans">2x − 6 − x + 4 = 5 → x − 2 = 5 → x = 7 (−(x − 4) = −x + 4, "−x − 4" yox). Yoxla: 8 − 3 = 5 ✓</span></li>
+        <li><span class="m">x/2 + x/3 = 10</span>. x = ? <span class="ans">Hər iki tərəfi 6-ya vur: 3x + 2x = 60 → x = 12 (10-u da 6-ya vurmalısan). Yoxla: 6 + 4 = 10 ✓</span></li>
+        <li><span class="m">a</span>-nın hansı qiymətində <span class="m">(a² − 4)x = a + 2</span> tənliyinin kökü yoxdur? <span class="ans">a² − 4 = 0 → a = 2 və ya a = −2. a = 2: 0·x = 4 — kök yoxdur. a = −2: 0·x = 0 — sonsuz sayda kök. Cavab: a = 2.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

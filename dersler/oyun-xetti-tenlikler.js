@@ -147,6 +147,97 @@
 
   // "… → x = 7 → x = 7" (coefficient 1) → "… → x = 7"
   levels.forEach(l => { const g = l.gen; l.gen = () => { const q = g(); q.solution = String(q.solution).replace(/ → x = ([^\s→]+) → x = \1(?![\d/])/g, " → x = $1"); return q; }; });
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes (sign of a bracket, forgetting to multiply the right side, swapped factors, ...).
+  const { ae, again } = Oyun;
+  const D = x => { const r = Math.round(x * 1e4) / 1e4; return (r < 0 ? "−" : "") + String(Math.abs(r)).replace(".", ","); };
+  const isNice = (x, dp = 1) => isFinite(x) && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const PAIRS2 = [[2, 3], [3, 4], [2, 5], [3, 5], [4, 6], [6, 4], [3, 2], [5, 2], [2, 7], [6, 9]];
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: brackets with a minus in front of one of them
+    { tip: "qapali", gen: () => again(() => {
+      const A = rnd(2, 7), B = rnd(1, 6), p = rnd(1, 8), q = rnd(1, 8), r = nz(-9, 9); if (A === B) return null;
+      const k = A - B, E = k * r - A * p - B * q, R = E + A * p + B * q;
+      const w1 = (E + A * p - B * q) / k, w2 = (E + p + B * q) / k, w3 = (E - A * p - B * q) / k, w4 = (E + A * p + q) / k;
+      if (![r, w1, w2, w3, w4].every(x => isNice(x))) return null;
+      return mc(ae(r, [w1, w2, w3, w4]), { text: `${head(A, lin(p))}${tail(-B, "x + " + q)} = ${S(E)} tənliyini həll edin.`,
+        solution: `Mötərizələri aç: ${poly([[A, "x"], [-A * p, ""], [-B, "x"], [-B * q, ""]])} = ${S(E)} → ${coefX(k)} = ${S(R)}${k === 1 ? "" : " → x = " + S(r)}. Tələlər: mənfi mötərizədə yalnız x-in işarəsini dəyişmək (x = ${D(w1)}); ${A} ədədini ${p} ədədinə vurmağı unutmaq (x = ${D(w2)}); ədədi köçürəndə işarəni dəyişməmək (x = ${D(w3)}); ${B} ədədini ${q} ədədinə vurmamaq (x = ${D(w4)}).` });
+    }) },
+    // 2. closed: fractions, common denominator
+    { tip: "qapali", gen: () => again(() => {
+      const [m, n] = pick(PAIRS2), L = m * n / gcd(m, n), u = L / m, w = L / n, k = u - w; if (!k) return null;
+      const a = rnd(1, 9), b = rnd(1, 9), c = rnd(1, 6), R = c * L - u * a - w * b; if (R % k) return null; const r = R / k; if (!r || Math.abs(r) > 20) return null;
+      const w1 = (c - u * a - w * b) / k, w2 = (c * L - u * a + w * b) / k, w3 = (c * L - w * a - u * b) / (w - u), w4 = R / (u + w);
+      if (![r, w1, w2, w3, w4].every(x => isNice(x))) return null;
+      return mc(ae(r, [w1, w2, w3, w4]), { text: `(x + ${a})/${m} − (x − ${b})/${n} = ${c} tənliyini həll edin.`,
+        solution: `Ortaq məxrəc ${L}: ${u}(x + ${a}) − ${w}(x − ${b}) = ${c * L} → ${coefX(k)} = ${S(R)}${k === 1 ? "" : " → x = " + S(r)}. Tələlər: sağ tərəfdəki ${c} ədədini ${L} ədədinə vurmamaq (x = ${D(w1)}); −${w}(x − ${b}) açanda ${b} ədədinin işarəsini dəyişməmək (x = ${D(w2)}); vuruqları çarpaz səhv qoymaq: ${w}(x + ${a}) − ${u}(x − ${b}) (x = ${D(w3)}); mənfi mötərizədə x-in işarəsini dəyişməmək (x = ${D(w4)}).` });
+    }) },
+    // 3. closed: the value of an expression in the root
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 9), c = rnd(1, 8), r = nz(-8, 8), b = nz(-15, 15); if (a === c) return null;
+      const d = b + (a - c) * r, k = rnd(2, 5), t = nz(-9, 9), xw = (b + d) / (a - c);
+      const val = k * r + t, w = [r, k * (r + t), k * r, k * xw + t];
+      if (![val, xw, ...w].every(x => isNice(x))) return null;
+      return mc(ae(val, w), { text: `${poly([[a, "x"], [b, ""]])} = ${poly([[c, "x"], [d, ""]])} tənliyinin kökü x₀-dır. ${poly([[k, "x₀"], [t, ""]])} ifadəsinin qiymətini tapın.`,
+        solution: `${a - c === 1 ? "" : coefX(a - c) + " = " + S(d - b) + " → "}x₀ = ${S(r)}. İfadə: ${k}·${r < 0 ? "(" + S(r) + ")" : r} ${t < 0 ? "−" : "+"} ${Math.abs(t)} = ${S(val)}. Tələlər: kökü cavab yazmaq (${S(r)}); ${Math.abs(t)} ədədini də ${k} ədədinə vurmaq (${S(k * (r + t))}); ${t < 0 ? "−" : "+"}${Math.abs(t)} hissəsini unutmaq (${S(k * r)}); kökü səhv tapmaq — ${S(b)} ədədini köçürəndə işarəni dəyişməmək (x₀ = ${D(xw)}, ifadə ${D(k * xw + t)}).` });
+    }) },
+    // 4. closed: parameter, no root
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(2, 9), s = pick([1, -1]), ans = s * p;
+      const w = [-ans, p * p, 0, 2 * ans];
+      return mc(ae(ans, w, S), { text: `a-nın hansı qiymətində (a² − ${p * p})x = a ${s > 0 ? "+" : "−"} ${p} tənliyinin kökü yoxdur?`,
+        solution: `x-in əmsalı sıfır olmalıdır: a² − ${p * p} = 0 → a = ${p} və ya a = −${p}. a = ${S(ans)} olanda sağ tərəf ${S(2 * ans)} ≠ 0, yəni 0·x = ${S(2 * ans)} — kök yoxdur. a = ${S(-ans)} olanda sağ tərəf 0, yəni 0·x = 0 — sonsuz sayda kök. Tələlər: ${S(-ans)} (sonsuz sayda kök halı); ${p * p} (a² = ${p * p} sanıb a-nı ${p * p} yazmaq); 0; ${S(2 * ans)} (sağ tərəfin qiyməti).` });
+    }) },
+    // 5. closed: word problem (transfer of money)
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 5), V = rnd(3, 20) * 2, t = (k - 1) * V / 2, A = k * V; if (!Number.isInteger(t)) return null;
+      const w = [V, k * t / (k - 1), (k + 1) * V / 2, (k + 1) * 2 * t / k];
+      if (![A, ...w].every(x => isNice(x, 0) && x > 0)) return null;
+      return mc(ae(A, w), { text: `Əlinin pulu Vəlinin pulundan ${k} dəfə çoxdur. Əli Vəliyə ${t} manat verəndə onların pulları bərabər oldu. Əlinin əvvəlki pulu neçə manat idi?`,
+        solution: `Vəlinin pulu x, Əlinin ${k}x. Verəndən sonra: ${k}x − ${t} = x + ${t} → ${k - 1 === 1 ? "" : k - 1}x = ${2 * t} → x = ${V}. Əlinin pulu ${k}·${V} = ${A} manat. Tələlər: Vəlinin pulunu cavab yazmaq (${V}); Vəlinin aldığı ${t} manatı unutmaq (${D(k * t / (k - 1))}); verəndən sonrakı pulu yazmaq (${D((k + 1) * V / 2)}); "${k} dəfə çox"-u ${k + 1}x yazmaq (${D((k + 1) * 2 * t / k)}).` });
+    }) },
+    // 6. closed: root given, the parameter is asked
+    { tip: "qapali", gen: () => again(() => {
+      const r = nz(-6, 7), a = nz(-8, 8), c = nz(-6, 6); if (Math.abs(r) === 1) return null;
+      const ca = r - 1 === 1 ? "" : r - 1 === -1 ? "−" : S(r - 1), b = a * (r - 1) - c * r, w = [a * (r - 1) / (r + 1), (c * r - b) / (r - 1), a * (r - 1) / r, -a];
+      if (![a, ...w].every(x => isNice(x))) return null;
+      return mc(ae(a, w), { text: `x = ${S(r)} ədədi ${poly([[1, "ax"], [-b, ""]])} = ${poly([[c, "x"], [1, "a"]])} tənliyinin köküdür. a-nı tapın.`,
+        solution: `x = ${S(r)} yaz: ${S(r)}a ${b < 0 ? "+" : "−"} ${Math.abs(b)} = ${S(c * r)} + a. a-lı hədlər sola: ${S(r)}a − a = ${S(c * r + b)} → ${ca}a = ${S(c * r + b)} → a = ${S(a)}. Tələlər: a-nı köçürəndə işarəni səhv qoymaq (${S(r)}a + a, cavab ${D(w[0])}); ${S(-b)} həddinin işarəsini dəyişmədən köçürmək (${D(w[1])}); sağ tərəfdəki a-nı unutmaq (${D(w[2])}); ${ca}a = ${S(c * r + b)} tənliyində işarəni səhv bölmək (${S(-a)}).` });
+    }) },
+    // 7. coded: fractions, positive root
+    { tip: "kod", gen: () => again(() => {
+      const [m, n] = pick(PAIRS2), L = m * n / gcd(m, n), u = L / m, w = L / n, p = rnd(2, 4), k = u * p - w; if (!k) return null;
+      const a = nz(-9, 9), b = nz(-9, 9), r = rnd(2, 15), T = k * r + u * a + w * b; if (T % L) return null; const c = T / L;
+      return { text: `(${poly([[p, "x"], [a, ""]])})/${m} − (${lin(b)})/${n} = ${S(c)} tənliyini həll edin. x = ?`,
+        answer: r, show: String(r), tol: 1e-6, solution: `Ortaq məxrəc ${L}: ${u}(${poly([[p, "x"], [a, ""]])}) − ${w}(${lin(b)}) = ${S(c * L)} → ${poly([[u * p - w, "x"], [u * a + w * b, ""]])} = ${S(c * L)} → ${coefX(k)} = ${S(c * L - u * a - w * b)}${k === 1 ? "" : " → x = " + r}.` };
+    }) },
+    // 8. coded: parameter, infinitely many roots (positive answer)
+    { tip: "kod", gen: () => again(() => {
+      const k = rnd(2, 8), p = nz(-5, 5), m = rnd(-4, 4), n = -k * (p + m); if (p + m === 0) return null;
+      const right = poly([[k, "x"], [m, "a"], [n, ""]]);
+      return { text: `a-nın hansı qiymətində a(${lin(p)}) = ${right} tənliyinin sonsuz sayda kökü var?`,
+        answer: k, show: String(k), tol: 1e-6, solution: `Aç və qruplaşdır: ${poly([[1, "ax"], [-p, "a"]])} = ${right} → (a − ${k})x = ${poly([[p + m, "a"], [n, ""]])}. Sonsuz sayda kök üçün x-in əmsalı və sağ tərəf 0 olmalıdır: a = ${k}. Yoxla: sağ tərəf ${S(p + m)}·${k} ${n < 0 ? "−" : "+"} ${Math.abs(n)} = 0 ✓` };
+    }) },
+    // 9. coded: age problem
+    { tip: "kod", gen: () => again(() => {
+      const k = rnd(2, 5), m = rnd(k + 1, 9), s = rnd(8, 16), t = s * (m - k) / (m - 1); if (!Number.isInteger(t) || t >= s || k * s < 28 || k * s > 60) return null;
+      return { text: `Ata oğlundan ${k} dəfə böyükdür. ${t} il əvvəl ata oğlundan ${m} dəfə böyük idi. Oğul indi neçə yaşındadır?`,
+        answer: s, show: String(s), tol: 1e-6, unit: "yaş", solution: `Oğul indi x yaşında, ata ${k}x. ${t} il əvvəl: ${k}x − ${t} = ${m}(x − ${t}) → ${k}x − ${t} = ${m}x − ${m * t} → ${m - k === 1 ? "" : m - k}x = ${m * t - t} → x = ${s}. Yoxla: ata ${k * s}; ${t} il əvvəl ${k * s - t} və ${s - t}, ${k * s - t} = ${m}·${s - t} ✓` };
+    }) },
+    // 10. written: fractions of the rest (book pages)
+    { tip: "yazili", gen: () => again(() => {
+      const [a, b] = pick([[1, 4], [1, 5], [2, 5], [1, 3], [3, 8]]), [c, d] = pick([[1, 3], [1, 2], [2, 3], [3, 5], [1, 4]]);
+      const x = b * d * rnd(1, 3), day1 = x * a / b, rest1 = x - day1, day2 = rest1 * c / d, R = rest1 - day2;
+      if (![x, day1, rest1, day2, R].every(v => Number.isInteger(v)) || R < 10 || x > 300) return null;
+      return { text: `Şagird kitabı üç gündə oxudu. Birinci gün kitabın ${a}/${b} hissəsini, ikinci gün qalan səhifələrin ${c}/${d} hissəsini, üçüncü gün isə qalan ${R} səhifəni oxudu. Kitab neçə səhifədir?`,
+        answer: x, show: String(x), tol: 1e-6, unit: "səhifə",
+        solution: `1) Kitab x səhifədir. Birinci gün ${a}x/${b} oxundu, qaldı x − ${a}x/${b} = ${b - a}x/${b}. 2) İkinci gün qalanın ${c}/${d} hissəsi oxundu, üçüncü gün qalan ${R}: ${b - a}x/${b} · (1 − ${c}/${d}) = ${R}. 3) Hesabla: x = ${R} : (${b - a}/${b} · ${d - c}/${d}) = ${x}. Yoxla: birinci gün ${day1}, qaldı ${rest1}; ikinci gün ${day2}, qaldı ${R} ✓. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -156,7 +247,7 @@
     game = Oyun.mount({
       key: "xetti-tenlikler", title: "Xətti tənliklər", fenn: "riyaziyyat", link: "dersler/xetti-tenlikler.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2 (onluq 2.5 də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["sade", "moterize", "moterize", "kesrli", "kesrli", "parametr", "parametr", "parametr", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
