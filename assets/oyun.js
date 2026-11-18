@@ -233,7 +233,14 @@
     function drawTest() {
       if (!testRoot) return;
       if (imtBusy) { testRoot.replaceChildren(imtRoot); return; } // an exam-format test is running: keep it on screen
-      drawTestOld(); drawImt(); testRoot.append(imtRoot);
+      drawTestOld(); drawImt();
+      // the topic's state on top, so a passed old test plus a passed exam-format test read as "fully closed" (father, 18 Nov 2026)
+      if (inBag()) {
+        const tam = (() => { try { return JSON.parse(localStorage.getItem("skilly-tam") || "[]").includes(cfg.link); } catch (e) { return false; } })();
+        const full = !IMT || (st.imt && st.imt.passed) || tam;
+        testRoot.prepend(h("div", { class: "oy-done" + (full ? "" : " no") }, h("b", {}, full ? "Mövzu tam bağlanıb ✓" : "Mövzu qismən bağlanıb — imtahan formatlı sınaq qalıb")));
+      }
+      testRoot.append(imtRoot);
     }
     function drawTestOld() {
       // the test needs the whole game: every level mastered and the Boss passed
@@ -260,6 +267,13 @@
           h("button", { type: "button", class: "btn", on: { click: () => runReview(r) } }, "Başla")));
         return;
       }
+      // closed by the old test and the topic has an exam-format test: the old one is done, only the new one is the next step
+      // (a "Start again" button here led to retaking the old test instead of the new one — father, 18 Nov 2026)
+      if (IMT && inBag()) {
+        testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Yekun sınaq"),
+          h("p", { class: "oy-fmt" }, "Keçilib ✓" + (last && last.passed ? " — ilk cəhddə düz: " + last.bal + " / " + cfg.test.n : "") + ". Yenidən yazmaq lazım deyil.")));
+        return;
+      }
       testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Yekun sınaq"),
         h("p", {}, cfg.test.n + " sual, ədədlər təsadüfidir. Hər sual düz cavablanmalıdır: səhv olsa, sual qalır — düzünü tapana qədər. Hamısı düz olanda mövzu bağlanır. Kağız və qələm yanında olsun."),
         last ? h("p", { class: "oy-fmt" }, last.passed ? "Bitib ✓ — ilk cəhddə düz: " + last.bal + " / " + cfg.test.n : "Son cəhd: " + last.bal + " / " + cfg.test.n) : null,
@@ -283,8 +297,12 @@
       const missed = qs.filter((x, i) => res[i].wrong).map(x => x.id);
       report("test", { bal, max: cfg.test.n, qeyd: "keçdi; ilk cəhddə " + bal + "/" + cfg.test.n + (missed.length ? "; səhv cəhd: " + missed.join(", ") : "") });
       if (cfg.onPass) cfg.onPass();
+      // closed now, on this page too (the sync would add it only on the next load)
+      if (!(window.Skilly && Skilly.viewer && Skilly.viewer())) try { const b = JSON.parse(localStorage.getItem("skilly-bag") || "[]"); if (!b.includes(cfg.link)) { b.push(cfg.link); localStorage.setItem("skilly-bag", JSON.stringify(b)); } } catch (e) {}
       if (window.Skilly) Skilly.planReview(cfg.key, cfg.link, cfg.title);
-      testRoot.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "Sınaq bitdi — mövzu bağlandı ✓"),
+      const part = IMT && !(st.imt && st.imt.passed);
+      testRoot.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, part ? "Sınaq bitdi — mövzu qismən bağlandı. Tam bağlanması üçün imtahan formatlı sınaq qalıb." : "Sınaq bitdi — mövzu bağlandı ✓"),
+        part ? h("button", { type: "button", class: "btn", on: { click: () => drawTest() } }, "İmtahan formatlı sınağa keç →") : null,
         h("p", {}, "İlk cəhddə düz: " + bal + " / " + cfg.test.n + "."),
         h("ol", { class: "oy-review" }, ...qs.map((x, i) => h("li", { class: res[i].wrong ? "no" : "ok" }, (res[i].wrong ? "↻ " : "✓ ") + (typeof x.q.text === "string" ? x.q.text : x.q.text.textContent) + (res[i].wrong ? " — " + res[i].wrong + " səhv cəhddən sonra düz" : "")))),
         h("p", {}, "Bir həftə sonra 3 suallıq yaddaş yoxlaması gələcək.")));

@@ -519,10 +519,10 @@ async function pageCalendar() {
     res.forEach(x => { const m = String(x.id).match(/^(.+)-(test|baglandi|imtahan)@\d+$/);
       if (m && x.tarix && (m[2] === "baglandi" || /^keçdi/.test(x.qeyd || ""))) { const l = "dersler/" + m[1] + ".html", o = m[2] === "imtahan" ? fullOn : closedOn; if (!o[l] || x.tarix > o[l]) o[l] = x.tarix; } });
     const full = t => isClosed(t) && fullDone(t.ders);
-    for (const l in closedOn) { const t = byLink[l]; if (!t || !isClosed(t) || (full(t) && fullOn[l] && fullOn[l] <= closedOn[l])) continue;
+    for (const l in closedOn) { const t = byLink[l]; if (!t || !isClosed(t) || (IMT_LINKS.has(l) && full(t) && fullOn[l])) continue; // fully closed: only the exam-format test's day (father, 18 Nov 2026)
       if (!IMT_LINKS.has(l)) add(closedOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "mövzu bağlandı" });
       else add(closedOn[l], { kat: t.kat, is: "Qismən bağlandı: " + t.ad, link: l, st: ST.qis, qeyd: full(t) ? "köhnə sınaq; imtahan formatlı sınaq " + t2(fullOn[l] || closedOn[l]) : "köhnə sınaq keçildi — imtahan formatlı sınaq qalıb" }); }
-    for (const l in fullOn) { const t = byLink[l]; if (t && full(t)) add(fullOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "imtahan formatlı sınaq keçildi — mövzu tam bağlandı" }); }
+    for (const l in fullOn) { const t = byLink[l]; if (t && full(t)) add(fullOn[l], { kat: t.kat, is: "Bağlandı: " + t.ad, link: l, st: ST.bag, qeyd: "imtahan formatlı sınaq keçildi — mövzu tam bağlandı" + (closedOn[l] && closedOn[l] < fullOn[l] ? " (köhnə sınaq " + t2(closedOn[l]) + ")" : "") }); }
     // a topic counts as started once any of its results exists (entry test, game, test)
     const started = new Set(res.map(x => (String(x.id).match(/^(.+)-[a-z]+@/) || [])[1]).filter(Boolean).map(k => "dersler/" + k + ".html"));
     for (const k in ev) ev[k].forEach(e => { const t = e.link && byLink[e.link]; if (t && !CLOSED_EV.test(e.is)) {
