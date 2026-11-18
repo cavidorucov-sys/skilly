@@ -22,14 +22,15 @@
   function plot(o) {
     const [x0, x1] = o.x, [y0, y1] = o.y;
     const u = o.u || Math.max(14, Math.min(26, Math.floor(280 / (x1 - x0))));
+    const uy = o.uy || u, gy = o.gy || 1;                                        // optional separate vertical unit / horizontal grid step
     const pl = x0 >= 0 ? 26 : 16, pr = 16, pt = 16, pb = y0 >= 0 ? 20 : 16;
-    const W = (x1 - x0) * u + pl + pr, H = (y1 - y0) * u + pt + pb;
-    const X = x => +(pl + (x - x0) * u).toFixed(1), Y = y => +(pt + (y1 - y) * u).toFixed(1);
+    const W = (x1 - x0) * u + pl + pr, H = (y1 - y0) * uy + pt + pb;
+    const X = x => +(pl + (x - x0) * u).toFixed(1), Y = y => +(pt + (y1 - y) * uy).toFixed(1);
     const id = "pc" + (++PID) + "x" + Math.floor(Math.random() * 1e6);
     const M = n => n < 0 ? "−" + (-n) : String(n);
     let s = "";
     for (let x = Math.ceil(x0); x <= x1; x++) s += `<line x1="${X(x)}" y1="${Y(y1)}" x2="${X(x)}" y2="${Y(y0)}" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/>`;
-    for (let y = Math.ceil(y0); y <= y1; y++) s += `<line x1="${X(x0)}" y1="${Y(y)}" x2="${X(x1)}" y2="${Y(y)}" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/>`;
+    for (let y = Math.ceil(y0 / gy) * gy; y <= y1; y += gy) s += `<line x1="${X(x0)}" y1="${Y(y)}" x2="${X(x1)}" y2="${Y(y)}" stroke="var(--bubble)" stroke-opacity=".4" stroke-width="1"/>`;
     const ax = Y(0), ay = X(0), xe = X(x1) + 10, ye = Y(y1) - 10;
     s += `<line x1="${X(x0)}" y1="${ax}" x2="${xe}" y2="${ax}" stroke="var(--ink)" stroke-width="1.5"/><path d="M${xe - 7} ${ax - 4}L${xe} ${ax}L${xe - 7} ${ax + 4}" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`;
     s += `<line x1="${ay}" y1="${Y(y0)}" x2="${ay}" y2="${ye}" stroke="var(--ink)" stroke-width="1.5"/><path d="M${ay - 4} ${ye + 7}L${ay} ${ye}L${ay + 4} ${ye + 7}" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`;
@@ -228,6 +229,106 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sign of k, a + b instead of a·b, √a + √b = √(a + b), the extraneous root, ...).
+  const { ae, again } = Oyun;
+  const nc = x => isFinite(x) && Math.abs(x) <= 5000 && Math.abs(x * 2 - Math.round(x * 2)) < 1e-9;   // "nice": integer or .5
+  const br = n => n < 0 ? "(" + S(n) + ")" : String(n);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const fml = s => s;                                                                                 // options that are already text
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: formula of a hyperbola from a point on its graph
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([-1, 1]) * rnd(1, 6), b = pick([-1, 1]) * rnd(1, 6), k = a * b; if (Math.abs(k) < 3 || a + b === 0) return null;
+      const c = Math.random() < .5 ? a : b;
+      const right = `y = ${S(k)}/x`, w = [`y = ${S(-k)}/x`, `y = ${S(a + b)}/x`, `y = ${S(k)}x`, `y = ${S(c)}/x`];
+      return mc(ae(right, w, fml), { text: `Şəkildə y = k/x funksiyasının qrafiki və ona aid A${P(a, b)} nöqtəsi verilib. Funksiyanın düsturu hansıdır?`,
+        svg: svgEl({ x: [-7, 7], y: [-6, 6], f: hyp(k), pts: [{ x: a, y: b, t: "A" }] }, "y = k/x hiperbolası və A nöqtəsi"),
+        solution: `A${P(a, b)} qrafikə aiddir: b = k/a, yəni k = a·b = ${S(a)}·${br(b)} = ${S(k)}. Düstur: y = ${S(k)}/x. Tələlər: işarəni səhv götürmək (y = ${S(-k)}/x); k-nı koordinatların cəmi saymaq (${S(a + b)}); tərs mütənasibliyi düz kimi yazmaq (y = ${S(k)}x); yalnız bir koordinatı k saymaq (${S(c)}).` });
+    }) },
+    // 2. closed: y = √x — the sum of two square roots is not the root of the sum
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q] = pick([[3, 4], [4, 3], [6, 8], [8, 6], [5, 12], [12, 5], [9, 12], [12, 9], [8, 15], [15, 8]]);
+      const right = p + q, w = [Math.sqrt(p * p + q * q), p * p + q * q, (p + q) ** 2, p * q];
+      return mc(ae(right, w), { text: `y = √x funksiyasının qrafikində absisləri ${p * p} və ${q * q} olan iki nöqtə var. Bu nöqtələrin ordinatlarının cəmini tap.`,
+        solution: `Ordinatlar: √${p * p} = ${p} və √${q * q} = ${q}. Cəm: ${p} + ${q} = ${right}. Tələlər: √a + √b = √(a + b) yazmaq (√${p * p + q * q} = ${w[0]}); absislərin cəmi (${p * p + q * q}); cəmin kvadratı (${(p + q) ** 2}); hasil (${p * q}).` });
+    }) },
+    // 3. closed: y = |x| — the largest plus the smallest value on a segment
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(1, 8), b = rnd(1, 8); if (a === b) return null;
+      const right = Math.max(a, b), w = [a + b, Math.abs(a - b), Math.min(a, b), 0];
+      return mc(ae(right, w), { text: `Şəkildə y = |x| funksiyasının qrafiki verilib. Bu funksiyanın [−${a}; ${b}] parçasında ən böyük və ən kiçik qiymətlərinin cəmini tap.`,
+        svg: svgEl({ x: [-9, 9], y: [-1, 9], f: [{ f: Math.abs }], vl: [{ x: -a }, { x: b }] }, "y = |x| qrafiki və parçanın uc nöqtələri"),
+        solution: `Parçaya 0 daxildir: ən kiçik qiymət |0| = 0. Ən böyük qiymət uclardan birindədir: |−${a}| = ${a}, |${b}| = ${b} → ${right}. Cəm: ${right} + 0 = ${right}. Tələlər: iki uc qiymətini toplamaq (${a + b}); uc qiymətlərinin fərqi (${Math.abs(a - b)}); kiçik ucu götürmək (${Math.min(a, b)}); yalnız ən kiçik qiymət (0).` });
+    }) },
+    // 4. closed: y = x³ and a line through the origin — the ordinate of the positive intersection point
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([2, 3, 4]), m = n * n, Y = n ** 3 + n, right = n ** 3, w = [n, m, -(n ** 3), n ** 6];
+      return mc(ae(right, w), { text: `Şəkildə y = x³ və y = ${m}x funksiyalarının qrafikləri verilib. Qrafiklərin müsbət absisli kəsişmə nöqtəsinin ordinatını tap.`,
+        svg: svgEl({ x: [-(n + 1), n + 1], y: [-Y, Y], uy: Math.floor(300 / (2 * Y)), ty: 1000, gy: 1000, f: [{ f: x => x ** 3, a: -(n + 1), b: n + 1 }, { f: x => m * x, c: "var(--vec)" }], pts: [{ x: n, y: n ** 3, t: "A" }, { x: -n, y: -(n ** 3), t: "B", dx: -14, dy: 14 }] }, "y = x³ və düz xəttin kəsişmə nöqtələri"),
+        solution: `x³ = ${m}x → x(x² − ${m}) = 0 → x = 0, x = ${n}, x = −${n}. Müsbət absis: x = ${n}; ordinat y = ${n}³ = ${right}. Tələlər: absisi (${n}) yazmaq; düz xəttin əmsalını (${m}); mənfi absisli nöqtənin ordinatı (−${right}); x əvəzinə ${m} götürüb ${m}³ = ${n ** 6} yazmaq.` });
+    }) },
+    // 5. closed: y = −K/x on a segment — k < 0, the function increases for x > 0
+    { tip: "qapali", gen: () => again(() => {
+      const K = pick([12, 24]), ds = (K === 12 ? [1, 2, 3, 4, 6] : [2, 3, 4, 6, 8]), p = pick(ds), q = pick(ds); if (p >= q) return null;
+      const right = -K / q, w = [-K / p, K / q, K / p, (-K / p - K / q) / 2];
+      if (!nc(right) || !w.every(nc)) return null;
+      return mc(ae(right, w), { text: `Şəkildə y = −${K}/x funksiyasının qrafiki verilib. Bu funksiyanın [${p}; ${q}] parçasında ən böyük qiymətini tap.`,
+        svg: svgEl({ x: [-(q + 1), q + 1], y: [-(K / p + 1), K / p + 1], uy: Math.max(8, Math.floor(280 / (2 * (K / p + 1)))), f: [{ f: x => -K / x, a: -(q + 1), b: -0.02 }, { f: x => -K / x, a: 0.02, b: q + 1 }], vl: [{ x: p }, { x: q }] }, `y = −${K}/x hiperbolası və parçanın uc nöqtələri`),
+        solution: `k = −${K} < 0, x > 0 olanda funksiya artır — ən böyük qiymət sağ ucda: x = ${q} olanda −${K}/${q} = ${S(right)}. Tələlər: funksiyanı azalan sanıb sol ucu götürmək (${S(-K / p)}); işarəni itirmək (${K / q}); k > 0 kimi (${K / p}); uc qiymətlərinin ortası (${D(w[3])}).` });
+    }) },
+    // 6. closed: inverse proportion in a word problem (more workers, fewer days)
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(2, 8), k = rnd(1, 6), T = rnd(3, 24) * 2, m = n + k, right = n * T / m, w = [n * T / k, T * m / n, T - k, n * T];
+      if (!nc(right) || !w.every(nc)) return null;
+      return mc(ae(right, w), { text: `${n} usta eyni sürətlə işləyərək tapşırığı ${T} günə yerinə yetirir. İşə başlamazdan əvvəl onlara daha ${k} usta qoşulsa (hamısı eyni sürətlə işləyir), tapşırıq neçə günə yerinə yetirilər?`,
+        solution: `İşin həcmi: ${n}·${T} = ${n * T} "usta-gün". Ustalar ${m} nəfər olanda gün sayı ${n * T}/${m} = ${D(right)} olur (usta çox — gün az: tərs mütənasiblik). Tələlər: yalnız yeni gələnləri saymaq (${n * T}/${k} = ${D(w[0])}); düz mütənasiblik (${T}·${m}/${n} = ${D(w[1])}); çıxmaq (${T} − ${k} = ${T - k}); ustaların sayını bölməmək (${n * T}).` });
+    }) },
+    // 7. coded: hyperbola and a line y = x + b — the squared distance between the intersection points
+    { tip: "kod", gen: () => again(() => {
+      const r1 = pick([-1, 1]) * rnd(1, 4), r2 = pick([-1, 1]) * rnd(1, 4); if (r1 >= r2) return null;
+      const K = -r1 * r2, b = -(r1 + r2), d = r2 - r1, R = 2 * d * d;
+      return { text: `Şəkildə y = ${S(K)}/x və y = ${poly([[1, "x"], [b, ""]])} funksiyalarının qrafikləri verilib. Qrafiklərin kəsişmə nöqtələri A və B-dir. AB məsafəsinin kvadratını tap.`,
+        svg: svgEl({ x: [-7, 7], y: [-6, 6], f: [...hyp(K), { f: x => x + b, c: "var(--vec)" }], pts: [{ x: r1, y: -r2, t: "A" }, { x: r2, y: -r1, t: "B" }] }, "hiperbola və düz xəttin A, B kəsişmə nöqtələri"),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `${S(K)}/x = x ${b < 0 ? "−" : "+"} ${Math.abs(b)} → x-ə vur: ${poly([[1, "x²"], [b, "x"], [-K, ""]])} = 0 → x = ${S(r1)} və x = ${S(r2)}. Nöqtələr: A(${S(r1)}; ${S(-r2)}), B(${S(r2)}; ${S(-r1)}). Absis fərqi ${d}, ordinat fərqi ${d}: AB² = ${d}² + ${d}² = ${R}. Tələ: yalnız bir fərqin kvadratını (${d * d}) yazmaq.` };
+    }) },
+    // 8. coded: y = x³ and y = K/x with K = n⁴ — x⁴ = K
+    { tip: "kod", gen: () => again(() => {
+      const n = rnd(2, 9), K = n ** 4, ask = rnd(0, 2);
+      const R = [n + n ** 3, n ** 3 - n, n * n][ask], what = ["absisi ilə ordinatının cəmini", "ordinatı ilə absisinin fərqini (ordinat − absis)", "ordinatının absisinə nisbətini"][ask];
+      const fin = [`Cəm: ${n} + ${n ** 3} = ${R}.`, `Fərq: ${n ** 3} − ${n} = ${R}.`, `Nisbət: ${n ** 3} : ${n} = ${R}.`][ask];
+      return { text: `y = x³ və y = ${K}/x funksiyalarının qrafikləri iki nöqtədə kəsişir. Müsbət absisli kəsişmə nöqtəsinin ${what} tap.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `x³ = ${K}/x → x-ə vur: x⁴ = ${K} → x = ${n} və x = −${n} (${n}⁴ = ${K}). Müsbət absis x = ${n}, ordinat y = ${n}³ = ${n ** 3}. ${fin} Tələ: x⁴ = ${K} bərabərliyindən x = ${D(K / 4)} yazmaq.` };
+    }) },
+    // 9. coded: y = |x| and y = c — the area of the triangle AOB
+    { tip: "kod", gen: () => again(() => {
+      const c = rnd(3, 24), R = c * c, st = c > 12 ? 4 : c > 8 ? 2 : 1;
+      return { text: `Şəkildə y = |x| və y = ${c} funksiyalarının qrafikləri verilib. Qrafiklər A və B nöqtələrində kəsişir, O koordinat başlanğıcıdır. AOB üçbucağının sahəsini tap.`,
+        svg: svgEl({ x: [-(c + 1), c + 1], y: [-1, c + 2], u: Math.max(6, Math.min(26, Math.floor(280 / (2 * c + 2)))), tx: st, ty: st, f: [{ f: Math.abs }, { f: () => c, c: "var(--vec)" }], pts: [{ x: -c, y: c, t: "A", dx: -14 }, { x: c, y: c, t: "B" }, { x: 0, y: 0, c: "var(--ink)" }] }, "y = |x| və y = c qrafikləri, AOB üçbucağı"),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `|x| = ${c} → x = ±${c}: A(−${c}; ${c}), B(${c}; ${c}). Əsas AB = 2·${c} = ${2 * c}, hündürlük = ${c} (O-dan y = ${c} xəttinə qədər). S = ½ · ${2 * c} · ${c} = ${R}. Tələ: əsası ${c} götürmək (nəticə ${D(R / 2)}).` };
+    }) },
+    // 10. written: y = √x and a line x − m or c − x — squaring and rejecting the extraneous root
+    { tip: "yazili", gen: () => again(() => {
+      const t = rnd(2, 6), fam = rnd(0, 1), ask = rnd(0, 2), x = t * t, y = t;
+      const m = fam ? t * t + t : t * t - t, line = fam ? `${m} − x` : `x − ${m}`, bad = fam ? (t + 1) ** 2 : (t - 1) ** 2;
+      const R = fam ? [x * y, x - y, x * x + y * y][ask] : [x + y, x * y, x * x + y * y][ask];
+      const what = fam ? ["absisi ilə ordinatının hasilini", "absisi ilə ordinatının fərqini (absis − ordinat)", "absisinin kvadratı ilə ordinatının kvadratının cəmini"][ask]
+        : ["absisi ilə ordinatının cəmini", "absisi ilə ordinatının hasilini", "absisinin kvadratı ilə ordinatının kvadratının cəmini"][ask];
+      const fin = fam ? [`${x} · ${y} = ${R}`, `${x} − ${y} = ${R}`, `${x}² + ${y}² = ${R}`][ask] : [`${x} + ${y} = ${R}`, `${x} · ${y} = ${R}`, `${x}² + ${y}² = ${R}`][ask];
+      const sq = fam ? `x = (${m} − x)² → x² − ${2 * m + 1}x + ${m * m} = 0` : `x = (x − ${m})² → x² − ${2 * m + 1}x + ${m * m} = 0`;
+      const chk = fam ? `${m} − ${bad} = ${S(m - bad)}` : `${bad} − ${m} = ${S(bad - m)}`;
+      return { text: `Şəkildə y = √x və y = ${line} funksiyalarının qrafikləri verilib. Qrafiklərin kəsişmə nöqtəsinin ${what} tap. Həllini addım-addım yaz.`,
+        svg: svgEl({ x: [-1, x + 3], y: [-4, t + 3], u: Math.max(8, Math.min(26, Math.floor(300 / (x + 4)))), f: [{ f: Math.sqrt, a: 0 }, { f: u => fam ? m - u : u - m, c: "var(--vec)" }] }, `y = √x və y = ${line} qrafikləri`),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `1) Kəsişmədə √x = ${line}. 2) Kvadrata yüksəlt: ${sq} → x = ${x} və x = ${bad}. 3) Yoxla: x = ${bad} olanda √x = ${Math.sqrt(bad)}, amma ${line.replace("x", bad)} = ${S(fam ? m - bad : bad - m)} — kənar kök. x = ${x}: √${x} = ${t}, ${line.replace("x", x)} = ${t} ✓. 4) Nöqtə (${x}; ${y}), cavab: ${fin}. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: tənlik, kökləri, kənar kökün rədd edilməsi və cavab ayrıca qiymətləndirilir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -237,7 +338,7 @@
     game = Oyun.mount({
       key: "esas-funksiyalar", title: "y = k/x, y = √x, y = |x|, y = x³ funksiyaları", fenn: "riyaziyyat", link: "dersler/esas-funksiyalar.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr −3/2, kök 2√3.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["tani", "k", "k", "kok", "minmax", "minmax", "kesisme", "kesisme", "kesisme", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
