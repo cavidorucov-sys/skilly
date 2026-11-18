@@ -12,6 +12,7 @@
   const FREE = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15];                     // square-free radicands
   const kr = (k, n) => n === 1 ? S(k) : (k === 1 ? "" : k === -1 ? "−" : S(k)) + "√" + n;   // k√n as text
   const simp = m => { let k = 1; for (let d = 2; d * d <= m; d++) while (m % (d * d) === 0) { m /= d * d; k *= d; } return [k, m]; };   // √m = k√n
+  const isNice = (x, dp = 2) => Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
   const isSq = n => Number.isInteger(Math.sqrt(n));
   const SUP = { 1: "", 2: "²", 3: "³", 4: "⁴", 6: "⁶", 8: "⁸" };
 
@@ -195,6 +196,101 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (no modulus, split root of a sum, wrong conjugate, forgotten middle term, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const ex = (c0, c1, n) => { const t = kr(Math.abs(c1), n); return c0 === 0 ? (c1 < 0 ? "−" : "") + t : S(c0) + (c1 < 0 ? " − " : " + ") + t; };   // c0 + c1√n as text
+  const id = x => x;
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. √(a²) = |a| with an irrational number inside
+    { tip: "qapali", gen: () => again(() => {
+      let p; do { p = rnd(3, 60); } while (isSq(p));
+      const q = Math.floor(Math.sqrt(p));
+      return mc(ae(ex(0, 1, p), [ex(2 * q, -1, p), ex(2 * q, 1, p), ex(-2 * q, 1, p), ex(q, 1, p)], id),
+        { text: `√((${q} − √${p})²) + ${q} ifadəsinin qiymətini tapın.`,
+          solution: `√(a²) = |a|. ${q} = √${q * q} < √${p}, ona görə ${q} − √${p} mənfidir və |${q} − √${p}| = √${p} − ${q}. Cavab: √${p} − ${q} + ${q} = √${p}. Tələ: modulsuz yazmaq (${q} − √${p} + ${q} = ${ex(2 * q, -1, p)}); modulu açanda işarəni səhv qoymaq (${ex(2 * q, 1, p)}, ${ex(-2 * q, 1, p)}).` });
+    }) },
+    // 2. several roots → one k√n
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([2, 3, 5, 7]), k1 = rnd(2, 9), k2 = rnd(2, 9), k3 = rnd(2, 9), K = k1 - k2 + k3;
+      if (K <= 0 || k1 === k2 || k3 === k2 || k1 - k2 - k3 === 0 || k1 * k1 - k2 * k2 + k3 * k3 <= 0) return null;
+      const [t, m] = simp(n * (k1 * k1 - k2 * k2 + k3 * k3));
+      return mc(ae(kr(K, n), [kr(t, m), kr(k1 + k2 + k3, n), kr(k1 - k2 - k3, n), String(K)], id),
+        { text: `√${k1 * k1 * n} − √${k2 * k2 * n} + √${k3 * k3 * n} ifadəsini sadələşdirin.`,
+          solution: `√${k1 * k1 * n} = ${kr(k1, n)}, √${k2 * k2 * n} = ${kr(k2, n)}, √${k3 * k3 * n} = ${kr(k3, n)}. Bənzər köklər: (${k1} − ${k2} + ${k3})√${n} = ${kr(K, n)}. Tələ: kök altındakıları birləşdirmək (${k1 * k1 * n} − ${k2 * k2 * n} + ${k3 * k3 * n} kök altında → ${kr(t, m)}), işarəni səhv qoymaq, √${n} vuruğunu atıb yalnız əmsalı yazmaq (${K}).` });
+    }) },
+    // 3. rationalise k/(√a − √b)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(FREE), b = pick(FREE); if (a <= b || a - b < 2) return null;
+      const d = a - b, m = rnd(1, 4), c = d * m;
+      return mc(ae(`${kr(m, a)} + ${kr(m, b)}`, [`${kr(m, a)} − ${kr(m, b)}`, `${kr(c, a)} + ${kr(c, b)}`, String(m), `−${kr(m, a)} − ${kr(m, b)}`], id),
+        { text: `${c}/(√${a} − √${b}) ifadəsini sadələşdirin.`,
+          solution: `Surəti və məxrəci qoşma ifadəyə (√${a} + √${b}) vururuq: ${c}(√${a} + √${b})/((√${a})² − (√${b})²) = ${c}(√${a} + √${b})/${d} = ${kr(m, a)} + ${kr(m, b)}. Tələ: qoşmanı səhv seçmək (${kr(m, a)} − ${kr(m, b)}), alınan məxrəcə (${d}) bölməyi unutmaq (${kr(c, a)} + ${kr(c, b)}), surətə vurmağı unutmaq (${c}/${d} = ${m}), məxrəci b − a kimi yazmaq (−${kr(m, a)} − ${kr(m, b)}).` });
+    }) },
+    // 4. (a ± √b)² — the middle term
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 7), b = pick(FREE), s = pick([1, -1]);
+      return mc(ae(ex(a * a + b, 2 * s * a, b), [String(a * a + b), ex(a * a + b, s * a, b), ex(a * a + b, -2 * s * a, b), ex(a * a, 2 * s * a + 1, b)], id),
+        { text: `(${a} ${s > 0 ? "+" : "−"} √${b})² ifadəsini sadələşdirin.`,
+          solution: `(x ${s > 0 ? "+" : "−"} y)² = x² ${s > 0 ? "+" : "−"} 2xy + y². ${a}² = ${a * a}, (√${b})² = ${b}, 2·${a}·√${b} = ${kr(2 * a, b)}. Cavab: ${ex(a * a + b, 2 * s * a, b)}. Tələ: orta həddi unutmaq (${a * a + b}), orta həddi 2-siz yazmaq (${ex(a * a + b, s * a, b)}), işarəni dəyişmək (${ex(a * a + b, -2 * s * a, b)}), (√${b})² əvəzinə √${b} yazmaq (${ex(a * a, 2 * s * a + 1, b)}).` });
+    }) },
+    // 5. √(a² + b²) ≠ a + b
+    { tip: "qapali", gen: () => again(() => {
+      const [a0, b0, h0] = pick(TRIPLES), [d0, e0, c0] = pick(TRIPLES), k = pick([1, 1, 2]), l = pick([1, 1, 2]);
+      const a = k * a0, b = k * b0, h = k * h0, d = l * d0, e = l * e0, c = l * c0;
+      if (c > 45 || h > 45 || h <= e) return null;
+      const w = [(a + b) - (c - d), h - (c - d), (a + b) - e, h + e];
+      return mc(ae(h - e, w), { text: `√(${a}² + ${b}²) − √(${c}² − ${d}²) ifadəsinin qiymətini tapın.`,
+        solution: `${a}² + ${b}² = ${a * a + b * b} = ${h}², ona görə √(${a}² + ${b}²) = ${h}. ${c}² − ${d}² = ${c * c - d * d} = ${e}², √(${c}² − ${d}²) = ${e}. Cavab: ${h} − ${e} = ${h - e}. Tələ: cəmin və ya fərqin kökünü ayrıca köklərin cəmi/fərqi kimi yazmaq: √(${a}² + ${b}²) ≠ ${a} + ${b}, √(${c}² − ${d}²) ≠ ${c} − ${d}.` });
+    }) },
+    // 6. between which natural numbers
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([2, 3, 5, 6, 7, 10, 11, 13]), k = rnd(2, 6), m = k * k * n, f = Math.floor(Math.sqrt(m)), fn = Math.floor(Math.sqrt(n));
+      const iv = x => `${x} və ${x + 1}`;
+      return mc(ae(iv(f), [iv(k * fn), iv(k * (fn + 1)), iv(k + fn), iv(f + 1)], id),
+        { text: `${kr(k, n)} ədədi hansı iki ardıcıl natural ədəd arasındadır?`,
+          solution: `${kr(k, n)} = √${m}. ${f}² = ${f * f} < ${m} < ${(f + 1) ** 2} = ${f + 1}², ona görə ${f} < ${kr(k, n)} < ${f + 1}. Tələ: yalnız kökü (√${n}) qiymətləndirib əmsala vurmaq (${k}·${fn} = ${k * fn}, ${k}·${fn + 1} = ${k * (fn + 1)}), əmsalı kökün qiymətinə əlavə etmək (${k} + ${fn}).` });
+    }) },
+    // 7. coded: nested radicals √(a + b + 2m√b) = m + √b  (a = m²)
+    { tip: "kod", gen: () => again(() => {
+      const m = rnd(2, 6), a = m * m, b = rnd(2, a - 1); if (isSq(b)) return null;
+      const S0 = a + b;
+      return { text: `√(${S0} + ${2 * m}√${b}) + √(${S0} − ${2 * m}√${b}) ifadəsinin qiymətini tapın.`,
+        answer: 2 * m, show: String(2 * m), tol: 1e-6,
+        solution: `${S0} = ${a} + ${b}, ${2 * m}√${b} = 2·${m}·√${b}. Ona görə ${S0} + ${2 * m}√${b} = (${m} + √${b})² və ${S0} − ${2 * m}√${b} = (${m} − √${b})². √(x²) = |x|: |${m} + √${b}| + |${m} − √${b}|. ${m} = √${a} > √${b}, ona görə ikinci mötərizə müsbətdir: (${m} + √${b}) + (${m} − √${b}) = ${2 * m}.` };
+    }) },
+    // 8. coded: x = c/(s − √b), y = c/(s + √b), x² + y²
+    { tip: "kod", gen: () => again(() => {
+      const s = rnd(2, 6), d = pick([1, 1, 2, 3, 4, 5]), b = s * s - d, c = rnd(1, 6); if (b < 2 || isSq(b)) return null;
+      const ans = c * c * (4 * s * s - 2 * d) / (d * d); if (!Number.isInteger(ans)) return null;
+      const sum = 2 * c * s / d, prod = c * c / d;
+      return { text: `x = ${c}/(${s} − √${b}), y = ${c}/(${s} + √${b}) olduqda x² + y² ifadəsinin qiymətini tapın.`,
+        answer: ans, show: String(ans), tol: 1e-6,
+        solution: `Qoşma ifadə: ${s}² − (√${b})² = ${d}. x = ${c}(${s} + √${b})/${d}, y = ${c}(${s} − √${b})/${d}. x + y = ${dec(sum)}, x·y = ${c * c}/${d} = ${dec(prod)}. x² + y² = (x + y)² − 2xy = ${dec(sum * sum)} − ${dec(2 * prod)} = ${ans}.` };
+    }) },
+    // 9. coded: how many integers between two numbers with roots
+    { tip: "kod", gen: () => again(() => {
+      const mk = () => { const n = pick([2, 3, 5, 6, 7, 10, 11, 13]), k = rnd(1, 6); return { k, n, m: k * k * n, v: k * Math.sqrt(n) }; };
+      let x = mk(), y = mk(); if (x.v > y.v) [x, y] = [y, x];
+      const cnt = Math.floor(y.v) - Math.floor(x.v); if (cnt < 3 || cnt > 9 || x.m === y.m) return null;
+      const fx = Math.floor(Math.sqrt(x.m)), fy = Math.floor(Math.sqrt(y.m));
+      const [p, q] = Math.random() < .5 ? [x, y] : [y, x];
+      return { text: `${kr(p.k, p.n)} və ${kr(q.k, q.n)} ədədləri arasında neçə tam ədəd var?`, answer: cnt, show: String(cnt), tol: 1e-6,
+        solution: `Hər ədədi kök altına sal: ${kr(x.k, x.n)} = √${x.m}, ${kr(y.k, y.n)} = √${y.m}. ${fx}² = ${fx * fx} < ${x.m} < ${(fx + 1) ** 2}, ona görə ${fx} < √${x.m} < ${fx + 1}; ${fy}² = ${fy * fy} < ${y.m} < ${(fy + 1) ** 2}, ona görə ${fy} < √${y.m} < ${fy + 1}. Aralarındakı tam ədədlər: ${fx + 1}, …, ${fy} — cəmi ${cnt} ədəd.` };
+    }) },
+    // 10. written: difference of two conjugate fractions; √a, √b simplify first
+    { tip: "yazili", gen: () => again(() => {
+      const n = pick([2, 3, 5, 6, 7, 10, 11]), u = rnd(2, 9), v = rnd(1, u - 1), a = n * u * u, b = n * v * v;
+      const val = 4 * u * v / (u * u - v * v); if (!isNice(val, 2)) return null;
+      return { text: `Hesablayın: (√${a} + √${b})/(√${a} − √${b}) − (√${a} − √${b})/(√${a} + √${b}).`,
+        answer: val, show: dec(val), tol: 1e-6,
+        solution: `1) Kökləri sadələşdir: √${a} = ${kr(u, n)}, √${b} = ${kr(v, n)}. 2) √${n} ixtisar olunur: (${u} + ${v})/(${u} − ${v}) − (${u} − ${v})/(${u} + ${v}) = ${u + v}/${u - v} − ${u - v}/${u + v}. 3) Ortaq məxrəc: (${(u + v) ** 2} − ${(u - v) ** 2})/${u * u - v * v} = ${4 * u * v}/${u * u - v * v} = ${dec(val)}. Cavab: ${dec(val)}. (Həll yazılmadan yalnız cavab — bal verilmir.)` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -204,7 +300,7 @@
     game = Oyun.mount({
       key: "kvadrat-kok", title: "Kvadrat kök, hesabi kökün xassələri", fenn: "riyaziyyat", link: "dersler/kvadrat-kok.html",
       format: "Cavab ədəddir: tam 12, mənfi −3, kəsr 5/4, onluq 0,7 (və ya 0.7), kök: 3√2 (yaz: 3√2 və ya 3sqrt2), √7.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["hesabi", "hesabi", "xasse", "xasse", "cixar", "cixar", "cevir", "irr", "irr", "hesab"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

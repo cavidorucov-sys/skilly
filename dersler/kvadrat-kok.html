@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xassələr</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kök altından çıxar</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrilmələr</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -225,6 +226,88 @@ k/(√a ± √b) → qoşmaya (√a ∓ √b) vur  (a, b ≥ 0, a ≠ b)</div></
         <li><span class="m">(√5 − 1)(√5 + 1)</span> = ? <span class="ans">5 − 1 = 4.</span></li>
         <li><span class="m">10/√5</span> = ? <span class="ans">10√5/5 = 2√5.</span></li>
         <li><span class="m">2/(√3 + 1)</span> = ? <span class="ans">2(√3 − 1)/(3 − 1) = √3 − 1.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: kvadrat kök</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Kvadrat kök buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: modulsuz yazmaq, cəmin kökünü köklərin cəmi kimi yazmaq, qoşmanı səhv seçmək, orta həddi unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Cavab ədəd olur (tam, bəzən onluq kəsr), kök işarəsi yazılmır. Ona görə belə suallarda kökləri özün aradan qaldırmalısan: sual elə qurulur ki, sonda kök yox olur (məs. <span class="m">(√3 + 1)(√3 − 1)</span> kimi).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>kök altında nə var, ədəd mənfi ola bilərmi?</b> √(a²) = |a| tələsi və "cəmin kökü köklərin cəmi deyil" tələsi imtahanın ən çox istifadə etdiyi iki tələdir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">√((3 − √11)²) + 3</span> ifadəsinin qiymətini tapın.</p>
+        <ol class="imt-opts"><li>6 − √11</li><li>6 + √11</li><li>−6 + √11</li><li>3 + √11</li><li>√11</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">√(a²) = |a|, ona görə √((3 − √11)²) = |3 − √11|
+3 = √9 &lt; √11  ⇒  3 − √11 &lt; 0  ⇒  |3 − √11| = √11 − 3
+√11 − 3 + 3 = √11
+Cavab: E) √11</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 6 − √11</b> — modulsuz yazmaq: <span class="m">√(a²) = a</span>, yəni <span class="m">(3 − √11) + 3</span>. Kök altından çıxan ifadə mənfi ola bilməz, amma <span class="m">3 − √11</span> mənfidir.</li>
+        <li><b>B) 6 + √11</b> — modulu açanda <span class="m">3 + √11</span> yazmaq, sonra 3 əlavə etmək.</li>
+        <li><b>C) −6 + √11</b> — modulu düz açmaq (<span class="m">√11 − 3</span>), amma sonra 3-ü çıxmaq.</li>
+        <li><b>D) 3 + √11</b> — <span class="m">|3 − √11|</span> əvəzinə <span class="m">3 + √11</span> yazıb sonuncu 3-ü unutmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">√(7 + 4√3) + √(7 − 4√3)</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">7 = 4 + 3,   4√3 = 2 · 2 · √3
+7 + 4√3 = 2² + 2·2·√3 + (√3)² = (2 + √3)²
+7 − 4√3 = (2 − √3)²
+√((2 + √3)²) + √((2 − √3)²) = |2 + √3| + |2 − √3|
+2 = √4 &gt; √3  ⇒  hər iki mötərizə müsbətdir
+(2 + √3) + (2 − √3) = 4
+Cavab: 4</div>
+      <p>Kodlaşdırmada yalnız <b>4</b> yazılır. Tələ: <span class="m">√(7 + 4√3) = √7 + √(4√3)</span> kimi hər həddin kökünü ayrıca almaq — cəmin kökü köklərin cəmi deyil. Ədədi tam kvadrat şəklinə salmaq (<span class="m">(√a ± √b)²</span> düsturunu tərsinə işlətmək) lazımdır. İkinci mötərizədə <span class="m">2 − √3</span> mənfi olsaydı, modulu açmaq lazım gələrdi.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Hesablayın: <span class="m">(√45 + √5)/(√45 − √5) − (√45 − √5)/(√45 + √5)</span>.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Kökləri sadələşdiririk: √45 = √(9·5) = 3√5,  √5 = √5.
+2) Surət və məxrəcdə √5 ortaq vuruqdur, ixtisar olunur:
+   (3√5 + √5)/(3√5 − √5) = 4√5/2√5 = 2
+   (3√5 − √5)/(3√5 + √5) = 2√5/4√5 = 1/2
+3) 2 − 1/2 = 3/2 = 1,5
+4) Yoxlama: ortaq məxrəclə — (a + b)² − (a − b)² = 4ab, a² − b² = 45 − 5 = 40, 4·√45·√5 = 4·15 = 60, 60 : 40 = 1,5 ✓
+Cavab: 1,5</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>kökləri sadələşdirmək</b> (1-ci addım), <b>kəsrləri sadələşdirmək</b> (2-ci addım), <b>hesablama və cavab</b> (3-cü addım). Həll yazılmadan yalnız "1,5" yazılsa, bal verilmir. Qoşma ifadəyə vurmaq da düzgün yoldur, amma sadələşdirmək daha qısadır.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Modulsuz yazmaq.</b> <span class="m">√((a − b)²) = |a − b|</span>. Ədədi sadəcə a − b yazmaq olmaz: əvvəl hansının böyük olduğunu müəyyən et (məs. <span class="m">3 &lt; √11</span>).</li>
+        <li><b>Cəmin kökü.</b> <span class="m">a, b &gt; 0</span> olduqda <span class="m">√(a + b) ≠ √a + √b</span>: <span class="m">√(9 + 16) = 5</span>, amma <span class="m">√9 + √16 = 7</span>. Eyni qayda fərqə də aiddir: <span class="m">c &gt; d &gt; 0</span> olduqda <span class="m">√(c² − d²) ≠ c − d</span>.</li>
+        <li><b>Qoşmanı səhv seçmək.</b> <span class="m">k/(√a − √b)</span> üçün qoşma <span class="m">√a + √b</span>-dir. Surət də vurulur, məxrəc <span class="m">a − b</span> olur və ona bölünür.</li>
+        <li><b>Orta həddi unutmaq.</b> <span class="m">(a − √b)² = a² − 2a√b + b</span>, <span class="m">a² + b</span> yox. Həmçinin <span class="m">(√b)² = b</span>, <span class="m">√b</span> yox.</li>
+        <li><b>Kvadrat arasında yerləşdirmə.</b> <span class="m">k√n</span> ədədini qiymətləndirəndə əvvəl kök altına sal: <span class="m">3√7 = √63</span>, 49 &lt; 63 &lt; 64 ⇒ 7 və 8 arasında. <span class="m">3·√7</span>-də <span class="m">√7 ≈ 2</span> alıb 3·2 = 6 yazmaq səhvdir.</li>
+        <li><b>Kodlaşdırmada</b> kök yazılmır — cavab ədəd olmalıdır. Kök qalırsa, hesablamada səhv var.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">√(a²) = |a|
+√(a + b) ≠ √a + √b   (a, b > 0)
+(√a − √b)(√a + √b) = a − b
+(a ± √b)² = a² ± 2a√b + b
+yazılı: hər addımı yaz, yalnız cavab — bal yoxdur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">√((2 − √5)²)</span> = ? <span class="ans">|2 − √5|; 2 = √4 &lt; √5, ona görə √5 − 2 (2 − √5 yox: o mənfidir).</span></li>
+        <li><span class="m">√8 + √18</span> = ? <span class="ans">2√2 + 3√2 = 5√2 (√26 yox: cəmin kökü köklərin cəmi deyil).</span></li>
+        <li><span class="m">(3 + √2)²</span> = ? <span class="ans">9 + 6√2 + 2 = 11 + 6√2 (9 + 2 = 11 yox: orta həd 2·3·√2 = 6√2 var).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
