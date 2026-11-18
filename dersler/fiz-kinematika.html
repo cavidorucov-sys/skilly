@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Təcil, düsturlar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qrafiklər</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Görüş, yetişmə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -356,6 +357,103 @@ Təcilli yetişmə (sükunətdən):  t = 2v/a,  v_son = 2v
         <li>Aralarında 100 m məsafə olan iki cisim 6 və 4 m/s sürətlə bir-birinə doğru gedir. Nə vaxt görüşərlər? <span class="ans">t = 100/(6 + 4) = 10 s.</span></li>
         <li>Velosipedçi 5 m/s sürətlə gedir, 60 m arxadan motosikletçi 8 m/s ilə gəlir. Nə vaxt yetişər? <span class="ans">60/(8 − 5) = 20 s.</span></li>
         <li>Avtomobil 12 m/s sabit sürətlə işıqforu keçir, motosiklet o anda sükunətdən 3 m/s² təcillə qovur. Nə vaxt və hansı yolda çatar? <span class="ans">t = 2·12/3 = 8 s, yol 12·8 = 96 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: hərəkət və qrafiklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. Kinematikada "düstura qoy, hesabla" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — <span class="m">v(t)</span> və ya <span class="m">x(t)</span> qrafiki, yol sxemi (avtomobil, maneə, körpü). Rəqəmlər bəzən şəkildə, bəzən mətndə olur; qrafikdə nöqtələri şəbəkənin xətlərindən oxuyursan.</li>
+        <li><b>Bir neçə addım</b> — əvvəl sürət, sonra vaxt, sonra yol; ya da qrafikdən təcil tapıb koordinata keçmək.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: yolu yerdəyişmə ilə qarışdırmaq, km/saat-ı çevirməmək, reaksiya yolunu unutmaq, sürətlərin orta hesabını orta sürət saymaq. Ən çox edilən səhvin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: düz xətt qrafikindən <span class="m">x = x₀ + vt</span> yazmaq (xətti funksiya) və ya iki cismin görüşü üçün tənlik qurmaq (xətti tənlik).</li>
+      </ul>
+      <p>Şərtdə ideallaşdırma açıq yazılır: təcil sabitdir, cisim maddi nöqtədir, hərəkət düz xətt boyudur. Qrafikdən sonra hərəkətin necə davam etdiyi də deyilir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — v(t) qrafiki: yol</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 300 220" role="img" aria-label="Sürətin proyeksiyasının zamandan asılılığı: 0–2 s artır, 2–5 s azalır və işarəsini dəyişir"><defs><marker id="kn-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="46" y1="186" x2="280" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="190" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">−6</text><line x1="46" y1="159" x2="280" y2="159" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="163" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">−4</text><line x1="46" y1="132" x2="280" y2="132" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="136" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">−2</text><line x1="46" y1="105" x2="280" y2="105" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="109" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="46" y1="78" x2="280" y2="78" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="82" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="46" y1="51" x2="280" y2="51" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="55" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="46" y1="24" x2="280" y2="24" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="28" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="46" y1="24" x2="46" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="46" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="92.8" y1="24" x2="92.8" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="92.8" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="139.6" y1="24" x2="139.6" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="139.6" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="186.4" y1="24" x2="186.4" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="186.4" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="233.2" y1="24" x2="233.2" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="233.2" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="280" y1="24" x2="280" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="280" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="46" y1="105" x2="280" y2="105" stroke="var(--ink,#17171a)" stroke-width="1.8" stroke-linecap="round"/><line x1="46" y1="18" x2="46" y2="186" stroke="var(--ink,#17171a)" stroke-width="1.8" stroke-linecap="round"/><text x="52" y="15" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">v, m/s</text><text x="280" y="214" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, s</text><polyline points="46,78 139.6,24 280,186" fill="none" stroke="var(--accent,#a32d2d)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46" cy="78" r="3.8" fill="var(--vec,#0c447c)"/><circle cx="139.6" cy="24" r="3.8" fill="var(--vec,#0c447c)"/><circle cx="280" cy="186" r="3.8" fill="var(--vec,#0c447c)"/></svg></div>
+        <p>Şəkildə cismin sürətinin proyeksiyasının zamandan asılılığı verilib (düz parçalar). Cismin 0–5 s-də getdiyi yolu tap.</p>
+        <ol class="imt-opts"><li>8 m</li><li>12,5 m</li><li>17 m</li><li>26 m</li><li>30 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Yol = oxdan yuxarı və aşağı sahələrin mütləq qiymətlərinin cəmi.
+0–2 s:  (2 + 6)/2 · 2 = 8 m
+2–5 s:  sürət 6-dan −6-ya düşür, t = 3,5 s-də sıfırdan keçir
+        yuxarı üçbucaq: 6 · 1,5/2 = 4,5 m
+        aşağı üçbucaq:  6 · 1,5/2 = 4,5 m
+Yol = 8 + 4,5 + 4,5 = 17 m
+Cavab: C) 17 m</div>
+      <ul>
+        <li><b>A) 8 m</b> — yerdəyişmə: mənfi sahəni yoldan çıxmaq (8 + 4,5 − 4,5). Yol isə həmişə toplanır.</li>
+        <li><b>B) 12,5 m</b> — oxdan aşağı sahəni atmaq: 8 + 4,5.</li>
+        <li><b>D) 26 m</b> — sıfırdan keçən parçanı bir trapesiya saymaq: (6 + 6)/2 · 3 = 18, 8 + 18. Sürət işarəsini dəyişirsə, parça iki üçbucağa bölünür.</li>
+        <li><b>E) 30 m</b> — ən böyük sürəti bütün vaxta vurmaq: 6 · 5.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — sxem: reaksiya və əyləc</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sxem · çoxaddımlı</span>
+        <div class="fig"><svg viewBox="0 0 300 130" role="img" aria-label="Avtomobil, ondan L məsafədə maneə"><defs><marker id="kn-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="14" y1="84" x2="290" y2="84" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linecap="round"/><rect x="26" y="58" width="56" height="20" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><circle cx="40" cy="84" r="5" fill="var(--ink,#17171a)"/><circle cx="68" cy="84" r="5" fill="var(--ink,#17171a)"/><line x1="30" y1="44" x2="78" y2="44" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#kn-ar)"/><text x="54" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v₀ = 20 m/s</text><rect x="238" y="40" width="24" height="44" fill="var(--muted,#6b6b73)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="250" y="67" text-anchor="middle" font-size="18" font-weight="700" fill="var(--paper,#fff)" font-family="inherit">!</text><line x1="82" y1="116" x2="238" y2="116" stroke="var(--muted,#6b6b73)" stroke-width="1.6" stroke-linecap="round" marker-start="url(#kn-ar)" marker-end="url(#kn-ar)"/><text x="160" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">L = 100 m</text></svg></div>
+        <p>Avtomobil 72 km/saat sürətlə gedir. Sürücü 100 m qabaqda maneə görür və 0,8 s sonra əyləci basır (bu müddətdə sürət dəyişmir). Əyləc zamanı təcilin modulu 5 m/s²-dir. Avtomobil dayananda maneəyə qədər neçə metr qalacaq? (Şəkildə v₀ SI-dədir.)</p>
+        <ol class="imt-opts"><li>4 m</li><li>40 m</li><li>44 m</li><li>56 m</li><li>60 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">72 km/saat = 72/3,6 = 20 m/s
+Reaksiya (sürət sabit):  s₁ = 20 · 0,8 = 16 m
+Əyləc (dayanana qədər):  s₂ = v₀²/(2a) = 400/10 = 40 m
+Qalan məsafə:  100 − 16 − 40 = 44 m
+Cavab: C) 44 m</div>
+      <ul>
+        <li><b>E) 60 m</b> — reaksiyanı unutmaq: 100 − 40.</li>
+        <li><b>A) 4 m</b> — əyləc yolu üçün v₀²/a yazmaq (ikiyə bölməyi unutmaq): 100 − 16 − 80.</li>
+        <li><b>D) 56 m</b> — dayanma yolunu (16 + 40) cavab yazmaq: sual qalan məsafəni soruşur.</li>
+        <li><b>B) 40 m</b> — yalnız əyləc yolunu cavab yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: düz xətt qrafiki</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu (xətti funksiya)</span>
+        <div class="fig"><svg viewBox="0 0 300 220" role="img" aria-label="Cismin koordinatının zamandan asılılığı: düz xətt, iki nöqtə işarələnib"><defs><marker id="kn-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="46" y1="186" x2="280" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><line x1="46" y1="173.5" x2="280" y2="173.5" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="177.5" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="46" y1="161.1" x2="280" y2="161.1" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="165.1" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="46" y1="148.6" x2="280" y2="148.6" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="152.6" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="46" y1="136.2" x2="280" y2="136.2" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="140.2" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="46" y1="123.7" x2="280" y2="123.7" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="127.7" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="46" y1="111.2" x2="280" y2="111.2" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="115.2" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="46" y1="98.8" x2="280" y2="98.8" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="102.8" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">7</text><line x1="46" y1="86.3" x2="280" y2="86.3" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="90.3" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">8</text><line x1="46" y1="73.8" x2="280" y2="73.8" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="77.8" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">9</text><line x1="46" y1="61.4" x2="280" y2="61.4" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="65.4" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">10</text><line x1="46" y1="48.9" x2="280" y2="48.9" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="52.9" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">11</text><line x1="46" y1="36.5" x2="280" y2="36.5" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="40.5" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">12</text><line x1="46" y1="24" x2="280" y2="24" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="40" y="28" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">13</text><line x1="46" y1="24" x2="46" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="46" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">0</text><line x1="85" y1="24" x2="85" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="85" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="124" y1="24" x2="124" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="124" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="163" y1="24" x2="163" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="163" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="202" y1="24" x2="202" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="202" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="241" y1="24" x2="241" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="241" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="280" y1="24" x2="280" y2="186" stroke="var(--line,#d9d9de)" stroke-width="1" stroke-linecap="round"/><text x="280" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="46" y1="186" x2="280" y2="186" stroke="var(--ink,#17171a)" stroke-width="1.8" stroke-linecap="round"/><line x1="46" y1="18" x2="46" y2="186" stroke="var(--ink,#17171a)" stroke-width="1.8" stroke-linecap="round"/><text x="52" y="15" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">x, m</text><text x="280" y="214" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, s</text><polyline points="163,148.6 280,36.5" fill="none" stroke="var(--accent,#a32d2d)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="163" cy="148.6" r="3.8" fill="var(--vec,#0c447c)"/><text x="171" y="163.6" text-anchor="start" font-size="11" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">(3; 3)</text><circle cx="280" cy="36.5" r="3.8" fill="var(--vec,#0c447c)"/><text x="272" y="28.5" text-anchor="end" font-size="11" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">(6; 12)</text></svg></div>
+        <p>Şəkildə bərabərsürətli hərəkət edən cismin x(t) qrafiki (düz xətt) verilib, iki nöqtə işarələnib. Hərəkət qrafikdən sonra da eyni qanunla davam edir. Cisim hansı anda x = 39 m koordinatından keçəcək?</p>
+        <ol class="imt-opts"><li>9 s</li><li>12 s</li><li>13 s</li><li>15 s</li><li>19,5 s</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">x = x₀ + v·t — düz xəttin tənliyi (y = kx + b kimi)
+Mailiyyət = sürət:  v = (12 − 3)/(6 − 3) = 3 m/s
+x₀-ı tapırıq (nöqtə (3; 3)):  3 = x₀ + 3 · 3  →  x₀ = −6 m
+Tənlik:  39 = −6 + 3t  →  t = 15 s
+Cavab: D) 15 s</div>
+      <ul>
+        <li><b>C) 13 s</b> — x₀-ı unutmaq: 39/3.</li>
+        <li><b>B) 12 s</b> — (39 − 3)/3: işarələnmiş nöqtənin vaxtını (3 s) əlavə etməmək.</li>
+        <li><b>A) 9 s</b> — (39 − 12)/3: ikinci nöqtədən saymaq, onun vaxtını (6 s) əlavə etməmək.</li>
+        <li><b>E) 19,5 s</b> — xətti başlanğıcdan keçən saymaq: sürəti 12/6 = 2 m/s götürmək, 39/2.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Yol ≠ yerdəyişmə.</b> Qrafikdə oxdan aşağı sahə yerdəyişməyə mənfi daxil olur, yola isə mütləq qiymətlə. Sürət işarəsini dəyişən parçanı iki üçbucağa böl.</li>
+        <li><b>km/saat → m/s.</b> 3,6-ya böl. Sonra yenə vahidlərə bax: metr, saniyə.</li>
+        <li><b>Reaksiya vaxtı.</b> Sürücü əyləci basana qədər sürət dəyişmir — bu yol dayanma yoluna əlavə olunur.</li>
+        <li><b>Orta sürət.</b> Bütün yol / bütün vaxt. Hissələrin sürətlərini orta hesablamaq olmaz; hissələrdə vaxt bərabərdirsə, cavab düz çıxır, yol bərabərdirsə, yox.</li>
+        <li><b>Görüş və yetişmə.</b> Hər iki cismin koordinatını eyni başlanğıcdan yaz, gecikmə varsa <span class="m">(t − t₀)</span> yaz, sonra <span class="m">x₁ = x₂</span>.</li>
+        <li><b>Çatma ≠ sürətlərin bərabərliyi.</b> Çatma koordinatların bərabərliyidir. Sürət proyeksiyaları bərabər olan an ayrı sualdır: təcilli cisim qovanda məsafənin ekstremumu (ən böyük və ya ən kiçik qiyməti) məhz orada ola bilər. Bu iki an ümumiyyətlə fərqlidir; yalnız xüsusi halda (cisimlər eyni anda həm eyni nöqtədə, həm eyni sürətlə olanda) üst-üstə düşür, ona görə hər birini öz şərti ilə tap.</li>
+        <li><b>Mailiyyət.</b> <span class="m">v(t)</span>-də mailiyyət təcildir, <span class="m">x(t)</span>-də sürətdir; qrafikin sahəsi yalnız <span class="m">v(t)</span>-də məna daşıyır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">v(t) qrafiki:  mailiyyət = a;   sahə = yerdəyişmə (yol = |sahələrin| cəmi)
+x(t) qrafiki:  mailiyyət = v;   düz xətt:  x = x₀ + vt
+Əyləc:         S = v·t_reaksiya + v²/(2a)
+Görüş:         x₁(t) = x₂(t);   gec çıxana (t − t₀)
+Orta sürət:    bütün yol / bütün vaxt</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>v(t) qrafiki: 0–2 s-də sürət +4 m/s sabit, 2–4 s-də −4 m/s sabit. Yol və yerdəyişmə nə qədərdir? <span class="ans">Yol = 4·2 + 4·2 = 16 m; yerdəyişmə = 8 − 8 = 0.</span></li>
+        <li>Avtomobil 72 km/saat sürətlə gedir, sürücü 1 s sonra əyləc basır. Reaksiya müddətində avtomobil neçə metr gedir? <span class="ans">72/3,6 = 20 m/s, 20 · 1 = 20 m.</span></li>
+        <li>Cismin x(t) qrafiki düz xəttdir: x = −4 + 2t (m, s). Cisim hansı anda x = 16 m nöqtəsindən keçir? <span class="ans">16 = −4 + 2t → t = 10 s.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

@@ -310,6 +310,173 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, a picture in each, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 2 and 3 also use maths topics passed earlier
+  // ("xetti-funksiya": a straight line through two points; "xetti-tenlikler": a linear equation x₁ = x₂).
+  const { ae, again } = Oyun;
+  const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const okn = (x, d = 2) => isFinite(x) && nice(x, d);
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+  const KI = "var(--ink,#17171a)", KA = "var(--accent,#a32d2d)", KM = "var(--muted,#6b6b73)", KP = "var(--paper,#fff)", KV = "var(--vec,#0c447c)", KG = "var(--line,#d9d9de)";
+  const f1 = n => +(+n).toFixed(1);
+  const kl = (x1, y1, x2, y2, c = KI, w = 2, ex = "") => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+  const kt = (x, y, s, a = "middle", c = KI, sz = 12) => `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+  const kd = (x, y, c = KI, r = 3.4) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${r}" fill="${c}"/>`;
+  const kr = (x, y, w, h, c = KP, st = KI) => `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${c}" stroke="${st}" stroke-width="2"/>`;
+  const ka = (x1, y1, x2, y2, c = KA, w = 2.5) => kl(x1, y1, x2, y2, c, w, ` marker-end="url(#kn-ar)"`);
+  const kdim = (x1, x2, y, lab) => kl(x1, y, x2, y, KM, 1.6, ` marker-start="url(#kn-ar)" marker-end="url(#kn-ar)"`) + kt((x1 + x2) / 2, y - 6, lab, "middle", KM, 12);
+  const ksvg = (w, h, inner, aria) => `<svg viewBox="0 0 ${w} ${h}" class="oy-svg" role="img" aria-label="${aria}"><defs><marker id="kn-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>${inner}</svg>`;
+  // gridded graph through lattice points; series [{pts, nolat}], dots [[t, y, colour, label?]]
+  const stepFor = (vals, lo, hi) => { for (const s of [10, 5, 2]) if (vals.every(v => v % s === 0) && (hi - lo) / s >= 3) return s; return 1; };
+  function kplot(o) {
+    const W = 300, H = 220, Lm = 46, Rm = 20, Tm = 24, Bm = 34;
+    const lat = o.series.filter(s => !s.nolat).flatMap(s => s.pts).concat((o.dots || []).map(d => [d[0], d[1]]));
+    const xs = lat.map(p => p[0]).concat(o.xhi ? [o.xhi] : []), ys = lat.map(p => p[1]);
+    const xst = stepFor(xs, 0, Math.max(...xs)), yst = stepFor(ys, Math.min(0, ...ys), Math.max(0, ...ys));
+    const lab = (o.dots || []).filter(d => d[3]);
+    let xmax = Math.ceil(Math.max(...xs) / xst) * xst, ymin = Math.floor(Math.min(0, ...ys) / yst) * yst, ymax = Math.ceil(Math.max(0, ...ys) / yst) * yst;
+    if (lab.some(d => d[1] === ymax)) ymax += yst; if (lab.some(d => d[1] === ymin && ymin < 0)) ymin -= yst;   // room for a label
+    const tx = t => Lm + t / xmax * (W - Lm - Rm), ty = y => Tm + (ymax - y) / (ymax - ymin) * (H - Tm - Bm);
+    let s = "";
+    for (let y = ymin; y <= ymax; y += yst) s += kl(Lm, ty(y), W - Rm, ty(y), KG, 1) + (y === 0 && ymin === 0 ? "" : kt(Lm - 6, ty(y) + 4, F(y), "end", KM, 11));
+    for (let t = 0; t <= xmax; t += xst) s += kl(tx(t), Tm, tx(t), H - Bm, KG, 1) + kt(tx(t), H - Bm + 15, F(t), "middle", KM, 11);
+    s += kl(Lm, ty(0), W - Rm, ty(0), KI, 1.8) + kl(Lm, Tm - 6, Lm, H - Bm, KI, 1.8) + kt(Lm + 6, Tm - 9, o.yl, "start") + kt(W - Rm, H - 6, o.xl || "t, s", "end");
+    for (const sr of o.series) s += `<polyline points="${sr.pts.map(p => f1(tx(p[0])) + "," + f1(ty(p[1]))).join(" ")}" fill="none" stroke="${KA}" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>`;
+    for (const [t, y, c, lab, pos = "rt"] of o.dots || []) {
+      s += kd(tx(t), ty(y), c || KV, 3.8);
+      if (lab) { const left = pos[0] === "l"; s += kt(tx(t) + (left ? -8 : 8), ty(y) + (pos[1] === "t" ? -8 : 15), lab, left ? "end" : "start", KI, 11); }
+    }
+    return ksvg(W, H, s, o.aria);
+  }
+  // areas under a piecewise-linear v(t): signed (displacement), path, path without splitting at the zero crossing, positive part only
+  function vareas(pts) {
+    let disp = 0, path = 0, noCross = 0, pos = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const [t0, a] = pts[i - 1], [t1, b] = pts[i], dt = t1 - t0;
+      disp += (a + b) / 2 * dt; noCross += (Math.abs(a) + Math.abs(b)) / 2 * dt;
+      if (a * b >= 0) { path += Math.abs(a + b) / 2 * dt; if (a + b > 0) pos += (a + b) / 2 * dt; }
+      else { const tz = dt * Math.abs(a) / (Math.abs(a) + Math.abs(b)); path += Math.abs(a) * tz / 2 + Math.abs(b) * (dt - tz) / 2; pos += (a > 0 ? a * tz : b * (dt - tz)) / 2; }
+    }
+    return { disp, path, noCross, pos };
+  }
+  const crossOk = pts => pts.slice(1).every((p, i) => { const a = pts[i][1], b = p[1]; return a * b >= 0 || nice((p[0] - pts[i][0]) * Math.abs(a) / (Math.abs(a) + Math.abs(b)), 2); });
+  const segTxt = pts => pts.slice(1).map((p, i) => { const [t0, a] = pts[i], [t1, b] = p, dt = t1 - t0;
+    if (a * b >= 0) return `${t0}–${t1} s: (${F(Math.abs(a))} + ${F(Math.abs(b))})/2·${dt} = ${F((Math.abs(a) + Math.abs(b)) / 2 * dt)} m`;
+    const tz = dt * Math.abs(a) / (Math.abs(a) + Math.abs(b));
+    return `${t0}–${t1} s: sürət ${F(t0 + tz)} s anında sıfırdan keçir, iki üçbucaq: ${F(Math.abs(a))}·${F(tz)}/2 + ${F(Math.abs(b))}·${F(dt - tz)}/2 = ${F((Math.abs(a) * tz + Math.abs(b) * (dt - tz)) / 2)} m`; }).join("; ");
+  const figMeet = (v1, v2, L) => ksvg(300, 120, kl(20, 66, 280, 66, KI, 2.5) + kd(34, 66) + kd(266, 66) + kt(34, 86, "A") + kt(266, 86, "B")
+    + ka(42, 46, 104, 46, KA) + kt(73, 38, "v₁ = " + F(v1) + " m/s", "middle", KA, 11) + ka(258, 46, 196, 46, KV) + kt(227, 38, "v₂ = " + F(v2) + " m/s", "middle", KV, 11) + kdim(34, 266, 108, "L = " + F(L) + " m"), "A və B nöqtələri arasında L məsafə; A-dan v₁, B-dən v₂ sürətlə bir-birinə doğru");
+  const figTrap = () => ksvg(300, 175, kl(40, 140, 285, 140, KI, 1.8) + kl(40, 140, 40, 18, KI, 1.8) + kt(46, 16, "v", "start") + kt(284, 160, "t", "end")
+    + `<polyline points="40,140 100,52 200,52 255,140" fill="none" stroke="${KA}" stroke-width="2.8" stroke-linejoin="round"/>`
+    + kl(100, 52, 100, 140, KM, 1, ` stroke-dasharray="4 3"`) + kl(200, 52, 200, 140, KM, 1, ` stroke-dasharray="4 3"`) + kl(40, 52, 100, 52, KM, 1, ` stroke-dasharray="4 3"`)
+    + kt(70, 156, "t₁") + kt(150, 156, "t₂") + kt(228, 156, "t₃ = ?") + kt(54, 98, "a₁", "end", KA) + kt(252, 98, "a₂", "start", KA) + kt(150, 44, "v = sabit", "middle", KA), "Sürətin zamandan asılılığı: sürətlənmə, sabit sürət, yavaşıma");
+  const figBrake = (v0, L) => ksvg(300, 130, kl(14, 84, 290, 84, KI, 2.5) + kr(26, 58, 56, 20) + kd(40, 84, KI, 5) + kd(68, 84, KI, 5) + ka(30, 44, 78, 44, KA) + kt(54, 36, "v₀ = " + F(v0) + " m/s", "middle", KA, 11)
+    + kr(238, 40, 24, 44, KM, KI) + kt(250, 67, "!", "middle", KP, 18) + kdim(82, 238, 116, "L = " + F(L) + " m"), "Avtomobil, ondan L məsafədə maneə");
+  const figChase = (v, d) => ksvg(300, 138, kl(14, 84, 290, 84, KI, 2.5) + kr(24, 58, 44, 20) + kd(36, 84, KI, 5) + kd(58, 84, KI, 5) + kt(20, 104, "motosiklet (v₀ = 0, a)", "start", KA, 11)
+    + kr(150, 58, 56, 20) + kd(164, 84, KI, 5) + kd(194, 84, KI, 5) + ka(154, 44, 208, 44, KV) + kt(181, 36, "v = " + F(v) + " m/s", "middle", KV, 11) + kdim(68, 150, 128, "d = " + F(d) + " m"), "Sükunətdəki motosikletdən d məsafədə sabit sürətlə gedən avtomobil");
+  const figBridge = (L, l, kmh) => ksvg(300, 130, kl(14, 90, 290, 90, KG, 1) + kr(118, 70, 160, 8, KM, KI) + kl(130, 78, 130, 100, KI, 3) + kl(266, 78, 266, 100, KI, 3)
+    + kr(22, 52, 90, 26) + kd(38, 84, KI, 5) + kd(96, 84, KI, 5) + kl(104, 52, 104, 78, KI, 2) + ka(28, 40, 96, 40, KA) + kt(62, 32, "v = " + F(kmh) + " km/saat", "middle", KA, 11)
+    + kdim(22, 112, 112, "l = " + F(l) + " m") + kdim(118, 278, 112, "L = " + F(L) + " m"), "Qatar uzunluğu l, körpünün uzunluğu L");
+  const Q5 = [];   // parameter sets of question 5 whose answer and wrong options are all neat numbers
+  for (const v of [6, 9, 12, 15, 18, 24, 30]) for (const t1 of [3, 4, 5, 6, 8, 10]) for (const t2 of [10, 20, 30, 40, 60]) for (const a2 of [1, 1.5, 2, 2.5, 3, 4, 5]) {
+    const a1 = v / t1, t3 = v / a2, s = v * (t1 + 2 * t2 + t3) / 2, avg = s / (t1 + t2 + t3);
+    if (a1 <= 5 && nice(a1, 1) && [avg, t3, v / 2, 2 * v / 3, s / (t1 + t2)].every(x => ok2(x))) Q5.push([v, t1, t2, a2]);
+  }
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. v(t) with a sign change: the path (not the displacement)
+    { tip: "qapali", minVariety: 8, gen: () => again(() => {
+      const t1 = rnd(1, 4), t2 = t1 + rnd(1, 4), t3 = t2 + rnd(1, 4), pts = [[0, rnd(0, 6)], [t1, rnd(-8, 10)], [t2, rnd(-8, 10)], [t3, rnd(-8, 8)]], vs = pts.map(p => p[1]);
+      if (t3 > 12 || new Set(vs).size < 3 || !crossOk(pts) || !pts.some((p, i) => i && pts[i - 1][1] * p[1] < 0)) return null;
+      if (Math.max(0, ...vs) - Math.min(0, ...vs) > 12) return null;
+      const { disp, path, noCross, pos } = vareas(pts), ma = vs.reduce((s, v) => s + Math.abs(v), 0) / 4 * t3;
+      const w = [Math.abs(disp), noCross, pos, ma]; if (![path, ...w].every(x => ok2(x))) return null;
+      return mc(ae(path, w, U_("m")), { svg: svgEl(kplot({ series: [{ pts }], dots: pts.map(p => [p[0], p[1]]), yl: "v, m/s", aria: "Sürətin proyeksiyasının zamandan asılılıq qrafiki, düz parçalar" })),
+        text: `Şəkildə cismin sürətinin proyeksiyasının zamandan asılılığı verilib (düz parçalar). Cismin 0–${t3} s-də getdiyi yolu tap.`,
+        solution: `Yol = oxdan yuxarı və aşağı sahələrin mütləq qiymətlərinin cəmi. Parçalar: ${segTxt(pts)}. Cəmi ${F(path)} m. Tələlər: yerdəyişmənin modulu ${F(Math.abs(disp))} m (mənfi sahəni çıxmaq), sıfırdan keçən parçanı bir trapesiya saymaq (${F(noCross)} m), mənfi sahəni atmaq (${F(pos)} m).` });
+    }) },
+    // 2. (xetti-funksiya) x(t) is a straight line through two marked points: when does x reach X?
+    { tip: "qapali", birlesik: "xetti-funksiya", gen: () => again(() => {
+      const v = rnd(1, 6), ta = rnd(1, 4), tb = ta + rnd(2, 4), x0 = rnd(-12, 10), xa = x0 + v * ta, xb = x0 + v * tb, tg = tb + rnd(2, 8), X = x0 + v * tg;
+      if (Math.max(0, xa, xb) - Math.min(0, xa, xb) > 12 || X > 99 || xa === 0 || xb === 0 || xa === xb) return null;
+      const w = [(X - xa) / v, X / v, (X - xb) / v, X * tb / xb]; if (![tg, ...w].every(x => ok2(x))) return null;
+      const pts = [[ta, xa], [tb, xb]];
+      return mc(ae(tg, w, U_("s")), { svg: svgEl(kplot({ series: [{ pts }], dots: [[ta, xa, KV, `(${ta}; ${F(xa)})`, "rb"], [tb, xb, KV, `(${tb}; ${F(xb)})`, "lt"]], yl: "x, m", aria: "Cismin koordinatının zamandan asılılıq qrafiki: düz xətt, iki nöqtə işarələnib" })),
+        text: `Şəkildə bərabərsürətli hərəkət edən cismin x(t) qrafiki (düz xətt) verilib, iki nöqtə işarələnib. Hərəkət qrafikdən sonra da eyni qanunla davam edir. Cisim hansı anda x = ${F(X)} m koordinatından keçəcək?`,
+        solution: `Düz xətt: x = x₀ + vt. Sürət mailiyyətdir: v = (${F(xb)} − ${P(xa)})/(${tb} − ${ta}) = ${F(v)} m/s. İlk nöqtədən x₀: ${F(xa)} = x₀ + ${v}·${ta} → x₀ = ${F(x0)} m. Tənlik: ${F(X)} = ${F(x0)} + ${v}t → t = ${F(tg)} s. Tələlər: x₀-ı unutmaq (${F(+(X / v).toFixed(4))} s), işarələnmiş nöqtənin vaxtını əlavə etməmək (${F(+((X - xa) / v).toFixed(4))} s), ikinci nöqtədən saymaq (${F(+((X - xb) / v).toFixed(4))} s), xətti başlanğıcdan keçən saymaq (${F(+(X * tb / xb).toFixed(4))} s).` });
+    }) },
+    // 3. (xetti-tenlikler) meeting with a delayed start: x₁ = x₂ as a linear equation
+    { tip: "qapali", birlesik: "xetti-tenlikler", gen: () => again(() => {
+      const v1 = rnd(2, 12), v2 = rnd(2, 12), t = rnd(4, 20), t0 = rnd(2, t - 1), L = (v1 + v2) * t - v2 * t0;
+      if (L <= 0 || L > 999) return null;
+      const w = [L / (v1 + v2), t - t0, (L - v2 * t0) / (v1 + v2), (L + v1 * t0) / (v1 + v2)]; if (![t, ...w].every(x => ok2(x))) return null;
+      return mc(ae(t, w, U_("s")), { svg: svgEl(figMeet(v1, v2, L)), text: `A və B nöqtələri arasındakı məsafə ${L} m-dir. A-dan B-yə doğru ${v1} m/s sürətlə velosipedçi yola düşür. ${t0} s sonra B-dən ona doğru ikinci velosipedçi ${v2} m/s sürətlə çıxır. Birinci yola düşəndən neçə saniyə sonra görüşəcəklər?`,
+        solution: `A-dan sayaq, vaxtı birinci yola düşəndən ölçək. x₁ = ${v1}t; ikinci ${t0} s gec çıxıb: x₂ = ${L} − ${v2}(t − ${t0}). Görüş: x₁ = x₂ → ${v1}t = ${L} − ${v2}t + ${v2 * t0} → ${v1 + v2}t = ${L + v2 * t0} → t = ${F(t)} s. Tələlər: gecikməni unutmaq (${F(+(L / (v1 + v2)).toFixed(4))} s), vaxtı ikinci cismin çıxışından saymaq (${F(t - t0)} s), gecikməni səhv cismə aid etmək.` });
+    }) },
+    // 4. v(t) trapezoid + starting coordinate: x = x₀ + area
+    { tip: "qapali", gen: () => again(() => {
+      const v = rnd(2, 10), t1 = rnd(1, 4), t2 = t1 + rnd(1, 5), t3 = t2 + rnd(1, 4), x0 = rnd(-20, 20), s = v * (t3 + t2 - t1) / 2, x = x0 + s;
+      if (!x0 || t3 > 12) return null;
+      const w = [s, x0 + v * t3, x0 + v * t3 / 2, x0 + v * (t2 - t1)]; if (![x, ...w].every(q => okn(q))) return null;
+      const pts = [[0, 0], [t1, v], [t2, v], [t3, 0]];
+      return mc(ae(x, w, U_("m")), { svg: svgEl(kplot({ series: [{ pts }], dots: pts.slice(1, 3), yl: "v, m/s", aria: "Sürətin zamandan asılılığı: sükunətdən sürətlənmə, sabit sürət, dayanma" })),
+        text: `Cisim x₀ = ${F(x0)} m koordinatlı nöqtədən düz xətt boyu hərəkətə başlayıb. Şəkildə sürətinin proyeksiyasının zamandan asılılığı verilib. t = ${t3} s anında cismin koordinatı nə qədərdir?`,
+        solution: `Yerdəyişmə = trapesiyanın sahəsi: (${t3} + ${t2 - t1})/2·${v} = ${F(s)} m. Koordinat x = x₀ + sₓ = ${F(x0)} + ${F(s)} = ${F(x)} m. Tələlər: x₀-ı əlavə etməmək (${F(s)} m), trapesiyanı düzbucaqlı saymaq (${F(x0 + v * t3)} m) və ya üçbucaq saymaq (${F(+(x0 + v * t3 / 2).toFixed(4))} m), yalnız sabit sürət hissəsini götürmək (${F(x0 + v * (t2 - t1))} m).` });
+    }) },
+    // 5. three stages (a₁, constant, a₂): the average speed over the whole way
+    { tip: "qapali", gen: () => again(() => {
+      const [v, t1, t2, a2] = pick(Q5), a1 = v / t1, t3 = v / a2, s = v * (t1 + 2 * t2 + t3) / 2, T = t1 + t2 + t3, avg = s / T, w = [v / 2, v, s / (t1 + t2), 2 * v / 3];
+      return mc(ae(avg, w, U_("m/s")), { svg: svgEl(figTrap()), text: `Qatar stansiyadan sükunətdən ${F(a1)} m/s² təcillə ${t1} s sürətlənir, sonra ${t2} s sabit sürətlə gedir, sonra ${F(a2)} m/s² təcillə yavaşıyaraq növbəti stansiyada dayanır (şəkil). Bütün yol boyu orta sürəti nə qədərdir?`,
+        solution: `v = a₁t₁ = ${F(a1)}·${t1} = ${F(v)} m/s. Yavaşıma vaxtı t₃ = v/a₂ = ${F(t3)} s. Yol = trapesiyanın sahəsi: ${F(v)}·(${t1} + 2·${t2} + ${F(t3)})/2 = ${F(s)} m. Bütün vaxt ${t1} + ${t2} + ${F(t3)} = ${F(T)} s. Orta sürət = ${F(s)}/${F(T)} = ${F(avg)} m/s. Tələlər: v/2 (yalnız sürətlənmənin orta sürəti), v (sabit hissə), yolu yavaşıma vaxtsız bölmək (${F(+(s / (t1 + t2)).toFixed(4))} m/s), hissələrin orta sürətlərini orta hesablamaq (2v/3).` });
+    }) },
+    // 6. reaction time + braking: how far from the obstacle does the car stop
+    { tip: "qapali", gen: () => again(() => {
+      const [k, v0] = pick([[36, 10], [54, 15], [72, 20], [90, 25], [108, 30]]), tr = pick([0.5, 0.8, 1, 1.2, 1.5]), a = pick([2.5, 4, 5, 6, 8, 10]), L = rnd(30, 200);
+      const sr = v0 * tr, sb = v0 * v0 / (2 * a), gap = L - sr - sb;
+      const w = [L - sb, L - sr - 2 * sb, sr + sb, sb]; if (gap < 1 || ![gap, ...w].every(x => ok2(x))) return null;
+      return mc(ae(gap, w, U_("m")), { svg: svgEl(figBrake(v0, L)), text: `Avtomobil ${k} km/saat sürətlə gedir. Sürücü ${L} m qabaqda maneə görür və ${F(tr)} s sonra əyləci basır (bu müddətdə sürət dəyişmir). Əyləc zamanı təcilin modulu ${F(a)} m/s²-dir. Avtomobil dayananda maneəyə qədər neçə metr qalacaq? (Şəkildə v₀ SI-dədir.)`,
+        solution: `${k} km/saat = ${v0} m/s (3,6-ya bölmək). Reaksiya yolu: ${v0}·${F(tr)} = ${F(sr)} m. Əyləc yolu: v₀²/(2a) = ${v0 * v0}/${F(2 * a)} = ${F(sb)} m. Qalan: ${L} − ${F(sr)} − ${F(sb)} = ${F(gap)} m. Tələlər: reaksiyanı unutmaq (${F(L - sb)} m), v₀²/a yazmaq (${F(L - sr - 2 * sb)} m), dayanma yolunu cavab yazmaq (${F(sr + sb)} m).` });
+    }) },
+    // 7. a motorcycle from rest catches a car that is d ahead: its speed at that moment (x₁ = x₂ is a quadratic)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, 2, 2.5, 4, 5]), t = rnd(4, 14), v = rnd(2, 12), d = a * t * t / 2 - v * t;
+      if (d < 5 || d > 300) return null;
+      const w = [v, 2 * v, a * d / v, a * t / 2]; if (![a * t, ...w].every(x => ok2(x))) return null;
+      return mc(ae(a * t, w, U_("m/s")), { svg: svgEl(figChase(v, d)), text: `Motosiklet sükunətdən ${F(a)} m/s² təcillə hərəkətə başlayır. Həmin anda ondan ${F(d)} m qabaqda avtomobil ${v} m/s sabit sürətlə eyni istiqamətdə gedir. Motosiklet avtomobilə çatanda motosikletin sürəti nə qədər olacaq?`,
+        solution: `Əvvəl çatma anını tapaq. Motosikletin koordinatı x₁ = ${F(a)}t²/2, avtomobilin x₂ = ${F(d)} + ${v}t. x₁ = x₂ → ${F(a / 2)}t² − ${v}t − ${F(d)} = 0 → t = ${t} s (yoxlama: ${F(a / 2)}·${t * t} = ${F(a * t * t / 2)} = ${F(d)} + ${v * t}). Sonra v_m = at = ${F(a)}·${t} = ${F(a * t)} m/s. Tələlər: "çatanda sürətlər bərabərdir" (${v} m/s), 2v (d = 0 halının cavabı), a·d/v (vaxtı d/v götürmək: motosikletin təcilini hesaba qatmamaq), orta sürət at/2 (${F(a * t / 2)} m/s).` });
+    }) },
+    // 8. v(t) straight line crossing zero: when does the body come back to its start?
+    { tip: "qapali", gen: () => again(() => {
+      const v0 = pick([4, 6, 8, 10, 12]), w0 = rnd(2, 8), T = pick([3, 4, 5, 6, 8, 10]), a = (v0 + w0) / T, tb = 2 * v0 / a;
+      if (w0 === v0 || v0 + w0 > 12) return null;
+      const w = [T, 2 * T, v0 / a, 2 * v0 * T / Math.abs(v0 - w0)]; if (![tb, ...w].every(x => ok2(x))) return null;
+      const pts = [[0, v0], [T, -w0]];
+      return mc(ae(tb, w, U_("s")), { svg: svgEl(kplot({ series: [{ pts }], dots: pts, yl: "v, m/s", aria: "Sürətin zamandan asılılığı: düz xətt, sürət azalır və işarəsini dəyişir" })),
+        text: `Şəkildə cismin sürətinin proyeksiyasının zamandan asılılığı verilib (təcil sabitdir və qrafikdən sonra da eynidir). Cisim başlanğıc nöqtəyə hansı anda qayıdacaq?`,
+        solution: `Təcil: a = Δv/Δt = (−${w0} − ${v0})/${T} = ${F(-a)} m/s². Koordinatın dəyişməsi sₓ = v₀t + at²/2 = ${v0}t − ${F(a / 2)}t². Başlanğıca qayıdış: sₓ = 0 → t = 2v₀/|a| = ${F(tb)} s. Tələlər: dönmə anı v₀/|a| = ${F(+(v0 / a).toFixed(4))} s (orada sürət sıfırdır, cisim hələ uzaqdadır), qrafikin sonu ${T} s, təcili v₀/${T} yazmaq (${F(2 * T)} s).` });
+    }) },
+    // 9. a train crosses a bridge: speed in km/h, lengths in metres
+    { tip: "qapali", gen: () => again(() => {
+      const [k, v] = pick([[18, 5], [36, 10], [54, 15], [72, 20], [90, 25], [108, 30]]), L = 10 * rnd(10, 50), l = 10 * rnd(4, 30), t = (L + l) / v;
+      const c = [L / v, (L + l) / k, l / v, (L - l) / v]; if (![t, ...c].every(x => ok2(x))) return null;
+      return mc(ae(t, c, U_("s")), { svg: svgEl(figBridge(L, l, k)), text: `Uzunluğu ${l} m olan qatar ${k} km/saat sabit sürətlə uzunluğu ${L} m olan körpüdən keçir. Qatarın lokomotivi körpüyə girəndən son vaqonu körpüdən çıxana qədər neçə saniyə keçir?`,
+        solution: `${k} km/saat = ${v} m/s. Lokomotiv körpüyə girəndən son vaqon çıxana qədər qatar öz uzunluğu + körpünün uzunluğu qədər yol gedir: ${l} + ${L} = ${l + L} m. t = ${l + L}/${v} = ${F(t)} s. Tələlər: yalnız körpünün uzunluğunu götürmək (${F(+(L / v).toFixed(4))} s), vahidi çevirməmək (${F(+((L + l) / k).toFixed(4))} s), yalnız qatarın uzunluğunu götürmək (${F(+(l / v).toFixed(4))} s), uzunluqları çıxmaq (${F(+((L - l) / v).toFixed(4))} s).` });
+    }) },
+    // 10. x(t) parabola with a marked vertex: the initial velocity (and its sign)
+    { tip: "qapali", gen: () => again(() => {
+      const [c0, tv] = pick([[1, 2], [1, 3], [2, 2], [3, 2], [1, 4]]), sg = pick([1, -1]), c = sg * c0, xv = rnd(-6, 8), x0 = xv + c * tv * tv, dx = x0 - xv, v0 = -2 * dx / tv;
+      if (Math.max(0, x0, xv) - Math.min(0, x0, xv) > 12 || xv === 0) return null;
+      const w = [2 * dx / tv, -dx / tv, dx / tv, -4 * dx / tv]; if (![v0, ...w].every(x => okn(x) && x !== 0)) return null;
+      const curve = []; for (let i = 0; i <= 40; i++) { const t = 2 * tv * i / 40; curve.push([t, xv + c * (t - tv) ** 2]); }
+      return mc(ae(v0, w, U_("m/s")), { svg: svgEl(kplot({ series: [{ pts: curve, nolat: true }], dots: [[0, x0, KV, `(0; ${F(x0)})`, sg > 0 ? "rt" : "rb"], [tv, xv, KV, `(${tv}; ${F(xv)})`, sg > 0 ? "rb" : "rt"]], xhi: 2 * tv, yl: "x, m", aria: "Koordinatın zamandan asılılığı: parabola, təpə nöqtəsi işarələnib" })),
+        text: `Şəkildə cismin koordinatının zamandan asılılığı verilib: parabolanın bir hissəsi, təpə nöqtəsi və t = 0 nöqtəsi işarələnib. Təcil sabitdir. Cismin t = 0 anında sürətinin proyeksiyasını tap.`,
+        solution: `Təpə nöqtəsində koordinat ${sg > 0 ? "ən kiçik" : "ən böyük"} olur, orada sürət sıfırdır: v(${tv}) = 0. Təpədən sayaq: x − x_təpə = a(t − ${tv})²/2. t = 0-da: ${F(x0)} − ${P(xv)} = a·${tv * tv}/2 → a = ${F(2 * dx / (tv * tv))} m/s². v = v₀ + at = 0 → v₀ = −a·${tv} = ${F(v0)} m/s. İşarə: ${v0 < 0 ? "koordinat azalır, cisim təpəyə doğru oxun əksinə gedir" : "koordinat artır, cisim təpəyə doğru oxun istiqamətində gedir"}. Tələlər: işarəni səhv seçmək (${F(2 * dx / tv)} m/s), orta sürəti başlanğıc sürət saymaq (${F(-dx / tv)} m/s), ikiqat vurmaq (${F(-4 * dx / tv)} m/s).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -319,7 +486,7 @@
     game = Oyun.mount({
       key: "fiz-kinematika", title: "Hərəkət və qrafiklər", fenn: "fizika", link: "dersler/fiz-kinematika.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: m, s, m/s, m/s²). İşarəli kəmiyyətlərdə mənfi cavab mümkündür: −3. Onluq kəsr vergül və ya nöqtə ilə: 2,5.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["beraber", "tecil", "tecil", "koord", "koord", "qrafik", "qrafik", "gorus", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
