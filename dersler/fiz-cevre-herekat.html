@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Bucaq sürəti</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Təcil</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Qüvvə, müqayisə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -57,7 +58,7 @@
       <p>Cisim bir dövrdə çevrənin uzunluğu qədər yol gedir: <span class="m">2πR</span>. Sürət = yol / vaxt:</p>
       <div class="fm">v = 2πR / T = 2πR·ν</div>
       <p>Bu sürətin <b>modulu</b> sabitdir, amma <b>istiqaməti</b> hər an dəyişir: sürət həmişə çevrəyə <b>toxunan</b> üzrə yönəlir.</p>
-      <div class="life"><b>Həyatdan.</b> Bıçağı itiləyən daşdan qığılcımlar daşa toxunan üzrə uçur. Palçıqlı yolda velosipedin təkərindən palçıq da toxunan üzrə sıçrayır. Gürz atan atlet gürzü buraxanda gürz çevrə üzrə yox, buraxıldığı anın toxunanı üzrə düz uçur: cisim "azad" olan kimi sürətinin həmin anki istiqamətində gedir.</div>
+      <div class="life"><b>Həyatdan.</b> Bıçağı itiləyən daşdan qığılcımlar daşa toxunan üzrə uçur. Palçıqlı yolda velosipedin təkərindən palçıq da toxunan üzrə sıçrayır. Gürz atan atlet gürzü buraxanda gürz çevrə üzrə yox, buraxıldığı anın toxunanı üzrə yönəlmiş sürətlə uçur: cisim "azad" olan kimi sürətinin həmin anki istiqaməti saxlanır (sonra cazibə onu parabola üzrə əyir).</div>
       </div>
       <div class="pair-col nums">
       <h3><span class="st">4</span> Həll olunmuş nümunələr (π = 3)</h3>
@@ -246,7 +247,7 @@ Nümunə 2. Avtomobil R = 20 m radiuslu üfüqi döngəni dönür, μ = 0,5. Ən
         <svg viewBox="0 0 280 160" role="img" aria-label="Qayışla bağlı iki çarx: kənarda sürət eynidir">
           <circle cx="76" cy="80" r="28" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
           <circle cx="206" cy="80" r="56" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
-          <line x1="76" y1="52" x2="206" y2="24" stroke="var(--ink)" stroke-width="2"/><line x1="76" y1="108" x2="206" y2="136" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="70" y1="52.7" x2="193.9" y2="25.3" stroke="var(--ink)" stroke-width="2"/><line x1="70" y1="107.3" x2="193.9" y2="134.7" stroke="var(--ink)" stroke-width="2"/>
           <circle cx="76" cy="80" r="3" fill="var(--ink)"/><circle cx="206" cy="80" r="3" fill="var(--ink)"/>
           <text class="lbl" x="62" y="85">R₁</text><text class="lbl" x="190" y="85">R₂</text>
           <text x="20" y="152">kənarda v eynidir: ν₁R₁ = ν₂R₂</text>
@@ -290,6 +291,99 @@ Enlik φ: r = R·cos φ</div></div>
         <li>Avtomobil R = 25 m radiuslu döngəni dönür, μ = 0,4. Ən böyük sürət? <span class="ans">v = √(0,4·10·25) = √100 = 10 m/s.</span></li>
         <li>Qayışla bağlı çarxlar: R₁ = 10 sm (ν₁ = 6 1/s), R₂ = 30 sm. ν₂ və a₂/a₁? <span class="ans">ν₂ = 6·10/30 = 2 1/s; a₂/a₁ = R₁/R₂ = 1/3.</span></li>
         <li>Dəqiqə əqrəbinin bucaq sürəti saat əqrəbinin bucaq sürətindən neçə dəfə böyükdür? <span class="ans">12 dəfə.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: Çevrə üzrə hərəkət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. Amma "<span class="m">v = 2πR/T</span> düsturunu yaz" tipli sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — üstdən görünüş (çevrə, qayışla bağlı çarxlar, disk), qabarıq körpü, saat, Yer kürəsinin kəsiyi. Ədədlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl dövrü, tezliyi və ya sürəti tap (vahidləri çevir), sonra bucaq sürəti və ya təcil, sonra qüvvə.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: 2π-ni unutmaq, dəqiqəni saniyəyə çevirməmək, <span class="m">ω</span> ilə <span class="m">ω²</span>-ni qarışdırmaq, qayışda "bucaq sürəti eynidir" demək (düzü: <b>sürət</b> eynidir), qabarıq körpüdə <span class="m">m(g + a)</span> yazmaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: Nyuton qanunları (körpü, ip, sürtünmə qüvvəsi), kinematika (dairəvi yolda görüş), sərbəst düşmə (ip qırılır, kürə üfüqi atılır).</li>
+      </ul>
+      <p>Şərtdə <span class="m">π = 3</span> və <span class="m">g = 10 m/s²</span> verilir. Variantlar buna görə hazırlanıb: şərtdə nə yazılıbsa, onu götür.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qayışla bağlı çarxlar</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sxem</span>
+        <div class="fig"><svg viewBox="0 0 280 180" role="img" aria-label="Qayışla bağlı iki çarx: R₁ və R₂"><circle cx="63.3" cy="90" r="33.3" fill="var(--accent-soft,#e6ecf7)" stroke="var(--ink,#1c2433)" stroke-width="2"/><circle cx="183.3" cy="90" r="66.7" fill="var(--accent-soft,#e6ecf7)" stroke="var(--ink,#1c2433)" stroke-width="2"/><line x1="54.1" y1="58" x2="164.8" y2="26" stroke="var(--ink,#1c2433)" stroke-width="2.5" stroke-linecap="round"/><line x1="54.1" y1="122" x2="164.8" y2="154" stroke="var(--ink,#1c2433)" stroke-width="2.5" stroke-linecap="round"/><circle cx="63.3" cy="90" r="3" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><circle cx="183.3" cy="90" r="3" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><text x="63.3" y="81" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">R₁</text><text x="183.3" y="81" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">R₂</text></svg></div>
+        <p>Qayışla bağlı çarxların radiusları R₁ = 20 sm və R₂ = 40 sm-dir. Birinci çarx saniyədə 5 dövr edir. İkinci çarxın kənarındakı nöqtənin mərkəzəqaçma təcili nə qədərdir? (Qayış sürüşmür, π = 3.)</p>
+        <ol class="imt-opts"><li>180 m/s²</li><li>45 m/s²</li><li>90 m/s²</li><li>360 m/s²</li><li>15 m/s²</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qayış sürüşmür: çarxların kənarında v eynidir.
+v = 2πR₁ν₁ = 6·0,2·5 = 6 m/s
+a₂ = v²/R₂ = 36/0,4 = 90 m/s²
+Cavab: C) 90 m/s²</div>
+      <ul>
+        <li><b>A) 180</b> — birinci çarxın təcili <span class="m">v²/R₁</span>: sual ikinci çarxdan soruşur.</li>
+        <li><b>D) 360</b> — "çarxlar eyni <span class="m">ω</span>-la fırlanır" deyib <span class="m">a = ω₁²R₂</span> yazmaq. Qayışda eyni olan sürətdir, bucaq sürəti yox.</li>
+        <li><b>E) 15</b> — <span class="m">a = v/R₂</span>: bu təcil düsturu deyil (vahid yoxlamasında uğursuz olur).</li>
+        <li><b>B) 45</b> — radius əvəzinə diametri (2R₂ = 0,8 m) götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — qabarıq körpü (iki mövzu: Nyuton qanunları)</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 260 190" role="img" aria-label="Qabarıq körpü: avtomobil ən yuxarı nöqtədə, əyrilik radiusu R"><path d="M65.7 85.4 A100 100 0 0 1 194.3 85.4" fill="none" stroke="var(--ink,#1c2433)" stroke-width="3.5" stroke-linecap="round"/><line x1="130" y1="62" x2="130" y2="162" stroke="var(--muted,#5b6578)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="130" cy="162" r="3" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><text x="140" y="116" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">R</text><text x="120" y="177" text-anchor="end" font-size="12" font-weight="700" fill="var(--muted,#5b6578)" font-family="inherit">O</text><rect x="111" y="44" width="38" height="14" rx="3" fill="var(--accent-soft,#e6ecf7)" stroke="var(--ink,#1c2433)" stroke-width="2"/><circle cx="120" cy="58.5" r="3.5" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><circle cx="140" cy="58.5" r="3.5" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><text x="130" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">m</text><line x1="156" y1="51" x2="192" y2="51" stroke="var(--accent,#2c4a8a)" stroke-width="2.5" stroke-linecap="round"/><polygon points="200,51 191,55.5 191,46.5" fill="var(--accent,#2c4a8a)"/><text x="209" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent,#2c4a8a)" font-family="inherit">v</text></svg></div>
+        <p>Kütləsi 800 kq olan avtomobil qabarıq körpünün ən yuxarı nöqtəsindən 10 m/s sürətlə keçir. Körpünün əyrilik radiusu 40 m-dir. Avtomobil körpüyə nə qədər qüvvə ilə təzyiq edir? (g = 10 m/s²)</p>
+        <ol class="imt-opts"><li>7000 N</li><li>8000 N</li><li>6000 N</li><li>10000 N</li><li>2000 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">a = v²/R = 100/40 = 2,5 m/s²  (mərkəzə, yəni aşağı)
+Aşağı istiqamət müsbət, Nyutonun II qanunu:
+mg − N = ma  →  N = m(g − a) = 800·7,5 = 6000 N
+III qanun: avtomobil körpüyə də 6000 N qüvvə ilə təzyiq edir.
+Cavab: C) 6000 N</div>
+      <ul>
+        <li><b>B) 8000 N</b> — mərkəzəqaçma təcilini unutmaq: <span class="m">N = mg</span> (avtomobil sanki dayanıb).</li>
+        <li><b>D) 10000 N</b> — işarəni səhv qoymaq: <span class="m">m(g + a)</span>. Bu çökək yolun aşağı nöqtəsində doğrudur; körpünün üstündə təzyiq <b>azalır</b>.</li>
+        <li><b>E) 2000 N</b> — <span class="m">N = ma</span>: ağırlıq qüvvəsini yazmağı unutmaq.</li>
+        <li><b>A) 7000 N</b> — radius əvəzinə diametri (80 m) götürmək: <span class="m">a = 1,25</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — ip qırılır (iki mövzu: sərbəst düşmə)</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 280 200" role="img" aria-label="Üstdən görünüş: ip qırılır, kürə toxunan boyunca uçub yerə düşür; d — düşmə nöqtəsinin O nöqtəsindən məsafəsi"><circle cx="90" cy="126" r="70" fill="none" stroke="var(--muted,#5b6578)" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="90" y1="126" x2="90" y2="56" stroke="var(--ink,#1c2433)" stroke-width="2.5" stroke-linecap="round"/><circle cx="90" cy="56" r="6" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><circle cx="90" cy="126" r="3" fill="var(--ink,#1c2433)" stroke="var(--ink,#1c2433)" stroke-width="1"/><text x="80" y="142" text-anchor="end" font-size="12" font-weight="700" fill="var(--muted,#5b6578)" font-family="inherit">O</text><line x1="98" y1="56" x2="189" y2="56" stroke="var(--accent,#2c4a8a)" stroke-width="2.5" stroke-linecap="round"/><polygon points="197,56 188,60.5 188,51.5" fill="var(--accent,#2c4a8a)"/><text x="150" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent,#2c4a8a)" font-family="inherit">v</text><path d="M90 65 L99 65 L99 56" fill="none" stroke="var(--ink,#1c2433)" stroke-width="1.2"/><line x1="90" y1="126" x2="205" y2="56" stroke="var(--vec,#b4561b)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="205" cy="56" r="4.5" fill="var(--vec,#b4561b)" stroke="var(--vec,#b4561b)" stroke-width="1"/><text x="82" y="95" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#1c2433)" font-family="inherit">R</text><text x="168" y="121" text-anchor="start" font-size="13" font-weight="700" fill="var(--vec,#b4561b)" font-family="inherit">d = ?</text></svg></div>
+        <p>Hamar üfüqi dairəvi lövhə yerdən 0,8 m hündürlükdədir, lövhənin radiusu 3 m-dir. Kürə lövhənin kənarı boyunca, uzunluğu 3 m olan iplə mərkəzə bağlı halda 10 m/s sürətlə fırlanır. İp qırılır, kürə lövhədən uçub yerə düşür. Düşmə nöqtəsi lövhənin mərkəzinin düz altındakı O nöqtəsindən nə qədər məsafədədir? (Havanın müqaviməti yoxdur, g = 10 m/s².)</p>
+        <ol class="imt-opts"><li>4 m</li><li>7 m</li><li>5 m</li><li>1 m</li><li>3 m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qırılan anda sürət toxunan boyunca, üfüqidir: kürə üfüqi atılır.
+Şaquli: h = gt²/2  →  t = √(2·0,8/10) = 0,4 s
+Üfüqi, toxunan boyunca: s = vt = 10·0,4 = 4 m
+Toxunan radiusa perpendikulyardır, düzbucaqlı üçbucaq:
+d² = R² + s² = 9 + 16 = 25  →  d = 5 m
+Cavab: C) 5 m</div>
+      <ul>
+        <li><b>A) 4 m</b> — yalnız toxunan boyunca məsafə <span class="m">s</span>; mərkəzdən olan məsafəyə <span class="m">R</span>-i də qatmaq lazımdır.</li>
+        <li><b>B) 7 m</b> — <span class="m">R + s</span> toplamaq: bu iki məsafə düz bucaq altındadır, düz xətt üzrə toplanmır.</li>
+        <li><b>D) 1 m</b> — <span class="m">s − R</span>: kürə çevrədən radial istiqamətdə uçmur.</li>
+        <li><b>E) 3 m</b> — "kürə düz aşağı düşür" (üfüqi sürəti unutmaq): düşmə nöqtəsi lövhənin kənarının altında olardı.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Vahidlər.</b> "Dəqiqədə n dövr" — <span class="m">ν = n/60</span> 1/s; sm-i m-ə, km/saat-ı m/s-ə (3,6-ya böl) çevir.</li>
+        <li><b>2π-ni unutmaq.</b> <span class="m">v = 2πR/T = 2πRν</span>, <span class="m">ω = 2πν</span>. π = 3 olanda 2π = 6.</li>
+        <li><b>Təcil kvadratla.</b> <span class="m">a = v²/R = ω²R</span>: <span class="m">v/R</span> və <span class="m">ωR</span> təcil deyil.</li>
+        <li><b>Qayışda və zəncirdə sürət eynidir, diskin üstündə bucaq sürəti eynidir.</b> Hansı halda olduğunu müəyyən et.</li>
+        <li><b>Qüvvələr:</b> "mərkəzəqaçma qüvvəsi" ayrıca qüvvə deyil; Nyutonun II qanununu mərkəzə doğru yaz. Qabarıq körpüdə <span class="m">N &lt; mg</span>, çökək yolda <span class="m">N &gt; mg</span>.</li>
+        <li><b>İp qırılır</b> — kürə çevrənin radiusu boyunca yox, <b>toxunan boyunca</b> uçur.</li>
+        <li><b>Enlik.</b> Yerin 60° enliyindəki nöqtəsi <span class="m">R·cos 60°</span> radiuslu çevrə üzrə hərəkət edir, <span class="m">R</span> radiuslu yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">T = t/N,   ν = 1/T,   ω = 2πν,   v = ωR = 2πR/T
+a = v²/R = ω²R   (mərkəzə)
+Qayış: v eyni;   disk: ω eyni
+Mərkəzə doğru:  ΣF = mv²/R = mω²R</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Radiusu 0,5 m olan çarx dəqiqədə 120 dövr edir. Kənardakı nöqtənin sürəti? (π = 3) <span class="ans">ν = 2 1/s, v = 6·0,5·2 = 6 m/s.</span></li>
+        <li>1000 kq-lıq avtomobil radiusu 50 m olan çökək yolun ən aşağı nöqtəsindən 10 m/s sürətlə keçir. Yola təzyiq qüvvəsi? <span class="ans">a = 100/50 = 2 m/s², N = m(g + a) = 1000·12 = 12000 N.</span></li>
+        <li>Disk fırlanır. Oxdan 10 sm-də nöqtənin təcili 4 m/s²-dir. Oxdan 30 sm-də təcil? <span class="ans">ω eynidir, a ~ R: 4·3 = 12 m/s².</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

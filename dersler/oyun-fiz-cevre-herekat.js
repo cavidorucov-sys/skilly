@@ -34,13 +34,12 @@
   // two pulleys connected by a belt
   function belt(r1, r2) {
     const s = sv("svg", { viewBox: "0 0 280 160", class: "oy-svg", role: "img", "aria-label": "Qayışla bağlı iki çarx" });
-    const k = 90 / Math.max(r1, r2), a = r1 * k, b = r2 * k, x1 = 20 + a + 6, x2 = 280 - 20 - b - 6, y = 80;
-    s.append(sv("circle", { cx: x1, cy: y, r: f1(a), fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
-    s.append(sv("circle", { cx: x2, cy: y, r: f1(b), fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
-    s.append(sv("line", { x1, y1: y - a, x2, y2: y - b, stroke: "var(--ink)", "stroke-width": 2 }));
-    s.append(sv("line", { x1, y1: y + a, x2, y2: y + b, stroke: "var(--ink)", "stroke-width": 2 }));
-    s.append(sv("text", { x: x1 - 12, y: y + 5, class: "oy-lbl" }, "R₁"));
-    s.append(sv("text", { x: x2 - 12, y: y + 5, class: "oy-lbl" }, "R₂"));
+    const k = Math.min(60 / Math.max(r1, r2), 100 / (r1 + r2)), a = r1 * k, b = r2 * k, x1 = 30 + a, x2 = 250 - b, y = 80, D = x2 - x1, nx = (a - b) / D, ny = Math.sqrt(1 - nx * nx);
+    s.append(sv("circle", { cx: f1(x1), cy: y, r: f1(a), fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    s.append(sv("circle", { cx: f1(x2), cy: y, r: f1(b), fill: "var(--accent-soft)", stroke: "var(--ink)", "stroke-width": 2 }));
+    for (const sg of [-1, 1]) s.append(sv("line", { x1: f1(x1 + a * nx), y1: f1(y + sg * a * ny), x2: f1(x2 + b * nx), y2: f1(y + sg * b * ny), stroke: "var(--ink)", "stroke-width": 2 }));
+    s.append(sv("text", { x: f1(x1 - 8), y: y + 5, class: "oy-lbl" }, "R₁"));
+    s.append(sv("text", { x: f1(x2 - 8), y: y + 5, class: "oy-lbl" }, "R₂"));
     return s;
   }
 
@@ -75,7 +74,7 @@
         if (kind === "vR") { const Rr = pick([0.2, 0.5, 2, 4, 5, 10]), w = rnd(1, 12), v = w * Rr; if (!nice(v, 2)) return this.gen(); return R(w, "rad/s", { text: `Çevrə üzrə hərəkət edən cismin sürəti ${F(v)} m/s, çevrənin radiusu ${F(Rr)} m-dir. Bucaq sürətini tap.`, solution: `ω = v/R = ${F(v)}/${F(Rr)} = ${w} rad/s.` }); }
         if (kind === "v") { const Rr = pick([0.2, 0.5, 2, 4, 5, 10]), w = rnd(1, 12), v = w * Rr; if (!nice(v, 2)) return this.gen(); return R(v, "m/s", { text: `Cismin bucaq sürəti ${w} rad/s, çevrənin radiusu ${F(Rr)} m-dir. Xətti sürəti tap.`, solution: `v = ωR = ${w}·${F(Rr)} = ${F(v)} m/s.` }); }
         if (kind === "phi") { const w = pick([0.5, 1, 2, 3, 4, 5]), t = rnd(2, 12), phi = w * t; return R(phi, "rad", { text: `Cisim ${F(w)} rad/s bucaq sürəti ilə ${t} s fırlanır. Hansı bucaq qədər dönər?`, solution: `φ = ωt = ${F(w)}·${t} = ${F(phi)} rad.` }); }
-        if (kind === "N") { for (;;) { const w = pick([3, 6, 9, 12, 15, 18, 24]), t = rnd(2, 20), N = w * t / 6; if (nice(N, 2)) return R(N, "dövr", { text: `Cisim ${w} rad/s bucaq sürəti ilə ${t} s fırlanır. Neçə tam dövr edər? (π = 3)`, solution: `φ = ωt = ${w}·${t} = ${w * t} rad. Bir dövr 2π = 6 rad: N = ${w * t}/6 = ${F(N)}.` }); } }
+        if (kind === "N") { for (;;) { const w = pick([3, 6, 9, 12, 15, 18, 24]), t = rnd(2, 20), N = w * t / 6; if (nice(N, 2)) return R(N, "dövr", { text: `Cisim ${w} rad/s bucaq sürəti ilə ${t} s fırlanır. Neçə dövr edər? (π = 3)`, solution: `φ = ωt = ${w}·${t} = ${w * t} rad. Bir dövr 2π = 6 rad: N = ${w * t}/6 = ${F(N)}.` }); } }
         const ang = pick([30, 45, 60, 90, 120, 180, 270, 360]), rad = ang * 3 / 180; return R(rad, "rad", { text: `${ang}° neçə radiandır? (π = 3)`, solution: `180° = π = 3 rad. ${ang}° = ${ang}·3/180 = ${F(rad)} rad.` });
       } },
     { id: "tecil", ad: "Mərkəzəqaçma təcili", izah: "a = v²/R = ω²R = 4π²R/T². Təcil çevrənin mərkəzinə yönəlib, sürətin modulu sabit olsa da var.",
@@ -180,9 +179,214 @@
         if (kind === "ip") { const m = pick([0.1, 0.2, 0.25, 0.5]), v = pick([2, 3, 4, 5, 6]), Rr = pick([0.5, 1, 2]), T = m * v * v / Rr; if (!nice(T, 2)) return this.gen(); return R(T, "N", { text: `${F(m)} kq kütləli kürə uzunluğu ${F(Rr)} m olan iplə hamar üfüqi masada çevrə üzrə ${v} m/s sürətlə fırlanır. İpin gərilmə qüvvəsi nə qədərdir?`, solution: `Kürəyə üfüqi istiqamətdə yalnız ipin gərilməsi təsir edir, o, mərkəzəqaçma təcilini yaradır: T = mv²/R = ${F(m)}·${v * v}/${F(Rr)} = ${F(T)} N.` }); }
         if (kind === "tel") { const nu = pick([0.5, 1, 1.5, 2]), Rr = pick([0.1, 0.15, 0.2, 0.25, 0.3]), a = 36 * nu * nu * Rr; if (!nice(a, 2)) return this.gen(); return R(a, "m/s²", { text: `Elvin telefonu fırlanan platformanın mərkəzindən ${F(Rr)} m məsafədə yapışdırıb. Platforma saniyədə ${F(nu)} dövr edir. Telefonun akselerometri mərkəzəqaçma təcili üçün hansı qiyməti göstərməlidir? (π = 3)`, solution: `ω = 2πν = 6·${F(nu)} = ${F(6 * nu)} rad/s. a = ω²R = ${F(36 * nu * nu)}·${F(Rr)} = ${F(a)} m/s². Təcrübədə bu düsturla ölçməni yoxlayırıq.` }); }
         const m = pick([2, 4, 5]), nu = pick([1, 2]), Rr = pick([1, 1.5, 2]), Fv = m * 36 * nu * nu * Rr; if (!nice(Fv, 2)) return this.gen();
-        return R(Fv, "N", { text: `Gürz atan atlet ${m} kq kütləli gürzü ${F(Rr)} m radiuslu çevrə üzrə saniyədə ${nu} dövr sürətlə fırladır. Buraxmazdan əvvəl gürzü saxlayan qüvvə nə qədərdir? (π = 3, üfüqi çevrə kimi götür.)`, solution: `ω = 6ν = ${6 * nu} rad/s. F = mω²R = ${m}·${36 * nu * nu}·${F(Rr)} = ${F(Fv)} N.` });
+        return R(Fv, "N", { text: `Gürz atan atlet ${m} kq kütləli gürzü ${F(Rr)} m radiuslu çevrə üzrə saniyədə ${nu} dövr sürətlə fırladır. Buraxmazdan əvvəl gürzü saxlayan qüvvənin mərkəzə yönəlmiş (üfüqi) toplananı nə qədərdir? (π = 3, üfüqi çevrə kimi götür.)`, solution: `ω = 6ν = ${6 * nu} rad/s. F = mω²R = ${m}·${36 * nu * nu}·${F(Rr)} = ${F(Fv)} N.` });
       } },
   ];
+
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions, each with a figure and several steps;
+  // the wrong options are the answers of typical mistakes. Questions 3, 4, 5, 6 also use an earlier topic (birlesik).
+  // string-based SVG helpers (the lesson tab's figures are produced by the same code)
+  const FIG = (() => {
+    const INK = "var(--ink,#1c2433)", MUT = "var(--muted,#5b6578)", ACC = "var(--accent,#2c4a8a)", VEC = "var(--vec,#b4561b)", SOFT = "var(--accent-soft,#e6ecf7)", PAP = "var(--paper,#f6f7f9)";
+    const q = n => +(+n).toFixed(1), DSH = ' stroke-dasharray="4 3"';
+    const sL = (x1, y1, x2, y2, c = INK, w = 2, ex = "") => `<line x1="${q(x1)}" y1="${q(y1)}" x2="${q(x2)}" y2="${q(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+    const sT = (x, y, s, a = "middle", c = INK, sz = 13) => `<text x="${q(x)}" y="${q(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+    const sC = (cx, cy, r, fill = "none", c = INK, w = 2, ex = "") => `<circle cx="${q(cx)}" cy="${q(cy)}" r="${q(r)}" fill="${fill}" stroke="${c}" stroke-width="${w}"${ex}/>`;
+    const head = (x, y, ux, uy, c) => `<polygon points="${q(x)},${q(y)} ${q(x - ux * 9 - uy * 4.5)},${q(y - uy * 9 + ux * 4.5)} ${q(x - ux * 9 + uy * 4.5)},${q(y - uy * 9 - ux * 4.5)}" fill="${c}"/>`;
+    const sA = (x1, y1, x2, y2, c = ACC, w = 2.5) => { const L = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1) / L, uy = (y2 - y1) / L; return sL(x1, y1, x2 - ux * 8, y2 - uy * 8, c, w) + head(x2, y2, ux, uy, c); };
+    const sub = (b, s) => `${b}<tspan dy="3" font-size="10">${s}</tspan>`;
+    const sS = (w, h, inner, aria) => `<svg viewBox="0 0 ${w} ${h}" class="oy-svg" role="img" aria-label="${aria}">${inner}</svg>`;
+    const rad = d => d * Math.PI / 180;
+
+    // top view of a circle, the point at angle deg (counter-clockwise): v along the tangent; string = solid radius with tension arrow T
+    function circ(Rt, o, deg) {
+      const cx = 140, cy = 110, r = 70, th = rad(deg), px = cx + r * Math.cos(th), py = cy - r * Math.sin(th), tx = -Math.sin(th), ty = -Math.cos(th);
+      let s = sC(cx, cy, r, "none", MUT, 1.6, o.string ? DSH : "") + sC(cx, cy, 3, INK, INK, 1);
+      s += o.string ? sL(cx, cy, px, py, INK, 2.5) + sC(px, py, 8, INK, INK, 1) : sL(cx, cy, px, py, MUT, 1.4, DSH) + sC(px, py, 6, INK, INK, 1);
+      const nx = -(py - cy) / r, ny = (px - cx) / r;   // unit normal of the radius: the label goes beside it
+      s += sT((cx + px) / 2 + nx * 11, (cy + py) / 2 + ny * 11 + 4, "R", "middle", INK, 13) + sT(8, 214, "R = " + Rt, "start", INK, 13);
+      if (o.v) s += sA(px, py, px + tx * 46, py + ty * 46, ACC) + sT(px + tx * 60, py + ty * 60 + 5, "v", "middle", ACC);
+      if (o.T) s += sA(px, py, px + (cx - px) * 0.5, py + (cy - py) * 0.5, VEC) + sT(px + (cx - px) * 0.25 - nx * 12, py + (cy - py) * 0.25 - ny * 12 + 4, "T", "middle", VEC);
+      return sS(280, 220, s, o.string ? "Üfüqi çevrə üzrə fırlanan kürə, üstdən görünüş" : "Çevrə üzrə hərəkət, üstdən görünüş");
+    }
+    // two pulleys joined by a belt (exact external tangents)
+    function belt(r1, r2) {
+      const k = Math.min(70 / Math.max(r1, r2), 100 / (r1 + r2)), a = r1 * k, b = r2 * k, x1 = 30 + a, x2 = 250 - b, y = 90, D = x2 - x1, nx = (a - b) / D, ny = Math.sqrt(1 - nx * nx);
+      let s = sC(x1, y, a, SOFT) + sC(x2, y, b, SOFT);
+      for (const sg of [-1, 1]) s += sL(x1 + a * nx, y + sg * a * ny, x2 + b * nx, y + sg * b * ny, INK, 2.5);
+      s += sC(x1, y, 3, INK, INK, 1) + sC(x2, y, 3, INK, INK, 1) + sT(x1, y - 9, "R₁", "middle", INK, 13) + sT(x2, y - 9, "R₂", "middle", INK, 13);
+      return sS(280, 180, s, "Qayışla bağlı iki çarx: R₁ və R₂");
+    }
+    // convex (hump) bridge or concave (dip): a car in the middle, radius to the centre O
+    function bridge(convex) {
+      const cx = 130, r = 100, an = rad(40), dx = r * Math.sin(an), dy = r * Math.cos(an), top = convex ? 62 : 138, cy = convex ? top + r : top - r, yE = convex ? cy - dy : cy + dy, y0 = top - 18;
+      let s = `<path d="M${q(cx - dx)} ${q(yE)} A${r} ${r} 0 0 ${convex ? 1 : 0} ${q(cx + dx)} ${q(yE)}" fill="none" stroke="${INK}" stroke-width="3.5" stroke-linecap="round"/>`;
+      s += sL(cx, top, cx, cy, MUT, 1.4, DSH) + sC(cx, cy, 3, INK, INK, 1) + sT(cx + 10, (top + cy) / 2 + 4, "R", "start", INK, 13) + sT(cx - 10, cy + (convex ? 15 : -8), "O", "end", MUT, 12);
+      s += `<rect x="${cx - 19}" y="${y0}" width="38" height="14" rx="3" fill="${SOFT}" stroke="${INK}" stroke-width="2"/>` + sC(cx - 10, top - 3.5, 3.5, INK, INK, 1) + sC(cx + 10, top - 3.5, 3.5, INK, INK, 1) + sT(cx, y0 + 11, "m", "middle", INK, 11);
+      s += sA(cx + 26, y0 + 7, cx + 70, y0 + 7, ACC) + sT(cx + 79, y0 + 12, "v", "middle", ACC);
+      return sS(260, 190, s, convex ? "Qabarıq körpü: avtomobil ən yuxarı nöqtədə, əyrilik radiusu R" : "Çökək yol: avtomobil ən aşağı nöqtədə, əyrilik radiusu R");
+    }
+    // top view of a turntable: a block at distance r from the axis, friction toward the axis, rotation arrow
+    function turn() {
+      const cx = 120, cy = 100, bx = cx + 52, a1 = rad(30), a2 = rad(150), r0 = 26, [x1, y1] = [cx + r0 * Math.cos(a1), cy - r0 * Math.sin(a1)], [x2, y2] = [cx + r0 * Math.cos(a2), cy - r0 * Math.sin(a2)];
+      let s = sC(cx, cy, 80, SOFT, INK, 2.5) + sC(cx, cy, 3, INK, INK, 1) + sL(cx, cy, bx, cy, MUT, 1.4, DSH) + sT(cx + 26, cy + 17, "r", "middle", INK, 13);
+      s += `<rect x="${bx - 10}" y="${cy - 10}" width="20" height="20" rx="2" fill="${PAP}" stroke="${INK}" stroke-width="2"/>` + sA(bx - 12, cy - 15, cx + 14, cy - 15, VEC) + sT(cx + 38, cy - 22, sub("F", "s"), "middle", VEC, 13);
+      s += `<path d="M${q(x1)} ${q(y1)} A${r0} ${r0} 0 0 0 ${q(x2)} ${q(y2)}" fill="none" stroke="${ACC}" stroke-width="2.2"/>` + head(x2, y2, -Math.sin(a2), -Math.cos(a2), ACC) + sT(cx, cy - 34, "ω", "middle", ACC, 14);
+      return sS(260, 200, s, "Üfüqi dönən disk, mərkəzdən r məsafədə cisim");
+    }
+    // two runners start at one point of a circular track
+    function run(same) {
+      const cx = 130, cy = 117, r = 72, top = cy - r;
+      let s = sC(cx, cy, r, "none", MUT, 7, ' opacity=".35"') + sC(cx, cy, r, "none", INK, 1.6) + sC(cx, top, 4.5, INK, INK, 1) + sT(cx, top + 21, "Başlanğıc", "middle", INK, 12);
+      s += sL(cx, cy, cx + r * 0.7, cy + r * 0.71, MUT, 1.3, DSH) + sC(cx, cy, 3, INK, INK, 1) + sT(cx + 30, cy + 30, "R", "middle", MUT, 13);
+      if (same) s += sA(cx + 4, 28, cx + 64, 28, ACC) + sT(cx + 76, 33, sub("v", "1"), "middle", ACC) + sA(cx + 4, 14, cx + 44, 14, VEC) + sT(cx + 56, 19, sub("v", "2"), "middle", VEC);
+      else s += sA(cx + 4, 24, cx + 64, 24, ACC) + sT(cx + 76, 29, sub("v", "1"), "middle", ACC) + sA(cx - 4, 24, cx - 44, 24, VEC) + sT(cx - 56, 29, sub("v", "2"), "middle", VEC);
+      return sS(260, 200, s, "Dairəvi yol: iki qaçışçı eyni nöqtədən " + (same ? "eyni" : "əks") + " istiqamətdə qaçır");
+    }
+    // top view: the string is cut at P, the ball flies along the tangent to the landing point L; d = distance from the axis point O
+    function release() {
+      const ox = 90, oy = 126, r = 70, py = oy - r, lx = 205;
+      let s = sC(ox, oy, r, "none", MUT, 1.6, DSH) + sL(ox, oy, ox, py, INK, 2.5) + sC(ox, py, 6, INK, INK, 1) + sC(ox, oy, 3, INK, INK, 1) + sT(ox - 10, oy + 16, "O", "end", MUT, 12);
+      s += sA(ox + 8, py, lx - 8, py, ACC) + sT(ox + 60, py - 9, "v", "middle", ACC) + `<path d="M${ox} ${py + 9} L${ox + 9} ${py + 9} L${ox + 9} ${py}" fill="none" stroke="${INK}" stroke-width="1.2"/>`;
+      s += sL(ox, oy, lx, py, VEC, 2, DSH) + sC(lx, py, 4.5, VEC, VEC, 1) + sT(ox - 8, (oy + py) / 2 + 4, "R", "end", INK, 13) + sT(ox + 78, (oy + py) / 2 + 30, "d = ?", "start", VEC, 13);
+      return sS(280, 200, s, "Üstdən görünüş: ip qırılır, kürə toxunan boyunca uçub yerə düşür; d — düşmə nöqtəsinin O nöqtəsindən məsafəsi");
+    }
+    // a disk with two points A and B on one radius, the speed of A
+    function disk() {
+      const cx = 110, cy = 100, xa = cx + 36, xb = cx + 68;
+      let s = sC(cx, cy, 82, SOFT, INK, 2.5) + sL(cx, cy, cx + 82, cy, MUT, 1.4, DSH) + sC(cx, cy, 3, INK, INK, 1) + sT(cx - 6, cy + 17, "O", "end", MUT, 12);
+      s += sC(xa, cy, 4.5, INK, INK, 1) + sC(xb, cy, 4.5, INK, INK, 1) + sT(xa, cy + 19, "A", "middle", INK, 13) + sT(xb, cy + 19, "B", "middle", INK, 13);
+      s += sA(xa, cy - 6, xa, cy - 46, ACC) + sT(xa + 8, cy - 40, sub("v", "A"), "start", ACC);
+      return sS(260, 200, s, "Fırlanan disk: A və B nöqtələri bir radius üzərindədir, A nöqtəsinin sürəti göstərilib");
+    }
+    // clock face; the hour hand is drawn in the proportion L2/L1
+    function clock(L1, L2, hh, mm) {
+      const cx = 110, cy = 110, tip = (d, l) => [cx + l * Math.sin(rad(d)), cy - l * Math.cos(rad(d))];
+      let s = sC(cx, cy, 92, PAP, INK, 2.5);
+      for (let i = 0; i < 12; i++) { const [a, b] = tip(i * 30, 92), [c, d] = tip(i * 30, 82); s += sL(a, b, c, d, INK, i % 3 ? 1.4 : 2.6); }
+      const dm = 6 * mm, dh = 30 * (hh % 12) + mm / 2, lm = 76, lh = 76 * L2 / L1, [mx, my] = tip(dm, lm), [hx, hy] = tip(dh, lh);
+      s += sL(cx, cy, mx, my, ACC, 3.2) + sL(cx, cy, hx, hy, VEC, 4.6) + sC(cx, cy, 4, INK, INK, 1);
+      const lab = (d, l, t, c) => { const [x, y] = tip(d, l); return sT(x + 11 * Math.cos(rad(d)), y + 11 * Math.sin(rad(d)) + 4, t, "middle", c, 13); };
+      s += lab(dm, lm * 0.55, "L₁", ACC) + lab(dh, lh * 0.6, "L₂", VEC);
+      return sS(220, 220, s, "Saat: dəqiqə əqrəbi L₁, saat əqrəbi L₂");
+    }
+    // the planet in section: axis, equator, the point P at latitude 60°
+    function earth() {
+      const cx = 110, cy = 100, r = 76, an = rad(60), px = cx + r * Math.cos(an), py = cy - r * Math.sin(an), ra = 22;
+      let s = sC(cx, cy, r, SOFT, INK, 2.5) + sL(cx, 10, cx, 190, INK, 1.6, DSH) + sT(cx - 8, 20, "ox", "end", INK, 12) + sL(cx - r - 14, cy, cx + r + 14, cy, MUT, 1.3, DSH);
+      s += `<ellipse cx="${cx}" cy="${q(py)}" rx="${q(px - cx)}" ry="9" fill="none" stroke="${MUT}" stroke-width="1.3"${DSH}/>` + sL(cx, cy, px, py, ACC, 2.5) + sL(cx, py, px, py, VEC, 2.2) + sC(cx, cy, 3, INK, INK, 1) + sC(px, py, 4.5, VEC, VEC, 1);
+      s += `<path d="M${cx + ra} ${cy} A${ra} ${ra} 0 0 0 ${q(cx + ra * Math.cos(an))} ${q(cy - ra * Math.sin(an))}" fill="none" stroke="${INK}" stroke-width="1.6"/>` + sT(cx + 36, cy - 6, "φ", "middle", INK, 14);
+      s += sT((cx + px) / 2 - 6, (cy + py) / 2 + 12, "R", "end", ACC, 13) + sT((cx + px) / 2, py - 15, "r", "middle", VEC, 13) + sT(px + 8, py - 4, "P", "start", INK, 12);
+      return sS(240, 200, s, "Planetin kəsiyi: fırlanma oxu, ekvator və P nöqtəsi (enlik φ); r — P-nin oxdan məsafəsi");
+    }
+    return { circ, belt, bridge, turn, run, release, disk, clock, earth };
+  })();
+  const IMT = (() => {
+    const { ae, again } = Oyun;
+    const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+    const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+    const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+    const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+    const Fx = x => F(+x.toFixed(4));
+    return { fenn: "fizika", vaxt: 60, suallar: [
+      // 1. linear speed from revolutions per minute (unit trap, 2π trap)
+      { tip: "qapali", gen: () => again(() => {
+        const Rr = pick([0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.5, 2]), n = pick([60, 90, 120, 150, 180, 240, 300, 600]), v = Rr * n / 10;
+        const w = [6 * Rr * n, Rr * n / 60, Rr * n / 20, n / 10]; if (![v, ...w].every(x => ok2(x))) return null;
+        return mc(ae(v, w, U_("m/s")), { svg: svgEl(FIG.circ(F(Rr) + " m", { v: true }, rnd(0, 359))),
+          text: `Çarxın radiusu ${F(Rr)} m-dir, o, dəqiqədə ${n} dövr edir. Çarxın kənarındakı nöqtənin xətti sürəti nə qədərdir? (π = 3)`,
+          solution: `ν = ${n}/60 = ${F(n / 60)} 1/s (1 dəq = 60 s). v = 2πRν = 6·${F(Rr)}·${F(n / 60)} = ${F(v)} m/s. Tələlər: dəqiqəni saniyəyə çevirməmək (${F(w[0])}), 2π-ni unutmaq (${F(w[1])}), 2π əvəzinə yalnız π yazmaq (${F(w[2])}), R-i vurmamaq — bu bucaq sürətidir (${F(w[3])}).` });
+      }) },
+      // 2. belt drive: same v at the rims, then a = v²/R
+      { tip: "qapali", gen: () => again(() => {
+        const r1 = pick([10, 15, 20, 25, 30, 40]), r2 = pick([10, 15, 20, 25, 30, 40, 50]), nu = pick([2, 3, 4, 5, 6, 8, 10]); if (r1 === r2) return null;
+        const R1 = r1 / 100, R2 = r2 / 100, v = 6 * R1 * nu, a = v * v / R2, w = [v * v / R1, (6 * nu) ** 2 * R2, v / R2, v * v / (2 * R2)];
+        if (![a, ...w].every(x => ok2(x))) return null;
+        return mc(ae(a, w, U_("m/s²")), { svg: svgEl(FIG.belt(r1, r2)),
+          text: `Qayışla bağlı çarxların radiusları R₁ = ${r1} sm və R₂ = ${r2} sm-dir. Birinci çarx saniyədə ${nu} dövr edir. İkinci çarxın kənarındakı nöqtənin mərkəzəqaçma təcili nə qədərdir? (Qayış sürüşmür, π = 3.)`,
+          solution: `Qayış sürüşmür — çarxların kənarında xətti sürət eynidir: v = 2πR₁ν₁ = 6·${F(R1)}·${nu} = ${F(v)} m/s. a₂ = v²/R₂ = ${F(v * v)}/${F(R2)} = ${F(a)} m/s². Tələlər: birinci çarxın təcili (${F(w[0])}), ω-nı eyni saymaq (${F(w[1])}), a = v/R yazmaq (${F(w[2])}), R əvəzinə diametri götürmək (${F(w[3])}).` });
+      }) },
+      // 3. (+ Newton's laws) car on a hump bridge / in a dip
+      { tip: "qapali", birlesik: "fiz-nyuton", gen: () => again(() => {
+        const convex = Math.random() < 0.5, m = pick([500, 600, 800, 1000, 1200, 1500, 2000]), Rr = pick([20, 25, 40, 50, 60, 80, 100]), v = pick([5, 8, 10, 12, 15, 20]), a = v * v / Rr;
+        if (convex && a >= g) return null;
+        const N = m * (convex ? g - a : g + a), w = convex ? [m * g, m * (g + a), m * a, m * (g - a / 2)] : [m * g, m * (g - a), m * a, m * (g + a / 2)];
+        if (![N, ...w].every(x => ok2(x, 0))) return null;
+        return mc(ae(N, w, U_("N")), { svg: svgEl(FIG.bridge(convex)),
+          text: `Kütləsi ${m} kq olan avtomobil ${convex ? "qabarıq körpünün ən yuxarı nöqtəsindən" : "çökək yolun ən aşağı nöqtəsindən"} ${v} m/s sürətlə keçir. ${convex ? "Körpünün" : "Yolun"} əyrilik radiusu ${Rr} m-dir. Avtomobil ${convex ? "körpüyə" : "yola"} nə qədər qüvvə ilə təzyiq edir? (g = 10 m/s²)`,
+          solution: convex
+            ? `a = v²/R = ${v * v}/${Rr} = ${F(a)} m/s² (mərkəzə, yəni aşağı). Nyutonun II qanunu (aşağı istiqamət müsbət): mg − N = ma → N = m(g − a) = ${m}·${F(g - a)} = ${F(N)} N. III qanuna görə avtomobil körpüyə eyni qüvvə ilə təzyiq edir. Tələlər: mərkəzəqaçma təcilini unutmaq (mg = ${m * g} N), işarəni səhv qoymaq (m(g + a) = ${F(w[1])} N — bu çökək yolda düzdür), N = ma (${F(w[2])} N), R əvəzinə diametri götürmək (${F(w[3])} N).`
+            : `a = v²/R = ${v * v}/${Rr} = ${F(a)} m/s² (mərkəzə, yəni yuxarı). Nyutonun II qanunu (yuxarı istiqamət müsbət): N − mg = ma → N = m(g + a) = ${m}·${F(g + a)} = ${F(N)} N. III qanuna görə avtomobil yola eyni qüvvə ilə təzyiq edir. Tələlər: mərkəzəqaçma təcilini unutmaq (mg = ${m * g} N), işarəni səhv qoymaq (m(g − a) = ${F(w[1])} N — bu qabarıq körpüdə düzdür), N = ma (${F(w[2])} N), R əvəzinə diametri götürmək (${F(w[3])} N).` });
+      }) },
+      // 4. (+ friction) a block on a turntable: friction is the centripetal force
+      { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+        const nu = pick([0.25, 0.5, 0.75, 1, 1.25, 1.5, 2]), rcm = pick([10, 12, 15, 16, 20, 24, 25, 30, 32, 36, 40, 45, 50, 60, 75, 80]), rm = rcm / 100, mu = 36 * nu * nu * rm / g;
+        const w = [nu * nu * rm / g, 6 * nu * rm / g, 9 * nu * nu * rm / g, 36 * nu * nu * rm];
+        if (!ok2(mu, 3) || mu > 1.2 || ![...w].every(x => ok2(x, 4))) return null;
+        const how = pick([0, 1, 2]), rot = how === 0 || nu * 60 % 1 || (how === 2 && ![0.25, 0.5, 1, 2].includes(nu)) ? `saniyədə ${F(nu)} dövr edir` : how === 1 ? `dəqiqədə ${F(nu * 60)} dövr edir` : `${F(1 / nu)} s periodla fırlanır`;
+        return mc(ae(mu, w, Fx), { svg: svgEl(FIG.turn()),
+          text: `Üfüqi disk bərabərsürətlə ${rot}. Diskin üzərində, onun mərkəzindən ${rcm} sm məsafədə kiçik cisim yerləşir. Cismin sürüşməməsi üçün cisimlə disk arasındakı sükunət sürtünmə əmsalı ən azı nə qədər olmalıdır? (π = 3, g = 10 m/s²)`,
+          solution: `Üfüqi istiqamətdə cismə yalnız sürtünmə qüvvəsi təsir edir, o, cismi çevrədə saxlayır: μmg = mω²r (kütlə ixtisar olunur). ν = ${F(nu)} 1/s, ω = 2πν = 6·${F(nu)} = ${F(6 * nu)} rad/s, r = ${F(rm)} m. μ = ω²r/g = ${F(36 * nu * nu)}·${F(rm)}/10 = ${F(mu)}. Tələlər: 2π-ni unutmaq (${Fx(w[0])}), ω² əvəzinə ω götürmək (${Fx(w[1])}), 2π əvəzinə π (${Fx(w[2])}), g-yə bölməmək — bu təcildir, əmsal deyil (${Fx(w[3])}).` });
+      }) },
+      // 5. (+ kinematics) two runners on a circular track
+      { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+        const same = Math.random() < 0.5, Rr = pick([10, 20, 25, 30, 40, 50, 60, 100]), L = 6 * Rr, v1 = rnd(3, 12), v2 = rnd(2, 11); if (v2 >= v1) return null;
+        const t = same ? L / (v1 - v2) : L / (v1 + v2), w = same ? [L / (v1 + v2), Rr / (v1 - v2), L / v1, L / v2] : [L / (v1 - v2), Rr / (v1 + v2), L / v1, L / v2];
+        if (![t, ...w].every(x => ok2(x, 1))) return null;
+        return mc(ae(t, w, U_("s")), { svg: svgEl(FIG.run(same)),
+          text: `Radiusu ${Rr} m olan dairəvi yolun eyni nöqtəsindən iki qaçışçı eyni anda ${same ? "eyni" : "əks"} istiqamətdə qaçmağa başlayır. Birinci qaçışçının sürəti ${v1} m/s, ikincinin sürəti ${v2} m/s-dir. Onlar ilk dəfə nə vaxt yenidən yanaşı olacaqlar? (π = 3)`,
+          solution: `Dairənin uzunluğu L = 2πR = 6·${Rr} = ${L} m. ` + (same
+            ? `Eyni istiqamətdə sürətli qaçışçı hər saniyə ${v1 - v2} m qazanır; o, yavaşı bir tam dövr qədər (L) qabaqlayanda yanaşı olurlar: t = L/(v₁ − v₂) = ${L}/${v1 - v2} = ${F(t)} s. Tələlər: sürətləri toplamaq (${F(w[0])} s — bu əks istiqamətdədir), L əvəzinə R (${F(w[1])} s), yalnız bir qaçışçının dövrü (${F(w[2])} s və ${F(w[3])} s).`
+            : `Əks istiqamətdə məsafə hər saniyə ${v1 + v2} m azalır; birlikdə bir tam dövr (L) qət edəndə görüşürlər: t = L/(v₁ + v₂) = ${L}/${v1 + v2} = ${F(t)} s. Tələlər: sürətləri çıxmaq (${F(w[0])} s — bu eyni istiqamətdədir), L əvəzinə R (${F(w[1])} s), yalnız bir qaçışçının dövrü (${F(w[2])} s və ${F(w[3])} s).`) });
+      }) },
+      // 6. (+ free fall) the string breaks: horizontal throw from the circle, distance from the axis (Pythagoras)
+      { tip: "qapali", birlesik: "fiz-serbest-dusme", gen: () => again(() => {
+        const [Rr, s] = pick([[3, 4], [4, 3], [6, 8], [8, 6], [5, 12], [12, 5], [9, 12], [12, 9], [1.5, 2], [2, 1.5], [0.6, 0.8], [0.8, 0.6]]), t = pick([0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1]), v = s / t, h = 5 * t * t;
+        if (!(nice(v, 1) && v >= 1 && v <= 20 && nice(h, 2))) return null;
+        const d = Math.hypot(Rr, s), w = [s, Rr + s, Math.abs(s - Rr), Rr]; if (![d, ...w].every(x => ok2(x, 1))) return null;
+        return mc(ae(d, w, U_("m")), { svg: svgEl(FIG.release()),
+          text: `Hamar üfüqi dairəvi lövhə yerdən ${F(h)} m hündürlükdədir, lövhənin radiusu ${F(Rr)} m-dir. Kürə lövhənin kənarı boyunca, uzunluğu ${F(Rr)} m olan iplə mərkəzə bağlı halda ${F(v)} m/s sürətlə fırlanır. İp qırılır, kürə lövhədən uçub yerə düşür. Düşmə nöqtəsi lövhənin mərkəzinin düz altındakı O nöqtəsindən nə qədər məsafədədir? (Havanın müqaviməti yoxdur, g = 10 m/s².)`,
+          solution: `Qırılan anda sürət toxunan boyunca, üfüqi yönəlib: kürə üfüqi atılır. h = gt²/2 → t = √(2h/g) = √(${F(2 * h)}/10) = ${F(t)} s. Toxunan boyunca məsafə s = vt = ${F(v)}·${F(t)} = ${F(s)} m. Toxunan radiusa perpendikulyardır: d² = R² + s² = ${F(Rr * Rr)} + ${F(s * s)} = ${F(d * d)} → d = ${F(d)} m. Tələlər: yalnız s (${F(w[0])} m), R + s toplamaq (${F(w[1])} m), |s − R| (${F(w[2])} m), "kürə düz aşağı düşür" — yalnız R (${F(w[3])} m).` });
+      }) },
+      // 7. one disk: the same ω, the speed of A → the acceleration of B
+      { tip: "qapali", gen: () => again(() => {
+        const rA = pick([10, 15, 20, 25, 30]), rB = pick([20, 30, 40, 50, 60, 75]), vA = pick([0.5, 1, 1.5, 2, 3, 4, 5]); if (rB <= rA) return null;
+        const Am = rA / 100, Bm = rB / 100, om = vA / Am, a = om * om * Bm, w = [vA * vA / Bm, vA * rB / rA, vA * vA / Am, om * om * Bm * Bm];
+        if (![a, ...w].every(x => ok2(x))) return null;
+        return mc(ae(a, w, U_("m/s²")), { svg: svgEl(FIG.disk()),
+          text: `Disk oxu ətrafında bərabərsürətli fırlanır. A nöqtəsi oxdan ${rA} sm, B nöqtəsi ${rB} sm məsafədədir. A nöqtəsinin sürəti ${F(vA)} m/s-dir. B nöqtəsinin mərkəzəqaçma təcili nə qədərdir?`,
+          solution: `Diskin bütün nöqtələrinin bucaq sürəti eynidir: ω = v_A/r_A = ${F(vA)}/${F(Am)} = ${F(om)} rad/s. a_B = ω²r_B = ${F(om * om)}·${F(Bm)} = ${F(a)} m/s². Tələlər: sürəti eyni saymaq (${F(w[0])}), B-nin sürətini tapıb təcil yazmaq (${F(w[1])} — bu v_B-dir), A-nın təcili (${F(w[2])}), a = ω²r² yazmaq (${F(w[3])}).` });
+      }) },
+      // 8. a ball on a string on a smooth table: tension = centripetal force
+      { tip: "qapali", gen: () => again(() => {
+        const m = pick([0.1, 0.2, 0.25, 0.5, 1, 2]), nu = pick([0.5, 1, 1.5, 2, 2.5]), Rr = pick([0.2, 0.25, 0.4, 0.5, 1, 2]), T = 36 * m * nu * nu * Rr;
+        const w = [m * nu * nu * Rr, 6 * m * nu * Rr, m * g, 9 * m * nu * nu * Rr]; if (![T, ...w].every(x => ok2(x))) return null;
+        return mc(ae(T, w, U_("N")), { svg: svgEl(FIG.circ(F(Rr) + " m", { string: true, T: true }, rnd(0, 359))),
+          text: `Kütləsi ${F(m)} kq olan kürə uzunluğu ${F(Rr)} m olan iplə hamar üfüqi masada saniyədə ${F(nu)} dövr edir. İpin gərilmə qüvvəsi nə qədərdir? (π = 3, g = 10 m/s²)`,
+          solution: `Üfüqi istiqamətdə kürəyə yalnız ipin gərilməsi təsir edir, o, mərkəzəqaçma təcilini yaradır; mg şaquli tarazlıqdadır. ω = 2πν = 6·${F(nu)} = ${F(6 * nu)} rad/s. T = mω²R = ${F(m)}·${F(36 * nu * nu)}·${F(Rr)} = ${F(T)} N. Tələlər: 2π-ni unutmaq (${F(w[0])} N), təcil əvəzinə sürəti götürmək — T = mv (${F(w[1])} N), "gərilmə ağırlığa bərabərdir" (${F(w[2])} N), 2π əvəzinə π (${F(w[3])} N).` });
+      }) },
+      // 9. clock hands: the speed ratio from the lengths and the periods
+      { tip: "qapali", gen: () => again(() => {
+        const L1 = pick([8, 9, 10, 12, 15, 18, 20, 24, 25, 30]), L2 = pick([4, 5, 6, 8, 9, 10, 12, 15, 16, 20]); if (L2 >= L1) return null;
+        const k = 12 * L1 / L2, w = [L1 / L2, 12, 60 * L1 / L2, 12 * L2 / L1]; if (![k, ...w].every(x => ok2(x))) return null;
+        const hh = rnd(1, 12), mm = pick([5, 10, 15, 20, 25, 35, 40, 45, 50, 55]);
+        if (Math.abs(((6 * mm - 30 * (hh % 12) - mm / 2) % 360 + 540) % 360 - 180) < 70) return null;   // hands far enough apart for the labels
+        return mc(ae(k, w, x => Fx(x) + " dəfə"), { svg: svgEl(FIG.clock(L1, L2, hh, mm)),
+          text: `Saatın dəqiqə əqrəbinin uzunluğu ${L1} sm, saat əqrəbinin uzunluğu ${L2} sm-dir. Dəqiqə əqrəbinin ucunun xətti sürəti saat əqrəbinin ucunun xətti sürətindən neçə dəfə böyükdür?`,
+          solution: `Dəqiqə əqrəbi 1 saata, saat əqrəbi 12 saata bir dövr edir: T₁ = 1 saat, T₂ = 12 saat. v = 2πL/T → v₁/v₂ = (L₁/L₂)·(T₂/T₁) = (${L1}/${L2})·12 = ${F(k)}. Tələlər: yalnız uzunluqların nisbəti (${F(w[0])}), yalnız bucaq sürətlərinin nisbəti (12), saat əqrəbinin dövrünü 60 saat saymaq (${F(w[2])}), yalnız uzunluqların nisbətini tərsinə yazmaq (${F(w[3])}).` });
+      }) },
+      // 10. Earth rotation: the radius of the latitude circle is R·cos φ
+      { tip: "qapali", gen: () => again(() => {
+        const yer = Math.random() < 0.3, Rr = yer ? 6400 : pick([2000, 3000, 4000, 4800, 5000, 6000, 8000]), T = yer ? 24 : pick([10, 12, 15, 16, 20, 24, 30, 40, 48]);
+        const v = 3 * Rr / T, w = [6 * Rr / T, 12 * Rr / T, 1.5 * Rr / T, 6 / T]; if (![v, ...w].every(x => ok2(x))) return null;
+        return mc(ae(v, w, U_("km/saat")), { svg: svgEl(FIG.earth()),
+          text: `${yer ? "Yer kürəsinin" : "Planetin"} radiusu ${Rr} km-dir, o, öz oxu ətrafında ${T} saat periodla fırlanır. 60° enlikdəki P nöqtəsinin xətti sürəti neçə km/saatdır? (π = 3, cos 60° = 0,5)`,
+          solution: `P nöqtəsi fırlanma oxundan r = R·cos 60° = ${F(Rr / 2)} km məsafədə olan çevrə üzrə hərəkət edir (R yox!). v = 2πr/T = 6·${F(Rr / 2)}/${T} = ${F(v)} km/saat. Tələlər: cos-u unutmaq — bu ekvatorun sürətidir (${F(w[0])}), cos-a vurmaq əvəzinə bölmək (${F(w[1])}), 2π əvəzinə π (${F(w[2])}), bucaq sürətini (rad/saat) cavab yazmaq (${F(w[3])}).` });
+      }) },
+    ] };
+  })();
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
 
   window.__levels = levels;
   function start() {
@@ -193,7 +397,7 @@
     game = Oyun.mount({
       key: "fiz-cevre-herekat", title: "Çevrə üzrə hərəkət", fenn: "fizika", link: "dersler/fiz-cevre-herekat.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (SI: m, s, m/s, rad/s, m/s²). Onluq kəsr vergül və ya nöqtə ilə: 0,25. π = 3, g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["dovr", "sur", "bucaq", "tecil", "tecil", "muqayise", "muqayise", "heyat", "heyat", "bucaq"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
