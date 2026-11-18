@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Yay sistemləri</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yay və yük</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Enerji</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -374,6 +375,100 @@ Yaydan atma:  kx²/2 = mv²/2,  v = x√(k/m)</div></div>
         <li>k = 1000 N/m, x = 5 sm. E = ? <span class="ans">1000·0,0025/2 = 1,25 J.</span></li>
         <li>Deformasiya 3 dəfə artdı. Enerji? <span class="ans">9 dəfə artır.</span></li>
         <li>k = 400 N/m yayda 2 J enerji var. x = ? <span class="ans">x² = 2·2/400 = 0,01 → x = 0,1 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: Huk qanunu və yay sistemləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. Amma "F = kx düsturuna rəqəm qoy" sualı az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — qrafik (<span class="m">F</span>–<span class="m">x</span>, <span class="m">l</span>–<span class="m">F</span>, <span class="m">x</span>–<span class="m">t</span>), ardıcıl və ya paralel yaylar, lift, maili müstəvi, masadakı bloklar. Rəqəmlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl qrafikdən <span class="m">k</span> tapmaq, sonra yayların birləşməsi, sonra uzanma və ya iş.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: santimetri metrə çevirməmək, ardıcıl və paralel düsturunu qarışdırmaq, təcili unutmaq, <span class="m">E = kx²/2</span>-də 2-yə bölməmək. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: yay + Nyuton qanunları (lift, iki blok), yay + sürtünmə və maili müstəvi, yay + sərbəst düşmə (yaydan atılan cisim).</li>
+      </ul>
+      <p>Yay kütləsizdir, sürtünmə və havanın müqaviməti yalnız şərtdə yazılanda var, hər yerdə <span class="m">g = 10 m/s²</span>. Deformasiya həmişə <b>uzanma və ya sıxılma</b>dır (<span class="m">x = |l − l₀|</span>), yayın uzunluğu yox.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qrafik və paralel birləşmə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 310 192" role="img" aria-label="Qrafik: iki yayın elastiklik qüvvəsinin deformasiyadan asılılığı, 1 və 2 düz xətləri"><defs><marker id="hk-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><line x1="74" y1="165" x2="74" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="74" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="108" y1="165" x2="108" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="108" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="142" y1="165" x2="142" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="142" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="176" y1="165" x2="176" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="176" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">8</text><line x1="210" y1="165" x2="210" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="210" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">10</text><line x1="244" y1="165" x2="244" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="244" y="181" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">12</text><line x1="40" y1="137" x2="244" y2="137" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="33" y="141" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="40" y1="109" x2="244" y2="109" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="33" y="113" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="40" y1="81" x2="244" y2="81" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="33" y="85" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="40" y1="53" x2="244" y2="53" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="33" y="57" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">8</text><line x1="40" y1="25" x2="244" y2="25" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="33" y="29" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">10</text><line x1="40" y1="165" x2="258" y2="165" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#hk-ar)"/><line x1="40" y1="165" x2="40" y2="11" stroke="var(--ink,#17171a)" stroke-width="1.6" stroke-linecap="round" marker-end="url(#hk-ar)"/><text x="264" y="169" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">x, sm</text><text x="48" y="13" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">F, N</text><line x1="40" y1="165" x2="125" y2="25" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round"/><circle cx="108" cy="53" r="3.5" fill="var(--accent,#a32d2d)"/><text x="132" y="21" text-anchor="start" font-size="13" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">1</text><line x1="40" y1="165" x2="210" y2="25" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linecap="round"/><circle cx="142" cy="81" r="3.5" fill="var(--vec,#0c447c)"/><text x="217" y="21" text-anchor="start" font-size="13" font-weight="700" fill="var(--vec,#0c447c)" font-family="inherit">2</text></svg></div>
+        <p>Qrafikdə iki yayın elastiklik qüvvəsinin deformasiyadan asılılığı verilib (deformasiya santimetrlə, qüvvə nyutonla). Bu yayları paralel birləşdirsək, sistemin sərtliyi nə qədər olar?</p>
+        <ol class="imt-opts"><li>66,7 N/m</li><li>150 N/m</li><li>300 N/m</li><li>3 N/m</li><li>100 N/m</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Qrafikdən bir nöqtə götürürük (x metrlə!):
+1-ci yay: 4 sm = 0,04 m-də 8 N  →  k₁ = 8/0,04 = 200 N/m
+2-ci yay: 6 sm = 0,06 m-də 6 N  →  k₂ = 6/0,06 = 100 N/m
+Paralel birləşmədə sərtliklər toplanır:
+k = k₁ + k₂ = 200 + 100 = 300 N/m
+Cavab: C) 300 N/m</div>
+      <ul>
+        <li><b>A) 66,7 N/m</b> — ardıcıl düsturu: 200·100/(200 + 100).</li>
+        <li><b>B) 150 N/m</b> — orta ədədi tapmaq: (200 + 100)/2.</li>
+        <li><b>D) 3 N/m</b> — santimetri metrə çevirməmək: 8/4 + 6/6 = 2 + 1.</li>
+        <li><b>E) 100 N/m</b> — sərtlikləri toplamaq əvəzinə çıxmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — liftdə yay</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 250 212" role="img" aria-label="Lift: tavandan yayla yük asılıb; lift yuxarı hərəkət edir"><defs><marker id="hk-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="70" y="20" width="100" height="180" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round"/><line x1="70" y1="20" x2="170" y2="20" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="78" y1="20" x2="72" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="88" y1="20" x2="82" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="98" y1="20" x2="92" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="108" y1="20" x2="102" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="118" y1="20" x2="112" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="128" y1="20" x2="122" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="138" y1="20" x2="132" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="148" y1="20" x2="142" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="158" y1="20" x2="152" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="168" y1="20" x2="162" y2="12" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><polyline points="120,20 120,32 111,36.7 129,46 111,55.3 129,64.7 111,74 129,83.3 120,88 120,100" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="120" cy="120" r="19" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="120" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">m</text><text x="138" y="62" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">k</text><line x1="206" y1="150" x2="206" y2="80" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#hk-ar)"/><text x="220" y="118" text-anchor="start" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v</text></svg></div>
+        <p>Liftin tavanından sərtliyi 500 N/m olan yayla 2 kq kütləli yük asılıb. Lift yuxarı qalxmağa başlayır (sürəti artır), təcilinin modulu 2,5 m/s²-dir. Yük liftə nəzərən tərpənmir. Yay neçə santimetr uzanıb? (g = 10 m/s²)</p>
+        <ol class="imt-opts"><li>0,05 sm</li><li>3 sm</li><li>5 sm</li><li>4 sm</li><li>1 sm</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sürət yuxarı və artır → təcil yuxarıdır.
+Yükə yuxarı kx, aşağı mg təsir edir:  kx − mg = ma
+x = m(g + a)/k = 2·12,5/500 = 0,05 m = 5 sm
+Cavab: C) 5 sm</div>
+      <ul>
+        <li><b>A) 0,05 sm</b> — cavab 0,05 <b>m</b>-dir; metrlə alınan ədədi "sm" yazmaq.</li>
+        <li><b>B) 3 sm</b> — təcilin işarəsini səhv götürmək: 2·(10 − 2,5)/500 = 0,03 m.</li>
+        <li><b>D) 4 sm</b> — təcili unutmaq, yük tarazlıqdadır saymaq: mg/k = 20/500 = 0,04 m.</li>
+        <li><b>E) 1 sm</b> — yalnız ma-nı götürmək: 2·2,5/500 = 0,01 m.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — iki mövzu: yay və maili müstəvi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 260 200" role="img" aria-label="Maili müstəvi: üzərindəki blok müstəvi boyunca yayla yuxarı dartılır"><defs><marker id="hk-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><polygon points="36,182 188,182 188,68" fill="var(--accent-soft,#f3dede)" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round"/><line x1="10" y1="182" x2="218" y2="182" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="18" y1="182" x2="12" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="28" y1="182" x2="22" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="38" y1="182" x2="32" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="48" y1="182" x2="42" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="58" y1="182" x2="52" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="68" y1="182" x2="62" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="78" y1="182" x2="72" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="88" y1="182" x2="82" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="98" y1="182" x2="92" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="108" y1="182" x2="102" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="118" y1="182" x2="112" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="128" y1="182" x2="122" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="138" y1="182" x2="132" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="148" y1="182" x2="142" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="158" y1="182" x2="152" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="168" y1="182" x2="162" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="178" y1="182" x2="172" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="188" y1="182" x2="182" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="198" y1="182" x2="192" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="208" y1="182" x2="202" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><line x1="218" y1="182" x2="212" y2="190" stroke="var(--ink,#17171a)" stroke-width="1.4" stroke-linecap="round"/><polygon points="63.2,161.6 96.8,136.4 81.2,115.6 47.6,140.8" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round"/><text x="72.2" y="143.6" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">m</text><polyline points="89,126 97.4,119.7 104.9,122.8 103,106.8 117.9,113 116.1,97 131,103.3 129.1,87.2 136.6,90.3 145,84" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="145" y1="84" x2="170.6" y2="64.8" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#hk-ar)"/><text x="102" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">k</text><text x="169" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">v</text><path d="M74 182 A38 38 0 0 0 66.4 159.2" fill="none" stroke="var(--ink,#17171a)" stroke-width="1.6"/><text x="89.1" y="169.3" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">α</text></svg></div>
+        <p>2 kq kütləli blok maili müstəvi üzərində sərtliyi 200 N/m olan yayla müstəvi boyunca bərabər sürətlə yuxarı dartılır. Müstəvinin bucağı α-dır (sin α = 0,6, cos α = 0,8), sürtünmə əmsalı: 0,25. Yay neçə santimetr uzanıb? (g = 10 m/s²)</p>
+        <ol class="imt-opts"><li>6 sm</li><li>8,5 sm</li><li>8 sm</li><li>4 sm</li><li>9,5 sm</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Bərabər sürət → müstəvi boyunca qüvvələr tarazdır:
+kx = mg·sin α + f,   f = μN,   N = mg·cos α
+mg = 20 N;  mg·sin α = 12 N;  N = 20·0,8 = 16 N;  f = 0,25·16 = 4 N
+kx = 12 + 4 = 16 N  →  x = 16/200 = 0,08 m = 8 sm
+Cavab: C) 8 sm</div>
+      <ul>
+        <li><b>A) 6 sm</b> — sürtünməni unutmaq: 12/200.</li>
+        <li><b>B) 8,5 sm</b> — N = mg götürmək (cos α-nı unutmaq): f = 0,25·20 = 5 N, (12 + 5)/200.</li>
+        <li><b>D) 4 sm</b> — sürtünməni əks yönə yazmaq: (12 − 4)/200.</li>
+        <li><b>E) 9,5 sm</b> — sin ilə cos-u dəyişmək: 20·(0,8 + 0,25·0,6)/200.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Santimetr ≠ metr.</b> <span class="m">k = F/x</span>-də <span class="m">x</span> metrlə olmalıdır; enerjidə kvadrata yüksəldiləndə səhv 10 000 dəfə olur.</li>
+        <li><b>Paralel — toplamaq, ardıcıl — tərs ədədləri toplamaq.</b> Paraleldə <span class="m">k = k₁ + k₂</span>; ardıcıl birləşmədə sistemin sərtliyi hər iki yayın sərtliyindən kiçikdir. Yayı kəsəndə qısa hissə <b>sərtdir</b>.</li>
+        <li><b>Qrafikdə nəyin nəyə görə olduğuna bax.</b> <span class="m">l</span>–<span class="m">F</span> qrafikində <span class="m">l</span> yayın uzunluğudur: <span class="m">x = |l − l₀|</span>. <span class="m">F</span>–<span class="m">x</span> qrafikində <span class="m">k</span> meyldir, iş isə sahədir.</li>
+        <li><b>Təcilli hərəkətdə <span class="m">kx ≠ mg</span>.</b> Təcilin istiqamətinə bax (sürətin yox): yuxarı təcildə <span class="m">kx = m(g + a)</span>, aşağı təcildə <span class="m">kx = m(g − a)</span>.</li>
+        <li><b>Maili müstəvidə</b> yay müstəvi boyunca dartır: <span class="m">mg·sin α</span> və sürtünmə <span class="m">μ·mg·cos α</span> ona qarşıdır.</li>
+        <li><b>Enerji.</b> <span class="m">E = kx²/2</span> (2-yə böl); əlavə dartmada <span class="m">k(x₂² − x₁²)/2</span>, <span class="m">k(x₂ − x₁)²/2</span> deyil.</li>
+        <li><b>Sükunət və sürüşmə sürtünməsi.</b> Blok tərpənən anda yayın uzanması ən böyükdür, sonra azalır: <span class="m">μ_s &gt; μ_k</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = kx  (x — metrlə, x = |l − l₀|)
+Paralel:  k = k₁ + k₂         Ardıcıl:  k = k₁k₂/(k₁ + k₂)
+Lift:     kx = m(g ± a)       Maili:    kx = mg·sin α + μ·mg·cos α
+Enerji:   E = kx²/2           x₁ → x₂:  A = k(x₂² − x₁²)/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>F–x qrafikində x = 3 sm-də F = 6 N. Yayın sərtliyi? <span class="ans">k = 6/0,03 = 200 N/m (3 sm = 0,03 m).</span></li>
+        <li>Sərtlikləri 30 N/m və 60 N/m olan yaylar ardıcıl birləşib. Sistemin sərtliyi? <span class="ans">k = 30·60/90 = 20 N/m — hər ikisindən kiçikdir.</span></li>
+        <li>1 kq yük sərtliyi 100 N/m olan yayla liftdən asılıb və liftə nəzərən tərpənmir. Lift 2 m/s² təcillə aşağı enir və sürəti artır. Yay neçə sm uzanıb? <span class="ans">Təcil aşağıdır: x = m(g − a)/k = 1·8/100 = 0,08 m = 8 sm.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
