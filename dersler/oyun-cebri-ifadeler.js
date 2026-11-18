@@ -151,6 +151,97 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (−3² instead of (−3)², a minus that is not distributed, unlike terms merged, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const lin = ([x, c]) => poly([[x, "x"], [c, ""]]);                         // option "px + q"
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. value of a quadratic at a negative number
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 5), b = nz(-9, 9), c = nz(-9, 9), v = -rnd(2, 5), R = a * v * v + b * v + c;
+      const w = [-a * v * v + b * v + c, a * v * v - b * v + c, 2 * a * v + b * v + c, (a * v) ** 2 + b * v + c];
+      return mc(ae(R, w, S), { text: `${poly([[a, "x²"], [b, "x"], [c, ""]])} ifadəsinin x = ${S(v)} olanda qiymətini tapın.`,
+        solution: `x = ${S(v)} qoyuruq: x² = ${P(v)}² = ${v * v}. ${S(a)}·${v * v} = ${S(a * v * v)}; ${S(b)}·${P(v)} = ${S(b * v)}; sərbəst hədd ${S(c)}. Cəm: ${S(R)}. Tələlər: ${S(w[0])} — (${S(v)})² əvəzinə −${-v}² hesablamaq (x² = −${v * v}); ${S(w[1])} — ${S(b)}·${P(v)} hasilin işarəsini əks götürmək; ${S(w[2])} — x² əvəzinə 2x götürmək; ${S(w[3])} — yalnız x-i yox, ${a}x-in hamısını kvadrata yüksəltmək.` });
+    }) },
+    // 2. brackets with a minus in front
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 6), m = rnd(2, 6), a = nz(-4, 4), c = nz(-4, 4), b = nz(-9, 9), d = nz(-9, 9);
+      const X = k * a - m * c, C = k * b - m * d, w = [[X, k * b + m * d], [X, b - m * d], [k * a + m * c, k * b + m * d], [X, k * b - d]];
+      if (![[X, C], ...w].every(p => p[0] && p[1])) return null;
+      const e1 = poly([[a, "x"], [b, ""]]), e2 = poly([[c, "x"], [d, ""]]);
+      return mc(ae([X, C], w, lin), { text: `${k}(${e1}) − ${m}(${e2}) ifadəsini sadələşdirin.`,
+        solution: `Mötərizələri açırıq: ${poly([[k * a, "x"], [k * b, ""], [-m * c, "x"], [-m * d, ""]])}. x-li hədlər: ${S(k * a)} + ${P(-m * c)} = ${S(X)}; sərbəst hədlər: ${S(k * b)} + ${P(-m * d)} = ${S(C)}. Cavab: ${lin([X, C])}. Tələlər: ${lin(w[0])} — ikinci mötərizənin sərbəst həddi ${m} ədədinə vurulub, lakin “−” onun işarəsini dəyişməyib; ${lin(w[1])} — ${k} sərbəst həddə vurulmayıb; ${lin(w[2])} — çıxma toplama kimi aparılıb; ${lin(w[3])} — ${m} yalnız birinci həddə vurulub.` });
+    }) },
+    // 3. monomial: power times a monomial, standard form
+    { tip: "qapali", gen: () => again(() => {
+      const c1 = pick([-2, -3]), c2 = nz(-4, 4), p1 = rnd(1, 2), q1 = rnd(1, 2), p2 = rnd(1, 3), q2 = rnd(1, 2), cc = c1 * c1 * c2;
+      const R = [cc, 2 * p1 + p2, 2 * q1 + q2], w = [[2 * c1 * c2, R[1], R[2]], [-cc, R[1], R[2]], [cc, p1 + p2, q1 + q2], [cc, R[1], q1 + q2]];
+      return mc(ae(R, w, t => mono(...t)), { text: `(${mono(c1, p1, q1)})² · ${br(mono(c2, p2, q2))} birhədlisini standart şəklə salın.`,
+        solution: `Qüvvətə yüksəldirik: (${mono(c1, p1, q1)})² = ${mono(c1 * c1, 2 * p1, 2 * q1)} (əmsal kvadrata, üstlər 2-yə vurulur). Sonra vururuq: əmsallar ${c1 * c1}·${P(c2)} = ${S(cc)}, üstlər toplanır. Cavab: ${mono(...R)}. Tələlər: ${mono(...w[0])} — əmsalı kvadrata yox, 2-yə vurmaq; ${mono(...w[1])} — (${S(c1)})² = −${c1 * c1} hesab etmək; ${mono(...w[2])} — üstləri 2-yə vurmamaq; ${mono(...w[3])} — y-nin üstünü 2-yə vurmamaq.` });
+    }) },
+    // 4. simplify first, then a "heavy" number
+    { tip: "qapali", gen: () => again(() => {
+      const p = nz(-9, 9), q = nz(-9, 9), s = p + q, X = pick([100, 1000, 2026]); if (!s || p === q) return null;
+      const R = p * q, w = [s, p * q - s * X, p * q + s * X, -p * q];
+      return mc(ae(R, w, S), { text: `(${poly([[1, "x"], [p, ""]])})(${poly([[1, "x"], [q, ""]])}) − x(${poly([[1, "x"], [s, ""]])}) ifadəsinin x = ${X} olanda qiymətini tapın.`,
+        solution: `Mötərizələri açırıq: (${poly([[1, "x"], [p, ""]])})(${poly([[1, "x"], [q, ""]])}) = ${poly([[1, "x²"], [s, "x"], [R, ""]])}; x(${poly([[1, "x"], [s, ""]])}) = ${poly([[1, "x²"], [s, "x"]])}. Fərqdə x² və ${poly([[s, "x"]])} silinir, qalır ${S(R)}. Qiymət x-dən asılı deyil: ${S(R)}. Tələlər: ${S(w[0])} — hasil əvəzinə cəm; ${S(w[1])} — mötərizələri açanda yalnız ${poly([[1, "x²"], [R, ""]])} yazıb ${poly([[s, "x"]])} hədlərini unutmaq; ${S(w[2])} — x(${poly([[1, "x"], [s, ""]])}) əvəzinə yalnız x² çıxmaq; ${S(w[3])} — sərbəst həddin işarəsini səhv almaq.` });
+    }) },
+    // 5. word problem → expression
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(2, 6), m = rnd(2, 6), a = rnd(2, 5); if (n === m) return null;
+      const R = [n + m, -m * a], w = [[n + m, m * a], [n + m, -(n + m) * a], [n + m, -a], [n + m, -n * a]];
+      return mc(ae(R, w, lin), { text: `Bir dəftər x manatdır, bir qələm isə dəftərdən ${a} manat ucuzdur. Aysel ${n} dəftər və ${m} qələm aldı. Ödənişi (manatla) göstərən sadələşdirilmiş ifadə hansıdır?`,
+        solution: `Qələmin qiyməti x − ${a}. Ödəniş: ${n}x + ${m}(x − ${a}) = ${n}x + ${m}x − ${m * a} = ${lin(R)}. Tələlər: ${lin(w[0])} — “ucuz” sözünü “bahalı” kimi oxumaq; ${lin(w[1])} — ${a} manatı dəftərlərdən də çıxmaq; ${lin(w[2])} — ${a} manatlıq fərqi ${m} qələmə vurmamaq; ${lin(w[3])} — ${a} manatlıq fərqi dəftərlərin sayına vurmaq.` });
+    }) },
+    // 6. like terms: only the terms with the same letter part combine
+    { tip: "qapali", gen: () => again(() => {
+      const t = shuffle([[nz(-9, 9), "x²"], [nz(-9, 9), "x²"], [nz(-9, 9), "x"], [nz(-9, 9), "x"], [nz(-9, 9), ""], [nz(-9, 9), ""]]);
+      const sm = v => t.filter(q => q[1] === v).reduce((s, q) => s + q[0], 0), ab = v => t.filter(q => q[1] === v).reduce((s, q) => s + Math.abs(q[0]), 0);
+      const A = sm("x²"), B = sm("x"), C = sm("");
+      if (!A || !B || !C || !(A + B) || !(B + C) || t[0][0] < 0) return null;
+      const R = [[A, "x²"], [B, "x"], [C, ""]], w = [[[A + B, "x²"], [C, ""]], [[A, "x⁴"], [B, "x"], [C, ""]], [[ab("x²"), "x²"], [ab("x"), "x"], [ab(""), ""]], [[A, "x²"], [B + C, "x"]]];
+      return mc(ae(R, w, poly), { text: `${poly(t)} ifadəsini sadələşdirin.`,
+        solution: `Oxşar hədləri qruplaşdırırıq: x²: ${poly(t.filter(q => q[1] === "x²"))} = ${poly([R[0]])}; x: ${poly(t.filter(q => q[1] === "x"))} = ${poly([R[1]])}; sərbəst: ${poly(t.filter(q => q[1] === ""))} = ${S(C)}. Cavab: ${poly(R)}. Tələlər: ${poly(w[0])} — x² və x oxşar deyil, birləşmir; ${poly(w[1])} — toplayanda üstləri toplamaq; ${poly(w[2])} — mənfi işarələri itirmək; ${poly(w[3])} — sərbəst həddi x-lə birləşdirmək.` });
+    }) },
+    // 7. coded: value of a two-variable expression (positive answer)
+    { tip: "kod", gen: () => again(() => {
+      const k = nz(-4, 4), m = nz(-6, 6), n = nz(-9, 9), A = nz(-5, 5), B = nz(-5, 5), ans = k * A * A + m * A * B + n * B;
+      if (ans < 1 || ans > 999) return null;
+      return { text: `${poly([[k, "a²"], [m, "ab"], [n, "b"]])} ifadəsinin a = ${S(A)}, b = ${S(B)} olanda qiymətini tapın.`, answer: ans, show: String(ans), tol: 1e-6,
+        solution: `a² = ${P(A)}² = ${A * A}, ab = ${P(A)}·${P(B)} = ${S(A * B)}. ${S(k)}·${A * A} = ${S(k * A * A)}; ${S(m)}·${P(A * B)} = ${S(m * A * B)}; ${S(n)}·${P(B)} = ${S(n * B)}. Cəm: ${S(ans)}. Kodlaşdırmada yalnız ${ans} yazılır.` };
+    }) },
+    // 8. coded: x cancels, the answer does not depend on the "heavy" number
+    { tip: "kod", gen: () => again(() => {
+      const a1 = rnd(1, 6), a2 = rnd(1, 6), t = rnd(1, 3); if (a1 === a2) return null;
+      const k1 = a2 * t, k2 = a1 * t; if (k1 < 2 || k2 < 2) return null;
+      const b1 = nz(-9, 9), b2 = nz(-9, 9), ans = k1 * b1 - k2 * b2, x = pick([2026, 1999, 2027, 3001, 1001]); if (ans < 1 || ans > 999) return null;
+      return { text: `${k1}(${poly([[a1, "x"], [b1, ""]])}) − ${k2}(${poly([[a2, "x"], [b2, ""]])}) ifadəsinin x = ${x} olanda qiymətini tapın.`, answer: ans, show: String(ans), tol: 1e-6,
+        solution: `Əvvəl sadələşdiririk, x-in qiymətinə (${x}) sonra baxarıq. Mötərizələri açırıq: ${poly([[k1 * a1, "x"], [k1 * b1, ""], [-k2 * a2, "x"], [-k2 * b2, ""]])}. ${k1 * a1}x − ${k2 * a2}x = 0 — x silinir. Qalır: ${S(k1 * b1)} ${-k2 * b2 < 0 ? "−" : "+"} ${Math.abs(k2 * b2)} = ${ans}. Qiymət x-dən asılı deyil.` };
+    }) },
+    // 9. coded: word problem → equation
+    { tip: "kod", gen: () => again(() => {
+      if (Math.random() < .5) {
+        const a = rnd(1, 9), b = rnd(1, 6), x = rnd(5, 18), P0 = 6 * x + 2 * (a - b); if (2 * x - b < 1) return null;
+        return { text: `Tərəfləri (x + ${a}) sm və (2x − ${b}) sm olan düzbucaqlının perimetri ${P0} sm-dir. x-i tapın.`, answer: x, show: String(x), tol: 1e-6,
+          solution: `P = 2((x + ${a}) + (2x − ${b})) = 2(${poly([[3, "x"], [a - b, ""]])}) = ${poly([[6, "x"], [2 * (a - b), ""]])}. ${poly([[6, "x"], [2 * (a - b), ""]])} = ${P0}, 6x = ${6 * x}, x = ${x}.` };
+      }
+      const n = rnd(10, 60), S0 = 3 * n + 3;
+      return { text: `Üç ardıcıl natural ədədin cəmi ${S0} ədədinə bərabərdir. Bu ədədlərin ən böyüyünü tapın.`, answer: n + 2, show: String(n + 2), tol: 1e-6,
+        solution: `Ədədlər n, n + 1, n + 2. Cəm: 3n + 3 = ${S0}, 3n = ${3 * n}, n = ${n}. Ən böyüyü: n + 2 = ${n + 2}. Diqqət: ${n} ən kiçikdir, sual ən böyüyü soruşur.` };
+    }) },
+    // 10. written: expand, combine, substitute (a number with a minus sign)
+    { tip: "yazili", gen: () => again(() => {
+      const p = nz(-6, 6), q = nz(-6, 6), r = rnd(1, 9), k = rnd(2, 5), s = rnd(1, 6), v = nz(-5, 5);
+      const X = p + q - r - k, C = p * q + k * s; if (!X) return null; const ans = X * v + C;
+      return { text: `(${poly([[1, "x"], [p, ""]])})(${poly([[1, "x"], [q, ""]])}) − x(${poly([[1, "x"], [r, ""]])}) − ${k}(x − ${s}) ifadəsini sadələşdirin və x = ${S(v)} olanda qiymətini tapın.`,
+        answer: ans, show: S(ans), tol: 1e-6,
+        solution: `1) Mötərizələri açırıq: (${poly([[1, "x"], [p, ""]])})(${poly([[1, "x"], [q, ""]])}) = ${poly([[1, "x²"], [p + q, "x"], [p * q, ""]])}; x(${poly([[1, "x"], [r, ""]])}) = ${poly([[1, "x²"], [r, "x"]])}; ${k}(x − ${s}) = ${k}x − ${k * s}. 2) Birləşdiririk: ${poly([[1, "x²"], [p + q, "x"], [p * q, ""]])} − (${poly([[1, "x²"], [r, "x"]])}) − (${k}x − ${k * s}) = ${poly([[1, "x²"], [p + q, "x"], [p * q, ""], [-1, "x²"], [-r, "x"], [-k, "x"], [k * s, ""]])}. x² silinir, x-li hədlər ${S(p + q)} − ${r} − ${k} = ${S(X)}, sərbəst hədlər ${S(p * q)} + ${k * s} = ${S(C)}. Sadə şəkil: ${poly([[X, "x"], [C, ""]])}. 3) x = ${S(v)} qoyuruq: ${S(X)}·${P(v)} ${C < 0 ? "−" : "+"} ${Math.abs(C)} = ${S(ans)}. Cavab: ${S(ans)}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -160,7 +251,7 @@
     game = Oyun.mount({
       key: "cebri-ifadeler", title: "Cəbri ifadələr, sadələşdirmə", fenn: "riyaziyyat", link: "dersler/cebri-ifadeler.html",
       format: "Cavab ədəddir: tam 14, mənfi −7. Əmsal soruşulursa, işarəsi ilə yaz (−5x-in əmsalı −5). Hədd yoxdursa, əmsalı 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["qiymet", "qiymet", "birhedli", "oxsar", "oxsar", "moterize", "moterize", "akilli", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
