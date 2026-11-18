@@ -183,7 +183,7 @@
     { id: "sehv", ad: "Səhvi tap", izah: "Həll üç addımdır, birində səhv var. Birinci səhv addım hansıdır?",
       gen() {
         // F1 = m along Ox; F2 = 2k at 60° to Ox (or, the same, 30° to Oy): F2x = k, F2y = k√3
-        const k = rnd(1, 8), m = rnd(2, 15), F2 = 2 * k, toY = Math.random() < .5;
+        const k = rnd(2, 8), m = rnd(2, 15), F2 = 2 * k, toY = Math.random() < .5;
         const ang = toY ? "Oy ilə 30°" : "Ox ilə 60°", fx = toY ? "sin 30°" : "cos 60°", fy = toY ? "cos 30°" : "sin 60°";
         const r3 = exStr(1, [k, 3]), N = (m + k) * (m + k) + 3 * k * k;
         const steps = [
@@ -197,12 +197,167 @@
         if (bad === 2) steps[2] = pick([`R = Rx + Ry = ${m + k} + ${r3} N.`, `R = √(Rx² + Ry²) = √(${(m + k) * (m + k)} + ${3 * k}) = ${rt((m + k) * (m + k) + 3 * k)} N.`]);
         const text = h("div", {}, h("p", {}, `F₁ = ${m} N qüvvəsi Ox boyunca, F₂ = ${F2} N qüvvəsi ${ang} bucaq altında (birinci rübdə) yönəlib. Əvəzləyicini tap.`),
           h("ol", { class: "oy-steps" }, ...steps.map(st => h("li", {}, st))));
-        const why = [`1-ci addım: bucaq ${toY ? "Oy" : "Ox"} iləndir. ${toY ? "Oy-ə bitişik proyeksiya (F₂y) — cos ilə, Ox-ə — sin ilə" : "Ox-ə bitişik proyeksiya (F₂x) — cos ilə, Oy-ə — sin ilə"}: F₂x = ${k}, F₂y = ${r3}.`,
+        const why = [`1-ci addım: bucaq ${toY ? "Oy" : "Ox"} oxu ilədir. ${toY ? "Oy oxuna bitişik proyeksiya (F₂y) cos ilə, Ox oxuna proyeksiya sin ilə" : "Ox oxuna bitişik proyeksiya (F₂x) cos ilə, Oy oxuna proyeksiya sin ilə"}: F₂x = ${k}, F₂y = ${r3}.`,
           `2-ci addım: x-lər öz aralarında, y-lər öz aralarında toplanır. F₁ yalnız x üzrədir: Rx = ${m + k}, Ry = ${r3}.`,
           `3-cü addım: modul Pifaqorla tapılır, hər proyeksiya kvadrata yüksəldilir: Ry² = (${r3})² = ${3 * k * k}. R = ${rt(N)} N.`][bad];
         return { text, choices: ["1-ci addım", "2-ci addım", "3-cü addım"], correct: bad, show: ["1-ci addım", "2-ci addım", "3-cü addım"][bad], solution: why };
       } },
   ];
+
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a figure, several steps; the wrong
+  // options are the answers of typical mistakes. Questions 2, 3, 4, 6, 7, 8 and 10 also use an earlier topic
+  // (Nyuton, sürtünmə və maili müstəvi, kinematika, çevrə üzrə hərəkət, cazibə, sərbəst düşmə).
+  const { ae, again } = Oyun;
+  const Fm = v => String(+(+v).toFixed(6)).replace("-", "−").replace(".", ",");
+  const nice = (v, d) => Math.abs(v * 10 ** d - Math.round(v * 10 ** d)) < 1e-7;
+  const ok2 = x => isFinite(x) && x > 0 && nice(x, 2);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const Un = u => x => Fm(+x.toFixed(4)) + " " + u;
+  const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+  // string SVG helpers (the figures are also pasted into the lesson tab)
+  const K = { INK: "var(--ink,#1c2433)", ACC: "var(--accent,#2c4a8a)", MUT: "var(--muted,#5b6578)", VEC: "var(--vec,#b4561b)", PAP: "var(--sheet,#fff)" };
+  const q1 = n => +(+n).toFixed(1);
+  const Ln = (x1, y1, x2, y2, c = K.INK, w = 2, ex = "") => `<line x1="${q1(x1)}" y1="${q1(y1)}" x2="${q1(x2)}" y2="${q1(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+  const Ar = (x1, y1, x2, y2, c = K.VEC, w = 2.5) => Ln(x1, y1, x2, y2, c, w, ` marker-end="url(#vk-a)"`);
+  const Tx = (x, y, s, a = "middle", c = K.INK, sz = 13) => `<text x="${q1(x)}" y="${q1(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+  const Dt = (x, y, r = 3.2, c = K.INK) => `<circle cx="${q1(x)}" cy="${q1(y)}" r="${r}" fill="${c}"/>`;
+  const Cr = (x, y, r, fill = K.PAP, c = K.INK, w = 2) => `<circle cx="${q1(x)}" cy="${q1(y)}" r="${r}" fill="${fill}" stroke="${c}" stroke-width="${w}"/>`;
+  // arc around (cx, cy) from the math angle a1 to a2 (degrees, counter-clockwise, a1 < a2)
+  const Ac = (cx, cy, r, a1, a2, c = K.ACC, w = 2) => { const P = a => [cx + r * Math.cos(a * Math.PI / 180), cy - r * Math.sin(a * Math.PI / 180)], A = P(a1), B = P(a2);
+    return `<path d="M${q1(A[0])} ${q1(A[1])}A${r} ${r} 0 ${a2 - a1 > 180 ? 1 : 0} 0 ${q1(B[0])} ${q1(B[1])}" fill="none" stroke="${c}" stroke-width="${w}"/>`; };
+  const Sg = (w, h, inner, aria, cls = "oy-svg") => `<svg viewBox="0 0 ${w} ${h}"${cls ? ` class="${cls}"` : ""} role="img" aria-label="${aria}"><defs><marker id="vk-a" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>${inner}</svg>`;
+  const hatch = (x1, x2, y, dir) => { let s = ""; for (let x = x1; x <= x2; x += 12) s += Ln(x, y, x - 7, y + 9 * dir, K.MUT, 1); return s; };
+
+  // three forces from one point: arrows [dx, dy, value, label] with unit directions in screen coordinates
+  function figForces(arr, cls) { const mx = Math.max(...arr.map(a => a[2])), k = 80 / mx; let s = "";
+    arr.forEach(([dx, dy, v, lab]) => { const L = Math.max(v * k, 18); s += Ar(130, 100, 130 + dx * L, 100 + dy * L, lab === "F₂" ? K.ACC : K.VEC) + (dx ? Tx(130 + dx * (L + 16), 105, lab) : Tx(130, 100 + dy * (L + 10) + (dy > 0 ? 8 : 0), lab)); });
+    return Sg(260, 200, s + Dt(130, 100, 3.5), "Bir nöqtədən çıxan üç qüvvə: F₁, F₂, F₃", cls); }
+  // a body on a smooth floor, a force F lifted by the angle al above the horizontal
+  function figLift(al, cls) { const x0 = 140, y0 = 106, L = 92, c = Math.cos(al * Math.PI / 180), n = Math.sin(al * Math.PI / 180);
+    return Sg(260, 160, Ln(20, 130, 240, 130) + hatch(30, 240, 130, 1) + `<rect x="70" y="82" width="70" height="48" fill="${K.PAP}" stroke="${K.INK}" stroke-width="2"/>` + Tx(105, 112, "m")
+      + Ln(x0, y0, x0 + 100, y0, K.MUT, 1, ' stroke-dasharray="4 3"') + Ar(x0, y0, x0 + L * c, y0 - L * n) + Tx(x0 + L * c + 10, y0 - L * n - 4, "F", "start", K.VEC)
+      + Ac(x0, y0, 38, 0, al) + Tx(x0 + 54 * Math.cos(al * Math.PI / 360), y0 - 54 * Math.sin(al * Math.PI / 360) + 5, "α"), "Üfüqi səthdə cisim; F qüvvəsi üfüqlə α bucağı altında yuxarı yönəlib", cls); }
+  // a smooth incline of angle al, a block held by a force F along the slope
+  function figIncline(al, cls) { const a = al * Math.PI / 180, c = Math.cos(a), n = Math.sin(a), C = [30 + 170 * c, 170 - 170 * n], P = [30 + 72 * c, 170 - 72 * n];
+    return Sg(260, 190, `<polygon points="30,170 ${q1(C[0])},170 ${q1(C[0])},${q1(C[1])}" fill="none" stroke="${K.INK}" stroke-width="2" stroke-linejoin="round"/>`
+      + `<g transform="translate(${q1(P[0])} ${q1(P[1])}) rotate(${-al})"><rect x="-24" y="-30" width="48" height="30" fill="${K.PAP}" stroke="${K.INK}" stroke-width="2"/>${Tx(0, -10, "m")}${Ar(24, -15, 82, -15)}${Tx(88, -19, "F", "start", K.VEC)}</g>`
+      + Ac(30, 170, 36, 0, al) + Tx(30 + 52 * Math.cos(a / 2), 170 - 52 * Math.sin(a / 2) + 5, "α"), "Hamar maili müstəvi, üzərində cisim; F qüvvəsi müstəvi boyunca yuxarı yönəlib", cls); }
+  // the walk A → B (east, a) → C (north, b) → D (west, c)
+  function figPath(a, b, c, cls) { const k = Math.min(140 / a, 105 / b), A = [40, 158], B = [40 + a * k, 158], C = [B[0], 158 - b * k], D = [C[0] - c * k, C[1]];
+    return Sg(260, 190, Ar(A[0], A[1], B[0], B[1], K.VEC) + Ar(B[0], B[1], C[0], C[1], K.VEC) + Ar(C[0], C[1], D[0], D[1], K.VEC)
+      + [[A, "A", -12, 5], [B, "B", 12, 16], [C, "C", 12, -4], [D, "D", -12, -4]].map(([p, t, dx, dy]) => Dt(p[0], p[1]) + Tx(p[0] + dx, p[1] + dy, t)).join("")
+      + Tx((A[0] + B[0]) / 2, 176, a + " m", "middle", K.MUT, 12) + Tx(B[0] + 8, (B[1] + C[1]) / 2 + 4, b + " m", "start", K.MUT, 12) + Tx((C[0] + D[0]) / 2, C[1] - 8, c + " m", "middle", K.MUT, 12),
+      "Yol: A-dan B-yə şərqə, B-dən C-yə şimala, C-dən D-yə qərbə", cls); }
+  // a boat across a river: u across, v along the flow
+  function figRiver(u, v, cls) { const dr = Math.max(34, Math.min(120, 110 * v / u)), Q = [70 + dr, 40];
+    return Sg(260, 190, Ln(20, 40, 240, 40) + hatch(30, 240, 40, -1) + Ln(20, 150, 240, 150) + hatch(30, 240, 150, 1)
+      + Ar(130, 95, 200, 95, K.ACC) + Tx(166, 85, "v", "middle", K.ACC) + Ln(70, 150, Q[0], Q[1], K.MUT, 1.5, ' stroke-dasharray="5 4"') + Ar(70, 150, 70, 72, K.VEC) + Tx(58, 118, "u", "middle", K.VEC)
+      + Dt(70, 150) + Tx(70, 170, "P") + Dt(Q[0], Q[1]) + Tx(Q[0] + 12, 32, "Q")
+      + Ar(28, 46, 28, 144, K.MUT, 1.2) + Ar(28, 144, 28, 46, K.MUT, 1.2) + Tx(16, 100, "d", "middle", K.MUT), "Çay: qayıq P-dən sahilə perpendikulyar üzür, axın onu Q nöqtəsinə aparır", cls); }
+  // a lamp on two equal ropes; the angle between the ropes is th
+  function figRopes(th, cls) { const h = th / 2 * Math.PI / 180, L = 100, ap = [130, 140], A1 = [ap[0] - L * Math.sin(h), ap[1] - L * Math.cos(h)], A2 = [ap[0] + L * Math.sin(h), A1[1]];
+    return Sg(260, 200, Ln(A1[0] - 20, A1[1], A2[0] + 20, A1[1]) + hatch(A1[0] - 14, A2[0] + 24, A1[1], -1) + Ln(A1[0], A1[1], ap[0], ap[1]) + Ln(A2[0], A2[1], ap[0], ap[1]) + Dt(ap[0], ap[1])
+      + Cr(130, 156, 15) + Ar(130, 172, 130, 196) + Tx(146, 190, "mg", "start", K.VEC) + Ac(130, 140, 34, 90 - th / 2, 90 + th / 2) + Tx(130, 140 - 46, "θ", "middle", K.ACC), "Lampa tavandan iki ip ilə asılıb; iplər arasında θ bucağı", cls); }
+  // uniform motion on a circle: A at the top, B a quarter turn clockwise
+  function figCircle(cls) { return Sg(260, 200, Cr(130, 105, 62, "none", K.MUT, 1.5) + `<path d="M130 43A62 62 0 0 1 192 105" fill="none" stroke="${K.ACC}" stroke-width="3"/>`
+      + Ln(130, 105, 130, 43, K.MUT, 1, ' stroke-dasharray="4 3"') + Ln(130, 105, 192, 105, K.MUT, 1, ' stroke-dasharray="4 3"') + Dt(130, 105, 2.5) + Tx(120, 122, "O")
+      + Ar(130, 43, 182, 43) + Tx(186, 34, "v₁", "start", K.VEC) + Ar(192, 105, 192, 155) + Tx(202, 150, "v₂", "start", K.VEC) + Dt(130, 43) + Tx(118, 38, "A", "end") + Dt(192, 105) + Tx(204, 100, "B", "start"),
+      "Çevrə üzrə hərəkət: A nöqtəsində v₁ sağa, çevrənin dörddə biri sonra B nöqtəsində v₂ aşağı", cls); }
+  // C at the corner of a right angle, A on the x-axis (rA·r from C), B on the y-axis (rB·r from C)
+  function figGrav(mA, mB, rA, rB, cls) { const C = [50, 160], A = [C[0] + 60 * rA, 160], B = [50, C[1] - 60 * rB];
+    return Sg(260, 200, Ln(C[0], C[1], A[0], A[1], K.MUT, 1) + Ln(C[0], C[1], B[0], B[1], K.MUT, 1) + Ln(C[0] + 10, C[1], C[0] + 10, C[1] - 10, K.MUT, 1) + Ln(C[0], C[1] - 10, C[0] + 10, C[1] - 10, K.MUT, 1)
+      + Ar(C[0] + 4, C[1], C[0] + 40, C[1], K.VEC) + Tx(C[0] + 24, C[1] - 8, "F₁", "middle", K.VEC) + Ar(C[0], C[1] - 4, C[0], C[1] - 40, K.ACC) + Tx(C[0] + 9, C[1] - 30, "F₂", "start", K.ACC)
+      + Cr(C[0], C[1], 6, K.INK) + Tx(C[0] - 10, C[1] + 16, "C, m", "end") + Cr(A[0], A[1], 11) + Tx(A[0], A[1] + 4.5, "A", "middle", K.INK, 12) + Tx(A[0], A[1] - 18, mA + "M") + Cr(B[0], B[1], 11) + Tx(B[0], B[1] + 4.5, "B", "middle", K.INK, 12) + Tx(B[0] + 20, B[1] + 5, mB + "M", "start")
+      + Tx((C[0] + A[0]) / 2, C[1] + 17, (rA === 1 ? "" : rA) + "r", "middle", K.MUT, 12) + Tx(C[0] - 8, (C[1] + B[1]) / 2 + 4, (rB === 1 ? "" : rB) + "r", "end", K.MUT, 12), "C cismi, A cismi C-dən rA·r, B cismi rB·r məsafədə, ∠ACB = 90°", cls); }
+  // coordinate grid 0..8 × 0..6 (1 cell = 1 m) with a displacement A → B
+  function figGrid(A, B, cls) { const X = x => 36 + 24 * x, Y = y => 164 - 24 * y, dxs = X(B[0]) - X(A[0]), dys = Y(B[1]) - Y(A[1]), dl = Math.hypot(dxs, dys) || 1, ux = dxs / dl, uy = dys / dl; let s = "";
+    for (let x = 0; x <= 8; x++) s += Ln(X(x), Y(0), X(x), Y(6), K.MUT, 0.5) + (x % 2 === 0 && x ? Tx(X(x), Y(0) + 15, x, "middle", K.MUT, 11) : "");
+    for (let y = 0; y <= 6; y++) s += Ln(X(0), Y(y), X(8), Y(y), K.MUT, 0.5) + (y % 2 === 0 && y ? Tx(X(0) - 6, Y(y) + 4, y, "end", K.MUT, 11) : "");
+    s += Ln(X(0), Y(0), X(8) + 10, Y(0), K.INK, 1.6) + Ln(X(0), Y(0), X(0), Y(6) - 10, K.INK, 1.6) + Tx(X(8) + 14, Y(0) + 4, "x", "start") + Tx(X(0) + 8, Y(6) - 12, "y", "start") + Tx(X(0) - 6, Y(0) + 15, "0", "end", K.MUT, 11);
+    return Sg(260, 190, s + Ar(X(A[0]), Y(A[1]), X(B[0]), Y(B[1]), K.VEC, 2.6) + Cr(X(A[0]), Y(A[1]), 3.5, K.INK) + Tx(X(A[0]) - ux * 15, Y(A[1]) - uy * 15 + 5, "A") + Dt(X(B[0]), Y(B[1]), 3.5) + Tx(X(B[0]) + ux * 15, Y(B[1]) + uy * 15 + 5, "B"), "Koordinat şəbəkəsi: cisim A nöqtəsindən B nöqtəsinə keçir", cls); }
+  // a ball falls from h, hits the floor, rises with a smaller speed
+  function figBounce(n, cls) { const l2 = 70 / n; return Sg(260, 200, Ln(20, 170, 240, 170) + hatch(30, 240, 170, 1) + Cr(80, 38, 10) + Tx(96, 42, "v₀ = 0", "start", K.MUT, 12) + Ln(80, 52, 80, 70, K.MUT, 1, ' stroke-dasharray="4 3"') + Cr(80, 158, 10, "none", K.MUT, 1.5) + Ar(80, 74, 80, 144, K.VEC) + Tx(94, 114, "v₁", "start", K.VEC) + Ar(34, 46, 34, 166, K.MUT, 1.2) + Ar(34, 166, 34, 46, K.MUT, 1.2) + Tx(22, 110, "h", "middle", K.MUT)
+      + Cr(180, 158, 10) + Ar(180, 142, 180, 142 - l2, K.ACC) + Tx(194, 146 - l2 / 2, "v₂", "start", K.ACC) + Tx(80, 192, "dəymədən əvvəl", "middle", K.MUT, 11) + Tx(180, 192, "dəymədən sonra", "middle", K.MUT, 11), "Top h hündürlükdən düşür, yerə dəyir və yuxarı qalxır", cls); }
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. three forces from a point, two of them opposite (resultant by the Pythagorean theorem)
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = pick(TRI.slice(0, 5)), k = pick([1, 2]), sw = Math.random() < .5, P1 = (sw ? q : p) * k, P2 = (sw ? p : q) * k, R = c * k, F3 = rnd(2, 9), F1 = P1 + F3, F2 = P2;
+      const sg = pick([1, -1]), sg2 = pick([1, -1]), onX = Math.random() < .5;
+      const arr = onX ? [[sg, 0, F1, "F₁"], [-sg, 0, F3, "F₃"], [0, sg2, F2, "F₂"]] : [[0, sg, F1, "F₁"], [0, -sg, F3, "F₃"], [sg2, 0, F2, "F₂"]];
+      const w = [F1 + F2 + F3, P1 + P2, P1, P2]; if (![R, ...w].every(ok2)) return null;
+      return mc(ae(R, w, Un("N")), { svg: svgEl(figForces(arr)), text: `Bir nöqtəyə şəkildəki üç qüvvə təsir edir: F₁ = ${F1} N, F₂ = ${F2} N, F₃ = ${F3} N. Əvəzləyici qüvvənin modulu nə qədərdir?`,
+        solution: `Qarşı-qarşıya yönəlmiş F₁ və F₃ çıxılır: ${F1} − ${F3} = ${P1} N. F₂ ona perpendikulyardır: ${P2} N. R = √(${P1}² + ${P2}²) = ${R} N. Tələlər: modulları toplamaq (${F1 + F2 + F3} N), proyeksiyaları Pifaqorsuz toplamaq (${P1 + P2} N), yalnız bir proyeksiyanı cavab yazmaq (${P1} və ya ${P2} N).` });
+    }) },
+    // 2. a force lifted by an angle: the normal reaction (Newton + projection)
+    { tip: "qapali", birlesik: "fiz-nyuton", gen: () => again(() => {
+      const al = pick([37, 53]), sn = al === 37 ? .6 : .8, cs = al === 37 ? .8 : .6, m = pick([2, 3, 4, 5, 6, 8, 10]), F = pick([5, 10, 15, 20, 25, 30, 40, 50]), Fy = F * sn, Fx = F * cs, mg = 10 * m, N = mg - Fy;
+      const w = [mg, mg - Fx, mg + Fy, mg - F]; if (![N, ...w].every(ok2)) return null;
+      return mc(ae(N, w, Un("N")), { svg: svgEl(figLift(al)), text: `Kütləsi ${m} kq olan cisim hamar üfüqi səthdə sürüşür. Ona üfüqlə α = ${al}° bucaq əmələ gətirən F = ${F} N qüvvə yuxarı tətbiq olunub (şəkildə); cisim səthdən ayrılmır. Səthin cismə normal reaksiya qüvvəsi nə qədərdir? (g = 10 m/s², sin ${al}° = ${Fm(sn)}, cos ${al}° = ${Fm(cs)})`,
+        solution: `F qüvvəsini toplananlara ayır: Fₓ = F·cos ${al}° = ${Fm(Fx)} N, F_y = F·sin ${al}° = ${Fm(Fy)} N (yuxarı). Şaquli istiqamətdə cisim yerdən qalxmır: N + F_y = mg, N = ${mg} − ${Fm(Fy)} = ${Fm(N)} N. Tələlər: F_y-ni nəzərə almamaq (${mg} N), sin ilə cos-u dəyişmək (${Fm(mg - Fx)} N), F_y-ni mg-yə əlavə etmək (${Fm(mg + Fy)} N), bütün F-i çıxmaq (${Fm(mg - F)} N).` });
+    }) },
+    // 3. weight on a smooth incline: the normal reaction (projection of mg)
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", minVariety: 8, gen: () => again(() => {
+      const al = pick([37, 53]), sn = al === 37 ? .6 : .8, cs = al === 37 ? .8 : .6, m = pick([3, 6, 9, 12]), mg = 10 * m, N = mg * cs;
+      const w = [mg * sn, mg, mg * sn / cs, mg / cs]; if (![N, ...w].every(ok2)) return null;
+      return mc(ae(N, w, Un("N")), { svg: svgEl(figIncline(al)), text: `Hamar maili müstəvi üfüqlə α = ${al}° bucaq əmələ gətirir. Kütləsi ${m} kq olan cisim müstəvi boyunca yuxarı yönəlmiş F qüvvəsi ilə tarazlıqda saxlanılır (şəkildə). Müstəvinin cismə normal reaksiya qüvvəsi nə qədərdir? (g = 10 m/s², sin ${al}° = ${Fm(sn)}, cos ${al}° = ${Fm(cs)})`,
+        solution: `Ağırlıq qüvvəsi mg = ${mg} N şaquli aşağıdır. Müstəviyə perpendikulyar toplananı mg·cos α: N = ${mg}·${Fm(cs)} = ${Fm(N)} N. (Müstəvi boyunca toplanan mg·sin α = ${Fm(mg * sn)} N-dur — F ona bərabərdir.) Tələlər: sin ilə cos-u dəyişmək (${Fm(mg * sn)} N), N = mg yazmaq (${mg} N), tg ilə vurmaq (${Fm(mg * sn / cs)} N), cos-a bölmək (${Fm(mg / cs)} N).` });
+    }) },
+    // 4. a three-leg walk: average velocity (modulus of the displacement / time); minutes → seconds
+    { tip: "qapali", birlesik: "fiz-kinematika", gen: () => again(() => {
+      const [p, q, r] = pick(TRI.slice(0, 5)), v = pick([0.5, 1, 1.5, 2, 2.5, 3, 4]), t = pick([1, 2, 3, 4, 5]), s = +(60 * t * v).toFixed(6), u = s / r, sw = Math.random() < .5;
+      const dx = (sw ? q : p) * u, dy = (sw ? p : q) * u; if (![dx, dy].every(x => Number.isInteger(+x.toFixed(6)) && x >= 10)) return null;
+      const c = pick([20, 30, 40, 50, 60, 80]), a = dx + c, b = dy, l = a + b + c, T = 60 * t, kk = Math.min(140 / a, 105 / b); if (Math.min(a, b, c) * kk < 28) return null;
+      const w = [l / T, (dx + dy) / T, (a + b) / T, s / t]; if (![v, ...w].every(ok2)) return null;
+      return mc(ae(v, w, Un("m/s")), { svg: svgEl(figPath(a, b, c)), text: `Cisim A nöqtəsindən şəkildəki yolla A → B → C → D hərəkət etdi: AB = ${a} m (şərqə), BC = ${b} m (şimala), CD = ${c} m (qərbə). Bütün hərəkət ${t} dəq çəkdi. Orta sürət vektorunun modulu nə qədərdir? (m/s ilə)`,
+        solution: `Orta sürət vektoru yerdəyişmənin vaxta nisbətidir. Şərq üzrə: ${a} − ${c} = ${dx} m, şimal üzrə: ${dy} m. s = √(${dx}² + ${dy}²) = ${s} m. Vaxt ${t} dəq = ${T} s. v = ${s}/${T} = ${Fm(v)} m/s. Tələlər: yerdəyişmə əvəzinə yolu vaxta bölmək (${Fm(l / T)} m/s), proyeksiyaları toplamaq (${Fm((dx + dy) / T)} m/s), CD hissəsini unudub AB + BC-ni vaxta bölmək (${Fm((a + b) / T)} m/s), dəqiqəni saniyəyə çevirməmək (${Fm(s / t)} m/s).` });
+    }) },
+    // 5. a boat across a river: u across, v along the flow; displacement relative to the bank
+    { tip: "qapali", minVariety: 8, gen: () => again(() => {
+      const [u, v, w0] = pick([[0.6, 0.8, 1], [0.8, 0.6, 1], [1.5, 2, 2.5], [2, 1.5, 2.5], [0.5, 1.2, 1.3], [1.2, 0.5, 1.3], [3, 4, 5], [4, 3, 5]]), t = pick([10, 20, 25, 30, 40, 50, 60, 100]);
+      const d = +(u * t).toFixed(6), dr = +(v * t).toFixed(6), s = +(w0 * t).toFixed(6); if (![d, dr].every(x => Number.isInteger(x))) return null;
+      const w = [d + dr, dr, d, w0]; if (![s, ...w].every(ok2)) return null;
+      return mc(ae(s, w, Un("m")), { svg: svgEl(figRiver(u, v)), text: `Çayın eni ${d} m-dir, axının sürəti ${Fm(v)} m/s. Qayıq P nöqtəsindən elə üzür ki, onun suya nəzərən sürəti ${Fm(u)} m/s-dir və sahilə perpendikulyar yönəlib (şəkildə); axının sürəti hər yerdə eynidir. Qayığın sahilə nəzərən yerdəyişməsinin modulu (P-dən qarşı sahildəki Q-yə qədər) nə qədərdir?`,
+        solution: `Qarşı sahilə çatma vaxtı yalnız eninə sürətdən asılıdır: t = d/u = ${d}/${Fm(u)} = ${t} s. Bu vaxtda axın qayığı ${Fm(v)}·${t} = ${dr} m aparır. Yerdəyişmə düzbucaqlı üçbucağın hipotenuzudur: s = √(${d}² + ${dr}²) = ${s} m. Tələlər: katetləri toplamaq (${d + dr} m), yalnız axının apardığını götürmək (${dr} m), yalnız eni götürmək (${d} m), sürətlərin Pifaqorunu tapıb vaxta vurmağı unutmaq (${Fm(w0)} m).` });
+    }) },
+    // 6. a lamp on two ropes: the tension (equilibrium, projection onto the vertical)
+    { tip: "qapali", birlesik: "fiz-nyuton", minVariety: 8, gen: () => again(() => {
+      const th = pick([74, 106]), hf = th / 2, sn = hf === 37 ? .6 : .8, cs = hf === 37 ? .8 : .6, m = pick([6, 12, 18, 24, 30]), mg = 10 * m, T = mg / (2 * cs);
+      const w = [mg / 2, mg / (2 * sn), mg, mg / cs]; if (![T, ...w].every(ok2)) return null;
+      return mc(ae(T, w, Un("N")), { svg: svgEl(figRopes(th)), text: `Kütləsi ${m} kq olan lampa eyni uzunluqlu iki ip ilə tavanın eyni hündürlüyündəki iki nöqtəsindən asılıb. İplər arasındakı bucaq ${th}°-dir (şəkildə). Hər ipdəki dartılma qüvvəsi nə qədərdir? (g = 10 m/s², sin ${hf}° = ${Fm(sn)}, cos ${hf}° = ${Fm(cs)})`,
+        solution: `Hər ip şaquli ilə ${th}°/2 = ${hf}° bucaq əmələ gətirir. İplər simmetrikdir, lampa tarazlıqdadır: şaquli proyeksiyalarda 2T·cos ${hf}° = mg. T = ${mg}/(2·${Fm(cs)}) = ${Fm(T)} N. Tələlər: bucağı nəzərə almamaq (mg/2 = ${Fm(mg / 2)} N), sin ilə cos-u dəyişmək (${Fm(mg / (2 * sn))} N), "2" əmsalını unutmaq (mg/cos ${hf}° = ${Fm(mg / cs)} N), yükü bir ipin dartılmasına bərabər saymaq: T = mg (${mg} N).` });
+    }) },
+    // 7. a quarter of a circle at constant speed: the average acceleration
+    { tip: "qapali", birlesik: "fiz-cevre-herekat", gen: () => again(() => {
+      const x = pick([2, 3, 4, 5, 6, 8, 10, 12]), t = pick([1, 2, 3, 4, 5]), v = x * t, half = x % 2 === 0 ? (x / 2) + "√2" : x + "√2/2";
+      const o = ae(Fm(x) + "√2 m/s²", ["0 m/s²", Fm(x) + " m/s²", Fm(2 * x) + " m/s²", half + " m/s²"], z => z);
+      return mc(o, { svg: svgEl(figCircle()), text: `Cisim çevrə üzrə sabit v = ${v} m/s sürətlə hərəkət edir. Çevrənin dörddə bir hissəsini (A nöqtəsindən B nöqtəsinə, şəkildə) ${t} s-də keçdi. Bu müddətdə orta təcilin modulu nə qədərdir?`,
+        solution: `Sürətin modulu dəyişmir, amma istiqaməti 90° dönür. Δv⃗ = v⃗₂ − v⃗₁; v⃗₁ ⊥ v⃗₂ olduğundan |Δv⃗| = √(v² + v²) = v√2 = ${v}√2 m/s. a_orta = |Δv⃗|/t = ${v}√2/${t} = ${Fm(x)}√2 m/s². Tələlər: "modul sabitdir, deməli təcil 0" (0), Δv-ni v-yə bərabər saymaq (${Fm(x)} m/s²), geri dönmədəki kimi 2v (${Fm(2 * x)} m/s²), (v/t)·cos 45° (${half} m/s²).` });
+    }) },
+    // 8. two gravity forces on C at a right angle (F ∝ m/r²)
+    { tip: "qapali", birlesik: "fiz-cazibe", minVariety: 8, gen: () => again(() => {
+      const [mA, mB, rA, rB, pa, pb, pc] = pick([[3, 4, 1, 1, 3, 4, 5], [3, 5, 1, 2, 12, 5, 13], [5, 3, 2, 1, 5, 12, 13], [1, 3, 1, 2, 4, 3, 5], [5, 12, 1, 1, 5, 12, 13]]), u = pick([1, 2, 3, 4, 5, 10]);
+      const FA = pa * u, FB = pb * u, R = pc * u, w = [FA + FB, Math.abs(FA - FB), Math.max(FA, FB), Math.min(FA, FB)];
+      return mc(ae(R, w, Un("N")), { svg: svgEl(figGrav(mA, mB, rA, rB)), text: `Nöqtəvi A, B və C cisimləri şəkildəki kimi yerləşib: ∠ACB = 90°, CA = ${rA === 1 ? "" : rA}r, CB = ${rB === 1 ? "" : rB}r; A-nın kütləsi ${mA}M, B-nin kütləsi ${mB}M. A cisminin C-yə cazibə qüvvəsi F₁ = ${FA} N-dur. C cisminə təsir edən cazibə qüvvələrinin əvəzləyicisinin modulu nə qədərdir?`,
+        solution: `Cazibə qüvvəsi F ∼ m/r². A üçün ${mA}/${rA * rA}, B üçün ${mB}/${rB * rB} → F₁ : F₂ = ${pa} : ${pb}, deməli F₂ = ${FB} N. Qüvvələr perpendikulyardır: R = √(${FA}² + ${FB}²) = ${R} N. Tələlər: modulları toplamaq (${FA + FB} N), çıxmaq (${Math.abs(FA - FB)} N), yalnız bir qüvvəni cavab yazmaq (${FA} və ya ${FB} N).` });
+    }) },
+    // 9. work of a constant force = the scalar product of F and the displacement read off the grid
+    { tip: "qapali", gen: () => again(() => {
+      const ri = (a, b) => rnd(a, b), Ax = ri(1, 7), Ay = ri(1, 5), Bx = ri(1, 7), By = ri(1, 5), sx = Bx - Ax, sy = By - Ay, Fx = pick([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]), Fy = pick([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
+      if (!sx || !sy) return null; const A = Fx * sx + Fy * sy; if (!A) return null;
+      const w = [Fx * sx, Fx * sy + Fy * sx, Fx * sx - Fy * sy, (Fx + Fy) * (sx + sy)];
+      return mc(ae(A, w, x => Fm(x) + " J"), { svg: svgEl(figGrid([Ax, Ay], [Bx, By])), text: `Cisim A(${Ax}; ${Ay}) nöqtəsindən B(${Bx}; ${By}) nöqtəsinə hərəkət etdi (şəkildə, koordinatlar metrlə). Cismə sabit F⃗ = (${Fm(Fx)}; ${Fm(Fy)}) N qüvvə təsir edir. Sabit qüvvənin işi F⃗ və yerdəyişmə s⃗ vektorlarının skalyar hasilinə bərabərdir. İş nə qədərdir?`,
+        solution: `Yerdəyişmə: s⃗ = B − A = (${Bx} − ${Ax < 0 ? "(" + Fm(Ax) + ")" : Ax}; ${By} − ${Ay}) = (${Fm(sx)}; ${Fm(sy)}) m. A = Fₓ·sₓ + F_y·s_y = ${Fm(Fx)}·${sx < 0 ? "(" + Fm(sx) + ")" : sx} + ${Fy < 0 ? "(" + Fm(Fy) + ")" : Fy}·${sy < 0 ? "(" + Fm(sy) + ")" : sy} = ${Fm(Fx * sx)} + ${Fy * sy < 0 ? "(" + Fm(Fy * sy) + ")" : Fy * sy} = ${Fm(A)} J. Tələlər: yalnız x üzrə hesablamaq (${Fm(Fx * sx)} J), komponentləri çarpaz vurub toplamaq Fₓ·s_y + F_y·sₓ (${Fm(w[1])} J), işarə səhvi (${Fm(w[2])} J), cəmləri vurmaq (${Fm(w[3])} J).` });
+    }) },
+    // 10. a ball hits the floor: the change of the velocity vector (v1 down, v2 up)
+    { tip: "qapali", birlesik: "fiz-serbest-dusme", minVariety: 8, gen: () => again(() => {
+      const v1 = pick([10, 20, 30, 40, 60]), n = pick([3, 4, 5]), h = v1 * v1 / 20, v2 = v1 / n, D = v1 + v2;
+      const w = [v1 - v2, v1, v2, 2 * v1]; if (![D, h, ...w].every(ok2)) return null;
+      return mc(ae(D, w, Un("m/s")), { svg: svgEl(figBounce(n)), text: `Top h = ${Fm(h)} m hündürlükdən sərbəst buraxıldı, yerə dəyib sürətinin modulu ${n} dəfə azalmış halda yuxarı atıldı (şəkildə). Zərbə zamanı sürət vektorunun dəyişməsinin modulu nə qədərdir? (g = 10 m/s², havanın müqaviməti yoxdur.)`,
+        solution: `Dəyənə qədər v₁ = √(2gh) = √(2·10·${Fm(h)}) = ${v1} m/s (aşağı). Dəyəndən sonra v₂ = v₁/${n} = ${Fm(v2)} m/s (yuxarı). Δv⃗ = v⃗₂ − v⃗₁: istiqamətlər əksdir, ona görə modullar toplanır: |Δv⃗| = ${v1} + ${Fm(v2)} = ${Fm(D)} m/s. Tələlər: sürət modulunun azalmasını götürmək (${v1} − ${Fm(v2)} = ${Fm(v1 - v2)} m/s), yalnız v₁ (${v1} m/s) və ya yalnız v₂ (${Fm(v2)} m/s), tam elastik zərbədəki 2v₁ (${2 * v1} m/s).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
 
   window.__levels = levels;
   function start() {
@@ -213,7 +368,7 @@
     game = Oyun.mount({
       key: "fiz-vektorlar", title: "Vektorlar: proyeksiya və toplanma", fenn: "fizika", link: "dersler/fiz-vektorlar.html",
       format: "Cavab ədəddir: 12, −6, 5√3, 2√10 (vahid xanada yazılıb). Proyeksiyada işarəni unutma.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["proyeksiya", "proyeksiya", "modul", "toplama", "toplama", "bucaq", "bucaq", "fiqur", "hayat", "hayat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
