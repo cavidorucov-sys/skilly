@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Düsturlar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kvadrat üçhədli</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Tam kvadrat</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -256,6 +257,88 @@ Kvadrat ≥ 0 → ən kiçik qiymət q − p² (x = −p).</div></div>
         <li><span class="m">x² + 4x + 1</span> ifadəsini <span class="m">(x + m)² + n</span> şəklində yaz. <span class="ans">(x + 2)² − 3.</span></li>
         <li><span class="m">x² − 10x + 30</span> ifadəsinin ən kiçik qiyməti nədir? <span class="ans">(x − 5)² + 5 → ən kiçik qiymət 5 (x = 5 olduqda).</span></li>
         <li>Niyə <span class="m">x² − 2x + 3</span> həmişə müsbətdir? <span class="ans">x² − 2x + 3 = (x − 1)² + 2 ≥ 2 > 0.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: vuruqlara ayırma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Vuruqlara ayırma buraxılışda bəzən birbaşa ("Vuruqlara ayırın: …"), çox vaxt isə <b>alət kimi</b> gəlir: kəsri ixtisar etmək, tənliyi həll etmək, ifadənin ən kiçik qiymətini tapmaq, ədədi kalkulyatorsuz hesablamaq. Üç formada:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəni səhv qoymaq, ortaq vuruğun yalnız bir hissəsini çıxarmaq, <span class="m">a² − b² = (a − b)²</span> yazmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil: açıb yoxla.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: vahid yazılmır; onluq kəsr vergüllə. Vuruqlara ayırma mövzusunda adətən vuruqları yox, onlardan çıxan <b>ədədi</b> (məs. <span class="m">p² + q²</span>) soruşurlar.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>burada hansı üsul işləyir?</b> Ortaq vuruq, qruplaşdırma, düstur, kök (Viyet/D) və ya tam kvadrat — üsulu seç, sonra hesabla.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(x² − 5x + 6)/(x² − 9)</span> kəsrini ixtisar edin.</p>
+        <ol class="imt-opts"><li>−2/3</li><li>(x + 2)/(x − 3)</li><li>(x − 2)/(x + 3)</li><li>(x + 3)/(x − 2)</li><li>(x + 2)/(x + 3)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Surət: x² − 5x + 6, köklər 2 və 3 → (x − 2)(x − 3)
+Məxrəc: x² − 9 = (x − 3)(x + 3)
+Ortaq vuruq (x − 3) ixtisar olunur:
+(x − 2)(x − 3) / ((x − 3)(x + 3)) = (x − 2)/(x + 3)    (x ≠ ±3 şərtində)
+Cavab: C) (x − 2)/(x + 3)</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) −2/3</b> — "x-i ixtisar etmək": surət və məxrəcdə x toplananın içindədir, <span class="m">x − 2</span> ilə <span class="m">x + 3</span>-ün x-i ixtisar olunmur.</li>
+        <li><b>B) (x + 2)/(x − 3)</b> — kök işarəsini tərsinə yazmaq: kök 2-dirsə, vuruq <span class="m">(x − 2)</span>-dir, <span class="m">(x + 2)</span> yox; məxrəcdə də eyni.</li>
+        <li><b>D) (x + 3)/(x − 2)</b> — surət və məxrəci dəyişmək.</li>
+        <li><b>E) (x + 2)/(x + 3)</b> — yalnız surətdə işarəni səhv qoymaq (məxrəc düzdür).</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">x + y = 5</span> və <span class="m">xy = 6</span> olarsa, <span class="m">x³ + y³</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">(x + y)³ = x³ + y³ + 3xy(x + y)
+x³ + y³ = (x + y)³ − 3xy(x + y) = 5³ − 3·6·5 = 125 − 90 = 35
+Yoxla: x = 2, y = 3 → 8 + 27 = 35 ✓
+Cavab: 35</div>
+      <p>Kodlaşdırmada yalnız <b>35</b> yazılır. Tələlər: <span class="m">3xy(x + y)</span> hədini unutmaq (cavab 125), 3-ü unutmaq (<span class="m">125 − 30 = 95</span>).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Düzbucaqlı bağın bir tərəfi divardır. Qalan üç tərəfi 40 m uzunluğunda hasarla çəpərləyirlər (divar boyunca hasar yoxdur). Bağın sahəsinin ən böyük qiyməti neçə m²-dir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Divara perpendikulyar tərəf x m olsun.
+   Divara paralel tərəf: 40 − 2x m.
+2) Sahə: S = x(40 − 2x) = −2x² + 40x
+3) Tam kvadrat ayırırıq:
+   S = −2(x² − 20x) = −2(x² − 20x + 100) + 200 = −2(x − 10)² + 200
+4) (x − 10)² ≥ 0, ona görə S ≤ 200; bərabərlik x = 10 olanda.
+   Divara paralel tərəf 40 − 20 = 20 m.
+Cavab: 200 m².</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>sahənin ifadəsi</b> (1–2-ci addım), <b>tam kvadratın ayrılması</b> (3-cü addım), <b>nəticə və cavab</b>. Tələ: mötərizəyə <span class="m">+100</span> əlavə edəndə, onun əvvəlindəki <span class="m">−2</span> ilə <span class="m">−200</span> olur — kənarda <span class="m">+200</span> yazmaq lazımdır. Həll yazılmadan yalnız "200" yazılsa, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Ortaq vuruq tam çıxmır.</b> <span class="m">24x³ − 54x² = 2x²(12x − 27)</span> düzdür, amma "ən böyük" deyil: ƏBOB 6-dır, yəni <span class="m">6x²(4x − 9)</span>.</li>
+        <li><b>Toplananı ixtisar etmək.</b> <span class="m">(x − 2)/(x + 3)</span>-də x-i ixtisar etmək olmaz; yalnız <b>vuruqlar</b> ixtisar olunur.</li>
+        <li><b>Düstur səhvləri.</b> <span class="m">a² − b² = (a − b)(a + b)</span>, <span class="m">(a − b)²</span> yox; <span class="m">a² + b²</span> həqiqi ədədlər üzərində vuruqlara ayrılmır; <span class="m">9b² = (3b)²</span>, <span class="m">(9b)²</span> yox.</li>
+        <li><b>Kökdən vuruğa.</b> Kök 3-dürsə, vuruq <span class="m">(x − 3)</span>; baş əmsalı <span class="m">a</span> unutma.</li>
+        <li><b>Tam kvadratda.</b> Əlavə etdiyini çıx; <span class="m">a ≠ 1</span> olanda mötərizədən kənara <span class="m">a·p²</span> çıxır, <span class="m">p²</span> yox. Bütün x üçün "ifadə &gt; 0" soruşulanda <span class="m">c = p²</span> götürmək olmaz: kvadrat 0 olanda ifadə də 0 olur. Tələb <span class="m">c &gt; p²</span>-dir.</li>
+        <li><b>Qruplaşdırma ilə tənlikdə</b> <span class="m">x² = 9</span> iki kök verir: 3 və −3.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır, vahid yazılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ortaq vuruq:   ƏBOB(əmsallar) · dəyişənin ən kiçik qüvvəti
+ixtisar:       vuruqlara ayır, vuruğu ixtisar et (toplananı yox)
+düsturlar:     a² − b² = (a − b)(a + b), (a ± b)² = a² ± 2ab + b²
+üçhədli:       kök x₁ → vuruq (x − x₁), a-nı unutma
+tam kvadrat:   əlavə etdiyini çıx</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² − 4x)/(x² − 16)</span> kəsrini ixtisar edin. <span class="ans">x(x − 4) / ((x − 4)(x + 4)) = x/(x + 4) (x ≠ ±4 şərtində). x-i ixtisar edib 0 yazmaq səhvdir.</span></li>
+        <li><span class="m">x² + 4x + c &gt; 0</span> bərabərsizliyi bütün x üçün ödənilirsə, c-nin ən kiçik tam qiyməti? <span class="ans">(x + 2)² + (c − 4) &gt; 0 → c &gt; 4 → 5 (c = 4 olsa, x = −2-də ifadə 0 olar).</span></li>
+        <li><span class="m">x − 1/x = 3</span> olarsa, <span class="m">x² + 1/x²</span> neçədir? <span class="ans">(x − 1/x)² = x² − 2 + 1/x² = 9 → x² + 1/x² = 11 (2-ni çıxmaq yox, əlavə etmək).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

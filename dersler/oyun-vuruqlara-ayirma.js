@@ -182,6 +182,97 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (partial common factor, wrong signs, cancelling x, forgetting 2ab, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const mono = (c, m) => m === 0 ? String(c) : (c === 1 ? "" : String(c)) + X(m);   // 6x², x, 6
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. common factor: the greatest one, with the right power of x
+    { tip: "qapali", gen: () => again(() => {
+      const g = pick([4, 6, 8, 9, 12]), pr = g % 2 === 0 ? 2 : 3, [a, b] = coprime(1, 9, 1, 9), s = pick([-1, 1]), m = pick([1, 2]);
+      const expr = poly([[g * a, X(m + 1)], [s * g * b, X(m)]]);
+      const right = `${mono(g, m)}(${lin(a, s * b)})`;
+      const w = [`${mono(pr, m)}(${lin(g / pr * a, s * g / pr * b)})`, `${mono(g, m - 1)}(${poly([[a, "x²"], [s * b, "x"]])})`, `${mono(g, m)}(${lin(a, -s * b)})`, `${mono(g, m)}(${lin(a, s * g * b)})`];
+      return mc(ae(right, w, x => x), { text: `${expr} ifadəsində ən böyük ortaq vuruğu mötərizə xaricinə çıxarın. Hansı yazılış düzdür?`,
+        solution: `ƏBOB(${g * a}; ${g * b}) = ${g}, x-in ən kiçik qüvvəti ${X(m)}: ${expr} = ${right}. Tələlər: ƏBOB-un yalnız bir hissəsini çıxarmaq (${g} əvəzinə ${pr}), x-i bir dərəcə az çıxarmaq (mötərizədə hələ x qalır), mötərizədə işarəni dəyişmək, ikinci həddi bölməyi unutmaq.` });
+    }) },
+    // 2. difference of squares with two letters
+    { tip: "qapali", gen: () => again(() => {
+      const p = pick([2, 3, 4]), q = pick([2, 3, 4, 5, 6]), pa = p + "a", qb = q + "b";
+      const expr = poly([[p * p, "a²"], [-q * q, "b²"]]), right = `(${pa} − ${qb})(${pa} + ${qb})`;
+      const w = [`(${pa} − ${qb})²`, `(${pa} + ${qb})²`, `(${pa} − ${q * q}b)(${pa} + ${q * q}b)`, `(${p * p}a − ${qb})(${p * p}a + ${qb})`];
+      return mc(ae(right, w, x => x), { text: `Vuruqlara ayırın: ${expr}`,
+        solution: `${expr} = (${pa})² − (${qb})² = ${right}. Tələlər: a² − b² = (a − b)² yazmaq; kvadratın kökünü almamaq (${q * q}b və ya ${p * p}a); kvadratların fərqini cəm kimi ayırmaq.` });
+    }) },
+    // 3. cancelling a fraction after factoring the trinomials
+    { tip: "qapali", gen: () => again(() => {
+      const nz = () => pick([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]), a = nz(), b = nz(), c = Math.random() < .5 ? -a : nz();
+      if (b === a || c === a || c === b) return null;
+      const top = poly([[1, "x²"], [-(a + b), "x"], [a * b, ""]]), bot = poly([[1, "x²"], [-(a + c), "x"], [a * c, ""]]);
+      const right = `(${lin(1, -b)})/(${lin(1, -c)})`;
+      const w = [`(${lin(1, b)})/(${lin(1, c)})`, `(${lin(1, -c)})/(${lin(1, -b)})`, frac(b, c), `(${lin(1, b)})/(${lin(1, -c)})`];
+      return mc(ae(right, w, x => x), { text: `(${top})/(${bot}) kəsrini ixtisar edin.`,
+        solution: `${top} = (${lin(1, -a)})(${lin(1, -b)}), ${bot} = (${lin(1, -a)})(${lin(1, -c)}). Ortaq vuruq (${lin(1, -a)}) ixtisar olunur: ${right} (x ≠ ${S(a)}, x ≠ ${S(c)} şərtində). Tələlər: köklərin işarəsini səhv yazmaq (kök ${S(b)} → vuruq ${lin(1, -b)}), surət və məxrəci dəyişmək, "x-i ixtisar edib" ${frac(b, c)} yazmaq (x toplananda ixtisar olunmur).` });
+    }) },
+    // 4. a trinomial positive for every x
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(2, 7), s = pick([-1, 1]), R = p * p + 1, expr = poly([[1, "x²"], [s * 2 * p, "x"]]);
+      const w = [p * p, 4 * p * p + 1, p, 2 * p];
+      return mc(ae(R, w), { text: `${expr} + c > 0 bərabərsizliyi x-in bütün qiymətlərində ödənilirsə, c-nin ən kiçik tam qiymətini tapın.`,
+        solution: `${expr} + c = (${lin(1, s * p)})² + (c − ${p * p}). Kvadrat ≥ 0, ona görə bütün x üçün > 0 olması üçün c − ${p * p} > 0, yəni c > ${p * p}. Ən kiçik tam: ${R}. Tələlər: c = ${p * p} götürmək (x = ${S(-s * p)} olanda ifadə 0 olur, > 0 ödənmir), diskriminantda 4-ü unutmaq (${4 * p * p + 1}), əmsalın modulunun yarısını (${p}) və ya əmsalın modulunu (${2 * p}) yazmaq.` });
+    }) },
+    // 5. cubic equation by grouping: sum of squares of the roots
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(1, 6), t = pick([2, 3, 4, 5]), m = t * t; if (k === t) return null;
+      const expr = poly([[1, "x³"], [-k, "x²"], [-m, "x"], [k * m, ""]]), R = k * k + 2 * m;
+      const w = [k * k + m, k * k, 2 * m, k * k + 2 * m * m];
+      return mc(ae(R, w), { text: `${expr} = 0 tənliyinin köklərinin kvadratlarının cəmini tapın.`,
+        solution: `Qruplaşdır: x²(x − ${k}) − ${m}(x − ${k}) = (x − ${k})(x² − ${m}) = (x − ${k})(x − ${t})(x + ${t}). Köklər: ${k}, ${t}, −${t}; kvadratlar cəmi ${k * k} + ${m} + ${m} = ${R}. Tələlər: x² = ${m} tənliyinin yalnız bir kökünü (${t}) götürmək (${k * k + m}), x² = ${m} tənliyindən x = ±${m} yazmaq (${k * k + 2 * m * m}), yalnız ${k} kökünü (${k * k}) və ya yalnız ikinci mötərizənin köklərini (${2 * m}) nəzərə almaq.` });
+    }) },
+    // 6. x ± 1/x: squaring
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(3, 9), plus = Math.random() < .5, R = plus ? k * k - 2 : k * k + 2;
+      const w = plus ? [k * k, k * k + 2, k * k - 1, 2 * k] : [k * k, k * k - 2, k * k + 1, 2 * k];
+      return mc(ae(R, w), { text: `x ${plus ? "+" : "−"} 1/x = ${k} olarsa, x² + 1/x² ifadəsinin qiymətini tapın.`,
+        solution: `Hər tərəfi kvadrata yüksəldirik: (x ${plus ? "+" : "−"} 1/x)² = x² ${plus ? "+" : "−"} 2 + 1/x² = ${k * k}. Buradan x² + 1/x² = ${k * k} ${plus ? "−" : "+"} 2 = ${R}. Tələlər: 2ab hədini unutmaq (${k * k}), işarəni səhv qoymaq (${plus ? k * k + 2 : k * k - 2}), 2ab əvəzinə ab götürmək (${plus ? k * k - 1 : k * k + 1}), verilən ədədi ikiyə vurmaq (${2 * k}).` });
+    }) },
+    // 7. coded: Vieta on a trinomial with a leading coefficient
+    { tip: "kod", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -9, 9, [0]), a = pick([1, 1, 2, 3]), s = r1 + r2, pr = r1 * r2, R = r1 * r1 + r2 * r2; if (s === 0) return null;
+      const expr = poly([[a, "x²"], [-a * s, "x"], [a * pr, ""]]);
+      return { text: `${expr} üçhədlisi ${a === 1 ? "" : a}(x − p)(x − q) şəklində vuruqlara ayrılır. p² + q² neçədir?`, answer: R, show: String(R), tol: 1e-6,
+        solution: `${a === 1 ? "" : `Ortaq əmsalı mötərizə xaricinə çıxar: ${a}(${poly([[1, "x²"], [-s, "x"], [pr, ""]])}). `}Viyet: p + q = ${S(s)}, p·q = ${S(pr)} → köklər ${S(r1)} və ${S(r2)}. p² + q² = (p + q)² − 2pq = ${s * s} ${pr < 0 ? "+" : "−"} ${2 * Math.abs(pr)} = ${R}.` };
+    }) },
+    // 8. coded: cubes from the sum (or difference) and the product
+    { tip: "kod", gen: () => again(() => {
+      const x = rnd(1, 9), y = rnd(1, 9); if (x === y) return null;
+      if (Math.random() < .5) {
+        const s = x + y, p = x * y, R = x ** 3 + y ** 3;
+        return { text: `x + y = ${s} və xy = ${p} olarsa, x³ + y³ ifadəsinin qiymətini tapın.`, answer: R, show: String(R), tol: 1e-6,
+          solution: `(x + y)³ = x³ + y³ + 3xy(x + y), buradan x³ + y³ = ${s}³ − 3·${p}·${s} = ${s ** 3} − ${3 * p * s} = ${R}.` };
+      }
+      const hi = Math.max(x, y), lo = Math.min(x, y), d = hi - lo, p = x * y, R = hi ** 3 - lo ** 3;
+      return { text: `x − y = ${d} və xy = ${p} olarsa, x³ − y³ ifadəsinin qiymətini tapın (x > y).`, answer: R, show: String(R), tol: 1e-6,
+        solution: `(x − y)³ = x³ − y³ − 3xy(x − y), buradan x³ − y³ = ${d}³ + 3·${p}·${d} = ${d ** 3} + ${3 * p * d} = ${R}.` };
+    }) },
+    // 9. coded: the least value of a quadratic (completing the square, leading coefficient not always 1)
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([1, 2, 3]), p = pick([-1, 1]) * rnd(1, 6), n = rnd(1, 15), c = a * p * p + n, expr = poly([[a, "x²"], [2 * a * p, "x"], [c, ""]]);
+      return { text: `y = ${expr} funksiyasının ən kiçik qiymətini tapın.`, answer: n, show: String(n), tol: 1e-6,
+        solution: `${expr} = ${a === 1 ? "" : a}(${poly([[1, "x²"], [2 * p, "x"]])})${pm(c)} = ${a === 1 ? "" : a}(${lin(1, p)})²${pm(c - a * p * p)}. Kvadrat ≥ 0, ona görə ən kiçik qiymət ${n} (x = ${S(-p)} olduqda).` };
+    }) },
+    // 10. written: the largest area of a fenced plot against a wall
+    { tip: "yazili", gen: () => again(() => {
+      const m = rnd(5, 30), L = 4 * m, R = 2 * m * m;
+      return { text: `Düzbucaqlı bağın bir tərəfi divardır. Qalan üç tərəfi ${L} m uzunluğunda hasarla çəpərləyirlər (divar boyunca hasar yoxdur). Bağın sahəsinin ən böyük qiyməti neçə m²-dir?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "m²",
+        solution: `1) Divara perpendikulyar tərəf x m olsun, divara paralel tərəf ${L} − 2x m. 2) Sahə S = x(${L} − 2x) = −2x² + ${L}x. 3) Tam kvadrat: S = −2(x² − ${L / 2}x) = −2(x − ${m})² + ${R}. 4) Kvadrat ≥ 0, ona görə S ən çoxu ${R} (x = ${m} olduqda, divara paralel tərəf ${2 * m} m). Cavab: ${R} m². Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -191,7 +282,7 @@
     game = Oyun.mount({
       key: "vuruqlara-ayirma", title: "Vuruqlara ayırma", fenn: "riyaziyyat", link: "dersler/vuruqlara-ayirma.html",
       format: "Cavab ədəddir: tam 12, mənfi −3, kəsr 5/2 (onluq 2.5 də olar). Vuruqlara ayırmanı kağızda yaz, soruşulan ədədi cavab qutusuna.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["ortaq", "qrup", "duster", "duster", "ucheddli", "ucheddli", "ucheddli", "tamkv", "hesab", "hesab"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
