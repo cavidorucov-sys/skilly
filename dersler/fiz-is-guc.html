@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ağırlıq, sürtünmə, qrafik</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Güc</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>FİƏ</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -323,6 +324,101 @@ Lift/kran:  P_f = mg·v
         <li>Mühərrik 2000 J sərf edir, 1500 J faydalı iş görür. η = ? <span class="ans">1500/2000 = 75%.</span></li>
         <li>η = 60%, faydalı güc 3 kW. Sərf olunan güc? <span class="ans">3/0,6 = 5 kW.</span></li>
         <li>2 m³ su 10 m qaldırılır. Faydalı iş? <span class="ans">m = 2000 kq, A = 2000·10·10 = 200 000 J.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: iş, güc, FİƏ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. «A = F·s·cos α-nı tətbiq et» kimi birbaşa sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — qüvvə–yol, güc–vaxt və ya sürət–vaxt qrafiki, maili müstəvi, blok, kran. Rəqəmlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl qüvvə (Nyuton qanunları, sürtünmə), sonra yol, sonra iş və ya güc.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: sahəni işarəsiz toplamaq, sürtünməni unutmaq, <span class="m">μmg·cos α</span> əvəzinə <span class="m">μmg</span> yazmaq, FİƏ-ni tərsinə bölmək. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: maili müstəvi + güc, Nyuton qanunu + iş, qrafik + FİƏ, Huk qanunu + iş.</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: <span class="m">g = 10 m/s²</span>, çəkisiz blok, uzanmayan ip, sürtünmənin olmaması. Onları oxumadan başlama.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qrafik, iki işarə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 290 196" style="max-width:340px" role="img" aria-label="Qüvvənin yola proyeksiyasının yoldan asılılıq qrafiki: əvvəl müsbət, sonra mənfi"><defs><marker id="ik-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M46 109L46 41L181 41L181 109Z" fill="var(--accent-soft,#f3dede)" stroke="none"/><path d="M181 109L181 143L262 143L262 109Z" fill="var(--accent-soft,#f3dede)" stroke="none"/><line x1="262" y1="143" x2="262" y2="109" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="181" y1="143" x2="181" y2="160" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="262" y1="143" x2="262" y2="160" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="46" y1="109" x2="272" y2="109" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ik-ar)"/><line x1="46" y1="160" x2="46" y2="16" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ik-ar)"/><polyline points="46,41 181,41 181,143 262,143" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linejoin="round"/><text x="181" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">5</text><text x="262" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">8</text><text x="40" y="45" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">40</text><text x="40" y="147" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">−20</text><text x="40" y="124" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">0</text><text x="280" y="191" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">s, m</text><text x="54" y="14" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">F, N</text></svg></div>
+        <p>Qrafikdə hərəkət xətti boyunca qüvvənin proyeksiyasının yoldan asılılığı verilib (mənfi qiymət — qüvvə hərəkətə əks yönəlib). Cisim 8 m yol gedərkən bu qüvvənin gördüyü iş nə qədərdir?</p>
+        <ol class="imt-opts"><li>260 J</li><li>200 J</li><li>140 J</li><li>320 J</li><li>−140 J</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">İş = qrafikin altındakı işarəli sahə.
+0–5 m:  40·5 = 200 J          (qüvvə hərəkət istiqamətində, müsbət)
+5–8 m:  −20·3 = −60 J         (qüvvə hərəkətə əks, mənfi)
+A = 200 − 60 = 140 J
+Cavab: C) 140 J</div>
+      <ul>
+        <li><b>A) 260 J</b> — sahələri modulla toplamaq: 200 + 60. İş işarəli kəmiyyətdir, əks yönlü qüvvənin işi çıxılır.</li>
+        <li><b>B) 200 J</b> — yalnız müsbət hissəni götürmək, ox altındakı sahəni unutmaq.</li>
+        <li><b>D) 320 J</b> — ilk qüvvəni (40 N) bütün 8 m-ə vurmaq: qüvvənin dəyişdiyini nəzərə almamaq.</li>
+        <li><b>E) −140 J</b> — işarəni tərsinə çevirmək. Müsbət sahə böyükdür, cəmi müsbətdir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — iki mövzu: maili müstəvi və güc</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 290 180" style="max-width:340px" role="img" aria-label="Maili müstəvi: yük müstəvi boyunca yuxarı F qüvvəsi ilə dartılır"><defs><marker id="ik-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><polygon points="30,160 190,160 190,40" fill="none" stroke="var(--ink,#17171a)" stroke-width="2.5" stroke-linejoin="round"/><g transform="translate(86 118) rotate(-36.9)"><rect x="-22" y="-28" width="44" height="28" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="24" y1="-14" x2="72" y2="-14" stroke="var(--accent,#a32d2d)" stroke-width="3" stroke-linecap="round" marker-end="url(#ik-ar)"/></g><text x="77" y="112" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">m</text><text x="138" y="52" text-anchor="start" font-size="14" font-weight="700" fill="var(--accent,#a32d2d)" font-family="inherit">F</text><path d="M62 160A32 32 0 0 0 56 141" fill="none" stroke="var(--ink,#17171a)" stroke-width="1.5"/><text x="70" y="154" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">α</text></svg></div>
+        <p>Kütləsi 20 kq olan yük maili müstəvi üzrə yuxarı, müstəviyə paralel qüvvənin təsiri ilə 2 m/s sabit sürətlə dartılır. Müstəvi üçün sin α = 0,6, cos α = 0,8; sürtünmə əmsalı 0,25. Dartı qüvvəsinin gücü nə qədərdir? (g = 10 m/s²)</p>
+        <ol class="imt-opts"><li>80 W</li><li>320 W</li><li>240 W</li><li>340 W</li><li>380 W</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sürət sabitdir: qüvvələrin müstəvi boyunca cəmi sıfırdır.
+mg = 200 N
+F = mg·sin α + μmg·cos α = 200·0,6 + 0,25·200·0,8 = 120 + 40 = 160 N
+P = F·v = 160·2 = 320 W
+Cavab: B) 320 W</div>
+      <ul>
+        <li><b>A) 80 W</b> — yalnız sürtünmənin gücünün modulu: 40·2.</li>
+        <li><b>C) 240 W</b> — sürtünməni unutmaq: 120·2.</li>
+        <li><b>D) 340 W</b> — sürtünməni <span class="m">μmg</span> = 50 N yazmaq (cos α-nı unutmaq): (120 + 50)·2.</li>
+        <li><b>E) 380 W</b> — sin α və cos α-nı dəyişmək: 200·(0,8 + 0,25·0,6)·2.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — güc–vaxt qrafiki və FİƏ</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik, FİƏ</span>
+        <div class="fig"><svg viewBox="0 0 290 196" style="max-width:340px" role="img" aria-label="Mühərrikin gücünün vaxtdan asılılıq qrafiki: əvvəl artır, sonra sabit qalır"><defs><marker id="ik-ar" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M46 160L89.2 44.7L262 44.7L262 160Z" fill="var(--accent-soft,#f3dede)" stroke="none"/><line x1="89.2" y1="160" x2="89.2" y2="44.7" stroke="var(--muted,#6b6b73)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="46" y1="160" x2="272" y2="160" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ik-ar)"/><line x1="46" y1="160" x2="46" y2="16" stroke="var(--ink,#17171a)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ik-ar)"/><polyline points="46,160 89.2,44.7 262,44.7 262,160" fill="none" stroke="var(--vec,#0c447c)" stroke-width="2.5" stroke-linejoin="round"/><text x="89.2" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">2</text><text x="262" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">10</text><text x="40" y="48.7" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">500</text><text x="40" y="175" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">0</text><text x="280" y="191" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, s</text><text x="54" y="14" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">P, W</text></svg></div>
+        <p>Mühərrikin sərf etdiyi (enerji mənbəyindən aldığı) gücün vaxtdan asılılıq qrafiki verilib. Mühərrik bütün bu müddətdə işləyərək kütləsi 20 kq olan yükü sükunətdən 9 m hündürlüyə qaldırıb dayandırıb (yükün sürəti əvvəlcə və sonda sıfırdır). Mühərrikin FİƏ-si nə qədərdir? (g = 10 m/s²)</p>
+        <ol class="imt-opts"><li>36%</li><li>45%</li><li>72%</li><li>40%</li><li>250%</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sərf olunan iş = güc qrafikinin altındakı sahə.
+Üçbucaq:      ½·500·2 = 500 J
+Düzbucaqlı:   500·8 = 4000 J
+A_tam = 4500 J
+Faydalı iş:   A_f = mgh = 20·10·9 = 1800 J
+η = A_f/A_tam = 1800/4500 = 0,4 = 40%
+Cavab: D) 40%</div>
+      <ul>
+        <li><b>A) 36%</b> — üçbucağı düzbucaqlı saymaq: A_tam = 500·10 = 5000 J.</li>
+        <li><b>B) 45%</b> — yalnız sabit hissəni götürmək: A_tam = 4000 J.</li>
+        <li><b>C) 72%</b> — bütün qrafiki üçbucaq saymaq: A_tam = ½·500·10 = 2500 J.</li>
+        <li><b>E) 250%</b> — tərsinə bölmək. Real mühərrikin FİƏ-si 100%-dən azdır, bu variantı dərhal at.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Qrafikdə ox altındakı sahə mənfidir.</b> Sahələri hissələrə böl: düzbucaqlı, üçbucaq (½-ni unutma), trapesiya.</li>
+        <li><b>Güc qrafikinin sahəsi işdir</b> (<span class="m">P·t</span>), qüvvə qrafikinin sahəsi də işdir (<span class="m">F·s</span>). Hansı qrafik olduğuna bax: oxların adları və vahidlər.</li>
+        <li><b>Sabit sürətdə qüvvələr tarazdır.</b> Maili müstəvidə yuxarı dartanda: <span class="m">F = mg·sin α + μmg·cos α</span>. Sürtünməni və <span class="m">cos α</span>-nı unutma.</li>
+        <li><b>Şaquli qaldırmada sürətlənmə varsa</b> dartı qüvvəsi <span class="m">mg</span>-dən fərqlidir: təcil yuxarı yönəlibsə, <span class="m">T = m(g + a)</span>.</li>
+        <li><b>Ani güc və orta güc fərqlidir.</b> Ani: <span class="m">P = F·v</span> (həmin anın sürəti). Orta: <span class="m">A/t</span>. Sabit əvəzləyici qüvvənin təsiri ilə sükunətdən başlayan hərəkətdə həmin qüvvənin orta gücü son andakı ani gücünün yarısıdır.</li>
+        <li><b>Vahidlər:</b> sm-i m-ə, km/saat-ı m/s-ə, kW-ı W-a çevir. Variantlarda səhv vahidlə alınan cavab da olur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İş:     A = F·s·cos α;  qrafikdə işarəli sahə
+Güc:    P_orta = A/t;  P_ani = F·v (F sürətlə eyni istiqamətdə);  güc qrafikinin sahəsi = iş
+Maili:  F = mg·sin α + μmg·cos α  (sabit sürətlə yuxarı)
+FİƏ:    η = A_faydalı / A_tam  ≤ 100%</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qüvvənin yola proyeksiyası 0–4 m-də +10 N, 4–6 m-də −10 N-dur. 6 m-də iş? <span class="ans">10·4 − 10·2 = 20 J.</span></li>
+        <li>Yük maili müstəvi üzrə 10 m/s sabit sürətlə yuxarı çəkilir. Müstəviyə paralel dartı qüvvəsi 50 N-dur. Dartı qüvvəsinin gücü? <span class="ans">P = F·v = 50·10 = 500 W.</span></li>
+        <li>Güc 0-dan 200 W-a 5 s-də bərabər artır. Bu 5 s-də görülən iş? <span class="ans">Üçbucağın sahəsi: ½·200·5 = 500 J.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
