@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>g hündürlükdə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Peyklər</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Kepler qanunları</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -367,6 +368,98 @@ Peyk: T = T₀(a/R)^(3/2), a — yarımox</div></div>
         <li>Planetin a = 9 AU. T? <span class="ans">T = 9^(3/2) = 27 il.</span></li>
         <li>Planet 64 ilə bir dövr edir. a? <span class="ans">a³ = 4096 → a = 16 AU.</span></li>
         <li>Komet perihelidə 2 AU məsafədə 30 km/s sürətlə gedir, afelidə 10 AU-dur. Afelidə sürət? <span class="ans">v_a = 30·2/10 = 6 km/s.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (18 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: cazibə, peyklər, Kepler</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. "<span class="m">F = Gm₁m₂/r²</span> yazın" sualı yoxdur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — Yer və ondan h hündürlükdə cisim, iki cisim və aralarındakı nöqtə, peykin orbiti, ellips orbit (perihel məsafəsi, afel məsafəsi), sürətin vaxtdan asılılıq qrafiki. Rəqəmlər bəzən şəkildə, bəzən mətndə olur; şəkildə hərflər (R, h, r<sub>p</sub>, r<sub>a</sub>) olur, mətndə qiymətlər.</li>
+        <li><b>Bir neçə addım</b> — əvvəl məsafə <span class="m">r = R + h</span> və ya planetdə <span class="m">g_p</span>, sonra sürət, dövr müddəti və ya qüvvə.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: <span class="m">h</span>-ı <span class="m">r</span> götürmək, kvadratı unutmaq, <span class="m">T ~ r</span> yazmaq, afel məsafəsini yarımox götürmək. Ən çox edilən səhvlərin cavabı variantlarda olur.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: planetdə liftin trosu (Nyuton), planetdə düşmə vaxtı (sərbəst düşmə), yayın uzanması (Huk), maili müstəvi, <span class="m">v–t</span> qrafikindən planetin kütləsi.</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: cisimlər nöqtəvi və ya kürə şəklindədir, başqa cisimlərin təsiri və atmosfer nəzərə alınmır, <span class="m">g = 10 m/s²</span>, <span class="m">R_Yer = 6400 km</span>, səthə yaxın orbitdə sürət 8 km/s, <span class="m">T₀ = 84 dəq</span>. Cavabda nisbətlərlə işləmək çox vaxt hesabdan asandır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qüvvələrin bərabər olduğu nöqtə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil</span>
+        <div class="fig"><svg viewBox="0 0 300 135" role="img" aria-label="Kütlələri M və 4M olan iki cisim, aralarında P nöqtəsi"><line x1="40" y1="70" x2="260" y2="70" stroke="var(--muted,#6b6b76)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="40" cy="70" r="14" fill="var(--accent-soft,#e8eefc)" stroke="var(--ink,#17171a)" stroke-width="1.8"/><text x="40" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">M</text><circle cx="260" cy="70" r="20" fill="var(--accent-soft,#e8eefc)" stroke="var(--ink,#17171a)" stroke-width="1.8"/><text x="260" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">4M</text><circle cx="113.3" cy="70" r="4" fill="var(--vec,#c2410c)"/><text x="113.3" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vec,#c2410c)" font-family="inherit">P</text><line x1="113.3" y1="22" x2="113.3" y2="50" stroke="var(--muted,#6b6b76)" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/><line x1="40" y1="22" x2="40" y2="54" stroke="var(--muted,#6b6b76)" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/><line x1="46" y1="22" x2="107.3" y2="22" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><line x1="52" y1="22" x2="50" y2="22" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><polygon points="40,22 50,17 50,27" fill="var(--muted,#6b6b76)"/><line x1="101.3" y1="22" x2="103.3" y2="22" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><polygon points="113.3,22 103.3,27 103.3,17" fill="var(--muted,#6b6b76)"/><text x="76.7" y="37" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">x = ?</text><line x1="46" y1="108" x2="254" y2="108" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><line x1="52" y1="108" x2="50" y2="108" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><polygon points="40,108 50,103 50,113" fill="var(--muted,#6b6b76)"/><line x1="248" y1="108" x2="250" y2="108" stroke="var(--muted,#6b6b76)" stroke-width="1.4" stroke-linecap="round"/><polygon points="260,108 250,113 250,103" fill="var(--muted,#6b6b76)"/><text x="150" y="123" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">d = 60 000 km</text></svg></div>
+        <p>Kütlələri M və 4M olan iki cisim bir-birindən d = 60 000 km məsafədədir (cisimləri nöqtəvi sayın). Onları birləşdirən düz xətt üzərindəki P nöqtəsində yerləşən kiçik sınaq cisminə hər iki cismin cazibə qüvvələri bərabər modula malikdir və əks tərəfə yönəlib. P nöqtəsi M kütləli cisimdən neçə km məsafədədir?</p>
+        <ol class="imt-opts"><li>30 000 km</li><li>20 000 km</li><li>12 000 km</li><li>40 000 km</li><li>15 000 km</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">M-dən x məsafədə:  GMm/x² = G·4M·m/(d − x)²
+Hər iki tərəfdən kök:  (d − x)/x = √4 = 2
+d = 3x   →   x = 60 000/3 = 20 000 km
+Yoxla: böyük cisimdən 40 000 km;  1/20 000² = 4/40 000² ✓
+Cavab: B) 20 000 km</div>
+      <ul>
+        <li><b>A) 30 000 km</b> — orta nöqtə. Kütlələr fərqlidir, deməli nöqtə kiçik kütləyə yaxın olmalıdır.</li>
+        <li><b>C) 12 000 km</b> — kökü almamaq: d/(4 + 1). Kütlələrin nisbəti 4-dür, məsafələrin nisbəti isə √4 = 2.</li>
+        <li><b>D) 40 000 km</b> — məsafəni böyük kütləli cisimdən ölçmək. Sual M-dən soruşur.</li>
+        <li><b>E) 15 000 km</b> — d/4: məsafəni kütlələrin nisbətinə (4) bölmək. Məsafələrin cəmi d = x + 2x = 3x-dir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — planetdə lift (iki mövzu: Nyuton + cazibə)</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 300 190" role="img" aria-label="Planetin səthində trosla yuxarı təcillə qalxan lift kabinəsi"><line x1="30" y1="168" x2="270" y2="168" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><text x="150" y="186" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b76)" font-family="inherit">planetin səthi</text><rect x="110" y="84" width="60" height="66" fill="var(--accent-soft,#e8eefc)" stroke="var(--ink,#17171a)" stroke-width="1.5"/><text x="140" y="122" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">M</text><line x1="140" y1="84" x2="140" y2="52" stroke="var(--ink,#17171a)" stroke-width="1.8" stroke-linecap="round"/><line x1="140" y1="52" x2="140" y2="24" stroke="var(--accent,#2457d6)" stroke-width="2.8" stroke-linecap="round"/><polygon points="140,14 145,24 135,24" fill="var(--accent,#2457d6)"/><text x="150" y="30" text-anchor="start" font-size="13" font-weight="700" fill="var(--accent,#2457d6)" font-family="inherit">T = ?</text><line x1="204" y1="130" x2="204" y2="102" stroke="var(--vec,#c2410c)" stroke-width="2.8" stroke-linecap="round"/><polygon points="204,92 209,102 199,102" fill="var(--vec,#c2410c)"/><text x="212" y="114" text-anchor="start" font-size="12" font-weight="700" fill="var(--vec,#c2410c)" font-family="inherit">a = 2 m/s²</text></svg></div>
+        <p>Planetin kütləsi Yerinkinin 8 misli, radiusu Yerinkinin 2 mislidir. Planetin səthində kütləsi 500 kq olan lift kabinəsi şaquli trosla yuxarı 2 m/s² təcillə qaldırılır. Trosun gərilmə qüvvəsi nə qədərdir? (Yerdə g = 10 m/s²; trosun kütləsi və havanın müqaviməti nəzərə alınmır.)</p>
+        <ol class="imt-opts"><li>9000 N</li><li>6000 N</li><li>10 000 N</li><li>11 000 N</li><li>1000 N</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1) Planetdə g:  g_p = g·(M_p/M_Y)/(R_p/R_Y)² = 10·8/2² = 20 m/s²
+2) Nyutonun II qanunu (ox yuxarı):  T − Mg_p = Ma
+   T = M(g_p + a) = 500·(20 + 2) = 11 000 N
+Cavab: D) 11 000 N</div>
+      <ul>
+        <li><b>A) 9000 N</b> — <span class="m">M(g_p − a)</span>: təcil yuxarıdır, sürətlənən liftdə tros ağırlıqdan <b>çox</b> dartılır.</li>
+        <li><b>B) 6000 N</b> — Yerdəki <span class="m">g = 10 m/s²</span> qiymətini götürmək: 500·(10 + 2). Əvvəl planetin <span class="m">g_p</span>-sini tapmaq lazımdır.</li>
+        <li><b>C) 10 000 N</b> — təcili unutmaq: <span class="m">T = Mg_p</span> yalnız tarazlıqda (a = 0) doğrudur.</li>
+        <li><b>E) 1000 N</b> — ağırlıq qüvvəsini unutmaq: <span class="m">T = Ma</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — Yer ətrafında ellips orbit</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkil · çoxaddımlı</span>
+        <div class="fig"><svg viewBox="0 0 320 170" role="img" aria-label="Yer ətrafında ellips orbit: perigey və apogey, Yer fokusdadır"><ellipse cx="158" cy="85" rx="100" ry="72.6" fill="none" stroke="var(--ink,#17171a)" stroke-width="2"/><line x1="58" y1="85" x2="258" y2="85" stroke="var(--muted,#6b6b76)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="226.8" cy="85" r="9" fill="var(--accent-soft)" stroke="var(--ink,#17171a)" stroke-width="1.4"/><circle cx="258" cy="85" r="3.5" fill="var(--ink,#17171a)" stroke="var(--ink,#17171a)" stroke-width="1.8"/><circle cx="58" cy="85" r="3.5" fill="var(--ink,#17171a)" stroke="var(--ink,#17171a)" stroke-width="1.8"/><text x="266" y="89" text-anchor="start" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">perigey</text><text x="50" y="89" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">apogey</text><text x="226.8" y="125" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b76)" font-family="inherit">Yer</text></svg></div>
+        <p>Peyk Yer ətrafında ellips orbitdə hərəkət edir (Yer ellipsin fokusundadır). Perigeydə (Yerə ən yaxın nöqtədə) Yer səthindən hündürlüyü 1600 km, apogeydə (ən uzaq nöqtədə) 36 800 km-dir. Yerin radiusu 6400 km, Yer səthinə çox yaxın dairəvi orbitdə dövr müddəti T₀ = 84 dəq. Peykin dövr müddəti neçə dəqiqədir?</p>
+        <ol class="imt-opts"><li>336 dəq</li><li>1344 dəq</li><li>672 dəq</li><li>168 dəq</li><li>5376 dəq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1) Yerin mərkəzindən məsafələr:  r_p = 6400 + 1600 = 8000 km;  r_a = 6400 + 36 800 = 43 200 km
+2) Yarımox:  a = (r_p + r_a)/2 = 51 200/2 = 25 600 km = 4R
+3) Kepler III (a yarımoxdur):  T = T₀·(a/R)^(3/2) = 84·4^(3/2) = 84·8 = 672 dəq
+Cavab: C) 672 dəq</div>
+      <ul>
+        <li><b>A) 336 dəq</b> — <span class="m">T ~ a</span>: 84·4. Düz qayda <span class="m">T² ~ a³</span>, yəni <span class="m">T ~ a^(3/2)</span>.</li>
+        <li><b>B) 1344 dəq</b> — <span class="m">T ~ a²</span>: 84·4².</li>
+        <li><b>D) 168 dəq</b> — <span class="m">T ~ √a</span>: 84·√4. Dairəvi orbitdə sürətin <span class="m">1/√r</span> kimi dəyişməsini dövrlə qarışdırmaq.</li>
+        <li><b>E) 5376 dəq</b> — <span class="m">T ~ a³</span>: kvadrat <span class="m">T²</span>-dədir, <span class="m">T</span>-də yox.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Məsafə Yerin mərkəzindən ölçülür.</b> <span class="m">r = R + h</span>; <span class="m">h</span>-ı məxrəcə qoymaq ən çox rast gəlinən səhvdir. Həm də <span class="m">r² ≠ R² + h²</span>.</li>
+        <li><b>Kvadrat.</b> Cazibə qüvvəsi və <span class="m">g</span> məsafənin <b>kvadratı</b> ilə azalır; məsafə 3 dəfə artsa, qüvvə 9 dəfə azalır.</li>
+        <li><b>Çəkisizlik ≠ cazibə yoxdur.</b> Orbitdə cazibə qüvvəsi var, o, peyki orbitdə saxlayır; çəkisizlik cisimlərin sərbəst düşməsindən gəlir.</li>
+        <li><b>Yüksək orbit — yavaş peyk.</b> Dairəvi orbitləri müqayisə etdikdə radius artdıqca sürət azalır (<span class="m">v ~ 1/√r</span>), dövr müddəti artır (<span class="m">T ~ r^(3/2)</span>).</li>
+        <li><b>Kepler III-də yarımox.</b> Ellipsdə <span class="m">a = (r_p + r_a)/2</span>; afel və ya perihel məsafəsini yarımox götürmək səhvdir. Hündürlük h verilibsə, r = R + h hesabla.</li>
+        <li><b>Kepler II.</b> Perihelidə və afelidə <span class="m">r_p·v_p = r_a·v_a</span>: uzaqda sürət <b>kiçikdir</b>, nisbət tərsinə yazılmır.</li>
+        <li><b>Planetdə g.</b> <span class="m">g ~ M/R²</span>; sıxlıq verilibsə <span class="m">g ~ ρR</span> (kütlə <span class="m">ρR³</span>-ə mütənasibdir).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">F = Gm₁m₂/r²,  r — mərkəzlər arasındakı məsafə;  F ~ 1/r²
+g_h = g·R²/(R + h)²;  planetdə  g_p = g·(M/M_Y)/(R/R_Y)²
+Dairəvi orbit:  v = 8/√n km/s,  T = 84·n^(3/2) dəq  (r = nR)
+Kepler:  r_p·v_p = r_a·v_a;   T²/a³ = const,  a = (r_p + r_a)/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Yer səthindəki cismi Yerin mərkəzindən 3R məsafəyə qaldırdılar (h = 2R). Cazibə qüvvəsi neçə dəfə azaldı? <span class="ans">9 dəfə (r = 3R, F ~ 1/r²). h = 2R götürüb 4 dəfə yazmaq səhvdir.</span></li>
+        <li>Peyk Yerin mərkəzindən 4R məsafədə dairəvi orbitdədir. Sürəti və dövr müddəti? (v₁ = 8 km/s, T₀ = 84 dəq) <span class="ans">v = 8/√4 = 4 km/s; T = 84·4^(3/2) = 84·8 = 672 dəq.</span></li>
+        <li>Kometin perihel məsafəsi 1 AU, afel məsafəsi 7 AU-dur. Dövr müddəti? <span class="ans">a = (1 + 7)/2 = 4 AU, T = 4^(3/2) = 8 il. (7^(3/2) yazmaq səhvdir: afel məsafəsi yarımox deyil.)</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
