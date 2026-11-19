@@ -156,6 +156,98 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sign lost when a term moves, x and y swapped, ratio upside down, the future age…).
+  const { ae, again, num: D } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && Math.abs(x * 10 ** dp - Math.round(x * 10 ** dp)) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const lcm = (a, b) => a * b / gcd(a, b);
+  const pt = (x, y) => `(${S(x)}; ${S(y)})`;
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. addition method, the answer is x + y
+    { tip: "qapali", gen: () => again(() => {
+      const a1 = rnd(1, 7), a2 = rnd(1, 7), b = rnd(2, 5), x0 = nz(-6, 7), y0 = nz(-6, 7);
+      const c1 = a1 * x0 + b * y0, c2 = a2 * x0 - b * y0; if ((c1 + a1 * x0) % b) return null;
+      const yS = (c1 + a1 * x0) / b, R = x0 + y0;
+      return mc(ae(R, [x0, y0, x0 - y0, x0 + yS]), { text: sys(E(a1, b, c1), E(a2, -b, c2), "(x₀; y₀) sistemin həllidirsə, x₀ + y₀ cəmini tapın."),
+        solution: `Tənlikləri topla (y yox olur): ${a1 + a2}x = ${S(c1 + c2)} → x = ${S(x0)}. Birincidə yerinə qoy: ${b}y = ${S(c1)} − ${P(a1 * x0)} = ${S(c1 - a1 * x0)} → y = ${S(y0)}. x + y = ${S(R)}. Tələlər: həddi sağa keçirəndə işarəni dəyişməmək (${b}y = ${S(c1)} + ${P(a1 * x0)} → y = ${S(yS)}, cəm ${S(x0 + yS)}), yalnız x-i (${S(x0)}) və ya yalnız y-i (${S(y0)}) yazmaq, x − y fərqini tapmaq (${S(x0 - y0)}).` });
+    }) },
+    // 2. intersection point of two lines (the options are points)
+    { tip: "qapali", gen: () => again(() => {
+      const k1 = nz(-4, 4), k2 = rnd(-4, 4), x0 = nz(-5, 5), y0 = rnd(-6, 6); if (k1 === k2) return null;
+      const m1 = y0 - k1 * x0, m2 = y0 - k2 * x0; if (Math.abs(m1) > 14 || Math.abs(m2) > 14) return null;
+      const r1 = poly([[k1, "x"], [m1, ""]]), r2 = poly([[k2, "x"], [m2, ""]]);
+      return mc(ae(pt(x0, y0), [pt(y0, x0), pt(-x0, -k1 * x0 + m1), pt(-x0, -k2 * x0 + m2), pt(0, m1)]), {
+        text: `y = ${r1} və y = ${r2} düz xətlərinin kəsişmə nöqtəsini tapın.`,
+        solution: `Kəsişmə nöqtəsində y-lər bərabərdir: ${r1} = ${r2} → ${solve(k1 - k2, m2 - m1, "x")}; y = ${S(y0)}. Nöqtə ${pt(x0, y0)}. Tələlər: koordinatların yerini dəyişmək ${pt(y0, x0)}; x-i tapanda işarəni səhv götürmək (x = ${S(-x0)}, nöqtə ${pt(-x0, -k1 * x0 + m1)} və ya ${pt(-x0, -k2 * x0 + m2)}); birinci xəttin Oy oxu ilə kəsişməsini ${pt(0, m1)} götürmək.` });
+    }) },
+    // 3. parameter: no solution
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 5), q = nz(-6, 6), t = pick([2, 3, 4]), c1 = nz(-9, 9), c2 = nz(-15, 15); if (c2 === t * c1 || q === t) return null;
+      return mc(ae(q, [-q, t * q, t * t * q, t]), { text: sys(`${poly([[p, "x"]])} + ay = ${S(c1)}`, E(t * p, t * q, c2), "a-nın hansı qiymətində sistemin həlli yoxdur?"),
+        solution: `Həll yoxdur ⇔ xətlər paraleldir: a₁/a₂ = b₁/b₂ ≠ c₁/c₂. ${p}/${t * p} = a/${P(t * q)} → a = ${P(t * q)}/${t} = ${S(q)}; c₁/c₂ = ${frac(c1, c2)} ≠ 1/${t} ✓. Tələlər: nisbəti tərs yazmaq (${p}/${t * p} = ${P(t * q)}/a → a = ${S(t * t * q)}), a-nı ikinci tənliyin y əmsalına bərabər götürmək (${S(t * q)}), ikinci tənliyin birinciyə nisbətini (${t}) cavab yazmaq, işarəni itirmək (${S(-q)}).` });
+    }) },
+    // 4. symmetric system in a word problem: add the equations
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 6), b = rnd(1, 5), x = rnd(2, 15), y = rnd(1, 12); if (a === b || x === y) return null;
+      const P1 = a * x + b * y, P2 = b * x + a * y, R = x + y, half = (P1 + P2) / 2;
+      const [n1, n2, g1, g2, u] = pick([["dəftər", "qələm", "dəftərin", "qələmin", ""], ["çay", "pirojna", "çayın", "pirojnanın", ""], ["alma", "armud", "almanın", "armudun", "kq "]]);
+      return mc(ae(R, [x, y, Math.abs(x - y), half]), { text: `${a} ${u}${n1} və ${b} ${u}${n2} ${P1} manat, ${b} ${u}${n1} və ${a} ${u}${n2} isə ${P2} manat edir. 1 ${u}${n1} və 1 ${u}${n2} birlikdə neçə manatdır?`,
+        solution: `x — ${n1}, y — ${n2}: ${E(a, b, P1)}, ${E(b, a, P2)}. Topla: ${a + b}x + ${a + b}y = ${P1 + P2} → x + y = ${P1 + P2} : ${a + b} = ${R}. (Ayrılıqda x = ${x}, y = ${y}.) Tələlər: yalnız ${g1} (${x}) və ya ${g2} (${y}) qiymətini yazmaq, x və y-in fərqini (${Math.abs(x - y)}) yazmaq, cəmi ${a + b} əvəzinə 2-yə bölmək (${D(half)}).` });
+    }) },
+    // 5. boat on a river
+    { tip: "qapali", gen: () => again(() => {
+      const v = rnd(8, 25), u = rnd(1, 5), t1 = rnd(2, 5), t2 = rnd(2, 5); if (u >= v - 2) return null;
+      const D1 = (v + u) * t1, D2 = (v - u) * t2, own = Math.random() < .5;
+      const o = own ? ae(v, [u, v + u, v - u, 2 * v]) : ae(u, [v, 2 * u, v + u, v - u]);
+      return mc(o, { text: `Qayıq axın istiqamətində ${t1} saatda ${D1} km, axına qarşı ${t2} saatda ${D2} km üzür (qayığın durğun sudakı sürəti hər iki halda eynidir, axının sürəti sabitdir). ${own ? "Qayığın durğun sudakı sürəti" : "Çayın axın sürəti"} neçə km/saatdır?`,
+        solution: `x — qayığın öz sürəti, y — axının sürəti: x + y = ${D1} : ${t1} = ${v + u}, x − y = ${D2} : ${t2} = ${v - u}. Topla: 2x = ${2 * v} → x = ${v}; y = ${u}. Tələlər: axınla və ya axına qarşı sürəti (${v + u}, ${v - u}) cavab yazmaq, ` + (own ? `axının sürətini (${u}) yazmaq, 2x-i 2-yə bölməmək (${2 * v}).` : `qayığın sürətini (${v}) yazmaq, tənlikləri çıxanda 2y-ni 2-yə bölməmək (${2 * u}).`) });
+    }) },
+    // 6. ages: "n years later" is added to both people
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3, 4]), j = rnd(1, 4), n = (k - 1) * j, s = rnd(3, 16), f = k * (s + n) - n, d = f - s;
+      if (n < 2 || s - j < 1 || f > 70 || d < 18) return null;
+      return mc(ae(s, [s + n, f, s + n + j, s - j]), { text: `Ata oğlundan ${d} yaş böyükdür. ${n} il sonra ata oğlundan ${k} dəfə böyük olacaq. Oğlun indiki yaşı neçədir?`,
+        solution: `x — atanın, y — oğlun indiki yaşı: x − y = ${d}, x + ${n} = ${k}(y + ${n}). x = y + ${d} yerinə qoy: y + ${d + n} = ${k}y + ${k * n} → ${k - 1}y = ${d + n - k * n} → y = ${s} (ata ${f}). Tələlər: ${n} ili nəzərə almamaq (y + ${d} = ${k}y → ${s + n}, bu, oğlun ${n} il sonrakı yaşıdır), ${n} ili yalnız ataya əlavə etmək (${s + n + j}), yalnız oğula əlavə etmək (${s - j}), atanın yaşını yazmaq (${f}).` });
+    }) },
+    // 7. coded: fractions in the equations
+    { tip: "kod", gen: () => again(() => {
+      const p = rnd(2, 6), q = rnd(2, 6), r = rnd(2, 6), s = rnd(2, 6); if (p === q && r === s) return null;
+      const x0 = lcm(p, r) * rnd(1, 2), y0 = lcm(q, s) * rnd(1, 2); if (x0 > 60 || y0 > 60) return null;
+      const c1 = x0 / p + y0 / q, c2 = x0 / r - y0 / s, L1 = lcm(p, q), L2 = lcm(r, s), R = x0 + y0;
+      const A1 = L1 / p, B1 = L1 / q, A2 = L2 / r, B2 = L2 / s, g = gcd(B1, B2), m1 = B2 / g, m2 = B1 / g;
+      return { text: sys(`x/${p} + y/${q} = ${S(c1)}`, `x/${r} − y/${s} = ${S(c2)}`, "(x₀; y₀) sistemin həllidirsə, x₀ + y₀ cəmini tapın."), answer: R, show: String(R), tol: 1e-6,
+        solution: `Kəsrlərdən qurtul: birinci tənliyi ${L1} ədədinə vur — ${E(A1, B1, L1 * c1)}; ikincini ${L2} ədədinə vur — ${E(A2, -B2, L2 * c2)}. ` + [m1 !== 1 ? `birinci × ${m1}` : "", m2 !== 1 ? `ikinci × ${m2}` : "", "topla (y yox olur)"].filter(Boolean).join(", ").replace(/^./, c => c.toLocaleUpperCase("az")) + `: ${solve(m1 * A1 + m2 * A2, m1 * L1 * c1 + m2 * L2 * c2, "x")}; onda y = ${y0}. x + y = ${R}. Tələ: tənliyi vuranda sağ tərəfi vurmağı unutmaq.` };
+    }) },
+    // 8. coded: line through two points
+    { tip: "kod", gen: () => again(() => {
+      const k = nz(-4, 4), b = nz(-8, 9), x1 = rnd(-5, 5), x2 = rnd(-5, 5); if (x1 === x2 || k + b <= 0) return null;
+      const y1 = k * x1 + b, y2 = k * x2 + b, R = k + b;
+      const eq = (xv, yv) => `${S(yv)} = ${xv ? poly([[xv, "k"]]) + " + b" : "b"}`;
+      return { text: `y = kx + b düz xəttinin qrafiki A${pt(x1, y1)} və B${pt(x2, y2)} nöqtələrindən keçir. k + b cəmini tapın.`, answer: R, show: String(R), tol: 1e-6,
+        solution: `Nöqtələrin koordinatlarını y = kx + b-də yerinə qoy: ${eq(x1, y1)}, ${eq(x2, y2)}. Birincidən ikincini çıx: ${S(y1 - y2)} = ${poly([[x1 - x2, "k"]])} → k = ${S(k)}. b = ${S(y1)} − ${P(k * x1)} = ${S(b)}. k + b = ${R}.` };
+    }) },
+    // 9. coded: the solution is known, the coefficients a, b are unknown
+    { tip: "kod", gen: () => again(() => {
+      const a = rnd(1, 7), b = rnd(1, 7), x0 = nz(-4, 5), y0 = nz(-4, 5), prod = Math.random() < .4;
+      const c1 = a * x0 + b * y0, c2 = b * x0 - a * y0, R = prod ? a * b : a + b, N = x0 * x0 + y0 * y0, ask = prod ? "a·b" : "a + b";
+      return { text: h("div", {}, `${pt(x0, y0)} cütü`, h("br"), `⎧ ax + by = ${S(c1)}`, h("br"), `⎩ bx − ay = ${S(c2)}`, h("br"), `sisteminin həllidir. ${ask} = ?`), answer: R, show: String(R), tol: 1e-6,
+        solution: `x = ${S(x0)}, y = ${S(y0)} yerinə qoy — a və b üçün sistem alınır: ${poly([[x0, "a"], [y0, "b"]])} = ${S(c1)}, ${poly([[-y0, "a"], [x0, "b"]])} = ${S(c2)}. Birinci × ${P(x0)}, ikinci × ${P(y0)}, birincidən ikincini çıx: ${N}a = ${S(c1 * x0 - c2 * y0)} → a = ${a}; onda b = ${b}. ${ask} = ${R}. Tələ: burada naməlumlar x, y deyil, a və b-dir.` };
+    }) },
+    // 10. written: system + percent (DİM written form)
+    { tip: "yazili", gen: () => again(() => {
+      const x = rnd(4, 30) * 10, y = rnd(1, 15) * 10, p = pick([10, 20, 25, 30, 40]), q = pick([10, 20, 25, 50]);
+      const Sm = x + y, T = +(x * (1 - p / 100) + y * (1 + q / 100)).toFixed(6); if (!nice(T) || T === Sm) return null;
+      const [A, B, Agen] = pick([["Palto", "şapka", "Paltonun"], ["Velosiped", "dəbilqə", "Velosipedin"], ["Telefon", "qulaqlıq", "Telefonun"]]);
+      const pp = 1 - p / 100, qq = 1 + q / 100;
+      return { text: `${A} və ${B} birlikdə ${Sm} manata idi. ${A} ${p}% ucuzlaşdı, ${B} ${q}% bahalaşdı və indi onlar birlikdə ${D(T)} manatdır. ${Agen} ilkin qiyməti neçə manat idi?`,
+        answer: x, show: String(x), tol: 1e-6, unit: "manat",
+        solution: `1) x — ${A.toLowerCase()}, y — ${B} (ilkin qiymətlər, manat): x + y = ${Sm}. 2) Yeni qiymətlər ${D(pp)}x və ${D(qq)}y: ${D(pp)}x + ${D(qq)}y = ${D(T)}. 3) y = ${Sm} − x yerinə qoy: ${D(pp)}x + ${D(qq * Sm)} − ${D(qq)}x = ${D(T)} → ${D((p + q) / 100)}x = ${D(qq * Sm - T)} → x = ${x}, y = ${y}. 4) Yoxla: ${D(x * pp)} + ${D(y * qq)} = ${D(T)} ✓. Cavab: ${x} manat. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -165,7 +257,7 @@
     game = Oyun.mount({
       key: "xetti-sistem", title: "İkidəyişənli xətti tənliklər sistemi", fenn: "riyaziyyat", link: "dersler/xetti-sistem.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2 (onluq 2.5 də olar). Həllərin sayı soruşulanda variant seç.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["yerine", "yerine", "toplama", "toplama", "qrafik", "say", "parametr", "parametr", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

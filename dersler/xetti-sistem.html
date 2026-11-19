@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama üsulu</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qrafik və həllərin sayı</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -291,8 +292,91 @@ Simmetrik sistemdə (2x + 3y, 3x + 2y) — əvvəl topla və çıx.</div></div>
         <li>Qayıq axınla 2 saatda 36 km, axına qarşı 3 saatda 36 km üzür. Axının sürəti? <span class="ans">x + y = 18, x − y = 12 → y = 3 km/saat.</span></li>
       </ol></details>
     </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: xətti tənliklər sistemi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Tənliklər sistemi buraxılış imtahanında həm "təmiz" sistem kimi, həm də məsələnin içində gəlir. Üç forma var:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəsi itmiş y, yalnız x, yerləri dəyişmiş koordinatlar. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil — tapdığın cütü <b>hər iki tənlikdə</b> yoxla.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Çox vaxt bir ədəd soruşulur: <span class="m">x₀ + y₀</span>, <span class="m">k + b</span>, <span class="m">a·b</span>. Yalnız ədəd yazılır, vahid yox; onluq kəsr vergüllə.</li>
+        <li><b>Yazılı.</b> Məsələ kağızda addım-addım həll olunur: naməlumlar, sistem, həll, yoxlama. Həll yazılmadan yalnız cavab yazılsa, bal verilmir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>nəyi soruşurlar?</b> Sistemin həlli bir cütdür — <span class="m">(x; y)</span>. Sual isə çox vaxt bu cütdən düzələn bir ədəddir: cəm, hasil, yalnız biri.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(x₀; y₀)</span> cütü sistemin həllidir: <span class="m">3x + 2y = 7</span>, <span class="m">5x − 2y = 17</span>. <span class="m">x₀ + y₀</span> cəmini tapın.</p>
+        <ol class="imt-opts"><li>11</li><li>3</li><li>2</li><li>−1</li><li>4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Topla (y yox olur): 8x = 24  →  x = 3
+Birincidə yerinə qoy: 9 + 2y = 7  →  2y = 7 − 9 = −2  →  y = −1
+x + y = 3 + (−1) = 2
+Cavab: C) 2</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 11</b> — 9-u sağa keçirəndə işarəni dəyişməmək: <span class="m">2y = 7 + 9 = 16</span>, <span class="m">y = 8</span>, <span class="m">3 + 8 = 11</span>.</li>
+        <li><b>B) 3</b> — yalnız x-i tapıb cavab yazmaq.</li>
+        <li><b>D) −1</b> — yalnız y-i yazmaq.</li>
+        <li><b>E) 4</b> — cəm yerinə fərq: <span class="m">x − y = 3 − (−1) = 4</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">(2; 1)</span> cütü <span class="m">ax + by = 11</span>, <span class="m">bx − ay = 2</span> sisteminin həllidir. <span class="m">a + b</span> cəmini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">x = 2, y = 1 yerinə qoy — naməlumlar indi a və b-dir:
+  2a + b = 11
+  2b − a = 2   →  a = 2b − 2
+2(2b − 2) + b = 11  →  5b = 15  →  b = 3,  a = 4
+Yoxla: 2·4 + 3 = 11 ✓;  3·2 − 4·1 = 2 ✓
+Cavab: 7</div>
+      <p>Kodlaşdırmada yalnız <b>7</b> yazılır. Tələ: x və y-i naməlum sanıb sistemi "həll etməyə" çalışmaq — x və y artıq verilib, naməlumlar <span class="m">a</span> və <span class="m">b</span>-dir. İkinci tələ: <span class="m">bx − ay</span>-da hərflərin yerini qarışdırmaq (<span class="m">b·2 − a·1</span>, <span class="m">a·2 − b·1</span> yox).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Kitab və çanta birlikdə 50 manata idi. Kitab 20% ucuzlaşdı, çanta 10% bahalaşdı və indi onlar birlikdə 43 manatdır. Kitabın ilkin qiyməti neçə manat idi?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) x — kitabın, y — çantanın ilkin qiyməti (manat):
+   x + y = 50
+2) Kitab 20% ucuzlaşdı: 0,8x;  çanta 10% bahalaşdı: 1,1y.
+   0,8x + 1,1y = 43
+3) y = 50 − x yerinə qoy:
+   0,8x + 55 − 1,1x = 43  →  −0,3x = −12  →  x = 40,  y = 10
+4) Yoxlama: 0,8·40 + 1,1·10 = 32 + 11 = 43 ✓
+Cavab: 40 manat.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>naməlumlar və sistem</b> (1–2-ci addımlar), <b>sistemin həlli</b> (3-cü addım), <b>yoxlama və cavab</b>. Yalnız "40" yazmaq bal gətirmir. Tələ: 20% ucuzlaşmanı <span class="m">x − 20</span> yazmaq — faiz qiymətin özündən götürülür: <span class="m">0,8x</span>.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>İşarə.</b> Həddi bərabərliyin o biri tərəfinə keçirəndə işarəsi dəyişir. Bu səhvin cavabı variantlarda ola bilər.</li>
+        <li><b>Yarımçıq cavab.</b> x-i tapıb dayanmaq; sual <span class="m">x + y</span>, <span class="m">x·y</span> və ya y-i soruşa bilər.</li>
+        <li><b>Koordinatların yeri.</b> Nöqtə <span class="m">(x; y)</span> yazılır — əvvəl absis, sonra ordinat.</li>
+        <li><b>Həll yoxdur:</b> <span class="m">a₁/a₂ = b₁/b₂ ≠ c₁/c₂</span>. Nisbəti tərs yazma — eyni tənliyin əmsalları eyni yerdə (surətdə və ya məxrəcdə) olmalıdır.</li>
+        <li><b>"n il sonra"</b> hər iki adamın yaşına əlavə olunur.</li>
+        <li><b>Axın:</b> axınla <span class="m">x + y</span>, axına qarşı <span class="m">x − y</span>. Toplayanda <span class="m">2x</span> alınır — 2-yə bölməyi unutma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Cütü tapdın → hər iki tənlikdə yoxla.
+Nə soruşulur: x? y? x + y? x·y?
+Simmetrik sistem: əvvəl topla və çıx.
+Həll yoxdur:   a₁/a₂ = b₁/b₂ ≠ c₁/c₂
+Sonsuz həll:   a₁/a₂ = b₁/b₂ = c₁/c₂</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Sistem: <span class="m">2x + y = 5</span>, <span class="m">3x − y = 10</span>. <span class="m">x·y</span> = ? <span class="ans">Topla: 5x = 15 → x = 3; y = 5 − 6 = −1. x·y = −3.</span></li>
+        <li><span class="m">y = 2x + 1</span> və <span class="m">y = −x + 7</span> xətlərinin kəsişmə nöqtəsi? <span class="ans">2x + 1 = −x + 7 → 3x = 6 → x = 2, y = 5. Nöqtə (2; 5), (5; 2) yox.</span></li>
+        <li>Ata oğlundan 24 yaş böyükdür, 6 il sonra ondan 3 dəfə böyük olacaq. Oğlun indiki yaşı? <span class="ans">x − y = 24, x + 6 = 3(y + 6) → y + 30 = 3y + 18 → y = 6 (ata 30).</span></li>
+      </ol></details>
+    </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
   </section>
+
 
   <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
   <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
