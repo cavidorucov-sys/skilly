@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Diskriminant</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Köklər düsturu</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -269,6 +270,90 @@ Cavab sualın soruşduğu kəmiyyətdir.</div></div>
         <li>Kvadratın tərəfini 3 sm artırsaq, sahəsi 64 sm² olar. Tərəf nə qədərdir? <span class="ans">(x + 3)² = 64 → x + 3 = 8 (−8 mənasızdır) → x = 5 sm.</span></li>
         <li>Natural ədədin kvadratı özündən 30 çoxdur. Ədəd? <span class="ans">x² − x − 30 = 0 → D = 1 + 120 = 121 → x = (1 + 11)/2 = 6 (x = −5 natural deyil).</span></li>
         <li>Düzbucaqlının perimetri 20 m, sahəsi 24 m². Böyük tərəf? <span class="ans">Tərəflərin cəmi 10: x(10 − x) = 24 → x² − 10x + 24 = 0 → x = 4, x = 6. Böyük tərəf 6 m.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: kvadrat tənlik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Kvadrat tənlik buraxılış imtahanında hər il var — həm ayrıca, həm də məsələnin içində. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: b-nin işarəsi, 2a əvəzinə a-ya bölmək, ± unutmaq, x = 0 kökünü itirmək. "Mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd; kəsr cavab lazım gələndə sualda “onluq kəsr şəklində” deyilir. Cavab dəqiq olmalıdır — yuvarlaqlaşdırma yoxdur.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: naməlum, tənlik, D, köklər, mənasız kökün atılması. Həll yazılmadan yalnız cavab göstərilərsə, bal verilmir.</li>
+      </ul>
+      <p>Hər sualda əvvəl <b>a, b, c-ni işarəsi ilə</b> yaz. Tələlərin çoxu mənfi əmsalda və "4ac"-dadır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">3x² + 5x − 2 = 0</span> tənliyinin köklərini tapın.</p>
+        <ol class="imt-opts"><li>−1/3; 2</li><li>−2; 1/3</li><li>−6; 1</li><li>−4; 2/3</li><li>−9; 22/3</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">a = 3,  b = 5,  c = −2
+D = b² − 4ac = 25 − 4·3·(−2) = 25 + 24 = 49,  √D = 7
+x = (−5 ± 7)/6  →  x₁ = 2/6 = 1/3,  x₂ = −12/6 = −2
+Cavab: B) −2; 1/3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) −1/3; 2</b> — <span class="m">−b</span> yerinə <span class="m">b</span> yazmaq: <span class="m">(5 ± 7)/6</span>. Köklərin işarəsi tərsinə çevrilir.</li>
+        <li><b>C) −6; 1</b> — a-nı unudub 2-yə bölmək: <span class="m">(−5 ± 7)/2</span>.</li>
+        <li><b>D) −4; 2/3</b> — <span class="m">2a</span> əvəzinə <span class="m">a</span>-ya bölmək: <span class="m">(−5 ± 7)/3</span>.</li>
+        <li><b>E) −9; 22/3</b> — <span class="m">√D</span> yerinə <span class="m">D</span> yazmaq: <span class="m">(−5 ± 49)/6</span>.</li>
+      </ul>
+      <p>Yoxlama 10 saniyədir: <span class="m">x = −2</span> qoy: <span class="m">12 − 10 − 2 = 0</span> ✓.</p></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">c</span>-nin hansı ən böyük tam qiymətində <span class="m">x² + 6x + c = 0</span> tənliyinin iki müxtəlif kökü var?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">İki müxtəlif kök  ⇔  D > 0
+D = 36 − 4c > 0  →  4c < 36  →  c < 9
+Ən böyük tam c: 8   (c = 9 olmaz: onda D = 0, bir kök)
+Cavab: 8</div>
+      <p>Kodlaşdırmada yalnız <b>8</b> yazılır. Tələlər: <span class="m">D ≥ 0</span> yazmaq (<span class="m">c ≤ 9</span> → 9; amma <span class="m">c = 9</span> olanda <span class="m">x² + 6x + 9 = (x + 3)² = 0</span> — kök birdir), 4-ü unutmaq (<span class="m">36 − c &gt; 0</span> → 35), işarəni çevirmək (<span class="m">c &gt; 9</span>). "Kökü yoxdur" soruşulsa, <span class="m">D &lt; 0</span> → <span class="m">c &gt; 9</span> → ən kiçik tam c = 10.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>İki şəhər arasındakı məsafə 240 km-dir. İkinci avtomobilin sürəti birincinin sürətindən 20 km/saat çoxdur, ona görə o, bu yolu birincidən 1 saat tez qət edir. Birinci avtomobilin sürətini tapın. Avtomobillər sabit sürətlə hərəkət edir.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Birincinin sürəti x km/saat, ikincinin (x + 20) km/saat.
+   Vaxtlar: 240/x və 240/(x + 20) saat.
+2) Birinci 1 saat çox gedir:
+   240/x − 240/(x + 20) = 1
+   240(x + 20) − 240x = x(x + 20)
+   4800 = x² + 20x  →  x² + 20x − 4800 = 0
+3) D = 400 + 19200 = 19600,  √D = 140
+   x = (−20 ± 140)/2  →  x = 60,  x = −80
+   x = −80 atılır: sürət mənfi ola bilməz.
+4) Yoxlama: 240/60 − 240/80 = 4 − 3 = 1 ✓
+Cavab: 60 km/saat.</div>
+      <p>Bu nümunənin həllini dörd mərhələdə göstəririk: <b>naməlumun seçilməsi və vaxtlar</b> (1-ci addım), <b>tənlik</b> (2-ci addım), <b>köklərin tapılması</b> (D ilə və ya başqa düzgün üsulla), <b>mənasız kökün atılması və cavab</b>. Həll yazılmadan yalnız "60" göstərilərsə, bal verilmir. Tələ: vaxtların fərqini tərs yazmaq (<span class="m">240/(x + 20) − 240/x = 1</span>) — onda <span class="m">x² + 20x + 4800 = 0</span> alınır, D mənfi çıxır və "kök yoxdur" kimi absurd nəticə görürsən: fərqi yoxla.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>x-ə bölmək.</b> <span class="m">ax² + bx = 0</span> tənliyini x-ə bölsən, <span class="m">x = 0</span> kökü itir. x-i mötərizə xaricinə çıxar.</li>
+        <li><b>± unutmaq.</b> <span class="m">x² = 16</span> → <span class="m">x = ±4</span>, yalnız 4 yox.</li>
+        <li><b>Mənfi b.</b> <span class="m">b = −6</span> olanda <span class="m">b² = (−6)² = 36</span>, −36 yox; <span class="m">−b = 6</span>.</li>
+        <li><b>4ac-nin işarəsi.</b> a və c müxtəlif işarəlidirsə, <span class="m">−4ac</span> müsbətdir: D b²-dən böyük olur.</li>
+        <li><b>Məxrəc 2a-dır.</b> Nə a, nə də 2 — <span class="m">x = (−b ± √D)/(2a)</span>, və bütün surət bölünür.</li>
+        <li><b>Parametrdə bərabərlik.</b> "İki müxtəlif kök" — <span class="m">D &gt; 0</span>; "kökü var" — <span class="m">D ≥ 0</span>; "bir kök" — <span class="m">D = 0</span>.</li>
+        <li><b>Məsələdə hər iki kök.</b> Yalnız məsələnin şərtinə uyğun gəlməyən kök atılır; topun nümunəsində iki müsbət kökün ikisi də mənalıdır — suala bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">D = b² − 4ac          x = (−b ± √D)/(2a)
+D > 0: iki kök    D = 0: bir kök    D &lt; 0: kök yoxdur
+ax² + bx = 0:  x(ax + b) = 0  →  x = 0 da kökdür
+cavabı tənliyə qoyub yoxla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">5x² − 20x = 0</span> tənliyinin köklərini tap. <span class="ans">5x(x − 4) = 0 → x = 0 və x = 4 (yalnız 4 yox).</span></li>
+        <li><span class="m">p</span>-nin hansı qiymətlərində <span class="m">x² + px + 9 = 0</span> tənliyinin yalnız bir kökü var? <span class="ans">D = p² − 36 = 0 → p = ±6 (yalnız 6 yox).</span></li>
+        <li><span class="m">2x² − 6x + c = 0</span> tənliyinin yalnız bir kökü var. c-ni tap. <span class="ans">D = 36 − 8c = 0 → c = 4,5 (a-nı unudub 36 − 4c = 0 yazsan, 9 alınar — səhv).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
