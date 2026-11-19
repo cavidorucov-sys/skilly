@@ -28,6 +28,7 @@
     <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Çoxluq</button>
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Əməllər</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Elementlərin sayı</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -249,6 +250,114 @@ Venn-i ortadan doldur: kəsişmə → yalnız A, yalnız B → kənar.</div></di
         <li><span class="m">n(A) = 12, n(B) = 9, n(A ∩ B) = 4</span>. <span class="m">n(A ∪ B) = ?</span> <span class="ans">12 + 9 − 4 = 17.</span></li>
         <li><span class="m">n(A ∪ B) = 20, n(A) = 14, n(B) = 11</span>. <span class="m">n(A ∩ B) = ?</span> <span class="ans">14 + 11 − 20 = 5.</span></li>
         <li>25 turistdən 15-i ingilis, 12-si rus dilini bilir, 3-ü heç birini bilmir. Neçəsi hər iki dili bilir? <span class="ans">25 − 3 = 22; 15 + 12 − 22 = 5.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: çoxluqlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Çoxluqlar buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: "heç biri" qrupunu çıxmamaq, ortaq hissəni iki dəfə saymaq, mötərizəni səhv qoymaq, fərqi tərsinə götürmək. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan — adətən elementlərin sayı: yalnız ədəd, vahid yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər məsələdə əvvəl <b>Venn diaqramını çək</b> və onu <b>ortadan doldur</b>: kəsişmə → "yalnız" hissələr → kənar. Tələlərin çoxu diaqramsız hesabdan gəlir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Sinifdə 32 şagird var. Onlardan 20 nəfər ingilis dili, 15 nəfər alman dili kursuna gedir, 5 nəfər heç bir kursa getmir. Neçə şagird hər iki kursa gedir?</p>
+        <ol class="imt-opts"><li>3</li><li>27</li><li>8</li><li>12</li><li>7</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Ən azı bir kursa gedən:  32 − 5 = 27 = n(A ∪ B)
+n(A ∩ B) = 20 + 15 − 27 = 8
+Yoxlama: yalnız ingilis 12, yalnız alman 7:  12 + 8 + 7 + 5 = 32 ✓
+Cavab: C) 8</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 172" role="img" aria-label="Venn diaqramı: yalnız ingilis 12, hər ikisi 8, yalnız alman 7, heç biri 5">
+          <rect x="4" y="4" width="252" height="164" rx="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="100" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="160" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="14" y="24" class="lbl">İngilis</text><text x="206" y="24" class="lbl">Alman</text>
+          <text x="70" y="93" text-anchor="middle" class="lbl">12</text>
+          <text x="130" y="93" text-anchor="middle" class="lbl">8</text>
+          <text x="190" y="93" text-anchor="middle" class="lbl">7</text>
+          <text x="228" y="154" text-anchor="middle" class="lbl">5</text>
+        </svg>
+        <div class="cap"><p>Ortadan doldurulur: kəsişmə 8, sonra <span class="m">20 − 8 = 12</span> və <span class="m">15 − 8 = 7</span>, kənarda 5.</p></div>
+      </div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 3</b> — "heç biri" qrupunu çıxmamaq: <span class="m">20 + 15 − 32</span>. Düsturda <span class="m">n(A ∪ B)</span> sinifdəki bütün şagirdlər deyil, ən azı bir kursa gedənlərdir.</li>
+        <li><b>B) 27</b> — birinci addımda dayanmaq: bu, ən azı bir kursa gedənlərin sayıdır, hər ikisinə gedənlərin yox.</li>
+        <li><b>D) 12</b> — yalnız ingilis kursuna gedənləri yazmaq (<span class="m">20 − 8</span>).</li>
+        <li><b>E) 7</b> — yalnız alman kursuna gedənləri yazmaq (<span class="m">15 − 8</span>).</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>1-dən 60 ədədinə qədər (hər ikisi daxil) natural ədədlərdən neçəsi nə 4, nə də 6 ədədinə bölünmür?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">4-ə bölünənlər:  60 : 4 = 15
+6-ya bölünənlər: 60 : 6 = 10
+Hər ikisinə bölünənlər — ƏKOB(4; 6) = 12 ədədinə bölünənlər: 60 : 12 = 5
+4-ə və ya 6-ya bölünənlər: 15 + 10 − 5 = 20
+Heç birinə bölünməyənlər: 60 − 20 = 40
+Cavab: 40</div>
+      <p>Kodlaşdırmada yalnız <b>40</b> yazılır. Tələlər: hər ikisinə bölünənləri <span class="m">4 · 6 = 24</span>-ə bölünənlər saymaq (60 : 24 → 2, cavab 37 alınır) — 4 və 6 qarşılıqlı sadə deyil, ona görə ƏKOB götürülür; ortaq hissəni çıxmamaq (<span class="m">60 − 25 = 35</span>); "bölünənlər"in sayını (20) cavab yazmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>İdmanla məşğul olan 30 şagirdin hər biri üzgüçülük və tennis idman növlərindən ən azı biri ilə məşğul olur. Yalnız üzgüçülüklə məşğul olanların sayı yalnız tennislə məşğul olanların sayından 3 dəfə çoxdur. Hər iki idman növü ilə məşğul olanların sayı 6 nəfərdir. Neçə şagird üzgüçülüklə məşğul olur?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Yalnız tennislə məşğul olanlar x olsun.
+   Onda yalnız üzgüçülüklə məşğul olanlar 3x.
+2) Hər şagird ən azı bir idmanla məşğuldur:
+   3x + x + 6 = 30
+3) 4x = 24  ⇒  x = 6.
+4) Üzgüçülüklə məşğul olanlar: yalnız üzgüçülük + hər ikisi
+   3 · 6 + 6 = 24.
+5) Yoxlama: 18 + 6 + 6 = 30 ✓
+Cavab: 24 şagird.</div>
+      <div class="fig">
+        <svg viewBox="0 0 260 172" role="img" aria-label="Venn diaqramı: yalnız üzgüçülük 3x, hər ikisi 6, yalnız tennis x">
+          <rect x="4" y="4" width="252" height="164" rx="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="100" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="160" cy="88" r="60" fill="var(--accent-soft)" fill-opacity=".6" stroke="var(--vec)" stroke-width="2.5"/>
+          <text x="14" y="24" class="lbl">Üzgüçülük</text><text x="204" y="24" class="lbl">Tennis</text>
+          <text x="70" y="93" text-anchor="middle" class="lbl" font-style="italic">3x</text>
+          <text x="130" y="93" text-anchor="middle" class="lbl">6</text>
+          <text x="190" y="93" text-anchor="middle" class="lbl" font-style="italic">x</text>
+        </svg>
+        <div class="cap"><p>Diaqramı kağızda da çək: yoxlayan məchulu hansı hissəyə qoyduğunu görür.</p><p>Kənarda heç kim yoxdur — hər şagird ən azı bir idmanla məşğuldur.</p></div>
+      </div>
+      <p>Yoxlayan üç şeyə bal verir: <b>məchulun seçilməsi və diaqram</b> (1-ci addım), <b>tənlik</b> (2-ci addım), <b>hesablama və cavab</b>. Tələ: <span class="m">x</span>-i və ya "yalnız üzgüçülük" hissəsini (18) cavab yazmaq — hər iki idmanla məşğul olan 6 nəfər də üzgüçülüklə məşğuldur. Həllsiz yalnız düzgün cavab ("24") yazmaq sıfır bal gətirir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>"Heç biri" qrupu.</b> <span class="m">n(A) + n(B) − n(A ∩ B)</span> bütün qrupu yox, ən azı birinə aid olanları verir. Əvvəl "heç biri"ni ümumi saydan çıx.</li>
+        <li><b>"Yalnız" və "cəmi".</b> "Şahmata gedənlər" — yalnız şahmata gedənlər + hər ikisinə gedənlər. Sual hansını soruşur — diqqətlə oxu.</li>
+        <li><b>Üç çoxluq.</b> Cüt kəsişmələri çıxandan sonra <span class="m">n(A ∩ B ∩ C)</span> geri <b>əlavə olunur</b>. "Rəsm və musiqiyə 5 nəfər" — üçünə gedənlər də bu 5-in içindədir.</li>
+        <li><b>Mötərizələr.</b> <span class="m">[</span> — uc daxildir, <span class="m">(</span> — daxil deyil. Kəsişmədə uc yalnız hər iki aralığa daxildirsə, qapalı mötərizə yazılır; məsələn, [0; 2] ∩ (0; 3] = (0; 2].</li>
+        <li><b>Alt çoxluqlar.</b> n elementli çoxluğun <span class="m">2ⁿ</span> alt çoxluğu var (boş çoxluq və özü daxil), 2n yox. "Özündən fərqli" — <span class="m">2ⁿ − 1</span>.</li>
+        <li><b>"p və ya q ədədinə bölünür".</b> Hər ikisinə bölünənlər — ƏKOB(p; q) ədədinə bölünənlərdir; p · q yalnız qarşılıqlı sadə ədədlərdə düzdür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)
+heç biri  = n(U) − n(A ∪ B)
+üç çoxluq: + təklər − cütlər + üçlü
+alt çoxluqlar: 2ⁿ
+Venn-i ortadan doldur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">A = {2; 4; 6; 8}</span> çoxluğunun özündən fərqli neçə alt çoxluğu var? <span class="ans">2⁴ − 1 = 15 (8 yox, 16 yox).</span></li>
+        <li><span class="m">A = [−2; 5)</span>, <span class="m">B = (1; 7]</span>. <span class="m">A ∩ B = ?</span> <span class="ans">(1; 5): 1 B-yə daxil deyil, 5 A-ya daxil deyil.</span></li>
+        <li>1-dən 50 ədədinə qədər natural ədədlərdən neçəsi 6 və ya 9 ədədinə bölünür? <span class="ans">8 + 5 − 2 = 11 (hər ikisinə — 18-ə bölünənlər: 18 və 36).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

@@ -217,6 +217,143 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (forgetting the "none" group, counting the intersection twice, wrong brackets, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const id = x => x;
+  const lcm = (a, b) => a / gcd(a, b) * b;
+  const pos = a => a.every(x => Number.isInteger(x) && x > 0);
+  const lbl = (g, aria) => { g.setAttribute("aria-label", aria); return g; };
+  const cap = t => t[0].toUpperCase() + t.slice(1);
+  const IV = (l, a, b, r) => `${l}${S(a)}; ${S(b)}${r}`;
+  const SUP = n => String(n).split("").map(d => "⁰¹²³⁴⁵⁶⁷⁸⁹"[d]).join("");
+  const DIVN = { 4: [6, 8, 10, 14, 15, 21, 22, 27], 5: [16, 81], 6: [12, 18, 20, 28, 32, 44, 45, 50] };
+  const SPORT = [ // [name, "… ilə" form]
+    [["güləş", "güləşlə"], ["üzgüçülük", "üzgüçülüklə"]], [["voleybol", "voleybolla"], ["basketbol", "basketbolla"]],
+    [["futbol", "futbolla"], ["tennis", "tennislə"]], [["boks", "boksla"], ["cüdo", "cüdo ilə"]],
+  ];
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. number of subsets of a set given by a property
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(3, 6), dv = n > 3 && Math.random() < .6, proper = Math.random() < .5;
+      let T, els, m;
+      if (dv) { const N = pick(DIVN[n]); els = divisors(N); T = `A — ${N} ədədinin natural bölənləri çoxluğudur.`; m = n - 2; }
+      else { const a = rnd(-6, 3), b = a + n; els = []; for (let x = a + 1; x <= b; x++) els.push(x); T = `A = {x ∈ Z | ${S(a)} < x ≤ ${S(b)}}.`; m = n + 1; }
+      const R = proper ? 2 ** n - 1 : 2 ** n, alt = proper ? 2 ** n : 2 ** n - 1, mis = proper ? 2 ** m - 1 : 2 ** m;
+      const o = ae(R, [alt, 2 * n, n * n, mis]); if (!o) return null;
+      return mc(o, { text: `${T} A çoxluğunun ${proper ? "özündən fərqli neçə alt çoxluğu" : "neçə alt çoxluğu"} var?`,
+        solution: `A = ${setS(els.map(S))}, n(A) = ${n}. Bütün alt çoxluqlar: 2${SUP(n)} = ${2 ** n}` + (proper ? `, A-nın özünü çıxırıq: ${2 ** n} − 1 = ${R}.` : ` (boş çoxluq və A-nın özü daxil).`) +
+          ` Tələlər: ${proper ? `A-nın özünü çıxmamaq (${alt})` : `boş çoxluğu saymamaq (${alt})`}; 2ⁿ əvəzinə 2n (${2 * n}) və ya n² (${n * n}); ` +
+          (dv ? `1 və ${els[els.length - 1]} ədədlərini bölən saymamaq (n = ${m} → ${mis}).` : `${S(els[0] - 1)} ədədini də daxil etmək — sol uc daxil deyil (n = ${m} → ${mis}).`) });
+    }) },
+    // 2. operations on listed sets: options are the five sets A\B, B\A, A∩B, A∪B, (A\B)∪(B\A)
+    { tip: "qapali", gen: () => again(() => {
+      const A = sample(rnd(4, 5), 1, 12), B = sample(rnd(4, 5), 1, 12);
+      const I = A.filter(x => B.includes(x)), AB = A.filter(x => !B.includes(x)), BA = B.filter(x => !A.includes(x));
+      if (!I.length || !AB.length || !BA.length) return null;
+      const U = [...new Set([...A, ...B])].sort((a, b) => a - b), D = [...AB, ...BA].sort((a, b) => a - b);
+      const ask = pick(["ab", "ab", "i", "ba"]);
+      const all = { ab: [`A \\ B`, AB], ba: [`B \\ A`, BA], i: [`A ∩ B`, I], u: [`A ∪ B`, U], d: [`(A \\ B) ∪ (B \\ A)`, D] };
+      const wrong = Object.keys(all).filter(k => k !== ask);
+      const o = ae(setS(all[ask][1]), wrong.map(k => setS(all[k][1])), id); if (!o) return null;
+      const rev = ask === "i" ? "kəsişmə əvəzinə fərqi tapmaq" : "fərqi tərsinə götürmək";
+      const why = { ab: `A \\ B (${setS(AB)}) — ${rev}`, ba: `B \\ A (${setS(BA)}) — ${rev}`, i: `A ∩ B (${setS(I)}) — yalnız ortaq elementlər`,
+        u: `A ∪ B (${setS(U)}) — birləşmə`, d: `(A \\ B) ∪ (B \\ A) (${setS(D)}) — ortaq olmayanların hamısı` };
+      return mc(o, { text: `A = ${setS(A)}, B = ${setS(B)} olarsa, ${all[ask][0]} çoxluğunu tapın.`,
+        solution: ({ ab: `A \\ B — A-da olub B-də olmayan elementlər: ${setS(AB)}.`, ba: `B \\ A — B-də olub A-da olmayan elementlər: ${setS(BA)}.`, i: `A ∩ B — hər iki çoxluqda olan elementlər: ${setS(I)}.` })[ask] +
+          ` Səhv variantlar başqa əməllərin nəticəsidir: ${wrong.map(k => why[k]).join("; ")}.` });
+    }) },
+    // 3. intersection of two intervals: brackets decide
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(-9, 2), c = a + rnd(2, 6), b = c + rnd(2, 6), d = b + rnd(2, 6);
+      const br = () => pick([["[", "]"], ["(", ")"], ["[", ")"], ["(", "]"]]);
+      const [la, ra] = br(), [lc, rc] = br(), fl = x => ({ "[": "(", "(": "[", "]": ")", ")": "]" })[x];
+      const R = IV(lc, c, b, ra), w = [IV(fl(lc), c, b, ra), IV(lc, c, b, fl(ra)), IV(la, a, d, rc), IV(la, a, c, lc === "[" ? ")" : "]")];
+      const o = ae(R, w, id); if (!o) return null;
+      return mc(o, { text: `A = ${IV(la, a, b, ra)} və B = ${IV(lc, c, d, rc)} olarsa, A ∩ B çoxluğunu tapın.`,
+        solution: `Ortaq hissə ${S(c)} ilə ${S(b)} arasındadır. Sol uc ${S(c)} B-nin ucudur və B-yə ${lc === "[" ? "daxildir → [" : "daxil deyil → ("}. Sağ uc ${S(b)} A-nın ucudur və A-ya ${ra === "]" ? "daxildir → ]" : "daxil deyil → )"}. A ∩ B = ${R}. ` +
+          `Tələlər: uclardan birinin mötərizəsini səhv qoymaq (${w[0]}, ${w[1]}); birləşməni yazmaq (${w[2]}); A \\ B-ni yazmaq (${w[3]}).` });
+    }) },
+    // 4. two-set Venn diagram with region counts
+    { tip: "qapali", gen: () => again(() => {
+      const v = [rnd(2, 15), rnd(1, 10), rnd(2, 15), rnd(1, 10)], [a, i, b, o] = v, ask = pick(["sym", "notB"]);
+      const svg = lbl(venn2(v), `Eyler-Venn diaqramı: yalnız A — ${a}, A ∩ B — ${i}, yalnız B — ${b}, çevrələrdən kənar — ${o}`);
+      if (ask === "sym") {
+        const op = ae(a + b, [a + i + b, a + b + 2 * i, i, a + b + o]); if (!op) return null;
+        return mc(op, { text: `Diaqramda A və B çoxluqlarının hər hissəsindəki elementlərin sayı yazılıb. Yalnız bir çoxluğa daxil olan elementlərin sayını tapın.`, svg,
+          solution: `Yalnız A: ${a}, yalnız B: ${b}. ${a} + ${b} = ${a + b}. Tələlər: ortaq hissəni də saymaq — n(A ∪ B) = ${a + i + b}; n(A) + n(B) = ${a + b + 2 * i} (ortaq hissə iki dəfə); yalnız ortaq hissə (${i}); kənardakıları da əlavə etmək (${a + b + o}).` });
+      }
+      const op = ae(a + o, [a, b + o, o, a + i + o]); if (!op) return null;
+      return mc(op, { text: `Diaqramda A və B çoxluqlarının hər hissəsindəki elementlərin sayı yazılıb. U universal çoxluğunun B-yə daxil olmayan elementlərinin sayını tapın.`, svg,
+        solution: `B-dən kənarda: yalnız A hissəsi (${a}) və çevrələrdən kənar (${o}): ${a} + ${o} = ${a + o}. Tələlər: kənardakıları unutmaq (${a}); A-ya daxil olmayanları saymaq (${b + o}); yalnız kənarı yazmaq (${o}); ümumi saydan (U) yalnız “yalnız B” hissəsini çıxmaq, ortaq hissəni saxlamaq (${a + i + o}).` });
+    }) },
+    // 5. two groups with "none": how many in both
+    { tip: "qapali", gen: () => again(() => {
+      const C = pick(CTX), both = rnd(3, 12), no = rnd(1, both - 1), oa = rnd(2, 15), ob = rnd(2, 15), A = oa + both, B = ob + both, N = oa + both + ob + no, L = N - no;
+      const o = ae(both, [A + B - N, L, oa, ob]); if (!o) return null;
+      return mc(o, { text: `${C.yer} ${N} ${C.kim} var. Onlardan ${A} nəfər ${C.A}, ${B} nəfər ${C.B} ${C.f}, ${no} nəfər ${C.yox}. Neçə nəfər ${C.hq}?`,
+        solution: `Ən azı birinə aid olanlar: ${N} − ${no} = ${L}. Hər ikisi: ${A} + ${B} − ${L} = ${both}. Tələlər: “heç biri” qrupunu çıxmamaq — ${A} + ${B} − ${N} = ${A + B - N}; ilk addımda dayanmaq (${L}); yalnız birinci (${oa}) və ya yalnız ikinci (${ob}) qrupu yazmaq.` });
+    }) },
+    // 6. three sets: inclusion–exclusion
+    { tip: "qapali", gen: () => again(() => {
+      const v = [rnd(1, 8), rnd(1, 8), rnd(1, 8), rnd(1, 5), rnd(1, 5), rnd(1, 5), rnd(1, 4)], [a, b, c, ab, ac, bc, abc] = v;
+      const nA = a + ab + ac + abc, nB = b + ab + bc + abc, nC = c + ac + bc + abc, AB = ab + abc, AC = ac + abc, BC = bc + abc, T = sum(v), s3 = nA + nB + nC;
+      const w = [T - abc, T - 2 * abc, T - 3 * abc, s3]; if (!pos(w)) return null;
+      const o = ae(T, w); if (!o) return null;
+      return mc(o, { text: `Sinifdəki hər şagird rəsm, musiqi və rəqs dərnəklərindən ən azı birinə gedir. Rəsmə ${nA}, musiqiyə ${nB}, rəqsə ${nC} şagird gedir. Rəsm və musiqiyə ${AB}, rəsm və rəqsə ${AC}, musiqi və rəqsə ${BC}, hər üçünə ${abc} şagird gedir. Sinifdə neçə şagird var?`,
+        solution: `${nA} + ${nB} + ${nC} − ${AB} − ${AC} − ${BC} + ${abc} = ${T}. Tələlər: hər üçünə gedənləri geri əlavə etməmək (${T - abc}); onları əlavə etmək əvəzinə çıxmaq (${T - 2 * abc}); hər üç cüt kəsişməni “yalnız həmin iki dərnəyə gedənlər” kimi qəbul etmək (${T - 3 * abc}); sadəcə toplamaq (${s3}).` });
+    }) },
+    // 7. coded: divisible by p or q up to M (lcm trap when p, q are not coprime)
+    { tip: "kod", gen: () => again(() => {
+      const [p, q] = pick([[2, 3], [2, 5], [3, 4], [3, 5], [2, 7], [3, 7], [4, 6], [6, 9], [4, 10], [6, 8], [6, 10]]), M = rnd(40, 150), L = lcm(p, q);
+      const a = Math.floor(M / p), b = Math.floor(M / q), c = Math.floor(M / L), ask = pick(["no", "no", "onlyp"]);
+      const R = ask === "no" ? M - (a + b - c) : a - c; if (R <= 0 || c < 1) return null;
+      const base = `${p} ədədinə bölünənlər: ${M} : ${p} → ${a}; ${q} ədədinə bölünənlər: ${M} : ${q} → ${b}. Hər ikisinə bölünənlər — ${L} ədədinə bölünənlər` + (L !== p * q ? ` (ƏKOB(${p}; ${q}) = ${L}, ${p * q} yox)` : ``) + `: ${M} : ${L} → ${c}.`;
+      if (ask === "no") return { text: `1-dən ${M} ədədinə qədər (hər ikisi daxil) natural ədədlərdən neçəsi nə ${p}, nə də ${q} ədədinə bölünmür?`,
+        answer: R, show: String(R), tol: 1e-6, solution: `${base} ${p} və ya ${q} ədədinə bölünənlər: ${a} + ${b} − ${c} = ${a + b - c}. Heç birinə bölünməyənlər: ${M} − ${a + b - c} = ${R}.` };
+      return { text: `1-dən ${M} ədədinə qədər (hər ikisi daxil) natural ədədlərdən neçəsi ${p} ədədinə bölünür, ${q} ədədinə isə bölünmür?`,
+        answer: R, show: String(R), tol: 1e-6, solution: `${base} ${p} ədədinə bölünənlərdən hər ikisinə bölünənləri çıxırıq: ${a} − ${c} = ${R}.` };
+    }) },
+    // 8. coded: counting special subsets
+    { tip: "kod", gen: () => again(() => {
+      const n = rnd(4, 7), els = pick([["a", "b", "c", "d", "e", "f", "k"], ["1", "2", "3", "4", "5", "6", "7"], ["k", "l", "m", "n", "p", "q", "r"]]).slice(0, n);
+      const x = els[0], y = els[1], ask = pick(["has", "pair", "hasnot"]);
+      const R = { has: 2 ** (n - 1), pair: n * (n - 1) / 2, hasnot: 2 ** (n - 2) }[ask];
+      const T = { has: `${x} elementini saxlayan neçə alt çoxluğu var?`, pair: `iki elementli neçə alt çoxluğu var?`, hasnot: `${x} elementini saxlayan, ${y} elementini isə saxlamayan neçə alt çoxluğu var?` }[ask];
+      const sol = { has: `${x} hər belə alt çoxluqda var; qalan ${n - 1} elementin hər biri ya olur, ya olmur: 2${SUP(n - 1)} = ${R}. (Bütün alt çoxluqların düz yarısı: ${2 ** n} : 2.)`,
+        pair: `Hər element qalan ${n - 1} elementlə cüt əmələ gətirir: ${n} · ${n - 1} = ${n * (n - 1)}, amma hər cüt iki dəfə sayılıb: ${n * (n - 1)} : 2 = ${R}.`,
+        hasnot: `${x} mütləq var, ${y} mütləq yoxdur; qalan ${n - 2} element sərbəstdir: 2${SUP(n - 2)} = ${R}.` }[ask];
+      return { text: `A = ${setS(els)} çoxluğunun ${T}`, answer: R, show: String(R), tol: 1e-6, solution: sol };
+    }) },
+    // 9. coded: three-set diagram with an unknown region
+    { tip: "kod", gen: () => again(() => {
+      const v = [rnd(1, 9), rnd(1, 9), rnd(1, 9), rnd(1, 6), rnd(1, 6), rnd(1, 6), rnd(1, 5), rnd(1, 9)], [a, b, c, ab, ac, bc, abc, o] = v;
+      const nA = a + ab + ac + abc, ask = pick(["u", "two"]), R = ask === "u" ? a + b + ab + ac + bc + abc : ab + ac + bc + abc;
+      const svg = lbl(venn3(v.map((t, k) => k === 3 ? "x" : t)), `Eyler-Venn diaqramı: yalnız A — ${a}, yalnız B — ${b}, yalnız C — ${c}, yalnız A və B — x, yalnız A və C — ${ac}, yalnız B və C — ${bc}, A ∩ B ∩ C — ${abc}, kənar — ${o}`);
+      return { text: `Diaqramda A, B, C çoxluqlarının hər hissəsindəki elementlərin sayı yazılıb, bir hissədəki say x ilə işarə olunub. n(A) = ${nA} olarsa, ${ask === "u" ? "n(A ∪ B) ifadəsinin qiymətini" : "ən azı iki çoxluğa daxil olan elementlərin sayını"} tapın.`, svg,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `A çevrəsinin 4 hissəsi: ${a} + x + ${ac} + ${abc} = ${nA} → x = ${ab}. ` + (ask === "u"
+          ? `A ∪ B — A və ya B çevrəsinin içindəki 6 hissə (yalnız C və kənar sayılmır): ${a} + ${b} + ${ab} + ${ac} + ${bc} + ${abc} = ${R}.`
+          : `Ən azı iki çoxluq: ${ab} + ${ac} + ${bc} + ${abc} = ${R} (üçünə daxil olan hissə də sayılır).`) };
+    }) },
+    // 10. written (the 15 Nov written question had this form): only-A is k times (or d more than) only-B
+    { tip: "yazili", gen: () => again(() => {
+      const [[P, Pi], [Q, Qi]] = pick(SPORT), x = rnd(2, 9), both = rnd(3, 12), mult = Math.random() < .6, k = rnd(2, 5), d = rnd(2, 9);
+      const oa = mult ? k * x : x + d, N = oa + x + both, askA = Math.random() < .65, R = askA ? oa + both : x + both;
+      const rel = mult ? `${k} dəfə çoxdur` : `${d} nəfər çoxdur`;
+      const eq = mult ? `${N} = ${k}x + x + ${both}` : `${N} = (x + ${d}) + x + ${both}`;
+      const eq2 = mult ? `${k + 1}x = ${N - both}` : `2x = ${N - both - d}`;
+      return { text: `İdmanla məşğul olan ${N} şagirdin hər biri ${P} və ${Q} idman növlərindən ən azı biri ilə məşğul olur. Yalnız ${Pi} məşğul olanların sayı yalnız ${Qi} məşğul olanların sayından ${rel}. Hər iki idman növü ilə məşğul olanların sayı ${both} nəfərdir. Neçə şagird ${askA ? Pi : Qi} məşğul olur?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "şagird",
+        solution: `1) Yalnız ${Qi} məşğul olanların sayı x olsun; onda yalnız ${Pi} məşğul olanlar: ${mult ? k + "x" : "x + " + d}. 2) Hər şagird ən azı bir idman növü ilə məşğuldur: ${eq}. 3) ${eq2}, x = ${x}. ` +
+          `4) ${askA ? `${cap(Pi)} məşğul olanlar: yalnız ${Pi} (${oa}) + hər ikisi ilə (${both}) = ${R}.` : `${cap(Qi)} məşğul olanlar: yalnız ${Qi} (${x}) + hər ikisi ilə (${both}) = ${R}.`} ` +
+          `Tələ: “yalnız” hissəni (${askA ? oa : x}) cavab yazmaq — hər iki idmanla məşğul olanlar da bu idmanla məşğul olur. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -226,7 +363,7 @@
     game = Oyun.mount({
       key: "coxluqlar", title: "Çoxluqlar, Eyler-Venn diaqramı", fenn: "riyaziyyat", link: "dersler/coxluqlar.html",
       format: "Cavab ədəddir — adətən elementlərin sayı: 7, 12, 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["element", "emel", "emel", "venn", "venn", "dustur", "dustur", "uc", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
