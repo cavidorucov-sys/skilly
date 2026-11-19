@@ -339,6 +339,125 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sums 2…12 taken as equally likely, (1;3) = (3;1), drawing as if the ball were returned,
+  // adding probabilities, 0 as the first digit, counting each game twice, ...).
+  const { ae, again } = Oyun;
+  const NS = "http://www.w3.org/2000/svg";
+  const sv = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const fr = (p, q) => q === 0 ? null : frac(p, q);                       // reduced fraction as text
+  const tenth = x => dec(x / 10);                                         // 7 → "0,7"
+  // spinner: N equal sectors with numbers, the arrow points into one sector
+  function spinner(vals, aria) {
+    const g = sv("svg", { viewBox: "0 0 240 210", class: "oy-svg", role: "img", "aria-label": aria });
+    const cx = 120, cy = 105, r = 92, N = vals.length;
+    vals.forEach((v, i) => {
+      const a0 = -Math.PI / 2 + i * 2 * Math.PI / N, a1 = a0 + 2 * Math.PI / N, am = (a0 + a1) / 2;
+      const p = (a, rr) => `${(cx + rr * Math.cos(a)).toFixed(2)} ${(cy + rr * Math.sin(a)).toFixed(2)}`;
+      g.append(sv("path", { d: `M${cx} ${cy}L${p(a0, r)}A${r} ${r} 0 0 1 ${p(a1, r)}Z`, style: `fill:${i % 2 ? "var(--accent-soft)" : "var(--sheet)"};stroke:var(--ink);stroke-width:1.5` }));
+      g.append(sv("text", { x: (cx + r * 0.7 * Math.cos(am)).toFixed(2), y: (cy + r * 0.7 * Math.sin(am) + 6).toFixed(2), "text-anchor": "middle", class: "oy-lbl", style: "font-size:17px;font-weight:600;fill:var(--ink)" }, String(v)));
+    });
+    const ang = -Math.PI / 2 + (Math.floor(N / 3) + 0.5) * 2 * Math.PI / N;   // arrow: into the middle of a sector, never on a border
+    g.append(sv("line", { x1: cx, y1: cy, x2: (cx + r * 0.45 * Math.cos(ang)).toFixed(2), y2: (cy + r * 0.45 * Math.sin(ang)).toFixed(2), style: "stroke:var(--vec);stroke-width:4;stroke-linecap:round" }));
+    g.append(sv("circle", { cx, cy, r: 6, style: "fill:var(--vec)" }));
+    return g;
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. two dice, sum = s
+    { tip: "qapali", gen: () => again(() => {
+      const s = rnd(3, 11), fit = PAIRS.filter(([a, b]) => a + b === s), m = fit.length, un = fit.filter(([a, b]) => a <= b).length;
+      const o = ae(fr(m, 36), [fr(1, 11), fr(un, 36), fr(m, 12), fr(36 - m, 36)]);
+      return mc(o, { text: `İki zər atılır. Düşən xalların cəminin ${s} olması ehtimalını tapın.`,
+        solution: `Bütün hallar: 6 · 6 = 36. Cəmi ${s}: ${fit.map(pairS).join(", ")} — ${m}. P = ${red(m, 36)}. Tələlər: 2…12 cəmlərini bərabər ehtimallı saymaq (1/11), (1; 3) və (3; 1) kimi halları bir saymaq (${red(un, 36)}), bütün halları 6 + 6 = 12 götürmək (${red(m, 12)}), əks hadisənin ehtimalı (${red(36 - m, 36)}).` });
+    }) },
+    // 2. three-digit numbers from digits with 0, no repetition
+    { tip: "qapali", gen: () => again(() => {
+      const d = rnd(4, 7), digs = [0]; while (digs.length < d) { const x = rnd(1, 9); if (!digs.includes(x)) digs.push(x); }
+      digs.sort((x, y) => x - y);
+      const R = (d - 1) * (d - 1) * (d - 2);
+      const o = ae(R, [d * (d - 1) * (d - 2), d ** 3, (d - 1) * d * d, (d - 1) + (d - 1) + (d - 2)]);
+      return mc(o, { text: `${digs.join(", ")} rəqəmlərindən rəqəmləri təkrarlanmayan neçə üçrəqəmli ədəd düzəltmək olar?`,
+        solution: `Birinci rəqəm 0 ola bilməz: ${d - 1} seçim. İkinci — qalan ${d - 1} rəqəmdən (0 artıq olar), üçüncü — ${d - 2}. Vurma prinsipi: ${d - 1} · ${d - 1} · ${d - 2} = ${R}. Tələlər: 0-ı birinci yerə qoymaq (${d} · ${d - 1} · ${d - 2} = ${d * (d - 1) * (d - 2)}), rəqəmləri təkrarlamaq (${d}³ = ${d ** 3}, ${d - 1} · ${d} · ${d} = ${(d - 1) * d * d}), seçimləri toplamaq (${(d - 1) + (d - 1) + (d - 2)}).` });
+    }) },
+    // 3. two balls without replacement, both white
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(3, 8), b = rnd(2, 8), n = a + b;
+      const o = ae(fr(a * (a - 1), n * (n - 1)), [fr(a * a, n * n), fr(a * (a - 1), n * n), fr(a * (a - 1) / 2, n * (n - 1)), fr(a, n)]);
+      return mc(o, { text: `Qutuda ${a} ağ və ${b} qara kürə var. Qutudan təsadüfi qaydada ardıcıl iki kürə çıxarılır (hər çəkilişdə qalan hər kürə eyni ehtimalla seçilir), birinci kürə geri qaytarılmır. Hər iki kürənin ağ olması ehtimalını tapın.`,
+        solution: `${a}/${n} · ${a - 1}/${n - 1} = ${a * (a - 1)}/${n * (n - 1)} = ${fr(a * (a - 1), n * (n - 1))}. Tələlər: kürəni geri qaytarılmış saymaq (${a}/${n} · ${a}/${n} = ${fr(a * a, n * n)}), yalnız surəti azaltmaq (${fr(a * (a - 1), n * n)}), surəti sırasız, məxrəci sıralı saymaq (${fr(a * (a - 1) / 2, n * (n - 1))}), yalnız birinci çəkilişi götürmək (${fr(a, n)}).` });
+    }) },
+    // 4. two shooters, at least one hits
+    { tip: "qapali", gen: () => again(() => {
+      const p1 = rnd(1, 8), p2 = rnd(1, 8); if (p1 + p2 > 9 || p1 === p2) return null;
+      const q1 = 10 - p1, q2 = 10 - p2, R = (100 - q1 * q2) / 100;
+      const o = ae(R, [(p1 + p2) / 10, p1 * p2 / 100, q1 * q2 / 100, (p1 * q2 + p2 * q1) / 100], x => dec(x));
+      return mc(o, { text: `İki atıcı bir-birindən asılı olmayaraq hədəfə bir dəfə atəş açır. Birincinin hədəfi vurması ehtimalı — ${tenth(p1)}, ikincinin — ${tenth(p2)}. Hədəfin ən azı bir dəfə vurulması ehtimalını tapın.`,
+        solution: `Əks hadisə — heç biri vurmur: ${tenth(q1)} · ${tenth(q2)} = ${dec(q1 * q2 / 100)}. P = 1 − ${dec(q1 * q2 / 100)} = ${dec(R)}. Tələlər: ehtimalları toplamaq (${tenth(p1 + p2)} — hadisələr uyuşan olduğu üçün toplamaq olmaz), "hər ikisi vurur" (${dec(p1 * p2 / 100)}), "heç biri vurmur" (${dec(q1 * q2 / 100)}), "düz biri vurur" (${dec((p1 * q2 + p2 * q1) / 100)}).` });
+    }) },
+    // 5. round-robin: each pair plays once (or twice: home and away)
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(5, 16), twice = Math.random() < .35, ctx = pick([["futbol", "komanda"], ["voleybol", "komanda"], ["şahmat", "şahmatçı"]]);
+      if (twice) {
+        const o = ae(n * (n - 1), [n * (n - 1) / 2, n * n, 2 * (n - 1), 2 * n]);
+        return mc(o, { text: `${ctx[0][0].toUpperCase() + ctx[0].slice(1)} turnirində ${n} ${ctx[1]} iştirak edir. Hər ${ctx[1]} qalan hər ${ctx[1]} ilə iki oyun keçirir (biri evdə, biri səfərdə). Turnirdə cəmi neçə oyun keçirilir?`,
+          solution: `Ev sahibi: ${n} seçim, qonaq — qalanlar arasından (${n - 1} seçim). Sıra vacibdir (evdə/səfərdə fərqli oyundur): ${n} · ${n - 1} = ${n * (n - 1)}. Tələlər: 2-yə bölmək (${n * (n - 1) / 2}), ${ctx[1]}nın özü ilə oynamasını saymaq (${n}² = ${n * n}: sıralı cütləri sayıb ${ctx[1]}nın özü ilə oyununu da daxil etmək), bir ${ctx[1]}nın oyunlarını cavab yazmaq (${2 * (n - 1)}), "hər ${ctx[1]}ya 2 oyun" deyib ${n} · 2 yazmaq (${2 * n}).` });
+      }
+      const o = ae(n * (n - 1) / 2, [n * (n - 1), n * n, n - 1, n * (n + 1) / 2]);
+      return mc(o, { text: `${ctx[0][0].toUpperCase() + ctx[0].slice(1)} turnirində ${n} ${ctx[1]} iştirak edir. Hər ${ctx[1]} qalan hər ${ctx[1]} ilə bir dəfə oynayır. Turnirdə cəmi neçə oyun keçirilir?`,
+        solution: `Hər ${ctx[1]} ${n - 1} oyun keçirir: ${n} · ${n - 1} = ${n * (n - 1)}. Amma hər oyunda iki ${ctx[1]} var — hər oyun iki dəfə sayılıb: ${n * (n - 1)} : 2 = ${n * (n - 1) / 2}. Tələlər: 2-yə bölməmək (${n * (n - 1)}), sıralı cütləri saymaq və hər ${ctx[1]}nın özü ilə oyununu da daxil etmək (${n}² = ${n * n}), bir ${ctx[1]}nın oyunlarını yazmaq (${n - 1}), 1 + 2 + … + ${n} toplamaq (${n * (n + 1) / 2}).` });
+    }) },
+    // 6. spinner (picture): sectors, not numbers, are the equally likely outcomes
+    { tip: "qapali", gen: () => again(() => {
+      const N = pick([6, 8, 10, 12]), vals = []; for (let i = 0; i < N; i++) vals.push(rnd(1, 9));
+      const kind = pick(["cüt", "tək", "boyuk"]), k = rnd(3, 6);
+      const f = kind === "cüt" ? x => x % 2 === 0 : kind === "tək" ? x => x % 2 === 1 : x => x > k;
+      const d = kind === "boyuk" ? `${k} ədədindən böyük olması` : `${kind} ədəd olması`;
+      const m = vals.filter(f).length, U = [...new Set(vals)], md = U.filter(f).length;
+      if (m < 2 || 2 * m >= N || U.length === N) return null;
+      const o = ae(fr(m, N), [fr(N - m, N), fr(m, N - m), fr(md, U.length), fr(md, N)]);
+      const sol = U.filter(f).sort((x, y) => x - y).map(x => `${x} — ${vals.filter(v => v === x).length} sektor`).join(", ");
+      return mc(o, { text: `Çarx ${N} bərabər sektora bölünüb, sektorlarda ədədlər yazılıb (şəkil). Çarx fırladılır və ox hər sektorda eyni ehtimalla dayanır (sərhəddə dayanmır). Oxun göstərdiyi ədədin ${d} ehtimalını tapın.`,
+        svg: spinner(vals, `Çarx: ${N} sektor, ədədlər ${vals.join(", ")}`),
+        solution: `Bərabər ehtimallı hallar — sektorlardır, ədədlər yox: n = ${N}. Əlverişli sektorlar: ${sol}; cəmi m = ${m}. P = ${red(m, N)}. Tələlər: müxtəlif ədədləri saymaq (${fr(md, U.length)} və ya ${fr(md, N)}), əlverişlini əlverişsizə bölmək (${fr(m, N - m)}), əks hadisə (${fr(N - m, N)}).` });
+    }) },
+    // 7. coded: even (or odd) three-digit numbers, no repetition
+    { tip: "kod", gen: () => again(() => {
+      const d = rnd(4, 7), digs = []; while (digs.length < d) { const x = rnd(1, 9); if (!digs.includes(x)) digs.push(x); }
+      digs.sort((x, y) => x - y);
+      const even = Math.random() < .5, e = digs.filter(x => x % 2 === (even ? 0 : 1)).length; if (e < 1 || e === d) return null;
+      const R = e * (d - 1) * (d - 2);
+      return { text: `${digs.join(", ")} rəqəmlərindən rəqəmləri təkrarlanmayan neçə üçrəqəmli ${even ? "cüt" : "tək"} ədəd düzəltmək olar?`,
+        answer: R, show: String(R), tol: 1e-6, unit: "",
+        solution: `Əvvəl şərtli yer — sonuncu rəqəm ${even ? "cüt" : "tək"} olmalıdır: ${digs.filter(x => x % 2 === (even ? 0 : 1)).join(", ")} — ${e} seçim. Sonra birinci: qalan ${d - 1} rəqəm, ortadakı: ${d - 2}. ${e} · ${d - 1} · ${d - 2} = ${R}. Tələlər: şərti unutmaq (${d} · ${d - 1} · ${d - 2} = ${d * (d - 1) * (d - 2)}), sonuncu yeri sonda seçmək (səhv deyil, amma hallara ayırmaq lazım gəlir) — şərtli yeri əvvəl seçmək hesablamanı sadələşdirir.` };
+    }) },
+    // 8. coded: three shooters, at least one hits (exact decimal)
+    { tip: "kod", gen: () => again(() => {
+      const p = [rnd(1, 9), rnd(1, 9), rnd(1, 9)], q = p.map(x => 10 - x), Q = q[0] * q[1] * q[2], R = (1000 - Q) / 1000;
+      if (p[0] === p[1] && p[1] === p[2]) return null;
+      return { text: `Üç atıcı bir-birindən asılı olmayaraq hədəfə bir dəfə atəş açır. Onların hədəfi vurma ehtimalları uyğun olaraq: ${tenth(p[0])}; ${tenth(p[1])}; ${tenth(p[2])}. Hədəfin ən azı bir dəfə vurulması ehtimalını tapın.`,
+        answer: R, show: dec(R), tol: 1e-6, unit: "",
+        solution: `Əks hadisə — heç biri vurmur: ${q.map(tenth).join(" · ")} = ${dec(Q / 1000)}. P = 1 − ${dec(Q / 1000)} = ${dec(R)}. Tələ: ehtimalları toplamaq — "ən azı bir" həmişə 1 − P(heç biri) ilə hesablanır.` };
+    }) },
+    // 9. coded: number of black balls from the probability of white
+    { tip: "kod", gen: () => again(() => {
+      let q = rnd(3, 9), p = rnd(1, q - 1); const g = gcd(p, q); p /= g; q /= g;
+      const W = p * rnd(2, 6), T = W * q / p, B = T - W;
+      return { text: `Qutuda ${W} ağ və bir neçə qara kürə var. Qutudan təsadüfən çıxarılan kürənin ağ olması ehtimalı ${p}/${q} kəsrinə bərabərdir. Qutuda neçə qara kürə var?`,
+        answer: B, show: String(B), tol: 1e-6, unit: "",
+        solution: `Bütün kürələr n: ${W}/n = ${p}/${q}, n = ${W} · ${q} : ${p} = ${T}. Qara: ${T} − ${W} = ${B}. Tələ: bütün kürələrin sayını (${T}) cavab yazmaq.` };
+    }) },
+    // 10. written: two balls without replacement, different colours (both orders)
+    { tip: "yazili", gen: () => again(() => {
+      const a = rnd(2, 8), b = rnd(2, 8), n = a + b, M = 2 * a * b, Nn = n * (n - 1);
+      return { text: `Qutuda ${a} ağ və ${b} qara kürə var. Qutudan təsadüfi qaydada ardıcıl iki kürə çıxarılır (hər çəkilişdə qalan hər kürə eyni ehtimalla seçilir), birinci kürə geri qaytarılmır. Çıxarılan kürələrin müxtəlif rəngdə olması ehtimalını tapın. (Həll yazılmadan yalnız cavab — bal verilmir.)`,
+        answer: M / Nn, show: frac(M, Nn), tol: 1e-6, unit: "",
+        solution: `1) İki hal: əvvəl ağ, sonra qara və ya əvvəl qara, sonra ağ (uyuşmayan hadisələr — toplanır). 2) Ağ-qara: ${a}/${n} · ${b}/${n - 1} = ${a * b}/${Nn}. 3) Qara-ağ: ${b}/${n} · ${a}/${n - 1} = ${a * b}/${Nn}. 4) P = ${a * b}/${Nn} + ${a * b}/${Nn} = ${red(M, Nn)}. Tələ: yalnız bir sıranı saymaq (${red(a * b, Nn)}). Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -348,7 +467,7 @@
     game = Oyun.mount({
       key: "ehtimal", title: "Ehtimal", fenn: "riyaziyyat", link: "dersler/ehtimal.html",
       format: "Say — tam ədəd: 24. Ehtimal — ixtisar olunmuş kəsr: 1/6, 5/36 (0,17 kimi yuvarlaq onluq qəbul olunmur). Şərtdə onluq verilibsə, onluq yaz: 0,48.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["say", "say", "ehtimal", "ehtimal", "ehtimal", "eks", "iki", "iki", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
