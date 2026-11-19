@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Xətti tənliyə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Kənar köklər</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -309,6 +310,95 @@ Mənasız (mənfi) kök atılır.</div></div>
         <li>Bir boru hovuzu 6 saata, digəri 3 saata doldurur. Birlikdə neçə saata doldurarlar? <span class="ans">1/6 + 1/3 = 1/2 hissə saatda → 2 saat.</span></li>
         <li>Qayıq axınla 15 km, geri 15 km üzdü, cəmi 4 saat. Axın 2 km/saat. Qayığın öz sürəti? <span class="ans">15/(x + 2) + 15/(x − 2) = 4 → 2x² − 15x − 8 = 0 → x = 8 (x = −0,5 atılır). Yoxla: 15/10 + 15/6 = 1,5 + 2,5 = 4 ✓. Cavab: 8 km/saat.</span></li>
         <li>40 manata kitablar alındı. Hər kitab 2 manat baha olsaydı, 1 kitab az alınardı. Kitab neçəyədir? <span class="ans">40/x − 40/(x + 2) = 1 → x² + 2x − 80 = 0 → x = 8 (x = −10 atılır). Yoxla: 40/8 = 5, 40/10 = 4 ✓. Cavab: 8 manat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: kəsr-rasional tənliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Kəsr-rasional tənliklər buraxılış imtahanında həm ayrıca tənlik, həm də mətnli məsələ kimi gəlir. Formalar üçdür:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>. Ən çox rast gəlinən tələ: <b>kənar kökü atmamaq</b>. Belə səhvdən alınan cavab variantlarda ola bilər.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: vahid yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər tənlikdə ilk addım eynidir: <b>DMQ-nı yaz</b> (hansı <span class="m">x</span> məxrəci sıfır edir). Son addım da eynidir: <b>alınan kökləri DMQ ilə yoxla</b>. Məsələdə isə mənfi sürət, mənfi vaxt atılır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">x²/(x − 3) = (5x − 6)/(x − 3)</span> tənliyinin köklərinin cəmini tapın.</p>
+        <ol class="imt-opts"><li>5</li><li>2</li><li>−2</li><li>3</li><li>−5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">DMQ: x ≠ 3
+Məxrəclər eynidir → surətlər bərabərdir:
+x² = 5x − 6  →  x² − 5x + 6 = 0  →  x = 2, x = 3
+x = 3 məxrəci sıfır edir — kənar kökdür, atılır.
+Tənliyin yeganə kökü 2, köklərin cəmi 2.
+Cavab: B) 2</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 5</b> — kənar kökü atmamaq: Viyet teoremi ilə <span class="m">2 + 3 = 5</span>. Viyet kvadrat tənliyin köklərini verir, <b>kəsr-rasional tənliyin</b> köklərini yox.</li>
+        <li><b>D) 3</b> — düz kökü atıb kənar kökü saxlamaq: DMQ-nı yoxlamadan "birini atmaq lazımdır" deyib səhvini atmaq.</li>
+        <li><b>E) −5</b> — Viyetdə işarə səhvi: <span class="m">x₁ + x₂ = −b</span>, yəni <span class="m">+5</span>, <span class="m">−5</span> yox (həm də kənar kök atılmayıb).</li>
+        <li><b>C) −2</b> — yeganə qalan kökün işarəsini cavabda səhvən dəyişmək: kök <span class="m">2</span> idi, <span class="m">−2</span> yazılıb.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">2/(x − 3) + 1/(x + 3) = c/(x² − 9)</span> tənliyinin <span class="m">c</span> parametrinin hansı müsbət qiymətində kökü yoxdur?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">DMQ: x ≠ 3, x ≠ −3
+Hər tərəfi x² − 9 = (x − 3)(x + 3) ifadəsinə vur:
+2(x + 3) + (x − 3) = c  →  3x + 3 = c  →  x = (c − 3)/3
+Bu x qadağan qiymət olarsa, tənliyin kökü yoxdur:
+x = 3:   (c − 3)/3 = 3   →  c = 12
+x = −3:  (c − 3)/3 = −3  →  c = −6 (mənfi)
+Cavab: 12</div>
+      <p>Kodlaşdırmada yalnız <b>12</b> yazılır. Fikir: xətti tənliyin həmişə bir "kökü" alınır, amma o, qadağan qiymətə düşəndə kənar kök olur — tənliyin kökü qalmır. Tələ: <span class="m">c</span>-ni məxrəcdən axtarmaq (<span class="m">x² − 9 = 0</span> → "9") və ya yalnız mənfi qiyməti (−6) tapıb dayanmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>A və B şəhərləri arasındakı məsafə 120 km-dir. İki avtomobil eyni vaxtda A-dan B-yə yola düşdü. Birinci avtomobilin sürəti ikincininkindən 20 km/saat çoxdur, ona görə o, B-yə ikincidən 1 saat tez çatdı. İkinci avtomobilin sürətini tapın. Avtomobillər sabit sürətlə hərəkət edir.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) İkincinin sürəti x km/saat olsun (x > 0),
+   birincinin sürəti (x + 20) km/saat.
+   Vaxtlar: 120/x və 120/(x + 20) saat.
+2) Birinci 1 saat tez çatır:
+   120/x − 120/(x + 20) = 1
+3) Hər tərəfi x(x + 20) ifadəsinə vur:
+   120(x + 20) − 120x = x(x + 20)
+   2400 = x² + 20x  →  x² + 20x − 2400 = 0
+4) D = 400 + 9600 = 10000 = 100²
+   x = (−20 ± 100)/2  →  x = 40,  x = −60
+   Sürət mənfi ola bilməz: x = −60 atılır.
+5) Yoxlama: 120/40 − 120/60 = 3 − 2 = 1 ✓
+Cavab: 40 km/saat.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>dəyişən və tənlik</b> (1–2-ci addım), <b>tənliyin həlli</b> (3–4-cü addım), <b>mənfi kökün atılması və cavab</b>. Yalnız "40" yazmaq bu balların çoxunu itirir. Diqqət: sual ikinci avtomobilin sürətini soruşur — 60 (birincinin sürəti) yazmaq səhvdir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Kənar kökü atmamaq.</b> Məxrəcə vurandan sonra alınan hər kök DMQ ilə yoxlanır. Məxrəci sıfır edən kök atılır.</li>
+        <li><b>Viyetlə "köklərin cəmi".</b> Viyet kvadrat tənliyin köklərini cəmləyir. Kənar kök varsa, kəsr-rasional tənliyin köklərinin cəmi başqadır.</li>
+        <li><b>DMQ-da <span class="m">x² − a² = 0</span>-dan yalnız <span class="m">x = a</span> götürmək.</b> İki qiymət var: <span class="m">x = ±a</span>.</li>
+        <li><b>Surətin sıfırını qadağan saymaq.</b> Surət sıfır ola bilər, yalnız məxrəc ola bilməz.</li>
+        <li><b>Vuruğu mötərizənin bütün hədlərinə tətbiq etməmək.</b> <span class="m">(x + 1)/(x − 2) = 3</span> → <span class="m">x + 1 = 3(x − 2)</span>, <span class="m">x + 1 = 3x − 2</span> yox.</li>
+        <li><b>Məsələdə</b> mənfi kökü (və ya onun modulunu) cavab yazmaq; soruşulmayan kəmiyyəti (o biri sürəti, o biri borunu) yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1) DMQ: məxrəc ≠ 0
+2) ortaq məxrəcə vur → tam tənlik
+3) həll et
+4) kökləri DMQ ilə yoxla, kənarı at
+məsələdə: mənfi kök atılır, yoxlama et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² − 4)/(x − 2) = 0</span> tənliyinin neçə kökü var? <span class="ans">Surət = 0 → x = ±2; x = 2 məxrəci sıfır edir, atılır. 1 kök: x = −2.</span></li>
+        <li><span class="m">x/(x − 5) = 5/(x − 5)</span> tənliyini həll et. <span class="ans">x = 5 alınır, amma x ≠ 5 (DMQ) — kök yoxdur.</span></li>
+        <li><span class="m">x²/(x + 1) = 1/(x + 1)</span> tənliyinin köklərinin cəmi neçədir? <span class="ans">x² = 1 → x = ±1; x = −1 atılır. Yeganə kök 1, cəm 1 (Viyetlə 0 yox).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

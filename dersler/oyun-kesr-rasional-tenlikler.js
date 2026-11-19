@@ -155,6 +155,93 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (keeping the extraneous root, forgetting a DMQ value, sign errors, wrong root kept, ...).
+  const { ae, again } = Oyun;
+  const F = x => { if (!isFinite(x)) return null; for (let d = 1; d <= 12; d++) { const n = Math.round(x * d); if (Math.abs(n - x * d) < 1e-9) return frac(n, d); } return null; };
+  const mcN = (R, w, rest) => { if (![R, ...w].every(v => F(v) !== null)) return null; const o = ae(R, w, F); return o && { ...rest, ...o, show: o.choices[o.correct] }; };
+  const mcS = (R, w, rest) => { const o = ae(R, w, x => x); return o && { ...rest, ...o, show: o.choices[o.correct] }; };
+  const set = a => a.slice().sort((x, y) => x - y).map(S).join("; ");
+  const CARS = [];    // distance d, slower car x km/h, faster x + a, the faster one arrives tm minutes earlier
+  for (let x = 30; x <= 100; x += 5) for (let a = 5; a <= 30; a += 5) for (let d = 30; d <= 600; d += 30) { const tm = 60 * d * a / (x * (x + a)); if (Number.isInteger(tm) && tm % 5 === 0 && tm >= 20 && tm <= 180) CARS.push([d, x, a, tm]); }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. DMQ of a sum of fractions (closed, the options are sets)
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(2, 9), q = pick([-1, 1]) * rnd(1, 9), m = pick([-1, 1]) * rnd(1, 9), k = rnd(1, 9);
+      if ([p, -p].includes(q) || [p, -p, q].includes(m)) return null;
+      return mcS(set([-p, p, q]), [set([p, q]), set([-p, p]), set([-p, p, -q]), set([-p, p, q, m])], {
+        text: `x-in hansı qiymətlərində (${lin(m)})/(x² − ${p * p}) + ${k}/${den(q)} ifadəsinin mənası yoxdur?`,
+        solution: `Məxrəclər sıfır ola bilməz: x² − ${p * p} = 0 → x = ±${p}; ${lin(q)} = 0 → x = ${S(q)}. Cavab: ${set([-p, p, q])}. Tələlər: x² = ${p * p} bərabərliyindən yalnız x = ${p} götürmək (${set([p, q])}), ikinci məxrəci unutmaq (${set([-p, p])}), x = ${S(-q)} yazmaq — işarə (${set([-p, p, -q])}), surətin sıfırını (x = ${S(m)}) da qadağan saymaq — surət sıfır ola bilər.` });
+    }) },
+    // 2. linear: (x + a)/(x − b) = c
+    { tip: "qapali", gen: () => again(() => {
+      const R = rnd(-9, 9), b = pick([-1, 1]) * rnd(1, 7), c = rnd(2, 5), a = R * (c - 1) - c * b;
+      if (R === b || a === 0) return null;
+      return mcN(R, [(a + b) / (c - 1), (a - c * b) / (c - 1), (a + c * b) / (c + 1), -R], {
+        text: `(${lin(-a)})/${den(b)} = ${c} tənliyini həll edin.`,
+        solution: `DMQ: x ≠ ${S(b)}. Məxrəcə vur: ${lin(-a)} = ${c}${den(b)} = ${poly([[c, "x"], [-c * b, ""]])} → ${poly([[c - 1, "x"]])} = ${S(a + c * b)} → x = ${S(R)}; ${S(R)} ≠ ${S(b)} — kökdür. Tələlər: ${c} vuruğunu mötərizədəki sabit həddə vurmamaq (x = ${F((a + b) / (c - 1))}), mötərizəni açanda işarə səhvi (${F((a - c * b) / (c - 1))}), x-i o biri tərəfə keçirəndə işarəni dəyişməmək (${F((a + c * b) / (c + 1))}), sonda bölərkən işarə səhvi (${S(-R)}).` });
+    }) },
+    // 3. extraneous root: x²/(x − p) = (s x − t)/(x − p), roots p (thrown away) and r — sum of roots
+    { tip: "qapali", gen: () => again(() => {
+      const [p, r] = distinct(2, -9, 9, [0]), s = p + r, t = p * r; if (s === 0) return null;
+      return mcN(r, [p + r, p, -(p + r), -r], {
+        text: `x²/${den(p)} = (${poly([[s, "x"], [-t, ""]])})/${den(p)} tənliyinin köklərinin cəmini tapın.`,
+        solution: `DMQ: x ≠ ${S(p)}. x² = ${poly([[s, "x"], [-t, ""]])} → ${poly([[1, "x²"], [-s, "x"], [t, ""]])} = 0 → x = ${S(p)} və x = ${S(r)}. x = ${S(p)} məxrəci sıfır edir — kənar kökdür, atılır. Tənliyin yeganə kökü ${S(r)}, cəm ${S(r)}. Tələlər: kənar kökü atmamaq (Viyet: ${S(p + r)}), düz kökü atıb kənarı saxlamaq (${S(p)}), Viyetdə işarə (${S(-(p + r))}), kökün işarəsini səhv tapmaq (${S(-r)}).` });
+    }) },
+    // 4. three terms with x² − p²: x/(x − p) − r/(x + p) = 2pr/(x² − p²) → roots −p (extraneous) and r
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 6), [r] = distinct(1, -8, 8, [0, p, -p]);
+      return mcS(S(r), [S(-p), set([-p, r]), S(-r), set([p, -r])], {
+        text: `x/${den(p)} ${r < 0 ? "+" : "−"} ${Math.abs(r)}/${den(-p)} = ${S(2 * p * r)}/(x² − ${p * p}) tənliyinin bütün köklərini tapın.`,
+        solution: `DMQ: x ≠ ±${p}. Ortaq məxrəc x² − ${p * p} = ${den(p)}${den(-p)}; ona vur: x${den(-p)} ${r < 0 ? "+" : "−"} ${Math.abs(r)}${den(p)} = ${S(2 * p * r)} → ${poly([[1, "x²"], [p - r, "x"], [-p * r, ""]])} = 0 → x = ${S(-p)} və x = ${S(r)}. x = ${S(-p)} qadağandır — atılır. Cavab: ${S(r)}. Tələlər: kənar kökü saxlamaq (${set([-p, r])}), səhv kökü atmaq (${S(-p)}), kvadrat tənliyin köklərində işarə səhvi (${set([p, -r])} və ya ${S(-r)}).` });
+    }) },
+    // 5. boat: d/(x + u) + d/(x − u) = t
+    { tip: "qapali", gen: () => again(() => {
+      const [v, u, d, t] = pick(BOATS); if (!Number.isInteger(t)) return null;
+      return mcN(v, [v + u, v - u, 2 * d / t, u * u / v], {
+        text: `Qayıq çayın axını ilə ${d} km, sonra axına qarşı yenə ${d} km üzdü və buna cəmi ${t} saat sərf etdi (dayanmadı). Çayın axın sürəti ${u} km/saatdır. Qayığın durğun sudakı sürəti hər iki istiqamətdə eyni və sabitdir. Qayığın durğun sudakı sürətini (km/saat) tapın.`,
+        solution: `x — durğun suda sürət (x > ${u}). ${d}/(x + ${u}) + ${d}/(x − ${u}) = ${t} → ${poly([[t, "x²"], [-2 * d, "x"], [-t * u * u, ""]])} = 0 → x = ${v} və x = ${F(-u * u / v)} (mənfi — atılır). Yoxla: ${d}/${v + u} + ${d}/${v - u} = ${F(d / (v + u))} + ${F(d / (v - u))} = ${t} ✓. Tələlər: axınla sürəti (${v + u}) və ya axına qarşı sürəti (${v - u}) yazmaq, axını nəzərə almayıb ${2 * d} : ${t} (${F(2 * d / t)}) hesablamaq, mənfi kökü işarəsiz götürmək (${F(u * u / v)}).` });
+    }) },
+    // 6. two pipes: 1/x + 1/(x + a) = 60/T
+    { tip: "qapali", gen: () => again(() => {
+      const [x, a, T] = pick(PIPES);
+      return mcN(x, [x + a, 2 * T / 60, a * T / (60 * x), T / 60], {
+        text: `Hovuz əvvəlcə boşdur, sızma yoxdur, borular sabit məhsuldarlıqla və bir-birindən asılı olmadan işləyir. Birinci boru hovuzu ikincidən ${a} saat tez doldurur. İki boru birlikdə hovuzu ${hm(T)}${T % 60 ? "yə" : "a"} doldurur. Birinci boru təkbaşına hovuzu neçə saata doldurar?`,
+        solution: (T % 60 ? `${hm(T)} = ${frac(T, 60)} saat. ` : "") + `x — birincinin vaxtı: 1/x + 1/(x + ${a}) = ${frac(60, T)} → ${poly([[60, "x²"], [60 * a - 2 * T, "x"], [-a * T, ""]].map(([c, v]) => [c / gcd(gcd(60, Math.abs(60 * a - 2 * T)), a * T), v]))} = 0 → x = ${x} və x = ${F(-a * T / (60 * x))} (mənfi — atılır). Yoxla: 1/${x} + 1/${x + a} = ${frac(2 * x + a, x * (x + a))} ✓. Tələlər: ikinci borunun vaxtını yazmaq (${x + a}), boruları eyni sayıb birgə vaxtı ikiyə vurmaq (${F(2 * T / 60)}), mənfi kökü işarəsiz götürmək (${F(a * T / (60 * x))}), birgə vaxtı cavab yazmaq (${F(T / 60)}).` });
+    }) },
+    // 7. coded: parameter — for which positive c has a/(x − p) + b/(x + p) = c/(x² − p²) no root? c = 2ap
+    { tip: "kod", gen: () => again(() => {
+      const a = rnd(1, 6), b = rnd(1, 6), p = rnd(1, 6), R = 2 * a * p;
+      return { text: `${a}/${den(p)} + ${b}/${den(-p)} = c/(x² − ${p * p}) tənliyinin c parametrinin hansı müsbət qiymətində kökü yoxdur?`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `DMQ: x ≠ ±${p}. Hər tərəfi x² − ${p * p} ifadəsinə vur: ${a}${den(-p)} + ${b}${den(p)} = c → ${poly([[a + b, "x"], [(a - b) * p, ""]])} = c → x = (${poly([[1, "c"], [-(a - b) * p, ""]])})/${a + b}. Bu x qadağan qiymət olarsa, kök yoxdur: x = ${p} → c = ${R}; x = −${p} → c = ${S(-2 * b * p)} (mənfi). Cavab: ${R}.` };
+    }) },
+    // 8. coded: a/(x − p) = x − q, both roots valid — x₁² + x₂²
+    { tip: "kod", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -7, 7), [p] = distinct(1, -6, 6, [r1, r2]), q = r1 + r2 - p, a = (r1 - p) * (r1 - q), s = r1 + r2, t = r1 * r2, R = r1 * r1 + r2 * r2;
+      if (!a || !R) return null;
+      return { text: `${S(a)}/${den(p)} = ${lin(q)} tənliyinin kökləri x₁ və x₂-dir. x₁² + x₂² ifadəsinin qiymətini tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `DMQ: x ≠ ${S(p)}. Hər tərəfi ${den(p)} ifadəsinə vur: ${S(a)} = ${den(p)} · ${den(q)} → ${poly([[1, "x²"], [-s, "x"], [t, ""]])} = 0 → x = ${S(Math.min(r1, r2))} və x = ${S(Math.max(r1, r2))}, ikisi də DMQ-dadır. x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = ${s < 0 ? "(" + S(s) + ")" : s}² − 2 · ${t < 0 ? "(" + S(t) + ")" : t} = ${R}.` };
+    }) },
+    // 9. coded: books — N/(x − a) − N/x = k
+    { tip: "kod", gen: () => again(() => {
+      const [N, p, a, k] = pick(BOOKS);
+      return { text: `${N} manata eyni qiymətli bir neçə kitab alındı. Hər kitab ${a} manat ucuz olsaydı, eyni pula ${k} kitab çox almaq olardı. Bir kitabın qiymətini (manatla) tapın.`,
+        answer: p, unit: "manat", show: String(p), tol: 1e-6,
+        solution: `x — kitabın qiyməti (x > ${a}). ${N}/(x − ${a}) − ${N}/x = ${k} → ${poly([[k, "x²"], [-k * a, "x"], [-N * a, ""]])} = 0 → x = ${p} və x = ${F(-N * a / (k * p))} (mənfi — atılır). Yoxla: ${N}/${p - a} − ${N}/${p} = ${N / (p - a)} − ${N / p} = ${k} ✓. Cavab: ${p}.` };
+    }) },
+    // 10. written: two cars — d/x − d/(x + a) = t
+    { tip: "yazili", gen: () => again(() => {
+      const [d, x, a, tm] = pick(CARS), t = frac(tm, 60), C = x * (x + a), D = a * a + 4 * C, sq = Math.sqrt(D);
+      return { text: `A və B şəhərləri arasındakı məsafə ${d} km-dir. İki avtomobil eyni vaxtda A-dan B-yə yola düşdü. Birinci avtomobilin sürəti ikincininkindən ${a} km/saat çoxdur, ona görə o, B-yə ikincidən ${hm(tm)} tez çatdı. İkinci avtomobilin sürətini (km/saat) tapın. Avtomobillər sabit sürətlə hərəkət edir.`,
+        answer: x, unit: "km/saat", show: String(x), tol: 1e-6,
+        solution: `1) x — ikincinin sürəti (x > 0), birincinin: x + ${a}. Vaxtlar: ${d}/x və ${d}/(x + ${a}) saat; ${hm(tm)} = ${t} saat. 2) Tənlik: ${d}/x − ${d}/(x + ${a}) = ${t}. 3) Hər tərəfi x(x + ${a}) ifadəsinə vur: ${d * a} = ${t} · x(x + ${a}) → x² + ${a}x − ${C} = 0. 4) D = ${a * a} + ${4 * C} = ${D} = ${sq}²; x = (−${a} ± ${sq})/2 → x = ${x}, x = ${S(-(x + a))} (sürət mənfi ola bilməz — atılır). 5) Yoxla: ${d}/${x} − ${d}/${x + a} = ${F(d / x)} − ${F(d / (x + a))} = ${t} ✓. Cavab: ${x} km/saat. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -164,7 +251,7 @@
     game = Oyun.mount({
       key: "kesr-rasional-tenlikler", title: "Kəsr-rasional tənliklər", fenn: "riyaziyyat", link: "dersler/kesr-rasional-tenlikler.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2 (onluq 2.5 də olar). Kök yoxdursa və köklərin sayı soruşulursa — 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["dmq", "xetti", "xetti", "kvadrat", "kvadrat", "kenar", "kenar", "kenar", "hesab", "hesab"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
