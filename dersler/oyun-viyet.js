@@ -152,6 +152,103 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (not dividing by a, the sign of b, a forgotten 2x₁x₂, (x₁ − x₂)² instead of x₁² + x₂², ...).
+  const { ae, again, num } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const nb = x => x < 0 ? "(" + num(x) + ")" : num(x);
+  const par = s => s.includes(" ") ? "(" + s + ")" : s;
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: x₁ + x₂ + x₁x₂ with a ≠ 1 (a forgotten, sign of b)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([2, 3, 4, 5, 6, 8]), b = nz(-15, 15), c = nz(-15, 15); if (b * b - 4 * a * c <= 0) return null;
+      const s = -b / a, p = c / a, R = s + p, w = [-s + p, s + c, -b + c, s - p];
+      if (![s, p, R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `${eq(a, b, c)} tənliyinin kökləri x₁ və x₂-dir. x₁ + x₂ + x₁·x₂ ifadəsinin qiymətini tapın.`,
+        solution: `${Dchk(a, b, c)} x₁ + x₂ = −b/a = ${num(s)}, x₁·x₂ = c/a = ${num(p)}. Cəm: ${num(s)} + ${nb(p)} = ${num(R)}. Tələlər: b-nin işarəsini dəyişməmək (${num(-s + p)}), hasildə a-ya bölməyi unutmaq (${num(s + c)}), hasili çıxmaq (${num(s - p)}), cəmi və hasili a-ya bölmədən −b + c götürmək (${num(-b + c)}).` });
+    }) },
+    // 2. closed: x₁² + x₂²
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, 1, 2, 3, 4]), b = nz(-12, 12), c = nz(-12, 12); if (b * b - 4 * a * c <= 0) return null;
+      const s = -b / a, p = c / a, R = s * s - 2 * p, w = [s * s + 2 * p, s * s - 4 * p, s * s, a === 1 ? s * s - p : b * b - 2 * c];
+      if (![s, p, R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `${eq(a, b, c)} tənliyinin kökləri x₁ və x₂-dir. x₁² + x₂² ifadəsinin qiymətini tapın.`,
+        solution: `${Dchk(a, b, c)} x₁ + x₂ = ${num(s)}, x₁·x₂ = ${num(p)}. x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = ${nb(s)}² − 2·${nb(p)} = ${num(R)}. Tələlər: 2x₁x₂-ni çıxmamaq (${num(s * s)}), toplamaq (${num(s * s + 2 * p)}), (x₁ − x₂)² düsturu (${num(s * s - 4 * p)}), ${a === 1 ? "x₁x₂-nin əmsalı 2-ni unudub (x₁ + x₂)² − x₁x₂ yazmaq" : "cəmi və hasili a-ya bölməmək, yəni b² − 2c"} (${num(a === 1 ? s * s - p : b * b - 2 * c)}).` });
+    }) },
+    // 3. closed: 1/x₁ + 1/x₂ = S/P
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, 1, 2, 4, 5]), b = nz(-12, 12), c = nz(-20, 20); if (b * b - 4 * a * c <= 0) return null;
+      const s = -b / a, p = c / a, R = s / p, w = [p / s, -s / p, 1 / s, 1 / p];
+      if (![s, p, R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `${eq(a, b, c)} tənliyinin kökləri x₁ və x₂-dir. 1/x₁ + 1/x₂ ifadəsinin qiymətini tapın.`,
+        solution: `${Dchk(a, b, c)} 1/x₁ + 1/x₂ = (x₁ + x₂)/(x₁x₂) = ${num(s)} : ${nb(p)} = ${num(R)}. Tələlər: cəmlə hasili tərsinə yazmaq (${num(p / s)}), işarəni dəyişmək (${num(-R)}), cəmin tərsini (${num(1 / s)}) və ya hasilin tərsini (${num(1 / p)}) götürmək.` });
+    }) },
+    // 4. closed: the other root when one root is known (a ≠ 1)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([2, 3, 4, 5]), r1 = nz(-6, 6), k = nz(-8, 8), c = r1 * k, b = -a * r1 - k, R = k / a;
+      if (!nice(c / a) || !nice(R)) return null;
+      const w = [k, c * r1 / a, -R, c / a - r1];
+      if (![R, ...w].every(x => nice(x))) return null;
+      return mc(ae(R, w), { text: `${poly([[a, "x²"], [b, "x"], [c, ""]])} = 0 tənliyinin kökü x₁ = ${S(r1)}. İkinci kökü tapın.`,
+        solution: `Hasil: x₁·x₂ = c/a = ${num(c / a)} → x₂ = ${num(c / a)} : ${P(r1)} = ${num(R)}. (Yoxlama: x₁ + x₂ = ${num(r1 + R)} = −b/a.) Tələlər: a-ya bölməyi unutmaq (${S(c)} : ${P(r1)} = ${S(k)}), bölmək əvəzinə vurmaq (${num(c * r1 / a)}), cəmlə hasili qarışdırmaq (${num(c / a)} − ${P(r1)} = ${num(c / a - r1)}), cavabın işarəsini dəyişmək (${num(-R)}).` });
+    }) },
+    // 5. closed: the equation whose roots are x₁ + t and x₂ + t
+    { tip: "qapali", gen: () => again(() => {
+      const p = nz(-8, 8), q = nz(-8, 8), t = pick([-3, -2, -1, 1, 2, 3]); if (p * p - 4 * q <= 0) return null;
+      const s = -p, S2 = s + 2 * t, P2 = q + t * s + t * t; if (!S2 || !P2) return null;
+      const tx = n => (n > 0 ? "+ " : "− ") + Math.abs(n), fm = ([b, c]) => eq(1, b, c);
+      return mc(ae([-S2, P2], [[-(s + t), P2], [-S2, q + t * t], [S2, P2], [p, P2]], fm), {
+        text: `x₁ və x₂ ədədləri ${eq(1, p, q)} tənliyinin kökləridir. Kökləri x₁ ${tx(t)} və x₂ ${tx(t)} olan gətirilmiş kvadrat tənliyi seçin.`,
+        solution: `x₁ + x₂ = ${S(s)}, x₁·x₂ = ${S(q)}. Yeni köklərin cəmi: ${S(s)} ${t > 0 ? "+" : "−"} 2·${Math.abs(t)} = ${S(S2)}. Yeni hasil: x₁x₂ + t(x₁ + x₂) + t² = ${S(q)} ${s * t < 0 ? "−" : "+"} ${Math.abs(s * t)} + ${t * t} = ${S(P2)}. Tənlik: ${eq(1, -S2, P2)}. Tələlər: t-ni cəmə bir dəfə əlavə etmək, hasildə t(x₁ + x₂)-ni unutmaq, cəmin işarəsini dəyişməmək, cəmi dəyişməmək.` });
+    }) },
+    // 6. closed: parameter, two different real roots (D > 0, not D ≥ 0)
+    { tip: "qapali", gen: () => again(() => {
+      const p = pick([-14, -12, -10, -8, -6, -4, 4, 6, 8, 10, 12, 14]), q4 = p * p / 4, R = q4 - 1, w = [q4, p * p, p * p / 2, q4 + 1];
+      return mc(ae(R, w), { text: `${poly([[1, "x²"], [p, "x"]])} + m = 0 tənliyinin iki müxtəlif həqiqi kökü olması üçün m-in ən böyük tam qiyməti neçədir?`,
+        solution: `İki müxtəlif kök: D > 0. D = ${P(p)}² − 4m = ${p * p} − 4m > 0 → m < ${q4}. Ən böyük tam qiymət: ${R} (m = ${q4} olduqda D = 0, kök təkdir). Tələlər: bərabərliyi daxil etmək (${q4}), D = ${P(p)}² − 4m-də 4-ü unutmaq (${p * p}), D = ${P(p)}² − 2m yazmaq (${p * p / 2}), “kök yoxdur” halını həll etmək (${q4 + 1}).` });
+    }) },
+    // 7. coded: (x₁ − x₂)² without the roots (irrational roots allowed)
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([1, 1, 2, 3]), b = nz(-9, 9), c = nz(-9, 9), d = b * b - 4 * a * c; if (d <= 0 || d % (a * a)) return null;
+      const R = d / (a * a);
+      return { text: `${eq(a, b, c)} tənliyinin kökləri x₁ və x₂-dir. (x₁ − x₂)² ifadəsinin qiymətini tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `${Dchk(a, b, c)} x₁ + x₂ = ${frac(-b, a)}, x₁·x₂ = ${frac(c, a)}. (x₁ − x₂)² = (x₁ + x₂)² − 4x₁x₂ = ${Pf(-b, a)}² − 4·${Pf(c, a)} = ${R}.` };
+    }) },
+    // 8. coded: rectangle by perimeter and diagonal → area, or the longer side (x + y and x² + y² → xy → x, y)
+    { tip: "kod", gen: () => again(() => {
+      const [a0, b0, d0] = pick([[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25], [20, 21, 29], [9, 40, 41], [12, 35, 37], [11, 60, 61], [16, 63, 65]]), k = pick([1, 1, 2, 3, 4]), a = a0 * k, b = b0 * k, d = d0 * k;
+      if (a + b > 80) return null;
+      const base = `Tərəflər x və y: x + y = ${a + b} (yarım perimetr), x² + y² = ${d}² = ${d * d}. (x + y)² = x² + y² + 2xy → ${(a + b) ** 2} = ${d * d} + 2xy → xy = ${a * b}.`;
+      if (Math.random() < .5) return { text: `Düzbucaqlının perimetri ${2 * (a + b)} sm, diaqonalı ${d} sm-dir. Düzbucaqlının sahəsi neçə kvadrat santimetrdir?`,
+        answer: a * b, show: String(a * b), tol: 1e-6, unit: "sm²", solution: `${base} Sahə xy-dir: ${a * b} sm². (Tərəflər ${a} və ${b}.) Tələ: perimetri tərəflərin cəmi saymaq.` };
+      return { text: `Düzbucaqlının perimetri ${2 * (a + b)} sm, diaqonalı ${d} sm-dir. Düzbucaqlının böyük tərəfi neçə santimetrdir?`,
+        answer: b, show: String(b), tol: 1e-6, unit: "sm", solution: `${base} Tərəflər t² − ${a + b}t + ${a * b} = 0 tənliyinin kökləridir: D = ${(a + b) ** 2} − ${4 * a * b} = ${(b - a) ** 2}, t = ${a} və ${b}. Böyük tərəf ${b} sm. Tələ: perimetri tərəflərin cəmi saymaq.` };
+    }) },
+    // 9. coded: reciprocal roots, a parameter in a and c
+    { tip: "kod", gen: () => again(() => {
+      const m0 = rnd(2, 7), al = pick([-1, 0, 1, 2]), k = pick([2, 3]), be = al - (k - 1) * m0, a0 = m0 + al; if (a0 < 1) return null;
+      const B = 2 * a0 + rnd(1, 6), sg = pick([-1, 1]);
+      const aS = poly([[1, "m"], [al, ""]]), cS = poly([[k, "m"], [be, ""]]);
+      return { text: `${par(aS)}x² ${sg < 0 ? "−" : "+"} ${B}x + ${par(cS)} = 0 tənliyinin kökləri qarşılıqlı tərs ədədlərdirsə, m-in qiymətini tapın.`,
+        answer: m0, show: String(m0), tol: 1e-6,
+        solution: `Qarşılıqlı tərs ədədlər: x₁·x₂ = 1. Viyet: x₁·x₂ = c/a → ${par(cS)} : ${par(aS)} = 1 → ${cS} = ${aS} → ${k - 1 === 1 ? "" : k - 1}m = ${al - be} → m = ${m0}. Yoxlama: a = c = ${a0}, D = ${B}² − 4·${a0}² = ${B * B - 4 * a0 * a0} > 0 ✓.` };
+    }) },
+    // 10. written: x₁² + x₂² = T with a parameter in b and c; one of the two m values fails D > 0
+    { tip: "yazili", gen: () => again(() => {
+      const q0 = pick([-3, -2, -1, 1, 2, 3]), m1 = rnd(-9, 9), m2 = 2 * q0 - m1, c = nz(-12, 12), T = -m1 * m2 - 2 * c; if (m1 === m2 || T < 3) return null;
+      const Dm = m => m * m - 4 * (q0 * m + c), ok = [m1, m2].filter(m => Dm(m) > 0), bad = [m1, m2].filter(m => Dm(m) < 0);
+      if (ok.length !== 1 || bad.length !== 1 || ok[0] <= 0) return null;
+      const m = ok[0], x = bad[0], cS = q0 < 0 ? poly([[c, ""], [q0, "m"]]) : poly([[q0, "m"], [c, ""]]);
+      return { text: `x² − mx + (${cS}) = 0 tənliyinin kökləri üçün x₁² + x₂² = ${T} şərti ödənir. m-in qiymətini tapın.`,
+        answer: m, show: String(m), tol: 1e-6,
+        solution: `1) Viyet: x₁ + x₂ = m, x₁·x₂ = ${cS}. 2) x₁² + x₂² = m² − 2(${cS}) = ${T} → ${poly([[1, "m²"], [-2 * q0, "m"], [-(2 * c + T), ""]])} = 0 → m = ${S(Math.min(m1, m2))} və ya m = ${S(Math.max(m1, m2))}. 3) D yoxlaması: D = m² − 4(${cS}). m = ${S(x)}: D = ${S(Dm(x))} < 0, kök yoxdur, atılır. m = ${S(m)}: D = ${S(Dm(m))} > 0 ✓. Cavab: m = ${m}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -161,7 +258,7 @@
     game = Oyun.mount({
       key: "viyet", title: "Viyet teoremi", fenn: "riyaziyyat", link: "dersler/viyet.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2 (onluq 2.5 də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["cem-hasil", "cem-hasil", "terse", "ifade", "ifade", "ifade", "bir-kok", "parametr", "parametr", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

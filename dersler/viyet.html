@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tərs teorem</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Köklərin ifadələri</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Parametr</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -263,6 +264,87 @@ Sonda: D ≥ 0? Deyilsə, o qiymət atılır.</div></div>
         <li><span class="m">x² + bx + 15 = 0</span>, bir kök −3. b = ? <span class="ans">x₂ = 15 : (−3) = −5. Cəm −8 = −b → b = 8.</span></li>
         <li><span class="m">x² − 10x + q = 0</span>, <span class="m">x₁ = 4x₂</span>. q = ? <span class="ans">5x₂ = 10 → x₂ = 2, x₁ = 8 → q = 16.</span></li>
         <li><span class="m">x² − 2x + q = 0</span>, <span class="m">x₁² + x₂² = 10</span>. q = ? <span class="ans">4 − 2q = 10 → q = −3. D = 4 + 12 = 16 ≥ 0 ✓</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: Viyet teoremi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Viyet teoremi kvadrat tənlik mövzusunun içindədir və buraxılışda üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: <span class="m">b</span>-nin işarəsi, <span class="m">a</span>-ya bölməyi unutmaq, <span class="m">x₁² + x₂²</span>-də <span class="m">2x₁x₂</span>-ni unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız müsbət ədəd: sahə, parametrin qiyməti və s. Onluq kəsr vergüllə yazılır.</li>
+        <li><b>Yazılı.</b> Parametrli məsələ: həll kağızda addım-addım yazılır, sonda <b>D yoxlaması</b> olur. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>tənlik gətirilmişdirmi?</b> Yəni <span class="m">a = 1</span>-dirmi. Deyilsə, cəm də, hasil də <span class="m">a</span>-ya bölünür. İkinci sual: <b>kökləri tapmaq lazımdırmı?</b> Əksər suallarda yox — ifadəni cəm və hasillə yaz.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">2x² − 6x + 3 = 0</span> tənliyinin kökləri <span class="m">x₁</span> və <span class="m">x₂</span>-dir. <span class="m">x₁² + x₂²</span> ifadəsinin qiymətini tapın.</p>
+        <ol class="imt-opts"><li>3</li><li>6</li><li>9</li><li>12</li><li>30</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">D = 36 − 24 = 12 &gt; 0, köklər var.
+x₁ + x₂ = −b/a = 6/2 = 3,   x₁·x₂ = c/a = 3/2
+x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = 3² − 2 · 3/2 = 9 − 3 = 6
+Cavab: B) 6</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 3</b> — düsturu qarışdırmaq: <span class="m">(x₁ + x₂)² − 4x₁x₂ = 9 − 6</span>. Bu, <span class="m">(x₁ − x₂)²</span>-dir, kvadratlar cəmi deyil.</li>
+        <li><b>C) 9</b> — <span class="m">2x₁x₂</span>-ni çıxmağı unutmaq: yalnız <span class="m">(x₁ + x₂)²</span>.</li>
+        <li><b>D) 12</b> — çıxmaq əvəzinə toplamaq: <span class="m">9 + 2 · 3/2</span>.</li>
+        <li><b>E) 30</b> — <span class="m">a</span>-ya bölməyi unutmaq: <span class="m">x₁ + x₂ = 6</span>, <span class="m">x₁x₂ = 3</span> götürüb <span class="m">6² − 2 · 3</span>. Ən çox edilən səhv budur: <span class="m">a ≠ 1</span> olanda cəm də, hasil də <span class="m">a</span>-ya bölünür.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Düzbucaqlının perimetri 34 sm, diaqonalı 13 sm-dir. Düzbucaqlının sahəsi neçə kvadrat santimetrdir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Tərəflər x və y olsun.
+x + y = 34 : 2 = 17
+x² + y² = 13² = 169   (Pifaqor)
+(x + y)² = x² + y² + 2xy  ⇒  289 = 169 + 2xy  ⇒  xy = 60
+Cavab: 60</div>
+      <p>Tərəfləri tapmaq lazım deyil: sahə məhz <span class="m">xy</span>-dir, cəm və hasil — Viyet dilidir (tərəflər 5 və 12). Tələ: perimetri tərəflərin cəmi sanmaq (<span class="m">x + y = 34</span>) — cəm <b>yarım perimetrdir</b>, 17. Kodlaşdırmada yalnız <b>60</b> yazılır, vahid yazılmır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">x² − mx + (4 − m) = 0</span> tənliyinin kökləri üçün <span class="m">x₁² + x₂² = 7</span> şərti ödənir. <span class="m">m</span>-in qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Viyet: x₁ + x₂ = m,   x₁·x₂ = 4 − m.
+2) x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = m² − 2(4 − m) = m² + 2m − 8.
+   Şərt: m² + 2m − 8 = 7  ⇒  m² + 2m − 15 = 0
+   ⇒  m = 3  və ya  m = −5.
+3) D yoxlaması: D = m² − 4(4 − m) = m² + 4m − 16.
+   m = 3:   D = 9 + 12 − 16 = 5 &gt; 0  ✓ (kök var)
+   m = −5:  D = 25 − 20 − 16 = −11 &lt; 0  ✗ (kök yoxdur, atılır)
+Cavab: m = 3.</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>Viyet</b> (1-ci addım), <b>şərtin tənliyə çevrilməsi</b> (2-ci addım), <b>parametrin tapılması</b>, <b>D yoxlaması</b> (3-cü addım). Həll yazılmadan yalnız "3" yazılarsa, bal verilmir. <span class="m">m = −5</span> qiymətini də yazan şagird D-ni yoxlamayıb: bu qiymətdə tənliyin kökü yoxdur, "köklərin kvadratları cəmi" mənasızdır.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>a-ya bölməmək.</b> <span class="m">2x² − 6x + 3 = 0</span> üçün <span class="m">x₁ + x₂ = 6</span> yox, <span class="m">6/2 = 3</span>; <span class="m">x₁x₂ = 3/2</span>.</li>
+        <li><b>b-nin işarəsi.</b> Cəm <span class="m">−b/a</span>-dır; hasil <span class="m">c/a</span> — işarəsi dəyişmir.</li>
+        <li><b>Düstur qarışıqlığı.</b> <span class="m">x₁² + x₂² = S² − 2P</span>, <span class="m">(x₁ − x₂)² = S² − 4P</span>, <span class="m">1/x₁ + 1/x₂ = S/P</span> (cəm üstdə, hasil altda; <span class="m">P ≠ 0</span>, yəni <span class="m">c ≠ 0</span> olmalıdır, çünki kök sıfır ola bilməz). Burada <span class="m">S = x₁ + x₂</span>, <span class="m">P = x₁x₂</span>.</li>
+        <li><b>Perimetr ≠ cəm.</b> Düzbucaqlıda tərəflərin cəmi yarım perimetrdir.</li>
+        <li><b>D yoxlamasını atmaq.</b> Parametr tapılandan sonra D-ni yoxla. "İki müxtəlif kök" üçün <span class="m">D &gt; 0</span> (bərabərlik yox), "kökləri var" üçün <span class="m">D ≥ 0</span>.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır; onluq kəsr vergüllə (<span class="m">0,75</span>), vahid yazılmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">ax² + bx + c = 0:   S = −b/a,   P = c/a   (şərt: a ≠ 0, D ≥ 0)
+x₁² + x₂² = S² − 2P
+(x₁ − x₂)² = S² − 4P
+1/x₁ + 1/x₂ = S/P   (yalnız P ≠ 0, yəni c ≠ 0 olduqda)
+Parametr tapıldı → D-ni yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">2x² + 8x − 6 = 0</span> tənliyinin kökləri <span class="m">x₁, x₂</span>-dir. <span class="m">x₁² + x₂²</span> = ? <span class="ans">S = −8/2 = −4, P = −6/2 = −3. 16 − 2 · (−3) = 22. (a-ya bölməsən 76 alınar.)</span></li>
+        <li><span class="m">x² − 4x + m = 0</span> tənliyinin kökü olmaması üçün <span class="m">m</span> nə olmalıdır? <span class="ans">D = 16 − 4m &lt; 0 ⇒ m &gt; 4.</span></li>
+        <li><span class="m">x² − 6x + 8 = 0</span> üçün <span class="m">1/x₁ + 1/x₂</span> = ? Kodlaşdırmada necə yazılır? <span class="ans">S/P = 6/8 = 0,75. Kodda: 0,75.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
