@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İntervallar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Rasional</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Cüt köklər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -321,6 +322,93 @@ D = 0 — tam kvadrat.</div></div>
         <li><span class="m">(x − 1)²(x − 4) &lt; 0</span>. Ən böyük tam həll? <span class="ans">x &lt; 4 və x ≠ 1. Cavab: 3.</span></li>
         <li><span class="m">x² + 4x + 4 ≤ 0</span>. Neçə həll? <span class="ans">(x + 2)² ≤ 0 → yalnız x = −2. Bir həll.</span></li>
         <li><span class="m">√(x² − 4x)</span> ifadəsinin DMQ-suna neçə tam ədəd daxil deyil? <span class="ans">x(x − 4) ≥ 0 → (−∞; 0] ∪ [4; +∞). Daxil olmayanlar: 1; 2; 3 — 3 ədəd.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: intervallar üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bərabərsizliklər buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: "arası" ilə "kənarı" qarışdırmaq, cüt dərəcəli vuruqda işarəni dəyişmək, məxrəcin sıfırını daxil etmək. "Mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Cavab ədəddir: "neçə tam həll var", "tam həllərin cəmi", "aralığın uzunluğu". Vahid yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: sıfırlar, işarələr, həll çoxluğu, cavab. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>vuruqlardan hansı cütdür, hansı məxrəcdədir?</b> Tələlərin çoxu məhz bu iki yerdədir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">(x − 1)²(x + 3)(x − 4) &lt; 0</span> bərabərsizliyinin həll çoxluğunu tapın.</p>
+        <ol class="imt-opts"><li>(−3; 4)</li><li>(−∞; −3) ∪ (4; +∞)</li><li>(−3; 1) ∪ (1; 4)</li><li>(−∞; −3) ∪ (1; 4)</li><li>[−3; 1) ∪ (1; 4]</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sıfırlar: −3; 1 (cüt dərəcəli); 4.
+Ən sağda (x &gt; 4): hər vuruq müsbət → +.
+Soldan sağa:  (−∞; −3): +,  (−3; 1): −,  (1; 4): −,  (4; +∞): +
+(1-də işarə dəyişmir.)
+"&lt; 0" → mənfi intervallar: (−3; 1) və (1; 4).
+1 nöqtəsində ifadə 0-dır, "&lt; 0" ödənmir — çıxarılır.
+Cavab: C) (−3; 1) ∪ (1; 4)</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) (−3; 4)</b> — cüt vuruğun sıfırı olan 1 nöqtəsini çıxmağı unutmaq.</li>
+        <li><b>B) (−∞; −3) ∪ (4; +∞)</b> — müsbət intervalları götürmək, yəni işarəni tərs oxumaq.</li>
+        <li><b>D) (−∞; −3) ∪ (1; 4)</b> — cüt dərəcəli vuruqda da işarəni növbələmək: ən sağdan +, −, +, − gedir.</li>
+        <li><b>E) [−3; 1) ∪ (1; 4]</b> — sərt bərabərsizlikdə sərhəd nöqtələrini dolu götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">(x − 4)²(x² − 4x − 5) &lt; 0</span> bərabərsizliyinin neçə tam həlli var?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">x² − 4x − 5 = (x − 5)(x + 1)
+(x − 4)²(x − 5)(x + 1) &lt; 0
+Sıfırlar: −1; 4 (cüt); 5.  Ən sağda +.
+Soldan sağa: +  −  −  +   (4-də işarə dəyişmir)
+Həll: (−1; 4) ∪ (4; 5)
+Tam ədədlər: 0; 1; 2; 3
+Cavab: 4</div>
+      <p>Kodlaşdırmada yalnız <b>4</b> yazılır. Tələ: (−1; 5) intervalında 0; 1; 2; 3; 4 — beş tam ədəd var, amma 4-də ifadə 0-dır, "&lt; 0" ödənmir. 5 yazmaq ən çox edilən səhvdir. Kökləri daxil etmək (−1-dən 5-ə qədər 7 ədəd) isə "≤" ilə qarışdırmaqdır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">(x + 3)(x − 1)²/(x − 6) ≤ 0</span> bərabərsizliyini həll edin və tam həllərinin cəmini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Surətin sıfırları: x = −3; x = 1 (cüt dərəcəli).
+   Məxrəcin sıfırı: x = 6 — həmişə boş nöqtə (0-a bölmək olmaz).
+2) Ən sağda (x &gt; 6) hamısı müsbət: +.
+   Sağdan sola:  (6; +∞): +,  (1; 6): −,  (−3; 1): −,  (−∞; −3): +
+3) "≤ 0" → mənfi intervallar və surətin sıfırları:
+   [−3; 6).  x = 1 bu intervalın içindədir və orada ifadə 0 olduğundan ödənir.
+4) Tam həllər: −3; −2; −1; 0; 1; 2; 3; 4; 5.
+   Cəm: (−3 + 5) · 9 : 2 = 9.
+Cavab: 9</div>
+      <p>Yoxlayan bunlara bal verir: <b>sıfırların düz tapılması</b> (1-ci addım), <b>işarələr və çoxluq</b> (2–3-cü addım), <b>tam ədədlərin cəmi</b> (4-cü addım). Yalnız "9" yazmaq bu balların çoxunu itirir. Tipik səhvlər: 6-nı daxil etmək (cəm 15), 1-i çıxmaq (cəm 8).</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Cüt dərəcəli vuruq.</b> <span class="m">(x − a)²</span> vuruğunda işarə dəyişmir. "&lt;" və "&gt;" olanda a nöqtəsi (ifadə orada 0-dır) çıxarılır; "≤", "≥" olanda a ifadənin təyin olduğu nöqtə kimi cavaba daxildir. Bu nöqtə mənfi/müsbət intervalın içində olmaya da bilər — onda təcrid olunmuş tək nöqtə kimi əlavə olunur.</li>
+        <li><b>Məxrəcin sıfırı</b> heç vaxt cavaba daxil olmur — "≥", "≤" olanda belə. Məxrəcə vurmaq olmaz, çünki işarəsi məlum deyil.</li>
+        <li><b>Mənfi baş əmsal.</b> <span class="m">(2 − x)</span> kimi vuruq ən sağda mənfidir. Ən sağdakı işarəni bütün vuruqların işarələrinin hasili kimi tap: <span class="m">(2 − x)(3 − x)</span>-də iki mənfi var, hasil +. Ya da hər vuruğu <span class="m">(x − a)</span> şəklinə sal (mənfi vuruq sayı qədər −1 çıxar, işarəni çevir).</li>
+        <li><b>Təyin oblastı.</b> <span class="m">√</span> altı ≥ 0, məxrəc ≠ 0. Tam ədədləri sayanda kökləri daxil et, məxrəcin sıfırını çıx.</li>
+        <li><b>"Neçə tam ədəd"</b> — sərhədlərin dolu/boş olması cavabı dəyişir. Say: <span class="m">b − a + 1</span> (a və b tam ədəd olub hər ikisi daxildirsə), sonra çıxarılan nöqtələri çıx.</li>
+        <li><b>Kodlaşdırmada</b> yalnız ədəd yazılır: aralıq, işarə, vahid yox.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1) hər şeyi sola keç, vuruqlara ayır
+2) sıfırlar: surət — dolu (≥, ≤), məxrəc — həmişə boş
+3) ən sağda işarə, sola növbələ; cüt vuruqda növbələmə
+4) cüt vuruğun nöqtəsi: ">" , "&lt;" — çıxar; "≤", "≥" — surətin sıfırıdırsa daxil et (intervalın xaricindədirsə, tək nöqtə kimi əlavə et); məxrəcin sıfırı heç vaxt daxil edilmir
+5) tam ədədləri say, çıxarılanları unutma</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x − 2)²(x + 1) ≤ 0</span>. Həll çoxluğunu yaz. <span class="ans">Sıfırlar −1; 2 (cüt). Ən sağda +, işarələr: −1-dən solda −, sağda +. Həll: (−∞; −1] ∪ {2}. 2 tək nöqtə kimi daxildir.</span></li>
+        <li><span class="m">(x − 3)/(x + 2) ≥ 0</span>. Həll çoxluğu? <span class="ans">(−∞; −2) ∪ [3; +∞). −2 məxrəcdədir — boş, 3 surətdədir — dolu.</span></li>
+        <li><span class="m">√(x² − 9)</span> ifadəsinin təyin oblastına daxil olmayan tam ədədlərin sayı? Yalnız −5-dən 5-ə qədər olanlara bax. <span class="ans">x² − 9 ≥ 0 → x ≤ −3 və ya x ≥ 3. Daxil olmayanlar: −2; −1; 0; 1; 2 — 5 ədəd.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

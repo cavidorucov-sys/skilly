@@ -215,6 +215,127 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (wrong region, mirrored roots, closed/open ends, sign flip, dropped even factor,
+  // multiplying by the denominator). Interval options come from the same `analyze` engine, with one flaw built in.
+  const { ae, again, num } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const id = s => s;
+  const FLIP = { "<": ">", ">": "<", "≤": "≥", "≥": "≤" }, TOG = { "<": "≤", "≤": "<", ">": "≥", "≥": ">" };
+  const lin = r => fTxt({ k: 1, p: r, m: 1 });
+  const sub = (a, b) => b < 0 ? `${a} + ${-b}` : `${a} − ${b}`, par = v => String(v).startsWith("−") ? `(${v})` : v;
+  const arith = (lo, hi) => (lo + hi) * (hi - lo + 1) / 2;
+  const sumOf = (lo, hi, skip = []) => { let s = 0; for (let x = lo; x <= hi; x++) if (!skip.includes(x)) s += x; return s; };
+  // number line with one ray: ● closed end, ○ open end (set B of the question)
+  function ray(k, dir, closed) {
+    const W = 300, y = 44, x0 = 150;
+    const g = sv("svg", { viewBox: `0 0 ${W} 80`, class: "oy-svg", role: "img", "aria-label": `Ədəd oxunda ${S(k)} nöqtəsindən ${dir === "right" ? "sağa" : "sola"} şüa; nöqtə ${closed ? "dolu (daxildir)" : "boş (daxil deyil)"}` });
+    g.append(sv("line", { x1: dir === "right" ? x0 : 8, y1: y, x2: dir === "right" ? W - 8 : x0, y2: y, stroke: "var(--accent)", "stroke-width": 9, opacity: .45 }));
+    g.append(sv("line", { x1: 6, y1: y, x2: W - 6, y2: y, stroke: "var(--ink)", "stroke-width": 2 }));
+    g.append(sv("path", { d: `M${W - 6} ${y}l-9 -5v10z`, fill: "var(--ink)" }));
+    g.append(sv("circle", { cx: x0, cy: y, r: 5.5, fill: closed ? "var(--accent)" : "var(--sheet)", stroke: "var(--accent)", "stroke-width": 2.5 }));
+    g.append(sv("text", { x: x0, y: y + 26, "text-anchor": "middle", class: "oy-lbl" }, S(k)));
+    g.append(sv("text", { x: dir === "right" ? 225 : 75, y: y - 14, "text-anchor": "middle", class: "oy-lbl" }, "B"));
+    return g;
+  }
+  function rect(label) {
+    const g = sv("svg", { viewBox: "0 0 300 130", class: "oy-svg", role: "img", "aria-label": "Düzbucaqlı sahə: bir tərəfi x, o biri " + label });
+    g.append(sv("rect", { x: 60, y: 22, width: 170, height: 76, fill: "var(--accent-soft)", stroke: "var(--accent)", "stroke-width": 2.5 }));
+    g.append(sv("text", { x: 145, y: 116, "text-anchor": "middle", class: "oy-lbl" }, "x"));
+    g.append(sv("text", { x: 240, y: 64, class: "oy-lbl" }, label));
+    return g;
+  }
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. quadratic inequality → solution set (a < 0 sometimes)
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -8, 8).sort((a, b) => a - b); if (r2 - r1 < 2 || r1 + r2 === 0) return null;
+      const lead = pick([1, 1, -1]), op = pick(OPS), F = [{ k: 1, p: r1, m: 1 }, { k: 1, p: r2, m: 1 }];
+      const txt = poly([[lead, "x²"], [-lead * (r1 + r2), "x"], [lead * r1 * r2, ""]]), pos = poly([[1, "x²"], [-(r1 + r2), "x"], [r1 * r2, ""]]);
+      const A = analyze(F, lead, op), w1 = analyze(F, -lead, op).union, w2 = analyze(F.map(f => ({ ...f, p: -f.p })), lead, op).union,
+        w3 = analyze(F, lead, TOG[op]).union, w4 = analyze([F[1]], lead, op).union;
+      return mc(ae(A.union, [w1, w2, w3, w4], id), { text: `${txt} ${op} 0 bərabərsizliyinin həll çoxluğunu tapın.`,
+        solution: `${lead < 0 ? `−1-ə vururuq, işarə dönür: ${pos} ${FLIP[op]} 0. ` : ""}Köklər: x₁ = ${S(r1)}, x₂ = ${S(r2)} (Viyet: cəm ${S(r1 + r2)}, hasil ${S(r1 * r2)}). a > 0 olduğundan parabola köklər arasında mənfi, kənarlarda müsbətdir. Həll: ${A.union}. Tələlər: ${w1} — "arası/kənar" qarışdırılıb${lead < 0 ? " (−1-ə vurub işarəni çevirməmək)" : ""}; ${w2} — kökləri əks işarə ilə yazmaq; ${w3} — "${op}" üçün sərhəd nöqtələrini səhv götürmək; ${w4} — yalnız bir kökü nəzərə almaq.` });
+    }) },
+    // 2. a/(x − b) ≥ c: move to one side. Trap options: multiplying by the denominator, closed denominator zero, lost sign, sign pattern flipped
+    { tip: "qapali", gen: () => again(() => {
+      const b = nz(-6, 6), c = pick([1, 2, 3, 4]), t = rnd(1, 6), a = c * t, op = pick(["≥", "≤"]); if (t === 2 * b) return null;
+      const den = { k: 1, p: b, m: 1, d: true }, mk = p => [{ k: -c, p, m: 1 }, den], F = mk(-(a + c * b));
+      const A = analyze(F, 1, op), w1 = op === "≥" ? `(−∞; ${S(b + t)}]` : `[${S(b + t)}; +∞)`,
+        w2 = analyze([F[0], { ...den, d: false }], 1, op).union, w3 = analyze(mk(-(a - c * b)), 1, op).union, w4 = analyze(F, -1, op).union;
+      return mc(ae(A.union, [w1, w2, w3, w4], id), { text: `${a}/${lin(b)} ${op} ${c} bərabərsizliyinin həll çoxluğunu tapın.`,
+        solution: `Məxrəcə vurmaq olmaz (işarəsi məlum deyil). Sola keçiririk: ${a}/${lin(b)} − ${c} ${op} 0 → (${poly([[-c, "x"], [a + c * b, ""]])})/${lin(b)} ${op} 0. Surətin sıfırı x = ${S(b + t)} (dolu), məxrəcin sıfırı x = ${S(b)} (həmişə boş). Ən sağda: (−)/(+) = −. Həll: ${A.union}. Tələlər: ${w1} — məxrəcə vurmaq; ${w2} — məxrəcin sıfırını daxil etmək; ${w3} — mötərizəni açanda işarəni itirmək (surətin sıfırı ${S(t - b)} çıxır); ${w4} — ən sağ intervalda işarəni səhv qoymaq.` });
+    }) },
+    // 3. even factor: (x − a)² · (±(x − b)) op 0 — the isolated point / the excluded point
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b] = distinct(2, -6, 6), op = pick(OPS), s = pick([1, 1, -1]);
+      const F = [{ k: 1, p: a, m: 2 }, { k: s, p: s * b, m: 1 }];
+      const A = analyze(F, 1, op), w2 = analyze([F[1]], 1, op).union; if (A.union === w2) return null;
+      const w1 = analyze([{ ...F[0], m: 1 }, F[1]], 1, op).union, w3 = analyze(F, 1, TOG[op]).union, w4 = analyze(F, -1, op).union;
+      return mc(ae(A.union, [w1, w2, w3, w4], id), { text: `${expr(F)} ${op} 0 bərabərsizliyini həll edin.`,
+        solution: `Sıfırlar: ${S(a)} (cüt dərəcəli vuruq — işarə dəyişmir) və ${S(b)}. ${s < 0 ? `${fTxt(F[1])} vuruğunda x mənfi işarə ilə gəlir — ən sağ intervalda işarə mənfidir. ` : "Ən sağ intervalda işarə +. "}İşarələr soldan sağa: ${signTxt(A)}. Həll: ${A.union}. Tələlər: ${w1} — cüt vuruqda işarəni növbələmək; ${w2} — cüt vuruğu atıb ${S(a)} nöqtəsini unutmaq (tək nöqtə və ya çıxarılan nöqtə); ${w3} — "${op}" üçün sərhədi səhv götürmək; ${w4} — ən sağ intervalda işarəni səhv qoymaq.` });
+    }) },
+    // 4. domain of √(quadratic)/(x − m): sum of the integers in it
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, m, r2] = distinct(3, -7, 8).sort((a, b) => a - b); if (m === 0 || r2 - r1 < 4 || r2 - r1 > 12 || -m < r1 || -m > r2 || -m === m) return null;
+      const S0 = arith(r1, r2), R = S0 - m, rad = poly([[-1, "x²"], [r1 + r2, "x"], [-r1 * r2, ""]]);
+      return mc(ae(R, [S0, R - r1 - r2, S0 - r1 - r2, R + 2 * m]), { text: `y = √(${rad})/${lin(m)} funksiyasının təyin oblastına daxil olan bütün tam ədədlərin cəmini tapın.`,
+        solution: `Kök altı ≥ 0: ${rad} ≥ 0 → ${lin(r1)}(${S(r2)} − x) ≥ 0 → ${S(r1)} ≤ x ≤ ${S(r2)} (sərhədlər daxil: kökün altı 0 ola bilər). Məxrəc ≠ 0: x ≠ ${S(m)}. Tam ədədlərin cəmi: ${S(r1)} + … + ${S(r2)} = ${S(S0)}, ${S(m)} çıxılır: ${sub(S(S0), m)} = ${S(R)}. Tələlər: ${S(S0)} — məxrəcin sıfırını çıxmamaq; ${S(R - r1 - r2)} — kök altı > 0 sanıb hər iki sərhəd kökünü (${S(r1)} və ${S(r2)}) çıxmaq; ${S(S0 - r1 - r2)} — həm kökləri çıxmaq, həm məxrəci unutmaq; ${S(R + 2 * m)} — məxrəcin sıfırını x = ${S(-m)} götürmək.` });
+    }) },
+    // 5. number line: set B is drawn, set A is a quadratic; sum of the integers of A ∩ B
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, k, r2] = distinct(3, -8, 8).sort((a, b) => a - b); if (r2 - r1 < 5 || r2 - r1 > 13) return null;
+      const aCl = pick([true, true, false]), bCl = pick([true, false]), dir = pick(["right", "left"]);
+      const inA = (x, cl) => cl ? x >= r1 && x <= r2 : x > r1 && x < r2;
+      const inB = (x, d, cl) => d === "right" ? (cl ? x >= k : x > k) : (cl ? x <= k : x < k);
+      const total = (cl, d, bcl, useB = true) => { let s = 0; for (let x = r1 - 1; x <= r2 + 1; x++) if (inA(x, cl) && (!useB || inB(x, d, bcl))) s += x; return s; };
+      const R = total(aCl, dir, bCl); let cnt = 0; for (let x = r1; x <= r2; x++) if (inA(x, aCl) && inB(x, dir, bCl)) cnt++; if (cnt < 3 || R === 0) return null;
+      const other = dir === "right" ? "left" : "right", op = aCl ? "≤" : "<";
+      const w = [total(aCl, dir, bCl, false), total(aCl, other, bCl), total(aCl, dir, !bCl), total(!aCl, dir, bCl)];
+      const A = poly([[1, "x²"], [-(r1 + r2), "x"], [r1 * r2, ""]]);
+      return mc(ae(R, w), { text: `A çoxluğu ${A} ${op} 0 bərabərsizliyinin həllər çoxluğudur. B çoxluğu ədəd oxunda göstərilib. A ∩ B çoxluğunun bütün tam ədədlərinin cəmini tapın.`, svg: ray(k, dir, bCl),
+        solution: `A: köklər ${S(r1)} və ${S(r2)}, parabola köklər arasında mənfi → A = ${aCl ? "[" : "("}${S(r1)}; ${S(r2)}${aCl ? "]" : ")"}. B: ${S(k)} nöqtəsindən ${dir === "right" ? "sağa" : "sola"}, nöqtə ${bCl ? "dolu (daxildir)" : "boş (daxil deyil)"}. Kəsişmə ${dir === "right" ? `${bCl ? "[" : "("}${S(k)}; ${S(r2)}${aCl ? "]" : ")"}` : `${aCl ? "[" : "("}${S(r1)}; ${S(k)}${bCl ? "]" : ")"}`}, tam ədədlərin cəmi ${S(R)}. Tələlər: ${S(w[0])} — B şərtini nəzərə almamaq; ${S(w[1])} — şüanın istiqamətini tərsinə oxumaq; ${S(w[2])} — ${S(k)} nöqtəsinin dolu/boş olduğunu səhv oxumaq; ${S(w[3])} — A-nın sərhəd köklərini səhv götürmək.` });
+    }) },
+    // 6. real-life: fence and area (x between the roots)
+    { tip: "qapali", gen: () => again(() => {
+      const r1 = rnd(1, 9), r2 = rnd(r1 + 3, 16); if (r2 - r1 > 10) return null;
+      const s = r1 + r2, P = r1 * r2, d = r2 - r1, R = d + 1;
+      return mc(ae(R, [d, d - 1, s, r2]), { text: `Uzunluğu ${2 * s} m olan hasarla düzbucaqlı sahə əhatə olunur. Sahənin bir tərəfi x m, o biri ${s} − x m-dir (x — tam ədəd). Sahə ən azı ${P} m² olmalıdır. x neçə müxtəlif qiymət ala bilər?`, svg: rect(`${s} − x`),
+        solution: `x(${s} − x) ≥ ${P} → x² − ${s}x + ${P} ≤ 0 → (x − ${r1})(x − ${r2}) ≤ 0 → ${r1} ≤ x ≤ ${r2}, kökləri daxil (sahə ≥). Tam qiymətlər ${r1}; …; ${r2}: ${r2} − ${r1} + 1 = ${R}. Tələlər: ${d} — "sonuncu − birinci" (uzunluq) yazmaq; ${d - 1} — kökləri çıxmaq (sanki "> ${P}"); ${s} — yarımperimetri cavab yazmaq; ${r2} — "neçə" əvəzinə ən böyük qiyməti yazmaq.` });
+    }) },
+    // 7. coded: parameter — the trinomial is always positive
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([1, 2, 3, 4]), s = rnd(2, 8), c = a * s * s, R = 4 * a * s - 1, lim = 2 * a * s;
+      return { text: `${a === 1 ? "" : a}x² + px + ${c} > 0 bərabərsizliyi p-nin neçə tam qiymətində bütün həqiqi x üçün doğrudur?`,
+        answer: R, show: String(R), tol: 1e-6, solution: `a = ${a} > 0, ona görə üçhədli bütün x üçün müsbət olmalıdır, yəni D < 0: D = p² − 4 · ${a} · ${c} = p² − ${4 * a * c} < 0 → −${lim} < p < ${lim}. D = 0 olmaz (onda üçhədli bir nöqtədə sıfır olur, "> 0" pozulur). Tam qiymətlər −${lim - 1}; …; ${lim - 1}: ${R} ədəd.` };
+    }) },
+    // 8. coded: length of the solution interval, a ≠ 1 (fractional root)
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([2, 4, 5]), p = nz(-9, 9), r = rnd(-6, 6); if (p % a === 0) return null;
+      const len = Math.abs(a * r - p) / a, txt = poly([[a, "x²"], [-(p + a * r), "x"], [p * r, ""]]), D = (p + a * r) ** 2 - 4 * a * p * r;
+      return { text: `${txt} ≤ 0 bərabərsizliyinin həll aralığının uzunluğunu tapın. (Cavabı onluq kəsr kimi yazın.)`,
+        answer: len, show: num(len), tol: 1e-6, solution: `D = ${D} = ${Math.sqrt(D)}², köklər: x = ${frac(p, a)} və x = ${S(r)} (${txt} = (${a}x ${p < 0 ? "+" : "−"} ${Math.abs(p)})(x ${r < 0 ? "+" : "−"} ${Math.abs(r)})). a > 0 → həll köklər arasındadır. Uzunluq: ${p / a > r ? `${frac(p, a)} − ${par(S(r))}` : `${S(r)} − ${par(frac(p, a))}`} = ${num(len)}.` };
+    }) },
+    // 9. coded: even factor — the point inside the interval is removed (strict) or an isolated point is added (non-strict)
+    { tip: "kod", gen: () => again(() => {
+      const [a, b, c] = distinct(3, -7, 7), lo = Math.min(b, c), hi = Math.max(b, c), op = pick(["<", "≤"]);
+      if (hi - lo < 4 || hi - lo > 12 || (op === "<") !== (a > lo && a < hi)) return null;
+      const F = [{ k: 1, p: a, m: 2 }, { k: 1, p: b, m: 1 }, { k: 1, p: c, m: 1 }].sort(() => Math.random() - .5), A = analyze(F, 1, op); if (!A.bounded) return null;
+      return { text: `${expr(F)} ${op} 0 bərabərsizliyinin neçə tam həlli var?`, answer: A.ints.length, show: String(A.ints.length), tol: 1e-6,
+        solution: `${engineSol(A)} ${op === "<" ? `${S(a)} nöqtəsi (${S(lo)}; ${S(hi)}) intervalının içindədir, amma orada ifadə 0-dır, "< 0" ödənmir — çıxarılır.` : `${S(lo)} ≤ x ≤ ${S(hi)} və ayrıca tək nöqtə x = ${S(a)} (orada ifadə 0, "≤ 0" ödənir).`} Tam həllər: ${list(A.ints)} — cəmi ${A.ints.length} ədəd.` };
+    }) },
+    // 10. written: (quadratic)/(x − m)² op 0 — the denominator zero is cut out of [x1; x2]; sum of the integer solutions
+    { tip: "yazili", gen: () => again(() => {
+      const [r1, m, r2] = distinct(3, -6, 9).sort((a, b) => a - b), op = pick(["≤", "<"]); if (r2 - r1 < 5 || r2 - r1 > 12) return null;
+      const lo = op === "≤" ? r1 : r1 + 1, hi = op === "≤" ? r2 : r2 - 1, R = sumOf(lo, hi, [m]); if (R <= 0) return null;
+      const num2 = poly([[1, "x²"], [-(r1 + r2), "x"], [r1 * r2, ""]]);
+      return { text: `(${num2})/${lin(m)}² ${op} 0 bərabərsizliyini həll edin və tam həllərinin cəmini tapın.`, answer: R, show: String(R), tol: 1e-6,
+        solution: `1) Surət: ${num2} = 0 → x₁ = ${S(r1)}, x₂ = ${S(r2)} (Viyet: cəm ${S(r1 + r2)}, hasil ${S(r1 * r2)}), yəni ${lin(r1)}${lin(r2)}. 2) Məxrəc ${lin(m)}² ≥ 0 həmişə, işarəyə təsir etmir, amma x ≠ ${S(m)}. 3) Kəsr ${op} 0 ⇔ ${lin(r1)}${lin(r2)} ${op} 0 və x ≠ ${S(m)}: ${S(r1)} ${op} x ${op} ${S(r2)}, ${S(m)} çıxılır. 4) Tam həllər: ${S(lo)}; …; ${S(hi)}, ${S(m)} istisna. Cəm: ${sub(S(sumOf(lo, hi)), m)} = ${S(R)}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -224,7 +345,7 @@
     game = Oyun.mount({
       key: "intervallar-usulu", title: "Kvadrat və rasional bərabərsizliklər", fenn: "riyaziyyat", link: "dersler/intervallar-usulu.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 7/2 (onluq 3.5 də olar). Tam həll yoxdursa və say soruşulursa — 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["kvadrat", "kvadrat", "isare", "isare", "rasional", "rasional", "cut", "cut", "sxem", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
