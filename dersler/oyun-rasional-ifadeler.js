@@ -194,6 +194,109 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (adding numerators and denominators, wrong sign in a factor, forgetting a forbidden
+  // value of the divisor, not flipping the right fraction, the lost middle term 2·a·(1/a), ...).
+  const { ae, again } = Oyun;
+  const D = x => { const r = Math.round(x * 1e4) / 1e4; return (r < 0 ? "−" : "") + String(Math.abs(r)).replace(".", ","); };
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const id = x => x;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. reducing a fraction (answers are expressions)
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 9), k = rnd(2, 6), dn = poly([[k, "x²"], [-k * p, "x"]]);
+      const R = `(x + ${p})/(${k}x)`;
+      const w = [`(x − ${p})/(${k}x)`, `−(x + ${p})/(${k}x)`, `(x + ${p})/${k}`, `(x + ${p})/x`];
+      return mc(ae(R, w, id), { text: `(x² − ${p * p})/(${dn}) kəsrini ixtisar edin.`,
+        solution: `Surət: x² − ${p * p} = (x − ${p})(x + ${p}). Məxrəc: ${dn} = ${k}x(x − ${p}). Ortaq vuruq (x − ${p}) ixtisar olunur: ${R}. İlkin ifadənin DMQ-si: x ≠ 0, x ≠ ${p}. Tələlər: kvadratların fərqini (x − ${p})² yazmaq → (x − ${p})/(${k}x); məxrəci ${k}x(${p} − x) yazıb işarəni itirmək → −(x + ${p})/(${k}x); məxrəcdəki x-i və ya ${k} vuruğunu itirmək → (x + ${p})/${k}, (x + ${p})/x.` });
+    }) },
+    // 2. domain of a quotient: the numerator of the divisor is forbidden too
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, s] = distinct(3, -7, 7, [0]), r = -s, a = rnd(1, 9);   // forbidden: p, q, s = −r
+      if ([p, q, s].includes(-a)) return null;   // otherwise the trap "also forbid −a" would not add a new value
+      const R = p + q + s, w = [p + s, p + q, -R, R - a];
+      const xr = poly([[1, "x"], [r, ""]]);
+      return mc(ae(R, w), { text: `(x + ${a})/(${lin(p)}) : (${lin(q)})/(${xr}) ifadəsinin mənası olmayan x qiymətlərinin cəmini tapın.`,
+        solution: `Məxrəclər: ${lin(p)} ≠ 0 → x ≠ ${S(p)}; ${xr} ≠ 0 → x ≠ ${S(s)}. Bölən kəsr sıfır ola bilməz: ${lin(q)} ≠ 0 → x ≠ ${S(q)}. Cəm: ${S(p)} + ${S(q)} + ${S(s)} = ${S(R)}. Tələlər: bölənin surətini unutmaq (${S(p + s)}); çevirəndən sonra surətə keçən ${xr} ifadəsini unutmaq (${S(p + q)}); x − c = 0 tənliyindən x = −c yazmaq (${S(-R)}); birinci kəsrin surətini (x + ${a}) da qadağan saymaq (${S(R - a)}).` });
+    }) },
+    // 3. sum of two fractions with denominators x − p and x + p
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 9), [a, b] = distinct(2, 1, 7), dd = `x² − ${p * p}`;
+      const R = `(${poly([[a + b, "x"], [(a - b) * p, ""]])})/(${dd})`;
+      const w = [`${a + b}/(2x)`, `${a + b}/(${dd})`, `(${poly([[a + b, "x"], [(b - a) * p, ""]])})/(${dd})`, `(${poly([[a + b, "x"], [(a + b) * p, ""]])})/(${dd})`];
+      return mc(ae(R, w, id), { text: `${a}/(x − ${p}) + ${b}/(x + ${p}) cəmini tapın.`,
+        solution: `Ortaq məxrəc (x − ${p})(x + ${p}) = ${dd}. Surət: ${c1(a)}(x + ${p}) + ${c1(b)}(x − ${p}) = ${poly([[a + b, "x"], [(a - b) * p, ""]])}. Cavab: ${R}. Tələlər: surətləri və məxrəcləri ayrıca toplamaq → ${a + b}/(2x); surətlərə əlavə vuruğu yazmamaq → ${a + b}/(${dd}); əlavə vuruqları qarışdırmaq (${a} ədədini x − ${p} ifadəsinə vurmaq) → ${w[2]}; ${c1(b)}(x − ${p}) açanda mənfini itirmək → ${w[3]}.` });
+    }) },
+    // 4. division: multiply by the reciprocal of the divisor
+    { tip: "qapali", gen: () => again(() => {
+      const p = rnd(1, 9), a = rnd(2, 4), m = rnd(2, 5), b = a * m;
+      const R = `${m}x(x − ${p})`;
+      const w = [`${m}x(x + ${p})`, `1/(${m}x(x − ${p}))`, `${m}(x − ${p})`, `x(x − ${p})/${m}`];
+      return mc(ae(R, w, id), { text: `(x² − ${p * p})/(${a}x) : (x + ${p})/(${b}x²) ifadəsini sadələşdirin.`,
+        solution: `Bölmə = tərs kəsrə vurma: (x − ${p})(x + ${p})/(${a}x) · ${b}x²/(x + ${p}) = ${b}x²(x − ${p})/(${a}x) = ${R}. İlkin ifadənin DMQ-si: x ≠ 0, x ≠ −${p}. Tələlər: kvadratların fərqini səhv ayırmaq → ${w[0]}; birinci kəsri çevirmək → ${w[1]}; x²/x ixtisarında x-i itirmək → ${w[2]}; əmsalları tərs bölmək (${a}/${b}) → ${w[3]}.` });
+    }) },
+    // 5. value of a homogeneous fraction from x/y
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b] = distinct(2, 1, 6), m = rnd(1, 5), n = pick([-1, 1]) * rnd(1, 5), k = rnd(1, 5), l = pick([-1, 1]) * rnd(1, 5);
+      if (gcd(a, b) !== 1) return null;
+      const P = [[m * a + n * b, k * a + l * b], [m * b + n * a, k * b + l * a], [m * a + n, k * a + l], [m * a + n * b, k * a - l * b], [k * a + l * b, m * a + n * b]];
+      if (P.some(([u, v]) => v === 0 || u === 0)) return null;
+      const f = P.map(([u, v]) => frac(u, v));
+      const top = poly([[m, "x"], [n, "y"]]), bot = poly([[k, "x"], [l, "y"]]);
+      return mc(ae(f[0], f.slice(1), id), { text: `x/y = ${a}/${b} olarsa, (${top})/(${bot}) kəsrinin qiymətini tapın.`,
+        solution: `x = ${a}t, y = ${b}t götür (t ≠ 0): (${m * a}t ${n < 0 ? "−" : "+"} ${Math.abs(n * b)}t)/(${k * a}t ${l < 0 ? "−" : "+"} ${Math.abs(l * b)}t) = ${eqf(P[0][0], P[0][1])}. Tələlər: nisbəti tərs götürmək (x = ${b}, y = ${a}) → ${f[1]}; y-ə bölüb yalnız x-li həddi ${b} ədədinə vurmaq → ${f[2]}; məxrəcdə ikinci həddin işarəsini tərs götürmək → ${f[3]}; kəsri tərs yazmaq → ${f[4]}.` });
+    }) },
+    // 6. a ± 1/a = m → a² + 1/a² (sometimes written as (a⁴ + 1)/a²)
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(3, 9), plus = Math.random() < .6, sg = plus ? -1 : 1;
+      const R = m * m + 2 * sg, w = [m * m, m * m - 2 * sg, m * m + sg, m + 2 * sg];
+      const ask = Math.random() < .5 ? "a² + 1/a²" : "(a⁴ + 1)/a²";
+      return mc(ae(R, w), { text: `a ${plus ? "+" : "−"} 1/a = ${m} olarsa, ${ask} ifadəsinin qiymətini tapın.`,
+        solution: `${ask === "a² + 1/a²" ? "" : "(a⁴ + 1)/a² = a² + 1/a². "}(a ${plus ? "+" : "−"} 1/a)² = a² ${plus ? "+" : "−"} 2·a·(1/a) + 1/a² = a² + 1/a² ${plus ? "+" : "−"} 2. Deməli, a² + 1/a² = ${m}² ${plus ? "−" : "+"} 2 = ${R}. Tələlər: orta həddi unutmaq (${m * m}); işarəni tərs götürmək (${m * m - 2 * sg}); 2·a·(1/a)-nı 1 saymaq (${m * m + sg}); kvadrata yüksəltməmək (${m + 2 * sg}).` });
+    }) },
+    // 7. coded: simplify, then substitute
+    { tip: "kod", gen: () => again(() => {
+      const p = rnd(1, 6), t = rnd(p + 1, 20), k = pick([2, 3, 4, 5, 6, 8, 10]), R = 4 * p * t / k;
+      if (!nice(R)) return null;
+      return { text: `((x + ${p})/(x − ${p}) − (x − ${p})/(x + ${p})) : ${k}/(x² − ${p * p}) ifadəsinin x = ${t} olduqda qiymətini tapın.`,
+        answer: R, show: D(R), tol: 1e-6,
+        solution: `Mötərizə: ((x + ${p})² − (x − ${p})²)/(x² − ${p * p}) = ${4 * p}x/(x² − ${p * p}). Bölürük: ${4 * p}x/(x² − ${p * p}) · (x² − ${p * p})/${k} = ${4 * p % k === 0 ? (4 * p / k) + "x" : frac(4 * p, k).replace("/", "x/")}. x = ${t}: ${4 * p}·${t}/${k} = ${D(R)}.` };
+    }) },
+    // 8. coded: average speed or joint work
+    { tip: "kod", gen: () => again(() => {
+      if (Math.random() < .5) {
+        const [a, b, v] = pick(SPEEDS), sw = Math.random() < .5;
+        return { text: `Avtomobil A-dan B-yə ${sw ? b : a} km/saat, eyni yolla B-dən A-ya ${sw ? a : b} km/saat sürətlə qayıtdı. Avtomobilin bütün yoldakı orta sürətini (km/saat) tapın.`,
+          answer: v, show: String(v), tol: 1e-6, unit: "km/saat",
+          solution: `Yol s olsun. Vaxt: s/${a} + s/${b} = (${a + b}/${a * b})·s. Orta sürət = 2s : ((${a + b}/${a * b})·s) = 2·${a}·${b}/${a + b} = ${v}. Tələ: sürətlərin adi ortası (${D((a + b) / 2)}).` };
+      }
+      const [a, b, v] = pick(WORK);
+      return { text: `Birinci boru boş hovuzu ${a} saata, ikinci boru ${b} saata doldurur (hər birinin sərfi sabitdir). İki boru boş hovuzda eyni anda açılarsa, hovuzu neçə saata doldurar?`,
+        answer: v, show: String(v), tol: 1e-6, unit: "saat",
+        solution: `1 saatda: 1/${a} + 1/${b} = ${a + b}/${a * b} = ${frac(a + b, a * b)} hovuz. Bütün hovuz: 1 : ${frac(a + b, a * b)} = ${v} saat. Tələ: vaxtların ortası və ya cəmi.` };
+    }) },
+    // 9. coded: simplify first, then the awkward decimals cancel
+    { tip: "kod", gen: () => again(() => {
+      const A = rnd(11, 99), B = rnd(11, 99); if (A <= B || A % 10 === 0 || B % 10 === 0) return null;
+      const a = A / 10, b = B / 10, minus = Math.random() < .5, R = minus ? (A + B) / 10 : (A - B) / 10;
+      const second = minus ? "(1/b − 1/a)" : "(1/a + 1/b)";
+      return { text: `a = ${D(a)}, b = ${D(b)} olduqda (a/b − b/a) : ${second} ifadəsinin qiymətini tapın.`,
+        answer: R, show: D(R), tol: 1e-6,
+        solution: `a/b − b/a = (a² − b²)/(ab); ${second} = ${minus ? "(a − b)" : "(a + b)"}/(ab). Bölürük: (a − b)(a + b)/(ab) · ab/${minus ? "(a − b)" : "(a + b)"} = ${minus ? "a + b" : "a − b"} = ${D(a)} ${minus ? "+" : "−"} ${D(b)} = ${D(R)}. Əvvəl sadələşdirmək hesabı asanlaşdırır.` };
+    }) },
+    // 10. written: simplify step by step and evaluate
+    { tip: "yazili", gen: () => again(() => {
+      const p = rnd(1, 6), t = rnd(p + 1, 30), R = 2 * t / (t - p);
+      if (!nice(R)) return null;
+      return { text: `((x + ${p})/(x² − ${kx(p)}) − (x − ${p})/(x² + ${kx(p)})) : ${2 * p}/(x² + ${kx(p)}) ifadəsini sadələşdirin və x = ${t} olduqda qiymətini tapın.`,
+        answer: R, show: D(R), tol: 1e-6,
+        solution: `1) Vuruqlara ayır: x² − ${kx(p)} = x(x − ${p}), x² + ${kx(p)} = x(x + ${p}). DMQ: x ≠ 0, x ≠ ±${p}. 2) Ortaq məxrəc x(x − ${p})(x + ${p}): ((x + ${p})² − (x − ${p})²)/(x(x² − ${p * p})) = ${4 * p}x/(x(x² − ${p * p})) = ${4 * p}/(x² − ${p * p}). 3) Bölürük: ${4 * p}/((x − ${p})(x + ${p})) · x(x + ${p})/${2 * p} = 2x/(x − ${p}). 4) x = ${t} (DMQ-dadır): 2·${t}/(${t} − ${p}) = ${2 * t}/${t - p} = ${D(R)}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -203,7 +306,7 @@
     game = Oyun.mount({
       key: "rasional-ifadeler", title: "Rasional ifadələrin çevrilməsi, DMQ", fenn: "riyaziyyat", link: "dersler/rasional-ifadeler.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/2 (onluq da olar). Qadağan qiymət yoxdursa və say soruşulursa — 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["dmq", "ixtisar", "ixtisar", "topla", "topla", "vur", "vur", "deyer", "deyer", "hesab"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Toplama</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Vurma, bölmə</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sadələşdir, hesabla</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -236,6 +237,89 @@ a² + 1/a² = (a + 1/a)² − 2 = (a − 1/a)² + 2</div></div>
         <li><span class="m">a + 1/a = 3</span>. <span class="m">a² + 1/a²</span> = ? <span class="ans">9 − 2 = 7.</span></li>
         <li><span class="m">x/y = 2</span>. <span class="m">(x + y)/(x − y)</span> = ? <span class="ans">(2 + 1)/(2 − 1) = 3.</span></li>
         <li><span class="m">(1/(x − 1) − 1/(x + 1)) · (x² − 1)</span> = ? <span class="ans">2/(x² − 1) · (x² − 1) = 2 (x ≠ ±1).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: rasional ifadələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Rasional ifadələr buraxılış imtahanında hər il var: ixtisar, toplama, bölmə, DMQ, "sadələşdir və hesabla". Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Variantlar çox vaxt <b>ifadələrdir</b>, və səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəni itirmək, surətləri və məxrəcləri ayrıca toplamaq, bölənin surətini DMQ-da unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd; onluq kəsr vergüllə (məs. 2,5).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan vuruqlara ayırmanı, ortaq məxrəci və ixtisarı görməlidir.</li>
+      </ul>
+      <p>Hər sualda plan eynidir: <b>vuruqlara ayır → DMQ-nı yaz → ortaq məxrəc və ya tərs kəsr → ixtisar → yalnız sonra ədəd qoy.</b></p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">2/(x − 3) + 5/(x + 3)</span> cəmini tapın.</p>
+        <ol class="imt-opts"><li>7/(2x)</li><li>(7x + 9)/(x² − 9)</li><li>(7x − 9)/(x² − 9)</li><li>7/(x² − 9)</li><li>(7x + 21)/(x² − 9)</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Ortaq məxrəc: (x − 3)(x + 3) = x² − 9
+Əlavə vuruqlar: 2/(x − 3) → (x + 3),  5/(x + 3) → (x − 3)
+Surət: 2(x + 3) + 5(x − 3) = 2x + 6 + 5x − 15 = 7x − 9
+Cavab: C) (7x − 9)/(x² − 9)</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 7/(2x)</b> — surətləri ayrıca, məxrəcləri ayrıca toplamaq: <span class="m">(2 + 5)/(x − 3 + x + 3)</span>. Kəsrlər belə toplanmır.</li>
+        <li><b>B) (7x + 9)/(x² − 9)</b> — əlavə vuruqları qarışdırmaq: <span class="m">2(x − 3) + 5(x + 3)</span>. Hər surət <b>öz</b> məxrəcində olmayan vuruğa vurulur.</li>
+        <li><b>D) 7/(x² − 9)</b> — məxrəci ortaq edib surətləri əlavə vuruğa vurmamaq.</li>
+        <li><b>E) (7x + 21)/(x² − 9)</b> — mötərizəni açanda mənfini itirmək: <span class="m">5(x − 3) = 5x + 15</span> yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">a = 3,7</span>, <span class="m">b = 1,2</span> olduqda <span class="m">(a/b − b/a) : (1/a + 1/b)</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">a/b − b/a = (a² − b²)/(ab) = (a − b)(a + b)/(ab)
+1/a + 1/b = (a + b)/(ab)
+Bölmə = tərs kəsrə vurma:
+(a − b)(a + b)/(ab) · ab/(a + b) = a − b
+a − b = 3,7 − 1,2 = 2,5
+Cavab: 2,5</div>
+      <p>Kodlaşdırmada yalnız <b>2,5</b> yazılır. Ədədləri birbaşa qoysan, <span class="m">3,7/1,2</span> kimi çirkin kəsrlərlə uzun hesab alınır və səhv ehtimalı böyükdür. Bu sual məhz "əvvəl sadələşdir" vərdişini yoxlayır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">((x + 2)/(x² − 2x) − (x − 2)/(x² + 2x)) : 4/(x² + 2x)</span> ifadəsini sadələşdirin və <span class="m">x = 6</span> olduqda qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Vuruqlara ayırırıq:
+   x² − 2x = x(x − 2),   x² + 2x = x(x + 2).
+   DMQ: x ≠ 0, x ≠ 2, x ≠ −2.
+2) Mötərizə, ortaq məxrəc x(x − 2)(x + 2):
+   ((x + 2)² − (x − 2)²)/(x(x − 2)(x + 2))
+   = 8x/(x(x − 2)(x + 2)) = 8/((x − 2)(x + 2)).
+3) Bölmə = tərs kəsrə vurma:
+   8/((x − 2)(x + 2)) · x(x + 2)/4 = 2x/(x − 2).
+4) x = 6 DMQ-dadır: 2 · 6/(6 − 2) = 12/4 = 3.
+Cavab: 3.</div>
+      <p>Yoxlayan bunlara bal verir: <b>vuruqlara ayırma</b> (1-ci addım), <b>ortaq məxrəc və surətin sadələşməsi</b> (2-ci addım), <b>bölmənin tərs kəsrə vurma ilə</b> edilməsi və ixtisar (3-cü addım), <b>hesablama və cavab</b>. Həll yazılmadan yalnız "3" yazılsa — bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Surətləri və məxrəcləri ayrıca toplamaq.</b> <span class="m">1/a + 1/b ≠ 2/(a + b)</span>. Əvvəl ortaq məxrəc.</li>
+        <li><b>Mötərizə önündə mənfi.</b> <span class="m">− 5(x − 3) = −5x + 15</span>: mötərizədəki hər hədd işarəsini dəyişir.</li>
+        <li><b>Cəmi ixtisar etmək.</b> <span class="m">(x + 3)/x</span>-də x ixtisar olunmur — yalnız <b>vuruq</b> ixtisar olunur.</li>
+        <li><b>Bölmədə DMQ.</b> <span class="m">A/B : C/D</span>-də <span class="m">B ≠ 0</span>, <span class="m">D ≠ 0</span> və <b>C ≠ 0</b> də olmalıdır (bölən kəsr sıfır ola bilməz).</li>
+        <li><b>Tərs kəsr.</b> Bölmədə yalnız <b>bölən</b> (ikinci) kəsr çevrilir.</li>
+        <li><b>Orta hədd.</b> <span class="m">(a + 1/a)² = a² + 2 + 1/a²</span>: <span class="m">2 · a · (1/a) = 2</span>, unutma.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">plan:     vuruqlara ayır → DMQ → ortaq məxrəc / tərs kəsr → ixtisar → ədəd
+toplama:  surət əlavə vuruğa vurulur, məxrəclər toplanmır
+bölmə:    A/B : C/D = A/B · D/C,  DMQ: B, C, D ≠ 0
+a² + 1/a² = (a + 1/a)² − 2 = (a − 1/a)² + 2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">(x² − 9)/(x² − 3x)</span> kəsrini ixtisar et. <span class="ans">(x − 3)(x + 3)/(x(x − 3)) = (x + 3)/x. DMQ: x ≠ 0, x ≠ 3. x-i burada ixtisar etmək olmaz.</span></li>
+        <li><span class="m">(x + 1)/(x − 2) : (x − 5)/(x + 4)</span> ifadəsinin mənası olmayan x qiymətləri hansılardır? <span class="ans">x = 2, x = −4 (məxrəclər) və x = 5 (bölən kəsrin surəti) — üç qiymət.</span></li>
+        <li><span class="m">x + 1/x = 4</span>. <span class="m">x² + 1/x²</span> = ? <span class="ans">16 − 2 = 14 (16 yox).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
