@@ -247,6 +247,132 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (linear factor for area/volume, median without sorting, ignoring frequencies, ...).
+  const { ae, again } = Oyun;
+  const ok = (x, dp = 2) => isFinite(x) && x > 0 && isNice(x, dp) && !/e/.test(String(+(+x).toPrecision(12)));
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const WORD = { "ha": "hektar", "m²": "kvadrat metr", "sm²": "kvadrat santimetr", "dm²": "kvadrat desimetr", "mm²": "kvadrat millimetr", "km²": "kvadrat kilometr",
+    "m³": "kub metr", "dm³": "kub desimetr", "sm³": "kub santimetr", "l": "litr" };
+  const sfx = w => w + (/hektar$/.test(w) ? "dır" : "dir");          // metrdir, litrdir, hektardır
+  // [big unit, small unit, factor, dimension of the linear unit behind it]
+  const CONV = [["ha", "m²", 1e4, 2, "1 ha = 100 m · 100 m = 10 000 m²"], ["m²", "sm²", 1e4, 2, "1 m = 100 sm, kvadrat: 100² = 10 000"], ["km²", "ha", 100, 2, "1 km² = 1000 m · 1000 m = 1 000 000 m², 1 ha = 10 000 m²"],
+    ["dm²", "sm²", 100, 2, "1 dm = 10 sm, kvadrat: 10² = 100"], ["sm²", "mm²", 100, 2, "1 sm = 10 mm, kvadrat: 10² = 100"], ["m²", "dm²", 100, 2, "1 m = 10 dm, kvadrat: 10² = 100"],
+    ["m³", "l", 1000, 3, "1 l = 1 dm³; 1 m = 10 dm, kub: 10³ = 1000"], ["dm³", "sm³", 1000, 3, "1 dm = 10 sm, kub: 10³ = 1000"], ["m³", "sm³", 1e6, 3, "1 m = 100 sm, kub: 100³ = 1 000 000"],
+    ["l", "sm³", 1000, 3, "1 l = 1 dm³; 1 dm = 10 sm, kub: 10³ = 1000"]];
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. area / volume units: the linear factor is the main trap
+    { tip: "qapali", gen: () => again(() => {
+      const [big, small, f, d, why] = pick(CONV), down = Math.random() < .6, lin = Math.round(f ** (1 / d));
+      const v = down ? rnd(1, 99) / pick([1, 10, 100]) : rnd(1, 99) * pick([1, 10, 100]) / pick([1, 10]);
+      const from = down ? big : small, to = down ? small : big, r = down ? f : 1 / f, R = v * r;
+      const cand = [down ? v * lin : v / lin, down ? v / f : v * f, R * 10, R / 10, R * 100, R / 100].map(x => +x.toPrecision(12));
+      const w = [...new Set(cand.filter(x => Math.abs(x - R) > 1e-12))].slice(0, 4);
+      if (![v, R, ...w].every(x => ok(x, 8))) return null;
+      return mc(ae(R, w, F), { text: `${F(v)} ${from} neçə ${sfx(WORD[to])}?`,
+        solution: `1 ${big} = ${F(f)} ${small} (${why}). `
+          + (down ? `Böyük vahiddən kiçiyə — vururuq: ${F(v)} · ${F(f)} = ${F(R)} ${to}.` : `Kiçik vahiddən böyüyə — bölürük: ${F(v)} : ${F(f)} = ${F(R)} ${to}.`)
+          + ` Tələ: uzunluq vahidinin nisbətini (${lin}) götürmək — ${F(cand[0])}; ${down ? "vurmaq əvəzinə bölmək" : "bölmək əvəzinə vurmaq"} — ${F(cand[1])}.` });
+    }) },
+    // 2. median of an even number of unsorted data
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([6, 8]), a = Array.from({ length: n }, () => rnd(1, 40)), s = sorted(a), R = median(a), mean = sum(a) / n;
+      const un = (a[n / 2 - 1] + a[n / 2]) / 2, w = [un, s[n / 2 - 1], s[n / 2], mean];
+      if (![R, ...w].every(x => ok(x, 2))) return null;
+      return mc(ae(R, w, F), { text: `Məlumatlar: ${list(a)}. Bu məlumatların medianını tapın.`,
+        solution: `Sıra ilə: ${list(s)}. ${n} ədəd (cüt) — ortada iki ədəd: ${s[n / 2 - 1]} və ${s[n / 2]}. Median: (${s[n / 2 - 1]} + ${s[n / 2]}) : 2 = ${F(R)}. `
+          + `Tələlər: sıraya düzmədən ortadakı iki ədədi götürmək (${a[n / 2 - 1]} və ${a[n / 2]} → ${F(un)}); ortadakı iki ədəddən yalnız birini yazmaq (${s[n / 2 - 1]} və ya ${s[n / 2]}); ədədi ortanı (${F(mean)}) yazmaq.` });
+    }) },
+    // 3. bar chart: median or mean of the bars
+    { tip: "qapali", gen: () => again(() => {
+      const cls = Math.random() < .5, labels = cls ? ["9A", "9B", "9C", "9Ç", "9D"] : MONTHS.slice(0, 5).map(m => m[0]);
+      const step = cls ? pick([2, 5]) : pick([5, 10, 20, 50]), vals = labels.map(() => step * rnd(1, 9));
+      const title = cls ? "Siniflərdə əlaçı şagirdlərin sayı" : "Kitabxanadan hər ay götürülən kitablar", unit = cls ? "şagird" : "kitab";
+      const med = median(vals), mean = sum(vals) / 5, range = Math.max(...vals) - Math.min(...vals), askMed = Math.random() < .5;
+      const R = askMed ? med : mean, w = askMed ? [vals[2], mean, range, med / step] : [med, sum(vals), range, mean / step];
+      if (![R, ...w].every(x => ok(x, 1))) return null;
+      const read = labels.map((l, i) => `${l} — ${vals[i]}`).join(", ");
+      return mc(ae(R, w, F), { text: `Sütunlu diaqramda ${title.charAt(0).toLowerCase() + title.slice(1)} göstərilib (şaquli oxda — ${unit} sayı). Bu göstəricilərin ${askMed ? "medianını" : "ədədi ortasını"} tapın.`,
+        svg: chart(labels, vals, step, "bar", title),
+        solution: `Bir bölgü — ${step}. Oxuyuruq: ${read}. ` + (askMed
+          ? `Sıra ilə: ${list(sorted(vals))}; ortadakı (3-cü) — ${F(med)}. Tələlər: diaqramda ortadakı sütunu sıraya düzmədən götürmək (${vals[2]}); ədədi orta (${F(mean)}); ən böyük fərq (${range}); bölgünü 1 sanmaq (${F(med / step)}).`
+          : `Cəm ${sum(vals)}, ${sum(vals)} : 5 = ${F(mean)}. Tələlər: 5-ə bölməyi unutmaq (${sum(vals)}); median (${F(med)}); ən böyük fərq (${range}); bölgünü 1 sanmaq (${F(mean / step)}).`) });
+    }) },
+    // 4. frequency table: the mean must be weighted by the frequencies
+    { tip: "qapali", gen: () => again(() => {
+      const [title, vals] = pick([["Qiymət (bal)", [2, 3, 4, 5]], ["Ayaqqabı ölçüsü", [36, 37, 38, 39, 40]], ["Ailədə uşaq sayı", [0, 1, 2, 3, 4]]]);
+      const cnt = vals.map(() => rnd(1, 9)), data = vals.flatMap((v, i) => Array(cnt[i]).fill(v)), N = data.length, k = vals.length;
+      const R = sum(data) / N, md = mode(data); if (md === null) return null;
+      const w = [sum(vals) / k, sum(data) / k, median(data), md];
+      if (![R, ...w].every(x => ok(x, 2) || x === 0) || R === 0) return null;
+      const row = (lab, arr) => h("tr", {}, h("th", {}, lab), ...arr.map(v => h("td", {}, String(v))));
+      const text = h("div", {}, h("p", {}, `Cədvəldə hər qiymətin neçə dəfə rast gəldiyi (tezlik) göstərilib. Məlumatların ədədi ortasını tapın.`),
+        h("div", { class: "tbl" }, h("table", {}, row(title, vals), row("Tezlik", cnt))));
+      return mc(ae(R, w, F), { text,
+        solution: `Cəm: ${vals.map((v, i) => v + " · " + cnt[i]).join(" + ")} = ${sum(data)}. Məlumatların sayı — tezliklərin cəmi: ${N}. ${sum(data)} : ${N} = ${F(R)}. `
+          + `Tələlər: tezlikləri nəzərə almadan qiymətlərin ortası (${F(sum(vals) / k)}); cəmi ${N} yerinə ${k}-ə bölmək (${F(sum(data) / k)}); median (${F(median(data))}) və ya moda (${md}).` });
+    }) },
+    // 5. one number removed: the sums, not the means
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(5, 12), B = rnd(5, 40), A = B + rnd(1, 5), x = n * A - (n - 1) * B;
+      const w = [n * (A - B), A - B, (n - 1) * B, n * A];
+      return mc(ae(x, w), { text: `${n} ədədin ədədi ortası ${A} ədədinə bərabərdir. Bu ədədlərdən biri silindikdən sonra qalanların ədədi ortası ${B} oldu. Silinən ədədi tapın.`,
+        solution: `Əvvəlki cəm: ${n} · ${A} = ${n * A}. Qalan ${n - 1} ədədin cəmi: ${n - 1} · ${B} = ${(n - 1) * B}. Silinən: ${n * A} − ${(n - 1) * B} = ${x}. `
+          + `Tələlər: ikinci cəmdə də ${n} götürmək (${n} · (${A} − ${B}) = ${n * (A - B)}); ortaların fərqi (${A - B}); cəmlərdən birini cavab yazmaq (${(n - 1) * B} və ya ${n * A}).` });
+    }) },
+    // 6. pie chart with degrees: a sector is deg/360 of the whole
+    { tip: "qapali", gen: () => again(() => {
+      const [title, names] = pick([["Şagirdlərin məktəbə gəlmə üsulu", ["Avtobus", "Metro", "Piyada", "Maşın"]], ["Sevimli idman növü", ["Futbol", "Voleybol", "Şahmat", "Üzgüçülük"]], ["Kitab janrları", ["Roman", "Hekayə", "Şeir", "Elmi"]]]);
+      const u = [2, 2, 2, 2]; for (let t = 0; t < 12; t++) u[rnd(0, 3)]++;
+      const deg = u.map(x => x * 18), N = rnd(2, 20) * 20, i = rnd(0, 3), R = N * deg[i] / 360;
+      const w = [deg[i], N * deg[i] / 100, deg[i] / 3.6, N - R];
+      if (![R, ...w].every(x => ok(x, 1))) return null;
+      return mc(ae(R, w, F), { text: `Dairəvi diaqramda ${N} nəfərlik sorğunun nəticəsi — “${title}” göstərilib; sektorların bucaqları dərəcə ilə yazılıb. “${names[i]}” sektoruna neçə nəfər düşür?`,
+        svg: pie(names.map((nm, t) => `${nm} — ${deg[t]}°`), u.map(x => x * 5), title),
+        solution: `Bütün dairə 360° = ${N} nəfər. “${names[i]}”: ${deg[i]}° → ${N} · ${deg[i]}/360 = ${F(R)} nəfər. `
+          + `Tələlər: dərəcəni say kimi yazmaq (${deg[i]}); dərəcəni faiz sanmaq (${N} · ${deg[i]}/100 = ${F(N * deg[i] / 100)}); faizi cavab yazmaq (${deg[i]} : 3,6 = ${F(deg[i] / 3.6)}); qalanları saymaq (${F(N - R)}).` });
+    }) },
+    // 7. coded: line chart — mean or median temperature
+    { tip: "kod", gen: () => again(() => {
+      const n = rnd(5, 7), labels = DAYS.slice(0, n).map(d => d[0]), vals = labels.map(() => 2 * rnd(2, 10));
+      if (new Set(vals).size < 4) return null;
+      const askMed = Math.random() < .4, R = askMed ? median(vals) : sum(vals) / n; if (!ok(R, 1)) return null;
+      const title = "Həftə ərzində günorta temperaturu, °C", read = DAYS.slice(0, n).map((d, i) => `${d[1]} ${vals[i]}`).join(", ");
+      return { text: `Xətti diaqramda ${n} gün ərzində günorta temperaturu (°C) göstərilib. Bu günlərdə temperaturun ${askMed ? "medianını" : "ədədi ortasını"} tapın.`,
+        svg: chart(labels, vals, 2, "line", title), answer: R, show: F(R), tol: 1e-6, unit: "°C",
+        solution: `Bir bölgü — 2°C. Oxuyuruq: ${read}. ` + (askMed
+          ? `Sıra ilə: ${list(sorted(vals))}; ${n % 2 ? `ortadakı — ${F(R)}` : `ortadakı iki: ${sorted(vals)[n / 2 - 1]} və ${sorted(vals)[n / 2]}, (${sorted(vals)[n / 2 - 1]} + ${sorted(vals)[n / 2]}) : 2 = ${F(R)}`}.`
+          : `Cəm ${sum(vals)}, ${sum(vals)} : ${n} = ${F(R)}.`) + " Kodlaşdırmada vahid yazılmır, onluq kəsr vergüllə." };
+    }) },
+    // 8. coded: tank in mixed units, filling time
+    { tip: "kod", gen: () => again(() => {
+      const a10 = rnd(6, 20), b = rnd(3, 9), c = rnd(2, 8) * 10, V = a10 * b * c / 10, q = pick([4, 5, 6, 8, 10, 12, 15, 20, 25, 30]), t = V / q;
+      if (!ok(t, 1) || t < 2) return null;
+      return { text: `Düzbucaqlı paralelepiped formalı boş çənin uzunluğu ${F(a10 / 10)} m, eni ${b} dm, hündürlüyü ${c} sm-dir. Çənə dəqiqədə ${q} litr su axır (su itkisi yoxdur). Çən neçə dəqiqəyə tam dolar?`,
+        answer: t, show: F(t), tol: 1e-6, unit: "dəq",
+        solution: `Hamısını dm-ə çeviririk: ${F(a10 / 10)} m = ${a10} dm, ${c} sm = ${c / 10} dm. Həcm: ${a10} · ${b} · ${c / 10} = ${V} dm³ = ${V} l (1 l = 1 dm³). Vaxt: ${V} : ${q} = ${F(t)} dəq. Tələ: vahidləri eyniləşdirmədən vurmaq.` };
+    }) },
+    // 9. coded: weighted mean of two groups — find the size of the second group
+    { tip: "kod", gen: () => again(() => {
+      const n1 = rnd(6, 20), m1 = rnd(70, 95), M = m1 - rnd(2, 12), m2 = M - rnd(2, 15), n2 = n1 * (m1 - M) / (M - m2);
+      if (!Number.isInteger(n2) || n2 < 3 || n2 > 40 || n2 === n1) return null;
+      return { text: `Birinci qrupda ${n1} şagird var, onların testdə orta balı ${m1} olub. İkinci qrupun orta balı ${m2} olub. İki qrupun birlikdə orta balı ${M} oldu. İkinci qrupda neçə şagird var?`,
+        answer: n2, show: String(n2), tol: 1e-6, unit: "şagird",
+        solution: `İkinci qrupda x şagird: ${n1} · ${m1} + x · ${m2} = ${M} · (${n1} + x). ${n1 * m1} + ${m2}x = ${n1 * M} + ${M}x, ${n1 * m1 - n1 * M} = ${M - m2}x, x = ${n2}. Yoxlama: (${n1 * m1} + ${n2 * m2}) : ${n1 + n2} = ${M}. Tələ: ortaların adi ortası — qruplardakı şagirdlərin sayı fərqlidir.` };
+    }) },
+    // 10. written: five numbers from mean, median, mode and range
+    { tip: "yazili", gen: () => again(() => {
+      const c = rnd(8, 30), m = c + rnd(1, 8), a = rnd(1, c - 2), b = rnd(a + 1, c - 1), S = a + b + c + 2 * m;
+      if (S % 5) return null;
+      const M = S / 5, Rg = m - a;
+      return { text: `Beş natural ədədin ədədi ortası ${M}, medianı ${c} ədədinə bərabərdir. Bu ədədlərin yeganə modası ${m}, ən böyük fərqi (ən böyük ilə ən kiçik ədədin fərqi) ${Rg} ədədinə bərabərdir. Bu ədədlərdən ikinci ən kiçiyini tapın.`,
+        answer: b, show: String(b), tol: 1e-6,
+        solution: `1) Ədədləri sıraya düzək: a ≤ b ≤ c ≤ d ≤ e; median — ortadakı: c = ${c}. 2) Moda ${m} ən azı iki dəfə rast gəlir və ${m} > ${c}, ona görə yalnız d və e ola bilər: d = e = ${m}. 3) Ən böyük fərq: e − a = ${Rg} ⇒ a = ${m} − ${Rg} = ${a}. 4) Cəm: 5 · ${M} = ${S}; b = ${S} − ${a} − ${c} − ${m} − ${m} = ${b}. 5) Yoxlama: ${a}; ${b}; ${c}; ${m}; ${m} — orta ${M}, median ${c}, moda yalnız ${m} ✓. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -256,7 +382,7 @@
     game = Oyun.mount({
       key: "statistika", title: "Ölçü vahidləri və statistika", fenn: "riyaziyyat", link: "dersler/statistika.html",
       format: "Cavab ədəddir: tam 12, onluq 2,5 (və ya 2.5), çox kiçik ədəd 0,035. Vahidi yazma — o, xananın yanında göstərilib.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["vahid", "sahe-hecm", "sahe-hecm", "orta", "orta", "median-moda", "median-moda", "diaqram", "diaqram", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
