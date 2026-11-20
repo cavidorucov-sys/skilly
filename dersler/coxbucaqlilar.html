@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Xarici bucaqlar</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Düzgün çoxbucaqlı</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>R və r</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -367,6 +368,134 @@ Altıbucaqlı: R = a, r = a√3/2.</div></div>
         <li>Kvadratın tərəfi 10. Ona xaricdən çəkilmiş çevrənin radiusu? <span class="ans">10√2/2 = 5√2.</span></li>
         <li>Düzgün üçbucağa daxilən çəkilmiş çevrənin radiusu 2. R və a? <span class="ans">R = 4, a = 4√3.</span></li>
         <li>Radiusu 7 olan çevrəyə daxilən çəkilmiş düzgün altıbucaqlının perimetri? <span class="ans">6 · 7 = 42.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (20 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: çoxbucaqlılar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Çoxbucaqlılar mövzusu üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: diaqonalların sayını 2-yə bölməmək, <span class="m">(n − 2) · 180°</span> əvəzinə <span class="m">n · 180°</span> yazmaq, <span class="m">R</span> ilə <span class="m">r</span>-i qarışdırmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Cavab ədəddir; ən sadə formada yaz (<span class="m">3/2</span>, <span class="m">6/4</span> yox).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Şəkil çoxbucaqlı məsələlərinin əsasıdır: bucaqlar və uzunluqlar şəkildə yazılır. Əvvəl şəkildən <b>nə verilib, nə axtarılır</b> — onu ayır. Sonra soruş: <b>bu, daxili bucaqdır, yoxsa xarici?</b> və <b>R-dir, yoxsa r?</b> Tələlərin çoxu buradadır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Şəkildə tərəfi 6 sm olan düzgün altıbucaqlı <span class="m">ABCDEF</span> verilib. <span class="m">AC</span> diaqonalının uzunluğunu (sm) tapın.</p>
+        <div class="fig"><svg viewBox="0 0 280 200" class="oy-svg" role="img" aria-label="Düzgün altıbucaqlı ABCDEF, tərəfi 6 sm, AC diaqonalı çəkilib">
+        <polygon points="200.6,65 140,30 79.4,65 79.4,135 140,170 200.6,135" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="200.6" y1="65" x2="79.4" y2="65" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+        <text x="176.8" y="41.2" text-anchor="middle" class="oy-lbl">6 sm</text>
+        <text x="212.7" y="63" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">A</text>
+        <text x="140" y="21" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">B</text>
+        <text x="67.3" y="63" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">C</text>
+        <text x="67.3" y="147" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">D</text>
+        <text x="140" y="189" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">E</text>
+        <text x="212.7" y="147" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">F</text>
+        </svg></div>
+        <ol class="imt-opts"><li>6</li><li>6√2</li><li>6√3</li><li>12</li><li>3√3</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">ABC üçbucağında AB = BC = 6, ∠B = 120°.
+B-dən AC-yə hündürlük çəkirik: AC-nin yarısı
+  6 · sin 60° = 6 · √3/2 = 3√3
+AC = 2 · 3√3 = 6√3
+Cavab: C) 6√3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 6</b> — diaqonalı tərəfə bərabər saymaq. Altıbucaqlıda yalnız mərkəzdən təpəyə qədər məsafə tərəfə bərabərdir (<span class="m">R = a</span>).</li>
+        <li><b>B) 6√2</b> — kvadratın diaqonalı ilə qarışdırmaq. Kvadratda <span class="m">a√2</span>, altıbucaqlının <span class="m">AC</span> diaqonalında <span class="m">a√3</span> alınır, çünki bucaq 90° yox, 120°-dir.</li>
+        <li><b>D) 12</b> — <span class="m">AD</span> diaqonalıdır (ən uzun diaqonal, <span class="m">2R = 2a</span>). Sual isə <span class="m">AC</span> soruşur.</li>
+        <li><b>E) 3√3</b> — yarım diaqonaldır (həll zamanı alınan aralıq nəticə) və ya <span class="m">r = a√3/2</span> ilə qarışdırmaq. Sonda 2-yə vurmağı unutma.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Şəkildə qabarıq beşbucaqlı <span class="m">ABCDE</span> verilib. <span class="m">A</span> təpəsindən başqa bütün təpələrdə xarici bucaqlar göstərilib. <span class="m">A</span> təpəsindəki daxili bucağı (dərəcə ilə) tapın.</p>
+        <div class="fig"><svg viewBox="0 0 280 200" class="oy-svg" role="img" aria-label="Qabarıq beşbucaqlı ABCDE, B, C, D və E təpələrində xarici bucaqlar 90°, 75°, 65°, 80°">
+        <polygon points="110.3,162.1 208.1,162.1 208.1,79.8 97.5,50.2 56.9,98.5" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="208.1" y1="162.1" x2="250" y2="162.1" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="208.1" y1="79.8" x2="208.1" y2="37.9" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="97.5" y1="50.2" x2="57" y2="39.3" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="56.9" y1="98.5" x2="30" y2="130.6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <path d="M228.1 162.1L227.8 159L227.1 155.9L225.9 153L224.3 150.3L222.2 148L219.8 145.9L217.2 144.3L214.3 143.1L211.2 142.3L208.1 142.1" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="232.1" y="142.1" text-anchor="middle" class="oy-lbl" style="fill:var(--accent);font-size:12px">90°</text>
+        <path d="M208.1 59.8L205.5 60L202.9 60.5L200.4 61.3L198.1 62.5L195.9 64L193.9 65.7L192.2 67.7L190.8 69.8L189.6 72.2L188.8 74.7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="187.4" y="56.9" text-anchor="middle" class="oy-lbl" style="fill:var(--accent);font-size:12px">75°</text>
+        <path d="M78.2 45L77.7 47.2L77.5 49.5L77.5 51.8L77.9 54L78.4 56.2L79.2 58.3L80.3 60.3L81.5 62.2L83 64L84.6 65.5" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="65.1" y="64.4" text-anchor="middle" class="oy-lbl" style="fill:var(--accent);font-size:12px">65°</text>
+        <path d="M44.1 113.8L46.3 115.5L48.8 116.8L51.4 117.7L54.2 118.3L56.9 118.5L59.7 118.3L62.5 117.7L65.1 116.8L67.5 115.5L69.8 113.8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="56.9" y="136.5" text-anchor="middle" class="oy-lbl" style="fill:var(--accent);font-size:12px">80°</text>
+        <text x="104" y="179.6" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">A</text>
+        <text x="219.5" y="175.3" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">B</text>
+        <text x="221" y="79.3" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">C</text>
+        <text x="89.9" y="43.4" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">D</text>
+        <text x="43.1" y="101.4" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">E</text>
+        </svg></div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Xarici bucaqların cəmi həmişə 360°-dir.
+Göstərilənlərin cəmi: 90° + 75° + 65° + 80° = 310°
+A təpəsində xarici bucaq: 360° − 310° = 50°
+Daxili bucaq: 180° − 50° = 130°
+Cavab: 130</div>
+      <p>Tələ: sual <b>daxili</b> bucağı soruşur, çoxları 50-də dayanır (xarici bucaq). İkinci tələ: <span class="m">(5 − 2) · 180°</span> düsturunu işlətmək — bu, daxili bucaqlara aiddir, şəkildəkilər isə xarici bucaqlardır. Üçüncü tələ: xarici bucaqların cəmini 540° götürmək; xarici bucaqların cəmi çoxbucaqlının tərəflərinin sayından asılı deyil, həmişə 360°-dir.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Düzgün altıbucaqlının perimetri 24 sm-dir. Ona xaricdən və daxilən çevrələr çəkilib. Çevrələr arasındakı halqanın sahəsi <span class="m">kπ</span> sm²-dir. <span class="m">k</span>-nı tapın.</p>
+        <div class="fig"><svg viewBox="0 0 280 200" class="oy-svg" role="img" aria-label="Düzgün altıbucaqlı, xaricə və daxilə çəkilmiş çevrələr">
+        <circle cx="140" cy="100" r="70" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+        <polygon points="140,30 79.4,65 79.4,135 140,170 200.6,135 200.6,65" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="140" cy="100" r="60.6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="140" cy="100" r="3" fill="var(--ink)"/>
+        <text x="140" y="21" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">A</text>
+        <text x="67.3" y="63" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">B</text>
+        <text x="67.3" y="147" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">C</text>
+        <text x="140" y="189" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">D</text>
+        <text x="212.7" y="147" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">E</text>
+        <text x="212.7" y="63" text-anchor="middle" class="oy-lbl" style="fill:var(--muted);font-style:italic">F</text>
+        </svg></div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Tərəf: a = 24 : 6 = 4 sm.
+2) Düzgün altıbucaqlıda xaricə çəkilmiş çevrənin radiusu
+   tərəfə bərabərdir: R = a = 4.
+   Daxilə çəkilmiş çevrənin radiusu (mərkəzdən tərəfin
+   ortasına qədər) r = a√3/2 = 2√3, r² = 12.
+3) Halqanın sahəsi = böyük dairə − kiçik dairə:
+   S = πR² − πr² = π(R² − r²) = π(16 − 12) = 4π
+4) S = kπ ⇒ k = 4.
+Cavab: k = 4.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>tərəf və R, r radiusları</b> (1–2-ci addım), <b>halqanın sahəsi üçün düstur</b> (3-cü addım), <b>hesablama və cavab</b>. Həll yazılmadan yalnız "4" yazılsa, bal verilmir. Oyunda π yazılmır: cavab olaraq yalnız <span class="m">k</span> ədədini yaz.</p>
+      <p>Tələ: halqanın sahəsini <span class="m">π(R − r)²</span> kimi yazmaq. Düzgün düstur <span class="m">π(R² − r²)</span>-dir: əvvəl kvadratlar, sonra fərq.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Diaqonalların sayı.</b> <span class="m">n(n − 3)</span> yox, <span class="m">n(n − 3)/2</span>: hər diaqonal iki dəfə sayılır. Şəkildə bir təpədən çəkilmiş diaqonallar göstərilibsə, onların sayı (<span class="m">n − 3</span>) cavab deyil.</li>
+        <li><b>Bucaqların cəmi.</b> Daxili bucaqlarınki <span class="m">(n − 2) · 180°</span>, xarici bucaqlarınki 360°. <span class="m">n · 180°</span> yazmaq tipik səhvdir.</li>
+        <li><b>Daxili, yoxsa xarici.</b> Sual hansını soruşur? Bir təpədə xarici + daxili = 180°.</li>
+        <li><b>Düzgün çoxbucaqlıda</b> bucaq verilibsə, əvvəl <span class="m">n</span>-i tap: <span class="m">n = 360° : xarici bucaq</span>.</li>
+        <li><b>R və r.</b> <span class="m">R</span> — təpəyə, <span class="m">r</span> — tərəfin ortasına. Düzgün üçbucaqda <span class="m">R = 2r</span>, kvadratda <span class="m">R = r√2</span>, altıbucaqlıda <span class="m">R = a</span>.</li>
+        <li><b>Altıbucaqlının diaqonalları.</b> Qısa diaqonal <span class="m">a√3</span>, uzun diaqonal <span class="m">2a</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">diaqonallar:               n(n − 3)/2
+daxili bucaqların cəmi:    (n − 2) · 180°
+xarici bucaqların cəmi:    360°
+düzgün n-bucaqlı:          xarici bucaq = 360°/n
+düzgün üçbucaq: R = 2r   kvadrat: R = r√2
+altıbucaqlı: R = a,  r = a√3/2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Qabarıq çoxbucaqlının 14 diaqonalı var. Neçə tərəfi var? <span class="ans">n(n − 3)/2 = 14 → n² − 3n − 28 = 0 → n = 7 (ikinci kök mənfidir).</span></li>
+        <li>Qabarıq beşbucaqlının dörd bucağı 100°, 110°, 120° və 90°-dir. Beşinci bucaq? <span class="ans">Cəm 540°, verilənlər 420°: 540° − 420° = 120°.</span></li>
+        <li>Düzgün üçbucağa daxilən çəkilmiş çevrənin radiusu 3. Xaricdən çəkilmiş çevrənin radiusu? <span class="ans">R = 2r = 6.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

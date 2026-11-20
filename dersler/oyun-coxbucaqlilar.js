@@ -293,6 +293,149 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (n(n − 3) without /2, n · 180° instead of (n − 2) · 180°, R mixed up with r, ...).
+  // Figures are drawn from exact coordinates (lengths and angles in the picture are the real ones).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const dg = x => x + "°";
+  // regular n-gon with circumradius R, first vertex at angle a0 (names A, B, C…, centre O)
+  function ngonR(n, R, a0 = Math.PI / 2) {
+    const P = { O: [0, 0] }, names = [];
+    for (let i = 0; i < n; i++) { const k = LET[i]; P[k] = [R * Math.cos(2 * Math.PI * i / n + a0), R * Math.sin(2 * Math.PI * i / n + a0)]; names.push(k); }
+    return { P, names };
+  }
+  // convex polygon from its exterior angles (degrees, sum 360; ext[i] is the angle at vertex i); sides random, the last two
+  // are solved so that the polygon closes. Returns points in math coordinates (counter-clockwise).
+  function polyExt(ext) {
+    const n = ext.length, rad = d => d * Math.PI / 180;
+    for (let t = 0; t < 500; t++) {
+      const th = [0]; for (let i = 1; i < n; i++) th.push(th[i - 1] + rad(ext[i]));
+      const u = th.map(a => [Math.cos(a), Math.sin(a)]), L = [];
+      for (let i = 0; i < n - 2; i++) L.push(2 + Math.random() * 1.5);
+      let sx = 0, sy = 0; for (let i = 0; i < n - 2; i++) { sx += L[i] * u[i][0]; sy += L[i] * u[i][1]; }
+      const a = u[n - 2], b = u[n - 1], det = a[0] * b[1] - a[1] * b[0]; if (Math.abs(det) < 0.2) continue;
+      const La = (-sx * b[1] + sy * b[0]) / det, Lb = (-a[0] * sy + a[1] * sx) / det;
+      if (La < 2 || La > 4.5 || Lb < 2 || Lb > 4.5) continue;
+      L.push(La, Lb);
+      const pts = [[0, 0]]; for (let i = 0; i < n - 1; i++) pts.push([pts[i][0] + L[i] * u[i][0], pts[i][1] + L[i] * u[i][1]]);
+      return pts;
+    }
+    return null;
+  }
+  // true when two labels of the figure would overlap or leave the picture (the generator then draws new numbers)
+  const crowded = svg => { const T = Array.from(svg.children).filter(c => c.tagName === "text").map(c => ({ x: +c.getAttribute("x"), y: +c.getAttribute("y"), w: c.textContent.length * 7 + 4 }));
+    return T.some((a, i) => a.x < 8 || a.x > 272 || a.y < 10 || a.y > 196 || T.slice(i + 1).some(b => Math.abs(a.x - b.x) < (a.w + b.w) / 2 && Math.abs(a.y - b.y) < 14)); };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. all diagonals, the picture shows only the ones from one vertex
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([6, 7, 8, 9, 10]), D = n * (n - 3) / 2, { P, names } = ngon(n);
+      const w = [n * (n - 3), n * (n - 1) / 2, n - 3, n - 2];
+      return mc(ae(D, w), { text: `Şəkildə qabarıq ${nm(n)} və onun A təpəsindən çəkilmiş diaqonallar göstərilib. Çoxbucaqlının bütün diaqonallarının sayını tapın.`,
+        svg: figure(P, { poly: names, names, segs: names.slice(2, n - 1).map(k => [names[0], k, "acc"]), aria: "Çoxbucaqlı və bir təpədən çəkilmiş diaqonallar" }),
+        solution: `Hər təpədən ${n} − 3 = ${n - 3} diaqonal çıxır, ${n} təpə var, hər diaqonal iki dəfə sayılır: ${n} · ${n - 3} / 2 = ${D}. Tələlər: 2-yə bölməmək (${n * (n - 3)}), tərəfləri də saymaq (${n * (n - 1) / 2}), yalnız şəkildəki diaqonalları saymaq (${n - 3}).` });
+    }) },
+    // 2. the last angle of a convex polygon from the angles in the picture
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([5, 5, 6, 6, 8]), S = (n - 2) * 180, known = Array.from({ length: n - 1 }, () => pick(range(85, 160, 5)));
+      const sum = known.reduce((p, q) => p + q, 0), x = S - sum; if (x < 60 || x > 165) return null;
+      const u = rnd(0, n - 1), ang = known.slice(); ang.splice(u, 0, x);
+      const pts = polyExt(ang.map(a => 180 - a)); if (!pts) return null;
+      const P = {}, names = []; pts.forEach((p, i) => { P[LET[i]] = p; names.push(LET[i]); });
+      const arcs = names.map((k, i) => [k, names[(i + 1) % n], names[(i + n - 1) % n], i === u ? "x" : dg(ang[i])]);
+      const w = [n * 180 - sum, 180 - x, S / n, (n - 1) * 180 - sum];
+      const svg = figure(P, { poly: names, arcs, aria: "Qabarıq çoxbucaqlı və bucaqları" }); if (crowded(svg)) return null;
+      return mc(ae(x, w, dg), { text: `Şəkildə qabarıq ${nm(n)} verilib, ${n - 1} bucağı göstərilib. ${names[u]} təpəsindəki x bucağını tapın.`, svg,
+        solution: `Daxili bucaqların cəmi (${n} − 2) · 180° = ${S}°. Göstərilən bucaqların cəmi ${sum}°. x = ${S}° − ${sum}° = ${x}°. Tələlər: n · 180° götürmək (${n * 180 - sum}°), xarici bucağı tapmaq (${180 - x}°), bucaqların hamısını bərabər saymaq (${S / n}°).` });
+    }) },
+    // 3. regular polygon from its interior angle → all diagonals
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([5, 6, 8, 9, 10, 12, 15, 18, 20]), e = 360 / n, a = 180 - e, D = n * (n - 3) / 2;
+      const w = [n * (n - 3), n - 3, n * (n - 1) / 2, n];
+      return mc(ae(D, w), { text: `Düzgün çoxbucaqlının daxili bucağı ${a}°-dir. Onun bütün diaqonallarının sayını tapın.`,
+        solution: `Xarici bucaq 180° − ${a}° = ${e}°. Tərəflərin sayı n = 360° : ${e}° = ${n}. Diaqonallar: ${n} · ${n - 3} / 2 = ${D}. Tələlər: tərəflərin sayını (${n}) cavab yazmaq, 2-yə bölməmək (${n * (n - 3)}), bir təpədən çıxanları (${n - 3}) saymaq.` });
+    }) },
+    // 4. R from r: the circles of a regular triangle / square
+    { tip: "qapali", gen: () => again(() => {
+      const tri = Math.random() < .5, r = rnd(2, 12), n = tri ? 3 : 4, R0 = tri ? 2 * r : r * Math.SQRT2, { P, names } = ngonR(n, R0, tri ? Math.PI / 2 : Math.PI / 4);
+      P.M = [(P.A[0] + P.B[0]) / 2, (P.A[1] + P.B[1]) / 2];
+      const svg = figure(P, { poly: names, names, circles: [["O", R0, "bg"], ["O", r, "line"]], segs: [["O", "M", "acc"]], right: [["M", "O", "A"]], dots: ["O"], cen: "O", lab: { OM: "r = " + r }, aria: "Çoxbucaqlı, xaricə və daxilə çəkilmiş çevrələr" });
+      const Rs = tri ? String(2 * r) : rt(2 * r * r);
+      const w = tri ? [frac(r, 2), String(3 * r), rt(12 * r * r), rt(3 * r * r)] : [String(r), String(2 * r), rtF(2 * r * r, 2), rt(8 * r * r)];
+      return mc(ae(Rs, w, x => x), { text: `Şəkildə düzgün ${tri ? "üçbucağa" : "kvadrata"} daxilən çəkilmiş çevrənin radiusu r = ${r}. ${tri ? "Üçbucağa" : "Kvadrata"} xaricdən çəkilmiş çevrənin R radiusunu tapın.`, svg,
+        solution: tri ? `Düzgün üçbucaqda mərkəz hündürlüyü 2 : 1 bölür, ona görə R = 2r = ${2 * r}. Tələlər: R-i r/2 götürmək (${frac(r, 2)}), hündürlüyü cavab yazmaq (3r = ${3 * r}), tərəfi cavab yazmaq (2r√3 = ${rt(12 * r * r)}).`
+          : `Kvadratın tərəfi a = 2r = ${2 * r}. Xaricə çəkilmiş çevrənin diametri diaqonaldır: R = a√2/2 = ${2 * r}√2/2 = ${rt(2 * r * r)}. Tələlər: R = a/2 = ${r} (bu r-dir), tərəfi (${2 * r}) cavab yazmaq, diaqonalı (2R = ${rt(8 * r * r)}) cavab yazmaq.` });
+    }) },
+    // 5. short diagonal of a regular hexagon
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 12), { P, names } = ngonR(6, a, Math.PI / 6);
+      const w = [String(a), String(2 * a), rt(2 * a * a), rtF(3 * a * a, 2)];
+      return mc(ae(rt(3 * a * a), w, x => x), { text: `Şəkildə tərəfi ${a} sm olan düzgün altıbucaqlı ABCDEF verilib. AC diaqonalının uzunluğunu (sm) tapın.`,
+        svg: figure(P, { poly: names, names, segs: [["A", "C", "acc"]], lab: { AB: a + " sm" }, cen: "O", aria: "Düzgün altıbucaqlı və AC diaqonalı" }),
+        solution: `ABC üçbucağında AB = BC = ${a}, ∠B = 120°. B-dən AC-yə hündürlük çəksək, AC-nin yarısı ${a} · sin 60° = ${a}√3/2 olar, AC = ${rt(3 * a * a)}. Tələlər: AC = ${a} (tərəf), AC = ${2 * a} (bu AD-dir, ən uzun diaqonal), ${rt(2 * a * a)} (kvadratdakı kimi), ${rtF(3 * a * a, 2)} (bu r-dir).` });
+    }) },
+    // 6. diagonals = k · sides → interior angle sum
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 8), n = 2 * k + 3, S = (n - 2) * 180, n2 = k + 3;
+      const w = [n * 180, (n2 - 2) * 180, (n - 2) * 360, (n - 1) * 180];
+      return mc(ae(S, w, dg), { text: `Qabarıq çoxbucaqlının diaqonallarının sayı tərəflərinin sayından ${k} dəfə çoxdur. Onun daxili bucaqlarının cəmini tapın.`,
+        solution: `n(n − 3)/2 = ${k}n → (n − 3)/2 = ${k} → n = ${n}. Cəm (${n} − 2) · 180° = ${S}°. Tələlər: 2-yə bölməyi unutmaq (n − 3 = ${k} → n = ${n2}, cəm ${(n2 - 2) * 180}°), n · 180° götürmək (${n * 180}°).` });
+    }) },
+    // 7. coded: interior angle from exterior ones in the picture
+    { tip: "kod", gen: () => again(() => {
+      const n = pick([4, 5, 5, 6]), known = Array.from({ length: n - 1 }, () => pick(range(50, 110, 5)));
+      const s = known.reduce((p, q) => p + q, 0), e = 360 - s; if (e < 40 || e > 130) return null;
+      const u = rnd(0, n - 1), ext = known.slice(); ext.splice(u, 0, e);
+      const pts = polyExt(ext); if (!pts) return null;
+      const P = {}, names = [], segs = [], arcs = []; pts.forEach((p, i) => { P[LET[i]] = p; names.push(LET[i]); });
+      names.forEach((k, i) => { if (i === u) return; const pr = pts[(i + n - 1) % n], c = pts[i], d = [c[0] - pr[0], c[1] - pr[1]], L = Math.hypot(...d), X = "X" + i;
+        P[X] = [c[0] + d[0] / L * 1.1, c[1] + d[1] / L * 1.1]; segs.push([k, X, "dash"]); arcs.push([k, X, names[(i + 1) % n], dg(ext[i]), 20]); });
+      const svg = figure(P, { poly: names, segs, arcs, aria: "Qabarıq çoxbucaqlı və xarici bucaqlar" }); if (crowded(svg)) return null;
+      return { text: `Şəkildə qabarıq ${nm(n)} verilib, ${names[u]} təpəsindən başqa bütün təpələrdə xarici bucaqlar göstərilib. ${names[u]} təpəsindəki daxili bucağı (dərəcə ilə) tapın.`,
+        svg,
+        answer: 180 - e, show: String(180 - e), tol: 1e-6, unit: "°",
+        solution: `Xarici bucaqların cəmi 360°-dir. ${names[u]} təpəsində xarici bucaq 360° − ${s}° = ${e}°. Daxili bucaq 180° − ${e}° = ${180 - e}°.` };
+    }) },
+    // 8. coded: perimeter of a regular triangle / square / hexagon from a circle radius in the picture
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["tri", "sq", "hex"]), m = rnd(2, 9), n = { tri: 3, sq: 4, hex: 6 }[kind];
+      const a = { tri: 3 * m, sq: 2 * m, hex: 2 * m }[kind], R0 = { tri: m * Math.sqrt(3), sq: m * Math.SQRT2, hex: 2 * m }[kind], r0 = a / (2 * Math.tan(Math.PI / n));
+      const { P, names } = ngonR(n, R0, kind === "sq" ? Math.PI / 4 : Math.PI / 2);
+      P.M = [(P.A[0] + P.B[0]) / 2, (P.A[1] + P.B[1]) / 2];
+      const useR = kind !== "hex", given = useR ? `R = ${m}${kind === "tri" ? "√3" : "√2"}` : `r = ${m}√3`;
+      const svg = useR ? figure(P, { poly: names, names, circles: [["O", R0, "bg"]], segs: [["O", "A", "acc"]], dots: ["O"], cen: "O", lab: { OA: given }, aria: "Düzgün çoxbucaqlı və xaricə çəkilmiş çevrə" })
+        : figure(P, { poly: names, names, circles: [["O", r0, "line"]], segs: [["O", "M", "acc"]], right: [["M", "O", "A"]], dots: ["O"], cen: "O", lab: { OM: given }, aria: "Düzgün çoxbucaqlı və daxilə çəkilmiş çevrə" });
+      const nmz = { tri: "üçbucağa", sq: "kvadrata", hex: "altıbucaqlıya" }[kind], np = { tri: "Üçbucağın", sq: "Kvadratın", hex: "Altıbucaqlının" }[kind];
+      return { text: `Şəkildə düzgün ${nmz} ${useR ? "xaricdən" : "daxilən"} çəkilmiş çevrənin ${useR ? "R" : "r"} radiusu ${given.slice(4)} sm-dir. ${np} perimetrini (sm) tapın.`, svg,
+        answer: n * a, show: String(n * a), tol: 1e-6, unit: "sm",
+        solution: { tri: `R = a√3/3 → a = R√3 = ${m}√3 · √3 = ${3 * m}. P = 3a = ${9 * m}.`, sq: `R = a√2/2 → a = R√2 = ${m}√2 · √2 = ${2 * m}. P = 4a = ${8 * m}.`, hex: `r = a√3/2 → a = 2r/√3 = 2 · ${m}√3/√3 = ${2 * m}. P = 6a = ${12 * m}.` }[kind] };
+    }) },
+    // 9. coded: regular polygon from a condition on its angles → all diagonals
+    { tip: "kod", gen: () => again(() => {
+      const form = pick(["k", "k", "ferq", "cem"]); let n, text, why;
+      if (form === "k") { const k = pick([2, 3, 4, 5, 8, 9]), e = 180 / (k + 1); n = 360 / e;
+        text = `Düzgün çoxbucaqlının daxili bucağı xarici bucağından ${k} dəfə böyükdür.`;
+        why = `Daxili + xarici = 180°: ${k}x + x = 180° → x = ${e}° (xarici). n = 360° : ${e}° = ${n}.`; }
+      else if (form === "ferq") { const e = pick([18, 20, 24, 30, 36, 40, 45, 60, 72]), d = 180 - 2 * e; n = 360 / e;
+        text = `Düzgün çoxbucaqlının daxili bucağı xarici bucağından ${d}° böyükdür.`;
+        why = `Daxili + xarici = 180°, daxili − xarici = ${d}° → xarici = (180° − ${d}°) : 2 = ${e}°. n = 360° : ${e}° = ${n}.`; }
+      else { n = rnd(7, 20); text = `Qabarıq çoxbucaqlının daxili bucaqlarının cəmi ${(n - 2) * 180}°-dir.`; why = `(n − 2) · 180° = ${(n - 2) * 180}° → n − 2 = ${n - 2} → n = ${n}.`; }
+      const D = n * (n - 3) / 2;
+      return { text: text + " Onun diaqonallarının sayını tapın.", answer: D, show: String(D), tol: 1e-6,
+        solution: why + ` Diaqonallar: ${n} · ${n - 3} / 2 = ${D}.` };
+    }) },
+    // 10. written: the ring between the circles of a regular hexagon (the answer is k in kπ — the game does not take π)
+    { tip: "yazili", gen: () => again(() => {
+      const a = pick(range(4, 30, 2)), k = a * a / 4, { P, names } = ngonR(6, a), r = a * Math.sqrt(3) / 2, byR = Math.random() < .4;
+      return { text: `${byR ? `Düzgün altıbucaqlıya xaricdən çəkilmiş çevrənin radiusu ${a} sm-dir.` : `Düzgün altıbucaqlının perimetri ${6 * a} sm-dir.`} Ona xaricdən və daxilən çevrələr çəkilib. Çevrələr arasındakı halqanın sahəsi kπ sm²-dir. k-nı tapın.`,
+        svg: figure(P, { poly: names, names, circles: [["O", a, "bg"], ["O", r, "line"]], dots: ["O"], cen: "O", aria: "Düzgün altıbucaqlı, xaricə və daxilə çəkilmiş çevrələr" }),
+        answer: k, show: String(k), tol: 1e-6,
+        solution: `1) Tərəf: ${byR ? `düzgün altıbucaqlıda a = R = ${a} sm` : `a = ${6 * a} : 6 = ${a} sm`}. 2) Xaricə çəkilmiş çevrənin radiusu R = a = ${a}; daxilə çəkilmiş r = a√3/2, r² = 3a²/4 = ${3 * a * a / 4}. 3) Halqanın sahəsi π(R² − r²) = π(${a * a} − ${3 * a * a / 4}) = ${k}π. Cavab: k = ${k}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -302,7 +445,7 @@
     game = Oyun.mount({
       key: "coxbucaqlilar", title: "Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar", fenn: "riyaziyyat", link: "dersler/coxbucaqlilar.html",
       format: "Cavab — ədəd: bucaq (dərəcə, ° yazmaq lazım deyil), tərəflərin və ya diaqonalların sayı, radius. Kök: 2√3, 5√3/2; kəsr: 3/2.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["diaqonal", "diaqonal", "cem", "cem", "xarici", "duzgun", "duzgun", "cevreler", "cevreler", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
