@@ -31,6 +31,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qövs, mərkəzi bucaq</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrənin uzunluğu</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Qövsün uzunluğu</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -356,6 +357,144 @@ Qövs çevrənin α/360 hissəsidir.</div></div>
         <li>R = 4, α = 90°. Qövsün uzunluğu? <span class="ans">π · 4 · 90/180 = 2π.</span></li>
         <li>R = 18, l = 4π. α? <span class="ans">18α/180 = 4 → α = 40°.</span></li>
         <li>Qövs çevrənin 1/12 hissəsidir. Neçə dərəcə? <span class="ans">360° : 12 = 30°.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (20 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: çevrə və dairə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Çevrə mövzusu buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: yarım vətər, iki paralel vətərin "o biri halı", cütləri səhv qoşulmuş parçalar, oturacaq bucağı qövs yerinə, <span class="m">2πR</span> əvəzinə <span class="m">πR</span>. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Şəkil və ölçülər şərtdədir; yalnız son ədəd yazılır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p><b>π haqqında.</b> Şərtdə ya "π = 3,14" yazılır, ya da cavab π-lidir. Bu portalda oyun və sınaq cavabda π simvolunu qəbul etmir: π-li cavabı <span class="m">kπ</span> kimi istəyəndə yalnız <span class="m">k</span>-nı yaz (məs. <span class="m">12π</span> → 12, <span class="m">(3/2)π</span> → 3/2). Cavab ən sadə formada yazılır: <span class="m">2√3</span> (<span class="m">√12</span> yox), <span class="m">3/2</span> (<span class="m">6/4</span> yox).</p>
+      <p>Hər sualda əvvəl şəklə bax: <b>hansı parça mərkəzdən çəkilib, hansı vətərdir, qövs hansı yarımçevrədədir?</b> Şərtdəki ölçünü şəkildəki doğru parçaya bağla.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <div class="fig"><svg viewBox="0 0 300 230" role="img" aria-label="Radiusu 25 olan çevrədə mərkəzin müxtəlif tərəflərində AB = 14 və CD = 40 paralel vətərləri; aralarındakı məsafə soruşulur">
+          <circle cx="150" cy="115" r="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="124.8" y1="201.4" x2="175.2" y2="201.4" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="78" y1="61" x2="222" y2="61" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="150" y1="201.4" x2="150" y2="61" stroke="var(--vec)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="150" y1="115" x2="175.2" y2="201.4" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M150 192.4L159 192.4L159 201.4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="150" cy="115" r="3" fill="var(--ink)"/>
+          <text x="108.8" y="215.4" class="lbl" text-anchor="middle">A</text>
+          <text x="183.2" y="215.4" class="lbl" text-anchor="middle">B</text>
+          <text x="62" y="55" class="lbl" text-anchor="middle">C</text>
+          <text x="230" y="55" class="lbl" text-anchor="middle">D</text>
+          <text x="137" y="110" class="lbl" text-anchor="middle">O</text>
+          <text x="150" y="218.4" class="lbl" text-anchor="middle">14</text>
+          <text x="150" y="52" class="lbl" text-anchor="middle">40</text>
+          <text x="178.6" y="162.2" class="lbl" text-anchor="middle">25</text>
+          <text x="159" y="135.2" class="lbl" text-anchor="middle">?</text>
+        </svg></div>
+        <p>Radiusu 25 sm olan çevrədə uzunluqları 14 sm və 40 sm olan AB və CD paralel vətərləri çəkilib. Vətərlər çevrənin mərkəzinə nəzərən müxtəlif tərəflərdə yerləşir. Vətərlər arasındakı məsafəni (sm) tapın.</p>
+        <ol class="imt-opts"><li>24</li><li>9</li><li>39</li><li>15</li><li>27</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Mərkəzdən AB-yə:  √(25² − 7²)  = √576 = 24
+Mərkəzdən CD-yə:  √(25² − 20²) = √225 = 15
+Müxtəlif tərəflərdə məsafələr toplanır: 24 + 15 = 39
+Cavab: C) 39</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 24</b> — yalnız AB vətərinin mərkəzdən məsafəsini tapıb dayanmaq.</li>
+        <li><b>B) 9</b> — o biri halın cavabı: vətərlər mərkəzin <b>eyni</b> tərəfində olsaydı, <span class="m">24 − 15 = 9</span>. Şərtdə "müxtəlif tərəflərdə" yazılıb.</li>
+        <li><b>D) 15</b> — yalnız CD vətərinin mərkəzdən məsafəsi.</li>
+        <li><b>E) 27</b> — məsafələr əvəzinə yarım vətərləri toplamaq: <span class="m">7 + 20</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <div class="fig"><svg viewBox="0 0 300 230" role="img" aria-label="AB diametri, ona perpendikulyar CD vətəri; AE = 4, EB = 9, CD axtarılır">
+          <circle cx="150" cy="115" r="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="60" y1="115" x2="240" y2="115" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="115.4" y1="31.9" x2="115.4" y2="198.1" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M124.4 115L124.4 106L115.4 106" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="150" cy="115" r="3" fill="var(--ink)"/>
+          <circle cx="115.4" cy="115" r="3" fill="var(--ink)"/>
+          <text x="46" y="120" class="lbl" text-anchor="middle">A</text>
+          <text x="248" y="120" class="lbl" text-anchor="middle">B</text>
+          <text x="111.4" y="22.9" class="lbl" text-anchor="middle">C</text>
+          <text x="111.4" y="216.1" class="lbl" text-anchor="middle">D</text>
+          <text x="123.4" y="131" class="lbl" text-anchor="middle">E</text>
+          <text x="146" y="107" class="lbl" text-anchor="middle">O</text>
+          <text x="87.7" y="132" class="lbl" text-anchor="middle">4</text>
+          <text x="177.7" y="132" class="lbl" text-anchor="middle">9</text>
+          <text x="103.4" y="78.5" class="lbl" text-anchor="middle">?</text>
+        </svg></div>
+        <p>AB — çevrənin diametridir. AB üzərindəki E nöqtəsindən AB-yə perpendikulyar CD vətəri çəkilib. AE = 4 sm, EB = 9 sm. CD vətərinin uzunluğunu (sm) tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Diametrə perpendikulyar vətər yarıya bölünür:  CE = ED
+Kəsişən vətərlər:  CE · ED = AE · EB
+CE² = 4 · 9 = 36,   CE = 6
+CD = 2 · 6 = 12
+Cavab: 12</div>
+      <p>Tələlər: <b>6</b> — yalnız CE-ni tapıb ikiyə vurmamaq; <b>36</b> — kökü almamaq; <b>13</b> — AB diametrini cavab yazmaq (<span class="m">4 + 9</span>). Kəsişən vətərlərdə cütlər <span class="m">AE · EB = CE · ED</span> kimi qoşulur: AE yalnız EB ilə, CE yalnız ED ilə.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <div class="fig"><svg viewBox="0 0 300 230" role="img" aria-label="Eyni tərəfdə AB = 10 və CD = 24 paralel vətərləri, aralarındakı məsafə 7; çevrənin radiusu axtarılır">
+          <circle cx="150" cy="115" r="90" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="115.4" y1="198.1" x2="184.6" y2="198.1" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="66.9" y1="149.6" x2="233.1" y2="149.6" stroke="var(--ink)" stroke-width="2.5"/>
+          <line x1="150" y1="198.1" x2="150" y2="149.6" stroke="var(--vec)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path d="M150 189.1L159 189.1L159 198.1" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <circle cx="150" cy="115" r="3" fill="var(--ink)"/>
+          <text x="99.4" y="212.1" class="lbl" text-anchor="middle">A</text>
+          <text x="192.6" y="212.1" class="lbl" text-anchor="middle">B</text>
+          <text x="50.9" y="145.6" class="lbl" text-anchor="middle">C</text>
+          <text x="241.1" y="145.6" class="lbl" text-anchor="middle">D</text>
+          <text x="138" y="109" class="lbl" text-anchor="middle">O</text>
+          <text x="150" y="215.1" class="lbl" text-anchor="middle">10</text>
+          <text x="102" y="141.6" class="lbl" text-anchor="middle">24</text>
+          <text x="159" y="177.8" class="lbl" text-anchor="middle">7</text>
+          <text x="140" y="191.1" class="lbl" text-anchor="middle">H</text>
+          <text x="140" y="163.6" class="lbl" text-anchor="middle">K</text>
+        </svg></div>
+        <p>Çevrədə uzunluqları 10 sm və 24 sm olan AB və CD paralel vətərləri çəkilib. Vətərlər çevrənin mərkəzinə nəzərən eyni tərəfdə yerləşir və aralarındakı məsafə 7 sm-dir. Çevrənin radiusunu tapın. Həllini yazın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) OH ⊥ AB, OK ⊥ CD endirək (H, K — vətərlərin orta nöqtələri). OH = x olsun. AH = 10 : 2 = 5.
+   CD mərkəzə daha yaxındır, ona görə OK = x − 7.
+   CK = 24 : 2 = 12.
+2) Hər iki vətər üçün R² = (məsafə)² + (yarım vətər)²:
+   x² + 5² = (x − 7)² + 12²
+3) x² + 25 = x² − 14x + 49 + 144
+   14x = 168,   x = 12
+   R² = 12² + 5² = 169,   R = 13
+4) Yoxlama: O-dan CD-yə məsafə 12 − 7 = 5,  5² + 12² = 169 ✓
+Cavab: R = 13 sm.</div>
+      <p>Yoxlayan üç şeyə baxır: <b>düzgün məsafələr</b> (1-ci addım: yarım vətər, <span class="m">x</span> və <span class="m">x − 7</span>), <b>tənlik</b> (2–3-cü addım) və <b>hesablama ilə cavab</b> (R-in tapılması). Yalnız "13" yazmaq bu addımların çoxunu itirir — həll yazılmadan yalnız cavab verilsə, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Yarım vətər.</b> Mərkəzdən vətərə perpendikulyar vətəri <b>yarıya</b> bölür: Pifaqorla tapdığın <span class="m">AH</span> yarım vətərdir, sonda 2-yə vur.</li>
+        <li><b>İki paralel vətər — iki hal.</b> Mərkəzin eyni tərəfində məsafələr çıxılır, müxtəlif tərəflərində toplanır. Şərtdə hansının yazıldığına bax.</li>
+        <li><b>Cütləri səhv qoşmaq.</b> Kəsişən vətərlərdə <span class="m">AE · EB = CE · ED</span>: hər vətərin öz iki parçası bir yerdə; cəm yox, hasil.</li>
+        <li><b>Oturacaq bucağı qövs deyil.</b> OAB bərabəryanlıdır: <span class="m">∠AOB = 180° − 2 · ∠OAB</span>. Böyük qövs soruşulubsa, <span class="m">360° − ∠AOB</span>.</li>
+        <li><b>2πR, yoxsa πR.</b> Qövsün uzunluğu <span class="m">πRα/180</span>-dir. Sektorun perimetri qövs <b>və iki radius</b>: <span class="m">2R + l</span>.</li>
+        <li><b>Vahidlər.</b> Təkərin yolunda santimetri metrə çevir (1 m = 100 sm) və ya hər şeyi sm-lə hesabla, sonda çevir.</li>
+        <li><b>Cavabın forması.</b> π-li cavabda yalnız <span class="m">k</span>-nı yaz; kök və kəsr ən sadə formada olsun: <span class="m">2√3</span>, <span class="m">3/2</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">vətər:      a = 2√(R² − d²)
+kəsişən:    AE · EB = CE · ED
+kiçik AB qövsü = ∠AOB = 180° − 2 · ∠OAB
+uzunluq:    C = 2πR,   l = πRα/180
+sektor:     perimetr = 2R + l</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>R = 10, paralel vətərlər 12 və 16 mərkəzin müxtəlif tərəflərindədir. Aralarındakı məsafə? <span class="ans">√(100 − 36) = 8 və √(100 − 64) = 6; 8 + 6 = 14.</span></li>
+        <li>O mərkəzdir, ∠OAB = 20°. Böyük AB qövsü? <span class="ans">∠AOB = 180° − 40° = 140°; böyük qövs 360° − 140° = 220°.</span></li>
+        <li>R = 6, mərkəzi bucağı 120° olan sektorun perimetri? (cavab π-li) <span class="ans">2 · 6 + π · 6 · 120/180 = 12 + 4π.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

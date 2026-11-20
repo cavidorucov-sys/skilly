@@ -278,6 +278,129 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes (half of the chord, adding instead of Pythagoras, the other case of two parallel chords,
+  // mixed-up pairs of segments, base angle taken for the arc, πR instead of 2πR, ...). Figures are drawn from exact coordinates.
+  const { ae, again } = Oyun;
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(x * 10 ** dp - Math.round(x * 10 ** dp)) < 1e-6;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const KF = ([n, d]) => kpi(frac(n, d));                                          // [n, d] → "(3/2)π"
+  const smallFr = ([n, d]) => d / gcd(n, d) <= 12;
+  const diamFig = (m, n, lab) => { const R = (m + n) / 2, y = Math.sqrt(m * n);
+    return figure({ O: [0, 0], A: [-R, 0], B: [R, 0], E: [-R + m, 0], C: [-R + m, y], D: [-R + m, -y], Q: [-R + m, y / 3] },
+      { circles: [["O", R]], segs: [["A", "B", "ink"], ["C", "D", "acc"]], right: [["E", "B", "C"]], lab, dots: ["O", "E"], names: ["O", "A", "B", "C", "D", "E"], cen: "O", aria: "AB diametri və ona perpendikulyar CD vətəri" }); };
+  // two parallel chords AB (distance d1 from O) and CD (distance d2), on the opposite sides of O or on the same side; H, K — their midpoints
+  const parFig = (R, d1, d2, same, lab) => { const h1 = Math.sqrt(R * R - d1 * d1), h2 = Math.sqrt(R * R - d2 * d2), y2 = same ? -d2 : d2;
+    return figure({ O: [0, 0], A: [-h1, -d1], B: [h1, -d1], C: [-h2, y2], D: [h2, y2], H: [0, -d1], K: [0, y2] },
+      { circles: [["O", R]], segs: [["A", "B", "ink"], ["C", "D", "ink"], ["H", "K", "dash"]].concat(lab.OA ? [["O", "A", "acc"]] : []), right: [["H", "K", "B"]], lab, dots: ["O"], names: ["O", "A", "B", "C", "D"], cen: "O", aria: "Çevrədə iki paralel vətər" }); };
+  // sector / arc with central angle al on a circle of radius R (the asked arc highlighted), R written beside OA
+  const secFig = (R, al, lab) => figure({ O: [0, 0], A: pol(R, 90 - al / 2), B: pol(R, 90 + al / 2) },
+    { circles: [["O", R]], segs: [["O", "A", "acc"], ["O", "B", "acc"]], bold: [["O", "A", "B", al > 180 ? "long" : ""]], arcs: [["O", "A", "B", al + "°", al > 180]], lab, dots: ["O"], names: ["O", "A", "B"], cen: "O", aria: "Çevrə, AOB mərkəzi bucağı və AB qövsü" });
+  // isosceles triangle OAB: ∠OAB = be, the arc AB (central angle 180° − 2be) highlighted
+  const baseFig = (R, be, big, lab) => { const al = 180 - 2 * be;
+    return figure({ O: [0, 0], A: pol(R, 90 - al / 2), B: pol(R, 90 + al / 2) },
+      { circles: [["O", R]], segs: [["O", "A", "acc"], ["O", "B", "acc"], ["A", "B", "ink"]], bold: [["O", "A", "B", big ? "long" : ""]], arcs: [["A", "O", "B", be + "°"]], lab, dots: ["O"], names: ["O", "A", "B"], cen: "O", aria: "Çevrə, OAB bərabəryanlı üçbucağı və AB qövsü" }); };
+  const TRI2 = Object.keys(BYHYP).map(Number).filter(c => new Set(BYHYP[c].map(x => x[0])).size >= 2);
+  const two = c => shuffle(BYHYP[c]).filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i).slice(0, 2);   // two [distance, half-chord] pairs of the radius c
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. chord from the radius and the distance to the centre
+    { tip: "qapali", gen: () => again(() => {
+      const [d, hh, R] = pick(TRIPLES), c = 2 * hh;
+      const w = [hh, 2 * (R - d), R + d, 2 * R];
+      return mc(ae(c, w), { svg: chordFig(R, d, { OA: String(R), OH: String(d), AB: "?" }),
+        text: `Çevrənin radiusu ${R} sm-dir. Çevrənin mərkəzindən AB vətərinə qədər məsafə ${d} sm-dir (şəkildə OH ⊥ AB). AB vətərinin uzunluğunu (sm) tapın.`,
+        solution: `OH ⊥ AB olduğu üçün AH = HB. OAH düzbucaqlı üçbucağında AH² = ${R}² − ${d}² = ${hh * hh}, AH = ${hh}. AB = 2 · ${hh} = ${c}. Tələlər: ${hh} — yalnız AH-ı (yarım vətəri) cavab yazmaq; ${2 * (R - d)} — yarım vətəri R − d sayıb ikiyə vurmaq; ${R + d} — R ilə d-ni toplamaq; ${2 * R} — diametri (ən uzun vətəri) cavab yazmaq.` });
+    }) },
+    // 2. two parallel chords: the distance between them (both cases are in the options)
+    { tip: "qapali", gen: () => again(() => {
+      const R = pick(TRI2), [[d1, h1], [d2, h2]] = two(R);
+      const same = Math.random() < .5, right = same ? Math.abs(d1 - d2) : d1 + d2, other = same ? d1 + d2 : Math.abs(d1 - d2);
+      const half = same ? Math.abs(h1 - h2) : h1 + h2, far = Math.max(d1, d2), near = Math.min(d1, d2);
+      const lab = { AB: String(2 * h1), CD: String(2 * h2), HK: "?", OA: String(R) };
+      return mc(ae(right, [other, half, far, near]), { svg: parFig(R, d1, d2, same, lab),
+        text: `Radiusu ${R} sm olan çevrədə uzunluqları ${2 * h1} sm və ${2 * h2} sm olan AB və CD paralel vətərləri çəkilib. Vətərlər çevrənin mərkəzinə nəzərən ${same ? "eyni tərəfdə" : "müxtəlif tərəflərdə"} yerləşir. Vətərlər arasındakı məsafəni (sm) tapın.`,
+        solution: `Mərkəzdən vətərlərə qədər məsafələr: AB üçün √(${R}² − ${h1}²) = ${d1}, CD üçün √(${R}² − ${h2}²) = ${d2}. ${same ? `Eyni tərəfdə məsafələr çıxılır: ${Math.max(d1, d2)} − ${Math.min(d1, d2)} = ${right}.` : `Müxtəlif tərəflərdə məsafələr toplanır: ${d1} + ${d2} = ${right}.`} Tələlər: ${other} — o biri halın cavabı; ${half} — yarım vətərləri ${same ? "çıxmaq" : "toplamaq"}; ${far} və ${near} — yalnız bir vətərin mərkəzdən məsafəsini cavab yazmaq.` });
+    }) },
+    // 3. intersecting chords
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 12), b = rnd(2, 12), c = rnd(2, 15), d = a * b / c;
+      if (!Number.isInteger(d) || c === a || c === b || d > 20 || d < 2 || d === c) return null;
+      const w = [a * c / b, a + b - c, a * b, b * c / a]; if (![d, ...w].every(x => nice(x))) return null;
+      return mc(ae(d, w), { svg: crossFig(a, b, c, d, { "^AE": String(a), "^EB": String(b), "^CE": String(c), "^ED": "?" }),
+        text: `Çevrənin AB və CD vətərləri E nöqtəsində kəsişir. AE = ${a} sm, EB = ${b} sm, CE = ${c} sm. ED parçasının uzunluğunu (sm) tapın.`,
+        solution: `Kəsişən vətərlərdə AE · EB = CE · ED. ${a} · ${b} = ${c} · ED, ED = ${a * b} : ${c} = ${d}. Tələlər: ${fmt(a * c / b)} — cütləri səhv qoşmaq (AE · CE = EB · ED); ${fmt(a + b - c)} — hasil əvəzinə cəm; ${a * b} — CE = ${c} ədədinə bölməyi unutmaq; ${fmt(b * c / a)} — EB · CE = AE · ED yazmaq.` });
+    }) },
+    // 4. isosceles triangle OAB: the base angle is not the arc
+    { tip: "qapali", gen: () => again(() => {
+      const be = rnd(10, 80), big = Math.random() < .5; if (be === 45 || be === 60 || be === 30) return null;
+      const right = big ? 180 + 2 * be : 180 - 2 * be, w = big ? [180 - 2 * be, 360 - be, 180 + be, 2 * be] : [2 * be, 180 - be, be, 180 + 2 * be];
+      return mc(ae(right, w, x => x + "°"), { svg: baseFig(4, be, big, {}),
+        text: `O — çevrənin mərkəzi, AB — vətərdir, ∠OAB = ${be}°. ${big ? "Böyük" : "Kiçik"} AB qövsü neçə dərəcədir?`,
+        solution: `OA = OB (radiuslar), OAB bərabəryanlıdır: ∠OBA = ${be}°. ∠AOB = 180° − 2 · ${be}° = ${180 - 2 * be}°. Qövs mərkəzi bucağa bərabərdir: kiçik qövs ${180 - 2 * be}°${big ? `, böyük qövs 360° − ${180 - 2 * be}° = ${right}°` : ""}. Tələlər: ${big ? `${w[0]}° — kiçik qövsü cavab yazmaq; ${w[1]}° — oturacaq bucağını 360°-dən çıxmaq; ${w[2]}° — 180°-yə yalnız bir oturacaq bucağı əlavə etmək; ${w[3]}° — oturacaq bucağını ikiqat götürmək` : `${w[0]}° — oturacaq bucağını ikiqat götürmək; ${w[1]}° — 180°-dən yalnız bir oturacaq bucağını çıxmaq; ${w[2]}° — oturacaq bucağını qövs saymaq; ${w[3]}° — böyük qövsü cavab yazmaq`}.` });
+    }) },
+    // 5. arc length / sector perimeter, the answer in the form kπ
+    { tip: "qapali", gen: () => again(() => {
+      const R = rnd(2, 18), al = pick(ALPHA), per = Math.random() < .5; if (al === 180) return null;
+      const r1 = [R * al, 180], pr = [[R * al, 360], [R * R * al, 360], [2 * R * al, 180], [2 * R, 1]];
+      if (![r1, ...pr].every(smallFr)) return null;
+      if (!per) return mc(ae(r1, pr, KF), { svg: secFig(R, al, { OA: String(R) }),
+        text: `Radiusu ${R} sm olan çevrənin AOB mərkəzi bucağı ${al}°-dir. AB qövsünün uzunluğu neçə sm-dir? (cavab π-lidir)`,
+        solution: `Qövsün uzunluğu l = πRα/180 = π · ${R} · ${al}/180 = ${KF(r1)}. Tələlər: ${KF(pr[0])} — 2πR əvəzinə πR götürmək; ${KF(pr[1])} — sektorun sahəsinin düsturu (R²-lı); ${KF(pr[2])} — 2πR ilə α/180-i bir yerdə işlətmək; ${KF(pr[3])} — bütün çevrənin uzunluğu.` });
+      const t = x => `${2 * R} + ${KF(x)}`;
+      return mc(ae(t(r1), [KF(r1), `${2 * R} + ${KF(pr[3])}`, `${R} + ${KF(r1)}`, t(pr[0])], x => x), { svg: secFig(R, al, { OA: String(R) }),
+        text: `Radiusu ${R} sm olan sektorun mərkəzi bucağı ${al}°-dir (şəkildə AOB sektoru). Sektorun perimetri neçə sm-dir? (cavab π-lidir)`,
+        solution: `Perimetr = iki radius + qövsün uzunluğu: 2 · ${R} + πRα/180 = ${t(r1)}. Tələlər: ${KF(r1)} — yalnız qövsü götürmək; ${2 * R} + ${KF(pr[3])} — qövsün əvəzinə bütün çevrəni götürmək; ${R} + ${KF(r1)} — yalnız bir radius əlavə etmək; ${t(pr[0])} — qövsü 2πR əvəzinə πR ilə hesablamaq.` });
+    }) },
+    // 6. word problem: the wheel (π = 3,14)
+    { tip: "qapali", gen: () => again(() => {
+      const r = pick([20, 25, 30, 40, 50]), n = pick([10, 20, 25, 40, 50, 100]), C = 6.28 * r, right = C * n / 100;
+      const w = [3.14 * r * n / 100, C * n, C * n / 10, 3.14 * r * r * n / 100]; if (![right, ...w].every(x => nice(x))) return null;
+      return mc(ae(right, w, fmt), { svg: figure({ O: [0, 0], A: [r, 0] }, { circles: [["O", r]], segs: [["O", "A", "acc"]], lab: { OA: r + " sm" }, dots: ["O"], names: ["O", "A"], cen: "O", aria: "Təkər, radiusu " + r + " sm" }),
+        text: `Velosiped təkərinin radiusu ${r} sm-dir. Təkər ${n} dəfə tam fırlananda velosiped neçə metr yol gedər? (π = 3,14; sürüşmə yoxdur.)`,
+        solution: `Bir dövrədə təkər öz çevrəsinin uzunluğu qədər gedir: 2 · 3,14 · ${r} = ${fmt(C)} sm. ${n} dövrədə: ${fmt(C * n)} sm = ${fmt(right)} m. Tələlər: ${fmt(w[0])} — 2πr əvəzinə πr; ${fmt(w[1])} — sm-i metrə çevirməmək; ${fmt(w[2])} — 10-a bölmək (1 m = 100 sm); ${fmt(w[3])} — çevrənin əvəzinə dairənin sahəsinin düsturu.` });
+    }) },
+    // 7. coded: the chord perpendicular to a diameter
+    { tip: "kod", gen: () => again(() => {
+      let m, n, N;
+      { const g = pick([1, 1, 2, 3]), a = rnd(1, 4), b = rnd(1, 4); m = g * a * a; n = g * b * b; }
+      if (m === n || m + n > 40) return null; N = 4 * m * n;
+      return { svg: diamFig(m, n, { AE: String(m), EB: String(n), CQ: "?" }),
+        text: `AB — çevrənin diametridir. AB üzərindəki E nöqtəsindən AB-yə perpendikulyar CD vətəri çəkilib. AE = ${m} sm, EB = ${n} sm. CD vətərinin uzunluğunu (sm) tapın.`,
+        answer: Math.sqrt(N), show: rt(N), tol: 1e-6, unit: "sm",
+        solution: `Diametrə perpendikulyar vətər E nöqtəsində yarıya bölünür: CE = ED. Kəsişən vətərlər: CE · ED = AE · EB, yəni CE² = ${m} · ${n} = ${m * n}, CE = ${rt(m * n)}. CD = 2 · ${rt(m * n)} = ${rt(N)}.` };
+    }) },
+    // 8. coded: base angle → arc → arc length, the answer k of kπ
+    { tip: "kod", gen: () => again(() => {
+      const R = rnd(2, 24), al = pick([40, 60, 72, 80, 90, 100, 120, 140, 150]), be = (180 - al) / 2, r1 = [R * al, 180]; if (!smallFr(r1) || r1[0] % 180) return null;
+      const k = frac(...r1);
+      return { svg: baseFig(R, be, false, { OA: String(R) }),
+        text: `O — çevrənin mərkəzi, radiusu ${R} sm-dir. AB vətəri üçün ∠OAB = ${be}°. Kiçik AB qövsünün uzunluğu kπ sm-dir. k-nı tapın.`,
+        answer: R * al / 180, show: k, tol: 1e-6, ...KPI,
+        solution: `OA = OB, ona görə ∠OBA = ${be}°, ∠AOB = 180° − 2 · ${be}° = ${al}°. Kiçik AB qövsü ${al}°-dir. l = πRα/180 = π · ${R} · ${al}/180 = ${kpi(k)}. k = ${k}.` };
+    }) },
+    // 9. coded: the fence round a round pond (the difference of the circumferences does not depend on R), π = 3,14
+    { tip: "kod", gen: () => again(() => {
+      const R = pick([8, 10, 12, 15, 20, 25, 30, 40]), h = pick([1, 2, 3, 4, 5, 6]), ans = Math.round(6.28 * h * 100) / 100;
+      return { svg: figure({ O: [0, 0], A: [R, 0], B: [R + h, 0] }, { circles: [["O", R + h], ["O", R]], segs: [["O", "A", "acc"], ["A", "B", "dash"]], lab: { OA: String(R), AB: String(h) }, dots: ["O"], names: ["O"], cen: "O", aria: "Gölməçə və hasar: iki konsentrik çevrə" }),
+        text: `Dairəvi gölməçənin radiusu ${R} m-dir. Onun ətrafına hər yerdən gölməçədən ${h} m aralı hasar çəkilir (şəkildə hasarın xətti göstərilib). Hasarın uzunluğu gölməçənin sahil xəttinin uzunluğundan neçə metr çoxdur? (π = 3,14)`,
+        answer: ans, show: fmt(ans), tol: 1e-6, unit: "m",
+        solution: `Hasarın uzunluğu 2π(${R} + ${h}), sahil xəttinin uzunluğu 2π · ${R}. Fərq: 2π · ${h} = 2 · 3,14 · ${h} = ${fmt(ans)} m. Fərq radiusdan asılı deyil, yalnız ${h} m aralıqdan asılıdır.` };
+    }) },
+    // 10. written: two parallel chords at a known distance → the radius (x = the distance from O to the farther / first chord)
+    { tip: "yazili", gen: () => again(() => {
+      const c = pick(TRI2), [p, q] = two(c), same = Math.random() < .5;
+      const A = same && p[0] < q[0] ? q : p, B = A === p ? q : p;                              // same side: AB is the farther (shorter) chord
+      const m = same ? A[0] - B[0] : A[0] + B[0], x = (m * m + B[1] * B[1] - A[1] * A[1]) / (2 * m); if (x !== A[0]) return null;
+      return { svg: parFig(c, A[0], B[0], same, { AB: String(2 * A[1]), CD: String(2 * B[1]), HK: String(m) }),
+        text: `Çevrədə uzunluqları ${2 * A[1]} sm və ${2 * B[1]} sm olan AB və CD paralel vətərləri çəkilib. Vətərlər çevrənin mərkəzinə nəzərən ${same ? "eyni tərəfdə" : "müxtəlif tərəflərdə"} yerləşir və aralarındakı məsafə ${m} sm-dir. Çevrənin radiusunu tapın. Həllini kağızda yazın.`,
+        answer: c, show: String(c), tol: 1e-6, unit: "sm",
+        solution: `1) O mərkəzindən AB-yə qədər məsafə x olsun. AB = ${2 * A[1]}, ona görə yarısı ${A[1]}; CD-nin yarısı ${B[1]}. O mərkəzindən CD-yə qədər məsafə ${same ? `x − ${m}` : `${m} − x`}. 2) Hər iki vətər üçün R² = (məsafə)² + (yarım vətər)²: x² + ${A[1]}² = (${same ? `x − ${m}` : `${m} − x`})² + ${B[1]}². 3) x² + ${A[1] * A[1]} = x² − ${2 * m}x + ${m * m} + ${B[1] * B[1]}, buradan ${2 * m}x = ${m * m + B[1] * B[1] - A[1] * A[1]}, x = ${x}. R² = ${x}² + ${A[1]}² = ${c * c}, R = ${c} sm. 4) Yoxlama: CD-yə qədər məsafə ${B[0]}, ${B[0]}² + ${B[1]}² = ${c * c} ✓. Kağızda həll yazılmadan yalnız cavab (${c}) yazılsa, bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -287,7 +410,7 @@
     game = Oyun.mount({
       key: "cevre-daire", title: "Çevrə və dairə: vətər, qövs, çevrənin uzunluğu", fenn: "riyaziyyat", link: "dersler/cevre-daire.html",
       format: "Cavab — ədəd. Uzunluq kπ şəklindədirsə, yalnız k-nı yaz: 12π → 12, (3/2)π → 3/2, 5√2π → 5√2. π = 3,14 verilibsə, onluq kəsr yaz: 188,4. Bucaq — dərəcə ilə (° yazmaq lazım deyil).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["veter", "veter", "kesisen", "bucaq", "uzunluq", "uzunluq", "qovs", "qovs", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
