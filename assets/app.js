@@ -642,6 +642,7 @@ function redoCard(e, redraw) {
   btn.addEventListener("click", () => {
     const v = q.choices ? input.value() : input.value.trim();
     if (v === "" || v == null) { out.className = "fld-err"; out.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
+    const sm = !q.choices && Skilly.sadele ? Skilly.sadele(v) : ""; if (sm) { out.className = "fld-err"; out.textContent = sm; return; }
     const ok = Skilly.yoxla(q, q.choices ? +v : v);
     Skilly.tekrar(e.id, ok);
     out.className = "e-res " + (ok ? "ok" : "no");

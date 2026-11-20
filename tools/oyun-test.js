@@ -42,6 +42,7 @@ for (const l of levels) {
       const v = parse(shown);
       if (!close(v, q.answer, q.tol)) fails.push(`shown answer "${q.show}" not accepted (answer ${q.answer}): ${t}`);
       if (!ctx.window.Oyun.okForm(shown)) fails.push(`shown answer "${q.show}" is not in finished-number form (the game would reject it): ${t}`);
+      if (ctx.window.Oyun.simpler(shown)) fails.push(`shown answer "${q.show}" is not simplified (${ctx.window.Oyun.simpler(shown)}): ${t}`);
     }
   }
   fails = [...new Set(fails)];
@@ -85,6 +86,7 @@ else {
         const shown = String(q.show).replace(/\s*(m|sm|km|kq|q|s|san|dəq|°|%|m\/s²|m\/s|N|J|W|Pa|V|A|Ω|sm²|m²|sm³|m³|dm³|l|manat|AZN)$/i, "").replace(/,/g, ".");
         if (!close(parse(shown), q.answer, q.tol)) fails.push(`shown "${q.show}" not accepted (answer ${q.answer})`);
         if (!ctx.window.Oyun.okForm(shown)) fails.push(`shown "${q.show}" not in finished-number form`);
+        if (ctx.window.Oyun.simpler(shown)) fails.push(`shown "${q.show}" not simplified (${ctx.window.Oyun.simpler(shown)})`);
       }
     }
     fails = [...new Set(fails)];

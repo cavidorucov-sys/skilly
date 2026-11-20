@@ -13,6 +13,32 @@
     if (!/^[-+*/().\d]*(?:Math\.sqrt\(\d+(?:\.\d+)?\)[-+*/().\d]*)*$/.test(s)) return NaN;
     try { const v = Function('"use strict";return (' + s + ")")(); return typeof v === "number" && isFinite(v) ? v : NaN; } catch (e) { return NaN; }
   }
+  // the same "simplest form" rule as assets/oyun.js (simpler) — keep the two copies the same
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  function simpler(raw) {
+    const t = String(raw).replace(/\s+/g, "").replace(/sqrt/gi, "√").replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/°$/, "").replace(/^[-+]/, "");
+    const parts = t.split(/(?<=.)[-+]/);
+    for (const p of parts) {
+      if (/(^|[^\d.])0\d/.test(p) || /\.(?!\d)/.test(p)) return "lazımsız sıfırları sil.";
+      const m = p.match(/^(?:(\d*)(√))?(\d+(?:\.\d+)?)(?:\/(\d+))?$/);
+      if (!m) continue;
+      const [, k = "", root, n, d] = m;
+      if (root) {
+        if (k === "1") return "kökün qarşısında 1 yazılmır.";
+        if (/^\d+$/.test(n)) {
+          const N = +n; let s = 1; for (let i = 2; i * i <= N; i++) if (N % (i * i) === 0) s = i;
+          if (N <= 1 || Number.isInteger(Math.sqrt(N))) return "kökü çıxar — kökaltı tam kvadratdır.";
+          if (s > 1 && parts.length === 1) return "vuruğu kök altından çıxar.";
+        }
+        if (d != null && (+d === 1 || gcd(+(k || 1), +d) > 1)) return "kəsri ixtisar et.";
+      } else if (d != null) {
+        if (!/^\d+$/.test(n)) return "kəsrin surətini və məxrəcini tam ədəd kimi yaz.";
+        if (+d === 1 || (+n) % (+d) === 0) return "bu kəsr tam ədədə bərabərdir — tam ədəd kimi yaz.";
+        if (gcd(+n, +d) > 1) return "kəsri ixtisar et.";
+      }
+    }
+    return "";
+  }
   const OK = ["orujov.fikret@gmail.com", "cavid.orucov@gmail.com"];
   const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -176,6 +202,8 @@
       return upsert({ ...x, tekrar: (x.tekrar || 0) + 1, status: ok ? "baglandi" : "aciq", novbeti: ok ? "" : x.novbeti });
     },
     // Redo answers are checked as in the games: a choice by its index, a number with the same tolerance.
+    // not simplified (4/2, √12, 05 …) → the hint text; the redo is not counted then
+    sadele(v) { const s = simpler(v); return s ? "Cavabı sadələşdir: " + s : ""; },
     yoxla(q2, v) {
       if (q2.choices) return v === q2.correct;
       const x = num(v); if (isNaN(x) || q2.answer == null) return false;

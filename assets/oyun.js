@@ -35,6 +35,36 @@
     // two terms only when a root is involved (√23 − 4, 2√3 + 1); "7/9+1/4" must be computed, not typed
     return parts.length === 1 || parts.some(x => x.includes("√"));
   }
+  // The finished number must also be in its simplest form (father, 20 Nov 2026): 4/2 → 2, 6/4 → 3/2, √4 → 2,
+  // √12 → 2√3, 1√3 → √3, 05 → 5. Not simplified → a hint and the attempt is not counted. Returns the hint or "".
+  // Trailing zeros stay allowed (19,70 after rounding, 1,70 manat); √92 − 9 (the fractional part of √92) stays allowed:
+  // the square factor is checked only for a one-term answer.
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  function simpler(raw) {
+    const t = String(raw).replace(/\s+/g, "").replace(/sqrt/gi, "√").replace(/[−–—]/g, "-").replace(/,/g, ".").replace(/°$/, "").replace(/^[-+]/, "");
+    const parts = t.split(/(?<=.)[-+]/);
+    for (const p of parts) {
+      if (/(^|[^\d.])0\d/.test(p) || /\.(?!\d)/.test(p)) return "lazımsız sıfırları sil.";
+      const m = p.match(/^(?:(\d*)(√))?(\d+(?:\.\d+)?)(?:\/(\d+))?$/);
+      if (!m) continue;
+      const [, k = "", root, n, d] = m;
+      if (root) {
+        if (k === "1") return "kökün qarşısında 1 yazılmır.";
+        if (/^\d+$/.test(n)) {
+          const N = +n; let s = 1; for (let i = 2; i * i <= N; i++) if (N % (i * i) === 0) s = i;
+          if (N <= 1 || Number.isInteger(Math.sqrt(N))) return "kökü çıxar — kökaltı tam kvadratdır.";
+          if (s > 1 && parts.length === 1) return "vuruğu kök altından çıxar.";
+        }
+        if (d != null && (+d === 1 || gcd(+(k || 1), +d) > 1)) return "kəsri ixtisar et.";
+      } else if (d != null) {
+        if (!/^\d+$/.test(n)) return "kəsrin surətini və məxrəcini tam ədəd kimi yaz.";
+        if (+d === 1 || (+n) % (+d) === 0) return "bu kəsr tam ədədə bərabərdir — tam ədəd kimi yaz.";
+        if (gcd(+n, +d) > 1) return "kəsri ixtisar et.";
+      }
+    }
+    return "";
+  }
+  const simplerMsg = raw => { const s = simpler(raw); return s ? "Cavabı sadələşdir: " + s : ""; };
   // exact answers (shown as a fraction or a root) need the exact value; rounded decimals are not accepted
   const tolOf = q => q.tol ?? (/[\/√]/.test(String(q.show)) ? 1e-6 : undefined);
   const close = (x, v, tol) => Math.abs(x - v) <= (tol ?? Math.max(0.005, Math.abs(v) * 0.005));
@@ -179,6 +209,7 @@
             const x = parse(v);
             if (!String(v).trim()) { err.textContent = "Əvvəl cavabı yaz."; return; }
             if (isNaN(x) || !okForm(v)) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
+            const sm = simplerMsg(v); if (sm) { err.textContent = sm; return; }
             ok = close(x, q.answer, tolOf(q));
           }
           if (ok) {
@@ -378,6 +409,7 @@
           const v = getVal();
           if (q.choices ? v < 0 : !String(v).trim()) { err.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
           if (!q.choices && (isNaN(parse(v)) || !okForm(v))) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
+          const sm = q.choices ? "" : simplerMsg(v); if (sm) { err.textContent = sm; return; }
           const g = opt.guard && opt.guard(); if (g) { err.textContent = g; return; }
           resolve(v);
         }
@@ -576,5 +608,5 @@
     return { state: st, drawTest };
   }
 
-  window.Oyun = { mount, parse, h, okForm, ae, again, num, imtLevel };
+  window.Oyun = { mount, parse, h, okForm, simpler, ae, again, num, imtLevel };
 })();
