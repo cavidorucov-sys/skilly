@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Dördbucaqlılar</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Dairə və sektor</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb fiqurlar</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -324,6 +325,130 @@ Halqa: π(R² − r²). Seqment = sektor − üçbucaq (kiçik seqment).
         <li>Tərəfi 6 olan kvadratda mərkəzi bir təpədə, radiusu 6 olan dörddəbir dairə var (π ≈ 3,14). Qalan hissə? <span class="ans">36 − 3,14 · 36 / 4 = 36 − 28,26 = 7,74.</span></li>
         <li>12 × 10 düzbucaqlıdan küncdəki 5 × 4 kəsilib. S? <span class="ans">120 − 20 = 100.</span></li>
         <li>Kvadratın sahəsi 36. İçinə çəkilmiş dairənin sahəsi kπ, k? <span class="ans">Tərəf 6, r = 3, k = 9.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (20 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: sahələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Fiqurun sahəsi buraxılış imtahanında həndəsənin ən çox gələn hissəsidir. Sual üç formada olur, çoxunda şəkil var:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Şəkil və beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: ÷2 unutmaq, hündürlük əvəzinə mail tərəfi götürmək, <span class="m">R²</span> əvəzinə <span class="m">R</span> yazmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün hesablayıb yazırsan. Sahədə <span class="m">π</span> olanda sual cavabı ədəd kimi yazmağa imkan verir: ya "<span class="m">π ≈ 3,14</span>" verilir, ya da "sahə <span class="m">kπ</span>-dir, <span class="m">k</span>-nı tap" deyilir.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: hansı düstur, nə hesablandı, cavab. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda üç şeyi yoxla: <b>1)</b> fiqur hansıdır və hansı düstur gərəkdir; <b>2)</b> hansı ölçü verilib, hansı çatmır (adətən hündürlük); <b>3)</b> sual nəyi soruşur — fiqurun özünü, yoxsa "kənarda qalan" hissəni. Ölçünü gözlə yox, yalnız yazılmış ədədlərlə hesabla.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">ABCD</span> düzbucaqlı trapesiyasında <span class="m">AD ∥ BC</span>, <span class="m">AB ⊥ AD</span>, <span class="m">BC</span> = 4 sm, <span class="m">AD</span> = 7 sm, <span class="m">CD</span> = 5 sm. Trapesiyanın sahəsi neçə sm²-dir?</p>
+        <svg aria-label="ABCD düzbucaqlı trapesiyası: BC = 4, AD = 7, CD = 5" viewBox="0 0 280 210" style="width:300px" role="img">
+        <polygon points="34,165.6 34,44.4 155.1,44.4 246,165.6" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M43 165.5L43 156.5L34 156.5" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+        <path d="M34 53.4L43 53.4L43 44.4" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+        <text style="font-size:13px" x="94.5" y="36.4" text-anchor="middle" class="lbl">4</text>
+        <text style="font-size:13px" x="140" y="183.5" text-anchor="middle" class="lbl">7</text>
+        <text style="font-size:13px" x="210.9" y="102.1" text-anchor="middle" class="lbl">5</text>
+        <text style="font-size:13px;font-weight:400" x="22.6" y="178.8" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">A</text>
+        <text style="font-size:13px;font-weight:400" x="22.6" y="41.1" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">B</text>
+        <text style="font-size:13px;font-weight:400" x="162.5" y="37.5" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">C</text>
+        <text style="font-size:13px;font-weight:400" x="258.6" y="176.5" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">D</text>
+      </svg>
+        <ol class="imt-opts"><li>16,5</li><li>22</li><li>27,5</li><li>28</li><li>44</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">AB hündürlükdür, CD isə maildir.
+C-dən AD-yə perpendikulyar endirək: bir katet
+AD − BC = 7 − 4 = 3, hipotenuz CD = 5
+h = AB = √(5² − 3²) = 4
+S = (4 + 7) / 2 · 4 = 22
+Cavab: B) 22</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 16,5</b> — hündürlük əvəzinə oturacaqların fərqini götürmək: <span class="m">(4 + 7) / 2 · 3</span>.</li>
+        <li><b>C) 27,5</b> — mail tərəfi hündürlük saymaq: <span class="m">(4 + 7) / 2 · 5</span>. Düzbucaqlı trapesiyada hündürlük yalnız <span class="m">AB</span>-dir, <span class="m">CD</span> yox.</li>
+        <li><b>D) 28</b> — orta xətt əvəzinə böyük oturacağı götürmək: <span class="m">7 · 4</span>.</li>
+        <li><b>E) 44</b> — ÷2 unutmaq: <span class="m">(4 + 7) · 4</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">ABCD</span> trapesiyasında <span class="m">AD ∥ BC</span>, diaqonallar <span class="m">O</span> nöqtəsində kəsişir. <span class="m">AOD</span> üçbucağının sahəsi 16 sm², <span class="m">BOC</span> üçbucağının sahəsi 9 sm²-dir (şəkildə yazılıb, şəkil miqyassızdır). Trapesiyanın sahəsi neçə sm²-dir?</p>
+        <svg aria-label="ABCD trapesiyası, AOD üçbucağının sahəsi 16, BOC üçbucağının sahəsi 9" viewBox="0 0 280 210" style="width:300px" role="img">
+        <polygon points="76.2,176 116.8,34 203.8,34 192.2,176" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="76.2" y1="176" x2="203.7" y2="34" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="116.8" y1="34" x2="192.1" y2="176" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+        <text style="font-size:13px" x="139.1" y="156.9" text-anchor="middle" class="lbl" fill="var(--accent)">16</text>
+        <text style="font-size:13px" x="156.5" y="56.2" text-anchor="middle" class="lbl" fill="var(--accent)">9</text>
+        <circle cx="149.1" cy="94.8" r="2.6" fill="var(--ink)"/>
+        <text style="font-size:13px;font-weight:400" x="66.3" y="190.8" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">A</text>
+        <text style="font-size:13px;font-weight:400" x="111.3" y="26.1" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">B</text>
+        <text style="font-size:13px;font-weight:400" x="212.4" y="28.0" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">C</text>
+        <text style="font-size:13px;font-weight:400" x="199.6" y="192.8" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">D</text>
+        <text style="font-size:13px;font-weight:400" x="163.1" y="99.8" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">O</text>
+      </svg>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">AD ∥ BC ⇒ AOD ~ COB. Sahələrin nisbəti 16 : 9,
+oxşarlıq əmsalı 4 : 3 (sahələrin nisbəti əmsalın kvadratına bərabərdir).
+AOB və AOD-un A-dan BD-yə hündürlüyü eynidir, sahələri
+oturacaqlar kimidir: BO : OD = BC : AD = 3 : 4,
+AOB = 16 · 3/4 = 12.
+ABD və ACD-nin sahəsi bərabərdir (eyni AD, eyni hündürlük),
+ortaq AOD-u çıxsaq: COD = AOB = 12.
+S = 16 + 9 + 12 + 12 = 49
+Cavab: 49</div>
+      <p>Qısa yol: <span class="m">S = (√16 + √9)² = (4 + 3)² = 49</span>. Tələ: yalnız verilən iki üçbucağı toplamaq (<span class="m">16 + 9 = 25</span>) — yan iki üçbucağı unutmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Radiusu 10 sm olan dairədə mərkəzi bucağı 90° olan <span class="m">AB</span> qövsü və <span class="m">AB</span> xordu çəkilib. Qövs ilə xord arasında qalan fiqurun (seqmentin) sahəsi neçə sm²-dir? (<span class="m">π ≈ 3,14</span>)</p>
+        <svg aria-label="Radiusu 10 olan dairənin seqmenti, mərkəzi bucaq 90°" viewBox="0 0 280 210" style="width:300px" role="img">
+        <polygon points="211,105 210.8,100.4 210.4,95.7 209.6,91.1 208.6,86.6 207.2,82.2 205.6,77.8 203.7,73.6 201.5,69.5 199,65.6 196.3,61.8 193.4,58.2 190.2,54.8 186.8,51.6 183.2,48.7 179.4,46 175.5,43.5 171.4,41.3 167.2,39.4 162.8,37.8 158.4,36.4 153.9,35.4 149.3,34.6 144.6,34.2 140,34" fill="var(--accent-soft)" stroke="none"/>
+        <circle cx="140" cy="105" r="71" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="140" y1="105" x2="211" y2="105" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="140" y1="105" x2="140" y2="34" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="211" y1="105" x2="140" y2="34" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M149 105L149 96L140 96" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+        <text style="font-size:13px" x="175.5" y="123" text-anchor="middle" class="lbl">10</text>
+        <circle cx="140" cy="105" r="2.6" fill="var(--ink)"/>
+        <text style="font-size:13px;font-weight:400" x="130.1" y="119.8" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">O</text>
+        <text style="font-size:13px;font-weight:400" x="225" y="110" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">A</text>
+        <text style="font-size:13px;font-weight:400" x="140" y="25" text-anchor="middle" class="lbl" fill="var(--muted)" font-style="italic">B</text>
+      </svg>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Seqment = sektor − OAB üçbucağı.
+2) Sektor: 90° dairənin 1/4 hissəsidir:
+   3,14 · 10² / 4 = 78,5
+3) OAB düzbucaqlı üçbucaqdır, OA = OB = 10:
+   10 · 10 / 2 = 50
+4) 78,5 − 50 = 28,5
+Cavab: 28,5 sm².</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>seqmentin sektor və üçbucağın fərqi</b> kimi qurulması (1-ci addım), <b>hər iki sahənin düzgün hesabı</b> (2–3-cü addımlar), <b>fərq və cavab</b>. Həll yazılmadan yalnız "28,5" yazılsa, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Mail tərəf hündürlük deyil.</b> Trapesiyada, paraleloqramda hündürlük oturacağa perpendikulyardır; mail tərəfdən Pifaqorla tapılır.</li>
+        <li><b>÷2 unutmaq.</b> Üçbucaq, romb (<span class="m">d₁ · d₂ / 2</span>) və trapesiya (<span class="m">(a + b) / 2 · h</span>) üçün.</li>
+        <li><b>Dairədə <span class="m">R²</span>.</b> <span class="m">πR²</span> sahədir, <span class="m">2πR</span> çevrənin uzunluğudur. Diametr verilibsə, əvvəl yarıya böl.</li>
+        <li><b>Sektor.</b> Dairənin <span class="m">α/360</span> hissəsidir; 180-ə bölmək və qalan sektoru götürmək tipik səhvlərdir.</li>
+        <li><b>"Kənarda qalan hissə" = böyük sahə − kiçik sahə.</b> Kvadrat dairənin daxilindədirsə, onun diaqonalı dairənin diametridir: <span class="m">S = d² / 2</span>.</li>
+        <li><b>Oxşar fiqurlarda sahələr əmsalın kvadratı ilə.</b> Tərəflərin nisbəti <span class="m">2 : 3</span>-dürsə, sahələrin nisbəti <span class="m">4 : 9</span>-dur.</li>
+        <li><b>Sahələrin fərqi.</b> Seqment = sektor − üçbucaq; halqa = böyük dairə − kiçik dairə.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">üçbucaq:      a · h / 2          romb:  d₁ · d₂ / 2
+trapesiya:     (a + b) / 2 · h    dairə: πR²
+sektor:        πR² · α / 360      oxşarlıq: sahələr k²
+seqment:       sektor − üçbucaq   halqa: π(R² − r²)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Düzbucaqlı trapesiyanın oturacaqları 3 və 9, mail yan tərəfi 10-dur. Sahəsi? <span class="ans">Mail tərəf hündürlük deyil: 9 − 3 = 6, h = √(10² − 6²) = 8. S = (3 + 9) / 2 · 8 = 48.</span></li>
+        <li>Rombun tərəfi 13, bir diaqonalı 24-dür. Sahəsi? <span class="ans">Yarım diaqonal 12, o biri yarım diaqonal √(13² − 12²) = 5, ikinci diaqonal 10. S = 24 · 10 / 2 = 120.</span></li>
+        <li>Radiusu 6, mərkəzi bucağı 60° olan sektorun sahəsi <span class="m">kπ</span>-dir. <span class="m">k</span>-nı tap. <span class="ans">π · 6² · 60 / 360 = 6π, k = 6.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

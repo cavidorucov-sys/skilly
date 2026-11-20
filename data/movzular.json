@@ -590,7 +590,8 @@
     "riyaziyyat:Pifaqor teoremi",
     "riyaziyyat:Düzbucaqlı üçbucaqda sin, cos, tg"
    ],
-   "hefte": "2027-02-01"
+   "hefte": "2027-02-01",
+   "imt": true
   },
   {
    "bolme": "Koordinatlar üsulu, hərəkət, oxşarlıq",

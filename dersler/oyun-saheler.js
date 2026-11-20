@@ -408,6 +408,202 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (forgotten ÷2, wrong height, r instead of r², sum instead of square of ratio, ...).
+  // Figures: exact coordinates in cm-units (the drawing is to scale), fixed orientation; g.Q / g.P / g.labs are kept for the node check.
+  const { ae, again, num } = Oyun;
+  const iNice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const iMc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const kpiF = x => (x === 1 ? "" : num(x)) + "π";
+  const dist = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]);
+  const mean = ps => [0, 1].map(i => ps.reduce((t, p) => t + p[i], 0) / ps.length);
+  // o: { circ:[[c, r, "fill"|"hole"|"line"|"ghost"]], poly:[names], polyFill:"soft"|"hole"|"none", fill:[[names,"soft"|"hole"]], segs:[[p,q,"dash"|"acc"|"ink"]],
+  //      right:[[v,p,q]], arcs:[[v,p,q,text,r]], lab:[[p,q,text,pos?]], tags:[[name|[names],text,dx,dy]], names:[...], dots:[...], cen?:name }
+  function ifig(P, o) {
+    const W = 280, H = 210, pad = o.pad == null ? 34 : o.pad;
+    const ext = Object.values(P).slice();
+    for (const [c, r] of o.circ || []) ext.push([P[c][0] - r, P[c][1] - r], [P[c][0] + r, P[c][1] + r]);
+    const xs = ext.map(p => p[0]), ys = ext.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const s = Math.min((W - 2 * pad) / ((x1 - x0) || 1), (H - 2 * pad) / ((y1 - y0) || 1));
+    const ox = (W - s * (x1 - x0)) / 2 - s * x0, oy = (H - s * (y1 - y0)) / 2 + s * y1;
+    const Q = {}; for (const k in P) Q[k] = [ox + s * P[k][0], oy - s * P[k][1]];
+    const g = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": o.aria || "Fiqur" });
+    const PAPER = "fill:var(--paper,#faf9f5)", pts = ks => ks.map(k => Q[k].map(v => Math.round(v * 10) / 10).join(",")).join(" ");
+    const circle = ([c, r, st]) => g.append(sv("circle", { cx: Q[c][0], cy: Q[c][1], r: s * r, fill: st === "fill" ? SOFT : "none", ...(st === "hole" ? { style: PAPER } : {}),
+      stroke: st === "ghost" ? "#9a9890" : INK, "stroke-width": st === "ghost" ? 1.4 : 2, ...(st === "ghost" ? { "stroke-dasharray": "5 4" } : {}) }));
+    (o.circ || []).filter(c => c[2] === "fill").forEach(circle);
+    for (const [ks, st] of o.fill || []) g.append(sv("polygon", { points: pts(ks), fill: SOFT, ...(st === "hole" ? { style: PAPER } : {}), stroke: "none" }));
+    if (o.poly) g.append(sv("polygon", { points: pts(o.poly), fill: o.polyFill === "none" ? "none" : SOFT, ...(o.polyFill === "hole" ? { style: PAPER } : {}), stroke: INK, "stroke-width": 2, "stroke-linejoin": "round" }));
+    (o.circ || []).filter(c => c[2] !== "fill").forEach(circle);
+    for (const [p, q, st] of o.segs || []) {
+      const a = { x1: Q[p][0], y1: Q[p][1], x2: Q[q][0], y2: Q[q][1], stroke: st === "acc" ? ACC : INK, "stroke-width": st === "dash" || st === "acc" ? 1.6 : 2, "stroke-linecap": "round" };
+      if (st === "dash" || st === "acc") a["stroke-dasharray"] = "5 4";
+      g.append(sv("line", a));
+    }
+    for (const [v, p, q] of o.right || []) {
+      const u = k => { const d = [Q[k][0] - Q[v][0], Q[k][1] - Q[v][1]], L = Math.hypot(...d); return [d[0] / L * 9, d[1] / L * 9]; };
+      const a = u(p), b = u(q), V = Q[v];
+      g.append(sv("path", { d: `M${V[0] + a[0]} ${V[1] + a[1]}L${V[0] + a[0] + b[0]} ${V[1] + a[1] + b[1]}L${V[0] + b[0]} ${V[1] + b[1]}`, fill: "none", stroke: INK, "stroke-width": 1.3 }));
+    }
+    for (const [v, p, q, tx, rr] of o.arcs || []) {
+      const V = Q[v], R = rr || 18, ang = k => Math.atan2(Q[k][1] - V[1], Q[k][0] - V[0]);
+      let t1 = ang(p), t2 = ang(q); if (Math.abs(t2 - t1) > Math.PI) t2 += t2 < t1 ? 2 * Math.PI : -2 * Math.PI;
+      const ap = Array.from({ length: 11 }, (_, i) => { const tt = t1 + (t2 - t1) * i / 10; return (V[0] + R * Math.cos(tt)) + " " + (V[1] + R * Math.sin(tt)); });
+      g.append(sv("path", { d: "M" + ap.join("L"), fill: "none", stroke: ACC, "stroke-width": 2 }));
+      if (tx) { const tm = (t1 + t2) / 2; g.append(sv("text", { x: V[0] + (R + 15) * Math.cos(tm), y: V[1] + (R + 15) * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:12px" }, tx)); }
+    }
+    const named = o.names || [];
+    const cen = o.cen ? Q[o.cen] : mean((o.poly || named).map(k => Q[k]));
+    g.labs = [];
+    for (const [p, q, txt, tp = .5, inside] of o.lab || []) {
+      const m = [Q[p][0] + (Q[q][0] - Q[p][0]) * tp, Q[p][1] + (Q[q][1] - Q[p][1]) * tp];
+      const d = [Q[q][0] - Q[p][0], Q[q][1] - Q[p][1]], L = Math.hypot(...d) || 1;
+      let n = [-d[1] / L, d[0] / L];
+      const out = [m[0] - cen[0], m[1] - cen[1]];
+      if (Math.hypot(...out) > 6 ? (n[0] * out[0] + n[1] * out[1] < 0) !== !!inside : n[1] > 0) n = [-n[0], -n[1]];
+      g.append(sv("text", { x: m[0] + n[0] * 13, y: m[1] + n[1] * 13 + 5, "text-anchor": "middle", class: "oy-lbl" }, txt));
+      g.labs.push({ p, q, txt });
+    }
+    for (const [who, txt, dx, dy] of o.tags || []) {
+      const c = Array.isArray(who) ? mean(who.map(k => Q[k])) : Q[who];
+      g.append(sv("text", { x: c[0] + dx, y: c[1] + dy + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:13px" }, txt));
+    }
+    for (const k of o.dots || []) g.append(sv("circle", { cx: Q[k][0], cy: Q[k][1], r: 2.6, fill: INK }));
+    for (const k of named) {
+      let d = [Q[k][0] - cen[0], Q[k][1] - cen[1]], L = Math.hypot(...d);
+      if (L < 4) { d = [1, -1]; L = Math.SQRT2; }
+      const pl = (o.place || {})[k]; if (pl) { d = pl; L = Math.hypot(...pl); }
+      g.append(sv("text", { x: Q[k][0] + d[0] / L * 14, y: Q[k][1] + d[1] / L * 14 + 5, "text-anchor": "middle", class: "oy-lbl", style: "fill:#5f5e5a;font-style:italic" }, k));
+    }
+    g.Q = Q; g.P = P; g.s = s;
+    return g;
+  }
+  const heronP = (a, b, c) => { const p = (a + b + c) / 2; return p * (p - a) * (p - b) * (p - c); };
+  const arcPts2 = (P, prefix, c, R, f, t, n = 24) => { const ks = []; for (let i = 0; i <= n; i++) { const k = prefix + i; P[k] = on(f + (t - f) * i / n, R, c); ks.push(k); } return ks; };
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: height of a triangle given by three sides (Heron, then h = 2S / a)
+    { tip: "qapali", gen: () => again(() => {
+      const [a0, b0, c0, S0] = pick(HERON), k = pick([1, 1, 2, 3]), sd = [a0 * k, b0 * k, c0 * k].sort(() => Math.random() - .5);
+      const [a, b, c] = sd, S = S0 * k * k, h = 2 * S / a;
+      const w = [S, S / a, 2 * S / b, 2 * S / c];
+      if (!iNice(h, 2) || !w.every(x => iNice(x, 2)) || Math.max(a, b, c) > 60) return null;
+      const P = tri(a, b, c); P.H = [P.A[0], 0];
+      const out = P.H[0] < -1e-9 ? [["B", "H", "dash"]] : P.H[0] > a + 1e-9 ? [["C", "H", "dash"]] : [];
+      const p = (a + b + c) / 2;
+      const svg = ifig(P, { poly: ABC, names: ["A", "B", "C", "H"], segs: [["A", "H", "dash"], ...out], right: [["H", "A", P.H[0] < a / 2 ? "C" : "B"]], place: { H: [0, 1] }, lab: [["B", "C", String(a)], ["C", "A", String(b)], ["A", "B", String(c)]], aria: "ABC üçbucağı, tərəfləri " + a + ", " + b + ", " + c });
+      if (svg.s * Math.min(a, b, c) < 36) return null;
+      return iMc(ae(h, w), { text: `ABC üçbucağında BC = ${a} sm, CA = ${b} sm, AB = ${c} sm. A təpəsindən BC tərəfinə çəkilmiş AH hündürlüyü neçə sm-dir?`,
+        svg,
+        solution: `Üç tərəf verilib — əvvəl Heron: p = (${a} + ${b} + ${c}) / 2 = ${p}, S = √(${p} · ${p - a} · ${p - b} · ${p - c}) = √${heronP(a, b, c)} = ${S}. Sonra h = 2S / BC = ${2 * S} / ${a} = ${num(h)}. Tələlər: sahəni (${S}) cavab yazmaq; 2-yə vurmağı unutmaq (${num(S / a)}); başqa tərəfə çəkilmiş hündürlüyü tapmaq (${num(2 * S / b)} və ya ${num(2 * S / c)}).` });
+    }) },
+    // 2. closed: rhombus by side and one diagonal
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = triple(45); if (q / p < .5 || q / p > 2) return null;
+      const R = 2 * p * q, w = [4 * p * q, p * q, 2 * p * c, c * c];
+      const P = { A: [-p, 0], B: [0, q], C: [p, 0], D: [0, -q], O: [0, 0] };
+      return iMc(ae(R, w), { text: `ABCD rombunun tərəfi ${c} sm, AC diaqonalı ${2 * p} sm-dir. Rombun sahəsi neçə sm²-dir?`,
+        svg: ifig(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D", "O"], place: { O: [-1, 1] }, segs: [["A", "C", "dash"], ["B", "D", "dash"]], right: [["O", "C", "B"]], dots: ["O"], lab: [["A", "B", String(c)], ["A", "C", String(2 * p), .22]], aria: "ABCD romb, tərəfi " + c + ", AC = " + 2 * p }),
+        solution: `Rombun diaqonalları perpendikulyardır və kəsişmə nöqtəsində yarıya bölünür: AO = ${p}. AOB düzbucaqlı üçbucağından BO = √(${c}² − ${p}²) = ${q}, BD = ${2 * q}. S = AC · BD / 2 = ${2 * p} · ${2 * q} / 2 = ${R}. Tələlər: ÷2 unutmaq (${4 * p * q}); yarım diaqonalların hasili (${p * q}); tərəf · diaqonal (${2 * p * c}); rombu kvadrat saymaq (${c * c}).` });
+    }) },
+    // 3. closed: right trapezoid (the slanted side is not the height)
+    { tip: "qapali", gen: () => again(() => {
+      const [t1, t2, c] = triple(30), a = rnd(2, 12), [d, hh] = Math.random() < .5 ? [t1, t2] : [t2, t1], b = a + d, R = (a + b) * hh / 2;
+      const w = [(a + b) * c / 2, (a + b) * hh, b * hh, (a + b) * d / 2];
+      if (!iNice(R, 1) || !w.every(x => iNice(x, 1))) return null;
+      const P = { A: [0, 0], B: [0, hh], C: [a, hh], D: [b, 0] };
+      const svg = ifig(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D"], right: [["A", "D", "B"], ["B", "A", "C"]], lab: [["B", "C", String(a)], ["A", "D", String(b)], ["C", "D", String(c)]], aria: "ABCD düzbucaqlı trapesiya" });
+      if (svg.s * a < 36) return null;
+      return iMc(ae(R, w), { text: `ABCD düzbucaqlı trapesiyasında AD ∥ BC, AB ⊥ AD, BC = ${a} sm, AD = ${b} sm, CD = ${c} sm. Trapesiyanın sahəsi neçə sm²-dir?`,
+        svg,
+        solution: `AB hündürlükdür, CD isə maildir. C-dən AD-yə perpendikulyar endirsək, düzbucaqlı üçbucağın bir kateti AD − BC = ${b} − ${a} = ${d}, hipotenuzu CD = ${c}. Onda h = AB = √(${c}² − ${d}²) = ${hh}. S = (${a} + ${b}) / 2 · ${hh} = ${num(R)}. Tələlər: mail tərəfi hündürlük saymaq (${num((a + b) * c / 2)}); ÷2 unutmaq (${num((a + b) * hh)}); orta xətt əvəzinə böyük oturacaq (${b * hh}); hündürlük əvəzinə oturacaqların fərqi (${num((a + b) * d / 2)}).` });
+    }) },
+    // 4. closed: area of a sector, the options are k·π
+    { tip: "qapali", gen: () => again(() => {
+      const R = rnd(2, 12), al = pick([30, 40, 45, 60, 72, 90, 120, 135, 150]), K = R * R * al / 360;
+      const w = [R * al / 360, R * R * al / 180, R * al / 180, R * R * (360 - al) / 360];
+      if (![K, ...w].every(x => iNice(x, 2))) return null;
+      const P = { O: [0, 0], A: [R, 0], B: on(al, R) }, ks = arcPts2(P, "s", [0, 0], R, 0, al);
+      return iMc(ae(K, w, kpiF), { text: `Radiusu ${R} sm olan dairənin mərkəzi bucağı ${al}° olan sektorunun sahəsi neçə sm²-dir?`,
+        svg: ifig(P, { circ: [["O", R, "ghost"]], fill: [[["O", ...ks], "soft"]], segs: [["O", "A", "ink"], ["O", "B", "ink"]], arcs: [["O", "A", "B", al + "°", 20]], lab: [["O", "A", String(R)]], names: ["O", "A", "B"], place: { O: [-Math.cos(rad(al / 2)), Math.sin(rad(al / 2))] }, cen: "O", dots: ["O"], aria: "Radiusu " + R + " olan dairənin " + al + "° sektoru" }),
+        solution: `Sektor dairənin ${al}/360 hissəsidir: S = πR² · ${al} / 360 = π · ${R * R} · ${al} / 360 = ${kpiF(K)}. Tələlər: R² əvəzinə R (${kpiF(w[0])}); 360 əvəzinə 180 (${kpiF(w[1])}); qövsün uzunluğunun əmsalı (${kpiF(w[2])}); qalan sektor (${kpiF(w[3])}).` });
+    }) },
+    // 5. closed: circle with an inscribed square, π ≈ 3,14
+    { tip: "qapali", gen: () => again(() => {
+      const R = pick([2, 4, 6, 8, 10, 12, 14, 16, 20]), K = 3.14 * R * R - 2 * R * R;
+      const w = [3.14 * R * R - R * R, 3.14 * R * R, 2 * R * R, K / 4];
+      if (![K, ...w].every(x => iNice(x, 2))) return null;
+      const P = { O: [0, 0], A: on(135, R), B: on(45, R), C: on(-45, R), D: on(-135, R) };
+      return iMc(ae(K, w), { text: `Radiusu ${R} sm olan dairənin daxilinə kvadrat çəkilib (kvadratın təpələri çevrə üzərindədir). Dairənin kvadratdan kənarda qalan hissəsinin sahəsi neçə sm²-dir? (π ≈ 3,14)`,
+        svg: ifig(P, { circ: [["O", R, "fill"]], poly: ["A", "B", "C", "D"], polyFill: "hole", segs: [["O", "B", "dash"]], lab: [["O", "B", String(R)]], names: ["A", "B", "C", "D"], dots: ["O"], cen: "O", aria: "Radiusu " + R + " olan dairənin daxilində kvadrat" }),
+        solution: `Kvadratın diaqonalı dairənin diametridir: d = ${2 * R}. Kvadratın sahəsi d² / 2 = ${(2 * R) ** 2} / 2 = ${2 * R * R}. Dairənin sahəsi 3,14 · ${R}² = ${num(3.14 * R * R)}. Fərq: ${num(3.14 * R * R)} − ${2 * R * R} = ${num(K)}. Tələlər: kvadratın tərəfini R saymaq (${num(w[0])}); fərqi tapmamaq (${num(w[1])} və ya ${2 * R * R}); kənar hissə dörd seqmentdir, birinin sahəsini yazmaq (${num(w[3])}).` });
+    }) },
+    // 6. closed: MN ∥ AC — areas of similar triangles go as the square of the ratio
+    { tip: "qapali", gen: () => again(() => {
+      const x = rnd(2, 5), y = rnd(2, 5), t = rnd(1, 5), S = (x + y) ** 2 * t, R = x * x * t;
+      const w = [(x + y) * x * t, S - R, y * y * t, (x + y) * y * t];
+      if (R < 4) return null;
+      const f = x / (x + y), P = { A: [0, 0], C: [10, 0], B: [rnd(3, 7), 7.5] };
+      P.M = [P.B[0] + (P.A[0] - P.B[0]) * f, P.B[1] + (P.A[1] - P.B[1]) * f]; P.N = [P.B[0] + (P.C[0] - P.B[0]) * f, P.B[1] + (P.C[1] - P.B[1]) * f];
+      return iMc(ae(R, w), { text: `ABC üçbucağında MN ∥ AC (M ∈ AB, N ∈ BC), BM = ${x} sm, MA = ${y} sm. ABC üçbucağının sahəsi ${S} sm²-dir. MBN üçbucağının sahəsi neçə sm²-dir? (Şəkil miqyassızdır.)`,
+        svg: ifig(P, { poly: ["A", "B", "C"], names: ["A", "B", "C", "M", "N"], segs: [["M", "N", "acc"]], lab: [["B", "M", String(x), .5, true], ["M", "A", String(y), .5, true]], place: { M: [-1, 0], N: [1, 0] }, aria: "ABC üçbucağı, MN ∥ AC" }),
+        solution: `MN ∥ AC olduğu üçün MBN ~ ABC. Oxşarlıq əmsalı k = BM / BA = ${x} / ${x + y}. Sahələrin nisbəti k²-dir: S(MBN) = ${S} · (${x}/${x + y})² = ${R}. Tələlər: k-nı kvadrata yüksəltməmək (${w[0]}); trapesiyanın sahəsini yazmaq (${w[1]}); MA ilə hesablamaq (${w[2]}); kvadrat almadan tamamlayıcı hissə (${w[3]}).` });
+    }) },
+    // 7. coded: radius of the inscribed circle, r = S / p
+    { tip: "kod", gen: () => again(() => {
+      const [a0, b0, c0, S0] = pick(HERON), k = pick([1, 1, 2, 3]), sd = [a0 * k, b0 * k, c0 * k].sort(() => Math.random() - .5);
+      const [a, b, c] = sd, S = S0 * k * k, p = (a + b + c) / 2, r = S / p;
+      if (!Number.isInteger(r) || Math.max(a, b, c) > 60) return null;
+      const P = tri(a, b, c); P.I = [(a * P.A[0] + b * P.B[0] + c * P.C[0]) / (a + b + c), r]; P.T = [P.I[0], 0];
+      const svg = ifig(P, { poly: ABC, names: ABC, circ: [["I", r, "line"]], segs: [["I", "T", "dash"]], right: [["T", "I", "C"]], dots: ["I"], lab: [["B", "C", String(a)], ["C", "A", String(b)], ["A", "B", String(c)]], aria: "ABC üçbucağına daxil çəkilmiş çevrə" });
+      if (svg.s * Math.min(a, b, c) < 36) return null;
+      return { text: `ABC üçbucağında BC = ${a} sm, CA = ${b} sm, AB = ${c} sm. Üçbucağa daxil çəkilmiş çevrənin radiusu neçə sm-dir?`,
+        svg,
+        answer: r, show: String(r), tol: 1e-6, unit: "sm",
+        solution: `Daxil çəkilmiş çevrənin radiusu r = S / p. Yarımperimetr p = (${a} + ${b} + ${c}) / 2 = ${p}. Heron: S = √(${p} · ${p - a} · ${p - b} · ${p - c}) = √${heronP(a, b, c)} = ${S}. r = ${S} / ${p} = ${r}.` };
+    }) },
+    // 8. coded: annulus and a chord tangent to the inner circle — S = π · (L/2)²
+    { tip: "kod", gen: () => again(() => {
+      const L = rnd(3, 26), k = L * L / 4, r = L * (0.35 + 0.15 * Math.random()), Rr = Math.sqrt(r * r + L * L / 4);
+      const P = { O: [0, 0], E: [-L / 2, -r], F: [L / 2, -r], M: [0, -r] };
+      return { text: `Halqa iki konsentrik çevrə ilə məhdudlanıb. Böyük çevrənin xordu kiçik çevrəyə toxunur və xordun uzunluğu ${L} sm-dir. Halqanın sahəsi kπ sm²-dir. k-nı tapın.`,
+        svg: ifig(P, { circ: [["O", Rr, "fill"], ["O", r, "hole"]], segs: [["E", "F", "ink"], ["O", "M", "dash"]], right: [["M", "O", "F"]], lab: [["E", "F", String(L), .5]], names: ["O", "M"], place: { O: [-1, 0], M: [-1, -1] }, dots: ["O"], cen: "O", aria: "Halqa, böyük çevrənin xordu kiçik çevrəyə toxunur" }),
+        answer: k, show: Number.isInteger(k) ? String(k) : num(k), tol: 1e-6,
+        solution: `Xord kiçik çevrəyə toxunan nöqtədə (M) yarıya bölünür və OM ⊥ xord. Düzbucaqlı üçbucaqdan R² − r² = (${L}/2)² = ${num(k)}. Halqanın sahəsi πR² − πr² = π(R² − r²) = ${num(k)}π, k = ${num(k)}. R və r ayrıca lazım deyil.` };
+    }) },
+    // 9. coded: trapezoid diagonals — S = (√S₁ + √S₂)²
+    { tip: "kod", gen: () => again(() => {
+      const p = rnd(2, 8), q = rnd(2, 8); if (p === q || Math.max(p, q) > 2.5 * Math.min(p, q)) return null;
+      const AD = p * 1.0, BC = q * 1.0, hh = (p + q) * 0.7, x0 = (p - q) / 2 + 0.9;
+      const P = { A: [0, 0], D: [AD, 0], B: [x0, hh], C: [x0 + BC, hh] }; P.O = [P.A[0] + (P.C[0] - P.A[0]) * p / (p + q), P.A[1] + (P.C[1] - P.A[1]) * p / (p + q)];
+      return { text: `ABCD trapesiyasında AD ∥ BC, diaqonallar O nöqtəsində kəsişir. AOD üçbucağının sahəsi ${p * p} sm², BOC üçbucağının sahəsi ${q * q} sm²-dir (şəkildə yazılıb, şəkil miqyassızdır). Trapesiyanın sahəsi neçə sm²-dir?`,
+        svg: ifig(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D", "O"], place: { O: [1, 0] }, segs: [["A", "C", "ink"], ["B", "D", "ink"]], dots: ["O"], tags: [[["A", "O", "D"], String(p * p), 0, 4], [["B", "O", "C"], String(q * q), 0, -2]], aria: "ABCD trapesiyası, diaqonalları O-da kəsişir" }),
+        answer: (p + q) ** 2, show: String((p + q) ** 2), tol: 1e-6, unit: "sm²",
+        solution: `AOD ~ COB (AD ∥ BC), sahələrin nisbəti ${p * p} : ${q * q}, deməli oxşarlıq əmsalı ${p} : ${q}. AOB və COD üçbucaqlarının sahələri bərabərdir və hər biri √(${p * p} · ${q * q}) = ${p * q}. Cəmi: ${p * p} + ${q * q} + ${p * q} + ${p * q} = ${(p + q) ** 2}, yəni (√${p * p} + √${q * q})² = ${(p + q) ** 2}.` };
+    }) },
+    // 10. written: a segment of a circle (π ≈ 3 or 3,14) or an isosceles trapezoid with a 45° base angle
+    { tip: "yazili", gen: () => again(() => {
+      if (Math.random() < .55) {
+        const pv = pick([3, 3.14]), R = pv === 3 ? rnd(2, 20) : 2 * rnd(1, 10), A1 = Math.round(pv * R * R / 4 * 1e4) / 1e4, A2 = R * R / 2, S = Math.round((A1 - A2) * 1e4) / 1e4;
+        if (!iNice(S, 2)) return null;
+        const P = { O: [0, 0], A: [R, 0], B: [0, R] }, ks = arcPts2(P, "s", [0, 0], R, 0, 90);
+        return { text: `Radiusu ${R} sm olan dairədə mərkəzi bucağı 90° olan AB qövsü və AB xordu çəkilib. Qövs ilə xord arasında qalan fiqurun (seqmentin) sahəsi neçə sm²-dir? (π ≈ ${num(pv)})`,
+          svg: ifig(P, { circ: [["O", R, "ghost"]], fill: [[ks, "soft"]], segs: [["O", "A", "dash"], ["O", "B", "dash"], ["A", "B", "ink"]], right: [["O", "A", "B"]], lab: [["O", "A", String(R)]], names: ["O", "A", "B"], place: { O: [-1, 1] }, cen: "O", dots: ["O"], aria: "Dairənin seqmenti, mərkəzi bucaq 90°" }),
+          answer: S, show: num(S), tol: 1e-6, unit: "sm²",
+          solution: `Həllin addımları (yazılmalıdır): 1) Seqmentin sahəsi = sektorun sahəsi − OAB üçbucağının sahəsi. 2) Sektor: ${num(pv)} · ${R}² · 90 / 360 = ${num(A1)}. 3) OAB düzbucaqlı üçbucaqdır (OA = OB = ${R}): ${R} · ${R} / 2 = ${num(A2)}. 4) ${num(A1)} − ${num(A2)} = ${num(S)} sm². Həll yazılmadan yalnız cavab — bal verilmir.` };
+      }
+      const a = rnd(2, 14), d = rnd(2, 8), b = a + 2 * d, hh = d, S = (a + b) * hh / 2;
+      const P = { A: [0, 0], D: [b, 0], B: [d, hh], C: [d + a, hh] };
+      return { text: `Bərabəryanlı trapesiyanın oturacaqları ${a} sm və ${b} sm, böyük oturacağın yanındakı bucaq 45°-dir. Trapesiyanın sahəsini tapın.`,
+        svg: ifig(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D"], arcs: [["A", "D", "B", "45°", 20]], lab: [["B", "C", String(a)], ["A", "D", String(b)]], aria: "Bərabəryanlı trapesiya, bucaq 45°" }),
+        answer: S, show: String(S), tol: 1e-6, unit: "sm²",
+        solution: `Həllin addımları (yazılmalıdır): 1) B-dən AD-yə perpendikulyar endir: ayrılan hissə (${b} − ${a}) / 2 = ${d}. 2) Düzbucaqlı üçbucaqda bucaq 45°-dir — o, bərabəryanlıdır: hündürlük h = ${d} sm. 3) S = (${a} + ${b}) / 2 · ${d} = ${S} sm². Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -417,7 +613,7 @@
     game = Oyun.mount({
       key: "saheler", title: "Sahələr", fenn: "riyaziyyat", link: "dersler/saheler.html",
       format: "Cavab — ədəd. Kök: 6√3, kəsr: 35/2, onluq (π ≈ 3,14 olanda): 28,26. \"kπ, k-nı tap\" sualında yalnız k-nı yaz.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["ucbucaq", "ucbucaq", "paralel", "trapesiya", "trapesiya", "daire", "daire", "murekkeb", "murekkeb", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
