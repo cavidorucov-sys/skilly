@@ -198,6 +198,109 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (forgetting the 2 in (x + y)² = x² + 2xy + y², swapping x and y, a lost 2m, ...).
+  const { ae, again } = Oyun;
+  const NSV = "http://www.w3.org/2000/svg";
+  const sv = (tag, attrs, text) => { const e = document.createElementNS(NSV, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  const allInt = a => a.every(x => Number.isInteger(x));
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  // graph of a parabola y = x² + bx + c and a line y = kx + m; the intersection points are marked (not labelled)
+  function graph(b, c, k, m, pts, aria) {
+    const X0 = -5, X1 = 6, Y0 = -6, Y1 = 10, L = 22, T = 12, W = 270, H = 214;
+    const px = x => +(L + (x - X0) / (X1 - X0) * W).toFixed(1), py = y => +(T + (Y1 - y) / (Y1 - Y0) * H).toFixed(1);
+    const g = sv("svg", { viewBox: "0 0 310 244", class: "oy-svg", role: "img", "aria-label": aria });
+    for (let x = -4; x <= 5; x++) { g.append(sv("line", { x1: px(x), y1: T, x2: px(x), y2: T + H, style: "stroke:var(--line);stroke-width:.6" }));
+      if (x) g.append(sv("text", { x: px(x), y: py(0) + 12, "text-anchor": "middle", class: "oy-lbl" }, String(x))); }
+    for (let y = -4; y <= 8; y += 2) { g.append(sv("line", { x1: L, y1: py(y), x2: L + W, y2: py(y), style: "stroke:var(--line);stroke-width:.6" }));
+      if (y) g.append(sv("text", { x: px(0) - 4, y: py(y) + 4, "text-anchor": "end", class: "oy-lbl" }, String(y))); }
+    g.append(sv("line", { x1: L, y1: py(0), x2: L + W, y2: py(0), style: "stroke:var(--ink);stroke-width:1.2" }));
+    g.append(sv("line", { x1: px(0), y1: T, x2: px(0), y2: T + H, style: "stroke:var(--ink);stroke-width:1.2" }));
+    g.append(sv("text", { x: L + W - 2, y: py(0) - 4, "text-anchor": "end", class: "oy-lbl" }, "x"), sv("text", { x: px(0) + 5, y: T + 9, class: "oy-lbl" }, "y"));
+    const curve = (f, color) => { let d = "", on = false;
+      for (let x = X0; x <= X1 + 1e-9; x += 0.125) { const y = f(x); if (y < Y0 || y > Y1) { on = false; continue; } d += (on ? "L" : "M") + px(x) + " " + py(y); on = true; }
+      g.append(sv("path", { d, style: `fill:none;stroke:${color};stroke-width:2` })); };
+    curve(x => x * x + b * x + c, "var(--accent)"); curve(x => k * x + m, "var(--vec)");
+    for (const [x, y] of pts) g.append(sv("circle", { cx: px(x), cy: py(y), r: 4, style: "fill:var(--hyp);stroke:var(--sheet);stroke-width:1.5" }));
+    g.append(sv("line", { x1: 126, y1: 236, x2: 146, y2: 236, style: "stroke:var(--accent);stroke-width:2" }), sv("text", { x: 150, y: 240, class: "oy-lbl" }, "parabola"),
+      sv("line", { x1: 226, y1: 236, x2: 246, y2: 236, style: "stroke:var(--vec);stroke-width:2" }), sv("text", { x: 250, y: 240, class: "oy-lbl" }, "düz xətt"));
+    return g;
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: x² + y² from x + y and xy (the lost 2 / the wrong sign of 2xy)
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -6, 9); if (!r1 || !r2) return null;
+      const s = r1 + r2, p = r1 * r2, R = s * s - 2 * p, w = [s * s - p, s * s + 2 * p, s * s, s * s - 4 * p];
+      return mc(ae(R, w), { text: `x + y = ${S(s)}, xy = ${S(p)} olarsa, x² + y² ifadəsinin qiyməti neçədir?`,
+        solution: `(x + y)² = x² + 2xy + y² → x² + y² = (x + y)² − 2xy = ${P(s)}² − 2·${P(p)} = ${S(R)}. Tələlər: 2xy yerinə xy çıxmaq (${S(w[0])}); 2xy-ni çıxmaq yerinə əlavə etmək (${S(w[1])}); yalnız (x + y)² yazmaq (${S(w[2])}); 4xy çıxmaq — bu (x − y)²-nin düsturudur (${S(w[3])}).` });
+    }) },
+    // 2. closed: Viyet pair, the bigger x (swapping the roots)
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -6, 9); if (!r1 || !r2) return null;
+      const s = r1 + r2, p = r1 * r2, hi = Math.max(r1, r2), lo = Math.min(r1, r2), R = 2 * hi - lo, w = [2 * lo - hi, 2 * hi, 2 * hi + lo, s];
+      return mc(ae(R, w), { text: sys(`x + y = ${S(s)}`, `xy = ${S(p)}`, "Sistemin həlli (x₀; y₀) və x₀ > y₀ olarsa, 2x₀ − y₀ ifadəsinin qiyməti neçədir?"),
+        solution: `x və y — ${tq(s, p)} = 0 tənliyinin kökləridir: ${S(lo)} və ${S(hi)}. x₀ > y₀ olduğundan x₀ = ${S(hi)}, y₀ = ${S(lo)}. 2x₀ − y₀ = 2·${P(hi)} − ${P(lo)} = ${S(R)}. Tələlər: köklərin yerini dəyişmək (${S(w[0])}); y₀-ı unutmaq (${S(w[1])}); y₀-ı çıxmaq yerinə əlavə etmək (${S(w[2])}); cəmi (${S(w[3])}) cavab yazmaq.` });
+    }) },
+    // 3. closed: xy from x + y and x² + y²
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -6, 9); if (!r1 || !r2) return null;
+      const s = r1 + r2, p = r1 * r2, Q = r1 * r1 + r2 * r2, w = [s * s - Q, -p, (s * s + Q) / 2, Q / 2]; if (!allInt(w)) return null;
+      return mc(ae(p, w), { text: sys(`x + y = ${S(s)}`, `x² + y² = ${Q}`, "xy hasilinin qiyməti neçədir?"),
+        solution: `(x + y)² = x² + y² + 2xy → ${s * s} = ${Q} + 2xy → 2xy = ${S(s * s - Q)} → xy = ${S(p)}. Tələlər: 2-yə bölməyi unutmaq (${S(w[0])}); fərqi tərs işarə ilə yazmaq (${S(w[1])}); (x + y)²-nı və x² + y²-ni toplayıb bölmək (${S(w[2])}); “x² + y² = 2xy” hesab etmək (${S(w[3])}).` });
+    }) },
+    // 4. closed with a graph: sum of the ordinates of the intersection points
+    { tip: "qapali", gen: () => again(() => {
+      const [r1, r2] = distinct(2, -4, 5), b = rnd(-3, 3), c = rnd(-4, 2), k = b + r1 + r2, m = c - r1 * r2;
+      if (!k || Math.abs(k) > 3 || Math.abs(m) > 6) return null;
+      const y1 = k * r1 + m, y2 = k * r2 + m; if ([y1, y2].some(y => y < -5 || y > 9)) return null;
+      const s0 = r1 + r2, R = y1 + y2, w = [s0, k * s0, k * s0 + m, y1];
+      const aria = `y = ${poly([[1, "x²"], [b, "x"], [c, ""]])} parabolası və y = ${poly([[k, "x"], [m, ""]])} düz xətti iki nöqtədə kəsişir`;
+      return mc(ae(R, w), { text: sys(`y = ${poly([[1, "x²"], [b, "x"], [c, ""]])}`, `y = ${poly([[k, "x"], [m, ""]])}`, "Şəkildə bu sistemin tənliklərinin qrafikləri verilib; kəsişmə nöqtələri sistemin həllidir: (x₁; y₁) və (x₂; y₂). y₁ + y₂ cəmi neçədir?"),
+        svg: graph(b, c, k, m, [[r1, y1], [r2, y2]], aria),
+        solution: `Sağ tərəfləri bərabərləşdir: ${poly([[1, "x²"], [b, "x"], [c, ""]])} = ${poly([[k, "x"], [m, ""]])} → ${poly([[1, "x²"], [b - k, "x"], [c - m, ""]])} = 0 → x₁ + x₂ = ${S(s0)} (Viyet). Hər nöqtə düz xəttin üstündədir: y₁ + y₂ = k(x₁ + x₂) + 2m = ${P(k)}·${P(s0)} + 2·${P(m)} = ${S(R)}. Tələlər: x-lərin cəmini cavab yazmaq (${S(w[0])}); 2m-i unutmaq (${S(w[1])}); m-i yalnız bir dəfə əlavə etmək (${S(w[2])}); yalnız bir nöqtənin ordinatını yazmaq (${S(w[3])}).` });
+    }) },
+    // 5. closed: two-digit number from the sum and the product of the digits
+    { tip: "qapali", gen: () => again(() => {
+      const [key, N] = pick(D_SP), [s, p] = key.split(",").map(Number), a = Math.floor(N / 10), b = N % 10, rev = 10 * b + a, w = [rev, s, p, a - b];
+      return mc(ae(N, w), { text: `İkirəqəmli ədədin rəqəmlərinin cəmi ${s}, rəqəmlərinin hasili isə ${p} ədədinə bərabərdir. Onluq rəqəmi təklik rəqəmindən böyükdür. Bu ədəd neçədir?`,
+        solution: `a + b = ${s}, ab = ${p} → a və b — ${tq(s, p)} = 0 tənliyinin kökləri: ${b} və ${a}. a > b → a = ${a}, b = ${b}, ədəd 10a + b = ${N}. Tələlər: rəqəmlərin yerini dəyişmək (${rev}); rəqəmlərin cəmini (${s}) və ya hasilini (${p}) ədəd kimi yazmaq; fərqi (${a - b}) yazmaq.` });
+    }) },
+    // 6. closed: rectangle, diagonal and perimeter → area
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b, c] = pick(TRI), s = a + b, R = a * b, w = [2 * R, R / 2, s, s * s]; if (!allInt(w)) return null;
+      return mc(ae(R, w), { text: `Düzbucaqlının diaqonalı ${c} sm, perimetri ${2 * s} sm-dir. Düzbucaqlının sahəsi neçə sm²-dir?`,
+        solution: `Tərəflər x, y: x + y = ${2 * s}/2 = ${s}, x² + y² = ${c}² = ${c * c}. (x + y)² = x² + y² + 2xy → ${s * s} = ${c * c} + 2xy → 2xy = ${2 * R} → sahə xy = ${R} sm². Tələlər: 2-yə bölməyi unutmaq (${2 * R}); düzbucaqlı üçbucağın sahəsini (${R / 2}) yazmaq; yarımperimetri (${s}) və ya onun kvadratını (${s * s}) cavab yazmaq.` });
+    }) },
+    // 7. coded: x + y of positive numbers from x² + y² and xy
+    { tip: "kod", gen: () => again(() => {
+      const [r1, r2] = distinct(2, 1, 9), A = r1 * r1 + r2 * r2, B = r1 * r2, R = r1 + r2;
+      return { text: `x və y müsbət ədədlərdir, x² + y² = ${A}, xy = ${B}. x + y cəmini tapın.`, answer: R, show: String(R), tol: 1e-6,
+        solution: `(x + y)² = x² + y² + 2xy = ${A} + 2·${B} = ${A + 2 * B} → x + y = ±${R}; ədədlər müsbət olduğundan x + y = ${R}. (Yoxlama: ${r1} və ${r2}.)` };
+    }) },
+    // 8. coded: two-digit number, swapped digits and the sum of squares
+    { tip: "kod", gen: () => again(() => {
+      const [key, N] = pick(D_SQ), [d, Q] = key.split(",").map(Number), a = Math.floor(N / 10), b = N % 10, M = 9 * Math.abs(d), b2 = -b - d;
+      return { text: `İkirəqəmli ədədin rəqəmlərinin yerini dəyişsək, ədəd ${M} ${d > 0 ? "azalar" : "artar"}. Rəqəmlərin kvadratları cəmi ${Q} olur. Ədədi tapın.`, answer: N, show: String(N), tol: 1e-6,
+        solution: `10a + b və 10b + a ədədlərinin fərqi 9(a − b) = ${S(9 * d)} → a − b = ${S(d)}, a = ${poly([[1, "b"], [d, ""]])}. (${poly([[1, "b"], [d, ""]])})² + b² = ${Q} → ${poly([[1, "b²"], [d, "b"], [(d * d - Q) / 2, ""]])} = 0 → b = ${b} və b = ${S(b2)}. İkincisi rəqəm ola bilməz. a = ${a}, ədəd ${N}.` };
+    }) },
+    // 9. coded: x² + y² and x² − y² → the biggest x + y
+    { tip: "kod", gen: () => again(() => {
+      const [v0, u0] = distinct(2, 1, 9).sort((p, q) => p - q), u = u0 * u0, v = v0 * v0, A = u + v, B = u - v, R = u0 + v0;
+      return { text: `(x₀; y₀) cütü x² + y² = ${A}, x² − y² = ${B} sisteminin həllidir. x₀ + y₀ cəminin ən böyük qiymətini tapın.`, answer: R, show: String(R), tol: 1e-6,
+        solution: `Tənlikləri topla: 2x² = ${A + B} → x² = ${u}. Çıx: 2y² = ${A - B} → y² = ${v}. x = ±${u0}, y = ±${v0} — dörd həll. Ən böyük cəm iki müsbət qiymətdə: ${u0} + ${v0} = ${R}.` };
+    }) },
+    // 10. written: a rectangle from two of (perimeter, area, diagonal)
+    { tip: "yazili", gen: () => again(() => {
+      const [a, b, c] = pick(TRI), s = a + b, p = a * b;
+      if (Math.random() < .5) return { text: `Düzbucaqlının perimetri ${2 * s} sm, sahəsi ${p} sm²-dir. Düzbucaqlının diaqonalını tapın.`, answer: c, show: String(c), tol: 1e-6, unit: "sm",
+        solution: `1) Tərəflər x, y: 2(x + y) = ${2 * s}, xy = ${p}; yəni x + y = ${s}. 2) Viyet: x və y — ${tq(s, p)} = 0 tənliyinin kökləri: ${a} və ${b}. 3) Diaqonal: d² = ${a}² + ${b}² = ${a * a + b * b} → d = ${c} sm. (Qısa yol: d² = (x + y)² − 2xy = ${s * s} − ${2 * p} = ${c * c}.) Həll yazılmadan yalnız cavab — bal verilmir.` };
+      return { text: `Düzbucaqlının sahəsi ${p} sm², diaqonalı ${c} sm-dir. Düzbucaqlının perimetrini tapın.`, answer: 2 * s, show: String(2 * s), tol: 1e-6, unit: "sm",
+        solution: `1) Tərəflər x, y: xy = ${p}, x² + y² = ${c}² = ${c * c}. 2) (x + y)² = x² + y² + 2xy = ${c * c} + ${2 * p} = ${s * s} → x + y = ${s} (tərəflər müsbətdir). 3) Perimetr P = 2(x + y) = 2·${s} = ${2 * s} sm. (Yoxlama: tərəflər ${a} və ${b}.) Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -207,7 +310,7 @@
     game = Oyun.mount({
       key: "ikidereceli-sistem", title: "İkidərəcəli tənliklər sistemi", fenn: "riyaziyyat", link: "dersler/ikidereceli-sistem.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 5/6. Həllərin sayı soruşulanda — 0, 1, 2 və ya 4. Uzunluq vahidsiz: 12.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["viyet", "viyet", "yerine", "yerine", "simmetrik", "ikiq", "reqem", "reqem", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

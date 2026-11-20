@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>x + y və xy</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>İki ikidərəcəli</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məsələlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -252,6 +253,85 @@ Mənasız kökü at, mənalı iki cavabı saxla.</div></div>
         <li>Perimetri 20 sm, sahəsi 24 sm² olan düzbucaqlının tərəfləri? <span class="ans">x + y = 10, xy = 24 → 6 sm və 4 sm.</span></li>
         <li>İki ədədin cəmi 11, hasili 28-dir. Ədədlər? <span class="ans">t² − 11t + 28 = 0 → 4 və 7.</span></li>
         <li>Düzbucaqlı üçbucağın katetləri cəmi 17 sm, hipotenuzu 13 sm. Sahəsi? <span class="ans">2xy = 17² − 13² = 289 − 169 = 120 → xy = 60 → sahə xy/2 = 30 sm² (katetlər 5 və 12).</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: ikidərəcəli tənliklər sistemi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Tənliklər sistemi və sistemlə məsələ həlli buraxılışda üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: 2xy-dəki ikini itirmək, köklərin yerini dəyişmək, işarəni səhv yazmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd: vahid yazılmır; ikirəqəmli ədədi tam yaz (məs. <span class="m">53</span>). Bu sınaqda kodlaşdırılan sualların cavabı həmişə müsbət ədəddir (şərt buna uyğun qurulub).</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>sistemi həll etmək lazımdır, yoxsa <span class="m">x + y</span> və <span class="m">xy</span>-dən ifadəni birbaşa tapmaq olar?</b> İkincisi çox vaxt qısadır və səhv imkanını azaldır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">x + y = 6</span>, <span class="m">x² + y² = 20</span> olarsa, <span class="m">xy</span> hasilinin qiyməti neçədir?</p>
+        <ol class="imt-opts"><li>16</li><li>28</li><li>8</li><li>10</li><li>−8</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">(x + y)² = x² + 2xy + y²
+36 = 20 + 2xy
+2xy = 16  ⇒  xy = 8
+Cavab: C) 8</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 16</b> — 2-yə bölməyi unutmaq: <span class="m">2xy = 16</span> alıb, <span class="m">xy</span> əvəzinə <span class="m">2xy</span>-i yazmaq.</li>
+        <li><b>B) 28</b> — <span class="m">(36 + 20) : 2</span>: 36-dan 20-ni çıxmaq əvəzinə toplamaq.</li>
+        <li><b>D) 10</b> — "<span class="m">x² + y² = 2xy</span>" hesab edib <span class="m">20 : 2</span> yazmaq.</li>
+        <li><b>E) −8</b> — işarəni səhv qoymaq: <span class="m">(20 − 36) : 2</span>, yəni fərqi tərs çıxmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>İkirəqəmli ədədin rəqəmlərinin yerini dəyişsək, ədəd 18 azalar. Rəqəmlərin kvadratları cəmi 34 olur. Ədədi tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Ədəd 10a + b; yeri dəyişəndə 10b + a.
+(10a + b) − (10b + a) = 9(a − b) = 18  ⇒  a − b = 2,  a = b + 2
+(b + 2)² + b² = 34  ⇒  2b² + 4b − 30 = 0  ⇒  b² + 2b − 15 = 0
+b = 3  və ya  b = −5 (rəqəm mənfi olmaz)
+a = 5.   Cavab: 53</div>
+      <p>Kod sahəsinə yalnız <b>53</b> yazılır. Tələlər: "18 azalar" şərtini <span class="m">a − b = 18</span> kimi oxumaq (fərq 9(a − b)-dir, a − b deyil); "azalar" sözünü nəzərə almayıb rəqəmləri tərsinə yazmaq (<span class="m">35</span>); <span class="m">b = −5</span> kökünü atmamaq; 5 və 3 rəqəmlərini ayrıca cavab yazmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Düzbucaqlı üçbucağın hipotenuzu 13 sm, sahəsi 30 sm²-dir. Üçbucağın perimetrini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Katetlər x və y olsun. Pifaqor: x² + y² = 13² = 169.
+   Sahə: xy/2 = 30  ⇒  xy = 60.
+2) (x + y)² = x² + y² + 2xy = 169 + 120 = 289.
+3) x + y = 17 (uzunluq müsbətdir, −17 atılır).
+4) Perimetr: P = x + y + 13 = 17 + 13 = 30.
+Yoxlama: katetlər 5 və 12: 25 + 144 = 169 ✓,  5·12 : 2 = 30 ✓.
+Cavab: 30 sm.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>sistemin qurulması</b> (1-ci addım), <b>x + y-in tapılması</b> (2–3-cü addımlar), <b>perimetr və cavab</b>. Həll yazılmadan yalnız "30" yazılsa, bal verilmir. Tələ: perimetri <span class="m">2(x + y)</span> yazmaq — bu düzbucaqlının perimetridir; üçbucağın perimetri <span class="m">x + y + c</span>-dir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>2xy-ni unutmaq.</b> <span class="m">(x + y)² = x² + 2xy + y²</span> — ortadakı həddin əmsalı 2-dir. <span class="m">(x − y)²</span>-də isə <span class="m">−2xy</span>.</li>
+        <li><b>Kökləri cüt kimi yazmaq.</b> Viyetdən kök tapanda hələ <span class="m">x</span> və <span class="m">y</span>-in hansı olduğu bəlli deyil: <span class="m">x > y</span> kimi şərtə bax.</li>
+        <li><b>Kökaltında ± unutmaq.</b> <span class="m">(x + y)² = 289</span> → <span class="m">x + y = ±17</span>; mənfi, yoxsa müsbət — məsələnin şərtindən seç.</li>
+        <li><b>Qrafikdə.</b> Kəsişmə nöqtələrinin ordinatını tapanda hər nöqtə düz xəttin üstündədir: <span class="m">y₁ + y₂ = k(x₁ + x₂) + 2m</span> — <span class="m">m</span> iki dəfə.</li>
+        <li><b>İkirəqəmli ədəd.</b> Ədəd <span class="m">10a + b</span>-dir, <span class="m">a + b</span> yox; rəqəmlərin yerini dəyişəndə fərq <span class="m">9(a − b)</span> olur. Rəqəm 0–9 tam ədəddir.</li>
+        <li><b>Kodlaşdırmada</b> vahid yazılmır, cavab bu sınaqda müsbət ədəddir; yazılıda isə həll olmadan cavab bal vermir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">(x + y)² = x² + 2xy + y²
+(x − y)² = x² − 2xy + y²  =  (x + y)² − 4xy
+x və y — t² − st + p = 0 tənliyinin kökləri  (s = x + y, p = xy)
+ikirəqəmli ədəd = 10a + b</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">x + y = 5</span>, <span class="m">xy = 6</span>. <span class="m">x² + y²</span> = ? <span class="ans">25 − 2·6 = 13 (25 − 6 = 19 yox).</span></li>
+        <li><span class="m">x − y = 2</span>, <span class="m">xy = 15</span>. <span class="m">x² + y²</span> = ? <span class="ans">(x − y)² = x² − 2xy + y² → x² + y² = 4 + 30 = 34.</span></li>
+        <li><span class="m">x, y > 0</span>, <span class="m">x² + y² = 26</span>, <span class="m">xy = 5</span>. <span class="m">x + y</span> = ? <span class="ans">(x + y)² = 26 + 10 = 36 → x + y = 6 (−6 müsbət ədədlər üçün atılır).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
