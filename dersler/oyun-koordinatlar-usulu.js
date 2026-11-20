@@ -43,14 +43,16 @@
     g.append(sv("text", { x: X(0) + 5, y: Y(yb) + 12, class: "oy-lbl", style: "font-size:12px;fill:var(--muted)" }, "y"));
     g.append(sv("text", { x: X(0) - 10, y: Y(0) + 13, class: "oy-lbl", style: "font-size:11px;fill:var(--muted)" }, "0"));
     if (o.circle) { const [a, b, R] = o.circle; g.append(sv("circle", { cx: X(a), cy: Y(b), r: R * c, fill: "var(--accent-soft)", "fill-opacity": .5, stroke: "var(--accent)", "stroke-width": 2 })); }
-    if (o.line) { const [k, b] = o.line; g.append(sv("line", { x1: X(xa), y1: Y(k * xa + b), x2: X(xb), y2: Y(k * xb + b), stroke: "var(--accent)", "stroke-width": 2 })); }
+    if (o.line) { const [k, b] = o.line; let t0 = xa, t1 = xb; if (k) { const u = (ya - b) / k, v = (yb - b) / k; t0 = Math.max(xa, Math.min(u, v)); t1 = Math.min(xb, Math.max(u, v)); } g.append(sv("line", { x1: X(t0), y1: Y(k * t0 + b), x2: X(t1), y2: Y(k * t1 + b), stroke: "var(--accent)", "stroke-width": 2 })); }
     for (const [x1, y1, x2, y2] of o.segs || []) g.append(sv("line", { x1: X(x1), y1: Y(y1), x2: X(x2), y2: Y(y2), stroke: "var(--accent)", "stroke-width": 2.5 }));
-    for (const [n, x, y] of o.pts || []) {
+    for (const [n, x, y, ghost] of o.pts || []) {
+      if (ghost) continue;                       // 4th item "g": only widens the frame, no dot
       g.append(sv("circle", { cx: X(x), cy: Y(y), r: 3.5, fill: "var(--ink)" }));
       if (n) g.append(sv("text", { x: X(x) + 6, y: Y(y) - 6, class: "oy-lbl", style: "font-size:13px;font-style:italic" }, n));
     }
     // keep labels inside the frame
     g.setAttribute("style", "overflow:visible");
+    g.fx = X; g.fy = Y; g.fw = W; g.fh = H;               // data → pixel maps, for the exam figures (labels in data coordinates)
     return g;
   }
   const PYTH = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 6, 10], [4, 3, 5], [12, 5, 13], [9, 12, 15], [12, 9, 15]];
@@ -212,6 +214,139 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (distance without the root, coordinates added instead of subtracted, the sign of the
+  // circle centre, the slope turned upside down, ...).
+  const { ae, again } = Oyun;
+  const P = (x, y) => `(${num(x)}; ${num(y)})`;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const asIs = x => x;
+  const dist2 = (a, b) => a * a + b * b;
+  // labelled figure: point names with coordinates, drawn on the plane (labels flip to the left near the right edge)
+  function fig(o, labels, extra) {
+    const g = plane({ ...o, pts: (o.pts || []).map(([n, x, y, f]) => ["", x, y, f]) });
+    const boxes = [];
+    for (const [n, x, y, dy0 = -7] of labels || []) {
+      const px = g.fx(x), right = px > g.fw * .6, w = 6.6 * n.length, x0 = right ? px - 7 - w : px + 7;
+      let dy = dy0;
+      const hit = d => boxes.some(b => x0 < b[1] && x0 + w > b[0] && Math.abs(g.fy(y) + d - b[2]) < 13);
+      for (const d of [dy0, 16, -20, 30, -34]) if (!hit(d)) { dy = d; break; }   // keep labels from covering each other
+      boxes.push([x0, x0 + w, g.fy(y) + dy]);
+      g.append(sv("text", { x: px + (right ? -7 : 7), y: g.fy(y) + dy, "text-anchor": right ? "end" : "start", class: "oy-lbl", style: "font-size:12px" }, n));
+    }
+    for (const [x, y, t, dx = 0, dy = 0] of extra || []) g.append(sv("text", { x: g.fx(x) + dx, y: g.fy(y) + dy, class: "oy-lbl", style: "font-size:12px;fill:var(--accent)" }, t));
+    g.setAttribute("viewBox", `-45 -6 ${g.fw + 90} ${g.fh + 12}`);   // room on both sides for the coordinate labels
+    return g;
+  }
+  const lbl = (n, x, y, dy) => [n + P(x, y), x, y, dy];
+  const TRI = [[3, 4, 5], [4, 3, 5], [6, 8, 10], [8, 6, 10], [5, 12, 13], [12, 5, 13]];
+  const cross = (ax, ay, bx, by, cx, cy) => (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. distance between two points (the root is not taken / coordinates added / legs added)
+    { tip: "qapali", gen: () => again(() => {
+      const dx = nz(-7, 7), dy = nz(-7, 7), x1 = rnd(-6, 6), y1 = rnd(-6, 6), x2 = x1 + dx, y2 = y1 + dy, n = dist2(dx, dy);
+      if (Number.isInteger(Math.sqrt(n)) || n < 10) return null;
+      const s = dist2(x1 + x2, y1 + y2); if (!s) return null;
+      const w = [String(n), String(Math.abs(dx) + Math.abs(dy)), root(s), root(Math.abs(dx) + Math.abs(dy))];
+      return mc(ae(root(n), w, asIs), { text: `Koordinat müstəvisində ${pt("A", x1, y1)} və ${pt("B", x2, y2)} nöqtələri verilib (vahid parça 1 sm). AB parçasının uzunluğu neçə sm-dir?`,
+        svg: fig({ pts: [["A", x1, y1], ["B", x2, y2]], segs: [[x1, y1, x2, y2]] }, [lbl("A", x1, y1), lbl("B", x2, y2)]),
+        solution: `x₂ − x₁ = ${num(x2)} − ${par(x1)} = ${S(dx)}, y₂ − y₁ = ${num(y2)} − ${par(y1)} = ${S(dy)}. AB = √(${dx * dx} + ${dy * dy}) = √${n} = ${root(n)}. Tələlər: kökü çıxmamaq (${n}), katetləri toplamaq (${Math.abs(dx) + Math.abs(dy)}), koordinatları fərq əvəzinə toplamaq (${root(s)}).` });
+    }) },
+    // 2. end of a segment from its midpoint
+    { tip: "qapali", gen: () => again(() => {
+      const x1 = rnd(-6, 6), y1 = rnd(-6, 6), mx = rnd(-5, 5), my = rnd(-5, 5), bx = 2 * mx - x1, by = 2 * my - y1;
+      if ((mx === x1 && my === y1) || Math.abs(bx) > 12 || Math.abs(by) > 12) return null;
+      const w = [P(mx - x1, my - y1), P(2 * mx + x1, 2 * my + y1), P(2 * x1 - mx, 2 * y1 - my), P(by, bx)];
+      return mc(ae(P(bx, by), w, asIs), { text: `M nöqtəsi AB parçasının orta nöqtəsidir: ${pt("A", x1, y1)}, ${pt("M", mx, my)}. B nöqtəsinin koordinatlarını tapın.`,
+        svg: fig({ pts: [["A", x1, y1], ["M", mx, my], ["B", bx, by, "g"]], segs: [[x1, y1, mx, my]] }, [lbl("A", x1, y1), lbl("M", mx, my)]),
+        solution: `${num(mx)} = (${num(x1)} + x)/2 → x = 2 · ${par(mx)} − ${par(x1)} = ${S(bx)}; ${num(my)} = (${num(y1)} + y)/2 → y = 2 · ${par(my)} − ${par(y1)} = ${S(by)}. B${P(bx, by)}. Tələlər: M − A fərqini yazmaq (yarım vektor), işarəni səhv qoymaq, x və y-i dəyişmək.` });
+    }) },
+    // 3. equation of the line through two points
+    { tip: "qapali", gen: () => again(() => {
+      const q = pick([1, 1, 2]), p = nz(-4, 4), t = pick([1, 2]) * pick([-1, 1]), x1 = rnd(-5, 5), y1 = rnd(-5, 5), x2 = x1 + q * t, y2 = y1 + p * t;
+      const bp = y1 * q - p * x1;                                   // b = bp/q
+      if (!bp || Math.abs(bp / q) > 9) return null;
+      const w = [lineStr(q, p, y1 * p - q * x1, p), lineStr(-p, q, y1 * q + p * x1, q), lineStr(p, q, -bp, q), lineStr(p, q, y1 * q + p * x1, q)];
+      return mc(ae(lineStr(p, q, bp, q), w, asIs), { text: `Düz xətt ${pt("A", x1, y1)} və ${pt("B", x2, y2)} nöqtələrindən keçir. Bu düz xəttin tənliyini yazın.`,
+        svg: fig({ pts: [["A", x1, y1], ["B", x2, y2]], line: [p / q, bp / q] }, [lbl("A", x1, y1), lbl("B", x2, y2)]),
+        solution: `k = (${num(y2)} − ${par(y1)})/(${num(x2)} − ${par(x1)}) = ${S(p * t)}/${pf(S(q * t))} = ${fr(p, q)}. b = y₁ − k·x₁ = ${num(y1)} − ${pf(fr(p, q))} · ${par(x1)} = ${fr(bp, q)}. ${lineStr(p, q, bp, q)}. Tələlər: k-nı çevirmək (Δx/Δy), k-nın işarəsini dəyişmək, b-ni y₁ + k·x₁ və ya −b kimi yazmaq.` });
+    }) },
+    // 4. equation of a circle from the centre and a point on it
+    { tip: "qapali", gen: () => again(() => {
+      const [dx0, dy0, R] = pick(TRI), dx = dx0 * pick([-1, 1]), dy = dy0 * pick([-1, 1]), a = nz(-4, 4), b = nz(-4, 4); if (a === b) return null;
+      const x = a + dx, y = b + dy, n = R * R;
+      const w = [`${sq(a)} + ${sqy(b)} = ${R}`, `${sq(-a)} + ${sqy(-b)} = ${n}`, `${sq(b)} + ${sqy(a)} = ${n}`, `${sq(a)} + ${sqy(b)} = ${dx0 + dy0}`];
+      return mc(ae(`${sq(a)} + ${sqy(b)} = ${n}`, w, asIs), { text: `Mərkəzi ${pt("O₁", a, b)} nöqtəsində olan çevrə ${pt("A", x, y)} nöqtəsindən keçir. Çevrənin tənliyini yazın.`,
+        svg: fig({ circle: [a, b, R], pts: [["O₁", a, b], ["A", x, y]], segs: [[a, b, x, y]] }, [lbl("O₁", a, b, 16), lbl("A", x, y)]),
+        solution: `R = O₁A = √(${dx * dx} + ${dy * dy}) = ${R}. Tənlik: ${sq(a)} + ${sqy(b)} = ${n}. Tələlər: sağ tərəfə R yazmaq (${R}), mərkəzin işarəsini dəyişmək, a ilə b-ni dəyişmək, katetləri toplayıb R² saymaq (${dx0 + dy0}).` });
+    }) },
+    // 5. perpendicular through a point: where does it cut the y-axis
+    { tip: "qapali", gen: () => again(() => {
+      const [p0, q] = pick([[1, 2], [2, 1], [3, 1], [1, 3], [2, 3], [3, 2], [1, 4], [4, 1]]), p = p0 * pick([-1, 1]);
+      const L = p0 * q / gcd(p0, q), m = Math.floor(6 / L), x0 = L * nz(-m, m), y0 = rnd(-5, 5), c = rnd(-5, 5);
+      const b = y0 + q * x0 / p;
+      const w = [y0 - p * x0 / q, y0 + p * x0 / q, y0 - q * x0 / p, c], f = v => `(0; ${num(v)})`;
+      return mc(ae(b, w, f), { text: `${pt("P", x0, y0)} nöqtəsindən keçən və ${lineStr(p, q, c, 1)} düz xəttinə perpendikulyar olan düz xətt Oy oxunu hansı nöqtədə kəsir?`,
+        svg: fig({ line: [p / q, c], pts: [["P", x0, y0], ["", 0, c]] }, [lbl("P", x0, y0)]),
+        solution: `Verilən düz xəttin k₁ = ${fr(p, q)}. Perpendikulyar olduqda k₂ = −1/k₁ = ${fr(-q, p)}. ${num(y0)} = ${pf(fr(-q, p))} · ${par(x0)} + b → b = ${num(b)}. Nöqtə (0; ${num(b)}). Tələlər: paralel götürmək (k₂ = k₁), yalnız işarəni dəyişmək (k₂ = ${fr(-p, q)}), tərsini alıb işarəni dəyişməmək (k₂ = ${fr(q, p)}), verilən düz xəttin b-sini yazmaq (${num(c)}).` });
+    }) },
+    // 6. fourth vertex of a parallelogram
+    { tip: "qapali", gen: () => again(() => {
+      const ax = rnd(-5, 5), ay = rnd(-5, 5), bx = rnd(-5, 5), by = rnd(-5, 5), cx = rnd(-5, 5), cy = rnd(-5, 5);
+      if (!cross(ax, ay, bx, by, cx, cy)) return null;
+      const dx = ax + cx - bx, dy = ay + cy - by; if (Math.abs(dx) > 11 || Math.abs(dy) > 11) return null;
+      const w = [P(ax + bx - cx, ay + by - cy), P(bx + cx - ax, by + cy - ay), P((ax + cx) / 2, (ay + cy) / 2), P(ax + cx, ay + cy)];
+      return mc(ae(P(dx, dy), w, asIs), { text: `ABCD paraleloqramının üç təpəsi verilib: ${pt("A", ax, ay)}, ${pt("B", bx, by)}, ${pt("C", cx, cy)}. D təpəsinin koordinatlarını tapın.`,
+        svg: fig({ pts: [["A", ax, ay], ["B", bx, by], ["C", cx, cy], ["D", dx, dy, "g"]], segs: [[ax, ay, bx, by], [bx, by, cx, cy]] }, [lbl("A", ax, ay), lbl("B", bx, by), lbl("C", cx, cy)]),
+        solution: `Paraleloqramda AC və BD diaqonallarının orta nöqtəsi eynidir: ${P((ax + cx) / 2, (ay + cy) / 2)}. Onda D = A + C − B = ${P(dx, dy)}. Tələlər: ${P((ax + cx) / 2, (ay + cy) / 2)} yalnız diaqonalların kəsişmə nöqtəsidir; A + C (B-ni çıxmamaq); B + C − A və ya A + B − C (başqa təpəni qarşı təpə götürmək).` });
+    }) },
+    // 7. coded: a point on the x-axis equidistant from two points
+    { tip: "kod", gen: () => again(() => {
+      const R = pick([5, 5, 10]), on = [];
+      for (let u = -R; u <= R; u++) for (let v = -R; v <= R; v++) if (u * u + v * v === R * R && v) on.push([u, v]);
+      const t = rnd(1, 7), [u1, v1] = pick(on), [u2, v2] = pick(on); if (u1 === u2) return null;
+      const bx = t + u1, by = v1, cx = t + u2, cy = v2, sb = dist2(bx, by), sc = dist2(cx, cy);
+      return { text: `Ox oxu üzərindəki A(x; 0) nöqtəsi ${pt("B", bx, by)} və ${pt("C", cx, cy)} nöqtələrindən eyni məsafədədir. x-i tapın.`,
+        svg: fig({ pts: [["B", bx, by], ["C", cx, cy]] }, [lbl("B", bx, by), lbl("C", cx, cy)]),
+        answer: t, show: String(t), tol: 1e-6,
+        solution: `AB² = AC²: (${num(bx)} − x)² + ${by * by} = (${num(cx)} − x)² + ${cy * cy}. Mötərizələri açanda x² ixtisar olunur: ${sb} − ${par(2 * bx)}x = ${sc} − ${par(2 * cx)}x → ${S(2 * (cx - bx))}x = ${S(sc - sb)} → x = ${t}.` };
+    }) },
+    // 8. coded: the chord a circle cuts on the x-axis
+    { tip: "kod", gen: () => again(() => {
+      const [h0, b0, R] = pick(TRI), a = rnd(-6, 6), b = b0 * pick([-1, 1]);
+      return { text: `Çevrənin tənliyi: ${sq(a)} + ${sqy(b)} = ${R * R} (vahid parça 1 sm). Çevrənin Ox oxundan ayırdığı parçanın uzunluğu neçə sm-dir?`,
+        svg: fig({ circle: [a, b, R], pts: [["O₁", a, b]] }, [lbl("O₁", a, b, 16)]),
+        answer: 2 * h0, show: String(2 * h0), tol: 1e-6, unit: "sm",
+        solution: `Ox üzərində y = 0: ${sq(a)} + ${b * b} = ${R * R} → ${sq(a)} = ${R * R - b * b} → x − ${par(a)} = ±${h0}. İki kəsişmə nöqtəsinin absisləri ${num(a - h0)} və ${num(a + h0)}; parçanın uzunluğu ${2 * h0} sm. (Radius ${R}, mərkəzdən Ox-a qədər ${b0}: yarım vətər √(${R}² − ${b0}²) = ${h0}.)` };
+    }) },
+    // 9. coded: area of a triangle from its vertices
+    { tip: "kod", gen: () => again(() => {
+      const ax = rnd(-6, 6), ay = rnd(-6, 6), bx = rnd(-6, 6), by = rnd(-6, 6), cx = rnd(-6, 6), cy = rnd(-6, 6), cr = Math.abs(cross(ax, ay, bx, by, cx, cy));
+      if (!cr || cr % 2 || cr < 12 || cr > 70) return null;
+      const A = cr / 2;
+      return { text: `${pt("A", ax, ay)}, ${pt("B", bx, by)}, ${pt("C", cx, cy)} nöqtələri ABC üçbucağının təpələridir (vahid parça 1 sm). Üçbucağın sahəsi neçə sm²-dir?`,
+        svg: fig({ pts: [["A", ax, ay], ["B", bx, by], ["C", cx, cy]], segs: [[ax, ay, bx, by], [bx, by, cx, cy], [cx, cy, ax, ay]] }, [lbl("A", ax, ay), lbl("B", bx, by), lbl("C", cx, cy)]),
+        answer: A, show: String(A), tol: 1e-6, unit: "sm²",
+        solution: `Üçbucağı düzbucaqlı çərçivəyə sal və ya düsturdan istifadə et: S = ½ · |(x_B − x_A)(y_C − y_A) − (y_B − y_A)(x_C − x_A)| = ½ · |${S(bx - ax)} · ${pf(S(cy - ay))} − ${pf(S(by - ay))} · ${pf(S(cx - ax))}| = ½ · ${cr} = ${A} sm².` };
+    }) },
+    // 10. written: show that a triangle is right-angled and find the circumradius
+    { tip: "yazili", gen: () => again(() => {
+      const [a, b, m] = pick([[1, 2, 2], [2, 1, 2], [1, 3, 3], [3, 1, 3], [1, 1, 7], [2, 1, 2]]);
+      const ux = a * pick([-1, 1]), uy = b * pick([-1, 1]), s = pick([-1, 1]), vx = -uy * m * s, vy = ux * m * s;
+      const bx = rnd(-3, 3), by = rnd(-3, 3), ax = bx + ux, ay = by + uy, cx = bx + vx, cy = by + vy;
+      if ([ax, ay, cx, cy].some(v => Math.abs(v) > 10)) return null;
+      const ab2 = dist2(ux, uy), bc2 = dist2(vx, vy), ac2 = ab2 + bc2, hyp = Math.sqrt(ac2), R = hyp / 2;
+      if (!Number.isInteger(hyp)) return null;
+      return { text: `${pt("A", ax, ay)}, ${pt("B", bx, by)}, ${pt("C", cx, cy)} nöqtələri ABC üçbucağının təpələridir (vahid parça 1 sm). a) ABC üçbucağının düzbucaqlı olduğunu göstərin. b) Üçbucağın ətrafına çəkilmiş çevrənin radiusunu tapın. Cavabda radiusun qiymətini yazın.`,
+        svg: fig({ pts: [["A", ax, ay], ["B", bx, by], ["C", cx, cy]], segs: [[ax, ay, bx, by], [bx, by, cx, cy], [cx, cy, ax, ay]] }, [lbl("A", ax, ay), lbl("B", bx, by), lbl("C", cx, cy)]),
+        answer: R, show: num(R), tol: 1e-6, unit: "sm",
+        solution: `1) AB² = (${num(ax)} − ${par(bx)})² + (${num(ay)} − ${par(by)})² = ${ab2}; BC² = (${num(cx)} − ${par(bx)})² + (${num(cy)} − ${par(by)})² = ${bc2}; AC² = (${num(cx)} − ${par(ax)})² + (${num(cy)} − ${par(ay)})² = ${ac2}. 2) AB² + BC² = ${ab2} + ${bc2} = ${ac2} = AC² → Pifaqor teoreminin tərsinə görə B bucağı düzdür. 3) Düzbucaqlı üçbucağın ətrafına çəkilmiş çevrənin mərkəzi hipotenuzun orta nöqtəsidir, ona görə R = AC/2 = ${hyp}/2 = ${num(R)} sm. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -221,7 +356,7 @@
     game = Oyun.mount({
       key: "koordinatlar-usulu", title: "Koordinatlar üsulu", fenn: "riyaziyyat", link: "dersler/koordinatlar-usulu.html",
       format: "Cavab ədəddir: tam −3, onluq 2,5, kəsr −2/3, kök 3√5.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["mesafe", "mesafe", "orta", "orta", "xett", "xett", "perp", "cevre", "cevre", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

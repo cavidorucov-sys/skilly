@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Orta nöqtə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düz xətt</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Çevrə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -268,6 +269,187 @@ Sağ tərəfdən kök al.</div></div>
         <li>(x − 5)² + (y + 2)² = 49. Mərkəz və radius? <span class="ans">Mərkəz (5; −2), R = 7.</span></li>
         <li>Mərkəzi O(0; 0), A(−3; 4)-dən keçən çevrənin tənliyi? <span class="ans">R = 5: x² + y² = 25.</span></li>
         <li>x² + y² + 2x − 8 = 0. Radius? <span class="ans">(x + 1)² − 1 + y² − 8 = 0 → (x + 1)² + y² = 9 → R = 3.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: koordinatlar üsulu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Koordinatlar üsulu buraxılış imtahanında şəkilli və şəkilsiz gəlir; üç formada verilir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: işarəni səhv qoymaq, kökü çıxmamaq, kəsri tərsinə çevirmək. "Mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Axtarılan çox vaxt bir ədəddir: nöqtənin absisi, uzunluq, sahə.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda iki şeyi yoxla: <b>koordinatlar necə yazılıb</b> ((absis; ordinat) — əvvəl x, sonra y) və <b>nə soruşulur</b> (nöqtə, uzunluq, tənlik, yoxsa yalnız bir koordinat).</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Mərkəzi O₁(2; −1) nöqtəsində olan çevrə A(5; 3) nöqtəsindən keçir. Çevrənin tənliyini yazın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 240 240" role="img" aria-label="Mərkəzi O₁(2; −1) olan çevrə A(5; 3) nöqtəsindən keçir">
+            <line x1="10" y1="230" x2="10" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="28.3" y1="230" x2="28.3" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="46.7" y1="230" x2="46.7" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="65" y1="230" x2="65" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="83.3" y1="230" x2="83.3" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="101.7" y1="230" x2="101.7" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="120" y1="230" x2="120" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="138.3" y1="230" x2="138.3" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="156.7" y1="230" x2="156.7" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="175" y1="230" x2="175" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="193.3" y1="230" x2="193.3" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="211.7" y1="230" x2="211.7" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="230" y1="230" x2="230" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="230" x2="230" y2="230" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="211.7" x2="230" y2="211.7" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="193.3" x2="230" y2="193.3" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="175" x2="230" y2="175" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="156.7" x2="230" y2="156.7" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="138.3" x2="230" y2="138.3" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="120" x2="230" y2="120" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="101.7" x2="230" y2="101.7" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="83.3" x2="230" y2="83.3" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="65" x2="230" y2="65" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="46.7" x2="230" y2="46.7" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="28.3" x2="230" y2="28.3" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="10" x2="230" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="101.7" x2="230" y2="101.7" stroke="var(--muted)" stroke-width="1.5"/>
+            <line x1="83.3" y1="230" x2="83.3" y2="10" stroke="var(--muted)" stroke-width="1.5"/>
+            <text x="222" y="96.7" class="lbl">x</text><text x="88.3" y="22" class="lbl">y</text><text x="72.3" y="114.7" class="lbl">0</text>
+            <circle cx="120" cy="120" r="91.7" fill="var(--accent-soft)" fill-opacity=".5" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="120" y1="120" x2="175" y2="46.7" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="120" cy="120" r="3.5" fill="var(--ink)"/><text x="114" y="136" class="lbl" text-anchor="end">O₁(2; −1)</text>
+            <circle cx="175" cy="46.7" r="3.5" fill="var(--ink)"/><text x="182" y="39.7" class="lbl">A(5; 3)</text>
+          </svg>
+        </div>
+        <ol class="imt-opts"><li>(x + 2)² + (y − 1)² = 25</li><li>(x − 2)² + (y + 1)² = 25</li><li>(x − 2)² + (y + 1)² = 5</li><li>(x + 1)² + (y − 2)² = 25</li><li>(x − 2)² + (y + 1)² = 7</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Radius mərkəzlə A arasındakı məsafədir:
+R = O₁A = √((5 − 2)² + (3 − (−1))²) = √(9 + 16) = 5
+Tənlik: (x − 2)² + (y + 1)² = R² = 25
+Cavab: B) (x − 2)² + (y + 1)² = 25</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) (x + 2)² + (y − 1)² = 25</b> — mərkəzin işarəsini dəyişmək: mötərizədə <span class="m">x − a</span> yazılır, mərkəz isə <span class="m">a = 2</span>-dir.</li>
+        <li><b>C) … = 5</b> — sağ tərəfə R yazmaq. Tənliyin sağında R² durur.</li>
+        <li><b>D) (x + 1)² + (y − 2)² = 25</b> — mərkəzin koordinatlarının yerini dəyişmək: (2; −1) əvəzinə (−1; 2) götürülüb.</li>
+        <li><b>E) … = 7</b> — katetləri toplamaq: <span class="m">3 + 4 = 7</span>. Düz hesab: <span class="m">3² + 4² = 25</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Ox oxu üzərindəki A(x; 0) nöqtəsi B(6; 4) və C(−1; −3) nöqtələrindən eyni məsafədədir. x-i tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 236 236" role="img" aria-label="B(6; 4) və C(−1; −3) nöqtələri">
+            <line x1="10" y1="226" x2="10" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="34" y1="226" x2="34" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="58" y1="226" x2="58" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="82" y1="226" x2="82" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="106" y1="226" x2="106" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="130" y1="226" x2="130" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="154" y1="226" x2="154" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="178" y1="226" x2="178" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="202" y1="226" x2="202" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="226" y1="226" x2="226" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="226" x2="226" y2="226" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="202" x2="226" y2="202" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="178" x2="226" y2="178" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="154" x2="226" y2="154" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="130" x2="226" y2="130" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="106" x2="226" y2="106" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="82" x2="226" y2="82" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="58" x2="226" y2="58" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="34" x2="226" y2="34" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="10" x2="226" y2="10" stroke="var(--grid)" stroke-width="1"/>
+            <line x1="10" y1="130" x2="226" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+            <line x1="58" y1="226" x2="58" y2="10" stroke="var(--muted)" stroke-width="1.5"/>
+            <text x="218" y="125" class="lbl">x</text><text x="63" y="22" class="lbl">y</text><text x="47" y="143" class="lbl">0</text>
+            <line x1="202" y1="34" x2="34" y2="202" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="202" cy="34" r="3.5" fill="var(--ink)"/><text x="195" y="27" class="lbl" text-anchor="end">B(6; 4)</text>
+            <circle cx="34" cy="202" r="3.5" fill="var(--ink)"/><text x="41" y="216" class="lbl">C(−1; −3)</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">AB = AC  ⇒  AB² = AC²   (kök işarəsindən qurtulmaq üçün)
+(6 − x)² + 4² = (−1 − x)² + (−3)²
+36 − 12x + x² + 16 = 1 + 2x + x² + 9
+52 − 12x = 10 + 2x
+42 = 14x  ⇒  x = 3
+Cavab: 3</div>
+      <p>Hər iki tərəfdə <span class="m">x²</span> var və ixtisar olunur, qalan tənlik xəttidir. Yoxlama: <span class="m">AB² = 9 + 16 = 25</span>, <span class="m">AC² = 16 + 9 = 25</span> ✓. Tələ: B və C-nin orta nöqtəsinin absisini yazmaq (<span class="m">(6 + (−1))/2 = 2,5</span>) — orta nöqtə B və C-yə bərabər məsafədədir, amma Ox üzərində olmaya bilər.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>A(2; 3), B(1; 1), C(−3; 3) nöqtələri ABC üçbucağının təpələridir (vahid parça 1 sm). a) Üçbucağın düzbucaqlı olduğunu göstərin. b) Üçbucağın ətrafına çəkilmiş çevrənin radiusunu tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 270 134" role="img" aria-label="A(2; 3), B(1; 1), C(−3; 3) təpələri olan üçbucaq">
+          <line x1="10" y1="123.6" x2="10" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="32.7" y1="123.6" x2="32.7" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="55.5" y1="123.6" x2="55.5" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="78.2" y1="123.6" x2="78.2" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="100.9" y1="123.6" x2="100.9" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="123.6" y1="123.6" x2="123.6" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="146.4" y1="123.6" x2="146.4" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="169.1" y1="123.6" x2="169.1" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="191.8" y1="123.6" x2="191.8" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="214.5" y1="123.6" x2="214.5" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="237.3" y1="123.6" x2="237.3" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="260" y1="123.6" x2="260" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="123.6" x2="260" y2="123.6" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="100.9" x2="260" y2="100.9" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="78.2" x2="260" y2="78.2" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="55.5" x2="260" y2="55.5" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="32.7" x2="260" y2="32.7" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="10" x2="260" y2="10" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="10" y1="100.9" x2="260" y2="100.9" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="146.4" y1="123.6" x2="146.4" y2="10" stroke="var(--muted)" stroke-width="1.5"/>
+          <text x="252" y="95.9" class="lbl">x</text><text x="151.4" y="22" class="lbl">y</text><text x="135.4" y="113.9" class="lbl">0</text>
+          <polygon points="191.8,32.7 169.1,78.2 78.2,32.7" fill="var(--accent-soft)" fill-opacity=".5" stroke="var(--accent)" stroke-width="2.5"/>
+          <circle cx="191.8" cy="32.7" r="3.5" fill="var(--ink)"/><text x="198.8" y="25.700000000000003" class="lbl">A(2; 3)</text>
+          <circle cx="169.1" cy="78.2" r="3.5" fill="var(--ink)"/><text x="176.1" y="92.2" class="lbl">B(1; 1)</text>
+          <circle cx="78.2" cy="32.7" r="3.5" fill="var(--ink)"/><text x="71.2" y="25.700000000000003" class="lbl" text-anchor="end">C(−3; 3)</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Tərəflərin kvadratı:
+   AB² = (2 − 1)² + (3 − 1)² = 1 + 4 = 5
+   BC² = (−3 − 1)² + (3 − 1)² = 16 + 4 = 20
+   AC² = (−3 − 2)² + (3 − 3)² = 25 + 0 = 25
+2) AB² + BC² = 5 + 20 = 25 = AC².
+   Pifaqor teoreminin tərsinə görə ABC düzbucaqlı üçbucaqdır,
+   B bucağı düzdür (AC hipotenuzdur).
+3) Düzbucaqlı üçbucağın ətrafına çəkilmiş çevrənin mərkəzi
+   hipotenuzun orta nöqtəsidir, ona görə
+   R = AC/2 = √25 / 2 = 5/2 = 2,5 sm.
+Cavab: R = 2,5 sm.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>tərəflərin uzunluqları</b> (1-ci addım), <b>düz bucağın əsaslandırılması</b> (2-ci addım), <b>radiusun tapılması və cavab</b> (3-cü addım). Yalnız "2,5" yazmaq bu balların çoxunu itirir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Mənfi koordinatla fərq.</b> <span class="m">x₂ − x₁ = 4 − (−2) = 6</span>, 2 yox: çıxılan ədəd mənfi olanda mötərizə qoy.</li>
+        <li><b>Məsafədə kök.</b> <span class="m">AB = √(dx² + dy²)</span>: kökü çıxmamaq (AB² cavab yazmaq) və ya katetləri toplamaq (<span class="m">dx + dy</span>) səhvdir.</li>
+        <li><b>Orta nöqtədən ucu tapmaq.</b> <span class="m">x_B = 2·x_M − x_A</span>. M ilə A-nın absislərinin fərqini (<span class="m">x_M − x_A</span>) cavab yazmaq tipik səhvdir.</li>
+        <li><b>Düz xətt.</b> <span class="m">k = Δy/Δx</span> (Δx/Δy yox); <span class="m">b = y₁ − k·x₁</span>. Paralel xətlərdə <span class="m">k₁ = k₂</span>, perpendikulyarda <span class="m">k₂ = −1/k₁</span> — həm tərsini al, həm işarəni dəyiş.</li>
+        <li><b>Çevrə.</b> <span class="m">(x − a)² + (y − b)² = R²</span>-də mərkəz (a; b)-dir: mötərizədəki işarəni tərsinə çevir; sağ tərəf R²-dir, radius üçün kök al.</li>
+        <li><b>Paraleloqramın dördüncü təpəsi.</b> ABCD-də AC və BD diaqonallarının orta nöqtəsi eynidir: <span class="m">D = A + C − B</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">AB = √((x₂ − x₁)² + (y₂ − y₁)²)
+orta nöqtə:  ((x₁ + x₂)/2 ; (y₁ + y₂)/2)
+düz xətt:    k = (y₂ − y₁)/(x₂ − x₁),  b = y₁ − k·x₁
+çevrə:       (x − a)² + (y − b)² = R²
+yazılıda:    düsturu yaz, ədədləri yerinə qoy, nəticəni yaz</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>A(−3; 2), B(1; −1). AB-ni tapın. <span class="ans">dx = 1 − (−3) = 4, dy = −1 − 2 = −3: AB = √(16 + 9) = 5.</span></li>
+        <li>Çevrənin tənliyi (x + 3)² + (y − 4)² = 36. Mərkəzi və radiusu deyin. <span class="ans">Mərkəz (−3; 4), R = 6 (sağ tərəf R² = 36).</span></li>
+        <li>M(1; −2) nöqtəsi AB parçasının orta nöqtəsidir, A(4; 1). B nöqtəsini tapın. <span class="ans">x = 2 · 1 − 4 = −2, y = 2 · (−2) − 1 = −5: B(−2; −5).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
