@@ -1550,7 +1550,8 @@
     "riyaziyyat:Tam üstlü qüvvət, ədədin standart şəkli"
    ],
    "hefte": "2027-01-04",
-   "ders": "dersler/fiz-atom.html"
+   "ders": "dersler/fiz-atom.html",
+   "imt": true
   }
  ]
 }
