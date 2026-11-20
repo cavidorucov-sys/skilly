@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Kökləri qiymətləndir</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>[x] və {x}</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Ədədi və həndəsi orta</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -322,6 +323,86 @@ Həndəsi orta = √(ab)  (a, b &gt; 0)
         <li>−4; 6; 10; −2 ədədlərinin ədədi ortası? <span class="ans">10 : 4 = 2,5.</span></li>
         <li>3 və 27 ədədlərinin həndəsi ortası? <span class="ans">√81 = 9.</span></li>
         <li>İki ədədin ədədi ortası 7, biri −3. O biri? <span class="ans">14 − (−3) = 17.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: həqiqi ədədlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bu mövzu buraxılış imtahanında üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: <span class="m">[−3,7]</span> üçün −3 yazmaq, <span class="m">{x}</span> yerinə vergüldən sonrakı rəqəmləri götürmək, kök işarəsini görüb "irrasionaldır" demək, iki ortanın çəkisini unutmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız ədəd (bu mövzuda həmişə müsbət ədəd), onluq kəsr vergüllə, vahid yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>mənfi ədəd varmı?</b> ([x] və {x} üçün) və <b>kökü tam kvadratlar arasında yerləşdirdimmi?</b> Tələlərin çoxu bu iki yerdədir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">x = −3,7</span> olarsa, <span class="m">[x] − 2{x}</span> ifadəsinin qiyməti neçədir?</p>
+        <ol class="imt-opts"><li>−3,4</li><li>−3,6</li><li>−4,4</li><li>−4,6</li><li>−5,4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">−4 &lt; −3,7 &lt; −3, deməli [x] = −4
+{x} = x − [x] = −3,7 − (−4) = 0,3
+[x] − 2{x} = −4 − 2 · 0,3 = −4,6
+Cavab: D) −4,6</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) −3,4</b> — işarə səhvi: <span class="m">−4 + 2 · 0,3</span>. İfadədə "−2{x}" var, "+" yox.</li>
+        <li><b>B) −3,6</b> — <span class="m">[−3,7] = −3</span> (vergüldən əvvəlki rəqəmi götürmək), amma {x} düz tapılıb: <span class="m">−3 − 2 · 0,3</span>. Mənfi ədədin tam hissəsi −3 deyil, −4-dür.</li>
+        <li><b>C) −4,4</b> — iki səhv birlikdə: <span class="m">[x] = −3</span> və <span class="m">{x} = 0,7</span> (vergüldən sonrakı rəqəm): <span class="m">−3 − 2 · 0,7</span>.</li>
+        <li><b>E) −5,4</b> — tam hissə düzdür (−4), amma <span class="m">{x} = 0,7</span> (vergüldən sonrakı rəqəm): <span class="m">−4 − 2 · 0,7</span>. Kəsr hissə <span class="m">x − [x]</span> ilə tapılır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>5 ədədin ədədi ortası 12-dir. Onlardan biri çıxarılandan sonra qalan 4 ədədin ədədi ortası 10 oldu. Çıxarılan ədəd neçədir?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Əvvəl cəm:  5 · 12 = 60
+Sonra cəm:  4 · 10 = 40
+Çıxarılan:  60 − 40 = 20
+Cavab: 20</div>
+      <p>Kod sahəsinə yalnız <b>20</b> yazılır. Orta məlumdursa, əvvəl <b>cəmi</b> tap: <span class="m">cəm = orta · say</span>. Tələ: ortaları çıxmaq (<span class="m">12 − 10 = 2</span>) — orta cəm deyil, ədədlərin sayı da dəyişib.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">a = [√23]</span> və <span class="m">b = {√23}</span> olsun. <span class="m">b² + 2ab</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) 16 &lt; 23 &lt; 25  ⇒  4 &lt; √23 &lt; 5,
+   deməli a = [√23] = 4.
+2) b = {√23} = √23 − [√23] = √23 − 4.
+3) b² + 2ab = b · (b + 2a)
+            = (√23 − 4) · (√23 − 4 + 8)
+            = (√23 − 4) · (√23 + 4)
+            = 23 − 16 = 7.
+Cavab: 7</div>
+      <p>Yoxlayan bunlara bal verir: <b>tam hissə</b> (1-ci addım), <b>kəsr hissə</b> (2-ci addım), <b>ifadənin çevrilməsi</b> (3-cü addım: ortaq vuruq və kvadratların fərqi), <b>hesablama və cavab</b>. Təxmini ədədlərlə (√23 ≈ 4,8) hesablamaq dəqiq cavab vermir — burada kökdən qurtulmaq lazımdır. Yalnız "7" yazmaq bal vermir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Mənfi ədədin tam hissəsi.</b> <span class="m">[−3,7] = −4</span>, −3 yox: [x] x-i aşmayan <b>ən böyük tam ədəddir</b> (ədəd oxunda sola ən yaxın tam ədəd).</li>
+        <li><b>Kəsr hissə "vergüldən sonrakı rəqəm" deyil.</b> <span class="m">{x} = x − [x]</span>, həmişə <span class="m">0 ≤ {x} &lt; 1</span>. <span class="m">{−3,7} = 0,3</span>, 0,7 yox.</li>
+        <li><b>Kök işarəsi irrasionallıq demək deyil.</b> <span class="m">√49 = 7</span>, <span class="m">√0,36 = 0,6</span> rasionaldır. Sonsuz yazılış da: <span class="m">0,(3) = 1/3</span> rasionaldır; <span class="m">3,14</span> sonludur, π deyil.</li>
+        <li><b>Vuruğu kök altına sal.</b> <span class="m">3√2 = √18</span>; <span class="m">[3√2]</span> hesablananda 3 · [√2] = 3 yox, <span class="m">4 &lt; √18 &lt; 5</span> ⇒ 4.</li>
+        <li><b>Aralıqda tam ədədləri sayanda</b> sıfırı unutma: −2-dən 3-ə qədər 2 + 1 + 3 = 6 ədəd.</li>
+        <li><b>Çəkili orta.</b> 10 şagirdin ortası 70, 5 şagirdin ortası 55-dirsə, hamının ortası <span class="m">(70 + 55) : 2</span> deyil, <span class="m">(10 · 70 + 5 · 55) : 15 = 65</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">[x] — x-dən böyük olmayan ən böyük tam ədəd
+{x} = x − [x],   0 ≤ {x} &lt; 1
+[−√n] = −([√n] + 1),   n tam kvadrat deyilsə
+ədədi orta:  cəm : say      cəm = orta · say
+həndəsi orta:  √(a · b)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>{−2,3} = ? <span class="ans">[−2,3] = −3, {−2,3} = −2,3 + 3 = 0,7 (0,3 yox).</span></li>
+        <li>√0,16;  √0,2;  0,(3);  3,14 ədədlərindən neçəsi irrasionaldır? <span class="ans">Yalnız √0,2: √0,16 = 0,4; 0,(3) = 1/3; 3,14 = 314/100. Cavab: 1.</span></li>
+        <li>4 ədədin ədədi ortası 6-dır. Onlara bir ədəd əlavə ediləndən sonra orta 7 oldu. Əlavə edilən ədəd? <span class="ans">5 · 7 − 4 · 6 = 35 − 24 = 11.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

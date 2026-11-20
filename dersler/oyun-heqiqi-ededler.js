@@ -243,6 +243,106 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes ([−3,7] = −3, {x} = digits after the comma, root sign = irrational, the plain mean, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const shuf = a => a.map(x => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map(p => p[1]);
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. which one is irrational (the rational options look irrational for a typical reason)
+    { tip: "qapali", gen: () => again(() => {
+      const RAT = [
+        () => { const k = rnd(3, 15); return [`√${k * k}`, `√${k * k} = ${k} (kök işarəsi var, amma ${k * k} tam kvadratdır)`]; },
+        () => { const k = rnd(2, 9), t = String(k * k).padStart(2, "0"); return [`√0,${t}`, `√0,${t} = 0,${k} (0,${t} = ${k * k}/100 olduğundan √0,${t} = ${k}/10 = 0,${k} rasionaldır)`]; },
+        () => { const a = rnd(1, 3), d = rnd(1, 8); return [`${a},(${d})`, `${a},(${d}) = ${a * 9 + d}/9 (dövri kəsr sonsuzdur, amma rasionaldır)`]; },
+        () => pick([["3,14", "3,14 = 314/100 sonlu kəsrdir, rasionaldır (π-yə yaxındır, özü deyil)"], ["22/7", "22/7 adi kəsrdir, rasionaldır (π-yə yaxındır, özü deyil)"], ["1,41", "1,41 = 141/100 rasionaldır (√2-yə yaxındır, özü deyil)"]]),
+        () => { const n = nonSq(2, 30); return [`(√${n})²`, `(√${n})² = ${n}`]; },
+        () => { let a, b; do { a = rnd(1, 7); b = rnd(2, 9); } while (gcd(a, b) !== 1 || a >= b); return [`√(${a * a}/${b * b})`, `√(${a * a}/${b * b}) = ${a}/${b}`]; },
+        () => { const s = pick([2, 3, 5, 6, 7]), u = rnd(1, 2), v = rnd(3, 4); return [`√${s * u * u} · √${s * v * v}`, `√${s * u * u} · √${s * v * v} = √${s * s * u * u * v * v} = ${s * u * v} (hasil tam kvadratdır)`]; },
+      ];
+      const IRR = [
+        () => { const n = nonSq(2, 99); return [`√${n}`, `√${n} irrasionaldır: ${n} tam kvadrat deyil`]; },
+        () => ["π", "π sonsuz və dövri olmayan kəsrdir, irrasionaldır"],
+        () => { const a = rnd(1, 5), n = pick(SQF); return [`${a} + √${n}`, `${a} + √${n}: rasional + irrasional = irrasional`]; },
+        () => { const d = rnd(1, 9); return [`√0,${d}`, `√0,${d} = √(${d}/10), ${d}/10 kvadrat deyil: irrasionaldır`]; },
+        () => { const k = rnd(2, 5), r = pick(SQF); return [`${k}√${r}`, `${k}√${r} = √${k * k * r}, tam kvadrat deyil: irrasionaldır`]; },
+        () => { let a, b; do { a = nonSq(2, 15); b = nonSq(2, 15); } while (isSq(a * b) || a === b); return [`√${a} · √${b}`, `√${a} · √${b} = √${a * b}, ${a * b} tam kvadrat deyil: irrasionaldır`]; },
+      ];
+      const r = pick(IRR)(), w = shuf(RAT.map((f, i) => i)).slice(0, 4).map(i => RAT[i]());
+      return mc(ae(r[0], w.map(x => x[0]), x => x), { text: "Aşağıdakı ədədlərdən hansı irrasionaldır?",
+        solution: `Doğru cavab ${r[0]}: ${r[1]}. Qalanları rasionaldır: ${w.map(x => x[1]).join("; ")}. Tələ: kök işarəsini və ya sonsuz yazılışı görüb “irrasionaldır” demək.` });
+    }) },
+    // 2. how many integers between −√a and p√q: [0 forgotten, an end counted, p·[√q] instead of [p√q], difference instead of sum]
+    { tip: "qapali", gen: () => again(() => {
+      const a = nonSq(3, 40), p = rnd(2, 4), q = pick(SQF), n = p * p * q, ka = fl(a), kb = fl(n), right = ka + kb + 1;
+      const w = [ka + kb, ka + kb + 2, ka + p * fl(q) + 1, Math.abs(kb - ka) + 1];
+      return mc(ae(right, w), { text: `−√${a} ilə ${p}√${q} ədədləri arasında neçə tam ədəd var?`,
+        solution: `${ka * ka} < ${a} < ${(ka + 1) ** 2} → −${ka + 1} < −√${a} < −${ka}. ${p}√${q} = √${n}, ${kb * kb} < ${n} < ${(kb + 1) ** 2} → ${kb} < ${p}√${q} < ${kb + 1}. Tam ədədlər −${ka} ilə ${kb} arasındadır: ${ka} mənfi, sıfır və ${kb} müsbət: ${ka} + 1 + ${kb} = ${right}. Tələlər: sıfırı unutmaq (${ka + kb}), ${p} vuruğunu kökdən kənarda saxlayıb ${p} · [√${q}] = ${p * fl(q)} götürmək (${ka + p * fl(q) + 1}), uc nöqtəni də saymaq (${ka + kb + 2}).` });
+    }) },
+    // 3. [x] − c{x} for a negative decimal: truncating instead of the floor, "digits after the comma" instead of {x}, a sign slip
+    { tip: "qapali", gen: () => again(() => {
+      const M = rnd(11, 99); if (M % 10 === 0 || M % 10 === 5) return null;
+      const x10 = -M, f = Math.floor(x10 / 10), fr10 = x10 - 10 * f, t = Math.trunc(x10 / 10), g10 = M % 10, c = rnd(2, 4);
+      const v = (i, j) => (10 * i + j) / 10; // integer part i, tenths j
+      const right = v(f, -c * fr10), w = [v(t, -c * g10), v(f, -c * g10), v(t, -c * fr10), v(f, c * fr10)];
+      return mc(ae(right, w), { text: `x = ${N(x10 / 10)} olarsa, [x] − ${c}{x} ifadəsinin qiyməti neçədir?`,
+        solution: `[${N(x10 / 10)}] = ${N(f)}, çünki ${N(f)} < ${N(x10 / 10)} < ${N(f + 1)}. {x} = ${N(x10 / 10)} − (${N(f)}) = ${N(fr10 / 10)}. [x] − ${c}{x} = ${N(f)} − ${c} · ${N(fr10 / 10)} = ${N(right)}. Tələlər: [x] = ${N(t)} (vergüldən əvvəlki rəqəm) → ${N(w[0])} və ya ${N(w[2])}; {x} = ${N(g10 / 10)} (vergüldən sonrakı rəqəm) → ${N(w[0])} və ya ${N(w[1])}; işarə səhvi → ${N(w[3])}.` });
+    }) },
+    // 4. the fractional part of ±√n written with k = [√n]
+    { tip: "qapali", gen: () => again(() => {
+      const n = nonSq(3, 99), k = fl(n), neg = pick([0, 1]), s = `√${n}`;
+      if (!neg) return mc(ae(`${s} − ${k}`, [`${k} − ${s}`, `${s} − ${k + 1}`, s, `${k + 1} − ${s}`], x => x), { text: `${s} ədədinin kəsr hissəsi, yəni {${s}} aşağıdakılardan hansına bərabərdir?`,
+        solution: `${k * k} < ${n} < ${(k + 1) ** 2}, deməli [${s}] = ${k}. {${s}} = ${s} − [${s}] = ${s} − ${k}. Tələlər: çıxanı və çıxılanı dəyişmək (${k} − ${s} mənfidir, kəsr hissə isə mənfi olmur), ${k} əvəzinə ${k + 1} çıxmaq, tam hissəni çıxmağı unutmaq, {−${s}} ilə qarışdırmaq (${k + 1} − ${s}).` });
+      return mc(ae(`${k + 1} − ${s}`, [`${s} − ${k}`, `${k} − ${s}`, `−${s}`, `${s} − ${k + 1}`], x => x), { text: `−${s} ədədinin kəsr hissəsi, yəni {−${s}} aşağıdakılardan hansına bərabərdir?`,
+        solution: `−${k + 1} < −${s} < −${k}, deməli [−${s}] = −${k + 1}. {−${s}} = −${s} − (−${k + 1}) = ${k + 1} − ${s}. Tələlər: mənfi işarəni nəzərə almamaq (${s} − ${k}), [−${s}] = −${k} götürmək (${k} − ${s} mənfi çıxır), tam hissəni çıxmamaq (−${s}), işarəni çevirmək (${s} − ${k + 1}).` });
+    }) },
+    // 5. arithmetic and geometric mean of two numbers given → the larger number
+    { tip: "qapali", gen: () => again(() => {
+      const s = rnd(1, 4), u = rnd(2, 6), v = rnd(1, 5); if (u <= v || gcd(u, v) !== 1 || (s * (u * u + v * v)) % 2) return null;
+      const A = s * (u * u + v * v) / 2, G = s * u * v, d = s * (u * u - v * v) / 2, big = A + d, small = A - d;
+      const w = [2 * A - G, A + G, 2 * A, G * G];
+      return mc(ae(big, w), { text: `Ədədi ortası ${A}, həndəsi ortası ${G} olan iki müsbət ədədin böyüyü neçədir?`,
+        solution: `a + b = 2 · ${A} = ${2 * A}, a · b = ${G}² = ${G * G}. (a − b)² = (a + b)² − 4ab = ${(2 * A) ** 2} − ${4 * G * G} = ${(2 * d) ** 2}, a − b = ${2 * d}. Böyük ədəd: (${2 * A} + ${2 * d}) : 2 = ${big}, kiçik: ${small} (yoxlama: ${big} · ${small} = ${G * G}). Tələlər: həndəsi ortanı (${G}) kiçik ədəd saymaq (2 · ${A} − ${G} = ${2 * A - G}), ortaları toplamaq (${A + G}), cəmi (${2 * A}) və ya hasili (${G * G}) cavab yazmaq.` });
+    }) },
+    // 6. mean of a whole class from the means of two groups (weights!)
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(2, 12), n = rnd(2, 12), a = rnd(55, 95), b = rnd(55, 95); if (m === n || a === b || (m * a + n * b) % (m + n)) return null;
+      const right = (m * a + n * b) / (m + n), w = [(a + b) / 2, (m * b + n * a) / (m + n), m * a + n * b, (m * a + n * b) / 2];
+      return mc(ae(right, w), { text: `Sinifdə ${m} oğlan və ${n} qız var. Oğlanların sınaqda orta balı ${a}, qızların orta balı ${b} olub. Bütün sinfin orta balı neçədir?`,
+        solution: `Bütün ballar: ${m} · ${a} + ${n} · ${b} = ${m * a + n * b}. Şagird sayı: ${m} + ${n} = ${m + n}. Orta bal: ${m * a + n * b} : ${m + n} = ${N(right)}. Tələlər: iki ortanın ədədi ortasını götürmək (${N((a + b) / 2)}) — şagird sayları fərqlidir; çəkiləri dəyişmək (${N(w[1])}); bölməyi unutmaq (${m * a + n * b}); ikiyə bölmək (${N(w[3])}).` });
+    }) },
+    // 7. coded: integer solutions of x² < n
+    { tip: "kod", gen: () => again(() => {
+      const n = nonSq(10, 200), k = fl(n);
+      return { text: `x² < ${n} bərabərsizliyinin neçə tam həlli var?`, answer: 2 * k + 1, show: String(2 * k + 1), tol: 1e-6,
+        solution: `x² < ${n} ⇔ |x| < √${n}. ${k * k} < ${n} < ${(k + 1) ** 2}, deməli ${k} < √${n} < ${k + 1}. Tam həllər: −${k}, …, −1, 0, 1, …, ${k}: 2 · ${k} + 1 = ${2 * k + 1}. Tələ: sıfırı və ya mənfi həlləri saymamaq.` };
+    }) },
+    // 8. coded: a number removed from / added to a set, the mean changes
+    { tip: "kod", gen: () => again(() => {
+      const n = rnd(4, 9), A = rnd(10, 30), B = rnd(A - 6, A + 6); if (A === B) return null;
+      if (pick([0, 1])) { const x = n * A - (n - 1) * B; if (x < 1) return null;
+        return { text: `Ədədi ortası ${A} olan ${n} ədəddən biri çıxarılandan sonra qalan ${n - 1} ədədin ədədi ortası ${B} oldu. Çıxarılan ədəd neçədir?`, answer: x, show: String(x), tol: 1e-6,
+          solution: `Əvvəl cəm: ${n} · ${A} = ${n * A}. Sonra cəm: ${n - 1} · ${B} = ${(n - 1) * B}. Çıxarılan ədəd: ${n * A} − ${(n - 1) * B} = ${x}.` }; }
+      const x = (n + 1) * B - n * A; if (x < 1) return null;
+      return { text: `Ədədi ortası ${A} olan ${n} ədədə bir ədəd əlavə ediləndən sonra ${n + 1} ədədin ədədi ortası ${B} oldu. Əlavə edilən ədəd neçədir?`, answer: x, show: String(x), tol: 1e-6,
+        solution: `Əvvəl cəm: ${n} · ${A} = ${n * A}. Sonra cəm: ${n + 1} · ${B} = ${(n + 1) * B}. Əlavə edilən ədəd: ${(n + 1) * B} − ${n * A} = ${x}.` };
+    }) },
+    // 9. coded: [x] − {x} = c  (x = 2[x] − c)
+    { tip: "kod", gen: () => again(() => {
+      const P0 = rnd(1, 9), e = rnd(1, 9), c10 = 10 * P0 + e, n = P0 + 1, x10 = 20 * n - c10;
+      return { text: `x həqiqi ədədi üçün [x] − {x} = ${N(c10 / 10)} bərabərliyi ödənir. x-i tapın.`, answer: x10 / 10, show: N(x10 / 10), tol: 1e-6,
+        solution: `{x} ədədi 0 ilə 1 arasındadır (1 daxil deyil), [x] tam ədəddir. [x] − {x} = ${N(c10 / 10)} ədədi ${P0} ilə ${n} arasında olduğundan [x] = ${n}, {x} = ${n} − ${N(c10 / 10)} = ${N((10 * n - c10) / 10)}. x = [x] + {x} = ${N(x10 / 10)}.` };
+    }) },
+    // 10. written: t = {√n}, k = [√n]; t² + 2kt = (√n − k)(√n + k) = n − k²
+    { tip: "yazili", gen: () => again(() => {
+      const n = nonSq(10, 120), k = fl(n), r = n - k * k;
+      return { text: `a = [√${n}] və b = {√${n}} olsun. b² + 2ab ifadəsinin qiymətini tapın.`, answer: r, show: String(r), tol: 1e-6,
+        solution: `1) ${k * k} < ${n} < ${(k + 1) ** 2} → ${k} < √${n} < ${k + 1}, deməli a = [√${n}] = ${k}. 2) b = {√${n}} = √${n} − ${k}. 3) b² + 2ab = b(b + 2a) = (√${n} − ${k})(√${n} − ${k} + ${2 * k}) = (√${n} − ${k})(√${n} + ${k}) = ${n} − ${k * k} = ${r}. Həll yazılmadan yalnız cavab yazılsa, bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -252,7 +352,7 @@
     game = Oyun.mount({
       key: "heqiqi-ededler", title: "Həqiqi ədədlər; tam və kəsr hissə; orta", fenn: "riyaziyyat", link: "dersler/heqiqi-ededler.html",
       format: "Cavab yazmaq: tam −4, onluq 0,6, kəsr 2/3, kök 3√2, kök ilə ifadə √23 − 4 (vergül də, nöqtə də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["irrasional", "araliq", "araliq", "muqayise", "tamkesr", "tamkesr", "tamkesr", "orta", "orta", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
