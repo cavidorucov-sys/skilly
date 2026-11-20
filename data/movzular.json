@@ -519,7 +519,8 @@
     "riyaziyyat:Çoxbucaqlılar, bucaqların cəmi, düzgün çoxbucaqlılar",
     "riyaziyyat:Üçbucaqlar, bərabərlik əlamətləri"
    ],
-   "hefte": "2027-01-11"
+   "hefte": "2027-01-11",
+   "imt": true
   },
   {
    "bolme": "Dördbucaqlılar və çoxbucaqlılar",

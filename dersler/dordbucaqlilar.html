@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Perimetr, sahə</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Düzbucaqlı, kvadrat</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Romb</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -341,6 +342,119 @@ Bucağı 60° olan romb: kiçik diaqonal = tərəf.</div></div>
         <li>Rombun diaqonalları 10 və 24. Tərəfi? <span class="ans">√(5² + 12²) = 13.</span></li>
         <li>Rombda ∠A = 40°. ∠ABD? <span class="ans">∠B = 140°, BD onu yarıya bölür: 70°.</span></li>
         <li>Rombun perimetri 20, bir diaqonalı 6. Sahəsi? <span class="ans">a = 5, yarılar 3 və 4, ikinci diaqonal 8, S = 6 · 8 / 2 = 24.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: dördbucaqlılar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Paraleloqram, düzbucaqlı, kvadrat və romb buraxılışda üç formada gəlir. Fiqur demək olar ki, həmişə verilir, ona görə əvvəl şəkildəki bərabər parçalara, düz bucaqlara və paralel tərəflərə bax.</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: diaqonalı yarıya bölməmək, tənböləndə səhv tərəfi bərabər götürmək, sahə əvəzinə perimetr tapmaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Hesablama çox vaxt iki-üç addımdır: əvvəl bərabərlik və ya Pifaqor, sonra perimetr və ya sahə.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmasa, düz cavab da bal gətirmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>bu fiqur hansı xüsusi paraleloqramdır və hansı əlavə xassəsi var?</b> Düzbucaqlıda diaqonallar bərabərdir, rombda perpendikulyardır, bütün paraleloqramlarda yarıya bölünür.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>ABCD paraleloqramında A bucağının tənböləni BC tərəfini E nöqtəsində kəsir. <span class="m">BE = 6 sm</span>, <span class="m">EC = 4 sm</span>. Paraleloqramın perimetri neçə sm-dir?</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 190" role="img" aria-label="ABCD paraleloqramı, AE tənböləni BC tərəfini E nöqtəsində kəsir, BE = 6, EC = 4">
+            <polygon points="36,165 216,165 270,71.5 90,71.5" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="36" y1="165" x2="198" y2="71.5" stroke="var(--vec)" stroke-width="3"/>
+            <text x="20" y="181" class="lbl">A</text><text x="214" y="184" class="lbl">D</text><text x="78" y="62" class="lbl">B</text><text x="268" y="62" class="lbl">C</text><text x="192" y="94" class="lbl">E</text>
+            <text x="140" y="62" class="lbl" style="font-size:12px">6</text><text x="228" y="62" class="lbl" style="font-size:12px">4</text>
+          </svg>
+        </div>
+        <ol class="imt-opts"><li>20</li><li>32</li><li>16</li><li>28</li><li>22</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">AE tənböləndir: ∠BAE = ∠EAD.
+AD ∥ BC olduğundan ∠EAD = ∠AEB (daxili çarpaz).
+Deməli ∠BAE = ∠AEB, ABE bərabəryanlıdır: AB = BE = 6.
+BC = 6 + 4 = 10
+P = 2 · (6 + 10) = 32
+Cavab: B) 32</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 20</b> — yalnız BC-ni iki dəfə götürmək: <span class="m">2 · (6 + 4)</span>. AB tərəfi unudulub.</li>
+        <li><b>C) 16</b> — yarımperimetri tapıb dayanmaq: <span class="m">6 + 10</span>. Sual perimetri soruşur, ona görə 2-yə vurmaq lazımdır.</li>
+        <li><b>D) 28</b> — bərabər tərəfi səhv seçmək: <span class="m">AB = EC = 4</span> götürülüb, <span class="m">2 · (4 + 10)</span>. Bərabəryanlı üçbucağın tərəfləri AB və <b>BE</b>-dir, çünki bərabər bucaqlar A və E təpələrindədir.</li>
+        <li><b>E) 22</b> — AD tərəfini bir dəfə saymaq: <span class="m">6 + 6 + 10</span>. Perimetr 2 · (AB + AD)-dir: iki qonşu tərəfin hər biri iki dəfə sayılır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Düzbucaqlının tərəflərinin nisbəti <span class="m">3 : 4</span>, diaqonalı <span class="m">20 sm</span>-dir. Düzbucaqlının perimetrini tapın (sm).</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 180" role="img" aria-label="ABCD düzbucaqlısı, AB = 4x, BC = 3x, AC diaqonalı 20">
+            <polygon points="60,150 220,150 220,30 60,30" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="60" y1="150" x2="220" y2="30" stroke="var(--vec)" stroke-width="3"/>
+            <path d="M208 150V138H220" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <text x="44" y="166" class="lbl">A</text><text x="224" y="166" class="lbl">B</text><text x="224" y="26" class="lbl">C</text><text x="44" y="26" class="lbl">D</text>
+            <text x="134" y="168" class="lbl" style="font-size:12px">4x</text><text x="236" y="94" class="lbl" style="font-size:12px">3x</text><text x="112" y="82" class="lbl" style="font-size:12px">20</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">AB = 4x, BC = 3x. ABC düzbucaqlı üçbucaqdır (∠B = 90°):
+(4x)² + (3x)² = 20²
+25x² = 400, x² = 16, x = 4
+AB = 16, BC = 12
+P = 2 · (16 + 12) = 56
+Cavab: 56</div>
+      <p>Tələlər: <span class="m">4x + 3x = 20</span> yazmaq — diaqonal tərəflərin cəmi deyil, <b>hipotenuzdur</b>. Başqa tələ: <span class="m">x = 4</span> tapıb dayanmaq (tərəflər 16 və 12-dir, perimetr 56) və ya perimetr əvəzinə sahəni (<span class="m">16 · 12 = 192</span>) yazmaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Rombun diaqonallarının cəmi <span class="m">28 sm</span>, sahəsi <span class="m">96 sm²</span>-dir. Rombun perimetrini tapın.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="ABCD rombu, AC = d₁ və BD = d₂ diaqonalları O nöqtəsində perpendikulyar kəsişir">
+            <polygon points="50,100 150,25 250,100 150,175" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="50" y1="100" x2="250" y2="100" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="150" y1="25" x2="150" y2="175" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <path d="M150 90H160V100" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+            <text x="34" y="105" class="lbl">A</text><text x="144" y="17" class="lbl">B</text><text x="256" y="105" class="lbl">C</text><text x="144" y="192" class="lbl">D</text><text x="134" y="117" class="lbl">O</text>
+            <text x="82" y="94" class="lbl" style="font-size:12px">d₁</text><text x="156" y="52" class="lbl" style="font-size:12px">d₂</text>
+          </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) d₁ + d₂ = 28.  S = d₁ · d₂ / 2 = 96, deməli d₁ · d₂ = 192.
+2) Diaqonallar O nöqtəsində yarıya bölünür və perpendikulyardır.
+   AOB düzbucaqlıdır: a² = (d₁/2)² + (d₂/2)² = (d₁² + d₂²) / 4
+3) d₁² + d₂² = (d₁ + d₂)² − 2 · d₁ · d₂ = 28² − 2 · 192
+              = 784 − 384 = 400
+4) a² = 400 : 4 = 100, a = 10
+5) P = 4a = 4 · 10 = 40
+Cavab: 40.</div>
+      <p>Yoxlayan bal verir: <b>d₁ · d₂ və d₁ + d₂ münasibətlərinin yazılması</b> (1-ci addım), <b>yarıya bölünmə və düz bucaq, tərəf düsturu</b> (2-ci addım), <b>kvadratlar cəminin tapılması</b> (3-cü addım), <b>tərəf və perimetr</b> (4–5-ci addımlar). Həllsiz yalnız "40" yazmaq bal gətirmir. Tələ: <span class="m">d₁² + d₂² = 28²</span> hesab etmək — cəmin kvadratı kvadratların cəminə bərabər deyil, <span class="m">2 · d₁ · d₂</span> çıxılmalıdır. Yoxlama: <span class="m">d₁ = 16, d₂ = 12</span> (cəmi 28, hasili 192), <span class="m">AO = 8, BO = 6, a = 10</span>.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Diaqonalı yarıya bölməmək.</b> Diaqonallar kəsişmə nöqtəsində yarıya bölünür; rombda tərəf <span class="m">√((d₁/2)² + (d₂/2)²)</span>-dir, <span class="m">√(d₁² + d₂²)</span> yox.</li>
+        <li><b>Tənböləndə səhv tərəf.</b> Paraleloqramda A bucağının tənböləni BC-ni E-də kəsirsə, <span class="m">AB = BE</span> (AE yox, AD yox). Bərabər tərəflər bərabər bucaqların qarşısındadır.</li>
+        <li><b>Hündürlüyü tərəfə düz mütənasib götürmək.</b> <span class="m">S = a · h<sub>a</sub> = b · h<sub>b</sub></span>: böyük tərəfə kiçik hündürlük çəkilir.</li>
+        <li><b>Diaqonalın kvadratını sahə saymaq.</b> Kvadratda <span class="m">d = a√2</span>, sahə <span class="m">d² / 2</span>-dir, <span class="m">d²</span> yox.</li>
+        <li><b>Bucaqlarda qarışıqlıq.</b> Qonşu bucaqların cəmi 180°, qarşı bucaqlar bərabərdir. Fərq verilibsə, əvvəl qonşu bucaqlardan tənlik qur.</li>
+        <li><b>Sual nəyi soruşur?</b> Tərəfi tapıb dayanma: perimetr, sahə, üçbucağın perimetri və ya bir diaqonal soruşula bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">paraleloqram:  qarşı bucaqlar bərabər, qonşu cəmi 180°
+               diaqonallar kəsişmədə yarıya bölünür
+               S = a · h = a · b · sin α
+tənbölən:      A-nın tənböləni BC-ni E-də kəsir → AB = BE
+düzbucaqlı:    diaqonallar bərabər, d² = a² + b²
+kvadrat:       d = a√2, S = d² / 2
+romb:          diaqonallar ⊥ və bucaqları yarıya bölür
+               a² = (d₁/2)² + (d₂/2)², S = d₁ · d₂ / 2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Paraleloqramın iki qonşu bucağının fərqi 40°-dir. Böyük bucaq? <span class="ans">x + (x + 40°) = 180°, x = 70°; böyük bucaq 110° (70° yox).</span></li>
+        <li>Kvadratın diaqonalı 10 sm-dir. Sahəsi? <span class="ans">S = d² / 2 = 100 : 2 = 50 sm² (100 yox).</span></li>
+        <li>Paraleloqramın diaqonalları 12 və 16, tərəfi 7. Kəsişmə nöqtəsi O olarsa, tərəfi 7 olan AOB üçbucağının perimetri? <span class="ans">AO = 6, BO = 8: 7 + 6 + 8 = 21 (7 + 12 + 16 deyil).</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

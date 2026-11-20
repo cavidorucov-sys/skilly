@@ -54,11 +54,12 @@
       if (t) { const tm = (t1 + t2) / 2; g.append(sv("text", { x: V[0] + (R + 16) * Math.cos(tm), y: V[1] + (R + 16) * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:12px" }, t)); }
     }
     for (const key in o.lab || {}) {
-      const [p, q] = key.split(""), m = [(Q[p][0] + Q[q][0]) / 2, (Q[p][1] + Q[q][1]) / 2];
+      const [p, q] = key.split(""), lp = (o.lpos || {})[key] || {}, t = lp.t ?? .5, m = [Q[p][0] + (Q[q][0] - Q[p][0]) * t, Q[p][1] + (Q[q][1] - Q[p][1]) * t]; // lpos: {PQ:{t: place along PQ, in: label inside}}
       const d = [Q[q][0] - Q[p][0], Q[q][1] - Q[p][1]], L = Math.hypot(...d) || 1;
       let n = [-d[1] / L, d[0] / L];
       const out = [m[0] - cen[0], m[1] - cen[1]];
       if (Math.hypot(...out) > 6 ? n[0] * out[0] + n[1] * out[1] < 0 : n[1] > 0) n = [-n[0], -n[1]];
+      if (lp.in) n = [-n[0], -n[1]];
       g.append(sv("text", { x: m[0] + n[0] * 14, y: m[1] + n[1] * 14 + 5, "text-anchor": "middle", class: "oy-lbl" }, o.lab[key]));
     }
     const unit = v => { const L = Math.hypot(...v) || 1; return [v[0] / L, v[1] / L]; };
@@ -343,6 +344,111 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (diagonals not halved, bisector side mixed up, area instead of perimeter, ...).
+  // Every question has an exact figure (points from the real numbers); the numbers on it are the numbers in the text.
+  const { ae, again, num } = Oyun;
+  const half = x => Number.isFinite(x) && x > 0 && Math.abs(x * 2 - Math.round(x * 2)) < 1e-9; // whole or .5
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const D = x => num(x);
+  const sm = x => num(x) + " sm", sm2 = x => num(x) + " sm²", dg = x => num(x) + "°";
+  // ABCD parallelogram with the bisector of ∠A meeting BC at E: AB = BE = m, EC = n, AD = m + n (true to scale)
+  function bisFig(m, n, al, labs, aria) {
+    const c = Math.cos(rad(al)), s = Math.sin(rad(al));
+    const P = { A: [0, 0], B: [m * c, m * s], C: [m + n + m * c, m * s], D: [m + n, 0], E: [m * c + m, m * s] };
+    return figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "E"], segs: [["A", "E", "acc"]], lab: { BE: labs[0], EC: labs[1] }, place: { E: ["C", "in"] }, rot: [0], aria });
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: ∠A = ∠B + d → ∠C
+    { tip: "qapali", gen: () => again(() => {
+      const d = pick(range(20, 120, 10)), R = (180 + d) / 2, w = [(180 - d) / 2, 180 - d, d, 90 + d];
+      if (![R, ...w].every(half)) return null;
+      return mc(ae(R, w, dg), { text: `ABCD paraleloqramında ∠A ∠B-dən ${d}° böyükdür. ∠C neçə dərəcədir?`,
+        svg: figure(para(8, 5, R), { poly: ABCD, rot: [0], arcs: [[...ARC.A, `(x + ${d})°`, 22], [...ARC.B, "x°", 22], [...ARC.C, "?", 22]], aria: "ABCD paraleloqramı: ∠A = (x + " + d + ")°, ∠B = x°, ∠C axtarılır" }),
+        solution: `∠B = x olsun, ∠A = x + ${d}°. Qonşu bucaqların cəmi 180°-dir: x + (x + ${d}°) = 180°, 2x = ${180 - d}°, x = ${D((180 - d) / 2)}°, ∠A = ${R}°. Qarşı bucaqlar bərabərdir: ∠C = ∠A = ${R}°. Tələlər: kiçik bucağı (∠B = ${D((180 - d) / 2)}°) yazmaq; 180° − ${d}° = ${180 - d}°; fərqin özünü (${d}°) yazmaq; 90° + ${d}° = ${90 + d}°. Cavab: ${R}°.` });
+    }) },
+    // 2. closed: bisector → perimeter
+    { tip: "qapali", gen: () => again(() => {
+      const x = rnd(3, 9), y = rnd(2, 9), al = pick([50, 60, 70]), R = 4 * x + 2 * y, w = [2 * x + y, 2 * (x + y), 2 * x + 4 * y, 3 * x + y];
+      return mc(ae(R, w, sm), { text: `ABCD paraleloqramında A bucağının tənböləni BC tərəfini E nöqtəsində kəsir. BE = ${x} sm, EC = ${y} sm. Paraleloqramın perimetri neçə sm-dir?`,
+        svg: bisFig(x, y, al, [x, y], `ABCD paraleloqramı, AE tənböləni BC-ni E nöqtəsində kəsir, BE = ${x}, EC = ${y}`),
+        solution: `AE tənböləndir: ∠BAE = ∠EAD. AD ∥ BC olduğundan ∠EAD = ∠AEB. Deməli ∠BAE = ∠AEB, ABE bərabəryanlıdır: AB = BE = ${x} sm. BC = ${x} + ${y} = ${x + y} sm. P = 2 · (${x} + ${x + y}) = ${R} sm. Tələlər: yarımperimetr ${2 * x + y} sm; yalnız BC-nin iki mislini (2 · ${x + y} = ${2 * (x + y)}) götürmək; AB = EC = ${y} qəbul etmək (2 · (${y} + ${x + y}) = ${2 * x + 4 * y}); AD tərəfini bir dəfə saymaq (${3 * x + y}). Cavab: ${R} sm.` });
+    }) },
+    // 3. closed: two heights of a parallelogram
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(5, 30), b = rnd(5, 30), h = rnd(3, 29); if (a === b || h >= b * .93) return null;
+      const sa = h / b, ca = Math.sqrt(1 - sa * sa); if (b * ca >= a * .8 || a * ca >= b * .8 || sa < .35) return null;
+      const R = a * h / b, w = [b * h / a, a * h, R / 2, h]; if (![R, ...w].every(half)) return null;
+      const P = { A: [0, 0], D: [a, 0], B: [b * ca, h], C: [a + b * ca, h], H: [b * ca, 0], K: [a * ca * ca, a * ca * sa] };
+      return mc(ae(R, w, sm), { text: `ABCD paraleloqramında AD = ${a} sm, AB = ${b} sm. B təpəsindən AD tərəfinə endirilmiş BH hündürlüyü ${h} sm-dir. D təpəsindən AB tərəfinə endirilmiş DK hündürlüyü neçə sm-dir?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "H", "K"], segs: [["B", "H", "dash"], ["D", "K", "dash"]], right: [["H", "B", "D"], ["K", "D", "B"]], lab: { AD: a, AB: b, BH: h, DK: "?" }, lpos: { AD: { t: b * ca / a > .5 ? .15 : .85 }, AB: { t: a * ca / b > .5 ? .15 : .85 } }, rot: [0], aria: `ABCD paraleloqramı: AD = ${a}, AB = ${b}, BH = ${h} hündürlüyü, DK axtarılır` }),
+        solution: `Sahəni iki cür yazırıq: S = AD · BH = AB · DK. Buradan S = ${a} · ${h} = ${a * h}, DK = ${a * h} : ${b} = ${D(R)} sm. Tələlər: hündürlüyü tərəfə düz mütənasib götürmək (${b} · ${h} : ${a} = ${D(b * h / a)}); sahəni hündürlük kimi yazmaq (${a * h}); sahəni üçbucaq kimi yarıya bölüb (${a * h} : 2 : ${b}) hündürlüyü yarım tapmaq (${D(R / 2)}); iki hündürlüyün bərabər olduğunu düşünmək (${h}). Cavab: ${D(R)} sm.` });
+    }, 20000) },
+    // 4. closed: square, diagonal → area
+    { tip: "qapali", gen: () => again(() => {
+      const d = pick(range(6, 30, 2)), R = d * d / 2, w = [d * d, d * d / 4, 2 * d * d, 4 * d];
+      return mc(ae(R, w, sm2), { text: `Kvadratın diaqonalı ${d} sm-dir. Kvadratın sahəsi neçə sm²-dir?`,
+        svg: figure({ A: [0, 0], B: [1, 0], C: [1, 1], D: [0, 1] }, { poly: ABCD, segs: [["A", "C", "acc"]], right: [["B", "A", "C"]], lab: { AC: d }, aria: "ABCD kvadratı, AC diaqonalı " + d }),
+        solution: `Kvadratın diaqonalı onu iki bərabəryanlı düzbucaqlı üçbucağa bölür: d² = a² + a² = 2a², deməli S = a² = d² / 2 = ${d}² : 2 = ${d * d} : 2 = ${R} sm². Tələlər: diaqonalı tərəf götürmək (${d}² = ${d * d}); yarısının kvadratı (${d * d / 4}); d = a√2 əvəzinə a = d√2 yazmaq (2 · ${d * d} = ${2 * d * d}); diaqonalı tərəf götürüb perimetr hesablamaq (4 · ${d} = ${4 * d}). Cavab: ${R} sm².` });
+    }) },
+    // 5. closed: rhombus, side + one diagonal → area
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = triple(26), R = 2 * p * q, w = [p * q, 4 * p * q, 2 * p * c, c * c];
+      const P = { A: [-p, 0], B: [0, q], C: [p, 0], D: [0, -q], O: [0, 0] };
+      return mc(ae(R, w, sm2), { text: `Rombun tərəfi ${c} sm, diaqonallarından biri ${2 * p} sm-dir. Rombun sahəsi neçə sm²-dir?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "O"], segs: [["A", "C", "dash"], ["B", "D", "dash"]], right: [["O", "A", "B"]], lab: { AB: c, AC: 2 * p }, lpos: { AC: { t: .27, in: true } }, rot: [0], aria: `ABCD rombu: AB = ${c}, AC = ${2 * p}` }),
+        solution: `Diaqonallar O nöqtəsində yarıya bölünür və perpendikulyardır. AO = ${2 * p} : 2 = ${p}. AOB düzbucaqlıdır: BO² = ${c}² − ${p}² = ${c * c - p * p}, BO = ${q}, BD = ${2 * q} sm. S = AC · BD / 2 = ${2 * p} · ${2 * q} / 2 = ${R} sm². Tələlər: BD əvəzinə BO-nu götürmək (${2 * p} · ${q} / 2 = ${p * q}); 2-yə bölməmək (${4 * p * q}); tərəf · diaqonal (${c} · ${2 * p} = ${2 * p * c}); rombu kvadrat saymaq (${c}² = ${c * c}). Cavab: ${R} sm².` });
+    }) },
+    // 6. closed: diagonals of a parallelogram → perimeter of triangle AOB
+    { tip: "qapali", gen: () => again(() => {
+      const d1 = rnd(8, 20), d2 = rnd(8, 20), a = rnd(5, 18), p = d1 / 2, q = d2 / 2;
+      if (Math.abs(d1 - d2) < 3 || a <= Math.abs(p - q) + 1.5 || a >= p + q - 1.5) return null;
+      const R = a + (d1 + d2) / 2, w = [a + d1 + d2, a + d1 / 2 + d2, a + d1 + d2 / 2, (d1 + d2) / 2]; if (![R, ...w].every(half)) return null;
+      const x = (a * a - q * q - p * p) / (2 * p), y = Math.sqrt(q * q - x * x); if (y < q * .65 || Math.hypot(.6 * x + .48 * p, .6 * y) < .35 * (p + q)) return null;
+      const P = { A: [-p, 0], B: [x, y], C: [p, 0], D: [-x, -y], O: [0, 0] };
+      return mc(ae(R, w, sm), { text: `ABCD paraleloqramının AC və BD diaqonalları O nöqtəsində kəsişir. AC = ${d1} sm, BD = ${d2} sm, AB = ${a} sm. AOB üçbucağının perimetri neçə sm-dir?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "O"], segs: [["A", "C", "dash"], ["B", "D", "dash"], ["A", "B", "acc"], ["A", "O", "acc"], ["B", "O", "acc"]], lab: { AB: a, AC: d1, BD: d2 }, lpos: { AC: { t: .74 }, BD: { t: .8 } }, rot: [0], aria: `ABCD paraleloqramı: AC = ${d1}, BD = ${d2}, AB = ${a}` }),
+        solution: `Paraleloqramın diaqonalları kəsişmə nöqtəsində yarıya bölünür: AO = ${d1} : 2 = ${D(p)}, BO = ${d2} : 2 = ${D(q)}. P(AOB) = AB + AO + BO = ${a} + ${D(p)} + ${D(q)} = ${D(R)} sm. Tələlər: diaqonalları yarıya bölməmək (${a} + ${d1} + ${d2} = ${a + d1 + d2}); yalnız bir diaqonalı yarıya bölüb o birini bütöv götürmək (${D(a + d1 / 2 + d2)}, ${D(a + d1 + d2 / 2)}); AB-ni unutmaq (${D((d1 + d2) / 2)}). Cavab: ${D(R)} sm.` });
+    }) },
+    // 7. coded: bisector with ratio → BC
+    { tip: "kod", gen: () => again(() => {
+      const m = rnd(2, 5), n = rnd(1, 4), k = rnd(2, 6); if (m === n || gcd(m, n) !== 1) return null;
+      const P = 2 * (2 * m + n) * k, R = (m + n) * k;
+      return { text: `ABCD paraleloqramında A bucağının tənböləni BC tərəfini E nöqtəsində kəsir və BE : EC = ${m} : ${n}. Paraleloqramın perimetri ${P} sm-dir. BC tərəfini tapın (sm).`,
+        svg: bisFig(m, n, 60, [(m === 1 ? "" : m) + "x", (n === 1 ? "" : n) + "x"], `ABCD paraleloqramı, AE tənböləni BC-ni E nöqtəsində kəsir, BE = ${m}x, EC = ${n}x`),
+        answer: R, show: String(R), tol: 1e-6, unit: "sm",
+        solution: `BE = ${m}x, EC = ${n}x olsun. AE tənböləndir, AD ∥ BC, ona görə ABE bərabəryanlıdır: AB = BE = ${m}x. BC = ${m}x + ${n}x = ${m + n}x. P = 2 · (${m}x + ${m + n}x) = ${2 * (2 * m + n)}x = ${P}, x = ${k}. BC = ${m + n} · ${k} = ${R} sm.` };
+    }) },
+    // 8. coded: rhombus, perimeter + 30° → area
+    { tip: "kod", gen: () => again(() => {
+      const a = pick(range(4, 60, 2)), S = a * a / 2, c = Math.cos(rad(30)), s = Math.sin(rad(30));
+      const P = { A: [0, 0], B: [c, s], C: [1 + c, s], D: [1, 0], H: [c, 0] };
+      return { text: `Rombun perimetri ${4 * a} sm, iti bucağı 30°-dir. Rombun sahəsi neçə sm²-dir?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "H"], segs: [["B", "H", "dash"]], right: [["H", "B", "D"]], arcs: [["A", "D", "B", "30°", 22]], lab: { AB: "a", BH: "h" }, rot: [0], aria: "ABCD rombu, ∠A = 30°, BH hündürlüyü" }),
+        answer: S, show: String(S), tol: 1e-6, unit: "sm²",
+        solution: `Tərəf a = ${4 * a} : 4 = ${a} sm. B-dən AD-yə BH hündürlüyünü çəkirik: ABH düzbucaqlıdır, ∠A = 30°, 30°-nin qarşısındakı katet hipotenuzun yarısıdır: h = ${a} : 2 = ${D(a / 2)} sm. S = a · h = ${a} · ${D(a / 2)} = ${S} sm².` };
+    }) },
+    // 9. coded: rectangle, side ratio + diagonal → perimeter
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = triple(13), k = rnd(2, 6), d = c * k, R = 2 * (p + q) * k;
+      return { text: `Düzbucaqlının tərəflərinin nisbəti ${p} : ${q}, diaqonalı ${d} sm-dir. Düzbucaqlının perimetrini tapın (sm).`,
+        svg: figure({ A: [0, 0], B: [p, 0], C: [p, q], D: [0, q] }, { poly: ABCD, segs: [["A", "C", "acc"]], right: [["B", "A", "C"]], lab: { AB: p + "x", BC: q + "x", AC: d }, rot: [0], aria: `ABCD düzbucaqlısı: AB = ${p}x, BC = ${q}x, AC = ${d}` }),
+        answer: R, show: String(R), tol: 1e-6, unit: "sm",
+        solution: `Tərəflər ${p}x və ${q}x olsun. ABC düzbucaqlı üçbucaqdır: (${p}x)² + (${q}x)² = ${d}². ${p * p + q * q}x² = ${d * d}, x² = ${k * k}, x = ${k}. Tərəflər ${p * k} sm və ${q * k} sm. P = 2 · (${p * k} + ${q * k}) = ${R} sm.` };
+    }) },
+    // 10. written: rhombus, sum of diagonals + area → perimeter
+    { tip: "yazili", minVariety: 15, gen: () => again(() => {
+      const [p, q, c] = triple(60), s = 2 * (p + q), S = 2 * p * q, R = 4 * c;
+      const P = { A: [-p, 0], B: [0, q], C: [p, 0], D: [0, -q], O: [0, 0] };
+      return { text: `Rombun diaqonallarının cəmi ${s} sm, sahəsi ${S} sm²-dir. Rombun perimetrini tapın. Həlli kağızda addım-addım yazın.`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "O"], segs: [["A", "C", "dash"], ["B", "D", "dash"]], right: [["O", "A", "B"]], lab: { AC: "d₁", BD: "d₂" }, lpos: { AC: { t: .27, in: true }, BD: { t: .22 } }, rot: [0], aria: "ABCD rombu, AC = d₁, BD = d₂ diaqonalları" }),
+        answer: R, show: String(R), tol: 1e-6, unit: "sm",
+        solution: `1) Diaqonalları d₁ və d₂ ilə işarə edək: d₁ + d₂ = ${s}; S = d₁ · d₂ / 2 = ${S}, deməli d₁ · d₂ = ${2 * S}. 2) Diaqonallar O nöqtəsində yarıya bölünür və perpendikulyardır, AOB düzbucaqlıdır: a² = (d₁/2)² + (d₂/2)² = (d₁² + d₂²) / 4. 3) d₁² + d₂² = (d₁ + d₂)² − 2 · d₁ · d₂ = ${s}² − 2 · ${2 * S} = ${s * s} − ${4 * S} = ${s * s - 4 * S}. 4) a² = ${s * s - 4 * S} : 4 = ${c * c}, a = ${c} sm. 5) P = 4a = 4 · ${c} = ${R} sm. Cavab: ${R} sm. Bal: d₁ · d₂ və d₁ + d₂ münasibətləri, kvadratlar cəminin tapılması, tərəf, perimetr. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -352,7 +458,7 @@
     game = Oyun.mount({
       key: "dordbucaqlilar", title: "Dördbucaqlılar: paraleloqram, romb, düzbucaqlı", fenn: "riyaziyyat", link: "dersler/dordbucaqlilar.html",
       format: "Cavab — ədəd: tərəf, bucaq (dərəcə ilə, ° yazmaq lazım deyil), perimetr, sahə. Kök: 5√2, kəsr: 48/5, onluq: 9,6.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["bucaq", "perimetr", "diaqonal", "diaqonal", "sahe", "sahe", "romb", "romb", "romb", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
