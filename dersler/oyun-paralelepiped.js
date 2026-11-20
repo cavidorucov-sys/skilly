@@ -14,27 +14,37 @@
   const NS = "http://www.w3.org/2000/svg";
   const sv = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
   function box(a, b, c, o = {}) {
-    const W = 280, H = 190, pad = 30, dx = .42 * b, dy = .42 * b;
+    const W = 280, H = 190, pad = 30, padL = 54, padR = 58, dx = .42 * b, dy = .42 * b;
     const P = { F0: [0, 0], F1: [a, 0], F2: [a, c], F3: [0, c] };
     P.B0 = [dx, dy]; P.B1 = [a + dx, dy]; P.B2 = [a + dx, c + dy]; P.B3 = [dx, c + dy];
     const xs = Object.values(P).map(p => p[0]), ys = Object.values(P).map(p => p[1]);
-    const s = Math.min((W - 2 * pad) / Math.max(...xs), (H - 2 * pad) / Math.max(...ys));
-    const ox = (W - s * Math.max(...xs)) / 2, oy = (H + s * Math.max(...ys)) / 2;
+    const s = Math.min((W - padL - padR) / Math.max(...xs), (H - 2 * pad) / Math.max(...ys));
+    const ox = padL + (W - padL - padR - s * Math.max(...xs)) / 2, oy = (H + s * Math.max(...ys)) / 2;
     const Q = {}; for (const k in P) Q[k] = [ox + s * P[k][0], oy - s * P[k][1]];
     const g = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": o.aria || "Düzbucaqlı paralelepiped" });
     g.append(sv("polygon", { points: ["F0", "F1", "F2", "F3"].map(k => Q[k].join(",")).join(" "), fill: "var(--accent-soft)", stroke: "none" }));
-    g.append(sv("polygon", { points: ["F3", "F2", "B2", "B3"].map(k => Q[k].join(",")).join(" "), fill: "var(--accent-soft)", "fill-opacity": .6, stroke: "none" }));
+    if (!o.open) g.append(sv("polygon", { points: ["F3", "F2", "B2", "B3"].map(k => Q[k].join(",")).join(" "), fill: "var(--accent-soft)", "fill-opacity": .6, stroke: "none" }));
     g.append(sv("polygon", { points: ["F1", "B1", "B2", "F2"].map(k => Q[k].join(",")).join(" "), fill: "var(--accent-soft)", "fill-opacity": .8, stroke: "none" }));
+    if (o.under) o.under(g, Q);
     const E = (p, q, hid) => { const at = { x1: Q[p][0], y1: Q[p][1], x2: Q[q][0], y2: Q[q][1], stroke: "var(--ink)", "stroke-width": hid ? 1.3 : 2, "stroke-linecap": "round" }; if (hid) at["stroke-dasharray"] = "5 4"; g.append(sv("line", at)); };
     for (const [p, q] of [["F0", "F1"], ["F1", "F2"], ["F2", "F3"], ["F3", "F0"], ["F1", "B1"], ["B1", "B2"], ["F2", "B2"], ["B2", "B3"], ["F3", "B3"]]) E(p, q);
     for (const [p, q] of [["F0", "B0"], ["B0", "B1"], ["B0", "B3"]]) E(p, q, true);
     if (o.diag) g.append(sv("line", { x1: Q.F0[0], y1: Q.F0[1], x2: Q.B2[0], y2: Q.B2[1], stroke: "var(--accent)", "stroke-width": 2.5 }));
-    const T = (x, y, t, anchor = "middle") => g.append(sv("text", { x, y, "text-anchor": anchor, class: "oy-lbl" }, t));
+    if (o.over) o.over(g, Q);
+    const rects = [];
+    const T = (x, y, t, anchor = "middle") => { const w = 8.5 * String(t).length; rects.push([anchor === "end" ? x - w : anchor === "start" ? x : x - w / 2, y - 12, anchor === "end" ? x : anchor === "start" ? x + w : x + w / 2, y + 4]); g.append(sv("text", { x, y, "text-anchor": anchor, class: "oy-lbl" }, t)); };
     const L = o.lab || {};
     if (L.a != null) T((Q.F0[0] + Q.F1[0]) / 2, Q.F0[1] + 18, L.a);
     if (L.c != null) T(Q.F0[0] - 8, (Q.F0[1] + Q.F3[1]) / 2 + 5, L.c, "end");
     if (L.b != null) T((Q.F1[0] + Q.B1[0]) / 2 + 10, (Q.F1[1] + Q.B1[1]) / 2 + 10, L.b, "start");
-    if (L.d != null) T((Q.F0[0] + Q.B2[0]) / 2 - 6, (Q.F0[1] + Q.B2[1]) / 2 - 6, L.d, "end");
+    if (L.d != null) { // the diagonal label sits beside the line, on whichever side leaves the other labels free
+      const w = 8.5 * String(L.d).length, cand = [];
+      for (const f of [.35, .5, .65]) { const x = Q.F0[0] + f * (Q.B2[0] - Q.F0[0]), y = Q.F0[1] + f * (Q.B2[1] - Q.F0[1]);
+        cand.push([x + 7, y + 14, "start", [x + 7, y + 2, x + 7 + w, y + 18]], [x - 7, y - 7, "end", [x - 7 - w, y - 19, x - 7, y - 3]]); }
+      const free = r => rects.every(q => !(r[0] < q[2] && q[0] < r[2] && r[1] < q[3] && q[1] < r[3]));
+      const c = cand.find(c => free(c[3])) || cand[0];
+      T(c[0], c[1], L.d, c[2]);
+    }
     return g;
   }
   const SEHV = ["1-ci addım", "2-ci addım", "3-cü addım"];
@@ -156,6 +166,116 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (forgetting the factor 2, volume instead of area, k² instead of k³, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const shuffle = a => a.map(x => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map(p => p[1]);
+  const mid = (P, R) => [(P[0] + R[0]) / 2, (P[1] + R[1]) / 2];
+  const lerp = (P, R, t) => [P[0] + (R[0] - P[0]) * t, P[1] + (R[1] - P[1]) * t];
+  const ln = (g, P, R, at) => g.append(sv("line", { x1: P[0], y1: P[1], x2: R[0], y2: R[1], ...at }));
+  const TRI = [[1, 2, 2], [2, 3, 6], [1, 4, 8], [2, 6, 9], [4, 4, 7], [6, 6, 7], [3, 4, 12], [2, 10, 11], [4, 8, 8], [2, 5, 14]];
+  const PYT = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 15, 17], [9, 12, 15], [12, 16, 20]];
+  // square base a, height h, space diagonal d: 2a² + h² = d²
+  const SQB = []; for (let a = 2; a <= 12; a++) for (let h = 2; h <= 24; h++) { const d = Math.sqrt(2 * a * a + h * h); if (Number.isInteger(d) && d <= 27) SQB.push([a, h, d]); }
+  // n × n × n cube cut into unit cubes: a thin grid on the three visible faces
+  const gridCube = n => (g, Q) => {
+    const at = { stroke: "var(--ink)", "stroke-width": 1, "stroke-opacity": .55 };
+    for (let i = 1; i < n; i++) { const t = i / n;
+      ln(g, lerp(Q.F0, Q.F1, t), lerp(Q.F3, Q.F2, t), at); ln(g, lerp(Q.F0, Q.F3, t), lerp(Q.F1, Q.F2, t), at);
+      ln(g, lerp(Q.F3, Q.F2, t), lerp(Q.B3, Q.B2, t), at); ln(g, lerp(Q.F3, Q.B3, t), lerp(Q.F2, Q.B2, t), at);
+      ln(g, lerp(Q.F1, Q.B1, t), lerp(Q.F2, Q.B2, t), at); ln(g, lerp(Q.F1, Q.F2, t), lerp(Q.B1, Q.B2, t), at); }
+  };
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. surface area: whole box / open box
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b, c] = dims(); if (new Set([a, b, c]).size < 3) return null;
+      const lab = { a: a + " sm", b: b + " sm", c: c + " sm" };
+      if (Math.random() < .5) {
+        const S = 2 * (a * b + b * c + a * c), w = [a * b + b * c + a * c, a * b * c, 2 * c * (a + b), 4 * (a + b + c)];
+        return mc(ae(S, w), { text: `Düzbucaqlı paralelepipedin ölçüləri ${a} sm, ${b} sm və ${c} sm-dir. Onun tam səthinin sahəsi neçə sm²-dir?`, svg: box(a, b, c, { lab }),
+          solution: `S = 2(ab + bc + ac) = 2(${a * b} + ${b * c} + ${a * c}) = ${S} sm². Tələlər: 2-yə vurmağı unutmaq (${w[0]}), həcmi yazmaq (${w[1]}), yalnız yan səthi tapmaq (${w[2]}), tillərin cəmini yazmaq (${w[3]}).` });
+      }
+      const S = a * b + 2 * c * (a + b), w = [2 * a * b + 2 * c * (a + b), 2 * c * (a + b), a * b + c * (a + b), a * b * c];
+      return mc(ae(S, w), { text: `Üstü açıq (qapaqsız) düzbucaqlı qutunun oturacağının ölçüləri ${a} sm və ${b} sm, hündürlüyü ${c} sm-dir. Qutunun səthinin sahəsi neçə sm²-dir?`, svg: box(a, b, c, { lab, open: true, aria: "Üstü açıq düzbucaqlı qutu" }),
+        solution: `Qapaq yoxdur: bir oturacaq (${a}·${b} = ${a * b}) və 4 yan üz: ${a * b} + 2·${c}·(${a} + ${b}) = ${a * b} + ${2 * c * (a + b)} = ${S} sm². Tələlər: iki oturacağı da saymaq (${w[0]}), yalnız yan səth (${w[1]}), yan üzləri cüt-cüt saymamaq (${w[2]}), həcm (${w[3]}).` });
+    }) },
+    // 2. ratio + space diagonal -> volume
+    { tip: "qapali", gen: () => again(() => {
+      const [m, n, p] = pick(TRI), D = Math.round(Math.sqrt(m * m + n * n + p * p)), k = rnd(2, 4), d = D * k, V = m * n * p * k ** 3;
+      const [x, y, z] = shuffle([m, n, p]);
+      const w = [m * n * p * k * k, m * n * p * k, 2 * k * k * (m * n + n * p + m * p), m * n * p * d];
+      return mc(ae(V, w), { text: `Düzbucaqlı paralelepipedin ölçüləri ${x} : ${y} : ${z} nisbətindədir, diaqonalı ${d} sm-dir. Paralelepipedin həcmi neçə sm³-dir?`,
+        svg: box(x, y, z, { lab: { a: x + "t", b: y + "t", c: z + "t", d: d + " sm" }, diag: true }),
+        solution: `Ölçülər ${x}t, ${y}t, ${z}t olsun. d² = (${x}² + ${y}² + ${z}²)t² = ${D * D}t² = ${d * d} → t = ${k}. Ölçülər: ${x * k}, ${y * k}, ${z * k}; V = ${x * k}·${y * k}·${z * k} = ${V} sm³. Tələlər: t³ əvəzinə t² (${w[0]}) və ya t (${w[1]}) vurmaq, səthin sahəsini yazmaq (${w[2]}), nisbətlərin hasilini diaqonala vurmaq (${w[3]}).` });
+    }) },
+    // 3. cube given by its diagonal -> surface
+    { tip: "qapali", gen: () => again(() => {
+      const k = rnd(2, 9), S = 6 * k * k, w = [18 * k * k, 6 * k, 3 * k * k, k ** 3];
+      return mc(ae(S, w), { text: `Kubun diaqonalı ${k}√3 sm-dir. Kubun tam səthinin sahəsi neçə sm²-dir?`, svg: box(k, k, k, { lab: { d: k + "√3 sm" }, diag: true, aria: "Kub və onun diaqonalı" }),
+        solution: `Kubda d = a√3 → a = ${k}. S = 6a² = 6·${k * k} = ${S} sm². Tələlər: diaqonalı til götürmək (6·(${k}√3)² = ${18 * k * k}), 6a (${6 * k}), d² (${3 * k * k}), həcm (${k ** 3}).` });
+    }) },
+    // 4. aquarium filled to a fraction: litres
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([40, 50, 60, 80, 100]), b = pick([20, 25, 30, 40, 50]), c = pick([30, 40, 50, 60]), [u, v] = pick([[1, 2], [3, 4], [4, 5], [2, 5], [3, 5], [1, 4]]);
+      const V = a * b * c; if (V % 1000 !== 0 || (V / 1000 * u) % v !== 0) return null;
+      const L = V / 1000 * u / v, w = [V / 1000, V * u / v, V / 1000 * (v - u) / v, V * u / v / 100]; if (![L, ...w].every(Number.isInteger)) return null;
+      return mc(ae(L, w), { text: `Akvariumun daxili ölçüləri ${a} sm, ${b} sm və ${c} sm-dir. Akvariumun həcminin ${u}/${v} hissəsinə qədər su töküblər. Akvariumda neçə litr su var?`, svg: box(a, b, c, { lab: { a: a + " sm", b: b + " sm", c: c + " sm" } }),
+        solution: `V = ${a}·${b}·${c} = ${V} sm³ = ${V / 1000} l (1 l = 1000 sm³). Suyun həcmi: ${V / 1000} · ${u}/${v} = ${L} l. Tələlər: bütün akvariumu yazmaq (${w[0]}), sm³-i litrə çevirməmək (${w[1]}), boş hissəni tapmaq (${w[2]}), 1 l = 100 sm³ saymaq (${w[3]}).` });
+    }) },
+    // 5. painted cube
+    { tip: "qapali", gen: () => again(() => {
+      const n = rnd(4, 9), t = pick([2, 1, 0]), tot = n ** 3;
+      const R = [(n - 2) ** 3, 6 * (n - 2) ** 2, 12 * (n - 2)][t], q = ["heç bir üzü rənglənməyib", "yalnız bir üzü rənglənib", "yalnız iki üzü rənglənib"][t];
+      const w = [[(n - 1) ** 3, tot - (n - 2) ** 3, (n - 2) ** 2, 6 * (n - 2) ** 2], [6 * n * n, 6 * (n - 1) ** 2, 12 * (n - 2), 6 * (n - 2)], [12 * n, 12 * (n - 1), 6 * (n - 2) ** 2, 12 * (n - 2) + 8]][t];
+      const why = [`Boyasız kublar içəridədir: (n − 2)³ = ${n - 2}³ = ${R}. Tələlər: (n − 1)³ (${w[0]}), rənglilərin sayı (${w[1]}), (n − 2)² (${w[2]}), bir üzü rənglilər (${w[3]}).`,
+        `Bir üzü rəngli kublar üzlərin ortasındadır: hər üzdə (n − 2)² = ${(n - 2) ** 2}, 6 üz → ${R}. Tələlər: 6n² (${w[0]}), 6(n − 1)² (${w[1]}), tillərdəki kublar (${w[2]}), 6(n − 2) (${w[3]}).`,
+        `İki üzü rəngli kublar tillərdədir, təpələrdən başqa: hər tildə n − 2 = ${n - 2}, 12 til → ${R}. Tələlər: 12n (${w[0]}), 12(n − 1) (${w[1]}), bir üzü rənglilər (${w[2]}), təpələri də saymaq (${w[3]}).`][t];
+      return mc(ae(R, w), { text: `Tili ${n} sm olan kubun bütün səthi rənglənib, sonra o, tili 1 sm olan ${tot} kubcuğa kəsilib. Neçə kubcuğun ${q}?`, svg: box(n, n, n, { lab: { a: n + " sm" }, over: gridCube(n), aria: "Kiçik kublara bölünmüş kub" }), solution: why });
+    }) },
+    // 6. diagonal section area -> volume
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b, p] = pick(PYT), h = rnd(3, 15), Sd = p * h, V = a * b * h;
+      const w = [Sd, a * b * p, a * b * h / 2, 2 * (a * b + (a + b) * h)]; if (![V, ...w].every(Number.isInteger)) return null;
+      const under = (g, Q) => g.append(sv("polygon", { points: [Q.F0, Q.B1, Q.B2, Q.F3].map(P => P.join(",")).join(" "), fill: "var(--accent)", "fill-opacity": .3, stroke: "var(--accent)", "stroke-width": 1.5 }));
+      const over = (g, Q) => { const c = mid(Q.F0, Q.B2); g.append(sv("text", { x: c[0], y: c[1] + 5, "text-anchor": "middle", class: "oy-lbl" }, Sd + " sm²")); };
+      return mc(ae(V, w), { text: `Düzbucaqlı paralelepipedin oturacağının tərəfləri ${a} sm və ${b} sm-dir. Diaqonal kəsiyinin (oturacağın diaqonalından keçən şaquli kəsik) sahəsi ${Sd} sm²-dir. Paralelepipedin həcmi neçə sm³-dir?`,
+        svg: box(a, b, h, { lab: { a: a + " sm", b: b + " sm" }, under, over, aria: "Düzbucaqlı paralelepiped və diaqonal kəsik" }),
+        solution: `Oturacağın diaqonalı √(${a}² + ${b}²) = ${p} sm. Kəsik düzbucaqlıdır: ${p}·h = ${Sd} → h = ${h} sm. V = ${a}·${b}·${h} = ${V} sm³. Tələlər: kəsiyin sahəsini həcm saymaq (${w[0]}), hündürlük yerinə diaqonalı götürmək (${w[1]}), oturacağın yarısını (üçbucağı) götürmək (${w[2]}), səthin sahəsini yazmaq (${w[3]}).` });
+    }) },
+    // 7. coded: height from the total surface
+    { tip: "kod", gen: () => again(() => {
+      const [a, b, c] = dims(); if (a === b || a === c || b === c) return null; const S = 2 * (a * b + b * c + a * c);
+      return { text: `Düzbucaqlı paralelepipedin oturacağının tərəfləri ${a} sm və ${b} sm, tam səthinin sahəsi ${S} sm²-dir. Paralelepipedin hündürlüyü neçə sm-dir?`,
+        svg: box(a, b, c, { lab: { a: a + " sm", b: b + " sm", c: "h" } }), answer: c, show: String(c), tol: 1e-6, unit: "sm",
+        solution: `S = 2ab + 2h(a + b) → ${S} = ${2 * a * b} + 2h·${a + b}. 2h·${a + b} = ${S - 2 * a * b}, h = ${S - 2 * a * b} : ${2 * (a + b)} = ${c} sm.` };
+    }) },
+    // 8. coded: volume from the three face areas
+    { tip: "kod", gen: () => again(() => {
+      const [a, b, c] = dims(); if (a === b || a === c || b === c) return null; const V = a * b * c;
+      return { text: `Düzbucaqlı paralelepipedin ölçüləri a, b, c-dir. a·b = ${a * b} sm², b·c = ${b * c} sm², a·c = ${a * c} sm²-dir. Paralelepipedin həcmi neçə sm³-dir?`,
+        svg: box(a, b, c, { lab: { a: "a", b: "b", c: "c" } }), answer: V, show: String(V), tol: 1e-6, unit: "sm³",
+        solution: `Üç sahəni vurub kök alırıq: (ab)(bc)(ac) = (abc)². abc = √(${a * b}·${b * c}·${a * c}) = √${V * V} = ${V} sm³. (Ölçüləri ayrıca da tapmaq olar: ${a}, ${b}, ${c}.)` };
+    }) },
+    // 9. coded: a cube dropped into water in a rectangular tank
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([10, 15, 20, 25, 30, 40]), b = pick([10, 20, 25, 30, 40, 50]), t = pick([4, 5, 6, 8, 10, 12, 15, 20]), r = t ** 3 / (a * b);
+      if (r < 1 || r > 12 || Math.abs(r * 10 - Math.round(r * 10)) > 1e-9) return null;
+      return { text: `Oturacağı ${a} sm × ${b} sm olan düzbucaqlı qabda su var. Qaba tili ${t} sm olan kubu tamam batırdılar; su daşmadı və kub tam suyun içindədir. Suyun səviyyəsi neçə sm qalxdı?`,
+        svg: box(a, b, Math.round(2 * Math.max(a, b) / 3), { lab: { a: a + " sm", b: b + " sm" }, aria: "Düzbucaqlı qab" }), answer: r, show: fmt(r), tol: 1e-6, unit: "sm",
+        solution: `Qalxan suyun həcmi kubun həcminə bərabərdir: ${t}³ = ${t ** 3} sm³. Bu, oturacağı ${a}·${b} = ${a * b} sm² olan təbəqədir: h = ${t ** 3} : ${a * b} = ${fmt(r)} sm.` };
+    }) },
+    // 10. written: square base + diagonal -> total surface
+    { tip: "yazili", gen: () => again(() => {
+      const [a, h, d] = pick(SQB), vol = Math.random() < .5, R = vol ? a * a * h : 2 * a * a + 4 * a * h;
+      return { text: `Düzbucaqlı paralelepipedin oturacağı kvadratdır, tərəfi ${a} sm; paralelepipedin diaqonalı ${d} sm-dir. Paralelepipedin ${vol ? "həcmini" : "tam səthinin sahəsini"} tapın. Həlli addım-addım yazın.`,
+        svg: box(a, a, h, { lab: { a: a + " sm", b: a + " sm", c: "h", d: d + " sm" }, diag: true }), answer: R, show: String(R), tol: 1e-6, unit: vol ? "sm³" : "sm²",
+        solution: `1) Diaqonal düsturu: d² = a² + a² + h² → ${d * d} = ${a * a} + ${a * a} + h². 2) h² = ${d * d - 2 * a * a}, h = ${h} sm. 3) ` + (vol ? `V = a²h = ${a * a}·${h} = ${R} sm³.` : `S = 2a² + 4ah = 2·${a * a} + 4·${a}·${h} = ${2 * a * a} + ${4 * a * h} = ${R} sm².`) + ` Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -165,7 +285,7 @@
     game = Oyun.mount({
       key: "paralelepiped", title: "Düzbucaqlı paralelepiped və kub", fenn: "riyaziyyat", link: "dersler/paralelepiped.html",
       format: "Cavab ədəddir: tam 148, onluq 2,5, kök 3√5 və ya 4√3.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["sethi", "sethi", "hecm", "hecm", "diaqonal", "diaqonal", "vahid", "boya", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
