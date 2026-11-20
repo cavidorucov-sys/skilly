@@ -367,6 +367,134 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (semi-perimeter instead of r, diameter instead of radius, a chord taken as the radius, ...).
+  const { ae, again, num } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const isHalf = x => x > 0 && Math.abs(x * 2 - Math.round(x * 2)) < 1e-9;
+  const isQuarter = x => x > 0 && Math.abs(x * 4 - Math.round(x * 4)) < 1e-9;
+  const fr = x => { for (let q = 1; q <= 16; q++) { const p = x * q; if (Math.abs(p - Math.round(p)) < 1e-9) return q === 1 ? String(Math.round(p)) : Math.round(p) + "/" + q; } return null; };
+  const shuf = a => a.map(x => [Math.random(), x]).sort((u, v) => u[0] - v[0]).map(x => x[1]);
+  const midp = (U, V) => [(U[0] + V[0]) / 2, (U[1] + V[1]) / 2];
+  // regular hexagon: A…F on the unit circle, O the centre, H the midpoint of AB
+  function hexFig(a) {
+    const P = { O: [0, 0] }, names = [];
+    for (let i = 0; i < 6; i++) { const L = "ABCDEF"[i]; P[L] = on(90 + 60 * i); names.push(L); }
+    P.H = midp(P.A, P.B);
+    return figure(P, { poly: names, polyFill: false, names: [...names, "O"], circ: [["O", 1, "fill"], ["O", Math.cos(Math.PI / 6), "acc"]], cen: "O", segs: [["O", "A", "dash"], ["O", "H", "dash"]], right: [["H", "O", "A"]], lab: { AB: String(a) }, rot: [0], place: { O: ["B", "out"] } });
+  }
+  // inscribed quadrilateral with the given angles (degrees) A, B, C, D (A + C = B + D = 180); arc AB = x
+  function cycFig(A, B, C, D) {
+    const lo = Math.max(14, 14 + 2 * D - 2 * A), hi = Math.min(2 * D - 14, 2 * C - 14);
+    if (lo > hi) return null;
+    const x = rnd(Math.ceil(lo), Math.floor(hi)), a0 = rnd(0, 359);
+    const bc = 2 * D - x, cd = 2 * A - bc;
+    const P = { A: on(a0), B: on(a0 + x), C: on(a0 + x + bc), D: on(a0 + x + bc + cd), O: [0, 0] };
+    return figure(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D"], polyFill: false, circ: [["O", 1, "fill"]], cen: "O", free: true });
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: inradius of a right triangle
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = triple(60), r = (p + q - c) / 2, S = p * q / 2, P = p + q + c, legs = Math.random() < .5;
+      const w = [P / 2, c / 2, S / P, p + q - c];
+      if (![r, ...w].every(isHalf)) return null;
+      const svg = inFig(q, c, p, legs ? { AB: String(p), BC: String(q) } : { AB: String(p), CA: String(c) }, { o: { right: [["B", "A", "C"]] } });
+      return mc(ae(r, w), { svg, text: legs ? `Düzbucaqlı ABC üçbucağında ∠B = 90°, AB = ${p}, BC = ${q}. Üçbucağa daxil çəkilmiş çevrənin radiusunu tapın.` : `Düzbucaqlı ABC üçbucağında ∠B = 90°, AB = ${p}, AC = ${c}. Üçbucağa daxil çəkilmiş çevrənin radiusunu tapın.`,
+        solution: `${legs ? `AC = √(${p}² + ${q}²) = ${c}` : `BC = √(${c}² − ${p}²) = ${q}`}. Düzbucaqlı üçbucaqda r = (a + b − c) / 2 = (${p} + ${q} − ${c}) / 2 = ${r}. Tələlər: yarımperimetri cavab yazmaq (${num(P / 2)}), hipotenuzun yarısını götürmək (${num(c / 2)} — bu xaricə çəkilmiş çevrənin radiusudur), 2-yə bölməyi unutmaq (${p + q - c}), S-i tam perimetrə bölmək (${num(S / P)}).` });
+    }) },
+    // 2. closed: r = S / p from the sides and the area
+    { tip: "qapali", gen: () => again(() => {
+      const [a0, b0, c0, S0] = pick(HERON), k = pick([1, 1, 2]), [A, B, C] = shuf([a0, b0, c0]).map(x => x * k), SS = S0 * k * k, P = A + B + C, p = P / 2;
+      const m = Math.max(A, B, C), [s1, s2] = [A, B, C].filter((x, i, arr) => i !== arr.indexOf(m));
+      const r = SS / p, Rr = A * B * C / (4 * SS), w = [SS / P, (s1 + s2 - m) / 2, Rr, p];
+      if (![r, ...w].every(x => fr(x))) return null;
+      return mc(ae(r, w, fr), { svg: inFig(A, B, C, { BC: String(A), CA: String(B), AB: String(C) }), text: `Üçbucağın tərəfləri ${A}, ${B} və ${C} sm-dir, sahəsi ${SS} sm²-dir. Üçbucağa daxil çəkilmiş çevrənin radiusu (sm) neçədir?`,
+        solution: `p = (${A} + ${B} + ${C}) / 2 = ${p}. r = S / p = ${SS} / ${p} = ${fr(r)}. Tələlər: S-i tam perimetrə bölmək (${fr(SS / P)}), düzbucaqlı üçbucağın düsturunu tətbiq etmək (${fr((s1 + s2 - m) / 2)}), xaricə çəkilmiş çevrənin düsturu abc / (4S) = ${fr(Rr)}, yarımperimetrin özünü yazmaq (${fr(p)}).` });
+    }) },
+    // 3. closed: tangent segment from a vertex
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(10, 22), b = rnd(10, 22), c = rnd(14, 22);
+      if (a >= b + c || b >= a + c || c >= a + b || (b + c - a) % 2 || new Set([a, b, c]).size < 3) return null;
+      const p = (a + b + c) / 2, ak = p - a, w = [p - b, p - c, p, b + c - a];
+      if (new Set([ak, ...w]).size < 5) return null;
+      const far = f => f < .5 ? .75 : .25;
+      return mc(ae(ak, w), { svg: inFig(a, b, c, { AB: [String(c), far(ak / c)], BC: [String(a), far((p - b) / a)], CA: [String(b), far((p - c) / b)] }, { names: ["A", "B", "C", "K"], o: { place: { K: ["O", "out"] } } }),
+        text: `ABC üçbucağında AB = ${c}, BC = ${a}, AC = ${b}. Daxilə çəkilmiş çevrə AB tərəfinə K nöqtəsində toxunur. AK neçədir?`,
+        solution: `Qalan toxunma nöqtələri: L (BC üzərində), M (AC üzərində). Bir nöqtədən çəkilən toxunanlar bərabərdir: AK = AM = x, BK = BL = ${c} − x, CL = CM = ${b} − x. BL + CL = BC: (${c} − x) + (${b} − x) = ${a} → x = (${b} + ${c} − ${a}) / 2 = ${ak}. Tələlər: p − AC = BK (${p - b}) və ya p − AB = CL (${p - c}) götürmək, yarımperimetrin özünü yazmaq (${p}), 2-yə bölməyi unutmaq (${b + c - a}).` });
+    }) },
+    // 4. closed: circumradius from an angle and the opposite side
+    { tip: "qapali", gen: () => again(() => {
+      const Cd = pick([60, 45]), k = rnd(2, 9), psi = 2 * Cd, a0 = rnd(0, 359), s60 = Cd === 60;
+      const ab = s60 ? surd(k, 1, 3)[0] : surd(k, 1, 2)[0];
+      const w = s60 ? [String(2 * k), ab, surd(k, 2, 3)[0], String(3 * k)] : [String(2 * k), ab, surd(k, 2, 2)[0], frac(k, 2)];
+      const P = { A: on(a0), B: on(a0 + psi), C: on(a0 + psi + rnd(45, 315 - psi)), O: [0, 0] };
+      const svg = figure(P, { poly: ABC, polyFill: false, circ: [["O", 1, "acc"]], cen: "O", segs: [["O", "A", "dash"], ["O", "B", "dash"]], arcs: [["C", "A", "B", Cd + "°", 16]], lab: { AB: ab }, free: true });
+      return mc(ae(String(k), w, x => x), { svg, text: `ABC üçbucağı çevrəyə daxil edilib, ∠C = ${Cd}°, AB = ${ab}. Çevrənin radiusunu tapın.`,
+        solution: s60 ? `∠AOB = 2 · ∠C = 120°, OA = OB = R. AOB-dan: AB = R√3, R = ${ab} / √3 = ${k}. Tələlər: AB-ni radius saymaq (${ab}), AB-ni diametr saymaq (${w[2]}), AB = R · sin 60° yazıb 2-ni unutmaq (${2 * k}), bölmək əvəzinə √3-ə vurmaq (${3 * k}).`
+          : `∠AOB = 2 · ∠C = 90°, AOB düzbucaqlı bərabəryanlıdır: AB = R√2, R = ${ab} / √2 = ${k}. Tələlər: AB-ni radius saymaq (${ab}), AB-ni diametr saymaq (${w[2]}), AB = R · sin 45° yazıb 2-ni unutmaq (${2 * k}), R = ${k} tapdıqdan sonra onu bir də 2-yə bölmək (${frac(k, 2)}).` });
+    }) },
+    // 5. closed: regular hexagon, inradius
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(3, 16), r = surd(a, 2, 3)[0], w = [String(a), frac(a, 2), surd(a, 1, 3)[0], surd(a, 3, 3)[0]];
+      return mc(ae(r, w, x => x), { svg: hexFig(a), text: `Düzgün altıbucaqlının tərəfi ${a} sm-dir. Ona daxil çəkilmiş çevrənin radiusu neçə sm-dir?`,
+        solution: `Düzgün altıbucaqlı 6 bərabərtərəfli üçbucaqdan ibarətdir. Daxilə çəkilmiş çevrənin radiusu bu üçbucağın hündürlüyüdür: r = a√3 / 2 = ${r}. Tələlər: xaricə çəkilmiş çevrənin radiusunu götürmək (R = a = ${a}), tərəfin yarısını götürmək (${w[1]}), 2-yə bölməyi unutmaq (${w[2]}), bərabərtərəfli üçbucağa xaricən çəkilmiş çevrənin düsturunu götürmək (a√3/3 = ${w[3]}).` });
+    }) },
+    // 6. closed: isosceles trapezoid with an incircle
+    { tip: "qapali", gen: () => again(() => {
+      let m, n, kk; do { kk = rnd(1, 4); m = rnd(1, 4); n = rnd(m + 1, 6); } while (kk * n * n > 40 || gcd(m, n) > 1);
+      const a = kk * m * m, b = kk * n * n, leg = (a + b) / 2, h = kk * m * n, r = h / 2, w = [h, leg, (a + b) / 4, (b - a) / 2];
+      if (![r, ...w].every(isQuarter) || !isHalf(r) || b > 5 * a) return null;
+      const P = { A: [0, 0], B: [(b - a) / 2, h], C: [(b + a) / 2, h], D: [b, 0], O: [b / 2, h / 2] };
+      const svg = figure(P, { poly: ["A", "B", "C", "D"], names: ["A", "B", "C", "D"], circ: [["O", h / 2, "acc"]], lab: { BC: String(a), AD: String(b) }, rot: [0, 2] });
+      return mc(ae(r, w), { svg, text: `Bərabəryanlı trapesiyaya çevrə daxil edilib. Oturacaqların uzunluqları: ${a} və ${b}. Çevrənin radiusunu tapın.`,
+        solution: `Çevrə daxil edilib: AB + CD = BC + AD = ${a + b}, yan tərəf = ${num(leg)}. Yan tərəfin oturacaqdakı proyeksiyası (${b} − ${a}) / 2 = ${num((b - a) / 2)}. h = √(${num(leg)}² − ${num((b - a) / 2)}²) = ${h}. Çevrənin diametri hündürlüyə bərabərdir: r = h / 2 = ${num(r)}. Tələlər: diametri radius saymaq (${h}), yan tərəfi cavab yazmaq (${num(leg)}), yan tərəfin yarısı (${num((a + b) / 4)}), proyeksiyanı cavab yazmaq (${num((b - a) / 2)}).` });
+    }) },
+    // 7. coded: angle of an inscribed quadrilateral from a ratio
+    { tip: "kod", gen: () => again(() => {
+      const k = rnd(1, 9), m = rnd(1, 9), n = rnd(1, 9);
+      if (180 % (k + n) || k === n || m >= k + n || 2 * m === k + n) return null;
+      const u = 180 / (k + n), A = k * u, B = m * u, C = n * u, D = 180 - B;
+      if (A >= 180 || C >= 180 || D <= 0) return null;
+      const svg = cycFig(A, B, C, D); if (!svg) return null;
+      return { svg, text: `ABCD dördbucaqlısı çevrəyə daxil edilib, ∠A : ∠B : ∠C = ${k} : ${m} : ${n}. ∠D neçə dərəcədir?`,
+        answer: D, show: String(D), tol: 1e-6, unit: "°",
+        solution: `∠A + ∠C = 180°, ${k} + ${n} = ${k + n} hissə, bir hissə = 180° : ${k + n} = ${u}°. ∠B = ${m} · ${u}° = ${B}°. ∠D = 180° − ∠B = ${D}°. Tələ: ∠D-ni ∠B-yə bərabər saymaq — qarşı bucaqların cəmi 180°-dir.` };
+    }) },
+    // 8. coded: perimeter of a right triangle from c and r
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = triple(100), r = (p + q - c) / 2, P = 2 * (c + r);
+      if (r < .17 * c) return null;
+      const svg = inFig(q, c, p, { CA: String(c), OK: ["r", .7] }, { names: ["A", "B", "C", "O"], segs: [["O", "K", "dash"]], o: { right: [["B", "A", "C"]], cen: "K" } });
+      return { svg, text: `Düzbucaqlı üçbucağın hipotenuzu ${c} sm, daxilinə çəkilmiş çevrənin radiusu ${r} sm-dir. Üçbucağın perimetri neçə sm-dir?`,
+        answer: P, show: String(P), tol: 1e-6, unit: "sm",
+        solution: `r = (a + b − c) / 2 → a + b = c + 2r = ${c} + ${2 * r} = ${c + 2 * r}. P = a + b + c = ${c + 2 * r} + ${c} = ${P}.` };
+    }) },
+    // 9. coded: area of a right triangle from r and R
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = triple(100);
+      const r = (p + q - c) / 2, R = c / 2, S = p * q / 2; if (S !== r * (c + r)) return null;
+      const T = tri(q, c, p), P = { A: T.A, B: T.B, C: T.C, O: inC(T, q, c, p) }; P.K = foot(P.O, P.A, P.B); P.M = midp(P.A, P.C);
+      const svg = figure(P, { poly: ABC, names: ABC, circ: [["O", r, "acc"], ["M", R, "acc"]], segs: [["O", "K", "dash"], ["M", "A", "dash"]], right: [["B", "A", "C"]], lab: { OK: "r", MA: "R" }, cen: "O", rot: [0, 1, 2, 3] });
+      return { svg, text: `Düzbucaqlı üçbucağa daxil çəkilmiş çevrənin radiusu ${r} sm, xaricinə çəkilmiş çevrənin radiusu ${num(R)} sm-dir. Üçbucağın sahəsi neçə sm²-dir?`,
+        answer: S, show: String(S), tol: 1e-6, unit: "sm²",
+        solution: `Düzbucaqlı üçbucaqda hipotenuz xaricə çəkilmiş çevrənin diametridir: c = 2R = ${c}. r = (a + b − c) / 2 → a + b = c + 2r = ${c + 2 * r}. p = (a + b + c) / 2 = ${c + r}. S = r · p = ${r} · ${c + r} = ${S}.` };
+    }) },
+    // 10. written: R − r of an isosceles triangle
+    { tip: "yazili", gen: () => again(() => {
+      const [x, y, c] = triple(45), S = x * y, p = c + x, nu = c * c * (c + x) - 2 * x * y * y, den = 2 * y * (c + x);
+      if (nu <= 0 || 2 * y < x) return null;
+      const T = tri(2 * x, c, c), I = inC(T, 2 * x, c, c), r = S / p, R = c * c / (2 * y);
+      const P = { A: T.A, B: T.B, C: T.C, I, O: outC(T) };
+      const svg = figure(P, { poly: ABC, names: ABC, circ: [["I", r, "acc"], ["O", R, "acc"]], lab: { BC: String(2 * x), CA: String(c), AB: String(c) }, rot: [0, 1, 2, 3] });
+      const ans = frac(nu, den);
+      return { svg, text: `Bərabəryanlı üçbucağın yan tərəfləri ${c} sm, oturacağı ${2 * x} sm-dir. Üçbucağa xaricən çəkilmiş çevrənin radiusu ilə daxilən çəkilmiş çevrənin radiusunun fərqini tapın.`,
+        answer: nu / den, show: ans, tol: 1e-6, unit: "sm",
+        solution: `1) Hündürlük oturacağı yarıya bölür: h = √(${c}² − ${x}²) = ${y}; S = ${2 * x} · ${y} / 2 = ${S}. 2) p = (${c} + ${c} + ${2 * x}) / 2 = ${p}; r = S / p = ${S} / ${p} = ${frac(S, p)}. 3) R = abc / (4S) = ${c} · ${c} · ${2 * x} / (4 · ${S}) = ${frac(c * c, 2 * y)}. 4) R − r = ${frac(c * c, 2 * y)} − ${frac(S, p)} = ${ans} sm. Həll yazılmadan yalnız cavab yazılsa, bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -376,7 +504,7 @@
     game = Oyun.mount({
       key: "daxili-xarici-cevre", title: "Daxilə və xaricə çəkilmiş çevrələr", fenn: "riyaziyyat", link: "dersler/daxili-xarici-cevre.html",
       format: "Cavab — ədəd: radius, tərəf, bucaq (° yazmaq lazım deyil). Kəsr: 13/2, kök: 4√3, √2/2.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["daxili", "daxili", "xarici", "xarici", "duzgun", "duzgun", "daxdord", "daxdord", "xardord", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
