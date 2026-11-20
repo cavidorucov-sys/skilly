@@ -211,6 +211,224 @@ const CK = (() => {
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): RFO / lyceum mock — 10 A–E questions with a drawing, several steps;
+  // the wrong options are the answers of typical mistakes. Questions 1–2 also use "EHQ, Kirxhof" (fiz-ehq-kirxhof),
+  // 3 "Kondensator" (fiz-kondensator), 7 "Sürtünmə, maili müstəvi" (fiz-surtunme-maili), 8 "Nyuton qanunları" (fiz-nyuton).
+  const { ae } = Oyun, again = f => Oyun.again(f, 5000);
+  const ok3 = (x, d = 3) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const n4 = x => F(+x.toFixed(4)), co = n => n === 1 ? "" : n;
+  const T = CK.text, Ln = CK.line, AR = CK.arrow;
+  const Sg = (w, h, inner, aria) => CK.svg(w, h, inner, "oy-svg", aria);
+  const DASH = ` stroke-dasharray="5 4"`;
+  const batH = (x, y, lab) => Ln(x - 5, y - 13, x - 5, y + 13, CK.INK, 3) + Ln(x + 5, y - 7, x + 5, y + 7, CK.INK, 3) + T(x - 5, y - 18, "+", "middle", CK.INK, 12) + (lab ? T(x, y + 28, lab) : "");
+  const legend = (x, y, s, into = true) => CK.sym(x, y - 4, into, 5) + T(x + 10, y, s, "start", CK.MUT, 11);
+
+  // horizontal rails, top view: source (ε, r) on the left, a rod across the rails, B into the page; optional ammeter
+  function figRails(o = {}) {
+    const x0 = 70, xE = 300, yT = 60, yB = 140, rx = 205;
+    let s = o.amp ? CK.wire([[x0, 95], [x0, yT], [104, yT]]) + CK.meter(116, yT, "A") + CK.wire([[128, yT], [xE, yT]]) : CK.wire([[x0, 95], [x0, yT], [xE, yT]]);
+    s += CK.wire([[x0, 105], [x0, yB], [xE, yB]]) + CK.bat(x0, 100, o.src === false ? "" : "ε, r", "r");
+    s += Ln(rx, yT, rx, yB, CK.ACC, 5) + CK.dot(rx, yT) + CK.dot(rx, yB) + T(rx - 9, 104, "l", "end") + (o.rod ? T(rx + 11, 104, o.rod, "start") : "");
+    for (const x of [135, 170, 245, 280]) for (const y of [80, 100, 120]) s += CK.sym(x, y, true, 6);
+    s += legend(20, 176, "B (səhifənin içinə)");
+    return Sg(320, 190, s, "Üfüqi relslər (yuxarıdan görünüş): mənbə, rels üzərində çubuq, sahə səhifənin içinə yönəlib");
+  }
+  // rod hanging on two wires, magnetic field into the page, the rod is connected to a source
+  function figHang() {
+    let s = CK.wire([[90, 120], [90, 30], [145, 30]]) + CK.wire([[155, 30], [210, 30], [210, 120]]) + batH(150, 30, "ε, r");
+    s += Ln(90, 120, 210, 120, CK.ACC, 5) + T(150, 112, "R", "middle") + T(150, 138, "l", "middle", CK.INK, 13);
+    for (const x of [110, 150, 190]) for (const y of [80, 160, 185]) s += CK.sym(x, y, true, 6);
+    s += legend(20, 208, "B (səhifənin içinə)");
+    return Sg(300, 218, s, "Çubuq iki nazik naqildən asılıb, mənbəyə qoşulub, maqnit sahəsi səhifənin içinə yönəlib");
+  }
+  // plane capacitor (top plate +) with a magnetic field between the plates; a particle flies along the plates
+  function figCap() {
+    let s = Ln(60, 50, 210, 50, CK.INK, 4) + Ln(60, 130, 210, 130, CK.INK, 4) + T(66, 42, "+", "start") + T(66, 150, "−", "start");
+    s += CK.wire([[210, 50], [262, 50], [262, 85]]) + CK.wire([[262, 95], [262, 130], [210, 130]]) + CK.bat(262, 90, "U", "r");
+    s += AR(36, 90, 36, 52, CK.INK, 1.6) + AR(36, 90, 36, 128, CK.INK, 1.6) + T(28, 94, "d", "end");
+    s += `<circle cx="64" cy="90" r="4" fill="${CK.ACC}"/>` + AR(72, 90, 116, 90, CK.ACC, 2.5) + T(94, 82, "v", "middle", CK.ACC, 14) + Ln(118, 90, 205, 90, CK.ACC, 1.5, DASH);
+    for (const x of [135, 170, 205]) for (const y of [68, 112]) s += CK.sym(x, y, true, 6);
+    s += legend(20, 176, "B (səhifənin içinə)");
+    return Sg(300, 186, s, "Yastı kondensatorun lövhələri arasında maqnit sahəsi və lövhələrə paralel uçan zərrəcik");
+  }
+  // two ions accelerated by the same U, then semicircles in B (into the page: a positive ion moving down turns right)
+  function figIons(k) {
+    const x0 = 52, yP = 60, rb = 80, kd = k > 1 ? 1.6 : 1 / 1.6, r1 = kd > 1 ? rb / kd : rb, r2 = kd > 1 ? rb : rb * kd; // not to scale on purpose
+    let s = Ln(10, yP, x0 - 6, yP, CK.INK, 4) + Ln(x0 + 6, yP, 310, yP, CK.INK, 4) + Ln(x0 - 30, 30, x0 - 6, 30, CK.INK, 4) + Ln(x0 + 6, 30, x0 + 30, 30, CK.INK, 4);
+    s += T(x0 - 34, 34, "+", "end") + T(x0 - 34, 54, "−", "end") + T(x0 + 38, 50, "U", "start", CK.INK, 13) + AR(x0, 8, x0, 26, CK.ACC, 2);
+    const arc = (r, c, w) => `<path d="M${x0} ${yP} A${CK.f(r)} ${CK.f(r)} 0 0 0 ${CK.f(x0 + 2 * r)} ${yP}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+    s += arc(r1, CK.ACC, 2.5) + arc(r2, CK.VEC, 2.5);
+    s += T(x0 + 2 * r1 + 8, yP + 18, "1", "start", CK.ACC, 14) + T(x0 + 2 * r2 + 8, yP + 18, "2", "start", CK.VEC, 14);
+    for (const x of [235, 275]) for (const y of [95, 125, 155]) if (x > x0 + 2 * Math.max(r1, r2) + 16) s += CK.sym(x, y, true, 6);
+    s += legend(20, 180, "B (səhifənin içinə)");
+    return Sg(320, 190, s, "Sükunətdən U gərginliyi ilə sürətlənən iki ion maqnit sahəsində yarımçevrələr cızır");
+  }
+  // the velocity makes 30° with the B lines
+  function figHelix() {
+    const ox = 60, oy = 125, L = 130, ex = ox + L * Math.cos(Math.PI / 6), ey = oy - L * Math.sin(Math.PI / 6);
+    let s = AR(20, oy, 275, oy, CK.VEC, 2) + AR(20, 165, 275, 165, CK.VEC, 2) + T(282, oy + 5, "B", "start", CK.VEC, 14);
+    s += AR(ox, oy, ex, ey, CK.ACC, 3) + T(ex + 8, ey, "v", "start", CK.ACC, 15);
+    s += `<path d="M${ox + 40} ${oy} A40 40 0 0 0 ${CK.f(ox + 40 * Math.cos(Math.PI / 6))} ${CK.f(oy - 40 * Math.sin(Math.PI / 6))}" fill="none" stroke="${CK.INK}" stroke-width="1.5"/>` + T(ox + 48, oy - 8, "30°", "start", CK.INK, 12);
+    s += `<circle cx="${ox}" cy="${oy}" r="4" fill="${CK.ACC}"/>`;
+    return Sg(310, 180, s, "Zərrəciyin sürəti maqnit induksiya xətləri ilə 30° bucaq əmələ gətirir");
+  }
+  // rod (end view, current into the page) on smooth rails inclined at α; B vertical
+  function figIncline(al) {
+    const a = al * Math.PI / 180, ta = Math.tan(a), dy = 150, dx = dy / ta, ax = 30, ay = 180, tx = ax + dx, ty = ay - dy;
+    let s = Ln(ax, ay, tx + 20, ay, CK.INK, 2) + Ln(ax, ay, tx, ty, CK.INK, 3.5) + Ln(tx, ty, tx, ay, CK.INK, 2);
+    const px = ax + 0.55 * dx, py = ay - 0.55 * dy, cx = px - 12 * Math.sin(a), cy = py - 12 * Math.cos(a);
+    s += CK.sym(cx, cy, false, 12);
+    for (const x of [60, 100, 140, 180, 215]) { const ys = ay - (x - ax) * ta - 8; if (x < tx - 10 && ys > 50 && !(Math.abs(x - cx) < 16)) s += AR(x, 14, x, ys, CK.VEC, 2); }
+    s += T(52, 12, "B", "start", CK.VEC, 14);
+    s += `<path d="M${ax + 36} ${ay} A36 36 0 0 0 ${CK.f(ax + 36 * Math.cos(a))} ${CK.f(ay - 36 * Math.sin(a))}" fill="none" stroke="${CK.INK}" stroke-width="1.5"/>` + T(ax + 44, ay - 6, al + "°", "start", CK.INK, 12);
+    s += legend(150, 198, "cərəyan sənə doğru", false);
+    return Sg(320, 206, s, "Sürtünməsiz maili relslər, üzərində çubuq (en kəsiyi), şaquli maqnit sahəsi");
+  }
+  // rectangular frame (a × b), only its lower part is in the field
+  function figFrame(a, b) {
+    const sc = 260, w = sc * a, hh = sc * b, cx = 150, xl = cx - w / 2, xr = cx + w / 2, yb = 165, yt = yb - hh, yF = 105;
+    let s = `<rect x="20" y="${yF}" width="260" height="${190 - yF}" fill="${CK.VEC}" fill-opacity=".08" stroke="${CK.MUT}" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+    for (const x of [45, 255]) for (const y of [125, 150, 175]) s += CK.sym(x, y, true, 6);
+    for (const y of [127, 148]) for (const x of [cx - w / 4, cx + w / 4]) s += CK.sym(x, y, true, 6);
+    s += `<rect x="${CK.f(xl)}" y="${CK.f(yt)}" width="${CK.f(w)}" height="${CK.f(hh)}" fill="none" stroke="${CK.ACC}" stroke-width="3" stroke-linejoin="round"/>`;
+    s += AR(cx + 12, yt, cx - 12, yt, CK.INK, 2) + T(cx, yt - 8, "I", "middle", CK.INK, 14);
+    s += T(cx, 187, `a = ${n4(a)} m`, "middle", CK.INK, 12) + T(xr + 8, (yt + yF) / 2, `b = ${n4(b)} m`, "start", CK.INK, 12);
+    s += legend(20, 14, "B (səhifənin içinə), yalnız zolaqda");
+    return Sg(300, 196, s, "Düzbucaqlı çərçivə, onun aşağı hissəsi maqnit sahəsindədir");
+  }
+  // F–I graph through the origin
+  function figFI(Imax, Fmax) {
+    const X = i => 40 + i * 190 / Imax, Y = f => 160 - f * 135 / Fmax;
+    let s = Ln(40, 160, 238, 160) + Ln(40, 160, 40, 18) + T(242, 176, "I, A", "start") + T(34, 14, "F, N", "end");
+    for (let j = 1; j <= 4; j++) { const i = Imax * j / 4, f = Fmax * j / 4;
+      s += Ln(X(i), 160, X(i), 22, CK.MUT, 0.6) + T(X(i), 176, n4(i), "middle", CK.MUT, 11) + Ln(40, Y(f), 232, Y(f), CK.MUT, 0.6) + T(32, Y(f) + 4, n4(f), "end", CK.MUT, 11); }
+    s += Ln(X(0), Y(0), X(Imax), Y(Fmax), CK.ACC, 2.5) + `<circle cx="${CK.f(X(Imax))}" cy="${CK.f(Y(Fmax))}" r="3.5" fill="${CK.ACC}"/>`;
+    return Sg(280, 190, s, "Cərəyanlı naqilə təsir edən Amper qüvvəsinin cərəyandan asılılıq qrafiki");
+  }
+
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. rod on rails connected to a source with internal resistance: the Ampère force (fiz-ehq-kirxhof)
+    { tip: "qapali", birlesik: "fiz-ehq-kirxhof", gen: () => again(() => {
+      const R0 = pick([1, 2, 3, 4, 5, 6, 8]), r = pick([0.5, 1, 2]), I = pick([1, 2, 3, 4, 5]), eps = I * (R0 + r), B = pick([0.1, 0.2, 0.25, 0.4, 0.5, 1, 2]), l = pick([0.2, 0.25, 0.4, 0.5, 0.8, 1]);
+      if (!nice(eps, 1)) return null;
+      const Fa = B * I * l, w = [B * eps * l / R0, B * I, I * l / B, B * eps * l / r];
+      if (![Fa, ...w].every(x => ok3(x))) return null;
+      return mc(ae(Fa, w, U_("N")), { svg: svgEl(figRails({ rod: "R" })),
+        text: `Üfüqi relslər EHQ-si ε = ${F(eps)} V, daxili müqaviməti r = ${F(r)} Ω olan mənbəyə qoşulub. Relslərin üzərində müqaviməti R = ${R0} Ω, uzunluğu l = ${F(l)} m olan çubuq sükunətdədir. Şaquli bircins sahənin induksiyası B = ${F(B)} T-dir. Relslərin müqaviməti nəzərə alınmır. Çubuğa təsir edən Amper qüvvəsi nə qədərdir?`,
+        solution: `Çubuq və mənbənin daxili müqaviməti ardıcıldır: I = ε/(R + r) = ${F(eps)}/${F(R0 + r)} = ${F(I)} A. Çubuq B-yə perpendikulyardır (sin 90° = 1): F = B·I·l = ${F(B)}·${F(I)}·${F(l)} = ${n4(Fa)} N. Tələlər: r-i unutmaq (Bεl/R = ${n4(w[0])} N), l-i unutmaq (B·I = ${n4(w[1])}), B-yə bölmək (Il/B = ${n4(w[2])}), cərəyanı yalnız r ilə hesablamaq (Bεl/r = ${n4(w[3])} N).`
+      });
+    }) },
+    // 2. hanging rod: B for zero tension (fiz-ehq-kirxhof)
+    { tip: "qapali", birlesik: "fiz-ehq-kirxhof", gen: () => again(() => {
+      const m = pick([10, 20, 25, 40, 50, 60, 80, 100]), l = pick([0.2, 0.25, 0.4, 0.5, 1]), R0 = pick([1, 2, 3, 4, 5, 6]), r = pick([0.5, 1, 2]), I = pick([1, 2, 2.5, 4, 5]), eps = I * (R0 + r);
+      const B = m / 1000 * g / (I * l); if (!nice(eps, 1) || B > 2) return null;
+      const w = [m / 1000 * g / (eps / R0 * l), B / 10, B * 10, B * l];
+      if (![B, ...w].every(x => ok3(x))) return null;
+      return mc(ae(B, w, U_("T")), { svg: svgEl(figHang()),
+        text: `Kütləsi ${m} q, uzunluğu ${F(l)} m, müqaviməti R = ${R0} Ω olan üfüqi çubuq iki nazik elastik olmayan naqildən asılıb. Çubuq EHQ-si ε = ${F(eps)} V, daxili müqaviməti r = ${F(r)} Ω olan mənbəyə qoşulub (naqillərin müqaviməti yoxdur). Üfüqi bircins sahə çubuğa perpendikulyardır və Amper qüvvəsi yuxarı yönəlib. Naqillərin dartılma qüvvəsinin sıfır olması üçün B nə qədər olmalıdır? (g = 10 m/s²)`,
+        solution: `Cərəyan: I = ε/(R + r) = ${F(eps)}/${F(R0 + r)} = ${F(I)} A. Dartılma sıfırdır, deməli Amper qüvvəsi ağırlığı tarazlayır: BIl = mg. Kütlə: m = ${m} q = ${F(m / 1000)} kq. B = mg/(Il) = ${F(m / 1000)}·10/(${F(I)}·${F(l)}) = ${n4(B)} T. Tələlər: r-i unutmaq (I = ε/R, B = ${n4(w[0])} T), g-ni unutmaq (${n4(w[1])} T), qramı kiloqrama çevirəndə 10 dəfə səhv etmək (${n4(w[2])} T), l-ə bölməyi unutmaq (${n4(w[3])} T).`
+      });
+    }) },
+    // 3. capacitor + magnetic field: the speed of a particle that is not deflected (fiz-kondensator)
+    { tip: "qapali", birlesik: "fiz-kondensator", gen: () => again(() => {
+      const U = pick([10, 20, 40, 50, 100, 200, 400]), d = pick([1, 2, 4, 5, 10]), B = pick([0.1, 0.2, 0.25, 0.4, 0.5, 1, 2]), v = U / (d / 100 * B);
+      if (!nice(v, 0)) return null;
+      const w = [U / B, U / (d * B), U * (d / 100) / B, U / (d / 100) * B];
+      if (![v, ...w].every(x => ok3(x))) return null;
+      return mc(ae(v, w, U_("m/s")), { svg: svgEl(figCap()),
+        text: `Yastı kondensatorun lövhələri arasındakı məsafə d = ${d} sm, lövhələrə verilən gərginlik U = ${U} V-dur. Lövhələr arasında şəkildəki kimi induksiyası B = ${F(B)} T olan maqnit sahəsi var. Müsbət yüklü zərrəcik lövhələrə paralel uçur və düz xətt üzrə hərəkət edir (əyilmir); sürəti lövhələrə paralel və B-yə perpendikulyardır. Zərrəciyin sürəti nə qədərdir? (Sahələr bircinsdir, kənar effektlər və ağırlıq qüvvəsi nəzərə alınmır.)`,
+        solution: `Kondensatorun sahəsi: E = U/d = ${U}/${F(d / 100)} = ${F(U / (d / 100))} V/m (d = ${d} sm = ${F(d / 100)} m). Zərrəcik əyilmir, yəni elektrik və maqnit qüvvələri tarazdır: qE = qvB, buradan v = E/B = ${F(U / (d / 100))}/${F(B)} = ${F(v)} m/s. Tələlər: d-ni unutmaq (U/B = ${F(w[0])} m/s), santimetri metrə çevirməmək (${n4(w[1])} m/s), E = U·d yazmaq (${n4(w[2])} m/s), E-ni B-yə vurmaq (${n4(w[3])} m/s).`
+      });
+    }) },
+    // 4. direction of the Lorentz force (positive or negative particle)
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick(["+x", "-x", "+y", "-y"]), b = pick(["+z", "-z"]), neg = Math.random() < .5;
+      const P = pick(neg ? ["elektron", "mənfi yüklü ion (Cl⁻)"] : ["proton", "müsbət yüklü ion (Na⁺)"]);
+      let c = cross(DIRS[a], DIRS[b]); const pos = key(c); if (neg) c = c.map(v => -v);
+      const ans = key(c), opp = key(c.map(v => -v)), va = a, vo = key(DIRS[a].map(v => -v));
+      const nm = k => ({ "+x": "Sağa", "-x": "Sola", "+y": "Yuxarı", "-y": "Aşağı" })[k];
+      const o = ae(nm(ans), [nm(opp), nm(va), nm(vo), "Qüvvə sıfırdır"]);
+      return mc(o, { svg: dirFig(a, b, "v", "B"),
+        text: `Şəkildə ${P} ${NAME[a]} uçur, maqnit induksiyası B ${NAME[b]} yönəlib. Zərrəciyin sahəyə daxil olduğu anda ona təsir edən Lorens qüvvəsi hansı istiqamətdədir? (Ağırlıq qüvvəsi nəzərə alınmır.)`,
+        solution: `Sol əl qaydası: B xətləri ovuca daxil olsun, dörd barmaq müsbət yükün sürətini göstərsin, baş barmaq qüvvəni göstərir. Müsbət yük üçün qüvvə ${nm(pos).toLowerCase()} olardı. ${neg ? `Zərrəcik mənfi yüklüdür, ona görə istiqamət əksinədir: ${nm(ans).toLowerCase()}.` : `Zərrəcik müsbət yüklüdür: ${nm(ans).toLowerCase()}.`} Tələlər: ${neg ? "mənfi yükdə istiqaməti əksinə çevirməmək (" + nm(opp).toLowerCase() + "), " : "müsbət yükü mənfi saymaq (" + nm(opp).toLowerCase() + "), "}qüvvəni sürətlə eyni (${nm(va).toLowerCase()}) və ya əks (${nm(vo).toLowerCase()}) götürmək (Lorens qüvvəsi həmişə sürətə perpendikulyardır), qüvvənin sıfır olduğunu demək (v ⟂ B olduğu üçün sin 90° = 1, qüvvə var).`
+      });
+    }) },
+    // 5. two ions accelerated by the same voltage: ratio of the radii
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([1, 2, 3, 4, 8, 9, 16, 18, 25, 27, 32, 36]), b = pick([1, 2, 3, 4, 8, 9]), Q = a / b, k = Math.sqrt(Q);
+      if (Q === 1 || Math.abs(2 * k - Math.round(2 * k)) > 1e-9 || k > 4 || k < 0.5) return null;
+      const cand = [[Q, "kökü unutmaq"], [1 / k, "nisbəti çevirmək"], [Math.sqrt(a), "yükü nəzərə almamaq"], [a, "yalnız kütlələri müqayisə etmək"], [b, "yalnız yükləri müqayisə etmək"], [Math.sqrt(a * b), "yükə bölmək əvəzinə vurmaq"], [1 / Q, "kökü unudub nisbəti çevirmək"]]
+        .filter(c => nice(c[0], 2) && Math.abs(c[0] - k) > 1e-9);
+      const uniq = []; for (const c of cand.sort(() => Math.random() - .5)) if (!uniq.some(u => Math.abs(u[0] - c[0]) < 1e-9)) uniq.push(c);
+      if (uniq.length < 4) return null;
+      const ch = uniq.slice(0, 4), w = ch.map(c => c[0]);
+      return mc(ae(k, w, x => n4(x)), { svg: svgEl(figIons(k)),
+        text: `İki ion eyni gərginliklə sükunətdən sürətləndirilir və sürətləri B-yə perpendikulyar olmaqla bircins maqnit sahəsinə daxil olub yarımçevrələr cızır. Birinci ionun kütləsi m, yükü q; ikinci ionun kütləsi ${co(a)}m, yükü ${co(b)}q-dir (yüklər eyni işarəlidir). Radiusların nisbəti r₂/r₁ nə qədərdir? (Ağırlıq qüvvəsi nəzərə alınmır, şəkil miqyassızdır.)`,
+        solution: `Sürətlənmədə qU = mv²/2, buradan v = √(2qU/m). Sahədə r = mv/(qB) = (1/B)·√(2mU/q), yəni r ∼ √(m/q). r₂/r₁ = √((${co(a)}m/(${co(b)}q))/(m/q)) = √(${F(a / b)}) = ${n4(k)}. Tələlər: ${ch.map(c => c[1] + " (" + n4(c[0]) + ")").join(", ")}.`
+      });
+    }) },
+    // 6. the speed makes 30° with B: radius of the helix
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([1, 2, 4, 5, 10]), q = pick([1, 2, 4, 5, 10]), v = pick([20, 50, 100, 200, 500]), B = pick(BS), r = 0.5 * (m / q) * v / B;
+      if (!nice(r, 3) || r < 0.01 || r > 5) return null;
+      const w = [2 * r, r / 2, 4 * r, 1000 * r];
+      if (![r, ...w].every(x => ok3(x))) return null;
+      return mc(ae(r, w, U_("m")), { svg: svgEl(figHelix()),
+        text: `Kütləsi ${m} mq, yükü ${q} µC olan zərrəcik B = ${F(B)} T olan bircins sahəyə daxil olur. Sürəti ${v} m/s-dir və B xətləri ilə 30° bucaq əmələ gətirir. Zərrəcik spiral üzrə hərəkət edir. Trayektoriyanın B-yə perpendikulyar müstəviyə proyeksiyası olan çevrənin radiusu nə qədərdir? (Ağırlıq qüvvəsi nəzərə alınmır.)`,
+        solution: `Çevrəni yalnız sürətin B-yə perpendikulyar komponenti yaradır: v⊥ = v·sin 30° = ${F(v)}·0,5 = ${F(v / 2)} m/s (B boyunca komponent düz xətt üzrə hərəkət verir). SI: m = ${m}·10⁻⁶ kq, q = ${q}·10⁻⁶ C, m/q = ${F(m / q)} kq/C. r = m·v⊥/(qB) = ${F(m / q)}·${F(v / 2)}/${F(B)} = ${n4(r)} m. Tələlər: tam v götürmək (${n4(w[0])} m), sin-i iki dəfə tətbiq etmək (${n4(w[1])} m), sin-ə bölmək (${n4(w[2])} m), mq-ı 10⁻³ kq götürmək (${n4(w[3])} m).`
+      });
+    }) },
+    // 7. rod on smooth inclined rails, vertical field: the current (fiz-surtunme-maili)
+    { tip: "qapali", birlesik: "fiz-surtunme-maili", gen: () => again(() => {
+      const al = pick([37, 53]), sn = al === 37 ? 0.6 : 0.8, cs = al === 37 ? 0.8 : 0.6, tn = sn / cs;
+      const m = pick([20, 40, 50, 60, 80, 100, 120]), l = pick([0.2, 0.25, 0.4, 0.5, 1]), B = pick([0.1, 0.2, 0.25, 0.4, 0.5, 1]), mg = m / 1000 * g, I = mg * tn / (B * l);
+      if (!nice(I, 3) || I > 40) return null;
+      const w = [mg * sn / (B * l), mg * cs / (B * l), mg / (B * l), mg / tn / (B * l)];
+      if (![I, ...w].every(x => ok3(x))) return null;
+      return mc(ae(I, w, U_("A")), { svg: svgEl(figIncline(al)),
+        text: `Sürtünməsiz maili relslərin (maillik bucağı ${al}°) üzərində kütləsi ${m} q, uzunluğu ${F(l)} m olan çubuq sükunətdədir. Şaquli bircins sahənin induksiyası B = ${F(B)} T-dir. Çubuqdan keçən cərəyan neçə amperdir? (sin ${al}° = ${F(sn)}, cos ${al}° = ${F(cs)}, g = 10 m/s²)`,
+        solution: `Şaquli sahədə Amper qüvvəsi üfüqidir (F ⟂ B və F ⟂ cərəyan). Çubuğa ağırlıq mg (aşağı), normal reaksiya N və üfüqi F təsir edir. Maili müstəvi boyunca: F·cos${al}° = mg·sin${al}°, yəni F = mg·tg${al}° = ${F(mg)}·${al === 37 ? "3/4" : "4/3"} = ${n4(mg * tn)} N. BIl = F: I = F/(Bl) = ${n4(mg * tn)}/(${F(B)}·${F(l)}) = ${n4(I)} A. Tələlər: Amper qüvvəsini müstəvi boyunca saymaq (mg·sin${al}°/(Bl) = ${n4(w[0])} A), cos götürmək (${n4(w[1])} A), bucağı nəzərə almamaq (mg/(Bl) = ${n4(w[2])} A), tg əvəzinə ctg yazmaq (${n4(w[3])} A).`
+      });
+    }) },
+    // 8. rod on rough horizontal rails: acceleration (fiz-nyuton)
+    { tip: "qapali", birlesik: "fiz-nyuton", gen: () => again(() => {
+      const m = pick([0.1, 0.2, 0.25, 0.5]), l = pick([0.2, 0.5, 1]), B = pick(BS), I = pick([2, 4, 5, 10]), mu = pick([0.1, 0.2, 0.25, 0.5]), Fa = B * I * l, Ft = mu * m * g, a = (Fa - Ft) / m;
+      if (Fa <= Ft || !nice(a, 2)) return null;
+      const w = [Fa / m, (Fa + Ft) / m, Fa - Ft, Fa / m - mu];
+      if (![a, ...w].every(x => ok3(x, 2))) return null;
+      return mc(ae(a, w, U_("m/s²")), { svg: svgEl(figRails({ amp: true, src: false, rod: "" })),
+        text: `Üfüqi relslərin üzərində kütləsi ${F(m)} kq, uzunluğu ${F(l)} m olan çubuq var, çubuq ilə relslər arasında sürüşmə sürtünmə əmsalı μ = ${F(mu)}. Çubuq Amper qüvvəsi istiqamətində sürüşür. Şaquli bircins sahə B = ${F(B)} T-dir, ampermetr ${F(I)} A göstərir. Çubuğun təcili nə qədərdir? (Cərəyanın dəyişməsi nəzərə alınmır, g = 10 m/s².)`,
+        solution: `Amper qüvvəsi üfüqidir: F = BIl = ${F(B)}·${F(I)}·${F(l)} = ${n4(Fa)} N. Sürtünmə qüvvəsi: F_s = μmg = ${F(mu)}·${F(m)}·10 = ${n4(Ft)} N. Nyutonun II qanunu: ma = F − F_s, a = (${n4(Fa)} − ${n4(Ft)})/${F(m)} = ${n4(a)} m/s². Tələlər: sürtünməni unutmaq (${n4(w[0])}), sürtünməni toplamaq (${n4(w[1])}), qüvvənin fərqini təcil saymaq (${n4(w[2])}), μg əvəzinə μ çıxmaq, yəni g-ni unutmaq (${n4(w[3])}).`
+      });
+    }) },
+    // 9. frame partly in the field: net force
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([0.2, 0.25, 0.3, 0.4, 0.5]), b = pick([0.3, 0.4, 0.5]), I = pick([2, 4, 5, 10]), B = pick(BS), Fa = B * I * a;
+      if (a === b) return null;
+      const w = [0, 2 * B * I * a, B * I * b, B * I * (2 * a + 2 * b)];
+      if (![Fa, w[1], w[2], w[3]].every(x => ok3(x))) return null;
+      return mc(ae(Fa, w, x => x === 0 ? "0 N" : U_("N")(x)), { svg: svgEl(figFrame(a, b)),
+        text: `Tərəfləri a = ${F(a)} m və b = ${F(b)} m olan düzbucaqlı çərçivədən I = ${F(I)} A cərəyan axır. Çərçivənin yalnız aşağı hissəsi (aşağı tərəfi və qalan tərəflərin bir hissəsi) induksiyası B = ${F(B)} T olan bircins sahədədir, yuxarı tərəfi sahədən kənardadır. Sahə çərçivənin müstəvisinə perpendikulyardır. Çərçivəyə təsir edən Amper qüvvələrinin cəmi nə qədərdir?`,
+        solution: `Sahədə olan şaquli tərəflərdə cərəyanlar əks istiqamətlidir, ona görə onlara təsir edən qüvvələr eyni modulludur və əks yönəlir: cəmi sıfırdır. Yuxarı tərəf sahədə deyil, onun üçün F = 0. Yalnız aşağı tərəf (uzunluğu a) qalır: F = BIa = ${F(B)}·${F(I)}·${F(a)} = ${n4(Fa)} N. Tələlər: "hamısı sıfırdır" (çərçivə tam sahədə olsaydı belə olardı), aşağı tərəfi iki dəfə saymaq (${n4(w[1])} N), yanlış tərəf götürmək (BIb = ${n4(w[2])} N), bütün perimetri saymaq (${n4(w[3])} N).`
+      });
+    }) },
+    // 10. F–I graph: find B (the wire makes 30° with the field)
+    { tip: "qapali", gen: () => again(() => {
+      const B = pick([0.1, 0.2, 0.25, 0.4, 0.5, 1, 2]), l = pick([0.2, 0.4, 0.5, 1, 2]), Im = pick([4, 8, 12]), k = B * l / 2, Fm = k * Im;
+      if (!nice(Fm / 4, 3) || !nice(Fm, 3)) return null;
+      const w = [k / l, k / (2 * l), k * l, 2 * k * l];
+      if (![B, ...w].every(x => ok3(x))) return null;
+      return mc(ae(B, w, U_("T")), { svg: svgEl(figFI(Im, Fm)),
+        text: `Uzunluğu l = ${F(l)} m olan düz naqil bircins maqnit sahəsində B xətləri ilə 30° bucaq əmələ gətirir. Qrafikdə naqilə təsir edən Amper qüvvəsinin naqildəki cərəyandan asılılığı verilib. Sahənin induksiyası nə qədərdir?`,
+        solution: `F = BIl·sin 30° düsturundan F/I = B·l·0,5 — qrafik düz xəttdir və koordinat başlanğıcından keçir, meyli F/I sabitdir. Qrafikdən: I = ${F(Im)} A olanda F = ${n4(Fm)} N, deməli F/I = ${n4(Fm)}/${F(Im)} = ${n4(k)} N/A. B = (F/I)/(l·sin 30°) = ${n4(k)}/(${F(l)}·0,5) = ${n4(B)} T. Tələlər: sin 30°-u unutmaq (${n4(w[0])} T), sin 30°-a bölmək əvəzinə vurmaq (${n4(w[1])} T), meyli l-ə vurmaq (B = kl = ${n4(w[2])} T), meyli l və sin 30°-a vurmaq əvəzinə yalnız l-ə vurub 2-yə vurmaq (B = 2kl = ${n4(w[3])} T).`
+      });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -220,7 +438,7 @@ const CK = (() => {
     game = Oyun.mount({
       key: "fiz-maqnit", title: "Maqnit sahəsi, Amper qüvvəsi, yüklü zərrəciyin hərəkəti", fenn: "fizika", link: "dersler/fiz-maqnit.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (N, T, A, m, m/s; Lorens qüvvəsi µN ilə). Onluq kəsr vergül və ya nöqtə ilə: 0,25. g = 10 m/s².",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["amper", "amper", "istiqamet", "lorens", "lorens", "radius", "radius", "secici", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

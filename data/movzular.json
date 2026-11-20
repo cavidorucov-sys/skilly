@@ -1520,7 +1520,8 @@
     "fizika:Nyuton qanunları, bağlı cisimlər"
    ],
    "hefte": "2026-12-28",
-   "ders": "dersler/fiz-maqnit.html"
+   "ders": "dersler/fiz-maqnit.html",
+   "imt": true
   },
   {
    "bolme": "Maqnetizm, mühitlərdə cərəyan",
