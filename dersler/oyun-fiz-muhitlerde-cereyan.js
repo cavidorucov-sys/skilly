@@ -262,6 +262,193 @@
       } },
   ];
 
+
+  // ======== exam format (father, 15 Nov 2026): RFO / lisey A–E questions with figures; wrong options are typical mistakes ========
+  const { ae, again } = Oyun;
+  const svgEl = s => { const d = document.createElement("div"); d.innerHTML = s; return d.firstChild; };
+  const K = (() => {
+    const INK = "var(--ink,#17171a)", ACC = "var(--accent,#a32d2d)", MUT = "var(--muted,#6b6b73)", PAP = "var(--paper,#fff)", SOFT = "var(--accent-soft,#f3dede)";
+    const f = n => +(+n).toFixed(1);
+    const line = (x1, y1, x2, y2, c = INK, w = 2, ex = "") => `<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${ex}/>`;
+    const wire = (pts, c = INK, w = 2) => `<polyline points="${pts.map(p => f(p[0]) + "," + f(p[1])).join(" ")}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`;
+    const text = (x, y, s, a = "middle", c = INK, sz = 13) => `<text x="${f(x)}" y="${f(y)}" text-anchor="${a}" font-size="${sz}" font-weight="700" fill="${c}" font-family="inherit">${s}</text>`;
+    const dot = (x, y) => `<circle cx="${f(x)}" cy="${f(y)}" r="3.2" fill="${INK}"/>`;
+    const res = (x, y, d, lab) => d === "h"
+      ? `<rect x="${f(x - 18)}" y="${f(y - 7)}" width="36" height="14" fill="${PAP}" stroke="${INK}" stroke-width="2"/>` + (lab ? text(x, y - 12, lab) : "")
+      : `<rect x="${f(x - 7)}" y="${f(y - 16)}" width="14" height="32" fill="${PAP}" stroke="${INK}" stroke-width="2"/>` + (lab ? text(x + 12, y + 5, lab, "start") : "");
+    // thermistor: a resistor box crossed by a slanted line
+    const therm = (x, y, lab) => res(x, y, "h", "") + line(x - 22, y + 14, x + 22, y - 14, INK, 2) + (lab ? text(x, y - 20, lab) : "");
+    // battery on a vertical wire: long plate (+) on top
+    const bat = (x, y, lab) => line(x - 13, y - 5, x + 13, y - 5, INK, 3) + line(x - 7, y + 5, x + 7, y + 5, INK, 3) + text(x - 17, y - 8, "+", "end", INK, 12) + (lab ? text(x + 20, y + 4, lab, "start") : "");
+    const meter = (x, y, ch) => `<circle cx="${f(x)}" cy="${f(y)}" r="12" fill="${PAP}" stroke="${INK}" stroke-width="2"/>` + text(x, y + 5, ch, "middle", INK, 14);
+    // ideal diode, the triangle points to the conducting direction: r, d, l, u
+    const diode = (x, y, dir) => `<g transform="translate(${f(x)} ${f(y)}) rotate(${{ r: 0, d: 90, l: 180, u: 270 }[dir]})"><polygon points="-9,-9 -9,9 9,0" fill="${INK}"/><line x1="9" y1="-9" x2="9" y2="9" stroke="${INK}" stroke-width="3" stroke-linecap="round"/></g>`;
+    // electrolysis bath on a horizontal wire at y: electrodes dip from the wire into the beaker; left = anode (+), right = cathode (−)
+    const bath = (cx, y, o = {}) => `<rect x="${f(cx - 26)}" y="${f(y + 18)}" width="52" height="22" fill="${SOFT}"/>` + wire([[cx - 26, y + 8], [cx - 26, y + 40], [cx + 26, y + 40], [cx + 26, y + 8]], INK, 2)
+      + line(cx - 15, y, cx - 15, y + 34, INK, 5) + line(cx + 15, y, cx + 15, y + 34, INK, 5)
+      + (o.plate ? `<rect x="${f(cx + 11)}" y="${f(y + 9)}" width="8" height="28" fill="none" stroke="${ACC}" stroke-width="2.5"/>` : "")
+      + text(cx - 15, y - 6, "+", "middle", INK, 13) + text(cx + 15, y - 6, "−", "middle", INK, 13);
+    const svg = (w, h, inner, aria) => `<svg viewBox="0 0 ${f(w)} ${f(h)}" class="oy-svg" role="img" aria-label="${aria}">${inner}</svg>`;
+    // graph frame: ox,oy origin; grid lines at the given tick values
+    const frame = (ox, oy, w, h, xt, yt, xl, yl) => {
+      let s = "";
+      xt.forEach(([px, lab]) => { s += line(px, oy, px, oy - h, MUT, 0.6) + text(px, oy + 15, lab, "middle", MUT, 11); });
+      yt.forEach(([py, lab]) => { s += line(ox, py, ox + w, py, MUT, 0.6) + text(ox - 6, py + 4, lab, "end", MUT, 11); });
+      return s + line(ox, oy, ox + w + 8, oy, INK, 2) + line(ox, oy, ox, oy - h - 8, INK, 2) + text(ox + w + 8, oy + 30, xl, "end") + text(ox + 6, oy - h - 12, yl, "start");
+    };
+    return { INK, ACC, MUT, PAP, SOFT, f, line, wire, text, dot, res, therm, bat, meter, diode, bath, svg, frame };
+  })();
+  const { line: Ln, wire: Wr, text: Tx, dot: Dt } = K;
+  const SUP = { 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹", "-": "⁻" };
+  const sup = n => String(n).split("").map(c => SUP[c]).join("");
+  // value written as m·10^e (v16 = the value in units of 10¹⁶)
+  const sci = v16 => { let m = v16, e = 16; while (m >= 10) { m /= 10; e++; } while (m < 1) { m *= 10; e--; } return { m, e, s: `${F(+m.toFixed(4))}·10${sup(e)}` }; };
+  const ok2 = (x, d = 2) => isFinite(x) && x > 0 && nice(x, d);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const U_ = u => x => F(+x.toFixed(4)) + " " + u;
+  const RSm = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 50, 60];
+  const UUm = [6, 9, 12, 18, 24, 36, 48, 60, 110, 120, 220];
+  const kTxt = mt => `${mt.ad} üçün k = ${F(mt.k)} mq/C`;
+
+  // ---- figures (all coordinates checked in node) ----
+  // two electrolysis baths in parallel, ammeter in the main wire
+  const figBaths = () => svgEl(K.svg(310, 200, Wr([[40, 95], [40, 30], [110, 30]]) + Wr([[40, 105], [40, 186], [270, 186]]) + Ln(110, 30, 110, 136) + Ln(270, 62, 270, 186)
+    + [[62, "R₁"], [136, "R₂"]].map(([y, l]) => Wr([[110, y], [175, y]]) + Wr([[205, y], [270, y]]) + K.bath(190, y) + Tx(190, y - 18, l)).join("")
+    + Dt(110, 62) + Dt(270, 136) + K.meter(75, 30, "A") + K.bat(40, 100, "U"), "Paralel qoşulmuş iki elektroliz hamamı R₁ və R₂; ampermetr əsas xəttdə"));
+  // one bath with the part to be plated at the cathode
+  const figPlate = () => svgEl(K.svg(300, 180, Wr([[40, 85], [40, 36], [170, 36]]) + Wr([[200, 36], [260, 36], [260, 150], [40, 150], [40, 95]]) + K.meter(100, 36, "A") + K.bath(185, 36, { plate: true }) + K.bat(40, 90, "U")
+    + Tx(222, 76, "detal", "start", K.ACC, 12), "Elektroliz hamamı: katodda qat çəkilən detal; ampermetr"));
+  // bath and rheostat in series
+  const figBathR = () => svgEl(K.svg(330, 170, Wr([[40, 80], [40, 36], [205, 36]]) + Wr([[235, 36], [300, 36], [300, 140], [40, 140], [40, 90]]) + K.res(120, 36, "h", "R") + K.bath(220, 36) + Tx(220, 108, "R_h") + K.bat(40, 85, "U"), "Reostat R və elektroliz hamamı ardıcıl qoşulub"));
+  // bath with a voltmeter across it
+  const figBathV = () => svgEl(K.svg(300, 170, Wr([[40, 95], [40, 60], [135, 60]]) + Wr([[165, 60], [260, 60], [260, 140], [40, 140], [40, 105]]) + K.bath(150, 60) + Dt(110, 60) + Dt(190, 60)
+    + Wr([[110, 60], [110, 22], [138, 22]]) + Wr([[162, 22], [190, 22], [190, 60]]) + K.meter(150, 22, "V") + K.bat(40, 100, "U"), "Elektroliz hamamı; voltmetr hamama paralel qoşulub"));
+  // two parallel branches, each: diode + resistor (dirs: 'd' conducts downwards, from + to −)
+  const figDiodes = (d1, d2) => svgEl(K.svg(300, 190, Wr([[40, 90], [40, 34], [230, 34]]) + Wr([[40, 100], [40, 156], [230, 156]]) + Ln(120, 34, 120, 156) + Ln(230, 34, 230, 156) + Dt(120, 34) + Dt(120, 156)
+    + K.diode(120, 70, d1) + K.res(120, 118, "v", "R₁") + K.diode(230, 70, d2) + K.res(230, 118, "v", "R₂") + K.bat(40, 95, "U"), "İki paralel qol: hər birində diod və rezistor"));
+  // R1 in the main wire, then R2 | (diode + R3); ammeter in the main wire
+  const figSwap = d => svgEl(K.svg(330, 190, Wr([[40, 90], [40, 34], [250, 34]]) + Wr([[40, 100], [40, 156], [250, 156]]) + Ln(190, 34, 190, 156) + Ln(250, 34, 250, 156) + Dt(190, 34) + Dt(190, 156)
+    + K.res(140, 34, "h", "R₁") + K.meter(80, 34, "A") + K.res(190, 95, "v", "R₂") + K.diode(250, 70, d) + K.res(250, 118, "v", "R₃") + K.bat(40, 95, "U"), "R₁ əsas xəttdə; R₂ və (diod + R₃) paralel; ampermetr əsas xəttdə"));
+  // thermistor in series with R; voltmeter across R
+  const figTherm = () => svgEl(K.svg(310, 160, Wr([[40, 100], [40, 64], [270, 64], [270, 140], [40, 140], [40, 110]]) + K.res(110, 64, "h", "R") + K.therm(200, 64, "R_t") + Dt(80, 64) + Dt(140, 64)
+    + Wr([[80, 64], [80, 24], [98, 24]]) + Wr([[122, 24], [140, 24], [140, 64]]) + K.meter(110, 24, "V") + K.bat(40, 105, "U"), "R rezistoru və termistor ardıcıl; voltmetr R-ə paralel"));
+  // vacuum diode I–U characteristic: rising part, then saturation at Is (mA)
+  function figVak(Is, Us) {
+    const ox = 48, oy = 176, X = u => ox + u * 0.9, Y = i => oy - i * 10.5;
+    const xt = [50, 100, 150, 200, 250].map(u => [X(u), u]), yt = []; for (let i = 2; i <= 14; i += 2) yt.push([Y(i), i]);
+    let pts = []; for (let k = 0; k <= 20; k++) { const u = Us * k / 20; pts.push([X(u), Y(Is * (1 - (1 - u / Us) ** 2))]); } pts.push([X(250), Y(Is)]);
+    return svgEl(K.svg(300, 210, K.frame(ox, oy, 230, 148, xt, yt, "U, V", "I, mA") + Wr(pts, K.ACC, 2.5), "Vakuum diodunun volt-amper xarakteristikası: cərəyan artır, sonra doyur"));
+  }
+  // metal resistance versus temperature: straight line from R0 at 0 °C, marked point (t1, R1 = n·R0)
+  function figRt(R0, n) {
+    const ox = 50, oy = 172, X = t => ox + t * 0.22, Y = r => oy - r * 140 / (6 * R0), t1 = 200 * (n - 1), R1 = n * R0;
+    const xt = [200, 400, 600, 800, 1000].map(t => [X(t), t]), yt = []; for (let k = 1; k <= 6; k++) yt.push([Y(k * R0), k * R0]);
+    return svgEl(K.svg(300, 206, K.frame(ox, oy, 230, 140, xt, yt, "t, °C", "R, Ω") + Ln(X(0), Y(R0), X(1000), Y(6 * R0), K.ACC, 2.5) + `<circle cx="${K.f(X(0))}" cy="${K.f(Y(R0))}" r="3.5" fill="${K.ACC}"/><circle cx="${K.f(X(t1))}" cy="${K.f(Y(R1))}" r="3.5" fill="${K.ACC}"/>`,
+      "Metal naqilin müqavimətinin temperaturdan asılılıq qrafiki: düz xətt"));
+  }
+  // current in time: rises linearly, constant, falls linearly (t in min)
+  function figIt(I0, t1, t2, t3) {
+    const ox = 44, oy = 172, X = t => ox + t * 20, Y = i => oy - i * 22, T = t1 + t2 + t3;
+    const xt = []; for (let t = 1; t <= 12; t++) xt.push([X(t), t]); const yt = []; for (let i = 1; i <= 6; i++) yt.push([Y(i), i]);
+    const p = [[0, 0], [t1, I0], [t1 + t2, I0], [T, 0]].map(([t, i]) => K.f(X(t)) + "," + K.f(Y(i))).join(" ");
+    return svgEl(K.svg(300, 205, K.frame(ox, oy, 240, 132, xt, yt, "t, dəq", "I, A") + `<polygon points="${p}" fill="${K.SOFT}" stroke="${K.ACC}" stroke-width="2.5" stroke-linejoin="round"/>`, "Elektroliz zamanı cərəyan şiddətinin zamandan asılılıq qrafiki: artır, sabit qalır, azalır"));
+  }
+
+  // ---- plating cases whose answer and the wrong options are clean numbers ----
+  const PL2 = [...PL.ag, ...PL.cr].filter(c => c.t % 60 === 0 && c.h <= 120 && [c.h / 60, c.h * 1000, c.h / 1000, c.h * 10].every(x => nice(x, 4) && x > 0));
+  const METn = ["cu", "ag", "ni", "zn"];
+  // question 8: (U, R1, R2, R3) with every option a clean number (a random draw almost never hits one)
+  const SW8 = [];
+  for (const U of UUm) for (const r1 of RSm) for (const r2 of RSm) for (const r3 of RSm) {
+    const w = [U / (r1 + r2 * r3 / (r2 + r3)), U / (r1 + r2), U / (r1 + r2 + r3), U / (r1 + r3), U / r2, U / (r2 * r3 / (r2 + r3))];
+    if (w.every(x => ok2(x)) && new Set(w.slice(0, 5).map(x => x.toFixed(4))).size === 5 && new Set([w[0], w[1], w[2], w[3], w[5]].map(x => x.toFixed(4))).size === 5) SW8.push([U, r1, r2, r3]);
+  }
+
+  const IMT = { fenn: "fizika", vaxt: 60, suallar: [
+    // 1. two baths in parallel (Ohm) + Faraday
+    { tip: "qapali", birlesik: "fiz-om", gen: () => again(() => {
+      const r1 = pick(RSm), r2 = pick(RSm), mt = MET[pick(METn)], I = pick([1, 2, 3, 4, 5, 6, 8, 9, 10, 12]), tm = pick([2, 3, 5, 10, 15, 20, 30]), t = tm * 60;
+      if (r1 === r2) return null;
+      const I1 = I * r2 / (r1 + r2), m = mt.k * I1 * t;
+      const w = [mt.k * I * t, mt.k * I * r1 / (r1 + r2) * t, m / 60, mt.k * I / 2 * t]; if (![I1, m, ...w].every(x => ok2(x))) return null;
+      return mc(ae(m, w, U_("mq")), { svg: figBaths(), text: `İki hamamın hər birində ${mt.ad} duzunun məhlulu var, hamamlar paralel qoşulub. Elektrolitlərin müqaviməti R₁ = ${r1} Ω və R₂ = ${r2} Ω, elektrodların müqaviməti sıfırdır. İdeal ampermetr ${I} A göstərir və cərəyan ${tm} dəq keçir. Birinci hamamın katodunda neçə mq ${mt.ad} ayrılır? (${kTxt(mt)}.)`,
+        solution: `Paralel qollarda gərginlik eynidir: I₁R₁ = I₂R₂, I₁ + I₂ = ${I}. I₁ = I·R₂/(R₁+R₂) = ${I}·${r2}/${r1 + r2} = ${F(+I1.toFixed(4))} A. t = ${tm} dəq = ${t} s. m = k·I₁·t = ${F(mt.k)}·${F(+I1.toFixed(4))}·${t} = ${F(+m.toFixed(4))} mq. Tələlər: ümumi cərəyanla hesablamaq (${F(+w[0].toFixed(4))} mq), cərəyanı tərs bölmək (${F(+w[1].toFixed(4))} mq), dəqiqəni saniyəyə çevirməmək (${F(+w[2].toFixed(4))} mq), cərəyanı bərabər bölmək (${F(+w[3].toFixed(4))} mq).` });
+    }) },
+    // 2. plating thickness: m = kIt, m = ρSh, units
+    { tip: "qapali", gen: () => again(() => {
+      const c = pick(PL2), mt = MET[c.key], tm = c.t / 60, m = mt.k * c.I * c.t;
+      const o = ae(c.h, [c.h / 60, c.h * 1000, c.h / 1000, c.h * 10], U_("mkm")); if (!o) return null;
+      return mc(o, { svg: figPlate(), text: `Səthinin sahəsi ${c.S} sm² olan metal detal ${mt.ad} duzunun məhlulunda katoddur. Hamamdan ${c.I} A cərəyan ${tm} dəq keçir (${kTxt(mt)}, ρ = ${mt.rho} kq/m³). Detalın bütün səthində bərabər ${mt.ad} qatı çökür. Qatın qalınlığı neçə mkm olar?`,
+        solution: `t = ${tm} dəq = ${c.t} s. q = I·t = ${c.I * c.t} C. m = k·q = ${F(mt.k)}·${c.I * c.t} = ${F(m)} mq = ${F(m / 1000)} q. ρ = ${mt.rho} kq/m³ = ${F(mt.rho / 1000)} q/sm³. m = ρ·S·h → h = ${F(m / 1000)}/(${F(mt.rho / 1000)}·${c.S}) = ${F(c.h / 1e4)} sm = ${F(c.h)} mkm (1 sm = 10⁴ mkm). Tələlər: dəqiqəni saniyəyə çevirməmək (${F(+(c.h / 60).toFixed(4))}), mq-ı q götürmək (${F(c.h * 1000)}), ρ-nu çevirməmək (${F(+(c.h / 1000).toFixed(4))}), sm → mkm çevirməsində səhv (${F(c.h * 10)}).` });
+    }) },
+    // 3. vacuum diode: read the saturation current, count electrons
+    { tip: "qapali", gen: () => again(() => {
+      const Is = pick([4, 6, 8, 10, 12]), Us = pick([50, 100]), U = pick([100, 150, 200].filter(u => u > Us)), t = pick([2, 3, 4, 5, 10]), v = Is * t * 0.625;
+      const r = sci(v), ws = [sci(v * 1000), sci(v / 1000), sci(v / t), sci(v * U / Us)];
+      if (![r, ...ws].every(x => nice(x.m, 2))) return null;
+      return mc(ae(r.s, ws.map(x => x.s)), { svg: figVak(Is, Us), text: `Qrafikdə vakuum diodunun volt-amper xarakteristikası verilib (katodun temperaturu sabitdir). Anod gərginliyi ${U} V olanda katoddan ${t} s ərzində neçə elektron çıxır? Elektronun yükü e = 1,6·10⁻¹⁹ C. Katoddan çıxan bütün elektronlar anoda çatır.`,
+        solution: `${Us} V-dan sonra cərəyan artmır: doyma. ${U} V > ${Us} V olduğundan I = I_s = ${Is} mA = ${F(Is * 1e-3)} A (qrafikdən). Yük q = I·t = ${F(Is * 1e-3)}·${t} = ${F(+(Is * 1e-3 * t).toFixed(5))} C. N = q/e = ${F(+(Is * 1e-3 * t).toFixed(5))}/(1,6·10⁻¹⁹) = ${r.s}. Tələlər: mA-i A-ə çevirməmək (${ws[0].s}), çevirməni iki dəfə etmək (${ws[1].s}), vaxtı vurmamaq (${ws[2].s}), cərəyanı gərginliyə mütənasib götürmək (${ws[3].s}).` });
+    }) },
+    // 4. two parallel diode branches: only the conducting one works; Joule heat (fiz-elektrik-guc)
+    { tip: "qapali", birlesik: "fiz-elektrik-guc", gen: () => again(() => {
+      const r1 = pick(RSm), r2 = pick(RSm), U = pick(UUm), t = pick([10, 20, 30, 60]), d1 = pick(["d", "u"]), d2 = d1 === "d" ? "u" : "d";
+      const rf = d1 === "d" ? r1 : r2, ro = d1 === "d" ? r2 : r1; if (r1 === r2) return null;
+      const Q = U * U * t / rf, w = [U * U * t / ro, Q + U * U * t / ro, (U / rf) ** 2 * ro * t, U * U * t / (r1 + r2)];
+      if (![Q, ...w].every(x => ok2(x))) return null;
+      return mc(ae(Q, w, U_("J")), { svg: figDiodes(d1, d2), text: `Sxemdə R₁ = ${r1} Ω, R₂ = ${r2} Ω, mənbənin gərginliyi U = ${U} V. Diodlar idealdır (düz istiqamətdə müqavimət 0, əks istiqamətdə sonsuz). Dövrədə ${t} s ərzində neçə J istilik ayrılır?`,
+        solution: `Cərəyan + qütbdən çıxır, yuxarıdan aşağı gedir. Diodun üçbucağı ${d1 === "d" ? "birinci qolda aşağı, ikinci qolda yuxarı" : "birinci qolda yuxarı, ikinci qolda aşağı"} baxır: yalnız ${d1 === "d" ? "1-ci" : "2-ci"} qol açıqdır (R = ${rf} Ω), o biri qolda cərəyan yoxdur. Q = U²·t/R = ${U}²·${t}/${rf} = ${F(+Q.toFixed(4))} J. Tələlər: bağlı qolu götürmək (${F(+w[0].toFixed(4))} J), diodları nəzərə almayıb iki qolu toplamaq (${F(+w[1].toFixed(4))} J), cərəyanı bir qoldan, müqaviməti o biri qoldan götürmək (${F(+w[2].toFixed(4))} J), rezistorları ardıcıl saymaq (${F(+w[3].toFixed(4))} J).` });
+    }) },
+    // 5. lamp filament: R(t) graph is a straight line; current at a given temperature
+    { tip: "qapali", gen: () => again(() => {
+      const R0 = pick([10, 20, 25, 40, 50]), n = pick([2, 3, 4, 5]), t1 = 200 * (n - 1), R1 = n * R0, j = rnd(1, t1 / 100 - 1), t2 = 100 * j, R2 = R0 * (1 + 0.5 * j), U = pick(UUm);
+      if (t2 === t1) return null;
+      const I = U / R2, w = [U / R0, U / R1, U / (R1 * t2 / t1), U / (R2 - R0)]; if (![I, ...w].every(x => ok2(x))) return null;
+      return mc(ae(I, w, U_("A")), { svg: figRt(R0, n), text: `Qrafikdə volfram spiralının müqavimətinin temperaturdan asılılığı verilib. Lampa ${U} V gərginliyə qoşulub və spiralın temperaturu ${t2} °C-dir. Lampadan neçə amper cərəyan keçir?`,
+        solution: `Qrafik düz xəttdir. Qrafikdən R(0 °C) = ${R0} Ω, R(${t1} °C) = ${R1} Ω: hər 100 °C-də müqavimət ${F((R1 - R0) / t1 * 100)} Ω artır. ${t2} °C-də R = ${R0} + ${F((R1 - R0) / t1 * 100)}·${j} = ${F(R2)} Ω. I = U/R = ${U}/${F(R2)} = ${F(+I.toFixed(4))} A. Tələlər: soyuq müqavimətlə hesablamaq (${F(+w[0].toFixed(4))} A), qrafikdəki nöqtənin müqavimətini götürmək (${F(+w[1].toFixed(4))} A), R-i temperatura mütənasib saymaq (${F(+w[2].toFixed(4))} A), müqavimətin artımını götürmək (${F(+w[3].toFixed(4))} A).` });
+    }) },
+    // 6. thermistor in series with R, voltmeter across R: heated thermistor
+    { tip: "qapali", birlesik: "fiz-om", gen: () => again(() => {
+      const U = pick([6, 9, 12, 18, 24, 36]), R = pick([10, 20, 30, 40, 50, 60, 100]), Ra = pick([20, 30, 40, 60, 80, 100, 120, 150, 200, 300]), Rb = pick([5, 10, 15, 20, 30, 40, 50, 60]);
+      if (Rb >= Ra) return null;
+      const V1 = U * R / (R + Ra), V2 = U * R / (R + Rb), w = [V1, U - V2, V1 * Ra / Rb, U / 2];
+      if (![V2, ...w].every(x => ok2(x))) return null;
+      return mc(ae(V2, w, U_("V")), { svg: figTherm(), text: `Sxemdə U = ${U} V, R = ${R} Ω. Termistorun soyuq halda müqaviməti ${Ra} Ω-dur; qızdırılanda ${Rb} Ω oldu. Qızdırılandan sonra ideal voltmetr nəyi göstərir? (Mənbənin daxili müqaviməti sıfırdır.)`,
+        solution: `R və termistor ardıcıldır: I = U/(R + R_t) = ${U}/(${R} + ${Rb}) = ${F(+(U / (R + Rb)).toFixed(4))} A. Voltmetr R-dədir: U_R = I·R = ${F(+V2.toFixed(4))} V. Tələlər: soyuq halın göstərişi (${F(+w[0].toFixed(4))} V), termistordakı gərginlik (${F(+w[1].toFixed(4))} V), "müqavimət n dəfə azalır, gərginlik n dəfə artır" (${F(+w[2].toFixed(4))} V), gərginliyi yarı bölmək (${F(+w[3].toFixed(4))} V).` });
+    }) },
+    // 7. bath and rheostat in series: Ohm for the whole loop, then Faraday
+    { tip: "qapali", birlesik: "fiz-om", gen: () => again(() => {
+      const mt = MET[pick(METn)], U = pick(UUm), Rh = pick(RSm), R = pick(RSm), tm = pick([2, 3, 5, 10, 15, 20, 30]), t = tm * 60;
+      const I = U / (Rh + R), m = mt.k * I * t;
+      const w = [mt.k * U / R * t, mt.k * U / Rh * t, m / 60, mt.k * U / (Rh * R / (Rh + R)) * t]; if (![I, m, ...w].every(x => ok2(x))) return null;
+      return mc(ae(m, w, U_("mq")), { svg: figBathR(), text: `Mənbənin gərginliyi U = ${U} V, reostatın müqaviməti R = ${R} Ω, hamamdakı elektrolitin müqaviməti R_h = ${Rh} Ω (${mt.ad} duzunun məhlulu; mənbənin və naqillərin müqaviməti sıfırdır). Dövrə ${tm} dəq qapalı qalır. Katodda neçə mq ${mt.ad} ayrılır? (${kTxt(mt)}.)`,
+        solution: `Hamam və reostat ardıcıldır: R_üm = ${Rh} + ${R} = ${Rh + R} Ω. I = U/R_üm = ${U}/${Rh + R} = ${F(+I.toFixed(4))} A. t = ${tm} dəq = ${t} s. m = k·I·t = ${F(mt.k)}·${F(+I.toFixed(4))}·${t} = ${F(+m.toFixed(4))} mq. Tələlər: hamamı unutmaq (${F(+w[0].toFixed(4))} mq), reostatı unutmaq (${F(+w[1].toFixed(4))} mq), dəqiqəni çevirməmək (${F(+w[2].toFixed(4))} mq), ardıcıl əvəzinə paralel hesablamaq (${F(+w[3].toFixed(4))} mq).` });
+    }) },
+    // 8. switching the battery polarity in a circuit with an ideal diode
+    { tip: "qapali", gen: () => again(() => {
+      const [U, r1, r2, r3] = pick(SW8), d = pick(["d", "u"]);
+      const r23 = r2 * r3 / (r2 + r3), If = U / (r1 + r23), Ib = U / (r1 + r2), after = d === "d" ? Ib : If, same = d === "d" ? If : Ib;
+      const w = [same, U / (r1 + r2 + r3), U / (r1 + r3), d === "d" ? U / r2 : U / (r2 * r3 / (r2 + r3))]; if (![after, ...w].every(x => ok2(x))) return null;
+      return mc(ae(after, w, U_("A")), { svg: figSwap(d), text: `Sxemdə U = ${U} V, R₁ = ${r1} Ω, R₂ = ${r2} Ω, R₃ = ${r3} Ω; diod və ampermetr idealdır, mənbənin daxili müqaviməti sıfırdır. Mənbənin qütblərini dəyişdilər (+ və − yer dəyişdi). Ampermetrin yeni göstərişi nə qədərdir?`,
+        solution: `Sxemdə diodun üçbucağı ${d === "d" ? "aşağı baxır: indi cərəyan yuxarıdan aşağı axır və diod açıqdır. Qütblər dəyişəndən sonra cərəyan aşağıdan yuxarı axmalıdır, diod isə yalnız aşağı keçirir: bağlanır" : "yuxarı baxır: indi cərəyan yuxarıdan aşağı axır və diod bağlıdır. Qütblər dəyişəndən sonra cərəyan aşağıdan yuxarı axır: diod açılır"}. ${d === "d" ? `Diod bağlı: R₃ qolu işləmir, R = R₁ + R₂ = ${r1 + r2} Ω, I = ${U}/${r1 + r2} = ${F(+Ib.toFixed(4))} A.` : `Diod açıq (müqaviməti 0): R₂ və R₃ paraleldir, R = R₁ + R₂R₃/(R₂+R₃) = ${r1} + ${F(+r23.toFixed(4))} = ${F(+(r1 + r23).toFixed(4))} Ω, I = ${U}/${F(+(r1 + r23).toFixed(4))} = ${F(+If.toFixed(4))} A.`} Tələlər: qütbləri dəyişməyi nəzərə almamaq (${F(+same.toFixed(4))} A), hamısını ardıcıl saymaq (${F(+w[1].toFixed(4))} A), ${d === "d" ? "R₂ qolunu atmaq" : "R₂ qolunu atmaq (yalnız R₃ qolu)"} (${F(+w[2].toFixed(4))} A), R₁-i unutmaq (${F(+w[3].toFixed(4))} A).` });
+    }) },
+    // 9. current–time graph: charge is the area (trapezoid), then Faraday
+    { tip: "qapali", gen: () => again(() => {
+      const mt = MET[pick(METn)], I0 = rnd(1, 5), t1 = rnd(1, 3), t2 = rnd(2, 5), t3 = rnd(1, 3), T = t1 + t2 + t3, qm = I0 * 60 * (t1 / 2 + t2 + t3 / 2), m = mt.k * qm;
+      const w = [mt.k * I0 * T * 60, mt.k * I0 * t2 * 60, m / 60, mt.k * I0 * T * 60 / 2]; if (![m, ...w].every(x => ok2(x))) return null;
+      return mc(ae(m, w, U_("mq")), { svg: figIt(I0, t1, t2, t3), text: `Elektroliz zamanı cərəyan şiddəti qrafikdəki kimi dəyişir (${mt.ad} duzunun məhlulu, ${kTxt(mt)}). Bütün ${T} dəq ərzində katodda neçə mq ${mt.ad} ayrılır?`,
+        solution: `Yük qrafikin altındakı sahəyə bərabərdir (trapesiya): sabit hissə ${I0}·${t2} = ${I0 * t2} A·dəq, iki üçbucaq ${F(I0 * t1 / 2)} + ${F(I0 * t3 / 2)} = ${F(I0 * (t1 + t3) / 2)} A·dəq; cəmi ${F(qm / 60)} A·dəq = ${F(qm)} C (1 dəq = 60 s). m = k·q = ${F(mt.k)}·${F(qm)} = ${F(+m.toFixed(4))} mq. Tələlər: maksimal cərəyanı bütün müddətə vurmaq (${F(+w[0].toFixed(4))} mq), yalnız sabit hissəni götürmək (${F(+w[1].toFixed(4))} mq), dəqiqəni çevirməmək (${F(+w[2].toFixed(4))} mq), maksimumun yarısını bütün vaxta vurmaq (${F(+w[3].toFixed(4))} mq).` });
+    }) },
+    // 10. energy spent to deposit a given mass (A = U·q, q = m/k) (fiz-elektrik-guc)
+    { tip: "qapali", birlesik: "fiz-elektrik-guc", gen: () => again(() => {
+      const mt = MET[pick(METn)], q = pick([1000, 2000, 2500, 4000, 5000, 8000, 10000]), U = pick([2, 3, 4, 5, 6, 8, 10, 12]), m = mt.k * q / 1000, A = U * q / 1000;
+      const w = [U * m, U * m * mt.k, A / 1000, A * 1000]; if (![m, A, ...w].every(x => ok2(x, 4))) return null;
+      return mc(ae(A, w, U_("kJ")), { svg: figBathV(), text: `Elektroliz hamamına qoşulmuş ideal voltmetr elektroliz boyunca sabit ${U} V göstərir. Katodda ${F(+m.toFixed(4))} q ${mt.ad} ayrılıb (${kTxt(mt)}). Mənbənin hamamda gördüyü iş neçə kJ-dur?`,
+        solution: `m = ${F(+m.toFixed(4))} q = ${F(+(m * 1000).toFixed(4))} mq. m = k·q → q = m/k = ${F(+(m * 1000).toFixed(4))}/${F(mt.k)} = ${q} C. İş A = U·q = ${U}·${q} = ${U * q} J = ${F(A)} kJ. Tələlər: k-nı unutmaq (${F(+w[0].toFixed(4))}), k-nı bölmək əvəzinə vurmaq (${F(+w[1].toFixed(4))}), qramı mq-a çevirməmək (${F(+w[2].toFixed(4))}), J-u kJ-a çevirməmək (${F(+w[3].toFixed(4))}).` });
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -271,7 +458,7 @@
     game = Oyun.mount({
       key: "fiz-muhitlerde-cereyan", title: "Müxtəlif mühitlərdə cərəyan", fenn: "fizika", link: "dersler/fiz-muhitlerde-cereyan.html",
       format: "Cavab ədəddir, vahid yanında yazılıb (A, mq, mkm, Ω, W, °C ...). Onluq kəsr vergül və ya nöqtə ilə: 0,33. Seçimli suallarda variantı seç.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["faraday", "faraday", "qalin", "qaz", "diod", "diod", "temp", "temp", "heyat", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

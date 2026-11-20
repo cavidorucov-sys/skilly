@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Qaz və vakuum</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Yarımkeçirici, diod</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>R və temperatur</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -458,6 +459,102 @@ Qızdırılmış volfram lampa: işçi R ≈ 10 R₀, ilk cərəyan çoxdur</div
         <li>Mis məftilin 20 °C-də müqaviməti 200 Ω (α = 0,004 1/°C). 70 °C-də? <span class="ans">Δt = 50, R = 200·(1 + 0,2) = 240 Ω.</span></li>
         <li>Volfram teli R₀ = 40 Ω (α = 0,005 1/°C), 100 °C artıbsa, müqavimət? <span class="ans">R = 40·(1 + 0,5) = 60 Ω.</span></li>
         <li>NTC termistor qızdırılır, gərginlik sabitdir. Cərəyan necə dəyişir? <span class="ans">Müqavimət azalır, cərəyan artır.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (20 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: müxtəlif mühitlərdə cərəyan</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> RFO və lisey sınağında forma</h3>
+      <p>Olimpiadanın rayon turunda və lisey sınaqlarında suallar qapalıdır: <b>beş variant (A–E), biri düzdür</b>. Bu mövzuda "Faradey qanununun düsturunu yaz" kimi sual az olur. Adətən:</p>
+      <ul>
+        <li><b>Şəkil var</b> — elektroliz hamamlı sxem, diodlu sxem və ya qrafik (vakuum diodunun volt-amper xarakteristikası, <span class="m">R(t)</span>, <span class="m">I(t)</span>). Rəqəmlər bəzən şəkildə, bəzən mətndə olur.</li>
+        <li><b>Bir neçə addım</b> — əvvəl dövrənin cərəyanı (Om qanunu), sonra yük <span class="m">q = I·t</span>, sonra kütlə <span class="m">m = k·q</span>, sonra qatın qalınlığı.</li>
+        <li><b>Səhv variantlar tipik səhvlərin cavablarıdır</b>: dəqiqəni saniyəyə çevirməmək, mq ilə q-ı qarışdırmaq, cərəyanı qollar arasında səhv bölmək, diodu nəzərə almamaq.</li>
+        <li>Bəzən <b>iki mövzu birləşir</b>: paralel qoşulmuş hamamlarda cərəyan bölünür (Om qanunu), sonra Faradey qanunu; ya da diodlu dövrədə ayrılan istilik (Coul–Lens qanunu).</li>
+      </ul>
+      <p>Şərtdə idealizasiyalar yazılır: ideal diod (düz istiqamətdə müqavimət 0, əks istiqamətdə sonsuz), ideal ampermetr və voltmetr, mənbənin müqaviməti sıfırdır. Şərtdə k, ρ, e verilir; onları yadda saxlamaq lazım deyil.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — iki mövzu: paralel hamamlar</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · iki mövzu</span>
+        <div class="fig"><svg viewBox="0 0 310 200" role="img" aria-label="Paralel qoşulmuş iki elektroliz hamamı R₁ və R₂; ampermetr əsas xəttdə"><polyline points="40,95 40,30 110,30" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="40,105 40,186 270,186" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="110" y1="30" x2="110" y2="136" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="270" y1="62" x2="270" y2="186" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><polyline points="110,62 175,62" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="205,62 270,62" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="164" y="80" width="52" height="22" fill="var(--accent-soft,#f3dede)"/><polyline points="164,70 164,102 216,102 216,70" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="175" y1="62" x2="175" y2="96" stroke="var(--ink,#17171a)" stroke-width="5" stroke-linecap="round"/><line x1="205" y1="62" x2="205" y2="96" stroke="var(--ink,#17171a)" stroke-width="5" stroke-linecap="round"/><text x="175" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="205" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">−</text><text x="190" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><polyline points="110,136 175,136" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="205,136 270,136" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="164" y="154" width="52" height="22" fill="var(--accent-soft,#f3dede)"/><polyline points="164,144 164,176 216,176 216,144" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="175" y1="136" x2="175" y2="170" stroke="var(--ink,#17171a)" stroke-width="5" stroke-linecap="round"/><line x1="205" y1="136" x2="205" y2="170" stroke="var(--ink,#17171a)" stroke-width="5" stroke-linecap="round"/><text x="175" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="205" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">−</text><text x="190" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><circle cx="110" cy="62" r="3.2" fill="var(--ink,#17171a)"/><circle cx="270" cy="136" r="3.2" fill="var(--ink,#17171a)"/><circle cx="75" cy="30" r="12" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="75" y="35" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">A</text><line x1="27" y1="95" x2="53" y2="95" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="33" y1="105" x2="47" y2="105" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="23" y="92" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="60" y="104" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">U</text></svg></div>
+        <p>İki hamamın hər birində mis duzunun məhlulu var, hamamlar paralel qoşulub. Elektrolitlərin müqaviməti R₁ = 3 Ω və R₂ = 6 Ω, elektrodların müqaviməti sıfırdır. İdeal ampermetr 6 A göstərir və cərəyan 10 dəq keçir. Birinci hamamın katodunda neçə mq mis ayrılır? (mis üçün k = 0,33 mq/C.)</p>
+        <ol class="imt-opts"><li>13,2 mq</li><li>396 mq</li><li>594 mq</li><li>792 mq</li><li>1188 mq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Paralel qollarda gərginlik eynidir:  I₁R₁ = I₂R₂,  I₁ + I₂ = 6 A
+I₁ = I·R₂/(R₁+R₂) = 6·6/9 = 4 A
+t = 10 dəq = 600 s
+m = k·I₁·t = 0,33·4·600 = 792 mq
+Cavab: D) 792 mq</div>
+      <ul>
+        <li><b>A) 13,2 mq</b> — dəqiqəni saniyəyə çevirməmək (792/60).</li>
+        <li><b>B) 396 mq</b> — cərəyanı tərs bölmək: I₁ = 2 A götürülüb. Kiçik müqavimətdən (R₁ = 3 Ω) <b>böyük</b> cərəyan keçir.</li>
+        <li><b>C) 594 mq</b> — cərəyanı bərabər bölmək (3 A + 3 A): qolların müqaviməti fərqlidir.</li>
+        <li><b>E) 1188 mq</b> — ampermetrin ümumi cərəyanı ilə hesablamaq: o iki hamamdan keçənin cəmidir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — diod və qütblərin dəyişməsi</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sxem</span>
+        <div class="fig"><svg viewBox="0 0 330 190" role="img" aria-label="R₁ əsas xəttdə; R₂ və (diod + R₃) paralel; ampermetr əsas xəttdə"><polyline points="40,90 40,34 250,34" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="40,100 40,156 250,156" fill="none" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="190" y1="34" x2="190" y2="156" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="250" y1="34" x2="250" y2="156" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><circle cx="190" cy="34" r="3.2" fill="var(--ink,#17171a)"/><circle cx="190" cy="156" r="3.2" fill="var(--ink,#17171a)"/><rect x="122" y="27" width="36" height="14" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="140" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₁</text><circle cx="80" cy="34" r="12" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="80" y="39" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">A</text><rect x="183" y="79" width="14" height="32" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="202" y="100" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₂</text><g transform="translate(250 70) rotate(90)"><polygon points="-9,-9 -9,9 9,0" fill="var(--ink,#17171a)"/><line x1="9" y1="-9" x2="9" y2="9" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/></g><rect x="243" y="102" width="14" height="32" fill="var(--paper,#fff)" stroke="var(--ink,#17171a)" stroke-width="2"/><text x="262" y="123" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">R₃</text><line x1="27" y1="90" x2="53" y2="90" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><line x1="33" y1="100" x2="47" y2="100" stroke="var(--ink,#17171a)" stroke-width="3" stroke-linecap="round"/><text x="23" y="87" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">+</text><text x="60" y="99" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">U</text></svg></div>
+        <p>Sxemdə U = 48 V, R₁ = 4 Ω, R₂ = 2 Ω, R₃ = 4 Ω; diod və ampermetr idealdır, mənbənin daxili müqaviməti sıfırdır. Mənbənin qütblərini dəyişdilər (+ və − yer dəyişdi). Ampermetrin yeni göstərişi nə qədərdir?</p>
+        <ol class="imt-opts"><li>4,8 A</li><li>6 A</li><li>8 A</li><li>9 A</li><li>24 A</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Əvvəl: + yuxarıdadır, cərəyan yuxarıdan aşağı axır, diod (üçbucaq aşağı) açıqdır.
+Qütblər dəyişəndən sonra cərəyan aşağıdan yuxarı axır: diod bağlanır,
+R₃ qolu işləmir.
+R = R₁ + R₂ = 4 + 2 = 6 Ω
+I = U/R = 48/6 = 8 A
+Cavab: C) 8 A</div>
+      <ul>
+        <li><b>D) 9 A</b> — qütblərin dəyişməsini nəzərə almamaq: bu, əvvəlki cərəyandır (R₂ və R₃ paralel, 4 + 4/3 Ω).</li>
+        <li><b>A) 4,8 A</b> — diodu nəzərə almayıb hamısını ardıcıl saymaq: 48/10.</li>
+        <li><b>B) 6 A</b> — R₂ qolunu atmaq: 48/(R₁ + R₃).</li>
+        <li><b>E) 24 A</b> — R₁-i unutmaq: 48/R₂.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — qrafik: cərəyan dəyişir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrafik</span>
+        <div class="fig"><svg viewBox="0 0 300 205" role="img" aria-label="Elektroliz zamanı cərəyan şiddətinin zamandan asılılıq qrafiki: artır, sabit qalır, azalır"><line x1="64" y1="172" x2="64" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="64" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="84" y1="172" x2="84" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="84" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="104" y1="172" x2="104" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="104" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="124" y1="172" x2="124" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="124" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="144" y1="172" x2="144" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="144" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="164" y1="172" x2="164" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="164" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="184" y1="172" x2="184" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="184" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">7</text><line x1="204" y1="172" x2="204" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="204" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">8</text><line x1="224" y1="172" x2="224" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="224" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">9</text><line x1="244" y1="172" x2="244" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="244" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">10</text><line x1="264" y1="172" x2="264" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="264" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">11</text><line x1="284" y1="172" x2="284" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="284" y="187" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">12</text><line x1="44" y1="150" x2="284" y2="150" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="154" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">1</text><line x1="44" y1="128" x2="284" y2="128" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="132" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">2</text><line x1="44" y1="106" x2="284" y2="106" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="110" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">3</text><line x1="44" y1="84" x2="284" y2="84" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="88" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">4</text><line x1="44" y1="62" x2="284" y2="62" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="66" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">5</text><line x1="44" y1="40" x2="284" y2="40" stroke="var(--muted,#6b6b73)" stroke-width="0.6" stroke-linecap="round"/><text x="38" y="44" text-anchor="end" font-size="11" font-weight="700" fill="var(--muted,#6b6b73)" font-family="inherit">6</text><line x1="44" y1="172" x2="292" y2="172" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><line x1="44" y1="172" x2="44" y2="32" stroke="var(--ink,#17171a)" stroke-width="2" stroke-linecap="round"/><text x="292" y="202" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">t, dəq</text><text x="50" y="28" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink,#17171a)" font-family="inherit">I, A</text><polygon points="44,172 84,84 144,84 184,172" fill="var(--accent-soft,#f3dede)" stroke="var(--accent,#a32d2d)" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+        <p>Elektroliz zamanı cərəyan şiddəti qrafikdəki kimi dəyişir (sink duzunun məhlulu, sink üçün k = 0,34 mq/C). Bütün 7 dəq ərzində katodda neçə mq sink ayrılır?</p>
+        <ol class="imt-opts"><li>6,8 mq</li><li>244,8 mq</li><li>408 mq</li><li>571,2 mq</li><li>285,6 mq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Dəyişən cərəyanda yük qrafikin altındakı sahəyə bərabərdir (trapesiya).
+Sabit hissə: 4·3 = 12 A·dəq
+İki üçbucaq: 4·2/2 + 4·2/2 = 4 + 4 = 8 A·dəq
+Cəmi 20 A·dəq = 20·60 = 1200 C
+m = k·q = 0,34·1200 = 408 mq
+Cavab: C) 408 mq</div>
+      <ul>
+        <li><b>A) 6,8 mq</b> — dəqiqəni saniyəyə çevirməmək.</li>
+        <li><b>B) 244,8 mq</b> — yalnız sabit hissəni götürmək (4·3 dəq).</li>
+        <li><b>D) 571,2 mq</b> — maksimal cərəyanı bütün 7 dəqiqəyə vurmaq.</li>
+        <li><b>E) 285,6 mq</b> — maksimumun yarısını bütün vaxta vurmaq: qrafik üçbucaq deyil, trapesiyadır.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Sınaqların tipik tələləri</b><ul>
+        <li><b>Vaxt saniyə ilə.</b> Sabit cərəyanda I amperlə, t saniyə ilə götürüldükdə <span class="m">q = I·t</span> kulonla alınır: 1 dəq = 60 s. Qrafikdə vaxt dəqiqə ilə ola bilər.</li>
+        <li><b>Vahidlər:</b> k mq/C-dir (cavab mq-da çıxır); 1 q = 1000 mq; 1 q/sm³ = 1000 kq/m³; 1 sm = 10⁴ mkm; mA-i A-ə çevir.</li>
+        <li><b>Paralel hamamlarda cərəyan bölünür</b> (kiçik müqavimətdən böyük cərəyan), ardıcıl hamamlarda yük eynidir.</li>
+        <li><b>İdeal diod:</b> üçbucaq cərəyanın keçdiyi tərəfə baxır; əks qoşulmuş qol dövrədə yoxdur. Qütblər dəyişəndə açıq və bağlı diodlar yer dəyişir.</li>
+        <li><b>Vakuum diodunun qrafikində</b> düz hissə doyma cərəyanıdır: gərginlik artsa da cərəyan artmır. Onu gərginliyə mütənasib götürmə.</li>
+        <li><b>Metal naqilin <span class="m">R(t)</span> qrafiki düz xəttdir, amma sıfırdan keçmir:</b> R temperatura mütənasib deyil, artım Δt-yə mütənasibdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Faradey:   m = k·I·t,   q = I·t (t saniyə ilə),   I–t qrafikində q = sahə
+Qat:       m = ρ·S·h
+Vakuum:    doyma cərəyanı I_s,   elektronların sayı N = I·t/e
+Metal:     R = R₀(1 + α·Δt)   (qrafik düz xətt)
+İdeal diod: ya açıq (R = 0), ya da bağlı (qol yoxdur)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Mis üçün k = 0,33 mq/C. 2 A cərəyan 5 dəq keçir. Katodda neçə mq mis ayrılır? <span class="ans">t = 300 s, q = 2·300 = 600 C, m = 0,33·600 = 198 mq.</span></li>
+        <li>Metal naqilin müqaviməti 0 °C-də 20 Ω, 400 °C-də 60 Ω (qrafik düz xətt). 200 °C-də müqavimət? <span class="ans">Hər 100 °C-də (60 − 20)/4 = 10 Ω artır; 20 + 20 = 40 Ω.</span></li>
+        <li>U = 12 V mənbəyə iki paralel qol qoşulub: birində diod və 4 Ω (düz istiqamətdə), digərində diod və 6 Ω (əks istiqamətdə). Mənbədən cərəyan? <span class="ans">Yalnız düz qol işləyir: 12/4 = 3 A.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

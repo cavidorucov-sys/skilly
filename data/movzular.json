@@ -1528,7 +1528,8 @@
     "fizika:Elektrik yükü, Kulon qanunu, elektrik sahəsi"
    ],
    "hefte": "2026-12-28",
-   "ders": "dersler/fiz-muhitlerde-cereyan.html"
+   "ders": "dersler/fiz-muhitlerde-cereyan.html",
+   "imt": true
   },
   {
    "bolme": "Atom və nüvə fizikası",
