@@ -145,6 +145,94 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (forgetting ±, the negative t, the extraneous root, not isolating the root, ...).
+  const { ae, again } = Oyun;
+  const D = Oyun.num;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const SQ = [1, 4, 9, 16, 25, 36];
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. biquadratic, both t positive: difference between the biggest and the smallest root
+    { tip: "qapali", gen: () => again(() => {
+      const t1 = pick(SQ), t2 = pick(SQ); if (t1 >= t2) return null;
+      const r1 = Math.sqrt(t1), r2 = Math.sqrt(t2), R = 2 * r2, eq = poly([[1, "x⁴"], [-(t1 + t2), "x²"], [t1 * t2, ""]]) + " = 0";
+      return mc(ae(R, [r2, 2 * t2, t2 - t1, r2 - r1]), { text: `${eq} tənliyinin ən böyük kökü ilə ən kiçik kökünün fərqini tapın.`,
+        solution: `t = x²: ${poly([[1, "t²"], [-(t1 + t2), "t"], [t1 * t2, ""]])} = 0 → t = ${t1}, t = ${t2}. x² = ${t2} → x = ±${r2}; x² = ${t1} → x = ±${r1}. Ən böyük kök ${r2}, ən kiçik −${r2}; fərq ${r2} − (−${r2}) = ${R}. Tələlər: fərq əvəzinə ən böyük kökü yazmaq (${r2}), t-ni kökə çevirməmək (${2 * t2}), t-lərin fərqi (${t2 - t1}), mənfi kökləri unutmaq — ən kiçik kök ${r1} sayılır, fərq ${r2 - r1}.` });
+    }) },
+    // 2. biquadratic, one negative t: sum of the squares of the real roots
+    { tip: "qapali", gen: () => again(() => {
+      const t1 = rnd(2, 20), n = rnd(1, 12), t2 = -n, eq = poly([[1, "x⁴"], [-(t1 + t2), "x²"], [t1 * t2, ""]]) + " = 0";
+      return mc(ae(2 * t1, [t1, t1 + t2, 2 * (t1 + t2), 2 * (t1 + n)]), { text: `${eq} tənliyinin həqiqi köklərinin kvadratlarının cəmini tapın.`,
+        solution: `t = x²: ${poly([[1, "t²"], [-(t1 + t2), "t"], [t1 * t2, ""]])} = 0 → t = ${t1}, t = ${S(t2)}. t = ${S(t2)} < 0 — x² mənfi ola bilməz, kök yoxdur. x² = ${t1} → x = ±√${t1}. Kvadratların cəmi: ${t1} + ${t1} = ${2 * t1}. Tələlər: yalnız bir kökü saymaq (${t1}), mənfi t-ni də saymaq (${S(t1 + t2)}, ${S(2 * (t1 + t2))}).` });
+    }) },
+    // 3. new variable t = x² + px: sum of the real roots
+    { tip: "qapali", gen: () => again(() => {
+      const p = pick([-1, 1]) * rnd(1, 4), m1 = rnd(-4, 4); if (2 * m1 + p === 0) return null;
+      const t1 = m1 * (m1 + p), none = Math.random() < .5; let t2;
+      if (none) t2 = -(Math.floor(p * p / 4) + rnd(1, 4)); else { const m2 = rnd(-4, 4); if (2 * m2 + p === 0) return null; t2 = m2 * (m2 + p); }
+      if (t1 === t2) return null;
+      const R = none ? -p : -2 * p, u = poly([[1, "x²"], [p, "x"]]), eq = poly([[1, `(${u})²`], [-(t1 + t2), `(${u})`], [t1 * t2, ""]]) + " = 0";
+      const w = [-p, -2 * p, p, 2 * p, t1 + t2].filter(v => v !== R); if (new Set(w).size < 4) return null;
+      const part = t => { const d = p * p + 4 * t; return d < 0 ? `${poly([[1, "x²"], [p, "x"], [-t, ""]])} = 0: D < 0, kök yoxdur` : `${poly([[1, "x²"], [p, "x"], [-t, ""]])} = 0: köklərin cəmi ${S(-p)}`; };
+      return mc(ae(R, w.slice(0, 4)), { text: `${eq} tənliyinin bütün həqiqi köklərinin cəmini tapın.`,
+        solution: `t = ${u}: ${poly([[1, "t²"], [-(t1 + t2), "t"], [t1 * t2, ""]])} = 0 → t = ${S(t1)}, t = ${S(t2)}. t = ${S(t1)}: ${part(t1)}. t = ${S(t2)}: ${part(t2)}. Cəm: ${S(R)}. Tələlər: ${none ? "kökü olmayan tənliyi də saymaq, " : "yalnız bir tənliyin köklərini saymaq, "}Viyet düsturunda işarəni səhv yazmaq (${S(-R)}), t-lərin cəmini (${S(t1 + t2)}) cavab yazmaq.` });
+    }) },
+    // 4. √(ax + b) ± k = m: isolate the root first
+    { tip: "qapali", gen: () => again(() => {
+      const a = pick([2, 3, 4, 5]), x = rnd(1, 12), c = rnd(2, 7), k = rnd(1, 4), s = pick([1, -1]); if (s < 0 && c <= k) return null;
+      const m = c + s * k, b = c * c - a * x, root = sq(poly([[a, "x"], [b, ""]]));
+      const ws = [(m * m - k * k - b) / a, ((m + s * k) ** 2 - b) / a, (c - b) / a, (c * c + b) / a];
+      if (![x, ...ws].every(Number.isInteger)) return null;
+      return mc(ae(x, ws), { text: `${root} ${s > 0 ? "+" : "−"} ${k} = ${m} tənliyinin kökünü tapın.`,
+        solution: `Əvvəl kökü təkləyirik: ${root} = ${m} ${s > 0 ? "−" : "+"} ${k} = ${c}. Kvadrata yüksəldirik: ${poly([[a, "x"], [b, ""]])} = ${c * c} → ${poly([[a, "x"]])} = ${S(c * c - b)} → x = ${x}. Yoxlama: ${sq(String(c * c))} ${s > 0 ? "+" : "−"} ${k} = ${m} ✓. Tələlər: kökü təkləmədən kvadrata yüksəltmək və qarışıq həddi unutmaq — ${poly([[a, "x"], [b, ""]])} + ${k * k} = ${m * m} (${S(ws[0])}); təkləyərkən ${k} ədədinin işarəsini səhv keçirmək (${S(ws[1])}); sağ tərəfi kvadrata yüksəltməmək, yəni ${poly([[a, "x"], [b, ""]])} = ${c} götürmək (${S(ws[2])}).` });
+    }) },
+    // 5. x + p√x + q = 0, t = √x: the negative t is dropped
+    { tip: "qapali", gen: () => again(() => {
+      const t1 = rnd(1, 7), n = rnd(1, 7); if (t1 === n) return null; const t2 = -n;
+      const eq = poly([[1, "x"], [-(t1 + t2), "√x"], [t1 * t2, ""]]) + " = 0";
+      return mc(ae(t1 * t1, [t1, t2 * t2, t1 * t1 + t2 * t2, (t1 + t2) ** 2]), { text: `${eq} tənliyinin kökünü tapın.`,
+        solution: `t = √x, t ≥ 0, x = t²: ${poly([[1, "t²"], [-(t1 + t2), "t"], [t1 * t2, ""]])} = 0 → t = ${t1}, t = ${S(t2)}. t = ${S(t2)} < 0 — kvadrat kök mənfi ola bilməz, atılır. √x = ${t1} → x = ${t1 * t1}. Tələlər: t-ni x-ə qaytarmamaq (${t1}), mənfi t-ni də kvadrata yüksəltmək (${n * n}, ${t1 * t1 + n * n}).` });
+    }) },
+    // 6. √(ax + b) = x: the extraneous root, sum of the roots
+    { tip: "qapali", gen: () => again(() => {
+      const r1 = rnd(2, 9), n = rnd(1, 6); if (r1 === n) return null; const r2 = -n, a = r1 + r2, b = -r1 * r2; if (!a) return null;
+      const eq = `${sq(poly([[a, "x"], [b, ""]]))} = x`;
+      return mc(ae(r1, [a, r2, r1 * r2, n]), { text: `${eq} tənliyinin köklərinin cəmini tapın.`,
+        solution: `Şərt: x ≥ 0. Kvadrata yüksəldirik: ${poly([[a, "x"], [b, ""]])} = x² → ${poly([[1, "x²"], [-a, "x"], [-b, ""]])} = 0 → x = ${r1}, x = ${S(r2)}. x = ${S(r2)} < 0 — atılır (kənar kök). Tənliyin yalnız bir kökü var: ${r1}; cəm ${r1}. Tələlər: hər iki kökü götürmək (cəm ${S(a)}), atılan kökü cavab yazmaq (${S(r2)}), kökləri vurmaq (${S(r1 * r2)}).` });
+    }) },
+    // 7. coded: sum of the moduli of the real roots of a biquadratic
+    { tip: "kod", gen: () => again(() => {
+      const t1 = pick(SQ), t2 = pick([...SQ, -1, -4, -9, -16]); if (t1 === t2) return null;
+      const ts = [t1, t2].filter(t => t > 0), R = ts.reduce((s, t) => s + 2 * Math.sqrt(t), 0), eq = poly([[1, "x⁴"], [-(t1 + t2), "x²"], [t1 * t2, ""]]) + " = 0";
+      return { text: `${eq} tənliyinin bütün həqiqi köklərinin modullarının cəmini tapın.`, answer: R, show: String(R), tol: 1e-6,
+        solution: `t = x²: ${poly([[1, "t²"], [-(t1 + t2), "t"], [t1 * t2, ""]])} = 0 → t = ${S(t1)}, t = ${S(t2)}. ` + ts.map(t => `x² = ${t} → x = ±${Math.sqrt(t)}`).join("; ") + (t2 < 0 ? `; t = ${S(t2)} < 0 — kök yoxdur` : "") + `. Modullar cəmi: ${ts.map(t => `2 · ${Math.sqrt(t)}`).join(" + ")} = ${R}.` };
+    }) },
+    // 8. coded: √(x² + px + q) = x + r — the x² terms cancel
+    { tip: "kod", gen: () => again(() => {
+      const r = rnd(1, 5), x = rnd(1, 9), p = rnd(-3, 8); if (p === 2 * r) return null;
+      const q = r * r - (p - 2 * r) * x, rhs = poly([[1, "x"], [r, ""]]);
+      return { text: `${sq(poly([[1, "x²"], [p, "x"], [q, ""]]))} = ${rhs} tənliyinin kökünü tapın.`, answer: x, show: String(x), tol: 1e-6,
+        solution: `Şərt: ${rhs} ≥ 0. Kvadrata yüksəldirik: ${poly([[1, "x²"], [p, "x"], [q, ""]])} = ${poly([[1, "x²"], [2 * r, "x"], [r * r, ""]])}. x² ixtisar olunur: ${poly([[p - 2 * r, "x"]])} = ${S(r * r - q)}${p - 2 * r === 1 ? "" : " → x = " + x}. Yoxlama: ${x} + ${r} = ${x + r} ≥ 0 ✓, ${sq(String((x + r) ** 2))} = ${x + r} ✓.` };
+    }) },
+    // 9. coded: perimeter from diagonal + area, or area from diagonal + perimeter
+    { tip: "kod", gen: () => again(() => {
+      const [p, q, c] = pick([...TRIPLES, [20, 21, 29], [16, 30, 34], [18, 24, 30], [9, 40, 41], [21, 28, 35], [24, 32, 40], [12, 35, 37], [11, 60, 61]]), P = 2 * (p + q);
+      if (Math.random() < .5) return { text: `Düzbucaqlının diaqonalı ${c} sm, sahəsi ${p * q} sm²-dir. Düzbucaqlının perimetrini (sm) tapın.`, answer: P, show: String(P), tol: 1e-6, unit: "sm",
+        solution: `Tərəflər x və y: x² + y² = ${c * c}, xy = ${p * q}. (x + y)² = ${c * c} + 2 · ${p * q} = ${c * c + 2 * p * q} → x + y = ${p + q}. Perimetr 2 · ${p + q} = ${P} sm. (Yoxlama: tərəflər ${p} və ${q}.)` };
+      return { text: `Düzbucaqlının diaqonalı ${c} sm, perimetri ${P} sm-dir. Düzbucaqlının sahəsini (sm²) tapın.`, answer: p * q, show: String(p * q), tol: 1e-6, unit: "sm²",
+        solution: `Tərəflər x və y: x² + y² = ${c * c}, x + y = ${p + q}. (x + y)² = x² + y² + 2xy → ${(p + q) ** 2} = ${c * c} + 2xy → xy = ${p * q}. Sahə ${p * q} sm². (Yoxlama: tərəflər ${p} və ${q}.)` };
+    }) },
+    // 10. written: √(ax + b) = x − c with an extraneous root
+    { tip: "yazili", gen: () => again(() => {
+      const c = rnd(1, 6), g = c + rnd(1, 8), s = c - rnd(1, 6), a = g + s - 2 * c; if (a < 1 || a > 5 || g === s) return null;
+      const b = c * c - g * s, rhs = poly([[1, "x"], [-c, ""]]), rad2 = poly([[a, "x"], [b, ""]]);
+      return { text: `${sq(rad2)} = ${rhs} tənliyini həll edin.`, answer: g, show: String(g), tol: 1e-6,
+        solution: `1) Şərt: ${rhs} ≥ 0, yəni x ≥ ${c}. 2) Kvadrata yüksəldirik: ${rad2} = ${poly([[1, "x²"], [-2 * c, "x"], [c * c, ""]])} → ${poly([[1, "x²"], [-(a + 2 * c), "x"], [c * c - b, ""]])} = 0. 3) x = ${S(s)} və x = ${g}. 4) x = ${S(s)} < ${c} — şərti ödəmir, kənar kökdür (sağ tərəf ${S(s - c)} < 0). x = ${g}: ${sq(String((g - c) ** 2))} = ${g - c}, ${g} − ${c} = ${g - c} ✓. Cavab: ${g}. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: şərt, kvadrata yüksəltmə və kökün yoxlanması görünməlidir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -154,7 +242,7 @@
     game = Oyun.mount({
       key: "kvadrat-tenliye-getirilen", title: "Kvadrat tənliyə gətirilən və irrasional tənliklər", fenn: "riyaziyyat", link: "dersler/kvadrat-tenliye-getirilen.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kök √5 (və ya 2.24). Kök yoxdursa və köklərin sayı soruşulursa — 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["bikv", "bikv", "evez", "evez", "kok1", "kok1", "kok2", "kok2", "hesab", "hesab"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
