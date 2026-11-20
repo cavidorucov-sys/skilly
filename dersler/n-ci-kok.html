@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rasional üst</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Sadələşdirmə</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Məxrəcdə kök</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -233,6 +234,89 @@ Sonda sadələşdir.</div></div>
         <li><span class="m">10/√5 = ?</span> <span class="ans">10√5/5 = 2√5.</span></li>
         <li><span class="m">2/(√3 − 1) = ?</span> <span class="ans">2(√3 + 1)/(3 − 1) = √3 + 1.</span></li>
         <li><span class="m">6/(√5 + √2) = ?</span> <span class="ans">6(√5 − √2)/3 = 2√5 − 2√2.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: n-ci dərəcədən kök, rasional üst</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Bu mövzu buraxılış imtahanında demək olar ki, hər il var və üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: kökün işarəsi, mənfi üst, qoşmanın işarəsi və s. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Sual elə qurulur ki, cavab müsbət ədəd olsun.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Bu mövzudan tipik suallar: kökün qiyməti (işarəyə fikir ver), rasional üstlü qüvvət, kökləri sadələşdirmək və toplamaq, məxrəcin irrasionallıqdan azad edilməsi, kökləri müqayisə etmək, ifadənin təyin oblastı (DMQ).</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">8²ᐟ³ · 9⁻³ᐟ²</span> ifadəsinin qiymətini tapın.</p>
+        <ol class="imt-opts"><li>4/3</li><li>−108</li><li>4/27</li><li>27/4</li><li>108</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">8²ᐟ³ = (2³)²ᐟ³ = 2² = 4
+9⁻³ᐟ² = (3²)⁻³ᐟ² = 3⁻³ = 1/27
+4 · 1/27 = 4/27
+Cavab: C) 4/27</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 4/3</b> — ikinci qüvvətdə üstün surətini (3) buraxıb yalnız kökü götürmək: <span class="m">9⁻³ᐟ²</span> əvəzinə <span class="m">9⁻¹ᐟ² = 1/3</span>, hasil <span class="m">4 · 1/3</span>.</li>
+        <li><b>B) −108</b> — mənfi üstü mənfi ədəd saymaq: <span class="m">9⁻³ᐟ² = −27</span>, hasil <span class="m">4 · (−27)</span>.</li>
+        <li><b>D) 27/4</b> — kəsri çevirmək: <span class="m">4</span> və <span class="m">27</span> yerini dəyişir (surət və məxrəc qarışıb).</li>
+        <li><b>E) 108</b> — mənfi işarəni nəzərə almamaq: <span class="m">9³ᐟ² = 27</span>, hasil <span class="m">4 · 27</span>. Mənfi üst "çevir" deməkdir, nə mənfi ədəd, nə də eyni qüvvət.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>Hesablayın: <span class="m">1/(1 + √2) + 1/(√2 + √3) + … + 1/(√8 + 3)</span></p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Hər həddi qoşma ilə genişləndiririk:
+1/(√k + √(k+1)) = (√(k+1) − √k)/((k+1) − k) = √(k+1) − √k
+
+Cəm = (√2 − 1) + (√3 − √2) + … + (3 − √8)
+Aralıq hədlər qarşılıqlı silinir: 3 − 1 = 2
+Cavab: 2</div>
+      <p>Kod sahəsinə yalnız <b>2</b> yazılır. Hər həddi ayrıca hesablayıb toplamaq (<span class="m">0,41 + 0,32 + …</span>) uzundur və səhvə aparır; bu nümunədə aralıq hədlər qarşılıqlı ixtisar olunur. Tələ: qoşma ilə vurandan sonra məxrəcin <span class="m">(k+1) − k = 1</span> olduğunu yoxlamamaq.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">x = 1/(√5 − √3)</span> və <span class="m">y = 1/(√5 + √3)</span> olduqda <span class="m">x² + y²</span> ifadəsinin qiymətini tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Məxrəcləri qoşma ilə azad edirik:
+   x = (√5 + √3)/((√5)² − (√3)²) = (√5 + √3)/2
+   y = (√5 − √3)/((√5)² − (√3)²) = (√5 − √3)/2
+2) Kvadratlara qaldırırıq:
+   (√5 + √3)² = 5 + 2√15 + 3 = 8 + 2√15
+   (√5 − √3)² = 5 − 2√15 + 3 = 8 − 2√15
+3) x² + y² = ((8 + 2√15) + (8 − 2√15))/4 = 16/4 = 4
+   (2√15 hədləri qarşılıqlı silinir.)
+Cavab: 4</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>məxrəcin azad edilməsi</b> (1-ci addım), <b>kvadratın düzgün açılması</b> (2-ci addım), <b>hesablama və cavab</b> (3-cü addım). Addımlar göstərilmədən yalnız "4" yazılsa, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Cüt dərəcəli kök mənfi olmur.</b> <span class="m">∜((−3)⁴) = |−3| = 3</span>, <span class="m">−3</span> yox. Tək dərəcəlidə işarə qalır: <span class="m">∛((−3)³) = −3</span>.</li>
+        <li><b>Mənfi üst.</b> <span class="m">16⁻³ᐟ⁴ = 1/8</span>: mənfi ədəd yox, çevrilmiş kəsrdir. Üstün surəti qüvvətdir, məxrəci kökdür.</li>
+        <li><b>Oxşar köklər.</b> Yalnız əmsallar toplanır: <span class="m">2√5 + 3√5 = 5√5</span>. <span class="m">√2 + √3 ≠ √5</span>.</li>
+        <li><b>Qoşma.</b> <span class="m">√m − √n</span>-ə <span class="m">√m + √n</span> vurulur; məxrəc <span class="m">m − n</span> olur, surət də eyni ifadəyə vurulur və sonda bölünür.</li>
+        <li><b>Müqayisə.</b> Fərqli dərəcəli kökləri dərəcələrin ƏKOB-u qədər qüvvətə yüksəldib müqayisə et. Yalnız kökaltı ədədlərə baxmaq səhvdir: <span class="m">∛5 &lt; √3</span> (25 &lt; 27).</li>
+        <li><b>DMQ.</b> Cüt dərəcəli kökdə kökaltı <span class="m">≥ 0</span>, məxrəcdə isə <span class="m">&gt; 0</span>. Tək dərəcəli kök məxrəcdə olsa, yalnız kökaltı <span class="m">≠ 0</span>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">cüt n: ⁿ√(aⁿ) = |a|;  tək n: ⁿ√(aⁿ) = a
+a^(−m/n) = 1/ⁿ√(aᵐ)
+oxşar köklər: əmsalları topla
+a/(√m ± √n): qoşmaya vur, məxrəc m − n
+müqayisə: ƏKOB qədər qüvvətə yüksəlt</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">∜((−2)⁴) + ∛((−2)³) = ?</span> <span class="ans">2 + (−2) = 0. Cüt dərəcəli kök modul verir, tək dərəcəlidə işarə qalır.</span></li>
+        <li>Hansı böyükdür: <span class="m">∛4</span> yoxsa <span class="m">√2</span>? <span class="ans">6-cı qüvvət: 4² = 16 və 2³ = 8. ∛4 böyükdür.</span></li>
+        <li><span class="m">1/√(x − 3)</span> ifadəsinin təyin oblastına daxil olan ən kiçik tam ədəd? <span class="ans">x − 3 &gt; 0 (məxrəcdə, ciddi) → x &gt; 3. Cavab: 4.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>

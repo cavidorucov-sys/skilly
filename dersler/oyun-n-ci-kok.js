@@ -1,6 +1,8 @@
 // n-ci dərəcədən kök, rasional üstlü qüvvət, irrasional ifadələr — mastery game levels and the final test.
 // Every generator returns a new problem with random numbers: {text, answer|choices+correct, show, solution}.
 (function () {
+  // ordinal suffix: 2-ci, 3-cü, 6-cı, 9-cu, 10-cu, 12-ci
+  const ordSfx = n => { const u = n % 10, t = Math.floor(n / 10) % 10; const U = {1:'ci',2:'ci',3:'cü',4:'cü',5:'ci',6:'cı',7:'ci',8:'ci',9:'cu'}, T = {1:'cu',2:'ci',3:'cu',4:'cı',5:'ci',6:'cı',7:'ci',8:'ci',9:'cı'}; return u ? U[u] : T[t]; };
   const { h } = Oyun;
   const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
   const pick = a => a[rnd(0, a.length - 1)];
@@ -158,14 +160,14 @@
           const l = lcm(a.n, b.n), va = Math.pow(a.r, l / a.n), vb = Math.pow(b.r, l / b.n), ch = ["birinci böyükdür", "ikinci böyükdür", "bərabərdir"];
           const c = va > vb ? 0 : va < vb ? 1 : 2;
           return { text: `Müqayisə et: ${R(a.n, a.r)} və ${R(b.n, b.r)}.`, choices: ch, correct: c, show: ch[c],
-            solution: `Hər ikisini ${l}-ci dərəcəyə yüksəlt: (${R(a.n, a.r)})${sup(l)} = ${a.r}${sup(l / a.n)} = ${va}, (${R(b.n, b.r)})${sup(l)} = ${b.r}${sup(l / b.n)} = ${vb}. ${va > vb ? va + " > " + vb + " — birinci böyükdür." : va < vb ? va + " < " + vb + " — ikinci böyükdür." : "Ədədlər bərabərdir."}` };
+            solution: `Hər ikisini ${l}-${ordSfx(l)} dərəcəyə yüksəlt: (${R(a.n, a.r)})${sup(l)} = ${a.r}${sup(l / a.n)} = ${va}, (${R(b.n, b.r)})${sup(l)} = ${b.r}${sup(l / b.n)} = ${vb}. ${va > vb ? va + " > " + vb + " — birinci böyükdür." : va < vb ? va + " < " + vb + " — ikinci böyükdür." : "Ədədlər bərabərdir."}` };
         }
         let cs; do { cs = [mk(pick([2, 3, 4, 6])), mk(pick([2, 3, 4, 6])), mk(pick([2, 3, 4, 6]))]; }
         while (new Set(cs.map(pw12)).size < 3 || new Set(cs.map(c => c.n)).size < 2);
         const big = Math.random() < .6, vals = cs.map(pw12), best = big ? Math.max(...vals) : Math.min(...vals), idx = vals.indexOf(best);
         const l = cs.reduce((x, c) => lcm(x, c.n), 1), names = cs.map(c => R(c.n, c.r));
         return { text: `Ədədlərdən ${big ? "ən böyüyünü" : "ən kiçiyini"} seç.`, choices: names, correct: idx, show: names[idx],
-          solution: `Hamısını ${l}-ci dərəcəyə yüksəlt: ` + cs.map(c => `${R(c.n, c.r)} → ${c.r}${sup(l / c.n)} = ${Math.pow(c.r, l / c.n)}`).join("; ") + `. ${big ? "Ən böyüyü" : "Ən kiçiyi"} ${names[idx]}.` };
+          solution: `Hamısını ${l}-${ordSfx(l)} dərəcəyə yüksəlt: ` + cs.map(c => `${R(c.n, c.r)} → ${c.r}${sup(l / c.n)} = ${Math.pow(c.r, l / c.n)}`).join("; ") + `. ${big ? "Ən böyüyü" : "Ən kiçiyi"} ${names[idx]}.` };
       } },
     { id: "irrasional", ad: "Məxrəci irrasionallıqdan azad et", izah: "a/√b — surəti və məxrəci √b-yə vur. a/(√m − √n) — qoşmaya (√m + √n) vur. Sadələşdir.",
       gen() {
@@ -259,6 +261,115 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (sign of an even/odd root, negative exponent, adding radicands, wrong conjugate, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const PW = [[2, 2], [3, 2], [5, 2], [2, 3], [3, 3], [4, 3], [2, 4], [3, 4], [2, 5]];     // [b, n]: the number b^n has a nice n-th root b
+  const pw1 = (r, e) => e === 1 ? String(r) : r + sup(e);
+  const kroot = (k, n, m) => (k === 1 ? "" : k) + sign(n) + m;                              // "3√2", "∛5"
+  const isSq = r => Math.round(Math.sqrt(r)) ** 2 === r;
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. even root gives |a| (never negative), odd root keeps the sign
+    { tip: "qapali", gen: () => again(() => {
+      const e1 = pick([2, 4]), e2 = pick([2, 4]), o = pick([3, 5]);
+      const a = rnd(2, e1 === 4 ? 4 : 7), c = rnd(2, e2 === 4 ? 4 : 7), b = rnd(2, o === 5 ? 3 : 5);
+      const form = (e, x) => `${sign(e)}((−${x})${sup(e)})`, r = a - b - c;
+      const w = [-a - b - c, a + b - c, a - b + c, -a - b + c];
+      return mc(ae(r, w), { text: `${form(e1, a)} + ${form(o, b)} − ${form(e2, c)} ifadəsinin qiymətini tapın.`,
+        solution: `Cüt dərəcəli kök mənfi olmur: ${form(e1, a)} = |−${a}| = ${a}, ${form(e2, c)} = |−${c}| = ${c}. Tək dərəcəli kök işarəni saxlayır: ${form(o, b)} = −${b}. ${a} + (−${b}) − ${c} = ${S(r)}. Tələlər: birinci cüt kökü mənfi yazmaq (${S(w[0])}), tək kökü müsbət yazmaq (${S(w[1])}), ikinci cüt kökü mənfi yazmaq (${S(w[2])}), hər iki cüt kökü mənfi yazmaq (${S(w[3])}).` });
+    }) },
+    // 2. rational exponents with a negative one: the product of two powers
+    { tip: "qapali", gen: () => again(() => {
+      const [b1, n1] = pick(PW), [b2, n2] = pick(PW), m1 = pick([2, 3, 4]), m2 = pick([2, 3]);
+      if (gcd(m1, n1) !== 1 || gcd(m2, n2) !== 1) return null;
+      const N1 = P(b1, n1), N2 = P(b2, n2), up = P(b1, m1), dn = P(b2, m2); if (up * dn > 2000 || dn > 130) return null;
+      const r = frac(up, dn), w = [S(-up * dn), S(up * dn), frac(dn, up), frac(up, b2)];
+      return mc(ae(r, w), { text: `${N1}${fe(m1, n1)} · ${N2}${fe(-m2, n2)} ifadəsinin qiymətini tapın.`,
+        solution: `${N1}${fe(m1, n1)} = (${b1}${sup(n1)})${fe(m1, n1)} = ${b1}${sup(m1)} = ${up}. ${N2}${fe(-m2, n2)} = ${b2}${sup(-m2)} = ${frac(1, dn)}. Hasil: ${up} · ${frac(1, dn)} = ${r}. Tələlər: mənfi üstü mənfi ədəd saymaq (${S(-up * dn)}), mənfi işarəni nəzərə almamaq (${up * dn}), kəsri çevirmək (${frac(dn, up)}), ikinci qüvvətin üstündəki surəti (${m2}) buraxıb yalnız kökü götürmək (${frac(up, b2)}).` });
+    }) },
+    // 3. take the factor out of the root, then add similar roots
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([2, 2, 3]), m = n === 2 ? pick([2, 3, 5, 6, 7]) : pick([2, 3, 5]), a = rnd(2, n === 2 ? 7 : 4), b = rnd(2, n === 2 ? 7 : 4);
+      if (a === b) return null;
+      const A = P(a, n) * m, B = P(b, n) * m, r = kroot(a + b, n, m);
+      const w = [kroot(P(a, n) + P(b, n), n, m), kroot(a + b, n, 2 * m), kroot(a * b, n, m), R(n, A + B)];
+      return mc(ae(r, w), { text: `${R(n, A)} + ${R(n, B)} ifadəsini sadələşdirin.`,
+        solution: `${R(n, A)} = ${R(n, P(a, n) + "·" + m)} = ${kroot(a, n, m)}, ${R(n, B)} = ${R(n, P(b, n) + "·" + m)} = ${kroot(b, n, m)}. Oxşar köklərin əmsalları toplanır: ${a} + ${b} = ${a + b}, kök dəyişmir: ${r}. Tələlər: kökaltından ədədin özünü çıxarmaq (${w[0]}), kökaltını da toplamaq (${w[1]}), əmsalları vurmaq (${w[2]}), kökləri kökaltında toplamaq (${w[3]}).` });
+    }) },
+    // 4. rationalise the denominator with the conjugate
+    { tip: "qapali", gen: () => again(() => {
+      const m = rnd(3, 20), n = rnd(2, 17); if (m <= n || isSq(m) || isSq(n) || simp(m)[0] !== 1 || simp(n)[0] !== 1) return null;
+      const d = m - n, s = m + n; if (d < 2 || d > 9) return null;
+      const minus = Math.random() < .5, t = rnd(1, 3), c = lcm(d, s) * t; if (c > 150) return null;   // c/(√m − √n) = k(√m + √n);  c/(√m + √n) = k(√m − √n)
+      const k = c / d, k2 = c / s, good = minus ? " + " : " − ", bad = minus ? " − " : " + ";
+      const f = (p, q, j) => `${kroot(p, 2, m)}${j}${kroot(q, 2, n)}`;
+      const r = f(k, k, good), w = [f(k, k, bad), f(k2, k2, good), f(c, c, good), f(k, 1, good)];
+      return mc(ae(r, w), { text: `${c}/(√${m} ${minus ? "−" : "+"} √${n}) kəsrinin məxrəcini irrasionallıqdan azad edin.`,
+        solution: `Surəti və məxrəci qoşma ifadəyə (√${m}${good}√${n}) vururuq. Məxrəc: (√${m})² − (√${n})² = ${m} − ${n} = ${d}. Surət: ${c}(√${m}${good}√${n}). ${c} : ${d} = ${k}, nəticə: ${r}. Tələlər: qoşmanın işarəsini cavabda səhv yazmaq (${w[0]}), məxrəcdə ${m} + ${n} = ${s} yazmaq (${w[1]}), məxrəcə bölməyi unutmaq (${w[2]}), ${k} əmsalını yalnız birinci həddə vurmaq (${w[3]}).` });
+    }) },
+    // 5. order the roots of different degrees: raise to the LCM of the degrees
+    { tip: "qapali", gen: () => again(() => {
+      const degs = pick([[2, 3, 6], [2, 3, 4], [2, 4, 6], [3, 4, 6]]), L = degs.reduce(lcm, 1);
+      const RNG = { 2: [2, 12], 3: [3, 30], 4: [5, 60], 6: [10, 200] };
+      const it = degs.map(n => { const [lo, hi] = RNG[n]; let r; do r = rnd(lo, hi); while (Math.round(Math.pow(r, 1 / n)) ** n === r); return { n, r, v: P(r, L / n) }; });
+      if (new Set(it.map(x => x.v)).size < 3 || new Set(it.map(x => x.r)).size < 3) return null;
+      const nm = x => R(x.n, x.r), asc = key => [...it].sort((p, q) => key(p) - key(q)), line = arr => arr.map(nm).join(" < ");
+      const rightArr = asc(x => x.v), right = line(rightArr), byRad = asc(x => x.r);
+      if (line(byRad) === right) return null;
+      const cand = [byRad, [...rightArr].reverse(), [...byRad].reverse(), asc(x => x.n), [...asc(x => x.n)].reverse()].map(line);
+      const w = [...new Set(cand.filter(x => x !== right))].slice(0, 4); if (w.length < 4) return null;
+      const shown = [...it].sort(() => Math.random() - .5);
+      return mc(ae(right, w), { text: `${shown.map(nm).join(", ")} ədədlərini artan sıra ilə düzün.`,
+        solution: `Dərəcələrin ƏKOB-u ${L}: hamısını ${L === 6 ? "6-cı" : "12-ci"} qüvvətə yüksəldirik: ` + it.map(x => `${nm(x)} → ${pw1(x.r, L / x.n)} = ${x.v}`).join("; ") + `. Artan sıra: ${right}. Tələlər: yalnız kökaltı ədədlərə baxmaq (${line(byRad)}), sıranı tərsinə yazmaq, dərəcəyə görə düzmək.` });
+    }) },
+    // 6. domain of an expression with even roots, one of them in a denominator, and an odd root in a denominator
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(-4, 2), c = a + rnd(2, 4), b = c + rnd(2, 5); if (b < 1) return null;
+      const e1 = pick([2, 4]), e2 = pick([2, 4]), od = pick([3, 5]), lin = k => k === 0 ? "x" : "x " + (k < 0 ? "+" : "−") + " " + Math.abs(k);
+      const r = b - a - 1, w = [b - 1 - c, b - a, b - a + 1, b - a - 2];
+      return mc(ae(r, w), { text: `${R(e1, lin(a))} + 1/${R(e2, b + " − x")} + 1/${R(od, lin(c))} ifadəsinin təyin oblastına (DMQ) neçə tam ədəd daxildir?`,
+        solution: `Cüt dərəcəli ${R(e1, lin(a))} üçün ${lin(a)} ≥ 0 → x ≥ ${S(a)}. Məxrəcdəki cüt dərəcəli kök üçün ${b} − x > 0 → x < ${b}. Məxrəcdəki tək dərəcəli kökdə kökaltı yalnız sıfır ola bilməz: x ≠ ${S(c)}. [${S(a)}; ${b}) aralığında ${b - a} tam ədəd var, ${S(c)} çıxılır: ${b - a} − 1 = ${r}. Tələlər: ${S(c)} ədədini atmağı unutmaq (${b - a}), ${b} ədədini də daxil etmək və ${S(c)} ədədini atmamaq (${b - a + 1}), ${S(a)} ədədini atmaq (${b - a - 2}), tək kök üçün də "x > ${S(c)}" demək (${b - 1 - c}).` });
+    }) },
+    // 7. coded: a sum of 1/(√k + √(k+1)) collapses
+    { tip: "kod", gen: () => {
+      const s = rnd(1, 6), t = s + rnd(2, 7), a1 = s * s + 1, a2 = s * s + 2, z = t * t - 1;
+      return { text: `Hesablayın: 1/(${s} + √${a1}) + 1/(√${a1} + √${a2}) + … + 1/(√${z} + ${t})`,
+        answer: t - s, show: String(t - s), tol: 1e-6,
+        solution: `Hər hədd qoşma ilə: 1/(√k + √(k+1)) = (√(k+1) − √k)/((k+1) − k) = √(k+1) − √k. Cəm: (√${a1} − ${s}) + (√${a2} − √${a1}) + … + (${t} − √${z}). Aralıq hədlər qarşılıqlı silinir, qalır ${t} − ${s} = ${t - s}.` };
+    } },
+    // 8. coded: rational exponents, division by a negative power
+    { tip: "kod", gen: () => again(() => {
+      const [b1, n1] = pick(PW), [b2, n2] = pick(PW), [b3, n3] = pick(PW), m1 = pick([1, 2, 3]), m2 = pick([2, 3]), m3 = pick([2, 3]);
+      if (gcd(m1, n1) !== 1 || gcd(m2, n2) !== 1 || gcd(m3, n3) !== 1) return null;
+      const u = P(b1, m1), v = P(b2, m2), z = P(b3, m3), r = u * v - z; if (r <= 0 || r > 1500) return null;
+      return { text: `${P(b1, n1)}${fe(m1, n1)} : ${P(b2, n2)}${fe(-m2, n2)} − ${P(b3, n3)}${fe(m3, n3)} ifadəsinin qiymətini tapın.`,
+        answer: r, show: String(r), tol: 1e-6,
+        solution: `${P(b1, n1)}${fe(m1, n1)} = ${b1}${sup(m1)} = ${u}. ${P(b2, n2)}${fe(-m2, n2)} = ${b2}${sup(-m2)} = ${frac(1, v)}. ${P(b3, n3)}${fe(m3, n3)} = ${b3}${sup(m3)} = ${z}. Kəsrə bölmək tərsinə vurmaqdır: ${u} : ${frac(1, v)} = ${u * v}. ${u * v} − ${z} = ${r}.` };
+    }) },
+    // 9. coded: even root of a square is the modulus
+    { tip: "kod", gen: () => again(() => {
+      const a = rnd(1, 4), b = a + rnd(2, 4), M = rnd(a * a + 1, b * b - 1); if (isSq(M)) return null;
+      const e1 = pick([2, 4]), e2 = pick([2, 4]), f1 = pick([0, 1]), f2 = pick([0, 1]);
+      const x1 = f1 ? `${a} − √${M}` : `√${M} − ${a}`, x2 = f2 ? `√${M} − ${b}` : `${b} − √${M}`;
+      const t1 = `${sign(e1)}((${x1})${sup(e1)})`, t2 = `${sign(e2)}((${x2})${sup(e2)})`, ap = Math.sqrt(M).toFixed(2).replace(".", ",");
+      return { text: `${pick([0, 1]) ? t1 + " + " + t2 : t2 + " + " + t1} ifadəsinin qiymətini tapın.`,
+        answer: b - a, show: String(b - a), tol: 1e-6,
+        solution: `Cüt dərəcəli kök modul verir: ${sign(e1)}(u${sup(e1)}) = |u|. ${a * a} < ${M} < ${b * b} olduğundan ${a} < √${M} < ${b} (√${M} ≈ ${ap}). Deməli |√${M} − ${a}| = √${M} − ${a}, |${b} − √${M}| = ${b} − √${M}. Cəm: (√${M} − ${a}) + (${b} − √${M}) = ${b} − ${a} = ${b - a}.` };
+    }) },
+    // 10. written: two conjugate fractions, the sum of their squares
+    { tip: "yazili", gen: () => again(() => {
+      const m = rnd(3, 24), n = rnd(2, 20); if (m <= n || isSq(m) || isSq(n)) return null;
+      const d = m - n, top = 2 * (m + n); if (d < 2 || d > 6 || top % (d * d)) return null;
+      const r = top / (d * d);
+      return { text: `x = 1/(√${m} − √${n}) və y = 1/(√${m} + √${n}) olduqda x² + y² ifadəsinin qiymətini tapın.`,
+        answer: r, show: String(r), tol: 1e-6,
+        solution: `1) Məxrəcləri qoşma ilə azad edirik: x = (√${m} + √${n})/(${m} − ${n}) = (√${m} + √${n})/${d}, y = (√${m} − √${n})/${d}. 2) x² + y² = ((√${m} + √${n})² + (√${m} − √${n})²)/${d * d}. Mötərizələri açanda 2√${m * n} hədləri silinir: surət ${m} + ${n} + ${m} + ${n} = ${top}. 3) ${top}/${d * d} = ${r}. Həll yazılmadan yalnız cavab — bal verilmir: yoxlayan qoşma ilə vurmanı və x², y² hesablanmasını görməlidir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -268,7 +379,7 @@
     game = Oyun.mount({
       key: "n-ci-kok", title: "n-ci dərəcədən kök, rasional üstlü qüvvət", fenn: "riyaziyyat", link: "dersler/n-ci-kok.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 1/8, kök 3√2, √5/5, 2√5+4. Kub kök cavab olmur — onda k soruşulur.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["kok", "kok", "rasional", "rasional", "cixar", "cixar", "muqayise", "irrasional", "irrasional", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),
