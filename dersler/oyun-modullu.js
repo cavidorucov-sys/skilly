@@ -212,6 +212,111 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): 6 closed (A–E) + 3 coded + 1 written. The wrong options are the answers of
+  // typical mistakes (an extraneous root kept, only one case taken, the inequality read as "≤", the point not the distance, ...).
+  const { ae, again } = Oyun;
+  const D = x => { const r = Math.round(x * 100) / 100; return (r < 0 ? "−" : "") + String(Math.abs(r)).replace(".", ","); };
+  const half = x => Number.isFinite(x) && Math.abs(x * 2 - Math.round(x * 2)) < 1e-9;
+  const DAT = { 2: "2-yə", 3: "3-ə", 4: "4-ə" };
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const xm = c => c === 0 ? "x" : c < 0 ? "x + " + (-c) : "x − " + c;           // x − c, written with the sign of c
+  const barX = (c, op, r) => `|${xm(c)}| ${op} ${r}`;
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. |kx − b| = c, sum of the roots
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3, 4]), [r1, r2] = distinct(2, -7, 7);
+      if ((k * (r1 + r2)) % 2 || r1 + r2 === 0) return null;
+      const b = k * (r1 + r2) / 2, c = Math.abs(k * (r1 - r2) / 2), hi = Math.max(r1, r2), lo = Math.min(r1, r2);
+      return mc(ae(r1 + r2, [hi, lo, 2 * b, hi - lo], S), { text: `${M(k, b)} = ${c} tənliyinin köklərinin cəmini tapın.`,
+        solution: `İki hal: ${lx(k, b)} = ${c} → x = ${S(hi)}; ${lx(k, b)} = −${c} → x = ${S(lo)}. Cəm: ${S(hi)} + ${lo < 0 ? `(${S(lo)})` : S(lo)} = ${S(r1 + r2)}. Tələlər: yalnız bir hal (${S(hi)} və ya ${S(lo)}), ${k}x-ə görə cəm (${S(2 * b)}) — ${DAT[k]} bölməyi unutmaq, köklərin fərqi (${S(hi - lo)}).` });
+    }) },
+    // 2. |x − a| = kx + b: one candidate is extraneous
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(-9, 9), k = pick([2, 3, -2, -3]), b = rnd(-9, 9), c1 = (a + b) / (1 - k), c2 = (a - b) / (1 + k);
+      if (!Number.isInteger(c1) || !Number.isInteger(c2) || c1 === c2) return null;
+      const ok = c => k * c + b >= 0; if (ok(c1) === ok(c2)) return null;
+      const v = ok(c1) ? c1 : c2, bad = ok(c1) ? c2 : c1; if (v === 0) return null;
+      const s1 = (a + b) / (1 + k), s2 = (a - b) / (1 - k); if (![s1, s2].every(half)) return null;
+      const g = poly([[k, "x"], [b, ""]]);
+      return mc(ae(v, [c1 + c2, bad, s1, s2], D), { text: `${M(1, a)} = ${g} tənliyinin köklərinin cəmini tapın.`,
+        solution: `Sağ tərəf modula bərabərdir, deməli ${g} ≥ 0 olmalıdır. Hal 1: ${lx(1, a)} = ${g} → x = ${S(c1)}. Hal 2: ${lx(1, a)} = −(${g}) → x = ${S(c2)}. Yoxlama: x = ${S(bad)} üçün ${g} = ${S(k * bad + b)} < 0 — kənar kökdür, atılır. Tək kök ${S(v)}. Tələlər: yoxlamamaq (cəm ${S(c1 + c2)}), kənar kökü cavab yazmaq (${S(bad)}), b-nin işarəsini səhv yazmaq (${D(s1)}; ${D(s2)}).` });
+    }) },
+    // 3. |kx − b| < a: number of integer solutions
+    { tip: "qapali", gen: () => again(() => {
+      const k = pick([2, 3, 4]), m = rnd(2, 6), c = rnd(-4, 5), a = k * m, b = k * c, L = c - m, Rr = c + m;
+      return mc(ae(2 * m - 1, [2 * m + 1, 2 * k * m - 1, 2 * m, 2 * k * m + 1], S), { text: `${M(k, b)} < ${a} bərabərsizliyinin neçə tam həlli var?`,
+        solution: `−${a} < ${lx(k, b)} < ${a} → ${S(b - a)} < ${k}x < ${S(b + a)} → ${S(L)} < x < ${S(Rr)}. Ciddi bərabərsizlik: uclar daxil deyil, tam həllər ${S(L + 1)}; …; ${S(Rr - 1)} — cəmi ${2 * m - 1}. Tələlər: uclarını da saymaq (${2 * m + 1}), ${DAT[k]} bölməmək (${2 * k * m - 1}), ucları çıxmaq əvəzinə fərqi cavab yazmaq (${2 * m}).` });
+    }) },
+    // 4. |x − a| + |x − b|: the least value
+    { tip: "qapali", gen: () => again(() => {
+      const s = pick([1, -1]), [u, v] = distinct(2, 1, 9).map(t => s * t), d = Math.abs(u - v), lo = Math.min(u, v), hi = Math.max(u, v);
+      if (d % 2) return null;
+      return mc(ae(d, [Math.abs(u) + Math.abs(v), 0, Math.max(Math.abs(u), Math.abs(v)), d / 2], S), { text: `${M(1, u)} + ${M(1, v)} ifadəsinin ən kiçik qiymətini tapın.`,
+        solution: `Bu, x nöqtəsindən ${S(u)} və ${S(v)} nöqtələrinə qədər məsafələrin cəmidir. ${S(lo)} ilə ${S(hi)} arasında o sabitdir və nöqtələr arasındakı məsafəyə bərabərdir: ${S(hi)} − (${S(lo)}) = ${d}. Tələlər: x = 0 yazmaq (${Math.abs(u) + Math.abs(v)}), "iki modul eyni anda sıfır ola bilər" demək (0), nöqtələrdən birinə qədər olan məsafəni götürmək (${Math.max(Math.abs(u), Math.abs(v))}), məsafənin yarısı (${d / 2}).` });
+    }) },
+    // 5. |ax + b| = |cx + d|: sum of the roots
+    { tip: "qapali", gen: () => again(() => {
+      const [a, c] = distinct(2, 1, 5), [r1, r2] = distinct(2, -6, 6), t = (a + c) * r2, u = (a - c) * r1;
+      if ((t + u) % 2 || r1 + r2 === 0) return null;
+      const b = -(t + u) / 2, d = (-t + u) / 2;
+      if (Math.abs(a * r1 + b) !== Math.abs(c * r1 + d) || Math.abs(a * r2 + b) !== Math.abs(c * r2 + d)) return null;
+      return mc(ae(r1 + r2, [r1, r2, r1 - r2, -(r1 + r2)], S), { text: `${M(a, -b)} = ${M(c, -d)} tənliyinin köklərinin cəmini tapın.`,
+        solution: `Hal 1: ${lx(a, -b)} = ${lx(c, -d)} → x = ${S(r1)}. Hal 2: ${lx(a, -b)} = −(${lx(c, -d)}) → x = ${S(r2)}. Cəm: ${S(r1)} + ${r2 < 0 ? `(${S(r2)})` : S(r2)} = ${S(r1 + r2)}. Tələlər: yalnız bir hal (${S(r1)} və ya ${S(r2)}), köklərin fərqi (${S(r1 - r2)}), cəmin işarəsini dəyişmək (${S(-(r1 + r2))}).` });
+    }) },
+    // 6. number line → the inequality
+    { tip: "qapali", gen: () => again(() => {
+      const L = rnd(-9, 4), Rr = L + 2 * rnd(1, 5), cl = Math.random() < .6, c = (L + Rr) / 2, r = (Rr - L) / 2, op = cl ? "≤" : "<", opX = cl ? "<" : "≤", opC = cl ? ">" : "≥";
+      if (c === 0) return null;
+      return mc(ae(barX(c, op, r), [barX(c, opX, r), barX(-c, op, r), barX(r, op, Math.abs(c)), barX(c, opC, r)], t => t), {
+        text: "Ədəd oxunda göstərilmiş aralıq hansı bərabərsizliyin həllidir? (Dolu nöqtə uc nöqtənin daxil olduğunu, boş nöqtə daxil olmadığını göstərir.)", svg: segment(L, Rr, cl),
+        solution: `Mərkəz — aralığın ortası: (${S(L)} + ${S(Rr)})/2 = ${S(c)}, deməli ifadə ${xm(c)}. Radius — yarım uzunluq: (${S(Rr)} − (${S(L)}))/2 = ${r}. ${cl ? "Uclar daxildir (dolu nöqtələr) — ≤." : "Uclar daxil deyil (boş nöqtələr) — <."} Tələlər: mərkəzin işarəsini səhv yazmaq (${xm(-c)}), mərkəzlə radiusu qarışdırmaq (${barX(r, op, Math.abs(c))}), ≤ ilə < işarəsini dəyişmək, aralığın kənarını götürmək (${barX(c, opC, r)}).` });
+    }) },
+    // 7. coded: integers that are NOT solutions of |kx − b| ≥ a
+    { tip: "kod", gen: () => again(() => {
+      const k = pick([2, 3, 4, 5]), b = rnd(-9, 9), a = rnd(4, 16), op = pick([">", "≥"]);
+      const non = ints(x => !cmp(Math.abs(k * x - b), op, a), -50, 50); if (non.length < 3) return null;
+      return { text: `${M(k, b)} ${op} ${a} bərabərsizliyinin həlli olmayan neçə tam ədəd var?`, answer: non.length, show: String(non.length), tol: 1e-6,
+        solution: `Həll iki şüadır: ${lx(k, b)} ${op === ">" ? "<" : "≤"} −${a} və ya ${lx(k, b)} ${op} ${a}, yəni x ${op === ">" ? "<" : "≤"} ${rf(R(b - a, k))} və ya x ${op} ${rf(R(b + a, k))}. Həll olmayan tam ədədlər — aradakılar: ${list(non)}. Cəmi ${non.length}.` };
+    }) },
+    // 8. coded: integer solutions of |x − a| + |x − b| ≤ c
+    { tip: "kod", gen: () => again(() => {
+      const [a, b] = distinct(2, -8, 8).sort((u, v) => u - v), d = b - a, c = d + rnd(1, 7), op = pick(["<", "≤"]);
+      const xs = ints(x => cmp(Math.abs(x - a) + Math.abs(x - b), op, c), -60, 60); if (!xs.length) return null;
+      return { text: `${M(1, a)} + ${M(1, b)} ${op} ${c} bərabərsizliyinin neçə tam həlli var?`, answer: xs.length, show: String(xs.length), tol: 1e-6,
+        solution: `${S(a)} ilə ${S(b)} arasında cəm sabitdir: ${d} < ${c}, yəni bu parçanın hamısı həlldir. Sərhədlər: x = ${frac(a + b - c, 2)} və x = ${frac(a + b + c, 2)}. Həll: ${frac(a + b - c, 2)} ${op} x ${op} ${frac(a + b + c, 2)}. Tam həllər: ${list(xs)} — cəmi ${xs.length}.` };
+    }) },
+    // 9. coded: ||x − a| − b| = c, the largest root / the number of roots
+    { tip: "kod", gen: () => again(() => {
+      const a = rnd(-3, 8), b = rnd(1, 9), c = rnd(1, 9), big = b + c, small = b - c, kind = pick(["max", "say"]);
+      const rs = [...new Set([a + big, a - big, ...(small >= 0 ? [a + small, a - small] : [])])].sort((u, v) => u - v);
+      for (const x of rs) if (Math.abs(Math.abs(x - a) - b) !== c) throw new Error("bad root " + x);
+      const hi = rs[rs.length - 1], pre = `Xarici modulu aç: |${xm(a)}| − ${b} = ${c} və ya |${xm(a)}| − ${b} = −${c}, yəni |${xm(a)}| = ${big}${small > 0 ? ` və ya |${xm(a)}| = ${small}` : small === 0 ? ` və ya |${xm(a)}| = 0` : ` və ya |${xm(a)}| = ${S(small)} (mümkün deyil)`}.`;
+      if (kind === "max") { if (hi <= 0) return null; return { text: `||${xm(a)}| − ${b}| = ${c} tənliyinin ən böyük kökünü tapın.`, answer: hi, show: String(hi), tol: 1e-6, solution: `${pre} Ən böyük kök: ${S(a)} + ${big} = ${hi}.` }; }
+      return { text: `||${xm(a)}| − ${b}| = ${c} tənliyinin neçə kökü var?`, answer: rs.length, show: String(rs.length), tol: 1e-6, solution: `${pre} Kökləri: ${rs.map(S).join("; ")} — cəmi ${rs.length}.` };
+    }) },
+    // 10. written: |kx − b| + |x − d| = c, the sum of the roots (three parts of the number line)
+    { tip: "yazili", gen: () => again(() => {
+      const k = pick([2, 3]), b = rnd(-9, 9), d = rnd(-6, 6), c = rnd(5, 15), found = []; if (b === k * d) return null;
+      for (const s1 of [1, -1]) for (const s2 of [1, -1]) {
+        const coef = s1 * k + s2, rhs = c + s1 * b + s2 * d; if (!coef) { if (!rhs) return null; continue; }
+        const r = R(rhs, coef), x = val(r);
+        if ((s1 * (k * x - b) >= -1e-12) && (s2 * (x - d) >= -1e-12)) found.push({ s1, s2, r });
+      }
+      const rs = uniq(found.map(f => f.r)); if (rs.length !== 2 || rs.some(r => r[1] !== 1) || rs[0][0] + rs[1][0] <= 0) return null;
+      const sm = rs[0][0] + rs[1][0], z = uniq([R(b, k), R(d, 1)]), zl = val(z[0]), zh = val(z[1]);
+      const reg = [[zl - 1, `x < ${rf(z[0])}`], [(zl + zh) / 2, `${rf(z[0])} ≤ x < ${rf(z[1])}`], [zh + 1, `x ≥ ${rf(z[1])}`]];
+      const lines = reg.map(([t, nm], n) => {
+        const s1 = k * t - b >= 0 ? 1 : -1, s2 = t - d >= 0 ? 1 : -1, coef = s1 * k + s2, rhs = c + s1 * b + s2 * d, r = R(rhs, coef), x = val(r);
+        const inside = n === 0 ? x < zl : n === 1 ? x >= zl && x < zh : x >= zh;
+        return `${n + 3 - 2}) ${nm}: ${s1 > 0 ? "" : "−"}(${lx(k, b)}) ${s2 > 0 ? "+" : "−"} (${lx(1, d)}) = ${c} → ${coef === 1 ? "" : poly([[coef, "x"]]) + " = " + S(rhs) + " → "}x = ${rf(r)}. ${inside ? "Bu hissəyə aiddir ✓" : "Bu hissəyə aid deyil — atılır."}`;
+      });
+      return { text: `${M(k, b)} + ${M(1, d)} = ${c} tənliyini həll edin və köklərinin cəmini yazın.`, answer: sm, show: String(sm), tol: 1e-6,
+        solution: `Modulların sıfırları: ${lx(k, b)} = 0 → x = ${frac(b, k)}; ${lx(1, d)} = 0 → x = ${S(d)}. Ədəd oxu üç hissəyə bölünür. ${lines.join(" ")} Köklər: ${rs.map(rf).join(" və ")}; yoxlama: x = ${S(rs[0][0])} və x = ${S(rs[1][0])} tənliyi ödəyir. Cəm: ${sm}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -221,7 +326,7 @@
     game = Oyun.mount({
       key: "modullu", title: "Modullu tənliklər və bərabərsizliklər", fenn: "riyaziyyat", link: "dersler/modullu.html",
       format: "Cavab ədəddir: tam 4, mənfi −3, kəsr 7/2 (onluq 3.5 də olar). Kök (həll) yoxdursa və say soruşulursa — 0.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["sade", "sade", "iki", "iki", "kicik", "kicik", "boyuk", "cem", "cem", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

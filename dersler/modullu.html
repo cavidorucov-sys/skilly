@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>|f| = |g|</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bərabərsizlik</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İki modul</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -275,6 +276,92 @@ Universal üsul: sıfırlar → hissələr → hər hissədə modulu aç → kö
         <li><span class="m">|x + 2| + |x − 5|</span> ifadəsinin ən kiçik qiyməti? <span class="ans">5 − (−2) = 7.</span></li>
         <li><span class="m">|x| + |x − 2| = 6</span>. Köklərin cəmi? <span class="ans">x &lt; 0: −2x + 2 = 6 → x = −2. x &gt; 2: 2x − 2 = 6 → x = 4. Cəm: 2.</span></li>
         <li><span class="m">|x − 1| + |x − 4| &lt; 5</span>. Neçə tam həll? <span class="ans">Sərhədlər: 5 − 2x = 5 → x = 0; 2x − 5 = 5 → x = 5. Həll (0; 5): 1; 2; 3; 4 — 4 həll.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: modullu tənliklər və bərabərsizliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Üç forma</h3>
+      <p>Modul mövzusu buraxılışda üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: kənar kökü atmamaq, yalnız bir halı həll etmək, ucları saymaq. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Bu mövzuda cavab çox vaxt "neçə kök", "neçə tam həll", "köklərin cəmi" kimi ədəddir.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər modullu sualda əvvəl soruş: <b>modulu hansı hallara görə açıram və hər kök həmin hala aiddirmi?</b> Tələlərin çoxu buradadır.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p><span class="m">|x − 1| = 2x − 4</span> tənliyinin köklərinin cəmini tapın.</p>
+        <ol class="imt-opts"><li>−5</li><li>3</li><li>14/3</li><li>5/3</li><li>−1</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Sağ tərəf modula bərabərdir ⇒ 2x − 4 ≥ 0, yəni x ≥ 2.
+Hal 1: x − 1 = 2x − 4 → x = 3.   Yoxlama: 2 · 3 − 4 = 2 ≥ 0 ✓
+Hal 2: −(x − 1) = 2x − 4 → 5 = 3x → x = 5/3.
+        Yoxlama: 2 · 5/3 − 4 = −2/3 &lt; 0 — kənar kök, atılır.
+Tək kök: 3.
+Cavab: B) 3</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>C) 14/3</b> — yoxlamamaq: iki kökü də götürüb toplamaq, <span class="m">3 + 5/3</span>.</li>
+        <li><b>D) 5/3</b> — kənar kökü cavab yazmaq (ikinci halın kökü yoxlamadan keçməyib).</li>
+        <li><b>A) −5</b> — 1-ci halda <span class="m">−4</span>-ün işarəsini səhv yazmaq: <span class="m">x − 1 = 2x + 4</span>.</li>
+        <li><b>E) −1</b> — 2-ci halda eyni işarə səhvi: <span class="m">−(x − 1) = 2x + 4</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">|x − 1| + |x − 6| ≤ 9</span> bərabərsizliyinin neçə tam həlli var?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">1 ilə 6 arasında cəm sabitdir: 6 − 1 = 5 ≤ 9 — həll parçadadır.
+Sol sərhəd (x &lt; 1): (1 − x) + (6 − x) = 9 → x = −1
+Sağ sərhəd (x &gt; 6): (x − 1) + (x − 6) = 9 → x = 8
+Həll: −1 ≤ x ≤ 8. Tam həllər: −1; 0; 1; …; 8
+Cavab: 10</div>
+      <p>Qeyri-ciddi bərabərsizlik olduğu üçün ucları (−1 və 8) sayırıq. Tələlər: ucları saymamaq (8), fərqi cavab yazmaq (<span class="m">8 − (−1) = 9</span> — "+1" unudulur).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">|2x − 6| + |x + 1| = 7</span> tənliyini həll edin və köklərinin cəmini yazın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Modulların sıfırları: 2x − 6 = 0 → x = 3;  x + 1 = 0 → x = −1.
+   Ədəd oxu üç hissəyə bölünür: x &lt; −1,  −1 ≤ x &lt; 3,  x ≥ 3.
+2) x &lt; −1: −(2x − 6) − (x + 1) = 7 → −3x + 5 = 7 → x = −2/3.
+   −2/3 &lt; −1 deyil — bu hissəyə aid deyil, atılır.
+3) −1 ≤ x &lt; 3: −(2x − 6) + (x + 1) = 7 → −x + 7 = 7 → x = 0.
+   0 bu hissədədir ✓
+4) x ≥ 3: (2x − 6) + (x + 1) = 7 → 3x − 5 = 7 → x = 4.
+   4 ≥ 3 ✓
+5) Yoxlama: x = 0: |−6| + |1| = 7 ✓;  x = 4: |2| + |5| = 7 ✓
+Köklər: 0 və 4. Cəm: 4.</div>
+      <p>Yoxlayan bu hissələrə bal verir: <b>sıfırların tapılması və hissələr</b>, <b>hər hissədə düzgün açma</b>, <b>kökün hissəyə aidliyinin yoxlanması</b>, <b>cavab</b>. Yalnız "4" yazmaq bu balların çoxunu itirir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Kənar kök.</b> <span class="m">|f| = g(x)</span>-də hər kökü <span class="m">g(x) ≥ 0</span> şərti ilə yoxla.</li>
+        <li><b>Bir hal.</b> <span class="m">|f| = a</span> (a &gt; 0) iki hal verir: <span class="m">f = a</span> və <span class="m">f = −a</span>. Yalnız birini həll etmək yarım cavabdır. a = 0 olanda f = 0 (bir hal), a &lt; 0 olanda kök yoxdur.</li>
+        <li><b>Mənfi ədəd.</b> <span class="m">|f| = −3</span> — kök yoxdur: modul mənfi olmur.</li>
+        <li><b>Ucları saymaq.</b> "&lt;" olanda uclar həll deyil, "≤" olanda həlldir. Sərhədlər tam ədəd olanda tam həllərin sayı: <span class="m">sağ − sol + 1</span> (uclar daxil), <span class="m">sağ − sol − 1</span> (uclar çıxılmaqla). Sərhədlər kəsr olanda tam ədədləri bir-bir say.</li>
+        <li><b>Əmsala bölməmək.</b> <span class="m">|2x − 6| &lt; 8</span> → <span class="m">−1 &lt; x &lt; 7</span>: hər tərəfi 2-yə bölmək lazımdır.</li>
+        <li><b>İki modulun cəmi.</b> <span class="m">|x − a| + |x − b|</span>-nin ən kiçik qiyməti (a ≠ b olanda) 0 deyil, <span class="m">|a − b|</span>-dir.</li>
+        <li><b>Yazılıda</b> hər hissədə kökün həmin hissəyə aidliyini yaz — yoxlamasız kök balsızdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">|f| = a (a &gt; 0):    f = a  və ya  f = −a
+|f| = g(x):         hər kökü yoxla: g(x) ≥ 0
+|f| &lt; a:            −a &lt; f &lt; a (uclar daxil deyil)
+|f| &gt; a:            f &lt; −a  və ya  f &gt; a
+iki modul:          sıfırlar → hissələr → hər hissədə aç → kökü yoxla</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">|x − 4| = −2</span> tənliyinin neçə kökü var? <span class="ans">0: modul mənfi ədədə bərabər ola bilməz.</span></li>
+        <li><span class="m">|x + 1| + |x − 5| = 4</span> tənliyinin neçə kökü var? <span class="ans">Cəmin ən kiçik qiyməti 5 − (−1) = 6 &gt; 4 — kök yoxdur: 0.</span></li>
+        <li><span class="m">|3x − 6| = |x + 2|</span> tənliyinin köklərinin cəmi? <span class="ans">3x − 6 = x + 2 → x = 4; 3x − 6 = −(x + 2) → 4x = 4 → x = 1. Cəm: 5.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
