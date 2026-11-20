@@ -216,6 +216,167 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes (wrong direction of a shift, forgetting the reflection, −(f + b) instead of −f + b, ...).
+  const { ae, again } = Oyun;
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const near = v => Number.isFinite(v) && Math.abs(v - Math.round(v)) < 1e-9;
+  const vi = (pts, x) => { const v = vAt(pts, x); return near(v) ? Math.round(v) : NaN; };        // f(x) when it is an integer
+  // the first four distinct wrong answers among the candidates [{v, why}] (null when fewer than four are usable)
+  function wrongs(right, cands) {
+    const out = [];
+    for (const c of cands) if ((typeof c.v === "string" || near(c.v)) && c.v !== right && !out.some(o => o.v === c.v)) out.push(c);
+    return out.length >= 4 ? out.slice(0, 4) : null;
+  }
+  const trap = w => " Tələlər: " + w.map(c => `${typeof c.v === "number" ? S(c.v) : c.v} — ${c.why}`).join("; ") + ".";
+  const verts = pts => pts.map(q => P(q[0], q[1])).join(", ");
+  // wide piecewise-linear graph for the exam: integer vertices from x ≈ −6…−4 to x ≈ 4…6, no flat pieces
+  function wideF() {
+    for (let t = 0; t < 2000; t++) {
+      let x = rnd(-6, -4), y = rnd(-3, 3); const pts = [[x, y]];
+      while (x < 4) {
+        const dx = rnd(1, 3); let dy = 0;
+        for (let g = 0; g < 40 && (!dy || y + dy < -4 || y + dy > 4); g++) dy = rnd(-4, 4);
+        if (!dy || y + dy < -4 || y + dy > 4) break;
+        x += dx; y += dy; pts.push([x, y]);
+      }
+      if (x >= 4 && x <= 6 && pts.length >= 4 && pts.length <= 6) return pts;
+    }
+    return [[-5, -1], [-2, 3], [1, -2], [4, 2]];
+  }
+  const GRI = "Şəkildə y = f(x) funksiyasının qrafiki verilib (qovşaq nöqtələrinin koordinatları tamdır).";
+  const sqr = m => m ? "(" + lin(m) + ")²" : "x²";
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: value of g(x) = f(x − s) + b read from the graph
+    { tip: "qapali", gen: () => again(() => {
+      const pts = wideF(), x0 = pts[0][0], xn = pts[pts.length - 1][0];
+      const s = pick([-1, 1]) * rnd(1, 3), b = pick([-1, 1]) * rnd(1, 3), c = rnd(x0 + s, xn + s), u = c - s, y = vi(pts, u);
+      if (!Number.isFinite(y)) return null;
+      const R = y + b;
+      const w = wrongs(R, [
+        { v: vi(pts, c + s) + b, why: `sürüşmənin istiqamətini tərs götürmək: f(${S(c + s)})${tail(b)}` },
+        { v: y - b, why: `yuxarı-aşağı işarəni dəyişmək: ${S(y)}${tail(-b)}` },
+        { v: vi(pts, c) + b, why: `sağa-sola sürüşməni unutmaq: f(${S(c)})${tail(b)}` },
+        { v: vi(pts, c + s) - b, why: `hər iki işarəni dəyişmək` },
+        { v: y, why: `${S(b)} ədədini əlavə etməyi unutmaq` }]);
+      if (!w) return null;
+      return mc(ae(R, w.map(c => c.v)), { text: `${GRI} g(x) = f(${arg(-s)})${tail(b)} olarsa, g(${S(c)}) neçədir?`, svg: fSvg(pts),
+        solution: `Qovşaqlar: ${verts(pts)}. g(${S(c)}) = f(${S(c)}${tail(-s)})${tail(b)} = f(${S(u)})${tail(b)}. Qrafikdən f(${S(u)}) = ${S(y)}. Cavab: ${S(y)}${tail(b)} = ${S(R)}.${trap(w)}` });
+    }) },
+    // 2. closed: vertex of a shifted parabola given by y = x² + bx + c
+    { tip: "qapali", gen: () => again(() => {
+      const m = pick([-1, 1]) * rnd(1, 5), n = rnd(-7, 7), b = -2 * m, c = m * m + n, p = pick([-1, 1]) * rnd(1, 5), q = pick([-1, 1]) * rnd(1, 5);
+      const R = P(m + p, n + q);
+      const w = wrongs(R, [
+        { v: P(m - p, n + q), why: `sağa-sola sürüşmənin istiqamətini tərs götürmək` },
+        { v: P(m + p, n - q), why: `yuxarı-aşağı sürüşmənin istiqamətini tərs götürmək` },
+        { v: P(-m + p, n + q), why: `təpənin absisini −b/2 əvəzinə b/2 götürmək (${S(-m)})` },
+        { v: P(m + p, c + q), why: `ordinat kimi sərbəst həddi c = ${S(c)} götürmək` },
+        { v: P(m, n + q), why: `sağa-sola sürüşməni unutmaq` }]);
+      if (!w) return null;
+      return mc(ae(R, w.map(c => c.v)), { text: `y = ${poly([[1, "x²"], [b, "x"], [c, ""]])} parabolasını ${LR(p)} və ${UD(q)} sürüşdürdülər. Alınan parabolanın təpəsinin koordinatları hansıdır?`,
+        solution: `Tam kvadrat: ${poly([[1, "x²"], [b, "x"], [c, ""]])} = ${sqr(m)}${tail(n)}, təpə ${P(m, n)} (m = −b/2 = ${S(m)}). ${LR(p)}: ${S(m)}${tail(p)} = ${S(m + p)}; ${UD(q)}: ${S(n)}${tail(q)} = ${S(n + q)}. Cavab: ${R}.${trap(w)}` });
+    }) },
+    // 3. closed: the formula from the picture (vertex + opening), parabola or angle
+    { tip: "qapali", gen: () => again(() => {
+      const par = Math.random() < .6, m = pick([-1, 1]) * rnd(1, 3), n = pick([-1, 1]) * rnd(1, par ? 2 : 3), s = pick([1, -1]), F = par ? sq : md;
+      const f = par ? (x => s * (x - m) ** 2 + n) : (x => s * Math.abs(x - m) + n), Y = (a, u, v) => "y = " + F(a, u, v);
+      const R = Y(s, m, n);
+      const w = [
+        { v: Y(s, -m, n), why: `sağa-sola istiqaməti qarışdırmaq (absis ${S(m)} əvəzinə ${S(-m)})` },
+        { v: Y(s, m, -n), why: `yuxarı-aşağı istiqaməti qarışdırmaq (ordinat ${S(n)} əvəzinə ${S(-n)})` },
+        { v: Y(s, -m, -n), why: `hər iki istiqaməti qarışdırmaq` },
+        { v: Y(-s, m, n), why: `budaqların istiqamətini (baş əmsalın işarəsini) səhv götürmək` }];
+      return mc(ae(R, w.map(c => c.v)), { text: `Şəkildə ${par ? "parabolanın" : "bucaq şəkilli qrafikin"} təpə nöqtəsi işarələnib. Qrafik hansı funksiyanın qrafikidir?`,
+        svg: svgEl({ x: [-7, 7], y: [-5, 5], f: [{ f }], pts: [{ x: m, y: n }] }, "Təpəsi " + P(m, n) + " olan qrafik"),
+        solution: `Təpə ${P(m, n)}: absis ${S(m)} → mötərizədə ${lin(m)}, ordinat ${S(n)} → ${tail(n).trim()}. Budaqlar ${s > 0 ? "yuxarı" : "aşağı"} olduğundan ${s > 0 ? "plus" : "mənfi"} işarəsi. Düstur: ${R}.${trap(w)}` });
+    }) },
+    // 4. closed: g in terms of f, both graphs on the same plane
+    { tip: "qapali", gen: () => again(() => {
+      const pts = base(), p = pick([-1, 1]) * rnd(1, 3), q = pick([-1, 1]) * rnd(1, 2), g = pts.map(([x, y]) => [x + p, y + q]);
+      if (g.some(t => t[0] < -7 || t[0] > 7 || t[1] < -5 || t[1] > 5)) return null;
+      const hit = L => L.some((a, i) => i && Array.from({ length: 21 }, (_, k) => k / 20).some(u => { const x = L[i - 1][0] + u * (a[0] - L[i - 1][0]), y = L[i - 1][1] + u * (a[1] - L[i - 1][1]); return x < -3.6 && y > 2.8; }));
+      if (hit(pts) || hit(g)) return null;
+      const G = (a, b) => `g(x) = f(${arg(a)})${tail(b)}`, R = G(-p, q);
+      const w = wrongs(R, [
+        { v: G(p, q), why: `sağa-sola istiqaməti tərs götürmək (${arg(p)} ${p > 0 ? "sola" : "sağa"} aparır)` },
+        { v: G(-p, -q), why: `yuxarı-aşağı işarəni tərs götürmək` },
+        { v: G(p, -q), why: `hər iki işarəni tərs götürmək` },
+        { v: G(-q, p), why: `sürüşmə ədədlərinin yerini dəyişmək (${LR(q)} və ${UD(p)})` }]);
+      if (!w) return null;
+      return mc(ae(R, w.map(c => c.v)), { text: `Şəkildə y = f(x) (bütöv xətt) və y = g(x) (qırıq xətt) funksiyalarının qrafikləri verilib. g(x)-i f vasitəsilə ifadə edin.`,
+        svg: svgEl({ x: [-7, 7], y: [-5, 5], pl: [{ pts }, { pts: g, c: "var(--vec)", dash: true }], tl: [{ x: -6.8, y: 4.3, t: "y = f(x)" }, { x: -6.8, y: 3.4, t: "y = g(x)", c: "var(--vec)" }] }, "f və g funksiyalarının qrafikləri"),
+        solution: `f-in ${P(pts[0][0], pts[0][1])} nöqtəsi g-də ${P(g[0][0], g[0][1])} nöqtəsinə keçib: qrafik ${LR(p)} və ${UD(q)} sürüşüb. ${LR(p)} üçün x ${p > 0 ? "−" : "+"} ${Math.abs(p)}, ${UD(q)} üçün ${tail(q).trim()}. Cavab: ${R}.${trap(w)}` });
+    }) },
+    // 5. closed: number of solutions of |f(x)| = c
+    { tip: "qapali", gen: () => again(() => {
+      const pts = wideF(), Y = ys(pts); if (Math.min(...Y) > -2 || Math.max(...Y) < 2) return null;
+      const c = rnd(1, 3); if (Y.includes(c) || Y.includes(-c)) return null;
+      const n1 = solveC(pts, c).length, n2 = solveC(pts, -c).length, z = solveC(pts, 0).length; if (!n1 || !n2) return null;
+      const R = n1 + n2;
+      const w = wrongs(R, [
+        { v: n1, why: `yalnız f(x) = ${c} tənliyini saymaq` },
+        { v: n2, why: `yalnız f(x) = −${c} tənliyini saymaq` },
+        { v: 2 * n1, why: `y = −${c} xəttində də eyni sayda həll olduğunu fərz etmək` },
+        { v: R + z, why: `qrafikin Ox ilə ${z} kəsişməsini də həll saymaq` },
+        { v: 2 * n2, why: `y = ${c} xəttində də eyni sayda həll olduğunu fərz etmək` }]);
+      if (!w) return null;
+      return mc(ae(R, w.map(c => c.v)), { text: `${GRI} |f(x)| = ${c} tənliyinin neçə həlli var?`, svg: fSvg(pts),
+        solution: `|f(x)| = ${c} ⇔ f(x) = ${c} və ya f(x) = −${c}. Qovşaqlar: ${verts(pts)}. y = ${c} xətti qrafiki ${n1} nöqtədə, y = −${c} xətti ${n2} nöqtədə kəsir. Cəmi ${n1} + ${n2} = ${R}.${trap(w)}` });
+    }) },
+    // 6. closed: extreme value of g(x) = −f(x) + b (the order: reflect first, then shift)
+    { tip: "qapali", gen: () => again(() => {
+      const pts = wideF(), Y = ys(pts), lo = Math.min(...Y), hi = Math.max(...Y), b = pick([-1, 1]) * rnd(1, 3), top = Math.random() < .5;
+      const R = top ? b - lo : b - hi, E = top ? "böyük" : "kiçik";
+      const w = wrongs(R, top ? [
+        { v: hi + b, why: `Ox-a görə əks etdirməni unutmaq: f-in ən böyüyü ${S(hi)}, ${S(hi)}${tail(b)}` },
+        { v: b - hi, why: `əks etdirəndə ən böyüyü ən böyük saxlamaq: ${S(b)} − ${br(hi)}` },
+        { v: -lo - b, why: `−(f(x)${tail(b)}) kimi hesablamaq: ${S(-lo)}${tail(-b)}` },
+        { v: lo + b, why: `ən kiçik qiyməti əks etdirmədən götürmək` },
+        { v: -lo, why: `${S(b)} ədədini əlavə etməyi unutmaq` }] : [
+        { v: lo + b, why: `Ox-a görə əks etdirməni unutmaq: f-in ən kiçiyi ${S(lo)}, ${S(lo)}${tail(b)}` },
+        { v: b - lo, why: `əks etdirəndə ən kiçiyi ən kiçik saxlamaq: ${S(b)} − ${br(lo)}` },
+        { v: -hi - b, why: `−(f(x)${tail(b)}) kimi hesablamaq: ${S(-hi)}${tail(-b)}` },
+        { v: hi + b, why: `ən böyük qiyməti əks etdirmədən götürmək` },
+        { v: -hi, why: `${S(b)} ədədini əlavə etməyi unutmaq` }]);
+      if (!w) return null;
+      return mc(ae(R, w.map(c => c.v)), { text: `${GRI} g(x) = −f(x)${tail(b)} funksiyasının ən ${E} qiyməti neçədir?`, svg: fSvg(pts),
+        solution: `Qovşaqlar: ${verts(pts)}. f-in ən kiçik qiyməti ${S(lo)}, ən böyüyü ${S(hi)}. −f Ox-a görə əksdir: ən ${E} qiymət f-in ən ${top ? "kiçik" : "böyük"} qiymətindən alınır: −(${S(top ? lo : hi)}) = ${S(top ? -lo : -hi)}. Sonra ${S(b)}: ${S(top ? -lo : -hi)}${tail(b)} = ${S(R)}.${trap(w)}` });
+    }) },
+    // 7. coded: Oy-intercept of a shifted parabola (the new graph is f(x + p) − q)
+    { tip: "kod", gen: () => again(() => {
+      const b = pick([-1, 1]) * rnd(1, 8), c = rnd(-5, 9), p = rnd(1, 4), q = rnd(1, 6), v = p * p + b * p + c, R = v - q; if (R <= 0) return null;
+      return { text: `y = ${poly([[1, "x²"], [b, "x"], [c, ""]])} parabolasını ${p} vahid sola və ${q} vahid aşağı sürüşdürdülər. Alınan parabolanın Oy oxu ilə kəsişmə nöqtəsinin ordinatını tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `f(x) = ${poly([[1, "x²"], [b, "x"], [c, ""]])} olsun. ${p} sola: x əvəzinə x + ${p}; ${q} aşağı: − ${q}. Yeni parabola y = f(x + ${p}) − ${q}. Oy oxunda x = 0: y = f(${p}) − ${q}. f(${p}) = ${p * p}${tail(b * p)}${tail(c)} = ${v}, cavab ${v} − ${q} = ${R}. Tələ: f(${S(-p)}) götürmək (sürüşmənin istiqamətini tərs oxumaq) — ${S(p * p - b * p + c - q)}.` };
+    }) },
+    // 8. coded: area bounded by y = −a|x − m| + n and the Ox axis (a shift does not change the area)
+    { tip: "kod", gen: () => again(() => {
+      const a = pick([1, 2]), n = a === 2 ? pick([2, 4, 6, 8]) : rnd(2, 8), m = pick([-1, 1]) * rnd(1, 4), k = n / a, R = n * n / a;
+      return { text: `y = −${a > 1 ? a : ""}|${lin(m)}|${tail(n)} funksiyasının qrafiki ilə Ox oxu arasında qalan fiqurun sahəsini tapın.`,
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `Təpə ${P(m, n)}, budaqlar aşağı: fiqur üçbucaqdır. Ox-la kəsişmə: ${a > 1 ? a : ""}|${lin(m)}| = ${n} → |${lin(m)}| = ${k} → x = ${S(m - k)} və x = ${S(m + k)}. Əsas ${S(m + k)} − ${br(m - k)} = ${2 * k}, hündürlük ${n}. Sahə = ½ · ${2 * k} · ${n} = ${R}. Sağa-sola sürüşmə (${S(m)}) sahəni dəyişmir.` };
+    }) },
+    // 9. coded: g(x) = k·f(x − s) + b from the graph (the factor multiplies f only)
+    { tip: "kod", gen: () => again(() => {
+      const pts = wideF(), x0 = pts[0][0], xn = pts[pts.length - 1][0], k = pick([2, 3]);
+      const s = pick([-1, 1]) * rnd(1, 3), b = pick([-1, 1]) * rnd(1, 3), c = rnd(x0 + s, xn + s), u = c - s, y = vi(pts, u), R = k * y + b;
+      if (!Number.isFinite(y) || R <= 0) return null;
+      return { text: `${GRI} g(x) = ${k}·f(${arg(-s)})${tail(b)} olarsa, g(${S(c)}) neçədir?`, svg: fSvg(pts), answer: R, show: String(R), tol: 1e-6,
+        solution: `Qovşaqlar: ${verts(pts)}. g(${S(c)}) = ${k}·f(${S(c)}${tail(-s)})${tail(b)} = ${k}·f(${S(u)})${tail(b)}. Qrafikdən f(${S(u)}) = ${S(y)}. Cavab: ${k} · ${br(y)}${tail(b)} = ${S(k * y)}${tail(b)} = ${R}. Vuruq (${k}) yalnız f-ə aiddir (şaquli dartılma), ${S(b)} vurulmur.` };
+    }) },
+    // 10. written: distance between the Ox-intercepts of a shifted parabola
+    { tip: "yazili", gen: () => again(() => {
+      const m = pick([-1, 1]) * rnd(1, 4), k = rnd(2, 4), n = rnd(-4, 4), q = n + k * k, p = pick([-1, 1]) * rnd(1, 5); if (q < 1 || q > 9) return null;
+      const M = m + p, f = poly([[1, "x²"], [-2 * m, "x"], [m * m + n, ""]]);
+      return { text: `y = ${f} parabolasını ${LR(p)} və ${q} vahid aşağı sürüşdürdülər. Alınan parabolanın Ox oxu ilə kəsişmə nöqtələri arasındakı məsafəni tapın.`,
+        answer: 2 * k, show: String(2 * k), tol: 1e-6, unit: "vahid",
+        solution: `1) Tam kvadrat: ${f} = ${sqr(m)}${tail(n)}, təpə ${P(m, n)}. 2) ${LR(p)}: absis ${S(m)}${tail(p)} = ${S(M)}; ${q} aşağı: ordinat ${S(n)} − ${q} = ${S(n - q)}. Yeni parabola y = ${sqr(M)} − ${k * k}. 3) y = 0: ${sqr(M)} = ${k * k}, ${lin(M)} = ±${k}, x = ${S(M - k)} və x = ${S(M + k)}. 4) Məsafə: ${S(M + k)} − ${br(M - k)} = ${2 * k}. Cavab: ${2 * k}. Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -225,7 +386,7 @@
     game = Oyun.mount({
       key: "qrafik-cevrilme", title: "Qrafiklərin çevrilməsi", fenn: "riyaziyyat", link: "dersler/qrafik-cevrilme.html",
       format: "Cavab ədəddir: tam 4, mənfi −3. Təpə soruşulanda yalnız istənən koordinatı yaz (absis və ya ordinat).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["yuxari", "saga", "saga", "eks", "eks", "teper", "teper", "teper", "tani", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

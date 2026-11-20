@@ -465,7 +465,8 @@
     "riyaziyyat:Kvadrat funksiya, parabola",
     "riyaziyyat:y = k/x, y = √x, y = |x|, y = x³ funksiyaları"
    ],
-   "hefte": "2027-01-04"
+   "hefte": "2027-01-04",
+   "imt": true
   },
   {
    "bolme": "Bərabərsizliklər",

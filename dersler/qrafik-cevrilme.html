@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>f(x + a)</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Əks etmələr</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Parabolanın təpəsi</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -243,8 +244,90 @@ p sağa: m + p;  p sola: m − p;  q yuxarı: n + q;  q aşağı: n − q.</div>
         <li><span class="m">y = (x − 4)² − 7</span> Oy oxunu hansı nöqtədə kəsir? <span class="ans">x = 0: 16 − 7 = 9 → (0; 9).</span></li>
       </ol></details>
     </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (19 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: qrafiklərin çevrilməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Qrafiklərin sürüşdürülməsi və əks etdirilməsi imtahanda üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: sürüşmənin istiqamətini tərs götürmək, işarəni dəyişmək, sürüşməni unutmaq. "Mənim cavabım variantlarda var" hələ düz demək deyil. Çox vaxt şəkil verilir: qovşaq nöqtələrinin koordinatlarını şəkildən oxuyursan.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan: yalnız ədəd.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda əvvəl soruş: <b>x-ə nə edilir, y-ə nə edilir?</b> Mötərizənin içi (x) tərsinə işləyir, mötərizənin xarici (y) düz işləyir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Şəkildə <span class="m">y = f(x)</span> funksiyasının qrafiki verilib (qovşaq nöqtələri: <span class="m">(−4; 2)</span>, <span class="m">(−2; −2)</span>, <span class="m">(1; 1)</span>, <span class="m">(3; −1)</span>). <span class="m">g(x) = f(x + 1) − 2</span> olarsa, <span class="m">g(0)</span> neçədir?</p>
+        <div class="fig"><svg viewBox="0 0 220 140" role="img" aria-label="Qovşaqları (−4; 2), (−2; −2), (1; 1), (3; −1) olan sınıq xətt"><line x1="10" y1="70" x2="210" y2="70" stroke="var(--bubble)" stroke-width="1.2"/><line x1="110" y1="8" x2="110" y2="132" stroke="var(--bubble)" stroke-width="1.2"/><polyline points="30,30 70,110 130,50 170,90" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="30" cy="30" r="3.4" fill="var(--ink)"/><circle cx="70" cy="110" r="3.4" fill="var(--ink)"/><circle cx="130" cy="50" r="3.4" fill="var(--ink)"/><circle cx="170" cy="90" r="3.4" fill="var(--ink)"/><text x="204" y="64" font-size="11" fill="var(--bubble)">x</text><text x="114" y="16" font-size="11" fill="var(--bubble)">y</text></svg></div>
+        <ol class="imt-opts"><li>−1</li><li>−3</li><li>3</li><li>−2</li><li>1</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">g(0) = f(0 + 1) − 2 = f(1) − 2
+Qrafikdən f(1) = 1
+g(0) = 1 − 2 = −1
+Cavab: A) −1</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>B) −3</b> — sürüşmənin istiqamətini tərs götürmək: <span class="m">f(−1) − 2</span> (<span class="m">f(−1) = −1</span>).</li>
+        <li><b>C) 3</b> — yuxarı-aşağı işarəni dəyişmək: <span class="m">f(1) + 2</span>.</li>
+        <li><b>D) −2</b> — sağa-sola sürüşməni unutmaq: <span class="m">f(0) − 2</span>, <span class="m">f(0) = 0</span>.</li>
+        <li><b>E) 1</b> — <span class="m">−2</span> ədədini əlavə etməyi unutmaq: yalnız <span class="m">f(1)</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p><span class="m">y = x² + 4x + 1</span> parabolasını 3 vahid sola və 2 vahid aşağı sürüşdürdülər. Alınan parabolanın Oy oxu ilə kəsişmə nöqtəsinin ordinatını tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">f(x) = x² + 4x + 1
+3 sola: x əvəzinə x + 3; 2 aşağı: − 2
+Yeni parabola: y = f(x + 3) − 2
+Oy oxunda x = 0: y = f(3) − 2
+f(3) = 9 + 12 + 1 = 22
+Cavab: 22 − 2 = 20</div>
+      <p>Kodlaşdırmada yalnız <b>20</b> yazılır. Tələ: <span class="m">f(−3)</span> götürmək (sola sürüşməni "mənfi" oxumaq): <span class="m">9 − 12 + 1 − 2 = −4</span>. Sola sürüşmə x-ə <b>+3</b> əlavə edir, Oy-da isə <span class="m">x = 0</span> qoyanda <span class="m">f(3)</span> alınır.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p><span class="m">y = x² − 6x + 5</span> parabolasını 1 vahid sağa və 5 vahid aşağı sürüşdürdülər. Alınan parabolanın Ox oxu ilə kəsişmə nöqtələri arasındakı məsafəni tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Tam kvadrat: x² − 6x + 5 = (x − 3)² − 4, təpə (3; −4).
+2) 1 sağa: absis 3 + 1 = 4; 5 aşağı: ordinat −4 − 5 = −9.
+   Yeni parabola: y = (x − 4)² − 9.
+3) y = 0: (x − 4)² = 9, x − 4 = ±3, x = 1 və x = 7.
+4) Məsafə: 7 − 1 = 6.
+Cavab: 6 vahid.</div>
+      <p>Yoxlayan üç şeyə bal verir: <b>tam kvadrat və təpə</b> (1-ci addım), <b>sürüşmədən sonra yeni düstur</b> (2-ci addım), <b>kökləri tapmaq və cavab</b>. Yalnız "6" yazmaq bu balların çoxunu itirir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>İstiqaməti tərs götürmək.</b> <span class="m">f(x + 3)</span> qrafiki <b>sola</b> aparır, sağa yox; <span class="m">f(x − 3)</span> sağa.</li>
+        <li><b>Yuxarı-aşağını qarışdırmaq.</b> <span class="m">f(x) − 2</span> — 2 vahid aşağı; mötərizədən kənardakı ədəd y-ə düz təsir edir.</li>
+        <li><b>Sürüşməni unutmaq.</b> Hər iki sürüşmə varsa, hər ikisini tətbiq et: nə x-i, nə y-i atma.</li>
+        <li><b>Əks etdirmə və sürüşmə.</b> <span class="m">−f(x) + 2</span> üçün əvvəl əks etdir (ən böyük ↔ ən kiçik), sonra 2 əlavə et. <span class="m">−(f(x) + 2)</span> başqa funksiyadır.</li>
+        <li><b>Vuruq yalnız f-ə aiddir.</b> <span class="m">2·f(x) + 3</span>-də 3 ikiqat edilmir.</li>
+        <li><b>Təpə.</b> <span class="m">x² + bx + c</span>-də təpənin absisi <span class="m">−b/2</span>-dir (b/2 yox), ordinatı c yox, <span class="m">y(−b/2)</span>-dir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">y = f(x − a):  a sağa     y = f(x) + b:  b yuxarı
+y = f(x + a):  a sola     y = f(x) − b:  b aşağı
+y = −f(x):  Ox-a görə əks
+təpə (m; n) → p sağa, q yuxarı: (m + p; n + q)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li><span class="m">g(x) = f(x − 2) + 3</span>. <span class="m">f(5) = 4</span> olarsa, <span class="m">g(7)</span> neçədir? <span class="ans">g(7) = f(5) + 3 = 7.</span></li>
+        <li><span class="m">y = (x + 1)² − 3</span> parabolasını 4 sağa, 2 aşağı sürüşdürdülər. Yeni təpə? <span class="ans">(−1 + 4; −3 − 2) = (3; −5).</span></li>
+        <li><span class="m">f(x)</span>-in ən böyük qiyməti 5, ən kiçiyi −2-dir. <span class="m">−f(x) + 1</span>-in ən kiçik qiyməti? <span class="ans">−5 + 1 = −4 (f-in ən böyüyü əks olunub).</span></li>
+      </ol></details>
+    </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
   </section>
+
+
+
 
   <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
   <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
