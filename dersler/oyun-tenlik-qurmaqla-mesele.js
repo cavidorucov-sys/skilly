@@ -130,7 +130,7 @@
         return { text: `Maşın ${s1} km yolu ${v1} km/saat, sonrakı ${s2} km yolu ${v2} km/saat sürətlə getdi. Bütün yolda orta sürəti neçə km/saatdır?`, answer: V, show: String(V), tol: 0.01, unit: "km/saat",
           solution: `Vaxtlar: ${s1}/${v1} = ${t1} saat və ${s2}/${v2} = ${t2} saat. Orta sürət: (${s1} + ${s2})/(${t1} + ${t2}) = ${s1 + s2}/${t1 + t2} = ${V}.` };
       } },
-    { id: "is-qarisiq", ad: "İş və qarışıqlar", izah: "İş = məhsuldarlıq · vaxt; bütün iş = 1. Qarışıqda təmiz maddə = məhlul · faiz/100; su əlavə edəndə duz dəyişmir.",
+    { id: "is-qarisiq", ad: "İş və qarışıqlar", izah: "İş = məhsuldarlıq · vaxt; bütün iş = 1. Qarışıqda təmiz maddə = məhlul · faiz/100; su əlavə edəndə şəkər dəyişmir.",
       gen() {
         const kind = pick(["usta", "birge", "su", "qarisiq"]);
         if (kind === "usta") {
@@ -148,13 +148,13 @@
         }
         if (kind === "su") {
           const [m, p, q, salt, tot] = pick(DIL), x = Math.abs(tot - m), add = q < p;
-          return { text: add ? `${m} q ${p}%-li duz məhluluna neçə qram su əlavə etmək lazımdır ki, məhlul ${q}%-li olsun?` : `${m} q ${p}%-li duz məhlulundan neçə qram su buxarlandırmaq lazımdır ki, məhlul ${q}%-li olsun?`,
+          return { text: add ? `${m} q ${p}%-li şəkər məhluluna neçə qram su əlavə etmək lazımdır ki, məhlul ${q}%-li olsun?` : `${m} q ${p}%-li şəkər məhlulundan neçə qram su buxarlandırmaq lazımdır ki, məhlul ${q}%-li olsun?`,
             answer: x, show: String(x), tol: 0.01, unit: "q",
-            solution: `Duz: ${m}·${p}/100 = ${salt} q. Su ${add ? "əlavə edəndə" : "buxarlananda"} duz dəyişmir. Yeni məhlul: ${salt} = ${q}/100·(${m} ${add ? "+" : "−"} x) → ${m} ${add ? "+" : "−"} x = ${tot} → x = ${x}. Yoxla: ${salt}/${tot} = ${q}% ✓.` };
+            solution: `Şəkər: ${m}·${p}/100 = ${salt} q. Su ${add ? "əlavə edəndə" : "buxarlananda"} şəkər dəyişmir. Yeni məhlul: ${salt} = ${q}/100·(${m} ${add ? "+" : "−"} x) → ${m} ${add ? "+" : "−"} x = ${tot} → x = ${x}. Yoxla: ${salt}/${tot} = ${q}% ✓.` };
         }
         const [p1, p2, q, M, x] = pick(MIX);
-        return { text: `${p1}%-li və ${p2}%-li duz məhlullarını qarışdırıb ${M} q ${q}%-li məhlul almaq lazımdır. ${p1}%-li məhluldan neçə qram götürmək lazımdır?`, answer: x, show: String(x), tol: 0.01, unit: "q",
-          solution: `x q — ${p1}%-li, ${M} − x — ${p2}%-li. Duzlar toplanır: ${p1}/100·x + ${p2}/100·(${M} − x) = ${q}/100·${M}. 100-ə vur: ${p1}x + ${p2 * M} − ${p2}x = ${q * M} → ${p2 - p1}x = ${(p2 - q) * M} → x = ${x}. Yoxla: ${p1 * x / 100} + ${p2 * (M - x) / 100} = ${q * M / 100} q duz ✓.` };
+        return { text: `${p1}%-li və ${p2}%-li şəkər məhlullarını qarışdırıb ${M} q ${q}%-li məhlul almaq lazımdır. ${p1}%-li məhluldan neçə qram götürmək lazımdır?`, answer: x, show: String(x), tol: 0.01, unit: "q",
+          solution: `x q — ${p1}%-li, ${M} − x — ${p2}%-li. Şəkərlər toplanır: ${p1}/100·x + ${p2}/100·(${M} − x) = ${q}/100·${M}. 100-ə vur: ${p1}x + ${p2 * M} − ${p2}x = ${q * M} → ${p2 - p1}x = ${(p2 - q) * M} → x = ${x}. Yoxla: ${p1 * x / 100} + ${p2 * (M - x) / 100} = ${q * M / 100} q şəkər ✓.` };
       } },
     { id: "heyat", ad: "Həyatdan", izah: "Alış-veriş, pul, endirim. x — soruşulan kəmiyyət; şərti tənliyə çevir, cavabı yoxla.",
       gen() {
@@ -210,6 +210,114 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are the
+  // answers of typical mistakes (the unknown instead of the asked quantity, wrong equation, adding times, ...).
+  const { ae, again } = Oyun;
+  const D = Oyun.num;
+  const isNice = (x, dp = 2) => Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const nice = (x, dp = 0) => isFinite(x) && x > 0 && isNice(x, dp);
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  const T3 = [];      // three equal parts of the road at a, b, c km/h → integer average
+  for (let a = 20; a <= 120; a += 5) for (let b = a + 5; b <= 120; b += 5) for (let c = b + 5; c <= 120; c += 5) { const V = 3 * a * b * c / (a * b + b * c + a * c); if (Number.isInteger(V)) T3.push([a, b, c, V]); }
+  const PIPE = [];    // filling pipe a h, draining pipe b h → together R h; every trap answer is a whole number too
+  for (let a = 2; a <= 40; a++) for (let b = a + 1; b <= 100; b++) { const R = a * b / (b - a); if (Number.isInteger(R) && R <= 100 && Number.isInteger(a * b / (a + b))) PIPE.push([a, b, R]); }
+  const WORK = [];    // master a days, apprentice b days, c days together, then the apprentice alone: whole days
+  for (let a = 2; a <= 20; a++) for (let b = a + 1; b <= 40; b++) for (let c = 1; c < a; c++) { const r = a * b - c * (a + b); if (r > 0 && r % a === 0) WORK.push([a, b, c, r / a]); }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. consecutive even / odd numbers: the largest one
+    { tip: "qapali", gen: () => again(() => {
+      const n = pick([3, 5]), par = pick(["cüt", "tək"]); let x = rnd(4, 60); if ((x % 2 === 0) !== (par === "cüt")) x++;
+      const T = n * x + n * (n - 1), R = x + 2 * (n - 1), w = [x, T / n, x + 3 * (n - 1) / 2, x + 2 * n];
+      if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `${NW[n]} ardıcıl ${par} ədədin cəmi ${T} olur. Bu ədədlərin ən böyüyü hansıdır?`,
+        solution: `x — ən kiçik ədəd. Ardıcıl ${par} ədədlər: ${Array.from({ length: n }, (_, i) => i ? `x + ${2 * i}` : "x").join(", ")}. Cəm: ${n}x + ${n * (n - 1)} = ${T} → ${n}x = ${T - n * (n - 1)} → x = ${x}. Ən böyüyü: x + ${2 * (n - 1)} = ${R}. Tələlər: x-i cavab yazmaq (${x}); ədədləri ardıcıl natural kimi götürmək (${D(w[2])}); cəmi ədədlərin sayına bölüb ortanı yazmaq (${D(T / n)}); ən kiçiyə ${2 * n} əlavə etmək (${x + 2 * n}) — ${n} ədəd arasında ${n - 1} aralıq var, ona görə ${2 * (n - 1)} əlavə edilir.` });
+    }) },
+    // 2. age: the mother's age (the unknown is the daughter's)
+    { tip: "qapali", gen: () => again(() => {
+      const x = rnd(8, 20), y = rnd(2, x - 2), k = rnd(2, 5), dif = (k - 1) * (x - y); if (dif < 18 || dif > 40) return null;
+      const R = x + dif, w = [x, (k * y + dif) / (k - 1) + dif, x - 2 * y + dif, R - y];
+      if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `Ana qızından ${dif} yaş böyükdür. ${y} il əvvəl ana qızından ${k} dəfə böyük idi. Ananın indiki yaşı neçədir?`,
+        solution: `x — qızın indiki yaşı, ana x + ${dif}. ${y} il əvvəl: qız x − ${y}, ana ${poly([[1, "x"], [dif - y, ""]])}. ${poly([[1, "x"], [dif - y, ""]])} = ${k}(x − ${y}) → ${solve(k - 1, dif - y + k * y)}. Ana: ${x} + ${dif} = ${R}. Tələlər: x-i (qızın yaşını, ${x}) cavab yazmaq; ananın ${y} il əvvəlki yaşını yazmaq (${R - y}); ananın yaşından ${y} çıxmağı unutmaq (${D(w[1])}); “əvvəl” əvəzinə “sonra” götürmək (${D(w[2])}).` });
+    }) },
+    // 3. catching up: the distance from the start
+    { tip: "qapali", gen: () => again(() => {
+      const [v1, t0, v2, t, walk] = pick(CATCH); if (t === t0) return null;
+      const [A, B, Bdat] = walk ? ["Piyada", "velosipedçi", "piyadaya"] : ["Yük maşını", "minik maşını", "yük maşınına"], R = v2 * t;
+      const w = [v1 * t0, v1 * t, v2 * (t + t0), v1 * v2 * t0 / (v1 + v2)];
+      if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `${A} ${v1} km/saat sürətlə yola çıxdı. ${t0} saat sonra eyni yerdən eyni istiqamətdə ${B} ${v2} km/saat sürətlə yola çıxdı. ${B[0].toUpperCase() + B.slice(1)} yola çıxdığı yerdən neçə kilometr məsafədə ${Bdat} çatar?`,
+        solution: `t — ${B} yola çıxandan keçən vaxt; birinci isə t + ${t0} saat yoldadır. Çatanda yollar bərabərdir: ${v2}t = ${v1}(t + ${t0}) → ${solve(v2 - v1, v1 * t0, "t")}. Soruşulan vaxt yox, məsafədir: ${v2}·${t} = ${R} km (yoxla: ${v1}·${t + t0} = ${R}). Tələlər: birincinin ${t0} saatda getdiyi məsafəni yazmaq (${v1 * t0}); birincinin ${t} saatlıq yolunu yazmaq (${v1 * t}), halbuki o, ${t + t0} saat gedib; ikincinin sürətini birincinin vaxtına vurmaq (${v2 * (t + t0)}); ardınca çatmanı qarşılıqlı hərəkət kimi qurmaq: (${v1} + ${v2})t = ${v1 * t0} → ${v2}·t = ${D(w[3])} — eyni istiqamətdə sürətlər çıxılır, toplanmır.` });
+    }) },
+    // 4. boat: downstream / upstream times, the distance
+    { tip: "qapali", gen: () => again(() => {
+      const c = pick([2, 3, 4, 5]), t1 = rnd(2, 6), t2 = rnd(t1 + 1, 12), d = 2 * c * t1 * t2 / (t2 - t1), v = c * (t1 + t2) / (t2 - t1);
+      const w = [v, v * t1, v * t2, v * (t1 + t2) / 2];
+      if (![d, ...w].every(q => nice(q)) || !Number.isInteger(d) || !Number.isInteger(v)) return null;
+      return mc(ae(d, w), { text: `Kater A limanından B limanına çay axını ilə ${t1} saata, geri axının əksinə ${t2} saata gedir. Katerin durğun sudakı sürəti və çayın axın sürəti (${c} km/saat) gedişdə və qayıdışda sabitdir. İki liman arası məsafə neçə kilometrdir?`,
+        solution: `x — katerin durğun sudakı sürəti. Axınla (x + ${c}), əksinə (x − ${c}); yol eynidir: ${t1}(x + ${c}) = ${t2}(x − ${c}) → ${t1}x + ${t1 * c} = ${t2}x − ${t2 * c} → ${t2 - t1}x = ${c * (t1 + t2)} → x = ${v}. Məsafə: ${t1}·(${v} + ${c}) = ${t1}·${v + c} = ${d} km. Tələlər: x-i cavab yazmaq (${v}); axını nəzərə almadan x·t hesablamaq (${v * t1}, ${v * t2}); vaxtların ortasını götürüb x-ə vurmaq (${D(v * (t1 + t2) / 2)}).` });
+    }) },
+    // 5. work: a filling pipe and a draining pipe
+    { tip: "qapali", gen: () => again(() => {
+      const [a, b, R] = pick(PIPE), w = [a * b / (a + b), a + b, b - a, a];
+      if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `Birinci boru boş hovuzu ${a} saata doldurur. İkinci boru dolu hovuzu ${b} saata boşaldır. Hər borunun su sərfi sabitdir (hovuzda səviyyədən asılı deyil). Hovuz boşdur və hər iki boru eyni anda açıldı. Hovuz neçə saata dolacaq?`,
+        solution: `Bütün iş (hovuz) 1 olsun. 1 saatda birinci 1/${a} hissə doldurur, ikinci 1/${b} hissə boşaldır. Hovuzda qalan: 1/${a} − 1/${b} = ${frac(b - a, a * b)}. x saatda: x·${frac(b - a, a * b)} = 1 → x = ${R}. Tələlər: boşaldan borunu da doldurur kimi hesablamaq (${a}·${b}/(${a} + ${b}) = ${D(w[0])}); vaxtları toplamaq (${a + b}) və ya çıxmaq (${b - a}); yalnız birinci borunun vaxtını yazmaq (${a}). Toplanıb-çıxılan 1 saatdakı iş hissələridir, vaxtlar yox.` });
+    }) },
+    // 6. mixture: how much of the stronger solution
+    { tip: "qapali", gen: () => again(() => {
+      const [p1, p2, q, M, x1] = pick(MIX), R = M - x1;
+      const w = [x1, M / 2, M * q / 100, M * p2 / (p1 + p2)];
+      if (![R, ...w].every(v => nice(v))) return null;
+      return mc(ae(R, w), { text: `${p1}%-li və ${p2}%-li spirt məhlulları qarışdırılaraq ${M} q ${q}%-li məhlul alındı (faizlər spirtin kütlə payını göstərir). Götürülən ${p2}%-li məhlulun kütləsi neçə qramdır?`,
+        solution: `x q — ${p1}%-li, ${M} − x — ${p2}%-li məhlul. Təmiz spirtin kütlələri toplanır: ${p1}x + ${p2}(${M} − x) = ${q}·${M} → ${p2 * M} − ${p2 - p1}x = ${q * M} → ${p2 - p1}x = ${(p2 - q) * M} → x = ${x1}. ${p2}%-li məhlul: ${M} − ${x1} = ${R} q. Tələlər: soruşulanı yox, x-i yazmaq (${x1}); bərabər götürmək (${M / 2}); təmiz spirtin kütləsini yazmaq (${D(M * q / 100)}); kütlələri faizlərə mütənasib bölmək (${D(w[3])}).` });
+    }) },
+    // 7. coded: digits
+    { tip: "kod", gen: () => again(() => {
+      const kind = pick(["swap", "sag", "cem"]);
+      if (kind === "swap") {
+        const a = rnd(3, 9), b = rnd(1, a - 1), N = 10 * a + b, R = 10 * b + a, dd = N - R;
+        return { text: `İkirəqəmli ədədin rəqəmlərinin cəmi ${a + b} olur. Rəqəmlərin yerini dəyişsək, ədəd ${dd} azalar. İlkin ədədi tapın.`,
+          answer: N, show: String(N), tol: 1e-6, solution: `Ədəd 10a + b, yeri dəyişən 10b + a. Fərq: 9(a − b) = ${dd} → a − b = ${dd / 9}. a + b = ${a + b} → a = ${a}, b = ${b}. Ədəd: ${N}. Yoxla: ${N} − ${R} = ${dd} ✓.` };
+      }
+      if (kind === "sag") {
+        const x = rnd(11, 99), c = rnd(1, 9), M = 9 * x + c;
+        return { text: `İkirəqəmli ədədin sağına ${c} rəqəmini yazdıq. Alınan ədəd ilkin ədəddən ${M} vahid böyükdür. İlkin ədədi tapın.`,
+          answer: x, show: String(x), tol: 1e-6, solution: `İlkin ədəd x. Sağına ${c} yazanda ədəd 10x + ${c} olur. 10x + ${c} − x = ${M} → 9x = ${M - c} → x = ${x}. Yoxla: ${10 * x + c} − ${x} = ${M} ✓.` };
+      }
+      const a = rnd(2, 9), b = rnd(1, a - 1), N = 10 * a + b, S2 = 11 * (a + b), dd = a - b;
+      return { text: `İkirəqəmli ədədin onluq rəqəmi təklik rəqəmindən ${dd} vahid çoxdur. Bu ədədlə rəqəmlərinin yeri dəyişən ədədin cəmi ${S2} olur. İlkin ədədi tapın.`,
+        answer: N, show: String(N), tol: 1e-6, solution: `Ədəd 10a + b, yeri dəyişən 10b + a; cəm 11(a + b) = ${S2} → a + b = ${a + b}. a − b = ${dd} → a = ${a}, b = ${b}. Ədəd: ${N}. Yoxla: ${N} + ${10 * b + a} = ${S2} ✓.` };
+    }) },
+    // 8. coded: average speed
+    { tip: "kod", gen: () => again(() => {
+      if (Math.random() < .6) {
+        const [a, b, c, V] = pick(T3), L = lcm(lcm(a, b), c);
+        return { text: `Maşın yolun üç bərabər hissəsini uyğun olaraq ${a}, ${b} və ${c} km/saat sürətlə getdi. Bütün yolda orta sürəti neçə km/saatdır?`,
+          answer: V, show: String(V), tol: 1e-6, unit: "km/saat", solution: `Hər hissə ${L} km olsun. Vaxtlar: ${L}/${a} = ${L / a}, ${L}/${b} = ${L / b}, ${L}/${c} = ${L / c} saat; cəmi ${L / a + L / b + L / c} saat. Ümumi yol ${3 * L} km. Orta sürət: ${3 * L}/${L / a + L / b + L / c} = ${V}. Tələ: (${a} + ${b} + ${c})/3 = ${D((a + b + c) / 3)} deyil.` };
+      }
+      const [v1, v2, V] = pick(EQD);
+      return { text: `Maşın yolun birinci yarısını ${v1} km/saat sürətlə getdi. Yolun ikinci yarısını hansı sürətlə getməlidir ki, bütün yolda orta sürəti ${V} km/saat olsun?`,
+        answer: v2, show: String(v2), tol: 1e-6, unit: "km/saat", solution: `x — ikinci yarıdakı sürət. Bərabər yarılar üçün orta sürət 2·${v1}·x/(${v1} + x). 2·${v1}·x/(${v1} + x) = ${V} → ${2 * v1}x = ${V * v1} + ${V}x → ${2 * v1 - V}x = ${V * v1} → x = ${v2}. Yoxla: 2·${v1}·${v2}/${v1 + v2} = ${V} ✓.` };
+    }) },
+    // 9. coded: master and apprentice, the rest of the work alone
+    { tip: "kod", gen: () => again(() => {
+      const [a, b, c, days] = pick(WORK);
+      return { text: `Usta işi ${a} günə, şagird isə eyni işi ${b} günə görür. Onlar birlikdə ${c} gün işlədilər, qalan işi şagird təkbaşına tamamladı. Şagird təkbaşına neçə gün işlədi?`,
+        answer: days, show: String(days), tol: 1e-6, unit: "gün",
+        solution: `Bütün iş 1. 1 gündə birlikdə 1/${a} + 1/${b} = ${frac(a + b, a * b)} hissə. ${c} gündə: ${frac(c * (a + b), a * b)}. Qalan: 1 − ${frac(c * (a + b), a * b)} = ${frac(a * b - c * (a + b), a * b)}. Şagird gündə 1/${b} hissə görür: ${frac(a * b - c * (a + b), a * b)} : 1/${b} = ${days} gün. Tələ: vaxtları toplamaq (${a} + ${b}).` };
+    }) },
+    // 10. written: meeting after a late start; the distance from A
+    { tip: "yazili", gen: () => again(() => {
+      const v1 = pick([40, 50, 60, 70, 80]), v2 = pick([40, 50, 60, 70, 80]), t0 = rnd(1, 2), t = t0 + rnd(1, 4), Dst = v1 * t + v2 * (t - t0);
+      return { text: `A və B şəhərləri arası ${Dst} kilometrdir. A-dan B-yə ${v1} km/saat sürətlə avtomobil çıxdı. ${t0} saat sonra B-dən A-ya doğru ${v2} km/saat sürətlə ikinci avtomobil çıxdı. Avtomobillər görüşəndə birincisi A-dan neçə kilometr məsafədə olacaq?`,
+        answer: v1 * t, show: String(v1 * t), tol: 1e-6, unit: "km",
+        solution: `1) Birincinin yolda olduğu vaxt t saat olsun; ikinci ${t0} saat gec çıxıb, onun vaxtı t − ${t0}. 2) Görüşəndə iki yol bütün məsafəni verir: ${v1}t + ${v2}(t − ${t0}) = ${Dst}. 3) ${v1 + v2}t − ${v2 * t0} = ${Dst} → ${v1 + v2}t = ${Dst + v2 * t0} → t = ${t}. 4) Birincinin getdiyi yol: ${v1}·${t} = ${v1 * t} km. Yoxlama: ${v1 * t} + ${v2}·${t - t0} = ${v1 * t} + ${v2 * (t - t0)} = ${Dst} ✓. Cavab: ${v1 * t} km. (Həll yazılmadan yalnız cavab — bal verilmir.)` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -219,7 +327,7 @@
     game = Oyun.mount({
       key: "tenlik-qurmaqla-mesele", title: "Tənlik qurmaqla məsələ həlli", fenn: "riyaziyyat", link: "dersler/tenlik-qurmaqla-mesele.html",
       format: "Cavab ədəddir, vahidsiz: 48 (km/saat yazma), 12, 250. Lazım olsa kəsr 5/2 və ya onluq 2.5.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["eded-yas", "eded-yas", "reqem", "herekat", "herekat", "orta", "orta", "is-qarisiq", "is-qarisiq", "heyat"] },
       goTest: () => SkillyTab("sinaq"), goGame: () => SkillyTab("oyun"), goLesson: () => SkillyTab("d1"),

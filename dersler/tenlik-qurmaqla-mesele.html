@@ -29,6 +29,7 @@
     <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Rəqəmlər</button>
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hərəkət</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İş və qarışıq</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -253,11 +254,11 @@ Birlikdə: hissələr toplanır, vaxtlar yox</div>
 
       <h3><span class="st">3</span> Qarışıq və məhlul</h3>
       <div class="fm">təmiz maddə = məhlulun kütləsi · faiz/100
-Su əlavə edəndə (buxarlananda) duz dəyişmir.
-Qarışdıranda duzlar toplanır.</div>
-      <div class="ex">Nümunə 3. 200 q 30%-li duz məhluluna neçə qram su əlavə edək ki,
+Su əlavə edəndə (buxarlananda) şəkər dəyişmir.
+Qarışdıranda şəkərlər toplanır.</div>
+      <div class="ex">Nümunə 3. 200 q 30%-li şəkər məhluluna neçə qram su əlavə edək ki,
 məhlul 20%-li olsun?
-  Duz: 200·0,3 = 60 q  (dəyişmir)
+  Şəkər: 200·0,3 = 60 q  (dəyişmir)
   60 = 0,2·(200 + x)  →  300 = 200 + x  →  x = 100
   Yoxla: 60/300 = 0,2 = 20% ✓</div>
       <div class="ex">Nümunə 4. 10%-li və 30%-li məhlullardan 400 q 25%-li məhlul
@@ -265,22 +266,104 @@ almaq lazımdır. Hər birindən nə qədər?
   x — 10%-li, 400 − x — 30%-li.
   0,1x + 0,3(400 − x) = 0,25·400
   0,1x + 120 − 0,3x = 100  →  0,2x = 20  →  x = 100
-  Cavab: 100 q 10%-li, 300 q 30%-li.  Yoxla: 10 + 90 = 100 q duz ✓</div>
+  Cavab: 100 q 10%-li, 300 q 30%-li.  Yoxla: 10 + 90 = 100 q şəkər ✓</div>
       <div class="life"><b>Həyatdan.</b> Çay çox şirindir? Su əlavə edirsən — şəkər eyni qalır, amma faizi düşür. Ümumi kütləsi 200 q olan şirin çayda 10 q şəkər var — 5%. 100 q su əlavə et (300 q) — şəkər yenə 10 q, indi 10/300 ≈ 3,33%.</div>
 
       <div class="mist"><b>Tipik səhvlər</b><ul>
         <li>Birgə işdə vaxtları toplamaq. Toplanan — 1 gündə görülən hissələrdir: <span class="m">1/a + 1/b</span>.</li>
         <li>Faizləri toplamaq: 10%-li + 30%-li ≠ 40%-li. Qarışığın faizi həmişə ikisinin <b>arasında</b> olur.</li>
-        <li>Su əlavə edəndə duzu da dəyişmək. Dəyişən yalnız ümumi kütlədir.</li>
+        <li>Su əlavə edəndə şəkəri də dəyişmək. Dəyişən yalnız ümumi kütlədir.</li>
       </ul></div>
       <div class="sum"><b>Yadda saxla</b><div class="ex">iş = məhsuldarlıq · vaxt;  birgə: x/a + x/b = 1
-duz = kütlə · p/100
-su əlavə et / buxarlandır → duz sabit
-qarışdır → duzlar toplanır</div></div>
+şəkər = kütlə · p/100
+su əlavə et / buxarlandır → şəkər sabit
+qarışdır → şəkərlər toplanır</div></div>
       <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
-        <li>500 q 12%-li məhlulda neçə qram duz var? <span class="ans">500·0,12 = 60 q.</span></li>
-        <li>40%-li 50 q məhlula 50 q su əlavə etdik. Yeni faiz? <span class="ans">Duz 20 q, kütlə 100 q → 20%.</span></li>
+        <li>500 q 12%-li məhlulda neçə qram şəkər var? <span class="ans">500·0,12 = 60 q.</span></li>
+        <li>40%-li 50 q məhlula 50 q su əlavə etdik. Yeni faiz? <span class="ans">Şəkər 20 q, kütlə 100 q → 20%.</span></li>
         <li>Bir boru hovuzu 10 saata, digəri 15 saata doldurur. Birlikdə? <span class="ans">x/10 + x/15 = 1 → 3x + 2x = 30 → x = 6 saat.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (15 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: tənlik qurmaqla məsələ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Mətnli məsələ buraxılışda hər il var: ədəd, yaş, rəqəm, hərəkət, iş və qarışıq məsələləri. Üç formada gəlir:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>: naməlum x-in özü, səhv qurulmuş tənliyin kökü, vaxtların toplanması. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün yazırsan. Yalnız müsbət ədəd: vahid (km, saat, q) yazılmır.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır: naməlum, tənlik, həll, cavab. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Hər sualda axırıncı cümləni əvvəl oxu: <b>nə soruşulur?</b> Tənliyin kökü (x) çox vaxt cavab deyil — ən böyük ədəd, ananın yaşı, məsafə soruşula bilər.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>Üç ardıcıl cüt ədədin cəmi 54 olur. Bu ədədlərin ən böyüyü hansıdır?</p>
+        <ol class="imt-opts"><li>18</li><li>16</li><li>22</li><li>20</li><li>19</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">x — ən kiçik ədəd. Ədədlər: x, x + 2, x + 4.
+x + x + 2 + x + 4 = 54  →  3x + 6 = 54  →  3x = 48  →  x = 16
+Ədədlər: 16, 18, 20.  Yoxla: 16 + 18 + 20 = 54 ✓
+Soruşulan ən böyüyüdür.
+Cavab: D) 20</div>
+      <p>Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 18</b> — cəmi 3-ə bölmək: <span class="m">54 : 3</span>. Bu, ortadakı ədəddir, ən böyüyü yox.</li>
+        <li><b>B) 16</b> — x-i cavab yazmaq: ən kiçiyi tapıb dayanmaq.</li>
+        <li><b>C) 22</b> — ən böyüyünü <span class="m">x + 2·3</span> kimi hesablamaq. Üç ədəd arasında 2 aralıq var: <span class="m">x + 2·2</span>.</li>
+        <li><b>E) 19</b> — "cüt" sözünü nəzərə almamaq: ədədləri 17, 18, 19 kimi (ardıcıl natural) götürmək.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>İkirəqəmli ədədin rəqəmlərinin cəmi 10 olur. Rəqəmlərin yerini dəyişsək, ədəd 18 azalar. İlkin ədədi tapın.</p>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">Ədəd 10a + b, yeri dəyişən 10b + a.
+Fərq: (10a + b) − (10b + a) = 9a − 9b = 9(a − b) = 18  →  a − b = 2
+a + b = 10  →  a = 6, b = 4
+Ədəd: 64.  Yoxla: 64 − 46 = 18 ✓
+Cavab: 64</div>
+      <p>Kodlaşdırmada yalnız <b>64</b> yazılır. İki tələ var: sual <b>ilkin ədədi</b> soruşur, rəqəmi (6) və ya yeri dəyişən ədədi (46) yox; "azalar" sözü ilkin ədədin böyük olduğunu göstərir (deməli a > b).</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>A və B şəhərləri arası 290 kilometrdir. A-dan B-yə 50 km/saat sürətlə avtomobil çıxdı. 1 saat sonra B-dən A-ya doğru 70 km/saat sürətlə ikinci avtomobil çıxdı. Avtomobillər görüşəndə birincisi A-dan neçə kilometr məsafədə olacaq?</p>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Birincinin yolda olduğu vaxt t saat olsun.
+   İkinci 1 saat gec çıxıb, onun vaxtı t − 1.
+2) Görüşəndə iki avtomobilin yolu bütün məsafəni verir:
+   50t + 70(t − 1) = 290
+3) 120t − 70 = 290  ⇒  120t = 360  ⇒  t = 3.
+4) Soruşulan məsafədir: birincinin yolu 50 · 3 = 150 km.
+   Yoxlama: 150 + 70 · 2 = 150 + 140 = 290 ✓
+Cavab: 150 km.</div>
+      <p>Yoxlayan dörd şeyə bal verir: <b>naməlumun seçimi və ifadələr</b> (1-ci addım, gec çıxanın vaxtı t − 1), <b>tənlik</b> (2-ci addım), <b>həll</b> (3-cü addım), <b>soruşulanın cavabı</b> (4-cü addım). Çox şagird t = 3 yazıb dayanır — bu isə vaxtdır, məsafə yox. Həll yazılmadan yalnız "150" yazılsa, bal verilmir.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>x cavab deyil.</b> Tənliyin kökü naməlumdur; soruşulan başqa kəmiyyət ola bilər (ən böyük ədəd, ananın yaşı, məsafə). Naməlumun qiyməti səhv variantlardan biri ola bilər.</li>
+        <li><b>Yaş məsələsində</b> "x il əvvəl/sonra" hər iki adama aiddir. Biri üçün unutmaq başqa tənlik verir — onun kökü də variantlarda olur.</li>
+        <li><b>Ardıcıl cüt/tək</b> ədədlər <span class="m">x, x + 2, x + 4</span>-dür, <span class="m">x + 1</span> yox. Ardıcıl 3 ədəd arasında 2 aralıq var.</li>
+        <li><b>Ardınca çatmada</b> sürətlər çıxılır, qarşı-qarşıya görüşdə toplanır. Gec çıxanın vaxtı <span class="m">t − t₀</span>-dır.</li>
+        <li><b>İşdə vaxtlar yox, hissələr</b> (1 gündə görülən iş) toplanır. Boşaldan boru çıxılır.</li>
+        <li><b>Orta sürət</b> sürətlərin ortası deyil: ümumi yol ÷ ümumi vaxt.</li>
+        <li><b>Kodlaşdırmada</b> vahid yazılmır; cavab müsbət ədəddir, "ilkin ədəd" soruşulursa rəqəm yox, ədəd.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">1. Axırıncı cümləni oxu: nə soruşulur?
+2. x seç, qalanları x ilə yaz, tənlik qur, həll et.
+3. x-i soruşulana çevir (cavab ≠ həmişə x).
+4. Yoxla. Yazılıda: naməlum → tənlik → həll → cavab.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Ata 40, oğlu 10 yaşındadır. Neçə il əvvəl ata oğlundan 7 dəfə böyük idi? <span class="ans">40 − x = 7(10 − x) → 40 − x = 70 − 7x → 6x = 30 → x = 5. Yoxla: 35 = 7·5 ✓. (Yalnız atadan çıxıb 40 − x = 7·10 yazmaq səhvdir.)</span></li>
+        <li>Dörd ardıcıl tək ədədin cəmi 80 olur. Ən böyüyü? <span class="ans">x + x + 2 + x + 4 + x + 6 = 80 → 4x = 68 → x = 17. Ədədlər 17, 19, 21, 23 — cavab 23 (17 yox).</span></li>
+        <li>Birinci boru boş hovuzu 6 saata doldurur, ikinci boru dolu hovuzu 12 saata boşaldır. Hər borunun su sərfi sabitdir. İkisi də açıqdırsa, boş hovuz neçə saata dolar? <span class="ans">x/6 − x/12 = 1 → 2x − x = 12 → x = 12 saat. (6·12/(6 + 12) = 4 səhvdir: ikinci boru doldurmur, boşaldır.)</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
