@@ -36,6 +36,7 @@
     const g = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "oy-svg", role: "img", "aria-label": o.aria || "Dördbucaqlı" });
     const cen = [0, 1].map(i => o.poly.reduce((t, k) => t + Q[k][i], 0) / o.poly.length);
     g.append(sv("polygon", { points: o.poly.map(k => Q[k].join(",")).join(" "), fill: "#eeedfe", stroke: INK, "stroke-width": 2, "stroke-linejoin": "round" }));
+    if (o.circ) g.append(sv("circle", { cx: Q[o.circ[0]][0], cy: Q[o.circ[0]][1], r: o.circ[1] * s, fill: "none", stroke: ACC, "stroke-width": 1.8 }));
     for (const [p, q, st] of o.segs || []) {
       const a = { x1: Q[p][0], y1: Q[p][1], x2: Q[q][0], y2: Q[q][1], stroke: st === "acc" ? ACC : st === "red" ? RED : INK, "stroke-width": st === "dash" ? 1.5 : st === "red" ? 4 : 2, "stroke-linecap": "round" };
       if (st === "dash") a["stroke-dasharray"] = "5 4";
@@ -54,11 +55,12 @@
       if (t) { const tm = (t1 + t2) / 2; g.append(sv("text", { x: V[0] + (R + 16) * Math.cos(tm), y: V[1] + (R + 16) * Math.sin(tm) + 4, "text-anchor": "middle", class: "oy-lbl", style: "fill:" + ACC + ";font-size:12px" }, t)); }
     }
     for (const key in o.lab || {}) {
-      const [p, q] = key.split(""), m = [(Q[p][0] + Q[q][0]) / 2, (Q[p][1] + Q[q][1]) / 2];
+      const [pq, fr] = key.split("@"), [p, q] = pq.split(""), f = fr == null ? .5 : +fr, m = [Q[p][0] + (Q[q][0] - Q[p][0]) * f, Q[p][1] + (Q[q][1] - Q[p][1]) * f]; // "PQ@.75": label at 75% of the way from P to Q
       const d = [Q[q][0] - Q[p][0], Q[q][1] - Q[p][1]], L = Math.hypot(...d) || 1;
       let n = [-d[1] / L, d[0] / L];
       const out = [m[0] - cen[0], m[1] - cen[1]];
       if (Math.hypot(...out) > 6 ? n[0] * out[0] + n[1] * out[1] < 0 : n[1] > 0) n = [-n[0], -n[1]];
+      if ((o.lin || []).includes(key)) n = [-n[0], -n[1]]; // o.lin: this label goes inside (the outside is taken by a point letter)
       g.append(sv("text", { x: m[0] + n[0] * 14, y: m[1] + n[1] * 14 + 5, "text-anchor": "middle", class: "oy-lbl" }, o.lab[key]));
     }
     const unit = v => { const L = Math.hypot(...v) || 1; return [v[0] / L, v[1] / L]; };
@@ -66,7 +68,7 @@
       let d = [Q[k][0] - cen[0], Q[k][1] - cen[1]], L = Math.hypot(...d);
       if (L < 4) { d = [1, -1]; L = Math.SQRT2; }
       const pl = (o.place || {})[k]; // [toward, "in"|"out"]: letter goes diagonally toward a point, inside or outside the figure
-      if (pl) { const t = unit([Q[pl[0]][0] - Q[k][0], Q[pl[0]][1] - Q[k][1]]), r = unit(pl[1] === "in" ? [-d[0], -d[1]] : d); d = [t[0] + r[0], t[1] + r[1]]; L = Math.hypot(...d) || 1; }
+      if (pl) { const t = unit([Q[pl[0]][0] - Q[k][0], Q[pl[0]][1] - Q[k][1]]), r = unit(pl[1] === "in" ? [-d[0], -d[1]] : d); d = pl[1] === "to" ? t : pl[1] === "inw" ? [-d[0], -d[1]] : [t[0] + r[0], t[1] + r[1]]; L = Math.hypot(...d) || 1; }
       g.append(sv("text", { x: Q[k][0] + d[0] / L * 15, y: Q[k][1] + d[1] / L * 15 + 5, "text-anchor": "middle", class: "oy-lbl", style: "fill:#5f5e5a;font-style:italic" }, k));
     }
     return g;
@@ -312,6 +314,121 @@
       } },
   ];
 
+  // ---- exam format (DİM buraxılış): 6 closed (A–E) + 3 coded + 1 written. Wrong options are typical mistakes.
+  const { ae, again } = Oyun;
+  const degf = x => Oyun.num(x) + "°";
+  // a = p²t, b = q²t: the isosceles trapezoid with an incircle has h = √(ab) = pqt (whole), lateral side (a + b) / 2 (whole)
+  const INSC = []; for (let p = 2; p <= 12; p++) for (let q = 1; q < p; q++) for (let t = 1; t <= 20; t++) { const a = p * p * t, b = q * q * t; if ((a + b) % 2 === 0 && b >= 3 && a <= 96 && a / b <= 9 && (a + b) / 2 * p * q * t <= 2500) INSC.push([p, q, t]); }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. closed: the midline cut by a diagonal
+    { tip: "qapali", gen: () => again(() => {
+      const a = 2 * rnd(6, 16), b = 2 * rnd(Math.ceil(a * .17), a / 2 - 3), ask = pick(["KN", "MK"]);
+      const x1 = (a - b) * rnd(25, 75) / 100, hh = Math.max(5, (a + b) / 4);
+      const P = { ...trap(a, b, x1, hh), M: [x1 / 2, hh / 2], N: [(x1 + b + a) / 2, hh / 2], K: [(x1 + b) / 2, hh / 2] };
+      const R = ask === "KN" ? a / 2 : b / 2, W = ask === "KN" ? [b / 2, (a + b) / 2, (a - b) / 2, a] : [a / 2, (a + b) / 2, (a - b) / 2, b];
+      const o = ae(R, W); if (!o) return null;
+      return { text: `ABCD trapesiyasında AD ∥ BC, AD = ${a}, BC = ${b}. M və N — AB və CD yan tərəflərinin orta nöqtələridir. MN orta xətti AC diaqonalını K nöqtəsində kəsir. ${ask} = ?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "M", "N", "K"], place: { K: ["B", "to"] }, rot: TROT, segs: [["M", "N", "acc"], ["A", "C", "dash"]], lab: { AD: String(a), BC: String(b) }, aria: "Trapesiya, orta xətt MN və AC diaqonalı" }),
+        ...o, show: o.choices[o.correct],
+        solution: `Orta xətt AC diaqonalını yarıya bölür: K — AC-nin orta nöqtəsidir. ${ask === "KN" ? `KN — ACD üçbucağının orta xəttidir (AD-yə paraleldir): KN = AD : 2 = ${a} : 2 = ${R}.` : `MK — ABC üçbucağının orta xəttidir (BC-yə paraleldir): MK = BC : 2 = ${b} : 2 = ${R}.`} Tələlər: ${(a + b) / 2} — bütün orta xəttdir (MK + KN); ${(a - b) / 2} — əsasların fərqinin yarısıdır; ${ask === "KN" ? b / 2 : a / 2} — o biri parçadır; ${ask === "KN" ? a : b} — yarıya bölməyi unutmaq.` };
+    }) },
+    // 2. closed: isosceles trapezoid, the diagonal bisects the angle A → AB = BC
+    { tip: "qapali", gen: () => again(() => {
+      const b = rnd(6, 14), a = rnd(b + 3, Math.floor(2.7 * b)), x1 = (a - b) / 2, hh = Math.sqrt(b * b - x1 * x1);
+      const P = { A: [0, 0], B: [x1, hh], C: [x1 + b, hh], D: [a, 0] };
+      const o = ae(a + 3 * b, [a + 2 * b, 3 * a + b, 2 * a + 2 * b, 4 * b]); if (!o) return null;
+      return { text: `ABCD bərabəryanlı trapesiyasında (AD ∥ BC, AB = CD) AC diaqonalı ∠A-nın tənbölənidir. AD = ${a}, BC = ${b}. Trapesiyanın perimetrini tap.`,
+        svg: figure(P, { poly: ABCD, rot: TROT, segs: [["A", "C", "acc"]], arcs: [["A", "D", "C", "", 20], ["A", "C", "B", "", 28]], lab: { AD: String(a), BC: String(b) }, aria: "Bərabəryanlı trapesiya, AC ∠A-nın tənbölənidir" }),
+        ...o, show: o.choices[o.correct],
+        solution: `AC tənbölən olduğu üçün ∠BAC = ∠CAD. BC ∥ AD olduğundan ∠BCA = ∠CAD (çarpaz bucaqlar). Deməli ∠BAC = ∠BCA, ABC bərabəryanlıdır: AB = BC = ${b}, CD = AB = ${b}. P = ${a} + ${b} + 2 · ${b} = ${a + 3 * b}. Tələlər: ${a + 2 * b} — yan tərəflərdən birini unutmaq; ${3 * a + b} — yan tərəfi AD-yə bərabər saymaq; ${2 * a + 2 * b} — yan tərəfi orta xətt (${fmt((a + b) / 2)}) saymaq; ${4 * b} — AD = BC saymaq.` };
+    }) },
+    // 3. closed: a circle inscribed in a trapezoid, AD = AB + CD − BC
+    { tip: "qapali", gen: () => again(() => {
+      const b = rnd(4, 10), c = rnd(b + 2, 14), d = rnd(b + 2, 14), a = c + d - b, e = a - b;
+      const x1 = (e * e + c * c - d * d) / (2 * e), hh = Math.sqrt(c * c - x1 * x1); if (!(hh >= 4)) return null;
+      const P = { A: [0, 0], B: [x1, hh], C: [x1 + b, hh], D: [a, 0], O: [(c + x1) / 2, hh / 2] };
+      const o = ae(a, [c + d, c + d + b, (c + d) / 2, Math.abs(c - d) + b]); if (!o) return null;
+      return { text: `ABCD trapesiyasının (AD ∥ BC) daxilinə çevrə çəkilib. AB = ${c}, BC = ${b}, CD = ${d}. AD = ?`,
+        svg: figure(P, { poly: ABCD, names: ABCD, rot: TROT, circ: ["O", hh / 2], lab: { AB: String(c), BC: String(b), CD: String(d), AD: "?" }, aria: "Daxilinə çevrə çəkilmiş trapesiya" }),
+        ...o, show: o.choices[o.correct],
+        solution: `Daxilinə çevrə çəkilmiş dördbucaqlıda qarşı tərəflərin cəmləri bərabərdir: AD + BC = AB + CD. AD = ${c} + ${d} − ${b} = ${a}. Tələlər: ${c + d} — BC-ni çıxmağı unutmaq; ${c + d + b} — BC-ni çıxmaq əvəzinə əlavə etmək; ${fmt((c + d) / 2)} — yan tərəflərin cəminin yarısını götürmək; ${Math.abs(c - d) + b} — fərqlə qarışdırmaq.` };
+    }) },
+    // 4. closed: the sides are extended to meet at O
+    { tip: "qapali", gen: () => again(() => {
+      const al = pick(range(50, 80, 5)), de = pick(range(50, 80, 5)); if (al === de || al + de > 150) return null;
+      const ans = 180 - al - de, ta = Math.tan(rad(al)), td = Math.tan(rad(de)), a = 10, ox = a * td / (ta + td), oy = ox * ta, t = pick([.55, .6, .65]);
+      const P = { A: [0, 0], D: [a, 0], O: [ox, oy], B: [ox * t, oy * t], C: [a + (ox - a) * t, oy * t] };
+      const o = ae(ans, [al + de, 180 - al, 180 - de, Math.abs(al - de)], degf); if (!o) return null;
+      return { text: `ABCD trapesiyasında AD ∥ BC, ∠A = ${al}°, ∠D = ${de}°. AB və DC yan tərəflərinin davamları O nöqtəsində kəsişir. ∠AOD = ?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "O"], rot: TROT, segs: [["B", "O", "dash"], ["C", "O", "dash"]], arcs: [[...ARC.A, al + "°"], [...ARC.D, de + "°"], ["O", "A", "D", "?", 16]], aria: "Yan tərəflərin davamları O nöqtəsində kəsişir" }),
+        ...o, show: o.choices[o.correct],
+        solution: `B nöqtəsi AO üzərindədir, C nöqtəsi DO üzərindədir, ona görə AOD üçbucağının A və D bucaqları ${al}° və ${de}°-dir. ∠O = 180° − ${al}° − ${de}° = ${ans}°. Tələlər: ${al + de}° — iki bucağın cəmi; ${180 - al}° və ${180 - de}° — trapesiyanın B və C bucaqlarıdır; ${Math.abs(al - de)}° — fərq.` };
+    }) },
+    // 5. closed: isosceles trapezoid with perpendicular diagonals: h = m, S = m²
+    { tip: "qapali", gen: () => again(() => {
+      const m = 2 * rnd(3, 12), b = m * rnd(30, 70) / 100, a = 2 * m - b, x1 = (a - b) / 2;
+      const P = { A: [0, 0], B: [x1, m], C: [x1 + b, m], D: [a, 0], O: [a / 2, a / 2], M: [x1 / 2, m / 2], N: [(x1 + b + a) / 2, m / 2] };
+      const o = ae(m * m, [m * m / 2, 2 * m * m, 2 * m, m * m / 4]); if (!o) return null;
+      return { text: `Bərabəryanlı trapesiyanın diaqonalları qarşılıqlı perpendikulyardır, orta xətti ${m}. Trapesiyanın sahəsini tap.`,
+        svg: figure(P, { poly: ABCD, names: ABCD, rot: TROT, segs: [["A", "C", "dash"], ["B", "D", "dash"], ["M", "N", "acc"]], right: [["O", "B", "C"]], aria: "Bərabəryanlı trapesiya, diaqonallar perpendikulyardır" }),
+        ...o, show: o.choices[o.correct],
+        solution: `Bərabəryanlı trapesiyanın diaqonalları bərabərdir və perpendikulyardır, ona görə (O — diaqonalların kəsişmə nöqtəsi) AOD düzbucaqlı bərabəryanlı üçbucaqdır və ∠CAD = 45°. C-dən AD-yə CK hündürlüyü endir. Bərabəryanlı trapesiyada AK = AD − DK = a − (a − b) / 2 = (a + b) / 2 = ${m} (orta xətt). ∠CAK = 45° olduğundan h = CK = AK = ${m}. S = m · h = ${m} · ${m} = ${m * m}. Tələlər: ${m * m / 2} — əlavə 2-yə bölmək (m · h / 2); ${2 * m * m} — (a + b) · h; ${2 * m} — orta xətti 2-yə vurmaq; ${m * m / 4} — (m / 2)².` };
+    }) },
+    // 6. closed: the segment joining the midpoints of the diagonals
+    { tip: "qapali", gen: () => again(() => {
+      const a = 2 * rnd(5, 15), b = 2 * rnd(Math.ceil(a * .13), Math.floor(a * .3)), x1 = (a - b) * rnd(25, 75) / 100, hh = Math.max(5, (a + b) / 4);
+      const P = { ...trap(a, b, x1, hh), K: [(x1 + b) / 2, hh / 2], L: [(x1 + a) / 2, hh / 2] };
+      const R = (a - b) / 2, o = ae(R, [(a + b) / 2, a - b, a / 2, b / 2]); if (!o) return null;
+      return { text: `ABCD trapesiyasında AD ∥ BC, AD = ${a}, BC = ${b}. AC və BD diaqonallarının orta nöqtələri K və L-dir. KL = ?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "K", "L"], rot: TROT, segs: [["A", "C", "dash"], ["B", "D", "dash"], ["K", "L", "acc"]], lab: { AD: String(a), BC: String(b) }, aria: "Trapesiya, diaqonalların orta nöqtələri K və L" }),
+        ...o, show: o.choices[o.correct],
+        solution: `K və L orta xəttin üzərindədir. M — AB-nin orta nöqtəsi olsun. ABD üçbucağında ML = AD : 2 = ${a / 2}, ABC üçbucağında MK = BC : 2 = ${b / 2}. KL = ML − MK = ${a / 2} − ${b / 2} = ${R}. Tələlər: ${(a + b) / 2} — bütün orta xəttdir; ${a - b} — əsasların fərqini yarıya bölməyi unutmaq; ${a / 2} və ${b / 2} — orta xəttin parçalarıdır.` };
+    }) },
+    // 7. coded: diagonal of an isosceles trapezoid
+    { tip: "kod", gen: () => again(() => {
+      const [m, hh, d] = triple(26), b = rnd(2, m - 1), a = 2 * m - b, x1 = m - b;
+      if (hh < 4 || b < .46 * m || b > .6 * m || a < .6 * hh) return null;
+      const P = { A: [0, 0], B: [x1, hh], C: [x1 + b, hh], D: [a, 0], K: [x1 + b, 0] };
+      return { text: `ABCD bərabəryanlı trapesiyasının əsasları AD = ${a} sm və BC = ${b} sm, hündürlüyü ${hh} sm-dir. AC diaqonalının uzunluğunu (sm ilə) tap.`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "K"], place: { K: ["D", "out"] }, rot: TROT, segs: [["C", "K", "dash"], ["A", "C", "acc"]], right: [["K", "D", "C"]], lab: { "AD@.3": String(a), BC: String(b), CK: String(hh) }, aria: "Bərabəryanlı trapesiya, AC diaqonalı və CK hündürlüyü" }),
+        answer: d, show: String(d), tol: 1e-6, unit: "sm",
+        solution: `C-dən CK hündürlüyü endir. AK = (${a} − ${b}) / 2 + ${b} = (${a} + ${b}) / 2 = ${m}. ACK düzbucaqlıdır: AC = √(${m}² + ${hh}²) = √${d * d} = ${d} sm.` };
+    }) },
+    // 8. coded: a triangle's midline makes a trapezoid; its perimeter
+    { tip: "kod", gen: () => again(() => {
+      const { a, b, c } = randTri(); if ((a + b + c) % 2 || Math.min(a, b, c) < 8) return null;
+      const T = tri(a, b, c); if (!T) return null;
+      const P = { A: T.A, B: T.B, C: T.C, M: T.M, N: [(T.A[0] + T.C[0]) / 2, (T.A[1] + T.C[1]) / 2] };
+      const R = (3 * a + b + c) / 2;
+      return { text: `ABC üçbucağında AB = ${c}, BC = ${a}, AC = ${b}. M və N — AB və AC tərəflərinin orta nöqtələridir. MBCN trapesiyasının perimetrini tap.`,
+        svg: figure(P, { poly: ABC, names: ["A", "B", "C", "M", "N"], segs: [["M", "N", "acc"]], place: { M: ["A", "inw"], N: ["A", "inw"] }, lab: { AB: String(c), BC: String(a), AC: String(b) }, aria: "ABC üçbucağı və MN orta xətti" }),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `MN — orta xəttdir: MN = BC : 2 = ${fmt(a / 2)}, MN ∥ BC, MBCN trapesiyadır. MB = AB : 2 = ${fmt(c / 2)}, NC = AC : 2 = ${fmt(b / 2)}. P = MB + BC + CN + NM = ${fmt(c / 2)} + ${a} + ${fmt(b / 2)} + ${fmt(a / 2)} = ${R}.` };
+    }) },
+    // 9. coded: the bisectors of the angles at the lateral sides cut BC (BM = AB, CK = CD)
+    { tip: "kod", gen: () => again(() => {
+      const b = rnd(10, 20), c = rnd(Math.ceil(.55 * b), Math.floor(.75 * b)), d = rnd(Math.ceil(.55 * b), Math.floor(.75 * b)); if (c + d < 1.2 * b) return null;
+      const ph = rad(rnd(50, 70)), hh = c * Math.sin(ph), sw = hh / d; if (sw > .95) return null;
+      const ox = d * Math.sqrt(1 - sw * sw), P = { A: [-c * Math.cos(ph), 0], B: [0, hh], C: [b, hh], D: [b + ox, 0], M: [c, hh], K: [b - d, hh] };
+      const R = c + d - b;
+      return { text: `ABCD trapesiyasında AD ∥ BC, AB = ${c}, CD = ${d}, BC = ${b}. ∠A və ∠D bucaqlarının tənbölənləri BC tərəfini müvafiq olaraq M və K nöqtələrində kəsir. MK = ?`,
+        svg: figure(P, { poly: ABCD, names: ["A", "B", "C", "D", "M", "K"], place: { M: ["C", "out"], K: ["B", "out"] }, rot: TROT, segs: [["A", "M", "acc"], ["D", "K", "acc"]], arcs: [["A", "D", "M", "", 18], ["A", "M", "B", "", 26], ["D", "A", "K", "", 18], ["D", "K", "C", "", 26]], lab: { AB: String(c), CD: String(d), BC: String(b) }, aria: "Trapesiya, A və D bucaqlarının tənbölənləri BC-ni M və K nöqtələrində kəsir" }),
+        answer: R, show: String(R), tol: 1e-6,
+        solution: `AM tənbölən: ∠BAM = ∠MAD. BC ∥ AD olduğundan ∠AMB = ∠MAD (çarpaz bucaqlar). Deməli ABM bərabəryanlıdır: BM = AB = ${c}. Eyni qayda ilə CK = CD = ${d}. BC üzərində B, K, M, C ardıcıllığı var: BM + CK = BC + MK, MK = ${c} + ${d} − ${b} = ${R}.` };
+    }) },
+    // 10. written: an isosceles trapezoid with an inscribed circle, bases a and b → area
+    { tip: "yazili", gen: () => again(() => {
+      const [p, q, t] = pick(INSC), a = p * p * t, b = q * q * t, c = (a + b) / 2, hh = p * q * t;
+      const S = c * hh, x1 = (a - b) / 2, P = { A: [0, 0], B: [x1, hh], C: [x1 + b, hh], D: [a, 0], O: [a / 2, hh / 2] };
+      return { text: `Bərabəryanlı trapesiyanın daxilinə çevrə çəkilib. Trapesiyanın əsasları ${a} sm və ${b} sm-dir. Trapesiyanın sahəsini (sm² ilə) tap.`,
+        svg: figure(P, { poly: ABCD, names: ABCD, rot: TROT, circ: ["O", hh / 2], lab: { AD: String(a), BC: String(b) }, aria: "Daxilinə çevrə çəkilmiş bərabəryanlı trapesiya" }),
+        answer: S, show: String(S), tol: 1e-6, unit: "sm²",
+        solution: `1) Daxilinə çevrə çəkilmişdir: AD + BC = AB + CD, yan tərəflər bərabərdir (AB = CD), ona görə AB = (${a} + ${b}) / 2 = ${c}. 2) Yan tərəfin proyeksiyası: (${a} − ${b}) / 2 = ${x1}. 3) Hündürlük: h = √(${c}² − ${x1}²) = √${hh * hh} = ${hh}. 4) S = (${a} + ${b}) / 2 · ${hh} = ${c} · ${hh} = ${S} sm². Həll yazılmadan yalnız cavab — bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -321,7 +438,7 @@
     game = Oyun.mount({
       key: "trapesiya", title: "Trapesiya, orta xətt", fenn: "riyaziyyat", link: "dersler/trapesiya.html",
       format: "Cavab — ədəd: tərəf, bucaq (dərəcə ilə, ° yazmaq lazım deyil), perimetr, sahə. Onluq: 7,5 (vergül də olar).",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["ucbucaq", "bucaq", "orta", "orta", "proyeksiya", "proyeksiya", "sahe", "sahe", "sahe", "heyat"] },
       goTest: () => SkillyTab("sinaq"),

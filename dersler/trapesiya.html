@@ -30,6 +30,7 @@
     <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Hündürlük, proyeksiya</button>
     <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Orta xətt</button>
     <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Sahə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
     <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
     <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
   </nav>
@@ -365,6 +366,120 @@ h yoxdursa: proyeksiya → Pifaqor → h.</div></div>
         <li>Əsaslar 9 və 5, hündürlük 6. Sahə? <span class="ans">7 · 6 = 42.</span></li>
         <li>Bərabəryanlı trapesiya: əsaslar 14 və 4, yan tərəf 13. Sahə? <span class="ans">AH = 5, h = 12, S = 9 · 12 = 108.</span></li>
         <li>Sahə 56, orta xətt 14. Hündürlük? <span class="ans">56 : 14 = 4.</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR (20 noy 2026) ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: trapesiya</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda üç forma</h3>
+      <p>Trapesiya buraxılış imtahanında üç formada qarşına çıxa bilər:</p>
+      <ul>
+        <li><b>Qapalı (A–E).</b> Beş variant, biri düzdür. Səhv variantlar təsadüfi deyil — onlar <b>tipik səhvlərin cavablarıdır</b>. Ona görə "mənim cavabım variantlarda var" hələ düz demək deyil.</li>
+        <li><b>Kodlaşdırılan.</b> Variant yoxdur, cavabı özün hesablayıb ədəd kimi yazırsan.</li>
+        <li><b>Yazılı.</b> Həll kağızda addım-addım yazılır. Həll yazılmadan yalnız cavab yazılsa, bal verilmir: yoxlayan nəyi, niyə etdiyini görməlidir.</li>
+      </ul>
+      <p>Bu mövzudakı məsələlərin çoxu üç fəndlə həll olunur: <b>orta xətt</b> (üçbucağın və trapesiyanın), <b>bucaq tənbölənindən bərabəryanlı üçbucaq çıxarmaq</b> və <b>daxilinə çevrə çəkilmiş</b> dördbucaqlının qarşı tərəflərinin cəmləri. Üçü də aşağıdakı nümunələrdədir.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qapalı (A–E)</h3>
+      <div class="imt-q"><span class="imt-tag">Qapalı</span>
+        <p>ABCD bərabəryanlı trapesiyasında (AD ∥ BC, AB = CD) AC diaqonalı <span class="m">∠A</span>-nın tənbölənidir. AD = 14, BC = 8. Trapesiyanın perimetrini tap.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="ABCD bərabəryanlı trapesiyası, AC diaqonalı A bucağını iki bərabər hissəyə bölür, AD = 14, BC = 8">
+          <polygon points="30,170 81.4,42.9 218.6,42.9 270,170" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="30" y1="170" x2="218.6" y2="42.9" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M54 170A24 24 0 0 0 49.9 156.6" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M56.5 152.1A32 32 0 0 0 42 140.3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="16" y="186" class="lbl">A</text><text x="65.4" y="38.9" class="lbl">B</text><text x="224.6" y="38.9" class="lbl">C</text><text x="274" y="186" class="lbl">D</text>
+          <text x="142" y="190" class="lbl">14</text><text x="146" y="34.9" class="lbl">8</text>
+        </svg>
+        </div>
+        <ol class="imt-opts"><li>30</li><li>32</li><li>38</li><li>44</li><li>50</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">AC tənböləndir:               ∠BAC = ∠CAD
+BC ∥ AD (çarpaz bucaqlar):    ∠BCA = ∠CAD
+Deməli ∠BAC = ∠BCA, ABC bərabəryanlıdır: AB = BC = 8
+CD = AB = 8
+P = 14 + 8 + 8 + 8 = 38
+Cavab: C) 38</div>
+      <p>Qayda: trapesiyada tənbölən görəndə çarpaz bucağı axtar — <b>bərabəryanlı üçbucaq</b> çıxır. Səhv variantlar haradan gəlir:</p>
+      <ul>
+        <li><b>A) 30</b> — bir yan tərəfi unutmaq: <span class="m">14 + 8 + 8</span>.</li>
+        <li><b>B) 32</b> — AD-ni də 8 saymaq: <span class="m">4 · 8</span>.</li>
+        <li><b>D) 44</b> — yan tərəfi orta xətt (<span class="m">(14 + 8) / 2 = 11</span>) saymaq: <span class="m">14 + 8 + 11 + 11</span>.</li>
+        <li><b>E) 50</b> — yan tərəfi böyük əsasa (14) bərabər saymaq: <span class="m">14 + 8 + 14 + 14</span>.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — kodlaşdırılan</h3>
+      <div class="imt-q"><span class="imt-tag">Kodlaşdırılan</span>
+        <p>ABCD trapesiyasında AD ∥ BC, AB = 9, CD = 8, BC = 14. <span class="m">∠A</span> və <span class="m">∠D</span> bucaqlarının tənbölənləri BC tərəfini müvafiq olaraq M və K nöqtələrində kəsir. MK = ?</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="ABCD trapesiyası, AD ∥ BC, AB = 9, CD = 8, BC = 14; A və D bucaqlarının tənbölənləri BC-ni M və K nöqtələrində kəsir">
+          <polygon points="30,160 91.9,104.6 221.2,104.6 270,160" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="30" y1="160" x2="175" y2="104.6" stroke="var(--accent)" stroke-width="2.5"/><line x1="270" y1="160" x2="147.3" y2="104.6" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M54 160A24 24 0 0 0 52.4 151.4" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M59.9 148.6A32 32 0 0 0 53.9 138.7" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M248.1 150.1A24 24 0 0 0 246 160" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M248.8 136A32 32 0 0 0 240.8 146.8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="16" y="176" class="lbl">A</text><text x="77.9" y="98.6" class="lbl">B</text><text x="225.2" y="98.6" class="lbl">C</text><text x="274" y="176" class="lbl">D</text>
+          <text x="129.3" y="98.6" class="lbl">K</text><text x="181" y="98.6" class="lbl">M</text>
+          <text x="43" y="137.3" class="lbl">9</text><text x="254.6" y="137.3" class="lbl">8</text>
+          <line x1="91.9" y1="84.6" x2="221.2" y2="84.6" stroke="var(--ink)" stroke-width="1.2"/><line x1="91.9" y1="79.6" x2="91.9" y2="89.6" stroke="var(--ink)" stroke-width="1.2"/><line x1="221.2" y1="79.6" x2="221.2" y2="89.6" stroke="var(--ink)" stroke-width="1.2"/><text x="148.5" y="78.6" class="lbl">14</text>
+        </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll</summary>
+      <div class="ex">∠BAM = ∠MAD = ∠AMB   (tənbölən + çarpaz bucaqlar)
+ABM bərabəryanlıdır: BM = AB = 9
+Eyni qayda ilə CK = CD = 8
+BC üzərində B, K, M, C ardıcıllığı var:
+BM + CK = BC + MK
+MK = 9 + 8 − 14 = 3
+Cavab: 3</div>
+      <p>Tələ: <span class="m">BC − BM − CK = 14 − 9 − 8</span> mənfi çıxır. Bu, <span class="m">BM + CK &gt; BC</span> olması deməkdir: BM və CK parçaları BC üzərində bir-birinin üstünə düşür, ortaq hissə MK-dır, nöqtələrin sırası B, K, M, C olur. Onda MK = <span class="m">BM + CK − BC</span>. Cavab bir ədəddir: 3.</p></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — yazılı</h3>
+      <div class="imt-q"><span class="imt-tag">Yazılı</span>
+        <p>Bərabəryanlı trapesiyanın daxilinə çevrə çəkilib. Trapesiyanın əsasları 18 sm və 8 sm-dir. Trapesiyanın sahəsini tap.</p>
+        <div class="fig">
+          <svg viewBox="0 0 300 200" role="img" aria-label="Daxilinə çevrə çəkilmiş bərabəryanlı trapesiya, AD = 18 sm, BC = 8 sm">
+          <polygon points="37.5,178 100,28 200,28 262.5,178" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="150" cy="103" r="75" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="23.5" y="194" class="lbl">A</text><text x="84" y="24" class="lbl">B</text><text x="206" y="24" class="lbl">C</text><text x="266.5" y="194" class="lbl">D</text>
+          <text x="140" y="196" class="lbl">18</text><text x="146" y="22" class="lbl">8</text>
+        </svg>
+        </div>
+      </div>
+      <details class="imt-sol"><summary>Həll — kağızda belə yazılır</summary>
+      <div class="ex">1) Daxilinə çevrə çəkilmiş dördbucaqlıda qarşı tərəflərin
+   cəmləri bərabərdir: AD + BC = AB + CD.
+   AB = CD olduğundan AB = (18 + 8) / 2 = 13 sm.
+2) B-dən BH hündürlüyü endir. Yan tərəfin proyeksiyası:
+   AH = (18 − 8) / 2 = 5 sm.
+3) ABH düzbucaqlıdır (Pifaqor):
+   BH = √(13² − 5²) = √144 = 12 sm.
+4) S = (18 + 8) / 2 · 12 = 13 · 12 = 156.
+Cavab: 156 sm².</div>
+      <p>Hər addımda <b>niyə</b> o düsturu işlətdiyin yazılmalıdır: 1-ci addımda çevrənin şərti, 2-ci addımda hündürlüyün endirilməsi, 3-cü addımda Pifaqor, 4-cü addımda sahə düsturu. Yalnız "156" yazılsa, bal verilmir. Yoxlama: çevrənin diametri hündürlüyə bərabərdir (<span class="m">2r = 12</span>), həm də <span class="m">h = √(18 · 8) = √144 = 12</span>.</p></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>İmtahanın tipik tələləri</b><ul>
+        <li><b>Orta xəttin parçaları.</b> Orta xətt diaqonalı kəsəndə parçalar <span class="m">BC / 2</span> və <span class="m">AD / 2</span>-dir, bütün orta xətt isə <span class="m">(AD + BC) / 2</span>. Hansı parçanın soruşulduğuna bax.</li>
+        <li><b>Diaqonalların orta nöqtələri.</b> Onları birləşdirən parça <span class="m">(AD − BC) / 2</span>-dir: <b>fərq</b>, cəm yox.</li>
+        <li><b>Tənbölən → bərabəryanlı üçbucaq.</b> Tənbölən çəkilən kimi çarpaz bucağı yaz; yan tərəf kiçik əsasa (və ya kəsilən parçaya) bərabər çıxır.</li>
+        <li><b>Daxilinə çevrə.</b> <span class="m">AD + BC = AB + CD</span>. Yalnız yan tərəfləri toplayıb cavab yazmaq tələdir: əsası da çıxmaq lazımdır.</li>
+        <li><b>Yan tərəflərin davamı.</b> Davamlar B və C tərəfdə kəsişəndə (<span class="m">∠A + ∠D &lt; 180°</span>) üçbucağın üçüncü bucağı <span class="m">180° − ∠A − ∠D</span>; trapesiyanın <span class="m">∠B</span> və <span class="m">∠C</span> bucaqları (<span class="m">180° − ∠A</span>, <span class="m">180° − ∠D</span>) variantlarda hazır olur.</li>
+        <li><b>Hündürlük.</b> Bərabəryanlı trapesiyada proyeksiya <span class="m">(a − b) / 2</span>, düzbucaqlıda <span class="m">a − b</span>; maili tərəf hündürlük deyil.</li>
+        <li><b>Kodlaşdırmada</b> cavab ədəddir; yazılıda həll olmadan cavaba bal verilmir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">tənbölən + paralel     ⇒  bərabəryanlı üçbucaq
+daxilinə çevrə:           AD + BC = AB + CD
+orta xətt:                (a + b) / 2;  parçalar a / 2 və b / 2
+diaqonalların ortaları:   (a − b) / 2</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Əsaslar 20 və 6. Diaqonalların orta nöqtələrini birləşdirən parça neçədir? <span class="ans">(20 − 6) / 2 = 7 (orta xətt (20 + 6) / 2 = 13 deyil).</span></li>
+        <li>Daxilinə çevrə çəkilmiş trapesiyada AB = 7, CD = 9, BC = 4. AD = ? <span class="ans">AD = 7 + 9 − 4 = 12.</span></li>
+        <li>AD ∥ BC, <span class="m">∠A</span>-nın tənböləni BC-ni M-də kəsir, AB = 6, BC = 10. MC = ? <span class="ans">BM = AB = 6 (ABM bərabəryanlıdır), MC = 10 − 6 = 4.</span></li>
       </ol></details>
     </article>
     <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
