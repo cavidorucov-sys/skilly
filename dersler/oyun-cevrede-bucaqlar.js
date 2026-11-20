@@ -402,6 +402,149 @@
       } },
   ];
 
+  // ---- exam format (father, 15 Nov 2026): DİM buraxılış — 6 closed (A–E), 3 coded, 1 written. The wrong options are
+  // the answers of typical mistakes (central angle instead of inscribed, sum instead of half-sum, MB instead of AB, ...).
+  const { ae, again, num } = Oyun;
+  const D = x => num(x);
+  const nice = (x, dp = 2) => isFinite(x) && x > 0 && Math.abs(Math.round(x * 10 ** dp) - x * 10 ** dp) < 1e-7;
+  const dg = x => D(x) + "°";
+  const mc = (o, rest) => o && { ...rest, ...o, show: o.choices[o.correct] };
+  // M = (d, 0) and lines to the circle (secant pieces [near, far, nearName, farName]); tan adds the tangent point T
+  function secFig(sec, tan, lab) {
+    const pw = sec[0][0] * sec[0][1], need = Math.max(...sec.map(s => (s[0] + s[1]) / 2));
+    const d = need / Math.cos(rad(rnd(18, 30))), R = Math.sqrt(d * d - pw), P = { O: [0, 0], M: [d, 0] }, segs = [];
+    sec.forEach(([n, f, N, F], i) => { const cf = (n + f) / (2 * d), sf = (i ? -1 : 1) * Math.sqrt(1 - cf * cf); P[N] = [d - n * cf, n * sf]; P[F] = [d - f * cf, f * sf]; segs.push(["M", F, "acc"]); });
+    if (tan) { const ta = Math.acos(R / d), sgn = sec.length > 1 ? 1 : -1; P.T = [R * Math.cos(ta), sgn * R * Math.sin(ta)]; segs.push(["M", "T", "acc"]); }
+    return figure(P, { circ: [["O", R]], cen: "O", names: Object.keys(P).filter(k => k !== "O"), free: true, segs, lab });
+  }
+  // two chords AB and CD meeting at E: AE = a, EB = b, CE = c, ED = e
+  function chordFig(a, b, c, e, lab) {
+    const dd = Math.max(Math.abs(b - a), Math.abs(e - c)) / 2 + .3 * Math.sqrt(a * b) + .5;
+    const cf = (b - a) / (2 * dd), cp = (e - c) / (2 * dd), sf = Math.sqrt(1 - cf * cf), sp = -Math.sqrt(1 - cp * cp);
+    const E = [dd, 0], u = [cf, sf], w = [cp, sp];
+    const P = { O: [0, 0], E, A: [dd + a * u[0], a * u[1]], B: [dd - b * u[0], -b * u[1]], C: [dd + c * w[0], c * w[1]], D: [dd - e * w[0], -e * w[1]] };
+    return figure(P, { circ: [["O", Math.sqrt(a * b + dd * dd)]], cen: "O", names: ["A", "B", "C", "D", "E"], bis: { E: ["B", "D"] }, free: true, segs: [["A", "B", "acc"], ["C", "D", "acc"]], lab });
+  }
+  const IMT = { fenn: "riyaziyyat", vaxt: 35, suallar: [
+    // 1. inscribed angle or tangent–chord angle, then the isosceles triangle OAB
+    { tip: "qapali", gen: () => again(() => {
+      const x = pick(range(20, 70, 5)), a0 = rnd(0, 359), R = 90 - x;
+      const w = [2 * x, x, 180 - 2 * x, 90 + x];
+      if (pick([0, 1])) {
+        const c = a0 + 2 * x + rnd(40, 320 - 2 * x), P = { O: [0, 0], A: on(a0), B: on(a0 + 2 * x), C: on(c) };
+        return mc(ae(R, w, dg), { text: `A, B, C nöqtələri O mərkəzli çevrə üzərindədir, C nöqtəsi böyük AB qövsü üzərindədir. ∠ACB = ${x}°. ∠OAB bucağını tapın.`,
+          svg: figure(P, { circ: C1, cen: "O", free: true, segs: [["O", "A", "acc"], ["O", "B", "acc"], ["C", "A"], ["C", "B"], ["A", "B"]], arcs: [["C", "A", "B", x + "°", 22], ["A", "O", "B", "?", 20]] }),
+          solution: `∠AOB = 2 · ∠ACB = ${2 * x}° (mərkəzi bucaq daxilə çəkilmiş bucağın iki mislidir). OA = OB, AOB bərabəryanlıdır: ∠OAB = (180° − ${2 * x}°) : 2 = ${R}°. Tələlər: ${2 * x}° (mərkəzi bucaq), ${x}° (verilən bucağı cavab yazmaq), ${180 - 2 * x}° (əsas bucağı tapmaq üçün 2-yə bölməyi unutmaq).` });
+      }
+      const A = on(a0), dir = [-Math.sin(rad(a0)), Math.cos(rad(a0))], P = { O: [0, 0], A, B: on(a0 + 2 * x), K: [A[0] + 1.1 * dir[0], A[1] + 1.1 * dir[1]], k: [A[0] - .9 * dir[0], A[1] - .9 * dir[1]] };
+      return mc(ae(R, w, dg), { text: `AK — A nöqtəsində O mərkəzli çevrəyə toxunandır, AB — vətərdir. ∠KAB = ${x}°. ∠OAB bucağını tapın.`,
+        svg: figure(P, { circ: C1, cen: "O", names: ["A", "B", "K", "O"], free: true, segs: [["k", "K", "acc"], ["A", "B"], ["O", "A", "dash"], ["O", "B", "dash"]], arcs: [["A", "K", "B", x + "°", 30], ["A", "O", "B", "?", 16]] }),
+        solution: `Toxunan radiusa perpendikulyardır: ∠OAK = 90°. ∠OAB = 90° − ∠KAB = ${R}°. (Yoxlama: AB qövsü = 2 · ${x}° = ${2 * x}°, AOB bərabəryanlıdır: (180° − ${2 * x}°) : 2 = ${R}°.) Tələlər: ${x}° (verilən bucaq), ${2 * x}° (qövs), ${90 + x}° (90° − ${x}° əvəzinə 90° + ${x}°).` });
+    }) },
+    // 2. diameter → right angle, altitude to the hypotenuse
+    { tip: "qapali", gen: () => again(() => {
+      const [p, q, c] = triple(40), R = p * q / c;
+      const w = [c / 2, p * q / 2, p * q, (p + q) / 2]; if (![R, ...w].every(x => nice(x))) return null;
+      const al = Math.acos(p / c), C = [Math.cos(2 * al), Math.sin(2 * al)], P = { O: [0, 0], A: [-1, 0], B: [1, 0], C, H: [C[0], 0] };
+      return mc(ae(R, w), { text: `AB — çevrənin diametridir, C nöqtəsi çevrə üzərindədir. AC = ${p}, BC = ${q}, AB = ${c}. C nöqtəsindən AB-yə çəkilmiş CH hündürlüyünü tapın.`,
+        svg: figure(P, { circ: [["O", 1]], cen: "O", names: ["A", "B", "C", "H"], free: true, segs: [["A", "B"], ["A", "C", "acc"], ["C", "B", "acc"], ["C", "H", "dash"]], right: [["C", "A", "B"], ["H", "A", "C"]], lab: { AC: String(p), CB: String(q), AB: String(c) } }),
+        solution: `Diametrə söykənən bucaq düzdür: ∠ACB = 90°. Düzbucaqlı üçbucağın sahəsi iki cür: ½ · ${p} · ${q} = ½ · ${c} · CH → CH = ${p} · ${q} : ${c} = ${D(R)}. Tələlər: ${D(c / 2)} (radius), ${D(p * q / 2)} (sahə), ${p * q} (katetlərin hasili), ${D((p + q) / 2)} (katetlərin ortası).` });
+    }) },
+    // 3. two tangents from M: the base angle of the isosceles triangle MAB
+    { tip: "qapali", gen: () => again(() => {
+      const x = pick(range(20, 100, 10)), R = 90 - x / 2, w = [180 - x, x / 2, 90 - x, 90 + x / 2];
+      const d = 1 / Math.cos(rad(90 - x / 2)), [A, B] = tang(d), P = { O: [0, 0], M: [d, 0], A, B };
+      return mc(ae(R, w, dg), { text: `M nöqtəsindən O mərkəzli çevrəyə MA və MB toxunanları çəkilib (A, B — toxunma nöqtələridir). ∠AMB = ${x}°. ∠MAB bucağını tapın.`,
+        svg: figure(P, { circ: C1, cen: "O", free: true, segs: [["M", "A", "acc"], ["M", "B", "acc"], ["O", "A"], ["O", "B"], ["A", "B"]], arcs: [["M", "A", "B", x + "°", 24], ["A", "M", "B", "?", 18]], place: { O: ["M", "out"] } }),
+        solution: `Bir nöqtədən çəkilmiş toxunan parçaları bərabərdir: MA = MB. MAB bərabəryanlıdır: ∠MAB = (180° − ${x}°) : 2 = ${R}°. Tələlər: ${180 - x}° (∠AOB, mərkəzi bucaq), ${x / 2}° (∠OAB: ∠OAM = 90° unudulub), ${90 - x}° (${x}°/2 əvəzinə ${x}° çıxılıb), ${D(90 + x / 2)}° (∠OAM + ∠OAB).` });
+    }) },
+    // 4. two chords meeting inside the circle
+    { tip: "qapali", gen: () => again(() => {
+      const al = pick(range(30, 150, 10)), be = pick(range(30, 150, 10)), ga = pick(range(40, 120, 10)), a0 = rnd(0, 359); if (al === be || 360 - al - be - ga < 40) return null;
+      const P = { O: [0, 0], A: on(a0), C: on(a0 + al), B: on(a0 + al + ga), D: on(a0 + al + ga + be) };
+      const xx = P.A, yy = P.B, zz = P.C, ww = P.D, den = (xx[0] - yy[0]) * (zz[1] - ww[1]) - (xx[1] - yy[1]) * (zz[0] - ww[0]);
+      const tt = ((xx[0] - zz[0]) * (zz[1] - ww[1]) - (xx[1] - zz[1]) * (zz[0] - ww[0])) / den;
+      P.E = [xx[0] + tt * (yy[0] - xx[0]), xx[1] + tt * (yy[1] - xx[1])];
+      const s = (al + be) / 2, svg = tx => figure(P, { circ: C1, cen: "O", names: ["A", "B", "C", "D", "E"], bis: { E: ["C", "B"] }, free: true, segs: [["A", "B", "acc"], ["C", "D", "acc"]], arcs: [["E", "A", "C", tx, 16]] });
+      if (pick([0, 1])) {
+        const w = [al + be, Math.abs(al - be) / 2, 180 - s, al / 2]; if (![s, ...w].every(x => nice(x, 1) && x < 360)) return null;
+        return mc(ae(s, w, dg), { text: `AB və CD vətərləri çevrənin daxilində E nöqtəsində kəsişir. AC qövsü ${al}°, BD qövsü ${be}°-dir (hər ikisi ∠AEC-nin və onun qarşısındakı bucağın daxilindədir). ∠AEC-ni tapın.`, svg: svg("?"),
+          solution: `Daxildə kəsişən vətərlər arasındakı bucaq söykəndiyi iki qövsün cəminin yarısıdır: ∠AEC = (${al}° + ${be}°) : 2 = ${D(s)}°. Tələlər: ${al + be}° (cəmi yarıya bölməmək), ${D(Math.abs(al - be) / 2)}° (qövslərin fərqinin yarısı — bu, xaricdən kəsənlər üçündür), ${D(180 - s)}° (qonşu ∠AED), ${D(al / 2)}° (yalnız bir qövsün yarısı).` });
+      }
+      const w = [2 * s, s - al, 2 * s + al, s]; if (![be, ...w].every(x => nice(x, 0) && x < 360)) return null;
+      return mc(ae(be, w, dg), { text: `AB və CD vətərləri çevrənin daxilində E nöqtəsində kəsişir. ∠AEC = ${D(s)}°, AC qövsü ${al}°-dir. BD qövsünü tapın.`, svg: svg(dg(s)),
+        solution: `∠AEC = (AC + BD) : 2 → ${D(s)}° = (${al}° + BD) : 2 → BD = ${D(2 * s)}° − ${al}° = ${be}°. Tələlər: ${D(2 * s)}° (AC qövsü çıxılmayıb), ${D(s - al)}° (2-yə vurmaq unudulub), ${D(2 * s + al)}° (çıxmaq əvəzinə toplamaq), ${D(s)}° (bucağın özü).` });
+    }) },
+    // 5. two secants from an outer point
+    { tip: "qapali", gen: () => again(() => {
+      let be, ga, de, al, P, ok = false;
+      for (let i = 0; i < 200 && !ok; i++) {
+        be = pick(range(30, 100, 10)); ga = pick(range(50, 110, 10)); de = ga + pick([-10, 0, 10]); al = 360 - be - ga - de;
+        if (al - be < 20 || al > 200) continue;
+        P = { O: [0, 0], A: on(be / 2), C: on(-be / 2), B: on(be / 2 + ga), D: on(-be / 2 - de) };
+        const [A, B, C, Dd] = [P.A, P.B, P.C, P.D], den = (A[0] - B[0]) * (C[1] - Dd[1]) - (A[1] - B[1]) * (C[0] - Dd[0]);
+        const tt = ((A[0] - C[0]) * (C[1] - Dd[1]) - (A[1] - C[1]) * (C[0] - Dd[0])) / den;
+        P.M = [A[0] + tt * (B[0] - A[0]), A[1] + tt * (B[1] - A[1])];
+        const dist = (X, Y) => Math.hypot(X[0] - Y[0], X[1] - Y[1]);
+        ok = Math.hypot(...P.M) > 1.15 && Math.hypot(...P.M) < 4 && dist(P.M, A) < dist(P.M, B) && dist(P.M, C) < dist(P.M, Dd);
+      }
+      if (!ok) return null;
+      const R = (al - be) / 2, w = [(al + be) / 2, al - be, al / 2, 180 - R];
+      return mc(ae(R, w, dg), { text: `M nöqtəsindən çevrəyə iki kəsən çəkilib: MAB və MCD (A və C nöqtələri M-ə yaxındır). BD qövsü ${al}°, AC qövsü ${be}°-dir. ∠BMD-ni tapın.`,
+        svg: figure(P, { circ: C1, cen: "O", names: ["A", "B", "C", "D", "M"], free: true, segs: [["M", "B", "acc"], ["M", "D", "acc"]], arcs: [["M", "A", "C", "?", 22]] }),
+        solution: `Çevrədən xaricdə kəsişən iki kəsən arasındakı bucaq uzaq və yaxın qövslərin fərqinin yarısıdır: ∠BMD = (${al}° − ${be}°) : 2 = ${D(R)}°. Tələlər: ${D((al + be) / 2)}° (cəmin yarısı — bu, daxildə kəsişən vətərlər üçündür), ${al - be}° (fərqi yarıya bölməmək), ${D(al / 2)}° (yalnız uzaq qövsün yarısı), ${D(180 - R)}° (bucağın tamamlayıcısı).` });
+    }) },
+    // 6. tangent and secant: MT² = MA · MB, asked AB (not MB)
+    { tip: "qapali", gen: () => again(() => {
+      const a = rnd(2, 12), c = rnd(2, 20), t = Math.sqrt(a * (a + c)); if (t % 1 || c > 3 * a) return null;
+      const w = [a + c, t - a, a + c - t, a]; if (![c, ...w].every(x => nice(x, 0))) return null;
+      return mc(ae(c, w), { text: `M nöqtəsindən çevrəyə MT toxunanı və MAB kəsəni çəkilib (A nöqtəsi M-ə yaxındır). MT = ${t}, MA = ${a}. AB parçasının uzunluğunu tapın.`,
+        svg: secFig([[a, a + c, "A", "B"]], true, { MA: String(a), MT: String(t), AB: "?" }),
+        solution: `Toxunan və kəsən teoremi: MT² = MA · MB → ${t * t} = ${a} · MB → MB = ${a + c}. AB = MB − MA = ${a + c} − ${a} = ${c}. Tələlər: ${a + c} (MB-ni AB sanmaq), ${t - a} (MT = MB hesab edib MA-nı çıxmaq), ${a + c - t} (MB − MT), ${a} (MA-nın özü).` });
+    }) },
+    // 7. coded: intersecting chords with a ratio CE : ED
+    { tip: "kod", gen: () => again(() => {
+      const m = pick([1, 1, 2, 3]), n = pick([2, 3, 4, 5]), k = rnd(1, 5); if (m >= n || (m > 1 && n % m === 0)) return null;
+      const pr = m * n * k * k, pairs = []; for (let a = 2; a * a < pr; a++) if (pr % a === 0 && pr / a <= 40) pairs.push([a, pr / a]);
+      if (!pairs.length) return null;
+      let [a, b] = pick(pairs); if (Math.random() < .5) [a, b] = [b, a];
+      if (a === n * k && b === m * k) return null; // then the figure would draw D on A and C on B
+      const CD = (m + n) * k, cx = c => c === 1 ? "x" : c + "x";
+      return { text: `AB və CD vətərləri çevrənin daxilində E nöqtəsində kəsişir. AE = ${a}, EB = ${b}, CE : ED = ${m} : ${n}. CD vətərinin uzunluğunu tapın.`,
+        svg: chordFig(a, b, m * k, n * k, { AE: String(a), EB: String(b) }), answer: CD, show: String(CD), tol: 1e-6,
+        solution: `CE = ${cx(m)}, ED = ${cx(n)} olsun. Kəsişən vətərlər: AE · EB = CE · ED → ${a} · ${b} = ${cx(m)} · ${cx(n)} → ${m * n === 1 ? "" : m * n}x² = ${a * b} → x² = ${k * k}, x = ${k}. CD = CE + ED = ${cx(m)} + ${cx(n)} = ${CD}.` };
+    }) },
+    // 8. coded: diameter, tangent at C meets the line AB at M
+    { tip: "kod", gen: () => again(() => {
+      const al = pick(range(17, 37, 1)), R = 90 - 2 * al, C = on(2 * al), M = [1 / Math.cos(rad(2 * al)), 0], P = { O: [0, 0], A: [-1, 0], B: [1, 0], C, M };
+      return { text: `AB — O mərkəzli çevrənin diametridir, C nöqtəsi çevrə üzərindədir, ∠CAB = ${al}°. C nöqtəsində çevrəyə çəkilmiş toxunan AB düz xəttini M nöqtəsində kəsir. ∠CMB-ni tapın.`,
+        svg: figure(P, { circ: C1, cen: "O", free: true, segs: [["A", "M"], ["C", "A"], ["O", "C", "dash"], ["C", "M", "acc"]], right: [["C", "O", "M"]], arcs: [["A", "B", "C", al + "°", 22], ["M", "C", "B", "?", 26]] }),
+        answer: R, show: String(R), tol: 1e-6, unit: "°",
+        solution: `∠CAB eyni CB qövsünə söykənən daxilə çəkilmiş bucaqdır, ona görə ∠COB = 2 · ${al}° = ${2 * al}°. Toxunan radiusa perpendikulyardır: ∠OCM = 90°. OCM üçbucağında ∠CMB = 90° − ${2 * al}° = ${R}°.` };
+    }) },
+    // 9. coded: tangent and a secant through the centre → radius
+    { tip: "kod", gen: () => again(() => {
+      const r = rnd(3, 24), a = rnd(2, 30), t = Math.sqrt(a * (a + 2 * r)); if (t % 1 || t > 60) return null;
+      const d = a + r, T = [r * r / d, r * t / d];
+      return { text: `M nöqtəsindən çevrəyə MT toxunanı və çevrənin O mərkəzindən keçən MAB kəsəni çəkilib (A nöqtəsi M-ə yaxındır). MT = ${t}, MA = ${a}. Çevrənin radiusunu tapın.`,
+        svg: figure({ O: [0, 0], M: [d, 0], A: [r, 0], B: [-r, 0], T }, { circ: [["O", r]], cen: "O", names: ["M", "A", "B", "T", "O"], free: true, segs: [["M", "B", "acc"], ["M", "T", "acc"], ["O", "T", "dash"]], right: [["T", "O", "M"]], lab: { MA: String(a), MT: String(t) } }),
+        answer: r, show: String(r), tol: 1e-6,
+        solution: `Toxunan və kəsən teoremi: MT² = MA · MB. MB = MA + AB = ${a} + 2r (AB diametrdir). ${t * t} = ${a} · (${a} + 2r) → ${a} + 2r = ${t * t / a} → r = ${r}.` };
+    }) },
+    // 10. written: the diameter perpendicular to a chord, area of triangle ACD
+    { tip: "yazili", gen: () => again(() => {
+      const m = rnd(1, 4), u = rnd(1, 4), v = rnd(1, 4); if (u === v) return null;
+      const a = m * u * u, b = m * v * v, CE = m * u * v, S = a * CE, R = (a + b) / 2; if (a + b > 40 || a < 2) return null;
+      const P = { O: [0, 0], A: [-R, 0], B: [R, 0], E: [(a - b) / 2, 0], C: [(a - b) / 2, CE], D: [(a - b) / 2, -CE] };
+      return { text: `AB — çevrənin diametridir. CD vətəri AB-yə perpendikulyardır və onu E nöqtəsində kəsir. AE = ${a}, EB = ${b}. ACD üçbucağının sahəsini tapın.`,
+        svg: figure(P, { circ: [["O", R]], cen: "O", names: ["A", "B", "C", "D", "E"], free: true, segs: [["A", "B"], ["C", "D", "acc"], ["A", "C", "acc"], ["A", "D", "acc"]], right: [["E", "A", "C"]], lab: { AE: String(a), EB: String(b) } }),
+        answer: S, show: String(S), tol: 1e-6,
+        solution: `1) Diametr vətərə perpendikulyardırsa, onu yarıya bölür: CE = ED. 2) Kəsişən vətərlər: AE · EB = CE · ED = CE² → CE² = ${a} · ${b} = ${a * b}, CE = ${CE}, CD = ${2 * CE}. 3) AE ⟂ CD, ona görə AE — ACD üçbucağının hündürlüyüdür: S = ½ · ${2 * CE} · ${a} = ${S}. Cavab: ${S}. Həll yazılmadan yalnız cavab yazılsa, bal verilmir.` };
+    }) },
+  ] };
+  levels.push(Oyun.imtLevel(IMT));
+  window.__imtahan = IMT;
+
   window.__levels = levels;
   function start() {
     const oyunEl = document.getElementById("oyun-root"), testEl = document.getElementById("sinaq-root");
@@ -411,7 +554,7 @@
     game = Oyun.mount({
       key: "cevrede-bucaqlar", title: "Çevrədə bucaqlar, toxunan və kəsən", fenn: "riyaziyyat", link: "dersler/cevrede-bucaqlar.html",
       format: "Cavab — ədəd: bucaq (dərəcə ilə, ° yazmaq lazım deyil) və ya uzunluq. Kök: 2√7, kəsr: 13/2.",
-      levels, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
+      levels, imtahan: IMT, oyunEl, testEl, entryEl: document.getElementById("giris-root"),
       entry: { n: 8, min: 10 },
       test: { n: 10, pass: 8, from: ["merkezi", "merkezi", "diametr", "toxunan", "toxunan", "veter", "veter", "uzunluq", "uzunluq", "heyat"] },
       goTest: () => SkillyTab("sinaq"),
