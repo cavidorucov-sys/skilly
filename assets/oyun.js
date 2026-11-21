@@ -87,6 +87,38 @@
     for (let i = 4; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
     return { choices: idx.map((k, i) => AE[i] + ") " + all[k]), correct: idx.indexOf(0) };
   }
+  // ---- Azerbaijani-language questions (21 Nov 2026). Besides choices (A–E, also "A) 1, 3, 5" number combinations)
+  // two more kinds, checked only as a whole (every word right):
+  //   q.sec = { soz: [tokens], duz: [indices] } — tap every word that fits; a token without letters (punctuation) is
+  //           not tappable;
+  //   q.bol = { soz: [items], qrup: [group names], duz: [group index per item] } — put every item into its group.
+  const LETTER = /[\p{L}\d]/u;
+  const sameList = (a, b) => Array.isArray(a) && a.length === b.length && a.every((x, i) => x === b[i]);
+  // the answer widget for a non-number question: { el, get, empty(v), msg }; null for a typed number
+  function widget(q, onPick) {
+    // long options (whole sentences, statements) stand one under another, as on the exam sheet
+    const radio = (labels, set, aria) => { const box = h("div", { class: "oy-choices" + (labels.some(c => String(c).length > 30) ? " oy-long" : ""), role: "radiogroup", ...(aria ? { "aria-label": aria } : {}) }, ...labels.map((c, i) => h("button", { type: "button", role: "radio", "aria-checked": "false",
+      on: { click: e => { set(i); box.querySelectorAll("button").forEach(b => b.setAttribute("aria-checked", String(b === e.currentTarget))); onPick(); } } }, c))); return box; };
+    if (q.choices) { let pick = -1; return { el: radio(q.choices, i => { pick = i; }), get: () => pick, empty: v => v < 0, msg: "Əvvəl birini seç." }; }
+    if (q.sec) {
+      const on = new Set();
+      const el = h("div", { class: "oy-sec" }, ...q.sec.soz.map((w, i) => LETTER.test(w) ? h("button", { type: "button", "aria-pressed": "false",
+        on: { click: e => { on.has(i) ? on.delete(i) : on.add(i); e.currentTarget.setAttribute("aria-pressed", String(on.has(i))); onPick(); } } }, w) : h("span", {}, w)));
+      return { el, get: () => [...on].sort((a, b) => a - b), empty: v => !v.length, msg: "Əvvəl sözə toxun." };
+    }
+    if (q.bol) {
+      const val = q.bol.soz.map(() => -1);
+      const el = h("div", { class: "oy-bol" }, ...q.bol.soz.map((w, i) => h("div", { class: "oy-bol-row" }, h("b", {}, w), radio(q.bol.qrup, j => { val[i] = j; }, w))));
+      return { el, get: () => val.slice(), empty: v => v.some(x => x < 0), msg: "Hər sözü bir qrupa ayır." };
+    }
+    return null;
+  }
+  const tolOf0 = q => q.tol ?? (/[\/√]/.test(String(q.show)) ? 1e-6 : undefined);
+  const isRight = (q, v) => v != null && (q.choices ? v === q.correct : q.sec ? sameList(v, q.sec.duz.slice().sort((a, b) => a - b))
+    : q.bol ? sameList(v, q.bol.duz) : Math.abs(parse(v) - q.answer) <= (tolOf0(q) ?? Math.max(0.005, Math.abs(q.answer) * 0.005)));
+  // the given answer as text (results, error journal)
+  const answerText = (q, v) => v == null ? "(vaxt bitdi, cavab yoxdur)" : q.choices ? (q.choices[v] || "")
+    : q.sec ? v.map(i => q.sec.soz[i]).join(", ") : q.bol ? v.map((g, i) => q.bol.soz[i] + " → " + (q.bol.qrup[g] || "?")).join("; ") : String(v);
   function again(make, n = 400) { for (let i = 0; i < n; i++) { const q = make(); if (q) return q; } throw new Error("again: no valid problem after " + n + " tries"); }
   // the game level made of the exam-format questions: one of them at random each time (Boss comes after it)
   const imtLevel = (imt, extra) => ({ id: "imtahan", ad: "İmtahan səviyyəsi", imt: true,
@@ -158,7 +190,7 @@
     const map = h("div", { class: "oy-map" }), stage = h("div", { class: "oy-stage" });
     root.replaceChildren(
       h("div", { class: "oy-intro" }, h("h2", {}, "Oyun: mövzunu mənimsə"),
-        h("p", {}, "Hər səviyyədə " + STREAK + " sual, ədədlər təsadüfidir. Hər sual düz cavablanmalıdır: səhv olsa, sual dəyişmir — düzünü tapana qədər yenidən yoxla. Sayğac sıfırlanmır. Səviyyələr bitəndə Boss raundu açılır (hər səviyyədən bir sual), Boss-dan sonra Sınaq."),
+        h("p", {}, "Hər səviyyədə " + STREAK + " sual, " + (cfg.tesadufi || "ədədlər təsadüfidir") + ". Hər sual düz cavablanmalıdır: səhv olsa, sual dəyişmir — düzünü tapana qədər yenidən yoxla. Sayğac sıfırlanmır. Səviyyələr bitəndə Boss raundu açılır (hər səviyyədən bir sual), Boss-dan sonra Sınaq."),
         h("p", { class: "oy-fmt" }, cfg.format || "")),
       map, stage);
 
@@ -184,27 +216,24 @@
       return new Promise(resolve => {
         const err = h("div", { class: "oy-err", "aria-live": "polite" }), fb = h("div", { class: "oy-fb", "aria-live": "polite" });
         let input, getVal, wrong = 0, first;
-        if (q.choices) {
-          let pick = -1;
-          input = h("div", { class: "oy-choices", role: "radiogroup" }, ...q.choices.map((c, i) => h("button", { type: "button", role: "radio", "aria-checked": "false",
-            on: { click: e => { pick = i; input.querySelectorAll("button").forEach(b => b.setAttribute("aria-checked", String(b === e.currentTarget))); err.textContent = ""; } } }, c)));
-          getVal = () => pick;
-        } else {
+        const W = widget(q, () => { err.textContent = ""; });
+        if (W) { input = W.el; getVal = W.get; }
+        else {
           input = h("input", { class: "oy-in", type: "text", inputmode: "text", autocomplete: "off", "aria-label": "Cavab", placeholder: q.placeholder || "cavab" });
           input.addEventListener("input", () => { err.textContent = ""; });
           input.addEventListener("keydown", e => { if (e.key === "Enter") check(); });
           getVal = () => input.value;
         }
         const btn = h("button", { type: "button", class: "btn", on: { click: () => check() } }, "Yoxla");
-        const row = h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, q.choices ? null : keys(input), btn);
+        const row = W && !q.choices ? h("div", { class: "oy-row oy-row-w" }, input, btn) : h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, W ? null : keys(input), btn);
         box.replaceChildren(h("div", { class: "oy-q" }, opts.label ? h("div", { class: "oy-label" }, opts.label) : null,
           h("div", { class: "oy-text" }, q.text), q.svg || null, row, err, fb));
-        if (!q.choices) input.focus({ preventScroll: true });
+        if (!W) input.focus({ preventScroll: true });
         function check() {
           if (btn.disabled) return;
           const v = getVal();
           let ok;
-          if (q.choices) { if (v < 0) { err.textContent = "Əvvəl birini seç."; return; } ok = v === q.correct; }
+          if (W) { if (W.empty(v)) { err.textContent = W.msg; return; } ok = isRight(q, v); }
           else {
             const x = parse(v);
             if (!String(v).trim()) { err.textContent = "Əvvəl cavabı yaz."; return; }
@@ -225,11 +254,11 @@
             kids.push(h("button", { type: "button", class: "btn ghost", on: { click: e => { sol.hidden = false; e.currentTarget.remove(); } } }, "İzaha bax"), sol);
           }
           fb.replaceChildren(...kids);
-          if (!q.choices) { input.select(); input.focus({ preventScroll: true }); }
+          if (!W) { input.select(); input.focus({ preventScroll: true }); }
         }
       });
     }
-    const valText = (q, v) => v == null ? "(vaxt bitdi, cavab yoxdur)" : q.choices ? (q.choices[v] || "") : String(v);
+    const valText = answerText;
 
     async function play(id) {
       if (current === id) return;
@@ -323,7 +352,7 @@
         return;
       }
       testRoot.replaceChildren(h("div", { class: "oy-intro" }, h("h2", {}, "Yekun sınaq"),
-        h("p", {}, cfg.test.n + " sual, ədədlər təsadüfidir. Hər sual düz cavablanmalıdır: səhv olsa, sual qalır — düzünü tapana qədər. Hamısı düz olanda mövzu bağlanır. Kağız və qələm yanında olsun."),
+        h("p", {}, cfg.test.n + " sual, " + (cfg.tesadufi || "ədədlər təsadüfidir") + ". Hər sual düz cavablanmalıdır: səhv olsa, sual qalır — düzünü tapana qədər. Hamısı düz olanda mövzu bağlanır. Kağız və qələm yanında olsun."),
         last ? h("p", { class: "oy-fmt" }, last.passed ? "Bitib ✓ — ilk cəhddə düz: " + last.bal + " / " + cfg.test.n : "Son cəhd: " + last.bal + " / " + cfg.test.n) : null,
         h("button", { type: "button", class: "btn", on: { click: runTest } }, last ? "Yenidən başla" : "Sınağa başla")));
     }
@@ -390,12 +419,10 @@
     function collect(q, box, label, isLast, opt = {}) {
       return new Promise(resolve => {
         const err = h("div", { class: "oy-err", "aria-live": "polite" });
-        let input, getVal, pick = -1;
-        if (q.choices) {
-          input = h("div", { class: "oy-choices", role: "radiogroup" }, ...q.choices.map((c, i) => h("button", { type: "button", role: "radio", "aria-checked": "false",
-            on: { click: e => { pick = i; input.querySelectorAll("button").forEach(b => b.setAttribute("aria-checked", String(b === e.currentTarget))); err.textContent = ""; } } }, c)));
-          getVal = () => pick;
-        } else {
+        let input, getVal;
+        const W = widget(q, () => { err.textContent = ""; });
+        if (W) { input = W.el; getVal = W.get; }
+        else {
           input = h("input", { class: "oy-in", type: "text", autocomplete: "off", "aria-label": "Cavab", placeholder: q.placeholder || "cavab" });
           input.addEventListener("input", () => { err.textContent = ""; });
           input.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
@@ -403,13 +430,13 @@
         }
         const btn = h("button", { type: "button", class: "btn", on: { click: () => go() } }, isLast ? "Bitir" : "Növbəti →");
         box.replaceChildren(h("div", { class: "oy-q" }, h("div", { class: "oy-label" }, label), h("div", { class: "oy-text" }, q.text), q.svg || null, opt.extra || null,
-          h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, q.choices ? null : keys(input), btn), err));
-        if (!q.choices) input.focus({ preventScroll: true });
+          W && !q.choices ? h("div", { class: "oy-row oy-row-w" }, input, btn) : h("div", { class: "oy-row" }, input, q.unit ? h("span", { class: "oy-unit" }, q.unit) : null, W ? null : keys(input), btn), err));
+        if (!W) input.focus({ preventScroll: true });
         function go() {
           const v = getVal();
-          if (q.choices ? v < 0 : !String(v).trim()) { err.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
-          if (!q.choices && (isNaN(parse(v)) || !okForm(v))) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
-          const sm = q.choices ? "" : simplerMsg(v); if (sm) { err.textContent = sm; return; }
+          if (W ? W.empty(v) : !String(v).trim()) { err.textContent = W ? W.msg : "Əvvəl cavabı yaz."; return; }
+          if (!W && (isNaN(parse(v)) || !okForm(v))) { err.textContent = "Cavabı hazır ədəd kimi yaz: 12, 0.5, 3/5, 5√3, √3/2 (ifadə yox)."; return; }
+          const sm = W ? "" : simplerMsg(v); if (sm) { err.textContent = sm; return; }
           const g = opt.guard && opt.guard(); if (g) { err.textContent = g; return; }
           resolve(v);
         }
@@ -423,7 +450,8 @@
         sual: typeof q.text === "string" ? q.text : q.text.textContent,
         cavab: valText(q, val), duz: q.show, link: cfg.link,
         // enough of the question to ask it again in the journal, checked the same way (the answer is never shown there)
-        q2: { choices: q.choices || null, correct: q.correct ?? null, answer: q.answer ?? null, tol: tolOf(q) ?? null, unit: q.unit || "", svg: q.svg && q.svg.outerHTML ? q.svg.outerHTML : "" } });
+        q2: { choices: q.choices || null, correct: q.correct ?? null, answer: q.answer ?? null, tol: tolOf(q) ?? null, unit: q.unit || "", svg: q.svg && q.svg.outerHTML ? q.svg.outerHTML : "",
+          ...(q.sec ? { sec: q.sec } : {}), ...(q.bol ? { bol: q.bol } : {}) } });
     }
 
     function report(kind, r) {
@@ -499,7 +527,7 @@
       clearInterval(tick);
       let bal = 0;
       pickIds.forEach((id, i) => { const q = genS(L(id), run.seeds[i]), val = run.vals[i];
-        if (val != null && (q.choices ? val === q.correct : close(parse(val), q.answer, tolOf(q)))) bal++; }); // entry-test mistakes stay out of the journal (father, 10 Nov 2026)
+        if (isRight(q, val)) bal++; }); // entry-test mistakes stay out of the journal (father, 10 Nov 2026)
       delete st.entryRun;
       st.entry = { bal, at: Date.now() };
       if (bal === n) { cfg.levels.forEach(l => Object.assign(st.lv[l.id], { done: true, streak: STREAK })); st.boss.passed = true; } // 8/8 at the first try is stricter than the Boss
@@ -518,7 +546,7 @@
     const imtOpen = () => inBag() && (!imtLv || st.lv[imtLv.id].done);
     const mmss = ms => { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
     const imtQs = run => IMT.suallar.map((s, i) => ({ ...genS({ gen: s.gen }, run.seeds[i]), tip: s.tip }));
-    const right = (q, v) => v != null && (q.choices ? v === q.correct : close(parse(v), q.answer, tolOf(q)));
+    const right = isRight;
     const fmtLine = () => { const c = t => IMT.suallar.filter(s => s.tip === t).length;
       return IMT.suallar.length + " sual: " + [["qapali", "qapalı (A–E)"], ["kod", "kodlaşdırılan"], ["yazili", "yazılı"]].filter(([t]) => c(t)).map(([t, w]) => c(t) + " " + w).join(" + ") + (IMT.vaxt ? " · tövsiyə olunan vaxt " + IMT.vaxt + " dəqiqə" : ""); };
     function drawImt() {
@@ -608,5 +636,5 @@
     return { state: st, drawTest };
   }
 
-  window.Oyun = { mount, parse, h, okForm, simpler, ae, again, num, imtLevel };
+  window.Oyun = { mount, parse, h, okForm, simpler, ae, again, num, imtLevel, isRight, answerText };
 })();

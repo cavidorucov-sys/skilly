@@ -1554,5 +1554,166 @@
    "ders": "dersler/fiz-atom.html",
    "imt": true
   }
+ ],
+ "azdili": [
+  {
+   "bolme": "Morfologiya",
+   "ad": "Nitq hissələri; leksik və qrammatik məna",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 1",
+   "ders": "dersler/az-nitq-hisseleri.html",
+   "imt": true,
+   "hefte": "2026-11-23"
+  },
+  {
+   "bolme": "Söz yaradıcılığı",
+   "ad": "Sözün tərkibi və söz yaradıcılığı",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 2",
+   "hefte": "2026-11-30"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "İsim I: növləri, tək və cəm, toplu isim",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 3",
+   "hefte": "2026-12-07",
+   "ders": "dersler/az-isim-1.html",
+   "imt": true
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "İsim II: hallar, mənsubiyyət, xəbərlik",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 4",
+   "dersSay": 2,
+   "hefte": "2026-12-14"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Sifət",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 5",
+   "hefte": "2026-12-28",
+   "ders": "dersler/az-sifet.html",
+   "imt": true
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Say",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 6",
+   "hefte": "2027-01-04",
+   "ders": "dersler/az-say.html",
+   "imt": true
+  },
+  {
+   "bolme": "Leksika",
+   "ad": "Leksika: məna, omonim, sinonim, antonim, frazeologizm",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 7",
+   "hefte": "2027-01-11",
+   "ders": "dersler/az-leksika.html",
+   "imt": true
+  },
+  {
+   "bolme": "Fonetika",
+   "ad": "Fonetika və orfoepiya",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 8",
+   "hefte": "2027-01-18"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Əvəzlik",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 9",
+   "hefte": "2027-01-25"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Feil I: forma və zaman",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 10",
+   "hefte": "2027-02-01"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Feil II: şəkillər; idi, imiş, isə",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 11",
+   "hefte": "2027-02-08"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Feil III: qrammatik məna növləri",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 12",
+   "hefte": "2027-02-15"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Feilin təsriflənməyən formaları",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 13",
+   "hefte": "2027-02-22"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Zərf",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 14",
+   "hefte": "2027-03-01"
+  },
+  {
+   "bolme": "Morfologiya",
+   "ad": "Köməkçi nitq hissələri; morfoloji təhlil",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 15",
+   "dersSay": 2,
+   "hefte": "2027-03-08"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "Söz birləşməsi",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 16",
+   "hefte": "2027-03-22"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "Sintaktik əlaqələr və baş üzvlər",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 17",
+   "hefte": "2027-03-29"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "İkinci dərəcəli üzvlər",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 18",
+   "hefte": "2027-04-05"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "Həmcins üzvlər, əlavə, ara söz, xitab, söz sırası",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 19",
+   "hefte": "2027-04-12"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "Sadə cümlənin növləri",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 20",
+   "hefte": "2027-04-19"
+  },
+  {
+   "bolme": "Sintaksis",
+   "ad": "Mürəkkəb cümlə və durğu işarələri",
+   "status": "yox",
+   "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 21",
+   "hefte": "2027-04-26"
+  }
  ]
 }

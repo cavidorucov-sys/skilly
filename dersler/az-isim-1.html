@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İsim I: növləri, tək və cəm, toplu isim dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-isim-1.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · İsim I</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya (isim)</div>
+    <h1>İsim I: növləri, tək və cəm, toplu isim</h1>
+    <p>İsim — ən çox işlənən nitq hissəsidir. Buraxılışın dil qaydaları blokunda ondan "tərkibində toplu isim işlənməyən cümləni seçin" və "cümlələrin birində sifət yoxdur" kimi suallarda soruşurlar. Bu dərsdə ismin növlərini (konkret və mücərrəd, ümumi və xüsusi), tək və cəm formasını, toplu isimləri və onların cəmdən fərqini öyrənəcəksən. Cəm və toplu ismin qaydaları 5-ci sinif dərsliyindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, sonra Oyun və Sınaq. Hallar, mənsubiyyət və xəbərlik növbəti mövzudadır, burada onlara baxmırıq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>İsim; konkret və mücərrəd</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ümumi və xüsusi isim</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Tək və cəm</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Toplu isimlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. İsim; konkret və mücərrəd isimlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Dəmir darvaza", "gözəllik", "kitab", "dostluq" — hamısı isimdir, amma bunlar fərqli cür isimlərdir. İmtahanda ismi sifətdən ayırmaq lazım gəlir: məsələn, "dəmir darvaza" birləşməsində "dəmir" necə? sualına cavab verir, amma isimdir. Əvvəl isim nə bildirir, sonra onun iki böyük qrupunu — konkret və mücərrəd isimləri — öyrənək.</p>
+
+      <h3><span class="st">2</span> İsim nə bildirir</h3>
+      <div class="fm">İsim əşya (varlıq) adı bildirir.
+Suallar: kim? nə? hara?</div>
+      <div class="ex">Rəşad  — kim?  → adam
+kitab  — nə?   → əşya
+Bakı   — hara? → yer</div>
+      <p>Burada "əşya" yalnız əllə tutulan şey deyil: adam, heyvan, bitki, yer, material, hətta hiss və anlayış da isimlə adlanır.</p>
+      <p>İsim cümlədə əşyanın əlamətini də bildirə bilər: <i>daş (necə?) hasar, yun (necə?) corab, dəri (necə?) çanta</i>. Bu, <b>ismin sifətləşməsi</b> adlanır. Belə sözlər sifətin sualına cavab versə də, <b>isim hesab olunur</b>.</p>
+      <div class="ex">Həyətin dəmir darvazası yavaşca açıldı.
+dəmir    — necə darvaza? → sifətləşmiş isim (isim hesab olunur)
+yavaşca  — necə açıldı?  → zərf
+Bu cümlədə sifət yoxdur.</div>
+
+      <h3><span class="st">3</span> Konkret və mücərrəd isimlər</h3>
+      <div class="fm">Konkret isim: maddi varlığı olan, duyğu üzvləri ilə qavranılan varlığın adı
+Nümunə: kitab, ağac, dəniz, külək, bulud
+Mücərrəd isim: hiss, keyfiyyət, hal və anlayışın adı; maddi varlığı yoxdur
+Nümunə: sevinc, dostluq, sədaqət, bilik</div>
+      <p>Yoxlama üsulu: "Bunun maddi varlığı varmı, duyğu üzvləri ilə qavranılırmı?" Varsa — konkret (külək və bulud da konkretdir: onları hiss edir və ya görürsən), yoxsa — mücərrəd.</p>
+      <div class="ex">kitab, ağac, dəniz, külək  → konkret
+sevinc, dostluq, sədaqət  → mücərrəd</div>
+      <p>Mücərrəd isimlər çox vaxt başqa sözlərə şəkilçi qoşulmaqla yaranır. Dərslikdə: <b>-izm</b> şəkilçisi mücərrəd mənalı sözlər əmələ gətirir (<i>eqoizm, kapitalizm, realizm</i>); 7-ci sinif dərsliyində <i>yaxşılıq</i> sözü sifətə şəkilçi qoşulmaqla yaranmış mücərrəd isim kimi göstərilir.</p>
+      <div class="ex">gözəl  → sifət (necə?)
+gözəllik → mücərrəd isim (nə?)
+cəsarətli → sifət;  cəsarət → mücərrəd isim</div>
+      <div class="life"><b>Həyatdan.</b> "Dost" sözünü yan oturan uşağa göstərə bilərsən — konkret isimdir. "Dostluq" isə o uşaqla münasibətindir: maddi varlığı yoxdur, hiss edirsən — mücərrəd isimdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Dəmir darvaza", "qızıl saat" sözlərində birinci sözü sifət saymaq. Bunlar sifətləşmiş isimdir — isim olaraq qalır.</li>
+        <li>Mücərrəd ismi sifətlə qarışdırmaq: "gözəllik", "cəsarət" — isimdir (nə?); "gözəl", "cəsarətli" — sifətdir (necə?).</li>
+        <li>-lıq, -lik ilə bitən hər sözü mücərrəd saymaq. "Dərslik" (kitab) və "gözlük" (eynək) maddi əşyalardır — konkret isimdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İsim — əşya adı: kim? nə? hara?
+Konkret isim — maddi varlığın adı (kitab, külək)
+Mücərrəd isim — hiss, keyfiyyət, anlayış; maddi varlığı yox (sevinc)
+Sifətləşmiş isim (dəmir darvaza) — isim hesab olunur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Pəncərə, sədaqət, daş, stol, ağac" — hansı mücərrəd isimdir? <span class="ans">sədaqət</span></li>
+        <li>"Bu daş hasar çox hündürdür" — "daş" hansı nitq hissəsidir? <span class="ans">isim (sifətləşmiş isim)</span></li>
+        <li>"Gözəllik" və "gözəl" sözlərindən hansı mücərrəd isimdir? <span class="ans">gözəllik (gözəl — sifətdir)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ümumi və xüsusi isimlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Şəhər" bütün şəhərlərə aiddir, "Bakı" isə yalnız bir şəhərin adıdır. Yazıda bunu böyük hərf göstərir, imtahanda isə növü özün müəyyən etməlisən.</p>
+
+      <h3><span class="st">2</span> Ümumi və xüsusi isim</h3>
+      <div class="fm">Ümumi isim: eyni cinsdən olan əşyaların ortaq adı
+Nümunə: şəhər, çay, şagird, kitab
+Xüsusi isim: tək bir şəxsin, yerin, ölkənin və s. adı; böyük hərflə yazılır
+Nümunə: Bakı, Kür, Səbinə, Azərbaycan</div>
+      <p>Dərslikdə xüsusi adlara <b>şəxs, yer, ölkə, əsər, bayram</b> adları aiddir.</p>
+      <div class="ex">şəhər — ümumi isim (hər hansı şəhər)     Bakı   — xüsusi isim (bir şəhər)
+çay   — ümumi isim                           Kür    — xüsusi isim (bir çay)
+müəllim — ümumi isim                         Nizami — xüsusi isim (bir şəxs)</div>
+
+      <h3><span class="st">3</span> Böyük hərfə aldanma</h3>
+      <p>Cümlənin birinci sözü həmişə böyük hərflə başlayır. Ona görə böyük hərf öz-özlüyündə xüsusi isim demək deyil: cümlədəki mənaya bax.</p>
+      <div class="ex">Kitabı Səbinənin masasından götürdüm.
+Kitabı     — ümumi isim (cümlənin əvvəlində böyük hərflə yazılıb)
+Səbinənin  — xüsusi isim (şəxs adı)
+masasından — ümumi isim</div>
+      <p>Xüsusi isimlər də şəkilçi qəbul edir: Bakı<b>ya</b>, Səbinə<b>nin</b>, Kür<b>ün</b>.</p>
+
+      <h3><span class="st">4</span> Xüsusi isim ümumi isim kimi</h3>
+      <p>Bəzi adlar kiçik hərflə yazılsa, ümumi isim olur. Dərslikdəki tapşırıq belə soruşur: "Hansı xüsusi isimlərin ilk hərfi kiçik yazılsa, ümumi isim kimi qəbul edilə bilər?"</p>
+      <div class="ex">Çiçək — çiçək     Damla — damla     Bahar — bahar
+Nərgiz — nərgiz   Mirvari — mirvari   Arzu — arzu</div>
+      <div class="life"><b>Həyatdan.</b> Sinifdə Damla adlı şagird var — bu, xüsusi isimdir. Pəncərədə yağış damlası görürsən — "damla" ümumi isimdir. Fərqi böyük hərf və cümlədəki məna göstərir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cümlənin əvvəlindəki hər ismi xüsusi saymaq ("Kitabı", "Müəllim").</li>
+        <li>Çiçək, Damla, Bahar kimi adı həmişə xüsusi isim saymaq. Kiçik hərflə yazılanda onlar ümumi isimdir.</li>
+        <li>Xüsusi ismi isim saymamaq. "Bakı", "Səbinə" də kim? nə? hara? sualına cavab verir və isimdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ümumi isim — ortaq ad (şəhər, çay)
+Xüsusi isim — tək birinin adı, böyük hərflə (Bakı, Kür, Səbinə)
+Cümlənin əvvəlindəki böyük hərf xüsusi isim etmir.
+Çiçək, Damla kimi adlar kiçik hərflə ümumi isimdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Şəhər, çay, Gəncə, dağ" — hansı xüsusi isimdir? <span class="ans">Gəncə</span></li>
+        <li>"Müəllim Orxanı lövhəyə çağırdı" — xüsusi isim hansıdır? <span class="ans">Orxanı (Orxan)</span></li>
+        <li>"Mirvari" sözü nə vaxt ümumi isimdir? <span class="ans">şəxs adı deyil, bəzək maddəsinin adı olanda (mirvari — qiymətli daş)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. İsmin tək və cəm forması</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Kitab" bir əşyadır, "kitablar" — bir neçə. Dərslikdə tapşırıq belədir: "Cümlələrin tərkibindəki isimləri seçin. Onların tək və ya cəmdə işləndiyini müəyyən edin." İmtahanda isə cəmi toplu isimdən ayırmaq lazım gələcək (növbəti dərs).</p>
+
+      <h3><span class="st">2</span> Cəm şəkilçisi</h3>
+      <div class="fm">Tək isim: cəm şəkilçisi yoxdur. kitab, dəftər, uşaq
+Cəm isim: -lar, -lər şəkilçisi var. kitablar, dəftərlər, uşaqlar</div>
+      <p>Cəm şəkilçisi <b>iki cür yazılır</b>: şəkilçi qoşulduğu sözün son saitinin qalın və ya incə olmasına görə dəyişir.</p>
+      <div class="ex">kitab + lar  → kitablar    (son sait qalın: a)
+dəftər + lər → dəftərlər  (son sait incə: ə)
+ağac + lar + ın → ağacların
+təyyarə + lər + də → təyyarələrdə</div>
+      <p>Cəm şəkilçisi leksik şəkilçilərdən sonra, mənsubiyyət və hal şəkilçilərindən əvvəl gəlir: <i>dərs-lik-lər</i>, <i>ağac-lar-ın</i>.</p><p>Qeyd: bəzi isimlər (məsələn, <i>müəllimlik, riyaziyyat, qaymaq, səadət</i>) adi mənada cəm şəkilçisi qəbul etmir. Dərslikdə (5-ci sinif, s. 17, tapşırıq 6b) bu və başqa sözlər üçün "hansı isimlər cəm şəkilçisi qəbul edə bilmir?" soruşulur; qaydası ayrıca verilməyib, buna görə oyun və imtahanda bu barədə sual yoxdur.</p>
+
+      <h3><span class="st">3</span> Cümlədə tək, yoxsa cəm</h3>
+      <div class="ex">Ağacın yarpaqları yamyaşıl idi.
+ağacın     — tək (ağac + ın)
+yarpaqları — cəm (yarpaq + lar + ı)
+
+Çəmənlikdə kəpənəklər, xallı böcəklər uçuşurdular.
+çəmənlikdə — tək
+kəpənəklər — cəm (kəpənək + lər)
+böcəklər   — cəm (böcək + lər)
+uçuşurdular — feildir, isim deyil; onun tək-cəmliyinə baxmırıq</div>
+      <div class="life"><b>Həyatdan.</b> Şəkil altında "gül" yazılıbsa, bir gül var; "güllər" yazılıbsa, bir neçə. Dəyişən yalnız sonluqdur: gül → gül<b>lər</b>.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sözün sonunda -lar, -lər görüb isim cəmi demək. Əvvəl sözün isim olduğunu yoxla: "uçuşurdular", "oynadılar" feildir.</li>
+        <li>Cəm şəkilçisini ahəngə uyğun yazmamaq: "kitablər", "dəftərlar" səhvdir — "kitablar", "dəftərlər".</li>
+        <li>Çoxluq bildirən hər sözü cəm saymaq. "Ordu", "camaat" cəm şəkilçisi olmadan çoxluq bildirir — bunlar toplu isimdir (növbəti dərs).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Cəm şəkilçisi: -lar, -lər (iki cür yazılır)
+Qalın son sait → -lar: kitablar     İncə son sait → -lər: dəftərlər
+Cəm şəkilçisi leksik şəkilçidən sonra, mənsubiyyət və hal şəkilçisindən əvvəl gəlir: ağac + lar + ın
+Feildəki -lar, -lər ismin cəmi deyil.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Dəftər" sözünün cəmini yaz. <span class="ans">dəftərlər</span></li>
+        <li>"Quşlar ağacın budağına qonmuşdular" — cəmdə işlənmiş isim hansıdır? <span class="ans">quşlar (qonmuşdular — feildir)</span></li>
+        <li>"Ağacların" sözündəki şəkilçiləri sırala. <span class="ans">-lar (cəm), -ın</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Toplu isimlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Buraxılışda belə sual olur: "Tərkibində toplu isim işlənməyən cümləni seçin". Beş cümlənin dördündə toplu isim var, birində yoxdur — və o birində çoxluq bildirən kimi görünən bir söz tələ qurur. Əvvəl qaydanı bilək.</p>
+
+      <h3><span class="st">2</span> Toplu isim nədir</h3>
+      <div class="fm">Toplu isim: cəm şəkilçisi (-lar, -lər) qəbul etmədən çoxluq bildirən isim.
+Nümunə: camaat (insanların çoxluğu), ordu (hərbçilərin çoxluğu)
+Toplu isimlərə də cəm şəkilçisi artırmaq olar: xalqlar, dəstələr.
+"Camaat" və "əhali" sözləri cəm şəkilçisi qəbul etmir.</div>
+      <div class="ex">Çoban sürünü yaylağa apardı.              sürü  — toplu isim
+İlxıda bir-birindən gözəl atlar var idi.   ilxı  — toplu isim (atlar — cəm isim)
+El bir olsa, dağ oynadar yerindən.         el    — toplu isim</div>
+      <p>Dərslikdəki daha bir neçə toplu isim: <i>xalq, əhali, naxır, qoşun</i>.</p>
+
+      <h3><span class="st">3</span> Toplu isim və cəm isim</h3>
+      <div class="tbl"><table>
+        <tr><th></th><th>cəm isim</th><th>toplu isim</th></tr>
+        <tr><td>çoxluğu necə bildirir</td><td>-lar, -lər şəkilçisi ilə</td><td>şəkilçi olmadan, sözün özü çoxluqdur</td></tr>
+        <tr><td>nümunə</td><td>şagirdlər, kitablar, ağaclar</td><td>camaat, ordu, əhali, sürü</td></tr>
+        <tr><td>qrammatik forması</td><td>cəm formasındadır</td><td>çoxluq bildirsə də, şəkilçisiz olduğu üçün qrammatik cəhətdən təkdir (ordu çoxluq bildirir, amma təkdir; ordular — cəm forması)</td></tr>
+        <tr><td>cəm şəkilçisi artırmaq</td><td>artıq var</td><td>olar (xalqlar); "camaat", "əhali" qəbul etmir</td></tr>
+      </table></div>
+      <div class="life"><b>Həyatdan.</b> Xəbərdə "Camaat meydana toplaşdı" deyirlər. Eyni fikri belə də demək olar: "Adamlar meydana toplaşdı". Birincidə toplu isim (camaat), ikincidə cəm isim (adamlar) var.</div>
+
+      <h3><span class="st">4</span> Tələ: çoxluq mənası cümlədə olmalıdır</h3>
+      <p>Toplu isim çoxluq bildirməlidir. Eyni söz başqa mənada işlənəndə toplu isim olmur.</p>
+      <div class="ex">Meydanda böyük insan kütləsi toplaşmışdı.
+kütlə — insanların çoxluğu → toplu isim
+
+Cismin kütləsi tərəzidə ölçülür.
+kütlə — cismin fiziki xüsusiyyəti (ölçüsü) → toplu isim deyil</div>
+      <p>Cümlədə "çox", "çoxluq" kimi söz olması da sözü toplu isim etmir. Sual ver: bu söz özü çoxluğun adıdırmı?</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cəm ismi toplu saymaq: "şagirdlər", "kitablar" cəm şəkilçisi ilə çoxluq bildirir — toplu isim deyil.</li>
+        <li>"Toplu isimlərə cəm şəkilçisi artırmaq olmaz" demək. Olar: xalqlar, dəstələr. Yalnız "camaat" və "əhali" qəbul etmir.</li>
+        <li>"Kütlə" sözünü hər cümlədə toplu isim saymaq. "Cismin kütləsi" — fiziki ölçüdür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Toplu isim: şəkilçisiz çoxluq (camaat, ordu, xalq, əhali, sürü)
+Cəm isim: -lar, -lər ilə çoxluq (şagirdlər)
+Toplu ismə də -lar, -lər artırmaq olar (xalqlar); camaat, əhali — olmaz
+Çoxluq mənası cümlədə olmalıdır: insan kütləsi — toplu, cismin kütləsi — yox</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Ordu, kitablar, şagirdlər, qələmlər" — hansı toplu isimdir? <span class="ans">ordu</span></li>
+        <li>"Camaat" sözünə cəm şəkilçisi artırmaq olarmı? <span class="ans">xeyr, qəbul etmir</span></li>
+        <li>"Cismin kütləsi tərəzidə ölçülür" — "kütlə" toplu isimdir? <span class="ans">xeyr (fiziki ölçü, çoxluq deyil)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: isim I</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <p>Bu mövzudan real sınaqda (BSİ-2) iki sual çıxıb:</p>
+      <ul>
+        <li><b>"Tərkibində toplu isim işlənməyən cümləni seçin"</b> (29-cu sual) — dörd cümlədə toplu isim var, birində yoxdur; çoxluq bildirən kimi görünən söz ("kütlə") tələ qurur.</li>
+        <li><b>"Cümlələrin birində sifət yoxdur"</b> (33-cü sual) — "dəmir darvaza" kimi sifətləşmiş isimləri sifət saymamaq lazımdır.</li>
+      </ul>
+      <p>Başqa tipik formalar: <b>"biri fərqlidir"</b>, <b>nömrə kombinasiyası</b> (variantlar "A) 1, 3, 5" kimi), <b>"səhv fikri müəyyən edin"</b>. Səhv variantlar tipik səhvlərdən qurulur: cəmi toplu saymaq, sifətləşmiş ismi sifət saymaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — toplu isim işlənməyən cümlə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · toplu isim</span>
+        <p>Tərkibində toplu isim işlənməyən cümləni seçin.</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Meydanda böyük insan kütləsi toplaşmışdı.</li><li>Çoban sürünü yaylağa apardı.</li><li>Xalq öz tarixini unutmur.</li><li>Cismin kütləsi tərəzidə ölçülür.</li><li>Ordu vətəni qoruyur.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) kütləsi — insanların çoxluğu → toplu isim
+B) sürünü  — toplu isim
+C) Xalq    — toplu isim
+D) kütləsi — cismin fiziki xüsusiyyəti; çoxluq deyil → toplu isim yoxdur
+E) Ordu    — toplu isim
+Cavab: D)</div>
+      <ul>
+        <li><b>A)</b>-nı seçmək: eyni "kütlə" sözünü A və D cümlələrində eyni sanmaq. A-da "insan kütləsi" çoxluqdur, D-də isə cismin ölçüsü.</li>
+        <li><b>B), C), E)</b>-ni seçmək: "sürü", "xalq", "ordu" sözlərini cəm şəkilçisi olmadığı üçün toplu isim saymamaq. Qayda tam əksinədir: toplu isim məhz şəkilçisiz çoxluq bildirir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — biri fərqlidir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · konkret və mücərrəd isim</span>
+        <p>Konkret və mücərrəd isimlərə görə biri fərqlidir:</p>
+        <ol class="imt-opts"><li>kitab</li><li>ağac</li><li>sədaqət</li><li>dəniz</li><li>pəncərə</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">kitab, ağac, dəniz, pəncərə — maddi varlıqlar → konkret isim
+sədaqət — hiss, keyfiyyət; maddi varlığı yoxdur → mücərrəd isim
+Cavab: C) sədaqət</div>
+      <ul>
+        <li>Tələ: sözün quruluşuna baxıb qərar vermək. "Sədaqət" adi söz kimi görünür; imtahan mənanı soruşur: bunun maddi varlığı varmı?</li>
+        <li>Əksinə ola bilər: dörd mücərrəd isim (sevinc, dostluq, bilik, səbir) və bir konkret (maşın). Sual eynidir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Nömrələnmiş sözlərdən hansılar toplu isimdir?<br>1. camaat<br>2. kitablar<br>3. xalq<br>4. şagirdlər<br>5. naxır</p>
+        <ol class="imt-opts"><li>1, 3, 5</li><li>2, 4</li><li>1, 2, 3</li><li>3, 4, 5</li><li>1, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. camaat    — şəkilçisiz çoxluq → toplu isim
+2. kitablar  — -lar ilə çoxluq → cəm isim
+3. xalq      — şəkilçisiz çoxluq → toplu isim
+4. şagirdlər — -lər ilə çoxluq → cəm isim
+5. naxır     — şəkilçisiz çoxluq → toplu isim
+Cavab: A) 1, 3, 5</div>
+      <ul>
+        <li><b>B)</b> — cəm isimləri toplu saymaq (kitablar, şagirdlər).</li>
+        <li><b>C)</b> — "kitablar"ı seçib "naxır"ı buraxmaq: çoxluq bildirən sözün hamısını toplu saymaq.</li>
+        <li><b>D)</b> — "şagirdlər"i toplu saymaq, "camaat"ı buraxmaq.</li>
+        <li><b>E)</b> — "xalq"ı toplu saymamaq. Toplu isimlərə cəm şəkilçisi artırmaq olar (xalqlar), amma "xalq" özü şəkilçisiz çoxluq bildirir.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Toplu isim sualında hər sözü ayrıca yoxla: bu söz şəkilçisiz çoxluq bildirirmi? Yalnız "çox" sözünə baxıb qərar vermə.</li>
+        <li>"Kütlə" kimi söz çoxluq mənasında toplu isimdir, fiziki xüsusiyyət mənasında — yox.</li>
+        <li>"Dəmir darvaza", "qızıl saat" birləşmələrində "dəmir" və "qızıl" sifətləşmiş isimdir. "Sifət yoxdur" sualında bunları sifət saymaq səhvdir.</li>
+        <li>Cümlənin əvvəlindəki böyük hərf xüsusi isim etmir. Mücərrəd isim sifətlə qarışmasın: gözəllik — isim, gözəl — sifət.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Toplu isim — şəkilçisiz çoxluq; cəm isim — -lar, -lər ilə
+Mücərrəd isim — maddi varlığı yoxdur
+Xüsusi isim — tək birinin adı, böyük hərflə
+Variantlara baxmadan əvvəl hər cümləni özün yoxla.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Biri fərqlidir: şagirdlər, kitablar, ağaclar, camaat, quşlar" <span class="ans">camaat (toplu isim; qalanları cəm isim)</span></li>
+        <li>"Həyətin dəmir darvazası yavaşca açıldı" — sifət varmı? <span class="ans">yoxdur (dəmir — isim, yavaşca — zərf)</span></li>
+        <li>"Hansı söz mücərrəd isimdir: stol, dostluq, qələm, pişik, ağac?" <span class="ans">dostluq</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

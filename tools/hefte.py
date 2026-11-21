@@ -26,7 +26,8 @@ SLOTS = [(0, "16:45", "18:15", "math"), (0, "18:30", "20:00", "phys"),
          (2, "16:00", "18:00", "phys"),
          (3, "13:30", "15:00", "math"), (3, "15:00", "16:30", "phys"),
          (5, "11:00", "12:30", "math"), (5, "14:00", "16:00", "phys"),
-         (6, "11:00", "13:00", "phys")]
+         (6, "11:00", "13:00", "phys"),
+         (5, "20:00", "22:00", "lang")]  # Azerbaijani-language grammar (father, 21 Nov 2026): one lesson of 2 h
 FIXED = [(1, "15:00", "17:00", "phys", "FRİTL", None), (4, "15:00", "17:00", "phys", "FRİTL", None),
          (2, "18:00", "18:15", "misc", "Təkrar", "temrar.html"),
          (3, "17:00", "18:30", "misc", "Cüdo", None), (5, "17:00", "18:30", "misc", "Cüdo", None),
@@ -39,17 +40,20 @@ EXAMS = {t["tarix"]: t for t in term if t["kat"] == "math" and "sınağı" in t[
 mins = lambda s: int(s[:2]) * 60 + int(s[3:])
 hm = lambda m: f"{m // 60:02d}:{m % 60:02d}"
 # queues in plan order: a topic is not given before its plan week (its prerequisites come first in the plan)
-queue = {"math": [], "phys": []}
-for k in ("riyaziyyat", "fizika", "olimpiada"):
-    for i, t in enumerate(mm[k]):
+queue = {"math": [], "phys": [], "lang": []}
+TRACKS = ("riyaziyyat", "fizika", "olimpiada", "azdili")
+def track(k, t): return "lang" if k == "azdili" else "phys" if k == "fizika" or t.get("saat") == "fizika" else "math"
+for k in TRACKS:
+    for i, t in enumerate(mm.get(k, [])):
         if "hefte" not in t or t.get("ders") in CLOSED or not t.get("ders"): continue
-        tr = "phys" if k == "fizika" or t.get("saat") == "fizika" else "math"
-        label = t["ad"] + (" (fizika saatında)" if k != "fizika" and tr == "phys" else "")
-        queue[tr].append({"hefte": t["hefte"], "n": i, "ad": label, "link": t["ders"], "left": (H / 2 if t["status"] == "isl" else H) * 60, "began": False})
-for k in ("riyaziyyat", "fizika", "olimpiada"):
-    for i, t in enumerate(mm[k]):
+        tr = track(k, t)
+        label = t["ad"] + (" (fizika saatında)" if k not in ("fizika", "azdili") and tr == "phys" else "") + (" — Azərbaycan dili" if tr == "lang" else "")
+        h = H * t.get("dersSay", 1)  # a grammar topic of two lessons takes two Saturdays
+        queue[tr].append({"hefte": t["hefte"], "n": i, "ad": label, "link": t["ders"], "left": (h / 2 if t["status"] == "isl" else h) * 60, "began": False})
+for k in TRACKS:
+    for i, t in enumerate(mm.get(k, [])):
         if t.get("ders") in QISMEN and t.get("imt"):  # only topics whose exam-format part is on the site
-            tr = "phys" if k == "fizika" or t.get("saat") == "fizika" else "math"
+            tr = track(k, t)
             queue[tr].append({"hefte": "0000", "n": i, "ad": "İmtahan formatlı sınaq: " + t["ad"], "link": t["ders"], "left": H_IMT * 60, "began": False})
 for q in queue.values(): q.sort(key=lambda x: (x["hefte"], x["n"]))
 last = max(x["hefte"] for q in queue.values() for x in q)
@@ -59,7 +63,7 @@ def label(m):
     s = m + dt.timedelta(days=6)
     return f"{m.day} – {s.day} {AY[s.month - 1]}" if m.month == s.month else f"{m.day} {AY[m.month - 1]} – {s.day} {AY[s.month - 1]}"
 
-weeks, empty = [], {"math": 0.0, "phys": 0.0}
+weeks, empty = [], {"math": 0.0, "phys": 0.0, "lang": 0.0}
 m = FROM
 while (m <= UNTIL or any(queue.values())) and m <= UNTIL + dt.timedelta(weeks=12):
     days = [[] for _ in range(7)]
@@ -79,7 +83,7 @@ while (m <= UNTIL or any(queue.values())) and m <= UNTIL + dt.timedelta(weeks=12
             x = next((x for x in q if x["hefte"] <= str(m)), None)
             if not x: empty[tr] += (t1 - t0) / 60; break
             use = min(x["left"], t1 - t0)
-            days[wd].append({"saat": f"{hm(t0)}–{hm(t0 + int(use))}", "kat": "phys" if tr == "phys" else "math",
+            days[wd].append({"saat": f"{hm(t0)}–{hm(t0 + int(use))}", "kat": tr,
                              "is": x["ad"] + (" (davamı)" if x["began"] else ""), "link": x["link"]})
             x["left"] -= use; x["began"] = True; t0 += int(use)
             if x["left"] <= 0: q.remove(x)
@@ -91,7 +95,8 @@ while (m <= UNTIL or any(queue.values())) and m <= UNTIL + dt.timedelta(weeks=12
 p = "../gizli/hefte.json"
 w = json.load(open(p, encoding="utf-8"))
 w.pop("novbeti", None)
-saatlar = [{"kat": "math", "ad": "Riyaziyyat (buraxılış)", "saat": 4.5}, {"kat": "phys", "ad": "Fizika (evdə; FRİTL ayrıca)", "saat": 9}]
+saatlar = [{"kat": "math", "ad": "Riyaziyyat (buraxılış)", "saat": 4.5}, {"kat": "phys", "ad": "Fizika (evdə; FRİTL ayrıca)", "saat": 9},
+           {"kat": "lang", "ad": "Azərbaycan dili (qrammatika)", "saat": 2}]
 for x in weeks: x.update(qeyd=w["qeyd"], saatlar=saatlar)
 w["hefteler"] = weeks
 json.dump(w, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

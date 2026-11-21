@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Say dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-say.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Say</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya (say)</div>
+    <h1>Say</h1>
+    <p>Buraxılışın dil qaydaları blokunda say bir neçə cür gəlir: qeyri-müəyyən miqdar saylarını tanımaq, sayla işlənən ismin təkdə və ya cəmdə yazılışı, sıra və kəsr saylarının yazılışı, numerativ sözlər, isimləşmiş say. Qaydalar 5-ci və 6-cı sinif dərsliklərindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, nümunələrdəki hər sözə özün sual ver, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Say və növləri</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Sıra sayları</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Miqdar və kəsr saylarının yazılışı</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Sayla işlənən isim</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Numerativ; isimləşmə</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Say və onun növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Real sınaqda (BSİ-2) 36-cı sual belə idi: "Qeyri-müəyyənlik bildirən miqdar saylarını müəyyən edin". Düz cavab: <i>az, bir sıra, yüzlərlə</i>. Bunun üçün saylar növlərə bölünür və hər növü tanımaq lazımdır.</p>
+
+      <h3><span class="st">2</span> Say nədir</h3>
+      <p>Say əşyanın <b>miqdarını</b> və ya <b>sırasını</b> bildirir. Say ismə aid olur: <i>neçə kitab? neçənci sinif?</i></p>
+      <div class="fm">Miqdar sayı: neçə? nə qədər?   dörd, beş-altı, dörddə bir
+Sıra sayı: neçənci?   dördüncü, 4-cü, IV</div>
+
+      <h3><span class="st">3</span> Miqdar saylarının üç növü</h3>
+      <div class="fm">Müəyyən miqdar sayı: əşyanın konkret miqdarını bildirir.   neçə? nə qədər?
+Qeyri-müəyyən miqdar sayı: əşyanın dəqiq olmayan miqdarını bildirir.   nə qədər?
+Kəsr sayı: tamın hissəsini, ya da tam və hissəni bildirir.   nə qədər?</div>
+      <div class="ex">Müəyyən:         dörd, yeddi, iyirmi iki
+Qeyri-müəyyən:   beş-altı, 10-15, bir neçə, bir sıra, onlarla, minlərcə, bir-iki, çoxlu
+Kəsr:            beşdə üç, iki tam onda beş</div>
+      <p>Dərslikdə qeyri-müəyyən saylar sırasında <i>az, çox, xeyli, bir qədər, bir çox, bir az</i> sözləri də var. Onlar ismə aid olanda saydır: <i>az adam, xeyli tamaşaçı, bir qədər şəkər</i>.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Kəşfiyyatçılar on gün mühasirədə qaldılar.      on — konkret miqdar → müəyyən miqdar sayı
+Beş-altı uşaq toplaşıb futbol oynayırdı.        beş-altı — dəqiq deyil → qeyri-müəyyən miqdar sayı
+Minlərlə igid vətən uğrunda döyüşə getdi.       minlərlə — dəqiq deyil → qeyri-müəyyən miqdar sayı
+Səma konfetləri bölüşdürüb üçdə bir hissəsini özünə götürdü.   üçdə bir — tamın hissəsi → kəsr sayı
+Mən ikinci mərtəbədə yaşayıram.                 ikinci — sıra → sıra sayı</div>
+      <p>"Hansı söz varlığın dəqiq sayını ifadə edir?" sualı:</p>
+      <div class="ex">Az sözün incitək mənası solmaz, çox sözün kərpictək qiyməti olmaz.   az, çox — dəqiq deyil
+Bu lüğətdə beş min sözün izahı verilir.   beş min — dəqiq say</div>
+
+      <h3><span class="st">5</span> Az, çox, xeyli: say, yoxsa zərf</h3>
+      <p>Bu sözlər ismə aid olanda saydır, feilə aid olanda zərfdir. Əvvəlcə sözün nəyə aid olduğuna bax.</p>
+      <div class="ex">Az adam tapılar ki, bunu bilməsin.   nə qədər adam? — ismə aiddir → say
+Sürəyya həmişə az danışardı.         nə qədər danışardı? — feilə aiddir → zərf</div>
+      <div class="life"><b>Həyatdan.</b> Mağaza elanında "onlarla çeşid" yazılıb: neçə çeşid olduğunu bilmirsən — bu, qeyri-müəyyən saydır. "12 çeşid" yazılsaydı, müəyyən say olardı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Beş-altı", "10-15" kimi iki ədədli sayı müəyyən saymaq. Miqdar dəqiq deyil — qeyri-müəyyəndir.</li>
+        <li>Kəsr sayını müəyyən və ya qeyri-müəyyən saymaq. Kəsr ayrıca, üçüncü növdür.</li>
+        <li>"Az, çox, xeyli" sözünü hər cümlədə say saymaq. Feilə aiddirsə, zərfdir.</li>
+        <li>Sıra sayını (<i>beşinci</i>) miqdar saymaq. Sıra sayı əşyanın sırasını bildirir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Say: miqdar və sıra bildirir
+Miqdar sayının üç növü: müəyyən, qeyri-müəyyən, kəsr
+Müəyyən — konkret miqdar  qeyri-müəyyən — dəqiq deyil  kəsr — hissə
+Az, çox, xeyli: ismə aiddirsə say, feilə aiddirsə zərf</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Beş-altı uşaq" birləşməsində "beş-altı" hansı say növüdür? <span class="ans">qeyri-müəyyən miqdar sayı</span></li>
+        <li>"Dörddə üç" hansı say növüdür? <span class="ans">kəsr sayı</span></li>
+        <li>"Biz xeyli gözlədik" cümləsində "xeyli" say, yoxsa zərfdir? <span class="ans">zərf (nə qədər gözlədik? feilə aiddir)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Sıra saylarının yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sıra sayı üç cür yazılır: sözlə (<i>dördüncü</i>), ərəb rəqəmi ilə (<i>4-cü</i>), Roma rəqəmi ilə (<i>IV</i>). İmtahanda şəkilçinin yazılışında səhv axtarılır: <i>5-inci</i>, <i>XX-ci əsr</i>.</p>
+
+      <h3><span class="st">2</span> Sözlə yazılış</h3>
+      <div class="fm">Sıra sayı sözlə yazılanda müəyyən miqdar sayına -ıncı⁴ şəkilçisi artırılır.
+dörd → dördüncü   on üç → on üçüncü</div>
+      <p>Şəkilçi dörd cür yazılır (<i>-ıncı⁴</i>): <i>-inci, -ıncı, -üncü, -uncu</i> — ahəng qanunu ilə. Sait ilə bitən sözdə şəkilçinin ilk saiti yazılmır: <i>iki → ikinci, altı → altıncı</i>. Mürəkkəb saylarda yalnız sonuncu söz dəyişir: <i>iyirmi birinci, doxsan beşinci</i>.</p>
+
+      <h3><span class="st">3</span> Ərəb rəqəmi ilə yazılış</h3>
+      <div class="fm">Ərəb rəqəmi ilə yazılanda -ıncı⁴ şəkilçisinin birinci hecası ixtisar olunur.   dördüncü → 4-cü   on üçüncü → 13-cü
+Rəqəmlə şəkilçi arasında defis qoyulur.   4-cü, 13-cü</div>
+      <p>Şəkilçinin saiti sözlə yazılan sıra sayının sonuna uyğun gəlir:</p>
+      <div class="tbl"><table>
+        <tr><th>sözlə</th><th>rəqəmlə</th><th>sözlə</th><th>rəqəmlə</th></tr>
+        <tr><td>birinci</td><td>1-ci</td><td>altıncı</td><td>6-cı</td></tr>
+        <tr><td>ikinci</td><td>2-ci</td><td>doqquzuncu</td><td>9-cu</td></tr>
+        <tr><td>üçüncü</td><td>3-cü</td><td>onuncu</td><td>10-cu</td></tr>
+        <tr><td>dördüncü</td><td>4-cü</td><td>iyirminci</td><td>20-ci</td></tr>
+        <tr><td>beşinci</td><td>5-ci</td><td>doxsanıncı</td><td>90-cı</td></tr>
+      </table></div>
+      <p>Mürəkkəb saylarda sonuncu söz hansı şəkilçini tələb edirsə, rəqəmdə də o yazılır: <i>iyirmi birinci → 21-ci</i>, <i>on üçüncü → 13-cü</i>.</p>
+
+      <h3><span class="st">4</span> Roma rəqəmi ilə yazılış</h3>
+      <div class="fm">Roma rəqəmləri ilə yazılan sıra sayına şəkilçi artırılmır.   IV, XIII
+Nümunələr: XX əsr, XXI əsr</div>
+      <p>Xatırlatma: I = 1, V = 5, X = 10. Kiçik rəqəm böyüyün qarşısında olanda çıxılır: IV = 4, IX = 9; arxasında olanda əlavə olunur: XIV = 14, XXI = 21.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Üçüncü Şah Abbas                →  III Şah Abbas
+Kral on dördüncü Lüdovik        →  Kral XIV Lüdovik
+İyirmi birinci əsr              →  XXI əsr
+İkinci Qarabağ müharibəsi       →  II Qarabağ müharibəsi</div>
+      <div class="ex">Səbirə 5-inci sinifdə oxuyur.                 səhv: şəkilçi tam yazılıb → 5-ci sinifdə
+XXI-ci əsr 3-üncü minilliyin ilk əsridir.     səhv: Roma rəqəminə şəkilçi, ərəb rəqəminə tam şəkilçi → XXI əsr, 3-cü minilliyin</div>
+      <div class="life"><b>Həyatdan.</b> Kitabda "3-cü fəsil", tarixdə "XIX əsr", yarışda "2-ci yer" yazılır. Hər yerdə eyni qaydadır: ərəb rəqəmindən sonra defis və qısaldılmış şəkilçi, Roma rəqəmindən sonra heç nə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Şəkilçini tam yazmaq: <i>5-inci, 3-üncü</i>. Düzgün: <i>5-ci, 3-cü</i>.</li>
+        <li>Defissiz yazmaq: <i>5ci</i>. Düzgün: <i>5-ci</i>.</li>
+        <li>Roma rəqəminə şəkilçi artırmaq: <i>XX-ci əsr</i>. Düzgün: <i>XX əsr</i>.</li>
+        <li>Ahəngi pozmaq: <i>6-ci</i>. "Altıncı" sözündəki son sait "ı"dır, ona görə <i>6-cı</i>.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sözlə: müəyyən miqdar sayı + -ıncı⁴   dördüncü
+Ərəb rəqəmi: birinci hecası ixtisar, defis   4-cü, 13-cü
+Roma rəqəmi: şəkilçisiz   IV, XIII, XX əsr</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"On üçüncü" sayını ərəb rəqəmi ilə yaz. <span class="ans">13-cü</span></li>
+        <li>"XX-ci əsr" yazılışı düzdürmü? <span class="ans">xeyr; XX əsr</span></li>
+        <li>"6-ci sinif" yazılışında səhv varmı? <span class="ans">var; altıncı sözünə görə 6-cı sinif</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Miqdar və kəsr saylarının yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bəzi saylar həm sözlə, həm rəqəmlə yazıla bilir, bəziləri yalnız sözlə. İmtahan "hansı yazılış düzgündür" soruşur; səhvlər adətən kəsrdə (<i>4/3</i>) və qeyri-müəyyən saylarda (<i>100-lərlə</i>) olur.</p>
+
+      <h3><span class="st">2</span> Müəyyən miqdar sayları</h3>
+      <div class="fm">Müəyyən miqdar sayı sözlə, rəqəmlə, eləcə də həm sözlə, həm rəqəmlə yazıla bilər.   üç min → 3000 → 3 min</div>
+      <p>Mürəkkəb müəyyən saylarda sözlər ayrı yazılır: <i>iyirmi iki, yüz iyirmi</i>.</p>
+
+      <h3><span class="st">3</span> Qeyri-müəyyən miqdar sayları</h3>
+      <div class="fm">Qeyri-müəyyən saylar çox vaxt yalnız sözlə yazılır.   az, xeyli, çoxlu, bir neçə, yüzlərcə, milyonlarla
+Bəziləri həm sözlə, həm rəqəmlə yazılır.   dörd-beş → 4-5   əlli-altmış → 50-60</div>
+      <p>Təxmini miqdar bildirən iki say defislə yazılır: <i>beş-altı, bir-iki, 10-15</i>. Dəqiq miqdar bildirən mürəkkəb say isə ayrı yazılır: <i>iyirmi iki</i>.</p>
+
+      <h3><span class="st">4</span> Kəsr sayları</h3>
+      <div class="fm">Sözlə yazılanda məxrəci bildirən sözə -da² şəkilçisi artırılır.   üçdə iki, dörddə bir
+Rəqəmlə yazılanda maili xətt və vergül işlənir.   1/4 (dörddə bir)   5,3 (beş tam onda üç)</div>
+      <p>Əvvəl məxrəc (aşağıdakı rəqəm), sonra yuxarıdakı rəqəm deyilir: <i>3/4 → dörddə üç</i>. Şəkilçi ahəng qanunu ilə yazılır:</p>
+      <div class="tbl"><table>
+        <tr><th>məxrəc</th><th>sözlə</th><th>məxrəc</th><th>sözlə</th></tr>
+        <tr><td>2</td><td>ikidə</td><td>7</td><td>yeddidə</td></tr>
+        <tr><td>3</td><td>üçdə</td><td>8</td><td>səkkizdə</td></tr>
+        <tr><td>4</td><td>dörddə</td><td>9</td><td>doqquzda</td></tr>
+        <tr><td>5</td><td>beşdə</td><td>10</td><td>onda</td></tr>
+        <tr><td>6</td><td>altıda</td><td>100</td><td>yüzdə</td></tr>
+      </table></div>
+      <p>Tam və hissə olan kəsrlər: <i>iki tam onda beş (2,5)</i>. Vergüldən sonra bir rəqəm varsa "onda", iki rəqəm varsa "yüzdə" deyilir: <i>sıfır tam yüzdə iyirmi beş (0,25)</i>. Eyni miqdar müxtəlif yazılır: <i>1/4 = 0,25 = dörddə bir = sıfır tam yüzdə iyirmi beş</i>.</p>
+
+            <h3><span class="st">5</span> Rəqəmlə yazılan saylara şəkilçilər</h3>
+      <div class="fm">Rəqəmlə yazılan saylara mənsubiyyət və hal şəkilçisi qoşulduqda mənsubiyyət şəkilçisi ixtisar olunur.
+Almaların 3-nü (üçünü) götürdüm.   Martın 2-nə (ikisinə) kimi görüşəcəyik.   Tədbir ayın 8-dədir (səkkizindədir).
+Rəqəmlə yazılan saylara mənsubiyyət və xəbərlik şəkilçiləri qoşulduqda hər iki şəkilçi yazılır.   Bu gün ayın 12-sidir (on ikisidir).</div>
+
+      <h3><span class="st">6</span> Həll olunmuş nümunə</h3>
+      <div class="ex">7/10    →  onda yeddi
+1/10    →  onda bir
+11,3    →  on bir tam onda üç
+1,63    →  bir tam yüzdə altmış üç
+0,37    →  sıfır tam yüzdə otuz yeddi
+5-6     →  beş-altı</div>
+      <div class="ex">Dörddə üç sayını 4/3 kimi ifadə etmək olar.           səhv: məxrəc aşağıda yazılır → 3/4
+Məktəbin akt zalına 100-lərlə şagird toplaşmışdı.      səhv: "yüzlərlə" yalnız sözlə yazılır → yüzlərlə şagird</div>
+      <div class="life"><b>Həyatdan.</b> Resept: "1/2 stəkan şəkər, 5-6 yumurta". Bu dərsin dili ilə: "ikidə bir stəkan şəkər, beş-altı yumurta".</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kəsri tərsinə yazmaq: dörddə üçü <i>4/3</i> yazmaq. Düzgün: <i>3/4</i>.</li>
+        <li>"Yüzlərlə", "minlərcə", "milyonlarla" sayını rəqəmlə yazmaq: <i>100-lərlə</i>. Bu saylar yalnız sözlə yazılır.</li>
+        <li>Rəqəmlə yazılan sayda şəkilçini tam yazmaq: <i>3-ünü, 8-indədir</i>. Düzgün: <i>3-nü, 8-dədir</i>; xəbərlik olanda isə <i>12-sidir</i>.</li>
+        <li>Kəsrdə şəkilçinin ahəngini pozmaq: <i>doqquzda</i>, <i>altıda</i>, <i>onda</i> — "a"lı; <i>ikidə, üçdə, dörddə</i> — "ə"li.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Müəyyən say: söz, rəqəm, qarışıq   üç min → 3000 → 3 min
+Qeyri-müəyyən say: çoxu yalnız sözlə   dörd-beş → 4-5
+Kəsr: sözlə məxrəc + -da², rəqəmlə maili xətt və vergül   3/4 = dörddə üç, 5,3
+Rəqəmli say + mənsubiyyət və hal: mənsubiyyət ixtisar   3-nü, 8-dədir</div></div>
+      <details class="check"><summary>Özünü yoxla: 4 sual</summary><ol>
+        <li>"Tədbir ayın səkkizindədir" cümləsində "səkkizindədir" sözü rəqəmlə necə yazılır? <span class="ans">8-dədir</span></li>
+        <li>"Beşdə üç" rəqəmlə necə yazılır? <span class="ans">3/5</span></li>
+        <li>"Minlərcə" sayını rəqəmlə yazmaq olarmı? <span class="ans">xeyr, yalnız sözlə</span></li>
+        <li>0,25 sözlə necə yazılır? <span class="ans">sıfır tam yüzdə iyirmi beş</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Sayla işlənən isim: təkdə, yoxsa cəmdə</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Real sınaqda (BSİ-2) 31-ci sual: "sayla işlənən ismin yazılışında səhv" tapmaq idi. Səhv cümlə: <i>Bir çox alim nəzəriyyəni təsdiqlədi</i>. Düzgün yazılış: <i>bir çox alimlər</i>. Qayda: isim saydan sonra hansı formada işlənir — bunu saya görə bilirik.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">Müəyyən miqdar sayından sonra isim təkdə olur.   beş şagird, on dəftər
+Bir sıra, bir çox saylarından sonra isim cəmdə işlənir.   bir sıra məsələlər, bir çox ölkələr
+Çox, çoxlu, yüzlərlə, minlərcə saylarından sonra isim həm təkdə, həm cəmdə ola bilər.
+Digər qeyri-müəyyən saylardan sonra isim təkdə olur.   beş-altı uşaq, az tapşırıq, bir neçə jurnalist, xeyli iş, bir qədər şəkər
+Sıra sayı ilə işlənən isim kontekstdən asılı olaraq həm təkdə, həm cəmdə ola bilər.   XX əsr, 6-cı siniflər, 90-cı illər</div>
+      <div class="ex">Qarşıda çoxlu işlərimiz var.      çoxlu + cəm
+Bu gün çox adamla görüşdüm.         çox + tək</div>
+      <p>Qısa yadda saxlama: cəm tələb edən yalnız ikisidir — <b>bir sıra</b> və <b>bir çox</b>. Müəyyən saylar və qalan qeyri-müəyyən saylar (az, xeyli, bir neçə, bir qədər, beş-altı…) təkdə işlənir. <i>Çox, çoxlu, yüzlərlə, minlərcə</i> ikisinə də icazə verir.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Bir sıra məsələ hələ də həllini tapmayıb.             "bir sıra" → cəm: bir sıra məsələlər
+İki tərs keçilər körpünün üstündə bir-birinə rast gəldilər.   "iki" müəyyən say → tək: iki tərs keçi
+Az adamlar tapılar ki, klassik ədəbiyyatı sevməsin.   "az" → tək: az adam
+Bir çox alimlər Orxon-Yenisey abidələrini oxumağa cəhd edirdilər.   "bir çox" + cəm → düzdür</div>
+      <p><b>Yoxlama qaydası:</b> (1) isimdən əvvəlki sayı tap; (2) onun hansı qrupda olduğuna bax; (3) isim həmin qrupun tələb etdiyi formadadırmı?</p>
+      <div class="life"><b>Həyatdan.</b> Elan: "Tədbirdə beş şagird və bir çox valideynlər iştirak edəcək". "Beş" müəyyən saydır, ona görə "şagird" təkdədir. "Bir çox"dan sonra isim cəmdə olmalıdır, ona görə "valideynlər".</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Bir çox alim" yazmaq. "Bir çox"dan sonra isim cəmdə olmalıdır: <i>bir çox alimlər</i>.</li>
+        <li>"Beş şagirdlər", "yeddi alimlər" yazmaq. Müəyyən saydan sonra isim təkdə: <i>beş şagird</i>.</li>
+        <li>"Az, xeyli, bir neçə" sayından sonra cəm işlətmək: <i>az adamlar, bir neçə suallar</i>. Düzgün: <i>az adam, bir neçə sual</i>.</li>
+        <li>"Çox" ilə "bir çox"u eyni saymaq. "Çox adam" düzdür; "bir çox"da ismin cəm olması vacibdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Müəyyən say + tək   beş şagird
+Bir sıra, bir çox + cəm   bir sıra məsələlər
+Çox, çoxlu, yüzlərlə, minlərcə + tək və ya cəm
+Digər qeyri-müəyyən saylar + tək   az tapşırıq</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Bir sıra ölkə" yazılışı düzdürmü? <span class="ans">xeyr; bir sıra ölkələr</span></li>
+        <li>"Beş şagird", yoxsa "beş şagirdlər"? <span class="ans">beş şagird</span></li>
+        <li>"Çoxlu işlərimiz var" və "çoxlu işimiz var" — hansı düzdür? <span class="ans">hər ikisi</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Numerativ sözlər; sayların isimləşməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"İki stəkan çay", "dörd cüt corab": sayla isim arasında işlənib sayla birlikdə miqdar və ya ölçü bildirən söz numerativ sözdür. Eyni söz başqa cümlədə isim ola bilər. İkinci mövzu: say bəzən isim kimi işlənir (<i>beşincilər</i>) — amma nitq hissəsi dəyişmir.</p>
+
+      <h3><span class="st">2</span> Numerativ sözlər</h3>
+      <div class="fm">Müəyyən miqdar sayları ilə isimlər arasında çox zaman numerativ sözlər işlənir.   iki ədəd boşqab, dörd cüt corab
+Say və numerativ söz birlikdə "nə qədər?" sualına cavab verir.   iki dəst (nə qədər?) mebel
+Bir çox isimlər cümlələrdə numerativ söz kimi də işlənir.   Həyətə iki maşın (nə qədər?) daş gətirdilər.
+Hər numerativ söz, adətən, müəyyən isimlərlə işlənir.   nəfər — insan, baş — ferma heyvanları, dənə və ədəd — cansız varlıq
+Ölçü vahidi bildirən sözlər də numerativ söz kimi işlənə bilər.   iki kilometr yol, beş kiloqram un</div>
+      <div class="ex">bir nəfər adam      beş baş qoyun      üç top parça
+altı səbət meyvə     üç dənə çanta      dörd cüt corab</div>
+
+      <h3><span class="st">3</span> İsim, yoxsa numerativ söz</h3>
+      <p>Sual: söz əşyanın özünü bildirir (isim), yoxsa sayla birlikdə "nə qədər?" sualına cavab verir (numerativ söz)?</p>
+      <div class="ex">Bir top parçanı dəyər-dəyməzinə satdı.        top — parçanın miqdarı → numerativ söz
+İdman mağazasından bir top aldıq.              top — oyun alətidir → isim
+Qoca çayına iki qaşıq zoğal mürəbbəsi əlavə etdi.   qaşıq — mürəbbənin miqdarı → numerativ söz
+Süfrədə iki qaşıq çatmırdı.                    qaşıq — əşyanın özü → isim
+Mən iki stəkan çay içdim.                      stəkan — çayın miqdarı → numerativ söz</div>
+      <div class="life"><b>Həyatdan.</b> Mağazada: "iki kiloqram alma, bir qutu şokolad, üç cüt corab". Kiloqram, qutu, cüt — numerativ sözlərdir.</div>
+
+      <h3><span class="st">4</span> Sayların isimləşməsi</h3>
+      <div class="fm">Sifətlər, saylar və feili sifətlər bəzən isim kimi işlənir: kim? nə? suallarına cavab verir, hal, mənsubiyyət, cəm şəkilçiləri qəbul edir. Buna isimləşmə deyilir.
+Belə sözlər ismin xüsusiyyətlərini qəbul etsə də, sifət, say və feili sifət olaraq qalır.</div>
+      <div class="ex">Beşincilər (kim?) yarışda qalib gəldilər.      beşincilər — sıra sayı, cəm şəkilçisi qəbul edib
+Aza (nəyə?) qane olmayan çoxdan (nədən?) da qalar.   az, çox — saylar, hal şəkilçisi qəbul ediblər
+Üçü evə getdi, ikisi isə məktəbdə qaldı.       üçü, ikisi — saylar, mənsubiyyət şəkilçisi qəbul ediblər</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"İki stəkan çay"da "stəkan"ı isim saymaq. Burada sayla birlikdə miqdarı bildirir — numerativ sözdür.</li>
+        <li>Numerativ sözü say saymaq. Say "iki"dir; "stəkan" ona qoşulan numerativ sözdür.</li>
+        <li>İsimləşmiş sayı isim saymaq: "beşincilər", "çoxları" saydır.</li>
+        <li>Sifətləşmiş ismi (daş hasar) sifət, isimləşmiş sayı (beşincilər) isim saymaq — hər ikisində nitq hissəsi dəyişmir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Numerativ söz: say + numerativ söz + isim   iki stəkan çay
+Eyni söz isim də ola bilər   top, qaşıq, göz
+İsimləşmiş say əşya mənası daşıyır, ismin suallarına cavab verir və ismin şəkilçilərini qəbul edə bilir, amma say olaraq qalır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"İki stəkan çay içdim" cümləsində "stəkan" isim, yoxsa numerativ sözdür? <span class="ans">numerativ söz</span></li>
+        <li>"Beşincilər yarışda qalib gəldilər" cümləsində "beşincilər" hansı nitq hissəsidir? <span class="ans">say (isimləşmiş)</span></li>
+        <li>"Beş ___ qoyun" boşluğuna hansı numerativ söz uyğundur: nəfər, baş, litr? <span class="ans">baş</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: say</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <p>Say üzrə real sınaqda (BSİ-2) iki sual düşüb: 31 (sayla işlənən ismin yazılışında səhv) və 36 (qeyri-müəyyən miqdar saylarının sırası). Gəlmə formaları:</p>
+      <ul>
+        <li><b>"Cümlələrin birində sayla işlənən ismin yazılışında səhv var"</b> — beş cümlə, biri səhvdir.</li>
+        <li><b>"Qeyri-müəyyənlik bildirən miqdar saylarını müəyyən edin"</b> — beş cavab, hər birində üç say.</li>
+        <li><b>Yazılış</b> — sıra, kəsr və qeyri-müəyyən saylarda düzgün yazılışı seçmək (çox vaxt nömrə kombinasiyası).</li>
+        <li><b>Numerativ söz, isimləşmiş say</b> — cümlədə tanımaq.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: "bir çox alim", "5-inci", "XX-ci əsr", "100-lərlə", "4/3".</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — sayla işlənən ismin yazılışında səhv</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · təkdə və ya cəmdə</span>
+        <p>Hansı cümlədə sayla işlənən ismin yazılışında (təkdə və ya cəmdə işlənməsində) səhv yol verilib?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Tədbirdə bir neçə şair iştirak etdi.</li><li>Şəhərimizdə iki muzey var.</li><li>Hələ bir sıra məsələ həll olunmayıb.</li><li>Bağda çoxlu quş gördüm.</li><li>Mağazadan xeyli kitab aldıq.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) bir neçə — "digər qeyri-müəyyən say" → isim təkdə: bir neçə şair. Düzdür.
+B) iki — müəyyən say → isim təkdə: iki muzey. Düzdür.
+C) bir sıra — isim cəmdə olmalıdır: bir sıra məsələlər. Səhvdir.
+D) çoxlu — isim həm təkdə, həm cəmdə ola bilər: «çoxlu quş» da düzdür.
+E) xeyli — "digər qeyri-müəyyən say" → isim təkdə: xeyli kitab. Düzdür.
+Cavab: C) Hələ bir sıra məsələ həll olunmayıb.</div>
+      <ul>
+        <li>Tələ: "az, xeyli, bir neçə" sayından sonra ismi cəmdə yazmağı düz saymaq. Bu saylardan sonra isim təkdə olur.</li>
+        <li>Tələ: D) variantını "çoxlu"dan sonra tək yazıldığı üçün səhv saymaq. "Çoxlu" ikisinə də icazə verir.</li>
+        <li>Tələ: "bir sıra" və "bir çox"dan sonra tək ismi seçmək. Yalnız bu iki sayda cəm vacibdir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — qeyri-müəyyən miqdar sayları</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · say növü</span>
+        <p>Qeyri-müəyyənlik bildirən miqdar saylarını müəyyən edin.</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>onlarla, bir neçə, minlərcə</li><li>beş-altı, üç, xeyli</li><li>çoxlu, dördüncü, bir az</li><li>bir-iki, yüzlərlə, beşdə iki</li><li>az, 12, bir sıra</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) onlarla, bir neçə, minlərcə — hamısı dəqiq olmayan miqdardır → qeyri-müəyyən.
+B) üç — konkret miqdar → müəyyən miqdar sayı.
+C) dördüncü — sıra sayı.
+D) beşdə iki — kəsr sayı.
+E) 12 — konkret miqdar → müəyyən miqdar sayı.
+Cavab: A) onlarla, bir neçə, minlərcə</div>
+      <ul>
+        <li>Hər sətirdə hər sayı ayrıca yoxla. Üç sayın ikisi düz olsa belə, üçüncüsü səhv ola bilər.</li>
+        <li>Tələ: "beşdə iki" kəsr sayıdır; miqdarı dəqiq olduğu üçün qeyri-müəyyən deyil.</li>
+        <li>Tələ: "dördüncü", "ikinci" kimi sıra sayları miqdar sayı deyil.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası: düzgün yazılış</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı yazılışlar düzgündür?<br>1. 7-ci sinif<br>2. XIV-cü əsr<br>3. 3-ci mərtəbə<br>4. 4-cü gün<br>5. yüzlərlə şagird</p>
+        <ol class="imt-opts"><li>1, 4, 5</li><li>1, 2, 4</li><li>2, 3</li><li>1, 3, 5</li><li>4, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. yeddinci → son sait "i" → 7-ci. Düzdür.
+2. Roma rəqəminə şəkilçi artırılmır → XIV əsr. Səhvdir.
+3. üçüncü → son sait "ü" → 3-cü, "3-ci" deyil. Səhvdir.
+4. dördüncü → 4-cü. Düzdür.
+5. yüzlərlə yalnız sözlə yazılır, isim təkdədir. Düzdür.
+Cavab: A) 1, 4, 5</div>
+      <ul>
+        <li><b>B)</b> — "XIV-cü əsr"i düz saymaq. Roma rəqəminə şəkilçi artırılmır.</li>
+        <li><b>D)</b> — "3-ci" yazılışını düz saymaq. Üçüncü → 3-cü.</li>
+        <li><b>C)</b> — yalnız səhvləri seçmək. Sual "düzgün olanlar"dır.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Sualın "düzgün", yoxsa "səhv" soruşduğuna diqqət etmək. Nömrə kombinasiyasında bunu qarışdırmaq asandır.</li>
+        <li>"Çox, çoxlu, yüzlərlə, minlərcə" sözündə cəm və tək eyni vaxtda düzdür; "bir çox" və "bir sıra"da isə yalnız cəm.</li>
+        <li>Roma rəqəmində şəkilçi yoxdur; ərəb rəqəmində defis və qısaldılmış şəkilçi var.</li>
+        <li>Kəsr sayında məxrəc əvvəl deyilir: 3/4 — dörddə üç.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl isimdən əvvəlki sayı tap, sonra onun qrupuna bax.
+Cəm: bir sıra, bir çox. Tək: müəyyən saylar və digər qeyri-müəyyən saylar (az, xeyli, bir neçə, beş-altı…). Tək və ya cəm: çox, çoxlu, yüzlərlə, minlərcə.
+Yazılışda üç yoxlama: rəqəm-defis-şəkilçi, Roma rəqəmi şəkilçisiz, kəsr və qeyri-müəyyən say.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Bir çox alim" yazılışı düzdürmü? <span class="ans">xeyr; bir çox alimlər</span></li>
+        <li>"Beşdə iki" hansı say növüdür? <span class="ans">kəsr sayı</span></li>
+        <li>"9-cu sinif" yazılışı düzdürmü? <span class="ans">bəli (doqquzuncu → 9-cu)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -8,6 +8,7 @@
   --blue-50:#e6f1fb; --blue-75:#d6e8f8; --blue-100:#b5d4f4; --blue-600:#185fa5; --blue-800:#0c447c;
   --amber-50:#faeeda; --amber-75:#f8e3be; --amber-100:#fac775; --amber-600:#854f0b; --amber-800:#633806;
   --pink-50:#fbeaf0; --pink-75:#f8dce6; --pink-100:#f4c0d1; --pink-600:#993556; --pink-800:#72243e;
+  --teal-50:#e1f5ee; --teal-75:#cdeee3; --teal-100:#9fe1cb; --teal-600:#0f6e56; --teal-800:#085041;
   --green-50:#eaf3de; --green-400:#97c459; --green-600:#3b6d11; --green-800:#27500a;
   --red-50:#fcebeb; --red-600:#a32d2d; --red-800:#791f1f;
 
@@ -24,6 +25,7 @@
   --math:var(--violet-75); --math-soft:var(--violet-50); --math-ink:var(--violet-800);
   --phys:var(--blue-75);   --phys-soft:var(--blue-50);   --phys-ink:var(--blue-800);
   --olym:var(--amber-75);  --olym-soft:var(--amber-50);  --olym-ink:var(--amber-800);
+  --lang:var(--teal-75);   --lang-soft:var(--teal-50);   --lang-ink:var(--teal-800);
   --proj:var(--pink-75);   --proj-soft:var(--pink-50);   --proj-ink:var(--pink-800);
   --misc:var(--gray-50);   --misc-soft:var(--gray-25);   --misc-ink:var(--gray-800);
 
@@ -47,6 +49,7 @@
   --math:#2e2a55; --math-soft:#221f40; --math-ink:#cdc8fb;
   --phys:#183553; --phys-soft:#132a42; --phys-ink:#acd2f5;
   --olym:#47320f; --olym-soft:#37270b; --olym-ink:#f4d194;
+  --lang:#0f3a30; --lang-soft:#0b2e26; --lang-ink:#9fe1cb;
   --proj:#4b2234; --proj-soft:#3a1a29; --proj-ink:#f3bccf;
   --misc:#26262a; --misc-soft:#1e1e22; --misc-ink:#d3d1c7;
   --gray-600:#a3a199; --blue-50:#132a42; --blue-600:#8fc0f0;
@@ -128,7 +131,7 @@ h1{font-size:34px;font-weight:600;letter-spacing:-.02em;margin:0}
 .ccard .bar{height:4px;border-radius:var(--r-xs);background:color-mix(in srgb,var(--ink) 12%,transparent);margin:14px 0 8px;overflow:hidden}
 .ccard .bar i{display:block;height:100%;background:var(--ink);border-radius:var(--r-xs)}
 .ccard .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2)}
-.k-math{background:var(--math)} .k-phys{background:var(--phys)} .k-olym{background:var(--olym)} .k-proj{background:var(--proj)} .k-misc{background:var(--misc)}
+.k-math{background:var(--math)} .k-phys{background:var(--phys)} .k-olym{background:var(--olym)} .k-lang{background:var(--lang)} .k-proj{background:var(--proj)} .k-misc{background:var(--misc)}
 .empty{color:var(--muted);font-style:italic}
 
 /* timeline */
@@ -218,7 +221,7 @@ td.act{text-align:right;white-space:nowrap}
 .cal-c .evs{padding-right:28px}
 .cal-c .dots{display:flex;gap:4px;margin-top:auto}
 .cal-c .dots i{width:8px;height:8px;border-radius:50%}
-.cal-c .dots .k-math{background:var(--math-ink)} .cal-c .dots .k-phys{background:var(--phys-ink)} .cal-c .dots .k-olym{background:var(--olym-ink)} .cal-c .dots .k-proj{background:var(--proj-ink)} .cal-c .dots .k-misc{background:var(--muted)}
+.cal-c .dots .k-math{background:var(--math-ink)} .cal-c .dots .k-phys{background:var(--phys-ink)} .cal-c .dots .k-olym{background:var(--olym-ink)} .cal-c .dots .k-lang{background:var(--lang-ink)} .cal-c .dots .k-proj{background:var(--proj-ink)} .cal-c .dots .k-misc{background:var(--muted)}
 .cal-day{margin-top:30px}
 @media (max-width:640px){.cal{gap:4px}.cal-c{min-height:58px;padding:5px}.cal-tag{font-size:0;padding:0;height:6px;border-radius:var(--r-xs)}.cal-c .num{font-size:13px;width:24px;height:24px}.cal-c .cnt{top:5px;right:5px;font-size:10px}.cal-c .evs{padding-right:0}}
 .list.dl{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px 28px}
@@ -244,6 +247,8 @@ td.act{text-align:right;white-space:nowrap}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg button{font:inherit;font-size:14px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);border-radius:var(--r-sm);padding:8px 14px;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
 .seg button[aria-checked=true]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.wp-bol{display:grid;gap:8px}.wp-row{display:grid;grid-template-columns:minmax(80px,max-content) 1fr;gap:6px 12px;align-items:center}
+@media (max-width:560px){.wp-row{grid-template-columns:1fr}}
 .fld{font:inherit;width:100%;padding:10px 14px;border:1px solid var(--line-strong);border-radius:var(--r-sm);background:var(--panel);color:var(--ink)}
 .fld:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
 textarea.fld{resize:vertical}
@@ -472,4 +477,4 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 
 /* mid-width screens (sidebar + menu): the menu shows only icons except the current page, so it fits on one line */
-@media (min-width:981px) and (max-width:1279px){.topnav > a:not([aria-current=page]) span,.topnav .nav-dd > a:not([aria-current=page]) span{display:none}.topnav a{padding:9px 12px}}
+@media (min-width:981px) and (max-width:1439px){.topnav > a:not([aria-current=page]) span,.topnav .nav-dd > a:not([aria-current=page]) span{display:none}.topnav a{padding:9px 12px}}

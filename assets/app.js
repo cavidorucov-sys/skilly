@@ -1,7 +1,7 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
   // daily → study → check yourself → reference
-  ["index.html", "Ana səhifə", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["olimpiada.html", "Olimpiada", "Trophy"],
+  ["index.html", "Ana səhifə", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["azdili.html", "Azərbaycan dili", "BookA"], ["olimpiada.html", "Olimpiada", "Trophy"],
   ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Təkrar", "Repeat"],
   ["dusturlar.html", "Düsturlar", "Sigma"], ["teqvim.html", "Təqvim", "Calendar"],
 ];
@@ -22,16 +22,17 @@ const KAT = {
   math: { cls: "k-math", ink: "var(--math-ink)", ad: "Riyaziyyat" },
   olym: { cls: "k-olym", ink: "var(--olym-ink)", ad: "Olimpiada" },
   phys: { cls: "k-phys", ink: "var(--phys-ink)", ad: "Fizika" },
+  lang: { cls: "k-lang", ink: "var(--lang-ink)", ad: "Azərbaycan dili" },
   proj: { cls: "k-proj", ink: "var(--proj-ink)", ad: "Layihə" },
   misc: { cls: "k-misc", ink: "var(--misc-ink)", ad: "Digər" },
 };
-const SUBJ_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
+const SUBJ_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys", azdili: "lang" };
 // Lucide icons, self-hosted in assets/icons.js. Subject → icon; individual items get a more specific one.
-const ICON = { math: "Pi", olym: "Trophy", phys: "Atom", proj: "FlaskConical", misc: "CalendarCheck" };
+const ICON = { math: "Pi", olym: "Trophy", phys: "Atom", lang: "BookA", proj: "FlaskConical", misc: "CalendarCheck" };
 const ITEM_ICON = [
   [/sınağ|sınaq/i, "ClipboardCheck"], [/experiment|ölçmə|analiz|readme/i, "FlaskConical"], [/olimpiada/i, "Trophy"],
   [/fritl|fizika|maili/i, "Atom"], [/cüdo/i, "Dumbbell"], [/səhv/i, "NotebookPen"], [/esse/i, "PenLine"],
-  [/məktub|baxış/i, "Mail"], [/triqonometriya|funksiya|riyaziyyat/i, "Pi"],
+  [/məktub|baxış/i, "Mail"], [/triqonometriya|funksiya|riyaziyyat/i, "Pi"], [/azərbaycan dili|qrammatika/i, "BookA"],
 ];
 const iconFor = (kat, text) => (ITEM_ICON.find(([re]) => re.test(text || "")) || [0, ICON[kat] || ICON.misc])[1];
 // Topic → icon, matched on the topic name (first match wins).
@@ -99,7 +100,7 @@ const fullHere = () => { try { return JSON.parse(localStorage.getItem("skilly-ta
 const IMT_LINKS = new Set();
 const fullDone = link => !IMT_LINKS.has(link) || fullHere().includes(link);
 const statusOf = t => t.ders && passedHere().includes(t.ders) ? (fullDone(t.ders) ? "bag" : "qis") : t.status;
-const LIST_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys" };
+const LIST_KAT = { riyaziyyat: "math", olimpiada: "olym", fizika: "phys", azdili: "lang" };
 function topicIndex(m) { const ix = {}; for (const k in m) m[k].forEach(t => { ix[k + ":" + t.ad] = { ...t, list: k }; }); return ix; }
 const isClosed = t => t && (t.status === "bag" || (t.ders && passedHere().includes(t.ders)));
 const missingPrereqs = (t, ix) => (t.on || []).map(id => ix[id]).filter(x => x && !isClosed(x));
@@ -243,7 +244,7 @@ const mins = t => { const [a, b] = span(t).map(x => { const [h, m] = x.split(":"
 async function pageIndex() {
   const content = el("div", { style: "margin-top:30px" });
   const { w, term } = await shell(content);
-  if (!w) { content.append(el("section", { class: "today" }, el("p", { class: "eyebrow" }, "Skilly"), el("h1", {}, "Riyaziyyat və fizika: dərslər, oyunlar, sınaqlar"),
+  if (!w) { content.append(el("section", { class: "today" }, el("p", { class: "eyebrow" }, "Skilly"), el("h1", {}, "Riyaziyyat, fizika, Azərbaycan dili: dərslər, oyunlar, sınaqlar"),
     el("p", { class: "lead" }, "Mövzular soldakı bölmələrdədir. Şəxsi plan yalnız hesabla daxil olanda görünür."))); return; }
   const today = isoToday(), now = hm(), d = new Date();
   const day = (w.butun || w.gunler).find(g => g.tarix === today) || (w.butun || w.gunler).find(g => g.tarix > today);
@@ -607,7 +608,7 @@ function reviewQueue() {
 }
 
 /* ---------- səhv jurnalı ---------- */
-const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"] };
+const FENN = { riyaziyyat: ["math", "Riyaziyyat"], olimpiada: ["olym", "Olimpiada"], fizika: ["phys", "Fizika"], azdili: ["lang", "Azərbaycan dili"] };
 const dmy = iso => iso ? iso.slice(8) + "." + iso.slice(5, 7) : "–";
 const SST = { yeni: ["Həll gözləyir", "st-isl", "Repeat"], aciq: ["Həll gözləyir", "st-isl", "Repeat"], baglandi: ["Həll olundu", "st-bag", "CircleCheck"] };
 
@@ -632,14 +633,33 @@ function errBody(e) {
     e.opts ? el("ol", { class: "e-opts", type: "A" }, ...e.opts.map(o => el("li", {}, o))) : null);
 }
 
+// Azerbaijani-language questions in the journal: tap the words (q.sec) or put each word into its group (q.bol)
+function wordPick(q, onPick) {
+  if (q.sec) {
+    const on = new Set();
+    const box = el("div", { class: "seg wp" }, ...q.sec.soz.map((w, i) => { if (!/[\p{L}\d]/u.test(w)) return el("span", {}, w);
+      const b = el("button", { type: "button", "aria-pressed": "false" }, w);
+      b.addEventListener("click", () => { on.has(i) ? on.delete(i) : on.add(i); b.setAttribute("aria-pressed", String(on.has(i))); b.setAttribute("aria-checked", String(on.has(i))); onPick(); });
+      return b; }));
+    return Object.assign(box, { pick: () => [...on].sort((a, b) => a - b), empty: v => !v.length, msg: "Əvvəl sözə toxun." });
+  }
+  const val = q.bol.soz.map(() => -1);
+  const box = el("div", { class: "wp-bol" }, ...q.bol.soz.map((w, i) => el("div", { class: "wp-row" }, el("b", {}, w),
+    seg(Object.fromEntries(q.bol.qrup.map((g, j) => [String(j), g])), k => { val[i] = +k; onPick(); }))));
+  return Object.assign(box, { pick: () => val.slice(), empty: v => v.some(x => x < 0), msg: "Hər sözü bir qrupa ayır." });
+}
 function redoCard(e, redraw) {
   // the same question again, checked as in the game; it stays until it is solved right — no answer, no explanation
   const q = e.q2 || {}, out = errMsg(), act = el("div", { class: "e-act" });
   let input;
   if (q.choices) input = seg(Object.fromEntries(q.choices.map((c, i) => [String(i), c])), () => { out.textContent = ""; });
+  else if (q.sec || q.bol) input = wordPick(q, () => { out.textContent = ""; });
   else { input = el("input", { class: "fld", type: "text", inputmode: "decimal", autocomplete: "off", "aria-label": "Cavab" }); input.addEventListener("input", () => { out.textContent = ""; }); }
   const btn = el("button", { class: "btn", type: "button" }, "Yoxla");
   btn.addEventListener("click", () => {
+    if (input.pick) { const v = input.pick(); if (input.empty(v)) { out.className = "fld-err"; out.textContent = input.msg; return; }
+      const ok = Skilly.yoxla(q, v); Skilly.tekrar(e.id, ok); out.className = "e-res " + (ok ? "ok" : "no"); out.textContent = ok ? "Düz ✓" : "Düz deyil. Yenidən bax və yoxla.";
+      if (ok) { const nx = el("button", { class: "btn ghost", type: "button" }, "Növbəti"); nx.addEventListener("click", redraw); act.replaceChildren(nx); } return; }
     const v = q.choices ? input.value() : input.value.trim();
     if (v === "" || v == null) { out.className = "fld-err"; out.textContent = q.choices ? "Əvvəl birini seç." : "Əvvəl cavabı yaz."; return; }
     const sm = !q.choices && Skilly.sadele ? Skilly.sadele(v) : ""; if (sm) { out.className = "fld-err"; out.textContent = sm; return; }
@@ -692,7 +712,7 @@ async function pageSehv() {
 }
 
 /* ---------- lesson inside the portal ---------- */
-const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "olimpiada.html" };
+const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "olimpiada.html", lang: "azdili.html" };
 async function pageLesson() {
   const name = new URLSearchParams(location.search).get("p") || "";
   if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }
@@ -742,6 +762,7 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (p === "ders") pageLesson();
   else if (p === "teqvim") pageCalendar();
   else if (p === "riyaziyyat") pageTopics("riyaziyyat", "Buraxılış — riyaziyyat", "Hər mövzu giriş testi ilə başlayır. Oyunda, Boss-da və Sınaqda hər sual düz cavablanmalıdır — səhv olsa, sual qalır. Hamısı düz olanda mövzu bağlanır. Bir həftə və bir ay sonra yaddaş yoxlaması.");
+  else if (p === "azdili") pageTopics("azdili", "Azərbaycan dili — qrammatika", "Buraxılışın dil qaydaları bloku (10 qapalı sual): hər mövzu dərs, oyun və DİM formatında sınaqla. Həftədə bir dərs — şənbə 20:00–22:00.");
   else if (p === "olimpiada") pageOlympiad();
   else if (p === "fizika") location.replace("olimpiada.html#fizika");
   else if (p === "dusturlar") pageFormulas();

@@ -24,7 +24,10 @@ d = json.load(open("data/movzular.json", encoding="utf-8"))
 OLD_WEEK = {k + ":" + t["ad"]: t.get("hefte") for k in d for t in d[k]}
 KEPT = {k + ":" + t["ad"] for k in d for t in d[k] if t.get("ders") in KEEP}
 # hours at home per week (FRİTL is not counted: father, 11 Nov 2026). Week template: tools/hefte.py
-CAP = {"riyaziyyat": 4.5, "olimpiada": 3.5, "fizika": 9.0}
+CAP = {"riyaziyyat": 4.5, "olimpiada": 3.5, "fizika": 9.0, "azdili": 2.0}
+# Azerbaijani-language grammar (father, 21 Nov 2026): Saturday 20:00–22:00, one 2-hour lesson a week, in list order,
+# from the week of 28 Nov 2026; a topic of two lessons ("dersSay": 2) takes two Saturdays.
+TRACK_START = {"azdili": dt.date(2026, 11, 23)}
 # This year Fikrət takes the RFO in physics only (one subject per pupil): the math-olympiad track is paused and its
 # 3.5 h/week go to physics (father, 11 Nov 2026). Paused topics get no week; their lessons stay open.
 PAUSED = {"olimpiada"}
@@ -63,7 +66,7 @@ FR_KEYS = {"olimpiada:" + a for a in FIZ_RIYAZI}
 OLY_CORE_TOPICS = {"Eynilik çevirmələri, simmetrik çoxhədlilər", "Mətnli məsələlər: iş-hovuz, yaş, sürət, mürəkkəb faiz", "Viyet teoremi (olimpiada məsələləri)", "Ədədi silsilə", "Həndəsi silsilə"}
 def hours(k, t):
     if t["status"] == "bag": return 0
-    h = {"riyaziyyat": 2.0, "olimpiada": 2.0, "fizika": 2.0}[k]  # Fikrət closes a topic in at most 2 h (father, 11 Nov 2026)
+    h = {"riyaziyyat": 2.0, "olimpiada": 2.0, "fizika": 2.0, "azdili": 2.0 * t.get("dersSay", 1)}[k]  # Fikrət closes a topic in at most 2 h (father, 11 Nov 2026)
     if k == "riyaziyyat" and t["ad"] in REVIEW: h = 1.0
     if t["status"] == "isl": h /= 2
     return h
@@ -85,6 +88,7 @@ def prio(k, i, t):  # lower = earlier
     urgent = -2 if t["status"] == "isl" else -1 if k + ":" + t["ad"] in ISL_NEED else 0
     if k == "olimpiada": return (urgent, 0 if (t["bolme"] in OLY_CORE or t["ad"] in OLY_CORE_TOPICS or t["status"] == "isl") else 1, i)
     if k == "riyaziyyat": return (urgent, PHYS_NEED.get(k + ":" + t["ad"], 99), i)
+    if k == "azdili": return (urgent, i)
     return (urgent, 0 if t["ad"] in RAYON_FIRST else 1, i)
 # continuous time per track (in weeks). A topic starts when its track is free and all its prerequisites are FINISHED
 # (the portal locks a lesson until they are closed). The track that is furthest behind moves next and takes the topic
@@ -101,7 +105,7 @@ def finish(k, s0, h):  # time (in weeks) when h hours of track k, begun at s0, a
     return t
 week, start_at, end_at, order = {}, {}, {}, {}
 w0 = (FROM - start).days / 7
-clock = {k: w0 for k in d}
+clock = {k: max(w0, (TRACK_START[k] - start).days / 7 if k in TRACK_START else w0) for k in d}
 n = 0
 for k in d:  # kept (closed) topics: their old week, finished before the re-plan starts
     for t in d[k]:

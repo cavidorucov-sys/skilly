@@ -36,6 +36,11 @@ for (const l of levels) {
     if (!q.solution || !String(text(q.solution) || q.solution).trim()) fails.push("empty solution: " + t);
     if (q.show == null || !String(q.show).trim()) fails.push("empty show: " + t);
     if (q.choices) { if (!(Number.isInteger(q.correct) && q.correct >= 0 && q.correct < q.choices.length)) fails.push("bad correct index: " + t); }
+    // Azerbaijani-language kinds (21 Nov 2026): tap the words (sec) / sort into groups (bol); the right answer must pass the game's own check
+    else if (q.sec) { const d = q.sec.duz; if (!Array.isArray(d) || !d.length || d.some(i => !Number.isInteger(i) || i < 0 || i >= q.sec.soz.length || !/[\p{L}\d]/u.test(q.sec.soz[i])) || new Set(d).size !== d.length) fails.push("bad sec.duz: " + t);
+      else if (!ctx.window.Oyun.isRight(q, d.slice().sort((a, b) => a - b))) fails.push("sec: right answer rejected: " + t); }
+    else if (q.bol) { const d = q.bol.duz; if (!Array.isArray(d) || d.length !== q.bol.soz.length || d.some(g => !Number.isInteger(g) || g < 0 || g >= q.bol.qrup.length) || q.bol.qrup.length < 2 || new Set(d).size < 2) fails.push("bad bol: " + t);
+      else if (!ctx.window.Oyun.isRight(q, d.slice())) fails.push("bol: right answer rejected: " + t); }
     else {
       if (!isFinite(q.answer)) fails.push("answer not finite: " + t);
       const shown = String(q.show).replace(/\s*(m|sm|km|kq|q|s|san|dəq|°|%|m\/s²|m\/s|N|J|W|Pa|V|A|Ω|sm²|m²|sm³|m³|dm³|l)$/i, "").replace(/,/g, ".");
@@ -60,7 +65,7 @@ else if (levels[levels.length - 1].imt !== true) { console.log("FAIL  the exam l
 if (!IMT) { console.log("FAIL  window.__imtahan missing"); bad++; }
 else {
   const c = t => IMT.suallar.filter(x => x.tip === t).length;
-  const want = IMT.fenn === "fizika" ? { qapali: 10, kod: 0, yazili: 0 } : { qapali: 6, kod: 3, yazili: 1 };
+  const want = IMT.fenn === "fizika" || IMT.fenn === "azdili" ? { qapali: 10, kod: 0, yazili: 0 } : { qapali: 6, kod: 3, yazili: 1 };
   const got = { qapali: c("qapali"), kod: c("kod"), yazili: c("yazili") };
   if (JSON.stringify(got) !== JSON.stringify(want) || IMT.suallar.length !== 10) { console.log("FAIL  imtahan shape " + JSON.stringify(got) + ", need " + JSON.stringify(want)); bad++; }
   if (IMT.fenn === "fizika" && IMT.suallar.filter(x => x.birlesik).length < 2) { console.log("FAIL  physics: at least 2 questions must join two topics (birlesik: \"<other topic>\")"); bad++; }

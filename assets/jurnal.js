@@ -206,6 +206,9 @@
     sadele(v) { const s = simpler(v); return s ? "Cavabı sadələşdir: " + s : ""; },
     yoxla(q2, v) {
       if (q2.choices) return v === q2.correct;
+      // Azerbaijani-language kinds: the tapped words (sorted indices) / the group of every word must all be right
+      if (q2.sec) { const d = q2.sec.duz.slice().sort((a, b) => a - b); return Array.isArray(v) && v.length === d.length && v.every((x, i) => x === d[i]); }
+      if (q2.bol) return Array.isArray(v) && v.length === q2.bol.duz.length && v.every((x, i) => x === q2.bol.duz[i]);
       const x = num(v); if (isNaN(x) || q2.answer == null) return false;
       return Math.abs(x - q2.answer) <= (q2.tol ?? Math.max(0.005, Math.abs(q2.answer) * 0.005));
     },
