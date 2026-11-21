@@ -1625,7 +1625,9 @@
    "ad": "Fonetika və orfoepiya",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 8",
-   "hefte": "2027-01-18"
+   "hefte": "2027-01-18",
+   "ders": "dersler/az-fonetika.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",

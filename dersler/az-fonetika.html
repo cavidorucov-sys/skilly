@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fonetika və orfoepiya dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-fonetika.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Fonetika və orfoepiya</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Fonetika</div>
+    <h1>Fonetika və orfoepiya</h1>
+    <p>Sözü necə yazırıq və necə deyirik? Buraxılışın dil qaydaları blokunda (10 qapalı sual) bu suallar çıxır: "saitlərdən biri fərqlidir", "tələffüz forması düzgün göstərilməyən söz", "fərqləndirilmiş hərf necə tələffüz olunur", "hansı sözdə orfoqrafik səhv var". Qaydalar 5-ci və 6-cı sinif dərsliklərindən götürülüb; tələffüzü soruşulanda dərslikdəki nümunələr əsasdır.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa 5 dərsi sıra ilə oxu, nümunələri yüksək səslə de, sonra Oyun və Sınaq. Bu mövzu 2 saata sığır.</p>
+    <p><b>Qeyd:</b> tərkibində ae, ea, eə, əa, eo, üa, üə, au, ua, ue, uə olan sözlərin və ov, öv hərf birləşməli sözlərin tələffüzü imtahanda soruşulmur; bu mövzuda onlara toxunmuruq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Saitlər və samitlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Ahəng, heca, vurğu</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Samitlərin tələffüzü</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>K və Q samitləri</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Uzun sait, qoşa samit, təhlil</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Saitlər və samitlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hər sual "bu hansı səsdir" sualından başlayır. Saitin növünü bilmirsənsə, ahəng qanunu və şəkilçi qaydaları da çətin gedir. Samitin kar, yoxsa cingiltili olduğunu bilmirsənsə, söz sonu və söz ortası tələffüz qaydaları da çətin gedir. Əvvəl bu iki cədvəli əzbər bil.</p>
+
+      <h3><span class="st">2</span> Fonetika, səs və hərf</h3>
+      <div class="fm">Fonetika: dilin səs tərkibini, danışıq səslərini öyrənən elm sahəsidir
+Danışıq səsləri iki qrupa bölünür: saitlər və samitlər
+Səs deyilir və eşidilir, hərf isə yazılır
+Transkripsiya: sözün tələffüz formasının mötərizə içərisində yazılmasıdır
+Orfoqrafik norma: sözün düzgün yazılışı
+Orfoepik norma: sözün düzgün tələffüzü</div>
+      <div class="ex">kitab — yazılır: kitab; deyilir: [kitap]
+konfet — yazılır: konfet; deyilir: [k'anfet]</div>
+      <p>Yazılış və tələffüz bəzən fərqlənir. Ona görə hər ikisini bilmək lazımdır: yazılış orfoqrafiyaya, tələffüz orfoepiyaya aiddir.</p>
+      <p><i>Dərslik: 6-cı sinif, 2-ci hissə, s. 26 (fonetika); 5-ci sinif, 1-ci hissə, s. 9, 13, 17 (norma, transkripsiya).</i></p>
+
+      <h3><span class="st">3</span> Saitlərin növləri</h3>
+      <p>Saitlər tələffüz zamanı dilin, dodaqların və alt çənənin vəziyyətinə görə növlərə bölünür. Alt çənənin vəziyyətinə görə saitlər <b>açıq</b> və <b>qapalı</b> olur.</p>
+      <div class="fm">Açıq saitlər: a, e, ə, o, ö
+Qapalı saitlər: ı, i, u, ü</div>
+      <p>Dərslikdəki cədvəl: saitlər <b>qalın / incə</b> və <b>dodaqlanmayan / dodaqlanan</b> olur.</p>
+      <div class="tbl"><table>
+        <tr><th>sait növü</th><th>dodaqlanmayan</th><th>dodaqlanan</th></tr>
+        <tr><td>qalın</td><td>a, ı</td><td>o, u</td></tr>
+        <tr><td>incə</td><td>ə, i, e</td><td>ö, ü</td></tr>
+      </table></div>
+      <p>Bu iki qayda birlikdə hər saiti üç xüsusiyyətlə təsvir edir:</p>
+      <div class="ex">a — qalın, açıq, dodaqlanmayan
+ı — qalın, qapalı, dodaqlanmayan
+o — qalın, açıq, dodaqlanan
+u — qalın, qapalı, dodaqlanan
+ə, e — incə, açıq, dodaqlanmayan
+i — incə, qapalı, dodaqlanmayan
+ö — incə, açıq, dodaqlanan
+ü — incə, qapalı, dodaqlanan</div>
+      <p>Həll olunmuş nümunə: "ü və i saitlərinin ortaq xüsusiyyətləri nədir?" ü: incə, qapalı, dodaqlanan; i: incə, qapalı, dodaqlanmayan. Ortaq: <b>incə və qapalı</b>. Eyni qayda ilə "a və ə": ortaq <b>açıq və dodaqlanmayan</b>.</p>
+      <div class="life"><b>Həyatdan.</b> Güzgü qarşısında "u" de: dodaqların irəli yumrulaşır — dodaqlanan sait. İndi "a" de: dodaqların yumrulaşmır — dodaqlanmayan sait. Dodaqlanan saitlər dörddür: o, u, ö, ü.</div>
+
+      <h3><span class="st">4</span> Samitlərin növləri</h3>
+      <div class="fm">Səs tellərinin iştirakına görə samitlərin iki növü var: kar və cingiltili
+Samitlərin çoxu bir-biri ilə kar–cingiltili cütlük təşkil edir</div>
+      <div class="tbl"><table>
+        <tr><th>kar</th><td>ş</td><td>f</td><td>x</td><td>k</td><td>p</td><td>s</td><td>ç</td><td>t</td><td>h</td></tr>
+        <tr><th>cingiltili</th><td>j</td><td>v</td><td>ğ</td><td>g</td><td>b</td><td>z</td><td>c</td><td>d</td><td>—</td></tr>
+      </table></div>
+      <div class="fm">Kar–cingiltili cütlər: ş–j, f–v, x–ğ, k–g, p–b, s–z, ç–c, t–d
+h samitinin cingiltili qarşılığı yoxdur
+Qarşılığı olmayan cingiltili samitlər: l, m, n, r
+q və y də cingiltili samitlərdir</div>
+      <p>Dərslikdəki cədvəldə q [k'] ilə, y [x'] ilə cütlük təşkil edir; bunlar transkripsiyadakı səslərdir (4-cü dərs).</p>
+      <div class="ex">Dördündən biri fərqlidir: b, q, t, z
+b, q, z — cingiltili  t — kar
+Cavab: t</div>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>e saitini qalın saymaq. e incə saitdir: ə, i, e, ö, ü incədir.</li>
+        <li>a saitini qapalı saymaq. Qapalı saitlər yalnız ı, i, u, ü-dür; a açıqdır.</li>
+        <li>Cüt samitlərin tələffüzünün oxşar olduğunu unutmaq: k–g kar və cingiltili cütdür, ona görə bəzən "bitki" əvəzinə səhvən "bitgi" yazırlar.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Açıq: a, e, ə, o, ö  qapalı: ı, i, u, ü
+Qalın: a, ı, o, u  incə: ə, e, i, ö, ü
+Dodaqlanan: o, u, ö, ü
+Kar (11): ş, f, x, k, p, s, ç, t, h, [k'], [x']
+Cingiltili (14): j, v, ğ, g, b, z, c, d, q, l, m, n, r, y
+[k'] — [q], [x'] — [y] cütlüdür</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"ö" saiti hansı növlərə aiddir? <span class="ans">incə, açıq, dodaqlanan</span></li>
+        <li>Dördündən biri fərqlidir: b, q, t, z. <span class="ans">t (kar; qalanları cingiltili)</span></li>
+        <li>"k" samitinin cingiltili qarşılığı hansıdır? <span class="ans">g</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Ahəng qanunu, heca, vurğu</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şəkilçi sözə qoşulanda eyni şəkilçi müxtəlif cür yazılır: kitablar, dəftərlər. Bunu ahəng qanunu idarə edir. Hecaya isə söz sətirdən sətrə keçiriləndə və fonetik təhlildə ehtiyac olur. Vurğunu da bu dərsdə qısa görürük.</p>
+
+      <h3><span class="st">2</span> Ahəng qanunu</h3>
+      <div class="fm">Şəkilçilərin əksəriyyəti sözün son hecasının ahənginə uyğun olaraq iki və ya dörd cür yazılır
+İki cür yazılan şəkilçilər: sözün son saitinin qalın və ya incə olmasına görə dəyişir
+Dörd cür yazılan şəkilçilər: son saitin həm qalın və ya incə, həm də dodaqlanan və ya dodaqlanmayan olmasına görə dəyişir</div>
+      <div class="ex">təyyarə+lər+də  kitab+lar+dan
+qərar-ın  gecə-nin  qüsur-un  gündüz-ün</div>
+      <p>Dörd cür yazılan şəkilçini (məsələn, <b>-ın⁴</b>) seçmək üçün sözün <b>son saitinə</b> bax:</p>
+      <div class="tbl"><table>
+        <tr><th>son sait</th><th>şəkilçi</th><th>nümunə</th></tr>
+        <tr><td>a, ı</td><td>-ın</td><td>qərarın, heyvanın</td></tr>
+        <tr><td>ə, e, i</td><td>-in</td><td>gecənin, dəftərin</td></tr>
+        <tr><td>o, u</td><td>-un</td><td>qüsurun, qunduzun</td></tr>
+        <tr><td>ö, ü</td><td>-ün</td><td>gündüzün, öküzün</td></tr>
+      </table></div>
+      <p>İki cür yazılan şəkilçidə (-lar/-lər, -da/-də): qalın saitdən sonra <b>a</b>, incə saitdən sonra <b>ə</b>.</p>
+      <p>Sözlər saitlərinə görə də üç qrupa bölünür (dərslikdəki cədvəl):</p>
+      <div class="fm">Bütün saitlər qalındır: qalın saitlərin ahəngi (torpaq, uşaq)
+Bütün saitlər incədir: incə saitlərin ahəngi (çiçək, dəftər)
+Həm qalın, həm incə sait var: ahəng qanununa tabe olmayan söz (kitab, nişan, heyvan)</div>
+      <div class="ex">torpaq — o, a: hamısı qalın → tabe olur
+çiçək — i, ə: hamısı incə → tabe olur
+kitab — i (incə), a (qalın) → tabe olmur</div>
+      <p>Bir çox alınma söz ahəng qanununa tabe olmur: <i>kompüter, günah</i>. Şəkilçi yenə son saitə görə seçilir: kompüterlər, günahlar.</p>
+      <p><i>Dərslik: 5-ci sinif, 1-ci hissə, s. 53 (ahəng qanunu), s. 63 (alınma sözlər).</i></p>
+
+      <h3><span class="st">3</span> Heca</h3>
+      <div class="fm">Tələffüz zamanı sözün asanlıqla bölünən hissəsinə heca deyilir
+Sözlərdəki hecaların sayı saitlərin sayına bərabərdir</div>
+      <div class="ex">dost — 1 sait → 1 heca
+məktəb — mək-təb: 2 sait → 2 heca
+Azərbaycan — A-zər-bay-can: 4 sait → 4 heca</div>
+      <p>Sözü sətirdən sətrə keçirəndə hecalara görə böl. Dərslikdəki qaydalar:</p>
+      <div class="fm">Bir saitdən ibarət hecanı sətrin sonunda saxlamaq və ya yeni sətrə keçirmək olmaz
+Adların bir hərfdən ibarət qısaltmalarını sətrin sonunda saxlamaq olmaz
+Rəqəmlə yazılan miqdar sayının yanındakı ixtisarı yeni sətrə keçirmək olmaz
+Rəqəmlə yazılan saylara artırılan şəkilçilər sətirdən sətrə keçirilmir
+Mürəkkəb sözlərin tərkib hissələri ayrı-ayrılıqda hecalara bölünür və sətirdən sətrə keçirilir</div>
+      <div class="ex">elan — e-lan düzgün deyil: "e" bir saitdən ibarət heca
+N.Gəncəvi — "N." sətrin sonunda qalmır
+150 sm — "sm" yeni sətrə keçmir  5-ci — "ci" ayrılmır
+Koroğlu — düzgün: Kor-oğ-lu, yanlış: Ko-roğ-lu
+yarımada — düzgün: ya-rım-a-da, yanlış: ya-rı-ma-da</div>
+      <p>Buna görə "ümid", "azad", "elan" (ü-mid, a-zad, e-lan) sətirdən sətrə keçirilmir; "arzu" (ar-zu) və "güllü" (gül-lü) isə keçirilə bilər.</p>
+      <p><i>Dərslik: 5-ci sinif, 1-ci hissə, s. 71.</i></p>
+
+      <h3><span class="st">4</span> Vurğu</h3>
+      <div class="fm">Sözdəki hecalardan birinin daha qüvvətli tələffüz edilməsi vurğu adlanır
+Vurğu qəbul edən hecaya vurğulu heca deyilir
+Milli mənşəli sözlərdə vurğu, əsasən, sözün son hecasına düşür
+Elə sözlər də var ki, vurğu ilk hecaya düşür
+Bir çox alınma sözlərdə vurğu müxtəlif hecalara düşür
+Eyni cür yazılıb vurğuya görə fərqli tələffüz edilən sözlər omoqraf adlanır</div>
+      <div class="ex">Son hecaya: buláq, bulúd
+İlk hecaya: áncaq, báyaq, sónra
+Alınma sözlər: rádio, diréktor, monitórinq
+Omoqraflar: qızártma (inkar feil) – qızartmá (isim)
+qóvun (feil) – qovún (isim)</div>
+      <p><i>Dərslik: 7-ci sinif, 1-ci hissə, s. 55 (köməkçi mənbə).</i></p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"kitab", "heyvan", "kompüter" kimi sözləri ahəng qanununa tabe saymaq. Bu sözlərdə həm qalın, həm incə sait var.</li>
+        <li>Şəkilçini sözün birinci saitinə görə seçmək. Şəkilçi <b>son saitə</b> görə seçilir.</li>
+        <li>Hecaların sayını hərflərin sayı ilə qarışdırmaq. Heca sayı <b>saitlərin</b> sayıdır.</li>
+        <li>"ağac" sözünü a-ğac kimi sətirdən sətrə keçirmək. Bir saitdən ibarət heca sətrin sonunda qalmır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şəkilçi sözün son hecasının ahənginə görə seçilir
+Qalın a, ı, o, u  incə ə, e, i, ö, ü
+Heca sayı = sait sayı
+Bir saitdən ibarət heca sətirdən sətrə keçirilmir
+Milli sözlərdə vurğu əsasən son hecadadır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"qüsur" sözünə "-ın⁴" şəkilçisini artır. <span class="ans">qüsurun (son sait u → -un)</span></li>
+        <li>"kitab" sözü ahəng qanununa tabe olurmu? <span class="ans">xeyr (i incə, a qalın)</span></li>
+        <li>"ümid" sözünü sətirdən sətrə keçirmək olarmı? <span class="ans">olmaz (ü bir saitdən ibarət heca)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Samitlərin tələffüzü</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kar və cingiltili samit cütlərinin tələffüzü oxşardır. Ona görə bəzi samitləri yazıldığı kimi demirik. İmtahan "hansı ifadədə son samit kar tələffüz olunur" və "tələffüz forması düzgün göstərilməyən söz" kimi sual verir. Burada iki qayda var: söz sonunda b, c, d, g və söz ortasında yanaşı kar samitlər.</p>
+
+      <h3><span class="st">2</span> Söz sonunda b, c, d, g</h3>
+      <div class="fm">Söz tək işlənərsə, sonra samitlə başlayan şəkilçi və ya söz gələrsə: kar tələffüz olunur
+Sonra saitlə başlayan şəkilçi və ya söz gələrsə: cingiltili qalır</div>
+      <div class="ex">kitab → [kitap]
+kitabda → [kitapda]  kitab nəşri → [kitap nəşri]
+kitabın → [kitabın]  kitab almaq → [kitab almaq]</div>
+      <p>Kar qarşılıqlar: <b>b → p, c → ç, d → t, g → k</b>.</p>
+      <p>Həll olunmuş nümunə: dərd çəkmək, dörd alma, mərd adam.</p>
+      <div class="ex">dərd çəkmək — "çəkmək" samitlə başlayır → d kar: [t]
+dörd alma — "alma" saitlə başlayır → d cingiltili qalır: [d]
+mərd adam — "adam" saitlə başlayır → [d]
+gənc oğlan — [c]  gənc qız — [ç]</div>
+      <div class="life"><b>Həyatdan.</b> "Dörd kitab" de: "dört kitab" kimi eşidilir. "Dörd alma" de: "dörd alma". Fərq yalnız sonrakı sözün birinci səsindədir.</div>
+      <p><i>Dərslik: 6-cı sinif, 1-ci hissə, s. 20 (kitab, kitabda, kitab nəşri, kitabın, kitab almaq; tapşırıqda mərd adam, dərd çəkmək, dörd alma, gənc oğlan, cavab vermək, gülab ətri, xarab olmaq).</i></p>
+
+      <h3><span class="st">3</span> Söz ortasında yanaşı kar samitlər</h3>
+      <div class="fm">Söz ortasında yanaşı işlənən kar samitlərin ikincisi k, t, p, f olduqda bu samitlər cingiltili tələffüz olunur
+Söz ortasında qq samitlərindən birincisi kar tələffüz olunur
+Fars mənşəli -kar, -keş şəkilçiləri yazıldığı kimi tələffüz olunur</div>
+      <div class="ex">isti → [isdi]  töhfə → [töhvə]
+əlbəttə → [əlbətdə]  hoppanmaq → [hopbammax]
+doqquz → [dok'quz]
+sənətkar → [sənətkar]</div>
+      <p>Qeyd: dərslik "məktub" sözündə k-nı [x'] kimi verir: [məx'tup] (5-ci sinif, s. 17). Bu söz üçün dərsliyin yazdığı transkripsiyanı yadda saxla; yanaşı samit qaydasını isti, əlbəttə, hoppanmaq, töhfə nümunələri ilə öyrən (6-cı sinif, s. 20).</p>
+      <p>Dörd cütlük (söz ortasında yanaşı gələn samitlər):</p>
+      <div class="tbl"><table>
+        <tr><th>yanaşı</th><th>nümunə</th><th>tələffüz</th></tr>
+        <tr><td>tt</td><td>əlbəttə</td><td>ikinci t cingiltili: [əlbətdə]</td></tr>
+        <tr><td>kk</td><td>təşəkkür</td><td>ikinci k cingiltili: [təşəkgür]</td></tr>
+        <tr><td>pp</td><td>hoppanmaq</td><td>ikinci p cingiltili: [hopbammax]</td></tr>
+        <tr><td>qq</td><td>doqquz, taqqıltı</td><td>birinci q kar: [dok'quz], [tak'qıltı]</td></tr>
+      </table></div>
+      <p>Transkripsiya ilə verilən sözü orfoqrafik yazanda da bu qaydadan istifadə et: [itgi] — itki, [asvalt] — asfalt, [təşəkgür] — təşəkkür.</p>
+      <p><i>Dərslik: 6-cı sinif, 1-ci hissə, s. 20 (nümunələr və tapşırıq ç).</i></p>
+
+      <h3><span class="st">4</span> Qısa xatırlatma: çıxışlıq hal şəkilçisi</h3>
+      <p>Real sınaqda (BSİ-2) 27-ci sual bu mövzuya yaxın idi. M və n samitləri ilə bitən sözlərə artırılan <b>-dan</b> çıxışlıq hal şəkilçisi [-nan] kimi tələffüz olunur: vaqondan [vaqonnan], qələmdən [qələmnən]. Bunu 4-cü mövzuda (isim, hallar) ətraflı görürük.</p>
+      <p><i>Dərslik: 7-ci sinif, 2-ci hissə, s. 21 (köməkçi mənbə).</i></p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Söz sonunda b həmişə [b] deyilir" demək. Tək işlənəndə və samitdən əvvəl kar: kitab [kitap].</li>
+        <li>Saitlə başlayan şəkilçidən əvvəl də kar demək. kitabın — [kitabın].</li>
+        <li>-kar şəkilçisini cingiltili demək. sənətkar — [sənətkar], [sənətgar] yox.</li>
+        <li>doqquz sözündə ikinci q-nu kar saymaq. Birinci q kardır: [dok'quz].</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Söz sonunda b, c, d, g: tək, samitdən əvvəl — kar (p, ç, t, k); saitdən əvvəl — cingiltili
+Yanaşı kar samitlərin ikincisi k, t, p, f — cingiltili: isti [isdi]
+qq: birinci q kar: doqquz [dok'quz]
+-kar, -keş yazıldığı kimi deyilir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"dərd çəkmək" ifadəsində "dərd" sözünün son samiti necə tələffüz olunur? <span class="ans">[t]</span></li>
+        <li>"dörd alma" ifadəsində "dörd" sözünün son samiti necə tələffüz olunur? <span class="ans">[d]</span></li>
+        <li>"isti" sözünün tələffüz forması hansıdır? <span class="ans">[isdi]</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. K və Q samitləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"K" və "q" hərfləri sözdən asılı olaraq müxtəlif səslər ifadə edir. İmtahanda "fərqləndirilmiş hərf necə tələffüz olunur" tipli sual verirlər. Cavab dərslikdəki nümunələrlə yadda qalır.</p>
+
+      <h3><span class="st">2</span> "K" hərfi</h3>
+      <div class="fm">"K" hərfi işləndiyi sözdən asılı olaraq müxtəlif səslər ifadə edir
+[k]: kitab [kitap], təbrik [təbrik]
+[k']: kosmos [k'osmos], park [park']
+[g]: bitki [bitgi], ötkəm [ötgəm]
+[x']: məktub [məx'tup], çörək [çörəx']
+[y]: [x'] samiti ilə bitən sözlərə saitlə başlanan söz əlavə edəndə — çiçək ətri [çiçəy ətri]</div>
+      <div class="fm">[x'] samiti ilə bitən sözlərə saitlə başlanan şəkilçi artırdıqda "k" hərfi "y" ilə əvəzlənir: ürək [ürəx'] — ürəyə
+Hər "k" dəyişmir: təbrik [təbrik] — təbrikə</div>
+      <p>[k'] və [x'] işarələrinin üstündəki cizgi "ştrix" adlanır. [x'] səsi [y]-ə yaxın deyilir.</p>
+
+      <h3><span class="st">3</span> "Q" hərfi</h3>
+      <div class="fm">"Q" hərfi işləndiyi yerdən asılı olaraq müxtəlif səslər ifadə edir
+[q]: qapı [qapı], maqnit [maqnit]
+[k']: məqsəd [mək'sət], şəfəq [şəfək']
+[x]: otaq [otax], budaq [budax]
+[ğ]: "q" ilə bitən bəzi sözlərə saitlə başlanan söz əlavə edəndə — torpaq ətri [torpağ ətri], barmaqarası [barmağarası]</div>
+      <div class="fm">"Q" ilə bitən bəzi sözlərə saitlə başlanan şəkilçi artırdıqda "q" hərfi "ğ" ilə əvəzlənir: otaq [otax] — otağa
+Hər "q" dəyişmir: vərəq [vərək'] — vərəqin</div>
+      <div class="ex">Həll olunmuş nümunə: "çörək" sözündə k necə tələffüz olunur?
+Dərslikdə: çörək [çörəx'] → [x']
+"çörək" sözünə "-ə" artırsaq: çörəyə (k → y)</div>
+      <div class="life"><b>Həyatdan.</b> "Otaq" de və sonuna "a" artır: "otağa". Sözün sonunda q-nun yerinə ğ gəldi. Mesajda "otaqa" yazsan, səhv olar.</div>
+      <p><i>Dərslik: 5-ci sinif, 1-ci hissə, s. 13 (transkripsiya, ştrix), s. 17 ("K"), s. 21 ("Q").</i></p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Bütün "k" hərflərini [k] oxumaq. Dərslikdə beş səs var: [k], [k'], [g], [x'], [y].</li>
+        <li>"bitki" sözünü "bitgi" yazmaq. [g] yalnız tələffüzdədir; yazıda k.</li>
+        <li>Saitlə başlayan şəkilçidən sonra hər k və q-nu dəyişmək. Yalnız bəzi sözlərdə dəyişir: ürək — ürəyə, otaq — otağa; amma təbrik — təbrikə, vərəq — vərəqin.</li>
+        <li>[x] ilə [x'] qarışdırmaq: [x] — q-nun səsidir (otaq), [x'] — k-nın səsidir (çörək).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">k: [k] kitab  [k'] kosmos  [g] bitki  [x'] çörək  [y] çiçək ətri
+q: [q] qapı  [k'] məqsəd  [x] otaq  [ğ] torpaq ətri
+ürək — ürəyə  otaq — otağa  təbrik — təbrikə  vərəq — vərəqin</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"çörək" sözündə k hərfi necə tələffüz olunur? <span class="ans">[x']</span></li>
+        <li>"otaq" sözünə "-a" şəkilçisini artır. <span class="ans">otağa</span></li>
+        <li>"bitki" sözündə k hərfi necə tələffüz olunur? <span class="ans">[g]</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Uzun sait, qoşa samit, fonetik təhlil</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Qalan qaydalar: uzun tələffüz olunan saitlər, hərf və səs sayı, o saitinin [a] kimi deyilməsi və qoşa samitlə bitən təkhecalı sözlərin yazılışı. Sonda hamısını bir sözün fonetik təhlilində birləşdiririk.</p>
+
+      <h3><span class="st">2</span> Uzun tələffüz olunan saitlər</h3>
+      <div class="fm">Bəzi ərəb-fars mənşəli sözlərin tərkibindəki saitlərdən biri digərlərinə nisbətən uzun tələffüz olunur
+Transkripsiyada bunu göstərmək üçün saitdən sonra qoşa nöqtə yazılır
+Eynicinsli qoşa saitlər bir uzun sait kimi tələffüz olunur</div>
+      <div class="ex">alim → [a:lim]  məna → [mə:na]
+bədii → [bədi:]  maaş → [ma:ş]
+təbii → [təbi:]  camaat → [cama:t]
+mətbəə → [mətbə:]  inşaat → [inşa:t]</div>
+      <p>Dərslik "saat" sözündə neçə "a" səsi eşitdiyini soruşur: bir uzun [a:]. Tarix [ta:rix], təmir [tə:mir], maarif [ma:rif] sözlərində də uzun sait var.</p>
+      <p><i>Dərslik: 6-cı sinif, 1-ci hissə, s. 15.</i></p>
+
+      <h3><span class="st">3</span> Hərf və səs</h3>
+      <p>Hərf yazılır, səs deyilir. Əksər sözdə hərflərin və səslərin sayı bərabərdir. Qoşa sait iki hərflə yazılır, lakin bir uzun səs kimi deyilir.</p>
+      <div class="tbl"><table>
+        <tr><th>söz</th><th>hərf</th><th>səs</th><th>nə üçün</th></tr>
+        <tr><td>kitab</td><td>5</td><td>5</td><td>hər hərf ayrıca səslənir</td></tr>
+        <tr><td>saat</td><td>4</td><td>3</td><td>aa — bir uzun a</td></tr>
+        <tr><td>bədii</td><td>5</td><td>4</td><td>ii — bir uzun i</td></tr>
+      </table></div>
+      <p>Həll olunmuş nümunə: "maarif" sözündə m, a, a, r, i, f — <b>6 hərf</b>; [ma:rif]: m, a:, r, i, f — <b>5 səs</b>.</p>
+
+      <h3><span class="st">4</span> O saitinin [a] kimi tələffüzü</h3>
+      <div class="fm">Bir sıra sözlərdə o saiti [a] kimi tələffüz olunur</div>
+      <div class="ex">konfet → [k'anfet] (o → a)
+Hər "o" belə deyilmir: kosmos [k'osmos], otaq [otax]</div>
+      <p>Bu sözlərin tam siyahısını yadda saxlamaq lazımdır, ona görə dərslikdəki nümunəyə bax: <b>konfet [k'anfet]</b>. Şübhədə orfoepiya lüğətinə baxırlar.</p>
+      <p><i>Dərslik: 5-ci sinif, 1-ci hissə, s. 13 (konfet), s. 17, 21 (kosmos, otaq).</i></p>
+
+      <h3><span class="st">5</span> Qoşa samitlə bitən təkhecalı sözlər</h3>
+      <div class="fm">Eynicinsli qoşa samitlə bitən təkhecalı sözlərə samitlə başlanan şəkilçi artırdıqda sözün kökündəki qoşa samitlərdən biri düşür
+"Hiss" sözü istisnadır
+Belə sözlər mürəkkəb sözün ikinci tərəfi olduqda da sonda bir samit yazılır
+Müxtəlifcinsli qoşa samitlə bitən təkhecalı sözlərin yazılışında yanaşı gələn samitlərin arasına sait artırmaq olmaz</div>
+      <div class="ex">fənn — fənlər  xətt — xətkeş
+sirr — sirli  hiss — hisslər (istisna)
+sirr — sirrini (şəkilçi saitlə başlayır, qoşa samit qalır)
+xətt — rəsmxət (mürəkkəb sözün ikinci tərəfi)
+Düzgün: üzr, qəsr, sehrkar, rəhmdil
+Yanlış: üzür (üzr sözünün əvəzinə), qəsir, sehirkar, rəhimdil
+hökmdar → [hökümdar]</div>
+      <p><i>Dərslik: 6-cı sinif, 1-ci hissə, s. 39 (xətt – rəsmxət də orada).</i></p>
+
+      <h3><span class="st">6</span> Fonetik təhlil</h3>
+      <p>Fonetik təhlil — sözün yazılışına və deyilişinə görə təhlilidir. Dərslikdəki qaydaları bu ardıcıllıqla tətbiq et:</p>
+      <div class="fm">1. Hecalara böl: heca sayı = sait sayı
+2. Hər saiti təyin et: qalın/incə, açıq/qapalı, dodaqlanan/dodaqlanmayan
+3. Hər samiti təyin et: kar, yoxsa cingiltili
+4. Deyilişi yaz: transkripsiya, hərf və səs sayı
+5. Ahəng qanununa tabe olub-olmadığını de</div>
+      <div class="ex">kitab
+Hecalar: ki-tab (2 sait → 2 heca)
+Saitlər: i — incə, qapalı, dodaqlanmayan  a — qalın, açıq, dodaqlanmayan
+Samitlər: k — kar  t — kar  b — cingiltili samit; bu sözdə b hərfi [p] kar samitini ifadə edir
+Deyiliş: [kitap]; 5 hərf, 5 səs (söz tək işlənir, b kar deyilir)
+Ahəng: i incə, a qalın → ahəng qanununa tabe olmur</div>
+      <div class="ex">ürək
+Hecalar: ü-rək (2 heca)
+Saitlər: ü — incə, qapalı, dodaqlanan  ə — incə, açıq, dodaqlanmayan
+Samitlər: r — cingiltili  k — bu sözdə k hərfi [x'] kar samitini ifadə edir
+Deyiliş: [ürəx']; 4 hərf, 4 səs (ürək — ürəyə)
+Ahəng: hər iki sait incə → incə saitlərin ahəngi</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qoşa saiti iki səs saymaq. bədii — 5 hərf, 4 səs.</li>
+        <li>Uzun saiti sözün istənilən yerində göstərmək. Hansı saitin uzun olduğunu dərslikdəki nümunə göstərir: alim [a:lim], məna [mə:na].</li>
+        <li>"fənn" sözünə "-lər" artıranda qoşa n saxlamaq. Düzgün: fənlər. İstisna: hisslər.</li>
+        <li>"üzr", "qəsr" sözlərinə sait artırmaq: üzür, qəsir səhvdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Uzun sait: alim [a:lim], məna [mə:na], bədii [bədi:]
+Qoşa sait = 2 hərf, 1 uzun səs
+Bir sıra sözlərdə o → [a]: konfet [k'anfet]
+fənn — fənlər, xətt — xətkeş, hiss — hisslər
+üzr, qəsr, sehrkar, rəhmdil</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"bədii" sözündə neçə hərf və neçə səs var? <span class="ans">5 hərf, 4 səs</span></li>
+        <li>"fənn" sözünə "-lər" şəkilçisini artır. <span class="ans">fənlər</span></li>
+        <li>"Üzr istəmək" ifadəsində hansı yazılış düzgündür: "üzr", yoxsa "üzür"? <span class="ans">üzr</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: fonetika</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Biri fərqlidir"</b> — beş sait və ya samit; biri digərlərindən başqa xüsusiyyətə malikdir.</li>
+        <li><b>"Tələffüz forması düzgün göstərilməyən söz"</b> — beş söz və onun transkripsiyası.</li>
+        <li><b>"Fərqləndirilmiş hərf necə tələffüz olunur"</b> — k və q.</li>
+        <li><b>"Hansı sözdə orfoqrafik səhv var"</b> — qoşa samitlə bitən sözlər, uzun sait.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş sözlər; variantlar "A) 1, 3, 5" kimidir.</li>
+      </ul>
+      <p>Səs/hərf sayı və tələffüz sualında hər sözü özün oxu və say; variantlara baxanda əvvəl öz cavabını düşün.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — tələffüz forması düzgün göstərilməyən söz</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · yanaşı samitlər</span>
+        <p>Tələffüz forması (transkripsiyası) düzgün göstərilməyən sözü müəyyən edin:</p>
+        <ol class="imt-opts"><li>itki [itgi]</li><li>isti [isdi]</li><li>doqquz [dok'quz]</li><li>təşəkkür [təşəkkür]</li><li>asfalt [asvalt]</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">itki — t, k yanaşı kar; ikinci k cingiltili: [itgi] ✓
+isti — s, t yanaşı kar; ikinci t cingiltili: [isdi] ✓
+doqquz — qq: birinci q kar: [dok'quz] ✓
+təşəkkür — kk: ikinci k cingiltili: [təşəkgür]. [təşəkkür] yazılıb ✗
+asfalt — s, f yanaşı kar; f cingiltili: [asvalt] ✓
+Cavab: D) təşəkkür [təşəkkür]</div>
+      <ul>
+        <li>Tələ: sualda "düzgün <b>göstərilməyən</b>" yazılıb. Düzgün olanı axtarsan, A, B, C və ya E-ni seçərsən.</li>
+        <li>B)-ni seçmək: "isti"-də t-nin cingiltili deyilməsini şübhəli sanmaq. Dərslikdə [isdi] verilib.</li>
+        <li>C)-ni seçmək: qq-də iki q-nu da kar sanmaq. Yalnız birincisi kardır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — k və q</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · "q" samiti</span>
+        <p>Hansı sözdə "q" hərfi [x] kimi tələffüz olunur?</p>
+        <ol class="imt-opts"><li>qapı</li><li>maqnit</li><li>məqsəd</li><li>otaq</li><li>şəfəq</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">qapı [qapı] — q → [q]
+maqnit [maqnit] — q → [q]
+məqsəd [mək'sət] — q → [k']
+otaq [otax] — q → [x]
+şəfəq [şəfək'] — q → [k']
+Cavab: D) otaq</div>
+      <ul>
+        <li>C) və E): q [k'] kimi deyilir, [x] kimi yox. [x] yalnız "otaq", "budaq" tipli sözlərin sonundakı q-dur.</li>
+        <li>A) və B): q yazıldığı kimi — [q].</li>
+        <li>Hərfə yox, sözün özünə bax: eyni q müxtəlif sözlərdə dörd cür səslənir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı ifadələrdə birinci sözün son samiti kar tələffüz olunur?<br>1. kitab nəşri<br>2. mərd adam<br>3. dərd çəkmək<br>4. gənc oğlan<br>5. cavab vermək</p>
+        <ol class="imt-opts"><li>1, 3, 5</li><li>2, 4</li><li>1, 2, 3</li><li>3, 4, 5</li><li>1, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. kitab nəşri — "nəşri" samitlə başlayır → b kar: [kitap]
+2. mərd adam — "adam" saitlə başlayır → [d]
+3. dərd çəkmək — "çəkmək" samitlə başlayır → [t]
+4. gənc oğlan — "oğlan" saitlə başlayır → [c]
+5. cavab vermək — "vermək" samitlə başlayır → [p]
+Cavab: A) 1, 3, 5</div>
+      <ul>
+        <li><b>B)</b> — sualı tərsinə oxumaq: 2, 4 cingiltili qalanlardır.</li>
+        <li><b>E)</b> — 3-cü ifadəni buraxmaq: "dərd" sözünün son samiti də kar tələffüz olunur.</li>
+        <li><b>C), D)</b> — hər ifadəni ayrıca yoxlamamaq. Hamısına sonrakı sözün birinci səsinə görə bax.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>"Düzgün göstərilməyən" ilə "düzgün göstərilən" sözlərini qarışdırmaq. Sualın son sözünü işarələ.</li>
+        <li>Saitlə başlayan sözdən əvvəl də b, c, d, g-ni kar demək. Saitdən əvvəl cingiltili qalır.</li>
+        <li>Transkripsiyanı yazılışla qarışdırmaq. Mötərizədəki forma deyilişdir.</li>
+        <li>Nömrə kombinasiyasında bir ifadəni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Saitlər: açıq/qapalı, qalın/incə, dodaqlanan/dodaqlanmayan
+Samitlər: kar/cingiltili; söz sonu: tək və samitdən əvvəl kar, saitdən əvvəl cingiltili
+Yanaşı kar samitlərin ikincisi k, t, p, f — cingiltili; qq-də birinci q kar
+k, q: sözün özünü dərslikdəki nümunə ilə yadda saxla
+Variantlara baxmadan əvvəl özün cavab ver</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"gənc qız" ifadəsində "gənc" sözünün son samiti necə tələffüz olunur? <span class="ans">[ç] (qız samitlə başlayır)</span></li>
+        <li>"şəfəq" sözündə q necə tələffüz olunur? <span class="ans">[k']</span></li>
+        <li>"saat" sözündə neçə hərf və neçə səs var? <span class="ans">4 hərf, 3 səs</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
