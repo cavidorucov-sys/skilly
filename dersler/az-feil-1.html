@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Feil I: forma və zaman dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-feil-1.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Feil I</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya</div>
+    <h1>Feil I: forma və zaman</h1>
+    <p>Feil hərəkət bildirir. Buraxılışın dil qaydaları blokunda (10 qapalı sual) feillə bağlı tapşırıqlar tez-tez gəlir: "feil hansı zamandadır", "hansı şəxsə aiddir", "inkar formasındadır", "mürəkkəb feil düzgün yazılıb". Bu mövzuda feilin zamanını, şəxsini, inkar formasını və quruluşunu öyrənəcəksən. Qaydalar 5-ci sinif dərsliyindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, hər feili özün təhlil et, sonra Oyun və Sınaq. Feilin şəkilləri (əmr, arzu, şərt və s.), xəbər şəklində olan feillərin tələffüzü, növləri və təsriflənməyən formaları sonrakı mövzulardadır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Feil; təsdiq və inkar</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Feilin zamanları</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Şəxsə görə dəyişmə</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Quruluşca növlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Feil: hərəkət; təsdiq və inkar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Cümlədə kimin nə etdiyini feil bildirir: "Qardaşım <i>getdi</i>", "Biz <i>görürük</i>". İmtahanda feilə dair tapşırıqların çoxu bir sualdan başlayır: hərəkət icra olunub, yoxsa olunmayıb? Bu dərsdə feilin nə olduğunu və hərəkətin icra olunmadığını necə bildirdiyini öyrənəcəksən.</p>
+
+      <h3><span class="st">2</span> Feil nədir</h3>
+      <div class="fm">Feil əsas nitq hissəsidir: həm leksik, həm qrammatik mənası var.
+Feil əşyanın hərəkətini bildirir.
+Sualı: nə etdi? nə edir? nə edəcək?</div>
+      <div class="ex">Qardaşım dünən meşəyə getdi.    nə etdi?       → getdi
+Biz bu şəkli görürük.            nə edirik?     → görürük
+Sabah qonaqlar gələcəklər.       nə edəcəklər?  → gələcəklər</div>
+      <p>Feilin kökü var: <i>getdi</i> — <b>get-</b>, <i>görürük</i> — <b>gör-</b>, <i>gələcəklər</i> — <b>gəl-</b>. Köklə hərəkət bildirilir. Hərəkətin zamanı, kimin etdiyi və icra olunub-olunmadığı kökə artırılan şəkilçilərlə göstərilir.</p>
+
+      <h3><span class="st">3</span> Təsdiq və inkar forması</h3>
+      <div class="fm">Hərəkətin icra olunmadığını bildirmək üçün feillərə -ma² şəkilçisi artırılır:
+aldım / almadım;  bildim / bilmədim
+Feil -ır⁴, -ar² şəkilçiləri ilə işlənəndə -ma² şəkilçisinin saiti düşür:
+bilir / bilmir;  bilərəm / bilmərəm</div>
+      <p>Hərəkət icra olunursa, feil <b>təsdiq formasındadır</b>: <i>aldım, bilir</i>. İcra olunmursa — <b>inkar formasındadır</b>: <i>almadım, bilmir</i>. İnkar şəkilçisi köklə zaman şəkilçisinin arasına qoşulur: kök + -ma² + zaman + şəxs.</p>
+      <div class="ex">yaz-ma-dı         kök yaz- + inkar -ma² + keçmiş zaman -dı⁴
+gəl-mə-di-lər     kök gəl- + inkar -mə + -di + -lər
+bil-m-ir          -ır⁴ ilə -ma²-nın saiti düşüb
+Danışmayacağıq    danış + ma + y + acağ + ıq: inkar, gələcək zaman, I şəxsin cəmi; y — bitişdirici samit</div>
+      <p>Diqqət et: inkar forması zamanı dəyişmir. <i>Aldım</i> da, <i>almadım</i> da keçmiş zamandadır; gələcək zamanda <i>gəlməyəcək</i> kimi inkar forması da gələcək zamandadır.</p>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Mən bu gün <i>gəlirəm</i>", sonra: "Mən bu gün <i>gəlmirəm</i>". Hərəkət eynidir, zaman da eynidir (indiki zaman); fərq yalnız -ma² şəkilçisindədir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>-ır⁴ ilə işlənən feildə -ma²-nın saitini saxlamaq. Düz: <i>bilir → bilmir</i>. Keçmiş zamanda sait saxlanılır: <i>bildim → bilmədim</i>.</li>
+        <li>İnkar formasını başqa zaman saymaq. <i>Almadım</i> — inkar formasında keçmiş zamandır.</li>
+        <li>"Hər -ma² şəkilçili söz inkar feildir" demək. Sözün hansı suala cavab verdiyinə bax: <i>Bu çəkmə çox bahalıdır</i> — çəkmə nə? (isim, ayaqqabı); <i>Çalış xətləri əyri çəkmə</i> — nə et? (feil, əmr, inkar).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Feil hərəkət bildirir: nə etdi? nə edir? nə edəcək?
+İnkar: kök + -ma² + zaman şəkilçisi + şəxs şəkilçisi
+Zaman dəyişmir: aldım / almadım — hər ikisi keçmiş zaman
+-ır⁴, -ar² ilə -ma²-nın saiti düşür: bilir / bilmir; bilərəm / bilmərəm</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Dünən biz meşəyə getdik" cümləsində feili tap və sualını ver. <span class="ans">getdik — nə etdik?</span></li>
+        <li>"Bildim" feilinin inkar formasını yaz. <span class="ans">bilmədim</span></li>
+        <li>"Bilərəm" feilinin inkar formasını yaz və -ma²-nın saitinə bax. <span class="ans">bilmərəm — saiti düşüb</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Feilin zamanları: indiki, keçmiş, gələcək</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hərəkət indi baş verir, keçib, yoxsa hələ olacaq? Bunu söz yox, <b>feilin şəkilçisi</b> bildirir: <i>qaçır, qaçdı, qaçacaq</i>. Buraxılışda cümləni oxuyub feilin zamanını və şəkilçisini müəyyən etmək tələb olunur.</p>
+
+      <h3><span class="st">2</span> Üç zaman və şəkilçiləri</h3>
+      <div class="fm">Hərəkətin hansı zamanda baş verdiyini bildirmək üçün feilə müxtəlif şəkilçilər artırılır.
+İndiki zaman: -ır⁴ — qaçır, durur, gəlir, görür
+Keçmiş zaman: -dı⁴, -mış⁴, -ıb⁴ — gəldi, gəlib, gəlmişdir
+Gələcək zaman: -acaq², -ar² — baxacaq, görəcək, baxar, görər</div>
+      <p>⁴ və ² işarələri şəkilçinin neçə variantı olduğunu göstərir. -ır⁴ dörd variantlıdır: <i>qaç-ır, gəl-ir, dur-ur, gör-ür</i>. Gələcək zamanın şəkilçiləri <b>ikivariantlı</b>dır: <i>baxacaq, görəcək</i>. Variant sözün sonuncu saitinə görə seçilir.</p>
+
+      <h3><span class="st">3</span> Bitişdirici samit</h3>
+      <div class="fm">Saitlə bitən sözlə saitlə başlayan şəkilçi arasında y samiti işlənir: istəyir, oxuyacaq, deyib.
+Buna bitişdirici samit deyilir.</div>
+      <div class="ex">istə-y-ir      kök istə- saitlə bitir, -ır⁴ saitlə başlayır → y
+oxu-y-acaq     kök oxu- + y + -acaq²
+de-y-ib        kök de- + y + -ıb⁴</div>
+      <p>Bitişdirici samit şəkilçi deyil, yalnız iki saiti ayırır. Kök samitlə bitəndə o işlənmir: <i>qaç-ır, dur-acaq</i>.</p>
+
+      <h3><span class="st">4</span> Eyni feil üç zamanda</h3>
+      <div class="tbl"><table>
+        <tr><th>kök</th><th>indiki zaman -ır⁴</th><th>keçmiş zaman -dı⁴</th><th>gələcək zaman -acaq²</th></tr>
+        <tr><td>qaç-</td><td>qaçır</td><td>qaçdı</td><td>qaçacaq</td></tr>
+        <tr><td>dur-</td><td>durur</td><td>durdu</td><td>duracaq</td></tr>
+        <tr><td>oxu-</td><td>oxuyur</td><td>oxudu</td><td>oxuyacaq</td></tr>
+        <tr><td>gör-</td><td>görür</td><td>gördü</td><td>görəcək</td></tr>
+      </table></div>
+
+      <h3><span class="st">5</span> Cümlədə zamanı müəyyən et</h3>
+      <p>Feili tap, sonundakı zaman şəkilçisinə bax. Şəxs şəkilçisi zaman şəkilçisindən <b>sonra</b> gəlir: <i>oxu-muş-am</i> — -mış⁴ zaman şəkilçisidir, -am şəxs şəkilçisidir.</p>
+      <div class="ex">Biz indi dərs oxuyuruq.                   oxu-y-ur-uq: -ur (-ır⁴) → indiki zaman, -uq → I şəxsin cəmi
+Dünən biz meşəyə getdik.                  get-di-k: -di (-dı⁴) → keçmiş zaman, -k → I şəxsin cəmi
+Mən bu kitabı artıq oxumuşam.             oxu-muş-am: -mış⁴ → keçmiş zaman
+Bu ağacı babam əkib.                      əkib: -ıb⁴ → keçmiş zaman
+Qonaqlar saat beşdə gələcəklər.           gəl-əcək-lər: -acaq² → gələcək zaman
+Sabah yeni kitabları rəflərə düzərəm.     düz-ər-əm: -ar² → gələcək zaman</div>
+      <div class="life"><b>Həyatdan.</b> Müəllim yazır: "Dünən dərsə <i>gəlmədin</i>, sabah <i>gələcəksən</i>?" Birinci feil keçmiş zamandadır (-dı⁴, inkar), ikincisi gələcək zamandadır (-acaq²).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Zaman şəkilçisini şəxs şəkilçisi ilə qarışdırmaq. <i>Yazdım</i>: -dı⁴ zamandır (keçmiş), -m şəxsdir (I şəxsin təki).</li>
+        <li>-mış⁴ və -ıb⁴ şəkilçilərini gələcək zaman saymaq. Üçü də (-dı⁴, -mış⁴, -ıb⁴) keçmiş zaman bildirir: <i>gəldi, gəlmişdir, gəlib</i>.</li>
+        <li>Bitişdirici y-ni şəkilçi saymaq: <i>oxuyacaq</i> — şəkilçi -acaq²-dır, y yalnız bitişdiricidir.</li>
+        <li>Zamanı zaman sözünə görə demək. Feilin şəkilçisinə bax: <i>sabah</i> sözü kömək edir, amma zamanı şəkilçi göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İndiki zaman: -ır⁴
+Keçmiş zaman: -dı⁴, -mış⁴, -ıb⁴
+Gələcək zaman: -acaq², -ar²
+Bitişdirici samit y: istəyir, oxuyacaq, deyib
+Sıra: kök + (inkar -ma²) + zaman şəkilçisi + şəxs şəkilçisi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Oxuyacağam" feili hansı zamandadır, şəkilçisi nədir, y nə rolda işlənib? <span class="ans">gələcək zaman, -acaq²; bitişdirici samit</span></li>
+        <li>"Gəlmişdir" feili hansı zamandadır? <span class="ans">keçmiş zaman (-mış⁴)</span></li>
+        <li>"Bu şəkli kim çəkib?" cümləsində feilin zamanı və şəkilçisi? <span class="ans">keçmiş zaman, -ıb⁴</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Feilin şəxsə görə dəyişməsi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Hərəkəti kim edir: mən, sən, o, biz, siz, yoxsa onlar? Bunu da feilin sonundakı şəkilçi göstərir: <i>yazıram, yazırsan, yazır</i>. DİM-də "feil hansı zamana və şəxsə aiddir" tapşırığı bu iki əlaməti birlikdə soruşur.</p>
+
+      <h3><span class="st">2</span> Şəxs şəkilçiləri</h3>
+      <div class="fm">Hərəkətin hansı şəxs tərəfindən icra olunduğunu bildirmək üçün feillərə şəxs şəkilçiləri artırılır.
+Şəxs şəkilçiləri sözə zaman şəkilçilərindən sonra qoşulur.
+Nümunələr: yazıram, oxudum, gedəcəksən, gələrsiniz, vurdular, deyəcəyik, tapşırdıq</div>
+      <p>Üç şəxs var, hər biri təkdə və cəmdə işlənir — cəmi altı forma. Aşağıdakı cədvəl dərslikdəki nümunələrə əsasən <i>yaz-</i> kökü üzərində tərtib edilib.</p>
+      <div class="tbl"><table>
+        <tr><th>şəxs</th><th>indiki zaman</th><th>keçmiş zaman</th><th>gələcək zaman</th></tr>
+        <tr><td>I şəxsin təki (mən)</td><td>yazıram</td><td>yazdım</td><td>yazacağam</td></tr>
+        <tr><td>II şəxsin təki (sən)</td><td>yazırsan</td><td>yazdın</td><td>yazacaqsan</td></tr>
+        <tr><td>III şəxsin təki (o)</td><td>yazır</td><td>yazdı</td><td>yazacaq</td></tr>
+        <tr><td>I şəxsin cəmi (biz)</td><td>yazırıq</td><td>yazdıq</td><td>yazacağıq</td></tr>
+        <tr><td>II şəxsin cəmi (siz)</td><td>yazırsınız</td><td>yazdınız</td><td>yazacaqsınız</td></tr>
+        <tr><td>III şəxsin cəmi (onlar)</td><td>yazırlar</td><td>yazdılar</td><td>yazacaqlar</td></tr>
+      </table></div>
+      <p>Cədvəldəki formalarda III şəxsin təkində əlavə şəxs şəkilçisi yoxdur: feil zaman şəkilçisi ilə bitir (<i>yazır, yazdı, yazacaq</i>). -mış⁴ ilə isə III şəxsin təkində -dir işlənə bilər: <i>gəl-miş-dir</i> (dərslikdəki nümunə).</p>
+      <p>Diqqət et: kökün və şəkilçinin sonunda səs dəyişə bilər: <i>get → ged-əcək</i> (t→d), <i>gələcək → gələcəyəm, deyəcək → deyəcəyik</i> (k→y), <i>yazacaq → yazacağam</i> (q→ğ). Bu, saitlə başlayan şəkilçi artırılanda olur.</p>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">gedəcəksən     ged + əcək (gələcək zaman) + sən (II şəxsin təki)
+vurdular       vur + du (keçmiş zaman) + lar (III şəxsin cəmi)
+deyəcəyik      de + y (bitişdirici samit) + əcək (gələcək zaman) + ik (I şəxsin cəmi)
+oxudum         oxu + du (keçmiş zaman) + m (I şəxsin təki)</div>
+      <p>Dərslikdəki tapşırıq nümunəsi:</p>
+      <div class="ex">Sabah yeni kitabları rəflərə düzərəm.
+düzərəm — gələcək zaman, I şəxsin təki</div>
+      <div class="ex">Mən dərslərimi çoxdan hazırlamışam.       keçmiş zaman, I şəxsin təki
+Çox vacib məsələ haqqında danışacağıq.      gələcək zaman, I şəxsin cəmi
+Uşaqlar məktəbin həyətində ağac əkirlər.    indiki zaman, III şəxsin cəmi</div>
+
+      <h3><span class="st">4</span> Zamanı və şəxsi birlikdə tap</h3>
+      <div class="fm">1. Feili tap.
+2. Zaman şəkilçisini müəyyən et: -ır⁴, -dı⁴, -mış⁴, -ıb⁴, -acaq², -ar².
+3. Qalan hissə şəxs şəkilçisidir. Kim edir? mən, sən, o, biz, siz, onlar.</div>
+      <div class="life"><b>Həyatdan.</b> Sinif yoldaşın yazır: "Biz sabah <i>görüşəcəyik</i>." Feil kimin adından deyilir? "Biz" — I şəxsin cəmi. Eyni hərəkəti "Sən sabah <i>gələcəksən</i>" deyəndə II şəxsə keçirsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>III şəxsin təkində şəxs şəkilçisi axtarmaq. -ır⁴, -dı⁴, -acaq² ilə yoxdur: <i>yazır, yazdı, yazacaq</i> (məsələn, -mış⁴ ilə -dir gəlir: <i>gəlmişdir</i>).</li>
+        <li>Təki və cəmi qarışdırmaq: <i>yazdınız</i> — II şəxsin cəmi, <i>yazdılar</i> — III şəxsin cəmi.</li>
+        <li>Şəxs şəkilçisini zaman şəkilçisi ilə qarışdırmaq. Əvvəl zaman şəkilçisi, sonra şəxs şəkilçisi gəlir: <i>gedəcək-sən</i> (-acaq² zamandır, -sən şəxsdir).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şəxs şəkilçiləri zaman şəkilçilərindən sonra qoşulur.
+I şəxs: mən, biz  II şəxs: sən, siz  III şəxs: o, onlar
+III şəxsin təkində (yazır, yazdı, yazacaq) əlavə şəxs şəkilçisi yoxdur; məsələn, -mış⁴ ilə: gəlmişdir.
+Cavab formatı: gələcək zaman, II şəxsin təki</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Yazdınız" feilinin zamanı və şəxsi? <span class="ans">keçmiş zaman, II şəxsin cəmi</span></li>
+        <li>"Deyəcəyik" feilinin zamanı və şəxsi? <span class="ans">gələcək zaman, I şəxsin cəmi</span></li>
+        <li>"Biz indi dərs oxuyuruq" cümləsində feil hansı zamana və şəxsə aiddir? <span class="ans">indiki zaman, I şəxsin cəmi</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Feilin quruluşca növləri; mürəkkəb feillərin yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Feillər quruluşuna görə də fərqlənir: bəziləri bir kökdən ibarətdir (<i>yazdı</i>), bəziləri leksik şəkilçi ilə düzəlir (<i>çoxaldı</i>), bəziləri iki sözdən ibarətdir (<i>kömək etdi</i>). İmtahanda həm növünü, həm də mürəkkəb feilin yazılışını soruşurlar.</p>
+
+      <h3><span class="st">2</span> Sadə, düzəltmə və mürəkkəb feillər</h3>
+      <div class="fm">Sadə söz: bir kökdən, ya da kök və qrammatik şəkilçidən ibarət sözdür.
+Düzəltmə söz: sözlərə leksik şəkilçilər artırmaqla yaranır.
+Mürəkkəb söz: iki və daha artıq sözün birləşməsi ilə yaranır.</div>
+      <p>Bu qaydalar feilə də aiddir. <b>Leksik şəkilçi</b> yeni söz yaradır; <b>qrammatik şəkilçi</b> (zaman, şəxs, inkar) yeni söz yaratmır, yalnız formanı dəyişir.</p>
+      <div class="ex">Sadə feil:        yazdı, gəldi, oxuyuruq, bilmədim
+                   — kök və yalnız qrammatik şəkilçilər
+Düzəltmə feil:    duzladı, çoxaldı, bozardı, uzaqlaşdı
+                   — kökə leksik şəkilçi artırılıb
+Mürəkkəb feil:    kömək etdi, şad oldu, silib-süpürür
+                   — iki sözdən ibarətdir</div>
+      <div class="ex">duzladı        duz (kök) + -la (leksik şəkilçi) + -dı (zaman şəkilçisi)
+çoxaldı        çox (kök) + -al (leksik şəkilçi) + -dı
+bozardı        boz (kök) + -ar (leksik şəkilçi) + -dı
+uzaqlaşdılar   uzaq (kök) + -laş (leksik şəkilçi) + -dı + -lar (III şəxsin cəmi)</div>
+
+      <h3><span class="st">3</span> Ayrı yazılan mürəkkəb feillər</h3>
+      <div class="fm">Elə mürəkkəb sözlər var ki, ayrı yazılır.
+Feillər: şad olmaq, kömək etmək, görə bilmək və s.
+"Etmək", "olmaq" sözləri ilə işlənən bəzi mürəkkəb feillərdə əsas söz ayrılıqda işlənə bilmir: bəxş etmək, cəzb etmək, peyda olmaq və s.</div>
+      <p>Mürəkkəb feil <b>bir cümlə üzvü</b> kimi çıxış edir və bir sualı cavablandırır. Zaman, şəxs və inkar şəkilçiləri ikinci hissəyə (<i>etmək, olmaq</i>) artırılır, birinci söz dəyişmir. Eyni qayda başqa sözlərə də aiddir: <i>xahiş, cəhd, mübahisə</i> + <i>etmək</i>; <i>nail, mane, muğayat</i> + <i>olmaq</i>.</p>
+      <div class="ex">kömək etdi         kömək etmədi        kömək edəcək
+xahiş edirəm       cəhd etdik          mübahisə etdilər
+şad oldu           mane oldu           peyda oldu</div>
+      <p>Qeyd: dərslikdəki "görə bilmək" tərkibində feilin başqa forması da var; belə formalar sonrakı mövzularda öyrənilir (13-cü mövzu), burada yalnız <i>etmək, olmaq</i> ilə düzələnləri yazırıq.</p>
+
+      <h3><span class="st">4</span> Tərəfləri defislə yazılan mürəkkəb feillər</h3>
+      <p>Bəzi mürəkkəb feillər iki feildən ibarətdir və tərəfləri defislə yazılır. Dərslikdə bu feillərdən silib-süpürmək və yazıb-yaratmaq (7-ci sinif) nümunə kimi verilib; ölçüb-biçmək və gəzib-dolaşmaq eyni qayda ilə yazılır. Hamısında birinci tərəf -ıb⁴ şəkilçisi qəbul edib.</p>
+      <div class="ex">silib-süpürmək    ölçüb-biçmək    yazıb-yaratmaq    gəzib-dolaşmaq</div>
+      <p>Dərslikdə mənaca yaxın sözlərdən düzələn mürəkkəb isimlər defislə yazılır (<i>duz-çörək</i>); <i>gediş-gəliş</i> də belədir. Bəzi feillərin birinci tərəfi belə bir isimdir: o defislə yazılır, <i>etmək, olmaq</i> isə ayrı qalır:</p>
+      <div class="ex">and-aman etmək       göz-qulaq olmaq</div>
+      <div class="ex">Nənəm hər gün otaqları silib-süpürür.
+Usta parçanı diqqətlə ölçüb-biçdi.
+Qonşular uşaqlara göz-qulaq oldular.</div>
+
+      <h3><span class="st">5</span> Özünü yoxla</h3>
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mürəkkəb feili bitişik yazmaq: <i>köməketdi, şadoldu</i>. Düz: <i>kömək etdi, şad oldu</i>.</li>
+        <li>Mürəkkəb feili defislə yazmaq: <i>kömək-etdi</i>. Defis yalnız tərəfləri defislə yazılan feillərdə var: <i>silib-süpürmək</i>.</li>
+        <li>Şəkilçi qəbul etmiş feili düzəltmə saymaq. <i>Yazdı, gəldilər</i> — zaman və şəxs şəkilçisi qrammatikdir; leksik şəkilçi yoxdur, feil sadədir.</li>
+        <li>Mürəkkəb feildə "kömək" sözünü ayrıca isim sayıb ayrıca cümlə üzvü hesab etmək. Bütöv <i>kömək etdi</i> xəbərdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sadə feil: kök və qrammatik şəkilçilər (yazdı)
+Düzəltmə feil: kök və leksik şəkilçi (duzladı, çoxaldı)
+Mürəkkəb feil: iki və daha artıq sözün birləşməsi
+Ayrı yazılır: kömək etmək, şad olmaq, peyda olmaq
+Defislə yazılır: silib-süpürmək, ölçüb-biçmək; and-aman etmək, göz-qulaq olmaq</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Uşaqlar bizdən uzaqlaşdılar" — "uzaqlaşdılar" quruluşca hansı növdür? <span class="ans">düzəltmə (uzaq + -laş + -dı + -lar)</span></li>
+        <li>"Müəllim bu sözü lövhədə qeyd etdi" — "qeyd etdi" necə yazılır və növü? <span class="ans">ayrı yazılır; mürəkkəb feil</span></li>
+        <li>"Gənc şair ömrü boyu yazıb-yaratdı" — "yazıb-yaratdı" quruluşca hansı növdür və necə yazılır? <span class="ans">mürəkkəb feil; tərəfləri defislə yazılır</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: feil — forma və zaman</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Feil haqqında səhv fikri müəyyən edin"</b> — bir feil verilir (məsələn, <i>danışmayacağıq</i>), beş fikirdən biri yanlışdır.</li>
+        <li><b>"Cümlələrin hansında feil … zamandadır / inkar formasındadır"</b> — beş cümlə; hər cümlədə feili tapıb şəkilçisinə baxmaq lazımdır.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş cümlələr və ya feillər; variantlar "A) 1, 3, 4" kimidir.</li>
+        <li><b>"Mürəkkəb feil düzgün yazılıb"</b> — beş cümlədə mürəkkəb feilin yazılışı: ayrı, bitişik, defislə.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: -mış⁴ və -ıb⁴ şəkilçilərini gələcək zaman saymaq, inkar formasını təsdiq saymaq, II şəxsin cəmi ilə III şəxsin cəmini qarışdırmaq, mürəkkəb feili bitişik yazmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — feil haqqında səhv fikir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · feilin forması</span>
+        <p>"Danışmayacağıq" feili haqqında fikirlərdən hansı yanlışdır?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>I şəxsin cəmindədir.</li><li>Təsdiq formasındadır.</li><li>Gələcək zamanda işlənmişdir.</li><li>Tərkibində bitişdirici samit var.</li><li>Tərkibində -ma² şəkilçisi var.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">danış-ma-y-acağ-ıq
+-ma² — inkar şəkilçisi → inkar formasındadır, təsdiq deyil
+-acaq² — gələcək zaman; y — bitişdirici samit; -ıq — I şəxsin cəmi
+Cavab: B) Təsdiq formasındadır.</div>
+      <ul>
+        <li><b>A), C), D), E)</b> doğrudur. -ma² şəkilçisi görünəndə feil inkar formasındadır; inkar zamanı dəyişmir, ona görə gələcək zaman qalır.</li>
+        <li>Tələ: "danışmayacağıq" sözündəki -ma²-nı görməyib feili təsdiq forması saymaq.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — zaman və şəxs</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · zaman və şəxs</span>
+        <p>Cümlələrin hansında feil gələcək zamanda, II şəxsin cəmində işlənib?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Siz dünən nə gördünüz?</li><li>Səyahətə nə vaxt çıxacaqsınız?</li><li>Sən bu mövzuları artıq öyrənmişsən.</li><li>Sabah biz muzeyə gedəcəyik.</li><li>Siz bu şəkli görürsünüz.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) gördünüz — gör-dü-nüz: -dü (-dı⁴) keçmiş zaman; -nüz II şəxsin cəmi
+B) çıxacaqsınız — -acaq²: gələcək zaman; -sınız: II şəxsin cəmi
+C) öyrənmişsən — -mış⁴: keçmiş zaman; -sən: II şəxsin təki
+D) gedəcəyik — -acaq²: gələcək zaman; -ik: I şəxsin cəmi
+E) görürsünüz — -ür: indiki zaman; -sünüz: II şəxsin cəmi
+Cavab: B)</div>
+      <ul>
+        <li><b>A), E)</b> — şəxs düzdür (II cəm), zaman səhvdir.</li>
+        <li><b>D)</b> — zaman düzdür (gələcək), şəxs səhvdir (I cəm).</li>
+        <li><b>C)</b> — -mış⁴ gələcək zaman bildirmir; həm zaman, həm şəxs səhvdir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə feil inkar formasındadır?<br>1. Mən bu sualın cavabını bilmirəm.<br>2. Biz sabah muzeyə gedəcəyik.<br>3. Qardaşım hələ evə gəlməyib.<br>4. Onlar bizi gözləmədilər.<br>5. Qonaqlar axşam getdilər.</p>
+        <ol class="imt-opts"><li>1, 3</li><li>1, 3, 4</li><li>2, 5</li><li>1, 4, 5</li><li>3, 4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. bilmirəm — bil-m-ir-əm: -ma² var, saiti düşüb → inkar
+2. gedəcəyik — -ma² yoxdur → təsdiq
+3. gəlməyib — gəl-mə-y-ib: -mə² var → inkar
+4. gözləmədilər — gözlə-mə-di-lər: -mə² var → inkar
+5. getdilər — -ma² yoxdur → təsdiq
+Cavab: B) 1, 3, 4</div>
+      <ul>
+        <li><b>A)</b> — 4-cü cümləni buraxmaq.</li>
+        <li><b>C)</b> — təsdiq cümlələrini seçmək (2, 5).</li>
+        <li><b>D)</b> — 3-cü cümləni buraxıb 5-ci cümləni əlavə etmək: "getdilər" təsdiq formasındadır.</li>
+        <li><b>E)</b> — 1-ci cümləni buraxmaq: "bilmirəm" sözündə -ma²-nın saiti düşüb, amma feil yenə inkar formasındadır.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Feili şəkilçisinə baxmadan, cümlədə işlənən zaman sözünə görə təyin etmək. Əvvəl şəkilçini ayır.</li>
+        <li>-ır⁴ ilə işlənən feildə inkar şəkilçisini görməmək: "bilmir", "gəlmirəm" — inkar formasındadır, çünki -ma²-nın saiti düşüb.</li>
+        <li>Mürəkkəb feildə yazılışa görə seçmək. "Köməketdi", "şad-oldu" səhvdir; düz: "kömək etdi", "şad oldu", amma "silib-süpürür".</li>
+        <li>Nömrə kombinasiyasında bütün cümlələri yoxlamamaq. Beşini də ayrıca təhlil et, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Feili tap → şəkilçilərini ayır: kök + (-ma²) + zaman + şəxs.
+-ma² varsa — inkar; zaman dəyişmir.
+-dı⁴, -mış⁴, -ıb⁴ — keçmiş; -ır⁴ — indiki; -acaq², -ar² — gələcək.
+Mürəkkəb feil: kömək etmək (ayrı), silib-süpürmək (defislə).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Gedəcəksən" feilinin zamanı və şəxsi? <span class="ans">gələcək zaman, II şəxsin təki</span></li>
+        <li>"Bu ağacı babam əkib" — feilin zaman şəkilçisi? <span class="ans">-ıb⁴ (keçmiş zaman)</span></li>
+        <li>"Şad oldu" mürəkkəb feili necə yazılır? <span class="ans">ayrı</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

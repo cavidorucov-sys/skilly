@@ -1639,7 +1639,9 @@
    "ad": "Feil I: forma və zaman",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 10",
-   "hefte": "2027-02-01"
+   "hefte": "2027-02-01",
+   "ders": "dersler/az-feil-1.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",
