@@ -1661,7 +1661,9 @@
    "ad": "Feil III: qrammatik məna növləri",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 12",
-   "hefte": "2027-02-15"
+   "hefte": "2027-02-15",
+   "ders": "dersler/az-feil-3.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",

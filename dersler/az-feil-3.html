@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Feil III: qrammatik məna növləri dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-feil-3.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Feil III</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya</div>
+    <h1>Feil III: qrammatik məna növləri</h1>
+    <p>Feilin altı qrammatik məna növü var: <b>məlum, məchul, şəxssiz, qayıdış, qarşılıq-birgəlik, icbar</b>. Bu mövzu buraxılış proqramındadır. Növü müəyyən etmək üçün hərəkətin <b>subyekti</b> (icraçısı) və <b>obyekti</b> (hərəkətin yönəldiyi varlıq) bilinməlidir. Subyekt və obyekt anlayışları 6-cı sinif dərsliyindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, hər nümunədə özün sual ver: işi kim görür, hərəkət kimin üzərindədir? Sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Subyekt, obyekt, məlum növ</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Məchul və şəxssiz növ</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qayıdış və qarşılıq-birgəlik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>İcbar; növü tanımaq</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Hərəkətin subyekti və obyekti; məlum növ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki cümləyə bax: «Nigar məktub yazdı.» və «Məktub yazıldı.» Hərəkət eynidir — yazmaq. Amma birincidə işi kimin gördüyü bəllidir, ikincidə bildirilmir. Feilin bu cəhəti onun <b>qrammatik məna növüdür</b>. Növü tanımaq üçün əvvəl iki anlayışı bilmək lazımdır: hərəkətin <b>subyekti</b> və <b>obyekti</b>.</p>
+
+      <h3><span class="st">2</span> Subyekt və obyekt</h3>
+      <div class="fm">Hərəkətin icraçısını bildirən söz — subyekt
+Cümlədə subyekt mübtəda rolunda olur
+Hərəkət varlıq üzərində icra olunur — bu varlıq obyektdir
+Məlum növlü cümlədə obyekti bildirən söz tamamlıq olur
+Məchul növdə obyekt mübtəda vəzifəsində çıxış edir (Məktub yazıldı — 2-ci dərs)</div>
+      <div class="ex">Gülnar kitab oxuyur.
+Gülnar — kim oxuyur?  → hərəkətin icraçısı: subyekt (mübtəda)
+kitab  — nə oxuyur?  → hərəkətin obyekti (tamamlıq)
+oxuyur — hərəkət</div>
+      <p>Cümlədə hansı sözün subyekt, hansının obyekt olduğunu hallar da göstərir: adlıq halda işlənən söz, əsasən, subyekti, qeyri-müəyyən təsirlik halda işlənən söz isə obyekti bildirir.</p>
+      <div class="ex">İdmançı qızıl medal qazandı.   İdmançı — adlıq hal, hərəkəti icra edən: subyekt
+O, kitab oxuyur.                  kitab — qeyri-müəyyən təsirlik hal: obyekt</div>
+
+      <h3><span class="st">3</span> Məlum növ</h3>
+      <div class="fm">Məlum növ: icraçı bəllidir və hərəkəti özü yerinə yetirir
+Feildə növ şəkilçisi olmur: yaz-dı, tik-di, oxu-du, gəl-di
+Məlum növdə mübtəda hərəkəti icra edən subyektdir</div>
+      <div class="ex">Nigar məktub yazdı.
+icraçı: Nigar (bəllidir); obyekt: məktub
+yaz-dı — kökdən sonra yalnız zaman şəkilçisi var, növ şəkilçisi yoxdur → məlum növ
+
+Qonaqlar axşam gəldilər.
+icraçı: Qonaqlar; obyekt yoxdur
+gəl-di-lər — növ şəkilçisi yoxdur → yenə məlum növ</div>
+
+      <h3><span class="st">4</span> Altı növ bir baxışda</h3>
+      <p>Qalan beş növü növbəti dərslərdə ayrıca öyrənəcəksən. Cədvəl yol xəritəsidir; <b>⁴</b> işarəsi şəkilçinin ahəngə görə dörd cür yazıldığını göstərir (ı, i, u, ü).</p>
+      <div class="tbl"><table>
+        <tr><th>növ</th><th>icraçı və hərəkət</th><th>şəkilçi</th><th>nümunə</th></tr>
+        <tr><td>məlum</td><td>icraçı bəllidir, işi özü görür</td><td>yoxdur</td><td>yazdı</td></tr>
+        <tr><td>məchul</td><td>hərəkət obyektin üzərində icra olunur, obyekt mübtəda olur, icraçı bildirilmir</td><td>-ıl⁴, -ın⁴, -n</td><td>yazıldı, oxundu</td></tr>
+        <tr><td>şəxssiz</td><td>icraçı ümumidir, cümlədə mübtəda yoxdur</td><td>-ıl⁴, -ın⁴</td><td>gedilir</td></tr>
+        <tr><td>qayıdış</td><td>hərəkət icraçının özünə qayıdır</td><td>-ın⁴, -n</td><td>geyindi</td></tr>
+        <tr><td>qarşılıq-birgəlik</td><td>iki və ya daha çox icraçı: bir-birinə qarşı və ya birlikdə</td><td>-ış⁴, -ş</td><td>görüşdülər</td></tr>
+        <tr><td>icbar</td><td>icraçı hərəkəti başqasına etdirir</td><td>-dır⁴, -t</td><td>yazdırdı</td></tr>
+      </table></div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Subyekti cümlənin ilk sözü saymaq. "Axşam qonaqlar gəldi" cümləsində subyekt "axşam" deyil, "qonaqlar"dır: kim gəldi? sualını ver.</li>
+        <li>Obyekt olmayan cümlədə feili başqa növ saymaq. "Qonaqlar gəldilər" cümləsində obyekt yoxdur, amma növ şəkilçisi də yoxdur — məlum növdür.</li>
+        <li>Mübtədanı həmişə icraçı saymaq. Məlum növdə mübtəda icraçıdır; "Məktub yazıldı" cümləsində isə mübtəda "məktub" hərəkəti icra etmir (2-ci dərs).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Subyekt — hərəkətin icraçısı (mübtəda)
+Obyekt — hərəkətin yönəldiyi varlıq (məlum növdə tamamlıq, məchul növdə mübtəda)
+Məlum növ: icraçı bəllidir, işi özü görür, növ şəkilçisi yoxdur
+Altı növ: məlum, məchul, şəxssiz, qayıdış, qarşılıq-birgəlik, icbar</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Rəssam şəkil çəkdi" cümləsində subyekt hansı sözdür? <span class="ans">Rəssam</span></li>
+        <li>"Kombayn taxıl biçir" cümləsində hansı söz obyekti bildirir? <span class="ans">taxıl</span></li>
+        <li>"Qonaqlar axşam gəldilər" cümləsində feil hansı növdədir? <span class="ans">məlum (növ şəkilçisi yoxdur)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Məchul və şəxssiz növ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bu iki növdə feil eyni şəkilçiləri (-ıl⁴, -ın⁴) qəbul edir, ona görə onları ən çox qarışdırırlar. Fərq <b>mübtədadadır</b>: məchul növdə cümlədə mübtəda var, bu mübtəda hərəkətin üzərində icra olunduğu varlığı (obyekti) bildirir; şəxssiz növdə <b>mübtəda yoxdur</b>. Məchul növ təsirli feildən (nəyi? sualı verilən), şəxssiz növ təsirsiz feildən düzəlir.</p>
+      <div class="life"><b>Həyatdan.</b> Məktəbin divarında yazılıb: «Dərsliklər paylandı.» Kimin payladığı yazılmayıb, vacib də deyil: vacib olan dərsliklərin paylanmasıdır. Belə cümlələrdə feil məchul növdə olur.</div>
+
+      <h3><span class="st">2</span> Məchul növ</h3>
+      <div class="fm">Məchul növ: hərəkət obyektin üzərində icra olunur
+Obyekt cümlədə mübtəda olur, icraçı bildirilmir
+Təsirli feildən düzəlir
+Şəkilçisi: -ıl⁴ (yaz-ıl-dı, tik-il-di), -ın⁴ (böl-ün-dü)
+Saitlə bitən kökdə: -n (oxu-n-du, qarşıla-n-dı)</div>
+      <div class="ex">Nigar məktub yazdı.   → məlum: icraçı Nigardır
+Məktub yazıldı.        → məchul: icraçı yoxdur, "məktub" mübtədadır və hərəkətin obyektidir
+
+Bağda ağaclar əkildi.  (ək-il-di)
+Yeni şeir ucadan oxundu. (oxu-n-du)
+Oğru tutuldu.          (tut-ul-du)
+Pay bərabər bölündü.   (böl-ün-dü)</div>
+      <p>Yoxlama üsulu: cümləni məlum növə çevir. İcraçı əlavə olunursa və əvvəlki mübtəda obyektə (tamamlığa) çevrilirsə — məchul növdür: <i>Şəhərdə yeni körpü tikildi → Usta şəhərdə yeni körpü tikdi.</i></p>
+
+      <h3><span class="st">3</span> Şəxssiz növ</h3>
+      <div class="fm">Şəxssiz növ: hərəkətin icraçısı qrammatik cəhətdən göstərilmir, ümumidir (hər kəs, hamı)
+Cümlədə mübtəda yoxdur
+Təsirsiz feildən düzəlir (obyekt tələb etməyən): ged-il-ir, gəl-in-ir
+Feil yalnız III şəxsin təkində işlənir
+Şəkilçisi: -ıl⁴, -ın⁴</div>
+      <div class="ex">Səhər tezdən durulur.     dur-ul-ur: kim? nə? sualı ilə mübtəda tapılmır → şəxssiz
+Bu otaqda yatılır.        yat-ıl-ır: icraçı ümumidir, mübtəda yoxdur → şəxssiz
+Oraya piyada gedilir.     ged-il-ir → şəxssiz
+Məktuba baxıldı.          bax-ıl-dı: "məktuba" vasitəli tamamlıqdır, mübtəda yoxdur → şəxssiz</div>
+      <div class="ex">Yeni şeir ucadan oxundu.   nə oxundu? — şeir → mübtəda var → məchul
+Axşam evə qayıdıldı.      nə qayıdıldı? sualının cavabı yoxdur, mübtəda yoxdur → şəxssiz</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>-ıl⁴ şəkilçisini görən kimi "məchul" demək. Əvvəl cümlədə mübtəda axtar: "nə? kim?" sualına cavab verən mübtəda var və hərəkət onun üzərindədirsə — məchul, mübtəda yoxdursa — şəxssiz.</li>
+        <li>"Oxundu"da -ıl⁴ tapmamaq. Saitlə bitən kökdən sonra şəkilçi -n olur: oxu-n-du.</li>
+        <li>Şəxssiz növdə icraçı axtarmaq. "Durulur" cümləsində "kim durur?" sualının cavabı yoxdur: icraçı hər kəsdir.</li>
+        <li>Şəxssiz növdə cümlədə heç bir obyekt olmur demək. "Məktuba baxıldı" cümləsində vasitəli tamamlıq var; şəxssizliyi mübtədanın olmaması müəyyən edir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Məchul: təsirli feildən, mübtəda obyektdir, icraçı bildirilmir (yazıldı, oxundu)
+Şəxssiz: təsirsiz feildən, mübtəda yoxdur, III şəxsin təkində (gedilir, durulur)
+Fərq: nə? kim? sualına cavab verən mübtəda var — məchul, yoxdur — şəxssiz</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Poçtla məktub göndərildi" — feilin növü? <span class="ans">məchul (mübtəda: məktub, hərəkətin obyekti)</span></li>
+        <li>"Axşam evə qayıdıldı" — feilin növü? <span class="ans">şəxssiz (mübtəda yoxdur, icraçı ümumidir)</span></li>
+        <li>"Şəhərdə yeni körpü tikildi" cümləsini məlum növə çevir. <span class="ans">məsələn: Usta şəhərdə yeni körpü tikdi</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qayıdış və qarşılıq-birgəlik növ</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Qayıdış növ</h3>
+      <div class="fm">Qayıdış növ: hərəkət icraçının özünə qayıdır
+İcraçı həm işi görür, həm də onun obyektidir
+Şəkilçisi: -ın⁴ (gey-in-di, yu-y-un-du)
+Saitlə bitən kökdə: -n (dara-n-dı)</div>
+      <div class="ex">Uşaq geyindi.     = Uşaq öz əyninə paltar geydi.
+Nigar darandı.    = Nigar özünü daradı.
+Oğlan soyundu.    = Oğlan öz üstündən geyimi çıxardı.</div>
+      <p>Eyni kökdən üç növü müqayisə et:</p>
+      <div class="ex">Anam qabı yudu.         məlum: icraçı anamdır, obyekt başqadır (qab)
+Qab yuyuldu.            məchul: icraçı bildirilmir, hərəkət qabın üzərindədir (qab — mübtəda)
+Bəxtiyar yuyundu.       qayıdış: Bəxtiyar özünü yudu</div>
+      <div class="life"><b>Həyatdan.</b> Səhər məktəbə tələsirsən: «Tez geyindim, yuyundum, darandım.» Üç feilin hamısı sənin öz üzərində icra etdiyin hərəkətdir — qayıdış növ.</div>
+
+      <h3><span class="st">2</span> Qarşılıq-birgəlik növ</h3>
+      <div class="fm">Qarşılıq-birgəlik növ: hərəkət iki və ya daha çox icraçı arasında icra olunur
+Qarşılıq — icraçılar bir-birinə qarşı eyni işi görür
+Birgəlik — icraçılar işi birlikdə görür
+Şəkilçisi: -ış⁴ (gör-üş-dü, yaz-ış-dı)
+Saitlə bitən kökdə: -ş (qucaqla-ş-dı)</div>
+      <div class="ex">Dostlar küçədə görüşdülər.     bir-biri ilə görüşdülər (qarşılıq)
+İki şair illərlə yazışdılar.     biri o birinə yazdı (qarşılıq)
+Dostlar qucaqlaşdılar.            bir-birini qucaqladılar (qarşılıq)
+Əli Vüqarla görüşdü.             icraçı iki nəfərdir: Əli və Vüqar</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>-ın⁴ olan hər feili qayıdış saymaq. "Şeir oxundu"da şeir özü oxumur — hərəkət onun üzərindədir, bu məchul növdür. Qayıdışda icraçı canlıdır və işi öz üzərində görür. Qayıdış növ -ıl⁴ ilə də düzələ bilər (Əsgər kənara çəkildi), ona görə şəkilçiyə yox, mənaya və cümləyə bax.</li>
+        <li>-ış⁴-lı hər sözü feil saymaq. "Çıxış", "gəliş", "baxış" feil deyil, isimdir: hərəkət yox, anlayış bildirir.</li>
+        <li>Cəm icraçını qarşılıq saymaq. "Uşaqlar qaçdılar" cümləsində icraçı çoxdur, amma -ış⁴ şəkilçisi yoxdur — məlum növdür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qayıdış: hərəkət icraçının özünə qayıdır (-ın⁴, -n): geyindi, yuyundu
+Qarşılıq-birgəlik: bir neçə icraçı, qarşılıqlı və ya birgə (-ış⁴, -ş): görüşdülər
+Cəm şəkilçisi qarşılıq-birgəlik deyil: növ şəkilçisi -ış⁴ (saitdən sonra -ş) olmalıdır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Pəhləvanlar meydanda vuruşdular" — feilin növü? <span class="ans">qarşılıq-birgəlik; -uş, -ış⁴ şəkilçisinin variantıdır</span></li>
+        <li>"Oğlan tələsik soyundu" — feilin növü? <span class="ans">qayıdış (öz üstündən geyimi çıxardı)</span></li>
+        <li>"Çıxış" sözü feildirmi? <span class="ans">yox, isimdir</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. İcbar növ; növü necə müəyyən edirik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> İcbar növ</h3>
+      <div class="fm">İcbar növ: icraçı hərəkəti özü yox, başqasına etdirir
+Şəkilçisi: -dır⁴ (yaz-dır-dı, tik-dir-di, yu-dur-du)
+Bəzi feil əsaslarına -t artırılır: oxu-t-du, toxu-t-du, boya-t-dı
+Başqa icbar şəkilçiləri də var; bu mövzuda -dır⁴ və -t əsasdır</div>
+      <div class="ex">Müəllim şagirdə şeir oxutdu.   şeiri şagird oxudu, müəllim isə ona oxutdu
+Atam maşını yudurdu.            maşını yuyan başqasıdır, atam yudurub
+Rəhbər məktubu yazdırdı.        məktubu başqası yazdı, rəhbər yazdırdı</div>
+      <p><b>Diqqət:</b> -dır⁴ həm də xəbərlik şəkilçisidir. İsim və sifətdən sonra gələn -dır⁴ icbar deyil: <i>kitab maraqlıdır, atam müəllimdir</i>. İcbar -dır⁴ feil əsasına artırılır və hərəkəti başqasına etdirmək mənası yaradır: yaz-dır-dı. Feil əsasından sonra gələn hər -dır⁴ icbar sayılmır, əsas ölçü məna və cümlədir.</p>
+
+      <h3><span class="st">2</span> Növü necə müəyyən edirik</h3>
+      <div class="fm">1. Feili tap, kök və şəkilçiyə ayır: yaz-ıl-dı
+2. Növ şəkilçisi yoxdur, icraçı işi özü görür → məlum
+3. -dır⁴ və ya -t, icraçı başqasına etdirir → icbar
+4. -ış⁴, bir neçə icraçı → qarşılıq-birgəlik
+5. -ıl⁴, -ın⁴, -n və icraçı işi öz üzərində görür → qayıdış
+6. -ıl⁴, -ın⁴, -n və mübtəda hərəkətin obyektidir (təsirli feil) → məchul
+7. -ıl⁴, -ın⁴ və cümlədə mübtəda yoxdur (təsirsiz feil, III şəxsin təki) → şəxssiz</div>
+      <p>Eyni kökdən dörd növ:</p>
+      <div class="ex">Anam qabı yudu.           yu-du         → məlum
+Qab yuyuldu.              yu-y-ul-du    → məchul
+Bəxtiyar yuyundu.         yu-y-un-du    → qayıdış
+Atam maşını yudurdu.      yu-dur-du     → icbar</div>
+      <div class="ex">Qonşular bayram günü öpüşdülər.   öp-üş-dü-lər → qarşılıq-birgəlik
+Axşam evə qayıdıldı.                qayıd-ıl-dı   → şəxssiz</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Eyni şəkilçini bir növə bağlamaq. -ıl⁴ və -ın⁴ üç növdə işlənə bilir: məchul (yazıldı, bölündü), şəxssiz (gedilir, gəlinir), qayıdış (Əsgər kənara çəkildi, geyindi). Şəkilçidən sonra cümlənin mənasına bax.</li>
+        <li>İcbarı məchul ilə qarışdırmaq. İcbarda icraçı var — o, işi başqasına etdirir. Məchulda icraçı bildirilmir.</li>
+        <li>İsim və sifətdən sonrakı -dır⁴-i icbar saymaq: "gözəldir", "müəllimdir" — xəbərlik şəkilçisidir. Feil əsasından sonra gələn -dır⁴ üçün də icbar mənası yoxlanmalıdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İcbar: icraçı başqasına etdirir (-dır⁴, -t): yazdırdı, oxutdu
+məlum — şəkilçi yoxdur  məchul — mübtəda obyektdir  şəxssiz — mübtəda yoxdur
+qayıdış — özünə  qarşılıq-birgəlik — bir neçə icraçı  icbar — başqasına etdirir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Nənəm xalça toxutdu" — feilin növü? <span class="ans">icbar (toxu-t-du)</span></li>
+        <li>"Yuyuldu" ilə "yuyundu" fərqi nədir? <span class="ans">yuyuldu — məchul (hərəkət obyektin üzərindədir), yuyundu — qayıdış (icraçı özünü yuyur)</span></li>
+        <li>"Hava gözəldir" cümləsindəki -dır⁴ icbar şəkilçisidirmi? <span class="ans">yox, xəbərlik şəkilçisidir</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: feilin qrammatik məna növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <p>Feilin növləri üzrə sual bu formalarda ola bilər:</p>
+      <ul>
+        <li><b>"Hansı cümlədə feil … növdədir?"</b> — beş cümlə, hər birində fərqli növ.</li>
+        <li><b>"Biri fərqlidir"</b> — dörd feil bir növdədir, biri başqa növdədir.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+        <li><b>"Doğru / səhv fikri müəyyən edin"</b> — növlərin tərifi və şəkilçiləri haqqında.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: məchulu qayıdışla, məlumu icbarla, şəxssizi məchulla qarışdırmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — hansı cümlədə feil məchul növdədir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · feilin növü</span>
+        <p>Hansı cümlədə feil məchul növdədir?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Rəssam şəkil çəkdi.</li><li>Divara şəkil çəkildi.</li><li>Nənəm rəssama portret çəkdirdi.</li><li>Uşaq tələsik geyindi.</li><li>Dostlar küçədə görüşdülər.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) çək-di       — növ şəkilçisi yoxdur, icraçı Rəssamdır → məlum
+B) çək-il-di    — hərəkət şəklin (obyektin) üzərindədir, şəkil mübtədadır, icraçı yoxdur → məchul
+C) çək-dir-di   — nənəm işi rəssama etdirdi → icbar
+D) gey-in-di    — uşaq öz əyninə paltar geydi → qayıdış
+E) gör-üş-dü-lər — dostlar bir-biri ilə → qarşılıq-birgəlik
+Cavab: B) Divara şəkil çəkildi.</div>
+      <ul>
+        <li><b>A)</b> — "çəkdi" ilə "çəkildi" arasında fərq yalnız -il şəkilçisidir; şəkilçisiz feil məlumdur.</li>
+        <li><b>C)</b> — eyni kök (çək-) üzərində -dir⁴ icbar yaradır; məchul deyil.</li>
+        <li><b>D)</b> — -ın⁴ məchulda da olur, amma "uşaq" işi öz üzərində görür — qayıdış.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — biri fərqlidir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · feilin növü</span>
+        <p>Fərqləndirilmiş feillərdən biri qrammatik məna növünə görə fərqlidir:</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Uşaq tələsik <u><b>geyindi</b></u>.</li><li>Bəxtiyar soyuq suyla <u><b>yuyundu</b></u>.</li><li>Nigar güzgü qarşısında <u><b>darandı</b></u>.</li><li>Atam maşını <u><b>yudurdu</b></u>.</li><li>Oğlan tələsik <u><b>soyundu</b></u>.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) gey-in-di  — öz əyninə paltar geydi → qayıdış
+B) yu-y-un-du — özünü yudu              → qayıdış
+C) dara-n-dı  — Nigar özünü daradı      → qayıdış
+D) yu-dur-du  — başqasına yudurdu       → icbar
+E) soy-un-du  — öz üstündən geyimi çıxardı → qayıdış
+Cavab: D) Atam maşını yudurdu.</div>
+      <ul>
+        <li>Tələ: "yudurdu" ilə "yuyundu" eyni kökdəndir (yu-), amma şəkilçiləri fərqlidir: -dur (icbar) və -un (qayıdış). Növü kök yox, şəkilçi və məna müəyyən edir.</li>
+        <li>Cümlə verilməsə, "darandı" kimi feil başqa mənada işləndikdə növü dəyişə bilər; ona görə imtahanda feil cümlədə verilir və cümlənin mənasına baxılır.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə fərqləndirilmiş feil qarşılıq-birgəlik növdədir?<br>1. Dostlar küçədə <u><b>görüşdülər</b></u>.<br>2. Pəhləvanlar meydanda <u><b>vuruşdular</b></u>.<br>3. Qardaşım qabı <u><b>yudu</b></u>.<br>4. Oğru <u><b>tutuldu</b></u>.<br>5. İki şair illərlə <u><b>yazışdılar</b></u>.</p>
+        <ol class="imt-opts"><li>1, 2, 5</li><li>1, 3, 5</li><li>2, 4</li><li>1, 2, 3, 5</li><li>3, 4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. gör-üş-dü-lər — dostlar bir-biri ilə   → qarşılıq-birgəlik
+2. vur-uş-du-lar — pəhləvanlar bir-birinə qarşı → qarşılıq-birgəlik
+3. yu-du         — növ şəkilçisi yoxdur           → məlum
+4. tut-ul-du     — icraçı yoxdur, oğru obyektdir (mübtəda) → məchul
+5. yaz-ış-dı-lar — şairlər bir-birinə yazdılar    → qarşılıq-birgəlik
+Cavab: A) 1, 2, 5</div>
+      <ul>
+        <li><b>B)</b> — 3-cü cümləni də saymaq: "yudu"da -ış⁴ yoxdur, məlum növdür.</li>
+        <li><b>C)</b> — "tutuldu"nu qarşılıq saymaq: -ul məchul şəkilçisidir; 1 və 5 buraxılıb.</li>
+        <li><b>D)</b> — cavabdakı üç cümləyə məlum növü də əlavə etmək.</li>
+        <li><b>E)</b> — məlum və məchul feilləri seçmək, qarşılıq-birgəlik feilləri buraxmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Şəkilçiyə baxıb dayanmaq: -ıl⁴ və -ın⁴ üç növdə işlənə bilir (məchul, şəxssiz, qayıdış). Şəkilçidən sonra mənaya bax: mübtəda hərəkətin obyektidir, icraçı özünədir, yoxsa mübtəda yoxdur və icraçı ümumidir?</li>
+        <li>Eyni kökdən düzələn feilləri qarışdırmaq (yudu, yuyuldu, yuyundu, yudurdu). Hər birini ayrıca kök və şəkilçiyə ayır.</li>
+        <li>Xəbərlik -dır⁴ ilə icbar -dır⁴-i qarışdırmaq. İcbar -dır⁴ hərəkəti başqasına etdirmək mənası yaradır (yazdırdı); isim və sifətdən sonrakı -dır⁴ xəbərlikdir (gözəldir).</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Feili kök və şəkilçiyə ayır → şəkilçini və mənanı birlikdə yoxla
+Variantlara baxmadan əvvəl hər feilin növünü özün de</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Feilin növünə görə biri fərqlidir: yuyuldu, tapıldı, göndərildi, yazdırdı, imzalandı" <span class="ans">yazdırdı (icbar; qalanları məchul)</span></li>
+        <li>"Yeni şeir ucadan oxundu" — feil hansı növdədir? <span class="ans">məchul (mübtəda: şeir, hərəkətin obyekti)</span></li>
+        <li>"Dostlar qucaqlaşdılar" — hansı şəkilçi növü göstərir? <span class="ans">-ış⁴ — qarşılıq-birgəlik</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
