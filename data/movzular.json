@@ -1630,7 +1630,9 @@
    "ad": "Əvəzlik",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 9",
-   "hefte": "2027-01-25"
+   "hefte": "2027-01-25",
+   "ders": "dersler/az-evezlik.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",

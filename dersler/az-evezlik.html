@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Əvəzlik dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-evezlik.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Əvəzlik</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya, durğu işarələri</div>
+    <h1>Əvəzlik</h1>
+    <p>Əvəzlik əsas nitq hissələrinin yerində işlənir. İmtahanda onun növünü müəyyən etmək, "biri fərqlidir" və "cümlələrin birində … əvəzlik yoxdur" tipli sualları həll etmək, həmçinin "o" və "bu" sözlərindən sonra vergülü düzgün qoymaq lazımdır. Qaydalar 5-ci və 6-cı sinif dərsliklərindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa 4 dərsi sıra ilə oxu, nümunələrdəki hər sözə özün sual ver, sonra Oyun və Sınaq. Bu mövzu 2 saata sığır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Əvəzlik nədir</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Şəxs, işarə, sual</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Qeyri-müəyyən, təyini</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>O, bu-dan sonra vergül</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Əvəzlik nədir</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Bu mətni oxu: <i>"Aygün evə gəldi. Aygün çantasını qoydu. Aygün yemək yedi."</i> Eyni ad üç dəfə təkrarlanır, mətn ağır oxunur. Adın yerinə başqa söz qoyaq: <i>"Aygün evə gəldi. O, çantasını qoydu və yemək yedi."</i> Bu söz — <b>əvəzlikdir</b>. İmtahan isə soruşur: hansı söz əvəzlikdir, hansı növdür, cümlələrin birində qeyri-müəyyən əvəzlik varmı, "o" sözündən sonra vergül lazımdırmı.</p>
+
+      <h3><span class="st">2</span> Əvəzlik əsas nitq hissəsidir</h3>
+      <p>İsim, sifət, say, əvəzlik, feil və zərf — əsas nitq hissələridir. Onların hamısının həm leksik, həm də qrammatik mənası var. Əvəzliyin qrammatik mənası belədir:</p>
+      <div class="fm">Əvəzlik əsas nitq hissələrinin yerində işlənir.
+Əvəzliyin sualı: əvəz etdiyi sözün sualı.
+Növləri: şəxs, işarə, sual, qeyri-müəyyən, təyini.</div>
+      <p>Dərslikdə "biz" sözü şəxs əvəzliyi kimi göstərilir: o, ismi əvəz edir.</p>
+
+      <h3><span class="st">3</span> Nəyin yerində işlənir</h3>
+      <p>Əvəzliyi tanımaq üçün sual ver. Əvəzlik hansı sözün yerindədirsə, onun sualına cavab verir.</p>
+      <div class="tbl"><table>
+        <tr><th>əvəz etdiyi nitq hissəsi</th><th>sual</th><th>əvəzliklər</th><th>nümunə</th></tr>
+        <tr><td>isim</td><td>kim? nə?</td><td>mən, onlar, kimsə, hamı, kim, nə</td><td>Kimsə qapını döyür.</td></tr>
+        <tr><td>sifət</td><td>hansı? necə?</td><td>hansı, hər, bütün, öz</td><td>Hər otaqda təzə mebel vardı.</td></tr>
+        <tr><td>say</td><td>neçə?</td><td>neçə</td><td>Sinifdə neçə şagird var?</td></tr>
+      </table></div>
+      <p>Zərfin yerində də işlənir: 5-ci sinif dərsliyində "Qatar <i>bir azdan</i> yola düşür" cümləsindəki sözün əvəzinə sual əvəzliyi işlətmək tapşırılır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Aygün sinfə girdi. O, kitabını stolun üstünə qoydu.
+O — kim?               → Aygünün adının yerində → ismin yerində → əvəzlik
+
+Sinifdə neçə şagird var?
+neçə — neçə şagird?    → miqdarı soruşur → sayın yerində → əvəzlik
+
+Sən hansı kitabı oxuyursan?
+hansı — hansı kitab?   → ismə aiddir → sifətin yerində → əvəzlik
+sən   — kim?           → şəxsin yerində → əvəzlik</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Mən gəlirəm, sən hazırsan?" "Mən" və "sən" adların yerində işlənib. Əvəzlik olmasa hər mesajda adları təkrar yazmalı olardın.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əvəzliyi isim saymaq. "O", "hamı", "kimsə" ismin yerində işlənir, amma isim deyil — əvəzlikdir.</li>
+        <li>Əvəzliyi "öz sualı olmayan söz" saymaq. Sualı var: əvəz etdiyi sözün sualı ("mən" — kim?, "hansı" — hansı?, "neçə" — neçə?).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvəzlik əsas nitq hissəsidir.
+Əvəzlik əsas nitq hissələrinin yerində işlənir.
+Sualı: əvəz etdiyi sözün sualı.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Biz sabah görüşəcəyik" cümləsində "biz" hansı nitq hissəsidir? <span class="ans">əvəzlik (şəxs əvəzliyi, ismi əvəz edir)</span></li>
+        <li>"Sinifdə neçə şagird var?" — "neçə" hansı nitq hissəsinin yerində işlənib? <span class="ans">sayın yerində (neçə şagird?)</span></li>
+        <li>"Mən, kitab, hamı, gözəl, onlar" — hansı sözlər əvəzlik deyil? <span class="ans">kitab (isim), gözəl (sifət)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Şəxs, işarə və sual əvəzlikləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Şəxs əvəzlikləri</h3>
+      <p>Şəxs əvəzlikləri ismi əvəz edir və <b>I, II, III şəxsin təkində və cəmində</b> işlənir.</p>
+      <div class="tbl"><table>
+        <tr><th>şəxs</th><th>tək</th><th>cəm</th></tr>
+        <tr><td>I şəxs</td><td>mən</td><td>biz</td></tr>
+        <tr><td>II şəxs</td><td>sən</td><td>siz</td></tr>
+        <tr><td>III şəxs</td><td>o</td><td>onlar</td></tr>
+      </table></div>
+      <p>Hər şəxs əvəzliyi öz şəxs şəkilçisi ilə uyğunlaşır (şəkilçilər 5-ci sinif dərsliyindəki cədvəldəndir):</p>
+      <div class="ex">Mən şagirdəm.
+Sən şagirdsən.
+O şagirddir.
+Biz şagirdik.
+Siz şagirdsiniz.
+Onlar şagirddirlər.</div>
+      <p>Cümlədə bu sözlər şəkilçi ilə də işlənir: <i>bizi, mənim, sənə, ona</i>. Onlar da şəxs əvəzliyidir.</p>
+
+      <h3><span class="st">2</span> İşarə əvəzlikləri</h3>
+      <p><b>Bu</b> və <b>o</b> nəyəsə işarə edir. Dərslikdə tapşırıq belədir: işarə əvəzliklərini seç və onların nəyə işarə etdiyini müəyyən et. Həmin tapşırıqda "belə" də işarə əvəzliyi kimi verilir: <i>Son dövrdə belə tədbirlər tez-tez keçirilir</i> (imtahan sualları isə əsasən "bu" və "o" üzərindədir).</p>
+      <div class="ex">Atam bu xəbəri eşidəndə çox sevinəcək.
+bu — xəbərə işarə edir → işarə əvəzliyi
+
+O sinfin şagirdləri çalışqan və bacarıqlıdırlar.
+o — sinfə işarə edir → işarə əvəzliyi</div>
+      <p><b>"O" iki cür işlənir.</b> O adın yerində işlənirsə — şəxs əvəzliyidir (<i>O, dünən Bakıya getdi</i>; <i>O, kitabı götürdü</i> — ondan sonra isim də gələ bilər). O ismin təyini olub ona işarə edirsə — işarə əvəzliyidir (<i>o sinif, o kitab</i>). Dərslikdə "o" ilə "birisi" tutuşdurulur: <i>Dünən o, məktəbin divarına elan vurub</i> — bilinən şəxs; <i>Dünən birisi məktəbin divarına elan vurub</i> — qeyri-müəyyən şəxs.</p>
+
+      <h3><span class="st">3</span> Sual əvəzlikləri</h3>
+      <p><b>Kim? nə? hansı? neçə?</b> — sual əvəzlikləridir; dərslikdəki əvəzetmələrdə <b>necə?</b>, <b>neçənci?</b> və <b>nə vaxt?</b> də işlənir. Dərslikdəki tapşırıq: sözün əvəzinə sual əvəzliyi qoyub sual cümləsi düzəlt.</p>
+      <div class="ex">Kitab bilik mənbəyidir.
+Nə bilik mənbəyidir?
+
+Yarışda məşhur idmançılar iştirak edəcəklər.
+Yarışda hansı idmançılar iştirak edəcəklər?
+
+Sinifdə iyirmi şagird var.
+Sinifdə neçə şagird var?
+
+Qatar bir azdan yola düşür.
+Qatar nə vaxt yola düşür?
+
+İkinci sırada boş yer var.
+Neçənci sırada boş yer var?
+
+Rəşad yaxşı dostdur.
+Rəşad necə dostdur?</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Sən nə oxuyursan?
+sən — şəxs əvəzliyi (II şəxsin təki)
+nə  — sual əvəzliyi
+
+Kim bu şəkli çəkib?
+kim — sual əvəzliyi
+bu  — işarə əvəzliyi (şəklə işarə edir)</div>
+      <div class="life"><b>Həyatdan.</b> Dostun yazır: "Sən hansı filmi seçdin?" "Sən" — şəxs əvəzliyi, "hansı" — sual əvəzliyi. Sonra sən cavab verirsən: "Mən bu filmi seçdim" — "mən" şəxs əvəzliyi, "bu" işarə əvəzliyidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"O"-nu həmişə şəxs əvəzliyi saymaq. "O sinif", "o kitab" kimi birləşmələrdə "o" işarə əvəzliyidir.</li>
+        <li>"Kim" ilə "kimsə"ni qarışdırmaq. "Kim gəlib?" — sual əvəzliyi; "Kimsə qapını döyür" — qeyri-müəyyən əvəzlik (növbəti dərsdə).</li>
+        <li>Şəxs əvəzliyinin təkini və cəmini qarışdırmaq: mən, sən, o — tək; biz, siz, onlar — cəm.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şəxs: mən, sən, o (tək); biz, siz, onlar (cəm)
+İşarə: bu, o — nəyəsə işarə edir
+Sual: kim? nə? hansı? neçə? (necə? neçənci? nə vaxt?)
+O adın yerində — şəxs; o ismin təyini olub ona işarə edirsə — işarə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Onlar evə gec qayıtdılar" — "onlar" hansı şəxsin hansı kəmiyyətidir? <span class="ans">III şəxsin cəmi</span></li>
+        <li>"O sinfin şagirdləri çalışqan və bacarıqlıdırlar" — "o" hansı əvəzlikdir? <span class="ans">işarə əvəzliyi</span></li>
+        <li>"Kim bu şəkli çəkib?" — "kim" və "bu" hansı növdür? <span class="ans">kim — sual; bu — işarə</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Qeyri-müəyyən və təyini əvəzliklər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Qeyri-müəyyən əvəzliklər</h3>
+      <div class="fm">Qeyri-müəyyən varlıqları bildirən əvəzliklərə qeyri-müəyyən əvəzliklər deyilir.
+Qeyri-müəyyən əvəzliklər kim? nə? suallarına cavab verir.</div>
+      <div class="ex">Kimsə qapını döyür.
+Hamı bu fikirlə razılaşdı.</div>
+      <p>Dərslikdəki digər nümunələr: <i>biri, birisi, heç nə, heç kəs</i>. Dərslikdə "kimi" də qeyri-müəyyən əvəzlik kimi işlənir: <i>Kimi kitab oxuyur, kimi televizora baxırdı</i> (qoşma olan "kimi" ilə qarışdırma).</p>
+
+      <h3><span class="st">2</span> "Heç" ilə başlayan əvəzliklər</h3>
+      <div class="fm">Tərkibində heç sözü olan və inkar mənası ifadə edən əvəzliklər də qeyri-müəyyən əvəzlik sayılır.</div>
+      <div class="ex">Onun təklifini heç kim dəstəkləmədi.
+Mən heç nə başa düşmədim.</div>
+      <p>"Heç kim", "heç nə", "heç kəs" — hər biri <b>bir</b> əvəzlikdir.</p>
+
+      <h3><span class="st">3</span> Təyini əvəzliklər</h3>
+      <div class="fm">Cümlədə ismə aid olub onu ümumi şəkildə təyin edən əvəzliklərə təyini əvəzliklər deyilir.
+Təyini əvəzliklər bunlardır: öz, hər, bütün, filan.
+Təyini əvəzliklər necə? hansı? suallarına cavab verir.</div>
+      <div class="ex">Mən hər gün tezdən dururam.
+Biz bütün dərslərə yaxşı hazırlaşmalıyıq.</div>
+      <div class="fm">Öz təyini əvəzliyindən sonra gələn söz həmişə mənsubiyyət şəkilçisi qəbul edir.</div>
+      <div class="ex">Meyvələri öz bağımızdan dərmişəm.
+öz bağ-ımız-dan — "bağ" sözündə mənsubiyyət şəkilçisi var</div>
+
+      <h3><span class="st">4</span> Hansı növdür: sual ver</h3>
+      <p>Qeyri-müəyyən əvəzliyin sualı <b>kim? nə?</b>, təyini əvəzliyin sualı <b>necə? hansı?</b> olur. Ancaq növü yalnız sualla müəyyən etmək olmaz: sual əvəzlikləri də eyni sözlərlə soruşur, işarə əvəzliyi də "hansı?" sualına cavab verə bilir. Sualı özün ver, sonra cümlədəki mənaya və işlənməyə bax:</p>
+      <div class="ex">Kimsə qapını döyür.
+kimsə — kim döyür?        → qeyri-müəyyən əvəzlik
+
+Hər otaqda təzə mebel vardı.
+hər — hansı otaqda?       → təyini əvəzlik (ismə aiddir)
+
+Mən heç nə başa düşmədim.
+heç nə — nəyi? (inkar)    → qeyri-müəyyən əvəzlik</div>
+      <div class="life"><b>Həyatdan.</b> Elan lövhəsində yazılıb: "Kimsə pul itirib. Bütün şagirdlər diqqətli olsun." "Kimsə" — qeyri-müəyyən şəxs (kim itirib?), "bütün" — şagirdləri ümumi təyin edir (hansı şagirdlər?).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Hər", "bütün", "öz"-ü qeyri-müəyyən əvəzlik saymaq. Onlar təyini əvəzliklərdir: ismə aiddir, necə? hansı? sualına cavab verir.</li>
+        <li>"Heç kim", "heç nə"ni ayrı-ayrı iki əvəzlik saymaq. Ayrı yazılsa da, birlikdə bir qeyri-müəyyən əvəzlikdir.</li>
+        <li>"Hər" ilə "hərə"ni qarışdırmaq. <i>Hər otaqda təzə mebel vardı</i> — "hər" hansı? sualına cavab verir (təyini). <i>Hərə bir tərəfdə oturub dərs oxuyurdu</i> — "hərə" hansı? sualına cavab vermir, təyini əvəzlik deyil.</li>
+        <li>"Öz"-dən sonrakı sözü mənsubiyyət şəkilçisi olmadan yazmaq: "öz bağdan", "öz günah" səhvdir; düzgün: "öz bağımızdan", "öz günahı".</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qeyri-müəyyən: kimsə, hamı, biri, birisi, heç kim, heç nə, heç kəs — kim? nə?
+Təyini: öz, hər, bütün, filan — necə? hansı?
+Öz-dən sonra mənsubiyyət şəkilçisi gəlir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Kimsə qapını döyür" — "kimsə" hansı növdür? <span class="ans">qeyri-müəyyən əvəzlik</span></li>
+        <li>"Biz bütün dərslərə yaxşı hazırlaşmalıyıq" — "bütün" növü və sualı? <span class="ans">təyini əvəzlik; hansı dərslərə?</span></li>
+        <li>"Meyvələri öz bağımızdan dərmişəm" — "öz"-dən sonra gələn söz hansı şəkilçini qəbul edib? <span class="ans">mənsubiyyət şəkilçisi (bağ-ımız)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. "O" və "bu" əvəzliklərindən sonra vergül</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"O" və "bu" cümlədə iki işdə ola bilər: <b>təyin</b> (<i>o sinif</i>) və <b>mübtəda</b> (<i>O, rəfdən kitab götürdü</i>). Vergülsüz yazılan cümlə bəzən iki cür başa düşülür: dərslikdəki <i>O qoca balıqçı ilə dostluq edir</i> cümləsində "o" həm mübtəda, həm də "qoca balıqçı"ya aid təyin kimi oxuna bilər. Vergül mənanı dəqiqləşdirir.</p>
+
+      <h3><span class="st">2</span> Qayda</h3>
+      <div class="fm">O, bu əvəzlikləri təyin vəzifəsində işləndikdə onlardan sonra vergül qoyulmur.
+Mübtəda vəzifəsində olanda isə bu əvəzliklərdən sonra gələn sözlərə diqqət etmək lazımdır.</div>
+      <div class="tbl"><table>
+        <tr><th>mübtəda olan o, bu-dan sonra gələn söz</th><th>vergül</th><th>nümunə</th></tr>
+        <tr><td>isim, sifət, say, zərf, feili sifət</td><td>qoyulur</td><td>O, rəfdən kitab götürdü.<br>Bu, Sonanı çox narahat edirdi.</td></tr>
+        <tr><td>əvəzlik, feil, köməkçi nitq hissələri</td><td>qoyulmur</td><td>O da olimpiadada iştirak edir.<br>Bu öz günahı idi.<br>O dedi ki, gec gələcək.</td></tr>
+      </table></div>
+
+      <h3><span class="st">3</span> Üç addımda həll</h3>
+      <div class="fm">1. "O" ya "bu" təyindirmi (hansı?), yoxsa mübtədadır (kim? nə?)?
+2. Təyindirsə — vergül yoxdur.
+3. Mübtədadırsa — sonrakı sözün nitq hissəsinə bax.</div>
+      <p>Təyin ismə aid olub "hansı?" sualına cavab verir; mübtəda isə "kim? nə?" sualına cavab verib cümlənin icraçısı və ya haqqında danışılan olur.</p>
+      <div class="ex">Bu yerlərin təbiəti gözəldir.
+bu — hansı yerlərin?  → təyin → vergül yoxdur
+
+Bu, Sonanı çox narahat edirdi.
+bu — nə narahat edirdi?  → mübtəda; sonra "Sonanı" (isim) → vergül qoyulur
+
+Bu sənin şəxsi fikrindir?
+bu — mübtəda; sonra "sənin" (əvəzlik) → vergül qoyulmur
+
+O dedi ki, gec gələcək.
+o — mübtəda; sonra "dedi" (feil) → vergül qoyulmur</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "O, Aygünə kitab verdi" — kim verdi? O. "O" mübtədadır, sonra isim gəlir, vergül var. Başqa mesaj: "O da gəldi" — "da" köməkçi sözdür, vergül yoxdur.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Təyin olan "o"-dan sonra vergül qoymaq: "O, sinfin şagirdləri…" səhvdir. "O sinfin şagirdləri çalışqandırlar" — "o" sinfə aiddir.</li>
+        <li>"O da", "bu isə" kimi yazılarda "da", "isə" sözündən əvvəl vergül qoymaq. Sonra köməkçi nitq hissəsi gəlirsə, vergül qoyulmur.</li>
+        <li>"Bu sənin fikrindir" cümləsində isim gəldiyini düşünüb vergül qoymaq. "Sənin" əvəzlikdir — vergül yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təyin olan o, bu-dan sonra vergül yoxdur.
+Mübtəda + isim, sifət, say, zərf, feili sifət — vergül var.
+Mübtəda + əvəzlik, feil, köməkçi nitq hissəsi — vergül yoxdur.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Bu sənin şəxsi fikrindir?" — "bu"-dan sonra vergül lazımdırmı? <span class="ans">yox: sonra əvəzlik (sənin) gəlir</span></li>
+        <li>"Bu Sonanı çox narahat edirdi" — vergül lazımdırmı? <span class="ans">bəli: mübtəda, sonra isim (Sonanı); "Bu, Sonanı…"</span></li>
+        <li>"Atam bu xəbəri eşidəndə çox sevinəcək" — "bu"-dan sonra vergül lazımdırmı? <span class="ans">yox: "bu" təyindir (hansı xəbəri?)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: əvəzlik</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Biri fərqlidir"</b> — dörd söz əvəzlikdir, biri başqa nitq hissəsidir.</li>
+        <li><b>"Cümlələrin birində … əvəzlik yoxdur"</b> — beş cümlədə əvəzliyin növünü yoxlamaq lazımdır.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş söz və ya cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+        <li><b>"Vergül düzgün (səhv) işlədilib"</b> — "o" və "bu" sözlərindən sonra vergül qaydası.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: təyini əvəzliyi qeyri-müəyyən saymaq, "heç kim"i təyini saymaq, təyin olan "o"-dan sonra vergül qoymaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — biri fərqlidir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · ümumi qrammatik məna</span>
+        <p>Ümumi qrammatik mənasına görə biri fərqlidir:</p>
+        <ol class="imt-opts"><li>mən</li><li>hamı</li><li>bütün</li><li>pəncərə</li><li>onlar</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">mən     — şəxs əvəzliyi
+hamı    — qeyri-müəyyən əvəzlik
+bütün   — təyini əvəzlik
+pəncərə — nə? → əşyanın adı → isim
+onlar   — şəxs əvəzliyi
+Cavab: D) pəncərə</div>
+      <ul>
+        <li>Tələ: "bütün" sözünü sifət saymaq. Dərslikdə "bütün" təyini əvəzlik kimi verilib (öz, hər, bütün, filan).</li>
+        <li>Tələ: "hamı"nı say saymaq. "Hamı" kim? sualına cavab verən qeyri-müəyyən əvəzlikdir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — cümlələrin birində qeyri-müəyyən əvəzlik yoxdur</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · cümlədə əvəzlik</span>
+        <p>Cümlələrin birində qeyri-müəyyən əvəzlik yoxdur:</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Kimsə qapını döyür.</li><li>Hamı bu fikirlə razılaşdı.</li><li>Onun təklifini heç kim dəstəkləmədi.</li><li>Mən hər gün tezdən dururam.</li><li>Dünən birisi məktəbin divarına elan vurub.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) kimsə — qeyri-müəyyən əvəzlik
+B) hamı  — qeyri-müəyyən əvəzlik (bu — işarə)
+C) heç kim — qeyri-müəyyən əvəzlik (onun — şəxs)
+D) mən — şəxs; hər — təyini (hansı gün?). Qeyri-müəyyən yoxdur.
+E) birisi — qeyri-müəyyən əvəzlik
+Cavab: D)</div>
+      <ul>
+        <li><b>D)</b>-ni buraxmağın səbəbi: "hər" sözünü qeyri-müəyyən saymaq. "Hər gün" — hansı gün? sualına cavab verir, təyini əvəzlikdir.</li>
+        <li><b>C)</b>-ni seçmək: "heç kim"i təyini və ya sual əvəzliyi saymaq. Tərkibində "heç" olan və inkar bildirən əvəzlik qeyri-müəyyəndir.</li>
+        <li><b>B)</b>-ni seçmək: "hamı"nı qeyri-müəyyən əvəzlik saymamaq. Dərslikdə "hamı" qeyri-müəyyən əvəzlik nümunəsidir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə «o» və ya «bu» sözündən sonra vergül qoyulmalıdır?<br>1. O Azərbaycanın Milli Qəhrəmanıdır.<br>2. O da olimpiadada iştirak edir.<br>3. Bu Sonanı çox narahat edirdi.<br>4. Bu öz günahı idi.<br>5. O sinfin şagirdləri çalışqan və bacarıqlıdırlar.</p>
+        <ol class="imt-opts"><li>1, 3</li><li>1, 2, 4</li><li>2, 4, 5</li><li>3, 4</li><li>1, 3, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. O — mübtəda; sonra "Azərbaycanın" (isim) → vergül qoyulur
+2. O — mübtəda; sonra "da" (köməkçi) → vergül yoxdur
+3. Bu — mübtəda; sonra "Sonanı" (isim) → vergül qoyulur
+4. Bu — mübtəda; sonra "öz" (əvəzlik) → vergül yoxdur
+5. O — təyin (hansı sinfin?) → vergül yoxdur
+Cavab: A) 1, 3</div>
+      <ul>
+        <li><b>E)</b> — 5-ci cümləni də saymaq. "O sinfin şagirdləri"ndə "o" təyindir, ona görə vergül yoxdur.</li>
+        <li><b>B)</b> — 2-ci cümləni saymaq: "o"-dan sonra "da" gəlir. Köməkçi nitq hissəsindən əvvəl vergül qoyulmur.</li>
+        <li><b>D)</b> — 4-cü cümləni saymaq: "öz" əvəzlikdir.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Qeyri-müəyyən və təyini əvəzliyi qarışdırmaq: kim? nə? — qeyri-müəyyən; necə? hansı? — təyini.</li>
+        <li>"Heç kim", "heç nə"ni əvəzlik saymamaq. İnkar mənalı "heç …" qeyri-müəyyən əvəzlikdir.</li>
+        <li>"O" və "bu"-dan sonra vergülü yalnız sonrakı sözə baxıb qoymaq. Əvvəl vəzifəni (təyin, mübtəda) müəyyən et.</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvəzliyin növünü yalnız sualla deyil, cümlədəki mənası və işlənməsi ilə müəyyən et (sual əvəzlikləri də kim? nə? hansı? deyə soruşur, işarə əvəzliyi də "hansı?" sualına cavab verə bilir).
+O, bu: əvvəl vəzifə, sonra sonrakı söz.
+Variantlara baxmadan əvvəl özün təyin et.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Ümumi mənasına görə biri fərqlidir: sən, kim, hansı, kitab, bütün" <span class="ans">kitab (isim; qalanları əvəzlik)</span></li>
+        <li>"Hər otaqda təzə mebel vardı" — "hər" hansı növdür? <span class="ans">təyini əvəzlik</span></li>
+        <li>"Mən o mağazanı tanıyıram" — "o"-dan sonra vergül lazımdırmı? <span class="ans">yox: "o" təyindir (hansı mağazanı?)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
