@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zərf dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-zerf.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Zərf</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Morfologiya, orfoqrafiya</div>
+    <h1>Zərf</h1>
+    <p>Zərf hərəkətin necə, nə vaxt, haraya və ya nə qədər baş verdiyini bildirir. Buraxılışda bunu soruşurlar: zərfin məna növü, quruluşca növü, mürəkkəb zərfin yazılışı, eyni sözün zərf və ya başqa nitq hissəsi olması. Qaydalar 5-ci sinif dərsliyindən götürülüb; mürəkkəb zərfin yazılışı və yer zərfi qaydaları 6-cı və 7-ci sinif dərsliklərindən tamamlanıb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, nümunələrdəki hər sözə özün sual ver, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Zərf və məna növləri</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Quruluşca növləri</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Mürəkkəb zərfin yazılışı</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Zərf və digər nitq hissələri</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Zərf və məna növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Dostuna yazırsan: «Sabah tezdən durub xeyli oxuyacağam». Üç söz hərəkətin vaxtını və miqdarını deyir: <i>sabah</i>, <i>tezdən</i>, <i>xeyli</i>. Bunlar zərfdir. İmtahan bu sözlərin hansı suala cavab verdiyini və hansı məna növünə aid olduğunu soruşur.</p>
+      <div class="life"><b>Həyatdan.</b> Yol göstərəndə də zərf işlədirik: «irəli get, yuxarı qalx, sakitcə içəri gir». Zərf hərəkətin necə, nə vaxt, haraya, nə qədər olduğunu deyir.</div>
+
+      <h3><span class="st">2</span> Zərf nədir</h3>
+      <div class="fm">Zərf cümlədə, əsasən, feilə aid olan, onu müxtəlif cəhətdən izah edən nitq hissəsidir.
+Sual: necə? nə cür? · nə vaxt? nə zaman? · haraya? harada? haradan? · nə qədər?</div>
+      <div class="ex">Ceyran cəld qaçırdı.
+cəld — necə qaçırdı?  → feilə aiddir → zərf</div>
+
+      <h3><span class="st">3</span> Dörd məna növü</h3>
+      <div class="tbl"><table>
+        <tr><th>növ</th><th>nəyi bildirir</th><th>sual</th><th>dərslikdən nümunə</th></tr>
+        <tr><td>tərzi-hərəkət</td><td>hərəkətin necə icra olunduğunu</td><td>necə? nə cür?</td><td>cəld qaçmaq, həvəslə danışmaq</td></tr>
+        <tr><td>zaman</td><td>hərəkətin icra olunduğu vaxtı</td><td>nə vaxt? nə zaman?</td><td>gec gəlmək, gec-tez öyrənmək</td></tr>
+        <tr><td>yer</td><td>hərəkətin icra olunduğu yeri</td><td>haraya? harada? haradan?</td><td>içəri keçmək, geri dönmək</td></tr>
+        <tr><td>kəmiyyət</td><td>hərəkətin kəmiyyətini</td><td>nə qədər?</td><td>xeyli çalışmaq, az-maz anlamaq</td></tr>
+      </table></div>
+      <div class="ex">Dünən qonaqlar içəri keçdilər, sakitcə oturdular və xeyli söhbət etdilər.
+dünən    — nə vaxt?     → zaman zərfi
+içəri    — haraya?      → yer zərfi
+sakitcə  — necə?        → tərzi-hərəkət zərfi
+xeyli    — nə qədər?    → kəmiyyət zərfi</div>
+
+      <h3><span class="st">4</span> Yer zərfi: iki incəlik</h3>
+      <p>«Haraya? harada? haradan?» sualına cavab verən hər söz zərf deyil. Yer zərfi <b>yeri və ya yönü</b> bildirir (yer zərflərinin bir qismi hərəkətin yönünü, istiqamətini deyir). Konkret məkan adı isə isimdir.</p>
+      <div class="fm">Yer zərflərinin mənasında nisbilik var: dağın zirvəsindəki adam yamaca "aşağı", ətəkdəki isə "yuxarı" deyir.
+Bəzi yer zərfləri (aşağı, geri, irəli, içəri, yuxarı) hərəkətin yönünü bildirir və adətən yönlük hal şəkilçisi olmadan işlənir: içəri (haraya?) keçmək.
+Yer zərfi "harada?" sualına da cavab verə bilər: Burda (burada) əvvəllər kitabxana olub.
+Bəzən yönlük şəkilçisi də qəbul edə bilər: O, pəncərədən boylanıb içəriyə nəzər saldı.</div>
+      <div class="ex">Qonaqlar içəri keçdilər.     içəri — haraya? yön bildirir → yer zərfi
+Qonaqlar otağa keçdilər.     otağa — haraya? konkret məkan adı, yönlük halda → isim</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Dünən şagirdlər sakitcə sıraya düzülüb irəli addımladılar.
+dünən    — nə vaxt addımladılar?  → zaman zərfi
+sakitcə  — necə addımladılar?     → tərzi-hərəkət zərfi
+sıraya   — haraya? məkan adı, yönlük halda → isim
+irəli    — haraya? yön bildirir   → yer zərfi</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>«Haraya?» sualına cavab verən hər sözü yer zərfi saymaq. <i>Evə, parka, rayona</i> — isimdir (yönlük haldadır).</li>
+        <li>Zərfi sualsız, yalnız «hərəkətə aiddir» deyib təyin etmək. Əvvəl sual ver: necə? nə vaxt? haraya? nə qədər?</li>
+        <li>Zərfi (nitq hissəsi) cümlə üzvü ilə qarışdırmaq. Bu dərsdə sözün hansı nitq hissəsi olduğu soruşulur; cümlə üzvü başqa mövzudur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Zərf, əsasən, feilə aid olub onu müxtəlif cəhətdən izah edir.
+Dörd növ: tərzi-hərəkət (necə?), zaman (nə vaxt?), yer (haraya?), kəmiyyət (nə qədər?)
+Yer zərfi yeri və ya yönü bildirir (bəziləri yön bildirir, adətən yönlük şəkilçisiz); məkan adı (otaq, ev, rayon) isimdir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>«Nənəm nəvəsini həsrətlə gözləyirdi» — «həsrətlə» hansı məna növündədir? <span class="ans">tərzi-hərəkət zərfi (necə gözləyirdi?)</span></li>
+        <li>«Qardaşım evə döndü» və «Qardaşım geri döndü» — hansında yer zərfi var? <span class="ans">ikincidə (geri); «evə» isimdir</span></li>
+        <li>«Şəhər çox dəyişmişdi» — «çox» hansı suala cavab verir? <span class="ans">nə qədər? (kəmiyyət zərfi)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Zərfin quruluşca növləri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Buraxılışda «zərflərdən biri quruluşca fərqlidir» tipli tapşırıq olur. Bunun üçün sözün tərkibinə baxmaq lazımdır: yalnız kök varmı, kök və şəkilçi varmı, yoxsa iki söz birləşib?</p>
+
+      <h3><span class="st">2</span> Üç növ</h3>
+      <div class="fm">Sadə zərflər yalnız bir kökdən ibarət olur: irəli, səhər, aşağı
+Düzəltmə zərflər kökdən və leksik şəkilçidən ibarət olur: dostyana, ucadan, cəsarətlə
+Mürəkkəb zərflər iki sözün birləşməsindən yaranır: başdan-başa, üzbəüz, bu gün</div>
+      <div class="ex">Alıcılar malları geri qaytardılar.   geri — bir kök → sadə
+Oxucular əsəri səbirsizliklə gözləyirdilər.   səbirsizliklə = səbir + -siz + -lik + -lə → düzəltmə
+Sabir baba asta-asta üzüyuxarı qalxırdı.   asta-asta = asta + asta → mürəkkəb
+üzüyuxarı = üzü + yuxarı → mürəkkəb</div>
+
+      <h3><span class="st">3</span> «-la» şəkilçisinin üç işi</h3>
+      <p>-la (-lə) şəkilçisi hər yerdə zərf düzəltmir. Üç funksiyası var (6-cı sinif dərsliyi):</p>
+      <div class="fm">1. ilə bağlayıcısının ixtisar forması: «və» yerinə işlənir — Atamla anam səfərdən qayıtdılar.
+2. ilə qoşmasının ixtisar forması: vasitə, birgəlik bildirir — Qələmlə işarə etdi. Nigarla görüşdü.
+3. Əsasən, mücərrəd isimlərə qoşularaq zərf düzəldir — Həvəslə işlədik.</div>
+      <div class="ex">Gülayla Sevda rəfiqədirlər.          «Gülay və Sevda» → bağlayıcı
+Biz Gəncəyə qatarla getdik.          nə ilə getdik? vasitə → qoşma
+Bahar filmə həyəcanla baxırdı.       necə baxırdı? həyəcan — mücərrəd isim → zərf</div>
+      <p>Zərf olanda söz hərəkətin <b>necə</b> baş verdiyini deyir: həyəcanla, həvəslə, sevinclə, diqqətlə. Qoşma olanda alət və ya birgə olan şəxsi bildirir: qələmlə, qatarla, Nigarla.</p>
+
+      <h3><span class="st">4</span> Mürəkkəb zərf</h3>
+      <p>Mürəkkəb zərf iki sözün birləşməsindən yaranır. Bir sözün təkrarı (<i>asta-asta, tez-tez</i>; şəkilçili təkrar: <i>başdan-başa</i>; ba/bə ilə təkrar: <i>üzbəüz, günbəgün</i>) və ya müxtəlif sözlər (<i>üzüyuxarı, bu gün</i>) ola bilər. Bunların yazılışı növbəti dərsdədir.</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Uzun sözü mürəkkəb saymaq. <i>Səbirsizliklə</i> uzundur, amma bir kökdən (səbir) və şəkilçilərdən ibarətdir — düzəltmə.</li>
+        <li>-la (-lə) görən kimi zərf demək. <i>Qatarla, qələmlə</i> sözlərindəki -la (-lə) ilə qoşmasının, <i>Gülayla</i> sözündəki -la isə ilə bağlayıcısının şəkilçiləşmiş formasıdır.</li>
+        <li><i>Ucadan</i> sözünü iki hissəyə bölüb mürəkkəb saymaq. Burada uca (kök) və -dan (leksik şəkilçi) var — düzəltmə.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sadə — bir kök. Düzəltmə — kök və leksik şəkilçi. Mürəkkəb — iki sözün birləşməsi.
+-la: bağlayıcı (və yerinə) · qoşma (vasitə, birgəlik) · mücərrəd isimdən zərf</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>«Babam gənclik illərini həsrətlə xatırlayırdı» — «həsrətlə» quruluşca hansıdır? <span class="ans">düzəltmə (həsrət + -lə)</span></li>
+        <li>«Mən dünən Nigarla görüşdüm» — «Nigarla»dakı -la nə işlənib? <span class="ans">qoşma (birgəlik); zərf deyil</span></li>
+        <li>«Qatar yavaş-yavaş yaxınlaşırdı» — «yavaş-yavaş» quruluşca hansıdır? <span class="ans">mürəkkəb (eyni sözün təkrarı)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Mürəkkəb zərfin yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mürəkkəb zərf üç cür yazılır: <b>bitişik, defislə, ayrı</b>. İmtahanda «düzgün yazılmış söz hansıdır» tipli tapşırıq çıxır. Qaydanı bilmək üçün sözün necə yarandığına bax.</p>
+
+      <h3><span class="st">2</span> Üç qayda</h3>
+      <div class="fm">Eyni sözün təkrarı — adətən defislə: tez-tez, asta-asta, yavaş-yavaş
+Təkrar olunan söz şəkilçi ilə işlənəndə — defislə: başdan-başa
+Təkrar olunan sözün arasına ba, bə (ha, a, ə) artırılsa — bitişik: aybaay, günbəgün, üzbəüz, taybatay
+Ayrı yazılan mürəkkəb zərflər: bu gün, hər an, bir dəfə, bir qədər
+Dərslikdə belə yazılıb: üzüyuxarı (bitişik); gec-tez, az-maz (defislə)</div>
+      <div class="ex">Hava tez-tez dəyişirdi.                 eyni sözün təkrarı → defislə
+Şəhər günbəgün gözəlləşirdi.            gün + bə + gün → bitişik
+Bu gün Tarix muzeyinə gedəcəyik.        ayrı yazılan mürəkkəb zərf
+Küçəyə başdan-başa asfalt döşənmişdi.   təkrar + şəkilçi → defislə</div>
+
+      <h3><span class="st">3</span> Mürəkkəb zərf, yoxsa iki ayrı söz</h3>
+      <p>Yanaşı gələn eyni sözlər həmişə mürəkkəb zərf deyil. Mürəkkəb zərf <b>birlikdə vahid məna</b> bildirir. 6a s. 50-dəki müqayisəyə görə: <i>başdan-başa</i> bir suala (necə?) cavab verir; <i>çiçəkdən çiçəyə</i>-də isə hər söz öz sualına cavab verir.</p>
+      <div class="ex">Küçəyə başdan-başa asfalt döşənmişdi.        başdan-başa — necə? → mürəkkəb zərf, defislə
+Çəmənlikdə kəpənəklər çiçəkdən çiçəyə qonurdu.  çiçəkdən — nədən?  çiçəyə — nəyə? → ayrı sözlər, ayrı yazılır</div>
+      <div class="life"><b>Həyatdan.</b> Mesajda «Səni tez-tez xatırlayıram» yazırsan. Defis göstərir ki, «tez-tez» bir zərfdir, iki ayrı «tez» deyil.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hər mürəkkəb zərfi bitişik yazmaq. <i>Tez-tez</i> defislə, <i>hər an</i> ayrı yazılır.</li>
+        <li>Ayrı yazılan <i>hər an, bir dəfə, bir qədər</i> zərflərini defislə yazmaq.</li>
+        <li><i>Aybaay, günbəgün</i> sözlərini defislə yazmaq. Arasında ba, bə olan təkrar bitişik yazılır.</li>
+        <li><i>Çiçəkdən çiçəyə</i> kimi ayrı üzvləri mürəkkəb zərf kimi defislə yazmaq.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təkrar → adətən defislə (tez-tez, başdan-başa)
+Təkrar + ba/bə → bitişik (aybaay, günbəgün)
+bu gün, hər an, bir dəfə, bir qədər → ayrı</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>«Qiymətlər ay…ay artdı» — ay + ba + ay necə yazılır? <span class="ans">aybaay (bitişik)</span></li>
+        <li>«Hava tez…tez dəyişirdi» — düzgün yazılış? <span class="ans">tez-tez (defislə)</span></li>
+        <li>«Qonaqlar bir qədər gözlədilər» — «bir qədər» necə yazılır? <span class="ans">ayrı</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Zərf və digər nitq hissələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Eyni söz — iki nitq hissəsi</h3>
+      <p>Bəzi sözlər cümlədəki yerindən asılı olaraq həm zərf, həm də isim, sifət və ya say kimi işlənir. Ona görə nitq hissəsini sözün özünə yox, <b>cümlədəki işlənməsinə</b> baxıb deyirik.</p>
+      <div class="ex">Biz həyəcanla səhəri gözləyirdik.   nəyi?               → isim
+Səhər hava soyuq idi.               nə vaxt?            → zərf
+Yaxşı iş üz ağardar.                hansı iş?           → sifət
+Lalə ingiliscə yaxşı danışırdı.     necə danışırdı?     → zərf
+Az adam tapılar ki, bunu bilməsin.  nə qədər adam?      → say
+Sürəyya həmişə az danışardı.        nə qədər danışardı? → zərf</div>
+      <p>Qeyd: «Səhər hava soyuq idi» cümləsində feil yoxdur. Orada zərfi «nə vaxt?» sualı və zaman mənası müəyyən edir (5-ci sinif dərsliyi, s. 55).</p>
+
+      <h3><span class="st">2</span> Necə müəyyən etmək</h3>
+      <div class="fm">1. Sözə cümlədə sual ver.
+2. Hansı sözə aid olduğuna bax: hərəkətə (feilə), yoxsa əşyaya (ismə)?
+3. Mənasına bax: hərəkətin izahı, əşyanın əlaməti, miqdar, yoxsa əşya?</div>
+      <p>Sualı, mənanı və aid olduğu sözü <b>birlikdə</b> yoxla. Hərəkətə aid olub hərəkəti izah edirsə — zərf. Əşyaya aid olub onun əlamətini bildirirsə — sifət; miqdarını bildirirsə — say.</p>
+
+      <h3><span class="st">3</span> Dərslikdəki cütlər</h3>
+      <div class="ex">Qarşımızda gözəl mənzərə açıldı.        gözəl — necə mənzərə? → sifət
+Natiq fikirlərini gözəl ifadə edirdi.     gözəl — necə ifadə edirdi? → zərf
+Doğru cavabları seçib yazın.              doğru — hansı cavabları? → sifət
+Hamıdan doğru danışmağı xahiş edirəm.     doğru — necə danışmağı? → zərf
+Teatr salonunda xeyli tamaşaçı var idi.   xeyli — nə qədər tamaşaçı? → say
+Bu məsələ üçün xeyli düşündüm.            xeyli — nə qədər düşündüm? → zərf
+Gecə şəhərə çatdıq.                       gecə — nə vaxt çatdıq? → zərf
+Yayda gecə gündüzdən qısa olur.           gecə — nə? → isim</div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Atam səhər işə getdi. / Səhər açıldı.
+Atam səhər işə getdi.  səhər — nə vaxt getdi? feilə aiddir → zərf
+Səhər açıldı.          səhər — nə açıldı? əşya bildirir → isim</div>
+      <div class="life"><b>Həyatdan.</b> «Yaxşı danışdın» (necə danışdın? — zərf) və «yaxşı dost» (hansı dost? — sifət). Eyni söz, fərqli iş.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Sözün nitq hissəsini lüğətdən yadda qalan kimi demək. <i>Gecə, səhər, az, doğru, xeyli, yaxşı</i> cümlədən asılı olaraq dəyişir.</li>
+        <li>«Necə?» sualını görüb avtomatik sifət demək. <i>Necə danışdı?</i> — hərəkətə aid olduğu üçün zərfdir.</li>
+        <li><i>Yaxşı</i> sözünü həmişə zərf saymaq. <i>Yaxşı iş</i> — sifət (hansı iş?).</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Nitq hissəsini cümlə müəyyən edir: sual + məna + aid olduğu söz
+Hərəkətə aid, hərəkəti izah edir → zərf
+Əşyaya aid, əlamət bildirir → sifət; miqdar bildirir → say</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>«Bu məsələni həll etmək üçün xeyli düşündüm» — «xeyli» hansı nitq hissəsidir? <span class="ans">zərf (nə qədər düşündüm?)</span></li>
+        <li>«Yayda gecə gündüzdən qısa olur» — «gecə» hansı nitq hissəsidir? <span class="ans">isim</span></li>
+        <li>«Hamıdan doğru danışmağı xahiş edirəm» — «doğru» hansı nitq hissəsidir? <span class="ans">zərf (necə danışmağı?)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: zərf</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Biri fərqlidir"</b> — beş zərf, biri məna növünə, quruluşuna və ya yazılışına görə başqadır.</li>
+        <li><b>"Cümlələrin birində zərf yoxdur"</b> — beş cümlə; hər sözə sual verib yoxlamaq lazımdır.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş söz və ya cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+        <li><b>"Düzgün yazılmış söz"</b> — mürəkkəb zərfin bitişik, defislə və ya ayrı yazılışı.</li>
+        <li><b>"Səhv fikri müəyyən edin"</b> — zərf haqqında beş fikir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: məkan adını yer zərfi saymaq, -la görən kimi zərf demək, mürəkkəb zərfin yazılışını qarışdırmaq, eyni sözü bütün cümlələrdə zərf saymaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — quruluşca biri fərqlidir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · quruluşca növ</span>
+        <p>Zərflərdən biri quruluşca fərqlidir:</p>
+        <ol class="imt-opts"><li>irəli</li><li>aşağı</li><li>geri</li><li>ucadan</li><li>içəri</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">irəli   — bir kök → sadə
+aşağı   — bir kök → sadə
+geri    — bir kök → sadə
+ucadan  — uca + -dan: kök və leksik şəkilçi → düzəltmə
+içəri   — bir kök → sadə
+Cavab: D) ucadan</div>
+      <ul>
+        <li>Tələ: <i>ucadan</i> sözünü çıxışlıq hal kimi oxumaq və «hamısı bir sözdür» demək. Dərslikdə <i>ucadan</i> düzəltmə zərfdir: kök (uca) + leksik şəkilçi (-dan).</li>
+        <li>Tələ: dörd sözü «yer zərfi» kimi görüb məna növünə baxmaq. Sual quruluşu soruşur, məna növünü yox.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — düzgün yazılmış zərf</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · yazılış</span>
+        <p>Düzgün yazılmış zərfi müəyyən edin:</p>
+        <ol class="imt-opts"><li>günbə gün</li><li>üz-bə-üz</li><li>hər-an</li><li>bir-qədər</li><li>tez-tez</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">günbə gün — düzü: günbəgün (gün + bə + gün, bitişik)
+üz-bə-üz — düzü: üzbəüz (bitişik)
+hər-an   — düzü: hər an (ayrı)
+bir-qədər — düzü: bir qədər (ayrı)
+tez-tez  — eyni sözün təkrarı → defislə ✓
+Cavab: E) tez-tez</div>
+      <ul>
+        <li><b>A)</b> ba/bə bitişdiricili təkrarı ayrı yazmaq.</li>
+        <li><b>B)</b> ba/bə bitişdiricili təkrarı defislə yazmaq; dərslikdə <i>üzbəüz</i> bitişik verilib.</li>
+        <li><b>C), D)</b> ayrı yazılan mürəkkəb zərfləri defislə yazmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə fərqləndirilmiş söz zərfdir?<br>1. Bülbül <u><b>gözəl</b></u> oxuyurdu.<br>2. <u><b>Gözəl</b></u> hava şagirdləri bağa çağırdı.<br>3. Atam <u><b>səhər</b></u> işə getdi.<br>4. <u><b>Səhər</b></u> açıldı.<br>5. Atam <u><b>az</b></u> yeyir.</p>
+        <ol class="imt-opts"><li>1, 3, 5</li><li>2, 4</li><li>1, 2, 3</li><li>3, 4, 5</li><li>1, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. gözəl — necə oxuyurdu?    → feilə aiddir → zərf
+2. gözəl — necə hava?         → ismə aiddir  → sifət
+3. səhər — nə vaxt getdi?     → zərf
+4. səhər — nə açıldı?         → isim
+5. az    — nə qədər yeyir?    → zərf
+Cavab: A) 1, 3, 5</div>
+      <ul>
+        <li><b>B)</b> — zərf olmayanları (2, 4) seçmək: sualı tərs oxumaq.</li>
+        <li><b>C)</b> — «gözəl» sözünü hər iki cümlədə zərf saymaq; 2-ci cümlədə ismə aiddir.</li>
+        <li><b>D)</b> — «səhər»i həmişə zərf saymaq; 4-cü cümlədə əşya bildirir.</li>
+        <li><b>E)</b> — 3-cü cümləni buraxmaq. Beşini də ayrıca yoxla.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>«Haraya?» sualına cavab verən hər sözü yer zərfi saymaq. Məkan adı (evə, rayona) isimdir.</li>
+        <li>-la (-lə) görən kimi zərf demək. Şəkilçi ilə qoşmasının (qatarla), ilə bağlayıcısının (Gülayla) şəkilçiləşmiş forması və ya zərf düzəldən (həvəslə) ola bilər.</li>
+        <li>Mürəkkəb zərfin yazılışını eyni qəlibə salmaq: təkrar — defislə, ba/bə ilə — bitişik, bu gün/hər an/bir qədər — ayrı.</li>
+        <li>Sözün nitq hissəsini cümlədən kənarda demək. <i>Gecə, səhər, az, xeyli, yaxşı</i> cümlədən asılıdır.</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sual ver → hansı sözə aid olduğuna bax → nitq hissəsini və növünü de.
+Quruluş: bir kök / kök + leksik şəkilçi / iki söz.
+Yazılış: təkrar — defislə; ba/bə — bitişik; bu gün, hər an — ayrı.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>«Zərflərdən biri quruluşca fərqlidir: asta-asta, tez-tez, üzbəüz, dostyana, günbəgün» <span class="ans">dostyana (düzəltmə; qalanları mürəkkəb)</span></li>
+        <li>«Cümlələrin birində zərf işlənməyib: Qonaqlar gec gəldilər. / Qardaşım yeni kitab aldı. / Uşaq aşağı düşdü.» — hansı? <span class="ans">ikincisi (yeni — sifət)</span></li>
+        <li>«Müəllim şagirdi səbirlə dinlədi» — «-lə» nə işlənib? <span class="ans">mücərrəd isimdən (səbir) zərf düzəldir</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

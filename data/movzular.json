@@ -1667,7 +1667,9 @@
    "ad": "Zərf",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 14",
-   "hefte": "2027-03-01"
+   "hefte": "2027-03-01",
+   "ders": "dersler/az-zerf.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",
