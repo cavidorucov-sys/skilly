@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sözün tərkibi və söz yaradıcılığı dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-soz-terkibi.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Sözün tərkibi</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sözün tərkibi, orfoqrafiya</div>
+    <h1>Sözün tərkibi və söz yaradıcılığı</h1>
+    <p>Hər söz kökdən və şəkilçilərdən, bəzən də bir neçə sözün birləşməsindən yaranır. Buraxılışın dil qaydaları blokunda (10 qapalı sual) bu mövzudan belə tapşırıqlar gəlir: "şəkilçisi səhv yazılmış sözü müəyyən edin", "düzəltmə sözlər hansılardır", "dördündən biri eyniköklü deyil", "mürəkkəb sözün yazılışı", "… sözü ilə bağlı səhv fikir". Qaydalar 5-ci və 6-cı sinif dərsliklərindən götürülüb; ayrı yazılan mürəkkəb sözlər 7-ci sinif dərsliyindəndir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dörd dərsi sıra ilə oxu, nümunələrdəki hər sözü özün hissələrə ayır, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Kök və şəkilçi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Şəkilçinin yazılışı</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Quruluş, eyniköklü</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb sözlər</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Kök və şəkilçi; başlanğıc forma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sözü hissələrə ayırmağı bacarmasan, bir çox suala cavab verə bilməzsən: "bu sözün kökü nədir", "neçə leksik şəkilçisi var", "başlanğıc forması hansıdır", "düzəltmə sözdür, yoxsa sadə". 15 noyabr sınağında da belə tipli sual var idi: bir söz haqqında beş fikirdən səhv olanı tapmaq. Yol birdir: sözü hissələrə ayır və hər hissənin nə olduğunu de.</p>
+
+      <h3><span class="st">2</span> Kök və şəkilçi</h3>
+      <div class="fm">Kök: sözün ayrılıqda işlənə bilən, leksik mənası olan hissəsidir
+Şəkilçi: sözün ayrılıqda işlənə bilməyən, leksik mənası olmayan hissəsidir</div>
+      <div class="ex">idman-çı-lar
+idman    — kök (ayrılıqda işlənir: "idman edirəm")
+-çı, -lar — şəkilçilər (ayrılıqda işlənmir)</div>
+      <p>Dərslikdəki cümlə: <i>Bağçada gözəl, ətirli güllər var.</i></p>
+      <div class="ex">Bağçada  = bağ + -ça + -da     (iki şəkilçi)
+ətirli   = ətir + -li
+güllər   = gül + -lər</div>
+
+      <h3><span class="st">3</span> Leksik və qrammatik şəkilçilər</h3>
+      <div class="fm">Leksik şəkilçi: sözə qoşularaq yeni söz yaradır
+Qrammatik şəkilçi: sözün leksik mənasını dəyişmir; söz birləşməsində və cümlədə sözlər arasında əlaqə yaradır</div>
+      <div class="ex">əl      — bədən üzvü
+əl-cək  — əl geyimi           -cək yeni söz yaradıb: leksik
+
+Aygün-ün kitab-ı              -ün, -ı sözlər arasında əlaqə yaradır: qrammatik</div>
+      <p>Eyni şəkilçi həm leksik, həm qrammatik ola bilər. Dərslikdəki tapşırıq: <b>-dan</b>.</p>
+      <div class="ex">Bu çaydan su ilə doludur.                     çaydan — çay dəmləmək üçün qab: -dan yeni söz yaradıb (leksik)
+Ata çaydan bir qurtum içib sözə başladı.        çaydan — çaydan içmək: -dan çıxışlıq halıdır (qrammatik)</div>
+      <p>Şəkilçi sırası: <b>adətən leksik şəkilçilər əvvəl, qrammatik şəkilçilər sonra</b> gəlir.</p>
+      <div class="ex">odun-çu-lar-ın
+odun — kök
+-çu  — leksik şəkilçi
+-lar, -ın — qrammatik şəkilçilər</div>
+
+      <h3><span class="st">4</span> Sözün başlanğıc forması</h3>
+      <div class="fm">Başlanğıc forma: sözün qrammatik şəkilçiyə qədər olan hissəsidir
+Başlanğıc forma = kök + leksik şəkilçilər</div>
+      <div class="tbl"><table>
+        <tr><th>söz</th><th>kökü</th><th>başlanğıc forma</th><th>leksik şəkilçilər</th><th>qrammatik şəkilçilər</th></tr>
+        <tr><td>odunçuların</td><td>odun</td><td>odunçu</td><td>-çu</td><td>-lar, -ın</td></tr>
+        <tr><td>arıçılıqdan</td><td>arı</td><td>arıçılıq</td><td>-çı, -lıq</td><td>-dan</td></tr>
+        <tr><td>kitablarda</td><td>kitab</td><td>kitab</td><td>yoxdur</td><td>-lar, -da</td></tr>
+      </table></div>
+      <p>Sadə sözlərdə (leksik şəkilçisi yoxdur) başlanğıc forma sözün kökü ilə üst-üstə düşür. Lüğətlərdə sözlər başlanğıc formada olur; yalnız feillər məsdər şəkilçisi ilə verilir.</p>
+      <p>Düzəltmə söz başqa bir düzəltmə sözdən də yarana bilər. Dərslikdəki nümunə:</p>
+      <div class="ex">çəki        — feildən düzəlmiş isim: çək-i
+çəkisiz     — isimdən düzəlmiş sifət: çəki-siz
+çəkisizlik  — sifətdən düzəlmiş isim: çəkisiz-lik
+Kök feildir (çək), amma "çəkisizlik" sözü sifətdən yaranıb.</div>
+      <div class="life"><b>Həyatdan.</b> Lüğətdə "məktəblilərimiz" sözünü axtarırsan. Orada "məktəbli" yazılıb: bu, başlanğıc formadır. "Məktəb" isə sözün kökündür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Kökü ilə başlanğıc formanı qarışdırmaq. "Odunçuların"ın kökü <i>odun</i>, başlanğıc forması <i>odunçu</i>dur.</li>
+        <li>-lıq, -çı, -lı kimi yeni söz yaradan şəkilçiləri qrammatik saymaq. Yeni söz yaradırsa — leksikdir.</li>
+        <li>Cəm, hal və xəbərlik şəkilçilərini leksik saymaq. Bunlar qrammatikdir: <i>kitab-lar, kitab-ın, kitab-dan, kitab-dır</i>. Eyni yazılışlı şəkilçinin növü sözdəki funksiyasına görə müəyyən olunur (<i>çay-dan</i> — qab: leksik; <i>çay-dan</i> içmək: qrammatik).</li>
+        <li>"Maraqlıdır" sözündə "maraqlı"nı kök saymaq. Kök <i>maraq</i>dır: maraq-lı-dır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Kök: ayrılıqda işlənir, leksik mənası var
+Şəkilçi: ayrılıqda işlənmir
+Leksik şəkilçi: yeni söz yaradır
+Qrammatik şəkilçi: mənanı dəyişmir, əlaqə yaradır
+Başlanğıc forma: qrammatik şəkilçiyə qədər</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Dostlarımızın" sözünün kökü hansıdır? <span class="ans">dost (dost-lar-ımız-ın)</span></li>
+        <li>"Arıçılıqdan" sözündə neçə leksik, neçə qrammatik şəkilçi var? <span class="ans">iki leksik (-çı, -lıq), bir qrammatik (-dan)</span></li>
+        <li>"Məktəblilərimiz" sözünün başlanğıc forması hansıdır? <span class="ans">məktəbli</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Şəkilçinin yazılışı: ahəng qanunu, bitişdirici samitlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Şəkilçisi səhv yazılmış sözü müəyyən edin" — tez-tez gələn tapşırıqdır. Burada tələ var: bəzi sözlərdə birinci sait bir cür, son sait başqa cür olur (<i>kitab, heyvan, şagird</i>). Şəkilçi isə <b>son hecaya</b> baxır.</p>
+
+      <h3><span class="st">2</span> Qalın və incə saitlər</h3>
+      <div class="tbl"><table>
+        <tr><th>saitlər</th><th>dodaqlanmayan</th><th>dodaqlanan</th></tr>
+        <tr><td>qalın</td><td>a, ı</td><td>o, u</td></tr>
+        <tr><td>incə</td><td>ə, i, e</td><td>ö, ü</td></tr>
+      </table></div>
+      <p>Bir çox sözdə bütün saitlər ya qalındır, ya incədir. Bəzi sözlərdə isə qarışıqdır:</p>
+      <div class="ex">yuva      u, a   — hamısı qalın
+torpaq    o, a   — hamısı qalın
+dövlət    ö, ə   — hamısı incə
+dərin     ə, i   — hamısı incə
+heyvan    e, a   — qarışıq
+nişan     i, a   — qarışıq
+kitab     i, a   — qarışıq</div>
+      <p>6-cı sinif dərsliyinin tapşırığında deyilir: türk mənşəli sözlərimiz ahəng qanununa tabe olur, "ildırım", "ilan" kimi bir neçə söz istisna təşkil edir.</p>
+
+      <h3><span class="st">3</span> İki və dörd cür yazılan şəkilçilər</h3>
+      <div class="fm">Şəkilçilərin əksəriyyəti sözün son hecasının ahənginə uyğun olaraq iki və ya dörd cür yazılır
+İki cür: son saitin qalın və ya incə olmasına görə dəyişir
+Dörd cür: həm qalın və incə, həm də dodaqlanan və ya dodaqlanmayan olmasına görə dəyişir</div>
+      <div class="ex">İki cür:    təyyarə-lər-də,  kitab-lar-dan
+Dörd cür:   qərar-ın,  gecə-nin,  qüsur-un,  gündüz-ün
+Bir cür:    tələb-kar,  fəda-kar    (dəyişmir)</div>
+      <p>Dilimizdəki bəzi şəkilçilər başqa dillərdən alınıb. Dərslik (5-ci sinif, 1-ci hissə, s. 63) deyir: bu şəkilçilər <b>bir cür</b> yazılır, yəni qoşulduğu sözdən asılı olaraq <b>dəyişmir</b>. Məsələn: <i>tələb-kar, fəda-kar</i>; belə də: <i>zəhmət-keş, qayğı-keş, vətən-pərvər, qonaq-pərvər, xəstə-xana</i>. Beləliklə, şəkilçi <b>bir, iki və ya dörd</b> cür yazıla bilər.</p>
+      <p>Dərslikdə şəkilçinin üstündə <b>²</b> iki, <b>⁴</b> dörd cür yazıldığını göstərir: <i>ağac-lar²-ın⁴</i>. Son saitə görə seçim belədir:</p>
+      <div class="fm">İki cür (-lar², -da², -dan², -a²): qalın sait → a; incə sait → ə
+Dörd cür (-ın⁴, -ı⁴, -dır⁴): a, ı → ı
+Dörd cür: ə, e, i → i
+Dörd cür: o, u → u
+Dörd cür: ö, ü → ü</div>
+
+      <h3><span class="st">4</span> Qarışıq saitli sözlər: son hecaya bax</h3>
+      <div class="tbl"><table>
+        <tr><th>söz</th><th>son sait</th><th>şəkilçi</th><th>düzgün</th><th>tələ (birinci saitə görə)</th></tr>
+        <tr><td>kitab</td><td>a</td><td>-lar²</td><td>kitablar</td><td>kitablər</td></tr>
+        <tr><td>heyvan</td><td>a</td><td>-ın⁴</td><td>heyvanın</td><td>heyvanin</td></tr>
+        <tr><td>dövlət</td><td>ə</td><td>-ın⁴</td><td>dövlətin</td><td>dövlətün</td></tr>
+        <tr><td>mürəkkəb</td><td>ə</td><td>-ın⁴</td><td>mürəkkəbin</td><td>mürəkkəbün</td></tr>
+        <tr><td>şagird</td><td>i</td><td>-lar²</td><td>şagirdlər</td><td>şagirdlar</td></tr>
+      </table></div>
+      <div class="ex">dövlət + -ın⁴:   son sait "ə" → incə, dodaqlanmayan → -in → dövlətin
+(birinci sait "ö" dodaqlanandır, amma şəkilçi ona baxmır)</div>
+      <div class="life"><b>Həyatdan.</b> Mesajda "heyvanlar" yazırsan və "lar"ı düz seçirsən, çünki qulağın son hecanı eşidir. İmtahanda isə yazılmış "heyvanlər" sənə düz görünə bilər, çünki ilk sait "e" incədir. Həmişə son saitə bax.</div>
+
+      <h3><span class="st">5</span> Bitişdirici samitlər</h3>
+      <div class="fm">Saitlə bitən sözlə saitlə başlayan şəkilçi arasında bitişdirici samit işlənir
+Dərslikdəki nümunələr: y — istəyir, oxuyacaq, deyib</div>
+      <div class="tbl"><table>
+        <tr><th>söz</th><th>şəkilçi</th><th>forma</th><th>bitişdirici</th></tr>
+        <tr><td>küçə</td><td>yönlük -a²</td><td>küçə<b>y</b>ə</td><td>y</td></tr>
+        <tr><td>küçə</td><td>yiyəlik -ın⁴</td><td>küçə<b>n</b>in</td><td>n</td></tr>
+        <tr><td>küçə</td><td>təsirlik -ı⁴</td><td>küçə<b>n</b>i</td><td>n</td></tr>
+        <tr><td>ana</td><td>III şəxsin mənsubiyyəti</td><td>ana<b>s</b>ı</td><td>s</td></tr>
+        <tr><td>küçə</td><td>yerlik -da²</td><td>küçədə</td><td>yoxdur (şəkilçi samitlə başlayır)</td></tr>
+        <tr><td>şəhər</td><td>yönlük -a²</td><td>şəhərə</td><td>yoxdur (söz samitlə bitir)</td></tr>
+      </table></div>
+      <p>Diqqət: saitlə bitən sözə mənsubiyyət şəkilçisi qoşulanda <i>ana-m, ana-n, ana-mız, ana-nız</i> yazılır; burada <i>m, n</i> bitişdirici samit deyil, -ım⁴, -ın⁴, -ımız⁴, -ınız⁴ şəkilçisinin variantıdır (5-ci sinif, 2-ci hissə, s. 21 cədvəli).</p>
+      <p>6-cı sinif dərsliyində ayrıca qeyd var: <i>tale, mənafe, mənbə, mənşə, mövqe, nə, su</i> sözlərinə mənsubiyyət şəkilçisi artırdıqda köklə şəkilçi arasına <b>y</b> əlavə edilir: <i>taleyim, mənafeyin, mənbəyi, nəyimiz, mövqeyiniz, mənşəyi, suyumuz</i>.</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Şəkilçini sözün birinci saitinə görə seçmək: "kitablər", "dövlətün".</li>
+        <li>Alınma şəkilçini (-kar, -keş, -pərvər, -xana) ahəngə görə dəyişmək: "tələbkər" yox, <i>tələbkar</i>.</li>
+        <li>Dörd cür yazılan şəkilçidə dodaqlanmanı unutmaq: "gündüzin", "qunduzın".</li>
+        <li>Samitlə bitən sözə bitişdirici samit artırmaq: "şəhərnin", "kitabyı".</li>
+        <li>Köklə birbaşa birləşən yerlik və çıxışlıq şəkilçilərindən əvvəl bitişdirici yazmaq: "küçənidə" yox, <i>küçədə</i>. Bu şəkilçilər samitlə başlayır. (Mənsubiyyət şəkilçisindən sonra hal şəkilçisi artırılması ayrıca haldır, bu dərsdə yoxdur.)</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Şəkilçi son hecanın ahənginə baxır
+İki cür: qalın / incə
+Dörd cür: qalın / incə və dodaqlanan / dodaqlanmayan
+Bir cür: alınma şəkilçilər (-kar), dəyişmir
+Saitlə bitən söz + saitlə başlayan şəkilçi: y, n, s</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Heyvan" sözünə yiyəlik hal şəkilçisini (-ın⁴) artır. <span class="ans">heyvanın</span></li>
+        <li>"Dövlət" sözünə cəm şəkilçisini (-lar²) artır. <span class="ans">dövlətlər (son sait "ə")</span></li>
+        <li>"Ata" sözünə yiyəlik hal şəkilçisi artırdıqda hansı bitişdirici samit işlənir? <span class="ans">n (atanın)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Sözün quruluşca növləri; eyniköklü sözlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Quruluşuna görə biri fərqlidir", "hansı sözlər düzəltmə sözdür", "dördündən biri eyniköklü sözlər sırasına daxil deyil" — bu suallar bir üsulla həll olunur: sözü hissələrə ayırıb leksik şəkilçiyə və kökə bax.</p>
+
+      <h3><span class="st">2</span> Sadə, düzəltmə, mürəkkəb</h3>
+      <div class="fm">Sadə söz: bir kökdən, ya da kök və qrammatik şəkilçidən ibarətdir
+Düzəltmə söz: kökə leksik şəkilçi artırmaqla yaranır
+Mürəkkəb söz: iki və daha artıq sözün birləşməsindən yaranır</div>
+      <div class="ex">dəftər, almalar, gəldi       — sadə
+yüksək → yüksəklik          — düzəltmə (-lik leksik şəkilçidir)
+çoban + yastıq = çobanyastığı — mürəkkəb (çiçək adı)</div>
+      <p>Dərslikdəki dörd söz bir kökdən:</p>
+      <div class="ex">meşə       — yalnız kökdən ibarətdir          → sadə
+meşənin    — kök + qrammatik şəkilçi          → sadə
+meşəlik    — leksik şəkilçisi var             → düzəltmə
+meşəbəyi   — tərkibində iki söz var           → mürəkkəb</div>
+      <div class="fm">1. Sözdə iki ayrıca söz varmı? Varsa — mürəkkəb
+2. Yoxdursa: leksik şəkilçi varmı? Varsa — düzəltmə
+3. Yalnız kök və ya kök + qrammatik şəkilçi — sadə</div>
+      <p>Dərslikdəki daha bir neçə söz: <i>aşsüzən, toz-torpaq</i> — mürəkkəb; <i>məktəbli, yaxınlaşdı</i> — düzəltmə; <i>dostlar</i> — sadə. Düzəltmə sözlə kökü arasında məna bağlılığı olur: <i>qoru(maq)</i> — müdafiə etmək, <i>qoruq</i> — xüsusi mühafizə edilən ərazi.</p>
+
+      <h3><span class="st">3</span> Eyniköklü sözlər</h3>
+      <div class="fm">Eyniköklü sözlər: eyni söz kökündən əmələ gələn düzəltmə sözlərdir
+Qrammatik şəkilçi eyni sözün formasını yaradır, yeni söz yaratmır
+Kökləri omonim olan düzəltmə sözlər eyniköklü sayılmır</div>
+      <div class="ex">ot  →  otlaq, otlu, otla(maq)             eyniköklü sözlər
+
+bağ →  bağban, bağlıq, bağça               eyniköklü sözlər
+bağ →  bağda, bağlar, bağımız              eyni sözün müxtəlif formaları
+
+daş (isim) → daşlıq
+daş (feil) → daşqın                          eyniköklü sayılmır: kökləri omonimdir</div>
+      <p>Dərslikdəki tapşırıq: <i>gülçü, güldan, güllü, güllük</i> — <b>gül (isim)</b> sözündən; <i>gülüş, gülünc</i> — <b>gül (feil)</b> sözündən. Eyni şəkildə: <i>yağlı</i> (yağ — isim) və <i>yağış</i> (yağ- — yağmaq) eyniköklü deyil. "Dördündən biri eyniköklü deyil" sualında adətən fərqli olan söz eyni sözün formasıdır:</p>
+      <div class="ex">qorxaq, qorxulu, qorxunc, qorxdum     → "qorxdum" feilin formasıdır</div>
+
+      <h3><span class="st">4</span> Tam təhlil nümunəsi</h3>
+      <div class="tbl"><table>
+        <tr><th>söz</th><th>kök</th><th>leksik</th><th>qrammatik</th><th>başlanğıc forma</th><th>növ</th></tr>
+        <tr><td>çəmənlikdədir</td><td>çəmən</td><td>-lik</td><td>-də, -dir</td><td>çəmənlik</td><td>düzəltmə</td></tr>
+        <tr><td>səbirsizlikdən</td><td>səbir</td><td>-siz, -lik</td><td>-dən</td><td>səbirsizlik</td><td>düzəltmə</td></tr>
+        <tr><td>şagirdlərdən</td><td>şagird</td><td>yoxdur</td><td>-lər, -dən</td><td>şagird</td><td>sadə</td></tr>
+        <tr><td>gecə-gündüz</td><td colspan="4">gecə + gündüz — iki söz</td><td>mürəkkəb</td></tr>
+      </table></div>
+      <div class="life"><b>Həyatdan.</b> Xəbərlərdə "dənizçi" və "dənizçilik" sözləri tez-tez gəlir. İkisi də "dəniz" kökündən düzəlib: dəniz-çi, dəniz-çi-lik. Kök eynidir, leksik şəkilçilər fərqlidir — bunlar eyniköklü sözlərdir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qrammatik şəkilçisi çox olan sözü düzəltmə saymaq. "Dostlarımızın" — sadə: hamısı qrammatik şəkilçidir.</li>
+        <li>Düzəltmə sözdə şəkilçi çox olduğuna görə mürəkkəb demək. Mürəkkəb sözdə iki söz birləşir.</li>
+        <li>Eyni sözün formalarını (bağda, bağlar) eyniköklü saymaq.</li>
+        <li>Kökləri omonim olan sözləri (daşlıq – daşqın, yağlı – yağış) eyniköklü saymaq.</li>
+        <li>Defislə yazılan sözü ("toz-torpaq", "gecə-gündüz") sadə saymaq: bunlar mürəkkəbdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sadə: kök (+ qrammatik şəkilçi)
+Düzəltmə: kök + leksik şəkilçi
+Mürəkkəb: iki və daha artıq söz
+Eyniköklü: eyni kökdən düzələn düzəltmə sözlər
+Forma ≠ eyniköklü söz; omonim kök ≠ eyniköklü</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Meşələr" sözü quruluşca hansıdır? <span class="ans">sadə (meşə + -lər, qrammatik)</span></li>
+        <li>"Daşlıq" və "daşqın" eyniköklüdürmü? <span class="ans">xeyr: daş (isim) və daş (feil) — kökləri omonimdir</span></li>
+        <li>Dördündən biri eyniköklü deyil: otlaq, otlu, otumuz, otlamaq. <span class="ans">otumuz (ot sözünün forması)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Mürəkkəb sözlərin yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mürəkkəb söz üç cür yazılır: <b>bitişik</b>, <b>defislə</b> və <b>ayrı</b>. Buraxılışda "mürəkkəb sözün yazılışı səhvdir", "hansı söz defislə yazılır" tipli tapşırıqlar gəlir. Hər qrupun öz qaydası var.</p>
+
+      <h3><span class="st">2</span> Bitişik yazılan mürəkkəb sözlər</h3>
+      <div class="fm">Müxtəlifmənalı sözlərin birləşməsi: bitişik
+Təkrar sözlər arasına ba, bə, ha, a, ə artırılırsa: bitişik</div>
+      <div class="ex">müxtəlifmənalı:   sülhsevər, arabir, stolüstü, dəmirağac, üçbucaq, çobanyastığı
+təkrar + bitişdirici: addımbaaddım, ilbəil, vurhavur, qaçaqaç, kəsəkəs</div>
+      <p>7-ci sinif dərsliyindən dəqiqləşdirmə:</p>
+      <div class="ex">Feil kökünün təkrarı (a, ə, ha):   qaçaqaç, kəsəkəs, yazhayaz
+Kök kar samitlə bitəndə a, ə;  cingiltili samitlə bitəndə ha:   tutatut, qovhaqov
+İsmin təkrarı (ba, bə):   aybaay, günbəgün
+Gethaget sözü istisnadır.</div>
+
+      <h3><span class="st">3</span> Defislə yazılan mürəkkəb sözlər</h3>
+      <div class="fm">Eyni sözün təkrarı çox vaxt defislə yazılır
+Tərəfləri məna ilə bağlı sözlər defislə yazılır
+Tərəflərindən biri və ya heç biri məna kəsb etməyən sözlər də defislə yazılır</div>
+      <div class="ex">eyni sözün təkrarı:   tez-tez, qaça-qaça, iki-iki, bir-bir
+antonimlər:           gec-tez, gecə-gündüz
+sinonimlər:           ağıllı-kamallı, adət-ənənə
+hiponimlər:           süd-qatıq
+biri məna kəsb etmir:  kağız-kuğuz, tör-töküntü
+ümumi mənalı:         duz-çörək (ərzaq), şalvar-köynək (geyim), ağız-burun (bədən üzvləri)</div>
+      <p>Dərslik xəbərdarlıq edir: cümlədə yanaşı gələn eyni sözləri mürəkkəb sözlə qarışdırma. Mürəkkəb söz bir suala cavab verir və vahid məna bildirir; ayrı sözlərə isə ayrı-ayrı sual verilir.</p>
+      <div class="ex">Küçəyə başdan-başa (necə?) asfalt döşənmişdi.            mürəkkəb söz — defislə
+Çəmənlikdə kəpənəklər çiçəkdən (nədən?) çiçəyə (nəyə?) qonurdu.   iki ayrı söz — ayrı
+Bu əfsanə dildən-dilə düşərək yayıldı.                         mürəkkəb söz — defislə</div>
+
+      <h3><span class="st">4</span> Ayrı yazılan mürəkkəb sözlər</h3>
+      <p>7-ci sinif dərsliyi: elə mürəkkəb sözlər var ki, ayrı yazılır. Belə sözlərə tərkibi sözlər də deyilir.</p>
+      <div class="tbl"><table>
+        <tr><th>nitq hissəsi</th><th>nümunə</th></tr>
+        <tr><td>saylar</td><td>iyirmi iki, yetmiş üçüncü, bir çox, bir qədər, beşdə bir</td></tr>
+        <tr><td>əvəzliklər</td><td>kim isə, hər kim, hər biri, heç kim, heç nə</td></tr>
+        <tr><td>feillər</td><td>şad olmaq, kömək etmək, görə bilmək</td></tr>
+        <tr><td>zərflər</td><td>hər an, bu gün, bir dəfə, bir qədər</td></tr>
+        <tr><td>bağlayıcılar</td><td>yəni ki, belə ki, həm də, o cümlədən, madam ki</td></tr>
+        <tr><td>modal sözlər</td><td>şübhəsiz ki, yəqin ki, doğrudan da, bəlkə də</td></tr>
+        <tr><td>ədatlar</td><td>kaş ki, daha da, heç də</td></tr>
+        <tr><td>nidalar</td><td>ay aman, ey vay, ay haray, ay can</td></tr>
+      </table></div>
+      <p>"Etmək", "olmaq" ilə işlənən bəzi mürəkkəb feillərdə əsas söz ayrılıqda işlənmir: <i>bəxş etmək, cəzb etmək, peyda olmaq</i> — bunlar da ayrı yazılır.</p>
+
+      <h3><span class="st">5</span> Mürəkkəb söz, yoxsa söz birləşməsi</h3>
+      <p>Müxtəlifmənalı sözlərdən yaranan mürəkkəb söz quruluşca söz birləşməsinə bənzəyir. Fərq:</p>
+      <div class="fm">Mürəkkəb söz vahid məna bildirir
+Mürəkkəb söz bir vurğu ilə deyilir</div>
+      <div class="ex">beş mərtəbə  — söz birləşməsi        beşmərtəbə   — mürəkkəb söz
+ad qoymaq    — söz birləşməsi        adqoyma      — mürəkkəb söz
+günə baxan   — söz birləşməsi        günəbaxan    — tumundan yağ alınan birillik bitki
+on bir il    — söz birləşməsi        onbirillik   — mürəkkəb söz
+üç rəng      — söz birləşməsi        üçrəngli (bayraq) — mürəkkəb söz</div>
+      <div class="life"><b>Həyatdan.</b> "Qaçaqaç düşdü" yazmısan, düzdür: qaç-a-qaç bitişik yazılır. "Tez tez gəl" yazsan, səhvdir: <i>tez-tez</i> defislə. Kiçik fərqdir, amma imtahanda bir sual buna görə itir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Müxtəlifmənalı sözləri defislə yazmaq: "gözü-tox" yox, <i>gözütox</i>.</li>
+        <li>Yaxınmənalı sözləri bitişik yazmaq: "səsküy" yox, <i>səs-küy</i>.</li>
+        <li>a, ə, ha, ba, bə bitişdiricisini təkrar sözlərdən ayırmaq: "addım ba addım" yox, <i>addımbaaddım</i>.</li>
+        <li>Ayrı yazılan sözləri bitişdirmək: "birçox", "hərkim", "köməketmək" yox, <i>bir çox, hər kim, kömək etmək</i>.</li>
+        <li>"Gethaget" sözünü qaydaya görə "getaget" yazmaq. Dərslik bunu istisna kimi göstərir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Bitişik: müxtəlifmənalı; təkrar + ba, bə, ha, a, ə
+Defislə: təkrar; antonim, sinonim, hiponim
+Ayrı: saylar, əvəzliklər, bağlayıcılar və s.
+Mürəkkəb söz: vahid məna, bir vurğu</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Gecə" və "gündüz" sözlərindən mürəkkəb söz düzəlt. <span class="ans">gecə-gündüz (defislə)</span></li>
+        <li>"Kömək" və "etmək" sözləri necə yazılır? <span class="ans">kömək etmək (ayrı)</span></li>
+        <li>"Qaç" sözünün təkrarından bitişdirici ilə mürəkkəb isim düzəlt. <span class="ans">qaçaqaç (bitişik)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: sözün tərkibi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Şəkilçisi səhv yazılmış sözü müəyyən edin"</b> — beş söz, birində şəkilçi son hecaya görə seçilməyib.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş sözlər; variantlar "A) 1, 4, 5" kimidir ("hansı sözlər düzəltmə sözdür", "hansılarında bitişdirici samit var").</li>
+        <li><b>"Biri fərqlidir / daxil deyil"</b> — quruluşca növ və ya eyniköklü sözlər.</li>
+        <li><b>"… sözü ilə bağlı səhv fikri müəyyən edin"</b> — bir söz haqqında beş fikir: kök, şəkilçilər, başlanğıc forma, quruluş. 15 noyabr sınağında da belə sual var idi.</li>
+        <li><b>Mürəkkəb sözün yazılışı</b> — hansı söz bitişik, defislə, ayrı yazılır, hansının yazılışı səhvdir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: şəkilçini birinci saitə görə seçmək, kökü başlanğıc formayla qarışdırmaq, forma ilə eyniköklü sözü qarışdırmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — şəkilçisi səhv yazılmış söz</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · şəkilçinin yazılışı</span>
+        <p>Şəkilçisi səhv yazılmış sözü müəyyən edin.</p>
+        <ol class="imt-opts"><li>kitablar</li><li>heyvanın</li><li>dövlətün</li><li>gündüzün</li><li>şagirdlər</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">kitab    — son sait a  → -lar    → kitablar   (düz)
+heyvan   — son sait a  → -ın     → heyvanın   (düz)
+dövlət   — son sait ə  → -in     → dövlətin;  "dövlətün" səhvdir
+gündüz   — son sait ü  → -ün     → gündüzün   (düz)
+şagird   — son sait i  → -lər    → şagirdlər  (düz)
+Cavab: C) dövlətün</div>
+      <ul>
+        <li><b>C)</b> — "dövlət"in birinci saiti "ö" dodaqlanandır, amma şəkilçi son saitə ("ə") baxır: <i>dövlətin</i>.</li>
+        <li><b>A)</b>-ni seçmək: "kitab"ın ilk saiti "i" incədir, ona görə "kitablər" düzdür deyə düşünmək. Son sait "a" → <i>kitablar</i> düzdür.</li>
+        <li><b>E)</b>-ni seçmək: "şagird"in ilk saiti "a" qalındır, ona görə "şagirdlar" gözləmək. Son sait "i" → <i>şagirdlər</i> düzdür.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı sözlər düzəltmə sözdür?<br>1. çəmənlik<br>2. toz-torpaq<br>3. kitablarda<br>4. yaxınlaşdı<br>5. dostluq</p>
+        <ol class="imt-opts"><li>1, 4, 5</li><li>1, 2, 4</li><li>1, 3, 4, 5</li><li>2, 4, 5</li><li>3, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. çəmən-lik          — leksik şəkilçi var        → düzəltmə
+2. toz-torpaq         — iki söz                   → mürəkkəb
+3. kitab-lar-da       — yalnız qrammatik şəkilçi  → sadə
+4. yaxın-laş-dı       — leksik şəkilçi -laş       → düzəltmə
+5. dost-luq           — leksik şəkilçi -luq       → düzəltmə
+Cavab: A) 1, 4, 5</div>
+      <ul>
+        <li><b>B)</b> — "toz-torpaq"ı düzəltmə saymaq (bu, iki sözün birləşməsidir, yəni mürəkkəbdir) və "dostluq"u buraxmaq.</li>
+        <li><b>C)</b> — "kitablarda"nı da düzəltmə saymaq; iki şəkilçisi var, amma ikisi də qrammatikdir (sadə).</li>
+        <li><b>D)</b> — "toz-torpaq"ı düzəltmə saymaq və "çəmənlik"i buraxmaq.</li>
+        <li><b>E)</b> — "kitablarda"nı düzəltmə saymaq, "çəmənlik" və "yaxınlaşdı"nı isə buraxmaq.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — söz haqqında səhv fikir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · səhv fikir</span>
+        <p>"Odunçuların" sözü ilə bağlı səhv fikri müəyyən edin.</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Kökü "odun" sözüdür.</li><li>Başlanğıc forması "odunçu" sözüdür.</li><li>Tərkibində iki qrammatik şəkilçi var.</li><li>Quruluşca sadə sözdür.</li><li>Tərkibində leksik şəkilçi var.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">odun-çu-lar-ın
+odun        — kök
+-çu         — leksik şəkilçi
+-lar, -ın   — qrammatik şəkilçilər
+başlanğıc forma: odunçu (kök + leksik şəkilçi)
+leksik şəkilçisi var → düzəltmə söz
+Cavab: D) Quruluşca sadə sözdür.</div>
+      <ul>
+        <li><b>D)</b> səhvdir: leksik şəkilçisi olan söz düzəltmə sözdür, sadə deyil.</li>
+        <li><b>A), B)</b> düzdür. Kök (<i>odun</i>) ilə başlanğıc formanı (<i>odunçu</i>) qarışdırma.</li>
+        <li><b>C)</b> düzdür: -lar və -ın. <b>E)</b> düzdür: -çu.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Şəkilçini sözün birinci saitinə görə seçmək. Hər dəfə son saiti göstər: qalın, incə, dodaqlanan?</li>
+        <li>Qrammatik şəkilçili sözü düzəltmə, defislə yazılan sözü sadə saymaq.</li>
+        <li>Kök, başlanğıc forma və söz qarışır. Əvvəl kökü, sonra leksik şəkilçiləri tap.</li>
+        <li>Eyni sözün formasını eyniköklü söz saymaq; omonim kökləri eyniköklü saymaq.</li>
+        <li>Nömrə kombinasiyasında bir sözü yoxlamağı unutmaq. Beşini də ayrıca həll et, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Sözü hissələrə ayır: kök, leksik, qrammatik
+Şəkilçi — son saitə görə
+Leksik şəkilçi varsa və iki söz birləşməyibsə — düzəltmə
+İki söz varsa — mürəkkəb
+Variantlara baxmadan əvvəl özün həll et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>Quruluşuna görə biri fərqlidir: məktəbli, dostluq, ağıllı, dəftər, çəmənlik. <span class="ans">dəftər (sadə; qalanları düzəltmə)</span></li>
+        <li>"Mürəkkəb" sözünə yiyəlik hal şəkilçisini (-ın⁴) düzgün yaz. <span class="ans">mürəkkəbin (son sait "ə")</span></li>
+        <li>Hansı ayrı yazılır: gecə-gündüz, hər kim, qaçaqaç, dəmirağac? <span class="ans">hər kim</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

@@ -1570,7 +1570,9 @@
    "ad": "Sözün tərkibi və söz yaradıcılığı",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 2",
-   "hefte": "2026-11-30"
+   "hefte": "2026-11-30",
+   "ders": "dersler/az-soz-terkibi.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",
