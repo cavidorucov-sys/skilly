@@ -1658,7 +1658,9 @@
    "ad": "Feilin təsriflənməyən formaları",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 13",
-   "hefte": "2027-02-22"
+   "hefte": "2027-02-22",
+   "ders": "dersler/az-feil-formalari.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",
