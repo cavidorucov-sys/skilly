@@ -1694,7 +1694,9 @@
    "ad": "Söz birləşməsi",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 16",
-   "hefte": "2027-03-22"
+   "hefte": "2027-03-22",
+   "ders": "dersler/az-soz-birlesmesi.html",
+   "imt": true
   },
   {
    "bolme": "Sintaksis",

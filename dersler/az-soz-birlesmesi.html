@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Söz birləşməsi; mürəkkəb adlar dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-soz-birlesmesi.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Söz birləşməsi</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sintaksis</div>
+    <h1>Söz birləşməsi; mürəkkəb adlar</h1>
+    <p>Söz birləşməsi cümlə üzvlərini və cümlədə sözlərin əlaqəsini anlamağın əsasıdır. Buraxılışın dil qaydaları blokunda (10 qapalı sual) bu mövzudan iki cür sual gəlir: "hansı birləşmənin əsas tərəfi məsdərlə, feili sifətlə, feili bağlama ilə ifadə olunub" və "mürəkkəb adlardan hansının yazılışında səhv var". Qaydalar 5-ci, 6-cı və 8-ci sinif dərsliklərindən, köməkçi olaraq 7-ci sinif dərsliyindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, nümunələrdəki hər birləşmənin əsas tərəfini özün tap, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Söz birləşməsi</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İsmi və feili birləşmələr</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Feili birləşmələr: tərkiblər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Mürəkkəb adlar</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Söz birləşməsi; asılı və əsas tərəf</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mağazada "top" desən, satıcı soruşacaq: hansı top? "Futbol topu" desən, məna dəqiqləşir. İki sözün belə birləşməsi <b>söz birləşməsidir</b>. İmtahanda "hansı söz birləşməsidir", "əsas tərəf hansıdır", "birləşmənin növünü müəyyən edin" tapşırıqları gəlir. Bu dərsdə əvvəl birləşmənin nə olduğunu, sonra onun iki tərəfini öyrənirik.</p>
+
+      <h3><span class="st">2</span> Söz birləşməsi nədir</h3>
+      <div class="fm">Söz birləşməsi iki və daha artıq müstəqil sözün məna və qrammatik cəhətdən birləşməsidir.
+Müstəqil söz dedikdə əsas nitq hissələri nəzərdə tutulur.
+Söz birləşməsi anlayışı daha konkret ifadə edir.</div>
+      <p>Söz, söz birləşməsi və cümləni bir-birindən fərqləndir:</p>
+      <div class="tbl"><table>
+        <tr><th>vahid</th><th>nə edir</th><th>nümunə</th></tr>
+        <tr><td>söz</td><td>anlayış ifadə edir, məna bildirir</td><td>top</td></tr>
+        <tr><td>söz birləşməsi</td><td>mənanı konkretləşdirir</td><td>futbol topu</td></tr>
+        <tr><td>cümlə</td><td>anlayışla bağlı bitmiş fikir bildirir</td><td>Top qapıdan keçdi.</td></tr>
+      </table></div>
+      <div class="ex">xalça — söz (anlayışı ümumi ifadə edir)
+muzeydəki xalça — söz birləşməsi (anlayış daha dəqiqdir: mağazadakı və ya evdəki xalça yox, məhz muzeydəkidir)</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Qabdakı qırmızı alma sənindir". Dostun bilir ki, bu, bağdakı və ya masadakı alma deyil — məhz qabdakıdır. Üç sözün birləşməsi mənanı addım-addım dəqiqləşdirdi.</div>
+
+      <h3><span class="st">3</span> Nə söz birləşməsi deyil</h3>
+      <p><b>Birincisi — mürəkkəb söz.</b> Mürəkkəb söz bir sözdür, söz birləşməsi isə iki və daha artıq müstəqil sözdən ibarətdir.</p>
+      <div class="ex">boşqab — mürəkkəb söz (bir sözdür)
+boş qab — söz birləşməsi (iki söz: boş + qab)
+rəngbərəng, daşkəsən, incəsənət, üçbucaq — mürəkkəb sözlərdir</div>
+      <p><b>İkincisi — köməkçi nitq hissəsi.</b> Qoşma, bağlayıcı və ədat söz birləşməsinin tərkibində iştirak edə bilər, amma söz birləşməsi yarada bilməz. Ona görə yalnız bir müstəqil sözdən ibarət vahid birləşmə sayılmır. 7-ci sinif dərsliyindən:</p>
+      <div class="ex">kəndə sarı — qoşmalı isimdir
+lap böyük — çoxaltma dərəcəli sifətdir
+cəlb etmək — mürəkkəb feildir (etmək köməkçi feildir)
+bir qədər — mürəkkəb saydır</div>
+      <p><b>Üçüncüsü — cümlə.</b> "Hava istidir", "kəndə çatdıq" bitmiş fikir bildirir; bunlar cümlədir.</p>
+      <p>Bu dərsdə yalnız <b>sərbəst</b> birləşmələrə baxırıq: hər söz öz mənasında işlənir (qırmızı alma). Sözlər birlikdə başqa məna verirsə, bu, frazeoloji birləşmədir; onlar leksika mövzusunda keçilir.</p>
+
+      <h3><span class="st">4</span> Asılı və əsas tərəf</h3>
+      <div class="fm">Söz birləşməsinin iki tərəfi var: asılı tərəf və əsas tərəf.
+Asılı tərəf əsas sözdən əvvəl gəlir və onu müxtəlif cəhətdən izah edir.
+Əsas tərəf tabe edən, asılı tərəf tabe olandır.
+Asılı tərəf bir neçə sözdən ibarət ola bilər. Bu zaman məna daha da dəqiqləşir.</div>
+      <div class="ex">evin pəncərəsi
+asılı tərəf: evin     əsas tərəf: pəncərəsi
+
+məktəbimizin beşinci sinif şagirdi
+asılı tərəf: məktəbimizin beşinci sinif     əsas tərəf: şagirdi
+
+seminariyada oxumaq
+asılı tərəf: seminariyada     əsas tərəf: oxumaq</div>
+      <p>Əsas tərəf birləşmənin sonunda dayanır. Asılı tərəfi dəyişsən, yeni birləşmə alınır: <i>həyətin qapısı</i> — <i>evin qapısı</i>.</p>
+      <p>6-cı sinif dərsliyində birləşmələr quruluşuna görə də ayrılır: iki leksik mənalı sözdən ibarət birləşmə <b>sadə</b>, üç və daha artıq leksik mənalı sözdən ibarət birləşmə <b>mürəkkəb</b> adlanır: <i>məktəbin direktoru</i> (sadə), <i>məktəbin yeni təyin olunmuş direktoru</i> (mürəkkəb).</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mürəkkəb sözü söz birləşməsi saymaq: <i>boşqab</i> bir sözdür. <i>Boş qab</i> isə iki sözdür.</li>
+        <li>Cümləni birləşmə saymaq: <i>hava istidir</i> bitmiş fikir bildirir.</li>
+        <li>Qoşma və ya ədatlı vahidi birləşmə saymaq: <i>kəndə sarı</i>, <i>lap böyük</i> söz birləşməsi deyil.</li>
+        <li>Asılı tərəfi sonda axtarmaq. Asılı tərəf həmişə əvvəl gəlir, əsas tərəf sonda dayanır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Söz birləşməsi: iki və daha artıq müstəqil söz, mənanı konkretləşdirir
+Mürəkkəb söz — bir söz; cümlə — bitmiş fikir
+Qoşma, bağlayıcı, ədat birləşmə yarada bilməz
+Asılı tərəf əvvəl gəlir, əsas tərəf (tabe edən) sonda dayanır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Geniş park", "rəngbərəng", "otaq genişdir" — hansı söz birləşməsidir? <span class="ans">geniş park</span></li>
+        <li>"Qabdakı qırmızı alma" birləşməsinin əsas tərəfi hansıdır? <span class="ans">alma (asılı tərəf: qabdakı qırmızı)</span></li>
+        <li>"Bir qədər" söz birləşməsidirmi? <span class="ans">xeyr, mürəkkəb saydır</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. İsmi və feili birləşmələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İmtahanda beş birləşmə verilir və soruşulur: hansının əsas tərəfi feilin təsriflənməyən formasıdır? Cavab üçün hər birləşmənin <b>əsas tərəfinə</b> baxmaq lazımdır. Birləşmənin növünü əsas tərəf müəyyən edir.</p>
+
+      <h3><span class="st">2</span> Növü əsas tərəf müəyyən edir</h3>
+      <div class="fm">Əsas tərəfin ifadə vasitəsinə görə söz birləşmələrinin iki növü var: ismi və feili birləşmələr.
+Əsas tərəfi adlarla ifadə olunan söz birləşmələrinə ismi birləşmələr deyilir.
+Əsas tərəfi feilin təsriflənməyən formaları (məsdər, feili sifət, feili bağlama) ilə ifadə olunan söz birləşmələrinə feili birləşmələr deyilir.</div>
+      <div class="ex">İsmi:   baharın gəlişi, uşaq ədəbiyyatı, səfər təəssüratı, çalınan musiqi, çalışqan şagird
+Feili:  el qeyrəti çəkən, vicdanla yaşamaq, ədalətlə həll etdikdə</div>
+      <p>Qısa yoxlama: birləşmənin <b>son sözünə</b> bax. Son söz feilin təsriflənməyən formasıdırsa (<i>-maq/-mək</i> ilə bitən məsdər, <i>çəkən</i> kimi feili sifət, <i>yaşayanda</i> kimi feili bağlama) — birləşmə feilidir. Yoxsa ismidir. Əsas tərəf mürəkkəb feillə də ifadə oluna bilər: <i>ədalətlə həll etdikdə</i> birləşməsində əsas tərəf bütövlükdə <i>həll etdikdə</i>, <i>ulduzları seyr edərkən</i> birləşməsində <i>seyr edərkən</i> (feili bağlama) olur.</p>
+
+      <h3><span class="st">3</span> İsmi birləşmənin əsas tərəfi</h3>
+      <p>İsmi birləşmənin əsas tərəfi yalnız isim olmur: isim, sifət, say, əvəzlik və ya zərflə ifadə oluna bilər (6-cı sinif).</p>
+      <div class="tbl"><table>
+        <tr><th>birləşmə</th><th>asılı tərəf</th><th>əsas tərəf</th></tr>
+        <tr><td>maraqlı kitab</td><td>maraqlı</td><td>kitab (isim)</td></tr>
+        <tr><td>uşaqların kiçiyi</td><td>uşaqların</td><td>kiçiyi (sifət)</td></tr>
+        <tr><td>uşaqların beşi</td><td>uşaqların</td><td>beşi (say)</td></tr>
+        <tr><td>şagirdlərin hamısı</td><td>şagirdlərin</td><td>hamısı (əvəzlik)</td></tr>
+      </table></div>
+      <p>Dərslikdəki digər nümunə: <i>gözəllər gözəli</i>, <i>evin yuxarısı</i>. Hamısı ismi birləşmədir, çünki əsas tərəf feil forması deyil.</p>
+
+      <h3><span class="st">4</span> Tələ: asılı tərəf feil formasıdır</h3>
+      <p>Asılı tərəf məsdər və ya feili sifət ola bilər. Bu, birləşməni feili etmir. Növü <b>yalnız əsas tərəf</b> müəyyən edir.</p>
+      <div class="ex">çalınan musiqi     çalınan — feili sifət (asılı), musiqi — isim (əsas)  → ismi
+oxumaq həvəsi      oxumaq — məsdər (asılı), həvəsi — isim (əsas)        → ismi
+abadlaşan küçələr  abadlaşan — feili sifət (asılı), küçələr — isim (əsas) → ismi
+dərilmiş meyvə     dərilmiş — feili sifət (asılı), meyvə — isim (əsas)    → ismi</div>
+      <p>Eyni asılı tərəfi saxlayıb əsas tərəfi dəyişsən, növ dəyişir (8-ci sinif dərsliyi):</p>
+      <div class="ex">seminariyada oxumaq     əsas tərəf: oxumaq    — məsdər
+seminariyada oxuyan      əsas tərəf: oxuyan    — feili sifət
+seminariyada oxuyanda    əsas tərəf: oxuyanda  — feili bağlama</div>
+      <p>Bu üç növü növbəti dərsdə ayrıca öyrənəcəyik.</p>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunə</h3>
+      <div class="ex">1. açıq söhbət     əsas tərəf: söhbət (isim)         → ismi
+2. sahildə gəzmək   əsas tərəf: gəzmək (məsdər)       → feili
+3. acı bibər        əsas tərəf: bibər (isim)          → ismi
+4. şeir oxuyan      əsas tərəf: oxuyan (feili sifət)  → feili
+5. yağış yağanda    əsas tərəf: yağanda (feili bağlama) → feili
+Feili birləşmələr: 2, 4, 5. Qalanları ismidir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Asılı tərəfdə feil forması gördükdə birləşməni feili saymaq (<i>çalınan musiqi</i>, <i>oxumaq həvəsi</i>). Əsas tərəfə bax.</li>
+        <li>İsmi birləşmənin əsas tərəfini yalnız isim saymaq. Sifət (<i>uşaqların kiçiyi</i>), say (<i>uşaqların beşi</i>), əvəzlik (<i>şagirdlərin hamısı</i>) də ola bilər.</li>
+        <li>Birləşməni ayrı-ayrı sözlərə görə təyin etmək. Yalnız sonuncu — əsas söz həll edir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əsas tərəf adla ifadə olunub → ismi birləşmə
+Əsas tərəf məsdər, feili sifət və ya feili bağlamadır → feili birləşmə
+Asılı tərəfdəki feil forması növü dəyişmir</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Dərilmiş meyvə" — ismi, yoxsa feili birləşmə? <span class="ans">ismi (əsas tərəf: meyvə)</span></li>
+        <li>"Hamını düşünən" — ismi, yoxsa feili birləşmə? <span class="ans">feili (əsas tərəf: düşünən)</span></li>
+        <li>"Uşaqların beşi" birləşməsinin əsas tərəfi hansı nitq hissəsi ilə ifadə olunub? <span class="ans">say (beşi)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Feili birləşmələr: məsdər, feili sifət, feili bağlama tərkibi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Feili birləşmələrin üç növü var. İmtahan "əsas tərəfi feili sifətlə ifadə olunan birləşmə hansıdır" kimi soruşur. Növü tapmaq üçün yenə birləşmənin son sözünə baxırıq: o, məsdərdir, feili sifətdir, yoxsa feili bağlama.</p>
+
+      <h3><span class="st">2</span> Üç növ</h3>
+      <div class="fm">Feili birləşmələr cümlədə işləndikdə tərkib adlanır.
+Tərkiblər əsas tərəfin adı ilə adlanır və üç növə ayrılır:
+Məsdər tərkibi — əsas tərəfi məsdərlə ifadə olunur.
+Feili sifət tərkibi — əsas tərəfi feili sifətlə ifadə olunur.
+Feili bağlama tərkibi — əsas tərəfi feili bağlama ilə ifadə olunur.</div>
+      <p>7-ci sinif dərsliyindən nümunələr (tərkib hər nümunənin altında ayrıca göstərilib):</p>
+      <div class="ex">Ağır idman daşlarını qaldırmaq çətin idi.
+məsdər tərkibi: ağır idman daşlarını qaldırmaq
+
+Loğmanın köməyinə pənah gətirən insanlar naümid qayıtmadılar.
+feili sifət tərkibi: Loğmanın köməyinə pənah gətirən
+
+Günəş dağların arxasında gizlənəndə hər tərəfə sükut çökdü.
+feili bağlama tərkibi: Günəş dağların arxasında gizlənəndə</div>
+
+      <h3><span class="st">3</span> Necə ayırmaq</h3>
+      <p>6-cı sinif dərsliyindəki nümunələr əsas tərəfə görə belə ayrılır:</p>
+      <div class="tbl"><table>
+        <tr><th>növ</th><th>nümunə</th><th>əsas tərəf</th></tr>
+        <tr><td>məsdər tərkibi</td><td>sahildə gəzmək, səyahətə getmək</td><td>gəzmək, getmək</td></tr>
+        <tr><td>feili sifət tərkibi</td><td>şeir oxuyan, hamını düşünən, xaricdən gəlmiş</td><td>oxuyan, düşünən, gəlmiş</td></tr>
+        <tr><td>feili bağlama tərkibi</td><td>yağış yağanda, meşədən qayıdanda, bina tikdirərək</td><td>yağanda, qayıdanda, tikdirərək</td></tr>
+      </table></div>
+      <p>Diqqət: <i>yağanda</i>, <i>qayıdanda</i>, <i>gizlənəndə</i> kimi sözlər dərslikdə feili bağlama sayılır, tərkib də feili bağlama tərkibidir.</p>
+
+      <h3><span class="st">4</span> Cümlədə rolu (7-ci sinif; bilmək üçün)</h3>
+      <p>Tərkiblər cümlədə müxtəlif cümlə üzvü olur. Cümlə üzvlərini sonrakı mövzularda ətraflı öyrənəcəksən; burada sadəcə nümunələrə bax.</p>
+      <div class="ex">Məsdər tərkibi — mübtəda, tamamlıq, ismi xəbər və zərflik
+Feili sifət tərkibi — təyin (isimləşəndə — mübtəda, tamamlıq, ismi xəbər)
+Feili bağlama tərkibi — zaman, tərzi-hərəkət, səbəb, kəmiyyət zərfliyi</div>
+      <div class="ex">Öz işində peşəkar olmaq (nə?) hamı üçün vacibdir.        məsdər tərkibi — mübtəda
+Pis günü görməyən (hansı?) insan yaxşı günün qədrini bilməz.  feili sifət tərkibi — təyin
+Dövlət himni səslənəndə (nə vaxt?) tədbirdəkilər ayağa qalxdı. feili bağlama tərkibi — zərflik</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunə</h3>
+      <p>6-cı sinif dərsliyindəki sıra: birləşmələri növünə görə qruplaşdır.</p>
+      <div class="ex">Bakı gecələri, sözün doğrusu, oxumaq həvəsi, açıq söhbət, acı bibər, son dayanacaq → ismi
+hamını düşünən → feili sifət tərkibi
+ulduzları seyr edərkən, meşədən qayıdanda → feili bağlama tərkibi
+səyahətə getmək → məsdər tərkibi</div>
+      <p>Diqqət: <i>oxumaq həvəsi</i> məsdər tərkibi deyil. Məsdər burada asılı tərəfdir, əsas tərəf <i>həvəsi</i> isimdir.</p>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><i>Oxumaq həvəsi</i> birləşməsini məsdər tərkibi saymaq. Əsas tərəfə bax: <i>həvəsi</i> — isim → ismi birləşmə.</li>
+        <li><i>Çalınan musiqi</i> birləşməsini feili sifət tərkibi saymaq. Əsas tərəf <i>musiqi</i> isimdir.</li>
+        <li><i>Yağış yağanda</i> birləşməsini feili sifət tərkibi saymaq: dərslikdə <i>-anda</i> ilə bitən belə söz feili bağlamadır.</li>
+        <li>Tərkibi asılı tərəfin adı ilə adlandırmaq. Tərkib əsas tərəfin adı ilə adlanır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tərkib əsas tərəfin adı ilə adlanır
+Əsas tərəf məsdər → məsdər tərkibi (gəzmək)
+Əsas tərəf feili sifət → feili sifət tərkibi (oxuyan)
+Əsas tərəf feili bağlama → feili bağlama tərkibi (yağanda)
+Əsas tərəf isim → ismi birləşmə, hətta asılı tərəfdə feil forması olsa da</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Seminariyada oxuyan" birləşməsi hansı tərkibdir? <span class="ans">feili sifət tərkibi</span></li>
+        <li>"Evdən qayıdanda" birləşməsi hansı tərkibdir? <span class="ans">feili bağlama tərkibi</span></li>
+        <li>"Şeir oxumaq" birləşməsi hansı tərkibdir? <span class="ans">məsdər tərkibi</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Mürəkkəb adlar və onların yazılışı</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Xəzər dənizi" yazırsan, yoxsa "Xəzər Dənizi"? "Abbas mirzə", yoxsa "Abbas Mirzə"? İmtahanda "mürəkkəb adlardan hansının yazılışında səhv var" sualı çıxır. Cavab bir neçə qaydadadır. Onları qruplaşdırıb öyrənmək asandır.</p>
+
+      <h3><span class="st">2</span> Mürəkkəb ad nədir</h3>
+      <div class="fm">Söz birləşməsi şəklində olan adlara mürəkkəb adlar deyilir.
+Şəxs, yer, ölkə, əsər, bayram və s. adları mürəkkəb ad şəklində olur.
+Mürəkkəb adın tərkibindəki bütün sözlər ayrı yazılır.</div>
+      <div class="ex">Nizami Gəncəvi · Azərbaycan Respublikası · Xəzər dənizi · Novruz bayramı</div>
+      <p>Hansı sözlərin böyük, hansının kiçik hərflə yazılacağı adın növündən asılıdır. Üç qrup var.</p>
+
+      <h3><span class="st">3</span> Qrup 1: bütün sözlər böyük hərflə</h3>
+      <div class="fm">Soyad, ad və ata adı: Şahbazlı Lətifə Uğur qızı
+Ölkələrin, muxtar respublikaların və vilayətlərin adları: Azərbaycan Respublikası, Birləşmiş Ərəb Əmirlikləri
+İdarə və təşkilat adları: Azərbaycan Respublikası Prezident Administrasiyası, Uşaqların Xilası Təşkilatı, M.Maqomayev adına Azərbaycan Dövlət Filarmoniyası
+Bu adların tərkibindəki oğlu, qızı, adına, yanında, üzrə sözləri kiçik hərflə yazılır.</div>
+      <div class="ex">Aydan Camallı, Səttar Bəhlulzadə, Səməd Vurğun — ad və soyad böyük hərflə
+Şahbazlı Lətifə Uğur qızı — «qızı» kiçik
+M.Maqomayev adına Azərbaycan Dövlət Filarmoniyası — «adına» kiçik</div>
+
+      <h3><span class="st">4</span> Qrup 2: məkan bildirən söz kiçik</h3>
+      <div class="fm">Yer adlarının tərkibində küçə, ada, çay, şəhər, dağ, kənd, meydan, okean, dəniz, körpü və s. məkan bildirən sözlər kiçik hərflə yazılır; adın özü böyük hərflə başlayır.</div>
+      <div class="ex">Sakit okean, Xəzər dənizi, Kür çayı
+Qara dəniz, Muğan düzü, Araz çayı, Kiçik Qafqaz dağları
+Novruz bayramı</div>
+      <p>Dərslikdə adların tərkibindəki küçə, ada, çay, şəhər, dağ sözləri də kiçik hərflə yazılır (6-cı sinif). Adın özü (<i>Xəzər</i>, <i>Kür</i>, <i>Kiçik Qafqaz</i>) böyük başlayır.</p>
+
+      <h3><span class="st">5</span> Qrup 3: mirzə, hacı, şah və s.</h3>
+      <div class="fm">Mirzə, hacı, şeyx, seyid, şah, soltan, ağa, bəy, bəyim, xan, xanım və s. sözlər rütbə, ləqəb və titul bildirir.
+Bu sözlər addan əvvəl gəldikdə böyük hərflə yazılır.
+Bu sözlər addan sonra gəldikdə kiçik hərflə yazılır.</div>
+      <div class="ex">Əvvəl (böyük):  Mirzə Fətəli, Hacı Qara, Şeyx Nəsrullah, Seyid Əzim, Şah İsmayıl, Soltan Mahmud
+Sonra (kiçik):  Abbas mirzə, Nadir şah, Abbasqulu ağa, Fətəli xan, Heyran xanım
+Hər ikisi:     Ağa Məhəmməd şah Qacar, Abbasqulu ağa Bakıxanov, Qasım bəy Zakir</div>
+      <p>6-cı sinif dərsliyində daha bir qayda var: bəzi yer adlarının tərkibində işlənən cənubi, şərqi, aşağı, orta, uzaq kimi cəhət, istiqamət, ərazi bildirən sözlər <b>böyük hərflə</b> yazılır.</p>
+      <div class="ex">Cənubi Amerika, Orta Asiya, Şimal Buzlu okeanı, Uzaq Şərq, Aşağı Quşçu, Yuxarı Salahlı</div>
+      <div class="life"><b>Həyatdan.</b> Xəritədə "Cənubi Amerika" yazılıb: "cənubi" burada istiqamət deyil, adın bir hissəsidir, ona görə böyükdür. Cümlədə "cənubdakı ölkələr" yazsan, kiçik olacaq.</div>
+
+      <h3><span class="st">6</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Azərbaycan respublikası    → səhv: ölkə adı, bütün sözlər böyük: Azərbaycan Respublikası
+Xəzər Dənizi              → səhv: ikinci söz kiçik: Xəzər dənizi
+Abbas Mirzə               → səhv: titul addan sonra kiçik: Abbas mirzə
+mirzə Fətəli              → səhv: titul addan əvvəl böyük: Mirzə Fətəli
+cənubi Koreya             → səhv: istiqamət sözü adın tərkibində böyük: Cənubi Koreya
+Şahbazlı Lətifə Uğur Qızı → səhv: «qızı» kiçik: Şahbazlı Lətifə Uğur qızı</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Dəniz, çay, dağ, şəhər, kənd sözlərini böyük yazmaq: <i>Xəzər Dənizi</i>, <i>Kür Çayı</i> səhvdir.</li>
+        <li>Oğlu, qızı, adına sözlərini böyük yazmaq: <i>Uğur Qızı</i>, <i>M.Maqomayev Adına</i> səhvdir.</li>
+        <li>Addan sonra gələn titulu böyük yazmaq: <i>Abbasqulu Ağa</i>, <i>Fətəli Xan</i> səhvdir. Addan əvvəl gələn titulu kiçik yazmaq da səhvdir: <i>mirzə Fətəli</i>.</li>
+        <li>Cənubi, orta, aşağı, uzaq sözlərini yer adında kiçik yazmaq: <i>orta Asiya</i> səhvdir.</li>
+        <li>İdarə və ölkə adının yalnız birinci sözünü böyük yazmaq: <i>Azərbaycan respublikası</i> səhvdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Ad, soyad, ölkə, idarə adları: bütün sözlər böyük (oğlu, qızı, adına kiçik)
+Dəniz, çay, şəhər, kənd, okean, körpü… sözü olan adlar: adın özü böyük, bu söz kiçik
+Mirzə, hacı, şah, bəy, ağa, xan: addan əvvəl böyük, sonra kiçik
+Cənubi, şərqi, aşağı, orta, uzaq bəzi yer adlarında böyük</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Kür çayı", yoxsa "Kür Çayı"? <span class="ans">Kür çayı</span></li>
+        <li>"Fətəli xan", yoxsa "Fətəli Xan"? <span class="ans">Fətəli xan</span></li>
+        <li>"Orta asiya", yoxsa "Orta Asiya"? <span class="ans">Orta Asiya</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: söz birləşməsi və mürəkkəb adlar</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Hansı birləşmənin əsas tərəfi … ifadə olunub"</b> — beş birləşmə; məsdər, feili sifət və ya feili bağlama tapılmalıdır.</li>
+        <li><b>"Hansı söz birləşməsidir"</b> — beş vahid: biri birləşmədir, qalanları mürəkkəb söz, cümlə və ya köməkçi sözlü vahiddir.</li>
+        <li><b>"Mürəkkəb adlardan hansında səhv var"</b> — beş ad; biri hərf böyüklüyünə görə səhvdir.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş birləşmələr və ya cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: asılı tərəfdəki feil formasına görə birləşməni feili saymaq, böyük hərf qaydasını qarışdırmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — birləşmənin növü</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · feili birləşmə</span>
+        <p>Hansı birləşmənin əsas tərəfi məsdərlə ifadə olunub?</p>
+        <ol class="imt-opts"><li>oxumaq həvəsi</li><li>şeir oxuyan</li><li>yağış yağanda</li><li>tar çalmaq</li><li>abadlaşan küçələr</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) oxumaq həvəsi   — əsas tərəf həvəsi (isim) → ismi birləşmə
+B) şeir oxuyan     — əsas tərəf oxuyan (feili sifət)
+C) yağış yağanda   — əsas tərəf yağanda (feili bağlama)
+D) tar çalmaq      — əsas tərəf çalmaq (məsdər)
+E) abadlaşan küçələr — əsas tərəf küçələr (isim) → ismi birləşmə
+Cavab: D) tar çalmaq</div>
+      <ul>
+        <li><b>A)</b> — "oxumaq" sözünü görüb məsdər tərkibi demək. Məsdər burada asılı tərəfdir, əsas tərəf "həvəsi" isimdir.</li>
+        <li><b>B)</b> — feili sifət tərkibidir; məsdər deyil.</li>
+        <li><b>C)</b> — feili bağlama tərkibidir.</li>
+        <li><b>E)</b> — "abadlaşan" feili sifətdir, amma asılı tərəfdədir. Birləşmə ismidir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — mürəkkəb adın yazılışı</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · orfoqrafiya</span>
+        <p>Mürəkkəb adların hansında orfoqrafik səhv var?</p>
+        <ol class="imt-opts"><li>Kür çayı</li><li>Abbas mirzə</li><li>Cənubi Amerika</li><li>Azərbaycan respublikası</li><li>Şahbazlı Lətifə Uğur qızı</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) Kür çayı        — adın özü böyük, "çayı" kiçik → düzdür
+B) Abbas mirzə     — titul addan sonra kiçik → düzdür
+C) Cənubi Amerika  — istiqamət sözü adın tərkibində böyük → düzdür
+D) Azərbaycan respublikası — ölkə adında bütün sözlər böyük olmalıdır: Azərbaycan Respublikası → SƏHV
+E) Şahbazlı Lətifə Uğur qızı — "qızı" kiçik → düzdür
+Cavab: D)</div>
+      <ul>
+        <li><b>A)</b>-nı seçən "çay"ı böyük yazmaq istəyir. Dəniz, çay, dağ və s. sözlər kiçik yazılır.</li>
+        <li><b>B)</b>-ni seçən titulu həmişə böyük sanır. Addan sonra gələn titul kiçikdir.</li>
+        <li><b>C)</b>-ni seçən "cənubi"ni adi söz kimi kiçik yazılmalı sanır. Yer adının tərkibində böyükdür.</li>
+        <li><b>E)</b>-ni seçən "qızı" sözünün də böyük yazılmasını düşünür. Oğlu, qızı, adına kiçik yazılır.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə mürəkkəb adın yazılışı düzgündür?<br>1. Bu kitab Şeyx Məhəmməd Xiyabani haqqındadır.<br>2. Biz dünən Həsən Bəy Zərdabi haqqında oxuduq.<br>3. Şagirdlər Xəzər dənizi barədə referat hazırladılar.<br>4. Sinifdə Mirzə fətəli haqqında söhbət getdi.<br>5. Müəllim cənubi Koreya haqqında məlumat verdi.</p>
+        <ol class="imt-opts"><li>1, 3</li><li>1, 2, 3</li><li>3, 4, 5</li><li>2, 4</li><li>1, 3, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. Şeyx Məhəmməd Xiyabani — titul addan əvvəl böyük → düzdür
+2. Həsən Bəy Zərdabi    — "bəy" ortada kiçik olmalıdır: Həsən bəy Zərdabi → səhv
+3. Xəzər dənizi         — düzdür
+4. Mirzə fətəli         — "Fətəli" ad böyük olmalıdır: Mirzə Fətəli → səhv
+5. cənubi Koreya        — "cənubi" yer adında böyük olmalıdır: Cənubi Koreya → səhv
+Cavab: A) 1, 3</div>
+      <ul>
+        <li><b>B)</b> — "bəy"in böyük yazılmasını düzgün saymaq.</li>
+        <li><b>C)</b> — 4 və 5-dəki səhvləri görməmək; adın ikinci sözünü və ya "cənubi"ni kiçik yazmaq düzgün sayılıb.</li>
+        <li><b>D)</b> — yalnız səhv cümlələri seçmək; sualın "düzgündür" tələbini səhv oxumaq.</li>
+        <li><b>E)</b> — 5-ci cümlədə "cənubi"nin kiçik yazılmasını düzgün saymaq.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Növü asılı tərəfə görə təyin etmək. Həmişə əsas tərəfə (son sözə) bax.</li>
+        <li>"Oxumaq həvəsi", "çalınan musiqi" kimi birləşmələri feili saymaq. Əsas tərəf isimdir — ismi birləşmədir.</li>
+        <li>Mürəkkəb sözü, cümləni və köməkçi sözlü vahidi (kəndə sarı, lap böyük) söz birləşməsi saymaq.</li>
+        <li>Qaydanı adın növündən asılı olmayaraq tətbiq etmək. Əvvəl adın növünü müəyyən et: ad, ölkə, idarə, dəniz/çay, titul, istiqamət.</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Birləşmənin növü = əsas tərəf (adətən son söz)
+Ad, ölkə, idarə: bütün sözlər böyük; dəniz, çay, kənd, dağ…: adın özü böyük, bu söz kiçik; titul: əvvəl böyük, sonra kiçik
+Variantlara baxmadan əvvəl özün təyin et</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Hansı birləşmənin əsas tərəfi feili bağlama ilə ifadə olunub: yağış yağanda, şeir oxumaq, oxuyan şagird?" <span class="ans">yağış yağanda</span></li>
+        <li>"Naxçıvan Muxtar Respublikası", yoxsa "Naxçıvan muxtar respublikası"? <span class="ans">Naxçıvan Muxtar Respublikası</span></li>
+        <li>"Heyran xanım", yoxsa "Heyran Xanım"? <span class="ans">Heyran xanım</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
