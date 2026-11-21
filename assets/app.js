@@ -1,12 +1,13 @@
 // Portal shell + page renderers. Every page is <body data-page="..."> and gets the same rail and top navigation.
 const NAV = [
   // daily → study → check yourself → reference
-  ["index.html", "Ana səhifə", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["azdili.html", "Azərbaycan dili", "BookA"], ["olimpiada.html", "Olimpiada", "Trophy"],
+  ["index.html", "Ana səhifə", "House"], ["riyaziyyat.html", "Buraxılış", "GraduationCap"], ["olimpiada.html", "Fənlər", "Layers"],
   ["sinaqlar.html", "Sınaqlar", "ClipboardCheck"], ["temrar.html", "Təkrar", "Repeat"],
   ["dusturlar.html", "Düsturlar", "Sigma"], ["teqvim.html", "Təqvim", "Calendar"],
 ];
 const NAV_SUB = {
-  "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat", "Pi"], ["olimpiada.html#fizika", "Fizika", "Atom"]],
+  // "Fənlər" (father, 21 Nov 2026): the olympiad subjects and Azerbaijani-language grammar under one menu item
+  "olimpiada.html": [["olimpiada.html#riyaziyyat", "Riyaziyyat olimpiadası", "Pi"], ["olimpiada.html#fizika", "Fizika", "Atom"], ["azdili.html", "Azərbaycan dili", "BookA"]],
   "sinaqlar.html": [["sinaqlar.html#riyaziyyat", "Riyaziyyat", "Pi"], ["sinaqlar.html#fizika", "Fizika", "Atom"]],
   "dusturlar.html": [["dusturlar.html#riyaziyyat", "Riyaziyyat", "Pi"], ["dusturlar.html#fizika", "Fizika", "Atom"]],
 };
@@ -196,12 +197,13 @@ async function shell(content) {
       el("div", { class: "mini" }, el("i", {}, String(topics.length)), "mövzu")));
   const nav = el("nav", { class: "topnav", "aria-label": "Bölmələr" },
     NAV.filter(([href]) => w || href !== "temrar.html").map(([href, label, ic]) => { // review: the two accounts only
-      const link = el("a", href === here ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label));
+      const cur = href === here || (href === "olimpiada.html" && here === "azdili.html"); // azdili.html lives under "Fənlər"
+      const link = el("a", cur ? { href, "aria-current": "page" } : { href }, icon(ic), el("span", {}, label));
       const sub = NAV_SUB[href];
       if (!sub) return link;
       // dropdown on hover / keyboard focus (desktop); on phones the page has the same choices as tabs
       link.append(icon("ChevronDown"));
-      const dd = el("div", { class: "dd" }, ...sub.map(([h, l, i]) => el("a", { href: h }, icon(i), el("span", {}, l))));
+      const dd = el("div", { class: "dd" }, ...sub.map(([h, l, i]) => el("a", h === here ? { href: h, "aria-current": "page" } : { href: h }, icon(i), el("span", {}, l))));
       const box = el("div", { class: "nav-dd" }, link, dd);
       link.addEventListener("click", ev => {
         if (!matchMedia("(max-width:980px)").matches) return;
@@ -712,7 +714,7 @@ async function pageSehv() {
 }
 
 /* ---------- lesson inside the portal ---------- */
-const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "olimpiada.html", lang: "azdili.html" };
+const LESSON_NAV = { math: "riyaziyyat.html", phys: "olimpiada.html", olym: "olimpiada.html", lang: "olimpiada.html" };
 async function pageLesson() {
   const name = new URLSearchParams(location.search).get("p") || "";
   if (!/^[a-z0-9-]+$/.test(name)) { location.replace("index.html"); return; }

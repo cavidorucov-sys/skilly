@@ -477,4 +477,4 @@ td.wk{color:var(--ink-2);font-size:13px;white-space:nowrap}
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 
 /* mid-width screens (sidebar + menu): the menu shows only icons except the current page, so it fits on one line */
-@media (min-width:981px) and (max-width:1439px){.topnav > a:not([aria-current=page]) span,.topnav .nav-dd > a:not([aria-current=page]) span{display:none}.topnav a{padding:9px 12px}}
+@media (min-width:981px) and (max-width:1279px){.topnav > a:not([aria-current=page]) span,.topnav .nav-dd > a:not([aria-current=page]) span{display:none}.topnav a{padding:9px 12px}}
