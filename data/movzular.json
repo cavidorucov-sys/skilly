@@ -1587,7 +1587,9 @@
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 4",
    "dersSay": 2,
-   "hefte": "2026-12-14"
+   "hefte": "2026-12-14",
+   "ders": "dersler/az-isim-2.html",
+   "imt": true
   },
   {
    "bolme": "Morfologiya",
