@@ -1689,7 +1689,9 @@
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 15",
    "dersSay": 2,
-   "hefte": "2027-03-08"
+   "hefte": "2027-03-08",
+   "ders": "dersler/az-komekci.html",
+   "imt": true
   },
   {
    "bolme": "Sintaksis",
