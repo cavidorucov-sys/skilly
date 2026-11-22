@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İkinci dərəcəli üzvlər: tamamlıq, təyin, zərflik dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-ikinci-derecel.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · İkinci dərəcəli üzvlər</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sintaksis</div>
+    <h1>İkinci dərəcəli üzvlər: tamamlıq, təyin, zərflik</h1>
+    <p>Cümlədə əsas məlumatı baş üzvlər (mübtəda və xəbər) verir; ikinci dərəcəli üzvlər onu genişləndirir. Buraxılışın dil qaydaları blokunda "cümlələrin birində tamamlıq (təyin, zərflik) yoxdur", "fərqləndirilmiş söz cümlənin hansı üzvüdür", "zərfliyin növü" kimi tapşırıqlar gəlir. Qaydalar 8-ci, 6-cı və 5-ci sinif dərsliklərindən götürülüb. Baş üzvlər ayrı mövzudadır, burada onlar yalnız cümlənin təhlilində göstərilir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, hər cümlədə sözə sual ver və aid olduğu sözü tap, sonra Oyun və Sınaq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Tamamlıq</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Təyin</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Zərflik</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Səbəb və məqsəd</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Üzvü tanımaq</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Tamamlıq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Cümlədə əsas məlumat <b>baş üzvlər</b> — mübtəda və xəbər vasitəsilə çatdırılır. <b>İkinci dərəcəli üzvlər</b> isə bu məlumatı genişləndirir. Üç ikinci dərəcəli üzv var: <b>tamamlıq, təyin, zərflik</b>. İmtahan çox vaxt sözü göstərib hansı üzv olduğunu soruşur. Bunun üçün sözə sual vermək və aid olduğu sözü tapmaq lazımdır.</p>
+      <div class="ex">Gülər uzatdı.                          kimə? nəyi? — bilinmir
+Gülər qələmi (nəyi?) dostuna (kimə?) uzatdı.
+Gülər — mübtəda, uzatdı — xəbər: baş üzvlər
+qələmi, dostuna — ikinci dərəcəli üzvlər (tamamlıq)</div>
+
+      <h3><span class="st">2</span> Tamamlığın tərifi və sualları</h3>
+      <div class="fm">Tamamlıq — cümlənin ikinci dərəcəli üzvüdür.
+Əşya və obyekt anlayışı bildirir.
+İsmin yönlük, təsirlik, yerlik, çıxışlıq hallarında olur.
+Sualları: kimə? nəyə? kimi? nəyi? haranı? nə? kimdə? nədə? kimdən? nədən?</div>
+      <div class="tbl"><table>
+        <tr><th>hal</th><th>sual</th><th>nümunə</th></tr>
+        <tr><td>yönlük</td><td>kimə? nəyə?</td><td>Müəllim <u>şagirdlərə</u> yeni mövzunu anlatdı.</td></tr>
+        <tr><td>təsirlik</td><td>kimi? nəyi? (şəkilçisiz: nə?)</td><td>Qardaşım <u>qapını</u> örtdü.</td></tr>
+        <tr><td>çıxışlıq</td><td>kimdən? nədən?</td><td>Sən yaxşını <u>pisdən</u> ayır.</td></tr>
+      </table></div>
+      <p>Yerlik halda (<i>kimdə? nədə?</i>) olan söz də obyekt bildirirsə, tamamlıq olur. Tamamlıq bəzən şəkilçisiz də işlənir: "Nənəm bağda gül əkdi" cümləsində "gül" nə əkdi? sualına cavab verir — qeyri-müəyyən təsirlik haldadır (şəkilçisizdir, sual: nə?), tamamlıqdır, mübtəda deyil. Şəkilçili forması (gülü) nəyi? sualına cavab verərdi.</p>
+
+      <h3><span class="st">3</span> Tamamlıq nə ilə ifadə olunur</h3>
+      <div class="fm">Tamamlıq isimlə və ya isimləşmiş başqa nitq hissələri ilə ifadə olunur.
+Söz birləşməsi də tamamlıq ola bilər: ismi birləşmə, feili birləşmə, mürəkkəb ad.</div>
+      <div class="tbl"><table>
+        <tr><th>ifadə vasitəsi</th><th>nümunə</th></tr>
+        <tr><td>isim</td><td>Qardaşım <u>qapını</u> örtdü.</td></tr>
+        <tr><td>əvəzlik</td><td>Müəllim <u>bizi</u> çağırdı.</td></tr>
+        <tr><td>isimləşmiş sifət</td><td>Sən <u>yaxşını</u> <u>pisdən</u> ayır. (dərslik)</td></tr>
+        <tr><td>məsdər (isimləşmiş feil)</td><td>Səlim <u>oxumağı</u> uşaqlıqda öyrənmişdi.</td></tr>
+        <tr><td>ismi birləşmə</td><td>Sevinc <u>ulduzların sayrışmasını</u> izləyirdi. (dərslik)</td></tr>
+      </table></div>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Atam mənə maraqlı kitab gətirdi.
+Atam     — kim gətirdi?       → mübtəda (baş üzv)
+gətirdi  — nə etdi?           → xəbər (baş üzv)
+mənə     — kimə gətirdi?      → tamamlıq (yönlük hal)
+kitab    — nə gətirdi?        → tamamlıq (qeyri-müəyyən təsirlik hal, şəkilçisiz)
+maraqlı  — necə kitab?        → təyin (ikinci dərsin mövzusu)</div>
+      <p><b>Çıxışlıq hal həmişə tamamlıq deyil.</b> Dərslikdə tamamlıq obyekt (əşya, şəxs) bildirir, yer zərfliyi isə yeri. Sual və aid olduğu söz birlikdə yoxlanır.</p>
+      <div class="ex">Sən yaxşını pisdən ayır.               pisdən — nədən ayır?     → tamamlıq (obyekt)
+Şagirdlər məktəbdən qayıtdılar.      məktəbdən — haradan?     → yer zərfliyi (3-cü dərs)</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Kitabı Nərminə ver". "Kitabı" nəyi? "Nərminə" kimə? İkisi də tamamlıqdır. Bu tamamlıqlar verilən məlumatı dəqiqləşdirir: "nəyi" və "kimə" verildiyini deyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Yönlük halda olan hər sözü tamamlıq saymaq. "Dənizə getdik" cümləsində "dənizə" — haraya? — yer bildirir, yer zərfliyidir.</li>
+        <li>Şəkilçisiz obyekti mübtəda saymaq. "Biz kitab aldıq" cümləsində "kitab" nə aldıq? sualına cavab verir — qeyri-müəyyən təsirlik haldadır, tamamlıqdır.</li>
+        <li>İsimləşmiş sözü ("yaxşını", "oxumağı") tamamlıq saymamaq. Tamamlıq isimlə yanaşı, isimləşmiş sözlərlə də ifadə olunur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tamamlıq: obyekt bildirir; kimə? nəyi? nədən? kimdən? və s.
+Hallar: yönlük, təsirlik, yerlik, çıxışlıq
+İfadə: isim, əvəzlik, isimləşmiş sözlər, söz birləşməsi
+Yer bildirən söz (haraya? haradan?) — tamamlıq yox, yer zərfliyi</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Aygül məktubu dostuna göndərdi" cümləsində tamamlıqları tap. <span class="ans">məktubu (nəyi?), dostuna (kimə?)</span></li>
+        <li>"Müəllim bizi çağırdı" cümləsində "bizi" nə ilə ifadə olunub? <span class="ans">əvəzliklə (tamamlıq)</span></li>
+        <li>"Uşaqlar yuxarı qalxdılar" cümləsində "yuxarı" tamamlıqdırmı? <span class="ans">xeyr, yer zərfliyidir (haraya?)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Təyin</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mağazada "qələm" deyirsən, satıcı soruşur: <i>hansı? neçə?</i> Sən "qırmızı qələm", "üç qələm" deyirsən. Cümlədə bu işi <b>təyin</b> görür: isimlə ifadə olunan üzvü izah edir.</p>
+
+      <h3><span class="st">2</span> Təyinin tərifi və sualları</h3>
+      <div class="fm">Təyin — cümlənin ikinci dərəcəli üzvüdür.
+Sualları: necə? nə cür? hansı? neçə? nə qədər? neçənci?
+Təyin isim və isimləşmiş sözlərlə ifadə olunan üzvü izah edir.</div>
+      <div class="ex">Yağışlı hava əkinçiləri sevindirdi.
+Yağışlı — hansı hava?   → təyin (havanı izah edir)
+hava    — nə?           → mübtəda</div>
+
+      <h3><span class="st">3</span> Təyin nə ilə ifadə olunur</h3>
+      <p>Dərslikdə təyinin ifadə vasitələri bunlardır: isim, sifət, say, işarə və təyini əvəzliklər, mürəkkəb adlar, ismi birləşmələr, feili sifət və feili sifət tərkibləri.</p>
+      <div class="tbl"><table>
+        <tr><th>ifadə vasitəsi</th><th>nümunə (dərslik)</th></tr>
+        <tr><td>sifət</td><td><u>Axşamkı</u> konsert maraqlı idi.</td></tr>
+        <tr><td>zərf</td><td><u>Yuxarı</u> təşkilatlara müraciət etdik.</td></tr>
+        <tr><td>say</td><td>Bulaqdan <u>xeyli</u> su götürdüm.</td></tr>
+        <tr><td>feili sifət</td><td><u>Oxuduğum</u> kitab maraqlı idi.</td></tr>
+        <tr><td>isim</td><td>Anama <u>qızıl</u> saat hədiyyə etdik.</td></tr>
+        <tr><td>əvəzlik</td><td><u>Belə</u> iş diqqət tələb edir.</td></tr>
+        <tr><td>söz birləşməsi</td><td><u>Olimpiadanın qalibi</u> Sənubər mənim rəfiqəmdir.</td></tr>
+      </table></div>
+      <p>"Qızıl saat", "daş hasar" kimi birləşmələrdə birinci söz əlamət bildirsə də isim hesab olunur (sifətləşmiş isim) və isimlə ifadə olunmuş təyin sayılır.</p>
+
+      <h3><span class="st">4</span> Təyin bütün cümlə üzvlərinə aid ola bilər</h3>
+      <p>Təyin <b>isimlə və ya isimləşmiş sözlə ifadə olunan</b> üzvü izah edir. Cümlədə belə üzv mübtəda, tamamlıq, zərflik və ya xəbər ola bilər. Deməli, təyin bunlara aid ola bilər (hər cümlədə hamısı olmur).</p>
+      <div class="ex">Yağışlı hava əkinçiləri sevindirdi.       yağışlı → mübtəda "hava"ya aiddir
+Mən bu kitabı oxudum.                      bu → tamamlıq "kitabı"ya aiddir
+Biz gözəl parkda gəzdik.                   gözəl → yer zərfliyi "parkda"ya aiddir
+Qonşumuz yaxşı idmançıdır.                 yaxşı → "idmançı" isminə aid təyindir (hansı idmançı?), zərflik deyil</div>
+      <p>Təyin zərflikdən bununla fərqlənir: təyin isimlə ifadə olunan üzvə, zərflik isə əsasən <b>feili xəbərə</b> (bəzən ismi xəbərə) aiddir.</p>
+      <div class="ex">Yaxşı şagird dərsi yaxşı öyrənir.
+Yaxşı (birinci)  — hansı şagird?     → ismə aiddir → təyin
+yaxşı (ikinci)   — necə öyrənir?     → feilə aiddir → tərzi-hərəkət zərfliyi</div>
+      <div class="life"><b>Həyatdan.</b> Mesajda yazırsan: "Yeni mesaj gəldi". "Yeni" mesajın necə olduğunu deyir (təyin). "Tez cavab ver" yazanda "tez" cavab verməyin necə olduğunu deyir (zərflik).</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Necə?" sualını görüb avtomatik zərflik demək. Əvvəl bax: söz ismə, yoxsa feilə aiddir?</li>
+        <li>Xəbərin tərkibindəki sifəti təyin saymaq. "Axşamkı konsert maraqlı idi" cümləsində "maraqlı" xəbərdir; təyin "Axşamkı"dır.</li>
+        <li>Təyini yalnız sifətlə ifadə olunan saymaq. Say, əvəzlik, isim, feili sifət və söz birləşməsi də təyin ola bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Təyin: necə? hansı? neçə? nə qədər? neçənci?
+İsimlə ifadə olunan üzvü izah edir: mübtəda, tamamlıq, zərflik, xəbər
+İfadə: sifət, say, feili sifət, əvəzlik, isim, söz birləşməsi
+Təyin isimlə ifadə olunan üzvə aiddir; zərflik əsasən feilə (bəzən ismi xəbərə)</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Çayda kiçik qayıqlar üzürdü" cümləsində təyini tap və nə ilə ifadə olunduğunu de. <span class="ans">kiçik — sifət</span></li>
+        <li>"Biz gözəl parkda gəzdik" cümləsində "gözəl" cümlənin hansı üzvünü izah edir? <span class="ans">yer zərfliyini (parkda)</span></li>
+        <li>"Oxuduğum kitab maraqlı idi" cümləsində təyin nə ilə ifadə olunub? <span class="ans">feili sifətlə (oxuduğum)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Zərflik: tərzi-hərəkət, zaman, yer, kəmiyyət</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Zərflik nədir</h3>
+      <div class="fm">Zərflik hərəkətin icrasını və əlamətin meydana çıxmasını müxtəlif cəhətlərdən izah edir.
+Zərflik hərəkətin tərzini, zamanını, yerini, miqdarını (dərəcəsini), səbəbini, məqsədini bildirir.
+Zərflik, əsasən, feili xəbərə, bəzən də ismi xəbərə aid olur.</div>
+      <div class="ex">Şagirdlər imtahanlara ciddi hazırlaşırlar.
+ciddi — necə hazırlaşırlar?   → zərflik (feili xəbərə aiddir)</div>
+
+      <h3><span class="st">2</span> Zərf, yoxsa zərflik?</h3>
+      <p>Bu iki söz qarışdırılır. <b>Zərf</b> — nitq hissəsidir (sözün növü). <b>Zərflik</b> — cümlə üzvüdür (sözün cümlədəki rolu). Zərflik zərflə ifadə oluna bilər, amma yalnız zərflə deyil.</p>
+      <div class="ex">Dünən biz kitabxanaya getdik.        dünən     — zərf (nitq hissəsi) → zaman zərfliyi
+O düşünmədən qaçdı.                    düşünmədən — feili bağlama → tərzi-hərəkət zərfliyi
+Biz parkda gəzdik.                     parkda    — isim → yer zərfliyi
+Yaxşı şagird dərsi öyrənir.            yaxşı     — sifət → zərflik deyil, təyin</div>
+      <p>Deməli, zərflik olan hər söz zərf deyil, zərf olan hər söz də zərflik deyil.</p>
+
+      <h3><span class="st">3</span> Dörd növ və onların ifadə vasitələri</h3>
+      <div class="tbl"><table>
+        <tr><th>növ</th><th>sual</th><th>ifadə vasitəsi</th><th>nümunə</th></tr>
+        <tr><td>tərzi-hərəkət</td><td>necə? nə cür? nə tərzdə? nə vəziyyətdə?</td><td>zərf, feili bağlama və feili bağlama birləşməsi</td><td>Şagirdlər imtahanlara <u>ciddi</u> hazırlaşırlar. O <u>düşünmədən</u> qaçdı.</td></tr>
+        <tr><td>zaman</td><td>nə zaman? nə vaxt? haçan?</td><td>zaman zərfi, ismi birləşmə, feili bağlama və tərkibi</td><td><u>Sabah</u> hava isti olacaq. <u>Yayda</u> uşaqlar dənizə getdilər.</td></tr>
+        <tr><td>yer</td><td>haraya? harada? haradan?</td><td>yer zərfi, məkan mənası bildirən isim, ismi birləşmə</td><td>Dostlar <u>irəli</u> getdilər. Biz <u>parkda</u> gəzdik. Nənəm <u>Gəncə şəhərində</u> yaşayır.</td></tr>
+        <tr><td>kəmiyyət (miqdar)</td><td>nə qədər? neçə? neçənci?</td><td>miqdar zərfi, miqdar sayı</td><td>Biz bu gün <u>xeyli</u> işlədik. Sürəyya həmişə <u>az</u> danışardı.</td></tr>
+      </table></div>
+      <p>Proqramda və 6-cı sinif dərsliyində bu növ <b>kəmiyyət zərfliyi</b> adlanır; 8-ci sinif dərsliyinin bölmə başlığında <b>miqdar zərfliyi</b> yazılıb. Eyni şeydir: iş və hərəkətin nə qədər icra olunduğunu bildirir.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Biz bu gün xeyli işlədik.
+Biz       — kim işlədi?             → mübtəda
+bu gün    — nə zaman işlədik?       → zaman zərfliyi
+xeyli     — nə qədər işlədik?       → kəmiyyət zərfliyi
+işlədik   — nə etdik?               → xəbər
+
+Nənəm bağda qırmızı güllər əkdi.
+bağda     — harada əkdi?            → yer zərfliyi
+qırmızı   — hansı güllər?           → təyin
+güllər    — nə əkdi?                → tamamlıq (qeyri-müəyyən təsirlik hal)</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Sabah parkda görüşək". "Sabah" nə zaman? "parkda" harada? İkisi də zərflikdir: görüşmənin vaxtını və yerini deyir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Xeyli", "az" sözünü həmişə zərflik saymaq. "Xeyli adam gəldi" cümləsində "xeyli" ismə aiddir (neçə adam?) — təyindir; "Xeyli düşündüm"də feilə aiddir (nə qədər?) — kəmiyyət zərfliyidir.</li>
+        <li>Yer bildirən sözü tamamlıq saymaq. "Parkda gəzdik" — harada? yer zərfliyi. Tamamlıq obyekt bildirir: kimə? nəyi?</li>
+        <li>Zərfliyi yalnız zərf saymaq. İsim ("parkda"), feili bağlama ("düşünmədən") və söz birləşməsi də zərflik olur.</li>
+        <li>-la/-lə şəkilçili sözləri bu qaydalarla qarışdırmaq. Meyar: <i>nə ilə?</i> (alət, vasitə) — tamamlıq: "Qələmlə işarə etdi"; mücərrəd isim + -la, <i>necə?</i> — tərzi-hərəkət zərfliyi: "Həvəslə işlədik" (6-cı sinif, II hissə, səh. 72). Bu mövzunun tapşırıqlarında -la/-lə-li sözlər yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Zərflik: hərəkətin tərzi, zamanı, yeri, miqdarı, səbəbi, məqsədi
+Əsasən feili xəbərə aiddir
+Tərzi-hərəkət — necə?  zaman — nə zaman?  yer — haraya? harada? haradan?
+Kəmiyyət — nə qədər?
+Zərf — nitq hissəsi, zərflik — cümlə üzvü</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Atam tezdən durdu" cümləsində "tezdən" hansı zərflikdir? <span class="ans">zaman zərfliyi (nə zaman?)</span></li>
+        <li>"Hava bir qədər soyudu" cümləsində "bir qədər" hansı zərflikdir? <span class="ans">kəmiyyət zərfliyi (nə qədər?)</span></li>
+        <li>"O düşünmədən qaçdı" cümləsində "düşünmədən" zərfdirmi? <span class="ans">xeyr, feili bağlamadır; cümlədə tərzi-hərəkət zərfliyidir</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Səbəb və məqsəd zərfliyi</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Səbəb zərfliyi</h3>
+      <div class="fm">Səbəb zərfliyindəki iş və hərəkət səbəbi, xəbərdəki iş və hərəkət onun nəticəsini bildirir.
+Sualları: niyə? nə səbəbə? nə üçün?
+İfadə: feili bağlama və tərkibləri; üçün, ötrü, görə qoşmalı və -dığı⁴ şəkilçili feili sifət və feili sifət tərkibləri.</div>
+      <div class="ex">Uşaq qorxduğu üçün ağladı.
+qorxduğu üçün — niyə ağladı?   → səbəb zərfliyi
+əvvəl qorxdu (səbəb), sonra ağladı (nəticə = xəbər)</div>
+
+      <h3><span class="st">2</span> Məqsəd zərfliyi</h3>
+      <div class="fm">Məqsəd zərfliyindəki iş və hadisə məqsəd kimi qarşıya qoyulur.
+Sualları: niyə? nə məqsədlə?
+İfadə: üçün, ötrü qoşmalı, yönlük hallı məsdər və məsdər tərkibləri.</div>
+      <div class="ex">Atam kitab almaq üçün mağazaya getdi.
+kitab almaq üçün — niyə getdi? nə məqsədlə?   → məqsəd zərfliyi (məsdər tərkibi + üçün)
+mağazaya — haraya getdi?                       → yer zərfliyi</div>
+
+      <h3><span class="st">3</span> Eyni "üçün" — fərqli zərflik</h3>
+      <p>Hər iki zərfliyin sualı "niyə?" olur, qoşma isə eyni — "üçün". Fərqi <b>feilin forması</b> və <b>sualın mənası</b> verir: səbəb zərfliyindəki iş xəbərdəki hərəkətin səbəbidir, məqsəd zərfliyindəki iş hərəkətin məqsədidir.</p>
+      <div class="tbl"><table>
+        <tr><th></th><th>səbəb</th><th>məqsəd</th></tr>
+        <tr><td>feilin forması</td><td>-dığı⁴ (feili sifət): qorxduğu üçün</td><td>-maq² (məsdər): almaq üçün</td></tr>
+        <tr><td>sual</td><td>niyə? nə səbəbə? nə üçün?</td><td>niyə? nə məqsədlə?</td></tr>
+        <tr><td>xəbərlə əlaqəsi</td><td>xəbərdəki hərəkət onun nəticəsidir</td><td>hərəkət məqsədə yönəlib</td></tr>
+        <tr><td>nümunə</td><td>Nərmin <u>yorulduğu üçün</u> yatdı.</td><td>Qardaşım <u>dincəlmək üçün</u> oturdu.</td></tr>
+      </table></div>
+      <div class="life"><b>Həyatdan.</b> "Dərsə gec qaldığım üçün direktora izahat yazdım" — gec qalmaq səbəbdir, izahat yazmaq nəticə. "Yaxşı qiymət almaq üçün hazırlaşıram" — niyə hazırlaşırsan? Məqsəd: yaxşı qiymət almaq.</div>
+
+      <h3><span class="st">4</span> Zərfliyin ifadə vasitələri</h3>
+      <div class="tbl"><table>
+        <tr><th>ifadə vasitəsi</th><th>nümunə</th></tr>
+        <tr><td>zərf</td><td>Ceyran <u>cəld</u> qaçırdı. Dostlar <u>irəli</u> getdilər.</td></tr>
+        <tr><td>feili bağlama</td><td>Uşaqlar <u>gülə-gülə</u> oynayırdılar.</td></tr>
+        <tr><td>məkan bildirən isim</td><td>Şagirdlər <u>məktəbdən</u> qayıtdılar.</td></tr>
+        <tr><td>ismi birləşmə</td><td>Nənəm <u>Gəncə şəhərində</u> yaşayır.</td></tr>
+        <tr><td>qoşmalı feili sifət</td><td>Uşaq <u>qorxduğu üçün</u> ağladı.</td></tr>
+        <tr><td>qoşmalı məsdər</td><td>Şagirdlər <u>öyrənmək üçün</u> oxuyurlar.</td></tr>
+      </table></div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Üçün" qoşmasını görüb avtomatik məqsəd demək. Əsas meyar mənadır: iş xəbərdəki hərəkətin səbəbidirmi, yoxsa məqsədi? Dərslikdəki nümunələrdə səbəb adətən -dığı⁴ ("qorxduğu üçün"), məqsəd isə məsdər ("almaq üçün") ilə ifadə olunur.</li>
+        <li>Səbəb və məqsəd zərfliyini tamamlıq saymaq. Onlar obyekt yox, iş və hərəkətin səbəbini və məqsədini bildirir.</li>
+        <li>Məqsəd zərfliyi yalnız "üçün" ilə deyil: "ötrü" qoşması və yönlük hallı məsdər ("Uşaqlar oynamağa çıxdılar" — niyə çıxdılar? oynamağa) da məqsəd bildirir. "Sənin üçün", "vətən üçün" kimi isim və əvəzlik + "üçün" birləşmələrini dərslik müxtəlif cür şərh edir (8-ci sinif, səh. 103); bu mövzunun tapşırıqlarında onlar yoxdur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Səbəb: niyə? nə üçün? — xəbər nəticədir (qorxduğu üçün)
+Məqsəd: nə məqsədlə? — məsdər + üçün / ötrü, yönlük hallı məsdər (almaq üçün)
+Zərflik zərfdən başqa sözlərlə də ifadə olunur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Nərmin yorulduğu üçün yatdı" — "yorulduğu üçün" hansı zərflikdir? <span class="ans">səbəb zərfliyi</span></li>
+        <li>"Qonşu dincəlmək üçün kəndə getdi" — "dincəlmək üçün" hansı zərflikdir? <span class="ans">məqsəd zərfliyi</span></li>
+        <li>"Şagird <u>sevindiyi üçün</u> gülümsədi" — altından xətt çəkilmiş zərflik nə ilə ifadə olunub? <span class="ans">üçün qoşmalı feili sifətlə</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Cümlədə üzvü tanımaq</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Söz birləşməsi cümlə üzvü kimi</h3>
+      <div class="fm">Söz birləşmələri, o cümlədən frazeoloji birləşmələr cümlə üzvü rolunda çıxış edir.
+Bir çox söz birləşməsi bütövlükdə cümlənin bir üzvü olur.
+Birləşməyə bütövlükdə bir sual veririk.</div>
+      <div class="ex">Hamı divardan asılmış xəritəyə baxırdı.        divardan asılmış (hansı?)      → təyin, feili birləşmə
+Uşaqlar nağıla qulaq asırdılar.                 qulaq asırdılar (nə edirdilər?)  → xəbər, frazeoloji birləşmə
+Maşının sürəti azalırdı.                        maşının sürəti (nə?)           → mübtəda, ismi birləşmə</div>
+      <p>İsmi birləşmənin birinci tərəfi say, sifət, feili sifət və ya sifətləşmiş sözlə ifadə olunanda həmin tərəf ayrıca üzv — təyin olur.</p>
+      <div class="ex">Yağışlı (təyin) hava (mübtəda) əkinçiləri sevindirdi.</div>
+
+      <h3><span class="st">2</span> Cümləni üç addımla təhlil et</h3>
+      <div class="fm">1. Baş üzvləri tap: mübtəda (kim? nə?) və xəbər (nə etdi?).
+2. Qalan hər sözə (birləşməyə) sual ver.
+3. Sualı və aid olduğu sözü birlikdə yoxla.</div>
+      <div class="tbl"><table>
+        <tr><th>sual</th><th>aid olduğu söz</th><th>üzv</th></tr>
+        <tr><td>kimə? nəyi? nəyə? nədən?</td><td>feil (obyekt bildirir)</td><td>tamamlıq</td></tr>
+        <tr><td>necə? hansı? neçə? nə qədər? neçənci?</td><td>isimlə ifadə olunan üzv</td><td>təyin</td></tr>
+        <tr><td>necə? nə zaman? haraya? harada? haradan? nə qədər? niyə?</td><td>əsasən feili xəbər</td><td>zərflik</td></tr>
+      </table></div>
+      <div class="ex">Müəllim şagirdlərə yeni mövzunu anlatdı.
+Müəllim     — kim anlatdı?       → mübtəda
+anlatdı     — nə etdi?           → xəbər
+şagirdlərə  — kimə anlatdı?      → tamamlıq
+yeni        — hansı mövzunu?     → təyin (isimlə ifadə olunan tamamlığa aiddir)
+mövzunu     — nəyi anlatdı?      → tamamlıq</div>
+
+      <h3><span class="st">3</span> Qarışan hallar</h3>
+      <div class="tbl"><table>
+        <tr><th>qarışıqlıq</th><th>necə ayırırıq</th><th>nümunə</th></tr>
+        <tr><td>təyin / tərzi-hərəkət zərfliyi</td><td>ismə aiddir — təyin; feilə aiddir — zərflik</td><td><u>Bərk</u> daşlar yolu bağlamışdı. Külək <u>bərk</u> əsirdi.</td></tr>
+        <tr><td>təyin / kəmiyyət zərfliyi</td><td>"neçə adam?" — təyin; "nə qədər düşündü?" — zərflik</td><td>Salona <u>xeyli</u> tamaşaçı gəldi. Mən <u>xeyli</u> düşündüm.</td></tr>
+        <tr><td>tamamlıq / yer zərfliyi</td><td>kimə? nəyi? — obyekt; haraya? harada? haradan? — yer</td><td>Müəllim <u>bizi</u> çağırdı. Biz <u>parkda</u> gəzdik.</td></tr>
+        <tr><td>tamamlıq / zaman zərfliyi</td><td>nəyi? — obyekt (şəkilçi qəbul edib); nə zaman? — zaman</td><td>Biz <u>səhəri</u> gözləyirdik. Qonaqlar <u>səhər</u> gəldilər.</td></tr>
+        <tr><td>zərf / zərflik</td><td>zərf nitq hissəsidir, zərflik cümlə üzvüdür; zərflik feili bağlama, isim, birləşmə də ola bilər</td><td>O <u>düşünmədən</u> qaçdı.</td></tr>
+      </table></div>
+      <div class="life"><b>Həyatdan.</b> İmtahanda "Cümlələrin birində zərflik yoxdur" yazılıb. Hər cümlədə əvvəl xəbəri tap (feili və ya ismi), ona "necə? nə zaman? harada? nə qədər? niyə?" sualları ver. Məsələn, "Dünən hava soyuq idi" cümləsində "dünən" xəbərə (soyuq idi) aiddir, nə zaman? — zaman zərfliyidir. Heç biri cavab tapmayan cümlə düzgün cavabdır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Söz birləşməsini hissə-hissə təhlil etmək. "Maşının sürəti" — bütövlükdə bir üzvdür (mübtəda), "sürəti" tək başına tamamlıq deyil.</li>
+        <li>Baş üzvləri tapmadan ikinci dərəcəli üzvə baxmaq. Əvvəl mübtəda və xəbəri tap.</li>
+        <li>Yalnız suala baxıb aid olduğu sözü yoxlamamaq. "Necə?" həm təyin, həm tərzi-hərəkət zərfliyi ola bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Söz birləşməsi bütövlükdə bir cümlə üzvü ola bilər
+Tamamlıq — obyekt; təyin — isimlə ifadə olunan üzvə aid; zərflik — əsasən feili xəbərə (bəzən ismi xəbərə) aid
+Sual + aid olduğu söz + mənası birlikdə yoxlanır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Arifin bacısı kitabxanaya getdi" cümləsində "Arifin bacısı" hansı üzvdür? <span class="ans">mübtəda (ismi birləşmə)</span></li>
+        <li>"Sahildə sərin külək əsirdi" cümləsində zərfliyi və təyini tap. <span class="ans">sahildə — yer zərfliyi; sərin — təyin</span></li>
+        <li>"Anam mətbəxdə şorba bişirir" cümləsində hansı sözlər ikinci dərəcəli üzvdür? <span class="ans">mətbəxdə (yer zərfliyi), şorba (tamamlıq)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: ikinci dərəcəli üzvlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Cümlələrin birində … yoxdur"</b> — beş cümlə; hər birində tamamlıq (təyin, zərflik) varmı?</li>
+        <li><b>"Fərqləndirilmiş söz hansı üzvdür"</b> — altından xətt çəkilmiş söz və beş üzv adı.</li>
+        <li><b>"Zərfliyin növü"</b> — tərzi-hərəkət, zaman, yer, kəmiyyət, səbəb, məqsəd.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş cümlələr və ya sözlər; variantlar "A) 1, 3, 4" kimidir.</li>
+        <li><b>"İfadə vasitəsi"</b> və <b>"Səhv fikri müəyyən edin"</b> — qayda üzrə beş fikir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: təyini zərflik saymaq, yer zərfliyini tamamlıq saymaq, xəbərin tərkibindəki sifəti təyin saymaq, səbəbi məqsədlə qarışdırmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — cümlələrin birində təyin yoxdur</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · cümlə üzvü</span>
+        <p>Cümlələrin birində təyin yoxdur:</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Axşamkı konsert maraqlı idi.</li><li>Qonaqlar səhər gəldilər.</li><li>Anam şirin alma yudu.</li><li>Oxuduğum kitab maraqlı idi.</li><li>Bütün şagirdlər imtahana hazırlaşırlar.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) Axşamkı — hansı konsert?       → təyin (sifət)
+B) səhər — nə zaman gəldilər?    → zaman zərfliyi; təyin yoxdur
+C) şirin — necə alma?            → təyin
+D) Oxuduğum — hansı kitab?       → təyin (feili sifət)
+E) Bütün — hansı şagirdlər?      → təyin (təyini əvəzlik)
+Cavab: B)</div>
+      <ul>
+        <li><b>A)</b> və <b>D)</b> — "Maraqlı idi" xəbərini ayırdıqdan sonra "Axşamkı" və "Oxuduğum" təyinlərini nəzərdən qaçırmaq. "Maraqlı" xəbərin tərkibindədir, təyinlər isə "Axşamkı" və "Oxuduğum"dur.</li>
+        <li><b>E)</b> — "bütün" sifət deyil, təyini əvəzlikdir; amma ismə aiddir və təyin olur.</li>
+        <li><b>B)</b> — düz cavab: "səhər" feilə aiddir, nə zaman? sualına cavab verir — zaman zərfliyidir, təyin deyil.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — zərfliyin növü</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · zərfliyin növü</span>
+        <p>Fərqləndirilmiş zərfliyin mənaca növü hansıdır?<br>Uşaq <u><b>qorxduğu üçün</b></u> ağladı.</p>
+        <ol class="imt-opts"><li>məqsəd</li><li>tərzi-hərəkət</li><li>səbəb</li><li>zaman</li><li>yer</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">qorxduğu üçün — niyə ağladı?     → feili sifət (-dığı⁴) + üçün
+qorxmaq — səbəb, ağlamaq (xəbər) — nəticə
+Cavab: C) səbəb</div>
+      <ul>
+        <li><b>A)</b> — "üçün" qoşmasını görüb məqsəd demək. Burada feil -dığı⁴ şəkilçili feili sifətdir və qorxmaq ağlamağın səbəbidir; məqsəd zərfliyində isə iş hərəkətin məqsədi olmalıdır (məsələn, "almaq üçün").</li>
+        <li><b>B)</b> — "niyə?" sualını "necə?" ilə qarışdırmaq.</li>
+        <li><b>D), E)</b> — sözün zamanı və ya yeri bildirmədiyini yoxlamamaq: nə zaman? haraya? suallarına cavab yoxdur.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə fərqləndirilmiş söz tamamlıqdır?<br>1. Qardaşım <u><b>qapını</b></u> örtdü.<br>2. Biz <u><b>parkda</b></u> gəzdik.<br>3. Müəllim <u><b>bizi</b></u> çağırdı.<br>4. Biz <u><b>səhəri</b></u> gözləyirdik.<br>5. Ali <u><b>oxumağı</b></u> sevir.</p>
+        <ol class="imt-opts"><li>1, 3, 4, 5</li><li>1, 2, 3</li><li>2, 4</li><li>1, 3</li><li>2, 3, 4</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. qapını   — nəyi örtdü?        → tamamlıq (isim)
+2. parkda   — harada gəzdik?      → yer zərfliyi
+3. bizi     — kimi çağırdı?       → tamamlıq (əvəzlik)
+4. səhəri   — nəyi gözləyirdik?   → tamamlıq (isim, təsirlik hal)
+5. oxumağı  — nəyi sevir?         → tamamlıq (məsdər)
+Cavab: A) 1, 3, 4, 5</div>
+      <ul>
+        <li><b>B), C), E)</b> — "parkda"nı yerlik halda olduğu üçün tamamlıq saymaq. Yer bildirir, harada? sualına cavab verir — yer zərfliyidir.</li>
+        <li><b>D)</b> — "səhəri" və "oxumağı"nı buraxmaq. "Səhəri" nə zaman? yox, nəyi? sualına cavab verir; "oxumağı" isimləşmiş feildir, tamamlıq ola bilər.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Yalnız suala baxmaq. "Necə?", "nə qədər?" həm təyin, həm zərflik ola bilər: aid olduğu sözü yoxla.</li>
+        <li>Yerlik, yönlük və çıxışlıq halı görüb avtomatik tamamlıq demək. Yer bildirirsə (haraya? harada? haradan?) — yer zərfliyidir.</li>
+        <li>"Üçün"lü zərfliyi qarışdırmaq: əvvəlcə mənaya bax — səbəb (nəticəsi xəbərdir), yoxsa məqsəd.</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl mübtəda və xəbər, sonra qalan sözlərə sual.
+Tamamlıq — obyekt; təyin — isimlə ifadə olunan üzvə aid; zərflik — əsasən feili xəbərə (bəzən ismi xəbərə) aid.
+Variantlara baxmadan əvvəl hər sözü özün təyin et.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Cümlələrin birində zərflik yoxdur: Dostlar irəli getdilər. Müəllim bizi çağırdı. Atam tezdən durdu." — cavab hansıdır? <span class="ans">Müəllim bizi çağırdı (bizi — tamamlıq)</span></li>
+        <li>"Mən xeyli düşündüm" cümləsində "xeyli" cümlənin hansı üzvüdür? <span class="ans">kəmiyyət zərfliyi (nə qədər düşündüm?)</span></li>
+        <li>"Salona xeyli tamaşaçı gəldi" cümləsində "xeyli" cümlənin hansı üzvüdür? <span class="ans">təyin (neçə tamaşaçı?)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

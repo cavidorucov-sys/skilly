@@ -1712,7 +1712,9 @@
    "ad": "İkinci dərəcəli üzvlər",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 18",
-   "hefte": "2027-04-05"
+   "hefte": "2027-04-05",
+   "ders": "dersler/az-ikinci-derecel.html",
+   "imt": true
   },
   {
    "bolme": "Sintaksis",
