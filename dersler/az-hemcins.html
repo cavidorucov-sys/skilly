@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Həmcins üzvlər, əlavə, ara söz, xitab, söz sırası dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-hemcins.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Həmcins üzvlər, əlavə, ara söz, xitab, söz sırası</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sintaksis, durğu işarələri</div>
+    <h1>Həmcins üzvlər, əlavə, ara söz, xitab, söz sırası</h1>
+    <p>Bu mövzuda iki iş var: cümlədə həmcins üzvü, əlavəni, ara sözü, xitabı tanımaq və onlarla bağlı durğu işarəsini (vergül, qoşa nöqtə, tire) düzgün qoymaq. Buraxılışın dil qaydaları blokunda belə suallar gəlir: "durğu işarəsi səhv olan cümlə", "cümlələrin birində ara söz yoxdur", "fərqləndirilmiş söz xitabdır". Qaydalar və nümunələr 8-ci sinif dərsliyindən götürülüb; bir hissəsi 6-cı və 7-ci sinif dərsliklərindən tamamlanıb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu. Durğu işarəsi üçün qayda belədir: hər vergülün, tirenin, qoşa nöqtənin <b>səbəbini</b> de. Səbəbi deyə bilmirsənsə, işarəni qoyma.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Həmcins üzvlər</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>İxtisar, ümumiləşdirici söz</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Əlavələr</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Xitab və ara söz</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Söz sırası</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Həmcins üzvlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Alış-veriş siyahısı yazırsan: <i>alma, armud, nar və heyva</i>. Dördü də eyni suala cavab verir: nə? Belə sözlər <b>həmcins üzvlərdir</b>. İmtahanda iki şey soruşulur: cümlədə həmcins üzvləri tanımaq və aralarında vergülü düzgün qoymaq. Həmcins üzv yalnız adlar deyil: xəbər, təyin, zərflik də həmcins ola bilər.</p>
+
+      <h3><span class="st">2</span> Həmcins üzv nədir</h3>
+      <p>Dərslik belə deyir: eyni üzvlə əlaqələnən, eyni suala cavab verib eyni cümlə üzvü olan bərabərhüquqlu söz və ifadələrə <b>həmcins üzvlər</b> deyilir.</p>
+      <div class="fm">Eyni cümlə üzvü ilə bağlı olur
+Eyni suala cavab verir
+Qrammatik cəhətdən bərabərhüquqlu olur
+Sadalama intonasiyası və ya bağlayıcı ilə bağlanır
+Hər bir cümlə üzvü həmcins ola bilər</div>
+      <div class="ex">Şərəf və ləyaqət ruhun bəzəyidir.
+Şərəf, ləyaqət — nə? sualına cavab verir; ikisi də mübtədadır (həmcins üzvlər).
+
+Oğuz bəyləri bunu görüb əl çaldılar, gülüşdülər.
+Əl çaldılar, gülüşdülər — həmcins xəbərlərdir; hər biri ayrılıqda mübtəda ilə əlaqələnir.</div>
+      <p>Həmcins üzvlər arasında <b>tabesizlik əlaqəsi</b> olur: üzvlərdən biri o birindən asılı deyil, bərabərhüquqludur. Sadalama intonasiyası ilə bağlanan həmcins üzvlər arasında vergül qoyulur («və» ilə bağlananlarda isə sonuncu üzvdən əvvəl qoyulmur).</p>
+
+      <h3><span class="st">3</span> Üzvləri nə bağlayır</h3>
+      <p>Həmcins üzvlər iki vasitə ilə bağlanır: <b>sadalama intonasiyası</b> (yazıda vergül) və <b>tabesizlik bağlayıcıları</b>.</p>
+      <div class="tbl"><table>
+        <tr><th>vasitə</th><th>növü</th><th>nümunə</th></tr>
+        <tr><td>sadalama intonasiyası</td><td>yazıda vergül</td><td>Yaşıl, sarı yarpaqlar bir-birinə qarışmışdı.</td></tr>
+        <tr><td>və</td><td>birləşdirmə</td><td>Şərəf və ləyaqət ruhun bəzəyidir.</td></tr>
+        <tr><td>həm … həm də</td><td>iştirak</td><td>Həm müəllimlər, həm də şagirdlər tədbiri maraqla izləyirdilər.</td></tr>
+        <tr><td>nə … nə də</td><td>inkarlıq</td><td>Nə uşaqlar, nə də böyüklər zalı tərk etmək istəyirdilər.</td></tr>
+        <tr><td>ya … ya da</td><td>bölüşdürmə</td><td>Ya Elnur, ya da Tural növbətçi olacaq.</td></tr>
+        <tr><td>gah … gah da</td><td>bölüşdürmə</td><td>Dəniz gah kükrəyib daşır, gah da sakitləşirdi.</td></tr>
+        <tr><td>amma, lakin</td><td>qarşılaşdırma</td><td>Kitab kiçik, amma maraqlıdır.</td></tr>
+      </table></div>
+      <p>Sadalamada çox vaxt hər ikisi birlikdə işlənir: vergül + sonuncu üzvdən əvvəl <i>və</i>. Qarşılaşdırma bağlayıcılarından (<i>amma, lakin</i>) əvvəl vergül qoyulur. Dərslik nümunələrində «və» ilə bağlanan sonuncu üzvdən əvvəl vergül yoxdur: <i>Həyətdə uşaqlar oynayır, gülür və əylənirlər.</i></p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Yolun hər iki tərəfində ağaclar, kollar əkilmişdi.
+Sual: nə əkilmişdi? → ağaclar, kollar
+Eyni suala cavab verir, eyni cümlə üzvüdür (mübtəda).
+Bağlayan vasitə: sadalama intonasiyası → aralarında vergül.
+
+Budağa qonan bülbül həvəslə oxuyur, cəh-cəh vurur.
+Sual: bülbül nə edir? → oxuyur, cəh-cəh vurur
+Oxuyur, cəh-cəh vurur — həmcins xəbərlərdir; hər biri «bülbül» mübtədasına aiddir.
+
+Ana bazardan alma, armud, nar və heyva aldı.
+Həmcins tamamlıqlar: alma, armud, nar, heyva. Vergüllər sadalamanı, «və» sonuncunu bağlayır.</div>
+      <div class="life"><b>Həyatdan.</b> Telefonda qeyd yazırsan: "Sabah süd, çörək və yumurta almalıyam." Üç söz eyni suala cavab verir (nə?), eyni üzvdür (tamamlıq), vergül və "və" ilə bağlanıb. Hər adi sadalama həmcins üzvdür.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Hər vergülü həmcins üzv saymaq. Vergül xitabı, ara sözü də ayırır: <i>Qızım, pəncərəni bağla.</i> və <i>Əlbəttə, sən bu işi bacararsan.</i> cümlələrində həmcins üzv yoxdur.</li>
+        <li>Həmcins üzvü yalnız isim saymaq. Xəbərlər (<i>oynayır, gülür</i>), təyinlər (<i>qırmızı, sarı, ağ</i>), zərfliklər (<i>sürətlə, səssizcə</i>) də həmcins olur.</li>
+        <li>«Və» ilə bağlanan sonuncu üzvdən əvvəl vergül qoymaq: <i>alma, armud, heyva, və nar</i> səhvdir.</li>
+        <li>«Həm … həm də», «nə … nə də», «ya … ya da» cütlərində vergülü atmaq: <i>Həm müəllimlər, həm də şagirdlər…</i></li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Həmcins üzvlər: eyni suala cavab verir, eyni cümlə üzvüdür
+Aralarında: tabesizlik əlaqəsi
+Bağlayan vasitə: sadalama intonasiyası (vergül), tabesizlik bağlayıcıları
+Hər cümlə üzvü həmcins ola bilər
+Sadalama intonasiyası ilə bağlanan həmcins üzvlər arasında vergül qoyulur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Gülnar bağda alma, armud və heyva yığdı." — həmcins üzvləri tap. <span class="ans">alma, armud, heyva (tamamlıq)</span></li>
+        <li>"Həm Elnur, həm də Tural dərsə gəldi." — üzvləri hansı vasitə bağlayır? <span class="ans">«həm … həm də» bağlayıcıları (iştirak)</span></li>
+        <li>"Qızım, dərsə tez gəl." — cümlədə həmcins üzv varmı? <span class="ans">yox; vergül xitabı ayırır</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Həmcins üzvlərdə ixtisar; ümumiləşdirici sözlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Danışanda eyni şəkilçini və ya köməkçi sözü hər üzvdə təkrarlamırıq: <i>Sən də qardaşın, bacın kimi yaxşı oxumalısan.</i> Burada «kimi» bir dəfə deyilir, amma hər iki üzvə aiddir. Bu <b>ixtisardır</b>. İkinci mövzu: sadalamanı bir sözlə ümumiləşdirəndə hansı işarə qoyulur.</p>
+
+      <h3><span class="st">2</span> Həmcins üzvlərdə ixtisar</h3>
+      <div class="fm">Həmcins üzvlərdə sonuncusu saxlanılmaqla qrammatik şəkilçilər ixtisar edilir
+İxtisar oluna bilər: hal, mənsubiyyət, cəm, şəxs şəkilçiləri
+İxtisar oluna bilər: idi, imiş, isə köməkçi sözləri
+İxtisar oluna bilər: qoşmalar və s.</div>
+      <div class="ex">Uşaq kitab, dəftər və qələmlərini çantasına yığdı.
+Tam forma: kitablarını, dəftərlərini və qələmlərini
+
+Sən də qardaşın, bacın kimi yaxşı oxumalısan.
+Tam forma: qardaşın kimi, bacın kimi (qoşma)
+
+Şəhidlərimiz Vətən, xalq üçün candan keçiblər.
+Tam forma: Vətən üçün, xalq üçün (qoşma)
+
+Elm cahil və nadanlara qonaq getməz.
+Tam forma: cahillərə və nadanlara (cəm və hal şəkilçisi)
+
+Qızlar çəməndəki gülləri dərir, çələng hörürlər.
+Tam forma: dərirlər, hörürlər (xəbərin şəxs şəkilçisi)
+
+Hava soyuq, küləkli idi.
+Tam forma: soyuq idi, küləkli idi («idi» köməkçi sözü)</div>
+      <p>Yoxlama üsulu: hər üzvü <b>tam halda</b> de. Hansında şəkilçi və ya qoşma çatmır? Orada ixtisar var, çatmayan hissə sonuncu üzvdə saxlanılıb.</p>
+
+      <h3><span class="st">3</span> Ümumiləşdirici sözlər</h3>
+      <p>Həmcins üzvlərin hamısına aid olub onların mənasını ümumiləşdirən söz və ifadələrə <b>ümumiləşdirici sözlər</b> deyilir. Ümumiləşdirici söz həmcins üzvlərdən həm əvvəl, həm də sonra işlənir.</p>
+      <div class="tbl"><table>
+        <tr><th>yeri</th><th>işarə</th><th>nümunə</th></tr>
+        <tr><td>həmcinslərdən əvvəl</td><td>ondan sonra qoşa nöqtə (:)</td><td>Qızlar: Nigar, Xanım, Röya və Nəzrin həvəslə bayram şənliyinə hazırlaşırdılar.</td></tr>
+        <tr><td>həmcinslərdən əvvəl</td><td>ondan sonra qoşa nöqtə (:)</td><td>Hər tərəf: dağ, dərə, təpələr ağ qarla örtülmüşdü.</td></tr>
+        <tr><td>həmcinslərdən sonra</td><td>ondan əvvəl tire (–)</td><td>Bakı, Gəncə, Sumqayıt, Mingəçevir – bunların hamısı Azərbaycanın böyük şəhərləridir.</td></tr>
+      </table></div>
+      <p>Ümumiləşdirici sözdən sonra «yəni», «məsələn» bağlayıcıları işlənərsə, bağlayıcıdan əvvəl vergül, sonra qoşa nöqtə qoyulur. Ümumiləşdirici sözdən əvvəl ara söz (<i>bir sözlə</i>) işlənərsə, ara sözdən əvvəl tire, sonra vergül qoyulur.</p>
+      <div class="ex">Dərman bitkiləri, yəni: itburnu, çaytikanı, çobanyastığı, zəncirotu respublikamızın müxtəlif bölgələrində bitir.
+Alma, armud, heyva, nar – bir sözlə, bütün meyvələr bağda yetişmişdi.</div>
+      <p>Yadda saxlamaq üçün: ümumiləşdirici söz <b>əvvəl</b> gələndə arxasınca sadalama gəlir — «qızlar:» deyib saymağa başlayırsan, qoşa nöqtə qoyursan. <b>Sonra</b> gələndə sadalama bitib, tire onu bir sözlə yekunlaşdırır.</p>
+
+      <h3><span class="st">4</span> Həll olunmuş nümunə</h3>
+      <div class="ex">Meyvələr alma, armud, heyva və nar bağda yetişmişdi.
+Həmcins üzvlər: alma, armud, heyva, nar.
+Hamısını ümumiləşdirən söz: «meyvələr» — həmcinslərdən əvvəl gəlir.
+Düzgünü: Meyvələr: alma, armud, heyva və nar bağda yetişmişdi.
+
+Qələm, dəftər, kitab hər şey çantada idi.
+Ümumiləşdirici söz «hər şey» həmcinslərdən sonra gəlir.
+Düzgünü: Qələm, dəftər, kitab – hər şey çantada idi.</div>
+      <div class="life"><b>Həyatdan.</b> Dərs cədvəlinə baxırsan: "Fənlər: riyaziyyat, fizika, kimya və biologiya cədvəldə yazılmışdı." Əvvəl "fənlər" deyirsən, sonra say. Yekunda desən: "Riyaziyyat, fizika, kimya və biologiya – bunların hamısı cədvəldə yazılmışdı."</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Qoşa nöqtə ilə tireni qarışdırmaq. Ümumiləşdirici söz əvvəldədirsə — qoşa nöqtə, sondadırsa — tire.</li>
+        <li>«Bunların hamısı», «hər şey» sözlərini həmcins üzv saymaq. Onlar həmcinsləri ümumiləşdirir, özləri həmcins deyil.</li>
+        <li>Ümumiləşdirici sözdən sonra vergül qoymaq: <i>Meyvələr, alma, armud…</i> — səhvdir.</li>
+        <li>Hər üzvdə şəkilçinin olmamasını yazı səhvi saymaq. <i>Kitab, dəftər və qələmlərini</i> — ixtisardır, qayda ilə mümkündür.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">İxtisar: sonuncu üzvdə saxlanılır
+İxtisar olunur: hal, mənsubiyyət, cəm, şəxs şəkilçiləri, idi, imiş, isə, qoşma
+Ümumiləşdirici söz əvvəl gələndə: ondan sonra qoşa nöqtə
+Ümumiləşdirici söz sonra gələndə: ondan əvvəl tire
+Yəni, məsələn işlənəndə: bağlayıcıdan əvvəl vergül, sonra qoşa nöqtə</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Qələm, dəftər, kitab – hər şey çantada idi." — ümumiləşdirici söz hansıdır, ondan əvvəl hansı işarə qoyulub? <span class="ans">hər şey; tire (həmcinslərdən sonra gəlir)</span></li>
+        <li>"Meyvələr alma, armud və heyva bağda yetişmişdi." — "meyvələr"dən sonra hansı işarə lazımdır? <span class="ans">qoşa nöqtə</span></li>
+        <li>"Uşaq kitab, dəftər və qələmlərini çantasına yığdı." — hansı üzvlərdə şəkilçi ixtisar olunub? <span class="ans">kitab, dəftər (şəkilçilər sonuncu üzvdə saxlanılıb)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Əlavələr</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Kimsə haqqında danışanda onu dəqiqləşdirirsən: <i>Atam – təcrübəli həkim bu xəstəxanada işləyir.</i> «Təcrübəli həkim» sözləri «atam»ı izah edir. Belə izahedici söz və ifadələr <b>əlavədir</b>. İmtahanda əlavəni təyindən, əlavənin tiresini ümumiləşdirici sözdən əvvəlki tiredən ayırmaq lazımdır.</p>
+
+      <h3><span class="st">2</span> Əlavə nədir</h3>
+      <div class="fm">Əlavələr cümlə üzvlərindən sonra gəlir
+Əlavə üzvün mənasını aydınlaşdırır və dəqiqləşdirir
+Əlavələr söz və söz birləşmələri ilə ifadə olunur
+Əlavə aid olduğu üzvdən, əsasən, tire (–) ilə ayrılır
+Üzv ilə əlavə arasında «yəni» işlənərsə, ondan əvvəl vergül qoyulur</div>
+      <div class="ex">Birdən Səid dünyada hamıdan çox sevdiyi varlığı – anasını gördü.
+varlığı — tamamlıq;  anasını — tamamlığın əlavəsi
+
+İlk teatr qədim Yunanıstanda – bu mədəniyyət beşiyində yaranmışdır.
+Yunanıstanda — zərflik;  bu mədəniyyət beşiyində — zərfliyin əlavəsi
+
+Hava olmadığına görə Yerin peykində – Ayda səs yayılmır.
+Hava olmadığına görə Yerin peykində, yəni Ayda səs yayılmır.
+Birinci cümlədə əlavə tire ilə, ikincidə «yəni» ilə bağlanıb: yəni-dən əvvəl vergül.</div>
+
+      <h3><span class="st">3</span> Bütün cümlə üzvlərinin əlavəsi ola bilər</h3>
+      <p>Əlavə mübtədaya da, tamamlığa da, zərfliyə də aid ola bilər: bütün cümlə üzvlərinin əlavəsi olur.</p>
+      <div class="ex">Mirzə Fətəli Axundzadə – ilk dramaturqumuz əlifba islahatı uğrunda mübarizə aparmışdır.
+Mirzə Fətəli Axundzadə — mübtəda;  ilk dramaturqumuz — mübtədanın əlavəsi
+
+Anam bazardan ən çox sevdiyim meyvəni – şaftalını aldı.
+meyvəni — tamamlıq;  şaftalını — tamamlığın əlavəsi
+
+Biz yay tətilini Qəbələdə – Azərbaycanın gözəl guşəsində keçirdik.
+Qəbələdə — zərflik;  Azərbaycanın gözəl guşəsində — zərfliyin əlavəsi</div>
+
+      <h3><span class="st">4</span> Əlavə, yoxsa təyin</h3>
+      <p>İkisi də üzvü izah edir, amma yerləri fərqlidir: <b>təyin aid olduğu üzvdən əvvəl</b>, <b>əlavə aid olduğu üzvdən sonra</b> gəlir. Eyni ifadə əlavə vəzifəsindən təyin vəzifəsinə keçir.</p>
+      <div class="ex">Nizami Gəncəvi – böyük Azərbaycan şairi beş poema yazmışdır.
+böyük Azərbaycan şairi — Nizami Gəncəvi sözündən sonra gəlir, tire ilə ayrılıb → əlavə
+
+Böyük Azərbaycan şairi Nizami Gəncəvi beş poema yazmışdır.
+böyük Azərbaycan şairi — Nizami Gəncəvi sözündən əvvəl gəlir → təyin</div>
+
+      <h3><span class="st">5</span> Tire iki yerdə: əlavə və ümumiləşdirici söz</h3>
+      <p>Tire həm əlavədən əvvəl, həm də həmcinslərdən sonra gələn ümumiləşdirici sözdən əvvəl qoyulur. Fərqi soruşmaq lazımdır: tiredən əvvəl bir üzv durur (əlavə onu izah edir), yoxsa sadalama (ümumiləşdirici söz onların hamısını bir sözlə deyir)?</p>
+      <div class="ex">Anam bazardan meyvəni – şaftalını aldı.
+tiredən əvvəl bir üzv: meyvəni → «şaftalını» əlavədir.
+
+Alma, armud, nar – bunların hamısı payızda yetişir.
+tiredən əvvəl sadalama: alma, armud, nar → «bunların hamısı» ümumiləşdirici sözdür.</div>
+      <div class="life"><b>Həyatdan.</b> Mesajda yazırsan: "Mənim dostum – Elnur sabah bizə gələcək." Tiredən sonrakı «Elnur» «dostum»u dəqiqləşdirir: kimin gələcəyini deyir. Bu, əlavədir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Əlavəni təyin saymaq. Təyin aid olduğu üzvdən əvvəl gəlir, əlavə sonra gəlir və tire ilə ayrılır.</li>
+        <li>Əlavəni həmcins üzv saymaq. Əlavə yeni bir şey sadalamır, əvvəlki üzvü izah edir.</li>
+        <li>«Yəni» işlənəndə vergül əvəzinə tire qoymaq: <i>Yerin peykində, yəni Ayda</i> düzgündür.</li>
+        <li>Əlavəni yalnız mübtədaya aid saymaq. Əlavə tamamlığın da, zərfliyin də ola bilər.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əlavə: aid olduğu üzvdən sonra gəlir, onu izah edir
+Əlavə: söz və ya söz birləşməsidir
+Əlavə: tire ilə ayrılır
+Yəni işlənəndə: yəni-dən əvvəl vergül
+Təyin: aid olduğu üzvdən əvvəl gəlir
+Bütün cümlə üzvlərinin əlavəsi olur</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Atam – təcrübəli həkim bu xəstəxanada işləyir." — əlavəni tap. <span class="ans">təcrübəli həkim (mübtədanın əlavəsi)</span></li>
+        <li>"Qatar səhər tezdən, yəni saat altıda yola düşdü." — əlavə hansıdır, «yəni»dən əvvəl nə qoyulub? <span class="ans">saat altıda (zərfliyin əlavəsi); vergül</span></li>
+        <li>"Təcrübəli həkim atam bu xəstəxanada işləyir." — "təcrübəli həkim" əlavədirmi? <span class="ans">yox, təyindir: aid olduğu sözdən əvvəl gəlir</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Xitab və ara söz</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Birinə səslənəndə adını çağırırsan: <i>Elnur, bura gəl.</i> Fikrini bildirəndə "əlbəttə", "bəlkə" deyirsən. Birincisi <b>xitabdır</b>, ikincisi <b>ara sözdür</b>. İkisi də yazıda vergüllə ayrılır, amma cümlə üzvü deyil. İmtahanda iki tələ var: xitabı mübtəda ilə, xitabı ara sözlə qarışdırmaq.</p>
+
+      <h3><span class="st">2</span> Xitab nədir</h3>
+      <div class="fm">Xitab cümlədə müraciət ediləni bildirən söz və ya söz birləşməsidir
+Xitab, əsasən, adlıq halda olan isim, isimləşən söz və ya ismi birləşmə ilə ifadə olunur
+Xitabla həm canlıya, həm də cansıza müraciət etmək olur</div>
+      <div class="ex">Vətən oğlu, keşiyində durduğun bu torpaq sənə babalarından əmanətdir.
+Oğul, sözlərimə yaxşı qulaq as.
+Həyat, sən nə şirinsən!      (cansıza müraciət: bədii xitab, ritorik müraciət)
+Xitab «ay», «ey», «aman» nidaları ilə də işlənə bilər: Ey, cavan oğlan, haraya gedirsən?</div>
+
+      <h3><span class="st">3</span> Xitabın yeri və durğu işarəsi</h3>
+      <div class="tbl"><table>
+        <tr><th>xitabın yeri</th><th>işarə</th><th>nümunə</th></tr>
+        <tr><td>cümlənin əvvəli, adi intonasiya</td><td>ondan sonra vergül</td><td>Oğul, sözlərimə yaxşı qulaq as.</td></tr>
+        <tr><td>cümlənin əvvəli, yüksək hiss-həyəcanla</td><td>ondan sonra nida işarəsi</td><td>Vidadi! Vidadi! Gözlərin aydın!</td></tr>
+        <tr><td>cümlənin ortası</td><td>hər iki tərəfdən vergül</td><td>Mən bilirəm, Gülgəz, sənin bu işdən xəbərin yoxdur.</td></tr>
+        <tr><td>cümlənin sonu</td><td>ondan əvvəl vergül, sonra cümlənin məqsədinə uyğun işarə</td><td>Bayrağına canım qurban, Azərbaycan!</td></tr>
+      </table></div>
+
+      <h3><span class="st">4</span> Xitab, yoxsa mübtəda</h3>
+      <p>Xitab ismin adlıq halındadır və bu cəhətdən mübtədaya oxşayır. Amma xitab: <b>cümlə üzvü olmur</b>, <b>digər sözlərlə qrammatik cəhətdən əlaqələnmir</b>, yazıda <b>vergül və ya nida ilə ayrılır</b>. Mübtəda isə cümlə üzvüdür və xəbərlə uzlaşır.</p>
+      <div class="fm">Xəbərə «kim?» sualı ver
+Cavab həmin sözdürsə — mübtəda, xəbərlə uzlaşır
+Söz heç bir suala cavab vermirsə, sadəcə çağırılırsa — xitab</div>
+      <div class="ex">Dostum həmişə mənə kömək edir.
+kim kömək edir? → dostum. Xəbər III şəxsdədir, «dostum» ilə uzlaşır → mübtəda.
+
+Dostum, bu gün də səndən kömək gözləyirəm.
+kim gözləyirəm? → mən (gizli mübtəda). «Dostum» xəbərlə uzlaşmır, heç bir suala cavab vermir → xitab.
+
+Nənə süfrəni hazırladı.        → nənə mübtədadır (xəbər III şəxsdə)
+Nənə, süfrəni hazırla.          → nənə xitabdır (xəbər II şəxsin əmr şəklindədir, mübtəda «sən»)
+
+Elnur sabah bizə gələcək.      → mübtəda
+Elnur, sabah bizə gəl.          → xitab</div>
+      <p>Vergül olmasa da fərqi mənadan tanıyırsan: xəbərə «kim?» sualı ver, cavabı xəbərin şəxsindən yoxla.</p>
+      <div class="life"><b>Həyatdan.</b> Mesaj: "Anam, mən gəlirəm" — anama xəbər verirsən, «anam» xitabdır, xəbər «gəlirəm» I şəxsdədir. Mesaj: "Anam gəlir" — «anam» gələn adamdır, mübtədadır.</div>
+
+      <h3><span class="st">5</span> Ara söz</h3>
+      <div class="fm">Ara söz danışanın ifadə etdiyi fikrə münasibətini bildirir
+Ara sözlər daha çox modal sözlərlə ifadə olunur
+Ara söz cümlə üzvü olmur, cümlə üzvlərindən vergüllə ayrılır
+Bütün modal sözlər ara söz olur, amma bütün ara sözlər modal söz deyil
+Ara söz söz, söz birləşməsi və cümlə şəklində ola bilər</div>
+      <div class="tbl"><table>
+        <tr><th>ara sözün yeri</th><th>işarə</th><th>nümunə</th></tr>
+        <tr><td>cümlənin əvvəli</td><td>ondan sonra vergül</td><td>Bəlkə, elə Füzulinin, Nizaminin zərrəsiyik?</td></tr>
+        <tr><td>cümlənin ortası</td><td>hər iki tərəfdən vergül</td><td>Təzə xəstəxana, sən demə, artıq pasiyentlərini qəbul edir.</td></tr>
+        <tr><td>cümlənin sonu</td><td>ondan əvvəl vergül, sonra cümlənin məqsədinə uyğun işarə</td><td>İşlər tez yekunlaşarmı, görəsən?</td></tr>
+      </table></div>
+      <p>Söz birləşməsi ilə ifadə olunan ara söz: <i>Yoldan geri qayıtmaq, bəzi inanclara görə, yaxşı əlamət deyil.</i> Cümlə şəklində olanlar da var (<i>necə deyərlər, demək olar ki</i>).</p>
+      <p>Ara sözlər danışanın fikrə münasibətini müxtəlif cür bildirir:</p>
+      <div class="tbl"><table>
+        <tr><th>münasibət</th><th>ara sözlər</th></tr>
+        <tr><td>əminlik</td><td>şübhəsiz, əlbəttə, sözsüz</td></tr>
+        <tr><td>güman, şübhə</td><td>deyəsən, görünür, böyük ehtimalla, bəlkə</td></tr>
+        <tr><td>fikrin mənbəyi</td><td>atalar demişkən, bəzi inanclara görə</td></tr>
+        <tr><td>sıra, ardıcıllıq</td><td>birincisi, ikincisi</td></tr>
+        <tr><td>təəssüf</td><td>təəssüf ki, heyif ki</td></tr>
+        <tr><td>nəticə</td><td>deməli</td></tr>
+        <tr><td>bənzətmə</td><td>sanki, elə bil, guya</td></tr>
+      </table></div>
+      <p><b>İstisna:</b> bənzətmə bildirən <i>sanki, elə bil, guya</i> sözləri vergüllə ayrılmır: <i>Sanki buradan bir fırtına keçmişdi.</i></p>
+
+      <h3><span class="st">6</span> Xitab və ara söz bir cümlədə</h3>
+      <div class="ex">Əlbəttə, Samir, sən haqlısan.
+Əlbəttə — ara söz (əminlik); Samir — xitab; sən — mübtəda.
+
+Gülnarə, bəlkə, sən də gələrsən?
+Gülnarə — xitab (kimə müraciət?); bəlkə — ara söz (güman); sən — mübtəda.</div>
+      <div class="tbl"><table>
+        <tr><th></th><th>xitab</th><th>ara söz</th></tr>
+        <tr><td>nə bildirir</td><td>müraciət ediləni</td><td>danışanın fikrə münasibətini</td></tr>
+        <tr><td>nə ilə ifadə olunur</td><td>adlıq halda isim, isimləşən söz, ismi birləşmə</td><td>modal söz, söz birləşməsi, cümlə</td></tr>
+        <tr><td>cümlə üzvüdürmü</td><td>yox</td><td>yox</td></tr>
+        <tr><td>durğu</td><td>vergül (yüksək intonasiya ilə — nida işarəsi)</td><td>vergül</td></tr>
+      </table></div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Xitabı mübtəda saymaq: <i>Dostum, bu gün də səndən kömək gözləyirəm.</i> Xəbər «gözləyirəm» I şəxsdədir, «dostum» mübtəda deyil.</li>
+        <li>Ara sözü cümlə üzvü saymaq. Ara sözü cümlədən çıxarsan, cümlənin qrammatik əsası dəyişmir.</li>
+        <li>Xitabla ara sözü qarışdırmaq: xitab kimə müraciət olunduğunu, ara söz danışanın fikrə münasibətini bildirir.</li>
+        <li><i>Sanki</i>, <i>elə bil</i>, <i>guya</i>-dan sonra vergül qoymaq — istisnadır.</li>
+        <li>Hər vergülü ara söz saymaq. Vergül həmcins üzvü, xitabı, əlavəni də ayırır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xitab: müraciət ediləni bildirir, cümlə üzvü deyil
+Xitab: xəbərlə uzlaşmır, heç bir suala cavab vermir
+Xitab: əvvəldə vergül, ortada iki tərəfdən vergül, sonda əvvəldən vergül
+Xitab yüksək intonasiya ilə deyilirsə: ondan sonra nida işarəsi
+Ara söz: danışanın fikrə münasibətini bildirir
+Ara söz: cümlə üzvü deyil, vergüllə ayrılır
+Sanki, elə bil, guya: vergüllə ayrılmır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Qardaşım sabah bizə gəlir." və "Qardaşım, sabah bizə gəl." — hansında «qardaşım» xitabdır? <span class="ans">ikincidə (vergül, xəbər II şəxsin əmr şəklindədir)</span></li>
+        <li>"Nərgiz, deyəsən, yağış yağacaq." — xitabı və ara sözü tap. <span class="ans">Nərgiz — xitab; deyəsən — ara söz (güman)</span></li>
+        <li>"Sanki buradan bir fırtına keçmişdi." — «sanki»dən sonra vergül lazımdırmı? <span class="ans">yox, istisnadır</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Cümlədə söz sırası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Şeirdə və mahnıda sözlər çox vaxt öz yerində durmur: <i>Qürurla çatmışdır qaşını Xəzər.</i> İmtahanda "söz sırası pozulub" cümləsini tapmaq üçün əvvəl normal sıranı bilmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Normal söz sırası</h3>
+      <div class="fm">Hər bir cümlə üzvünün cümlədə öz yeri vardır
+Mübtəda, adətən, cümlənin əvvəlində gəlir
+Xəbər cümlənin sonunda gəlir
+Tamamlıq və zərflik xəbərdən əvvəl gəlir
+Təyin həmişə təyin etdiyi üzvün əvvəlində gəlir</div>
+      <div class="ex">XVI əsrdə türk alimi Takiyüddin ibn Maruf buxar mühərriki ixtira etdi.
+XVI əsrdə — zərflik;  türk alimi — təyin;  Takiyüddin ibn Maruf — mübtəda;  buxar mühərriki — tamamlıq;  ixtira etdi — xəbər.
+
+Nikola Künyo XVIII əsrdə buxar mühərriki ilə işləyən avtomobil yaratdı.
+Zərflik burada mübtədadan sonra gəlib. Zərflik cümlənin əvvəlində və ya ortasında işlənə bilər.</div>
+
+      <h3><span class="st">3</span> Məntiqi vurğu</h3>
+      <p>Bəzən cümlədə diqqəti müəyyən bir sözə (söz birləşməsinə) yönəltmək üçün onu digərlərinə nisbətən yüksək tonla deyirik. Buna <b>məntiqi vurğu</b> deyilir. Adi söz sırasında məntiqi vurğulu söz, adətən, xəbərdən əvvəl gəlir.</p>
+      <div class="ex">Azərbaycan Ordusu torpaqlarımızı işğaldan 44 gün ərzində azad etdi.
+Torpaqlarımızı 44 gün ərzində işğaldan Azərbaycan Ordusu azad etdi.</div>
+
+      <h3><span class="st">4</span> Söz sırasının pozulması</h3>
+      <p>Bəzən cümlələrdə söz sırası pozula bilir. Buna canlı danışıq dilində, şeirlərdə daha çox rast gəlinir. Cümlədə söz sırasının pozulması <b>inversiya</b> adlanır. İnversiyaya daha çox nəzm əsərlərində rast gəlinir; o, şeirlərdə emosionallığı artırır, ahəng və qafiyənin yaranmasına xidmət edir.</p>
+      <div class="ex">Qürurla çatmışdır qaşını Xəzər.      (R.Rza)
+Normal sıra: Xəzər qaşını qürurla çatmışdır.
+Xəbər «çatmışdır» cümlənin ortasındadır.
+
+Həyat bir dastana bənzər əzəldən.     (S.Vurğun)
+Normal sıra: Həyat əzəldən bir dastana bənzər.
+Zərflik «əzəldən» xəbərdən sonra gəlib.</div>
+
+      <h3><span class="st">5</span> Həll olunmuş nümunə</h3>
+      <p>Pozulmuş sıranı necə tapırsan: <b>xəbəri tap</b>, sonra bütün üzvlərin yerini yoxla. Xəbər başqa yerdədirsə — sıra pozulub. Xəbər sondadırsa, qalan üzvlərin də yerini yoxla: tamamlıq və zərflik xəbərdən əvvəl, təyin təyin etdiyi üzvdən əvvəl olmalıdır; onda sıra normaldır. (Xəbərin sondan çıxması inversiyanın bir halıdır.)</p>
+      <div class="ex">Anam səhər çörək bişirdi.
+Xəbər «bişirdi» sondadır; zərflik və tamamlıq ondan əvvəldir, başqa pozulma yoxdur → sıra normaldır.
+
+Bişirdi anam səhər çörək.
+Xəbər «bişirdi» əvvələ keçib → sıra pozulub (inversiya).
+
+Güclü külək ağacları əyirdi.
+«Güclü» təyin etdiyi «külək»dən əvvəl gəlir, xəbər sondadır → normaldır.</div>
+      <div class="life"><b>Həyatdan.</b> Danışıqda da bəzən deyirsən: "Gəldim mən!" Adi sıra "Mən gəldim"dir. Xəbər önə keçib, sözü vurğulayır. Şeirdə isə sözlər ahəng və qafiyə üçün yerini dəyişir.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Söz sırası pozulubsa, cümlənin səhv olduğunu demək. Bu, üslub xüsusiyyətidir, şeirdə və danışıqda işlənir.</li>
+        <li>Zərflik mübtədadan əvvəl gələndə sıranı pozulmuş saymaq. Zərflik cümlənin əvvəlində və ya ortasında işlənə bilər.</li>
+        <li>"Mübtəda həmişə birinci gəlməlidir" demək. Dərslik: mübtəda, <i>adətən</i>, cümlənin əvvəlində gəlir.</li>
+        <li>Məntiqi vurğunu inversiya ilə qarışdırmaq. Adi sırada məntiqi vurğulu söz xəbərdən əvvəl gəlir, söz sırası normal qala bilər; inversiyada isə sıra pozulur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mübtəda: adətən əvvəldə
+Xəbər: cümlənin sonunda
+Tamamlıq və zərflik: xəbərdən əvvəl
+Təyin: təyin etdiyi üzvdən əvvəl
+Söz sırasının pozulması: inversiya (şeirdə, danışıqda)
+Məntiqi vurğulu söz: adətən xəbərdən əvvəl</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Biz axşam sahildə gəzdik." — söz sırası pozulubmu? <span class="ans">yox; xəbər sondadır</span></li>
+        <li>"Gəzdik biz axşam sahildə." — hansı üzv yerini dəyişib? <span class="ans">xəbər (sondan əvvələ keçib); söz sırası pozulub</span></li>
+        <li>Söz sırasının pozulması necə adlanır? <span class="ans">inversiya</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: həmcins üzvlər, əlavə, ara söz, xitab, söz sırası</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Durğu işarəsi səhv olan cümləni müəyyən edin"</b> — beş cümlə; vergül, tire, qoşa nöqtə yerindədirmi.</li>
+        <li><b>"Cümlələrin birində … yoxdur"</b> — həmcins üzv, ara söz, əlavə, ümumiləşdirici söz.</li>
+        <li><b>Nömrə kombinasiyası</b> — "fərqləndirilmiş söz xitabdır", "durğu düzgün qoyulub"; variantlar "A) 1, 3, 5" kimidir.</li>
+        <li><b>"Söz sırası pozulub", "ixtisar var"</b> — beş cümlədən birini tapmaq.</li>
+        <li><b>"Səhv fikri müəyyən edin"</b> — qaydalar haqqında beş fikir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: xitabı mübtəda saymaq, vergülü olan hər cümlədə həmcins üzv axtarmaq, ümumiləşdirici sözdən əvvəl qoşa nöqtə ilə tireni dəyişmək.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — durğu işarəsi səhv olan cümlə</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · durğu işarələri</span>
+        <p>Cümlələrin hansında durğu işarəsi səhv işlədilib?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Qızlar: Nigar, Xanım, Röya və Nəzrin həvəslə bayram şənliyinə hazırlaşırdılar.</li><li>Atam – təcrübəli həkim bu xəstəxanada işləyir.</li><li>Bəlkə, elə Füzulinin, Nizaminin zərrəsiyik?</li><li>Mən bilirəm Gülgəz, sənin bu işdən xəbərin yoxdur.</li><li>Nə uşaqlar, nə də böyüklər zalı tərk etmək istəyirdilər.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Hər cümlədə işarənin səbəbini de.
+A) Ümumiləşdirici söz «qızlar» həmcinslərdən əvvəldir → ondan sonra qoşa nöqtə. Düzdür.
+B) «Təcrübəli həkim» atam sözünü izah edir (əlavə) → tire. Düzdür.
+C) «Bəlkə» ara sözdür, cümlənin əvvəlindədir → sonra vergül; «Füzulinin, Nizaminin» həmcinslərdir → vergül. Düzdür.
+D) «Gülgəz» xitabdır, cümlənin ortasındadır → hər iki tərəfdən vergül lazımdır. «Bilirəm»dən sonra vergül yoxdur. Səhvdir.
+E) «Nə … nə də» cütündə vergül var. Düzdür.
+Cavab: D) Mən bilirəm Gülgəz, sənin bu işdən xəbərin yoxdur.</div>
+      <ul>
+        <li><b>A)</b>-nı seçmək: sadalamadan sonra tire gözləmək. Ümumiləşdirici söz əvvəl gələndə qoşa nöqtə qoyulur.</li>
+        <li><b>B)</b>-ni seçmək: tireni yalnız ümumiləşdirici sözlə əlaqələndirmək. Tire əlavəni də ayırır.</li>
+        <li><b>D)</b>-də səhvin xitabın yalnız bir tərəfdən ayrılmasında olduğunu görmək: xitab ortadadırsa, hər iki tərəfdən vergül qoyulur.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — cümlələrin birində ara söz yoxdur</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · ara söz</span>
+        <p>Cümlələrin hansında ara söz yoxdur?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Deyəsən, yağış yağacaq.</li><li>Sənin dediklərini də, sözsüz, düşünməyə dəyər.</li><li>Gülnarə, bəlkə, sən də gələrsən?</li><li>Nənə, süfrəni hazırla.</li><li>Atalar demişkən, sözün düzünü zarafatla deyərlər.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) «deyəsən» — güman bildirir → ara söz
+B) «sözsüz» — əminlik bildirir → ara söz
+C) «bəlkə» — güman bildirir → ara söz; «Gülnarə» xitabdır
+D) «nənə» — kimə müraciət olunur → xitab; fikrə münasibət yoxdur → ara söz yoxdur
+E) «atalar demişkən» — fikrin mənbəyini bildirən söz birləşməsi → ara söz
+Cavab: D) Nənə, süfrəni hazırla.</div>
+      <ul>
+        <li>Tələ: bütün cümlələrdə vergül var, amma vergül hər dəfə ara sözü ayırmır. D)-də vergül xitabı ayırır.</li>
+        <li><b>C)</b>-ni buraxmaq: cümlədə iki vergül var, birinci söz xitabdır deyə ara söz yoxdur düşünmək. «Bəlkə» ara sözdür.</li>
+        <li><b>E)</b>-ni buraxmaq: ara sözün yalnız bir söz olduğunu düşünmək. «Atalar demişkən» söz birləşməsidir.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrdə fərqləndirilmiş söz xitabdır?<br>1. <u><b>Dostum</b></u>, bu gün də səndən kömək gözləyirəm.<br>2. <u><b>Dostum</b></u> həmişə mənə kömək edir.<br>3. Mən bilirəm, <u><b>Gülgəz</b></u>, sənin bu işdən xəbərin yoxdur.<br>4. <u><b>Nənə</b></u> süfrəni hazırladı.<br>5. Sabah bizə gələrsən, <u><b>Nərgiz</b></u>?</p>
+        <ol class="imt-opts"><li>1, 3, 5</li><li>1, 2, 3</li><li>2, 4</li><li>1, 3, 4</li><li>3, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. Dostum — «kim gözləyirəm?» → mən; dostum xəbərlə uzlaşmır → xitab
+2. Dostum — xəbər «edir» III şəxsdə, «dostum» ilə uzlaşır → mübtəda
+3. Gülgəz — müraciət ediləndir, cümlənin ortasında → xitab
+4. Nənə — xəbər «hazırladı» III şəxsdə, «nənə» ilə uzlaşır → mübtəda
+5. Nərgiz — müraciət ediləndir, cümlənin sonunda → xitab
+Cavab: A) 1, 3, 5</div>
+      <ul>
+        <li><b>B)</b> — 2-ci cümlədəki «dostum»u 1-ci ilə eyni saymaq. Eyni söz, amma 2-cidə mübtədadır.</li>
+        <li><b>C)</b> — mübtədaları xitab saymaq.</li>
+        <li><b>D)</b> — «Nənə»ni ad olduğuna görə xitab saymaq. Xəbər onunla uzlaşırsa — mübtədadır.</li>
+        <li><b>E)</b> — 1-ci cümləni buraxmaq: xitab cümlənin əvvəlində də ola bilər.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Vergülün səbəbini demədən cavab seçmək. Hər vergül üçün: həmcins üzv, xitab, ara söz, əlavə — hansıdır?</li>
+        <li>Tireni görüb "ümumiləşdirici söz" demək. Tiredən əvvəl bir üzv durursa — əlavə, sadalama durursa — ümumiləşdirici söz.</li>
+        <li>Xitabı yalnız cümlənin əvvəlində axtarmaq. Xitab ortada və sonda da olur.</li>
+        <li>Söz sırasında zərfliyin əvvəldə olmasını pozulma saymaq. Pozulma — üzvlərin normal yerinin dəyişməsidir (məsələn, xəbərin sondan çıxması).</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Beşini də ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hər vergül, tire, qoşa nöqtə üçün: səbəbini de
+Ümumiləşdirici söz əvvəl: qoşa nöqtə; sonra: tire
+Əlavə: tire; yəni olanda — vergül
+Xitab: xəbərə «kim?» sualı ver, uzlaşmırsa — xitab
+Ara söz: fikrə münasibət; sanki, elə bil, guya — vergülsüz</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Qələm, dəftər, kitab – hər şey çantada idi." — tire nəyi ayırır? <span class="ans">ümumiləşdirici söz «hər şey»i (həmcinslərdən sonra gəlir)</span></li>
+        <li>"Elnur, sabah bizə gəl." və "Elnur sabah bizə gələcək." — hansında «Elnur» mübtədadır? <span class="ans">ikincidə</span></li>
+        <li>"Dərman bitkiləri, yəni: itburnu, çaytikanı…" — «yəni»dən əvvəl və sonra hansı işarələr qoyulub? <span class="ans">əvvəl vergül, sonra qoşa nöqtə</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>
