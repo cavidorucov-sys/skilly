@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mürəkkəb cümlə və durğu işarələri dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-murekkeb-cumle.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Mürəkkəb cümlə və durğu işarələri</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sintaksis, durğu işarələri</div>
+    <h1>Mürəkkəb cümlə və durğu işarələri</h1>
+    <p>Proqramda bu mövzu belə sadalanır: sadə və mürəkkəb cümlə (qrammatik əsasların sayına görə), tabesiz və tabeli mürəkkəb cümlə, tabesiz cümlənin hissələrini bağlayan vasitələr (intonasiya, bağlayıcılar), sintaktik təhlil, dialoqda durğu işarələri, nöqtə, sual, nida, vergül, qoşa nöqtə, dırnaq və tire. Dil qaydaları blokunda belə mövzulardan "cümlələrin hansı mürəkkəbdir", "vergül düzgün qoyulub" və "durğu işarələri səhv işlənib" tipli suallar tərtib oluna bilər. Qaydalar 5-ci, 6-cı, 8-ci və 9-cu sinif dərsliklərindən götürülüb.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa 5 dərsi sıra ilə oxu, hər nümunədə cümlənin hissələrini özün tap, sonra Oyun və Sınaq. Budaq cümlənin növləri bu mövzuda yoxdur: tabeli cümlədə yalnız növü tanımaq lazımdır.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sadə və mürəkkəb cümlə</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Tabesiz və tabeli</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Bağlayıcılar və vergül</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Cümlə sonu, nitq, dialoq</button>
+    <button class="tab" role="tab" id="tb-d5" aria-controls="d5" type="button"><small>Dərs 5</small>Sintaktik təhlil</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sadə və mürəkkəb cümlə</h2>
+    <article class="lesson">
+      <!-- Mənbə: 5-ci sinif, 2-ci hissə, s. 104 (3a, 3b, "Yadda saxla"); 9-cu sinif, s. 71, 75; 8-ci sinif, s. 58, 69 (baş üzvlər, mübtəda) -->
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>İki cümləyə baxaq: <i>Mərdan pəncərəni bağladı, çünki güclü külək başlamışdı.</i> və <i>Güclü küləyə görə Mərdan pəncərəni bağladı.</i> Hər ikisi eyni hadisədən danışır, amma birincidə iki ayrı fikir var, ikincidə bir fikir. Fərqi <b>qrammatik əsasların sayı</b> göstərir. Proqramda cümləni məhz bu ölçüyə görə sadə və ya mürəkkəb ayırmaq tələb olunur. Növbəti dərslərdə vergülün yerini də bu bilik həll edir.</p>
+
+      <h3><span class="st">2</span> Qrammatik əsas</h3>
+      <div class="fm">Qrammatik əsas = baş üzvlər (mübtəda + xəbər)
+Sadə cümlə: bir qrammatik əsas
+Mürəkkəb cümlə: iki və daha artıq qrammatik əsas</div>
+      <p>Mübtəda cümlədə həmişə ayrıca sözlə verilmir. Dərslikdə (9-cu sinif, s. 64) qeyd olunur: mürəkkəb cümlənin tərəfləri adlıq cümlədən başqa sadə cümlənin bütün növləri ilə ifadə oluna bilər. Nümunə: <i>Xoşu gəlmirdi ki, kiməsə ancaq özünə aid olan nəyisə danışsın.</i> — birinci tərəf <i>Xoşu gəlmirdi</i> şəxssiz sadə cümlədir, ikinci tərəf <i>danışsın</i> isə mübtədası buraxılmış müəyyən şəxsli cümlədir. Mübtəda buraxılıbsa, şəxsi xəbərin şəxs şəkilçisindən bilirik.</p>
+      <p>Mürəkkəb cümlələr sadə cümlələrin birləşməsindən yaranır. Mürəkkəb cümləni təşkil edən hissələrə <b>komponentlər (tərkib hissələr)</b> deyilir.</p>
+      <div class="ex">Quşlar oxuyur, çiçəklərin ətri ətrafa yayılırdı.
+1-ci əsas: Quşlar (mübtəda) — oxuyur (xəbər)
+2-ci əsas: çiçəklərin ətri (mübtəda) — yayılırdı (xəbər)
+İki qrammatik əsas → mürəkkəb cümlə.</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunə</h3>
+      <p>Hər cümlədə mübtəda–xəbər cütlərini say:</p>
+      <div class="ex">Sinfimizin şagirdləri həyətdə futbol oynayırlar.
+Sinfimizin şagirdləri — oynayırlar → 1 əsas → sadə
+
+Bayaq göy guruldadı, güclü yağış yağdı.
+göy — guruldadı; yağış — yağdı → 2 əsas → mürəkkəb
+
+Məşqçi hiss etdi ki, balaca uşaqlar çox yorulub.
+Məşqçi — hiss etdi; uşaqlar — yorulub → 2 əsas → mürəkkəb</div>
+
+      <h3><span class="st">4</span> Tələ: bir mübtəda, bir neçə xəbər</h3>
+      <p>Bəzi cümlələrdə <b>bir mübtəda ilə bağlı iki və daha çox xəbər</b> olur. Belə cümlələr <b>sadə cümlələrdir</b>: qrammatik əsas yenə birdir. Vergül və ya "və" gördün deyə cümləni mürəkkəb sayma.</p>
+      <div class="ex">Quşlar oxuyur, budaqdan budağa qonurdular.
+Mübtəda bir (quşlar), xəbər iki (oxuyur, qonurdular) → 1 əsas → sadə
+
+Leyla dərslərini oxudu, tapşırıqlarını yazdı.
+Mübtəda bir (Leyla), xəbər iki (oxudu, yazdı) → 1 əsas → sadə
+
+Quşlar oxuyur, çiçəklərin ətri ətrafa yayılırdı.
+Mübtəda iki (quşlar; çiçəklərin ətri), xəbər iki → 2 əsas → mürəkkəb
+
+Hava qaraldı, evə qayıtdıq.
+hava — qaraldı; (biz) — qayıtdıq (mübtəda buraxılıb, -q şəkilçisi "biz"i göstərir) → 2 əsas → mürəkkəb</div>
+      <p>Cümlədə həmcins mübtədalar da ola bilər: <i>Həm müəllimlər, həm də şagirdlər tədbiri maraqla izləyirdilər.</i> Burada mübtəda iki (<i>müəllimlər, şagirdlər</i> — həmcins mübtədalar), xəbər bir (<i>izləyirdilər</i>) — qrammatik əsas yenə birdir, cümlə sadədir. Mübtəda söz birləşməsi ilə də ifadə oluna bilər: <i>çiçəklərin ətri</i> (yuxarıdakı nümunədə).</p>
+      <div class="life"><b>Həyatdan.</b> Müəllimə yazırsan: "Mən dərslərimi bitirdim, tapşırıqları sizə göndərdim." Mübtəda bir (mən), xəbər iki — sadə cümlə. "Mən dərslərimi bitirdim, anam mənə çay gətirdi." — mübtəda iki (mən, anam): mürəkkəb cümlə.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Vergül görüb cümləni mürəkkəb saymaq. Vergül sadə cümlədə həmcins xəbərlər arasında da olur. Say: mübtəda–xəbər cütü neçədir?</li>
+        <li>Cümlə uzundur deyə mürəkkəb demək. Uzunluq yox, qrammatik əsasların sayı həll edir.</li>
+        <li>Xəbərləri sayıb cavab vermək. İki xəbər — hələ iki əsas demək deyil: bir mübtəda ilə bağlı iki xəbər bir əsasdır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Qrammatik əsas = mübtəda + xəbər
+Sadə cümlə: 1 əsas. Mürəkkəb cümlə: 2 və daha çox əsas.
+Bir mübtəda + bir neçə xəbər = sadə cümlə.
+Mübtəda–xəbər cütlərini say; mübtəda buraxılıbsa, xəbərin şəxsinə bax.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Uşaqlar gülür, oynayır və sevinirdilər." — neçə qrammatik əsas var? <span class="ans">1 (bir mübtəda, üç xəbər) — sadə</span></li>
+        <li>"Yağış kəsdi və günəş çıxdı." — sadə, yoxsa mürəkkəb? <span class="ans">mürəkkəb (yağış — kəsdi; günəş — çıxdı: 2 əsas)</span></li>
+        <li>"Həm müəllimlər, həm də şagirdlər tədbiri maraqla izləyirdilər." — sadə, yoxsa mürəkkəb? <span class="ans">sadə (mübtəda iki, xəbər bir — 1 əsas)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Tabesiz və tabeli mürəkkəb cümlə</h2>
+    <article class="lesson">
+      <!-- Mənbə: 9-cu sinif, s. 71 ("Yadda saxla"), s. 75 (tabesiz), s. 109–110 (tabeli, baş və budaq cümlə), s. 117 (qeyd: baş cümlədən budaq cümləyə sual) -->
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Mürəkkəb cümlənin hissələri bir-biri ilə eyni cür bağlı olmur. Bəzi cümlələrdə iki hissə yanaşı, bərabər durur; bəzilərində biri digərindən asılıdır. Bu fərq mürəkkəb cümlənin <b>iki növünü</b> verir. Növü bilmək bağlayıcıları və durğu işarələrini başa düşmək üçün də lazımdır.</p>
+
+      <h3><span class="st">2</span> İki növ</h3>
+      <p>Mürəkkəb cümlənin tərkib hissələri arasında əlaqə ya <b>bərabərhüquqluluq</b>, ya da <b>bir cümlənin digərindən asılı olması</b> yolu ilə yaranır.</p>
+      <div class="fm">Tabesiz mürəkkəb cümlə: hissələr bərabərhüquqludur
+Tabeli mürəkkəb cümlə: biri digərinə tabe olur
+Baş cümlə: müstəqil hissə
+Budaq cümlə: baş cümləni izah edən hissə</div>
+      <div class="ex">Çalışmaq həyat, düşünmək isə işıqdır.
+iki hissə bərabərdir, biri digərinə tabe deyil → tabesiz
+
+Əgər çalışmaq həyatdırsa, düşünmək işıqdır.
+birinci hissə (Əgər çalışmaq həyatdırsa) ikinciyə tabedir → tabeli</div>
+      <p>Bu mövzuda yalnız <b>növü</b> müəyyən etmək lazımdır; budaq cümlənin növlərini (zaman, səbəb və s.) ayırmaq tələb olunmur.</p>
+
+      <h3><span class="st">3</span> Necə ayırd etməli</h3>
+      <div class="fm">1. Hissələrə böl, hər hissədə mübtəda–xəbəri tap.
+2. Hissələr bərabərdir, yoxsa biri asılıdır?
+3. Bərabər — tabesiz. Asılı — tabeli.</div>
+      <p>Tabeli cümlədə budaq cümlə baş cümləni izah edib aydınlaşdırır. "ki" ilə bağlanan cümlələrdə baş cümlədən budaq cümləyə sual vermək olur.</p>
+      <div class="ex">Məşqçi hiss etdi ki, balaca uşaqlar çox yorulub.
+1-ci hissə: Məşqçi hiss etdi — baş cümlə
+2-ci hissə: balaca uşaqlar çox yorulub — budaq cümlə (nəyi hiss etdi?)
+Biri digərindən asılıdır → tabeli mürəkkəb cümlə
+
+Bayaq göy guruldadı, güclü yağış yağdı.
+Hər hissə ayrıca hadisəni bildirir, biri digərini izah etmir → tabesiz mürəkkəb cümlə</div>
+      <div class="life"><b>Həyatdan.</b> "Yağış yağdı, küçələr islandı" — iki hadisə yan-yana durur: tabesiz. "Əgər yağış yağsa, biz evdə qalarıq" — evdə qalmaq yağışdan asılıdır: tabeli.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Cümlədə vergül var deyə onu tabesiz saymaq. Tabeli cümlədə də hissələr vergüllə ayrılır: <i>Əgər yağış yağsa, biz evdə qalarıq.</i></li>
+        <li>Növü yalnız "ki" və ya "əgər" sözünə baxıb demək. Əsas ölçü hissələrin bir-birinə münasibətidir: bərabərdir, yoxsa asılıdır.</li>
+        <li>Sadə cümləni mürəkkəb növlərindən birinə aid etmək. Əvvəl qrammatik əsasların sayına bax: bir əsas varsa, cümlə sadədir, növ soruşulmur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Mürəkkəb cümlənin iki növü: tabesiz və tabeli.
+Tabesiz: hissələr bərabərhüquqludur.
+Tabeli: biri digərindən asılıdır (baş cümlə və budaq cümlə).
+Budaq cümlə baş cümləni izah edir.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Ana layla dedi, lakin körpə yata bilmədi." — tabesiz, yoxsa tabeli? <span class="ans">tabesiz (hissələr bərabərdir)</span></li>
+        <li>"Atam dedi ki, dərslər sabah başlayacaq." — növü və baş cümlə? <span class="ans">tabeli; baş cümlə: Atam dedi</span></li>
+        <li>"Əgər yağış yağsa, biz evdə qalarıq." — hansı hissə baş cümlədir? <span class="ans">biz evdə qalarıq (birinci hissə ondan asılıdır)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Tabesiz cümlədə bağlayıcılar və vergül</h2>
+    <article class="lesson">
+      <!-- Mənbə: 5-ci sinif, 2-ci hissə, s. 105 ("Mürəkkəb cümlədə bağlayıcı və vergül"); 6-cı sinif, 1-ci hissə, s. 92 (bağlayıcıların funksiyaları); 9-cu sinif, s. 82, 90, 91, 92 -->
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Tabesiz mürəkkəb cümlənin hissələrini bir şey bir-birinə bağlayır. Bu "bir şeyi" tapsan, həm cümlənin mənasını, həm də vergülün yerini bilərsən. Ən çox edilən səhvlər: vergülü yanlış yerə qoymaq, "və"-dən əvvəl vergül yazmaq.</p>
+
+      <h3><span class="st">2</span> İki vasitə</h3>
+      <div class="fm">Hissələr iki vasitə ilə bağlanır:
+1) intonasiya ilə
+2) tabesizlik bağlayıcıları vasitəsilə</div>
+      <div class="ex">Bağça dərin sükut içində idi, təkcə axan çayın şırıltısı eşidilirdi.
+bağlayıcı yoxdur, hissələr yalnız intonasiya ilə bağlanıb
+
+Gün çıxmışdı, amma hava soyuq idi.
+hissələri amma bağlayıcısı bağlayır</div>
+
+      <h3><span class="st">3</span> Bağlayıcıların mənası</h3>
+      <p>Bağlayıcılar hissələri əlaqələndirməyə kömək edir, amma onların yaratdığı mənalar fərqlidir.</p>
+      <div class="tbl"><table>
+        <tr><th>məna</th><th>bağlayıcılar</th><th>nümunə</th></tr>
+        <tr><td>qarşılaşdırma (ziddiyyət)</td><td>amma, ancaq, lakin, halbuki</td><td>Gün çıxmışdı, <u>amma</u> hava soyuq idi.</td></tr>
+        <tr><td>bölüşdürmə</td><td>ya … ya da</td><td><u>Ya</u> hamı bu işdən imtina etsin, <u>ya da</u> əl-ələ verib tez bitirməyə çalışaq.</td></tr>
+        <tr><td>birləşdirmə</td><td>və</td><td>Müəllim danışırdı <u>və</u> valideynlər ona diqqət kəsilmişdilər.</td></tr>
+        <tr><td>aydınlaşdırma</td><td>yəni</td><td>Fəsil dəyişdi, <u>yəni</u> payız gəldi.</td></tr>
+        <tr><td>inkarlıq</td><td>nə … nə də</td><td><u>Nə</u> atası razı oldu, <u>nə də</u> qızı atasız getmək istəyirdi.</td></tr>
+      </table></div>
+      <p>Qarşılaşdırma bağlayıcıları hissələr arasında ziddiyyət yaradır; bölüşdürmə hadisələrin növbə ilə bir-birini əvəz etməsini və ya birinin mümkünlüyünü bildirir; birləşdirmə eyni zamanda baş verən və ya ardıcıl hadisələri əlaqələndirir. Tabesiz cümlənin bir hissəsi ümumi fikir bildirib digəri onu aydınlaşdıranda bəzən <i>yəni</i> işlənir. 6-cı sinif dərsliyində <i>həm … həm də</i> iştirak mənası verən bağlayıcı kimi də göstərilib; <i>nə … nə də</i> inkarlıq bildirir. Səbəb bildirən <i>çünki</i> və <i>ona görə də</i> ilə qurulan cümlələrdə də iki qrammatik əsas var: <i>Avtobus dayandı, çünki yanacağı qurtarmışdı.</i></p>
+
+      <h3><span class="st">4</span> Vergül işarəsi</h3>
+      <div class="fm">İntonasiya ilə: hissələr arasında vergül
+və: vergül qoyulmur
+amma, ancaq, lakin, halbuki: vergül onlardan əvvəl
+hətta, həmçinin, habelə, yəni: vergül onlardan əvvəl
+çünki, ona görə də: hissələr arasında vergül
+Təkrarlanan həm … həm də, nə … nə də, ya … ya da, gah … gah da, istər … istərsə də: birincidən başqa digərlərindən əvvəl vergül
+Təkrarlanan da, də: sonuncudan başqa hər birindən sonra vergül
+isə: yanında vergül qoyulmur</div>
+      <p>Təkrarlanan bağlayıcılar: <i>həm … həm də, nə … nə də, ya … ya da, gah … gah da, istər … istərsə də</i>. <i>isə</i> bağlayıcısının yanında vergül yoxdur, vergül hissələr arasında durur.</p>
+      <div class="ex">Bayaq göy guruldadı, güclü yağış yağdı.              intonasiya → vergül
+Ana layla dedi, körpə yuxuya getdi.                    intonasiya → vergül
+Ana layla dedi və körpə yuxuya getdi.                  və → vergül yoxdur
+Ana layla dedi, lakin körpə yata bilmədi.              lakin-dən əvvəl vergül
+Nə atası razı oldu, nə də qızı atasız getmək istəyirdi.   nə də-dən əvvəl vergül
+Çalışmaq həyat, düşünmək isə işıqdır.                  vergül hissələr arasında, isə-nin yanında yox
+Aramızda həkim də var, mühəndis də, müəllim də.         da, də təkrarlananda: sonuncudan başqa hər birindən sonra</div>
+      <div class="life"><b>Həyatdan.</b> Dostuna yazırsan: "Sabah imtahan var, amma mən hələ hazır deyiləm." Vergül <i>amma</i>-dan əvvəl durur. "Sabah imtahan var və mən hələ hazır deyiləm" yazsaydın, vergül lazım olmazdı.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li><i>və</i>-dən əvvəl vergül qoymaq: <i>Ana layla dedi, və körpə yuxuya getdi</i> səhvdir.</li>
+        <li>Vergülü <i>amma, lakin, ancaq</i>-dan sonra qoymaq. Vergül bağlayıcıdan <b>əvvəl</b> gəlir: <i>Gün çıxmışdı, amma hava soyuq idi.</i></li>
+        <li><i>isə</i>-nin yanına vergül qoymaq: <i>Çalışmaq həyat düşünmək, isə işıqdır</i> səhvdir. Düzü: <i>Çalışmaq həyat, düşünmək isə işıqdır.</i></li>
+        <li>Təkrarlanan bağlayıcıların birincisindən əvvəl vergül qoymaq: <i>Nə atası razı oldu, nə də…</i> — vergül yalnız <i>nə də</i>-dən əvvəldir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Hissələri intonasiya və ya tabesizlik bağlayıcıları bağlayır.
+Bağlayıcısız cümlədə hissələr arasında vergül var.
+və — vergül yoxdur.
+amma, ancaq, lakin, halbuki, hətta, yəni — vergül onlardan əvvəl.
+isə — vergül hissələr arasındadır, isə-nin yanında deyil.
+Təkrarlanan həm … həm də, nə … nə də və s. — birincidən başqa digərlərindən əvvəl vergül; təkrarlanan da, də — sonuncudan başqa hər birindən sonra.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Gün çıxmışdı amma hava soyuq idi." — vergül hansı sözdən sonra qoyulur? <span class="ans">çıxmışdı (amma-dan əvvəl)</span></li>
+        <li>"Yağış kəsdi və günəş çıxdı." — vergül lazımdırmı? <span class="ans">lazım deyil (və bağlayıcısı)</span></li>
+        <li>"Nənəm danışırdı biz isə dinləyirdik." — vergül hara qoyulur? <span class="ans">danışırdı-dan sonra (isə-nin yanına yox)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Cümlə sonu, vasitəsiz nitq və dialoq</h2>
+    <article class="lesson">
+      <!-- Mənbə: 5-ci sinif, 1-ci hissə, s. 39 ("Cümlə sonunda durğu işarələri"); 9-cu sinif, s. 165–167 (tire və defis), s. 176–178 (vasitəsiz nitq, dialoq); 8-ci sinif, s. 124 (ümumiləşdirici sözlər) -->
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Cümlənin sonundakı işarə danışanın məqsədini göstərir. Başqasının sözünü verəndə isə qoşa nöqtə, dırnaq və tire işlənir: onları qarışdırmaq ən çox səhv olunan yerdir. Bu dərsdə üç şey var: cümlə sonu, vasitəsiz nitq və dialoq.</p>
+
+      <h3><span class="st">2</span> Cümlə sonunda durğu işarələri</h3>
+      <div class="fm">Nəqli cümlə — xəbər verir: nöqtə
+Sual cümləsi — xəbər almaq: sual işarəsi
+Əmr cümləsi — xahiş, göstəriş: adi intonasiya ilə nöqtə
+Nida cümləsi — duyğu ifadə edir: nida işarəsi
+Üç nöqtə: fikrin bitmədiyini, pauzanı göstərir</div>
+      <p>Nida cümləsi müəyyən varlıq və ya hadisə ilə bağlı duyğunu (heyranlıq, sevinc, qorxu, təəccüb, arzu) ifadə edir.</p>
+      <div class="ex">Səmra ilə Aytən bir sinifdə oxuyurdular.      nəqli → nöqtə
+Konsert xoşuna gəldi?                         sual → sual işarəsi
+Sən şəkli sevə-sevə çək.                      əmr → nöqtə
+Balaca qızdır, gör nə gözəl ifa edir!         nida → nida işarəsi</div>
+
+      <h3><span class="st">3</span> Vasitəsiz nitq: dırnaq və qoşa nöqtə</h3>
+      <p>Başqasının sözü dəyişdirilmədən verilərsə, buna <b>vasitəsiz nitq</b> deyilir. Cümlə iki hissədən ibarət olur: müəllifin sözü (M) və vasitəsiz nitq (V).</p>
+      <div class="fm">M: “V”. — müəllifin sözündən sonra qoşa nöqtə
+Vasitəsiz nitq: böyük hərflə, dırnaq içində
+Nöqtə: dırnaqdan sonra
+M: “V?” və M: “V!” — dırnaq ? və ! işarəsindən sonra qoyulur
+“V”, – m. — dırnaqdan sonra vergül və tire</div>
+      <p>Vasitəsiz nitqdən sonra sual, üç nöqtə və ya nida işarəsi olarsa, dırnaq həmin işarələrdən sonra qoyulur. Vasitəsiz nitq əvvəldə gələndə müəllifin sözü kiçik hərflə başlayır.</p>
+      <div class="ex">Avstriya psixoloqu Vilhelm Reyx demişdir: “Bu gün çıxdığınız hər pillə sabahkı həyatınızın təməlidir”.
+Fransız fiziki P.S.Laplas demişdir: “Bildiklərimiz bilmədiklərimizlə müqayisədə elə cüzidir ki!”
+Müəllim soruşdu: “Sabah kim növbətçidir?”
+“Ağıllı ancaq nail ola biləcəyi məqsədə can atan adama deyirlər”, – deyə Sokrat gənclərə müraciət edərmiş.</div>
+
+      <h3><span class="st">4</span> Dialoq: tire</h3>
+      <p>Dialoqda müəllifin sözündən sonra <b>qoşa nöqtə</b> qoyulur, hər replika <b>yeni sətirdən tire ilə</b> başlayır. Replikalarda dırnaq işlənmir, hər replikanın sonunda öz cümləsinin işarəsi durur.</p>
+      <div class="ex">Bir nəfər Epiktetin yanına gəlib deyir:
+– Hörmətli filosof, nə edim ki, hamı məni sevsin?
+– Bəd əməllərdən əl çək.</div>
+      <p>Dərslikdəki dialoqda üç nöqtə də var: <i>– Heç…</i> — cavab bitməyib, danışan fasilə verir.</p>
+      <div class="ex">– Səmra, qızım, nə fikirləşirsən?
+– Heç...
+– Hədiyyə barədə düşünürsən?</div>
+
+      <h3><span class="st">5</span> Qoşa nöqtə və tire — başqa hallar; tire ilə defis</h3>
+      <p>Ümumiləşdirici söz həmcins üzvlərin hamısına aid olub onların mənasını ümumiləşdirir.</p>
+      <div class="fm">Ümumiləşdirici söz əvvəldə: ondan sonra qoşa nöqtə
+Ümumiləşdirici söz sonda: ondan əvvəl tire</div>
+      <p>Dərslikdə tire və defis belə ayrılır:</p>
+      <div class="fm">Tire: əlavələrdə, dialoqlarda, vasitəsiz nitqdə
+Tire: ümumiləşdirici söz həmcins üzvlərdən sonra
+Defis: sözü hecalara bölərkən, sətirdən sətrə keçirərkən
+Defis: mürəkkəb sözlərin tərkib hissələri arasında
+Defis: rəqəmlərə, ixtisarlara şəkilçi artırarkən</div>
+      <div class="ex">Qızlar: Nigar, Xanım, Röya və Nəzrin həvəslə bayram şənliyinə hazırlaşırdılar.
+H.Turabov, N.Zeynalova, H.Məmmədov, F.Mütəllimova, R.Balayev – bunların hamısı səhnəmizin görkəmli xadimləridir.</div>
+      <p>Tire (–) uzundur, defis (-) qısadır: <i>sevə-sevə</i> (defis, mürəkkəb söz), <i>– Bəd əməllərdən əl çək.</i> (tire, dialoq).</p>
+      <div class="life"><b>Həyatdan.</b> Dostunun sözünü mesajda belə yazırsan: Anam dedi: “Dərslərini vaxtında hazırla”. Qoşa nöqtə, dırnaq, nöqtə — dırnaqdan sonra. Eyni söhbəti dialoq kimi yazsan, dırnaq yox, tire olacaq.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Adi intonasiya ilə deyilən əmr cümləsinin sonuna nida işarəsi qoymaq. Dərslikdə belə əmr cümləsinin sonunda nöqtə qoyulur: <i>Sən şəkli sevə-sevə çək.</i> Güclü duyğu və ya təkidlə deyiləndə isə cümlə nida intonasiyası daşıyır və nida işarəsi qoyulur.</li>
+        <li>Vasitəsiz nitqdə qoşa nöqtəni unutmaq: <i>Müəllim soruşdu “Sabah kim növbətçidir?”</i> səhvdir.</li>
+        <li>Sual işarəsini dırnaqdan sonra yazmaq: <i>“Sabah kim növbətçidir”?</i> səhvdir. Düzü: <i>“Sabah kim növbətçidir?”</i></li>
+        <li>Dialoqda replikaları dırnağa almaq və ya tiresiz yazmaq.</li>
+        <li>Tire ilə defisi qarışdırmaq: tire replikanın əvvəlində, defis mürəkkəb sözün içində.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Nəqli və adi intonasiya ilə deyilən əmr cümləsinin sonunda nöqtə, sual cümləsində sual işarəsi, nida cümləsində nida işarəsi
+M: “V”. — müəllifin sözündən sonra qoşa nöqtə, nöqtə dırnaqdan sonra
+M: “V?” və M: “V!” — dırnaq ? və ! işarəsindən sonra qoyulur
+Dialoq: müəllifin sözündən sonra qoşa nöqtə, replikalar yeni sətirdən tire ilə
+Ümumiləşdirici söz əvvəldə: qoşa nöqtə. Sonda: tire.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Sənan sevincək qışqırdı Nə gözəl qar yağıb" — durğu işarələrini qoy. <span class="ans">Sənan sevincək qışqırdı: “Nə gözəl qar yağıb!”</span></li>
+        <li>"Müəllim soruşdu: “Sabah kim növbətçidir”?" — səhv nədir? <span class="ans">sual işarəsi dırnağın içində olmalıdır: “Sabah kim növbətçidir?”</span></li>
+        <li>"Meyvələr … alma, armud, heyva və nar bağımızda yetişir." — nöqtələrin yerinə nə qoyulur? <span class="ans">qoşa nöqtə (ümumiləşdirici söz əvvəldədir)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d5">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 5 ===== -->
+  <section class="panel" role="tabpanel" id="d5" aria-labelledby="tb-d5" hidden>
+    <h2>Dərs 5. Sintaktik təhlil</h2>
+    <article class="lesson">
+      <!-- Mənbə: 9-cu sinif, s. 72 (tapşırıq 18: cümləni sxemlərə əsasən təhlil — quruluşa görə növ, ifadə vasitələri), s. 70 (tapşırıq 16), s. 76; 8-ci sinif, s. 58 (cümlə üzvlərinin sxemi), s. 69. Plan dərslik tapşırıqlarındakı addımlardan toplanıb. -->
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Sintaktik təhlil — cümləyə baxıb ardıcıl suallara cavab verməkdir. Bu, bütün mövzunun yekunudur: sadə/mürəkkəb, tabesiz/tabeli, bağlayıcı, vergül və cümlə üzvləri bir plana yığılır. Planı yadda saxlasan, istənilən cümləni dəqiq təhlil edə bilərsən.</p>
+
+      <h3><span class="st">2</span> Təhlil planı</h3>
+      <div class="fm">1. Məqsəd və intonasiyaya görə: nəqli, sual, əmr, nida
+2. Quruluşa görə: sadə və ya mürəkkəb
+3. Mürəkkəbdirsə: tabesiz, yoxsa tabeli
+4. Tabesizdirsə: intonasiya, yoxsa bağlayıcı
+5. Hər əsasda: mübtəda və xəbər (hansı nitq hissəsi ilə ifadə olunub)
+6. İkincidərəcəli üzvlər: tamamlıq, təyin, zərflik
+7. Durğu işarələrinin izahı</div>
+
+      <h3><span class="st">3</span> Həll olunmuş nümunələr</h3>
+      <div class="ex">Gün çıxmışdı, amma hava soyuq idi.
+1. Məqsəd: nəqli (xəbər verir, sonda nöqtə).
+2. Əsaslar: gün — çıxmışdı; hava — soyuq idi → 2 əsas → mürəkkəb.
+3. Növ: hissələr bərabərdir → tabesiz mürəkkəb cümlə.
+4. Vasitə: amma bağlayıcısı (qarşılaşdırma).
+5. Mübtədalar: gün, hava (isim). Xəbərlər: çıxmışdı (feil), soyuq idi (sifət).
+6. İkincidərəcəli üzv yoxdur.
+7. Durğu: vergül amma-dan əvvəl; sonda nöqtə.</div>
+      <div class="ex">Atam dedi ki, dərslər sabah başlayacaq.
+1. Məqsəd: nəqli.
+2. Əsaslar: atam — dedi; dərslər — başlayacaq → 2 əsas → mürəkkəb.
+3. Növ: budaq cümlə (dərslər sabah başlayacaq) baş cümlədən (Atam dedi) asılıdır → tabeli mürəkkəb cümlə.
+5. Mübtədalar: atam, dərslər (isim). Xəbərlər: dedi, başlayacaq (feil).
+6. Sabah — zərflik (nə vaxt?).</div>
+      <div class="ex">Yeni müəllim dərsi diqqətlə izah etdi.
+1. Məqsəd: nəqli.
+2. Əsaslar: müəllim — izah etdi → 1 əsas → sadə.
+5. Mübtəda: müəllim (isim). Xəbər: izah etdi (feil).
+6. Yeni — təyin (hansı müəllim?). Dərsi — tamamlıq (nəyi?). Diqqətlə — zərflik (necə?).</div>
+
+      <h3><span class="st">4</span> İkincidərəcəli üzvləri tanımaq (xatırlatma)</h3>
+      <div class="fm">Mübtəda və xəbər — baş üzvlər (qrammatik əsas)
+Tamamlıq: kimi? nəyi? kimə? nəyə? kimdən? nədən?
+Təyin: hansı? (ismin əlaməti)
+Zərflik: necə? nə vaxt? harada? (hərəkətin izahı)</div>
+      <div class="ex">Nənəm həyətdə qırmızı gülləri əkdi.
+Nənəm — mübtəda; əkdi — xəbər; həyətdə — zərflik (harada?)
+qırmızı — təyin (hansı gülləri?); gülləri — tamamlıq (nəyi?)</div>
+      <div class="life"><b>Həyatdan.</b> Qısa mesaj: "Mən dərsi oxudum, sən yazdın." İki mübtəda (mən, sən), iki xəbər — mürəkkəb cümlə; vergül hissələri ayırır. Hər mesajı bu planla yoxlaya bilərsən.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Planın ilk addımlarını atlayıb birbaşa növə keçmək. Əvvəl əsasların sayı: bir əsas varsa, tabesiz/tabeli sualı yoxdur.</li>
+        <li>Mübtəda ilə təyini qarışdırmaq: <i>qırmızı gülləri</i> birləşməsində "qırmızı" təyindir, "gülləri" isə tamamlıqdır (nəyi?).</li>
+        <li>Bağlayıcının yeri ilə vergülün yerini qarışdırmaq: vergül <i>amma</i>-dan əvvəl durur, <i>isə</i>-nin yanında durmur.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Plan: məqsəd → əsasların sayı → növ → vasitə → mübtəda və xəbər → ikincidərəcəli üzvlər → durğu.
+Bir əsas — sadə. İki və daha çox — mürəkkəb.
+Hissələr bərabərdir — tabesiz. Biri asılıdır — tabeli.
+Hər tərkib hissənin öz qrammatik əsası olur (tərəflər sadə cümlənin müxtəlif növləri ilə, məsələn şəxssiz və ya mübtədası buraxılmış cümlə ilə ifadə oluna bilər).</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Bahar gəldi, çiçəklər açdı." — quruluşu, növü, vasitəsi? <span class="ans">mürəkkəb, tabesiz, yalnız intonasiya</span></li>
+        <li>"Mən dərsi oxudum, qardaşım isə tapşırığı yazdı." — mübtədalar? <span class="ans">mən, qardaşım</span></li>
+        <li>"Biz səhər erkən durduq, lakin avtobus artıq getmişdi." — bağlayıcı və onun mənası? <span class="ans">lakin — qarşılaşdırma</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: mürəkkəb cümlə və durğu işarələri</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <p>Bu mövzu üzrə sual aşağıdakı kimi tərtib oluna bilər:</p>
+      <ul>
+        <li><b>"Cümlələrdən hansı mürəkkəbdir (sadədir)"</b> — beş cümlə; hər birində mübtəda–xəbər cütlərini saymaq lazımdır.</li>
+        <li><b>"Tabesiz (tabeli) mürəkkəb cümləni müəyyən edin"</b> — hissələrin bərabər, yoxsa asılı olmasına bax.</li>
+        <li><b>"Vergül düzgün (səhv) qoyulub"</b> — bağlayıcılara görə vergülün yeri.</li>
+        <li><b>"Durğu işarələri düzgün işlədilib"</b> — vasitəsiz nitq, dialoq, qoşa nöqtə, tire.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: həmcins xəbərli cümləni mürəkkəb saymaq, vergülü bağlayıcıdan sonra qoymaq, sual işarəsini dırnaqdan sonra yazmaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — cümlələrdən hansı mürəkkəbdir</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · sadə və mürəkkəb cümlə</span>
+        <p>Cümlələrdən hansı mürəkkəbdir?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Leyla dərslərini oxudu, tapşırıqlarını yazdı.</li><li>Quşlar oxuyur, budaqdan budağa qonurdular.</li><li>Həm müəllimlər, həm də şagirdlər tədbiri maraqla izləyirdilər.</li><li>Bayaq göy guruldadı, güclü yağış yağdı.</li><li>Uşaqlar gülür, oynayır və sevinirdilər.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) Leyla — oxudu, yazdı → 1 mübtəda, 2 xəbər → 1 əsas → sadə
+B) Quşlar — oxuyur, qonurdular → 1 əsas → sadə
+C) müəllimlər, şagirdlər — izləyirdilər → 2 mübtəda, 1 xəbər → 1 əsas → sadə
+D) göy — guruldadı; yağış — yağdı → 2 əsas → mürəkkəb
+E) Uşaqlar — gülür, oynayır, sevinirdilər → 1 əsas → sadə
+Cavab: D)</div>
+      <ul>
+        <li><b>A), B), E)</b>-ni seçmək: vergül və iki-üç xəbər gördüyün üçün cümləni mürəkkəb saymaq. Bir mübtəda ilə bağlı bir neçə xəbər sadə cümlədir.</li>
+        <li><b>C)</b>-ni seçmək: "həm … həm də" bağlayıcısını görüb hissələr axtarmaq. Burada iki mübtəda var, amma xəbər birdir — sadə cümlədir.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — vergül düzgün qoyulub</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · vergül</span>
+        <p>Cümlələrdən hansında vergül düzgün qoyulub?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Gün çıxmışdı amma, hava soyuq idi.</li><li>Gün çıxmışdı, amma hava soyuq idi.</li><li>Ana layla dedi, və körpə yuxuya getdi.</li><li>Çalışmaq həyat düşünmək, isə işıqdır.</li><li>Nə atası razı oldu nə də, qızı atasız getmək istəyirdi.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) vergül amma-dan sonra qoyulub, əvvəl olmalıdır
+B) vergül amma-dan əvvəl → düzdür
+C) və bağlayıcısından əvvəl vergül qoyulmur
+D) vergül isə-nin yanına düşüb; düzü: Çalışmaq həyat, düşünmək isə işıqdır.
+E) vergül nə də-dən əvvəl olmalıdır, ondan sonra yox
+Cavab: B)</div>
+      <ul>
+        <li><b>A)</b> — bağlayıcıdan sonra vergül qoymaq ən çox rast gəlinən səhvdir; dərslikdə vergül <i>amma, ancaq, lakin, halbuki</i> bağlayıcılarından əvvəl qoyulur.</li>
+        <li><b>C)</b> — <i>və</i> ilə bağlanan tabesiz cümlədə vergül işlənmir.</li>
+        <li><b>D)</b> — vergül hissələr arasında durur; <i>isə</i> bağlayıcısının yanında yox.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · vasitəsiz nitq</span>
+        <p>Hansı cümlələrdə durğu işarələri düzgün qoyulub?<br>1. Nənəm həmişə deyirdi: “Dost dostun güzgüsüdür”.<br>2. Müəllim soruşdu: “Sabah kim növbətçidir”?<br>3. Sənan sevincək qışqırdı: “Nə gözəl qar yağıb!”<br>4. Anam dedi “Sabah qonaqlarımız gələcək”.<br>5. “Mən bu mövzunu yaxşı başa düşdüm”, – deyə şagird cavab verdi.</p>
+        <ol class="imt-opts"><li>1, 3, 5</li><li>1, 2, 3</li><li>2, 4</li><li>1, 3, 4, 5</li><li>3, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. müəllifin sözündən sonra qoşa nöqtə, nöqtə dırnaqdan sonra → düzdür
+2. sual işarəsi dırnağın içində olmalıdır: “Sabah kim növbətçidir?” → səhvdir
+3. M: “V!” — dırnaq nida işarəsindən sonra → düzdür
+4. qoşa nöqtə yoxdur → səhvdir
+5. “V”, – m. — dırnaqdan sonra vergül və tire → düzdür
+Cavab: A) 1, 3, 5</div>
+      <ul>
+        <li><b>B)</b> — 2-ci cümləni düz saymaq: sual işarəsi dırnaqdan sonra yazılıb.</li>
+        <li><b>D)</b> — 4-cü cümləni düz saymaq: müəllifin sözündən sonra qoşa nöqtə unudulub.</li>
+        <li><b>E)</b> — 1-ci cümləni səhv saymaq: nöqtənin dırnaqdan sonra gəlməsi qaydaya uyğundur.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Əsasların sayını xəbərlərin sayına görə demək. Say: mübtəda–xəbər cütləri.</li>
+        <li>Vergüllü cümləni avtomatik mürəkkəb, "və" olan cümləni avtomatik sadə saymaq.</li>
+        <li>Vergülü bağlayıcıdan sonra qoymaq; <i>və</i>-dən əvvəl qoymaq; <i>isə</i>-nin yanında qoymaq.</li>
+        <li>Vasitəsiz nitqdə qoşa nöqtəni, dırnağı və nöqtənin yerini qarışdırmaq; dialoqda tireni unutmaq.</li>
+        <li>Nömrə kombinasiyasında bir cümləni yoxlamağı unutmaq. Hər cümləni ayrıca yoxla, sonra varianta bax.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Əvvəl mübtəda–xəbər cütlərini say.
+Hissələr bərabərdirsə — tabesiz; asılıdırsa — tabeli.
+Vergül bağlayıcıdan əvvəl, və-dən əvvəl yox.
+M: “V”. M: “V?” “V”, – m. — sətirdəki sıranı yoxla.
+Variantlara baxmadan əvvəl özün cavabı tap.</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Cümlələrin hansı sadədir: A) Yağış yağdı, küçələr islandı. B) Mən dənizə getdim və dağlara qalxdım. C) Bahar gəldi, çiçəklər açdı. D) Mən dərsi oxudum, qardaşım yazdı. E) Müəllim dedi ki, imtahan olacaq." <span class="ans">B (bir mübtəda — mən, iki xəbər)</span></li>
+        <li>"Tabeli mürəkkəb cümlə hansıdır: Əgər yağış yağsa, biz evdə qalarıq. / Külək əsdi, yarpaqlar tökülürdü." <span class="ans">birinci (budaq cümlə baş cümlədən asılıdır)</span></li>
+        <li>"Dialoqda replikalardan əvvəl hansı işarə qoyulur?" <span class="ans">tire (yeni sətirdən)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

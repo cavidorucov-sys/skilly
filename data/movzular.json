@@ -1741,7 +1741,9 @@
    "ad": "Mürəkkəb cümlə və durğu işarələri",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 21",
-   "hefte": "2027-04-26"
+   "hefte": "2027-04-26",
+   "ders": "dersler/az-murekkeb-cumle.html",
+   "imt": true
   }
  ]
 }
