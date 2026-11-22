@@ -1728,7 +1728,9 @@
    "ad": "Sadə cümlənin növləri",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 20",
-   "hefte": "2027-04-19"
+   "hefte": "2027-04-19",
+   "ders": "dersler/az-sade-cumle.html",
+   "imt": true
   },
   {
    "bolme": "Sintaksis",
