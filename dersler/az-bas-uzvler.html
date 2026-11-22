@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="az" data-theme="light" data-kat="lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sintaktik əlaqələr və baş üzvlər dərsi</title>
+<script src="../assets/tema.js"></script>
+<link rel="preload" href="../assets/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/onest-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/ders-base.css">
+<link rel="stylesheet" href="../assets/ders.css">
+<script src="../assets/ders.js"></script>
+<script src="../assets/jurnal.js"></script>
+<script src="../assets/oyun.js"></script>
+<script src="../assets/tabs.js" defer></script>
+<script src="oyun-az-bas-uzvler.js" defer></script>
+</head><body>
+<header class="sk-bar"><a class="sk-logo" href="../index.html">Skilly</a><span class="sk-sub">Azərbaycan dili · Baş üzvlər</span><a class="sk-back" href="../index.html">← Ana səhifə</a></header>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Azərbaycan dili · Buraxılış · DİM: Sintaksis</div>
+    <h1>Sintaktik əlaqələr və baş üzvlər</h1>
+    <p>Cümlədə sözlər bir-biri ilə bağlıdır, cümlənin özülünü isə iki baş üzv qurur: mübtəda və xəbər. Buraxılışın dil qaydaları blokunda (10 qapalı sual) belə tapşırıqlar gəlir: "cümlənin qrammatik əsasını müəyyən edin", "mübtəda ilə xəbər arasında uzlaşma pozulub", "xəbəri ismi xəbər olan cümləni tapın". Qaydalar 5-ci (2024), 6-cı (2025) və 8-ci (2023) sinif dərsliklərindən götürülüb; xəbər növlərinin bəzi nümunələri köməkçi mənbə olan 7-ci sinif dərsliyindəndir.</p>
+    <p><b>Necə keçmək:</b> əvvəl Giriş testi. Hamısı düz olsa — birbaşa Sınaq. Yoxsa dərsləri sıra ilə oxu, nümunələrdəki hər cümləyə özün sual ver, sonra Oyun və Sınaq. İkinci dərəcəli üzvlər (tamamlıq, təyin, zərflik) və həmcins üzvlər sonrakı mövzulardadır; burada onlara yalnız "baş üzv deyil" deyə toxunuruq.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Mövzu">
+    <button class="tab" role="tab" id="tb-giris" aria-controls="giris" type="button"><small>Başlanğıc</small>Giriş testi</button>
+    <button class="tab" role="tab" id="tb-d1" aria-controls="d1" type="button"><small>Dərs 1</small>Sintaktik əlaqələr</button>
+    <button class="tab" role="tab" id="tb-d2" aria-controls="d2" type="button"><small>Dərs 2</small>Baş üzvlər, mübtəda</button>
+    <button class="tab" role="tab" id="tb-d3" aria-controls="d3" type="button"><small>Dərs 3</small>Xəbər</button>
+    <button class="tab" role="tab" id="tb-d4" aria-controls="d4" type="button"><small>Dərs 4</small>Var, yox, deyil</button>
+    <button class="tab" role="tab" id="tb-imt" aria-controls="imt" type="button"><small>İmtahan</small>Necə gəlir</button>
+    <button class="tab" role="tab" id="tb-oyun" aria-controls="oyun" type="button"><small>Mənimsəmə</small>Oyun</button>
+    <button class="tab" role="tab" id="tb-sinaq" aria-controls="sinaq" type="button"><small>🔒 Sınaq</small>10 sual</button>
+  </nav>
+
+  <section class="panel" role="tabpanel" id="giris" aria-labelledby="tb-giris" hidden><div id="giris-root"></div></section>
+
+  <!-- ===== DƏRS 1 ===== -->
+  <section class="panel" role="tabpanel" id="d1" aria-labelledby="tb-d1" hidden>
+    <h2>Dərs 1. Sintaktik əlaqələr: tabesizlik, tabelilik, uzlaşma</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Qardaşım və mən parka getdik" cümləsində sözlər təsadüfən yan-yana durmur. "Qardaşım" və "mən" bir-birinə bərabərdir, "parka" isə "getdik" sözündən asılıdır. Cümlədə kimin nə etdiyini tapmaq üçün əvvəl sözlər arasındakı bu bağı görmək lazımdır. İmtahanda da sual beləcə gəlir: "tabelilik əlaqəsi var", "uzlaşma pozulub".</p>
+
+      <h3><span class="st">2</span> İki əlaqə: tabesizlik və tabelilik</h3>
+      <p>Söz birləşmələrini və cümlələri yaradan sözlər mənaca və sintaktik baxımdan əlaqələnir. Sintaktik əlaqənin iki növü var.</p>
+      <div class="fm">Tabesizlik: sözlərin biri digərinə tabe olmur
+Hər biri aid olduğu sözlə əlaqələnir
+Tabelilik: sözlərdən biri digərindən asılı olur</div>
+      <p><b>Tabesizlik</b> bərabərhüquqlu sözlər, həmcins üzvlər və cümlələr arasında olur. Belə sözlərin arasında vergül qoyula bilər və yeri gəldikdə tabesizlik bağlayıcılarından (<i>və, amma, lakin</i>) istifadə olunur. Yalnız bağlayıcı işlənəndə vergül lazım olmur: <i>dəftər və qələm</i>.</p>
+      <div class="ex">Apar qəlbimizi, iradəmizi.
+"qəlbimizi" və "iradəmizi" bir-birindən asılı deyil;
+hər ikisi "apar" sözü ilə əlaqələnir → tabesizlik.
+
+Səbinə və Lalə məktəbə getdilər.
+"Səbinə" və "Lalə" bərabərhüquqludur → tabesizlik.
+
+Yağış yağırdı, amma biz evə qayıtmadıq.
+İki cümlə bərabərhüquqludur → tabesizlik.</div>
+
+      <h3><span class="st">3</span> Tabelilik: asılı tərəf və əsas tərəf</h3>
+      <div class="fm">Tabelilik əlaqəsində sözlərdən biri digərindən asılı olur
+Bu asılılıq, adətən, ismin hal, mənsubiyyət
+və xəbərlik şəkilçiləri vasitəsilə yaranır</div>
+      <p>Asılı olan söz <b>asılı tərəf</b>, ondan asılı olunan söz <b>əsas tərəf</b> adlanır. Eyni söz bir sözə qarşı asılı, digərinə qarşı əsas tərəf ola bilər: "Uşaq evə gəldi"də "gəldi" "evə" üçün əsas tərəfdir, "uşaq"a (mübtədaya) görə isə asılı tərəfdir.</p>
+      <div class="tbl"><table>
+        <tr><th>şəkilçi</th><th>nümunə</th><th>asılı tərəf → əsas tərəf</th></tr>
+        <tr><td>hal şəkilçisi</td><td>Uşaq evə gəldi.</td><td>evə → gəldi</td></tr>
+        <tr><td>hal şəkilçisi</td><td>Maestro Türkiyədən qayıtmışdı.</td><td>Türkiyədən → qayıtmışdı</td></tr>
+        <tr><td>mənsubiyyət şəkilçisi</td><td>dərs kitabı, ana dili</td><td>dərs → kitabı; ana → dili</td></tr>
+        <tr><td>xəbərlik şəkilçisi</td><td>Bu alma şirindir.</td><td>"şirindir" mübtədaya bağlanır</td></tr>
+      </table></div>
+      <div class="ex">Dərslikdən (8-ci sinif):
+Mən soruşdum, Bahar gəldi, Səhər açıldı cümlələrində
+mən, bahar, səhər sözləri əsas tərəfdir;
+soruşdum, gəldi, açıldı sözləri isə asılı tərəfdir.</div>
+
+      <h3><span class="st">4</span> Uzlaşma: xəbər mübtəda ilə necə uyğunlaşır</h3>
+      <p>Mübtəda ilə xəbər arasında ayrıca əlaqə də var: xəbər mübtəda ilə <b>şəxsə və kəmiyyətə görə uzlaşır</b>. Kəmiyyət — təkdir, yoxsa cəmdir.</p>
+      <p>Tək mübtəda cəm xəbər qəbul etmir (<i>Mən gedirlər</i> — səhvdir). Cansız cəm mübtədanın xəbəri isə adətən təkdə olur: <i>Yarpaqlar töküldü</i>. 8-ci sinif dərsliyində (s. 73, tapşırıq 15) «Xalq … fərqlənirlər» və «Zəruri vərdişlər … yayılırlar» kimi cümlələr uzlaşması pozulmuş sayılır.</p>
+      <div class="ex">Maestro qayıtmışdı.
+Mübtəda III şəxsin təkində olduğu üçün
+xəbər də III şəxsin təkindədir.</div>
+      <div class="tbl"><table>
+        <tr><th>mübtəda</th><th>feili xəbər</th><th>ismi xəbər</th></tr>
+        <tr><td>mən (I şəxs, tək)</td><td>oxuyuram</td><td>müəlliməm</td></tr>
+        <tr><td>sən (II şəxs, tək)</td><td>oxuyursan</td><td>müəllimsən</td></tr>
+        <tr><td>o (III şəxs, tək)</td><td>oxuyur</td><td>müəllimdir</td></tr>
+        <tr><td>biz (I şəxs, cəm)</td><td>oxuyuruq</td><td>müəllimik</td></tr>
+        <tr><td>siz (II şəxs, cəm)</td><td>oxuyursunuz</td><td>müəllimsiniz</td></tr>
+        <tr><td>onlar (III şəxs, cəm)</td><td>oxuyurlar</td><td>müəllimdirlər</td></tr>
+      </table></div>
+      <div class="life"><b>Həyatdan.</b> Dostuna "Mən sabah gəlirsən" yazmırsan: "mən" deyirsənsə, xəbər "gəlirəm" olur. Uzlaşmanı danışanda özün hiss edirsən; imtahan yalnız bunu yazıda yoxlayır.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Tabesizliyi "yan-yana duran sözlər" saymaq. Tabesizlik bərabərhüquqluluqdur. "Evə gəldi"də "evə" "gəldi"dən asılıdır; bu, tabelilikdir.</li>
+        <li>Uzlaşmada yalnız şəxsi yoxlayıb kəmiyyəti unutmaq: "Biz gedirəm" səhvdir (biz — cəm, "gedirəm" — tək).</li>
+        <li>Tabelilik üçün yalnız hal şəkilçisini düşünmək. Mənsubiyyət (<i>dərs kitabı</i>) və xəbərlik şəkilçisi (<i>şirindir</i>) də tabelilik yaradır.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Tabesizlik — bərabərhüquqlu sözlər, həmcins üzvlər, cümlələr
+Tabelilik — biri digərindən asılıdır (hal, mənsubiyyət, xəbərlik şəkilçisi)
+Uzlaşma — xəbər mübtəda ilə şəxsə və kəmiyyətə görə uyğunlaşır</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Çantaya dəftər və qələm qoydum" — "dəftər və qələm" arasında hansı əlaqə var? <span class="ans">tabesizlik (bərabərhüquqlu sözlər)</span></li>
+        <li>"Bağ qapısı bağlıdır" — "bağ" və "qapısı" arasındakı tabeliliyi hansı şəkilçi yaradır? <span class="ans">mənsubiyyət şəkilçisi (qapısı)</span></li>
+        <li>"Sən dünən parka ____" — hansı xəbər uyğundur: getdin, getdim, getdik? <span class="ans">getdin (II şəxsin təki)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d2">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 2 ===== -->
+  <section class="panel" role="tabpanel" id="d2" aria-labelledby="tb-d2" hidden>
+    <h2>Dərs 2. Cümlənin baş üzvləri və mübtəda</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Axşam şagirdlər zalda direktoru xeyli gözlədilər." Bu cümlədə altı söz var, amma əsas xəbər iki sözdədir: <i>şagirdlər — gözlədilər</i>. İmtahanda "cümlənin qrammatik əsasını müəyyən edin" sualı məhz bunu soruşur: sözlərin içindən iki baş üzvü tapmaq.</p>
+
+      <h3><span class="st">2</span> Cümlə üzvləri və qrammatik əsas</h3>
+      <div class="fm">Cümləni yaradan söz və söz birləşmələri cümlə üzvləridir
+Hər cümlə üzvü müəyyən bir suala cavab verir
+Əsas fikri ifadə edən cümlə üzvləri baş üzvlərdir
+Baş üzvlər cümlənin qrammatik əsasını təşkil edir</div>
+      <p>Baş üzvlər ikidir: <b>mübtəda</b> və <b>xəbər</b>. Onlar cümlənin əsas məlumatını verir və bir sözlə də, bütöv söz birləşməsi ilə də ifadə oluna bilər (<i>Maşının sürəti azalırdı</i> — mübtəda "maşının sürəti"). Mübtəda cümlədə buraxıla da bilər. İkinci dərəcəli üzvlər (tamamlıq, təyin, zərflik) isə bu məlumatı genişləndirir. Hər sözün cümlə üzvü olması üçün müstəqil leksik mənası olmalı, suala cavab verməli və cümlədəki sözlərlə əlaqəyə girməlidir. Bu səbəbdən qoşma, bağlayıcı, ədat cümlə üzvü olmur.</p>
+      <div class="fm">Mübtəda: cümlədə haqqında danışılan şəxsi, varlığı bildirir
+kim? nə? (bəzən də hara?) sualına cavab verir
+Xəbər: mübtədaya aid hərəkət və ya hökmü bildirir
+nə edir? kimdir? necədir? nədir? haradadır?</div>
+      <div class="ex">Ayxan dünən evə qayıtdı.
+Ayxan   — kim? haqqında danışılan şəxs → mübtəda
+qayıtdı — Ayxan nə etdi? hərəkət          → xəbər
+dünən, evə — baş üzv deyil (ikinci dərəcəli üzvlərdir)
+
+Bu gün hava istidir.
+Nə istidir? hava            → mübtəda
+Hava necədir? istidir       → xəbər</div>
+      <p><b>Necə tapmaq olar?</b> Əvvəl xəbəri tap (hərəkət və ya hökm), sonra ona kim? nə? sualını ver.</p>
+
+      <h3><span class="st">3</span> Mübtədanın ifadə vasitələri</h3>
+      <p>Mübtəda yalnız isimlə ifadə olunmur. O, müxtəlif söz və birləşmələrlə ifadə oluna bilər.</p>
+      <div class="tbl"><table>
+        <tr><th>nə ilə ifadə olunur</th><th>nümunə</th></tr>
+        <tr><td>isim</td><td>Yazıçı tamaşaçıları salamladı.</td></tr>
+        <tr><td>əvəzlik</td><td>O, avtobusdan düşdü. · Biz kitabxanadan yeni kitabları götürdük.</td></tr>
+        <tr><td>isimləşmiş söz (sifət, say, feili sifət) və ya feili sifət tərkibi</td><td>Birinci finişə çatdı. · Çalışan qazanar. · Yarışda qalib gələn mükafatlandırıldı.</td></tr>
+        <tr><td>məsdər və ya məsdər tərkibi</td><td>Oxumaq hamı üçün vacibdir. (məsdər) · Vətəni qorumaq borcumuzdur. (məsdər tərkibi)</td></tr>
+        <tr><td>ismi birləşmə</td><td>Maşının sürəti getdikcə azalırdı. · Ağacın budaqları əyilmişdi.</td></tr>
+      </table></div>
+      <p>İsmi birləşmənin birinci tərəfi sifət, say, feili sifət və ya sifətləşmiş söz olduqda həmin tərəf ayrıca üzv (təyin) olur. Mübtəda yenə ikinci sözdür: <i>Yağışlı hava əkinçiləri sevindirdi</i> — mübtəda "hava"; <i>Daş divar uçdu</i> — "daş" təyin, mübtəda "divar".</p>
+
+      <h3><span class="st">4</span> Obyekt mübtəda yerində; mübtəda və xitab</h3>
+      <div class="fm">Subyekt — hərəkəti icra edən → adətən mübtəda
+Obyekt — hərəkətin keçdiyi varlıq → adətən tamamlıq</div>
+      <div class="ex">Gülnar kitab oxuyur.
+Gülnar — subyekt (mübtəda); kitab — obyekt (tamamlıq).</div>
+      <p>Amma obyekt də mübtəda yerində çıxış edə bilər. Cümlədə hərəkəti kimin etdiyi deyilmir, hərəkət varlığa yönəlib və cümlə məhz onun haqqında danışır. Belə sözə nə? sualı verilir.</p>
+      <div class="ex">Dənizdən hər gün neft çıxarılır.
+Kim çıxarır? — deyilmir. Nə çıxarılır? — neft.
+"neft" hərəkətin keçdiyi varlıqdır, amma haqqında danışılan odur → mübtəda.
+
+Məktub dünən göndərildi.
+Haqqında danışılan "məktub"dur (nə?) → mübtəda.</div>
+      <p><b>Mübtəda və xitab.</b> Xitab da ismin adlıq halında olur və mübtədaya oxşayır. Lakin xitab cümlə üzvü olmur, digər sözlərlə qrammatik cəhətdən əlaqələnmir, yazıda isə vergül və ya nida ilə ayrılır.</p>
+      <div class="ex">Dostum həmişə mənə kömək edir.
+"Dostum" kim? sualına cavab verir, "edir"lə əlaqələnir → mübtəda.
+
+Dostum, bu gün də səndən kömək gözləyirəm.
+"Dostum" müraciətdir, heç bir suala cavab vermir, vergüllə ayrılıb → xitab.</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>Mübtədanı yalnız hərəkəti edən saymaq. "Hava istidir"də hava heç nə etmir, amma haqqında danışılan odur — mübtəda. "Neft çıxarılır"da da belədir.</li>
+        <li>İkinci dərəcəli sözü baş üzv saymaq: "Dünən qardaşım yeni kitab aldı" cümləsində "dünən", "yeni", "kitab" baş üzv deyil.</li>
+        <li>Mübtədanı "yalnız isim" hesab etmək. Əvəzlik (<i>mən, o, biz</i>), məsdər (<i>oxumaq</i>), məsdər tərkibi (<i>vətəni qorumaq</i>), isimləşmiş söz və ismi birləşmə də mübtəda ola bilər.</li>
+        <li>Xitabı mübtəda saymaq: vergüllə ayrılan müraciət cümlə üzvü deyil.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Baş üzvlər: mübtəda və xəbər — cümlənin qrammatik əsası (sözlə və ya birləşmə ilə ifadə olunur)
+Mübtəda: haqqında danışılan; kim? nə? (bəzən hara?)
+Mübtəda ola bilər: isim, əvəzlik, isimləşmiş söz, məsdər və ya məsdər tərkibi, ismi birləşmə
+Obyekt də mübtəda yerində çıxış edə bilər (neft çıxarılır)
+Xitab mübtəda deyil</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Zərifə məktəbdən qayıtdı" — qrammatik əsas hansı sözlərdir? <span class="ans">Zərifə (mübtəda), qayıtdı (xəbər)</span></li>
+        <li>"Oxumaq hamı üçün vacibdir" — mübtəda nə ilə ifadə olunub? <span class="ans">məsdərlə</span></li>
+        <li>"Məktub dünən göndərildi" — "məktub" mübtədadır, yoxsa tamamlıq? <span class="ans">mübtəda (haqqında danışılan odur)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d3">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 3 ===== -->
+  <section class="panel" role="tabpanel" id="d3" aria-labelledby="tb-d3" hidden>
+    <h2>Dərs 3. Xəbər: feili və ismi xəbər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>Cümlənin xəbərini tapmaq mübtədanı tapmağın yarısıdır. İmtahanda isə xəbərin növü də soruşulur: "xəbəri ismi xəbər olan cümləni tapın". Buna görə xəbərin iki növünü fərqləndirmək lazımdır.</p>
+
+      <h3><span class="st">2</span> Xəbərin iki növü</h3>
+      <div class="fm">Xəbər mübtədaya aid hərəkət və ya hökmü bildirir
+İfadə vasitələrinə görə iki növə ayrılır:
+feili xəbər və ismi xəbər</div>
+      <div class="fm">Feili xəbər hərəkət bildirir
+feilin təsriflənən formaları (şəkilləri) ilə ifadə olunur
+İsmi xəbər hökm bildirir
+adətən xəbərlik şəkilçisi qəbul etmiş sözlər və söz birləşmələri ilə ifadə olunur</div>
+      <div class="ex">Səhərdən qar yağır.      → nə edir? hərəkət → feili xəbər
+Ətrafdakı mənzərə göz oxşayırdı.  → hərəkət → feili xəbər
+O mənim qardaşımdır.     → kimdir? hökm → ismi xəbər
+Musiqi notlarının sayı yeddidir.  → nədir? hökm → ismi xəbər</div>
+
+      <h3><span class="st">3</span> İsmi xəbər nə ilə ifadə olunur</h3>
+      <p>İsmi xəbər, adətən, xəbərlik şəkilçisi (<i>-dır, -dir, -əm, -ik</i> və s.) qəbul etmiş sözdür. III şəxsdə şəkilçi işlənməyə də bilər (dərs 4-dəki <i>var, yox</i> kimi). Bu söz müxtəlif nitq hissələrindən ola bilər.</p>
+      <div class="tbl"><table>
+        <tr><th>nitq hissəsi</th><th>nümunə (dərslikdən)</th></tr>
+        <tr><td>isim</td><td>Azərbaycan musiqisinin tacı <u>muğamdır</u>.</td></tr>
+        <tr><td>sifət</td><td>Rəfiqəmin qardaşı çox <u>nadincdir</u>.</td></tr>
+        <tr><td>say</td><td>O, həmişə <u>birincidir</u>. · Musiqi notlarının sayı <u>yeddidir</u>.</td></tr>
+        <tr><td>əvəzlik</td><td>Bu rəfdəki kitablar <u>mənimdir</u>.</td></tr>
+        <tr><td>zərf</td><td>Xoşbəxt günlərimiz <u>irəlidədir</u>.</td></tr>
+        <tr><td>məsdər</td><td>Əqrəbin adəti <u>sancmaqdır</u>.</td></tr>
+        <tr><td>feili sifət və ya onun tərkibi</td><td>Oxuduğum kitab çox <u>maraqlıdır</u>. · Qalib yarışda <u>birinci gələndir</u>.</td></tr>
+      </table></div>
+      <p>Xəbərlik şəkilçisi nitq hissəsini dəyişmir: "irəlidədir" yenə zərfdir, amma cümlədə ismi xəbər olur.</p>
+
+      <h3><span class="st">4</span> Feili xəbər: feilin şəkilləri</h3>
+      <p>Feili xəbər feilin müxtəlif şəkilləri ilə ifadə olunur. Hər şəkil xəbərə ayrı məna verir.</p>
+      <div class="tbl"><table>
+        <tr><th>şəkil</th><th>nümunə</th></tr>
+        <tr><td>xəbər şəkli</td><td>Fidan oxuduğu kitaba rəy <u>yazdı</u>.</td></tr>
+        <tr><td>əmr şəkli</td><td>Bu barədə heç kəsə bir söz <u>demə</u>.</td></tr>
+        <tr><td>arzu şəkli</td><td>Kaş ki o da işinə məsuliyyətlə <u>yanaşa</u>.</td></tr>
+        <tr><td>lazım şəkli</td><td>Sabah dostumun ad gününə <u>gedəsiyəm</u>.</td></tr>
+        <tr><td>vacib şəkli</td><td>Sabahkı tədbirə hamı <u>gəlməlidir</u>.</td></tr>
+      </table></div>
+      <p>Feilin şərt şəkli də var (<i>çalışsaq</i>). Xəbərin ifadə vasitəsi hansı şəkildə olursa-olsun, feildirsə — xəbər feili xəbərdir.</p>
+
+      <h3><span class="st">5</span> Frazeoloji birləşmə xəbər olanda</h3>
+      <p>Söz birləşmələri, o cümlədən frazeoloji birləşmələr, bütövlükdə bir cümlə üzvü ola bilər. Frazeoloji birləşmə həm feili, həm ismi xəbər vəzifəsində işlənir.</p>
+      <div class="ex">Uşaqlar nağıla diqqətlə qulaq asırdılar.
+xəbər: "qulaq asırdılar" — nə edirdilər? → feili xəbər
+
+Qatar gecəyarısı yola düşdü.
+xəbər: "yola düşdü" → feili xəbər
+
+Bu xəbər dillər əzbəridir.
+xəbər: "dillər əzbəridir" — nədir? xəbərlik şəkilçisi var → ismi xəbər (frazeoloji birləşmə)</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Xəbər həmişə feildir" demək. "Hava istidir"də xəbər ismidir.</li>
+        <li>Xəbərlik şəkilçisi qəbul etmiş sözü ayrıca nitq hissəsi saymaq. "Şirindir" sifət olaraq qalır, cümlədə ismi xəbərdir.</li>
+        <li>Frazeoloji birləşməni iki xəbər saymaq. "Qulaq asırdılar" bir xəbərdir.</li>
+        <li>"Gəlməlidir"i ismi xəbər saymaq. Bu — feilin vacib şəklidir, xəbər feili xəbərdir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xəbər — mübtədaya aid hərəkət və ya hökm
+Feili xəbər — hərəkət; feilin təsriflənən formaları (şəkilləri)
+İsmi xəbər — hökm; adətən xəbərlik şəkilçisi qəbul etmiş söz və ya birləşmə
+Feilin şəkilləri: xəbər, əmr, arzu, lazım, vacib, şərt
+Frazeoloji birləşmə həm feili, həm ismi xəbər ola bilər</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Bu alma şirindir" — xəbər hansı növdür? <span class="ans">ismi xəbər (sifət + xəbərlik şəkilçisi)</span></li>
+        <li>"Sabahkı tədbirə hamı gəlməlidir" — xəbər feilin hansı şəklindədir? <span class="ans">vacib şəkli (feili xəbər)</span></li>
+        <li>"Qatar gecəyarısı yola düşdü" — xəbər nə ilə ifadə olunub? <span class="ans">frazeoloji birləşmə ilə, feili xəbər</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="d4">Növbəti →</button>
+  </section>
+
+  <!-- ===== DƏRS 4 ===== -->
+  <section class="panel" role="tabpanel" id="d4" aria-labelledby="tb-d4" hidden>
+    <h2>Dərs 4. Var, yox, lazım, mümkün və deyil</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Niyə lazımdır</h3>
+      <p>"Bu məsələnin çox asan həll yolu var." Cümlənin xəbəri hansıdır? "var". Ona nə etdi? necədir? kimdir? sualı vermək olmur, amma cümlə üzvüdür. İmtahanda belə xəbərlər ayrıca soruşulur və "deyil" sözü ilə düzələn inkar xəbərlər də.</p>
+
+      <h3><span class="st">2</span> Suala cavab verməyən ismi xəbərlər</h3>
+      <div class="fm">Yox, var, lazım, gərək, mümkün, bəs sözləri
+suala cavab vermədən müstəqil ismi xəbər kimi işlənə bilir</div>
+      <div class="ex">Bu məsələnin çox asan həll yolu var.
+Hər qaranlıq gecənin bir işıqlı səhəri var.
+Daha sənə sözüm yox.
+Hər bir işə məsuliyyətlə yanaşmaq lazımdır.
+Bu məsələni yalnız bir üsulla həll etmək mümkündür.</div>
+      <p>Bu sözlərin özünə ayrıca sual vermək olmur, amma onlar xəbər olur. Mübtədanı yenə xəbərə kim? nə? (bəzən hara?) sualı verib tapırsan: <i>Nə var? həll yolu.</i> <i>Nə lazımdır? işə məsuliyyətlə yanaşmaq.</i></p>
+
+      <h3><span class="st">3</span> "Deyil" ismi xəbərin inkarıdır</h3>
+      <div class="fm">İsmi xəbərin inkarı üçün deyil sözündən istifadə edilir
+Deyil adlara və təsriflənməyən feillərə (məsdər, feili sifət) qoşulur</div>
+      <div class="tbl"><table>
+        <tr><th>deyil nəyə qoşulur</th><th>nümunə</th></tr>
+        <tr><td>isim</td><td>O, həkim deyil.</td></tr>
+        <tr><td>sifət</td><td>Qarşılaşdığım problem mənim üçün yeni deyil. · Bu iş çətin deyil.</td></tr>
+        <tr><td>əvəzlik</td><td>Bu kitab mənim deyil.</td></tr>
+        <tr><td>məsdər</td><td>Mənim işim danışmaq deyil.</td></tr>
+        <tr><td>feili sifət</td><td>O, tez inciyən deyil.</td></tr>
+      </table></div>
+      <p>Xəbər burada iki sözdən ibarətdir: ad və ya təsriflənməyən feil + "deyil" (<i>yeni deyil, danışmaq deyil</i>). Feili xəbərin inkarı isə başqa cür düzəlir: -ma, -mə şəkilçisi ilə (<i>görmədi, gecikmədik</i>).</p>
+
+      <h3><span class="st">4</span> Baş üzvləri tapmaq üçün alqoritm</h3>
+      <div class="fm">1. Xəbəri tap: hərəkət? hökm? var, yox, lazım?
+2. Xəbərə kim? nə? (bəzən hara?) sualı ver — mübtəda
+3. Uzlaşmanı yoxla: şəxs və kəmiyyət uyğundurmu
+4. Qalan sözlər baş üzv deyil</div>
+      <div class="ex">Sən sabah bizə gələcəksən.
+Xəbər: gələcəksən (hərəkət → feili xəbər)
+Mübtəda: kim gələcək? → sən (əvəzlik)
+Uzlaşma: sən + gələcəksən → II şəxsin təki ✓
+Sabah, bizə — baş üzv deyil
+
+Evdə heç kim yoxdur.
+Xəbər: yoxdur (suala cavab vermir; ismi xəbər)
+Mübtəda: kim yoxdur? → heç kim</div>
+
+      <div class="mist"><b>Tipik səhvlər</b><ul>
+        <li>"Var", "yox", "lazım"ı xəbər saymamaq, çünki sual vermək olmur. Onlar ismi xəbərdir.</li>
+        <li>Feili xəbərin inkarını "deyil" ilə düzəltmək. Düz forma: "Qardaşım filmi görmədi" (-mə şəkilçisi). "Deyil" yalnız ismi xəbərin inkarıdır.</li>
+        <li>"Yeni deyil"də yalnız "deyil"i xəbər saymaq. Xəbər "yeni deyil" birləşməsidir.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Var, yox, lazım, gərək, mümkün — suala cavab vermir, ismi xəbər olur
+Deyil — ismi xəbərin inkarı (ad və ya təsriflənməyən feil + deyil)
+Feili xəbərin inkarı — -ma, -mə
+Mübtədanı tapmaq üçün xəbərə kim? nə? (bəzən hara?) sualı ver</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Daha sənə sözüm yox" — xəbər hansı sözdür? <span class="ans">yox (suala cavab vermir, ismi xəbər)</span></li>
+        <li>"O, tez inciyən deyil" — "deyil" hansı sözə qoşulub? <span class="ans">inciyən (feili sifət)</span></li>
+        <li>"Biz dərsə gecikmədik" cümləsində inkar xəbər ismidir, yoxsa feili? <span class="ans">feili (-mə şəkilçisi)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="imt">Növbəti: İmtahanda necə gəlir →</button>
+  </section>
+
+  <!-- ===== İMTAHANDA NECƏ GƏLİR ===== -->
+  <section class="panel" role="tabpanel" id="imt" aria-labelledby="tb-imt" hidden>
+    <h2>İmtahanda necə gəlir: sintaktik əlaqələr və baş üzvlər</h2>
+    <article class="lesson">
+      <h3><span class="st">1</span> Buraxılışda forma</h3>
+      <p>Azərbaycan dili hissəsində 30 tapşırıq var: <b>dil qaydalarına dair 10 qapalı tapşırıq</b> və iki mətn üzrə 20 tapşırıq. Qapalı sualda beş variant (A–E) olur, biri düzdür. Hər qapalı sual təxminən <b>2,9 bal</b> (100-dən) verir: bal = (2·yazılı + qapalı)·100/34, burada "qapalı" — düz cavablandırılmış qapalı tapşırıqların sayı, "yazılı" — yazılı tapşırıqlardan toplanan bal.</p>
+      <ul>
+        <li><b>"Qrammatik əsasını müəyyən edin"</b> — cümlədə mübtəda və xəbər (çox vaxt hər biri bir sözdür, amma söz birləşməsi də ola bilər).</li>
+        <li><b>"Mübtəda … ilə ifadə olunub", "xəbər ismi xəbərdir"</b> — beş cümlə, birində şərt ödənir.</li>
+        <li><b>"Uzlaşma pozulub"</b> — beş cümlədən birində xəbər mübtədaya uyğun deyil.</li>
+        <li><b>Nömrə kombinasiyası</b> — nömrələnmiş cümlələr; variantlar "A) 1, 3, 5" kimidir.</li>
+        <li><b>"Doğru/səhv fikri müəyyən edin"</b> — tabesizlik, tabelilik, mübtəda, xəbər haqqında beş fikir.</li>
+      </ul>
+      <p>Səhv variantlar adətən <b>tipik səhvlərdən</b> qurulur: ikinci dərəcəli sözü baş üzv saymaq, obyekti mübtəda saymamaq, "var"ı xəbər saymamaq.</p>
+
+      <h3><span class="st">2</span> Nümunə 1 — qrammatik əsas</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · qrammatik əsas</span>
+        <p>Cümlənin qrammatik əsasını müəyyən edin:<br>Axşam şagirdlər zalda direktoru xeyli gözlədilər.</p>
+        <ol class="imt-opts"><li>şagirdlər – zalda</li><li>şagirdlər – gözlədilər</li><li>direktoru – gözlədilər</li><li>Axşam – gözlədilər</li><li>şagirdlər – direktoru</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">Xəbər: gözlədilər (nə etdilər? — hərəkət)
+Mübtəda: kim gözlədi? — şagirdlər
+Qrammatik əsas: şagirdlər – gözlədilər
+Cavab: B)</div>
+      <ul>
+        <li><b>A)</b> — "zalda" harada? sualına cavab verir; baş üzv deyil.</li>
+        <li><b>C)</b> — "direktoru" kimi? sualına cavab verir; hərəkətin keçdiyi varlıqdır, mübtəda deyil (cümlədə haqqında danışılan şagirdlərdir).</li>
+        <li><b>D)</b> — "axşam" nə vaxt? sualına cavab verir; baş üzv deyil.</li>
+        <li><b>E)</b> — mübtəda düz tapılıb, amma ikinci söz xəbər deyil, hərəkətin keçdiyi varlıqdır.</li>
+      </ul></details>
+
+      <h3><span class="st">3</span> Nümunə 2 — var, yox, lazım, mümkün</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · xəbərin növü</span>
+        <p>Cümlələrin hansında xəbər suala cavab vermədən ismi xəbər kimi işlənib?</p>
+        <ol class="imt-opts" style="grid-template-columns:1fr"><li>Yazıçı tamaşaçıları salamladı.</li><li>Bu gün hava istidir.</li><li>Bu məsələnin çox asan həll yolu var.</li><li>Bərdə qədim şəhərdir.</li><li>Qatar stansiyaya yavaş-yavaş yaxınlaşırdı.</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">A) salamladı — nə etdi? → feili xəbər
+B) istidir — necədir? → ismi xəbər (sual verilir)
+C) var — ayrıca suala cavab vermir → ismi xəbər
+D) şəhərdir — nədir? → ismi xəbər (sual verilir)
+E) yaxınlaşırdı — nə edirdi? → feili xəbər
+Cavab: C)</div>
+      <ul>
+        <li><b>B)</b> və <b>D)</b> — ismi xəbərdir, amma "istidir" və "şəhərdir"ə sual verilir (necədir? nədir?). Şərt isə sualsız xəbəri tələb edir.</li>
+        <li><b>A)</b> və <b>E)</b> — feili xəbərdir, ismi xəbər deyil.</li>
+      </ul></details>
+
+      <h3><span class="st">4</span> Nümunə 3 — nömrə kombinasiyası</h3>
+      <div class="imt-q"><span class="imt-tag">A–E · nömrə kombinasiyası</span>
+        <p>Hansı cümlələrin xəbəri ismi xəbərdir?<br>1. Bu rəfdəki kitablar mənimdir.<br>2. Çalışan qazanar.<br>3. O, həmişə birincidir.<br>4. Oxumaq hamı üçün vacibdir.<br>5. Gəmi dayandı.</p>
+        <ol class="imt-opts"><li>1, 3, 4</li><li>1, 2, 3</li><li>3, 4, 5</li><li>1, 4</li><li>2, 5</li></ol>
+      </div>
+      <details class="imt-sol"><summary>Həll və tələlər</summary>
+      <div class="ex">1. mənimdir — əvəzlik + xəbərlik şəkilçisi → ismi xəbər
+2. qazanar — hərəkət → feili xəbər
+3. birincidir — say + xəbərlik şəkilçisi → ismi xəbər
+4. vacibdir — sifət + xəbərlik şəkilçisi → ismi xəbər
+5. dayandı — hərəkət → feili xəbər
+Cavab: A) 1, 3, 4</div>
+      <ul>
+        <li><b>B)</b> — "çalışan"ı xəbər saymaq. Çalışan burada mübtədadır (isimləşmiş feili sifət), xəbər "qazanar"dır.</li>
+        <li><b>C)</b> — 5-ci cümləni ismi xəbərli saymaq. "Dayandı" feildir. <b>E)</b> — feili xəbərli cümlələri seçmək.</li>
+        <li><b>D)</b> — 3-cü cümləni buraxmaq: "birincidir" say + xəbərlik şəkilçisidir, ismi xəbərdir. Say, əvəzlik, sifət də ismi xəbər ola bilər.</li>
+      </ul></details>
+
+      <h3><span class="st">5</span> Tələlər — özünü yoxla</h3>
+      <div class="mist"><b>Tələlər</b><ul>
+        <li>Variantlara baxmadan əvvəl xəbəri tap, sonra mübtədanı. Əksinə etsən, ikinci dərəcəli üzvə çaş qalarsan.</li>
+        <li>Uzlaşmada hər cümlədə həm şəxsi, həm kəmiyyəti yoxla: "Siz oxuyuruq", "Mən gedirsən" kimi cütlər səhvdir.</li>
+        <li>"Var", "yox", "lazım", "mümkün" sözlərinə sual vermək mümkün olmur — bu, onların xəbər olmadığını göstərmir.</li>
+        <li>Nömrə kombinasiyasında hər cümləni ayrıca yoxla; birini buraxıb "tanış" variantı seçmə.</li>
+      </ul></div>
+      <div class="sum"><b>Yadda saxla</b><div class="ex">Xəbəri tap → xəbərə kim? nə? sualı ver → uzlaşmanı yoxla
+Baş üzvlər mübtəda və xəbərdir; sözlə və ya birləşmə ilə ifadə olunur
+İsmi xəbər: adətən xəbərlik şəkilçisi; var, yox, lazım, mümkün; ad + deyil
+Feili xəbər: hərəkət, feilin şəkilləri</div></div>
+      <details class="check"><summary>Özünü yoxla: 3 sual</summary><ol>
+        <li>"Mən hər gün kitabxanaya gedirsən" cümləsində nə səhvdir? <span class="ans">uzlaşma pozulub: mən — gedirəm olmalıdır</span></li>
+        <li>"Bu kitab mənim deyil" cümləsinin xəbəri nə ilə ifadə olunub? <span class="ans">əvəzlik + deyil (ismi xəbər)</span></li>
+        <li>"Dənizdən hər gün neft çıxarılır" — mübtəda hansı sözdür? <span class="ans">neft (obyekt mübtəda yerindədir)</span></li>
+      </ol></details>
+    </article>
+    <button class="btn next" type="button" data-go="oyun">Növbəti: Oyun →</button>
+  </section>
+
+  <section class="panel" role="tabpanel" id="oyun" aria-labelledby="tb-oyun" hidden><div id="oyun-root"></div></section>
+  <section class="panel" role="tabpanel" id="sinaq" aria-labelledby="tb-sinaq" hidden><div id="sinaq-root"></div></section>
+</div>
+</body></html>

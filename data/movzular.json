@@ -1705,7 +1705,9 @@
    "ad": "Sintaktik əlaqələr və baş üzvlər",
    "status": "yox",
    "menbe": "DİM: Azərbaycan dili (9 illik), qrammatika — mövzu 17",
-   "hefte": "2027-03-29"
+   "hefte": "2027-03-29",
+   "ders": "dersler/az-bas-uzvler.html",
+   "imt": true
   },
   {
    "bolme": "Sintaksis",
