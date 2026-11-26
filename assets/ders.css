@@ -129,6 +129,14 @@ html{scrollbar-gutter:stable}
 .oy-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:6px}
 .oy-lv{font:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 10px;align-items:center;padding:12px;border:0;border-radius:var(--r);background:var(--white);box-shadow:inset 0 0 0 1px var(--line-0);color:var(--ink-0);cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .oy-lv:hover{transform:translateY(-1px)}
+.oy-lv-w{position:relative;display:grid}
+.oy-reset{position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:transparent;color:var(--ink-2);font:inherit;font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.oy-reset:hover,.oy-reset:focus-visible{background:var(--line-0);color:var(--ink-0)}
+.oy-lv-w .oy-lv{padding-right:34px}
+.oy-modal{border:0;border-radius:var(--r);padding:20px 22px;max-width:min(420px,calc(100vw - 32px));background:var(--white);color:var(--ink-0);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.oy-modal::backdrop{background:rgba(0,0,0,.45)}
+.oy-modal p{margin:8px 0 16px;color:var(--ink-2)}
+.oy-modal-b{display:flex;gap:10px;justify-content:flex-end}
 .oy-lv.active{box-shadow:inset 0 0 0 2px var(--ink-0)}
 .oy-lv.locked{opacity:.5;cursor:not-allowed;transform:none}
 .oy-lv.done{background:var(--ok-soft);box-shadow:inset 0 0 0 1px var(--ok)}

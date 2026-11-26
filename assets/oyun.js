@@ -198,14 +198,34 @@
       map.replaceChildren(...cfg.levels.map((l, i) => {
         const s = st.lv[l.id], open = s.done || isOpen(i); // a mastered level stays open even when an earlier one was reopened
         const dots = h("span", { class: "oy-dots" }, ...Array.from({ length: STREAK }, (_, j) => h("i", { class: j < (s.done ? STREAK : s.streak) ? "on" : "" })));
-        return h("button", { type: "button", class: "oy-lv" + (s.done ? " done" : "") + (!open ? " locked" : "") + (active === l.id ? " active" : ""), ...(open ? {} : { "aria-disabled": "true" }),
+        const card = h("button", { type: "button", class: "oy-lv" + (s.done ? " done" : "") + (!open ? " locked" : "") + (active === l.id ? " active" : ""), ...(open ? {} : { "aria-disabled": "true" }),
           on: { click: () => open ? play(l.id) : null } },
           h("span", { class: "oy-no" }, s.done ? "✓" : open ? String(i + 1) : "🔒"), h("span", { class: "oy-name" }, l.ad), dots);
+        // a mastered level can be reset and played again (only closed levels — father, 26 Nov 2026; not from the view-only account)
+        const canReset = !(window.Skilly && Skilly.viewer && Skilly.viewer()) && s.done;
+        return h("div", { class: "oy-lv-w" }, card, canReset ? h("button", { type: "button", class: "oy-reset", title: "Sıfırla", "aria-label": "«" + l.ad + "» səviyyəsini sıfırla",
+          on: { click: e => { e.stopPropagation(); askReset(l); } } }, "↺") : null);
       }), h("button", { type: "button", class: "oy-lv boss" + (st.boss.passed ? " done" : "") + (!allDone() && !st.boss.passed ? " locked" : "") + (active === "boss" ? " active" : ""),
         on: { click: () => allDone() ? boss() : null } },
         h("span", { class: "oy-no" }, st.boss.passed ? "✓" : allDone() ? "★" : "🔒"), h("span", { class: "oy-name" }, "Boss raundu"),
         h("span", { class: "oy-sub" }, st.boss.passed ? "keçildi" : cfg.levels.length + " sual, hamısı düz")));
       cfg.onState && cfg.onState(st);
+    }
+
+    // reset one level after a yes in a confirm dialog: its counter starts again; the boss, the test and the topic's
+    // closed state do not change (the next levels stay open, see drawMap)
+    function askReset(l) {
+      const dlg = h("dialog", { class: "oy-modal", "aria-labelledby": "oy-modal-t" },
+        h("b", { id: "oy-modal-t" }, "«" + l.ad + "» səviyyəsini sıfırlayaq?"),
+        h("p", {}, "Sayğac sıfırlanacaq, səviyyəni yenidən keçəcəksən. Boss raundu, Sınaq və mövzunun bağlanması dəyişmir."),
+        h("div", { class: "oy-modal-b" },
+          h("button", { type: "button", class: "btn ghost", on: { click: () => dlg.close() } }, "Xeyr"),
+          h("button", { type: "button", class: "btn", on: { click: () => {
+            Object.assign(st.lv[l.id], { streak: 0, done: false, tries: 0, wrong: 0 }); save();
+            if (current === l.id) { RUN++; current = null; stage.replaceChildren(); }
+            dlg.close(); drawMap(); } } }, "Bəli, sıfırla")));
+      dlg.addEventListener("close", () => dlg.remove());
+      document.body.append(dlg); dlg.showModal();
     }
 
     // one problem on screen; a wrong answer keeps the same problem until it is answered right (rule of 20 Oct 2026).
@@ -278,10 +298,13 @@
         save(); drawMap(id);
       }
       current = null; settle();
-      const nextIdx = cfg.levels.findIndex(l => l.id === id) + 1;
+      // where to go next: the first level still open, then the boss, then the test (a replayed level must not
+      // send the player into another level that is already mastered)
+      const after = cfg.levels.slice(cfg.levels.findIndex(l => l.id === id) + 1).concat(cfg.levels), nextLv = after.find(l => !st.lv[l.id].done);
       stage.replaceChildren(h("div", { class: "oy-done" }, h("b", {}, "Səviyyə bağlandı ✓"),
-        nextIdx < cfg.levels.length ? h("button", { type: "button", class: "btn", on: { click: () => play(cfg.levels[nextIdx].id) } }, "Növbəti səviyyə →")
-          : h("button", { type: "button", class: "btn", on: { click: boss } }, "Boss raunduna keç →")));
+        nextLv ? h("button", { type: "button", class: "btn", on: { click: () => play(nextLv.id) } }, "Növbəti səviyyə →")
+          : !st.boss.passed ? h("button", { type: "button", class: "btn", on: { click: boss } }, "Boss raunduna keç →")
+          : h("button", { type: "button", class: "btn", on: { click: () => cfg.goTest && cfg.goTest() } }, "Sınağa keç →")));
     }
 
     async function boss() {
